@@ -26,8 +26,11 @@ from .calib import RAD2DPH
 TERM_NAMES = ("k_rot_sphere", "k_rot_flat", "k_curv")
 
 
-def build_rows(bins, fwd_b, bias_fn, vertical_only=False):
-    """Returns y (n,), X (n, 6), bin index per row, and per-bin C_bn matrices."""
+def build_rows(bins, fwd_b, bias_fn, vertical_only=False, temp_ref=None):
+    """Returns y (n,), X (n, 6 or 9), bin index per row, and per-bin C_bn matrices.
+
+    Columns: residual bias (3), k terms (3), and, when temp_ref is given, bias change per °C (3)
+    multiplied by (battery temperature − temp_ref)."""
     es, ef, tr = models.terms(bins["lat"], bins["h"], bins["v_n"], bins["v_e"])
     ys, xs, idx, cbns = [], [], [], []
     for j in range(len(bins["t"])):
@@ -36,15 +39,17 @@ def build_rows(bins, fwd_b, bias_fn, vertical_only=False):
         # aircraft rotation relative to local level, phone frame
         w_nb = np.cross(bins["dup_dt"][j], u) + bins["psi_dot"][j] * d_b
         y = bins["gyro"][j] - bias_fn(bins["t"][j]) - w_nb
+        dT = (bins["temp"][j] - temp_ref) if temp_ref is not None else None
         if vertical_only:
-            X = np.concatenate([d_b, [es[j][2], ef[j][2], tr[j][2]]])
+            X = np.concatenate([d_b, [es[j][2], ef[j][2], tr[j][2]]] + ([d_b * dT] if dT is not None else []))
             ys.append(y @ d_b)
             xs.append(X)
             idx.append(j)
             cbns.append(None)
             continue
         C = c_bn(u, fwd_b, bins["psi"][j])
-        X = np.hstack([np.eye(3), np.column_stack([C @ es[j], C @ ef[j], C @ tr[j]])])
+        X = np.hstack([np.eye(3), np.column_stack([C @ es[j], C @ ef[j], C @ tr[j]])]
+                      + ([np.eye(3) * dT] if dT is not None else []))
         ys.extend(y)
         xs.extend(X)
         idx.extend([j] * 3)
@@ -52,25 +57,33 @@ def build_rows(bins, fwd_b, bias_fn, vertical_only=False):
     return np.array(ys), np.array(xs), np.array(idx), cbns
 
 
-def _solve(y, X, w, prior_sigma, fixed_k=None):
-    """Weighted least squares with a Gaussian prior on the 3 bias terms. Returns theta, cov, chi2."""
+def _solve(y, X, w, prior, fixed_k=None):
+    """Weighted least squares with zero-mean Gaussian priors (prior[i] = 1σ for column i, inf = no
+    prior). Returns theta, cov, chi2. With fixed_k the three k columns are held at those values."""
     sw = np.sqrt(w)
+    prior = np.asarray(prior, dtype=float)
     if fixed_k is not None:
-        y = y - X[:, 3:] @ np.asarray(fixed_k)
-        X = X[:, :3]
+        y = y - X[:, 3:6] @ np.asarray(fixed_k)
+        keep = [i for i in range(X.shape[1]) if not 3 <= i < 6]
+        X, prior = X[:, keep], prior[keep]
     p = X.shape[1]
-    P = np.zeros((3, p))
-    P[:, :3] = np.diag(1.0 / prior_sigma)
+    idx = np.where(np.isfinite(prior))[0]
+    P = np.zeros((len(idx), p))
+    P[np.arange(len(idx)), idx] = 1.0 / prior[idx]
     A = np.vstack([X * sw[:, None], P])
-    b = np.concatenate([y * sw, np.zeros(3)])
+    b = np.concatenate([y * sw, np.zeros(len(idx))])
     theta, *_ = np.linalg.lstsq(A, b, rcond=None)
     r = b - A @ theta
     cov = np.linalg.pinv(A.T @ A)
     return theta, cov, float(r @ r)
 
 
-def fit(bins, fwd_b, bias_fn, prior_sigma, vertical_only=False, n_boot=300, seed=0):
-    y, X, idx, cbns = build_rows(bins, fwd_b, bias_fn, vertical_only)
+def fit(bins, fwd_b, bias_fn, prior_sigma, vertical_only=False, n_boot=300, seed=0,
+        temp_ref=None, temp_prior=None):
+    y, X, idx, cbns = build_rows(bins, fwd_b, bias_fn, vertical_only, temp_ref)
+    prior = np.concatenate([prior_sigma, np.full(3, np.inf)]
+                           + ([np.broadcast_to(temp_prior, (3,))] if temp_ref is not None else []))
+    prior_sigma = prior
     n_bins = len(bins["t"])
     # pass 1: rough sigma; pass 2: sigma = residual RMS (bias instability included)
     w = np.full(len(y), 1.0 / (3.0 / RAD2DPH) ** 2)
@@ -79,7 +92,7 @@ def fit(bins, fwd_b, bias_fn, prior_sigma, vertical_only=False, n_boot=300, seed
     sigma = max(float(np.sqrt(np.mean(resid ** 2))), 1e-9)
     w = np.full(len(y), 1.0 / sigma ** 2)
     theta, cov, chi2 = _solve(y, X, w, prior_sigma)
-    k, k_sd = theta[3:], np.sqrt(np.diag(cov)[3:])
+    k, k_sd = theta[3:6], np.sqrt(np.diag(cov)[3:6])
 
     # moving-block bootstrap over bins, since bias wander makes neighbouring bins correlated
     rng = np.random.default_rng(seed)
@@ -94,7 +107,7 @@ def fit(bins, fwd_b, bias_fn, prior_sigma, vertical_only=False, n_boot=300, seed
             rb = np.concatenate([resid[idx == j] for j in order])
             yb = fitted + rb[:len(fitted)] if len(rb) >= len(fitted) else fitted
             tb, _, _ = _solve(yb, X, w, prior_sigma)
-            boots.append(tb[3:])
+            boots.append(tb[3:6])
     k_sd_boot = np.std(boots, axis=0) if boots else np.full(3, np.nan)
     k_sd_final = np.fmax(k_sd, np.nan_to_num(k_sd_boot))
 
@@ -114,7 +127,8 @@ def fit(bins, fwd_b, bias_fn, prior_sigma, vertical_only=False, n_boot=300, seed
         "k_sd": dict(zip(TERM_NAMES, k_sd_final.tolist())),
         "k_sd_analytic": dict(zip(TERM_NAMES, k_sd.tolist())),
         "bias_residual_dph": (theta[:3] * RAD2DPH).tolist(),
-        "max_bias_k_corr": float(np.max(np.abs(corr[:3, 3:]))),
+        "max_bias_k_corr": float(np.max(np.abs(np.delete(corr[3:6], [3, 4, 5], axis=1)))),
+        "temp_coef_dph_per_c": (theta[6:] * RAD2DPH).tolist() if temp_ref is not None else None,
         "chi2": {n: float(c) for n, c in comparison.items()},
         "delta_chi2": {n: float(c - best) for n, c in comparison.items()},
         "model_weight": {n: v / tot for n, v in rel.items()},

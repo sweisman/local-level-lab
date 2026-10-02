@@ -2,14 +2,14 @@
 
 A crowdsourced, fully open experiment that tests the shape and motion of the Earth with the motion sensors in ordinary phones, carried on ordinary flights.
 
-A gyroscope measures rotation relative to the stars. If the Earth rotates, a phone resting on it turns with it at up to 15 °/h. If the Earth is curved, an airliner holding level flight has to keep pitching to follow the surface: about 7 °/h at 900 km/h. The app records raw sensor data. The analysis compares it, side by side, against four models with predictions taken from GPS alone:
+A gyroscope measures angular velocity relative to inertial space, not relative to the ground. If the Earth rotates, a phone resting on it turns with it at up to 15.04 °/h. If the Earth is curved, the local-level frame of a moving aircraft (its local horizontal) rotates relative to inertial space, at a rate set by the aircraft's velocity and the Earth's radius: v / R ≈ 8.1 °/h at 900 km/h (250 m/s). The app records raw sensor data. The analysis compares it, side by side, against four models with predictions taken from GPS alone:
 
 | | still | rotating |
 |---|---|---|
-| **flat** | no rotation | 15 °/h about vertical, everywhere |
+| **flat** | no rotation | 15.04 °/h about the disc normal (local vertical), everywhere |
 | **sphere** | transport rate only | Earth rate (latitude-dependent) + transport rate |
 
-A single phone's gyro drift is comparable to these signals, so the design depends on careful calibration, long stable recordings, turns, controls, and **pooling many flights**.
+Sensor resolution isn't the problem; bias stability is. A single phone's gyro drift is comparable to these signals, so the design depends on careful calibration, long stable recordings, turns, controls, and **pooling many flights**.
 
 ## Repository
 
@@ -26,6 +26,7 @@ A single phone's gyro drift is comparable to these signals, so the design depend
 python -m venv .venv && . .venv/bin/activate
 pip install -e analysis -e server pytest httpx
 lll synth demo.zip --truth sphere_rotating   # or sphere_still / flat_rotating / flat_still
+lll synth hard.zip --truth flat_still --adverse   # temperature drift, turbulence, mount slip, climb/descent, GNSS gaps
 lll analyze demo.zip                         # writes demo.result.json + demo.report.html
 lll collate . -o collated                    # pools every *.result.json under .
 pytest analysis/tests server/tests

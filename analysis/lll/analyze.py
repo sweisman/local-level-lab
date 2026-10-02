@@ -93,7 +93,30 @@ def analyze(path, th: Thresholds | None = None) -> dict:
     if vertical_only:
         flags.append("no_heading_reference_vertical_only")
 
-    f = fit.fit(bins, fwd, bias_fn, prior_sigma, vertical_only=vertical_only)
+    # Temperature: if the phone is noticeably warmer or colder in cruise than during calibration,
+    # fit a per-axis bias-vs-temperature coefficient (prior from drift runs if available).
+    temp_ref, temp_prior = None, None
+    bat = sess.streams.get("battery")
+    cal_temps = []
+    for ph in sess.phases("cal_"):
+        b = sess.slice("battery", ph["start_ns"], ph["end_ns"])
+        if b is not None and np.isfinite(b["temp_c"]).any():
+            cal_temps.append(np.nanmean(b["temp_c"]))
+    if bat is not None and cal_temps and np.isfinite(bins["temp"]).all():
+        t_ref = float(np.mean(cal_temps))
+        if np.max(np.abs(bins["temp"] - t_ref)) >= th.min_temp_delta_c:
+            temp_ref = t_ref
+            coefs = [abs(c) for d in res["drift"].values() if d and d.get("bias_temp_coef_dph_per_c")
+                     for c in d["bias_temp_coef_dph_per_c"]]
+            temp_prior = (max(coefs) + 1.0 if coefs else th.temp_prior_dph_per_c) / calib.RAD2DPH
+            flags.append("temperature_term")
+    res["temperature"] = {"cal_mean_c": float(np.mean(cal_temps)) if cal_temps else None,
+                          "cruise_min_c": float(np.nanmin(bins["temp"])) if np.isfinite(bins["temp"]).any() else None,
+                          "cruise_max_c": float(np.nanmax(bins["temp"])) if np.isfinite(bins["temp"]).any() else None,
+                          "term_used": temp_ref is not None,
+                          "prior_dph_per_c": None if temp_prior is None else temp_prior * calib.RAD2DPH}
+
+    f = fit.fit(bins, fwd, bias_fn, prior_sigma, vertical_only=vertical_only, temp_ref=temp_ref, temp_prior=temp_prior)
     y, X, idx, cbns, theta = f["_rows"]
     res["fit"] = f
     res["fit"]["expected_k"] = models.EXPECTED_K

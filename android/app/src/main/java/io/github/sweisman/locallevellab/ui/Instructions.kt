@@ -6,9 +6,9 @@ data class Section(val key: String, val title: String, val body: List<String>)
 
 val INSTRUCTIONS = listOf(
     Section("about", "What this measures", listOf(
-        "A gyroscope measures rotation relative to the stars (inertial space), not relative to the ground.",
+        "A gyroscope measures angular velocity relative to inertial space (a non-rotating reference frame), not relative to the ground.",
         "If the Earth turns, a phone resting on it turns with it. A rotating globe gives about 15°/hour, split between the vertical and horizontal depending on latitude. A rotating flat disc gives 15°/hour about the vertical everywhere. A still Earth gives zero.",
-        "If the Earth is curved, an airliner holding level flight has to keep pitching to follow the surface. At 900 km/h that's about 7°/hour more. On a flat Earth it's zero.",
+        "If the Earth is curved, the local horizontal (\"local level\") of a moving aircraft rotates relative to inertial space, at a rate set by its speed and the Earth's radius: about 8.1°/hour at 900 km/h. On a flat Earth it's zero.",
         "Your phone records raw sensor data. The analysis compares it against all four combinations (flat or sphere, still or rotating) and reports which one fits. The predictions come from GPS alone and never from the gyro.",
         "These signals are tiny next to a phone gyro's own drift, so careful calibration and a phone that stays perfectly still matter more than anything else. Many flights pooled together give the final answer.",
     )),

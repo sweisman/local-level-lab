@@ -18,6 +18,8 @@ class Thresholds:
     max_h_acc_m: float = 100.0
     min_segment_s: float = 600.0
     bin_s: float = 60.0
+    min_temp_delta_c: float = 2.0         # cruise vs calibration temperature that switches on the temp term
+    temp_prior_dph_per_c: float = 5.0     # 1σ prior on |bias change| per °C without drift-run data
 
 
 def _smooth_grad(t, x, win_s):
@@ -84,6 +86,8 @@ def make_bins(sess, segs, kin, th: Thresholds):
     gs = sess.streams[sess.gyro_stream()]
     ac = sess.streams["accel_uncal" if "accel_uncal" in sess.streams else "accel"]
     gt, at = gs["t_ns"] / 1e9, ac["t_ns"] / 1e9
+    bat = sess.streams.get("battery")
+    bat_ok = bat is not None and np.isfinite(bat["temp_c"]).sum() >= 2
     G = np.column_stack([gs["x"], gs["y"], gs["z"]])
     A = np.column_stack([ac["x"], ac["y"], ac["z"]])
     rows = []
@@ -106,6 +110,8 @@ def make_bins(sess, segs, kin, th: Thresholds):
                 "psi": np.arctan2(np.sin(kin["psi"][km]).mean(), np.cos(kin["psi"][km]).mean()),
                 "psi_dot": kin["psi_dot"][km].mean(),
                 "speed": kin["speed"][km].mean(),
+                "temp": float(np.interp((a + b) / 2, bat["t_ns"][np.isfinite(bat["temp_c"])] / 1e9,
+                                        bat["temp_c"][np.isfinite(bat["temp_c"])])) if bat_ok else np.nan,
             })
     if not rows:
         return None

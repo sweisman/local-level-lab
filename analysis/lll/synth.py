@@ -24,6 +24,17 @@ _CAL_UP = np.array([[0, 1, 0], [1, 0, 0], [0, 0, -1]], float)
 _CAL_DOWN = np.array([[0, 1, 0], [-1, 0, 0], [0, 0, 1]], float)
 
 
+# Everything a real flight throws at the pipeline at once (see docs/MATH.md, Validation).
+ADVERSE = dict(
+    temp_coef_dph_per_c=(1.0, -0.8, 0.6), flight_temp_rise_c=8.0,     # bias follows temperature
+    turbulence=((40, 5, 0.7),),                                       # real attitude jitter
+    mount_slip_deg_per_h=(0.0, 1.5),                                  # phone tilts slowly in its mount
+    climb_min=20, descent_min=20,                                     # climb/descent excluded from cruise
+    legs=((60.0, 35.0), (100.0, 25.0), (20.0, 25.0), (300.0, 30.0)),
+    gnss_dropouts=((70, 4),),                                         # GNSS gap splits a segment
+)
+
+
 def _vee_batch(R):
     return np.stack([R[:, 2, 1] - R[:, 1, 2], R[:, 0, 2] - R[:, 2, 0], R[:, 1, 0] - R[:, 0, 1]], axis=1) / 2
 
@@ -33,9 +44,21 @@ def synthesize(path, truth="sphere_rotating", *, fs=25.0, seed=0, lat0=40.6, lon
                mount_yaw_deg=20.0, mount_tilt_deg=4.0, cal_pos_s=180.0, gap_s=3600.0,
                bias0_dps=(0.3, -0.2, 0.15), drift_dph_per_h=(1.0, -0.8, 0.5), rw_dph_sqrth=0.3,
                noise_dps_rthz=0.007, accel_noise_g_rthz=160e-6, pitch_trim_deg_per_h=0.5,
-               cal=("pre", "post"), drift_runs=False):
+               cal=("pre", "post"), drift_runs=False,
+               temp_coef_dph_per_c=(0.0, 0.0, 0.0), flight_temp_rise_c=0.0, turbulence=(),
+               mount_slip_deg_per_h=(0.0, 0.0), climb_min=0.0, descent_min=0.0, gnss_dropouts=()):
     """Write a synthetic session zip. legs = ((course_deg, minutes), ...), with rate-one turns
-    (3°/s) between them."""
+    (3°/s) between them.
+
+    Adversarial options:
+      temp_coef_dph_per_c, flight_temp_rise_c: gyro bias depends on temperature, and the phone
+          warms by this much during the flight (calibrations happen at 25 °C)
+      turbulence: ((start_min, minutes, attitude_rms_deg), ...) bursts of real attitude
+          jitter plus vertical bumps
+      mount_slip_deg_per_h: (yaw, tilt) slow creep of the phone in its mount through the flight
+      climb_min, descent_min: climb from 1 km to cruise at the start, descend at the end
+      gnss_dropouts: ((start_min, minutes), ...) with no GNSS fixes
+    """
     rng = np.random.default_rng(seed)
     dt = 1.0 / fs
     t0_ns = 10 ** 12
@@ -69,6 +92,12 @@ def synthesize(path, truth="sphere_rotating", *, fs=25.0, seed=0, lat0=40.6, lon
     tg = np.arange(0, t_end + 2, 1.0)
     rw = np.cumsum(rng.normal(0, np.radians(rw_dph_sqrth / 3600) / 60, (len(tg), 3)), axis=0)  # per sqrt(s)
     bias_grid = np.radians(np.array(bias0_dps)) + np.outer(tg / 3600, np.radians(np.array(drift_dph_per_h) / 3600)) + rw
+
+    # battery temperature: 25 °C on the ground, rising towards 25 + rise in flight
+    fl_s = np.clip(tg - fl_start, 0, fl_dur)
+    after = np.clip(tg - fl_start - fl_dur, 0, None)
+    temp_grid = 25.0 + flight_temp_rise_c * (1 - np.exp(-fl_s / 900.0)) * np.exp(-after / 900.0)
+    bias_grid = bias_grid + np.outer(temp_grid - 25.0, np.radians(np.array(temp_coef_dph_per_c) / 3600))
 
     def bias(ts):
         return np.column_stack([np.interp(ts, tg, bias_grid[:, i]) for i in range(3)])
@@ -123,28 +152,59 @@ def synthesize(path, truth="sphere_rotating", *, fs=25.0, seed=0, lat0=40.6, lon
         lat[i] = lat[i - 1] + v_n[i - 1] / (rm + h) * dt
         lon[i] = lon[i - 1] + v_e[i - 1] / ((rn + h) * np.cos(lat[i - 1])) * dt
     bank = np.arctan(speed * psi_dot / models.G0)
-    pitch = np.radians(2.0 + pitch_trim_deg_per_h * (ts - fl_start) / 3600) + np.radians(0.1) * np.sin(2 * np.pi * ts / 400)
-    C_ab = rot_z(np.radians(mount_yaw_deg)) @ rot_y(np.radians(mount_tilt_deg)) @ MOUNTS[mount]
+    tf = ts - fl_start
+    pitch = np.radians(2.0 + pitch_trim_deg_per_h * tf / 3600) + np.radians(0.1) * np.sin(2 * np.pi * ts / 400)
+    # climb / descent profile
+    hh = np.full(n, float(h))
+    vz = np.zeros(n)
+    if climb_min > 0:
+        m = tf < climb_min * 60
+        vz[m] = (h - 1000.0) / (climb_min * 60)
+        pitch[m] += np.radians(3.0)
+    if descent_min > 0:
+        m = tf > fl_dur - descent_min * 60
+        vz[m] = -(h - 1000.0) / (descent_min * 60)
+        pitch[m] -= np.radians(1.5)
+    if climb_min > 0 or descent_min > 0:
+        hh = (h if climb_min == 0 else 1000.0) + np.cumsum(vz) * dt
+    # turbulence: low-passed attitude jitter and vertical bumps
+    a_vert = np.zeros(n)
+    for start, dur, rms in turbulence:
+        m = (tf >= start * 60) & (tf < (start + dur) * 60)
+        k = max(1, int(fs * 2))
+        for arr in (pitch, bank):
+            jit = np.convolve(rng.normal(0, 1, n), np.ones(k) / np.sqrt(k), mode="same")
+            arr[m] += np.radians(rms) * jit[m]
+        a_vert[m] += rng.normal(0, 1.5, m.sum())
+    slip_yaw = np.radians(mount_slip_deg_per_h[0]) * tf / 3600
+    slip_tilt = np.radians(mount_slip_deg_per_h[1]) * tf / 3600
     C_na = np.einsum("nij,njk,nkl->nil", np.array([rot_z(p) for p in psi]),
                      np.array([rot_y(p) for p in pitch]), np.array([rot_x(p) for p in bank]))
+    if any(mount_slip_deg_per_h):
+        C_ab = np.einsum("nij,njk,kl->nil", np.array([rot_z(np.radians(mount_yaw_deg) + y) for y in slip_yaw]),
+                         np.array([rot_y(np.radians(mount_tilt_deg) + x) for x in slip_tilt]), MOUNTS[mount])
+    else:
+        C_ab = rot_z(np.radians(mount_yaw_deg)) @ rot_y(np.radians(mount_tilt_deg)) @ MOUNTS[mount]
     C_nb = C_na @ C_ab
     C_bn = np.transpose(C_nb, (0, 2, 1))
     R_rel = np.einsum("nji,njk->nik", C_nb[:-1], C_nb[1:])
     w_nb = _vee_batch(R_rel) / dt
     w_nb = np.vstack([w_nb, w_nb[-1:]])
-    w_in = models.predict(truth, lat, h, v_n, v_e)
+    w_in = models.predict(truth, lat, hh, v_n, v_e)
     w_ib = np.einsum("nij,nj->ni", C_bn, w_in) + w_nb
-    a_n = np.column_stack([np.gradient(v_n, dt), np.gradient(v_e, dt), np.zeros(n)])
+    a_n = np.column_stack([np.gradient(v_n, dt), np.gradient(v_e, dt), np.gradient(-vz, dt) + a_vert])
     add_sensor(ts, C_bn, w_ib, a_n - g_vec)
 
     # GNSS at 1 Hz
     gi = np.arange(0, n, int(round(fs)))
+    for start, dur in gnss_dropouts:
+        gi = gi[(tf[gi] < start * 60) | (tf[gi] >= (start + dur) * 60)]
     g_t = t0_ns + np.round(ts[gi] * 1e9).astype(np.int64)
     gnss = {
         "t_ns": g_t, "utc_ms": 1_790_000_000_000 + (g_t - t0_ns) // 10 ** 6,
         "lat": np.degrees(lat[gi]) + rng.normal(0, 2e-5, len(gi)),
         "lon": np.degrees(lon[gi]) + rng.normal(0, 2e-5, len(gi)),
-        "alt_m": h + rng.normal(0, 3, len(gi)),
+        "alt_m": hh[gi] + rng.normal(0, 3, len(gi)),
         "speed_mps": (speed + rng.normal(0, 0.2, len(gi))).astype(np.float32),
         "bearing_deg": ((np.degrees(psi[gi]) + rng.normal(0, 0.1, len(gi))) % 360).astype(np.float32),
         "h_acc_m": np.full(len(gi), 5.0, np.float32), "v_acc_m": np.full(len(gi), 8.0, np.float32),
@@ -167,7 +227,7 @@ def synthesize(path, truth="sphere_rotating", *, fs=25.0, seed=0, lat0=40.6, lon
         "accel_uncal": {"t_ns": at, "x": av[:, 0], "y": av[:, 1], "z": av[:, 2], "bx": za, "by": za, "bz": za},
         "gnss": gnss,
         "battery": {"t_ns": t0_ns + np.arange(0, int(t_end), 10, dtype=np.int64) * 10 ** 9,
-                    "temp_c": np.full(int(t_end) // 10 + (int(t_end) % 10 > 0), 30.0, np.float32),
+                    "temp_c": np.interp(np.arange(0, int(t_end), 10), tg, temp_grid).astype(np.float32),
                     "level_pct": np.full(int(t_end) // 10 + (int(t_end) % 10 > 0), 80.0, np.float32),
                     "plugged": np.zeros(int(t_end) // 10 + (int(t_end) % 10 > 0), np.int64)},
     }

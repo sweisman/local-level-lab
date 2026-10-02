@@ -49,6 +49,8 @@ def main(argv=None):
     s.add_argument("--seed", type=int, default=0)
     s.add_argument("--fs", type=float, default=50.0)
     s.add_argument("--mount", default="tray", choices=["tray", "window"])
+    s.add_argument("--adverse", action="store_true",
+                   help="add temperature-dependent bias, turbulence, mount slip, climb/descent and GNSS gaps")
     args = ap.parse_args(argv)
     if args.cmd == "analyze":
         for z in args.zips:
@@ -56,8 +58,8 @@ def main(argv=None):
     elif args.cmd == "collate":
         print(collate_to(args.inputs, args.out))
     elif args.cmd == "synth":
-        from .synth import synthesize
-        synthesize(args.out, args.truth, seed=args.seed, fs=args.fs, mount=args.mount)
+        from .synth import ADVERSE, synthesize
+        synthesize(args.out, args.truth, seed=args.seed, fs=args.fs, mount=args.mount, **(ADVERSE if args.adverse else {}))
         print(args.out)
 
 

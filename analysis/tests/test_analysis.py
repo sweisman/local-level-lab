@@ -125,3 +125,48 @@ def test_cli_analyze_and_collate(tmp_path):
     assert col["best_counts"] == {"sphere_rotating": 2, "flat_still": 1}
     assert (tmp_path / "col" / "sessions.csv").read_text().count("\n") == 4
     assert "collated" in col_html.read_text()
+
+
+# ---- adversarial simulations ----
+from lll.synth import ADVERSE  # noqa: E402
+
+
+@pytest.fixture(scope="module")
+def adverse_results(tmp_path_factory):
+    d = tmp_path_factory.mktemp("adverse")
+    out = {}
+    for truth in models.MODELS:
+        synthesize(d / f"{truth}.zip", truth, seed=7, fs=20.0, **ADVERSE)
+        out[truth] = analyze(d / f"{truth}.zip")
+    return out
+
+
+@pytest.mark.parametrize("truth", list(models.MODELS))
+def test_adverse_conditions_still_recover_truth(adverse_results, truth):
+    r = adverse_results[truth]
+    f = r["fit"]
+    assert "temperature_term" in r["flags"]
+    assert 50 < r["cruise_minutes"] < 100          # climb, descent, turbulence, gap all excluded
+    assert f["best_model"] == truth, f["delta_chi2"]
+    for name, exp in zip(("k_rot_sphere", "k_rot_flat", "k_curv"), models.EXPECTED_K[truth]):
+        assert abs(f["k"][name] - exp) < 3.5 * f["k_sd"][name], (name, f["k"], f["k_sd"])
+
+
+def test_temperature_term_removes_bias(tmp_path):
+    from lll.segments import Thresholds
+    p = tmp_path / "t.zip"
+    synthesize(p, "sphere_rotating", seed=7, fs=20.0, temp_coef_dph_per_c=(1.0, -0.8, 0.6), flight_temp_rise_c=8.0)
+    with_term = analyze(p)["fit"]["k"]["k_curv"]
+    without = analyze(p, Thresholds(min_temp_delta_c=1e9))["fit"]["k"]["k_curv"]
+    assert abs(with_term - 1) < 0.1
+    assert abs(without - 1) > 2 * abs(with_term - 1)
+
+
+def test_no_calibration_is_not_confidently_wrong(tmp_path):
+    p = tmp_path / "nocal.zip"
+    synthesize(p, "flat_still", seed=9, fs=20.0, cal=())
+    r = analyze(p)
+    assert {"no_cal_pre", "no_cal_post"} <= set(r["flags"])
+    f = r["fit"]
+    for name, exp in zip(("k_rot_sphere", "k_rot_flat", "k_curv"), models.EXPECTED_K["flat_still"]):
+        assert abs(f["k"][name] - exp) < 3.5 * f["k_sd"][name], (name, f["k"], f["k_sd"])

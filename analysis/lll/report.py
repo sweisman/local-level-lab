@@ -116,10 +116,17 @@ def session_report(res: dict) -> str:
                           [[MODEL_LABELS[m], _f(fit["delta_chi2"][m], 1), _f(w[m], 3), str(tuple(fit["expected_k"][m]))]
                            for m in MODEL_LABELS]))
         out.append("<h3>Separate scale factors</h3>" + _k_figure(fit["k"], fit["k_sd"]))
-        out.append(f"<p class=sub>Fit mode: {fit['mode']}. The largest |correlation| between the residual bias and any k "
+        out.append(f"<p class=sub>Fit mode: {fit['mode']}. The largest |correlation| between a nuisance term (residual bias or temperature) and any k "
                    f"is {fit['max_bias_k_corr']:.2f}. Values near 1 mean the data can't tell bias from signal, and more turns "
                    "or better calibration would help. Residual bias: "
                    + ", ".join(f"{v:.2f}" for v in fit["bias_residual_dph"]) + " °/h.</p>")
+        tm = res.get("temperature") or {}
+        if tm.get("cal_mean_c") is not None:
+            out.append(f"<p class=sub>Battery temperature: calibration {tm['cal_mean_c']:.1f} °C, cruise "
+                       f"{_f(tm.get('cruise_min_c'), 1)}–{_f(tm.get('cruise_max_c'), 1)} °C. "
+                       + ("Temperature term fitted (prior " + _f(tm["prior_dph_per_c"], 1) + " °/h/°C): "
+                          + ", ".join(_f(v) for v in fit["temp_coef_dph_per_c"]) + " °/h/°C."
+                          if tm.get("term_used") else "Difference too small for a temperature term.") + "</p>")
 
     # calibration
     cal = res.get("calibration", {})
