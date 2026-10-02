@@ -217,7 +217,7 @@ fun SettingsScreen(nav: NavController) {
     Page("Settings", nav) {
         OutlinedTextField(url, { url = it; p.serverUrl = it }, label = { Text("Upload server URL") }, singleLine = true,
             modifier = Modifier.fillMaxWidth(), keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Uri))
-        Para("Uploads go only to this address, and only when you tap Upload.", muted = true)
+        Para("Uploads go only to this address, and only when you tap Upload. It must start with https://.", muted = true)
         SwitchRow("Upload on Wi-Fi only", unmetered) { unmetered = it; p.unmeteredOnly = it }
         SwitchRow("Save calibration latitude (rounded to 0.5°)", calLat) { calLat = it; p.shareCalLatitude = it }
         Para("The latitude lets calibrations test the Earth-rotation models at your location. Rounding keeps it to roughly 50 km.", muted = true)

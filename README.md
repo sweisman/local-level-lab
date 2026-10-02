@@ -50,7 +50,9 @@ Public endpoints:
 - `GET /api/v1/sessions/{id}/report`
 - `GET /report`
 
-Environment variables: `LLL_DATA`, `LLL_MAX_UPLOAD_MB` (default 200), `LLL_UPLOADS_PER_HOUR` (default 20).
+Environment variables: `LLL_DATA`, `LLL_MAX_UPLOAD_MB` (default 200), `LLL_MAX_UNCOMPRESSED_MB` (default 2000, declared size of the zip's contents), `LLL_UPLOADS_PER_HOUR` (default 20, per client IP and per install ID).
+
+The per-IP limit uses the client address uvicorn sees. Behind a reverse proxy on the same host, make sure it sends `X-Forwarded-For` (Caddy does by default; nginx needs `proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;`), otherwise every upload shares one bucket.
 
 ## Android
 

@@ -81,8 +81,10 @@ def _solve(y, X, w, prior, fixed_k=None):
 def fit(bins, fwd_b, bias_fn, prior_sigma, vertical_only=False, n_boot=300, seed=0,
         temp_ref=None, temp_prior=None):
     y, X, idx, cbns = build_rows(bins, fwd_b, bias_fn, vertical_only, temp_ref)
-    prior = np.concatenate([prior_sigma, np.full(3, np.inf)]
-                           + ([np.broadcast_to(temp_prior, (3,))] if temp_ref is not None else []))
+    if temp_ref is not None and temp_prior is None:
+        temp_prior = np.inf  # temperature term with no prior
+    prior = np.concatenate([np.asarray(prior_sigma, dtype=float), np.full(3, np.inf)]
+                           + ([np.broadcast_to(np.asarray(temp_prior, dtype=float), (3,))] if temp_ref is not None else []))
     prior_sigma = prior
     n_bins = len(bins["t"])
     # pass 1: rough sigma; pass 2: sigma = residual RMS (bias instability included)

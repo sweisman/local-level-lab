@@ -166,6 +166,10 @@ def synthesize(path, truth="sphere_rotating", *, fs=25.0, seed=0, lat0=40.6, lon
         vz[m] = -(h - 1000.0) / (descent_min * 60)
         pitch[m] -= np.radians(1.5)
     if climb_min > 0 or descent_min > 0:
+        # Ramp vz over 30 s at each transition. A step in vz would differentiate into a one-sample
+        # ~8 g spike in the vertical accelerometer, which is unphysical and trips the vibration gate.
+        k = max(1, int(round(30.0 / dt)))
+        vz = np.convolve(vz, np.full(k, 1.0 / k), mode="same")
         hh = (h if climb_min == 0 else 1000.0) + np.cumsum(vz) * dt
     # turbulence: low-passed attitude jitter and vertical bumps
     a_vert = np.zeros(n)

@@ -105,12 +105,28 @@ def read_session(path: str | Path) -> Session:
 
 def validate_manifest(m: dict, names: list[str]) -> list[str]:
     """Return a list of problems (empty = valid). Used by the upload server."""
+    if not isinstance(m, dict):
+        return ["manifest is not a JSON object"]
     errs = []
     if m.get("schema_version") != SCHEMA_VERSION:
         errs.append(f"unsupported schema_version {m.get('schema_version')!r}")
-    for key in ("session_id", "install_id", "phases", "device"):
+    for key, typ in (("session_id", str), ("install_id", str), ("phases", list), ("device", dict)):
         if key not in m:
             errs.append(f"manifest missing {key}")
+        elif not isinstance(m[key], typ):
+            errs.append(f"manifest {key} must be a {typ.__name__}")
+    for key in ("flight", "mount", "privacy", "quality", "sensors"):
+        if key in m and m[key] is not None and not isinstance(m[key], dict):
+            errs.append(f"manifest {key} must be an object")
+    if isinstance(m.get("phases"), list):
+        for p in m["phases"]:
+            if not (isinstance(p, dict) and isinstance(p.get("name"), str)
+                    and all(isinstance(p.get(k), (int, float)) for k in ("start_ns", "end_ns"))):
+                errs.append("each phase needs a string name and numeric start_ns/end_ns")
+                break
+    for key in ("session_id", "install_id"):
+        if isinstance(m.get(key), str) and not 0 < len(m[key]) <= 64:
+            errs.append(f"{key} must be 1-64 characters")
     for s in REQUIRED_STREAMS:
         if f"{s}.csv.gz" not in names:
             errs.append(f"missing stream {s}")

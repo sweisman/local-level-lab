@@ -11,6 +11,7 @@ import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import androidx.work.workDataOf
 import io.github.sweisman.locallevellab.Prefs
+import io.github.sweisman.locallevellab.recording.Session
 import io.github.sweisman.locallevellab.recording.SessionStore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -27,6 +28,11 @@ class UploadWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(ctx
         val base = Prefs(applicationContext).serverUrl
         if (base.isBlank()) {
             s.local.put("upload_error", "No server set in Settings"); s.save()
+            return@withContext Result.failure()
+        }
+        if (!base.startsWith("https://")) {
+            // Android blocks cleartext by default; without this check an http:// URL would retry forever.
+            s.local.put("upload_error", "Server URL must start with https://"); s.save()
             return@withContext Result.failure()
         }
         val zip = if (s.finalized) s.zipFile else SessionStore.finalize(s)
@@ -55,19 +61,26 @@ class UploadWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(ctx
                     s.save()
                     Result.success()
                 }
-                code == 429 || code >= 500 -> Result.retry()
+                code == 429 || code >= 500 -> retryOrFail(s, "HTTP $code: ${body.take(300)}")
                 else -> { s.local.put("upload_error", "HTTP $code: ${body.take(300)}"); s.save(); Result.failure() }
             }
         } catch (e: java.io.IOException) {
-            s.local.put("upload_error", e.toString()); s.save()
-            Result.retry()
+            retryOrFail(s, e.toString())
         } finally {
             conn.disconnect()
         }
     }
 
+    /** Retry with WorkManager's backoff, but give up after MAX_ATTEMPTS so a dead server or a
+     *  blocked connection doesn't retry forever. The session stays on the phone; the user can tap Upload again. */
+    private fun retryOrFail(s: Session, msg: String): Result {
+        s.local.put("upload_error", msg); s.save()
+        return if (runAttemptCount + 1 >= MAX_ATTEMPTS) Result.failure() else Result.retry()
+    }
+
     companion object {
         const val KEY_SESSION = "session"
+        const val MAX_ATTEMPTS = 8
 
         fun enqueue(ctx: Context, sessionId: String) {
             val net = if (Prefs(ctx).unmeteredOnly) NetworkType.UNMETERED else NetworkType.CONNECTED

@@ -63,3 +63,44 @@ def test_size_cap(client, monkeypatch):
     monkeypatch.setattr(appmod, "MAX_BYTES", 1000)
     c, _ = client
     assert c.post("/api/v1/sessions", files={"file": ("x.zip", b"0" * 2000)}).status_code == 413
+
+
+def _zip_with(manifest_obj, extra=None):
+    buf = io.BytesIO()
+    with zipfile.ZipFile(buf, "w") as zf:
+        zf.writestr("manifest.json", json.dumps(manifest_obj))
+        for name, data in (extra or {}).items():
+            zf.writestr(name, data)
+    return buf.getvalue()
+
+
+def test_rejects_malformed_manifest_types(client, synth_zip):
+    c, _ = client
+    m = json.loads(zipfile.ZipFile(io.BytesIO(synth_zip)).read("manifest.json"))
+    streams = {n: b"" for n in ("accel_uncal.csv.gz", "gyro_uncal.csv.gz")}
+    for bad in ({**m, "flight": "not an object"}, {**m, "session_id": {"x": 1}}, {**m, "phases": "nope"},
+                {**m, "phases": [{"name": 3}]}, [m]):
+        r = c.post("/api/v1/sessions", files={"file": ("x.zip", _zip_with(bad, streams))})
+        assert r.status_code == 422, r.text
+
+
+def test_uncompressed_size_cap(client, synth_zip, monkeypatch):
+    import lll_server.app as appmod
+    monkeypatch.setattr(appmod, "MAX_UNCOMPRESSED", 1000)
+    c, _ = client
+    assert c.post("/api/v1/sessions", files={"file": ("s.zip", synth_zip)}).status_code == 413
+
+
+def test_rate_limit_counts_only_accepted(client, synth_zip, monkeypatch):
+    import lll_server.app as appmod
+    monkeypatch.setattr(appmod, "RATE_PER_HOUR", 1)
+    c, _ = client
+    # rejected uploads don't consume quota
+    assert c.post("/api/v1/sessions", files={"file": ("x.zip", b"junk")}).status_code == 422
+    assert c.post("/api/v1/sessions", files={"file": ("s.zip", synth_zip)}).status_code == 201
+    # a second new session from the same client is limited
+    m = json.loads(zipfile.ZipFile(io.BytesIO(synth_zip)).read("manifest.json"))
+    m["session_id"] = "different"
+    with zipfile.ZipFile(io.BytesIO(synth_zip)) as src:
+        other = _zip_with(m, {n: src.read(n) for n in src.namelist() if n != "manifest.json"})
+    assert c.post("/api/v1/sessions", files={"file": ("o.zip", other)}).status_code == 429

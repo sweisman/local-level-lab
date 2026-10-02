@@ -104,7 +104,8 @@ def analyze(path, th: Thresholds | None = None) -> dict:
             cal_temps.append(np.nanmean(b["temp_c"]))
     if bat is not None and cal_temps and np.isfinite(bins["temp"]).all():
         t_ref = float(np.mean(cal_temps))
-        if np.max(np.abs(bins["temp"] - t_ref)) >= th.min_temp_delta_c:
+        # 90th percentile, not max: one glitchy battery reading shouldn't switch the term on
+        if np.percentile(np.abs(bins["temp"] - t_ref), 90) >= th.min_temp_delta_c:
             temp_ref = t_ref
             coefs = [abs(c) for d in res["drift"].values() if d and d.get("bias_temp_coef_dph_per_c")
                      for c in d["bias_temp_coef_dph_per_c"]]

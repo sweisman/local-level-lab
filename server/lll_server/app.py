@@ -20,6 +20,10 @@ from fastapi.responses import FileResponse, HTMLResponse
 from lll.format import validate_manifest
 
 MAX_BYTES = int(os.environ.get("LLL_MAX_UPLOAD_MB", "200")) * 1024 * 1024
+# Declared uncompressed size of all zip members, and of manifest.json alone. Guards against
+# decompression bombs: the analysis step gunzips every stream into memory.
+MAX_UNCOMPRESSED = int(os.environ.get("LLL_MAX_UNCOMPRESSED_MB", "2000")) * 1024 * 1024
+MAX_MANIFEST_BYTES = 1024 * 1024
 RATE_PER_HOUR = int(os.environ.get("LLL_UPLOADS_PER_HOUR", "20"))
 
 SCHEMA = """
@@ -32,6 +36,11 @@ CREATE TABLE IF NOT EXISTS sessions (
 """
 PUBLIC_COLS = ("id", "sha256", "received_at", "size", "session_id", "airline", "flight_number",
                "flight_date", "mount", "device_model", "status")
+
+
+def _text(v, limit: int = 200) -> str | None:
+    """Index column from a manifest field: strings only, truncated; anything else is dropped."""
+    return v[:limit] if isinstance(v, str) else None
 
 
 class Store:
@@ -69,15 +78,22 @@ def create_app(data_dir: str | Path | None = None) -> FastAPI:
     app.state.store = store
     recent: dict[str, deque] = defaultdict(deque)
 
-    def limited(key: str) -> bool:
+    def limited(*keys: str) -> bool:
+        """True if any key is over its hourly quota. Nothing is recorded here; call accepted()
+        once the upload has actually been stored, so rejected and duplicate uploads don't count."""
         now = time.time()
-        q = recent[key]
-        while q and now - q[0] > 3600:
-            q.popleft()
-        if len(q) >= RATE_PER_HOUR:
-            return True
-        q.append(now)
+        for key in keys:
+            q = recent[key]
+            while q and now - q[0] > 3600:
+                q.popleft()
+            if len(q) >= RATE_PER_HOUR:
+                return True
         return False
+
+    def accepted(*keys: str) -> None:
+        now = time.time()
+        for key in keys:
+            recent[key].append(now)
 
     @app.get("/health")
     def health():
@@ -85,34 +101,43 @@ def create_app(data_dir: str | Path | None = None) -> FastAPI:
 
     @app.post("/api/v1/sessions", status_code=201)
     async def upload(file: UploadFile, request: Request):
+        ip_key = "ip:" + (request.client.host if request.client else "?")
+        if limited(ip_key):  # before reading the body, so a flood is cheap to reject
+            raise HTTPException(429, "too many uploads; try again later")
         data = await file.read(MAX_BYTES + 1)
         if len(data) > MAX_BYTES:
             raise HTTPException(413, f"upload exceeds {MAX_BYTES // 2**20} MB")
         try:
             zf = zipfile.ZipFile(io.BytesIO(data))
+            infos = zf.infolist()
+            if sum(i.file_size for i in infos) > MAX_UNCOMPRESSED:
+                raise HTTPException(413, f"uncompressed contents exceed {MAX_UNCOMPRESSED // 2**20} MB")
+            if zf.getinfo("manifest.json").file_size > MAX_MANIFEST_BYTES:
+                raise HTTPException(413, "manifest.json too large")
             manifest = json.loads(zf.read("manifest.json"))
-            names = zf.namelist()
+            names = [i.filename for i in infos]
         except (zipfile.BadZipFile, KeyError, json.JSONDecodeError, UnicodeDecodeError):
             raise HTTPException(422, "not a session zip (need a zip containing manifest.json)")
         errs = validate_manifest(manifest, names)
         if errs:
             raise HTTPException(422, "; ".join(errs))
-        client = request.client.host if request.client else "?"
-        if limited(str(manifest.get("install_id"))) or limited("ip:" + client):
-            raise HTTPException(429, "too many uploads; try again later")
         sha = hashlib.sha256(data).hexdigest()
+        install_key = "install:" + manifest["install_id"]
         with store.db() as c:
             row = c.execute("SELECT id FROM sessions WHERE sha256=?", (sha,)).fetchone()
-            if row:
+            if row:  # idempotent re-upload: never counted against the quota
                 return {"id": row["id"], "duplicate": True}
+            if limited(ip_key, install_key):
+                raise HTTPException(429, "too many uploads; try again later")
             id_ = str(uuid.uuid4())
             store.raw_path(id_).write_bytes(data)
-            fl, mt, dv = manifest.get("flight", {}), manifest.get("mount", {}), manifest.get("device", {})
+            fl, mt, dv = manifest.get("flight") or {}, manifest.get("mount") or {}, manifest["device"]
             c.execute("INSERT INTO sessions (id, sha256, received_at, size, session_id, install_id, airline, "
                       "flight_number, flight_date, mount, device_model, manifest) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
-                      (id_, sha, time.time(), len(data), manifest.get("session_id"), manifest.get("install_id"),
-                       fl.get("airline"), fl.get("flight_number"), fl.get("date"), mt.get("type"),
-                       dv.get("model"), json.dumps(manifest)))
+                      (id_, sha, time.time(), len(data), manifest["session_id"], manifest["install_id"],
+                       _text(fl.get("airline")), _text(fl.get("flight_number")), _text(fl.get("date")),
+                       _text(mt.get("type")), _text(dv.get("model")), json.dumps(manifest)))
+        accepted(ip_key, install_key)
         return {"id": id_, "duplicate": False}
 
     @app.get("/api/v1/sessions")
