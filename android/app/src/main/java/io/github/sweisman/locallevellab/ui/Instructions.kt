@@ -7,9 +7,9 @@ data class Section(val key: String, val title: String, val body: List<String>)
 val INSTRUCTIONS = listOf(
     Section("about", "What this measures", listOf(
         "A gyroscope measures angular velocity relative to inertial space (a non-rotating reference frame), not relative to the ground.",
-        "If the Earth turns, a sensor resting on it turns with it. A rotating globe gives about 15°/hour, split between the vertical and horizontal depending on latitude. A rotating flat disc gives 15°/hour about the vertical everywhere. A still Earth gives zero.",
+        "If the Earth turns, a sensor resting on it turns with it. A rotating globe gives about 15°/hour, split between the vertical and horizontal depending on latitude. A still Earth gives zero. A spinning flat disc would give 15°/hour about the vertical everywhere, but that can't be told apart from the sensor's own offset, so the flat model tested is the still disc.",
         "As an aircraft moves, its local horizontal (\"local level\") turns relative to inertial space. On a globe it tilts forward at about 8°/hour at 900 km/h and turns slowly about the vertical. On a flat disc it never tilts, but an eastbound flight circles the centre and turns about the vertical.",
-        "A small motion sensor (the IMU) records the raw rotation. Your phone records GPS and shows a dashboard. The analysis compares the data against all four combinations (flat or globe, still or rotating). The predictions come from GPS alone and never from the gyro.",
+        "A small motion sensor (the IMU) records the raw rotation. Your phone records GPS and shows a dashboard. The analysis compares the data against three models: a rotating globe, a still globe and a still flat disc. The predictions come from GPS alone and never from the gyro.",
         "These signals are tiny next to the sensor's own drift, so careful calibration and a rigid mount matter more than anything else. Many flights pooled together give the final answer.",
     )),
     Section("before", "Before you fly", listOf(

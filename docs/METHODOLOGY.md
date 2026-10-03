@@ -14,7 +14,7 @@ The question is: **given an aircraft trajectory in latitude/longitude coordinate
 
 - **GNSS supplies only the coordinates and velocities.** Someone who rejects the globe can still use latitude and longitude as an addressing system. Each model then makes its own prediction from the same trajectory. The gyro doesn't know which model the coordinates were "built on". It measures rotation relative to inertial space.
 - **The predictions never use the gyro.** The orientation of the IMU uses the gyro only for fast, large rotations (banked turns at °/s, the participant turning the IMU at tens of °/s), never the slow °/h signal. See MATH.md, "The IMU's orientation".
-- **Not tested:** whether the disc spins. The flat model assumes it doesn't. A spin about the vertical would also be unmeasurable, as explained under "The vertical channel" below.
+- **Four models defined, three tested.** The models are a rotating globe, a still globe, a still disc and a spinning disc. The two disc models differ only by a constant rotation about the vertical, which this protocol can't separate from gyro bias and g-sensitivity along gravity (section 6). They make the same testable predictions, so the still disc is tested and stands for both. Whether a disc spins is therefore not tested.
 
 ## 1. One standardized external IMU instead of phones
 
@@ -51,7 +51,7 @@ The question is: **given an aircraft trajectory in latitude/longitude coordinate
 
 **Why it is written as dλ/dt.** GNSS east velocity is the coordinate rate converted to metres per second. Dividing by `(R_N + h) cos φ` only undoes that conversion, so no globe geometry enters the disc's prediction and the disc's scale doesn't matter.
 
-**Evidence.** All three models agree with geometry to 9 × 10⁻¹² rad/s (EVIDENCE §1; `test_flat_models_match_geometry`, `test_sphere_models_match_geometry`).
+**Evidence.** All three tested models agree with geometry to 9 × 10⁻¹² rad/s (EVIDENCE §1; `test_flat_models_match_geometry`, `test_sphere_models_match_geometry`).
 
 ## 4. Synthetic truth from geometry, not from the model code
 
@@ -77,7 +77,7 @@ The question is: **given an aircraft trajectory in latitude/longitude coordinate
 **Statement.** A constant rotation about the plumb line lies along gravity, as do g-sensitivity and bias on the upward IMU axis. No stationary test and no level flight can tell them apart.
 
 **Consequences.**
-- No spinning-disc model: the flat model assumes none, and it couldn't be tested.
+- The spinning disc is defined but not tested: it is indistinguishable from the still disc with this protocol.
 - The ground vertical rate is fitted across latitudes with one intercept per IMU unit.
 - The disc's vertical term is identified only through changes in dλ/dt along the route.
 

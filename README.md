@@ -2,13 +2,16 @@
 
 A crowdsourced, fully open experiment that tests the shape and motion of the Earth with a small motion sensor (an IMU) carried on ordinary flights.
 
-A gyroscope measures angular velocity relative to inertial space, not relative to the ground. If the Earth rotates, a sensor resting on it turns with it at up to 15.04 °/h. And as an aircraft moves, its local horizontal ("local level") turns relative to inertial space at a rate the Earth's shape sets. On a globe it tilts forward at v / R ≈ 8.1 °/h at 900 km/h. On a flat disc it never tilts, but an eastbound track circles the disc's centre. The IMU records the least-processed data it can deliver. The analysis compares it, side by side, against three models whose predictions come from the GPS track alone:
+A gyroscope measures angular velocity relative to inertial space, not relative to the ground. If the Earth rotates, a sensor resting on it turns with it at up to 15.04 °/h. And as an aircraft moves, its local horizontal ("local level") turns relative to inertial space at a rate the Earth's shape sets. On a globe it tilts forward at v / R ≈ 8.1 °/h at 900 km/h. On a flat disc it never tilts, but an eastbound track circles the disc's centre. The IMU records the least-processed data it can deliver. The analysis compares it, side by side, against models whose predictions come from the GPS track alone. Four kinematic models are defined; three can be told apart by this protocol, and those are the ones tested:
 
 | model | Earth rotation | moving over the surface |
 |---|---|---|
 | **globe, rotating** | 15.04 °/h about the Earth's axis (latitude-dependent split between vertical and horizontal) | local level tilts towards the direction of travel, and turns slowly about the vertical |
 | **globe, still** | none | as above |
 | **flat disc, still** | none | local level never tilts; it turns about the vertical once per 360° of longitude |
+| *flat disc, spinning* (not tested) | 15.04 °/h about the vertical, everywhere | as above |
+
+A spinning disc differs from a still one only by a constant rotation about the vertical, which no stationary test and no level flight can separate from the gyro's own bias along gravity. So the two disc models make the same testable predictions, and the still disc stands for both. Details: [MATH.md](docs/MATH.md#the-models-four-defined-three-tested).
 
 Sensor resolution isn't the problem; bias stability is. A consumer gyro's drift is comparable to these signals, so the design depends on careful calibration, a rigid mount, turning the IMU during the flight, honest statistics, and **pooling many flights**.
 

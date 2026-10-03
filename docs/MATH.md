@@ -15,13 +15,16 @@ A gyro measures the IMU's angular velocity relative to **inertial space** (any n
 - `C_bn` rotates NED vectors into IMU axes.
 - `f` is the specific force the accelerometer measures, about 1 g along up. Real MEMS gyros have a small error proportional to it: g-sensitivity.
 
-## The three models
+## The models: four defined, three tested
 
-| | Earth rotation | Transport (moving over the surface) |
-|---|---|---|
-| **Globe, rotating** | `Ω (cos φ, 0, −sin φ)` | `ω_en` (globe) |
-| **Globe, still** | 0 | `ω_en` (globe) |
-| **Flat disc, still** | 0 | `ω_disc` |
+Four kinematic models are defined. Three of them can be told apart by this protocol, and those three are the ones the analysis tests.
+
+| | Earth rotation | Transport (moving over the surface) | tested? |
+|---|---|---|---|
+| **Globe, rotating** | `Ω (cos φ, 0, −sin φ)` | `ω_en` (globe) | yes |
+| **Globe, still** | 0 | `ω_en` (globe) | yes |
+| **Flat disc, still** | 0 | `ω_disc` | yes |
+| **Flat disc, spinning** | `(0, 0, −Ω)`, about the vertical everywhere | `ω_disc` | no: indistinguishable from the still disc (see below) |
 
 - `Ω = 7.2921150 × 10⁻⁵ rad/s`, one turn per sidereal day (15.041 °/h). `φ` is the latitude.
 - **Globe transport**, on the WGS-84 ellipsoid:
@@ -39,7 +42,7 @@ A gyro measures the IMU's angular velocity relative to **inertial space** (any n
   ```
 
   The second formula only undoes the receiver's conversion of the coordinate rate into metres per second. It uses no globe geometry and doesn't depend on the disc's scale. The disc never tilts local level, so there is no horizontal part.
-- **No spinning disc.** The flat model assumes no rotation. A constant spin about the vertical couldn't be measured anyway (see "The vertical channel").
+- **Why the spinning disc isn't tested.** It differs from the still disc only by a constant rotation about the local vertical. This protocol can't separate that from the gyro's bias and g-sensitivity along gravity (see "The vertical channel"), so the two disc models make the same testable predictions. The tested flat model is the still disc, which is also how the flat model is usually stated. The spinning disc is still defined in the geometric truth generator (`analysis/tests/truthgen.py`), so anyone can check that claim.
 
 ### Sign conventions, checked
 
@@ -49,7 +52,7 @@ NED is right-handed (N × E = D), and a rotation vector ω turns a frame-fixed v
 - **Moving north on the globe:** `ω_en = (0, −v/R, 0)`. Down then changes at `−(v/R) N`, so up tilts north, towards the direction of travel.
 - **Moving east:** on the globe, local level tilts (north component `v/R`) and turns at `−v tan φ / R` about the vertical (meridian convergence). On the disc it only turns, at `−dλ/dt`.
 
-**Independent check.** `analysis/tests/truthgen.py` computes `ω_in` from frame geometry alone. It builds the NED axes at each position in an inertial frame and differentiates their orientation numerically, with no transport or Earth-rate formula. All three models agree with it to 9 × 10⁻¹² rad/s (EVIDENCE §1). Synthetic test data takes its gyro truth from this generator, never from `lll.models`. The same formulas are implemented in Kotlin for the live display and checked against `docs/test_vectors.json`.
+**Independent check.** `analysis/tests/truthgen.py` computes `ω_in` from frame geometry alone. It builds the NED axes at each position in an inertial frame and differentiates their orientation numerically, with no transport or Earth-rate formula. All three tested models agree with it to 9 × 10⁻¹² rad/s (EVIDENCE §1). Synthetic test data takes its gyro truth from this generator, never from `lll.models`. The same formulas are implemented in Kotlin for the live display and checked against `docs/test_vectors.json`.
 
 ### Which measurement separates which models
 
