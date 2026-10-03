@@ -78,7 +78,7 @@ object SessionStore {
             .put("variant", v.key).put("model", v.model).put("firmware", "")
             .put("unit_id", p.unitId(p.imuAddress))
             .put("config", JSONObject()
-                .put("rate_hz", p.imuRateHz).put("gyro_range_dps", 2000).put("accel_range_g", 16).put("auto_zero", false)
+                .put("rate_hz", p.imuRateHz).put("gyro_range_dps", p.imuGyroRangeDps).put("accel_range_g", 16).put("auto_zero", false)
                 .put("packets", JSONArray(if (v == Variant.SPP) listOf("0x50", "0x51", "0x52", "0x54") else listOf("0x61", "0x71@0x3a"))))
     }
 

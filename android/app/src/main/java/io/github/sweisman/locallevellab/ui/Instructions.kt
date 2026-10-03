@@ -53,7 +53,7 @@ val INSTRUCTIONS = listOf(
         "Put the phone in airplane mode, then turn Bluetooth and Location back on. GPS works in airplane mode on most phones.",
         "Record as much of the cruise as you can, and keep recording through at least one course change of the aircraft (for example the turn onto the cruise track). The analysis needs one banked turn to find which way the aircraft's nose points relative to the IMU. Routes with north-south travel are the most informative.",
         "The phone's screen can be off. Recording carries on in the background, and the app reconnects to the IMU on its own if the link drops.",
-        "If turn reminders are on, the phone will buzz every so often. Turn the IMU to face the opposite way, keeping the same side up, fix it firmly again, and tap the button on the notification or the dashboard. On a clamp mount, take it out and put it back facing the other way.",
+        "If turn reminders are on, the phone will buzz every so often. Slowly, over about 5 seconds, turn the IMU to face the opposite way, keeping the same side up, fix it firmly again, and tap the button on the notification or the dashboard. On a clamp mount, take it out and put it back facing the other way.",
         "Those turns are what make a straight route count: the signal moves to other sensor axes while the sensor's bias stays put. Turning it upside down helps much less. If your mount only allows that, choose it in Settings.",
         "The dashboard shows the link, both batteries, the IMU temperature, GPS, what each model predicts, and a running activity log. The live 'measured' number is only a rough 5-minute average.",
     )),

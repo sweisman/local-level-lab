@@ -81,6 +81,12 @@ class Prefs(ctx: Context) {
         get() = p.getInt("imu_rate_hz", 100)
         set(v) = p.edit().putInt("imu_rate_hz", v).apply()
 
+    /** Gyro full scale, °/s. Finer ranges give finer counts (2000 °/s: 220 °/h per count; 250 °/s:
+     *  27 °/h), but a fast hand turn can then exceed it. */
+    var imuGyroRangeDps: Int
+        get() = p.getInt("imu_gyro_range_dps", 2000)
+        set(v) = p.edit().putInt("imu_gyro_range_dps", v).apply()
+
     /** A random ID per physical IMU, so its bias can be modelled across sessions. It is
      *  derived from nothing; the phone keeps the address-to-ID mapping to itself. */
     fun unitId(address: String): String = p.getString("unit_$address", null)

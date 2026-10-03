@@ -230,11 +230,12 @@ class RecorderService : Service(), ImuLink.Listener {
         val addr = prefs.imuAddress
         if (v == null || addr.isEmpty()) { fail("No IMU chosen. Pick one in Settings."); return }
         if (!canConnect()) { fail("Bluetooth permission is missing. Grant it in Settings."); return }
-        val key = "${v.key}@$addr"
+        val range = prefs.imuGyroRangeDps
+        val key = "${v.key}@$addr@$range"
         if (link != null && key == linkKey) return
         link?.close()
         variant = v; linkKey = key
-        parser = WitParser(v)
+        parser = WitParser(v, gyroRangeDps = range.toDouble())
         imuConnected = false
         readback.clear(); configApplied = false
         Live.state.update { it.copy(imuStatus = "connecting…", imuConnected = false, imuConfigOk = null) }
@@ -293,7 +294,7 @@ class RecorderService : Service(), ImuLink.Listener {
      *  power-cycled), write the config, save it, and check once more. */
     private fun checkConfig() {
         val v = variant ?: return
-        val expected = WitConfig.expected(v, prefs.imuRateHz)
+        val expected = WitConfig.expected(v, prefs.imuRateHz, prefs.imuGyroRangeDps)
         readback.clear()
         expected.keys.forEachIndexed { i, reg ->
             handler.postDelayed({
@@ -317,9 +318,9 @@ class RecorderService : Service(), ImuLink.Listener {
         val v = variant ?: return
         if (!imuConnected) return  // checkConfig runs again on connect
         configApplied = true
-        val cmds = WitConfig.apply(v, prefs.imuRateHz)
+        val cmds = WitConfig.apply(v, prefs.imuRateHz, prefs.imuGyroRangeDps)
         link?.write(cmds)
-        if (phase != null) event("imu_config_write", "rate=${prefs.imuRateHz}")
+        if (phase != null) event("imu_config_write", "rate=${prefs.imuRateHz} gyro_range=${prefs.imuGyroRangeDps}")
         handler.postDelayed({ checkConfig() }, 150L * cmds.size + 1500)
     }
 
@@ -610,9 +611,9 @@ class RecorderService : Service(), ImuLink.Listener {
     }
 
     private fun turnInstruction(motions: String) = when (motions) {
-        "plane180" -> "Turn it to face the opposite way, keeping the same side up. Fix it firmly again, then tap Turned 180°."
-        "flip" -> "Flip it upside down in its mount. Fix it firmly again, then tap Flipped over."
-        else -> "Turn it to face the opposite way with the same side up (best), or turn it upside down. Fix it firmly again, then tap what you did."
+        "plane180" -> "Slowly, over about 5 seconds, turn it to face the opposite way, keeping the same side up. Fix it firmly again, then tap Turned 180°."
+        "flip" -> "Slowly, over about 5 seconds, turn it upside down in its mount. Fix it firmly again, then tap Flipped over."
+        else -> "Slowly, over about 5 seconds, turn it to face the opposite way with the same side up (best), or turn it upside down. Fix it firmly again, then tap what you did."
     }
 
     private fun fmtElapsed(s: Double): String { val t = s.toLong(); return "%d:%02d:%02d".format(t / 3600, t / 60 % 60, t % 60) }

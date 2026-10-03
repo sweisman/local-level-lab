@@ -150,7 +150,11 @@ The question is: **given an aircraft trajectory in latitude/longitude coordinate
 
 **Finding.** At ±2000 °/s, one gyro count is 220 °/h. Noise dithers it, but coarse counts interact with constant offsets: the drift fitted during calibration shifts by up to 9 °/h per hour when g-sensitivity is added. At ±250 °/s the shift is under 1 (EVIDENCE §4).
 
-**Action.** Bench-test whether the device's gyro range can be lowered, and use the finest range that never saturates in flight.
+**Action.**
+- The app offers ±250, ±500, ±1000 and ±2000 °/s. It writes the choice to the IMU, reads it back at every connection, and logs the readback.
+- The analysis decodes with the range the device reported, not the one requested, so a write the IMU ignored can't rescale the data (`test_decoder_uses_the_range_the_imu_reported`).
+- A finer range brings a risk: a quick hand turn can exceed it. Turns are clipped and their integrated angle is wrong, so the analysis flags them and leaves out the data after (`test_fast_turn_beyond_full_scale_is_flagged_and_not_used`). The reminders ask for slow turns of about 5 seconds, which is about 36 °/s.
+- Still to do on the bench: confirm the range register, then compare bench captures at each range with `lll bench` (count spread, dither, bias instability).
 
 ## 13. Temperature
 

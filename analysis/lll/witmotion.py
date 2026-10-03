@@ -39,6 +39,27 @@ SPP_TYPES = (0x50, 0x51, 0x52, 0x53, 0x54, 0x59, 0x5F)  # 0x5F: register readbac
 BLE_LEN = 20
 REG_MAG = 0x3A
 REC_HEADER = struct.Struct("<qH")
+# Gyro full-scale register (0x20), from WitMotion's protocol; unverified until the bench test.
+REG_GYRO_RANGE = 0x20
+GYRO_RANGE_DPS = {0: 250.0, 1: 500.0, 2: 1000.0, 3: 2000.0}
+
+
+def range_from_events(events):
+    """The gyro full scale the device itself reported in the app's config readbacks
+    (imu_config events, e.g. "0x20=0x1 …"). Returns (dps or None, consistent)."""
+    seen = set()
+    key = f"0x{REG_GYRO_RANGE:02x}="
+    for _, kind, detail in events:
+        if kind != "imu_config":
+            continue
+        for tok in detail.split():
+            if tok.startswith(key) and tok[len(key):] not in ("?", ""):
+                code = int(tok[len(key):], 16)
+                if code in GYRO_RANGE_DPS:
+                    seen.add(GYRO_RANGE_DPS[code])
+    if not seen:
+        return None, True
+    return (seen.pop(), True) if len(seen) == 1 else (None, False)
 
 
 # ---------- framing of imu.bin ----------
@@ -198,9 +219,17 @@ def decode(arrival_ns, chunks, imu: dict):
     raise ValueError(f"unknown imu variant {variant!r}")
 
 
-def _vec_stream(t, v, names=("x", "y", "z")):
+def _vec_stream(t, v, names=("x", "y", "z"), extra=None):
     o = np.argsort(t, kind="stable")
-    return {"t_ns": t[o], **{n: v[o, i] for i, n in enumerate(names)}}
+    out = {"t_ns": t[o], **{n: v[o, i] for i, n in enumerate(names)}}
+    for k, col in (extra or {}).items():
+        out[k] = col[o]
+    return out
+
+
+def _saturated(raw3):
+    """1 where any gyro axis sits at a full-scale count (the rate may have been clipped)."""
+    return (np.abs(raw3) >= 32767).any(axis=1).astype(np.float64)
 
 
 def _decode_spp(arrival_ns, chunks, rng_dps, rng_g, rate):
@@ -249,7 +278,9 @@ def _decode_spp(arrival_ns, chunks, rng_dps, rng_g, rate):
         raw = _i16(buf, pos[m] + 2, 4)
         if ptype == 0x52:
             v = np.radians(raw[:, :3] / 32768.0 * rng_dps)
-            out["gyro"] = _vec_stream(t_ns[m], v)
+            sat = _saturated(raw[:, :3])
+            stats["gyro_saturated_samples"] = int(sat.sum())
+            out["gyro"] = _vec_stream(t_ns[m], v, extra={"sat": sat})
             out["imu_volt"] = _vec_stream(t_ns[m], raw[:, 3:4] / 100.0, ("volt",))
         elif ptype == 0x51:
             out["accel"] = _vec_stream(t_ns[m], raw[:, :3] / 32768.0 * rng_g * G0)
@@ -288,7 +319,9 @@ def _decode_ble(arrival_ns, chunks, rng_dps, rng_g, rate):
         stats["runs"] = int(run.max() + 1)
         raw = _i16(buf, d_pos + 2, 9)
         out["accel"] = _vec_stream(t, raw[:, 0:3] / 32768.0 * rng_g * G0)
-        out["gyro"] = _vec_stream(t, np.radians(raw[:, 3:6] / 32768.0 * rng_dps))
+        sat = _saturated(raw[:, 3:6])
+        stats["gyro_saturated_samples"] = int(sat.sum())
+        out["gyro"] = _vec_stream(t, np.radians(raw[:, 3:6] / 32768.0 * rng_dps), extra={"sat": sat})
         lat = int(np.median(d_arr - t))  # typical link latency, for the polled registers
     else:
         stats["runs"] = 0

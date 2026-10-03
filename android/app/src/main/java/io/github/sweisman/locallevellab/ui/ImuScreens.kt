@@ -80,6 +80,7 @@ fun ImuSettings(nav: androidx.navigation.NavController) {
     var variant by remember { mutableStateOf(p.imuVariant ?: Variant.SPP) }
     var chosen by remember { mutableStateOf(p.imuName.ifEmpty { p.imuAddress }) }
     var rate by remember { mutableIntStateOf(p.imuRateHz) }
+    var range by remember { mutableIntStateOf(p.imuGyroRangeDps) }
     var permOk by remember { mutableStateOf(hasBluetoothPermissions(ctx)) }
     var turnMin by remember { mutableIntStateOf(p.indexAlertMinutes) }
     var motions by remember { mutableStateOf(p.turnMotions) }
@@ -138,6 +139,12 @@ fun ImuSettings(nav: androidx.navigation.NavController) {
     Choice(listOf("50" to "50 Hz", "100" to "100 Hz (recommended)", "200" to "200 Hz (serial link may not keep up)"), "$rate") {
         rate = it.toInt(); p.imuRateHz = rate
     }
+    Text("Gyro range (test finer scaling on the bench first)", style = MaterialTheme.typography.titleSmall, modifier = Modifier.padding(top = 8.dp))
+    Choice(listOf("2000" to "±2000 °/s: 220 °/h per count (default)", "1000" to "±1000 °/s: 110 °/h per count",
+        "500" to "±500 °/s: 55 °/h per count", "250" to "±250 °/s: 27 °/h per count (turn the IMU slowly)"), "$range") {
+        range = it.toInt(); p.imuGyroRangeDps = range
+    }
+    Para("Finer counts measure slow rotation better, but a quick hand turn can then exceed the range and that turn can't be used. Check the setting with a bench capture: the analysis decodes with the range the IMU reports back, and flags any difference.", muted = true)
     OutlinedButton({ RecorderService.configure(ctx) }, Modifier.fillMaxWidth(), enabled = chosen.isNotEmpty()) {
         Text("Write and verify IMU settings")
     }
@@ -187,9 +194,9 @@ fun TurnReminderCard(live: LiveState, ctx: Context) {
             if (live.turnDue) {
                 Text("Time to turn the IMU", fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary, fontSize = 18.sp)
                 Para(when (motions) {
-                    "plane180" -> "Turn it to face the opposite way, keeping the same side up. Fix it firmly again, then tap the button."
-                    "flip" -> "Flip it upside down in its mount. Fix it firmly again, then tap the button."
-                    else -> "Turn it to face the opposite way with the same side up (best), or turn it upside down. Fix it firmly again, then tap what you did."
+                    "plane180" -> "Slowly, over about 5 seconds, turn it to face the opposite way, keeping the same side up. Fix it firmly again, then tap the button."
+                    "flip" -> "Slowly, over about 5 seconds, turn it upside down in its mount. Fix it firmly again, then tap the button."
+                    else -> "Slowly, over about 5 seconds, turn it to face the opposite way with the same side up (best), or turn it upside down. Fix it firmly again, then tap what you did."
                 })
             } else Stat("Next turn reminder", fmtTime(maxOf(0.0, due)))
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth()) {

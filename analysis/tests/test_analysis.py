@@ -322,3 +322,43 @@ def test_single_heading_airliner_needs_turns_of_the_imu(tmp_path):
     f = out["hourly"]["fit"]
     assert f["identifiability"]["identified"], f["identifiability"]
     assert not f["rejected"]["sphere_still"] and f["rejected"]["flat_still"] and f["rejected"]["sphere_rotating"], f["p_vs_free"]
+
+
+def test_decoder_uses_the_range_the_imu_reported(tmp_path):
+    """If the IMU ignored a range write, decoding at the intended full scale would rescale every rate
+    by up to 8×. The app logs the device's own readback, and the analysis decodes with that."""
+    import gzip
+    import zipfile
+    p = tmp_path / "r.zip"
+    synthesize(p, "sphere_rotating", seed=2, fs=20.0, cal=("pre",), legs=((90.0, 12.0),), gyro_range_dps=500.0)
+    truth_mean = read_session(p).streams["gyro"]["x"].mean()
+    # same bytes, but the manifest claims ±2000 °/s while the device's readback says ±500 (code 1)
+    q = tmp_path / "r2.zip"
+    with zipfile.ZipFile(p) as src, zipfile.ZipFile(q, "w") as dst:
+        for n in src.namelist():
+            data = src.read(n)
+            if n == "manifest.json":
+                m = json.loads(data)
+                m["imu"]["config"]["gyro_range_dps"] = 2000.0
+                data = json.dumps(m).encode()
+            if n == "events.csv.gz":
+                data = data + gzip.compress(b"t_ns,kind,detail\n1,imu_config,0x03=0x9 0x63=0x1 0x20=0x1 ok=false\n")
+            dst.writestr(n, data)
+    s = read_session(q)
+    assert s.imu_stats["gyro_range_used_dps"] == 500.0 and s.imu_stats["gyro_range_intended_dps"] == 2000.0
+    assert s.streams["gyro"]["x"].mean() == pytest.approx(truth_mean)
+
+
+def test_fast_turn_beyond_full_scale_is_flagged_and_not_used(tmp_path):
+    """At ±250 °/s a half-second hand turn clips. Its integrated angle is wrong, so the IMU's
+    orientation afterwards is unknown: the analysis flags it and leaves the later data out."""
+    out = {}
+    for name, secs in (("slow", 4.0), ("fast", 0.5)):
+        p = tmp_path / f"{name}.zip"
+        synthesize(p, "sphere_still", seed=11, fs=20.0, legs=((50.0, 30.0), (90.0, 60.0)), index_turns=((50, "z"),),
+                   gyro_range_dps=250.0, turn_seconds=secs)
+        out[name] = analyze(p)
+    slow = [e["turn"] for e in out["slow"]["mount_epochs"] if e["turn"]][0]
+    assert abs(slow["angle_deg"] - 180) < 0.5 and slow["saturated_samples"] == 0
+    assert "imu_turn_saturated" in out["fast"]["flags"] and "excluded_after_saturated_turn_s" in out["fast"]
+    assert "imu_turn_saturated" not in out["slow"]["flags"]

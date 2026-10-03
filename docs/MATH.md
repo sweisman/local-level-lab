@@ -198,7 +198,7 @@ Breakdowns by heading, mount, IMU variant and unit are consistency checks. Group
 
 - **Crab angle.** The aircraft's heading is taken from its GNSS course, so a crab angle of a few degrees rotates the horizontal predictions slightly.
 - **Plumb line.** The accelerometer's plumb line includes small Coriolis and centripetal terms, about 0.2°. They are nearly constant in cruise.
-- **Quantization.** At the default ±2000 °/s range, one 16-bit count is 220 °/h. Noise dithers it, but coarse counts still interact with constant offsets at the °/h level (EVIDENCE §4). A finer range should be used if the device allows one.
+- **Quantization.** At ±2000 °/s, one 16-bit count is 220 °/h. Noise dithers it, but coarse counts still interact with constant offsets at the °/h level (EVIDENCE §4). The app can select ±250 to ±2000 °/s, and the analysis decodes with the range the IMU reports back. A finer range risks clipping fast hand turns of the IMU; clipped turns are flagged, and the data after them is left out.
 - **Temperature.** Chip temperature is reported by the IMU's firmware. A lag, or a nonlinear response, shows up as `temperature_sensitive`.
 - **Device processing.** WitMotion firmware applies factory calibration and filtering before the data leaves the device (see FORMAT.md).
 - **Vertical-channel limits.** See "The vertical channel" above.

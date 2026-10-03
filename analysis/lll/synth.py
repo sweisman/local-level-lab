@@ -75,7 +75,7 @@ def synthesize(path, truth="sphere_rotating", *, fs=25.0, seed=0, lat0=40.6, lon
                mount_slip_deg_per_h=(0.0, 0.0), climb_min=0.0, descent_min=0.0, gnss_dropouts=(), variant="spp", gyro_range_dps=2000.0, index_turns=(),
                mag_hard_iron_ut=MAG_HARD_IRON_UT, mag_airframe_ut=MAG_AIRFRAME_UT, omega_in_fn=None,
                temp_quad_dph_per_c2=(0.0, 0.0, 0.0), temp_lag_s=0.0, bias_jumps=(), gyro_scale_ppm=(0, 0, 0),
-               gyro_misalign_mrad=0.0, vre_dph=(0.0, 0.0, 0.0), link_dropouts=()):
+               gyro_misalign_mrad=0.0, vre_dph=(0.0, 0.0, 0.0), link_dropouts=(), turn_seconds=4.0):
     """Write a synthetic session zip. legs = ((course_deg, minutes), ...), with rate-one turns
     (3°/s) between them. variant is the WitMotion link and protocol ("spp" or "ble"); the IMU
     data is written as the byte stream the app would store, so the decoder is exercised too.
@@ -99,7 +99,7 @@ def synthesize(path, truth="sphere_rotating", *, fs=25.0, seed=0, lat0=40.6, lon
       vre_dph: vibration rectification, a bias offset while the engines run (flight only)
       link_dropouts: ((minute_into_flight, seconds), ...) Bluetooth gaps in the IMU data
       index_turns: ((minute, axis), ...) the participant turns the IMU 180° about its own axis
-          "x", "y" or "z" over 4 s, then taps to confirm 15 s later. About z on a tray mount is a
+          "x", "y" or "z" over turn_seconds (default 4 s), then taps to confirm 15 s later. About z on a tray mount is a
           turn in its plane (gravity stays on z); about x is a flip.
     """
     rng = np.random.default_rng(seed)
@@ -270,7 +270,7 @@ def synthesize(path, truth="sphere_rotating", *, fs=25.0, seed=0, lat0=40.6, lon
         rot = {"x": rot_x, "y": rot_y, "z": rot_z}
         for minute, axis in sorted(index_turns):
             t0 = minute * 60.0
-            frac = np.clip((tf - t0) / 4.0, 0.0, 1.0)
+            frac = np.clip((tf - t0) / turn_seconds, 0.0, 1.0)
             R_turn = np.einsum("nij,njk->nik", R_turn, np.array([rot[axis](np.pi * f) for f in frac]))
             turn_events.append((t0_ns + int((fl_start + t0 + 19.0) * 1e9), "index_turn",
                                 "plane180" if (axis == "z" and mount == "tray") else "flip"))

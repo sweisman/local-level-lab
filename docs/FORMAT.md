@@ -33,7 +33,11 @@ CSV files are gzip with one header row. They can be multi-member gzip (one membe
 
 ### IMU byte protocols
 
-The two device variants use WitMotion's published protocols. Scale factors use the configured full scale, ±2000 °/s and ±16 g by default.
+The two device variants use WitMotion's published protocols. Scale factors use the gyro full scale (±250, ±500, ±1000 or ±2000 °/s, chosen in Settings; register 0x20) and ±16 g for the accelerometer.
+
+**Which gyro range is used for decoding.** `imu.config.gyro_range_dps` records the range the app asked for. The app also reads register 0x20 back at every connection and logs it in an `imu_config` event (for example `0x20=0x1`, meaning ±500 °/s). The analysis decodes with the range the device reported, because decoding at the wrong full scale would rescale every rate. It flags `imu_range_differs_from_intended` when the two differ, and `imu_range_inconsistent` when readbacks disagree with each other; in that case it falls back to the intended range.
+
+**Saturation.** A gyro count at full scale (±32767) means the rate may have been clipped. The decoder marks such samples, and a deliberate turn of the IMU that clipped is flagged `imu_turn_saturated`. The IMU's orientation after it is then unknown, so the later flight data is left out.
 
 | variant | link | packets used |
 |---|---|---|
@@ -61,7 +65,7 @@ Decoded streams use the IMU's axes, in SI units: gyro rad/s, accel m/s², magnet
     "model": "…",
     "firmware": "",
     "unit_id": "uuid (random per physical IMU; the Bluetooth address never leaves the phone)",
-    "config": {"rate_hz": 100, "gyro_range_dps": 2000, "accel_range_g": 16, "auto_zero": false, "packets": ["0x50", "0x51", "0x52", "0x54"]}
+    "config": {"rate_hz": 100, "gyro_range_dps": 250, "accel_range_g": 16, "auto_zero": false, "packets": ["0x50", "0x51", "0x52", "0x54"]}
   },
   "clock": {"elapsed_ns": 0, "utc_ms": 0},
   "flight": {"airline": "", "flight_number": "", "date": "YYYY-MM-DD", "origin": "", "destination": "",

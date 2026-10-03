@@ -77,6 +77,10 @@ def analyze(path, th: Thresholds | None = None) -> dict:
         return _clean(res)
     if st.get("bytes") and st.get("unparsed_bytes", 0) > 1e-3 * st["bytes"]:
         flags.append("imu_corrupt_bytes")
+    if st.get("gyro_range_reported_dps") is not None and st["gyro_range_reported_dps"] != st.get("gyro_range_intended_dps"):
+        flags.append("imu_range_differs_from_intended")      # decoded with the range the device reported
+    if not st.get("gyro_range_readbacks_consistent", True):
+        flags.append("imu_range_inconsistent")              # readbacks disagree: decoded with the intended range
     # Each phase is one connection. A gap inside a phase means the link dropped.
     gaps = 0
     for ph in m.get("phases", []):
@@ -121,10 +125,12 @@ def analyze(path, th: Thresholds | None = None) -> dict:
     Gc = np.column_stack([gs["x"], gs["y"], gs["z"]]) - bias_fn(gt)
     ev = [(t / 1e9, kind) for t, kind, _ in sess.events if kind in ("index_turn", "placement_shift")
           and flight["start_ns"] <= t <= flight["end_ns"]]
-    epochs, exclude = mount_epochs(gt, Gc, ev)
+    epochs, exclude = mount_epochs(gt, Gc, ev, sat=gs.get("sat"))
     res["mount_epochs"] = [{"t0_s": e["t0_s"], "t1_s": e["t1_s"], "turn": e["turn"]} for e in epochs]
     if any(e["turn"] and e["turn"]["kind"] == "index_turn" for e in epochs):
         flags.append("imu_turned_in_flight")
+    if any(e["turn"] and e["turn"].get("saturated_samples") for e in epochs):
+        flags.append("imu_turn_saturated")     # a hand turn exceeded the gyro's full scale; its angle is unreliable
 
     segs, kin = find_segments(sess, flight, th, exclude=exclude)
     res["segments"] = [{"t0_s": a, "t1_s": b, "minutes": (b - a) / 60} for a, b in segs]
@@ -142,6 +148,15 @@ def analyze(path, th: Thresholds | None = None) -> dict:
         return _clean(res)
     bins["epoch"] = epoch_of(bins["t"], epochs)
     keep = bins["epoch"] >= 0
+    # After a turn whose rate was clipped, the IMU's new orientation is unknown (the accelerometer
+    # can't see a turn about the vertical), so later epochs can't be mapped and are left out.
+    sat_epoch = next((i for i, e in enumerate(epochs) if e["turn"] and e["turn"].get("saturated_samples")), None)
+    if sat_epoch is not None:
+        keep &= bins["epoch"] < sat_epoch
+        res["excluded_after_saturated_turn_s"] = float(epochs[sat_epoch]["t0_s"])
+    if not keep.any():
+        flags.append("no_bins")
+        return _clean(res)
     bins = {k: (v[keep] if isinstance(v, np.ndarray) and len(v) == len(keep) else v) for k, v in bins.items()}
     R0 = np.array([e["R0"] for e in epochs])
 

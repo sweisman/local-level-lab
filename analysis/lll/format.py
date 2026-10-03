@@ -91,17 +91,28 @@ def read_session(path: str | Path) -> Session:
         fn = f"{name}.csv.gz"
         if fn in zf.namelist():
             streams[name] = _parse_csv(gzip.decompress(zf.read(fn)).decode())
-    imu_stats = {}
-    if IMU_FILE in zf.namelist():
-        arrival, chunks = witmotion.read_records(gzip.decompress(zf.read(IMU_FILE)))
-        decoded, imu_stats = witmotion.decode(arrival, chunks, manifest.get("imu") or {})
-        streams.update(decoded)
     events = []
     if "events.csv.gz" in zf.namelist():
         for ln in gzip.decompress(zf.read("events.csv.gz")).decode().splitlines()[1:]:
             if ln and not ln.startswith("t_ns"):
                 t, kind, *rest = ln.split(",", 2)
                 events.append((int(t), kind, rest[0] if rest else ""))
+    imu_stats = {}
+    if IMU_FILE in zf.namelist():
+        imu = json.loads(json.dumps(manifest.get("imu") or {}))
+        cfg = imu.setdefault("config", {}) if isinstance(imu.get("config", {}), dict) else {}
+        intended = float(cfg.get("gyro_range_dps", 2000.0))
+        # Trust the range the device reported back over the one the app intended: decoding at the
+        # wrong full scale would rescale every rate.
+        reported, consistent = witmotion.range_from_events(events)
+        if reported is not None:
+            cfg["gyro_range_dps"] = reported
+        arrival, chunks = witmotion.read_records(gzip.decompress(zf.read(IMU_FILE)))
+        decoded, imu_stats = witmotion.decode(arrival, chunks, imu)
+        imu_stats.update({"gyro_range_intended_dps": intended, "gyro_range_reported_dps": reported,
+                          "gyro_range_used_dps": float(cfg.get("gyro_range_dps", intended)),
+                          "gyro_range_readbacks_consistent": consistent})
+        streams.update(decoded)
     return Session(manifest, streams, events, hashlib.sha256(raw).hexdigest(), imu_stats)
 
 

@@ -125,7 +125,7 @@ def expm_so3(w):
     return np.eye(3) + np.sin(a) * k + (1 - np.cos(a)) * k @ k
 
 
-def turn_rotation(t_s, gyro_b, t_event, window_s=300.0, pad_s=1.0):
+def turn_rotation(t_s, gyro_b, t_event, window_s=300.0, pad_s=1.0, sat=None):
     """The IMU's rotation during a deliberate turn (or a bump), integrated from the gyro.
 
     The participant turns the IMU, then taps to confirm, so the fast rotation lies in the minutes
@@ -154,17 +154,19 @@ def turn_rotation(t_s, gyro_b, t_event, window_s=300.0, pad_s=1.0):
     for k in j[:-1]:
         R = R @ expm_so3(gyro_b[k] * (t_s[k + 1] - t_s[k]))
     angle = float(np.degrees(np.arccos(np.clip((np.trace(R) - 1) / 2, -1, 1))))
-    return R, {"t0_s": float(a), "t1_s": float(b), "angle_deg": angle}
+    n_sat = int(np.sum(sat[j])) if sat is not None else 0
+    # a rate beyond the gyro's full scale was clipped, so the integrated angle is too small
+    return R, {"t0_s": float(a), "t1_s": float(b), "angle_deg": angle, "saturated_samples": n_sat}
 
 
-def mount_epochs(t_s, gyro_b, events_s):
+def mount_epochs(t_s, gyro_b, events_s, sat=None):
     """Split the flight at deliberate turns and bumps. Returns a list of epochs
     {t0_s, t1_s, R0}, where R0 maps that epoch's IMU frame to the first epoch's (v_0 = R0 v),
     plus the intervals to exclude while the IMU was being turned."""
     epochs = [{"t0_s": -np.inf, "R0": np.eye(3), "turn": None}]
     exclude = []
     for te, kind in sorted(events_s):
-        R, info = turn_rotation(t_s, gyro_b, te)
+        R, info = turn_rotation(t_s, gyro_b, te, sat=sat)
         if R is None:
             if kind == "index_turn":
                 info["warning"] = "turn logged but no rotation found"
