@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 """Gyro bias stability: Allan deviation from the still drift runs, the change in bias from pre to
-post calibration, and bias against battery temperature."""
+post calibration, and bias against IMU chip temperature."""
 from __future__ import annotations
 
 import numpy as np
@@ -39,8 +39,8 @@ def drift_run(sess, name):
     out = {"duration_s": float((s["t_ns"][-1] - s["t_ns"][0]) / 1e9),
            "tau_s": taus.tolist(), "adev_dph": (adev * RAD2DPH).tolist(),
            "bias_instability_dph": (adev.min(axis=0) * RAD2DPH).tolist() if len(adev) else None}
-    # bias vs temperature, using 60-s bins against battery temperature
-    bat = sess.slice("battery", ph["start_ns"], ph["end_ns"])
+    # bias vs temperature, using 60-s bins against the IMU chip temperature
+    bat = sess.slice("imu_temp", ph["start_ns"], ph["end_ns"])
     if bat is not None and len(bat["t_ns"]) > 5 and np.ptp(bat["temp_c"]) >= 1.0:
         edges = np.arange(s["t_ns"][0], s["t_ns"][-1], int(60e9))
         mids, means = [], []
@@ -55,10 +55,15 @@ def drift_run(sess, name):
     return out
 
 
-def bias_model(cal_pre, cal_post, floor_dph=1.0):
+def bias_model(cal_pre, cal_post, floor_dph=1.0, vre_dph=5.0, gsens_dph=5.0):
     """Gyro bias as a function of time (linear between the two calibrations), plus a per-axis 1σ
-    prior on the residual bias the in-flight fit can't see."""
-    floor = floor_dph / RAD2DPH
+    prior on the residual bias the in-flight fit can't see.
+
+    The prior is deliberately wide. Besides the change between calibrations it includes two
+    in-flight effects the ground calibration can't see: vibration rectification (engines and
+    airflow) and g-sensitivity times gravity (the 4-position bias estimate cancels it by design).
+    A tight prior would let those offsets leak into k."""
+    floor = np.sqrt(floor_dph ** 2 + vre_dph ** 2 + gsens_dph ** 2) / RAD2DPH
     if cal_pre and cal_post:
         b0, b1 = cal_pre["bias"], cal_post["bias"]
         t0, t1 = cal_pre["t_mid_s"], cal_post["t_mid_s"]

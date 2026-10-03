@@ -58,11 +58,6 @@
     7.292115e-05,
     0.0,
     -0.0
-   ],
-   "flat": [
-    0.0,
-    0.0,
-    -7.292115e-05
    ]
   },
   {
@@ -72,11 +67,6 @@
     5.5449677478414694e-05,
     0.0,
     -4.735849854949257e-05
-   ],
-   "flat": [
-    0.0,
-    0.0,
-    -7.292115e-05
    ]
   },
   {
@@ -86,11 +76,6 @@
     6.0525450343282055e-05,
     0.0,
     4.067141475367433e-05
-   ],
-   "flat": [
-    0.0,
-    0.0,
-    -7.292115e-05
    ]
   },
   {
@@ -100,11 +85,143 @@
     1.2726495476741228e-06,
     0.0,
     -7.291004375565348e-05
-   ],
-   "flat": [
+   ]
+  }
+ ],
+ "witmotion": {
+  "_comment": "WitMotion packets, hand-built from the published protocol. Checksum = low byte of the sum of the first 10 bytes. Values as decoded by analysis/lll/witmotion.py and the Android WitParser. Full scale: gyro 2000 dps, accel 16 g. Mag in raw counts.",
+  "spp": [
+   {
+    "name": "time_2026-10-02T13:45:07.500",
+    "hex": "55501a0a020d2d07f40101",
+    "type": "time",
+    "expect": {
+     "date": "2026-10-02",
+     "hms": [
+      13,
+      45,
+      7
+     ],
+     "ms": 500
+    }
+   },
+   {
+    "name": "accel_1g_z_25.34C",
+    "hex": "5551000000000008e6099d",
+    "type": "accel",
+    "expect": {
+     "accel_g": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "temp_c": 25.34
+    }
+   },
+   {
+    "name": "gyro_mixed_signs_3.90V",
+    "hex": "55520001ffffff7f8601ab",
+    "type": "gyro",
+    "expect": {
+     "gyro_dps": [
+      15.625,
+      -0.06103515625,
+      1999.93896484375
+     ],
+     "volt": 3.9
+    }
+   },
+   {
+    "name": "mag_counts",
+    "hex": "5554e80338fff811e609c3",
+    "type": "mag",
+    "expect": {
+     "mag_counts": [
+      1000,
+      -200,
+      4600
+     ],
+     "temp_c": 25.34
+    }
+   }
+  ],
+  "spp_bad_checksum": "55520001ffffff7f860100",
+  "ble": [
+   {
+    "name": "data_0x61",
+    "hex": "55610000000000080001ffff0000000000000000",
+    "type": "data",
+    "expect": {
+     "accel_g": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "gyro_dps": [
+      15.625,
+      -0.06103515625,
+      0.0
+     ]
+    }
+   },
+   {
+    "name": "reg_0x3a_mag_temp",
+    "hex": "55713a00e80338fff811000000000000e6090000",
+    "type": "reg",
+    "expect": {
+     "mag_counts": [
+      1000,
+      -200,
+      4600
+     ],
+     "temp_c": 25.34
+    }
+   }
+  ]
+ },
+ "transport_disc": [
+  {
+   "name": "north_equator_sea",
+   "lat_deg": 0,
+   "h_m": 0,
+   "v_e": 0,
+   "omega_disc": [
     0.0,
     0.0,
-    -7.292115e-05
+    -0.0
+   ]
+  },
+  {
+   "name": "east_40N_cruise",
+   "lat_deg": 40,
+   "h_m": 11000,
+   "v_e": 230,
+   "omega_disc": [
+    0.0,
+    0.0,
+    -4.6927914198204504e-05
+   ]
+  },
+  {
+   "name": "sw_60S_cruise",
+   "lat_deg": -60,
+   "h_m": 12000,
+   "v_e": -180,
+   "omega_disc": [
+    0.0,
+    0.0,
+    5.619548007730222e-05
+   ]
+  },
+  {
+   "name": "ne_51N",
+   "lat_deg": 51.5,
+   "h_m": 10500,
+   "v_e": 170,
+   "omega_disc": [
+    0.0,
+    0.0,
+    -4.2657995250037055e-05
    ]
   }
  ]

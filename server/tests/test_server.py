@@ -77,9 +77,9 @@ def _zip_with(manifest_obj, extra=None):
 def test_rejects_malformed_manifest_types(client, synth_zip):
     c, _ = client
     m = json.loads(zipfile.ZipFile(io.BytesIO(synth_zip)).read("manifest.json"))
-    streams = {n: b"" for n in ("accel_uncal.csv.gz", "gyro_uncal.csv.gz")}
+    streams = {"imu.bin.gz": b""}
     for bad in ({**m, "flight": "not an object"}, {**m, "session_id": {"x": 1}}, {**m, "phases": "nope"},
-                {**m, "phases": [{"name": 3}]}, [m]):
+                {**m, "phases": [{"name": 3}]}, {**m, "imu": {"variant": "usb"}}, {**m, "imu": None}, [m]):
         r = c.post("/api/v1/sessions", files={"file": ("x.zip", _zip_with(bad, streams))})
         assert r.status_code == 422, r.text
 

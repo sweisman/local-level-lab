@@ -12,8 +12,8 @@ android {
         applicationId = "io.github.sweisman.locallevellab"
         minSdk = 26
         targetSdk = 35
-        versionCode = 1
-        versionName = "0.1.0"
+        versionCode = 2
+        versionName = "0.2.0"
         val serverUrl = (project.findProperty("lll.serverUrl") as String?) ?: ""
         buildConfigField("String", "DEFAULT_SERVER_URL", "\"$serverUrl\"")
     }

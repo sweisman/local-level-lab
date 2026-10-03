@@ -4,13 +4,12 @@ package io.github.sweisman.locallevellab.recording
 import io.github.sweisman.locallevellab.model.Transport
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 import kotlin.math.acos
 import kotlin.math.sqrt
-
-object Recorder {
-    /** 100 Hz, below Android 12's 200 Hz cap that needs HIGH_SAMPLING_RATE_SENSORS. */
-    const val SAMPLING_PERIOD_US = 10_000
-}
 
 /** Snapshot for the UI. Display only: nothing here is written to a session. */
 data class LiveState(
@@ -27,7 +26,20 @@ data class LiveState(
     val tiltShiftDeg: Double = 0.0,
     val accelSd: Double = 0.0,
     val gyroSdDps: Double = 0.0,
-    val samples: Map<String, Long> = emptyMap(),
+    // the IMU link
+    val imuConnected: Boolean = false,
+    val imuStatus: String = "not connected",
+    val imuRateHz: Double = 0.0,
+    val imuBytes: Long = 0,
+    val imuBadChecksums: Long = 0,
+    val imuDrops: Int = 0,
+    val imuVolt: Double? = null,
+    val imuTempC: Double? = null,
+    val imuConfigOk: Boolean? = null,
+    // the phone
+    val phoneBatteryPct: Int? = null,
+    val phoneCharging: Boolean = false,
+    // GNSS and models
     val hasFix: Boolean = false,
     val speedMps: Double = 0.0,
     val altM: Double = 0.0,
@@ -41,12 +53,24 @@ data class LiveState(
     val transportAccumDeg: Double = 0.0,
     val measuredDph: Double? = null,
     val shiftWarning: Boolean = false,
+    // reminders and activity
+    val nextTurnInS: Double? = null,
+    val turnDue: Boolean = false,
+    val activity: List<String> = emptyList(),
     val error: String? = null,
 )
 
 object Live {
     val state = MutableStateFlow(LiveState())
     val flow: StateFlow<LiveState> get() = state
+
+    private val clock = SimpleDateFormat("HH:mm:ss", Locale.US)
+
+    /** Add a line to the activity feed (newest first, last 60 kept). */
+    fun activity(msg: String) {
+        val line = "${clock.format(Date())}  $msg"
+        state.update { it.copy(activity = (listOf(line) + it.activity).take(60)) }
+    }
 }
 
 /**
@@ -67,15 +91,15 @@ class BlockStats(private val stillAccelSd: Double, private val stillGyroSd: Doub
     var lastAccelMean = DoubleArray(3); private set
     var lastGyroMean = DoubleArray(3); private set
 
-    fun accel(x: Float, y: Float, z: Float) {
+    fun accel(x: Double, y: Double, z: Double) {
         aSum[0] += x; aSum[1] += y; aSum[2] += z
-        val m = sqrt((x * x + y * y + z * z).toDouble())
+        val m = sqrt(x * x + y * y + z * z)
         aMagSum += m; aMagSq += m * m; n++
     }
 
-    fun gyro(x: Float, y: Float, z: Float) {
+    fun gyro(x: Double, y: Double, z: Double) {
         gSum[0] += x; gSum[1] += y; gSum[2] += z
-        gSq[0] += x.toDouble() * x; gSq[1] += y.toDouble() * y; gSq[2] += z.toDouble() * z
+        gSq[0] += x * x; gSq[1] += y * y; gSq[2] += z * z
         gn++
     }
 

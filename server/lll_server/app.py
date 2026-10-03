@@ -30,12 +30,12 @@ SCHEMA = """
 CREATE TABLE IF NOT EXISTS sessions (
   id TEXT PRIMARY KEY, sha256 TEXT UNIQUE NOT NULL, received_at REAL NOT NULL, size INTEGER NOT NULL,
   session_id TEXT, install_id TEXT, airline TEXT, flight_number TEXT, flight_date TEXT,
-  mount TEXT, device_model TEXT, status TEXT NOT NULL DEFAULT 'received', manifest TEXT NOT NULL,
+  mount TEXT, seat TEXT, imu_variant TEXT, imu_unit TEXT, status TEXT NOT NULL DEFAULT 'received', manifest TEXT NOT NULL,
   result TEXT
 );
 """
 PUBLIC_COLS = ("id", "sha256", "received_at", "size", "session_id", "airline", "flight_number",
-               "flight_date", "mount", "device_model", "status")
+               "flight_date", "mount", "seat", "imu_variant", "imu_unit", "status")
 
 
 def _text(v, limit: int = 200) -> str | None:
@@ -74,7 +74,7 @@ class Store:
 
 def create_app(data_dir: str | Path | None = None) -> FastAPI:
     store = Store(Path(data_dir or os.environ.get("LLL_DATA", "data")))
-    app = FastAPI(title="Local Level Lab", version="0.1.0")
+    app = FastAPI(title="Local Level Lab", version="0.2.0")
     app.state.store = store
     recent: dict[str, deque] = defaultdict(deque)
 
@@ -131,12 +131,14 @@ def create_app(data_dir: str | Path | None = None) -> FastAPI:
                 raise HTTPException(429, "too many uploads; try again later")
             id_ = str(uuid.uuid4())
             store.raw_path(id_).write_bytes(data)
-            fl, mt, dv = manifest.get("flight") or {}, manifest.get("mount") or {}, manifest["device"]
+            fl, mt, imu = manifest.get("flight") or {}, manifest.get("mount") or {}, manifest["imu"]
             c.execute("INSERT INTO sessions (id, sha256, received_at, size, session_id, install_id, airline, "
-                      "flight_number, flight_date, mount, device_model, manifest) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
+                      "flight_number, flight_date, mount, seat, imu_variant, imu_unit, manifest) "
+                      "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                       (id_, sha, time.time(), len(data), manifest["session_id"], manifest["install_id"],
                        _text(fl.get("airline")), _text(fl.get("flight_number")), _text(fl.get("date")),
-                       _text(mt.get("type")), _text(dv.get("model")), json.dumps(manifest)))
+                       _text(mt.get("type")), _text(fl.get("seat")), _text(imu.get("variant")),
+                       _text(imu.get("unit_id")), json.dumps(manifest)))
         accepted(ip_key, install_key)
         return {"id": id_, "duplicate": False}
 
@@ -152,7 +154,7 @@ def create_app(data_dir: str | Path | None = None) -> FastAPI:
         out = {k: r[k] for k in PUBLIC_COLS}
         if r["result"]:
             res = json.loads(r["result"])
-            out["result"] = {k: res.get(k) for k in ("flags", "cruise_minutes", "fit", "calibration")}
+            out["result"] = {k: res.get(k) for k in ("flags", "cruise_minutes", "fit", "calibration", "unit_quality", "slip")}
         return out
 
     @app.get("/api/v1/sessions/{id_}/raw")

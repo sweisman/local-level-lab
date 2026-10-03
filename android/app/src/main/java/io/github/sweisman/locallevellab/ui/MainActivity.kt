@@ -51,7 +51,9 @@ fun AppNav(start: String) {
             InstructionsScreen(it.arguments?.getString("section"), nav)
         }
         composable("settings") { SettingsScreen(nav) }
-        composable("new") { NewSessionScreen(nav) }
+        composable("new?kind={kind}", listOf(navArgument("kind") { defaultValue = "flight" })) {
+            NewSessionScreen(nav, it.arguments?.getString("kind") ?: "flight")
+        }
         composable("session/{id}", idArg) { SessionScreen(it.arguments!!.getString("id")!!, nav) }
         composable("cal/{id}/{which}", idArg + navArgument("which") { type = NavType.StringType }) {
             CalibrationScreen(it.arguments!!.getString("id")!!, it.arguments!!.getString("which")!!, nav)

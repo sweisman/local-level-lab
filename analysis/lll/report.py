@@ -23,11 +23,10 @@ GRID = "#d8dee4"
 MODEL_STYLE = {
     "sphere_rotating": ("#2a78d6", "-"),
     "sphere_still": ("#eb6834", "--"),
-    "flat_rotating": ("#1baf7a", "-."),
     "flat_still": ("#eda100", ":"),
 }
-K_LABELS = {"k_rot_sphere": "Earth rotation\n(globe form)", "k_rot_flat": "Earth rotation\n(flat-disc form)",
-            "k_curv": "Curvature\n(transport rate)"}
+K_LABELS = {"k_rot_sphere": "Earth rotation\n(globe)",
+            "k_curv": "Globe transport\n(curvature)", "k_disc": "Disc transport\n(circling the centre)"}
 
 plt.rcParams.update({
     "font.size": 9, "axes.edgecolor": GRID, "axes.labelcolor": INK, "xtick.color": MUTED,
@@ -106,27 +105,67 @@ def session_report(res: dict) -> str:
 
     fit = res.get("fit")
     if fit:
-        w = fit["model_weight"]
+        idn = fit["identifiability"]
+        not_rej = [MODEL_LABELS[m] for m in MODEL_LABELS if not fit["rejected"][m]]
+        verdict = (" or ".join(not_rej) if not_rej else "none: check the flags") + (
+            "" if idn["identified"] else " (curvature not identified on this flight)")
         out.append("<h2>Result</h2><div class=tiles>"
-                   f"<div class=tile><span class=sub>Best-fitting model</span><b>{MODEL_LABELS[fit['best_model']]}</b></div>"
+                   f"<div class=tile><span class=sub>Models not rejected at 3σ</span><b>{html.escape(verdict)}</b></div>"
                    f"<div class=tile><span class=sub>Stable cruise analysed</span><b>{res.get('cruise_minutes', 0):.0f} min</b></div>"
                    f"<div class=tile><span class=sub>Noise per 60-s bin</span><b>{fit['sigma_bin_dph']:.1f} °/h</b></div>"
                    "</div>")
-        out.append(_table(["Model", "Δχ² vs best", "relative weight", "expected k (rot globe, rot flat, curv)"],
-                          [[MODEL_LABELS[m], _f(fit["delta_chi2"][m], 1), _f(w[m], 3), str(tuple(fit["expected_k"][m]))]
+        ci = fit.get("delta_chi2_ci_16_84") or {}
+        out.append(_table(["Model", "Δχ² vs free fit", "p (3 dof)", "rejected at 3σ", "Δχ² vs best [16–84 %]",
+                           "relative likelihood*", "expected k (rot globe, curv globe, disc)"],
+                          [[MODEL_LABELS[m], _f(fit["delta_chi2_vs_free"][m], 1), f"{fit['p_vs_free'][m]:.2g}",
+                            "yes" if fit["rejected"][m] else "no",
+                            _f(fit["delta_chi2"][m], 1) + (f" [{_f(ci[m][0], 1)}–{_f(ci[m][1], 1)}]" if m in ci else ""),
+                            _f(fit["relative_likelihood"][m], 3), str(tuple(fit["expected_k"][m]))]
                            for m in MODEL_LABELS]))
+        sc = fit["chi2_scaling"]
+        out.append(f"<p class=sub>χ² is scaled by {sc['scale']:.2f} for the correlation between neighbouring bins "
+                   f"(lag-1 ρ = {sc['rho_lag1']:.2f}). Each model is tested against the free fit: Δχ² follows χ² with 3 degrees of "
+                   "freedom if that model is true. *Relative likelihoods are exp(−Δχ²/2), normalized. They are not probabilities.</p>")
         out.append("<h3>Separate scale factors</h3>" + _k_figure(fit["k"], fit["k_sd"]))
-        out.append(f"<p class=sub>Fit mode: {fit['mode']}. The largest |correlation| between a nuisance term (residual bias or temperature) and any k "
-                   f"is {fit['max_bias_k_corr']:.2f}. Values near 1 mean the data can't tell bias from signal, and more turns "
-                   "or better calibration would help. Residual bias: "
-                   + ", ".join(f"{v:.2f}" for v in fit["bias_residual_dph"]) + " °/h.</p>")
+        like = idn["bias_likeness_by_term"]
+        ps = fit["prior_sensitivity"]
+        out.append("<p class=sub>How much of each term a constant residual bias could mimic (1 = indistinguishable by the flight "
+                   "data, so only the ground calibration constrains it): "
+                   + ", ".join(f"{html.escape(n)} {v:.2f}" for n, v in like.items())
+                   + ". A constant rotation about the vertical is always 1 in level flight, because it lies along gravity just like "
+                   "gyro bias and g-sensitivity. Turning the IMU 180° about the vertical during the flight lowers the curvature value; "
+                   f"flipping it does not. Widening the bias prior {ps['widen']:.0f}× moves k by "
+                   + ", ".join(f"{v:+.1f}σ" for v in ps["k_shift_sigma"].values())
+                   + (" (prior-dominated)." if ps["prior_dominated"] else ".")
+                   + f" Gravity orientations: {fit['gravity_orientations']}. Residual bias per orientation: "
+                   + "; ".join(", ".join(f"{v:.2f}" for v in b) for b in fit["bias_residual_dph"]) + " °/h.</p>")
         tm = res.get("temperature") or {}
         if tm.get("cal_mean_c") is not None:
-            out.append(f"<p class=sub>Battery temperature: calibration {tm['cal_mean_c']:.1f} °C, cruise "
+            src = {"drift_run": "coefficient from a drift run, residual fitted", "free_fit": "coefficient fitted freely"}
+            out.append(f"<p class=sub>IMU chip temperature: calibration {tm['cal_mean_c']:.1f} °C, cruise "
                        f"{_f(tm.get('cruise_min_c'), 1)}–{_f(tm.get('cruise_max_c'), 1)} °C. "
-                       + ("Temperature term fitted (prior " + _f(tm["prior_dph_per_c"], 1) + " °/h/°C): "
+                       + ("Temperature term used (" + src.get(tm.get("coefficient_source"), "") + "): "
                           + ", ".join(_f(v) for v in fit["temp_coef_dph_per_c"]) + " °/h/°C."
                           if tm.get("term_used") else "Difference too small for a temperature term.") + "</p>")
+
+    sl = res.get("slip") or {}
+    if sl.get("available"):
+        rows = []
+        for v, label in (("wmm", "with WMM declination"), ("no_declination", "no declination model")):
+            for r in sl["variants"].get(v, []):
+                rows.append([label, r["seg"], r["epoch"], f"{_f(r['slip_dph'], 1)} ± {_f(r['sd_dph'], 1)}",
+                             "yes" if r["slip"] else "no", "yes" if r["airframe_field_calibrated"] else "assumed small"])
+        out.append("<h2>Mount slip watchdog (magnetometer)</h2>"
+                   + _table(["version", "segment", "mount epoch", "slip (°/h)", "slip?", "airframe field"], rows)
+                   + "<p class=sub>A slow turn of the IMU in its mount goes straight into the vertical gyro channel. The magnetometer sees "
+                   "it as a turn of the horizontal field. Segments are left out of the gyro fit only when both versions see slip above "
+                   f"{_f(sl['max_slip_dph'], 1)} °/h; the version without a declination model also reacts to declination changes along "
+                   f"the route. Left out: {sl['exclude_segments'] or 'none'}.</p>")
+    turns = [e["turn"] for e in res.get("mount_epochs", []) if e.get("turn")]
+    if turns:
+        out.append("<p class=sub>IMU turns during the flight, measured by the gyro: "
+                   + ", ".join(f"{html.escape(str(t['kind']))} {t['angle_deg']:.1f}°" for t in turns)
+                   + ". Each later epoch is mapped back into the first epoch's frame.</p>")
 
     # calibration
     cal = res.get("calibration", {})
@@ -217,47 +256,62 @@ def session_report(res: dict) -> str:
 
 
 def collation_report(col: dict) -> str:
+    g = col.get("ground") or {}
     out = ["<h1>Local Level Lab — collated results</h1>",
-           f"<p class=sub>{col['n_sessions']} sessions, {col['n_with_fit']} with an in-flight fit, "
-           f"{col['n_cal']} ground calibrations · analysis v{col['analysis_version']}</p>"]
+           f"<p class=sub>{col['n_sessions']} sessions: {col['n_primary']} in the primary result, "
+           f"{col['n_exploratory']} exploratory · {len(g.get('lat', []))} ground calibrations · analysis v{col['analysis_version']}</p>",
+           "<p class=sub>Primary sessions pass every gate: both calibrations, at least "
+           f"{col['gates']['min_cruise_min']:.0f} min of cruise, curvature identified, not prior-dominated, an IMU unit rated "
+           f"{' or '.join(col['gates']['unit_tiers'])}, and not synthetic.</p>"]
+    for f in col.get("flags", []):
+        out.append(f"<p><span class=flag>{html.escape(f)}</span></p>")
     if col.get("pooled_k"):
         pk = col["pooled_k"]
-        out.append("<h2>Pooled scale factors (inverse-variance)</h2>"
-                   + _k_figure({n: v["k"] for n, v in pk.items()}, {n: v["sd"] for n, v in pk.items()}))
-        out.append("<h2>Pooled model comparison (Σχ² over sessions)</h2>"
-                   + _table(["Model", "Σ Δχ² vs best", "sessions where best"],
-                            [[MODEL_LABELS[m], _f(col["pooled_delta_chi2"][m], 1), col["best_counts"].get(m, 0)]
-                             for m in MODEL_LABELS]))
-    for dim, groups in col.get("breakdowns", {}).items():
-        rows = [[html.escape(str(g)), v["n"]] + [f"{_f(v['k'][n])} ± {_f(v['sd'][n])}" for n in K_LABELS]
-                for g, v in groups.items()]
-        out.append(f"<h3>By {dim}</h3>" + _table([dim, "n", "k rot (globe)", "k rot (flat)", "k curv"], rows))
-    g = col.get("ground")
-    if g and g["lat"]:
+        out.append("<h2>Pooled scale factors (random effects: sessions → IMU units → population)</h2>"
+                   + _k_figure({n: v["k"] for n, v in pk.items() if v}, {n: v["sd"] for n, v in pk.items() if v}))
+        out.append(_table(["term", "pooled k", "units", "sessions", "τ² between units", "heterogeneity p"],
+                          [[html.escape(n), f"{_f(v['k'])} ± {_f(v['sd'])}", v["n_units"], v["n_sessions"],
+                            _f(v["tau2_units"], 3), f"{v['p_het_units']:.2g}"] for n, v in pk.items() if v]))
+        out.append("<h2>Each model against the pooled scale factors</h2>"
+                   + _table(["Model", "χ² (3 dof)", "p", "rejected at 3σ"],
+                            [[MODEL_LABELS[m], _f(t["chi2"], 1), f"{t['p']:.2g}", "yes" if t["rejected"] else "no"]
+                             for m, t in col["model_tests"].items()]))
+    for dim, c in (col.get("consistency") or {}).items():
+        rows = [[html.escape(str(gname))] + [f"{_f(p[n]['k'])} ± {_f(p[n]['sd'])}" if p[n] else "–" for n in K_LABELS]
+                for gname, p in c["groups"].items()]
+        het = ", ".join(f"{n} p={v['p']:.2g}" for n, v in c["heterogeneity"].items())
+        out.append(f"<h3>Consistency by {html.escape(dim)}</h3>" + _table([dim, "k rot (globe)", "k curv (globe)", "k disc"], rows)
+                   + f"<p class=sub>Between-group heterogeneity: {het}." + (" <b>Groups disagree.</b>" if c["disagreement"] else "") + "</p>")
+    if g and g.get("lat"):
         from .calib import ground_model_predictions
         lat = np.array(g["lat"])
         L = np.linspace(-90, 90, 181)
         preds = {m: np.array([ground_model_predictions(x)[m] for x in L]) for m in MODEL_LABELS}
         fig, axs = plt.subplots(1, 2, figsize=(10, 3.4))
-        for i, (key, lab) in enumerate((("up", "rotation about local up (°/h)"), ("h", "horizontal rotation (°/h)"))):
+        for i, (key, lab) in enumerate((("h", "horizontal rotation (°/h)"), ("up", "rotation about local up (°/h)"))):
             ax = axs[i]
             for m, p in preds.items():
                 c, ls = MODEL_STYLE[m]
-                ax.plot(L, p[:, i], color=c, ls=ls, label=MODEL_LABELS[m])
+                ax.plot(L, p[:, 1 if key == "h" else 0], color=c, ls=ls, label=MODEL_LABELS[m])
             ax.errorbar(lat, g[key], yerr=g[key + "_sd"], fmt="o", color=INK, ms=4, lw=1, capsize=2, label="calibrations")
             ax.set_xlabel("latitude (°)")
             ax.set_ylabel(lab)
         axs[0].legend(fontsize=7)
+        axs[1].set_title("aliased with g-sensitivity", loc="left", fontsize=9)
         fig.tight_layout()
-        out.append("<h2>Ground Earth-rate vs latitude (all calibrations)</h2>" + _png(fig))
-        if g.get("fit"):
-            f = g["fit"]
-            out.append(f"<p>Least-squares fit: up = {_f(f['A_sin'])}·sin φ + {_f(f['B_const'])} °/h; horizontal = "
-                       f"{_f(f['C_cos'])}·|cos φ| °/h. A globe rotating once a sidereal day gives A = C = 15.04, B = 0. "
-                       "A rotating flat disc gives A = C = 0, B = 15.04. A still Earth of either shape gives all zero.</p>")
-    out.append("<h2>Per-session results</h2>" + _table(
-        ["session", "flight", "mount", "device", "cruise min", "best model", "k rot", "k curv"],
-        [[html.escape(str(r["session_id"])[:8]), html.escape(r["flight"]), html.escape(str(r["mount"])),
-          html.escape(str(r["device"])), _f(r["cruise_min"], 0), MODEL_LABELS.get(r["best_model"], "–"),
-          _f(r["k_rot_sphere"]), _f(r["k_curv"])] for r in col["rows"]]))
+        out.append("<h2>Ground Earth rate vs latitude</h2>" + _png(fig))
+        f = g.get("fit")
+        if f:
+            out.append(f"<p>Horizontal (the clean test, immune to g-sensitivity): h = {_f(f['C_cos'])} ± {_f(f['C_cos_se'])} · |cos φ| °/h. "
+                       "A rotating globe gives 15.04; a still globe or a flat disc gives 0.</p>"
+                       f"<p class=sub>Vertical: up = {_f(f['A_sin'])} ± {_f(f['A_sin_se'])} · sin φ + an intercept per IMU unit. "
+                       + ("" if f["A_identified"] else "No unit has been calibrated at more than one latitude yet, so A rests on the intercepts' assumptions. ")
+                       + "Rotation about the plumb line can't be told from a unit's g-sensitivity along it, so each unit gets its own intercept.</p>")
+    out.append("<h2>Sessions</h2>" + _table(
+        ["session", "kind", "flight", "seat", "mount", "IMU", "tier", "cruise min", "not rejected", "k rot", "k curv", "k disc", "primary?"],
+        [[html.escape(str(r["session_id"])[:8]), html.escape(str(r["kind"])), html.escape(r["flight"]), html.escape(str(r["seat"])),
+          html.escape(str(r["mount"])), html.escape(str(r["imu_variant"])), html.escape(str(r["unit_tier"])), _f(r["cruise_min"], 0),
+          html.escape(", ".join(MODEL_LABELS[m] for m in (r["not_rejected"] or "").split(";") if m) or "–"),
+          _f(r["k_rot_sphere"]), _f(r["k_curv"]), _f(r["k_disc"]),
+          "yes" if r["primary"] else html.escape(r["excluded_because"])] for r in col["rows"]]))
     return page("LLL collated", "".join(out))

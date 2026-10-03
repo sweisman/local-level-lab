@@ -12,21 +12,17 @@ from pathlib import Path
 
 import numpy as np
 
-SCHEMA_VERSION = 1
+from . import witmotion
 
+SCHEMA_VERSION = 2
+IMU_FILE = "imu.bin.gz"
+
+# CSV streams written by the app. The IMU itself is imu.bin.gz, decoded by witmotion.py into
+# the streams gyro, accel, mag, imu_temp and imu_volt.
 STREAMS = {
-    "gyro_uncal": ["t_ns", "x", "y", "z", "bx", "by", "bz"],
-    "gyro": ["t_ns", "x", "y", "z"],
-    "accel_uncal": ["t_ns", "x", "y", "z", "bx", "by", "bz"],
-    "accel": ["t_ns", "x", "y", "z"],
-    "mag_uncal": ["t_ns", "x", "y", "z", "bx", "by", "bz"],
-    "pressure": ["t_ns", "hpa"],
-    "game_rv": ["t_ns", "x", "y", "z", "w"],
     "gnss": ["t_ns", "utc_ms", "lat", "lon", "alt_m", "speed_mps", "bearing_deg", "h_acc_m",
              "v_acc_m", "speed_acc_mps", "bearing_acc_deg", "sats_used"],
-    "battery": ["t_ns", "temp_c", "level_pct", "plugged"],
 }
-REQUIRED_STREAMS = ("accel_uncal",)  # plus one of gyro_uncal / gyro
 
 
 @dataclass
@@ -35,6 +31,7 @@ class Session:
     streams: dict[str, dict[str, np.ndarray]]
     events: list[tuple[int, str, str]] = field(default_factory=list)
     sha256: str = ""
+    imu_stats: dict = field(default_factory=dict)
 
     def phase(self, name: str) -> dict | None:
         """The last phase with this name (a redone calibration position replaces the earlier try)."""
@@ -51,7 +48,7 @@ class Session:
         return {k: v[m] for k, v in s.items()}
 
     def gyro_stream(self) -> str:
-        return "gyro_uncal" if "gyro_uncal" in self.streams else "gyro"
+        return "gyro"
 
 
 def _parse_csv(text: str) -> dict[str, np.ndarray]:
@@ -94,13 +91,18 @@ def read_session(path: str | Path) -> Session:
         fn = f"{name}.csv.gz"
         if fn in zf.namelist():
             streams[name] = _parse_csv(gzip.decompress(zf.read(fn)).decode())
+    imu_stats = {}
+    if IMU_FILE in zf.namelist():
+        arrival, chunks = witmotion.read_records(gzip.decompress(zf.read(IMU_FILE)))
+        decoded, imu_stats = witmotion.decode(arrival, chunks, manifest.get("imu") or {})
+        streams.update(decoded)
     events = []
     if "events.csv.gz" in zf.namelist():
         for ln in gzip.decompress(zf.read("events.csv.gz")).decode().splitlines()[1:]:
             if ln and not ln.startswith("t_ns"):
                 t, kind, *rest = ln.split(",", 2)
                 events.append((int(t), kind, rest[0] if rest else ""))
-    return Session(manifest, streams, events, hashlib.sha256(raw).hexdigest())
+    return Session(manifest, streams, events, hashlib.sha256(raw).hexdigest(), imu_stats)
 
 
 def validate_manifest(m: dict, names: list[str]) -> list[str]:
@@ -115,7 +117,7 @@ def validate_manifest(m: dict, names: list[str]) -> list[str]:
             errs.append(f"manifest missing {key}")
         elif not isinstance(m[key], typ):
             errs.append(f"manifest {key} must be a {typ.__name__}")
-    for key in ("flight", "mount", "privacy", "quality", "sensors"):
+    for key in ("flight", "mount", "privacy", "quality"):
         if key in m and m[key] is not None and not isinstance(m[key], dict):
             errs.append(f"manifest {key} must be an object")
     if isinstance(m.get("phases"), list):
@@ -127,11 +129,15 @@ def validate_manifest(m: dict, names: list[str]) -> list[str]:
     for key in ("session_id", "install_id"):
         if isinstance(m.get(key), str) and not 0 < len(m[key]) <= 64:
             errs.append(f"{key} must be 1-64 characters")
-    for s in REQUIRED_STREAMS:
-        if f"{s}.csv.gz" not in names:
-            errs.append(f"missing stream {s}")
-    if "gyro_uncal.csv.gz" not in names and "gyro.csv.gz" not in names:
-        errs.append("missing gyro stream")
+    if IMU_FILE not in names:
+        errs.append(f"missing {IMU_FILE}")
+    imu = m.get("imu")
+    if not isinstance(imu, dict):
+        errs.append("manifest imu must be an object")
+    elif imu.get("variant") not in witmotion.VARIANTS:
+        errs.append(f"manifest imu.variant must be one of {', '.join(witmotion.VARIANTS)}")
+    elif imu.get("config") is not None and not isinstance(imu["config"], dict):
+        errs.append("manifest imu.config must be an object")
     return errs
 
 
@@ -146,8 +152,9 @@ def _col_strings(a: np.ndarray) -> list[str]:
 
 
 def write_session(path: str | Path, manifest: dict, streams: dict[str, dict[str, np.ndarray]],
-                  events: list[tuple[int, str, str]] = ()) -> None:
-    """Write a session zip. Float32 arrays are written shortest-round-trip, as the app does."""
+                  events: list[tuple[int, str, str]] = (), imu=None) -> None:
+    """Write a session zip. Float32 arrays are written shortest-round-trip, as the app does.
+    imu = (arrival_ns, chunks) is written as imu.bin.gz, framed exactly as the app frames it."""
     with zipfile.ZipFile(path, "w", zipfile.ZIP_STORED) as zf:
         zf.writestr("manifest.json", json.dumps(manifest, indent=1))
         for name, cols in streams.items():
@@ -157,3 +164,5 @@ def write_session(path: str | Path, manifest: dict, streams: dict[str, dict[str,
             zf.writestr(f"{name}.csv.gz", gzip.compress(text.encode(), 6))
         ev = "t_ns,kind,detail\n" + "".join(f"{t},{k},{d}\n" for t, k, d in events)
         zf.writestr("events.csv.gz", gzip.compress(ev.encode(), 6))
+        if imu is not None:
+            zf.writestr(IMU_FILE, gzip.compress(witmotion.write_records(*imu), 6))

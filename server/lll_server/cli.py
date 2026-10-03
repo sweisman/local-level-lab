@@ -72,7 +72,7 @@ def main(argv=None):
     store = Store(Path(args.data))
     if args.cmd == "list":
         for r in store.all():
-            print(r["id"], r["status"], r["airline"], r["flight_number"], r["flight_date"], r["mount"], r["device_model"])
+            print(r["id"], r["status"], r["airline"], r["flight_number"], r["flight_date"], r["seat"], r["mount"], r["imu_variant"])
     elif args.cmd == "process":
         print("\n".join(process(store, args.ids)) or "nothing to process")
     elif args.cmd == "collate":

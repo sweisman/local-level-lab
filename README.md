@@ -1,35 +1,59 @@
 # Local Level Lab
 
-A crowdsourced, fully open experiment that tests the shape and motion of the Earth with the motion sensors in ordinary phones, carried on ordinary flights.
+A crowdsourced, fully open experiment that tests the shape and motion of the Earth with a small motion sensor (an IMU) carried on ordinary flights.
 
-A gyroscope measures angular velocity relative to inertial space, not relative to the ground. If the Earth rotates, a phone resting on it turns with it at up to 15.04 °/h. If the Earth is curved, the local-level frame of a moving aircraft (its local horizontal) rotates relative to inertial space, at a rate set by the aircraft's velocity and the Earth's radius: v / R ≈ 8.1 °/h at 900 km/h (250 m/s). The app records raw sensor data. The analysis compares it, side by side, against four models with predictions taken from GPS alone:
+A gyroscope measures angular velocity relative to inertial space, not relative to the ground. If the Earth rotates, a sensor resting on it turns with it at up to 15.04 °/h. And as an aircraft moves, its local horizontal ("local level") turns relative to inertial space at a rate the Earth's shape sets. On a globe it tilts forward at v / R ≈ 8.1 °/h at 900 km/h. On a flat disc it never tilts, but an eastbound track circles the disc's centre. The IMU records the least-processed data it can deliver. The analysis compares it, side by side, against three models whose predictions come from the GPS track alone:
 
-| | still | rotating |
+| model | Earth rotation | moving over the surface |
 |---|---|---|
-| **flat** | no rotation | 15.04 °/h about the disc normal (local vertical), everywhere |
-| **sphere** | transport rate only | Earth rate (latitude-dependent) + transport rate |
+| **globe, rotating** | 15.04 °/h about the Earth's axis (latitude-dependent split between vertical and horizontal) | local level tilts towards the direction of travel, and turns slowly about the vertical |
+| **globe, still** | none | as above |
+| **flat disc, still** | none | local level never tilts; it turns about the vertical once per 360° of longitude |
 
-Sensor resolution isn't the problem; bias stability is. A single phone's gyro drift is comparable to these signals, so the design depends on careful calibration, long stable recordings, turns, controls, and **pooling many flights**.
+Sensor resolution isn't the problem; bias stability is. A consumer gyro's drift is comparable to these signals, so the design depends on careful calibration, a rigid mount, turning the IMU during the flight, honest statistics, and **pooling many flights**.
+
+How each choice was made, what was rejected, and how to check it: **[docs/METHODOLOGY.md](docs/METHODOLOGY.md)**.
+
+## Hardware
+
+Phone motion sensors vary too much between models, so the experiment is standardizing on one external IMU, the WitMotion WT901SDCL. It streams to the phone over Bluetooth. The phone supplies GNSS and runs the app. Two variants are supported:
+
+- ICM-42605 gyro and accelerometer with an MMC3630 magnetometer, over Bluetooth 2.0 serial.
+- MPU9250, over Bluetooth Low Energy 5.0.
+
+WitMotion's product pages:
+
+- <https://wit-motion.com/WirelessInclinometer/52.html>
+- <https://wit-motion.com/WirelessInclinometer/50.html>
+
+A rigid mount matters more than anything else for good results, because any slow turning of the sensor in its mount looks like signal. These are examples of mounts that hold firmly:
+
+- [PivotCase PortaGrip phone mount](https://pivotcase.com/products/portagrip-phone-mount)
+- [Arkon SkyHold windshield suction mount](https://arkon.com/products/skyhold-windshield-suction-phone-mount)
+
+Pick a mount that lets you take the IMU out and put it back facing the opposite way, with the same side up. That turn, a few times per flight, is what makes a straight route count ([METHODOLOGY §9](docs/METHODOLOGY.md#9-turning-the-imu-in-flight-same-side-up)).
 
 ## Repository
 
 | path | what |
 |---|---|
-| `android/` | The Android app (Kotlin/Compose). Guided calibration, drift runs, placement check, raw recording, live or battery-saver display, upload/share, in-app instructions |
+| `android/` | The Android app (Kotlin/Compose). Connects to the IMU, logs its byte stream and GPS in the background, guides calibration, reminds you to turn the IMU, shows a live dashboard, and uploads or shares sessions |
 | `server/` | Upload server (FastAPI + SQLite) that publishes every raw upload as an open dataset |
-| `analysis/` | The `lll` Python package. Single-session analysis and HTML report, multi-session collation, and a synthetic-data generator |
-| `docs/` | [FORMAT](docs/FORMAT.md) (file spec), [MATH](docs/MATH.md) (models, method, approximations), [PROTOCOL](docs/PROTOCOL.md) (participant steps), shared test vectors |
+| `analysis/` | The `lll` Python package: decoding, single-session analysis and report, pooled analysis, a bench tool, and a synthetic-data generator |
+| `docs/` | [METHODOLOGY](docs/METHODOLOGY.md) (decisions and how to check them), [MATH](docs/MATH.md) (equations), [EVIDENCE](docs/EVIDENCE.md) (reproducible simulation results), [FORMAT](docs/FORMAT.md) (file spec), [PROTOCOL](docs/PROTOCOL.md) (participant steps), shared test vectors |
 
 ## Quick start: analysis
 
 ```sh
 python -m venv .venv && . .venv/bin/activate
 pip install -e analysis -e server pytest httpx
-lll synth demo.zip --truth sphere_rotating   # or sphere_still / flat_rotating / flat_still
-lll synth hard.zip --truth flat_still --adverse   # temperature drift, turbulence, mount slip, climb/descent, GNSS gaps
-lll analyze demo.zip                         # writes demo.result.json + demo.report.html
-lll collate . -o collated                    # pools every *.result.json under .
+lll synth demo.zip --truth sphere_rotating          # or sphere_still / flat_still; --variant spp|ble
+lll synth hard.zip --truth flat_still --adverse     # temperature drift, turbulence, mount slip, climb/descent, GNSS gaps
+lll analyze demo.zip                                # writes demo.result.json + demo.report.html
+lll collate . -o collated --include-synthetic       # pools every *.result.json under . (synthetic data is excluded by default)
+lll bench capture.bin.gz --variant spp              # decode a raw IMU capture: rate, noise, quantization, bias stability
 pytest analysis/tests server/tests
+python analysis/tests/evidence.py                   # regenerates docs/EVIDENCE.md
 ```
 
 ## Server
@@ -56,13 +80,17 @@ The per-IP limit uses the client address uvicorn sees. Behind a reverse proxy on
 
 ## Android
 
-Open `android/` in Android Studio, or run `./gradlew assembleDebug` (JDK 17 or 21, Android SDK 35). To set the default upload server for your build, use `lll.serverUrl` in `android/gradle.properties`. Users can change it in Settings.
+Open `android/` in Android Studio, or run `./gradlew assembleDebug` (JDK 17 or 21, Android SDK 35). To set the default upload server for your build, use `lll.serverUrl` in `android/gradle.properties`. Users can change it in Settings. Choose and configure the IMU in Settings before the first session.
 
 ## Openness
 
 - Code: **AGPL-3.0-or-later** © Scott Weisman.
-- Data: **CC0** ([DATA_LICENSE.md](DATA_LICENSE.md)).
+- Data: **CC0** ([DATA_LICENSE.md](DATA_LICENSE.md)). Every upload is published as it arrived, including the IMU's full byte stream with the magnetometer.
 - What's collected: [PRIVACY.md](PRIVACY.md).
 - No analytics, ads or proprietary SDKs.
 
 Reviews and criticism are welcome: [CONTRIBUTING.md](CONTRIBUTING.md).
+
+---
+
+Local Level Lab is an [Ars Astronomica](https://arsastronomica.com) project.

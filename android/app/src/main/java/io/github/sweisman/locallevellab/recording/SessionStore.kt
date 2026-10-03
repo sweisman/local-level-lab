@@ -6,6 +6,7 @@ import android.os.Build
 import android.os.SystemClock
 import io.github.sweisman.locallevellab.BuildConfig
 import io.github.sweisman.locallevellab.Prefs
+import io.github.sweisman.locallevellab.recording.imu.Variant
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.File
@@ -21,7 +22,8 @@ import java.util.zip.ZipOutputStream
  * A session lives in `files/sessions/<id>/`:
  *   manifest.json  (exactly what ships in the zip, see docs/FORMAT.md)
  *   local.json     (device-only state such as upload status, never uploaded)
- *   *.csv.gz       (raw streams, one gzip member appended per recording phase)
+ *   imu.bin.gz     (every Bluetooth read from the IMU, verbatim, one gzip member per phase)
+ *   gnss.csv.gz, events.csv.gz (one gzip member appended per recording phase)
  */
 class Session(val dir: File) {
     val id: String get() = dir.name
@@ -52,6 +54,11 @@ class Session(val dir: File) {
 }
 
 object SessionStore {
+    /** The ground calibration, as a palindrome: every position twice in mirror order, so a
+     *  linear bias drift can be fitted. The middle position is one double-length stay. */
+    val CAL_STEPS = listOf("up0", "up180", "down0", "down180", "down0.b", "up180.b", "up0.b")
+    fun calStepLength(step: String) = if (step == "down180") 2 else 1
+
     fun root(ctx: Context) = File(ctx.filesDir, "sessions").apply { mkdirs() }
 
     fun list(ctx: Context): List<Session> =
@@ -62,12 +69,28 @@ object SessionStore {
     fun load(ctx: Context, id: String): Session? =
         File(root(ctx), id).takeIf { File(it, "manifest.json").exists() }?.let { Session(it) }
 
-    fun create(ctx: Context, flight: JSONObject, mount: JSONObject): Session {
+    /** The IMU block of the manifest, from the device chosen in Settings. Null if none is chosen. */
+    fun imuManifest(ctx: Context): JSONObject? {
+        val p = Prefs(ctx)
+        val v = p.imuVariant ?: return null
+        if (p.imuAddress.isEmpty()) return null
+        return JSONObject()
+            .put("variant", v.key).put("model", v.model).put("firmware", "")
+            .put("unit_id", p.unitId(p.imuAddress))
+            .put("config", JSONObject()
+                .put("rate_hz", p.imuRateHz).put("gyro_range_dps", 2000).put("accel_range_g", 16).put("auto_zero", false)
+                .put("packets", JSONArray(if (v == Variant.SPP) listOf("0x50", "0x51", "0x52", "0x54") else listOf("0x61", "0x71@0x3a"))))
+    }
+
+    /** kind is "flight" for the normal protocol, or "bench" for a stationary bench capture. */
+    fun create(ctx: Context, flight: JSONObject, mount: JSONObject, kind: String = "flight"): Session {
+        val imu = imuManifest(ctx) ?: error("no IMU chosen")
         val id = UUID.randomUUID().toString()
         val dir = File(root(ctx), id).apply { mkdirs() }
         val iso = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US).apply { timeZone = TimeZone.getTimeZone("UTC") }
         val m = JSONObject()
-            .put("schema_version", 1)
+            .put("schema_version", 2)
+            .put("kind", kind)
             .put("data_license", "CC0-1.0")
             .put("session_id", id)
             .put("install_id", Prefs(ctx).installId)
@@ -76,8 +99,7 @@ object SessionStore {
             .put("device", JSONObject()
                 .put("manufacturer", Build.MANUFACTURER).put("model", Build.MODEL)
                 .put("android_sdk", Build.VERSION.SDK_INT).put("android_release", Build.VERSION.RELEASE))
-            .put("sensors", JSONObject())
-            .put("sampling_period_us", Recorder.SAMPLING_PERIOD_US)
+            .put("imu", imu)
             .put("clock", JSONObject().put("elapsed_ns", SystemClock.elapsedRealtimeNanos()).put("utc_ms", System.currentTimeMillis()))
             .put("flight", flight)
             .put("mount", mount)
@@ -93,8 +115,10 @@ object SessionStore {
             JSONObject().put("name", name).put("start_ns", startNs).put("end_ns", endNs).put("still_s", stillS),
         )
         val q = s.manifest.getJSONObject("quality")
-        if (s.hasPhasePrefix("cal_pre.") && s.phases.count { it.getString("name").startsWith("cal_pre.") } >= 4) q.put("cal_pre", true)
-        if (s.phases.count { it.getString("name").startsWith("cal_post.") } >= 4) q.put("cal_post", true)
+        val names = s.phases.map { it.getString("name") }.toSet()
+        for (which in listOf("cal_pre", "cal_post")) {
+            if (CAL_STEPS.all { "$which.$it" in names }) q.put(which, true)
+        }
         if (name == "placement_check") q.put("placement_check", true)
         s.save()
     }
@@ -113,7 +137,7 @@ object SessionStore {
             zip.putNextEntry(ZipEntry("manifest.json"))
             zip.write(s.manifest.toString(1).toByteArray())
             zip.closeEntry()
-            s.dir.listFiles { f -> f.name.endsWith(".csv.gz") }?.sortedBy { it.name }?.forEach { f ->
+            s.dir.listFiles { f -> f.name.endsWith(".csv.gz") || f.name == "imu.bin.gz" }?.sortedBy { it.name }?.forEach { f ->
                 zip.putNextEntry(ZipEntry(f.name))
                 f.inputStream().use { it.copyTo(zip) }
                 zip.closeEntry()

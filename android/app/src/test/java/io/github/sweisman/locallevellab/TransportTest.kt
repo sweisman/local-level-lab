@@ -29,6 +29,17 @@ class TransportTest {
     }
 
     @Test
+    fun discTransportMatchesSharedVectors() {
+        val arr = vectors.getJSONArray("transport_disc")
+        for (i in 0 until arr.length()) {
+            val v = arr.getJSONObject(i)
+            val got = Transport.transportRateDisc(Math.toRadians(v.getDouble("lat_deg")), v.getDouble("h_m"), v.getDouble("v_e"))
+            val exp = v.getJSONArray("omega_disc")
+            for (k in 0..2) assertEquals(v.getString("name"), exp.getDouble(k), got[k], 1e-12 + 1e-9 * Math.abs(exp.getDouble(k)))
+        }
+    }
+
+    @Test
     fun earthRateMatchesSharedVectors() {
         val arr = vectors.getJSONArray("earth_rate")
         for (i in 0 until arr.length()) {
@@ -36,8 +47,6 @@ class TransportTest {
             val got = Transport.earthRateSphere(Math.toRadians(v.getDouble("lat_deg")))
             val exp = v.getJSONArray("sphere")
             for (k in 0..2) assertEquals(exp.getDouble(k), got[k], 1e-15)
-            val flat = v.getJSONArray("flat")
-            for (k in 0..2) assertEquals(flat.getDouble(k), Transport.earthRateFlat()[k], 1e-15)
         }
     }
 

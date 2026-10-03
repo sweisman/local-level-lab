@@ -20,6 +20,10 @@ class Thresholds:
     bin_s: float = 60.0
     min_temp_delta_c: float = 2.0         # cruise vs calibration temperature that switches on the temp term
     temp_prior_dph_per_c: float = 5.0     # 1σ prior on |bias change| per °C without drift-run data
+    vre_budget_dph: float = 5.0           # vibration rectification: in flight only, unseen by ground calibration
+    gsens_budget_dph: float = 5.0         # g-sensitivity × gravity: unseen by the 4-position bias estimate
+    grav_cluster_cos: float = 0.9         # bins whose up directions agree this well share one residual bias
+    max_slip_dph: float = 2.0             # mount yaw slip the watchdog tolerates
 
 
 def _smooth_grad(t, x, win_s):
@@ -44,14 +48,13 @@ def gnss_kinematics(gn):
     }
 
 
-def find_segments(sess, flight, th: Thresholds):
+def find_segments(sess, flight, th: Thresholds, exclude=()):
     """Stable-cruise intervals [(t0_s, t1_s)] inside the flight phase, plus kinematics."""
     gn = sess.slice("gnss", flight["start_ns"], flight["end_ns"])
     if gn is None or len(gn["t_ns"]) < 60:
         return [], None
     kin = gnss_kinematics(gn)
-    acc = sess.slice("accel_uncal" if "accel_uncal" in sess.streams else "accel",
-                     flight["start_ns"], flight["end_ns"])
+    acc = sess.slice("accel", flight["start_ns"], flight["end_ns"])
     at = acc["t_ns"] / 1e9
     amag = np.sqrt(acc["x"] ** 2 + acc["y"] ** 2 + acc["z"] ** 2)
     # 1-s RMS of |a| around each GNSS epoch
@@ -63,8 +66,10 @@ def find_segments(sess, flight, th: Thresholds):
     ok = ((kin["speed"] > th.min_speed_mps) & (np.abs(kin["vz"]) < th.max_vz_mps)
           & (np.abs(np.degrees(kin["psi_dot"])) < th.max_turn_dps) & (a_sd < th.max_accel_sd)
           & (kin["h_acc"] < th.max_h_acc_m) & (hi > lo))
-    # placement shifts break segments
-    shifts = [t / 1e9 for t, kind, _ in sess.events if kind == "placement_shift"]
+    for a, b in exclude:   # while the IMU was being turned or bumped
+        ok &= ~((kin["t"] >= a) & (kin["t"] <= b))
+    # placement shifts, deliberate turns of the IMU and link drops all break segments
+    shifts = [t / 1e9 for t, kind, _ in sess.events if kind in ("placement_shift", "index_turn", "imu_disconnect")]
     segs, start = [], None
     t = kin["t"]
     for i in range(len(t)):
@@ -84,10 +89,13 @@ def find_segments(sess, flight, th: Thresholds):
 def make_bins(sess, segs, kin, th: Thresholds):
     """Average gyro, accel and kinematics into bins. Returns a dict of arrays (n_bins, ...)."""
     gs = sess.streams[sess.gyro_stream()]
-    ac = sess.streams["accel_uncal" if "accel_uncal" in sess.streams else "accel"]
+    ac = sess.streams["accel"]
     gt, at = gs["t_ns"] / 1e9, ac["t_ns"] / 1e9
-    bat = sess.streams.get("battery")
+    bat = sess.streams.get("imu_temp")  # the IMU chip temperature
     bat_ok = bat is not None and np.isfinite(bat["temp_c"]).sum() >= 2
+    mg = sess.streams.get("mag")
+    mt = mg["t_ns"] / 1e9 if mg is not None else None
+    M = np.column_stack([mg["x"], mg["y"], mg["z"]]) if mg is not None else None
     G = np.column_stack([gs["x"], gs["y"], gs["z"]])
     A = np.column_stack([ac["x"], ac["y"], ac["z"]])
     rows = []
@@ -105,7 +113,9 @@ def make_bins(sess, segs, kin, th: Thresholds):
                 "seg": si, "t": (a + b) / 2, "dt": b - a,
                 "gyro": g.mean(axis=0), "gyro_sem": g.std(axis=0) / np.sqrt(len(g)),
                 "up": unit(A[am].mean(axis=0)),
-                "lat": kin["lat"][km].mean(), "h": kin["h"][km].mean(),
+                "lat": kin["lat"][km].mean(), "lon": kin["lon"][km].mean(), "h": kin["h"][km].mean(),
+                "mag": (M[(mt >= a) & (mt < b)].mean(axis=0) if M is not None and ((mt >= a) & (mt < b)).sum() >= 5
+                        else np.full(3, np.nan)),
                 "v_n": kin["v_n"][km].mean(), "v_e": kin["v_e"][km].mean(),
                 "psi": np.arctan2(np.sin(kin["psi"][km]).mean(), np.cos(kin["psi"][km]).mean()),
                 "psi_dot": kin["psi_dot"][km].mean(),
@@ -124,4 +134,20 @@ def make_bins(sess, segs, kin, th: Thresholds):
         if len(idx) >= 2:
             du[idx] = np.gradient(out["up"][idx], out["t"][idx], axis=0)
     out["dup_dt"] = du
+    out["grav"] = gravity_clusters(out["up"], th.grav_cluster_cos)
     return out
+
+
+def gravity_clusters(up, min_cos):
+    """Label bins by the IMU's attitude relative to gravity. A flip, or a turn that moves gravity
+    to another sensor axis, starts a new cluster; slow tilt within ~25° does not."""
+    refs, lab = [], np.zeros(len(up), int)
+    for i, u in enumerate(up):
+        for c, r in enumerate(refs):
+            if u @ r >= min_cos:
+                lab[i] = c
+                break
+        else:
+            refs.append(u)
+            lab[i] = len(refs) - 1
+    return lab

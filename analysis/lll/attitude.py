@@ -107,7 +107,81 @@ def estimate_forward_axis(gyro_t_s, gyro_b, gnss_t_s, speed, bearing_deg, up_b):
     corr = 1.0 - float(np.sum(resid ** 2) / max(np.sum(g_h[ok] ** 2), 1e-30))
     gain = float(np.linalg.norm(f))
     q = {"gain": gain, "r2": corr, "bank_energy": energy}
-    if gain < 0.3 or corr < 0.05:
+    if gain < 0.1 or corr < 0.05:   # only the direction is used; GNSS smoothing lowers the gain
         q["reason"] = "roll/bank correlation too weak"
         return None, q
     return f / gain, q
+
+
+TURN_RATE_MIN = np.radians(10.0)   # rad/s: a hand turning the IMU, far above any aircraft rate
+
+
+def expm_so3(w):
+    """Rotation matrix for the rotation vector w (Rodrigues)."""
+    a = float(np.linalg.norm(w))
+    if a < 1e-12:
+        return np.eye(3) + skew(w)
+    k = skew(np.asarray(w) / a)
+    return np.eye(3) + np.sin(a) * k + (1 - np.cos(a)) * k @ k
+
+
+def turn_rotation(t_s, gyro_b, t_event, window_s=300.0, pad_s=1.0):
+    """The IMU's rotation during a deliberate turn (or a bump), integrated from the gyro.
+
+    The participant turns the IMU, then taps to confirm, so the fast rotation lies in the minutes
+    before the event. Integrating the gyro over it is accurate to a small fraction of a degree:
+    the rates are tens of °/s for a few seconds, so bias and noise barely matter.
+
+    gyro_b must already have the calibrated bias removed.
+
+    Returns (R, info). R maps vectors from the new IMU frame to the old one: v_old = R v_new.
+    R is None if no fast rotation precedes the event (a bump that didn't turn the IMU)."""
+    m = np.where((t_s >= t_event - window_s) & (t_s <= t_event))[0]
+    if len(m) < 2:
+        return None, {"reason": "no IMU data before the event"}
+    fast = m[np.linalg.norm(gyro_b[m], axis=1) > TURN_RATE_MIN]
+    if len(fast) == 0:
+        return None, {"reason": "no fast rotation before the event"}
+    # the last burst only: walk back from the latest fast sample while the gaps stay short, so a
+    # turbulence jolt minutes earlier can't stretch the interval
+    tf = t_s[fast]
+    first = len(tf) - 1
+    while first > 0 and tf[first] - tf[first - 1] < 3.0:
+        first -= 1
+    a, b = tf[first] - pad_s, tf[-1] + pad_s
+    j = np.where((t_s >= a) & (t_s <= b))[0]
+    R = np.eye(3)
+    for k in j[:-1]:
+        R = R @ expm_so3(gyro_b[k] * (t_s[k + 1] - t_s[k]))
+    angle = float(np.degrees(np.arccos(np.clip((np.trace(R) - 1) / 2, -1, 1))))
+    return R, {"t0_s": float(a), "t1_s": float(b), "angle_deg": angle}
+
+
+def mount_epochs(t_s, gyro_b, events_s):
+    """Split the flight at deliberate turns and bumps. Returns a list of epochs
+    {t0_s, t1_s, R0}, where R0 maps that epoch's IMU frame to the first epoch's (v_0 = R0 v),
+    plus the intervals to exclude while the IMU was being turned."""
+    epochs = [{"t0_s": -np.inf, "R0": np.eye(3), "turn": None}]
+    exclude = []
+    for te, kind in sorted(events_s):
+        R, info = turn_rotation(t_s, gyro_b, te)
+        if R is None:
+            if kind == "index_turn":
+                info["warning"] = "turn logged but no rotation found"
+            # a bump: no measurable rotation, keep the frame but exclude the moment itself
+            exclude.append((te - 5.0, te + 1.0))
+            continue
+        epochs[-1]["t1_s"] = info["t0_s"]
+        epochs.append({"t0_s": info["t1_s"], "R0": epochs[-1]["R0"] @ R, "turn": {"kind": kind, **info}})
+        exclude.append((info["t0_s"], max(te, info["t1_s"]) + 1.0))
+    epochs[-1]["t1_s"] = np.inf
+    return epochs, exclude
+
+
+def epoch_of(t, epochs):
+    """Index of the epoch containing each time (−1 inside a turn)."""
+    t = np.atleast_1d(t)
+    out = np.full(len(t), -1)
+    for i, e in enumerate(epochs):
+        out[(t >= e["t0_s"]) & (t < e["t1_s"])] = i
+    return out
