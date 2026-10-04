@@ -68,6 +68,8 @@ def course_rate(t_s, bearing_deg, smooth_s=5.0):
         return np.zeros_like(psi)
     k = max(1, int(round(smooth_s / max(np.median(np.diff(t_s)), 1e-3) / 2)))
     rate = np.zeros_like(psi)
+    if len(psi) <= 2 * k:
+        return rate
     rate[k:-k] = (psi[2 * k:] - psi[:-2 * k]) / (t_s[2 * k:] - t_s[:-2 * k])
     rate[:k], rate[-k:] = rate[k], rate[-k - 1]
     return rate
@@ -125,7 +127,7 @@ def expm_so3(w):
     return np.eye(3) + np.sin(a) * k + (1 - np.cos(a)) * k @ k
 
 
-def turn_rotation(t_s, gyro_b, t_event, window_s=300.0, pad_s=1.0, sat=None):
+def turn_rotation(t_s, gyro_b, t_event, window_s=300.0, pad_s=1.0, sat=None, expected_period=None):
     """The IMU's rotation during a deliberate turn (or a bump), integrated from the gyro.
 
     The participant turns the IMU, then taps to confirm, so the fast rotation lies in the minutes
@@ -150,6 +152,14 @@ def turn_rotation(t_s, gyro_b, t_event, window_s=300.0, pad_s=1.0, sat=None):
         first -= 1
     a, b = tf[first] - pad_s, tf[-1] + pad_s
     j = np.where((t_s >= a) & (t_s <= b))[0]
+    period = expected_period if expected_period is not None else np.median(np.diff(t_s))
+    gaps = np.diff(t_s[j])
+    missing = (len(j) < 2 or np.any(gaps > 3 * period * (1 + 1e-6))
+               or np.any(gaps <= 0) or t_s[j[0]] - a > 3 * period
+               or b - t_s[j[-1]] > 3 * period)
+    if missing:
+        return np.eye(3), {"t0_s": float(a), "t1_s": float(b), "angle_deg": None,
+                          "saturated_samples": 0, "unresolved_gap": True}
     R = np.eye(3)
     for k in j[:-1]:
         R = R @ expm_so3(gyro_b[k] * (t_s[k + 1] - t_s[k]))
@@ -159,7 +169,7 @@ def turn_rotation(t_s, gyro_b, t_event, window_s=300.0, pad_s=1.0, sat=None):
     return R, {"t0_s": float(a), "t1_s": float(b), "angle_deg": angle, "saturated_samples": n_sat}
 
 
-def mount_epochs(t_s, gyro_b, events_s, sat=None):
+def mount_epochs(t_s, gyro_b, events_s, sat=None, expected_period=None):
     """Split the flight at deliberate turns and bumps. Returns a list of epochs
     {t0_s, t1_s, R0}, where R0 maps that epoch's IMU frame to the first epoch's (v_0 = R0 v),
     plus the intervals to exclude while the IMU was being turned."""
@@ -167,19 +177,23 @@ def mount_epochs(t_s, gyro_b, events_s, sat=None):
     exclude = []
     consumed_until = -np.inf
     for te, kind in sorted(events_s):
-        R, info = turn_rotation(t_s, gyro_b, te, sat=sat)
+        R, info = turn_rotation(t_s, gyro_b, te, sat=sat, expected_period=expected_period)
         if R is not None and info["t0_s"] <= consumed_until:
             continue  # the same physical burst was already confirmed
         if R is None:
             if kind == "index_turn":
                 info["warning"] = "turn logged but no rotation found"
-                epochs[-1]["orientation_unresolved"] = True
+                epochs[-1]["t1_s"] = te
+                epochs.append({"t0_s": te, "R0": epochs[-1]["R0"], "orientation_unresolved": True,
+                               "turn": {"kind": kind, "angle_deg": None, **info}})
             # a bump: no measurable rotation, keep the frame but exclude the moment itself
             exclude.append((te - 5.0, te + 1.0))
             continue
         epochs[-1]["t1_s"] = info["t0_s"]
         consumed_until = info["t1_s"]
         epochs.append({"t0_s": info["t1_s"], "R0": epochs[-1]["R0"] @ R, "turn": {"kind": kind, **info}})
+        if info.get("unresolved_gap") or info.get("saturated_samples"):
+            epochs[-1]["orientation_unresolved"] = True
         exclude.append((info["t0_s"], max(te, info["t1_s"]) + 1.0))
     epochs[-1]["t1_s"] = np.inf
     return epochs, exclude

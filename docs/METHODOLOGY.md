@@ -236,7 +236,7 @@ The ground horizontal rate is the length of a vector, which piles up above zero 
 
 ## 16. Crab: the aircraft's heading isn't its GNSS course
 
-**Decision.** In a crosswind the fuselage points a few degrees off its ground track. The fit gives each GNSS course leg a heading offset with a 5° Gaussian prior, fitted alternately with the linear fit and then linearized into it, so k's uncertainty includes it. Every model's test refits its own offsets.
+**Decision.** In a crosswind the fuselage points a few degrees off its ground track. The fit gives each GNSS course leg a heading offset with a 5° Gaussian prior, fitted by nonlinear MAP minimization to convergence and then linearized for covariance, so k's uncertainty includes it. Every model's test refits its own offsets.
 
 **Why.** The IMU's orientation in north-east-down coordinates needs the fuselage heading, not the track. Using the course rotates the globe's horizontal predictions.
 
@@ -281,6 +281,20 @@ An external source-level review of v0.3. What it found, and what changed:
 - **g-sensitivity along gravity, per unit.** A datasheet bound or a dedicated test would tighten the vertical channel.
 - **Crab on single-heading legs.** Still the main unresolved bias for the most precise flights. The pilot primary policy now requires heading diversity, excluding most single-heading airliner routes; its provisional thresholds still require validation. A magnetometer-based heading constraint would help, but it needs the declination model, so it would add a globe dependence to the predictions, not just to data selection.
 
-## Software 0.5.0 eligibility policy
+## Software 0.6.0 eligibility policy
 
-The historical methodology revisions above are distinct from software versions. The current provisional primary policy is [pilot-1](PRIMARY_CORPUS.md): curator-owned provenance, a complete bench certificate approved before flight, heading diversity, and central integrity gates. Session quality observations alone cannot confer bench qualification. Ground-magnitude population pooling is disabled because the former Gaussian pooling can produce a false nonzero signal from zero-rate data. Individual Rice likelihood results remain available. Reports are provisional, with nominal confidence intervals and significance thresholds. Real WT901 bench evidence and a thousands-run null calibration remain release prerequisites.
+The historical methodology revisions above are distinct from software versions. The current provisional primary policy is [pilot-2](PRIMARY_CORPUS.md): curator-owned provenance, a complete bench certificate approved before flight, heading diversity, and central integrity gates. Session quality observations alone cannot confer bench qualification. Ground-magnitude population pooling is disabled because the former Gaussian pooling can produce a false nonzero signal from zero-rate data. Individual Rice likelihood results remain available as approximate diagnostics, with the full projected vector covariance exported separately. Reports are provisional, with nominal confidence intervals and significance thresholds. Real WT901 bench evidence and a thousands-run null calibration remain release prerequisites.
+
+
+Software 0.6.0 centers the crab prior on the total angle: at an offset d, an increment has prior
+mean −d. Final objectives and free/fixed solutions are checked against an independent numerical
+MAP optimizer. Calibration covariance retains all regression, contrast and projection terms,
+including cross-face covariance. Heading grouping is canonical around the largest circular gap;
+three-period turn gaps and inference nonconvergence are centralized primary exclusions.
+
+Dynamic crab adds a real sensor rotation term when heading changes within a leg; the production
+model still fits constant offsets. The omission is confirmed, but its effect on accepted flights
+requires measurement. Historical crab numerical examples above predate this corrected objective.
+Bootstrap correlation and pooled significance remain validation gaps, not evidence that every
+existing result is invalid. The seeded research harness and staged hardware roadmap are in
+[VALIDATION.md](VALIDATION.md). Software corrections alone do not clear the publication blockers.

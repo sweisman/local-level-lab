@@ -125,20 +125,31 @@ def calibrate(sess, prefix: str) -> dict | None:
     wk = theta[1 + fit_drift:]
     w = {p: wk[i] for i, p in enumerate(POSITIONS[:3])}
     w["down180"] = -wk.sum(axis=0)
-    # per-position variance (per axis), ignoring covariances: good enough for error bars
-    var_w = {p: sig ** 2 * cov_scale[1 + fit_drift + i] for i, p in enumerate(POSITIONS[:3])}
-    var_w["down180"] = sig ** 2 * np.sum(XtX_inv[1 + fit_drift:, 1 + fit_drift:])
+    position_design = np.zeros((4, cols))
+    position_design[:3, 1 + fit_drift:] = np.eye(3)
+    position_design[3, 1 + fit_drift:] = -1
+    axis_cov = resid.T @ resid / dof if dof > 0 else np.zeros((3, 3))
+    axis_cov += np.diag(np.maximum(sig ** 2 - np.diag(axis_cov), 0))
+    regression_cov = np.kron(XtX_inv, axis_cov)
+    position_cov = np.kron(position_design, np.eye(3)) @ regression_cov @ np.kron(position_design.T, np.eye(3))
+    var_w = {p: np.diag(position_cov)[3*i:3*i+3] for i, p in enumerate(POSITIONS)}
     up = {p: unit(np.mean([v["up"] for v in vis if v["pos"] == p], axis=0)) for p in POSITIONS}
 
-    pairs = {}
-    for face in ("up", "down"):
+    pairs, contrasts, vectors = {}, [], []
+    for face_index, face in enumerate(("up", "down")):
         a, c = f"{face}0", f"{face}180"
         u = unit(up[a] + up[c])
         h = (w[a] - w[c]) / 2
-        h = h - (h @ u) * u
-        var_h = (var_w[a] + var_w[c]) / 4
+        projection = np.eye(3) - np.outer(u, u)
+        contrast = np.zeros((3, 12))
+        contrast[:, 6*face_index:6*face_index+3] = projection / 2
+        contrast[:, 6*face_index+3:6*face_index+6] = -projection / 2
+        contrasts.append(contrast)
+        h = projection @ h
+        vectors.append(h)
+        covariance = contrast @ position_cov @ contrast.T
         raw = float(np.linalg.norm(h))
-        noise2 = float(var_h.sum())                        # E|noise|² across the horizontal plane
+        noise2 = float(np.trace(covariance))
         pairs[face] = {"raw": raw, "debiased": float(np.sqrt(max(raw ** 2 - noise2, 0.0))),
                        "sd": float(np.sqrt(noise2 / 2)), "vertical": float((w[a] + w[c]) @ u / 2)}
     h_raw = np.mean([pairs[f]["raw"] for f in pairs])
@@ -165,6 +176,10 @@ def calibrate(sess, prefix: str) -> dict | None:
         "sequence": "palindrome" if fit_drift else "single",
         "drift_dph_per_h": (d * RAD2DPH).tolist() if fit_drift else None,
         "earth_h_dph": float(h_est * RAD2DPH),
+        "earth_h_method": "approximate Rice diagnostic; anisotropy and cross-face dependence not modeled",
+        "earth_h_vectors_dph": (np.asarray(vectors) * RAD2DPH).tolist(),
+        "earth_h_vector_cov_dph2": (np.vstack(contrasts) @ position_cov @ np.vstack(contrasts).T * RAD2DPH ** 2).tolist(),
+        "regression_cov_dph2": (regression_cov * RAD2DPH ** 2).tolist(),
         "earth_h_raw_dph": float(h_raw * RAD2DPH),
         "earth_h_ci68_dph": [float(x * RAD2DPH) for x in rl["ci68"]],
         "earth_h_ci95_dph": [float(x * RAD2DPH) for x in rl["ci95"]],

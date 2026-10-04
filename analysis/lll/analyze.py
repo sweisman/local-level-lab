@@ -12,8 +12,8 @@ import numpy as np
 from . import __version__, calib, drift, fit, models, slip
 from .attitude import epoch_of, estimate_forward_axis, mount_epochs
 from .format import read_session
-from .segments import Thresholds, find_segments, make_bins
-from .policy import heading_diversity, verified_config
+from .segments import Thresholds, find_segments, make_bins, InvalidGnssData
+from .policy import POLICY_VERSION, heading_diversity, verified_config
 
 
 def environment() -> dict:
@@ -84,13 +84,14 @@ def unit_quality(res: dict, m: dict) -> dict:
                          "usable": f"both measured: ≤ {USABLE_ADEV300_DPH} °/h and ≤ {USABLE_H_SD_DPH} °/h"}}
 
 
-def analyze(path, th: Thresholds | None = None) -> dict:
+def analyze(path, th: Thresholds | None = None, *, fit_options=None) -> dict:
     th = th or Thresholds()
     sess = read_session(path)
     m = sess.manifest
     flags = list(m.get("quality", {}).get("flags", []))
     res = {
         "analysis_version": __version__,
+        "policy_version": POLICY_VERSION,
         "environment": environment(),
         "input_sha256": sess.sha256,
         "session_id": m.get("session_id"),
@@ -183,16 +184,25 @@ def analyze(path, th: Thresholds | None = None) -> dict:
     Gc = np.column_stack([gs["x"], gs["y"], gs["z"]]) - bias_fn(gt)
     ev = [(t / 1e9, kind) for t, kind, _ in sess.events if kind in ("index_turn", "placement_shift")
           and flight["start_ns"] <= t <= flight["end_ns"]]
-    epochs, exclude = mount_epochs(gt, Gc, ev, sat=gs.get("sat"))
+    rate = (m.get("imu", {}).get("config") or {}).get("rate_hz")
+    epochs, exclude = mount_epochs(gt, Gc, ev, sat=gs.get("sat"), expected_period=1 / rate if rate else None)
     if any(e.get("orientation_unresolved") for e in epochs):
         flags.append("orientation_unresolved")
-    res["mount_epochs"] = [{"t0_s": e["t0_s"], "t1_s": e["t1_s"], "turn": e["turn"]} for e in epochs]
+    res["mount_epochs"] = [{"t0_s": e["t0_s"], "t1_s": e["t1_s"], "turn": e["turn"],
+                            "orientation_unresolved": bool(e.get("orientation_unresolved"))} for e in epochs]
+    if any(e["turn"] and e["turn"].get("unresolved_gap") for e in epochs):
+        flags.append("imu_turn_gap")
     if any(e["turn"] and e["turn"]["kind"] == "index_turn" for e in epochs):
         flags.append("imu_turned_in_flight")
     if any(e["turn"] and e["turn"].get("saturated_samples") for e in epochs):
         flags.append("imu_turn_saturated")     # a hand turn exceeded the gyro's full scale; its angle is unreliable
 
-    segs, kin = find_segments(sess, flight, th, exclude=exclude)
+    try:
+        segs, kin = find_segments(sess, flight, th, exclude=exclude)
+    except InvalidGnssData as exc:
+        flags.append("gnss_invalid_data")
+        res["invalid_data"] = str(exc)
+        return _clean(res)
     res["segments"] = [{"t0_s": a, "t1_s": b, "minutes": (b - a) / 60} for a, b in segs]
     if kin is not None:
         step = max(1, len(kin["t"]) // 2000)
@@ -214,6 +224,10 @@ def analyze(path, th: Thresholds | None = None) -> dict:
     if sat_epoch is not None:
         keep &= bins["epoch"] < sat_epoch
         res["excluded_after_saturated_turn_s"] = float(epochs[sat_epoch]["t0_s"])
+    unresolved = next((i for i, e in enumerate(epochs) if e.get("orientation_unresolved")), None)
+    if unresolved is not None:
+        keep &= bins["epoch"] < unresolved
+        res["excluded_after_unresolved_orientation_s"] = float(epochs[unresolved]["t0_s"])
     if not keep.any():
         flags.append("no_bins")
         return _clean(res)
@@ -243,6 +257,8 @@ def analyze(path, th: Thresholds | None = None) -> dict:
     # forward axis from banked turns over the whole flight, in the first epoch's frame
     ge = epoch_of(gt, epochs)
     ok = ge >= 0
+    if unresolved is not None:
+        ok &= ge < unresolved
     G0 = np.einsum("nij,nj->ni", R0[ge[ok]], Gc[ok])
     up_ref = np.median(np.einsum("nij,nj->ni", R0[bins["epoch"]], bins["up"]), axis=0)
     fwd0, fq = estimate_forward_axis(gt[ok], G0, kin["t"], kin["speed"], np.degrees(kin["psi"]), up_ref)
@@ -286,11 +302,15 @@ def analyze(path, th: Thresholds | None = None) -> dict:
                           "prior_dph_per_c": None if temp_prior is None else (np.asarray(temp_prior) * calib.RAD2DPH).tolist()}
 
     f = fit.fit(bins, fwd, bias_fn, prior_sigma, vertical_only=vertical_only, temp_ref=temp_ref, temp_prior=temp_prior,
-                temp_mean=temp_mean)
+                temp_mean=temp_mean, **(fit_options or {}))
+    if not f["convergence"]["converged"]:
+        flags.append("inference_nonconvergence")
     if temp_ref is not None and temp_mean is None:
         # A freely fitted temperature term can absorb signal. Report what k would be without it,
         # and flag the session when that moves any k by more than 1σ.
         f0 = fit.fit(bins, fwd, bias_fn, prior_sigma, vertical_only=vertical_only, n_boot=0)
+        if not f0["convergence"]["converged"]:
+            flags.append("inference_nonconvergence")
         shift = {n: (f["k"][n] - f0["k"][n]) / f["k_sd"][n] for n in fit.TERM_NAMES}
         res["temperature"]["k_without_term"] = f0["k"]
         res["temperature"]["k_shift_sigma"] = shift
@@ -316,6 +336,8 @@ def analyze(path, th: Thresholds | None = None) -> dict:
         fa = None if fwd0 is None else np.einsum("nji,j->ni", R0[bins_all["epoch"]], fwd0)
         fw = fit.fit(bins_all, fa, bias_fn, prior_sigma, vertical_only=vertical_only, temp_ref=temp_ref,
                      temp_prior=temp_prior, temp_mean=temp_mean)
+        if not fw["convergence"]["converged"]:
+            flags.append("inference_nonconvergence")
         moved = {n: (f["k"][n] - fw["k"][n]) / f["k_sd"][n] for n in fit.TERM_NAMES}
         res["fit_no_wmm_exclusion"] = {"k": fw["k"], "k_sd": fw["k_sd"], "rejected": fw["rejected"],
                                        "k_shift_sigma": moved}

@@ -4,11 +4,11 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "lll-server"
-version = "0.5.0"
+version = "0.6.0"
 description = "Local Level Lab upload server and public dataset"
 license = "AGPL-3.0-or-later"
 authors = [{ name = "Scott Weisman" }]
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 dependencies = ["lll", "fastapi>=0.110", "uvicorn>=0.29", "python-multipart>=0.0.9"]
 
 [project.optional-dependencies]

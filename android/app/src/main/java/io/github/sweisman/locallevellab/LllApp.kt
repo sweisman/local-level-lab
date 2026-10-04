@@ -12,6 +12,7 @@ import java.util.UUID
 class LllApp : Application() {
     override fun onCreate() {
         super.onCreate()
+        io.github.sweisman.locallevellab.upload.UploadWorker.observeCleanup(this)
         val nm = getSystemService(NotificationManager::class.java)
         nm.createNotificationChannel(NotificationChannel(CHANNEL, getString(R.string.channel_recording), NotificationManager.IMPORTANCE_LOW))
         // Turn/flip reminders and link problems: sound and vibration, so they reach you with the screen off.

@@ -11,13 +11,13 @@ from pathlib import Path
 from .app import PUBLIC_COLS, Store, create_app
 
 
-def process(store: Store, ids=None) -> list[str]:
+def process(store: Store, ids=None, reprocess=False) -> list[str]:
     from lll.cli import analyze_to
     done = []
     for r in store.all():
         if ids and r["id"] not in ids:
             continue
-        if not ids and r["status"] == "processed":
+        if not ids and not reprocess and r["status"] == "processed":
             continue
         try:
             html = analyze_to(store.raw_path(r["id"]), store.root / "reports")
@@ -63,6 +63,7 @@ def main(argv=None):
     sub.add_parser("list")
     p = sub.add_parser("process", help="analyze unprocessed sessions (or the given ids)")
     p.add_argument("ids", nargs="*")
+    p.add_argument("--reprocess", action="store_true", help="explicitly regenerate stored results before recollating")
     sub.add_parser("collate", help="pool all processed results into data/collated/")
     e = sub.add_parser("export", help="dump the public dataset with checksums")
     e.add_argument("out")
@@ -87,7 +88,7 @@ def main(argv=None):
         for r in store.all():
             print(r["id"], r["status"], r["airline"], r["flight_number"], r["flight_date"], r["seat"], r["mount"], r["imu_variant"])
     elif args.cmd == "process":
-        print("\n".join(process(store, args.ids)) or "nothing to process")
+        print("\n".join(process(store, args.ids, reprocess=args.reprocess)) or "nothing to process")
     elif args.cmd == "collate":
         from lll.cli import collate_to
         from lll import __version__

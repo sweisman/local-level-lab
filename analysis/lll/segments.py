@@ -9,6 +9,23 @@ import numpy as np
 from .attitude import course_rate, unit
 
 
+class InvalidGnssData(ValueError):
+    """Conflicting observations at the same monotonic timestamp."""
+
+
+def unique_fixes(gn):
+    order = np.argsort(gn["t_ns"], kind="stable")
+    keep = []
+    for i in order:
+        if keep and gn["t_ns"][i] == gn["t_ns"][keep[-1]]:
+            if not all(np.array_equal(np.asarray(v[i]), np.asarray(v[keep[-1]]), equal_nan=True)
+                       for v in gn.values()):
+                raise InvalidGnssData(f"conflicting fixes at t_ns={gn['t_ns'][i]}")
+        else:
+            keep.append(i)
+    return {k: np.asarray(v)[keep] for k, v in gn.items()}
+
+
 @dataclass
 class Thresholds:
     min_speed_mps: float = 100.0
@@ -29,6 +46,8 @@ class Thresholds:
 
 
 def _smooth_grad(t, x, win_s):
+    if len(t) < 3:
+        return np.zeros_like(x)
     k = max(1, int(round(win_s / max(np.median(np.diff(t)), 1e-3) / 2)))
     g = np.zeros_like(x)
     if len(x) > 2 * k:
@@ -50,6 +69,7 @@ def gnss_kinematics(gn, th: Thresholds | None = None):
     limit, that agrees with the course computed from successive coordinates. A missing course is
     never turned into north."""
     th = th or Thresholds()
+    gn = unique_fixes(gn)
     t = gn["t_ns"] / 1e9
     lat, lon = np.radians(gn["lat"]), np.radians(gn["lon"])
     brg = np.asarray(gn["bearing_deg"], float)
@@ -85,6 +105,8 @@ def gnss_kinematics(gn, th: Thresholds | None = None):
 def find_segments(sess, flight, th: Thresholds, exclude=()):
     """Stable-cruise intervals [(t0_s, t1_s)] inside the flight phase, plus kinematics."""
     gn = sess.slice("gnss", flight["start_ns"], flight["end_ns"])
+    if gn is not None:
+        gn = unique_fixes(gn)
     if gn is None or len(gn["t_ns"]) < 60:
         return [], None
     kin = gnss_kinematics(gn, th)
@@ -147,7 +169,7 @@ def make_bins(sess, segs, kin, th: Thresholds):
                 "seg": si, "t": (a + b) / 2, "dt": b - a,
                 "gyro": g.mean(axis=0), "gyro_sem": g.std(axis=0) / np.sqrt(len(g)),
                 "up": unit(A[am].mean(axis=0)),
-                "lat": kin["lat"][km].mean(), "lon": kin["lon"][km].mean(), "h": kin["h"][km].mean(),
+                "lat": kin["lat"][km].mean(), "lon": np.angle(np.mean(np.exp(1j * kin["lon"][km]))), "h": kin["h"][km].mean(),
                 "mag": (M[(mt >= a) & (mt < b)].mean(axis=0) if M is not None and ((mt >= a) & (mt < b)).sum() >= 5
                         else np.full(3, np.nan)),
                 "v_n": kin["v_n"][km].mean(), "v_e": kin["v_e"][km].mean(), "lon_rate": kin["lon_rate"][km].mean(),

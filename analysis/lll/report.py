@@ -146,6 +146,10 @@ def session_report(res: dict) -> str:
                    + f" Gravity orientations: {fit['gravity_orientations']}. Residual bias per orientation: "
                    + "; ".join(", ".join(f"{v:.2f}" for v in b) for b in fit["bias_residual_dph"]) + " °/h.</p>")
         tm = res.get("temperature") or {}
+        conv = fit.get("convergence", {})
+        out.append("<p>Inference convergence: " + ("converged" if conv.get("converged") else "unresolved; excluded from primary") + ".</p>")
+        if fit.get("bootstrap"):
+            out.append("<p class=sub>Bootstrap covariance is exported for validation; pooling continues to use the reported joint covariance.</p>")
         if tm.get("cal_mean_c") is not None:
             src = {"drift_run": "coefficient from a drift run, residual fitted", "free_fit": "coefficient fitted freely"}
             out.append(f"<p class=sub>IMU chip temperature: calibration {tm['cal_mean_c']:.1f} °C, cruise "
@@ -173,7 +177,7 @@ def session_report(res: dict) -> str:
     turns = [e["turn"] for e in res.get("mount_epochs", []) if e.get("turn")]
     if turns:
         out.append("<p class=sub>IMU turns during the flight, measured by the gyro: "
-                   + ", ".join(f"{html.escape(str(t['kind']))} {t['angle_deg']:.1f}°" for t in turns)
+                   + ", ".join(f"{html.escape(str(t['kind']))} {_f(t.get('angle_deg'))}°" for t in turns)
                    + ". Each later epoch is mapped back into the first epoch's frame.</p>")
 
     # calibration
@@ -189,8 +193,9 @@ def session_report(res: dict) -> str:
                          "<br>".join(f"{MODEL_LABELS[m]}: {_f(p[0])} / {_f(p[1])}" for m, p in pred.items())])
         out.append(_table(["cal", "bias x,y,z (°/h)", "rotation up (°/h)", "rotation horizontal (°/h)",
                            "predicted up / horizontal"], rows))
-        out.append("<p class=sub>The horizontal magnitude is biased upward by noise, so a phone with no true horizontal "
-                   "rotation still shows a few °/h here. Compare it with the 'still' predictions plus that noise floor.</p>")
+        out.append("<p class=sub>Horizontal magnitude and Rice intervals are approximate diagnostics: anisotropy and "
+                   "cross-face dependence are not modeled by that summary. The full projected vector covariance, "
+                   "including covariance between faces, is exported in the result JSON.</p>")
     bm = res.get("bias_model", {})
     if bm:
         out.append(f"<p>Bias model: <b>{bm['mode']}</b>. Prior on the residual bias: "

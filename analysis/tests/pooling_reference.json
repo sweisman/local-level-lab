@@ -1,0 +1,7 @@
+{
+  "source": "Independent closed-form REML fixtures: equal within-unit variances imply tau2=max(sample variance-v,0); identical observations imply tau2=0 and precision-weighted variance=1/sum(1/v).",
+  "fixtures": [
+    {"y": [0, 1, 2], "sd": [0.5, 0.5, 0.5], "mu": 1, "tau2": 0.75, "se": 0.5773502691896258},
+    {"y": [2, 2, 2], "sd": [0.5, 1, 2], "mu": 2, "tau2": 0, "se": 0.4364357804719848}
+  ]
+}

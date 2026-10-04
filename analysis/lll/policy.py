@@ -5,7 +5,7 @@ import re
 
 import numpy as np
 
-POLICY_VERSION = "pilot-1"
+POLICY_VERSION = "pilot-2"
 PRIMARY_EXCLUSIONS = {
     "no_cal_pre": "missing a calibration", "no_cal_post": "missing a calibration",
     "k_not_identified": "curvature not identified", "prior_dominated": "prior-dominated",
@@ -16,6 +16,9 @@ PRIMARY_EXCLUSIONS = {
     "imu_changed_mid_session": "mixed instruments",
     "imu_config_unverified": "unverified instrument configuration",
     "orientation_unresolved": "unresolved orientation",
+    "imu_turn_gap": "unresolved turn gap",
+    "inference_nonconvergence": "inference did not converge",
+    "gnss_invalid_data": "conflicting GNSS fixes",
     "recording_data_loss": "recording data loss",
     "no_heading_reference_vertical_only": "no independent forward axis",
     "single_heading": "insufficient heading diversity",
@@ -69,7 +72,17 @@ def provenance_reasons(result, approval):
 def heading_diversity(bins):
     """Ten-degree course groups; two must each retain 600 s and differ by >=30 degrees."""
     refs, duration = [], []
-    for angle, dt in zip(np.degrees(bins["psi"]) % 360, bins["dt"]):
+    angles = np.degrees(bins["psi"]) % 360
+    order = np.lexsort((np.asarray(bins["dt"]), angles))
+    if len(order):
+        sorted_angles = angles[order]
+        gaps = np.diff(np.r_[sorted_angles, sorted_angles[0] + 360])
+        # Ties choose the smallest normalized bearing after the cut.
+        cuts = (np.flatnonzero(gaps == gaps.max()) + 1) % len(order)
+        cut = min(cuts, key=lambda i: sorted_angles[i])
+        order = np.roll(order, -int(cut))
+    for j in order:
+        angle, dt = angles[j], bins["dt"][j]
         for i, ref in enumerate(refs):
             if abs((angle - ref + 180) % 360 - 180) < 10:
                 duration[i] += float(dt)

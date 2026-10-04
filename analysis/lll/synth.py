@@ -76,7 +76,8 @@ def synthesize(path, truth="sphere_rotating", *, fs=25.0, seed=0, lat0=40.6, lon
                mag_hard_iron_ut=MAG_HARD_IRON_UT, mag_airframe_ut=MAG_AIRFRAME_UT, omega_in_fn=None,
                temp_quad_dph_per_c2=(0.0, 0.0, 0.0), temp_lag_s=0.0, bias_jumps=(), gyro_scale_ppm=(0, 0, 0),
                gyro_misalign_mrad=0.0, vre_dph=(0.0, 0.0, 0.0), link_dropouts=(), turn_seconds=4.0,
-               spp_time_every=1, ble_loss=0.0, crab_deg=(), reversal_pairs=0, reversal_s=300.0):
+               spp_time_every=1, ble_loss=0.0, crab_deg=(), reversal_pairs=0, reversal_s=300.0,
+               crab_trajectory=None, gyro_noise_cov=None, long_drift_dph=(0, 0, 0), long_drift_period_s=7200):
     """Write a synthetic session zip. legs = ((course_deg, minutes), ...), with rate-one turns
     (3°/s) between them. variant is the WitMotion link and protocol ("spp" or "ble"); the IMU
     data is written as the byte stream the app would store, so the decoder is exercised too.
@@ -101,6 +102,10 @@ def synthesize(path, truth="sphere_rotating", *, fs=25.0, seed=0, lat0=40.6, lon
       link_dropouts: ((minute_into_flight, seconds), ...) Bluetooth gaps in the IMU data
       crab_deg: (deg per leg, ...) the fuselage's angle off the ground track (crosswind); GNSS
           reports the course, so the analysis has to allow for it
+      crab_trajectory: optional callable f(seconds into flight) -> degrees, added to crab_deg.
+          The gyro includes its time derivative through the independent attitude matrices.
+      gyro_noise_cov: optional 3x3 covariance multiplier for white gyro noise.
+      long_drift_dph, long_drift_period_s: sinusoidal sensor bias amplitude and period.
       index_turns: ((minute, axis), ...) the participant turns the IMU 180° about its own axis
           "x", "y" or "z" over turn_seconds (default 4 s), then taps to confirm 15 s later. About z on a tray mount is a
           turn in its plane (gravity stays on z); about x is a flip.
@@ -144,6 +149,7 @@ def synthesize(path, truth="sphere_rotating", *, fs=25.0, seed=0, lat0=40.6, lon
     tg = np.arange(0, t_end + 2, 1.0)
     rw = np.cumsum(rng.normal(0, np.radians(rw_dph_sqrth / 3600) / 60, (len(tg), 3)), axis=0)  # per sqrt(s)
     bias_grid = np.radians(np.array(bias0_dps)) + np.outer(tg / 3600, np.radians(np.array(drift_dph_per_h) / 3600)) + rw
+    bias_grid += np.outer(np.sin(2 * np.pi * tg / long_drift_period_s), np.radians(np.asarray(long_drift_dph) / 3600))
 
     # IMU chip temperature: 25 °C on the ground, rising towards 25 + rise in flight
     fl_s = np.clip(tg - fl_start, 0, fl_dur)
@@ -181,7 +187,10 @@ def synthesize(path, truth="sphere_rotating", *, fs=25.0, seed=0, lat0=40.6, lon
     def add_sensor(ts, C_bn, w_ib_b, f_n, b_ned, b_air_b=0.0):
         n = len(ts)
         f_b = np.einsum("nij,nj->ni", C_bn, f_n)
-        g = w_ib_b @ S.T + bias(ts) + rng.normal(0, sig_g, (n, 3))
+        noise = rng.normal(0, sig_g, (n, 3))
+        if gyro_noise_cov is not None:
+            noise = noise @ np.linalg.cholesky(np.asarray(gyro_noise_cov)).T
+        g = w_ib_b @ S.T + bias(ts) + noise
         if g_sens is not None:
             g = g + f_b @ g_sens.T / models.G0       # gyro error proportional to specific force
         a = f_b + rng.normal(0, sig_a, (n, 3))
@@ -274,6 +283,8 @@ def synthesize(path, truth="sphere_rotating", *, fs=25.0, seed=0, lat0=40.6, lon
         k30 = max(1, int(round(30.0 / dt)))
         crab = np.convolve(np.pad(crab, (k30 // 2, k30 - 1 - k30 // 2), mode="edge"), np.full(k30, 1.0 / k30), mode="valid")
         heading = psi + crab
+    if crab_trajectory is not None:
+        heading = heading + np.radians(np.broadcast_to(crab_trajectory(tf), tf.shape))
     C_na = np.einsum("nij,njk,nkl->nil", np.array([rot_z(p) for p in heading]),
                      np.array([rot_y(p) for p in pitch]), np.array([rot_x(p) for p in bank]))
     if any(mount_slip_deg_per_h):
@@ -314,7 +325,7 @@ def synthesize(path, truth="sphere_rotating", *, fs=25.0, seed=0, lat0=40.6, lon
     gnss = {
         "t_ns": g_t, "utc_ms": 1_790_000_000_000 + (g_t - t0_ns) // 10 ** 6,
         "lat": np.degrees(lat[gi]) + rng.normal(0, 2e-5, len(gi)),
-        "lon": np.degrees(lon[gi]) + rng.normal(0, 2e-5, len(gi)),
+        "lon": (np.degrees(lon[gi]) + rng.normal(0, 2e-5, len(gi)) + 180) % 360 - 180,
         "alt_m": hh[gi] + rng.normal(0, 3, len(gi)),
         "speed_mps": (speed + rng.normal(0, 0.2, len(gi))).astype(np.float32),
         "bearing_deg": ((np.degrees(psi[gi]) + rng.normal(0, 0.1, len(gi))) % 360).astype(np.float32),
@@ -358,6 +369,13 @@ def synthesize(path, truth="sphere_rotating", *, fs=25.0, seed=0, lat0=40.6, lon
         "synthetic_truth": truth,
     }
     events = sorted([(t0_ns + int(a * 1e9), "phase_start", nm) for nm, a, _ in phases] + turn_events)
+    # Simulated readbacks describe the actual generated settings. Synthetic provenance remains explicit.
+    rate_code = {10: 6, 20: 7, 50: 8, 100: 9, 200: 11}.get(fs)
+    if rate_code is not None:
+        gyro_code = next(k for k, v in witmotion.GYRO_RANGE_DPS.items() if v == gyro_range_dps)
+        accel_code = next(k for k, v in witmotion.ACC_RANGE_G.items() if v == accel_range_g)
+        detail = f"0x02=0x17 0x03=0x{rate_code:x} 0x20=0x{gyro_code:x} 0x21=0x{accel_code:x} 0x63=0x1 ok=true"
+        events = sorted(events + [(t0_ns + int(a * 1e9), "imu_config", detail) for _, a, _ in phases])
     write_session(path, manifest, streams, events, imu=imu)
     return manifest
 

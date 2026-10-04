@@ -50,6 +50,9 @@ Pick a mount that lets you take the IMU out and put it back facing the opposite 
 
 ## Quick start: analysis
 
+Requires Python **3.11 or newer**. The lockfile records the Python 3.14 validation environment;
+on older supported interpreters install the packages' compatible dependencies instead of that lockfile.
+
 ```sh
 python -m venv .venv && . .venv/bin/activate
 pip install -r requirements-lock.txt -e analysis -e server   # exact versions; every result records them
@@ -69,6 +72,7 @@ python analysis/tests/coverage.py                   # interval coverage under ha
 ```sh
 lll-server --data /srv/lll serve --host 127.0.0.1 --port 8000   # put Caddy/nginx in front for TLS
 lll-server --data /srv/lll process        # analyze new uploads → reports
+lll-server --data /srv/lll process --reprocess # explicitly regenerate stored results after an analysis upgrade
 lll-server --data /srv/lll collate        # pooled report at /report
 lll-server --data /srv/lll export dump/   # full public dataset + SHA256SUMS
 ```
@@ -89,6 +93,9 @@ The per-IP limit uses the client address uvicorn sees. Behind a reverse proxy on
 ## Android
 
 Open `android/` in Android Studio, or run `./gradlew assembleDebug` (JDK 17 or 21, Android SDK 35). To set the default upload server for your build, use `lll.serverUrl` in `android/gradle.properties`. Users can change it in Settings. Choose and configure the IMU in Settings before the first session.
+
+Software 0.6.0 uses eligibility policy **pilot-2**. Research scenarios, reproducible pilot commands,
+and the remaining publication blockers are described in [VALIDATION.md](docs/VALIDATION.md).
 
 ## Openness
 

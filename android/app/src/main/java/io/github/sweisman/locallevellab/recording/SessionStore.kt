@@ -153,11 +153,11 @@ object SessionStore {
         val out = s.zipFile
         val tmp = File(s.dir, out.name + ".tmp")
         ZipOutputStream(tmp.outputStream().buffered()).use { zip ->
-            zip.putNextEntry(ZipEntry("manifest.json"))
+            zip.putNextEntry(ZipEntry("manifest.json").apply { time = 0L })
             zip.write(s.manifest.toString(1).toByteArray())
             zip.closeEntry()
             s.dir.listFiles { f -> f.name.endsWith(".csv.gz") || f.name == "imu.bin.gz" }?.sortedBy { it.name }?.forEach { f ->
-                zip.putNextEntry(ZipEntry(f.name))
+                zip.putNextEntry(ZipEntry(f.name).apply { time = 0L })
                 f.inputStream().use { it.copyTo(zip) }
                 zip.closeEntry()
             }
@@ -171,13 +171,13 @@ object SessionStore {
     fun updateUpload(s: Session) = synchronized(this) {
         val file = File(s.dir, "local.json")
         val current = if (file.exists()) JSONObject(file.readText()) else JSONObject()
-        for (key in listOf("upload_id", "uploaded_ms", "upload_error", "upload_snapshot")) {
+        for (key in listOf("upload_id", "uploaded_ms", "upload_error", "upload_sha256", "upload_manifest_sha256", "upload_destination")) {
             if (s.local.has(key)) current.put(key, s.local.get(key)) else current.remove(key)
         }
-        val snapshot = File(s.dir, s.local.optString("upload_snapshot"))
-        val matches = snapshot.isFile && java.util.zip.ZipFile(snapshot).use { zip ->
-            zip.getInputStream(zip.getEntry("manifest.json")).bufferedReader().readText() == File(s.dir, "manifest.json").readText()
-        }
+        current.remove("upload_snapshot")
+        val manifestDigest = java.security.MessageDigest.getInstance("SHA-256")
+            .digest(File(s.dir, "manifest.json").readBytes()).joinToString("") { "%02x".format(it) }
+        val matches = current.optString("upload_manifest_sha256") == manifestDigest
         if (!matches) { current.remove("upload_id"); current.remove("uploaded_ms") }
         file.writeText(current.toString())
     }

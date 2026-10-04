@@ -4,11 +4,11 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "lll"
-version = "0.5.0"
+version = "0.6.0"
 description = "Local Level Lab: analysis of crowdsourced in-flight IMU recordings"
 license = "AGPL-3.0-or-later"
 authors = [{ name = "Scott Weisman" }]
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 dependencies = ["numpy>=1.24", "scipy>=1.11", "matplotlib>=3.7", "pygeomag>=1.1"]
 
 [project.optional-dependencies]

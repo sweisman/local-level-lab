@@ -124,6 +124,12 @@ class RecorderService : Service(), ImuLink.Listener {
     // the phase being recorded
     private var session: Session? = null
     private var phase: String? = null
+    private lateinit var recovery: RecoveryLoop
+
+    private fun cancelRecovery() {
+        recovery.clear()
+        if (phase == null) { prefs.activeSession = null; prefs.activePhase = null }
+    }
     private var startNs = 0L
     private var targetStillS = 0.0
     private var imuOut: ImuWriter? = null
@@ -159,6 +165,7 @@ class RecorderService : Service(), ImuLink.Listener {
         prefs = Prefs(this)
         thread = HandlerThread("lll-recorder").apply { start() }
         handler = Handler(thread.looper)
+        recovery = RecoveryLoop({ handler.postDelayed(it, 5000) }, { handler.removeCallbacks(it) })
         lm = getSystemService(LocationManager::class.java)
         handler.post(batteryTick)
     }
@@ -175,7 +182,7 @@ class RecorderService : Service(), ImuLink.Listener {
             }
             ACTION_MONITOR -> { goForeground("Connected to the IMU"); handler.post { ensureLink(); scheduleIdleStop() } }
             ACTION_CONFIGURE -> { if (phase != null) return START_STICKY; goForeground("Configuring the IMU"); handler.post { ensureLink(); configApplied = false; applyConfig(); scheduleIdleStop() } }
-            ACTION_DISCONNECT -> handler.post { if (phase == null) shutdown() }
+            ACTION_DISCONNECT -> handler.post { if (phase == null && !recovery.waiting) shutdown() }
             ACTION_DROP_LINK -> handler.post { dropLinkTest() }
             ACTION_START -> {
                 goForeground("Recording: ${intent.getStringExtra(EXTRA_PHASE) ?: ""}")
@@ -350,6 +357,8 @@ class RecorderService : Service(), ImuLink.Listener {
     @SuppressLint("MissingPermission")
     private fun startPhase(sessionId: String, ph: String, target: Double, resume: Boolean = false, allowNoGps: Boolean = false) {
         synchronized(SessionStore) {
+        if (resume && (prefs.activeSession != sessionId || prefs.activePhase != ph)) return
+        recovery.clear()
         if (ph == "flight") {
             if (!hasPerm(Manifest.permission.ACCESS_FINE_LOCATION)) { fail("Precise location permission is required"); return }
             val fresh = lastFixNs > 0 && SystemClock.elapsedRealtimeNanos() - lastFixNs < 30_000_000_000L && Live.state.value.hAccM < 100
@@ -361,6 +370,7 @@ class RecorderService : Service(), ImuLink.Listener {
         val s = SessionStore.load(this, sessionId) ?: run { fail("session not found"); return }
         session = s
         ensureLink()
+        if (link == null) return
         val recordedImu = s.manifest.getJSONObject("imu")
         val currentImu = SessionStore.imuManifest(this)
         val recordedConfig = recordedImu.getJSONObject("config")
@@ -372,8 +382,13 @@ class RecorderService : Service(), ImuLink.Listener {
         val expected = variant?.let { WitConfig.expected(it, prefs.imuRateHz, prefs.imuGyroRangeDps, prefs.imuAccelRangeG, autoZeroWanted()) }
         if (!imuConnected || Live.state.value.imuConfigOk != true || expected == null || expected.any { (reg, value) -> readback[reg] != value }) {
             if (imuConnected) { configApplied = false; checkConfig() }
-            fail("Wait for verified IMU settings, then start recording")
-            if (resume) handler.postDelayed({ startPhase(sessionId, ph, target, true) }, 5000)
+            if (resume) {
+                updateNotification("Resuming $ph: waiting for verified IMU settings")
+                wake = wake ?: getSystemService(PowerManager::class.java).newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "lll:recovery").apply {
+                    setReferenceCounted(false); acquire(24 * 3600 * 1000L)
+                }
+                recovery.awaitConfiguration { startPhase(sessionId, ph, target, true) }
+            } else fail("Wait for verified IMU settings, then start recording")
             return
         }
         if (ph == "flight" && !hasPerm(Manifest.permission.ACCESS_FINE_LOCATION)) { fail("Precise location permission is required for flight recording"); return }
@@ -442,8 +457,10 @@ class RecorderService : Service(), ImuLink.Listener {
     }
 
     private fun stopPhase() {
+        cancelRecovery()
         val ph = phase
         closePhase()
+        if (phase == null) { wake?.let { if (it.isHeld) it.release() }; wake = null }
         if (ph != null) Live.activity("Stopped recording $ph")
         updateNotification("Connected to the IMU (not recording)")
         scheduleIdleStop()
@@ -486,7 +503,7 @@ class RecorderService : Service(), ImuLink.Listener {
         Live.state.update { it.copy(lastCompletedPhase = done, phase = null, sessionId = null, turnDue = false, nextTurnInS = null) }
     }
 
-    private val idleStop = Runnable { if (phase == null) shutdown() }
+    private val idleStop = Runnable { if (phase == null && !recovery.waiting) shutdown() }
 
     /** Keep the link up for 10 minutes between phases, then let go of it. */
     private fun scheduleIdleStop() {
@@ -495,6 +512,7 @@ class RecorderService : Service(), ImuLink.Listener {
     }
 
     private fun shutdown() {
+        cancelRecovery()
         handler.removeCallbacks(idleStop)
         link?.close(); link = null; linkKey = ""; imuConnected = false
         Live.state.update { it.copy(imuConnected = false, imuStatus = "not connected") }
@@ -505,6 +523,7 @@ class RecorderService : Service(), ImuLink.Listener {
     }
 
     override fun onDestroy() {
+        recovery.clear()
         if (phase != null) handler.post { closePhase() }
         handler.post { link?.close(); link = null }
         thread.quitSafely()
@@ -512,6 +531,7 @@ class RecorderService : Service(), ImuLink.Listener {
     }
 
     private fun fail(msg: String) {
+        cancelRecovery()
         Live.state.update { it.copy(error = msg, imuStatus = msg) }
         Live.activity(msg)
         if (phase == null) shutdown()

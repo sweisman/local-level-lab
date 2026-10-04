@@ -80,7 +80,7 @@ m_k = b + d (t_k − t̄) + w_{p_k},     Σ_p w_p = 0
 
 - **`b`, the bias.** Earth rotation and gravity-dependent error both reverse between the up and down pairs or within the 180° pairs, so they cancel out of b.
 - **`d`, a linear drift.** Every position's visits average to t̄, so d is orthogonal to the position effects.
-- **Horizontal Earth rate:** `h = |(w_0 − w_180)/2|`, after removing the part along up, taken from each 180° pair. Within a pair gravity sits on the same IMU axis, so g-sensitivity is identical and cancels. The Earth's horizontal component reverses. The globe predicts Ω|cos φ|; a still globe or the disc predicts 0. Noise biases a length upward, and a length isn't Gaussian near zero. So each face's length is treated as Rice-distributed, with σ per horizontal component. The reported rate is the maximum-likelihood length over both faces, with profile-likelihood 68 % and 95 % intervals (−2ΔlnL = 1, 3.84) that can reach zero. The p-value of zero rate comes from Σ r²/σ², χ² with 2 degrees of freedom per face. Any disagreement between the faces is added to σ.
+- **Horizontal Earth rate:** `h = |(w_0 − w_180)/2|`, after removing the part along up, taken from each 180° pair. Within a pair gravity sits on the same IMU axis, so g-sensitivity is identical and cancels. The Earth's horizontal component reverses. The globe predicts Ω|cos φ|; a still globe or the disc predicts 0. Noise biases a length upward, and a length isn't Gaussian near zero. As an approximate diagnostic, each face's length is treated as Rice-distributed, with σ per horizontal component. The reported rate is the maximum-likelihood length over both faces, with profile-likelihood 68 % and 95 % intervals (−2ΔlnL = 1, 3.84) that can reach zero. The p-value of zero rate comes from Σ r²/σ², χ² with 2 degrees of freedom per face. Any disagreement between the faces is added to σ.
 - **Vertical:** `(w_0 + w_180)/2 · up`. This is the vertical Earth rate plus g-sensitivity along gravity, which can't be separated, and the result is marked as aliased.
 - **IMU magnetic offset:** the mean magnetometer reading over the four positions is the field fixed in the IMU (hard iron), because the Earth's field cancels the same way.
 
@@ -135,12 +135,28 @@ y = m − b_cal(t) − ω_nb  =  C_bn (k_rot·E_globe + k_curv·T_globe + k_disc
   - When a drift run measured the coefficient, it is applied, and only the residual is fitted, with a prior of ±30 %.
   - Otherwise the coefficient is fitted freely. The analysis then also reports k without the term and flags `temperature_sensitive` if any k moves by more than 1σ.
 - **Crab:** the IMU's orientation needs the fuselage heading, which in a crosswind differs from the GNSS course. Each course leg (segments within 10° of course share one) gets an offset δψ with a 5° Gaussian prior, so C_bn uses ψ_GNSS + δψ.
-  - It is solved by alternating three times: the linear fit, then a Gauss–Newton step on δψ using ∂C_bn/∂ψ, which maps a NED vector v to C_bn (v_E, −v_N, 0).
-  - It is then linearized into the design, so k's uncertainty includes it.
+  - A nonlinear least-squares MAP solver minimizes the weighted residual sum of squares plus nuisance priors to convergence. The azimuth derivative maps a NED vector v to C_bn (v_E, −v_N, 0). Free, fixed-model and prior-sensitivity fits each minimize this objective.
+  - For total angle d and local increment Δ, the prior penalty is `(d + Δ)² / σψ²`: the increment prior mean is **−d**. This same centering is used in bootstrap refits. The reported objective is evaluated at the final nonlinear parameters; the joint covariance uses the design linearized there. Bootstrap refits retain that local approximation.
+  - Convergence diagnostics are exported; nonconverged fits are excluded from the primary corpus. Stopping uses relative cost/step tolerances 1e−10, gradient tolerance 1e−8 and at most 200 function evaluations.
   - It has no effect on the vertical-only fallback.
 - **Each bin gives three rows**, or one in vertical-only mode. Weighted least squares fits the three k values and the nuisance terms.
 
 Expected k for each model, in the order (k_rot, k_curv, k_disc): rotating globe (1, 1, 0), still globe (0, 1, 0), disc (0, 0, 1).
+
+### Calibration vector covariance (0.6.0)
+
+With regression design X and estimated per-visit axis covariance S, the coefficient covariance is
+`Vθ = (XᵀX)⁺ ⊗ S` (coefficient-major order). S includes residual cross-axis covariance and a
+nonnegative diagonal addition for the white-noise floor. Let A map the independent fitted position
+coefficients to all four positions, with `w_down180 = −w_up0 −w_up180 −w_down0`. Each face has
+horizontal projector `P_f = I − u_f u_fᵀ` and contrast `(w_f0 − w_f180)/2`. Stack those projected
+contrasts into L. The exported six-vector covariance is `V_h = L (A ⊗ I) Vθ (Aᵀ ⊗ I) Lᵀ`, including
+cross-face blocks. Covariance units are (degree/hour)², ordered up-x/y/z then down-x/y/z.
+
+The existing Rice magnitude summary is explicitly an **approximate diagnostic**: it reduces each
+projected covariance to half its trace and treats faces as independent, discarding anisotropy and
+cross-face covariance. Its nominal intervals and p-values are not general anisotropic inference.
+Ground population pooling remains disabled pending validation.
 
 ### Uncertainty and model tests
 
@@ -151,6 +167,7 @@ Expected k for each model, in the order (k_rot, k_curv, k_disc): rotating globe 
 - **Systematic floor.** A floor of 0.02 is added in quadrature to the globe-rotation σ. It is calibrated by the coverage study (`analysis/tests/coverage.py`) under every hardware fault at once.
 - Bootstrap ranges of Δχ² are reported. Relative likelihoods `exp(−Δχ²/2)` are shown, labelled as not probabilities.
 - **Joint covariance.** `k_cov` is the analytic correlation of the three k (crab columns included), scaled to their final σ. Pooling uses it.
+  The research harness exports empirical bootstrap covariance separately, including segment-restricted block sampling and block-length sweeps. It is not automatically substituted into production pooling.
 - **Identifiability**, per term: the fraction of its predicted signal that the nuisance terms together could mimic, `sqrt(1 − |r|²/|x|²)`. Here r is the term's column after regressing out every nuisance column, with no priors: residual bias per gravity orientation, temperature and crab. Near 1 means only the nuisance priors constrain it. Above 0.95 for k_curv flags `k_not_identified`. The bias-only value is reported alongside.
 - **Prior sensitivity.** Refit with the bias prior 3× wider, then the crab prior, then the temperature prior. If any k moves by more than 1σ under any of them, the flag is `prior_dominated`.
 - **Crab sweep.** Refit with crab priors of 3°, 5°, 10° and 15°, and report k for each. If any k spans more than 1σ, the session is flagged `crab_sensitive`, for information only: the sweep doesn't detect crab bias (METHODOLOGY §16). A flight with one course leg is flagged `single_heading`.

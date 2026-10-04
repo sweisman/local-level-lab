@@ -44,18 +44,16 @@ def clopper_pearson(k, n, conf=0.95):
 
 def _null_one(args):
     truth, seed = args
-    with tempfile.TemporaryDirectory(prefix="lll-null-") as d:
-        p = Path(d) / "s.zip"
-        synthesize(p, truth, seed=seed, fs=20.0, legs=NES_LEGS, omega_in_fn=geometric_truth(truth), **HARDWARE_FAULTS)
-        f = analyze(p).get("fit")
-    return None if not f else bool(f["rejected"][truth])
+    from research import flight_run
+    return flight_run(truth, "hardware", seed, "moving", 30, 300, "spp")
 
 
 def null_study(n, workers=None):
+    from research import summarize
     jobs = [(truth, seed) for truth in models.MODELS for seed in range(10_000, 10_000 + n)]
     with Pool(workers) as pool:
-        out = [r for r in pool.imap_unordered(_null_one, jobs, chunksize=4) if r is not None]
-    return sum(out), len(out)
+        out = list(pool.imap_unordered(_null_one, jobs, chunksize=4))
+    return {"summary": summarize(out), "records": out}
 
 
 def study(seeds=30):
@@ -85,10 +83,8 @@ if __name__ == "__main__":
     if len(sys.argv) > 2 and sys.argv[1] == "--null":
         n = int(sys.argv[2])
         workers = int(sys.argv[sys.argv.index("--workers") + 1]) if "--workers" in sys.argv else None
-        k, runs = null_study(n, workers)
-        lo, hi = clopper_pearson(k, runs)
-        print(f"True model rejected at the nominal 3σ threshold: {k} of {runs} flights "
-              f"({100 * k / runs:.3f} %; 95 % Clopper–Pearson {100 * lo:.3f}–{100 * hi:.3f} %; nominal 0.27 %).")
+        import json
+        print(json.dumps(null_study(n, workers), indent=2))
         sys.exit(0)
     seeds = int(sys.argv[1]) if len(sys.argv) > 1 else 30
     hits, total, rejected, runs, worst = study(seeds)

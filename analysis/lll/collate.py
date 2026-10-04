@@ -109,6 +109,10 @@ def gate(r, tiers, allow_synthetic=False, approval=None) -> list[str]:
     fl = set(r.get("flags", []))
     if not r.get("fit"):
         return ["no in-flight fit"]
+    if r.get("analysis_version") != __version__:
+        why.append("reprocess with analysis " + __version__)
+    if not r["fit"].get("convergence", {}).get("converged", False):
+        why.append("inference did not converge")
     if "synthetic" in fl and not allow_synthetic:
         why.append("synthetic")
     simulation = allow_synthetic and "synthetic" in fl

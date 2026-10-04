@@ -101,21 +101,23 @@ def build_rows(bins, fwd_b, bias_fn, vertical_only=False, temp_ref=None, temp_me
     return np.array(ys), np.array(xs), np.array(idx), cbns, layout
 
 
-def _solve(y, X, w, prior, fixed_k=None):
+def _solve(y, X, w, prior, fixed_k=None, prior_mean=None):
     """Weighted least squares with zero-mean Gaussian priors (prior[i] = 1σ for column i, inf = no
     prior). Returns theta, cov, chi2. With fixed_k the k columns are held at those values."""
     sw = np.sqrt(w)
     prior = np.asarray(prior, dtype=float)
+    mean = np.zeros(len(prior)) if prior_mean is None else np.asarray(prior_mean)
     if fixed_k is not None:
         y = y - X[:, K] @ np.asarray(fixed_k)
         keep = [i for i in range(X.shape[1]) if not K.start <= i < K.stop]
         X, prior = X[:, keep], prior[keep]
+        mean = mean[keep]
     p = X.shape[1]
     idx = np.where(np.isfinite(prior))[0]
     P = np.zeros((len(idx), p))
     P[np.arange(len(idx)), idx] = 1.0 / prior[idx]
     A = np.vstack([X * sw[:, None], P])
-    b = np.concatenate([y * sw, np.zeros(len(idx))])
+    b = np.concatenate([y * sw, mean[idx] / prior[idx]])
     theta, *_ = np.linalg.lstsq(A, b, rcond=None)
     r = b - A @ theta
     cov = np.linalg.pinv(A.T @ A)
@@ -155,8 +157,27 @@ def _crab_columns(cbns, lay, idx, k, seg_index, n_seg):
     return J
 
 
+def bootstrap_order(rng, bins, length, sampling="moving"):
+    """Residual blocks; experimental segment sampling never crosses a break in time or segment."""
+    n = len(bins["t"])
+    if sampling == "moving":
+        starts = np.arange(n - length + 1)
+        return np.concatenate([np.arange(s, s + length) for s in rng.choice(starts, n // length + 1)])[:n]
+    if sampling != "segment":
+        raise ValueError("bootstrap_sampling must be moving or segment")
+    t, seg = np.asarray(bins["t"]), np.asarray(bins["seg"])
+    breaks = np.flatnonzero((np.diff(seg) != 0) | (np.diff(t) > 1.5 * np.asarray(bins["dt"])[:-1])) + 1
+    order = np.arange(n)
+    for run in np.split(np.arange(n), breaks):
+        size = min(length, len(run))
+        starts = rng.integers(0, len(run) - size + 1, len(run) // size + 1)
+        order[run] = np.concatenate([run[s:s + size] for s in starts])[:len(run)]
+    return order
+
+
 def fit(bins, fwd_b, bias_fn, prior_sigma, vertical_only=False, n_boot=300, seed=0,
-        temp_ref=None, temp_prior=None, temp_mean=None, crab_sigma_deg=5.0):
+        temp_ref=None, temp_prior=None, temp_mean=None, crab_sigma_deg=5.0,
+        bootstrap_sampling="moving", block_length=None, max_nfev=200):
     y, X, idx, cbns, lay = build_rows(bins, fwd_b, bias_fn, vertical_only, temp_ref, temp_mean)
     ng = lay["n_grav"]
     if temp_ref is not None and temp_prior is None:
@@ -199,34 +220,57 @@ def fit(bins, fwd_b, bias_fn, prior_sigma, vertical_only=False, n_boot=300, seed
     use_crab = (not vertical_only) and crab_sigma_deg and crab_sigma_deg > 0
     sig_crab = np.radians(crab_sigma_deg) if use_crab else None
 
-    def solve_with_crab(fixed_k=None, iters=3, pri=None, sig=None):
-        pri = prior if pri is None else pri
+    convergence = []
+    base_X = X
+    base_prior = prior.copy()
+
+    def solve_with_crab(fixed_k=None, pri=None, sig=None):
+        from scipy.optimize import least_squares
+        pri = base_prior if pri is None else pri
         sig = sig_crab if sig is None else sig
         if not use_crab:
-            th, cv, c2 = _solve(y, X, w, pri, fixed_k)
-            return th, cv, c2, X, np.zeros(0), pri
-        d = np.zeros(n_seg)
-        for _ in range(iters):
-            y_, X_, idx_, cb_, lay_ = build_rows(bins, fwd_b, bias_fn, vertical_only, temp_ref, temp_mean, dpsi=d[seg_index])
-            th, _, _ = _solve(y_, X_, w, pri, fixed_k)
-            full = th if fixed_k is None else np.concatenate([np.asarray(fixed_k, float), th])
-            r = y_ - X_ @ full
-            J = _crab_columns(cb_, lay_, idx_, full[K], seg_index, n_seg)
-            num = (w[:, None] * J * r[:, None]).sum(axis=0) - d / sig ** 2
-            den = (w[:, None] * J ** 2).sum(axis=0) + 1 / sig ** 2
-            d = d + num / den
-        y_, X_, idx_, cb_, lay_ = build_rows(bins, fwd_b, bias_fn, vertical_only, temp_ref, temp_mean, dpsi=d[seg_index])
-        th, _, _ = _solve(y_, X_, w, pri, fixed_k)
-        full = th if fixed_k is None else np.concatenate([np.asarray(fixed_k, float), th])
-        J = _crab_columns(cb_, lay_, idx_, full[K], seg_index, n_seg)
-        Xa = np.hstack([X_, J])
-        pa = np.concatenate([pri, np.full(n_seg, sig)])
-        th, cv, c2 = _solve(y_, Xa, w, pa, fixed_k)
-        c2 += float(np.sum((d / sig) ** 2))       # the prior on the offsets themselves
-        return th, cv, c2, Xa, d, pa
+            th, cv, c2 = _solve(y, base_X, w, pri, fixed_k)
+            return th, cv, c2, base_X, np.zeros(0), pri
+        keep = np.arange(base_X.shape[1]) if fixed_k is None else np.arange(NK, base_X.shape[1])
+        start = _solve(y, base_X, w, pri, fixed_k)[0]
+        finite = np.flatnonzero(np.isfinite(pri[keep]))
+        sw = np.sqrt(w)
+
+        def evaluate(z, jac=False):
+            d = z[len(keep):]
+            _, design, ix, cb, layout = build_rows(
+                bins, fwd_b, bias_fn, vertical_only, temp_ref, temp_mean, dpsi=d[seg_index])
+            full = z[:len(keep)] if fixed_k is None else np.r_[fixed_k, z[:len(keep)]]
+            if not jac:
+                return np.r_[(design @ full - y) * sw,
+                             full[keep[finite]] / pri[keep[finite]], d / sig]
+            J = _crab_columns(cb, layout, ix, full[K], seg_index, n_seg)
+            top = np.column_stack([design[:, keep], J]) * sw[:, None]
+            bottom = np.zeros((len(finite) + n_seg, len(z)))
+            bottom[np.arange(len(finite)), finite] = 1 / pri[keep[finite]]
+            bottom[len(finite):, len(keep):] = np.eye(n_seg) / sig
+            return np.vstack([top, bottom])
+
+        opt = least_squares(evaluate, np.r_[start, np.zeros(n_seg)],
+                            jac=lambda z: evaluate(z, True), x_scale="jac",
+                            ftol=1e-10, xtol=1e-10, gtol=1e-8, max_nfev=max_nfev)
+        convergence.append({"converged": bool(opt.success), "evaluations": opt.nfev,
+                            "status": int(opt.status), "message": opt.message})
+        d = opt.x[len(keep):]
+        _, design, ix, cb, layout = build_rows(
+            bins, fwd_b, bias_fn, vertical_only, temp_ref, temp_mean, dpsi=d[seg_index])
+        full = opt.x[:len(keep)] if fixed_k is None else np.r_[fixed_k, opt.x[:len(keep)]]
+        J = _crab_columns(cb, layout, ix, full[K], seg_index, n_seg)
+        Xa = np.column_stack([design, J])
+        pa = np.r_[pri, np.full(n_seg, sig)]
+        # Local coordinates are increments about d. Their prior mean is -d.
+        mean = np.r_[np.zeros(len(pri)), -d]
+        _, cv, _ = _solve(y, Xa, w, pa, fixed_k, prior_mean=mean)
+        th = np.r_[opt.x[:len(keep)], np.zeros(n_seg)]
+        return th, cv, float(opt.fun @ opt.fun), Xa, d, pa
 
     theta, cov, chi2_free, X_free, crab_d, prior_aug = solve_with_crab()
-    pen_free = float(np.sum((crab_d / sig_crab) ** 2)) if use_crab else 0.0
+    prior_mean = np.r_[np.zeros(len(base_prior)), -crab_d] if use_crab else np.zeros(len(base_prior))
     k, k_sd = theta[K], np.sqrt(np.diag(cov)[K])
     resid = y - X_free @ theta
     scale, rho = _autocorr_scale(resid, idx, bins)
@@ -237,11 +281,11 @@ def fit(bins, fwd_b, bias_fn, prior_sigma, vertical_only=False, n_boot=300, seed
         for name, kk in models.EXPECTED_K.items():
             if yy is y:
                 th_m, _, c2, Xm, dm, pm = solve_with_crab(fixed_k=kk)
-                model_designs[name] = (Xm, pm, float(np.sum((dm / sig_crab) ** 2)) if use_crab else 0.0)
+                model_designs[name] = (Xm, pm, np.r_[np.zeros(len(base_prior)), -dm] if use_crab else np.zeros(len(base_prior)))
                 out[name] = c2
             else:    # bootstrap replicates reuse each model's crab offsets
-                Xm, pm, pen = model_designs[name]
-                out[name] = _solve(yy, Xm, w, pm, fixed_k=kk)[2] + pen
+                Xm, pm, mean = model_designs[name]
+                out[name] = _solve(yy, Xm, w, pm, fixed_k=kk, prior_mean=mean)[2]
         return out
 
     comparison = compare(y)
@@ -253,15 +297,17 @@ def fit(bins, fwd_b, bias_fn, prior_sigma, vertical_only=False, n_boot=300, seed
     rng = np.random.default_rng(seed)
     fitted = X @ theta
     # blocks up to 30 min, since MEMS bias and temperature wander on that scale and longer
-    blk = max(2, min(30, n_bins // 5))
+    blk = max(2, min(30, n_bins // 5)) if block_length is None else int(block_length)
+    if blk < 1 or bootstrap_sampling not in ("moving", "segment"):
+        raise ValueError("invalid bootstrap configuration")
     boots, boot_dchi = [], []
     if n_boot and n_bins >= 2 * blk:
         starts = np.arange(n_bins - blk + 1)
         for _ in range(n_boot):
-            order = np.concatenate([np.arange(s, s + blk) for s in rng.choice(starts, n_bins // blk + 1)])[:n_bins]
+            order = bootstrap_order(rng, bins, blk, bootstrap_sampling)
             rb = np.concatenate([resid[idx == j] for j in order])
             yb = fitted + rb[:len(fitted)] if len(rb) >= len(fitted) else fitted
-            tb, _, _ = _solve(yb, X, w, prior)
+            tb, _, _ = _solve(yb, X, w, prior, prior_mean=prior_mean)
             boots.append(tb[K])
             if len(boot_dchi) < 100:
                 cb = compare(yb)
@@ -280,18 +326,18 @@ def fit(bins, fwd_b, bias_fn, prior_sigma, vertical_only=False, n_boot=300, seed
         starts = np.arange(n_bins - blk + 1)
         rng_n = np.random.default_rng(seed + 1)
         for name, kk in models.EXPECTED_K.items():
-            Xm, pm, pen_m = model_designs[name]
-            th_m, _, _ = _solve(y, Xm, w, pm, fixed_k=kk)
+            Xm, pm, mean_m = model_designs[name]
+            th_m, _, _ = _solve(y, Xm, w, pm, fixed_k=kk, prior_mean=mean_m)
             fit_m = Xm[:, K] @ np.asarray(kk) + np.delete(Xm, np.arange(K.start, K.stop), axis=1) @ th_m
             ds = []
             for _ in range(min(n_boot, 100)):
                 # noise from the free fit's residuals (a wrong model's residuals would carry signal)
-                order = np.concatenate([np.arange(st, st + blk) for st in rng_n.choice(starts, n_bins // blk + 1)])[:n_bins]
+                order = bootstrap_order(rng_n, bins, blk, bootstrap_sampling)
                 rb = np.concatenate([resid[idx == j] for j in order])
                 yb = fit_m + rb[:len(fit_m)] if len(rb) >= len(fit_m) else fit_m
                 # nested comparison on the model's own design (same crab offsets), so the ratio measures
                 # only how correlated noise inflates Δχ²
-                ds.append(_solve(yb, Xm, w, pm, fixed_k=kk)[2] - _solve(yb, Xm, w, pm)[2])
+                ds.append(_solve(yb, Xm, w, pm, fixed_k=kk, prior_mean=mean_m)[2] - _solve(yb, Xm, w, pm, prior_mean=mean_m)[2])
             boot_cal[name] = max(1.0, float(np.mean(ds)) / NK)
 
     # Identifiability: how much of each term's predicted signal a constant residual bias (one per
@@ -325,14 +371,12 @@ def fit(bins, fwd_b, bias_fn, prior_sigma, vertical_only=False, n_boot=300, seed
         pw = priors(bias_scale=bias)
         if temp_ref is not None:
             pw[lay["temp"]] = pw[lay["temp"]] * temp
-        if use_crab:
-            pw = np.concatenate([pw, np.full(n_seg, sig_crab * crab)])
         return pw
-    shifts = {"bias": (_solve(y, X, w, widened(bias=PRIOR_WIDEN))[0][K] - k) / k_sd_final}
+    shifts = {"bias": (solve_with_crab(pri=widened(bias=PRIOR_WIDEN))[0][K] - k) / k_sd_final}
     if use_crab:
-        shifts["crab"] = (_solve(y, X, w, widened(crab=PRIOR_WIDEN))[0][K] - k) / k_sd_final
+        shifts["crab"] = (solve_with_crab(sig=sig_crab * PRIOR_WIDEN)[0][K] - k) / k_sd_final
     if temp_ref is not None and np.all(np.isfinite(np.asarray(temp_prior, dtype=float))):
-        shifts["temperature"] = (_solve(y, X, w, widened(temp=PRIOR_WIDEN))[0][K] - k) / k_sd_final
+        shifts["temperature"] = (solve_with_crab(pri=widened(temp=PRIOR_WIDEN))[0][K] - k) / k_sd_final
     shift = shifts["bias"]
     worst_shift = max(float(np.max(np.abs(s))) for s in shifts.values())
 
@@ -372,6 +416,7 @@ def fit(bins, fwd_b, bias_fn, prior_sigma, vertical_only=False, n_boot=300, seed
     if boot_dchi:
         ci = {m: [float(np.percentile([b[m] for b in boot_dchi], q)) for q in (16, 84)] for m in comparison}
     return {
+        "convergence": {"converged": all(c["converged"] for c in convergence), "fits": convergence},
         "mode": "vertical_only" if vertical_only else "3-axis",
         "n_bins": n_bins, "n_rows": len(y),
         "sigma_bin_dph": sigma * RAD2DPH,
@@ -384,6 +429,9 @@ def fit(bins, fwd_b, bias_fn, prior_sigma, vertical_only=False, n_boot=300, seed
                  "sd_deg": (np.degrees(np.sqrt(np.diag(cov)[-n_seg:]))).tolist() if use_crab else None},
         "bias_residual_dph": (theta[lay["bias"]].reshape(ng, 3) * RAD2DPH).tolist(),
         "k_cov": k_cov.tolist(),
+        "bootstrap": {"sampling": bootstrap_sampling, "block_length": blk, "replicates": len(boots),
+                      "empirical_k_cov": np.cov(np.asarray(boots).T, ddof=1).tolist() if len(boots) > 1 else None,
+                      "refit": "local linearization with total-angle prior"},
         "max_bias_k_corr": float(np.max(np.abs(corr[K, lay["bias"]]))),
         "identifiability": {"k_curv_bias_likeness": tie_bias["k_curv"], "bias_likeness_by_term": tie_bias,
                             "k_curv_nuisance_likeness": tie, "nuisance_likeness_by_term": tie_k,

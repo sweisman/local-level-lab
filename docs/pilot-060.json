@@ -1,0 +1,522 @@
+{
+  "analysis_version": "0.6.0",
+  "policy_version": "pilot-2",
+  "environment": {
+    "python": "3.14.7",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "git_commit": "88df5f9bfa7d59a385387ad642d94d4d263e760a"
+  },
+  "elapsed_s": 26.223334181006067,
+  "simulation_assumption": "approved provenance and usable bench tier; remaining gates applied",
+  "summary": [
+    {
+      "truth": "sphere_rotating",
+      "scenario": "drift+1",
+      "sampling": "moving",
+      "block": 15,
+      "attempted": 1,
+      "analysis_failures": 0,
+      "eligibility_exclusions": 1,
+      "accepted": 0,
+      "exclusion_reasons": {
+        "prior-dominated": 1
+      },
+      "unconditional": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      },
+      "conditional_on_acceptance": {
+        "count": 0,
+        "n": 0,
+        "rate": null,
+        "ci95": null
+      },
+      "complete_gated_rule": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      }
+    },
+    {
+      "truth": "sphere_still",
+      "scenario": "drift+1",
+      "sampling": "moving",
+      "block": 15,
+      "attempted": 1,
+      "analysis_failures": 0,
+      "eligibility_exclusions": 1,
+      "accepted": 0,
+      "exclusion_reasons": {
+        "prior-dominated": 1,
+        "depends on the WMM slip exclusion": 1
+      },
+      "unconditional": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      },
+      "conditional_on_acceptance": {
+        "count": 0,
+        "n": 0,
+        "rate": null,
+        "ci95": null
+      },
+      "complete_gated_rule": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      }
+    },
+    {
+      "truth": "flat_still",
+      "scenario": "drift+1",
+      "sampling": "moving",
+      "block": 15,
+      "attempted": 1,
+      "analysis_failures": 0,
+      "eligibility_exclusions": 1,
+      "accepted": 0,
+      "exclusion_reasons": {
+        "prior-dominated": 1
+      },
+      "unconditional": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      },
+      "conditional_on_acceptance": {
+        "count": 0,
+        "n": 0,
+        "rate": null,
+        "ci95": null
+      },
+      "complete_gated_rule": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      }
+    }
+  ],
+  "records": [
+    {
+      "truth": "sphere_rotating",
+      "scenario": "drift+1",
+      "seed": 10000,
+      "sampling": "moving",
+      "block": 15,
+      "variant": "spp",
+      "rejected": false,
+      "exclusions": [
+        "prior-dominated"
+      ],
+      "k": {
+        "k_rot_sphere": 1.036731935289126,
+        "k_curv": 1.333026726426219,
+        "k_disc": -0.1915975961121891
+      },
+      "k_sd": {
+        "k_rot_sphere": 0.1333686356667819,
+        "k_curv": 1.1343797078653044,
+        "k_disc": 0.8096604296660543
+      },
+      "covariance": {
+        "joint": {
+          "covariance": [
+            [
+              0.017787192979618806,
+              -0.009156627770276139,
+              0.0055287067403225875
+            ],
+            [
+              -0.009156684424943516,
+              1.2868173216165733,
+              -0.9092316237261946
+            ],
+            [
+              0.005528744987308217,
+              -0.9092315126686971,
+              0.6555500113670197
+            ]
+          ],
+          "min_eigenvalue": 0.008654034423918303,
+          "covers95": true
+        },
+        "bootstrap": {
+          "covariance": [
+            [
+              0.0022582237693574286,
+              0.0016774631474265425,
+              -0.00012627388572275964
+            ],
+            [
+              0.0016774631474265425,
+              0.009135500211539723,
+              -0.009989646116496555
+            ],
+            [
+              -0.00012627388572275964,
+              -0.009989646116496555,
+              0.02219875141475665
+            ]
+          ],
+          "min_eigenvalue": 0.0013762408870692474,
+          "covers95": false
+        }
+      },
+      "convergence": {
+        "converged": true,
+        "fits": [
+          {
+            "converged": true,
+            "evaluations": 7,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 5,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 14,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 1,
+            "status": 1,
+            "message": "`gtol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 10,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 6,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 7,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 7,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 7,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 6,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          }
+        ]
+      }
+    },
+    {
+      "truth": "sphere_still",
+      "scenario": "drift+1",
+      "seed": 10000,
+      "sampling": "moving",
+      "block": 15,
+      "variant": "spp",
+      "rejected": false,
+      "exclusions": [
+        "prior-dominated",
+        "depends on the WMM slip exclusion"
+      ],
+      "k": {
+        "k_rot_sphere": 0.03639483205549244,
+        "k_curv": 1.5330578012110596,
+        "k_disc": -0.37324075469109763
+      },
+      "k_sd": {
+        "k_rot_sphere": 0.09343800420290352,
+        "k_curv": 1.0911582180917745,
+        "k_disc": 0.7807680575229249
+      },
+      "covariance": {
+        "joint": {
+          "covariance": [
+            [
+              0.008730660629421816,
+              0.016398854937452384,
+              -0.012044593293341526
+            ],
+            [
+              0.016398956256931534,
+              1.1906262569092165,
+              -0.842693810186372
+            ],
+            [
+              -0.012044664773683692,
+              -0.8426937803051172,
+              0.6095987596481213
+            ]
+          ],
+          "min_eigenvalue": 0.008310628442173092,
+          "covers95": true
+        },
+        "bootstrap": {
+          "covariance": [
+            [
+              0.002149913103290486,
+              0.004910981855905543,
+              -0.004630099767583363
+            ],
+            [
+              0.004910981855905543,
+              0.03516718879301747,
+              -0.032409328763472654
+            ],
+            [
+              -0.004630099767583363,
+              -0.032409328763472654,
+              0.04844888823278785
+            ]
+          ],
+          "min_eigenvalue": 0.0014344573546359726,
+          "covers95": false
+        }
+      },
+      "convergence": {
+        "converged": true,
+        "fits": [
+          {
+            "converged": true,
+            "evaluations": 11,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 8,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 5,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 1,
+            "status": 1,
+            "message": "`gtol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 13,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 8,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 9,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 11,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 10,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 8,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          }
+        ]
+      }
+    },
+    {
+      "truth": "flat_still",
+      "scenario": "drift+1",
+      "seed": 10000,
+      "sampling": "moving",
+      "block": 15,
+      "variant": "spp",
+      "rejected": false,
+      "exclusions": [
+        "prior-dominated"
+      ],
+      "k": {
+        "k_rot_sphere": -0.005527709745406121,
+        "k_curv": 0.40547980710003056,
+        "k_disc": 0.7218535603884118
+      },
+      "k_sd": {
+        "k_rot_sphere": 0.07027148133050586,
+        "k_curv": 1.122622111787806,
+        "k_disc": 0.8024122685733777
+      },
+      "covariance": {
+        "joint": {
+          "covariance": [
+            [
+              0.004938081088383633,
+              0.009557908567377735,
+              -0.006994753885492289
+            ],
+            [
+              0.009557926520998038,
+              1.260280405874913,
+              -0.8915526556809468
+            ],
+            [
+              -0.006994767804349289,
+              -0.8915528516763316,
+              0.6438654487570743
+            ]
+          ],
+          "min_eigenvalue": 0.0048579957659332035,
+          "covers95": true
+        },
+        "bootstrap": {
+          "covariance": [
+            [
+              0.000860863592037912,
+              -0.00032210911593497316,
+              0.0006925109906658669
+            ],
+            [
+              -0.00032210911593497316,
+              0.025819739533079165,
+              -0.025268347842812146
+            ],
+            [
+              0.0006925109906658669,
+              -0.025268347842812146,
+              0.042364000174698505
+            ]
+          ],
+          "min_eigenvalue": 0.0008482822869302676,
+          "covers95": true
+        }
+      },
+      "convergence": {
+        "converged": true,
+        "fits": [
+          {
+            "converged": true,
+            "evaluations": 12,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 9,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 5,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 1,
+            "status": 1,
+            "message": "`gtol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 19,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 27,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 8,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 12,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 23,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 27,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          }
+        ]
+      }
+    }
+  ]
+}
