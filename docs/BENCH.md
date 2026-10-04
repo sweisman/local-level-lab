@@ -1,5 +1,7 @@
 # Bench validation
 
+Before a flight can enter the provisional primary corpus, a curator must approve the complete bench evidence using the [registry workflow](PRIMARY_CORPUS.md). A quality tier calculated from a flight is not a bench certificate; approval must precede the flight.
+
 No flight result means anything until the real IMUs pass these checks. They come from the adversarial reviews and from the open points in [METHODOLOGY.md](METHODOLOGY.md).
 
 Each step lists what to do, the `lll bench` output to read, and the pass criterion.

@@ -45,7 +45,7 @@ val INSTRUCTIONS = listOf(
         "Don't connect a cable to the IMU during a recording. A cable can pull it, and charging warms it.",
         "The IMU doesn't need to be level. It just has to keep the same orientation relative to the aircraft.",
         "Once it's mounted, run the placement check. The app waits until the IMU has been stable for 60 seconds.",
-        "Enter your seat (for example 23A) when you create the session, so the analysis knows where the IMU was.",
+        "You may choose window, middle or aisle when creating a session. Exact seat numbers are not needed or collected.",
         "The phone can go anywhere it gets GPS: in a pocket by the window, or on the tray. It doesn't need to be still.",
         "Follow crew instructions and airline rules on devices at all times.",
     )),
@@ -68,7 +68,7 @@ val INSTRUCTIONS = listOf(
         "Stationary recordings on the ground are just as valuable. They test Earth rotation at your latitude. Settings has a bench capture for this.",
     )),
     Section("privacy", "Privacy and open source", listOf(
-        "Recorded: the IMU's raw data stream, GPS during the flight only, the flight details and seat you enter, and the phone model.",
+        "Recorded: the IMU's raw data stream, GPS during the flight only, the flight details and optional seat position you enter, and the phone model.",
         "Not recorded: your name, account, contacts or precise home location. Calibrations save only latitude rounded to 0.5°, and you can turn that off in Settings.",
         "The IMU's Bluetooth address never leaves the phone. A random unit ID links sessions made with the same IMU so its bias can be modelled, and a random install ID links your own sessions. Neither is tied to you.",
         "Uploaded data is released into the public domain (CC0) so anyone can reanalyze it. The app, server and analysis code are AGPL-3.0 open source.",

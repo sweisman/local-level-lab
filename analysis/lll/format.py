@@ -6,6 +6,7 @@ import gzip
 import hashlib
 import io
 import json
+import math
 import os
 import zipfile
 import zlib
@@ -16,7 +17,8 @@ import numpy as np
 
 from . import witmotion
 
-SCHEMA_VERSION = 2
+SCHEMA_VERSION = 3
+SUPPORTED_SCHEMAS = (2, 3)
 IMU_FILE = "imu.bin.gz"
 
 # CSV streams written by the app. The IMU itself is imu.bin.gz, decoded by witmotion.py into
@@ -166,21 +168,34 @@ def validate_manifest(m: dict, names: list[str]) -> list[str]:
     if not isinstance(m, dict):
         return ["manifest is not a JSON object"]
     errs = []
-    if m.get("schema_version") != SCHEMA_VERSION:
+    if type(m.get("schema_version")) is not int or m.get("schema_version") not in SUPPORTED_SCHEMAS:
         errs.append(f"unsupported schema_version {m.get('schema_version')!r}")
+    if m.get("data_license") != "CC0-1.0":
+        errs.append("data_license must be CC0-1.0")
+    if len(names) != len(set(names)):
+        errs.append("duplicate archive members")
+    if any("/" in n or "\\" in n for n in names):
+        errs.append("session members must be at archive root")
     for key, typ in (("session_id", str), ("install_id", str), ("phases", list), ("device", dict)):
         if key not in m:
             errs.append(f"manifest missing {key}")
         elif not isinstance(m[key], typ):
             errs.append(f"manifest {key} must be a {typ.__name__}")
     for key in ("flight", "mount", "privacy", "quality"):
-        if key in m and m[key] is not None and not isinstance(m[key], dict):
+        if key in m and not isinstance(m[key], dict):
             errs.append(f"manifest {key} must be an object")
+    clock = m.get("clock")
+    if clock is not None and (not isinstance(clock, dict) or any(type(clock.get(k)) is not int
+                            or not 0 <= clock[k] < limit for k, limit in (("elapsed_ns", 2**63), ("utc_ms", 253402300799000)))):
+        errs.append("clock must contain bounded nonnegative integer elapsed_ns and utc_ms")
+    if m.get("schema_version") == 3 and clock is None:
+        errs.append("schema 3 requires clock")
     if isinstance(m.get("phases"), list):
         for p in m["phases"]:
             if not (isinstance(p, dict) and isinstance(p.get("name"), str)
-                    and all(isinstance(p.get(k), (int, float)) for k in ("start_ns", "end_ns"))):
-                errs.append("each phase needs a string name and numeric start_ns/end_ns")
+                    and all(type(p.get(k)) is int and 0 <= p[k] < 2**63 for k in ("start_ns", "end_ns"))
+                    and p["end_ns"] > p["start_ns"]):
+                errs.append("each phase needs a string name and ordered nonnegative int64 start_ns/end_ns")
                 break
     for key in ("session_id", "install_id"):
         if isinstance(m.get(key), str) and not 0 < len(m[key]) <= 64:
@@ -194,6 +209,30 @@ def validate_manifest(m: dict, names: list[str]) -> list[str]:
         errs.append(f"manifest imu.variant must be one of {', '.join(witmotion.VARIANTS)}")
     elif imu.get("config") is not None and not isinstance(imu["config"], dict):
         errs.append("manifest imu.config must be an object")
+    elif isinstance(imu.get("config"), dict):
+        for k, values in {"rate_hz": (10, 20, 50, 100, 200), "gyro_range_dps": (250, 500, 1000, 2000),
+                          "accel_range_g": (2, 4, 8, 16)}.items():
+            v = imu["config"].get(k)
+            if v is not None and (type(v) not in (int, float) or not math.isfinite(v) or v not in values):
+                errs.append(f"unsupported imu.config.{k}")
+        if "auto_zero" in imu["config"] and type(imu["config"]["auto_zero"]) is not bool:
+            errs.append("imu.config.auto_zero must be boolean")
+    q = m.get("quality") or {}
+    if isinstance(q, dict) and (not isinstance(q.get("flags", []), list)
+                              or not all(isinstance(f, str) for f in q.get("flags", []))):
+        errs.append("quality.flags must be a list of strings")
+    privacy = m.get("privacy") or {}
+    if isinstance(privacy, dict) and "cal_locations" in privacy:
+        locations = privacy["cal_locations"]
+        if not isinstance(locations, dict):
+            errs.append("privacy.cal_locations must be an object")
+        else:
+            for loc in locations.values():
+                if not isinstance(loc, dict) or any(type(loc.get(k)) not in (int, float)
+                       or not math.isfinite(loc[k]) for k in ("lat_deg", "age_s")):
+                    errs.append("invalid calibration location")
+                elif not -90 <= loc["lat_deg"] <= 90 or not 0 <= loc["age_s"] <= 900:
+                    errs.append("calibration location out of range or stale")
     return errs
 
 

@@ -232,7 +232,7 @@ The ground horizontal rate is the length of a vector, which piles up above zero 
 - DerSimonian–Laird, used in v0.2, is known to be overconfident with few, heterogeneous members.
 - The three k come from the same flights, sharing bias, crab and orientation. v0.3 pooled each term separately and then summed z² as if the terms were independent, which isn't χ² at all when they are correlated (third review). `test_pooled_model_test_uses_the_joint_covariance`.
 
-**Evidence.** With unit offsets beyond the stated errors, the random-effects 95 % intervals cover the truth 91 % of the time with 8 units. Fixed effects cover it 23 % of the time (EVIDENCE §9; `test_hierarchical_pooling_covers_the_truth_when_units_differ`).
+**Evidence correction (software 0.5.0).** The previously quoted 91% coverage tested ±2 standard errors, not the reported t interval. The regression and evidence script now test the actual `ci95`; historical EVIDENCE §9 is not evidence for coverage of that interval. All intervals remain nominal pending a larger validated coverage study.
 
 ## 16. Crab: the aircraft's heading isn't its GNSS course
 
@@ -279,4 +279,8 @@ An external source-level review of v0.3. What it found, and what changed:
 - **Two IMUs on one flight.** They would be excellent independent checks on sensor-specific systematics, but they share the flight: aircraft motion, GNSS, crab, turbulence and temperature. That needs a schema with a list of IMUs and crossed pooling (flight effect plus unit effect), not two independent flights.
 - **Heading-free fit.** A flight with no banked turn at all has no forward axis, so only the vertical channel is used. The IMU's azimuth could instead be fitted as a nuisance parameter. This would need care so it can't favour one model. The current protocol instead asks participants to keep recording through one course change.
 - **g-sensitivity along gravity, per unit.** A datasheet bound or a dedicated test would tighten the vertical channel.
-- **Crab on single-heading legs.** Still the main unresolved bias for the most precise flights. Requiring heading diversity for the primary result would remove it, at the cost of most airliner routes. A magnetometer-based heading constraint would help, but it needs the declination model, so it would add a globe dependence to the predictions, not just to data selection.
+- **Crab on single-heading legs.** Still the main unresolved bias for the most precise flights. The pilot primary policy now requires heading diversity, excluding most single-heading airliner routes; its provisional thresholds still require validation. A magnetometer-based heading constraint would help, but it needs the declination model, so it would add a globe dependence to the predictions, not just to data selection.
+
+## Software 0.5.0 eligibility policy
+
+The historical methodology revisions above are distinct from software versions. The current provisional primary policy is [pilot-1](PRIMARY_CORPUS.md): curator-owned provenance, a complete bench certificate approved before flight, heading diversity, and central integrity gates. Session quality observations alone cannot confer bench qualification. Ground-magnitude population pooling is disabled because the former Gaussian pooling can produce a false nonzero signal from zero-rate data. Individual Rice likelihood results remain available. Reports are provisional, with nominal confidence intervals and significance thresholds. Real WT901 bench evidence and a thousands-run null calibration remain release prerequisites.

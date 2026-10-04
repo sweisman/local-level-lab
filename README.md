@@ -44,6 +44,7 @@ Pick a mount that lets you take the IMU out and put it back facing the opposite 
 |---|---|
 | `android/` | The Android app (Kotlin/Compose). Connects to the IMU, logs its byte stream and GPS in the background, guides calibration, reminds you to turn the IMU, shows a live dashboard, and uploads or shares sessions |
 | `server/` | Upload server (FastAPI + SQLite) that publishes every raw upload as an open dataset |
+| `docs/PRIMARY_CORPUS.md` | Curator approval, bench certificates, provisional primary gates and migration |
 | `analysis/` | The `lll` Python package: decoding, single-session analysis and report, pooled analysis, a bench tool, and a synthetic-data generator |
 | `docs/` | [METHODOLOGY](docs/METHODOLOGY.md) (decisions and how to check them), [MATH](docs/MATH.md) (equations), [EVIDENCE](docs/EVIDENCE.md) (reproducible simulation results), [BENCH](docs/BENCH.md) (hardware validation checklist), [FORMAT](docs/FORMAT.md) (file spec), [PROTOCOL](docs/PROTOCOL.md) (participant steps), shared test vectors |
 

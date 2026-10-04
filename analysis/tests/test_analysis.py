@@ -177,10 +177,15 @@ def test_cli_analyze_and_collate(tmp_path):
 
 def _fake(unit, k, sd, flags=(), cruise=90.0, tier="usable"):
     from lll.fit import TERM_NAMES
-    return {"session_id": f"{unit}-{k}", "flags": list(flags), "cruise_minutes": cruise,
-            "imu": {"unit_id": unit, "variant": "spp"}, "unit_quality": {"unit_id": unit, "tier": tier},
+    return {"input_sha256": __import__("uuid").uuid4().hex * 2, "flight_started_utc": "2026-03-01T00:00:00Z", "heading_diversity": {"adequate": True}, "session_id": f"{unit}-{k}", "flags": list(flags), "cruise_minutes": cruise,
+            "imu": {"unit_id": unit, "variant": "spp", "config": {"rate_hz": 100, "gyro_range_dps": 2000, "accel_range_g": 16, "auto_zero": False}}, "unit_quality": {"unit_id": unit, "tier": tier},
             "fit": {"k": dict(zip(TERM_NAMES, k)), "k_sd": dict(zip(TERM_NAMES, sd)),
                     "rejected": {m: False for m in models.MODELS}}}
+
+
+def _approvals(results):
+    from lll.policy import BENCH_CHECKS
+    return {r["input_sha256"]: {"sha256": r["input_sha256"], "status": "approved", "unit_id": r["imu"]["unit_id"], "bench": {"unit_id": r["imu"]["unit_id"], "tier": "usable", "approved_at": "2026-02-01T00:00:00Z", "checks": dict.fromkeys(BENCH_CHECKS, True), "config": r["imu"]["config"]}} for r in results}
 
 
 def test_collation_gates():
@@ -190,7 +195,7 @@ def test_collation_gates():
            _fake("u2", (1, 1, 0), (0.1, 0.2, 0.2), cruise=30.0),
            _fake("u3", (1, 1, 0), (0.1, 0.2, 0.2), tier="exploratory"),
            _fake("u1", (1, 1, 0), (0.1, 0.2, 0.2), flags=("no_cal_post",))]
-    col = collate(res)
+    col = collate(res, provenance=_approvals(res))
     why = [r["excluded_because"] for r in col["rows"]]
     assert col["n_primary"] == 1 and why[0] == ""
     assert "curvature not identified" in why[1] and "under 60 min" in why[2]
@@ -213,7 +218,7 @@ def test_hierarchical_pooling_covers_the_truth_when_units_differ():
                 items.append((f"u{u}", {"k_rot_sphere": k, "k_curv": k, "k_disc": k},
                               {"k_rot_sphere": 0.1, "k_curv": 0.1, "k_disc": 0.1}))
         p = pool_hierarchical(items)["k_curv"]
-        cover_re += abs(p["k"] - 1) < 2 * p["sd"]
+        cover_re += p["ci95"][0] <= 1 <= p["ci95"][1]
         ks = np.array([i[1]["k_curv"] for i in items])
         cover_fe += abs(ks.mean() - 1) < 2 * 0.1 / np.sqrt(len(ks))
     assert cover_re / trials > 0.88          # nominal 95 %; DL with 8 units runs a little under
@@ -446,7 +451,7 @@ def test_pooled_model_test_uses_the_joint_covariance():
     k = (1.15, 0.85, 0.0)                       # opposite shifts: unlikely under positive correlation
     r = _fake("u1", k, tuple(sd))
     r["fit"]["k_cov"] = cov.tolist()
-    col = collate([r])
+    col = collate([r], provenance=_approvals([r]))
     t = col["model_tests"]["sphere_rotating"]
     d = np.array(k) - np.array(models.EXPECTED_K["sphere_rotating"])
     assert t["chi2"] == pytest.approx(float(d @ np.linalg.inv(cov) @ d), rel=1e-6)
@@ -501,7 +506,8 @@ def test_unit_tier_is_taken_as_of_the_session():
     col = collate([flight, bench, later])
     rows = {r["session_id"]: r for r in col["rows"]}
     assert "tier unknown" in rows[flight["session_id"]]["excluded_because"]
-    assert rows["later"]["excluded_because"] == ""
+    assert rows["later"]["unit_tier"] == "qualified"
+    assert "unverified provenance" in rows["later"]["excluded_because"]
 
 
 def test_ground_rate_interval_is_honest_near_zero():

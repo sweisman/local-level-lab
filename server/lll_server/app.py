@@ -4,7 +4,7 @@ published as an open (CC0) dataset."""
 from __future__ import annotations
 
 import hashlib
-import io
+import gzip
 import json
 import os
 import sqlite3
@@ -12,7 +12,11 @@ import time
 import uuid
 import zipfile
 import zlib
-from collections import defaultdict, deque
+from contextlib import contextmanager
+from starlette.concurrency import run_in_threadpool
+from .admission import Admission
+from .stream_validation import StreamValidator
+from . import registry
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException, Request, UploadFile
@@ -53,10 +57,15 @@ class Store:
         with self.db() as c:
             c.executescript(SCHEMA)
 
+    @contextmanager
     def db(self):
         c = sqlite3.connect(self.db_path)
         c.row_factory = sqlite3.Row
-        return c
+        try:
+            with c:
+                yield c
+        finally:
+            c.close()
 
     def raw_path(self, id_: str) -> Path:
         return self.root / "raw" / f"{id_}.zip"
@@ -75,42 +84,34 @@ class Store:
 
 def create_app(data_dir: str | Path | None = None) -> FastAPI:
     store = Store(Path(data_dir or os.environ.get("LLL_DATA", "data")))
-    app = FastAPI(title="Local Level Lab", version="0.2.0")
+    app = FastAPI(title="Local Level Lab", version="0.5.0")
     app.state.store = store
-    recent: dict[str, deque] = defaultdict(deque)
-
-    def limited(*keys: str) -> bool:
-        """True if any key is over its hourly quota. Nothing is recorded here; call accepted()
-        once the upload has actually been stored, so rejected and duplicate uploads don't count."""
-        now = time.time()
-        for key in keys:
-            q = recent[key]
-            while q and now - q[0] > 3600:
-                q.popleft()
-            if len(q) >= RATE_PER_HOUR:
-                return True
-        return False
-
-    def accepted(*keys: str) -> None:
-        now = time.time()
-        for key in keys:
-            recent[key].append(now)
+    registry.init(store)
+    app.add_middleware(Admission, store=store, max_bytes=MAX_BYTES)
 
     @app.get("/health")
     def health():
         return {"ok": True}
 
     @app.post("/api/v1/sessions", status_code=201)
-    async def upload(file: UploadFile, request: Request):
-        ip_key = "ip:" + (request.client.host if request.client else "?")
-        if limited(ip_key):  # before reading the body, so a flood is cheap to reject
-            raise HTTPException(429, "too many uploads; try again later")
-        data = await file.read(MAX_BYTES + 1)
-        if len(data) > MAX_BYTES:
-            raise HTTPException(413, f"upload exceeds {MAX_BYTES // 2**20} MB")
+    async def upload(request: Request):
+        async with request.form(max_files=1, max_fields=0, max_part_size=65536) as form:
+            file = form.get("file")
+            if file is None or not hasattr(file, "file"):
+                raise HTTPException(422, "one session file required")
+            return await run_in_threadpool(accept_upload, file.file, request.state.upload_ip)
+
+    def accept_upload(upload_file, ip):
+        upload_file.seek(0, 2)
+        size = upload_file.tell()
+        upload_file.seek(0)
+        if size > MAX_BYTES:
+            raise HTTPException(413, "upload too large")
         try:
-            zf = zipfile.ZipFile(io.BytesIO(data))
+            zf = zipfile.ZipFile(upload_file)
             infos = zf.infolist()
+            if len(infos) > 32:
+                raise HTTPException(422, "too many archive members")
             if sum(i.file_size for i in infos) > MAX_UNCOMPRESSED:
                 raise HTTPException(413, f"uncompressed contents exceed {MAX_UNCOMPRESSED // 2**20} MB")
             if zf.getinfo("manifest.json").file_size > MAX_MANIFEST_BYTES:
@@ -121,38 +122,63 @@ def create_app(data_dir: str | Path | None = None) -> FastAPI:
             budget = MAX_UNCOMPRESSED
             for i in infos:
                 if i.filename.endswith(".gz"):
-                    budget -= bounded_gunzip(zf.read(i), budget, keep=False)
+                    validator = StreamValidator(i.filename)
+                    with zf.open(i) as compressed, gzip.GzipFile(fileobj=compressed) as stream:
+                        while chunk := stream.read(min(1024 * 1024, budget + 1)):
+                            budget -= len(chunk)
+                            if budget < 0:
+                                raise TooLarge("expanded stream limit")
+                            validator.feed(chunk)
+                    validator.finish()
         except TooLarge:
             raise HTTPException(413, f"decompressed streams exceed {MAX_UNCOMPRESSED // 2**20} MB")
-        except (zipfile.BadZipFile, KeyError, json.JSONDecodeError, UnicodeDecodeError, OSError, EOFError, zlib.error):
+        except (zipfile.BadZipFile, KeyError, ValueError, UnicodeDecodeError, OSError, EOFError, zlib.error):
             raise HTTPException(422, "not a session zip (need a zip containing manifest.json)")
         errs = validate_manifest(manifest, names)
+        zf.close()
         if errs:
             raise HTTPException(422, "; ".join(errs))
-        sha = hashlib.sha256(data).hexdigest()
+        upload_file.seek(0)
+        digest = hashlib.sha256()
+        while chunk := upload_file.read(1024 * 1024):
+            digest.update(chunk)
+        sha = digest.hexdigest()
+        ip_key = "ip:" + ip
         install_key = "install:" + manifest["install_id"]
-        with store.db() as c:
-            row = c.execute("SELECT id FROM sessions WHERE sha256=?", (sha,)).fetchone()
-            if row:  # idempotent re-upload: never counted against the quota
-                return {"id": row["id"], "duplicate": True}
-            if limited(ip_key, install_key):
-                raise HTTPException(429, "too many uploads; try again later")
-            id_ = str(uuid.uuid4())
-            store.raw_path(id_).write_bytes(data)
-            fl, mt, imu = manifest.get("flight") or {}, manifest.get("mount") or {}, manifest["imu"]
-            c.execute("INSERT INTO sessions (id, sha256, received_at, size, session_id, install_id, airline, "
-                      "flight_number, flight_date, mount, seat, imu_variant, imu_unit, manifest) "
-                      "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                      (id_, sha, time.time(), len(data), manifest["session_id"], manifest["install_id"],
-                       _text(fl.get("airline")), _text(fl.get("flight_number")), _text(fl.get("date")),
-                       _text(mt.get("type")), _text(fl.get("seat")), _text(imu.get("variant")),
-                       _text(imu.get("unit_id")), json.dumps(manifest)))
-        accepted(ip_key, install_key)
+        stored_path = None
+        try:
+            with store.db() as c:
+                c.execute("BEGIN IMMEDIATE")
+                row = c.execute("SELECT id FROM sessions WHERE sha256=?", (sha,)).fetchone()
+                if row:  # idempotent re-upload: never counted against the quota
+                    return {"id": row["id"], "duplicate": True}
+                if any(c.execute("SELECT count(*) FROM upload_accepts WHERE key=? AND at>?", (key, time.time() - 3600)).fetchone()[0] >= RATE_PER_HOUR for key in (ip_key, install_key)):
+                    raise HTTPException(429, "too many uploads; try again later")
+                id_ = str(uuid.uuid4())
+                stored_path = store.raw_path(id_)
+                upload_file.seek(0)
+                import shutil
+                with store.raw_path(id_).open("wb") as dest:
+                    shutil.copyfileobj(upload_file, dest, 1024 * 1024)
+                fl, mt, imu = manifest.get("flight") or {}, manifest.get("mount") or {}, manifest["imu"]
+                c.execute("INSERT INTO sessions (id, sha256, received_at, size, session_id, install_id, airline, "
+                          "flight_number, flight_date, mount, seat, imu_variant, imu_unit, manifest) "
+                          "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                          (id_, sha, time.time(), size, manifest["session_id"], manifest["install_id"],
+                           _text(fl.get("airline")), _text(fl.get("flight_number")), _text(fl.get("date")),
+                           _text(mt.get("type")), _text(fl.get("seat")), _text(imu.get("variant")),
+                           _text(imu.get("unit_id")), json.dumps(manifest)))
+                c.executemany("INSERT INTO upload_accepts VALUES (?,?)", [(key, time.time()) for key in (ip_key, install_key)])
+        except BaseException:
+            if stored_path is not None:
+                stored_path.unlink(missing_ok=True)
+            raise
         return {"id": id_, "duplicate": False}
 
     @app.get("/api/v1/sessions")
     def index():
-        return [{k: r[k] for k in PUBLIC_COLS} for r in store.all()]
+        trusted = registry.approvals(store)
+        return [{**{k: r[k] for k in PUBLIC_COLS}, "provenance_status": "approved" if r["sha256"] in trusted else "unverified"} for r in store.all()]
 
     @app.get("/api/v1/sessions/{id_}")
     def status(id_: str):
@@ -160,6 +186,9 @@ def create_app(data_dir: str | Path | None = None) -> FastAPI:
         if r is None:
             raise HTTPException(404)
         out = {k: r[k] for k in PUBLIC_COLS}
+        approval = registry.approvals(store).get(r["sha256"])
+        out["provenance_status"] = "approved" if approval else "unverified"
+        out["verified_unit_id"] = approval["unit_id"] if approval else None
         if r["result"]:
             res = json.loads(r["result"])
             out["result"] = {k: res.get(k) for k in ("flags", "cruise_minutes", "fit", "calibration", "unit_quality", "slip")}

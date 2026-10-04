@@ -45,6 +45,8 @@ def export(store: Store, out: Path) -> Path:
         sums.append(f"{digest}  raw/{src.name}")
         index.append({k: r[k] for k in PUBLIC_COLS})
     (out / "index.json").write_text(json.dumps(index, indent=1))
+    from .registry import approvals
+    (out / "provenance.json").write_text(json.dumps(approvals(store), indent=1))
     (out / "SHA256SUMS").write_text("\n".join(sums) + "\n")
     (out / "LICENSE-DATA.txt").write_text("All session data in this export is dedicated to the public domain "
                                           "under CC0 1.0: https://creativecommons.org/publicdomain/zero/1.0/\n")
@@ -64,12 +66,23 @@ def main(argv=None):
     sub.add_parser("collate", help="pool all processed results into data/collated/")
     e = sub.add_parser("export", help="dump the public dataset with checksums")
     e.add_argument("out")
+    r = sub.add_parser("register-unit", help="register a physical instrument; operator identity stays private")
+    r.add_argument("operator")
+    r = sub.add_parser("certify-unit", help="approve complete bench evidence now, before any eligible flight")
+    r.add_argument("unit")
+    r.add_argument("evidence", help="JSON with checks, tier, config and source_sha256")
+    r = sub.add_parser("approve-session", help="attest physical provenance of a processed session")
+    r.add_argument("session")
+    r.add_argument("certificate")
+    r = sub.add_parser("revoke-session")
+    r.add_argument("session")
     args = ap.parse_args(argv)
     if args.cmd == "serve":
         import uvicorn
         uvicorn.run(create_app(args.data), host=args.host, port=args.port)
         return
     store = Store(Path(args.data))
+    from . import registry
     if args.cmd == "list":
         for r in store.all():
             print(r["id"], r["status"], r["airline"], r["flight_number"], r["flight_date"], r["seat"], r["mount"], r["imu_variant"])
@@ -77,9 +90,20 @@ def main(argv=None):
         print("\n".join(process(store, args.ids)) or "nothing to process")
     elif args.cmd == "collate":
         from lll.cli import collate_to
-        print(collate_to([store.root / "reports"], store.root / "collated"))
+        from lll import __version__
+        inputs = [store.root / "reports" / f"{r['id']}.result.json" for r in store.all()
+                  if r["status"] == "processed" and json.loads(r["result"]).get("analysis_version") == __version__]
+        print(collate_to(inputs, store.root / "collated", provenance=registry.approvals(store)))
     elif args.cmd == "export":
         print(export(store, Path(args.out)))
+    elif args.cmd == "register-unit":
+        print(registry.register(store, args.operator))
+    elif args.cmd == "certify-unit":
+        print(registry.certify(store, args.unit, json.loads(Path(args.evidence).read_text())))
+    elif args.cmd == "approve-session":
+        registry.approve(store, args.session, args.certificate)
+    elif args.cmd == "revoke-session":
+        registry.revoke(store, args.session)
 
 
 if __name__ == "__main__":

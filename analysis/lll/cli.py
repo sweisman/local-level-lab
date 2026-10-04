@@ -21,12 +21,12 @@ def analyze_to(zip_path, out_dir=None) -> Path:
     return html_path
 
 
-def collate_to(inputs, out_dir, allow_synthetic=False) -> Path:
+def collate_to(inputs, out_dir, allow_synthetic=False, provenance=None) -> Path:
     from .collate import collate, load_results, write_csv
     from .report import collation_report
     out = Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)
-    col = collate(load_results(inputs), allow_synthetic=allow_synthetic)
+    col = collate(load_results(inputs), allow_synthetic=allow_synthetic, provenance=provenance)
     (out / "collated.json").write_text(json.dumps(col, indent=1))
     write_csv(col, out / "sessions.csv")
     (out / "collated.html").write_text(collation_report(col))

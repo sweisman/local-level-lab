@@ -69,6 +69,10 @@ import io.github.sweisman.locallevellab.recording.Session
 import io.github.sweisman.locallevellab.recording.SessionStore
 import io.github.sweisman.locallevellab.upload.UploadWorker
 import org.json.JSONObject
+import androidx.compose.runtime.rememberCoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -245,7 +249,7 @@ fun Choice(options: List<Pair<String, String>>, value: String, onChange: (String
 fun NewSessionScreen(nav: NavController, kind: String = "flight") {
     val ctx = LocalContext.current
     val today = remember { SimpleDateFormat("yyyy-MM-dd", Locale.US).format(Date()) }
-    val f = remember { mutableStateOf(mapOf("date" to today, "seat_position" to "window")) }
+    val f = remember { mutableStateOf(mapOf("date" to today, "seat_position" to "unspecified")) }
     if (!imuChosen(ctx)) {
         Page("New session", nav) {
             Para("Choose your IMU in Settings first. The recording comes from the IMU; the phone logs GPS and runs the dashboard.")
@@ -279,8 +283,7 @@ fun NewSessionScreen(nav: NavController, kind: String = "flight") {
             Box(Modifier.weight(1f)) { field("destination", "To (IATA)") }
         }
         field("aircraft_type", "Aircraft type, if known (e.g. A321)")
-        field("seat", "Seat where the IMU is logging (e.g. 23A)")
-        Choice(listOf("window" to "Window", "middle" to "Middle", "aisle" to "Aisle"), f.value["seat_position"] ?: "window") {
+        Choice(listOf("unspecified" to "Unspecified", "window" to "Window", "middle" to "Middle", "aisle" to "Aisle"), f.value["seat_position"] ?: "unspecified") {
             f.value = f.value + ("seat_position" to it)
         }
         Text("How will the IMU be mounted?", style = MaterialTheme.typography.titleSmall, modifier = Modifier.padding(top = 8.dp))
@@ -297,13 +300,12 @@ fun NewSessionScreen(nav: NavController, kind: String = "flight") {
         Spacer(Modifier.height(12.dp))
         Button({
             val flight = JSONObject()
-            listOf("airline", "flight_number", "date", "origin", "destination", "aircraft_type", "seat", "seat_position", "notes")
-                .forEach { flight.put(it, (f.value[it] ?: "").trim().let { v -> if (it == "seat") v.uppercase() else v }) }
+            listOf("airline", "flight_number", "date", "origin", "destination", "aircraft_type", "seat_position", "notes")
+                .forEach { flight.put(it, (f.value[it] ?: "").trim()) }
             val m = JSONObject().put("type", mount).put("orientation_note", orientation.trim()).put("rotated_180_control", rotated)
             val s = SessionStore.create(ctx, flight, m)
             nav.navigate("session/${s.id}") { popUpTo("home") }
-        }, Modifier.fillMaxWidth(), enabled = (f.value["seat"] ?: "").isNotBlank()) { Text("Create session") }
-        if ((f.value["seat"] ?: "").isBlank()) Para("Enter the seat to continue.", muted = true)
+        }, Modifier.fillMaxWidth(), enabled = true) { Text("Create session") }
     }
 }
 
@@ -317,6 +319,10 @@ fun SessionScreen(id: String, nav: NavController) {
     val s = remember(id, live.lastCompletedPhase, live.phase, refresh) { SessionStore.load(ctx, id) } ?: run {
         Page("Session", nav) { Para("Session not found.") }; return
     }
+    var confirmUpload by remember { mutableStateOf(false) }
+    var preparingUpload by remember { mutableStateOf(false) }
+    val uploadScope = rememberCoroutineScope()
+    var publishConsent by remember { mutableStateOf(false) }
     var confirmDelete by remember { mutableStateOf(false) }
     val recordingHere = live.phase != null && live.sessionId == id
     Page(s.title, nav, help = "about") {
@@ -346,7 +352,7 @@ fun SessionScreen(id: String, nav: NavController) {
             err.isNotEmpty() -> Para("Upload problem: $err", muted = true)
         }
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth()) {
-            Button({ UploadWorker.enqueue(ctx, id); refresh++ }, Modifier.weight(1f), enabled = !recordingHere && (s.hasPhase("flight") || s.hasPhase("bench"))) { Text("Upload") }
+            Button({ confirmUpload = true }, Modifier.weight(1f), enabled = !recordingHere && !preparingUpload && (s.hasPhase("flight") || s.hasPhase("bench"))) { Text(if (preparingUpload) "Preparing…" else "Upload") }
             OutlinedButton({ share(ctx, s); refresh++ }, Modifier.weight(1f), enabled = !recordingHere) { Text("Share file") }
         }
         Para("Uploading queues the session and sends it when the network allows (Settings: Wi-Fi only = ${Prefs(ctx).unmeteredOnly}).", muted = true)
@@ -354,6 +360,27 @@ fun SessionScreen(id: String, nav: NavController) {
         Spacer(Modifier.height(8.dp))
         Para("Phases recorded: " + s.phases.joinToString { it.getString("name") }.ifEmpty { "none" }, muted = true)
     }
+    if (confirmUpload) AlertDialog(
+        onDismissRequest = { confirmUpload = false },
+        title = { Text("Publish this session permanently?") },
+        text = { Column {
+            Text("This publishes precise flight paths, flight/date information, any legacy seat number, notes, and persistent identifiers linking your submissions. The original file becomes publicly downloadable under CC0.")
+            SwitchRow("I consent to public release", publishConsent) { publishConsent = it }
+        } },
+        confirmButton = { TextButton({
+            val destination = Prefs(ctx).serverUrl
+            confirmUpload = false; publishConsent = false; preparingUpload = true
+            uploadScope.launch {
+                try {
+                    withContext(Dispatchers.IO) { UploadWorker.enqueue(ctx, id, destination) }
+                } catch (e: Exception) {
+                    s.local.put("upload_error", e.message ?: "Could not prepare upload")
+                    SessionStore.updateUpload(s)
+                } finally { preparingUpload = false; refresh++ }
+            }
+        }, enabled = publishConsent) { Text("Publish") } },
+        dismissButton = { TextButton({ confirmUpload = false }) { Text("Cancel") } },
+    )
     if (confirmDelete) AlertDialog(
         onDismissRequest = { confirmDelete = false },
         confirmButton = { TextButton({ SessionStore.delete(s); confirmDelete = false; nav.popBackStack() }) { Text("Delete") } },
@@ -430,10 +457,10 @@ fun CalibrationScreen(id: String, which: String, nav: NavController) {
             Para(pos(next).third)
             val wantUp = next.startsWith("up")
             val ok = if (wantUp) g[2] > 8.5f else g[2] < -8.5f
-            Para(if (ok) "Orientation looks right ✓" else if (!live.imuConnected) "Waiting for the IMU to connect…"
+            Para(if (ok) "Orientation looks right ✓" else if (!(live.imuConnected && live.imuConfigOk == true)) "Waiting for the IMU to connect…"
                 else "Waiting for the IMU to be label-${if (wantUp) "up" else "down"} and flat…", muted = !ok)
             Para("After you tap Start, keep your hands off. The analysis ignores the first and last 10 s of each position while the table settles.", muted = true)
-            Button({ RecorderService.start(ctx, id, "$prefix.$next", target * len(next)) }, Modifier.fillMaxWidth(), enabled = ok && live.phase == null && live.imuConnected) {
+            Button({ RecorderService.start(ctx, id, "$prefix.$next", target * len(next)) }, Modifier.fillMaxWidth(), enabled = ok && live.phase == null && (live.imuConnected && live.imuConfigOk == true)) {
                 Text("Start placement ${steps.indexOf(next) + 1} of ${steps.size}")
             }
         } else {
@@ -464,8 +491,8 @@ fun DriftScreen(id: String, name: String, nav: NavController) {
             Para("Recorded ✓")
             Button({ nav.popBackStack() }, Modifier.fillMaxWidth()) { Text("Back to session") }
         } else {
-            Button({ RecorderService.start(ctx, id, name, target) }, Modifier.fillMaxWidth(), enabled = live.phase == null && live.imuConnected) {
-                Text(if (live.imuConnected) "Start recording" else "Waiting for the IMU…")
+            Button({ RecorderService.start(ctx, id, name, target) }, Modifier.fillMaxWidth(), enabled = live.phase == null && (live.imuConnected && live.imuConfigOk == true)) {
+                Text(if ((live.imuConnected && live.imuConfigOk == true)) "Start recording" else "Waiting for the IMU…")
             }
         }
     }
@@ -477,6 +504,7 @@ fun DriftScreen(id: String, name: String, nav: NavController) {
 fun PlacementScreen(id: String, nav: NavController) {
     val ctx = LocalContext.current
     val live by Live.flow.collectAsStateWithLifecycle()
+    var allowNoGps by remember { mutableStateOf(false) }
     val active = live.phase == "placement_check" && live.sessionId == id
     rememberImuPreview()
     Page("Placement check", nav, help = "placement") {
@@ -484,8 +512,8 @@ fun PlacementScreen(id: String, nav: NavController) {
         INSTRUCTIONS.first { it.key == "placement" }.body.take(4).forEach { Para("• $it") }
         Spacer(Modifier.height(8.dp))
         if (!active) {
-            Button({ RecorderService.start(ctx, id, "placement_check") }, Modifier.fillMaxWidth(), enabled = live.phase == null && live.imuConnected) {
-                Text(if (live.imuConnected) "IMU is mounted. Start the check" else "Waiting for the IMU…")
+            Button({ RecorderService.start(ctx, id, "placement_check") }, Modifier.fillMaxWidth(), enabled = live.phase == null && (live.imuConnected && live.imuConfigOk == true)) {
+                Text(if ((live.imuConnected && live.imuConfigOk == true)) "IMU is mounted. Start the check" else "Waiting for the IMU…")
             }
         } else {
             Stat("Stable for", "${live.stillStreakS.toInt()} / 60 s", big = true)
@@ -495,8 +523,9 @@ fun PlacementScreen(id: String, nav: NavController) {
             Stat("Gravity axis", live.gravityAxis)
             Stat("GPS", if (live.hasFix) "fix, ${live.sats} sats" else "searching…")
             Para("Light vibration is normal. If the counter keeps resetting, the IMU isn't held firmly enough.", muted = true)
-            Button({ RecorderService.start(ctx, id, "flight"); nav.navigate("record/$id") { popUpTo("session/$id") } },
-                Modifier.fillMaxWidth(), enabled = live.stillStreakS >= 60) { Text("Start flight recording") }
+            if (!live.hasFix) SwitchRow("Start without a fresh GPS fix; data may be unusable", allowNoGps) { allowNoGps = it }
+            Button({ RecorderService.start(ctx, id, "flight", allowNoGps = allowNoGps); nav.navigate("record/$id") { popUpTo("session/$id") } },
+                Modifier.fillMaxWidth(), enabled = live.stillStreakS >= 60 && (live.hasFix || allowNoGps) && live.imuConfigOk == true) { Text("Start flight recording") }
             TextButton({ RecorderService.stop(ctx) }) { Text("Cancel check") }
         }
     }

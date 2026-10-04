@@ -88,6 +88,10 @@ fun ImuSettings(nav: androidx.navigation.NavController) {
     val launcher = rememberLauncherForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permOk = hasBluetoothPermissions(ctx) }
     val adapter = remember { ctx.getSystemService(BluetoothManager::class.java)?.adapter }
 
+    if (live.phase != null || p.activePhase != null) {
+        Para("Stop recording before changing instrument settings.")
+        return
+    }
     Text("IMU (WitMotion WT901)", style = MaterialTheme.typography.titleMedium, modifier = Modifier.padding(top = 4.dp))
     Choice(listOf(Variant.SPP.key to "ICM-42605, Bluetooth 2.0 (pair it in Android settings first, PIN usually 1234)",
         Variant.BLE.key to "MPU9250, Bluetooth LE 5.0"), variant.key) { variant = Variant.of(it)!! }

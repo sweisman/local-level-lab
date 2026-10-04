@@ -69,12 +69,16 @@ def rice_interval(r, sigma):
     exactly where a still Earth would sit. Instead this uses the Rice likelihood: the maximum-
     likelihood length, profile-likelihood 68 % and 95 % intervals (−2 ΔlnL = 1 and 3.84, bounded
     below by 0), and the p-value of zero rate from Σ r_i²/σ_i², χ² with 2n degrees of freedom."""
-    from scipy.stats import chi2, rice
+    from scipy.stats import chi2
+    from scipy.special import i0e
     r, sigma = np.atleast_1d(np.asarray(r, float)), np.atleast_1d(np.asarray(sigma, float))
     sigma = np.maximum(sigma, 1e-12)
     top = float(np.max(r + 8 * sigma))
     grid = np.linspace(0.0, top, 4001)
-    ll = rice.logpdf(r[None, :], grid[:, None] / sigma[None, :], scale=sigma[None, :]).sum(axis=1)
+    # Drop likelihood factors constant in the noncentrality. Unlike logpdf this remains
+    # well-defined at an exactly zero (quantized) observed magnitude.
+    x = r[None, :] * grid[:, None] / sigma[None, :] ** 2
+    ll = (-grid[:, None] ** 2 / (2 * sigma[None, :] ** 2) + np.log(i0e(x)) + np.abs(x)).sum(axis=1)
     i = int(np.argmax(ll))
     dev = 2 * (ll[i] - ll)
 

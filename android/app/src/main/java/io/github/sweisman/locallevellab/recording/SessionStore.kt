@@ -22,8 +22,8 @@ import java.util.zip.ZipOutputStream
  * A session lives in `files/sessions/<id>/`:
  *   manifest.json  (exactly what ships in the zip, see docs/FORMAT.md)
  *   local.json     (device-only state such as upload status, never uploaded)
- *   imu.bin.gz     (every Bluetooth read from the IMU, verbatim, one gzip member per phase)
- *   gnss.csv.gz, events.csv.gz (one gzip member appended per recording phase)
+ *   imu.bin.journal (complete framed Bluetooth records, compressed only when packaging)
+ *   gnss.csv.journal, events.csv.journal (complete CSV rows)
  */
 class Session(val dir: File) {
     val id: String get() = dir.name
@@ -44,10 +44,13 @@ class Session(val dir: File) {
     val zipFile: File get() = File(dir, "lll_${id.take(8)}.zip")
     val finalized: Boolean get() = local.optBoolean("finalized") && zipFile.exists()
 
-    fun sizeBytes(): Long = dir.listFiles()?.filter { it.name.endsWith(".gz") }?.sumOf { it.length() } ?: 0
+    fun sizeBytes(): Long = dir.listFiles()?.filter { it.name.endsWith(".journal") || it.name.endsWith(".gz") }?.sumOf { it.length() } ?: 0
 
-    @Synchronized
-    fun save() {
+    fun save() = synchronized(SessionStore) {
+        if (File(dir, "manifest.json").readText() != manifest.toString(1)) {
+            local.put("finalized", false)
+            local.remove("upload_id")
+        }
         File(dir, "manifest.json.tmp").apply { writeText(manifest.toString(1)); renameTo(File(dir, "manifest.json")) }
         File(dir, "local.json").writeText(local.toString())
     }
@@ -93,7 +96,7 @@ object SessionStore {
         val dir = File(root(ctx), id).apply { mkdirs() }
         val iso = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US).apply { timeZone = TimeZone.getTimeZone("UTC") }
         val m = JSONObject()
-            .put("schema_version", 2)
+            .put("schema_version", 3)
             .put("kind", kind)
             .put("data_license", "CC0-1.0")
             .put("session_id", id)
@@ -108,7 +111,7 @@ object SessionStore {
             .put("clock", JSONObject().put("elapsed_ns", SystemClock.elapsedRealtimeNanos()).put("utc_ms", System.currentTimeMillis()))
             .put("flight", flight)
             .put("mount", mount)
-            .put("privacy", JSONObject().put("cal_lat_deg", JSONObject.NULL))
+            .put("privacy", JSONObject().put("cal_locations", JSONObject()))
             .put("phases", JSONArray())
             .put("quality", JSONObject().put("cal_pre", false).put("cal_post", false).put("placement_check", false).put("flags", JSONArray()))
         File(dir, "manifest.json").writeText(m.toString(1))
@@ -136,7 +139,17 @@ object SessionStore {
     }
 
     /** Package the session into the upload/share zip. The raw files are copied byte for byte. */
+    @Synchronized
     fun finalize(s: Session): File {
+        check(!File(s.dir, "recording.marker").exists()) { "Stop recording before packaging" }
+        for (name in listOf("imu.bin", "gnss.csv", "events.csv")) {
+            val journal = File(s.dir, name + ".journal")
+            if (journal.exists()) {
+                val packed = File(s.dir, name + ".gz.tmp")
+                java.util.zip.GZIPOutputStream(packed.outputStream().buffered()).use { out -> journal.inputStream().use { it.copyTo(out) } }
+                check(packed.renameTo(File(s.dir, name + ".gz")))
+            }
+        }
         val out = s.zipFile
         val tmp = File(s.dir, out.name + ".tmp")
         ZipOutputStream(tmp.outputStream().buffered()).use { zip ->
@@ -149,10 +162,24 @@ object SessionStore {
                 zip.closeEntry()
             }
         }
-        tmp.renameTo(out)
+        check(tmp.renameTo(out))
         s.local.put("finalized", true)
         s.save()
         return out
+    }
+
+    fun updateUpload(s: Session) = synchronized(this) {
+        val file = File(s.dir, "local.json")
+        val current = if (file.exists()) JSONObject(file.readText()) else JSONObject()
+        for (key in listOf("upload_id", "uploaded_ms", "upload_error", "upload_snapshot")) {
+            if (s.local.has(key)) current.put(key, s.local.get(key)) else current.remove(key)
+        }
+        val snapshot = File(s.dir, s.local.optString("upload_snapshot"))
+        val matches = snapshot.isFile && java.util.zip.ZipFile(snapshot).use { zip ->
+            zip.getInputStream(zip.getEntry("manifest.json")).bufferedReader().readText() == File(s.dir, "manifest.json").readText()
+        }
+        if (!matches) { current.remove("upload_id"); current.remove("uploaded_ms") }
+        file.writeText(current.toString())
     }
 
     fun delete(s: Session) = s.dir.deleteRecursively()

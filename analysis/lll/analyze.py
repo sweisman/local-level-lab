@@ -5,6 +5,7 @@ from __future__ import annotations
 import platform
 import subprocess
 from pathlib import Path
+from datetime import datetime, timezone
 
 import numpy as np
 
@@ -12,6 +13,7 @@ from . import __version__, calib, drift, fit, models, slip
 from .attitude import epoch_of, estimate_forward_axis, mount_epochs
 from .format import read_session
 from .segments import Thresholds, find_segments, make_bins
+from .policy import heading_diversity, verified_config
 
 
 def environment() -> dict:
@@ -62,20 +64,24 @@ def unit_quality(res: dict, m: dict) -> dict:
     else:
         hsd = [c["earth_h_sd_dph"] for c in (res.get("calibration") or {}).values()]
         h, h_src = (min(hsd), "palindrome calibration") if hsd else (None, None)
-    a = min(a300) if a300 else None
+    a = max(a300) if a300 else None
     if a is None and h is None:
         tier = "unknown"
     elif a is not None and a <= QUALIFIED_ADEV300_DPH and h is not None and h <= QUALIFIED_H_SD_DPH:
         tier = "qualified"
-    elif (a is None or a <= USABLE_ADEV300_DPH) and (h is None or h <= USABLE_H_SD_DPH):
+    elif a is not None and h is not None and a <= USABLE_ADEV300_DPH and h <= USABLE_H_SD_DPH:
         tier = "usable"
+    elif (a is not None and a > USABLE_ADEV300_DPH) or (h is not None and h > USABLE_H_SD_DPH):
+        tier = "exploratory"
+    elif a is None or h is None:
+        tier = "incomplete"
     else:
         tier = "exploratory"
     return {"unit_id": (m.get("imu") or {}).get("unit_id"), "variant": (m.get("imu") or {}).get("variant"),
             "adev_300s_dph": a, "horizontal_repeatability_dph": h, "horizontal_repeatability_from": h_src,
-            "tier": tier, "provisional": True,
+            "tier": tier, "provisional": True, "bench_certificate": False,
             "criteria": {"qualified": f"Allan dev. at 300 s ≤ {QUALIFIED_ADEV300_DPH} °/h and horizontal repeatability ≤ {QUALIFIED_H_SD_DPH} °/h",
-                         "usable": f"≤ {USABLE_ADEV300_DPH} °/h and ≤ {USABLE_H_SD_DPH} °/h, where measured"}}
+                         "usable": f"both measured: ≤ {USABLE_ADEV300_DPH} °/h and ≤ {USABLE_H_SD_DPH} °/h"}}
 
 
 def analyze(path, th: Thresholds | None = None) -> dict:
@@ -95,8 +101,23 @@ def analyze(path, th: Thresholds | None = None) -> dict:
         "device": m.get("device", {}),
         "imu": {**(m.get("imu") or {}), "decode": sess.imu_stats},
         "flags": flags,
+        "validation_status": "provisional",
+        "provenance_status": "unverified",
     }
     st = sess.imu_stats
+    # Require explicit complete verification within every recording phase/connection.
+    verified = [t for t, k, d in sess.events if k == "imu_config" and verified_config(d, m.get("imu") or {})]
+    for ph in m.get("phases", []):
+        if not any(ph["start_ns"] <= t <= ph["end_ns"] for t in verified):
+            flags.append("imu_config_unverified")
+            break
+    for t, kind, _ in sess.events:
+        if kind == "imu_connect":
+            ph = next((p for p in m.get("phases", []) if p["start_ns"] <= t <= p["end_ns"]), None)
+            if ph and not any(t <= v <= min(t + 30e9, ph["end_ns"]) for v in verified):
+                flags.append("imu_config_unverified")
+                break
+    flags[:] = list(dict.fromkeys(flags))
     if "gyro" not in sess.streams or "accel" not in sess.streams:
         flags.append("no_imu_data")
         return _clean(res)
@@ -122,7 +143,6 @@ def analyze(path, th: Thresholds | None = None) -> dict:
 
     # calibration, ground Earth-rate measurement, drift
     cal_pre, cal_post = calib.calibrate(sess, "cal_pre"), calib.calibrate(sess, "cal_post")
-    lat_cal = m.get("privacy", {}).get("cal_lat_deg")
     res["calibration"] = {}
     for name, c in (("pre", cal_pre), ("post", cal_post)):
         if c is None:
@@ -131,6 +151,10 @@ def analyze(path, th: Thresholds | None = None) -> dict:
         rec = {k: v for k, v in c.items() if k not in ("bias", "bias_sem")}
         rec["bias_dph"] = (c["bias"] * calib.RAD2DPH).tolist()
         rec["bias_sem_dph"] = (c["bias_sem"] * calib.RAD2DPH).tolist()
+        loc = (m.get("privacy", {}).get("cal_locations") or {}).get("cal_" + name) or {}
+        lat_cal = loc.get("lat_deg") if 0 <= loc.get("age_s", float("inf")) <= 900 else None
+        # Schema 2 stored one latitude without freshness or per-calibration attribution.
+        rec["latitude_status"] = "fresh" if lat_cal is not None else "unknown"
         if lat_cal is not None:
             rec["lat_deg"] = lat_cal
             rec["predicted"] = calib.ground_model_predictions(lat_cal)
@@ -148,6 +172,10 @@ def analyze(path, th: Thresholds | None = None) -> dict:
     if flight is None:
         flags.append("no_flight_phase")
         return _clean(res)
+    clock = m.get("clock") or {}
+    if isinstance(clock.get("utc_ms"), (int, float)) and isinstance(clock.get("elapsed_ns"), (int, float)):
+        utc = clock["utc_ms"] / 1000 + (flight["start_ns"] - clock["elapsed_ns"]) / 1e9
+        res["flight_started_utc"] = datetime.fromtimestamp(utc, timezone.utc).isoformat()
     # Mount epochs: deliberate turns of the IMU (and bumps) during the flight. The gyro measures each
     # turn, so later epochs are mapped back into the first epoch's frame exactly.
     gs = sess.slice(sess.gyro_stream(), flight["start_ns"], flight["end_ns"])
@@ -156,6 +184,8 @@ def analyze(path, th: Thresholds | None = None) -> dict:
     ev = [(t / 1e9, kind) for t, kind, _ in sess.events if kind in ("index_turn", "placement_shift")
           and flight["start_ns"] <= t <= flight["end_ns"]]
     epochs, exclude = mount_epochs(gt, Gc, ev, sat=gs.get("sat"))
+    if any(e.get("orientation_unresolved") for e in epochs):
+        flags.append("orientation_unresolved")
     res["mount_epochs"] = [{"t0_s": e["t0_s"], "t1_s": e["t1_s"], "turn": e["turn"]} for e in epochs]
     if any(e["turn"] and e["turn"]["kind"] == "index_turn" for e in epochs):
         flags.append("imu_turned_in_flight")
@@ -296,4 +326,5 @@ def analyze(path, th: Thresholds | None = None) -> dict:
     res["fit"]["expected_k"] = models.EXPECTED_K
     res["accumulated"] = fit.accumulated(bins, cbns, y, idx, vertical_only)
     res["cruise_minutes"] = float(bins["dt"].sum() / 60)
+    res["heading_diversity"] = heading_diversity(bins)
     return _clean(res)

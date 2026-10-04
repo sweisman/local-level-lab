@@ -1,8 +1,8 @@
-# Session file format (schema_version 2)
+# Session file format (schema_version 3; schema 2 readable)
 
 A session is one `.zip` file. It's the contract between the Android app, the upload server and the analysis package. Everything in it is released under **CC0-1.0**.
 
-Schema 2 replaces the phone's own motion sensors with an external WitMotion WT901 IMU. No schema 1 data was ever collected, so the analysis reads schema 2 only.
+Schema 2 replaces the phone's own motion sensors with an external WitMotion WT901 IMU. No schema 1 data was ever collected, the analysis reads schemas 2 and 3. Schema 3 removes exact seat from new recordings and stores separate, fresh calibration locations. Historical archives remain unchanged.
 
 ## What "raw" means here
 
@@ -28,7 +28,7 @@ Every record and row carries a time on Android's `elapsedRealtimeNanos` clock, w
 | file | content |
 |---|---|
 | `manifest.json` | see below |
-| `imu.bin.gz` | records `[int64 arrival_ns][uint16 length][bytes]`, little-endian, one per Bluetooth read. One gzip member is appended per recording phase. A truncated last record (app killed mid-write) is ignored. |
+| `imu.bin.gz` | records `[int64 arrival_ns][uint16 length][bytes]`, little-endian, one per Bluetooth read. The app writes an uncompressed local journal and compresses it only for packaging. On recovery, an incomplete final journal record is truncated and the session is flagged recording_data_loss. |
 | `gnss.csv.gz` | `t_ns,utc_ms,lat,lon,alt_m,speed_mps,bearing_deg,h_acc_m,v_acc_m,speed_acc_mps,bearing_acc_deg,sats_used`. An empty field means not available. GNSS is recorded only during `placement_check` and `flight`. |
 | `events.csv.gz` | `t_ns,kind,detail`. See the event list below. |
 
@@ -55,7 +55,7 @@ Decoded streams use the IMU's axes, in SI units: gyro rad/s, accel m/s², magnet
 
 ```json
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "data_license": "CC0-1.0",
   "kind": "flight | bench",
   "session_id": "uuid",
@@ -72,16 +72,16 @@ Decoded streams use the IMU's axes, in SI units: gyro rad/s, accel m/s², magnet
   },
   "clock": {"elapsed_ns": 0, "utc_ms": 0},
   "flight": {"airline": "", "flight_number": "", "date": "YYYY-MM-DD", "origin": "", "destination": "",
-             "aircraft_type": "", "seat": "23A", "seat_position": "window | middle | aisle", "notes": ""},
+             "aircraft_type": "", "seat_position": "unspecified | window | middle | aisle", "notes": ""},
   "mount": {"type": "window | sidewall | seat_frame | tray | bench | other", "orientation_note": "", "rotated_180_control": false},
-  "privacy": {"cal_lat_deg": 40.5},
+  "privacy": {"cal_locations": {"cal_pre": {"lat_deg": 40.5, "age_s": 12}, "cal_post": {"lat_deg": 51.5, "age_s": 8}}},
   "bench": {"auto_zero_on": false},
-  "phases": [{"name": "cal_pre.up0", "start_ns": 0, "end_ns": 0, "still_s": 180.0}],
+  "phases": [{"name": "cal_pre.up0", "start_ns": 0, "end_ns": 180000000000, "still_s": 180.0}],
   "quality": {"cal_pre": true, "cal_post": true, "placement_check": true, "reversal": false, "flags": []}
 }
 ```
 
-`device` is the phone, which supplies GNSS. `bench` appears only in bench sessions: `auto_zero_on` is true when the session was recorded with the bench-only auto-zero polarity test, which never applies to flights. `privacy.cal_lat_deg` is the calibration latitude rounded to 0.5°, or `null` if the participant opted out.
+`device` is the phone, which supplies GNSS. `bench` appears only in bench sessions: `auto_zero_on` is true when the session was recorded with the bench-only auto-zero polarity test, which never applies to flights. `privacy.cal_locations` stores each calibration latitude rounded to 0.5° and the fix age (at most 900 seconds). Missing, stale and legacy shared locations are unknown for model comparisons; departure latitude is never reused for arrival. Exact legacy `flight.seat` remains readable. New sessions use optional `seat_position`, default unspecified.
 
 ### Phase names
 
@@ -109,3 +109,5 @@ Decoded streams use the IMU's axes, in SI units: gyro rad/s, accel m/s², magnet
 | `imu_disconnect_test` | the bench "disconnect test" dropped the link on purpose |
 | `placement_shift` | bumped or moved (user-reported, or a tilt change over 2° detected in cruise) |
 | `gnss_provider` | GNSS enabled or disabled |
+
+Local journals, upload snapshots, recovery markers and local.json are device-only. Recording requires verified configuration; instrument settings are locked during a phase. Raw archives are immutable once uploaded. Provenance and bench certificates are separate server-owned records, never authoritative manifest fields. See [PRIMARY_CORPUS.md](PRIMARY_CORPUS.md).

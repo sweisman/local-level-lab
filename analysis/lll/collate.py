@@ -31,6 +31,7 @@ import numpy as np
 from . import __version__
 from .fit import TERM_NAMES, sf_chi2
 from .models import EXPECTED_K, MODELS
+from .policy import POLICY_VERSION, PRIMARY_EXCLUSIONS, provenance_reasons
 
 MIN_CRUISE_MIN = 60.0
 GOOD_TIERS = ("qualified", "usable")
@@ -102,7 +103,7 @@ def tier_as_of(tiers, unit, when) -> dict:
     return past[-1] if past else {"tier": "unknown"}
 
 
-def gate(r, tiers, allow_synthetic=False) -> list[str]:
+def gate(r, tiers, allow_synthetic=False, approval=None) -> list[str]:
     """Reasons a session can't enter the primary result (empty = it can)."""
     why = []
     fl = set(r.get("flags", []))
@@ -110,17 +111,19 @@ def gate(r, tiers, allow_synthetic=False) -> list[str]:
         return ["no in-flight fit"]
     if "synthetic" in fl and not allow_synthetic:
         why.append("synthetic")
-    if fl & {"no_cal_pre", "no_cal_post"}:
-        why.append("missing a calibration")
+    simulation = allow_synthetic and "synthetic" in fl
+    if not simulation:
+        why.extend(provenance_reasons(r, approval))
+    why.extend(dict.fromkeys(PRIMARY_EXCLUSIONS[f] for f in sorted(fl & PRIMARY_EXCLUSIONS.keys())))
     if (r.get("cruise_minutes") or 0) < MIN_CRUISE_MIN:
         why.append(f"under {MIN_CRUISE_MIN:.0f} min of cruise")
-    if "k_not_identified" in fl:
-        why.append("curvature not identified")
-    if "prior_dominated" in fl:
-        why.append("prior-dominated")
-    if "wmm_selection_sensitive" in fl:
-        why.append("depends on the WMM slip exclusion")
+    if not (r.get("heading_diversity") or {}).get("adequate") and "insufficient heading diversity" not in why:
+        why.append("insufficient heading diversity")
     tier = tier_as_of(tiers, (r.get("imu") or {}).get("unit_id"), r.get("created_utc"))["tier"]
+    # A certified bench tier is authoritative; a session observation can downgrade it,
+    # but an incomplete observation cannot manufacture qualification.
+    if approval and not provenance_reasons(r, approval):
+        tier = "exploratory" if (r.get("unit_quality") or {}).get("tier") == "exploratory" else approval["bench"]["tier"]
     if tier not in GOOD_TIERS:
         why.append(f"IMU unit tier {tier}")
     return why
@@ -251,7 +254,19 @@ def pool_hierarchical(items):
     return out
 
 
-def collate(results: list[dict], allow_synthetic: bool = False) -> dict:
+def collate(results: list[dict], allow_synthetic: bool = False, provenance: dict | None = None) -> dict:
+    # This mapping comes from a curator-controlled registry, never from uploaded manifests
+    # or result JSON. Offline users must explicitly supply their trusted registry.
+    provenance = provenance or {}
+    seen, unique = set(), []
+    for r in results:
+        sha = r.get("input_sha256")
+        if sha and sha in seen:
+            continue
+        if sha:
+            seen.add(sha)
+        unique.append(r)
+    results = unique
     tiers = unit_tiers(results)
     rows, primary, explore = [], [], []
     groups = {"heading": defaultdict(list), "mount": defaultdict(list), "imu variant": defaultdict(list),
@@ -261,12 +276,16 @@ def collate(results: list[dict], allow_synthetic: bool = False) -> dict:
         fit = r.get("fit")
         fl = r.get("flight", {})
         imu = r.get("imu") or {}
-        why = gate(r, tiers, allow_synthetic)
+        approval = provenance.get(r.get("input_sha256"))
+        why = gate(r, tiers, allow_synthetic, approval)
+        canonical = approval["unit_id"] if approval and not provenance_reasons(r, approval) else imu.get("unit_id")
         rows.append({
             "session_id": r.get("session_id"), "kind": r.get("kind", "flight"),
             "flight": f"{fl.get('airline', '')} {fl.get('flight_number', '')}".strip(), "date": fl.get("date"),
-            "seat": fl.get("seat"), "mount": r.get("mount", {}).get("type"), "imu_variant": imu.get("variant"),
-            "imu_unit": imu.get("unit_id"),
+            "seat_position": fl.get("seat_position"), "mount": r.get("mount", {}).get("type"), "imu_variant": imu.get("variant"),
+            "imu_unit": canonical,
+            "provenance": "approved" if approval and not provenance_reasons(r, approval) else "unverified",
+            "bench_tier": (approval or {}).get("bench", {}).get("tier"),
             "unit_tier": tier_as_of(tiers, imu.get("unit_id"), r.get("created_utc"))["tier"],
             "cruise_min": r.get("cruise_minutes"),
             "not_rejected": ";".join(m for m in MODELS if fit and not fit["rejected"][m]) if fit else None,
@@ -285,20 +304,24 @@ def collate(results: list[dict], allow_synthetic: bool = False) -> dict:
                         ground[key + "_sd"].append(c[src + "_sd_dph"])
         if not fit:
             continue
-        item = (imu.get("unit_id"), fit["k"], fit["k_sd"], fit.get("identifiability", {}).get("identified_by_term", {}),
+        item = (canonical, fit["k"], fit["k_sd"], fit.get("identifiability", {}).get("identified_by_term", {}),
                 fit.get("k_cov"))
         (primary if not why else explore).append(item)
         if not why:
             groups["heading"][_heading(r)].append(item)
             groups["mount"][r.get("mount", {}).get("type")].append(item)
             groups["imu variant"][imu.get("variant")].append(item)
-            groups["imu unit"][imu.get("unit_id")].append(item)
+            groups["imu unit"][canonical].append(item)
 
-    out = {"analysis_version": __version__, "n_sessions": len(results), "n_primary": len(primary),
+    out = {"analysis_version": __version__, "policy_version": POLICY_VERSION,
+           "validation_status": "provisional", "simulation_mode": allow_synthetic,
+           "n_sessions": len(results), "n_primary": len(primary),
            "n_exploratory": len(explore), "unit_tiers": tiers, "rows": rows, "ground": ground,
            "gates": {"min_cruise_min": MIN_CRUISE_MIN, "unit_tiers": list(GOOD_TIERS),
                      "requires": ["both calibrations", "curvature identified", "not prior-dominated",
                                   "not dependent on the WMM slip exclusion", "unit tier as of the session",
+                                  "curator approval", "complete bench approval before flight",
+                                  "verified instrument integrity", "two headings >=30 degrees apart, 10 min each",
                                   "not synthetic"]}}
     if primary:
         pk = pool_hierarchical(primary)
@@ -317,6 +340,8 @@ def collate(results: list[dict], allow_synthetic: bool = False) -> dict:
             for n in TERM_NAMES:
                 vals = [(p[n]["k"], p[n]["sd"]) for p in per.values() if p[n]]
                 d = random_effects([a for a, _ in vals], [b for _, b in vals])
+                if d is None:
+                    continue
                 dis[n] = {"Q": d["Q"], "p": d["p_het"], "disagree": d["p_het"] < 0.01}
             cons[dim] = {"groups": per, "heterogeneity": dis,
                          "disagreement": any(v["disagree"] for v in dis.values())}
@@ -325,32 +350,14 @@ def collate(results: list[dict], allow_synthetic: bool = False) -> dict:
         nu = max((v["n_units"] for v in pk.values() if v), default=0)
         # one or two IMU units are not a population: say so instead of extrapolating
         out["scope"] = {1: "single-unit", 2: "two-unit"}.get(nu, "population")
-    out["ground"]["fit"] = ground_fit(ground)
+    out["ground"]["fit"] = None
+    out["ground"]["pooling_status"] = "disabled pending validated magnitude and instrument-effects model"
     return out
 
 
 def ground_fit(g):
-    """Horizontal: h = C |cos φ| (immune to g-sensitivity; primary). Vertical: up = A sin φ + B_unit,
-    with a separate intercept per IMU unit, because rotation about the plumb line can't be told from
-    that unit's g-sensitivity along it. A is informed only by units seen at several latitudes."""
-    if len(g["lat"]) < 3:
-        return None
-    lat = np.radians(g["lat"])
-    wh = 1 / np.maximum(np.array(g["h_sd"]), 0.1) ** 2
-    cc = np.abs(np.cos(lat))
-    C = float(np.sum(wh * cc * g["h"]) / np.sum(wh * cc ** 2))
-    C_se = float(1 / np.sqrt(np.sum(wh * cc ** 2)))
-    units = sorted({str(u) for u in g["unit"]})
-    X = np.zeros((len(lat), 1 + len(units)))
-    X[:, 0] = np.sin(lat)
-    for i, u in enumerate(g["unit"]):
-        X[i, 1 + units.index(str(u))] = 1.0
-    wu = 1 / np.maximum(np.array(g["up_sd"]), 0.1)
-    beta, *_ = np.linalg.lstsq(X * wu[:, None], np.array(g["up"]) * wu, rcond=None)
-    cov = np.linalg.pinv((X * wu[:, None]).T @ (X * wu[:, None]))
-    A_identified = any(np.ptp(lat[[str(u) == un for u in g["unit"]]]) > np.radians(5) for un in units)
-    return {"C_cos": C, "C_cos_se": C_se, "A_sin": float(beta[0]), "A_sin_se": float(np.sqrt(cov[0, 0])),
-            "A_identified": A_identified, "B_by_unit": {u: float(b) for u, b in zip(units, beta[1:])}}
+    """Pooled ground inference is withheld until its null distribution is validated."""
+    return None
 
 
 def write_csv(col: dict, path):

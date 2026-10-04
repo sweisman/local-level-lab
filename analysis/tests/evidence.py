@@ -181,10 +181,10 @@ def pooling():
                 k = 1 + off + rng.normal(0, 0.1)
                 items.append((f"u{u}", {n: k for n in TERM_NAMES}, {n: 0.1 for n in TERM_NAMES}))
         p = pool_hierarchical(items)["k_curv"]
-        re_cov += abs(p["k"] - 1) < 2 * p["sd"]
+        re_cov += p["ci95"][0] <= 1 <= p["ci95"][1]
         ks = np.array([i[1]["k_curv"] for i in items])
         fe_cov += abs(ks.mean() - 1) < 2 * 0.1 / np.sqrt(len(ks))
-    table(["method", "95 % interval covers the truth"], [["random effects (REML, Hartung–Knapp), sessions → units → population", f"{100 * re_cov / trials:.0f} %"],
+    table(["method", "nominal 95 % interval covers the truth"], [["random effects (REML, Hartung–Knapp), sessions → units → population", f"{100 * re_cov / trials:.0f} %"],
                                                         ["fixed effects (all sessions as independent)", f"{100 * fe_cov / trials:.0f} %"]])
     print("8 units × 4 sessions, unit offsets σ = 0.3, session errors σ = 0.1.\n")
 

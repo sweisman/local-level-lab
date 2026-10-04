@@ -165,15 +165,20 @@ def mount_epochs(t_s, gyro_b, events_s, sat=None):
     plus the intervals to exclude while the IMU was being turned."""
     epochs = [{"t0_s": -np.inf, "R0": np.eye(3), "turn": None}]
     exclude = []
+    consumed_until = -np.inf
     for te, kind in sorted(events_s):
         R, info = turn_rotation(t_s, gyro_b, te, sat=sat)
+        if R is not None and info["t0_s"] <= consumed_until:
+            continue  # the same physical burst was already confirmed
         if R is None:
             if kind == "index_turn":
                 info["warning"] = "turn logged but no rotation found"
+                epochs[-1]["orientation_unresolved"] = True
             # a bump: no measurable rotation, keep the frame but exclude the moment itself
             exclude.append((te - 5.0, te + 1.0))
             continue
         epochs[-1]["t1_s"] = info["t0_s"]
+        consumed_until = info["t1_s"]
         epochs.append({"t0_s": info["t1_s"], "R0": epochs[-1]["R0"] @ R, "turn": {"kind": kind, **info}})
         exclude.append((info["t0_s"], max(te, info["t1_s"]) + 1.0))
     epochs[-1]["t1_s"] = np.inf

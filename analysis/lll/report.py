@@ -76,23 +76,24 @@ def page(title, body) -> str:
     return (f"<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport "
             f"content='width=device-width,initial-scale=1'><title>{html.escape(title)}</title>"
             f"<link rel=icon type=image/png href='{LOGO}'>"
-            f"<style>{CSS}</style></head><body><main>{body}</main></body></html>")
+            f"<style>{CSS}</style></head><body><main><p><b>Provisional research report. No validated scientific headline claim.</b></p>{body}</main></body></html>")
 
 
-def _k_figure(k, sd, expected_by_model=None):
+def _k_figure(k, sd, ci95=None):
     names = list(K_LABELS)
     fig, ax = plt.subplots(figsize=(7, 2.8))
     y = np.arange(len(names))[::-1]
     for i, n in enumerate(names):
         if k.get(n) is None:
             continue
-        ax.errorbar(k[n], y[i], xerr=1.96 * (sd.get(n) or 0), fmt="o", color=INK, ms=7, capsize=3, lw=1.5)
-        ax.annotate(f"{k[n]:.2f} ± {1.96 * (sd.get(n) or 0):.2f}", (k[n], y[i]), xytext=(0, 9),
+        half = (ci95[n][1] - ci95[n][0]) / 2 if ci95 and n in ci95 else 1.96 * (sd.get(n) or 0)
+        ax.errorbar(k[n], y[i], xerr=half, fmt="o", color=INK, ms=7, capsize=3, lw=1.5)
+        ax.annotate(f"{k[n]:.2f} ± {half:.2f}", (k[n], y[i]), xytext=(0, 9),
                     textcoords="offset points", ha="center", color=INK, fontsize=8)
     ax.axvline(0, color=MUTED, lw=1)
     ax.axvline(1, color=MUTED, lw=1, ls="--")
     ax.set_yticks(y, [K_LABELS[n] for n in names])
-    ax.set_xlabel("scale factor k  (0 = term absent, 1 = term present at full predicted size); bars = 95% CI")
+    ax.set_xlabel("scale factor k  (0 = term absent, 1 = term present at full predicted size); bars = nominal 95% CI")
     ax.set_ylim(-0.7, len(names) - 0.3)
     return _png(fig)
 
@@ -115,12 +116,12 @@ def session_report(res: dict) -> str:
         verdict = (" or ".join(not_rej) if not_rej else "none: check the flags") + (
             "" if idn["identified"] else " (curvature not identified on this flight)")
         out.append("<h2>Result</h2><div class=tiles>"
-                   f"<div class=tile><span class=sub>Models not rejected at 3σ</span><b>{html.escape(verdict)}</b></div>"
+                   f"<div class=tile><span class=sub>Models not rejected at nominal 3σ</span><b>{html.escape(verdict)}</b></div>"
                    f"<div class=tile><span class=sub>Stable cruise analysed</span><b>{res.get('cruise_minutes', 0):.0f} min</b></div>"
                    f"<div class=tile><span class=sub>Noise per 60-s bin</span><b>{fit['sigma_bin_dph']:.1f} °/h</b></div>"
                    "</div>")
         ci = fit.get("delta_chi2_ci_16_84") or {}
-        out.append(_table(["Model", "Δχ² vs free fit", "p (3 dof)", "rejected at 3σ", "Δχ² vs best [16–84 %]",
+        out.append(_table(["Model", "Δχ² vs free fit", "p (3 dof)", "rejected at nominal 3σ", "Δχ² vs best [16–84 %]",
                            "relative likelihood*", "expected k (rot globe, curv globe, disc)"],
                           [[MODEL_LABELS[m], _f(fit["delta_chi2_vs_free"][m], 1), f"{fit['p_vs_free'][m]:.2g}",
                             "yes" if fit["rejected"][m] else "no",
@@ -270,22 +271,22 @@ def collation_report(col: dict) -> str:
            f"{col['n_exploratory']} exploratory · {len(g.get('lat', []))} ground calibrations · analysis v{col['analysis_version']}</p>",
            "<p class=sub>Primary sessions pass every gate: both calibrations, at least "
            f"{col['gates']['min_cruise_min']:.0f} min of cruise, curvature identified, not prior-dominated, not dependent on the "
-           f"WMM slip exclusion, an IMU unit rated {' or '.join(col['gates']['unit_tiers'])} at the time, and not synthetic.</p>"]
+           f"WMM slip exclusion, an IMU unit rated {' or '.join(col['gates']['unit_tiers'])} at the time, curator approval tied to the archive hash, a complete bench certificate predating the flight, verified integrity, two retained headings at least 30° apart with 10 minutes each, and not synthetic.</p>"]
     for f in col.get("flags", []):
         out.append(f"<p><span class=flag>{html.escape(f)}</span></p>")
     if col.get("pooled_k"):
         pk = col["pooled_k"]
         out.append("<h2>Pooled scale factors (random effects, REML with Hartung–Knapp: sessions → IMU units → population)</h2>"
-                   + _k_figure({n: v["k"] for n, v in pk.items() if v}, {n: v["sd"] for n, v in pk.items() if v}))
+                   + _k_figure({n: v["k"] for n, v in pk.items() if v}, {n: v["sd"] for n, v in pk.items() if v}, {n: v["ci95"] for n, v in pk.items() if v}))
         gf = (col.get("ground") or {}).get("fit") or {}
-        notes = {"k_curv": "headline: globe curvature (horizontal tilt of local level)",
+        notes = {"k_curv": "globe curvature (horizontal tilt of local level)",
                  "k_rot_sphere": "globe rotation in flight" + (f"; ground horizontal C = {_f(gf['C_cos'])} ± {_f(gf['C_cos_se'])} °/h (15.04 for a rotating globe)" if gf else ""),
                  "k_disc": "disc transport, from sessions where it was identified (heading-diverse) only"}
         scope = col.get("scope")
         if scope and scope != "population":
             out.append(f"<p><span class=flag>{html.escape(scope)} result</span> Fewer than three IMU units: this describes "
                        "those units, not a population of instruments.</p>")
-        out.append(_table(["term", "pooled k", "95 % interval (t)", "units", "sessions", "τ² between units", "heterogeneity p", "note"],
+        out.append(_table(["term", "pooled k", "nominal 95 % interval (t)", "units", "sessions", "τ² between units", "heterogeneity p", "note"],
                           [[html.escape(n), f"{_f(pk[n]['k'])} ± {_f(pk[n]['sd'])}", f"{_f(pk[n]['ci95'][0])} … {_f(pk[n]['ci95'][1])}",
                             pk[n]["n_units"], pk[n]["n_sessions"], _f(pk[n]["tau2_units"], 3), f"{pk[n]['p_het_units']:.2g}",
                             html.escape(notes[n])]
@@ -296,7 +297,7 @@ def collation_report(col: dict) -> str:
                             [[MODEL_LABELS[m], _f(t["chi2"], 1), t["dof"], f"{t['p']:.2g}", "yes" if t["rejected"] else "no"]
                              for m, t in col["model_tests"].items()])
                    + "<p class=sub>The terms are tested jointly with their covariance, since they come from the same flights. "
-                     "p < 0.0027 is the nominal 3σ threshold; its real false-rejection rate is checked by simulation "
+                     "p < 0.0027 is the nominal 3σ threshold; its extreme-tail false-rejection rate remains unvalidated; calibration is required using simulation "
                      "(analysis/tests/coverage.py --null).</p>")
     for dim, c in (col.get("consistency") or {}).items():
         rows = [[html.escape(str(gname))] + [f"{_f(p[n]['k'])} ± {_f(p[n]['sd'])}" if p[n] else "–" for n in K_LABELS]
@@ -304,6 +305,7 @@ def collation_report(col: dict) -> str:
         het = ", ".join(f"{n} p={v['p']:.2g}" for n, v in c["heterogeneity"].items())
         out.append(f"<h3>Consistency by {html.escape(dim)}</h3>" + _table([dim, "k rot (globe)", "k curv (globe)", "k disc"], rows)
                    + f"<p class=sub>Between-group heterogeneity: {het}." + (" <b>Groups disagree.</b>" if c["disagreement"] else "") + "</p>")
+    out.append("<p>Ground pooling is disabled: pooling positive magnitudes with Gaussian errors can create a false nonzero result. Individual calibration Rice intervals remain available in session reports.</p>")
     if g and g.get("lat"):
         from .calib import ground_model_predictions
         lat = np.array(g["lat"])
@@ -330,8 +332,8 @@ def collation_report(col: dict) -> str:
                        + ("" if f["A_identified"] else "No unit has been calibrated at more than one latitude yet, so A rests on the intercepts' assumptions. ")
                        + "Rotation about the plumb line can't be told from a unit's g-sensitivity along it, so each unit gets its own intercept.</p>")
     out.append("<h2>Sessions</h2>" + _table(
-        ["session", "kind", "flight", "seat", "mount", "IMU", "tier", "cruise min", "not rejected", "k rot", "k curv", "k disc", "primary?"],
-        [[html.escape(str(r["session_id"])[:8]), html.escape(str(r["kind"])), html.escape(r["flight"]), html.escape(str(r["seat"])),
+        ["session", "kind", "flight", "seat position", "mount", "IMU", "tier", "cruise min", "not rejected", "k rot", "k curv", "k disc", "primary?"],
+        [[html.escape(str(r["session_id"])[:8]), html.escape(str(r["kind"])), html.escape(r["flight"]), html.escape(str(r["seat_position"])),
           html.escape(str(r["mount"])), html.escape(str(r["imu_variant"])), html.escape(str(r["unit_tier"])), _f(r["cruise_min"], 0),
           html.escape(", ".join(MODEL_LABELS[m] for m in (r["not_rejected"] or "").split(";") if m) or "–"),
           _f(r["k_rot_sphere"]), _f(r["k_curv"]), _f(r["k_disc"]),

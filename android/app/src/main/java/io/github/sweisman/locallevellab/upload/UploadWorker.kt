@@ -25,19 +25,25 @@ class UploadWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(ctx
     override suspend fun doWork(): Result = withContext(Dispatchers.IO) {
         val id = inputData.getString(KEY_SESSION) ?: return@withContext Result.failure()
         val s = SessionStore.load(applicationContext, id) ?: return@withContext Result.failure()
-        val base = Prefs(applicationContext).serverUrl
+        val base = inputData.getString("server") ?: return@withContext Result.failure()
         if (base.isBlank()) {
-            s.local.put("upload_error", "No server set in Settings"); s.save()
+            s.local.put("upload_error", "No server set in Settings"); SessionStore.updateUpload(s)
             return@withContext Result.failure()
         }
         if (!base.startsWith("https://")) {
             // Android blocks cleartext by default; without this check an http:// URL would retry forever.
-            s.local.put("upload_error", "Server URL must start with https://"); s.save()
+            s.local.put("upload_error", "Server URL must start with https://"); SessionStore.updateUpload(s)
             return@withContext Result.failure()
         }
-        val zip = if (s.finalized) s.zipFile else SessionStore.finalize(s)
+        val zip = java.io.File(s.dir, inputData.getString("snapshot") ?: return@withContext Result.failure())
+        if (!zip.exists()) return@withContext Result.failure()
+        s.local.put("upload_snapshot", zip.name)
         val boundary = "lll-" + UUID.randomUUID()
-        val conn = (URL("$base/api/v1/sessions").openConnection() as HttpURLConnection).apply {
+        val conn = try { (URL("$base/api/v1/sessions").openConnection() as HttpURLConnection) } catch (e: Exception) {
+            s.local.put("upload_error", "Invalid upload destination: ${e.message}"); SessionStore.updateUpload(s)
+            return@withContext Result.failure()
+        }
+        conn.apply {
             requestMethod = "POST"
             doOutput = true
             connectTimeout = 30_000
@@ -58,11 +64,11 @@ class UploadWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(ctx
                 code in 200..299 -> {
                     s.local.put("upload_id", JSONObject(body).optString("id")).put("uploaded_ms", System.currentTimeMillis())
                     s.local.remove("upload_error")
-                    s.save()
+                    SessionStore.updateUpload(s)
                     Result.success()
                 }
                 code == 429 || code >= 500 -> retryOrFail(s, "HTTP $code: ${body.take(300)}")
-                else -> { s.local.put("upload_error", "HTTP $code: ${body.take(300)}"); s.save(); Result.failure() }
+                else -> { s.local.put("upload_error", "HTTP $code: ${body.take(300)}"); SessionStore.updateUpload(s); Result.failure() }
             }
         } catch (e: java.io.IOException) {
             retryOrFail(s, e.toString())
@@ -74,7 +80,7 @@ class UploadWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(ctx
     /** Retry with WorkManager's backoff, but give up after MAX_ATTEMPTS so a dead server or a
      *  blocked connection doesn't retry forever. The session stays on the phone; the user can tap Upload again. */
     private fun retryOrFail(s: Session, msg: String): Result {
-        s.local.put("upload_error", msg); s.save()
+        s.local.put("upload_error", msg); SessionStore.updateUpload(s)
         return if (runAttemptCount + 1 >= MAX_ATTEMPTS) Result.failure() else Result.retry()
     }
 
@@ -82,13 +88,16 @@ class UploadWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(ctx
         const val KEY_SESSION = "session"
         const val MAX_ATTEMPTS = 8
 
-        fun enqueue(ctx: Context, sessionId: String) {
+        fun enqueue(ctx: Context, sessionId: String, destination: String = Prefs(ctx).serverUrl) {
+            val s = SessionStore.load(ctx, sessionId) ?: return
+            check(Prefs(ctx).activeSession != sessionId) { "Stop recording before uploading" }
+            val snapshot = SessionStore.finalize(s).copyTo(java.io.File(s.dir, "upload-${UUID.randomUUID()}.zip"))
             val net = if (Prefs(ctx).unmeteredOnly) NetworkType.UNMETERED else NetworkType.CONNECTED
             val req = OneTimeWorkRequestBuilder<UploadWorker>()
                 .setConstraints(Constraints.Builder().setRequiredNetworkType(net).build())
-                .setInputData(workDataOf(KEY_SESSION to sessionId))
+                .setInputData(workDataOf(KEY_SESSION to sessionId, "snapshot" to snapshot.name, "server" to destination))
                 .build()
-            WorkManager.getInstance(ctx).enqueueUniqueWork("upload-$sessionId", ExistingWorkPolicy.KEEP, req)
+            WorkManager.getInstance(ctx).enqueueUniqueWork("upload-$sessionId-${snapshot.name}", ExistingWorkPolicy.KEEP, req)
         }
     }
 }

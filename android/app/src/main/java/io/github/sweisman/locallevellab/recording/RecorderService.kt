@@ -52,15 +52,16 @@ import kotlin.math.sin
 
 /** One gzip CSV member appended to a stream file. Values are written exactly as delivered. */
 private class CsvGz(file: File, header: String) {
-    private val w = BufferedWriter(OutputStreamWriter(GZIPOutputStream(FileOutputStream(file, true), 1 shl 16), Charsets.US_ASCII), 1 shl 16)
+    private val w = BufferedWriter(OutputStreamWriter(FileOutputStream(file, true), Charsets.US_ASCII), 1 shl 16)
     var rows = 0L; private set
 
-    init { w.write(header); w.write("\n") }
+    init { if (file.length() == 0L) { w.write(header); w.write("\n"); w.flush() } }
 
     fun row(t: Long, vararg v: String) {
         w.write(t.toString())
         for (s in v) { w.write(","); w.write(s) }
         w.write("\n")
+        w.flush()
         rows++
     }
 
@@ -72,7 +73,7 @@ private class CsvGz(file: File, header: String) {
  * little-endian. One gzip member is appended per recording phase. See docs/FORMAT.md.
  */
 private class ImuWriter(file: File) {
-    private val out = BufferedOutputStream(GZIPOutputStream(FileOutputStream(file, true), 1 shl 16), 1 shl 16)
+    private val out = BufferedOutputStream(FileOutputStream(file, true), 1 shl 16)
     private val head = ByteBuffer.allocate(10).order(ByteOrder.LITTLE_ENDIAN)
     var bytes = 0L; private set
 
@@ -85,6 +86,7 @@ private class ImuWriter(file: File) {
             out.write(data, off, n)
             off += n
         }
+        out.flush()
         bytes += data.size
     }
 
@@ -172,7 +174,7 @@ class RecorderService : Service(), ImuLink.Listener {
                 } else stopSelf()
             }
             ACTION_MONITOR -> { goForeground("Connected to the IMU"); handler.post { ensureLink(); scheduleIdleStop() } }
-            ACTION_CONFIGURE -> { goForeground("Configuring the IMU"); handler.post { ensureLink(); configApplied = false; applyConfig(); scheduleIdleStop() } }
+            ACTION_CONFIGURE -> { if (phase != null) return START_STICKY; goForeground("Configuring the IMU"); handler.post { ensureLink(); configApplied = false; applyConfig(); scheduleIdleStop() } }
             ACTION_DISCONNECT -> handler.post { if (phase == null) shutdown() }
             ACTION_DROP_LINK -> handler.post { dropLinkTest() }
             ACTION_START -> {
@@ -180,7 +182,8 @@ class RecorderService : Service(), ImuLink.Listener {
                 val sid = intent.getStringExtra(EXTRA_SESSION) ?: return START_STICKY
                 val ph = intent.getStringExtra(EXTRA_PHASE) ?: return START_STICKY
                 val target = intent.getDoubleExtra(EXTRA_TARGET_STILL_S, 0.0)
-                handler.post { startPhase(sid, ph, target) }
+                val allowNoGps = intent.getBooleanExtra("allow_no_gps", false)
+                handler.post { startPhase(sid, ph, target, allowNoGps = allowNoGps) }
             }
             ACTION_STOP -> handler.post { stopPhase() }
             ACTION_EVENT -> {
@@ -233,7 +236,8 @@ class RecorderService : Service(), ImuLink.Listener {
         if (!canConnect()) { fail("Bluetooth permission is missing. Grant it in Settings."); return }
         val range = prefs.imuGyroRangeDps
         val accRange = prefs.imuAccelRangeG
-        val key = "${v.key}@$addr@$range@$accRange"
+        val key = "${v.key}@$addr@$range@$accRange@${prefs.imuRateHz}"
+        if (phase != null && link != null && key != linkKey) { fail("Stop recording before changing the instrument settings"); return }
         if (link != null && key == linkKey) return
         link?.close()
         variant = v; linkKey = key
@@ -301,6 +305,7 @@ class RecorderService : Service(), ImuLink.Listener {
     private fun checkConfig() {
         val v = variant ?: return
         val expected = WitConfig.expected(v, prefs.imuRateHz, prefs.imuGyroRangeDps, prefs.imuAccelRangeG, autoZeroWanted())
+        Live.state.update { it.copy(imuConfigOk = null) }
         readback.clear()
         expected.keys.forEachIndexed { i, reg ->
             handler.postDelayed({
@@ -311,6 +316,7 @@ class RecorderService : Service(), ImuLink.Listener {
         handler.postDelayed({
             val got = expected.keys.associateWith { readback[it] }
             val ok = got.all { (reg, value) -> value == expected[reg] }
+            if (!ok && phase != null) session?.let { SessionStore.addFlag(it, "imu_config_unverified") }
             val detail = got.entries.joinToString(" ") { (r, value) -> "0x%02x=%s".format(r, value?.let { "0x%x".format(it) } ?: "?") }
             Live.state.update { it.copy(imuConfigOk = ok) }
             if (phase != null) event("imu_config", "$detail ok=$ok")
@@ -342,11 +348,46 @@ class RecorderService : Service(), ImuLink.Listener {
     // ---- phases ----
 
     @SuppressLint("MissingPermission")
-    private fun startPhase(sessionId: String, ph: String, target: Double, resume: Boolean = false) {
-        if (phase != null) closePhase()
+    private fun startPhase(sessionId: String, ph: String, target: Double, resume: Boolean = false, allowNoGps: Boolean = false) {
+        synchronized(SessionStore) {
+        if (ph == "flight") {
+            if (!hasPerm(Manifest.permission.ACCESS_FINE_LOCATION)) { fail("Precise location permission is required"); return }
+            val fresh = lastFixNs > 0 && SystemClock.elapsedRealtimeNanos() - lastFixNs < 30_000_000_000L && Live.state.value.hAccM < 100
+            if (!fresh && !allowNoGps && !resume) { fail("GPS is missing or stale; acknowledge this on the placement screen"); return }
+        }
+        if (phase == "placement_check" && ph == "flight" && session?.id == sessionId) closePhase()
+        if (phase != null) { fail("Stop the current phase first"); return }
         handler.removeCallbacks(idleStop)
         val s = SessionStore.load(this, sessionId) ?: run { fail("session not found"); return }
-        session = s; phase = ph; targetStillS = target
+        session = s
+        ensureLink()
+        val recordedImu = s.manifest.getJSONObject("imu")
+        val currentImu = SessionStore.imuManifest(this)
+        val recordedConfig = recordedImu.getJSONObject("config")
+        val currentConfig = currentImu?.getJSONObject("config")
+        if (currentImu == null || listOf("unit_id", "variant").any { recordedImu.optString(it) != currentImu.optString(it) } ||
+            listOf("rate_hz", "gyro_range_dps", "accel_range_g").any { recordedConfig.optInt(it) != currentConfig?.optInt(it) }) {
+            fail("Instrument settings differ from this session; restore them or create a new session"); return
+        }
+        val expected = variant?.let { WitConfig.expected(it, prefs.imuRateHz, prefs.imuGyroRangeDps, prefs.imuAccelRangeG, autoZeroWanted()) }
+        if (!imuConnected || Live.state.value.imuConfigOk != true || expected == null || expected.any { (reg, value) -> readback[reg] != value }) {
+            if (imuConnected) { configApplied = false; checkConfig() }
+            fail("Wait for verified IMU settings, then start recording")
+            if (resume) handler.postDelayed({ startPhase(sessionId, ph, target, true) }, 5000)
+            return
+        }
+        if (ph == "flight" && !hasPerm(Manifest.permission.ACCESS_FINE_LOCATION)) { fail("Precise location permission is required for flight recording"); return }
+        if (resume || File(s.dir, "recording.marker").exists()) {
+            var lost = 0L
+            for (name in listOf("imu.bin", "gnss.csv", "events.csv")) lost += Journal.repair(File(s.dir, name + ".journal"), name == "imu.bin")
+            SessionStore.addFlag(s, "recording_data_loss")
+            s.local.put("recovery_truncated_bytes", lost)
+        }
+        if (File(s.dir, "imu.bin.gz").exists() && !File(s.dir, "imu.bin.journal").exists()) { fail("Legacy recordings remain readable; create a new session to record more data"); return }
+        File(s.dir, "recording.marker").writeText(ph)
+        s.local.put("finalized", false)
+        s.local.remove("upload_id")
+        phase = ph; targetStillS = target
         startNs = if (resume) prefs.activeStartNs else SystemClock.elapsedRealtimeNanos()
         if (!resume) { prefs.activeSession = sessionId; prefs.activePhase = ph; prefs.activeStartNs = startNs; prefs.activeTargetStillS = target.toFloat() }
         stillS = 0.0; streak = 0.0; refGravity = null; refBlocks = 0; shiftBlocks = 0; drops = 0
@@ -359,25 +400,35 @@ class RecorderService : Service(), ImuLink.Listener {
         wake = wake ?: getSystemService(PowerManager::class.java).newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "lll:recording").apply {
             setReferenceCounted(false); acquire(24 * 3600 * 1000L)
         }
-        events = CsvGz(File(s.dir, "events.csv.gz"), "t_ns,kind,detail")
+        events = CsvGz(File(s.dir, "events.csv.journal"), "t_ns,kind,detail")
         event(if (resume) "phase_resume" else "phase_start", ph)
-        imuOut = ImuWriter(File(s.dir, "imu.bin.gz"))
+        imuOut = ImuWriter(File(s.dir, "imu.bin.journal"))
         ensureLink()
-        if (imuConnected) { event("imu_connect", "already connected"); checkConfig() }
+        if (imuConnected) {
+            event("imu_connect", "already connected")
+            event("imu_config", readback.entries.joinToString(" ") { (r, v) -> "0x%02x=0x%x".format(r, v) } + " ok=true")
+        }
         val unit = prefs.unitId(prefs.imuAddress)
         if (s.manifest.optJSONObject("imu")?.optString("unit_id") != unit) SessionStore.addFlag(s, "imu_changed_mid_session")
 
         if (inAircraft && hasPerm(Manifest.permission.ACCESS_FINE_LOCATION)) {
-            gnss = CsvGz(File(s.dir, "gnss.csv.gz"),
+            gnss = CsvGz(File(s.dir, "gnss.csv.journal"),
                 "t_ns,utc_ms,lat,lon,alt_m,speed_mps,bearing_deg,h_acc_m,v_acc_m,speed_acc_mps,bearing_acc_deg,sats_used")
             lm?.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000L, 0f, locListener, thread.looper)
             lm?.registerGnssStatusCallback(gnssCb, handler)
         }
-        if (ph.startsWith("cal_") && hasPerm(Manifest.permission.ACCESS_FINE_LOCATION) && prefs.shareCalLatitude &&
-            s.manifest.getJSONObject("privacy").isNull("cal_lat_deg")) {
-            val last = listOf(LocationManager.PASSIVE_PROVIDER, LocationManager.NETWORK_PROVIDER, LocationManager.GPS_PROVIDER)
-                .mapNotNull { runCatching { lm?.getLastKnownLocation(it) }.getOrNull() }.maxByOrNull { it.time }
-            if (last != null) s.manifest.getJSONObject("privacy").put("cal_lat_deg", floor(last.latitude * 2 + 0.5) / 2)
+        if (ph.startsWith("cal_") && ph.endsWith(".up0")) {
+            s.manifest.getJSONObject("privacy").optJSONObject("cal_locations")?.remove(ph.substringBefore("."))
+        }
+        if (ph.startsWith("cal_") && hasPerm(Manifest.permission.ACCESS_FINE_LOCATION) && prefs.shareCalLatitude) {
+            val name = ph.substringBefore(".")
+            val locations = s.manifest.getJSONObject("privacy").optJSONObject("cal_locations") ?: JSONObject().also { s.manifest.getJSONObject("privacy").put("cal_locations", it) }
+            if (!locations.has(name)) {
+                val last = listOf(LocationManager.PASSIVE_PROVIDER, LocationManager.NETWORK_PROVIDER, LocationManager.GPS_PROVIDER)
+                    .mapNotNull { runCatching { lm?.getLastKnownLocation(it) }.getOrNull() }.maxByOrNull { it.elapsedRealtimeNanos }
+                val age = last?.let { (SystemClock.elapsedRealtimeNanos() - it.elapsedRealtimeNanos) / 1e9 }
+                if (last != null && age != null && age in 0.0..900.0) locations.put(name, JSONObject().put("lat_deg", floor(last.latitude * 2 + 0.5) / 2).put("age_s", age))
+            }
         }
         // reminders to turn the IMU, during the flight only
         val every = prefs.indexAlertMinutes
@@ -387,6 +438,7 @@ class RecorderService : Service(), ImuLink.Listener {
         Live.activity(if (resume) "Resumed recording $ph after a restart" else "Started recording $ph")
         handler.removeCallbacks(uiTick); handler.post(uiTick)
         publish()
+        }
     }
 
     private fun stopPhase() {
@@ -408,6 +460,7 @@ class RecorderService : Service(), ImuLink.Listener {
         event("phase_stop", "$ph still_s=${"%.1f".format(stillS)} link_drops=$drops")
         imuOut?.close(); gnss?.close(); events?.close()
         imuOut = null; gnss = null; events = null
+        File(s.dir, "recording.marker").delete()
         SessionStore.addPhase(s, ph, startNs, endNs, stillS)
         prefs.activeSession = null; prefs.activePhase = null
         // display-only bias estimate once the four pre-flight positions are done
@@ -465,7 +518,7 @@ class RecorderService : Service(), ImuLink.Listener {
     }
 
     private fun event(kind: String, detail: String) {
-        events?.row(SystemClock.elapsedRealtimeNanos(), kind, detail.replace(Regex("[,\\r\\n]"), " "))
+        events?.row(SystemClock.elapsedRealtimeNanos(), kind, detail.replace(",", " ").replace("\r", " ").replace("\n", " "))
     }
 
     private fun markShift(msg: String) {
@@ -610,6 +663,7 @@ class RecorderService : Service(), ImuLink.Listener {
 
     private val uiTick = object : Runnable {
         override fun run() {
+            Live.state.update { it.copy(hasFix = lastFixNs > 0 && SystemClock.elapsedRealtimeNanos() - lastFixNs < 30_000_000_000L && it.hAccM < 100) }
             publish()
             if (nextTurnAtMs > 0 && !turnAlerted && SystemClock.elapsedRealtime() >= nextTurnAtMs) {
                 turnAlerted = true
@@ -690,9 +744,9 @@ class RecorderService : Service(), ImuLink.Listener {
         private const val ALERT_TURN = 2
         private const val ALERT_LINK = 3
 
-        fun start(ctx: Context, sessionId: String, phase: String, targetStillS: Double = 0.0) {
+        fun start(ctx: Context, sessionId: String, phase: String, targetStillS: Double = 0.0, allowNoGps: Boolean = false) {
             ContextCompat.startForegroundService(ctx, Intent(ctx, RecorderService::class.java).setAction(ACTION_START)
-                .putExtra(EXTRA_SESSION, sessionId).putExtra(EXTRA_PHASE, phase).putExtra(EXTRA_TARGET_STILL_S, targetStillS))
+                .putExtra(EXTRA_SESSION, sessionId).putExtra(EXTRA_PHASE, phase).putExtra(EXTRA_TARGET_STILL_S, targetStillS).putExtra("allow_no_gps", allowNoGps))
         }
 
         fun stop(ctx: Context) {

@@ -340,7 +340,7 @@ def synthesize(path, truth="sphere_rotating", *, fs=25.0, seed=0, lat0=40.6, lon
                      ble_loss=ble_loss)
     streams = {"gnss": gnss}
     manifest = {
-        "schema_version": 2, "data_license": "CC0-1.0", "session_id": str(uuid.UUID(int=int(rng.integers(2 ** 63)))),
+        "schema_version": 3, "data_license": "CC0-1.0", "session_id": str(uuid.UUID(int=int(rng.integers(2 ** 63)))),
         "install_id": "synthetic", "created_utc": "2026-10-02T00:00:00Z",
         "app": {"name": "lll.synth", "version": "0", "build": 0},
         "device": {"manufacturer": "synthetic", "model": f"synth-{truth}", "android_sdk": 0, "android_release": ""},
@@ -349,9 +349,9 @@ def synthesize(path, truth="sphere_rotating", *, fs=25.0, seed=0, lat0=40.6, lon
                            "packets": ["0x50", "0x51", "0x52", "0x54"] if variant == "spp" else ["0x61", "0x71@0x3a"]}},
         "clock": {"elapsed_ns": t0_ns, "utc_ms": 1_790_000_000_000},
         "flight": {"airline": "SYN", "flight_number": f"SYN{seed}", "date": "2026-10-02", "origin": "", "destination": "",
-                   "aircraft_type": "", "seat": "23A", "seat_position": "window", "notes": f"synthetic truth={truth}"},
+                   "aircraft_type": "", "seat_position": "window", "notes": f"synthetic truth={truth}"},
         "mount": {"type": mount, "orientation_note": "", "rotated_180_control": False},
-        "privacy": {"cal_lat_deg": round(lat0 * 2) / 2},
+        "privacy": {"cal_locations": {"cal_pre": {"lat_deg": round(lat0 * 2) / 2, "age_s": 0}, "cal_post": {"lat_deg": round(lat0 * 2) / 2, "age_s": 0}}},
         "phases": [{"name": nm, "start_ns": t0_ns + int(a * 1e9), "end_ns": t0_ns + int(b * 1e9), "still_s": b - a}
                    for nm, a, b in phases],
         "quality": {"cal_pre": "pre" in cal, "cal_post": "post" in cal, "placement_check": True, "flags": ["synthetic"]},
