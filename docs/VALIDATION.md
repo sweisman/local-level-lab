@@ -64,6 +64,19 @@ all three were excluded by primary gates (prior sensitivity, and additionally WM
 sensitivity for the still globe). There are **zero accepted runs**, so this pilot says nothing
 about accepted-flight false-rejection tails. Runtime was about 26 seconds on the recorded environment.
 
+[Matched zero-crab baseline](baseline-060.json): the same seed, routes, sampling and bootstrap
+settings also yielded three converged analyses, no true-model rejections and zero accepted flights.
+All three were prior-dominated even without crab drift. The +1°/h run additionally triggered WMM
+selection sensitivity for the still globe. Across coefficients, the largest changes from baseline
+were 0.82, 0.49 and 0.36 baseline standard errors for the rotating globe, still globe and flat disc,
+respectively. These paired changes are descriptive, not significance tests or evidence for accepted
+flight coverage. The baseline took about 27 seconds.
+
+Before increasing the simulation count, inspect per-prior sensitivity and compare fixtures with
+the protocol's same-side-up IMU reversals while keeping eligibility thresholds fixed. The current
+pilot design cannot measure conditional false rejection because it produces no accepted flights.
+No stored observational corpus existed at this checkpoint, so no reprocessing was needed.
+
 [Pooling pilot](pool-pilot-060.json): one seed per truth at 2, 3, 5 and 10 units, with correlated
 unit effects and unequal session covariance. No true-model rejections in these 12 summaries;
 two-unit results are exploratory. This is a runtime/functional check, not a tail study.
