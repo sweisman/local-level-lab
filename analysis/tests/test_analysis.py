@@ -431,3 +431,89 @@ def test_reversal_test_measures_horizontal_rate_and_its_repeatability(tmp_path, 
     assert rv["pairs"] == 6
     assert abs(rv["h_mean_dph"] - h_pred) < 3 * rv["h_sem_dph"] + 1.5    # noise biases a norm upward
     assert r["unit_quality"]["horizontal_repeatability_from"] == "reversal test"
+
+
+# ---- third review ----
+
+def test_pooled_model_test_uses_the_joint_covariance():
+    """k_rot and k_curv trade against each other on the same flight. Summing per-term z² as if they
+    were independent gives the wrong χ²; the test must use dᵀ V⁻¹ d."""
+    from lll.collate import collate
+    sd = np.array([0.1, 0.1, 0.2])
+    rho = 0.9
+    cov = np.diag(sd ** 2)
+    cov[0, 1] = cov[1, 0] = rho * sd[0] * sd[1]
+    k = (1.15, 0.85, 0.0)                       # opposite shifts: unlikely under positive correlation
+    r = _fake("u1", k, tuple(sd))
+    r["fit"]["k_cov"] = cov.tolist()
+    col = collate([r])
+    t = col["model_tests"]["sphere_rotating"]
+    d = np.array(k) - np.array(models.EXPECTED_K["sphere_rotating"])
+    assert t["chi2"] == pytest.approx(float(d @ np.linalg.inv(cov) @ d), rel=1e-6)
+    assert t["chi2"] > 2 * float(np.sum((d / sd) ** 2))   # far beyond the independent sum
+
+
+def test_temperature_coefficient_is_not_confused_with_drift():
+    from lll.drift import temp_regression
+    t = np.arange(0, 4 * 3600, 60.0)
+    drift = 2.0 / RAD2DPH * t / 3600.0                 # 2 °/h per hour of plain drift
+    means = np.column_stack([drift] * 3)
+    warm = 20 + 8 * t / t[-1]                          # monotonic warm-up: T follows t
+    r = temp_regression(t, warm, means)
+    assert r["bias_temp_confounded"]
+    cycled = 25 + 4 * np.sin(2 * np.pi * t / 3600.0)   # warm and cool several times
+    beta = 0.5 / RAD2DPH
+    r = temp_regression(t, cycled, means + beta * (cycled - 25)[:, None])
+    assert not r["bias_temp_confounded"]
+    assert np.allclose(r["bias_temp_coef_dph_per_c"], 0.5, atol=1e-6)
+    assert np.allclose(r["bias_drift_dph_per_h"], 2.0, atol=1e-6)
+
+
+def test_missing_gnss_bearing_never_becomes_north():
+    from lll.segments import gnss_kinematics
+    n = 600
+    t = np.arange(n, dtype=float)
+    lon = -100 + 250.0 * t / (111320 * np.cos(np.radians(40)))   # due east at 250 m/s
+    brg = np.full(n, 90.0)
+    brg[200:220] = np.nan                              # receiver lost the course
+    acc = np.full(n, 0.5)
+    acc[400:420] = 20.0                                # receiver says its course is poor
+    gn = {"t_ns": (t * 1e9).astype(np.int64), "lat": np.full(n, 40.0), "lon": lon, "alt_m": np.full(n, 11000.0),
+          "speed_mps": np.full(n, 250.0), "bearing_deg": brg, "bearing_acc_deg": acc, "h_acc_m": np.full(n, 5.0)}
+    k = gnss_kinematics(gn)
+    assert not k["bearing_ok"][200:220].any() and not k["bearing_ok"][400:420].any()
+    assert k["bearing_ok"][50:150].all()
+    assert np.allclose(np.degrees(k["psi"][200:220]), 90.0)    # interpolated, not 0
+    gn["bearing_deg"] = np.where(np.arange(n) >= 300, 0.0, 90.0)  # bearing disagrees with the track
+    assert not gnss_kinematics(gn)["bearing_ok"][320:].any()
+
+
+def test_unit_tier_is_taken_as_of_the_session():
+    """A unit qualified later must not promote a flight recorded before it was qualified."""
+    from lll.collate import collate
+    flight = _fake("u1", (1, 1, 0), (0.1, 0.2, 0.2), tier="unknown")
+    flight["created_utc"] = "2026-01-01T00:00:00Z"
+    bench = {"session_id": "bench", "flags": [], "created_utc": "2026-02-01T00:00:00Z",
+             "imu": {"unit_id": "u1"}, "unit_quality": {"unit_id": "u1", "tier": "qualified"}}
+    later = _fake("u1", (1, 1, 0), (0.1, 0.2, 0.2), tier="unknown")
+    later["created_utc"] = "2026-03-01T00:00:00Z"
+    later["session_id"] = "later"
+    col = collate([flight, bench, later])
+    rows = {r["session_id"]: r for r in col["rows"]}
+    assert "tier unknown" in rows[flight["session_id"]]["excluded_because"]
+    assert rows["later"]["excluded_because"] == ""
+
+
+def test_ground_rate_interval_is_honest_near_zero():
+    from lll.calib import rice_interval
+    rng = np.random.default_rng(3)
+    ps, lows = [], []
+    for _ in range(300):
+        v = rng.normal(0, 1.0, (2, 2))                  # two faces, zero true rate, σ = 1
+        r = rice_interval(np.linalg.norm(v, axis=1), [1.0, 1.0])
+        ps.append(r["p_zero"])
+        lows.append(r["ci95"][0])
+    assert 0.02 < np.mean(np.array(ps) < 0.05) < 0.09   # p of zero rate is calibrated
+    assert np.mean(np.array(lows) == 0.0) > 0.9         # the interval reaches zero
+    r = rice_interval([10.3, 9.8], [1.0, 1.0])
+    assert r["ci95"][0] < 10 < r["ci95"][1] and r["p_zero"] < 1e-10

@@ -11,13 +11,14 @@ import sqlite3
 import time
 import uuid
 import zipfile
+import zlib
 from collections import defaultdict, deque
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException, Request, UploadFile
 from fastapi.responses import FileResponse, HTMLResponse
 
-from lll.format import validate_manifest
+from lll.format import TooLarge, bounded_gunzip, validate_manifest
 
 MAX_BYTES = int(os.environ.get("LLL_MAX_UPLOAD_MB", "200")) * 1024 * 1024
 # Declared uncompressed size of all zip members, and of manifest.json alone. Guards against
@@ -116,7 +117,14 @@ def create_app(data_dir: str | Path | None = None) -> FastAPI:
                 raise HTTPException(413, "manifest.json too large")
             manifest = json.loads(zf.read("manifest.json"))
             names = [i.filename for i in infos]
-        except (zipfile.BadZipFile, KeyError, json.JSONDecodeError, UnicodeDecodeError):
+            # the streams are gzips inside the zip: a tiny member can still expand enormously
+            budget = MAX_UNCOMPRESSED
+            for i in infos:
+                if i.filename.endswith(".gz"):
+                    budget -= bounded_gunzip(zf.read(i), budget, keep=False)
+        except TooLarge:
+            raise HTTPException(413, f"decompressed streams exceed {MAX_UNCOMPRESSED // 2**20} MB")
+        except (zipfile.BadZipFile, KeyError, json.JSONDecodeError, UnicodeDecodeError, OSError, EOFError, zlib.error):
             raise HTTPException(422, "not a session zip (need a zip containing manifest.json)")
         errs = validate_manifest(manifest, names)
         if errs:

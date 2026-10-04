@@ -23,17 +23,23 @@ Thresholds marked *provisional* will be revised once real units have been measur
 
 ## 2. Automatic gyro zeroing is really off
 
-This is the most important single check. If the firmware zeros the gyro while it's still, it erases the Earth's rotation, and the transport rate too during smooth cruise.
+This is the most important single check. If the firmware zeros the gyro while it's still, it erases any slow steady rotation, including the transport rate during smooth cruise.
 
-1. **Off run.** Bench session with "auto-zero ON" switched **off**: a calibration plus the reversal test.
-2. **On run.** Switch "auto-zero ON" **on**. Make a second bench session with the same steps, then switch it off again. Flights always force it off regardless.
-3. **Compare.** `lll bench off.zip on.zip`.
+The check must not rely on the Earth's rotation. Requiring the stationary IMU to show Ω|cos φ| would certify the instrument only if the globe rotates, before the experiment has asked. So the test imposes a slow rotation whose rate is known independently, from the apparatus alone.
+
+**Apparatus.** Anything that turns the IMU steadily about one axis at a slow rate (roughly 10–30 °/h) known without reference to the Earth. Examples: a geared or stepper turntable whose total angle over the run is read off a scale, or a clock movement. Run it once clockwise and once anticlockwise at the same rate. Half the difference between the two mean rates about the turntable axis is the imposed rate. The gyro bias and any Earth rate cancel, so nothing model-dependent remains.
+
+1. **Off run.** Switch "auto-zero ON" **off**. Make two bench sessions on the turntable, clockwise and anticlockwise.
+2. **On run.** Switch "auto-zero ON" **on**. Repeat both directions, then switch it off again. Flights always force it off regardless.
+3. **Read.** `lll bench` on each session gives `gyro_mean_dph` per axis. For each setting, take half of (clockwise − anticlockwise) on the turntable axis.
 
 **Pass:**
-- In the off run, `reversal_h_dph` and `calibration_h_dph` are near Ω|cos φ| at your latitude: 12.8 °/h at 32°N, for example. They are clearly not near 0.
-- In the on run they collapse towards 0.
+- With auto-zero **off**, that half-difference equals the imposed rate within its error, and within 1 °/h for a rate of 10 °/h or more.
+- With auto-zero **on**, it is clearly suppressed or distorted.
 
-If the two runs look the same, the register or its polarity is wrong. Stop and fix `WitConfig` before anything else.
+If both settings preserve the imposed rate, the test can't tell whether the register works. Use a slower rate, inside the firmware's zeroing window. If both suppress it, or the off run does, the register or its polarity is wrong. Stop and fix `WitConfig` before anything else.
+
+The stationary horizontal rate (`reversal_h_dph`, `calibration_h_dph`) is recorded too, but it is a measurement, never a pass criterion here.
 
 ## 3. Quantization and the gyro range
 
@@ -95,11 +101,16 @@ Use the finest range that passes. Before trusting it, turn the IMU by hand at yo
 
 ## 8. Temperature
 
-**Do:** a long still recording while the room or the IMU slowly warms or cools by 5–10 °C. For example, start cold and let it warm. Don't heat it quickly.
+**Do:** a long still recording while the IMU warms and cools by 5–10 °C **at least twice**. For example, two cycles of slow warming then slow cooling over several hours. Don't heat it quickly.
 
-**Read:** `bias_vs_temp.slope_dph_per_c` and its `correlation`, per axis.
+**Why cycles.** In a single warm-up, temperature rises with time, so ordinary bias drift looks exactly like a temperature coefficient. The analysis fits bias = b₀ + β_T (T − T̄) + β_t t, and it can separate β_T from drift only when temperature isn't a straight function of time.
 
-**Pass:** this is not pass or fail; it characterizes the unit. A strong, repeatable slope can be used as the known coefficient. Hysteresis, meaning different slopes warming and cooling, means the temperature term can't be trusted, and flights should be flagged `temperature_sensitive`.
+**Read:** `bias_vs_temp.slope_dph_per_c` with its `slope_sd_dph_per_c`, `drift_dph_per_h`, `temp_time_corr` and `confounded`, per axis.
+
+**Pass:** this is not pass or fail; it characterizes the unit.
+- If `confounded` is true (|corr(T, t)| > 0.9), the slope is unusable. Repeat with cycles. The flight analysis ignores confounded drift runs when it sets the temperature prior.
+- A strong slope that repeats across cycles can be used as the known coefficient.
+- Hysteresis, meaning different slopes warming and cooling, means the temperature term can't be trusted. Flights should then be flagged `temperature_sensitive`.
 
 ## 9. Before the first flight
 

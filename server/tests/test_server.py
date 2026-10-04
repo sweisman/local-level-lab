@@ -104,3 +104,25 @@ def test_rate_limit_counts_only_accepted(client, synth_zip, monkeypatch):
     with zipfile.ZipFile(io.BytesIO(synth_zip)) as src:
         other = _zip_with(m, {n: src.read(n) for n in src.namelist() if n != "manifest.json"})
     assert c.post("/api/v1/sessions", files={"file": ("o.zip", other)}).status_code == 429
+
+
+def test_rejects_gzip_bomb_inside_the_zip(client, synth_zip, monkeypatch):
+    """The zip's declared sizes are small, but a stream gzip expands far beyond the limit."""
+    import gzip
+    import lll_server.app as appmod
+    monkeypatch.setattr(appmod, "MAX_UNCOMPRESSED", 50 * 2**20)
+    c, _ = client
+    m = json.loads(zipfile.ZipFile(io.BytesIO(synth_zip)).read("manifest.json"))
+    with zipfile.ZipFile(io.BytesIO(synth_zip)) as src:
+        streams = {n: src.read(n) for n in src.namelist() if n != "manifest.json"}
+    streams["gyro.csv.gz"] = gzip.compress(b"0" * (60 * 2**20), 9)   # ~60 kB that expands to 60 MB
+    r = c.post("/api/v1/sessions", files={"file": ("b.zip", _zip_with(m, streams))})
+    assert r.status_code == 413
+
+
+def test_read_session_bounds_decompression(synth_zip, tmp_path):
+    from lll.format import TooLarge, read_session
+    p = tmp_path / "s.zip"
+    p.write_bytes(synth_zip)
+    with pytest.raises(TooLarge):
+        read_session(p, max_bytes=1000)

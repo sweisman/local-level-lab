@@ -6,6 +6,7 @@ import base64
 import html
 import io
 import json
+from pathlib import Path
 
 import matplotlib
 
@@ -14,6 +15,9 @@ import matplotlib.pyplot as plt  # noqa: E402
 import numpy as np  # noqa: E402
 
 from .models import MODEL_LABELS  # noqa: E402
+
+# The logo, embedded so every report stays a single self-contained file.
+LOGO = "data:image/png;base64," + base64.b64encode((Path(__file__).parent / "logo.png").read_bytes()).decode()
 
 # Fixed categorical order (never cycled): each model keeps the same colour and dash in every
 # figure. Measured data is drawn in ink.
@@ -41,7 +45,7 @@ CSS = """
 :root[data-theme="dark"]{--bg:#0d1117;--fg:#e6edf3;--muted:#8d96a0;--line:#30363d;--card:#161b22}
 body{background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,sans-serif;margin:0;padding:16px}
 main{max-width:980px;margin:auto}
-h1{font-size:1.5rem;margin:.2rem 0} h2{font-size:1.15rem;margin-top:2rem;border-bottom:1px solid var(--line)}
+h1{font-size:1.5rem;margin:.2rem 0;display:flex;align-items:center;gap:.6rem} h1 img{width:2.6rem;height:2.6rem;flex:none} h2{font-size:1.15rem;margin-top:2rem;border-bottom:1px solid var(--line)}
 .sub{color:var(--muted)} table{border-collapse:collapse;width:100%;font-size:.9rem;overflow-x:auto;display:block}
 td,th{border-bottom:1px solid var(--line);padding:4px 8px;text-align:left;white-space:nowrap}
 th{color:var(--muted);font-weight:600} img{max-width:100%;background:#fff;border-radius:6px}
@@ -71,6 +75,7 @@ def _f(x, nd=2):
 def page(title, body) -> str:
     return (f"<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport "
             f"content='width=device-width,initial-scale=1'><title>{html.escape(title)}</title>"
+            f"<link rel=icon type=image/png href='{LOGO}'>"
             f"<style>{CSS}</style></head><body><main>{body}</main></body></html>")
 
 
@@ -95,7 +100,7 @@ def _k_figure(k, sd, expected_by_model=None):
 def session_report(res: dict) -> str:
     fl, mt = res.get("flight", {}), res.get("mount", {})
     title = f"{fl.get('airline', '')} {fl.get('flight_number', '')} {fl.get('date', '')}".strip() or res.get("session_id", "session")
-    out = [f"<h1>Local Level Lab — {html.escape(title)}</h1>",
+    out = [f"<h1><img src='{LOGO}' alt=''>Local Level Lab — {html.escape(title)}</h1>",
            f"<p class=sub>session {html.escape(str(res.get('session_id')))} · mount {html.escape(str(mt.get('type')))} · "
            f"device {html.escape(str(res.get('device', {}).get('model')))} · analysis v{res.get('analysis_version')} · "
            f"input sha256 <code>{res.get('input_sha256', '')[:16]}…</code></p>"]
@@ -260,12 +265,12 @@ def session_report(res: dict) -> str:
 
 def collation_report(col: dict) -> str:
     g = col.get("ground") or {}
-    out = ["<h1>Local Level Lab — collated results</h1>",
+    out = [f"<h1><img src='{LOGO}' alt=''>Local Level Lab — collated results</h1>",
            f"<p class=sub>{col['n_sessions']} sessions: {col['n_primary']} in the primary result, "
            f"{col['n_exploratory']} exploratory · {len(g.get('lat', []))} ground calibrations · analysis v{col['analysis_version']}</p>",
            "<p class=sub>Primary sessions pass every gate: both calibrations, at least "
-           f"{col['gates']['min_cruise_min']:.0f} min of cruise, curvature identified, not prior-dominated, an IMU unit rated "
-           f"{' or '.join(col['gates']['unit_tiers'])}, and not synthetic.</p>"]
+           f"{col['gates']['min_cruise_min']:.0f} min of cruise, curvature identified, not prior-dominated, not dependent on the "
+           f"WMM slip exclusion, an IMU unit rated {' or '.join(col['gates']['unit_tiers'])} at the time, and not synthetic.</p>"]
     for f in col.get("flags", []):
         out.append(f"<p><span class=flag>{html.escape(f)}</span></p>")
     if col.get("pooled_k"):
@@ -287,9 +292,12 @@ def collation_report(col: dict) -> str:
                            for n in ("k_curv", "k_rot_sphere", "k_disc") if pk.get(n)]))
         out.append("<p class=sub>Each term is pooled only from sessions where that term was identified on its flight.</p>")
         out.append("<h2>Each model against the pooled scale factors</h2>"
-                   + _table(["Model", "χ² (3 dof)", "p", "rejected at 3σ"],
-                            [[MODEL_LABELS[m], _f(t["chi2"], 1), f"{t['p']:.2g}", "yes" if t["rejected"] else "no"]
-                             for m, t in col["model_tests"].items()]))
+                   + _table(["Model", "χ² (joint covariance)", "dof", "p", "rejected (nominal 3σ)"],
+                            [[MODEL_LABELS[m], _f(t["chi2"], 1), t["dof"], f"{t['p']:.2g}", "yes" if t["rejected"] else "no"]
+                             for m, t in col["model_tests"].items()])
+                   + "<p class=sub>The terms are tested jointly with their covariance, since they come from the same flights. "
+                     "p < 0.0027 is the nominal 3σ threshold; its real false-rejection rate is checked by simulation "
+                     "(analysis/tests/coverage.py --null).</p>")
     for dim, c in (col.get("consistency") or {}).items():
         rows = [[html.escape(str(gname))] + [f"{_f(p[n]['k'])} ± {_f(p[n]['sd'])}" if p[n] else "–" for n in K_LABELS]
                 for gname, p in c["groups"].items()]

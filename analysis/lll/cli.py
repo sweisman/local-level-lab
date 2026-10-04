@@ -70,9 +70,15 @@ def _gyro_metrics(t, G, lsb, cfg_rate, temp=None, sat=None):
                 mids.append((a + b) / 2)
                 means.append(G[m].mean(axis=0))
         if len(mids) >= 5 and np.ptp(tc) >= 0.5:
+            from .drift import temp_regression
             temp_b = np.interp(mids, tt, tc)
+            r = temp_regression(mids, temp_b, np.array(means))
             means = np.array(means) * RAD2DPH
-            out["bias_vs_temp"] = {"slope_dph_per_c": np.polyfit(temp_b, means, 1)[0].tolist(),
+            # slope with a time term alongside, so slow drift during a warm-up isn't read as temperature
+            out["bias_vs_temp"] = {"slope_dph_per_c": r["bias_temp_coef_dph_per_c"],
+                                   "slope_sd_dph_per_c": r["bias_temp_coef_sd_dph_per_c"],
+                                   "drift_dph_per_h": r["bias_drift_dph_per_h"],
+                                   "temp_time_corr": r["temp_time_corr"], "confounded": r["bias_temp_confounded"],
                                    "correlation": [float(np.corrcoef(temp_b, means[:, i])[0, 1]) for i in range(3)]}
     return out
 

@@ -6,7 +6,9 @@ import gzip
 import hashlib
 import io
 import json
+import os
 import zipfile
+import zlib
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -82,18 +84,54 @@ def _parse_csv(text: str) -> dict[str, np.ndarray]:
     return out
 
 
-def read_session(path: str | Path) -> Session:
+# Total decompressed size read_session accepts across all streams. The ZIP's own size check doesn't
+# cover this: each stream is a gzip inside the ZIP, and a tiny one can expand enormously.
+MAX_DECOMPRESSED = int(os.environ.get("LLL_MAX_UNCOMPRESSED_MB", "2000")) * 1024 * 1024
+
+
+class TooLarge(ValueError):
+    """A session expands beyond the decompression limit."""
+
+
+def bounded_gunzip(data: bytes, limit: int, keep: bool = True) -> bytes | int:
+    """gzip.decompress, multi-member, that stops with TooLarge once the output passes limit bytes.
+    With keep=False only the decompressed size is returned, using constant memory."""
+    out, total = [], 0
+    while data:
+        d = zlib.decompressobj(16 + zlib.MAX_WBITS)
+        buf = data
+        while buf:
+            chunk = d.decompress(buf, 1 << 20)
+            total += len(chunk)
+            if total > limit:
+                raise TooLarge(f"decompressed data exceeds {limit // 2**20} MB")
+            if keep:
+                out.append(chunk)
+            buf = d.unconsumed_tail
+        if not d.eof:
+            raise EOFError("compressed file ended before the end-of-stream marker was reached")
+        data = d.unused_data.lstrip(b"\x00")
+    return b"".join(out) if keep else total
+
+
+def read_session(path: str | Path, max_bytes: int | None = None) -> Session:
     raw = Path(path).read_bytes()
     zf = zipfile.ZipFile(io.BytesIO(raw))
+    budget = [MAX_DECOMPRESSED if max_bytes is None else max_bytes]
+
+    def gunzip(name):
+        b = bounded_gunzip(zf.read(name), budget[0])
+        budget[0] -= len(b)
+        return b
     manifest = json.loads(zf.read("manifest.json"))
     streams = {}
     for name in STREAMS:
         fn = f"{name}.csv.gz"
         if fn in zf.namelist():
-            streams[name] = _parse_csv(gzip.decompress(zf.read(fn)).decode())
+            streams[name] = _parse_csv(gunzip(fn).decode())
     events = []
     if "events.csv.gz" in zf.namelist():
-        for ln in gzip.decompress(zf.read("events.csv.gz")).decode().splitlines()[1:]:
+        for ln in gunzip("events.csv.gz").decode().splitlines()[1:]:
             if ln and not ln.startswith("t_ns"):
                 t, kind, *rest = ln.split(",", 2)
                 events.append((int(t), kind, rest[0] if rest else ""))
@@ -111,7 +149,7 @@ def read_session(path: str | Path) -> Session:
         acc_reported, acc_consistent = witmotion.range_from_events(events, witmotion.REG_ACC_RANGE, witmotion.ACC_RANGE_G)
         if acc_reported is not None:
             cfg["accel_range_g"] = acc_reported
-        arrival, chunks = witmotion.read_records(gzip.decompress(zf.read(IMU_FILE)))
+        arrival, chunks = witmotion.read_records(gunzip(IMU_FILE))
         decoded, imu_stats = witmotion.decode(arrival, chunks, imu)
         imu_stats.update({"gyro_range_intended_dps": intended, "gyro_range_reported_dps": reported,
                           "gyro_range_used_dps": float(cfg.get("gyro_range_dps", intended)),

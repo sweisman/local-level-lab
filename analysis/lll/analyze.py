@@ -2,12 +2,28 @@
 """Single-session analysis. Produces a JSON-serialisable result dict."""
 from __future__ import annotations
 
+import platform
+import subprocess
+from pathlib import Path
+
 import numpy as np
 
 from . import __version__, calib, drift, fit, models, slip
 from .attitude import epoch_of, estimate_forward_axis, mount_epochs
 from .format import read_session
 from .segments import Thresholds, find_segments, make_bins
+
+
+def environment() -> dict:
+    """What produced a result: the exact code and numerical libraries, so it can be reproduced."""
+    import scipy
+    try:
+        commit = subprocess.run(["git", "rev-parse", "HEAD"], cwd=Path(__file__).parent, capture_output=True,
+                                text=True, timeout=5).stdout.strip() or None
+    except (OSError, subprocess.SubprocessError):
+        commit = None
+    return {"python": platform.python_version(), "numpy": np.__version__, "scipy": scipy.__version__,
+            "git_commit": commit}
 
 
 def _clean(o):
@@ -37,7 +53,7 @@ def unit_quality(res: dict, m: dict) -> dict:
       have that averaging time;
     - repeatability of the horizontal ground rate: the scatter between pairs of the reversal test
       when there is one, else the palindrome calibration's horizontal σ.
-    Collation keeps the latest tier per unit_id."""
+    Collation applies to each session the latest tier measured at or before it."""
     a300 = [max(d["adev_at_dph"]["300"]) for d in (res.get("drift") or {}).values()
             if d and d.get("adev_at_dph", {}).get("300")]
     rv = res.get("reversal")
@@ -69,6 +85,7 @@ def analyze(path, th: Thresholds | None = None) -> dict:
     flags = list(m.get("quality", {}).get("flags", []))
     res = {
         "analysis_version": __version__,
+        "environment": environment(),
         "input_sha256": sess.sha256,
         "session_id": m.get("session_id"),
         "created_utc": m.get("created_utc"),
@@ -175,7 +192,9 @@ def analyze(path, th: Thresholds | None = None) -> dict:
 
     # magnetometer watchdog for slow yaw slip in the mount; segments where the WMM version sees slip
     # are left out of the gyro fit (the no-declination version is a reported cross-check). The choice
-    # uses only magnetometer and GPS data, never the gyro.
+    # uses only magnetometer and GPS data, never the gyro. A globe-based selection rule can still
+    # shift k if what it drops correlates with the model terms, so the fit is repeated without it.
+    bins_all = bins
     hi = next((c.get("mag_hard_iron_counts") for c in (cal_pre, cal_post) if c and c.get("mag_hard_iron_counts")), None)
     gn = sess.streams.get("gnss")
     year = 1970 + float(np.median(gn["utc_ms"])) / 1000 / 86400 / 365.2425 if gn is not None and len(gn["utc_ms"]) else 2026.0
@@ -218,7 +237,9 @@ def analyze(path, th: Thresholds | None = None) -> dict:
         # 90th percentile, not max: one glitchy temperature reading shouldn't switch the term on
         if np.percentile(np.abs(bins["temp"] - t_ref), 90) >= th.min_temp_delta_c:
             temp_ref = t_ref
-            measured = [d["bias_temp_coef_dph_per_c"] for d in res["drift"].values() if d and d.get("bias_temp_coef_dph_per_c")]
+            # only from drift runs where temperature wasn't confounded with elapsed time
+            measured = [d["bias_temp_coef_dph_per_c"] for d in res["drift"].values()
+                        if d and d.get("bias_temp_coef_dph_per_c") and not d.get("bias_temp_confounded")]
             if measured:
                 # a drift run measured this unit's coefficient: apply it, and fit only the residual
                 c = np.mean(measured, axis=0)
@@ -253,7 +274,23 @@ def analyze(path, th: Thresholds | None = None) -> dict:
     if not ibt["k_disc"]:
         flags.append("k_disc_not_identified")  # e.g. no change in east velocity along the route
     if f["prior_sensitivity"]["prior_dominated"]:
-        flags.append("prior_dominated")        # the bias prior, not the data, is setting k
+        flags.append("prior_dominated")        # a nuisance prior (bias, crab, temperature), not the data, is setting k
+    cs = f.get("crab_sensitivity")
+    if cs and cs["crab_sensitive"]:
+        # k moves by more than 1σ across crab priors of 3–15°. Informational only: the sweep shows how
+        # much the error bars lean on the prior, not crab bias (EVIDENCE §11), so it isn't a gate.
+        flags.append("crab_sensitive")
+    if cs and cs["course_groups"] == 1:
+        flags.append("single_heading")
+    if bins_all is not bins:
+        fa = None if fwd0 is None else np.einsum("nji,j->ni", R0[bins_all["epoch"]], fwd0)
+        fw = fit.fit(bins_all, fa, bias_fn, prior_sigma, vertical_only=vertical_only, temp_ref=temp_ref,
+                     temp_prior=temp_prior, temp_mean=temp_mean)
+        moved = {n: (f["k"][n] - fw["k"][n]) / f["k_sd"][n] for n in fit.TERM_NAMES}
+        res["fit_no_wmm_exclusion"] = {"k": fw["k"], "k_sd": fw["k_sd"], "rejected": fw["rejected"],
+                                       "k_shift_sigma": moved}
+        if fw["rejected"] != f["rejected"] or max(abs(v) for v in moved.values()) > 1.0:
+            flags.append("wmm_selection_sensitive")
     y, X, idx, cbns, theta = f["_rows"]
     res["fit"] = f
     res["fit"]["expected_k"] = models.EXPECTED_K

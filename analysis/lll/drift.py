@@ -61,9 +61,34 @@ def drift_run(sess, name):
                 mids.append((a + b) / 2)
                 means.append(g[m].mean(axis=0))
         temp = np.interp(mids, bat["t_ns"], bat["temp_c"])
-        coef = np.polyfit(temp, np.array(means), 1)[0]
-        out["bias_temp_coef_dph_per_c"] = (coef * RAD2DPH).tolist()
+        out.update(temp_regression(np.array(mids) / 1e9, temp, np.array(means)))
     return out
+
+
+CONFOUNDED_CORR = 0.9
+
+
+def temp_regression(t_s, temp, means):
+    """Bias against temperature with a linear time term alongside, b = b0 + β_T (T − T̄) + β_t (t − t̄).
+
+    In a slow warm-up T follows t, so ordinary bias drift would otherwise pass for a temperature
+    coefficient. When T and t are this correlated the two can't be separated, and the coefficient
+    is marked confounded: warm and cool the unit at least twice (docs/BENCH.md §8)."""
+    t_s, temp, means = np.asarray(t_s, float), np.asarray(temp, float), np.asarray(means, float)
+    if len(temp) < 4:
+        return {}
+    corr = float(np.corrcoef(temp, t_s)[0, 1]) if np.ptp(temp) > 0 and np.ptp(t_s) > 0 else 1.0
+    A = np.column_stack([np.ones_like(temp), temp - temp.mean(), (t_s - t_s.mean()) / 3600.0])
+    coef, *_ = np.linalg.lstsq(A, means, rcond=None)
+    resid = means - A @ coef
+    dof = max(len(temp) - 3, 1)
+    cov = np.linalg.pinv(A.T @ A)
+    sd = np.sqrt(np.outer(np.diag(cov), (resid ** 2).sum(axis=0) / dof))
+    return {"bias_temp_coef_dph_per_c": (coef[1] * RAD2DPH).tolist(),
+            "bias_temp_coef_sd_dph_per_c": (sd[1] * RAD2DPH).tolist(),
+            "bias_drift_dph_per_h": (coef[2] * RAD2DPH).tolist(),
+            "temp_time_corr": corr,
+            "bias_temp_confounded": bool(abs(corr) > CONFOUNDED_CORR)}
 
 
 def bias_model(cal_pre, cal_post, floor_dph=1.0, vre_dph=5.0, gsens_dph=5.0):

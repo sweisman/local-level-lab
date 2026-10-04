@@ -2,16 +2,24 @@
 """Coverage study: do the per-flight intervals and model tests mean what they say?
 
     python analysis/tests/coverage.py [seeds] > coverage.md
+    python analysis/tests/coverage.py --null N [--workers W]
 
 For each truth and seed, a north-east-south flight with every hardware fault at once
 (test_analysis.HARDWARE_FAULTS) is synthesized from geometric truth and analysed. The output is
 the fraction of 95 % intervals (k ± 1.96 σ) that contain the true k, per term, and how often the
-true model is rejected at 3σ (nominal 0.27 %). Not run in CI: about 15 minutes for 30 seeds.
+true model is rejected at the nominal 3σ threshold (0.27 %). Not run in CI: about 15 minutes for 30
+seeds.
+
+--null runs only the false-rejection study, N flights per truth in parallel, and reports the empirical
+rate with a Clopper–Pearson interval. Zero rejections in 90 flights only bounds the rate below about
+4.0 % (two-sided 95 %); showing it is near 0.27 % needs thousands of flights, so this is run offline (about
+10 s per flight per core).
 """
 from __future__ import annotations
 
 import sys
 import tempfile
+from multiprocessing import Pool
 from pathlib import Path
 
 import numpy as np
@@ -24,6 +32,30 @@ from lll.analyze import analyze  # noqa: E402
 from lll.fit import TERM_NAMES  # noqa: E402
 from lll.synth import synthesize  # noqa: E402
 from test_analysis import HARDWARE_FAULTS, NES_LEGS  # noqa: E402
+
+
+def clopper_pearson(k, n, conf=0.95):
+    from scipy.stats import beta
+    a = (1 - conf) / 2
+    lo = 0.0 if k == 0 else float(beta.ppf(a, k, n - k + 1))
+    hi = 1.0 if k == n else float(beta.ppf(1 - a, k + 1, n - k))
+    return lo, hi
+
+
+def _null_one(args):
+    truth, seed = args
+    with tempfile.TemporaryDirectory(prefix="lll-null-") as d:
+        p = Path(d) / "s.zip"
+        synthesize(p, truth, seed=seed, fs=20.0, legs=NES_LEGS, omega_in_fn=geometric_truth(truth), **HARDWARE_FAULTS)
+        f = analyze(p).get("fit")
+    return None if not f else bool(f["rejected"][truth])
+
+
+def null_study(n, workers=None):
+    jobs = [(truth, seed) for truth in models.MODELS for seed in range(10_000, 10_000 + n)]
+    with Pool(workers) as pool:
+        out = [r for r in pool.imap_unordered(_null_one, jobs, chunksize=4) if r is not None]
+    return sum(out), len(out)
 
 
 def study(seeds=30):
@@ -50,6 +82,14 @@ def study(seeds=30):
 
 
 if __name__ == "__main__":
+    if len(sys.argv) > 2 and sys.argv[1] == "--null":
+        n = int(sys.argv[2])
+        workers = int(sys.argv[sys.argv.index("--workers") + 1]) if "--workers" in sys.argv else None
+        k, runs = null_study(n, workers)
+        lo, hi = clopper_pearson(k, runs)
+        print(f"True model rejected at the nominal 3σ threshold: {k} of {runs} flights "
+              f"({100 * k / runs:.3f} %; 95 % Clopper–Pearson {100 * lo:.3f}–{100 * hi:.3f} %; nominal 0.27 %).")
+        sys.exit(0)
     seeds = int(sys.argv[1]) if len(sys.argv) > 1 else 30
     hits, total, rejected, runs, worst = study(seeds)
     print(f"Coverage under every hardware fault at once: {runs} flights ({seeds} seeds × {len(models.MODELS)} truths).\n")
@@ -57,4 +97,7 @@ if __name__ == "__main__":
     print("|---|---|---|")
     for n in TERM_NAMES:
         print(f"| {n} | {100 * hits[n] / total[n]:.0f} % | {np.percentile(worst[n], 95):.2f} |")
-    print(f"\nTrue model rejected at 3σ: {rejected} of {runs} flights (nominal 0.27 %).")
+    lo, hi = clopper_pearson(rejected, runs)
+    print(f"\nTrue model rejected at the nominal 3σ threshold: {rejected} of {runs} flights "
+          f"(95 % Clopper–Pearson upper bound {100 * hi:.1f} %; nominal 0.27 %). This many flights can't "
+          "resolve a 0.27 % rate: see --null.")

@@ -80,7 +80,7 @@ m_k = b + d (t_k − t̄) + w_{p_k},     Σ_p w_p = 0
 
 - **`b`, the bias.** Earth rotation and gravity-dependent error both reverse between the up and down pairs or within the 180° pairs, so they cancel out of b.
 - **`d`, a linear drift.** Every position's visits average to t̄, so d is orthogonal to the position effects.
-- **Horizontal Earth rate:** `h = |(w_0 − w_180)/2|`, after removing the part along up, taken from each 180° pair. Within a pair gravity sits on the same IMU axis, so g-sensitivity is identical and cancels. The Earth's horizontal component reverses. The globe predicts Ω|cos φ|; a still globe or the disc predicts 0. Noise biases a norm upward, so the estimate subtracts the expected noise power.
+- **Horizontal Earth rate:** `h = |(w_0 − w_180)/2|`, after removing the part along up, taken from each 180° pair. Within a pair gravity sits on the same IMU axis, so g-sensitivity is identical and cancels. The Earth's horizontal component reverses. The globe predicts Ω|cos φ|; a still globe or the disc predicts 0. Noise biases a length upward, and a length isn't Gaussian near zero. So each face's length is treated as Rice-distributed, with σ per horizontal component. The reported rate is the maximum-likelihood length over both faces, with profile-likelihood 68 % and 95 % intervals (−2ΔlnL = 1, 3.84) that can reach zero. The p-value of zero rate comes from Σ r²/σ², χ² with 2 degrees of freedom per face. Any disagreement between the faces is added to σ.
 - **Vertical:** `(w_0 + w_180)/2 · up`. This is the vertical Earth rate plus g-sensitivity along gravity, which can't be separated, and the result is marked as aliased.
 - **IMU magnetic offset:** the mean magnetometer reading over the four positions is the field fixed in the IMU (hard iron), because the Earth's field cancels the same way.
 
@@ -88,7 +88,7 @@ m_k = b + d (t_k − t̄) + w_{p_k},     Σ_p w_p = 0
 
 The IMU stays label up and is turned 180° about the vertical between placements, six pairs in all (`rev.up0.N`, `rev.up180.N`). Each pair gives `h_N = (w₀ − w₁₈₀)/2` with the part along up removed, free of g-sensitivity for the same reason as above.
 
-The pairs are placed against the same edge, so their vectors point the same way. The horizontal rate is the length of their mean, with the expected noise power subtracted, because a length is biased upward by noise. The scatter of the pair lengths is the unit's repeatability.
+The pairs are placed against the same edge, so their vectors point the same way. The horizontal rate is the length of their mean, estimated with the same Rice likelihood, with intervals and the p-value of zero rate. The scatter of the pair lengths is the unit's repeatability.
 
 ## In flight
 
@@ -100,7 +100,7 @@ The flight is cut into stable cruise segments, each at least 10 minutes long:
 - |vertical speed| under 1.5 m/s;
 - |turn rate| under 0.05 °/s;
 - low vibration;
-- a good GNSS fix.
+- a good GNSS fix, and a valid course: finite, within 3° by the receiver's own accuracy, and within 5° of the course computed from successive coordinates. A missing course is never filled in as north.
 
 Segments also break at GNSS gaps, Bluetooth drops, bumps and deliberate IMU turns. Each segment is averaged into 60-s bins.
 
@@ -145,13 +145,15 @@ Expected k for each model, in the order (k_rot, k_curv, k_disc): rotating globe 
 ### Uncertainty and model tests
 
 - **k intervals** are the larger of the analytic value and a moving-block bootstrap over bins. Bias wander correlates neighbouring bins.
-- **χ²** is scaled by `(1 − ρ)/(1 + ρ)`, the effective-sample factor from the lag-1 autocorrelation of bin residuals within segments.
-- **Each model is tested against the free fit.** Fix its k values, refit the nuisance terms (crab included), and compare. `Δχ²` follows χ² with 3 degrees of freedom if that model is true. A model is **rejected at p < 0.0027 (3σ)**.
-- **Bootstrap calibration.** For each model, simulate its null: its fitted values plus block-resampled residuals of the free fit. Refit on the same design and compare the mean Δχ² with the degrees of freedom. If correlated noise inflates it, the observed Δχ² is divided by the inflation. The reported p is the larger of this and the autocorrelation-scaled one.
+- **χ²** is scaled by `(1 − ρ)/(1 + ρ)`, the effective-sample factor from the lag-1 autocorrelation of bin residuals within segments, per gyro axis, using the largest ρ.
+- **Each model is tested against the free fit.** Fix its k values, refit the nuisance terms (crab included), and compare. `Δχ²` follows χ² with 3 degrees of freedom if that model is true. A model is **rejected at p < 0.0027, the nominal 3σ threshold**. Its true false-rejection rate is measured by simulation (`coverage.py --null`), not assumed (METHODOLOGY §10).
+- **Bootstrap calibration.** For each model, simulate its null: its fitted values plus block-resampled residuals of the free fit, in blocks of up to 30 bins. Refit on the same design and compare the mean Δχ² with the degrees of freedom. If correlated noise inflates it, the observed Δχ² is divided by the inflation. The reported p is the larger of this and the autocorrelation-scaled one.
 - **Systematic floor.** A floor of 0.02 is added in quadrature to the globe-rotation σ. It is calibrated by the coverage study (`analysis/tests/coverage.py`) under every hardware fault at once.
 - Bootstrap ranges of Δχ² are reported. Relative likelihoods `exp(−Δχ²/2)` are shown, labelled as not probabilities.
-- **Identifiability**, per term: the fraction of its predicted signal that a constant residual bias per gravity orientation could mimic, `sqrt(1 − |r|²/|x|²)`, where r is the term's column after regressing out the bias columns. Near 1 means only the bias prior constrains it. Above 0.95 for k_curv flags `k_not_identified`.
-- **Prior sensitivity.** Refit with the bias prior 3× wider. If any k moves by more than 1σ, the flag is `prior_dominated`.
+- **Joint covariance.** `k_cov` is the analytic correlation of the three k (crab columns included), scaled to their final σ. Pooling uses it.
+- **Identifiability**, per term: the fraction of its predicted signal that the nuisance terms together could mimic, `sqrt(1 − |r|²/|x|²)`. Here r is the term's column after regressing out every nuisance column, with no priors: residual bias per gravity orientation, temperature and crab. Near 1 means only the nuisance priors constrain it. Above 0.95 for k_curv flags `k_not_identified`. The bias-only value is reported alongside.
+- **Prior sensitivity.** Refit with the bias prior 3× wider, then the crab prior, then the temperature prior. If any k moves by more than 1σ under any of them, the flag is `prior_dominated`.
+- **Crab sweep.** Refit with crab priors of 3°, 5°, 10° and 15°, and report k for each. If any k spans more than 1σ, the session is flagged `crab_sensitive`, for information only: the sweep doesn't detect crab bias (METHODOLOGY §16). A flight with one course leg is flagged `single_heading`.
 - **Vertical-only fallback.** With no banked turn, the forward axis is unknown and only the vertical channel is used. On a straight leg that channel can't identify anything (see "The vertical channel"), and the analysis says so.
 
 ### Mount slip watchdog
@@ -169,11 +171,11 @@ z(t) = e^{iδ(t)} ( s(t) e^{iθ(t)} H + c ),     θ = ψ − D
 - Each bin is projected with its own measured up, so pitch changes can't leak the strong vertical field into the horizontal.
 - `H` and `c` are fitted per mount epoch from the aircraft's heading changes. With less than 45° of heading change, `c = 0` is assumed and the result says so.
 
-The slip rate `δ̇` is the slope of the leftover angle in each segment. A segment is excluded when the slip exceeds 2 °/h and 3σ.
+The slip rate `δ̇` is the slope of the leftover angle in each segment. A segment is excluded when the slip exceeds 1.5 °/h and 3σ.
 
 The watchdog runs twice. One version uses `D` and `s` from the World Magnetic Model, which is built on a globe. The other uses none, with `D` constant and `s = 1`, as a cross-check. A segment is left out of the gyro fit when the WMM version sees slip above 1.5 °/h and 3σ. Both results are reported.
 
-The choice uses only the magnetometer and GPS, so the declination model can only drop data, never favour a model. The gyro fit itself never uses the magnetometer. The no-declination version alone would read the route's real declination change as slip.
+The choice uses only the magnetometer and GPS, and the gyro fit itself never uses the magnetometer. A selection rule can still shift k, if what it drops correlates with the model terms. So whenever the WMM version excludes anything, the fit is repeated with no exclusions. If a model's rejection changes or any k moves by more than 1σ, the session is flagged `wmm_selection_sensitive` and left out of the primary result. The no-declination version alone would read the route's real declination change as slip.
 
 ## Pooling many sessions
 
@@ -183,15 +185,21 @@ Sessions with the same IMU share its quirks, so pooling is hierarchical, with ra
 sessions → per IMU unit → population of units
 ```
 
-Each level adds the scatter between its members (τ²) to their error bars. Each model's expected k is then tested against the pooled k: χ² with 3 degrees of freedom, rejected at p < 0.0027.
+Each level adds the scatter between its members (τ²) to their error bars. The three k come from the same flights, so the model tests pool them jointly:
+
+```
+P_i = (C_i + diag τ²)⁻¹ over the terms session i identified,   V = (Σ P_i)⁻¹,   k̄ = V Σ P_i k_i
+```
+
+This runs within each unit, then across units, and V's diagonal is never below each term's own Hartung–Knapp variance. Each model's expected k is tested with `χ² = dᵀ V⁻¹ d`. With few units it is referred to F(p, df), using the smallest per-term df. A model is rejected at p < 0.0027 (nominal).
 
 Only sessions that pass every gate enter the primary result:
 
 - both calibrations;
 - at least 60 minutes of cruise;
 - curvature identified;
-- not prior-dominated;
-- an IMU unit rated qualified or usable;
+- not prior-dominated, not dependent on the WMM slip exclusion;
+- an IMU unit rated qualified or usable by the latest bench result at or before the session;
 - not synthetic.
 
 Breakdowns by heading, mount, IMU variant and unit are consistency checks. Groups that disagree (heterogeneity p < 0.01) are flagged, never averaged away.
@@ -213,9 +221,9 @@ Horizontal repeatability comes from the reversal test when there is one, else fr
 
 ## Known approximations (please review)
 
-- **Crab angle.** It is fitted per course leg (see "The fit"). On an eastbound leg it trades against the split between globe rotation and curvature, and an 8° crab still leaves about 2σ of bias (METHODOLOGY §16).
+- **Crab angle.** It is fitted per course leg (see "The fit"). On an eastbound leg it trades against the split between globe rotation and curvature, and an 8° crab still leaves about 2σ of bias (METHODOLOGY §16). The crab-prior sweep does not detect this bias; only heading diversity removes it.
 - **Plumb line.** The accelerometer's plumb line includes small Coriolis and centripetal terms, about 0.2°. They are nearly constant in cruise.
 - **Quantization.** At ±2000 °/s, one 16-bit count is 220 °/h. Noise dithers it, but coarse counts still interact with constant offsets at the °/h level (EVIDENCE §4). The app can select ±250 to ±2000 °/s, and the analysis decodes with the range the IMU reports back. A finer range risks clipping fast hand turns of the IMU; clipped turns are flagged, and the data after them is left out.
-- **Temperature.** Chip temperature is reported by the IMU's firmware. A lag, or a nonlinear response, shows up as `temperature_sensitive`.
+- **Temperature.** Chip temperature is reported by the IMU's firmware. A lag, or a nonlinear response, shows up as `temperature_sensitive`. Drift-run coefficients come from a fit with a time term. A monotonic warm-up, where temperature and time can't be told apart, is marked confounded and isn't used.
 - **Device processing.** WitMotion firmware applies factory calibration and filtering before the data leaves the device (see FORMAT.md).
 - **Vertical-channel limits.** See "The vertical channel" above.

@@ -24,6 +24,8 @@ class Thresholds:
     gsens_budget_dph: float = 5.0         # g-sensitivity × gravity: unseen by the 4-position bias estimate
     grav_cluster_cos: float = 0.9         # bins whose up directions agree this well share one residual bias
     max_slip_dph: float = 1.5             # mount yaw slip the watchdog tolerates (either version)
+    max_bearing_acc_deg: float = 3.0      # receiver's own course accuracy, where it reports one
+    max_course_mismatch_deg: float = 5.0  # receiver course against the course from the coordinates
 
 
 def _smooth_grad(t, x, win_s):
@@ -35,18 +37,48 @@ def _smooth_grad(t, x, win_s):
     return g
 
 
-def gnss_kinematics(gn):
+def _fill_course(t, brg, ok):
+    """Course (deg) with the invalid epochs interpolated, unwrapped, from their valid neighbours.
+    For smoothing only: those epochs are excluded from cruise anyway."""
+    if ok.sum() < 2:
+        return np.zeros_like(t)
+    return np.degrees(np.interp(t, t[ok], np.unwrap(np.radians(brg[ok])))) % 360.0
+
+
+def gnss_kinematics(gn, th: Thresholds | None = None):
+    """GNSS kinematics, plus bearing_ok: the receiver gave a finite course, within its accuracy
+    limit, that agrees with the course computed from successive coordinates. A missing course is
+    never turned into north."""
+    th = th or Thresholds()
     t = gn["t_ns"] / 1e9
-    psi = np.radians(np.nan_to_num(gn["bearing_deg"]))
+    lat, lon = np.radians(gn["lat"]), np.radians(gn["lon"])
+    brg = np.asarray(gn["bearing_deg"], float)
+    ok = np.isfinite(brg)
+    acc = gn.get("bearing_acc_deg")
+    if acc is not None:
+        acc = np.asarray(acc, float)
+        ok &= ~(np.isfinite(acc) & (acc > th.max_bearing_acc_deg))
+    # course from the coordinates themselves, as a cross-check on the receiver's bearing
+    dn = _smooth_grad(t, lat, 30.0)
+    de = _smooth_grad(t, np.unwrap(lon), 30.0) * np.cos(lat)
+    course_xy = np.degrees(np.arctan2(de, dn))
+    moving = np.hypot(dn, de) > 0
+    mism = np.abs((np.nan_to_num(brg) - course_xy + 180.0) % 360.0 - 180.0)
+    ok &= ~(moving & (mism > th.max_course_mismatch_deg))
+    # only missing courses are filled; a poor or mismatched one is kept for the turn detector
+    # (which needs the real course through banked turns) and is merely excluded from cruise
+    brg_f = _fill_course(t, brg, np.isfinite(brg))
+    psi = np.radians(brg_f)
     spd = np.nan_to_num(gn["speed_mps"])
     return {
-        "t": t, "lat": np.radians(gn["lat"]), "lon": np.radians(gn["lon"]), "h": gn["alt_m"],
+        "t": t, "lat": lat, "lon": lon, "h": gn["alt_m"],
         "speed": spd, "psi": psi, "v_n": spd * np.cos(psi), "v_e": spd * np.sin(psi),
         "vz": _smooth_grad(t, gn["alt_m"], 30.0),
         # dλ/dt straight from the coordinates, for the disc model (no velocity, no radius)
-        "lon_rate": _smooth_grad(t, np.unwrap(np.radians(gn["lon"])), 30.0),
-        "psi_dot": course_rate(t, np.nan_to_num(gn["bearing_deg"]), smooth_s=30.0),
+        "lon_rate": _smooth_grad(t, np.unwrap(lon), 30.0),
+        "psi_dot": course_rate(t, brg_f, smooth_s=30.0),
         "h_acc": np.nan_to_num(gn["h_acc_m"], nan=999.0),
+        "bearing_ok": ok,
     }
 
 
@@ -55,7 +87,7 @@ def find_segments(sess, flight, th: Thresholds, exclude=()):
     gn = sess.slice("gnss", flight["start_ns"], flight["end_ns"])
     if gn is None or len(gn["t_ns"]) < 60:
         return [], None
-    kin = gnss_kinematics(gn)
+    kin = gnss_kinematics(gn, th)
     acc = sess.slice("accel", flight["start_ns"], flight["end_ns"])
     at = acc["t_ns"] / 1e9
     amag = np.sqrt(acc["x"] ** 2 + acc["y"] ** 2 + acc["z"] ** 2)
@@ -67,7 +99,7 @@ def find_segments(sess, flight, th: Thresholds, exclude=()):
     a_sd = np.sqrt(np.maximum(var, 0))
     ok = ((kin["speed"] > th.min_speed_mps) & (np.abs(kin["vz"]) < th.max_vz_mps)
           & (np.abs(np.degrees(kin["psi_dot"])) < th.max_turn_dps) & (a_sd < th.max_accel_sd)
-          & (kin["h_acc"] < th.max_h_acc_m) & (hi > lo))
+          & (kin["h_acc"] < th.max_h_acc_m) & kin["bearing_ok"] & (hi > lo))
     for a, b in exclude:   # while the IMU was being turned or bumped
         ok &= ~((kin["t"] >= a) & (kin["t"] <= b))
     # placement shifts, deliberate turns of the IMU and link drops all break segments

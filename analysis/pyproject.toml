@@ -19,3 +19,6 @@ lll = "lll.cli:main"
 
 [tool.setuptools]
 packages = ["lll"]
+
+[tool.setuptools.package-data]
+lll = ["logo.png"]

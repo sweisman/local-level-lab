@@ -14,6 +14,10 @@ being averaged away.
 Only sessions that pass hard quality gates enter the primary result. The rest are listed as
 exploratory, with the reasons. Breakdowns by heading, mount, IMU variant and unit are consistency
 checks: a significant disagreement between groups is flagged, never averaged over.
+
+The three k terms come from the same flights, so their errors are correlated (crab, for one, trades
+globe rotation against curvature). The model tests therefore use the joint 3×3 covariance, pooled
+by precision weighting, never a sum of per-term z² as if the terms were independent.
 """
 from __future__ import annotations
 
@@ -79,16 +83,23 @@ def load_results(paths) -> list[dict]:
 
 
 def unit_tiers(results) -> dict:
-    """The latest quality tier per IMU unit, from any session that measured one."""
-    best = {}
+    """Every quality tier measured per IMU unit, oldest first: {unit: [(created_utc, tier dict)]}."""
+    hist = defaultdict(list)
     for r in results:
         q = r.get("unit_quality") or {}
         u, tier = q.get("unit_id"), q.get("tier")
         if not u or tier in (None, "unknown"):
             continue
-        if u not in best or (r.get("created_utc") or "") >= (best[u][0] or ""):
-            best[u] = (r.get("created_utc"), tier, q)
-    return {u: {"tier": t, **q} for u, (_, t, q) in best.items()}
+        hist[u].append((r.get("created_utc") or "", {"tier": tier, **q}))
+    return {u: sorted(h, key=lambda x: x[0]) for u, h in hist.items()}
+
+
+def tier_as_of(tiers, unit, when) -> dict:
+    """The unit's latest tier measured at or before `when`. A later bench test never re-rates an
+    earlier flight. Sessions with no timestamp use only tiers that have none either."""
+    when = when or ""
+    past = [q for t, q in tiers.get(unit, []) if t <= when]
+    return past[-1] if past else {"tier": "unknown"}
 
 
 def gate(r, tiers, allow_synthetic=False) -> list[str]:
@@ -107,9 +118,11 @@ def gate(r, tiers, allow_synthetic=False) -> list[str]:
         why.append("curvature not identified")
     if "prior_dominated" in fl:
         why.append("prior-dominated")
-    unit = (r.get("imu") or {}).get("unit_id")
-    if tiers.get(unit, {}).get("tier") not in GOOD_TIERS:
-        why.append(f"IMU unit tier {tiers.get(unit, {}).get('tier', 'unknown')}")
+    if "wmm_selection_sensitive" in fl:
+        why.append("depends on the WMM slip exclusion")
+    tier = tier_as_of(tiers, (r.get("imu") or {}).get("unit_id"), r.get("created_utc"))["tier"]
+    if tier not in GOOD_TIERS:
+        why.append(f"IMU unit tier {tier}")
     return why
 
 
@@ -120,6 +133,98 @@ def _heading(r):
     la, lo = tr["lat"], tr["lon"]
     hd = np.degrees(np.arctan2(np.radians(lo[-1] - lo[0]) * np.cos(np.radians(np.mean(la))), np.radians(la[-1] - la[0]))) % 360
     return ["northbound", "eastbound", "southbound", "westbound"][int(((hd + 45) % 360) // 90)]
+
+
+def _precision_pool(members, tau2):
+    """Precision-weighted pool of vectors with covariances. members: [(k (NK,), cov (NK, NK), mask (NK,))];
+    only the masked terms of each member carry information. tau2 (NK,) is added to each member's
+    diagonal. Returns (mean, cov, mask of terms informed by any member)."""
+    nk = len(TERM_NAMES)
+    P, b = np.zeros((nk, nk)), np.zeros(nk)
+    for k, c, m in members:
+        idx = np.where(m)[0]
+        if not len(idx):
+            continue
+        Pi = np.linalg.pinv(c[np.ix_(idx, idx)] + np.diag(tau2[idx]))
+        P[np.ix_(idx, idx)] += Pi
+        b[idx] += Pi @ k[idx]
+    have = np.diag(P) > 0
+    mu, V = np.full(nk, np.nan), np.full((nk, nk), np.nan)
+    if have.any():
+        h = np.where(have)[0]
+        Vh = np.linalg.pinv(P[np.ix_(h, h)])
+        V[np.ix_(h, h)] = Vh
+        mu[h] = Vh @ b[h]
+    return mu, V, have
+
+
+def _with_marginal_sd(V, sd):
+    """Keep V's correlations, but never let a term's variance be smaller than its own pooled
+    (Hartung–Knapp) variance."""
+    d = np.sqrt(np.diag(V))
+    s = np.fmax(d, np.nan_to_num(np.asarray(sd, float), nan=0.0))
+    with np.errstate(invalid="ignore", divide="ignore"):
+        R = V / np.outer(d, d)
+    return R * np.outer(s, s)
+
+
+def pool_multivariate(items, per_term):
+    """Joint pool of the three k terms: sessions → units → population, like pool_hierarchical, but
+    each member carries its 3×3 covariance. Between-member variances τ² come from the per-term
+    pools (per_term = pool_hierarchical's output) and go on the diagonal. Terms a session didn't
+    identify carry no weight from it. Returns {k, cov, terms, assumed_diagonal}."""
+    nk = len(TERM_NAMES)
+    by_unit = defaultdict(list)
+    diag_only = 0
+    for it in items:
+        unit, k, sd = it[:3]
+        ident = it[3] if len(it) > 3 else {}
+        cov = it[4] if len(it) > 4 else None
+        kv = np.array([k[n] for n in TERM_NAMES], float)
+        sv = np.array([sd[n] for n in TERM_NAMES], float)
+        if cov is None:
+            diag_only += 1
+            c = np.diag(sv ** 2)
+        else:
+            c = np.asarray(cov, float)
+        by_unit[unit].append((kv, c, np.array([ident.get(n, True) for n in TERM_NAMES])))
+    units = []
+    for u, mem in by_unit.items():
+        tw = np.array([((per_term.get(n) or {}).get("tau2_within_units") or {}).get(str(u), 0.0) for n in TERM_NAMES])
+        mu, V, have = _precision_pool(mem, tw)
+        if have.any():
+            units.append((np.nan_to_num(mu), np.nan_to_num(V), have))
+    if not units:
+        return None
+    tb = np.array([(per_term.get(n) or {}).get("tau2_units", 0.0) for n in TERM_NAMES])
+    mu, V, have = _precision_pool(units, tb)
+    V = _with_marginal_sd(V, [(per_term.get(n) or {}).get("sd", np.nan) for n in TERM_NAMES])
+    return {"terms": [n for n, h in zip(TERM_NAMES, have) if h],
+            "k": {n: float(mu[i]) for i, n in enumerate(TERM_NAMES) if have[i]},
+            "cov": [[float(V[i, j]) for j in range(nk) if have[j]] for i in range(nk) if have[i]],
+            "sessions_without_covariance": diag_only}
+
+
+def joint_model_tests(joint, per_term):
+    """Each model's expected k against the jointly pooled k: χ² = dᵀ V⁻¹ d. With few units the
+    variances are estimated on few degrees of freedom, so the statistic is referred to
+    F(p, df) with the smallest per-term df (Hotelling-style) instead of χ²(p)."""
+    from scipy.stats import f as fdist
+    terms = joint["terms"]
+    V = np.array(joint["cov"], float)
+    Vi = np.linalg.pinv(V)
+    dfs = [(per_term.get(n) or {}).get("df", 0) for n in terms]
+    df = min(dfs) if dfs else 0
+    tests = {}
+    for m in MODELS:
+        e = dict(zip(TERM_NAMES, EXPECTED_K[m]))
+        d = np.array([joint["k"][n] - e[n] for n in terms])
+        x2 = float(d @ Vi @ d)
+        p = len(terms)
+        pv = (float(fdist.sf(x2 / p, p, df)) if df > 0 else sf_chi2(x2, p)) if p else 1.0
+        tests[m] = {"chi2": x2, "dof": p, "df_denominator": df or None, "p": pv, "rejected": pv < P_REJECT,
+                    "z_marginal": {n: float(d[i] / np.sqrt(V[i, i])) for i, n in enumerate(terms)}}
+    return tests
 
 
 def pool_hierarchical(items):
@@ -161,7 +266,8 @@ def collate(results: list[dict], allow_synthetic: bool = False) -> dict:
             "session_id": r.get("session_id"), "kind": r.get("kind", "flight"),
             "flight": f"{fl.get('airline', '')} {fl.get('flight_number', '')}".strip(), "date": fl.get("date"),
             "seat": fl.get("seat"), "mount": r.get("mount", {}).get("type"), "imu_variant": imu.get("variant"),
-            "imu_unit": imu.get("unit_id"), "unit_tier": tiers.get(imu.get("unit_id"), {}).get("tier"),
+            "imu_unit": imu.get("unit_id"),
+            "unit_tier": tier_as_of(tiers, imu.get("unit_id"), r.get("created_utc"))["tier"],
             "cruise_min": r.get("cruise_minutes"),
             "not_rejected": ";".join(m for m in MODELS if fit and not fit["rejected"][m]) if fit else None,
             **{n: fit["k"][n] if fit else None for n in TERM_NAMES},
@@ -179,7 +285,8 @@ def collate(results: list[dict], allow_synthetic: bool = False) -> dict:
                         ground[key + "_sd"].append(c[src + "_sd_dph"])
         if not fit:
             continue
-        item = (imu.get("unit_id"), fit["k"], fit["k_sd"], fit.get("identifiability", {}).get("identified_by_term", {}))
+        item = (imu.get("unit_id"), fit["k"], fit["k_sd"], fit.get("identifiability", {}).get("identified_by_term", {}),
+                fit.get("k_cov"))
         (primary if not why else explore).append(item)
         if not why:
             groups["heading"][_heading(r)].append(item)
@@ -190,25 +297,16 @@ def collate(results: list[dict], allow_synthetic: bool = False) -> dict:
     out = {"analysis_version": __version__, "n_sessions": len(results), "n_primary": len(primary),
            "n_exploratory": len(explore), "unit_tiers": tiers, "rows": rows, "ground": ground,
            "gates": {"min_cruise_min": MIN_CRUISE_MIN, "unit_tiers": list(GOOD_TIERS),
-                     "requires": ["both calibrations", "curvature identified", "not prior-dominated", "not synthetic"]}}
+                     "requires": ["both calibrations", "curvature identified", "not prior-dominated",
+                                  "not dependent on the WMM slip exclusion", "unit tier as of the session",
+                                  "not synthetic"]}}
     if primary:
         pk = pool_hierarchical(primary)
         out["pooled_k"] = pk
-        # each model's expected k against the pooled k (independent terms): χ² with 3 dof
-        from scipy.stats import norm, t as tdist
-        tests = {}
-        for m in MODELS:
-            z = {}
-            for n, e in zip(TERM_NAMES, EXPECTED_K[m]):
-                if not pk[n]:
-                    continue
-                tt = (pk[n]["k"] - e) / pk[n]["sd"]
-                # t on df degrees of freedom (Hartung–Knapp) → the normal quantile with the same tail
-                z[n] = float(np.sign(tt) * norm.isf(tdist.sf(abs(tt), pk[n]["df"]))) if pk[n]["df"] > 0 else float(tt)
-            x2 = float(np.sum(np.square(list(z.values()))))
-            p = sf_chi2(x2, len(z)) if z else 1.0
-            tests[m] = {"chi2": x2, "p": p, "rejected": p < P_REJECT, "z": z}
-        out["model_tests"] = tests
+        joint = pool_multivariate(primary, pk)
+        out["pooled_k_joint"] = joint
+        # each model's expected k against the jointly pooled k, with the terms' covariance
+        out["model_tests"] = joint_model_tests(joint, pk) if joint else {}
         cons = {}
         for dim, gs in groups.items():
             gs = {g: its for g, its in gs.items() if g is not None}

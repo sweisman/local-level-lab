@@ -97,7 +97,7 @@ An earlier version recovered dλ/dt from the east velocity by undoing the receiv
 **Decision.**
 - The in-flight residual bias gets one free vector per gravity orientation.
 - Its prior also covers vibration rectification (5 °/h) and g-sensitivity (5 °/h), which ground calibration can't see.
-- The analysis reports how far k moves when the prior is tripled.
+- The analysis reports how far k moves when the prior is tripled. The same is done for the crab and temperature priors, and `prior_dominated` covers all three.
 
 **Why.** The engines' vibration and the IMU's attitude in flight produce constant offsets that ground calibration misses. A tight prior would push them into k. Flipping the IMU changes the g-sensitivity offset, so a shared bias across a flip would create fake signal.
 
@@ -108,11 +108,12 @@ An earlier version recovered dλ/dt from the east velocity by undoing the receiv
 ## 8. Identifiability is measured, not assumed, term by term
 
 **Decision.**
-- For each term, report how much of its signal a constant bias could mimic. A session is flagged when this exceeds 0.95: `k_not_identified` for curvature, `k_rot_not_identified`, and `k_disc_not_identified`.
+- For each term, report how much of its signal the nuisance terms together could mimic, with no priors: residual bias per gravity orientation, the temperature coefficients and the crab offsets. A session is flagged when this exceeds 0.95: `k_not_identified` for curvature, `k_rot_not_identified`, and `k_disc_not_identified`. The bias-only value is still reported.
+- Trade-offs between the k terms themselves aren't counted here. They are carried by the joint covariance of k (section 15).
 - The primary pooled result requires curvature to be identified.
 - Each term is pooled only from sessions where that term was identified. For example, the disc term comes only from flights whose east velocity changed enough to separate it from bias.
 
-**Why.** On a straight leg, the predicted signal sits on fixed IMU axes, exactly like a bias. A fit can then produce a k with error bars that come entirely from the prior.
+**Why.** On a straight leg, the predicted signal sits on fixed IMU axes, exactly like a bias. A fit can then produce a k with error bars that come entirely from the prior. Bias isn't the only such nuisance: crab and temperature can mimic a term too, so being "identified" against bias alone wasn't enough (third review).
 
 **Headline.** Globe curvature comes first. Globe rotation is shown next to the ground horizontal result. The disc term is reported from heading-diverse sessions only.
 
@@ -136,17 +137,19 @@ An earlier version recovered dλ/dt from the east velocity by undoing the receiv
 
 **Evidence.** EVIDENCE §2 and §8; `test_turns_about_the_vertical_make_a_straight_flight_decisive`, `test_single_heading_airliner_needs_turns_of_the_imu`.
 
-## 10. Model tests: honest χ², calibrated by bootstrap
+## 10. Model tests: honest χ², calibrated by bootstrap, threshold nominal
 
 **Decision.**
-- Test each model against the free fit, using χ² with 3 degrees of freedom, and reject at p < 0.0027 (3σ).
+- Test each model against the free fit, using χ² with 3 degrees of freedom, and reject at p < 0.0027: the **nominal** 3σ threshold.
 - Two corrections for correlated noise, and the more conservative wins:
-  - χ² scaled by the lag-1 autocorrelation of the bin residuals;
-  - a bootstrap calibration. Simulate each model's null as its fitted values plus block-resampled free-fit residuals, refit, and measure how far the mean Δχ² exceeds its degrees of freedom. The observed Δχ² is divided by that excess.
+  - χ² scaled by the lag-1 autocorrelation of the bin residuals, taken per gyro axis (the largest), since averaging the axes can cancel axis-specific correlation;
+  - a bootstrap calibration. Simulate each model's null as its fitted values plus block-resampled free-fit residuals (blocks up to 30 min, for hour-scale bias wander), refit, and measure how far the mean Δχ² exceeds its degrees of freedom. The observed Δχ² is divided by that excess.
 - Relative likelihoods are reported but labelled as not probabilities.
 - A simulation-calibrated systematic floor of 0.02 is added in quadrature to the globe-rotation uncertainty. See "Evidence".
 
 **Why a calibrated bootstrap rather than a bootstrap p.** Resolving p = 0.0027 directly would need thousands of refits per flight. The calibration needs about a hundred per model.
+
+**What "3σ" does and doesn't claim.** The calibration corrects the mean of Δχ², then assumes a rescaled χ² has the right tail. That assumption isn't demonstrated. The coverage study's 0 false rejections in 90 flights bound the false-rejection rate below 4.0 % (two-sided 95 % Clopper–Pearson; 3.3 % one-sided), not 0.27 %. So per-flight rejections use the nominal threshold. Before any significance is published, `python analysis/tests/coverage.py --null N` must measure the tail directly with thousands of simulated flights, preferably with noise processes taken from long real-device captures. That is an offline job of roughly 10 s per flight per core.
 
 For the true model the calibration factor comes out at 1.0, so honest tests aren't weakened. For wrong models it is often above 1, from prior shrinkage of their nuisance terms. That only makes rejection more cautious.
 
@@ -155,7 +158,7 @@ For the true model the calibration factor comes out at 1.0, so honest tests aren
 **Evidence.**
 - In every hard scenario the true model is never rejected (EVIDENCE §7; `test_hardware_faults_never_make_it_confidently_wrong`, `test_adverse_conditions_still_recover_truth`).
 - Coverage study (`python analysis/tests/coverage.py`; about 15 min): 90 flights, 30 seeds × 3 truths, every hardware fault at once, north-east-south route.
-  - The true model was rejected in 0 of 90.
+  - The true model was rejected in 0 of 90 (two-sided 95 % Clopper–Pearson upper bound 4.0 %; rerun on v0.4 with the same coverage figures).
   - Before the floor, the globe-rotation intervals covered the truth in 92 % of flights, the most precise term being the most exposed to scale and alignment errors. With the floor: 94 %, with the 95th-percentile error at 1.97σ.
   - Curvature and disc intervals covered 100 %, so they are conservative.
 
@@ -168,7 +171,8 @@ For the true model the calibration factor comes out at 1.0, so honest tests aren
 
 **Why.**
 - A slow turn of the IMU in its mount goes straight into the vertical channel. In v0.1, an 8 °/h slip turned one truth into another.
-- The decision uses only the magnetometer and GPS, never the gyro. So the declination model, built on a globe, can only drop data; it can't push k towards any model.
+- The decision uses only the magnetometer and GPS, never the gyro, and the WMM never enters y. But a selection rule can still be informative: if what it drops correlates with route, heading or longitude, and those drive the model terms, k can shift. So every flight where the WMM version excluded anything is refitted with no exclusions (`fit_no_wmm_exclusion`). If any model's rejection changes, or any k moves by more than 1σ, the session is flagged `wmm_selection_sensitive` and left out of the primary result.
+- With under 45° of heading range, the airframe's magnetic field can't be fitted and is set to zero; the result says so.
 - The raw magnetometer data is kept, so anyone can test claims about declination.
 
 **Rejected.**
@@ -191,7 +195,7 @@ For the true model the calibration factor comes out at 1.0, so honest tests aren
 
 **Decision.**
 - Use the IMU's chip temperature, not the phone battery's.
-- Apply a coefficient measured on a drift run when one exists, and fit only the residual.
+- Apply a coefficient measured on a drift run when one exists, and fit only the residual. The drift-run fit has a time term next to temperature, b = b₀ + β_T (T − T̄) + β_t t. A run where |corr(T, t)| > 0.9 is marked `bias_temp_confounded` and never used as a prior, since a monotonic warm-up can't tell drift from temperature. The bench protocol asks for at least two warm/cool cycles (BENCH §8).
 - Otherwise fit freely, report k without the term too, and flag `temperature_sensitive` if any k moves by more than 1σ.
 
 **Why.** A free temperature coefficient can absorb signal if temperature tracks heading or time in the wrong way.
@@ -200,11 +204,13 @@ For the true model the calibration factor comes out at 1.0, so honest tests aren
 
 ## 14. Quality tiers that measure this experiment, without assuming an answer
 
-**Decision.** Rate each IMU unit by:
+**Decision.** Rate each IMU unit by the criteria below. Each session uses the latest tier measured **at or before** its own date, so a later bench test can't re-rate earlier flights. Rate the unit by:
 - its Allan deviation at 300 s, the worst axis, from a long still recording. The minimum of the Allan curve is reported but treated as descriptive, because it depends on run length and estimator.
 - its repeatability in the **reversal test**: repeated same-face 0°/180° turns on a table. Each pair measures the horizontal ground rate free of g-sensitivity, and the pair-to-pair scatter is the unit's repeatability for the one measurement this experiment rests on.
 
-The thresholds (≤ 3 and ≤ 2 °/h for "qualified") are provisional until real units are measured ([BENCH.md](BENCH.md)). A unit is never rated by whether it reproduces the globe's 15 °/h.
+The thresholds (≤ 3 and ≤ 2 °/h for "qualified") are provisional until real units are measured ([BENCH.md](BENCH.md)). A unit is never rated by whether it reproduces the globe's 15 °/h. The same holds for the hardware check that auto-zero is off: it uses a turntable at an independently known rate, not the Earth (BENCH §2).
+
+The ground horizontal rate is the length of a vector, which piles up above zero under noise. So it is reported with a Rice-likelihood estimate, profile-likelihood 68 % and 95 % intervals that can reach zero, and the p-value of zero rate, never as a symmetric "value ± σ".
 
 **Why.** "The unit recovered the expected Earth rate" would assume which model is true.
 
@@ -215,7 +221,8 @@ The thresholds (≤ 3 and ≤ 2 °/h for "qualified") are provisional until real
 ## 15. Pooling: sessions → units → population, random effects
 
 **Decision.**
-- REML random effects, with modified Hartung–Knapp standard errors and t intervals, first within each IMU unit, then across units.
+- REML random effects, with modified Hartung–Knapp standard errors and t intervals, first within each IMU unit, then across units, for each term.
+- The model tests use the **joint** covariance of the three k. Each flight reports its 3×3 covariance: the fit's correlation scaled to the final σ. These are pooled by precision weighting, with each term's between-session and between-unit τ² on the diagonal and no term variance below its own pooled value. Each model is then tested with χ² = dᵀV⁻¹d, referred to F(p, df) when few units set df. Terms a session didn't identify carry no weight from it.
 - Hard gates for the primary result.
 - With fewer than three units, the result is labelled "single-unit" or "two-unit" and makes no population claim.
 - Breakdowns are consistency checks: groups that disagree are flagged, never averaged away.
@@ -223,6 +230,7 @@ The thresholds (≤ 3 and ≤ 2 °/h for "qualified") are provisional until real
 **Why.**
 - Sessions with one IMU share its quirks, and a fixed-effects average treats every 60-s bin as independent.
 - DerSimonian–Laird, used in v0.2, is known to be overconfident with few, heterogeneous members.
+- The three k come from the same flights, sharing bias, crab and orientation. v0.3 pooled each term separately and then summed z² as if the terms were independent, which isn't χ² at all when they are correlated (third review). `test_pooled_model_test_uses_the_joint_covariance`.
 
 **Evidence.** With unit offsets beyond the stated errors, the random-effects 95 % intervals cover the truth 91 % of the time with 8 units. Fixed effects cover it 23 % of the time (EVIDENCE §9; `test_hierarchical_pooling_covers_the_truth_when_units_differ`).
 
@@ -236,12 +244,39 @@ On a precise flight (a straight route with three same-side-up turns), an 8° cra
 
 **Limits.** On an eastbound leg, the globe's rotation and its curvature both tilt local level about the north axis, so a heading offset trades against how the fit splits them. With 8° of crab the true globe is no longer rejected, but k is still about 2σ off. A wider prior only widens the error bars. Heading diversity on the route removes the trade-off.
 
+**Sensitivity, reported, not gated.** Every flight is refitted with crab priors of 3°, 5°, 10° and 15° (`crab_sensitivity`), and a k that spans more than 1σ is flagged `crab_sensitive`. Flights with a single course leg are flagged `single_heading`. Their individual k_rot and k_curv are read only together, through the joint covariance.
+
+**Rejected: a crab-sweep gate.** It was tried in v0.4 and fails both ways (EVIDENCE §11). With 8° of true crab, k stays biased at k_rot ≈ 0.63 at every prior, a span of only 0.35σ, so the gate would let it through. The clean globe flight moves 1.8σ when the prior widens to 15°, so the gate would exclude it. The sweep measures how much the error bars lean on the prior, not crab bias. Only heading diversity separates crab from the split between globe rotation and curvature.
+
 **Evidence.** EVIDENCE §11; `test_crab_angle_no_longer_rejects_the_true_globe`.
+
+## Third review (v0.4)
+
+An external source-level review of v0.3. What it found, and what changed:
+
+| finding | change |
+|---|---|
+| The auto-zero bench check needed the stationary IMU to show Earth's rotation: circular | A turntable at an independently known rate (BENCH §2) |
+| Pooled model test summed z² across correlated k | Joint covariance, precision-weighted pooling, dᵀV⁻¹d (§15) |
+| "3σ" not demonstrated by 90 flights | Called nominal. `coverage.py --null` added. Per-axis ρ, longer blocks (§10) |
+| Temperature slope from a monotonic warm-up is confounded with drift | Time term, confounding flag, cycled protocol (§13, BENCH §8) |
+| Identifiability measured against bias only | Against bias, temperature and crab together. Crab and temperature priors in the sensitivity check (§8, §7) |
+| A missing GNSS course became 0° (north) | Missing or poor courses, and courses disagreeing with the coordinates, are excluded from cruise |
+| WMM selection called neutral | A no-exclusion refit and the `wmm_selection_sensitive` gate (§11) |
+| Crab on single-heading flights | Crab-prior sweep reported; a gate on it was tried and rejected, since it doesn't detect crab bias (§16) |
+| Ground horizontal rate as magnitude ± σ | Rice likelihood intervals and p of zero (§14) |
+| Unit tier was the latest ever measured | Tier as of each session (§14) |
+| Gzip inside the upload zip was decompressed unbounded | A bounded decompressor, checked at upload and when reading |
+| Unpinned dependencies, no CI | Lock files, `environment` (versions and commit) in every result, a CI workflow |
+
+**Checked and not changed.** "MATH.md describes an obsolete phone-based experiment." The repository's MATH.md already described the WT901, three tested models, the disc's −dλ/dt term and the WMM watchdog. The review appears to have read a stale copy. Its one valid point, the "can only drop data" wording, is fixed under §11.
 
 ## Open points
 
-- **Bench test of the real devices.** Follow [BENCH.md](BENCH.md): decoding, scale factors, auto-zero polarity, the finest workable ranges, Allan deviation, reversal repeatability, Bluetooth recovery and temperature.
+- **Bench test of the real devices.** Follow [BENCH.md](BENCH.md): decoding, scale factors, auto-zero (against an imposed known rate), the finest workable ranges, Allan deviation, reversal repeatability, Bluetooth recovery and temperature cycles.
+- **Measured false-rejection tail.** Run `coverage.py --null` with thousands of flights, ideally with noise models fitted to long real captures, before any significance is published.
+- **Fully multivariate random effects.** τ² is estimated per term and placed on the diagonal. Between-unit correlation of the k offsets isn't modelled.
 - **Two IMUs on one flight.** They would be excellent independent checks on sensor-specific systematics, but they share the flight: aircraft motion, GNSS, crab, turbulence and temperature. That needs a schema with a list of IMUs and crossed pooling (flight effect plus unit effect), not two independent flights.
 - **Heading-free fit.** A flight with no banked turn at all has no forward axis, so only the vertical channel is used. The IMU's azimuth could instead be fitted as a nuisance parameter. This would need care so it can't favour one model. The current protocol instead asks participants to keep recording through one course change.
 - **g-sensitivity along gravity, per unit.** A datasheet bound or a dedicated test would tighten the vertical channel.
-- **Crab on single-heading legs.** A magnetometer-based heading constraint would help, but it needs the declination model, so it would add a globe dependence to the predictions, not just to data selection.
+- **Crab on single-heading legs.** Still the main unresolved bias for the most precise flights. Requiring heading diversity for the primary result would remove it, at the cost of most airliner routes. A magnetometer-based heading constraint would help, but it needs the declination model, so it would add a globe dependence to the predictions, not just to data selection.

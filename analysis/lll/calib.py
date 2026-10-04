@@ -61,6 +61,30 @@ def _visits(sess, prefix):
     return out
 
 
+def rice_interval(r, sigma):
+    """Length of a horizontal rate vector from the measured lengths r_i of independent estimates,
+    each with Gaussian noise of σ_i per horizontal component (two components).
+
+    A length isn't Gaussian near zero: it piles up above zero, so a symmetric "value ± σ" misleads
+    exactly where a still Earth would sit. Instead this uses the Rice likelihood: the maximum-
+    likelihood length, profile-likelihood 68 % and 95 % intervals (−2 ΔlnL = 1 and 3.84, bounded
+    below by 0), and the p-value of zero rate from Σ r_i²/σ_i², χ² with 2n degrees of freedom."""
+    from scipy.stats import chi2, rice
+    r, sigma = np.atleast_1d(np.asarray(r, float)), np.atleast_1d(np.asarray(sigma, float))
+    sigma = np.maximum(sigma, 1e-12)
+    top = float(np.max(r + 8 * sigma))
+    grid = np.linspace(0.0, top, 4001)
+    ll = rice.logpdf(r[None, :], grid[:, None] / sigma[None, :], scale=sigma[None, :]).sum(axis=1)
+    i = int(np.argmax(ll))
+    dev = 2 * (ll[i] - ll)
+
+    def interval(c):
+        inside = grid[dev <= c]
+        return [float(inside.min()), float(inside.max())]
+    return {"mle": float(grid[i]), "ci68": interval(1.0), "ci95": interval(3.84),
+            "p_zero": float(chi2.sf(float(np.sum((r / sigma) ** 2)), 2 * len(r)))}
+
+
 def calibrate(sess, prefix: str) -> dict | None:
     """Analyse cal_pre or cal_post. Returns None unless every position has at least one visit."""
     vis = _visits(sess, prefix)
@@ -114,8 +138,12 @@ def calibrate(sess, prefix: str) -> dict | None:
         pairs[face] = {"raw": raw, "debiased": float(np.sqrt(max(raw ** 2 - noise2, 0.0))),
                        "sd": float(np.sqrt(noise2 / 2)), "vertical": float((w[a] + w[c]) @ u / 2)}
     h_raw = np.mean([pairs[f]["raw"] for f in pairs])
-    h_est = np.mean([pairs[f]["debiased"] for f in pairs])
     h_sd = max(np.sqrt(sum(pairs[f]["sd"] ** 2 for f in pairs)) / 2, abs(pairs["up"]["raw"] - pairs["down"]["raw"]) / 2)
+    # the two faces as independent estimates; their disagreement, if larger than the noise, widens both
+    face_gap = abs(pairs["up"]["raw"] - pairs["down"]["raw"]) / 2
+    rl = rice_interval([pairs[f]["raw"] for f in pairs],
+                       [np.sqrt(pairs[f]["sd"] ** 2 + face_gap ** 2) for f in pairs])
+    h_est = rl["mle"]
     v_est = np.mean([pairs[f]["vertical"] for f in pairs])
     v_sd = max(abs(pairs["up"]["vertical"] - pairs["down"]["vertical"]) / 2,
                float(np.sqrt(np.mean([var_w[p] @ (up[p] ** 2) for p in POSITIONS]) / 4)))
@@ -134,6 +162,9 @@ def calibrate(sess, prefix: str) -> dict | None:
         "drift_dph_per_h": (d * RAD2DPH).tolist() if fit_drift else None,
         "earth_h_dph": float(h_est * RAD2DPH),
         "earth_h_raw_dph": float(h_raw * RAD2DPH),
+        "earth_h_ci68_dph": [float(x * RAD2DPH) for x in rl["ci68"]],
+        "earth_h_ci95_dph": [float(x * RAD2DPH) for x in rl["ci95"]],
+        "earth_h_p_zero": rl["p_zero"],
         "earth_h_sd_dph": float(h_sd * RAD2DPH),
         "earth_up_dph": float(v_est * RAD2DPH),
         "earth_up_sd_dph": float(v_sd * RAD2DPH),
@@ -172,14 +203,15 @@ def reversal_test(sess, prefix="rev"):
     if len(mags) < 2:
         return None
     # The pairs are placed against the same edge, so their vectors point the same way: average the
-    # vectors, then remove the noise power from the squared length (a length is biased upward by noise).
+    # vectors, then estimate the length with the Rice likelihood (a length is biased upward by noise).
     V = np.array(vecs) * RAD2DPH
     n = len(V)
     vbar = V.mean(axis=0)
-    noise = float(np.trace(np.cov(V.T, ddof=1))) / n
-    h = float(np.sqrt(max(vbar @ vbar - noise, 0.0)))
+    noise = float(np.trace(np.cov(V.T, ddof=1))) / n       # over the two horizontal components
+    rl = rice_interval(float(np.linalg.norm(vbar)), np.sqrt(noise / 2))
     mags = np.array(mags) * RAD2DPH
-    return {"pairs": n, "h_dph": mags.tolist(), "h_mean_dph": h, "h_raw_mean_of_lengths_dph": float(mags.mean()),
+    return {"pairs": n, "h_dph": mags.tolist(), "h_mean_dph": rl["mle"], "h_raw_mean_of_lengths_dph": float(mags.mean()),
+            "h_ci68_dph": rl["ci68"], "h_ci95_dph": rl["ci95"], "h_p_zero": rl["p_zero"],
             "h_sd_dph": float(mags.std(ddof=1)), "h_sem_dph": float(np.sqrt(noise))}
 
 

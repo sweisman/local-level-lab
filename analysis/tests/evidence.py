@@ -200,7 +200,7 @@ def crab():
     import lll.analyze as A
     import lll.fit as F
     orig = F.fit
-    rows = []
+    rows, sweep = [], []
     for truth in ("sphere_rotating", "sphere_still"):
         for label, crab_deg, sig in (("none", (), 5.0), ("8°, no crab term", (8.0, 8.0), 0.0), ("8°, crab term (5° prior)", (8.0, 8.0), 5.0)):
             try:
@@ -210,10 +210,17 @@ def crab():
             finally:
                 F.fit = orig
                 A.fit.fit = orig
+            cs = fi.get("crab_sensitivity")
+            span = f(max(cs["k_span_sigma"].values())) if cs else "–"
             rows.append([truth, label, "YES" if fi["rejected"][truth] else "no",
-                         f"{f(fi['k']['k_rot_sphere'])} ± {f(fi['k_sd']['k_rot_sphere'])}", f"{f(fi['k']['k_curv'])} ± {f(fi['k_sd']['k_curv'])}"])
-    table(["truth", "crab", "truth rejected?", "k_rot", "k_curv"], rows)
+                         f"{f(fi['k']['k_rot_sphere'])} ± {f(fi['k_sd']['k_rot_sphere'])}", f"{f(fi['k']['k_curv'])} ± {f(fi['k_sd']['k_curv'])}",
+                         span, "yes" if cs and cs["crab_sensitive"] else "no"])
+            if cs and crab_deg:
+                sweep.append([truth] + [f"{f(v['k']['k_rot_sphere'])} / {f(v['k']['k_curv'])}" for v in cs["fits"].values()])
+    table(["truth", "crab", "truth rejected?", "k_rot", "k_curv", "k span over crab priors (σ)", "crab-sensitive flag?"], rows)
     print("Straight route with three same-side-up IMU turns. A flat truth has no horizontal signal, so crab doesn't affect it.\n")
+    print("Crab-prior sweep with 8° of true crab (k_rot / k_curv):\n")
+    table(["truth"] + [f"{d:g}° prior" for d in F.CRAB_SWEEP_DEG], sweep)
 
 
 def ble_timing():

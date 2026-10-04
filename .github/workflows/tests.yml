@@ -1,0 +1,18 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+      - name: Install the pinned environment
+        run: pip install -r requirements-lock.txt -e analysis -e server
+      - name: Test
+        run: python -m pytest analysis/tests server/tests -q

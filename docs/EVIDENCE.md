@@ -20,12 +20,12 @@ Largest difference over 5 states × 3 models: 8.6e-12 rad/s (1.8e-06 °/h).
 
 | truth | sequence | g-sensitivity up to 40 °/h/g | horizontal measured (°/h) | predicted | vertical measured | predicted |
 |---|---|---|---|---|---|---|
-| sphere_rotating | single | no | 13.03 ± 1.21 | 11.44 | 9.77 | 9.77 |
-| sphere_rotating | single | yes | 12.90 ± 1.34 | 11.44 | 49.34 | 9.77 |
-| sphere_rotating | palindrome | no | 11.28 ± 1.39 | 11.44 | 10.09 | 9.77 |
-| sphere_rotating | palindrome | yes | 11.68 ± 1.15 | 11.44 | 50.58 | 9.77 |
-| flat_still | single | no | 1.53 ± 1.37 | 0.00 | -0.26 | 0.00 |
-| flat_still | single | yes | 1.67 ± 1.26 | 0.00 | 39.85 | 0.00 |
+| sphere_rotating | single | no | 13.11 ± 1.21 | 11.44 | 9.77 | 9.77 |
+| sphere_rotating | single | yes | 12.94 ± 1.34 | 11.44 | 49.34 | 9.77 |
+| sphere_rotating | palindrome | no | 11.43 ± 1.39 | 11.44 | 10.09 | 9.77 |
+| sphere_rotating | palindrome | yes | 11.80 ± 1.15 | 11.44 | 50.58 | 9.77 |
+| flat_still | single | no | 0.00 ± 1.37 | 0.00 | -0.26 | 0.00 |
+| flat_still | single | yes | 1.00 ± 1.26 | 0.00 | 39.85 | 0.00 |
 | flat_still | palindrome | no | 0.00 ± 1.12 | 0.00 | 0.68 | 0.00 |
 | flat_still | palindrome | yes | 0.00 ± 1.37 | 0.00 | 40.55 | 0.00 |
 
@@ -94,16 +94,23 @@ Measured turn angles (true 180°): 179.93°, 179.96°, 179.98°
 
 ## 11. Crab angle (fuselage off the GNSS track)
 
-| truth | crab | truth rejected? | k_rot | k_curv |
-|---|---|---|---|---|
-| sphere_rotating | none | no | 1.06 ± 0.19 | 0.92 ± 0.28 |
-| sphere_rotating | 8°, no crab term | YES | 0.63 ± 0.11 | 1.51 ± 0.15 |
-| sphere_rotating | 8°, crab term (5° prior) | no | 0.63 ± 0.20 | 1.54 ± 0.28 |
-| sphere_still | none | no | -0.08 ± 0.12 | 1.11 ± 0.17 |
-| sphere_still | 8°, no crab term | no | -0.19 ± 0.10 | 1.25 ± 0.14 |
-| sphere_still | 8°, crab term (5° prior) | no | -0.22 ± 0.12 | 1.29 ± 0.16 |
+| truth | crab | truth rejected? | k_rot | k_curv | k span over crab priors (σ) | crab-sensitive flag? |
+|---|---|---|---|---|---|---|
+| sphere_rotating | none | no | 1.06 ± 0.19 | 0.92 ± 0.28 | 1.78 | yes |
+| sphere_rotating | 8°, no crab term | YES | 0.63 ± 0.11 | 1.51 ± 0.15 | – | no |
+| sphere_rotating | 8°, crab term (5° prior) | no | 0.63 ± 0.20 | 1.54 ± 0.28 | 0.35 | no |
+| sphere_still | none | no | -0.08 ± 0.12 | 1.11 ± 0.17 | 0.97 | no |
+| sphere_still | 8°, no crab term | no | -0.19 ± 0.10 | 1.25 ± 0.14 | – | no |
+| sphere_still | 8°, crab term (5° prior) | no | -0.22 ± 0.12 | 1.29 ± 0.16 | 0.76 | no |
 
 Straight route with three same-side-up IMU turns. A flat truth has no horizontal signal, so crab doesn't affect it.
+
+Crab-prior sweep with 8° of true crab (k_rot / k_curv):
+
+| truth | 3° prior | 5° prior | 10° prior | 15° prior |
+|---|---|---|---|---|
+| sphere_rotating | 0.63 / 1.54 | 0.63 / 1.54 | 0.65 / 1.51 | 0.70 / 1.44 |
+| sphere_still | -0.20 / 1.27 | -0.22 / 1.29 | -0.26 / 1.35 | -0.29 / 1.38 |
 
 ## 12. BLE timing under lost notifications
 
@@ -120,6 +127,6 @@ Straight route with three same-side-up IMU turns. A flat truth has no horizontal
 
 | truth | pairs | horizontal rate (°/h) | predicted | repeatability σ (°/h) |
 |---|---|---|---|---|
-| sphere_rotating | 6 | 11.06 ± 0.72 | 11.44 | 1.25 |
+| sphere_rotating | 6 | 11.07 ± 0.72 | 11.44 | 1.25 |
 | flat_still | 6 | 0.00 ± 0.64 | 0.00 | 0.92 |
 

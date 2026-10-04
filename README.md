@@ -1,3 +1,5 @@
+<p align="center"><img src="docs/img/logo.png" alt="Local Level Lab logo" width="200"></p>
+
 # Local Level Lab
 
 A fully open experiment that tests the shape and motion of the Earth with a small motion sensor (an IMU) carried on ordinary flights. It starts with a small number of careful operators; crowdsourcing can follow once the instrument has been characterized.
@@ -49,13 +51,13 @@ Pick a mount that lets you take the IMU out and put it back facing the opposite 
 
 ```sh
 python -m venv .venv && . .venv/bin/activate
-pip install -e analysis -e server pytest httpx
+pip install -r requirements-lock.txt -e analysis -e server   # exact versions; every result records them
 lll synth demo.zip --truth sphere_rotating          # or sphere_still / flat_still; --variant spp|ble
 lll synth hard.zip --truth flat_still --adverse     # temperature drift, turbulence, mount slip, climb/descent, GNSS gaps
 lll analyze demo.zip                                # writes demo.result.json + demo.report.html
 lll collate . -o collated --include-synthetic       # pools every *.result.json under . (synthetic data is excluded by default)
 lll bench session.zip                               # bench statistics: decode, timing, quantization, Allan, reversal test
-lll bench off.zip on.zip                            # compare two bench sessions (auto-zero off/on, two ranges)
+lll bench a.zip b.zip                               # compare two bench sessions (two ranges, two units)
 pytest analysis/tests server/tests
 python analysis/tests/evidence.py                   # regenerates docs/EVIDENCE.md
 python analysis/tests/coverage.py                   # interval coverage under hardware faults (about 15 min)
