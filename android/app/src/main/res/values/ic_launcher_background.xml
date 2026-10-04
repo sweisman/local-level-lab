@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- The logo's own backdrop, so the icon reads as one piece. -->
-    <color name="ic_launcher_background">#F2F6F7</color>
+    <color name="ic_launcher_background">#FFFFFF</color>
 </resources>

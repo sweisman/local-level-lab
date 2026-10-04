@@ -77,13 +77,16 @@ def summarize(records):
     return out
 
 
-def flight_run(truth, scenario, seed, sampling, block, boot, variant):
-    record = dict(truth=truth, scenario=scenario, seed=seed, sampling=sampling, block=block, variant=variant)
+def flight_run(truth, scenario, seed, sampling, block, boot, variant, same_side_up_turns=False):
+    record = dict(truth=truth, scenario=scenario, seed=seed, sampling=sampling, block=block, variant=variant,
+                  same_side_up_turns=same_side_up_turns)
     try:
         with tempfile.TemporaryDirectory(prefix="lll-research-") as d:
             p = Path(d) / "session.zip"
             opts = dict(fs=20., legs=((10, 30), (100, 30), (190, 30)), variant=variant)
             opts.update(scenario_options(scenario))
+            if same_side_up_turns:
+                opts["index_turns"] = ((20, "z"), (50, "z"), (80, "z"))
             synthesize(p, truth, seed=seed, omega_in_fn=geometric_truth(truth), **opts)
             r = analyze(p, fit_options={"n_boot": boot, "seed": seed, "bootstrap_sampling": sampling, "block_length": block})
         if not r.get("fit"):
@@ -101,7 +104,10 @@ def flight_run(truth, scenario, seed, sampling, block, boot, variant):
             diagnostics[name] = {"covariance": covariance, "min_eigenvalue": float(np.linalg.eigvalsh(V).min()),
                                  "covers95": bool(delta @ np.linalg.pinv(V) @ delta <= chi2.ppf(.95, 3))}
         return {**record, "rejected": f["rejected"][truth], "exclusions": reasons, "k": f["k"],
-                "k_sd": f["k_sd"], "covariance": diagnostics, "convergence": f["convergence"]}
+                "k_sd": f["k_sd"], "covariance": diagnostics, "convergence": f["convergence"],
+                "prior_sensitivity": f["prior_sensitivity"], "identifiability": f["identifiability"],
+                "wmm_shift_sigma": (r.get("fit_no_wmm_exclusion") or {}).get("k_shift_sigma"),
+                "flags": r["flags"]}
     except Exception as exc:
         return {**record, "failure": repr(exc)}
 
@@ -137,6 +143,7 @@ def main():
     ap.add_argument("--blocks", nargs="+", type=int, default=[5, 15, 30])
     ap.add_argument("--units", nargs="+", type=int, default=[2, 3, 5, 10, 30])
     ap.add_argument("--variant", choices=["spp", "ble"], default="spp")
+    ap.add_argument("--same-side-up-turns", action="store_true", help="turn the mounted IMU at 20, 50 and 80 flight minutes")
     ap.add_argument("-o", type=Path, required=True)
     args = ap.parse_args()
     start, records = time.monotonic(), []
@@ -148,7 +155,8 @@ def main():
                 if scenario == "pool":
                     records.extend(pooled_run(truth, seed, n) for n in args.units)
                 else:
-                    records.extend(flight_run(truth, scenario, seed, s, b, args.bootstrap, args.variant)
+                    records.extend(flight_run(truth, scenario, seed, s, b, args.bootstrap, args.variant,
+                                              args.same_side_up_turns)
                                    for s in args.sampling for b in args.blocks)
                 args.o.write_text(json.dumps({"analysis_version": __version__, "policy_version": POLICY_VERSION,
                     "environment": environment(), "elapsed_s": time.monotonic()-start,

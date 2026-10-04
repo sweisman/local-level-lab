@@ -72,10 +72,25 @@ were 0.82, 0.49 and 0.36 baseline standard errors for the rotating globe, still 
 respectively. These paired changes are descriptive, not significance tests or evidence for accepted
 flight coverage. The baseline took about 27 seconds.
 
-Before increasing the simulation count, inspect per-prior sensitivity and compare fixtures with
-the protocol's same-side-up IMU reversals while keeping eligibility thresholds fixed. The current
-pilot design cannot measure conditional false rejection because it produces no accepted flights.
-No stored observational corpus existed at this checkpoint, so no reprocessing was needed.
+[Baseline prior diagnostics](baseline-diagnostics-060.json) attribute the zero-crab exclusions
+mainly to the residual-bias prior: widening it 3× moves the curvature estimate by 2.40σ, 1.98σ
+and 2.18σ for rotating globe, still globe and flat disc, respectively. Widening the crab prior
+also moves the rotating-globe rotation estimate by 1.72σ. These are within-fit sensitivity checks;
+they do not estimate rejection rates.
+
+The same seed and routes with three same-side-up IMU turns at 20, 50 and 80 flight minutes are in
+[zero-drift turns](turn-zero-060.json) and [+1°/h drift turns](turn-drift-060.json). With turns,
+the largest bias-prior shift falls below 0.01σ in every run. At zero drift the flat-disc flight
+passes the scientific gates, while both globe flights remain prior-dominated by crab sensitivity
+(largest shifts 1.12σ and 1.04σ). At +1°/h, the still globe and flat disc pass; the rotating globe
+remains prior-dominated (largest crab-prior shift 1.24σ). All six retain their true model. These
+six single-seed outcomes establish only that the turn-enabled fixture can produce accepted
+flights; they do not calibrate false-rejection tails or justify changing the gates.
+
+For a turn-enabled pilot, add `--same-side-up-turns` to the research command. Vary seeds, routes
+and scenarios before choosing a larger campaign; the accepted fraction and scenario-specific
+null outcomes should be reported with their denominators and binomial uncertainty. No stored
+observational corpus existed at this checkpoint, so no reprocessing was needed.
 
 [Pooling pilot](pool-pilot-060.json): one seed per truth at 2, 3, 5 and 10 units, with correlated
 unit effects and unequal session covariance. No true-model rejections in these 12 summaries;

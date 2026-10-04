@@ -1,0 +1,667 @@
+{
+  "analysis_version": "0.6.0",
+  "policy_version": "pilot-2",
+  "environment": {
+    "python": "3.14.7",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "git_commit": "da32a3cdc6e3a6324504060cbf3df6514dab6081"
+  },
+  "elapsed_s": 28.631025008042343,
+  "simulation_assumption": "approved provenance and usable bench tier; remaining gates applied",
+  "summary": [
+    {
+      "truth": "sphere_rotating",
+      "scenario": "drift+0",
+      "sampling": "moving",
+      "block": 15,
+      "attempted": 1,
+      "analysis_failures": 0,
+      "eligibility_exclusions": 1,
+      "accepted": 0,
+      "exclusion_reasons": {
+        "prior-dominated": 1
+      },
+      "unconditional": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      },
+      "conditional_on_acceptance": {
+        "count": 0,
+        "n": 0,
+        "rate": null,
+        "ci95": null
+      },
+      "complete_gated_rule": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      }
+    },
+    {
+      "truth": "sphere_still",
+      "scenario": "drift+0",
+      "sampling": "moving",
+      "block": 15,
+      "attempted": 1,
+      "analysis_failures": 0,
+      "eligibility_exclusions": 1,
+      "accepted": 0,
+      "exclusion_reasons": {
+        "prior-dominated": 1
+      },
+      "unconditional": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      },
+      "conditional_on_acceptance": {
+        "count": 0,
+        "n": 0,
+        "rate": null,
+        "ci95": null
+      },
+      "complete_gated_rule": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      }
+    },
+    {
+      "truth": "flat_still",
+      "scenario": "drift+0",
+      "sampling": "moving",
+      "block": 15,
+      "attempted": 1,
+      "analysis_failures": 0,
+      "eligibility_exclusions": 0,
+      "accepted": 1,
+      "exclusion_reasons": {},
+      "unconditional": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      },
+      "conditional_on_acceptance": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      },
+      "complete_gated_rule": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      }
+    }
+  ],
+  "records": [
+    {
+      "truth": "sphere_rotating",
+      "scenario": "drift+0",
+      "seed": 10000,
+      "sampling": "moving",
+      "block": 15,
+      "variant": "spp",
+      "same_side_up_turns": true,
+      "rejected": false,
+      "exclusions": [
+        "prior-dominated"
+      ],
+      "k": {
+        "k_rot_sphere": 1.0193976813762733,
+        "k_curv": 1.0013396286489946,
+        "k_disc": -0.0525420564151754
+      },
+      "k_sd": {
+        "k_rot_sphere": 0.06008817931812895,
+        "k_curv": 0.09461283876853348,
+        "k_disc": 0.09793441192758547
+      },
+      "covariance": {
+        "joint": {
+          "covariance": [
+            [
+              0.00361058929376762,
+              -0.0042668149846121035,
+              0.0028495934841971174
+            ],
+            [
+              -0.004266815461988489,
+              0.008951589259840511,
+              -0.006049040754445402
+            ],
+            [
+              0.002849594127663554,
+              -0.006049040473028341,
+              0.009591149039601995
+            ]
+          ],
+          "min_eigenvalue": 0.0011994196874123176,
+          "covers95": true
+        },
+        "bootstrap": {
+          "covariance": [
+            [
+              0.0011159430449896542,
+              -0.0007128065816603238,
+              0.0006280340767418545
+            ],
+            [
+              -0.0007128065816603238,
+              0.0017848788283529877,
+              -0.0011369234901543665
+            ],
+            [
+              0.0006280340767418545,
+              -0.0011369234901543665,
+              0.004137997371159792
+            ]
+          ],
+          "min_eigenvalue": 0.0006604049867212429,
+          "covers95": true
+        }
+      },
+      "convergence": {
+        "converged": true,
+        "fits": [
+          {
+            "converged": true,
+            "evaluations": 6,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 5,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 25,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 1,
+            "status": 1,
+            "message": "`gtol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 6,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 17,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 5,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 6,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 10,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 17,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          }
+        ]
+      },
+      "prior_sensitivity": {
+        "widen": 3.0,
+        "k_shift_sigma": {
+          "k_rot_sphere": -0.009518709570564438,
+          "k_curv": 0.00715878805022793,
+          "k_disc": -0.008067489843056667
+        },
+        "k_shift_sigma_by_prior": {
+          "bias": {
+            "k_rot_sphere": -0.009518709570564438,
+            "k_curv": 0.00715878805022793,
+            "k_disc": -0.008067489843056667
+          },
+          "crab": {
+            "k_rot_sphere": -1.0207373837969453,
+            "k_curv": 1.1178644847388648,
+            "k_disc": -0.734292670345314
+          }
+        },
+        "prior_dominated": true
+      },
+      "identifiability": {
+        "k_curv_bias_likeness": 0.28175838930460834,
+        "bias_likeness_by_term": {
+          "k_rot_sphere": 0.6952730627929077,
+          "k_curv": 0.28175838930460834,
+          "k_disc": 0.5390686932863817
+        },
+        "k_curv_nuisance_likeness": 0.6685476915047188,
+        "nuisance_likeness_by_term": {
+          "k_rot_sphere": 0.7765992915145088,
+          "k_curv": 0.6685476915047188,
+          "k_disc": 0.5406860107747116
+        },
+        "identified_by_term": {
+          "k_rot_sphere": true,
+          "k_curv": true,
+          "k_disc": true
+        },
+        "identified": true,
+        "note": "fraction of each term's signal the nuisance terms (residual bias per gravity orientation, temperature, crab) could mimic together, with no priors"
+      },
+      "wmm_shift_sigma": null,
+      "flags": [
+        "synthetic",
+        "imu_turned_in_flight",
+        "prior_dominated",
+        "crab_sensitive"
+      ]
+    },
+    {
+      "truth": "sphere_still",
+      "scenario": "drift+0",
+      "seed": 10000,
+      "sampling": "moving",
+      "block": 15,
+      "variant": "spp",
+      "same_side_up_turns": true,
+      "rejected": false,
+      "exclusions": [
+        "prior-dominated"
+      ],
+      "k": {
+        "k_rot_sphere": 0.05162987091977538,
+        "k_curv": 0.9731192216901183,
+        "k_disc": -0.016701026527935325
+      },
+      "k_sd": {
+        "k_rot_sphere": 0.05001496926370712,
+        "k_curv": 0.05402917855374108,
+        "k_disc": 0.08318442000624235
+      },
+      "covariance": {
+        "joint": {
+          "covariance": [
+            [
+              0.002501497150449568,
+              -0.0010286054826554858,
+              0.0006205855459092556
+            ],
+            [
+              -0.001028605637300404,
+              0.002919152135192035,
+              -0.0019457011886579681
+            ],
+            [
+              0.0006205862427739482,
+              -0.001945701649820314,
+              0.006919647731774934
+            ]
+          ],
+          "min_eigenvalue": 0.0015124515167423485,
+          "covers95": true
+        },
+        "bootstrap": {
+          "covariance": [
+            [
+              0.0010496258823618858,
+              -0.0006254718553445262,
+              0.0008183218644494897
+            ],
+            [
+              -0.0006254718553445262,
+              0.0017857692294922871,
+              -0.0017426602818907157
+            ],
+            [
+              0.0008183218644494897,
+              -0.0017426602818907157,
+              0.006958523540563147
+            ]
+          ],
+          "min_eigenvalue": 0.0006855767015238583,
+          "covers95": true
+        }
+      },
+      "convergence": {
+        "converged": true,
+        "fits": [
+          {
+            "converged": true,
+            "evaluations": 5,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 15,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 6,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 1,
+            "status": 1,
+            "message": "`gtol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 5,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 6,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 5,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 5,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 6,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 6,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          }
+        ]
+      },
+      "prior_sensitivity": {
+        "widen": 3.0,
+        "k_shift_sigma": {
+          "k_rot_sphere": -0.0036967223563726384,
+          "k_curv": 0.0013568443571869624,
+          "k_disc": -0.00237901476140535
+        },
+        "k_shift_sigma_by_prior": {
+          "bias": {
+            "k_rot_sphere": -0.0036967223563726384,
+            "k_curv": 0.0013568443571869624,
+            "k_disc": -0.00237901476140535
+          },
+          "crab": {
+            "k_rot_sphere": 1.0372270222321553,
+            "k_curv": -0.504486642641366,
+            "k_disc": 0.19004518473569673
+          }
+        },
+        "prior_dominated": true
+      },
+      "identifiability": {
+        "k_curv_bias_likeness": 0.281850266970948,
+        "bias_likeness_by_term": {
+          "k_rot_sphere": 0.6962355705887099,
+          "k_curv": 0.281850266970948,
+          "k_disc": 0.5390686932863817
+        },
+        "k_curv_nuisance_likeness": 0.28979563376676243,
+        "nuisance_likeness_by_term": {
+          "k_rot_sphere": 0.9172279043182037,
+          "k_curv": 0.28979563376676243,
+          "k_disc": 0.5422238627045405
+        },
+        "identified_by_term": {
+          "k_rot_sphere": true,
+          "k_curv": true,
+          "k_disc": true
+        },
+        "identified": true,
+        "note": "fraction of each term's signal the nuisance terms (residual bias per gravity orientation, temperature, crab) could mimic together, with no priors"
+      },
+      "wmm_shift_sigma": null,
+      "flags": [
+        "synthetic",
+        "imu_turned_in_flight",
+        "prior_dominated",
+        "crab_sensitive"
+      ]
+    },
+    {
+      "truth": "flat_still",
+      "scenario": "drift+0",
+      "seed": 10000,
+      "sampling": "moving",
+      "block": 15,
+      "variant": "spp",
+      "same_side_up_turns": true,
+      "rejected": false,
+      "exclusions": [],
+      "k": {
+        "k_rot_sphere": 0.038749443815588154,
+        "k_curv": -0.017770433076325615,
+        "k_disc": 0.9815202236626376
+      },
+      "k_sd": {
+        "k_rot_sphere": 0.04058669398858947,
+        "k_curv": 0.05144640876752813,
+        "k_disc": 0.08166960347042601
+      },
+      "covariance": {
+        "joint": {
+          "covariance": [
+            [
+              0.001647279728923405,
+              -0.0005827144632766307,
+              0.0003432992757105906
+            ],
+            [
+              -0.0005827144947396115,
+              0.002646732975075595,
+              -0.0017731215723445905
+            ],
+            [
+              0.0003432993851277507,
+              -0.0017731214726895896,
+              0.006669924131016622
+            ]
+          ],
+          "min_eigenvalue": 0.0013254041174257409,
+          "covers95": true
+        },
+        "bootstrap": {
+          "covariance": [
+            [
+              0.0012181733078549532,
+              -0.0007740216040226922,
+              0.001007674365535706
+            ],
+            [
+              -0.0007740216040226922,
+              0.0021634614709917207,
+              -0.002019936571134503
+            ],
+            [
+              0.001007674365535706,
+              -0.002019936571134503,
+              0.006197092501521649
+            ]
+          ],
+          "min_eigenvalue": 0.0007793200761197593,
+          "covers95": true
+        }
+      },
+      "convergence": {
+        "converged": true,
+        "fits": [
+          {
+            "converged": true,
+            "evaluations": 5,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 38,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 16,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 1,
+            "status": 1,
+            "message": "`gtol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 5,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 8,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 5,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 5,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 7,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 8,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          }
+        ]
+      },
+      "prior_sensitivity": {
+        "widen": 3.0,
+        "k_shift_sigma": {
+          "k_rot_sphere": -0.0032766743271449,
+          "k_curv": 0.0009226537154626821,
+          "k_disc": -0.0024194296969481995
+        },
+        "k_shift_sigma_by_prior": {
+          "bias": {
+            "k_rot_sphere": -0.0032766743271449,
+            "k_curv": 0.0009226537154626821,
+            "k_disc": -0.0024194296969481995
+          },
+          "crab": {
+            "k_rot_sphere": 0.06216762746718621,
+            "k_curv": -7.223719603212797e-05,
+            "k_disc": -0.002220797024029298
+          }
+        },
+        "prior_dominated": false
+      },
+      "identifiability": {
+        "k_curv_bias_likeness": 0.28279311836286575,
+        "bias_likeness_by_term": {
+          "k_rot_sphere": 0.6960757806426684,
+          "k_curv": 0.28279311836286575,
+          "k_disc": 0.5390686932863817
+        },
+        "k_curv_nuisance_likeness": 0.7503567342135228,
+        "nuisance_likeness_by_term": {
+          "k_rot_sphere": 0.7161378700515587,
+          "k_curv": 0.7503567342135228,
+          "k_disc": 0.5403631722221398
+        },
+        "identified_by_term": {
+          "k_rot_sphere": true,
+          "k_curv": true,
+          "k_disc": true
+        },
+        "identified": true,
+        "note": "fraction of each term's signal the nuisance terms (residual bias per gravity orientation, temperature, crab) could mimic together, with no priors"
+      },
+      "wmm_shift_sigma": null,
+      "flags": [
+        "synthetic",
+        "imu_turned_in_flight"
+      ]
+    }
+  ]
+}
