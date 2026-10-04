@@ -107,11 +107,18 @@ def read_session(path: str | Path) -> Session:
         reported, consistent = witmotion.range_from_events(events)
         if reported is not None:
             cfg["gyro_range_dps"] = reported
+        acc_intended = float(cfg.get("accel_range_g", 16.0))
+        acc_reported, acc_consistent = witmotion.range_from_events(events, witmotion.REG_ACC_RANGE, witmotion.ACC_RANGE_G)
+        if acc_reported is not None:
+            cfg["accel_range_g"] = acc_reported
         arrival, chunks = witmotion.read_records(gzip.decompress(zf.read(IMU_FILE)))
         decoded, imu_stats = witmotion.decode(arrival, chunks, imu)
         imu_stats.update({"gyro_range_intended_dps": intended, "gyro_range_reported_dps": reported,
                           "gyro_range_used_dps": float(cfg.get("gyro_range_dps", intended)),
-                          "gyro_range_readbacks_consistent": consistent})
+                          "gyro_range_readbacks_consistent": consistent,
+                          "accel_range_intended_g": acc_intended, "accel_range_reported_g": acc_reported,
+                          "accel_range_used_g": float(cfg.get("accel_range_g", acc_intended)),
+                          "accel_range_readbacks_consistent": acc_consistent})
         streams.update(decoded)
     return Session(manifest, streams, events, hashlib.sha256(raw).hexdigest(), imu_stats)
 

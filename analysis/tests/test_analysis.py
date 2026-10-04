@@ -133,7 +133,7 @@ def test_unit_quality_tier_uses_instrument_criteria_only(tmp_path):
     p = tmp_path / "q.zip"
     synthesize(p, "flat_still", seed=8, fs=20.0, legs=((10.0, 30.0), (190.0, 30.0)), drift_runs=True)
     q = analyze(p)["unit_quality"]
-    assert q["unit_id"] == "synthetic-spp" and q["bias_instability_dph"] is not None
+    assert q["unit_id"] == "synthetic-spp" and q["adev_300s_dph"] is not None
     assert q["tier"] in ("qualified", "usable")
 
 
@@ -271,18 +271,20 @@ def test_no_calibration_is_not_confidently_wrong(tmp_path):
 
 def test_slip_watchdog_catches_yaw_slip_and_spares_clean_flights(tmp_path):
     """Slow yaw slip of the IMU in its mount goes straight into the vertical gyro channel. The
-    magnetometer watchdog measures it, with and without the declination model, and segments where
-    both agree on slip above 2 °/h are left out of the gyro fit."""
+    magnetometer watchdog measures it with and without the declination model; the WMM version
+    decides, at 1.5 °/h. A clean flight keeps all its data even though the no-declination
+    cross-check reads the route's declination change as slip."""
     out = {}
-    for slip in (0.0, 8.0):
+    for slip in (0.0, 2.0):
         p = tmp_path / f"s{slip}.zip"
         synthesize(p, "flat_still", seed=7, fs=20.0, mount_slip_deg_per_h=(slip, 0.0))
         out[slip] = analyze(p)
-    clean, slipped = out[0.0], out[8.0]
-    assert clean["slip"]["exclude_segments"] == [] and "mount_slip_detected" not in clean["flags"]
+    clean, slipped = out[0.0], out[2.0]
     assert all(abs(r["slip_dph"]) < 1.0 for r in clean["slip"]["variants"]["wmm"])
+    assert clean["slip"]["exclude_segments"] == [] and clean["slip"]["decided_by"] == "wmm"
     assert "mount_slip_detected" in slipped["flags"]
-    assert all(abs(r["slip_dph"] - 8.0) < 1.0 for r in slipped["slip"]["variants"]["wmm"])
+    assert all("wmm" in v for v in slipped["slip"]["triggered_by"].values())
+    assert len(slipped["slip"]["exclude_segments"]) == len(slipped["slip"]["variants"]["wmm"])
 
 
 HARDWARE_FAULTS = dict(
@@ -362,3 +364,70 @@ def test_fast_turn_beyond_full_scale_is_flagged_and_not_used(tmp_path):
     assert abs(slow["angle_deg"] - 180) < 0.5 and slow["saturated_samples"] == 0
     assert "imu_turn_saturated" in out["fast"]["flags"] and "excluded_after_saturated_turn_s" in out["fast"]
     assert "imu_turn_saturated" not in out["slow"]["flags"]
+
+
+
+def test_decoder_uses_the_accel_range_the_imu_reported(tmp_path):
+    import gzip
+    import zipfile
+    p = tmp_path / "a.zip"
+    synthesize(p, "sphere_still", seed=2, fs=20.0, cal=("pre",), legs=((90.0, 12.0),), accel_range_g=4.0)
+    ref = read_session(p).streams["accel"]["z"].mean()
+    q = tmp_path / "a2.zip"
+    with zipfile.ZipFile(p) as src, zipfile.ZipFile(q, "w") as dst:
+        for n in src.namelist():
+            data = src.read(n)
+            if n == "manifest.json":
+                m = json.loads(data)
+                m["imu"]["config"]["accel_range_g"] = 16.0
+                data = json.dumps(m).encode()
+            if n == "events.csv.gz":
+                data = data + gzip.compress(b"t_ns,kind,detail\n1,imu_config,0x21=0x1 ok=false\n")
+            dst.writestr(n, data)
+    s = read_session(q)
+    assert s.imu_stats["accel_range_used_g"] == 4.0
+    assert s.streams["accel"]["z"].mean() == pytest.approx(ref)
+
+
+def test_crab_angle_no_longer_rejects_the_true_globe(tmp_path):
+    """In a crosswind the fuselage points off the GNSS track. Using the course as the heading
+    rotates the globe's horizontal predictions; on a precise flight an 8° crab then rejected the true
+    rotating globe. A heading offset per course leg, with a 5° prior, keeps it."""
+    from lll.segments import Thresholds  # noqa: F401
+    import lll.fit as F
+    p = tmp_path / "crab.zip"
+    synthesize(p, "sphere_rotating", seed=11, fs=20.0, legs=((50.0, 30.0), (90.0, 110.0)),
+               index_turns=((50, "z"), (80, "z"), (110, "z")), crab_deg=(8.0, 8.0), omega_in_fn=geometric_truth("sphere_rotating"))
+    f = analyze(p)["fit"]
+    assert not f["rejected"]["sphere_rotating"], f["p_vs_free"]
+    assert f["crab"]["per_segment_deg"] is not None
+    for name, exp in zip(TERM_NAMES, models.EXPECTED_K["sphere_rotating"]):
+        assert abs(f["k"][name] - exp) < 3.0 * f["k_sd"][name], (name, f["k"], f["k_sd"])
+    # without the crab term the same data rejects the truth
+    orig = F.fit
+    try:
+        F.fit = lambda *a, **k: orig(*a, **{**k, "crab_sigma_deg": 0.0})
+        import lll.analyze as A
+        A.fit.fit = F.fit
+        g = analyze(p)["fit"]
+    finally:
+        F.fit = orig
+        A.fit.fit = orig
+    assert g["rejected"]["sphere_rotating"]
+
+
+
+@pytest.mark.parametrize("truth", ["sphere_rotating", "flat_still"])
+def test_reversal_test_measures_horizontal_rate_and_its_repeatability(tmp_path, truth):
+    """Six same-face 0°/180° reversals, with g-sensitivity present. Each pair gives the horizontal
+    ground rate; the scatter between pairs is the unit's repeatability for this experiment."""
+    from lll.calib import ground_model_predictions
+    p = tmp_path / "rev.zip"
+    synthesize(p, truth, seed=5, fs=20.0, cal=("pre",), legs=((90.0, 12.0),), reversal_pairs=6,
+               g_sens_dph_per_g=[[30, 10, -8], [5, -25, 12], [-6, 9, 40]], omega_in_fn=geometric_truth(truth))
+    r = analyze(p)
+    rv = r["reversal"]
+    _, h_pred = ground_model_predictions(40.5)[truth]
+    assert rv["pairs"] == 6
+    assert abs(rv["h_mean_dph"] - h_pred) < 3 * rv["h_sem_dph"] + 1.5    # noise biases a norm upward
+    assert r["unit_quality"]["horizontal_repeatability_from"] == "reversal test"

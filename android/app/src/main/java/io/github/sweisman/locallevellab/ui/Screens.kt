@@ -322,12 +322,14 @@ fun SessionScreen(id: String, nav: NavController) {
     Page(s.title, nav, help = "about") {
         if (recordingHere) {
             Button({ nav.navigate(if (live.phase == "flight") "record/$id" else if (live.phase == "placement_check") "placement/$id"
-                else if (live.phase!!.startsWith("cal_")) "cal/$id/${live.phase!!.substringBefore('.').removePrefix("cal_")}" else "still/$id/${live.phase}") },
+                else if (live.phase!!.startsWith("cal_")) "cal/$id/${live.phase!!.substringBefore('.').removePrefix("cal_")}"
+                else if (live.phase!!.startsWith("rev.")) "cal/$id/rev" else "still/$id/${live.phase}") },
                 Modifier.fillMaxWidth()) { Text("● Recording ${live.phase} — open") }
         }
         if (s.manifest.optString("kind") == "bench") {
             Step("1. Calibration", s.manifest.getJSONObject("quality").optBoolean("cal_pre"), "About 25 min on a solid table") { nav.navigate("cal/$id/pre") }
-            Step("2. Bench recording", s.hasPhase("bench"), "${Prefs(ctx).driftMinutes} min lying still (30+ for a quality tier)") { nav.navigate("still/$id/bench") }
+            Step("2. Reversal test", s.manifest.getJSONObject("quality").optBoolean("reversal"), "Six 0°/180° pairs, label up, about 40 min") { nav.navigate("cal/$id/rev") }
+            Step("3. Bench recording", s.hasPhase("bench"), "${Prefs(ctx).driftMinutes} min lying still (30+ for a quality tier)") { nav.navigate("still/$id/bench") }
         } else {
         Step("1. Pre-flight calibration", s.manifest.getJSONObject("quality").optBoolean("cal_pre"), "About 25 min on a solid table") { nav.navigate("cal/$id/pre") }
         Step("2. Pre-flight drift run (optional)", s.hasPhase("drift_pre"), "${Prefs(ctx).driftMinutes} min lying still") { nav.navigate("still/$id/drift_pre") }
@@ -395,17 +397,19 @@ fun CalibrationScreen(id: String, which: String, nav: NavController) {
     val live by Live.flow.collectAsStateWithLifecycle()
     val s = rememberSession(id) ?: return
     val target = Prefs(ctx).calPositionMinutes * 60.0
-    val prefix = "cal_$which"
-    val steps = SessionStore.CAL_STEPS
-    fun len(step: String) = SessionStore.calStepLength(step)
+    val rev = which == "rev"
+    val prefix = if (rev) "rev" else "cal_$which"
+    val steps = if (rev) SessionStore.REV_STEPS else SessionStore.CAL_STEPS
+    fun len(step: String) = if (rev) 1 else SessionStore.calStepLength(step)
     fun doneOk(step: String) = s.phases.any { it.getString("name") == "$prefix.$step" && it.optDouble("still_s") >= 0.8 * target * len(step) }
     fun pos(step: String) = POSITIONS.first { it.first == step.substringBefore('.') }
     val activeStep = live.phase?.takeIf { it.startsWith("$prefix.") && live.sessionId == id }?.substringAfter('.')
     val next = steps.firstOrNull { !doneOk(it) }
     val g = rememberImuPreview().gravity
-    Page(if (which == "pre") "Pre-flight calibration" else "Post-flight calibration", nav, help = "calibration") {
+    Page(when (which) { "pre" -> "Pre-flight calibration"; "post" -> "Post-flight calibration"; else -> "Reversal test" }, nav, help = "calibration") {
         ImuStatusPanel(live)
-        Para("Seven placements: each position twice, in mirror order, so the analysis can measure and remove any slow drift. The middle one is a single double-length stay.", muted = true)
+        Para(if (rev) "Twelve placements, label up throughout: turn the IMU 180° between each, keeping the same edge against the straight edge. Each pair measures the Earth's horizontal rotation free of the sensor's gravity-dependent error; their scatter shows how repeatable this unit is."
+            else "Seven placements: each position twice, in mirror order, so the analysis can measure and remove any slow drift. The middle one is a single double-length stay.", muted = true)
         steps.forEachIndexed { i, step ->
             Stat("${i + 1}. ${pos(step).second}" + if (len(step) > 1) " (double)" else "",
                 if (doneOk(step)) "✓" else if (activeStep == step) "recording" else "–")
@@ -433,7 +437,7 @@ fun CalibrationScreen(id: String, which: String, nav: NavController) {
                 Text("Start placement ${steps.indexOf(next) + 1} of ${steps.size}")
             }
         } else {
-            Text("Calibration complete ✓", style = MaterialTheme.typography.titleLarge)
+            Text(if (rev) "Reversal test complete ✓" else "Calibration complete ✓", style = MaterialTheme.typography.titleLarge)
             Button({ nav.popBackStack() }, Modifier.fillMaxWidth()) { Text("Back to session") }
         }
     }

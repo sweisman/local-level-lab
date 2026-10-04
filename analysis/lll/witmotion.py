@@ -42,21 +42,24 @@ REC_HEADER = struct.Struct("<qH")
 # Gyro full-scale register (0x20), from WitMotion's protocol; unverified until the bench test.
 REG_GYRO_RANGE = 0x20
 GYRO_RANGE_DPS = {0: 250.0, 1: 500.0, 2: 1000.0, 3: 2000.0}
+REG_ACC_RANGE = 0x21
+ACC_RANGE_G = {0: 2.0, 1: 4.0, 2: 8.0, 3: 16.0}
 
 
-def range_from_events(events):
-    """The gyro full scale the device itself reported in the app's config readbacks
-    (imu_config events, e.g. "0x20=0x1 …"). Returns (dps or None, consistent)."""
+def range_from_events(events, reg=REG_GYRO_RANGE, table=GYRO_RANGE_DPS):
+    """A full scale the device itself reported in the app's config readbacks (imu_config events,
+    e.g. "0x20=0x1 …"). Returns (value or None, consistent). Gyro by default; pass
+    reg=REG_ACC_RANGE, table=ACC_RANGE_G for the accelerometer."""
     seen = set()
-    key = f"0x{REG_GYRO_RANGE:02x}="
+    key = f"0x{reg:02x}="
     for _, kind, detail in events:
         if kind != "imu_config":
             continue
         for tok in detail.split():
             if tok.startswith(key) and tok[len(key):] not in ("?", ""):
                 code = int(tok[len(key):], 16)
-                if code in GYRO_RANGE_DPS:
-                    seen.add(GYRO_RANGE_DPS[code])
+                if code in table:
+                    seen.add(table[code])
     if not seen:
         return None, True
     return (seen.pop(), True) if len(seen) == 1 else (None, False)
@@ -167,8 +170,31 @@ def _spp_time_s(buf, pos):
     return np.where(valid, days * 86400.0 + tod, dd * 86400.0 + tod)
 
 
-def clock_map(x, arrival_ns, gap_s=1.0, block_s=30.0):
-    """Map device time x (s) to phone time (ns) per contiguous run. Returns (t_ns, run_id)."""
+def _fit_run(xs, ys, block_s):
+    """Straight line through (device time, arrival) corrected to the lower envelope. Returns the
+    mapped times (s, relative) and the raw block minima of the residual (for step detection)."""
+    c1, c0 = np.polyfit(xs, ys, 1)
+    res = ys - (c0 + c1 * xs)
+    blk = np.floor((xs - xs[0]) / block_s).astype(np.int64)
+    bx, br, bstart = [], [], []
+    for b in np.unique(blk):
+        m = np.where(blk == b)[0]
+        j = m[np.argmin(res[m])]
+        bx.append(xs[j]); br.append(res[j]); bstart.append(m[0])
+    br = np.array(br)
+    sm = np.array([np.median(br[max(0, k - 2):k + 3]) for k in range(len(br))]) if len(br) >= 5 else br
+    return c0 + c1 * xs + np.interp(xs, bx, sm), br, np.array(bstart)
+
+
+def clock_map(x, arrival_ns, gap_s=1.0, block_s=30.0, period_s=None, info=None):
+    """Map device time x (s) to phone time (ns) per contiguous run. Returns (t_ns, run_id).
+
+    Runs break at arrival gaps, at backward or forward jumps of x, and, when period_s is given
+    (BLE, where x counts received samples), where the arrival envelope steps up by more than
+    0.6 periods and stays there: lost samples make every later x too early by one period each.
+    Finally no time may be later than its own arrival, since a sample can't arrive before it is
+    taken. (There is no lower bound: a Bluetooth stall can legitimately delay a read by more than
+    a second.)"""
     x = np.asarray(x, float)
     a = np.asarray(arrival_ns, np.int64)
     n = len(x)
@@ -177,31 +203,66 @@ def clock_map(x, arrival_ns, gap_s=1.0, block_s=30.0):
     if n == 0:
         return t, run
     brk = np.where((np.diff(a) > gap_s * 1e9) | (np.diff(x) < 0) | (np.diff(x) > gap_s))[0] + 1
-    bounds = np.concatenate([[0], brk, [n]])
-    for r, (i0, i1) in enumerate(zip(bounds[:-1], bounds[1:])):
-        run[i0:i1] = r
+    queue = list(zip(np.concatenate([[0], brk]), np.concatenate([brk, [n]])))
+    runs, steps = [], 0
+    while queue:
+        i0, i1 = queue.pop(0)
         if i1 - i0 < 50:
+            runs.append((i0, i1, None))
             continue
         xs = x[i0:i1] - x[i0]
-        a0 = a[i0]
-        ys = (a[i0:i1] - a0) / 1e9
-        c1, c0 = np.polyfit(xs, ys, 1)
-        res = ys - (c0 + c1 * xs)
-        # lower envelope: the least-delayed sample in each block, median-smoothed over 5 blocks
-        blk = np.floor(xs / block_s).astype(np.int64)
-        ub = np.unique(blk)
-        bx, br = [], []
-        for b in ub:
-            m = np.where(blk == b)[0]
-            j = m[np.argmin(res[m])]
-            bx.append(xs[j])
-            br.append(res[j])
-        br = np.array(br)
-        if len(br) >= 5:
-            br = np.array([np.median(br[max(0, k - 2):k + 3]) for k in range(len(br))])
-        corr = np.interp(xs, bx, br)
-        t[i0:i1] = a0 + np.round((c0 + c1 * xs + corr) * 1e9).astype(np.int64)
+        ys = (a[i0:i1] - a[i0]) / 1e9
+        tt, br, bstart = _fit_run(xs, ys, block_s)
+        if period_s and len(br) >= 3:
+            d = np.diff(br)
+            # a persistent rise: this block and the next both sit above the previous minimum
+            up = np.where((d[:-1] > 0.6 * period_s) & (br[2:] - br[:-2] > 0.6 * period_s))[0]
+            if len(up) and bstart[up[0] + 1] > 0:
+                cut = i0 + int(bstart[up[0] + 1])
+                queue[:0] = [(i0, cut), (cut, i1)]
+                steps += 1
+                continue
+        runs.append((i0, i1, tt))
+    for r, (i0, i1, tt) in enumerate(sorted(runs, key=lambda q: q[0])):
+        run[i0:i1] = r
+        if tt is not None:
+            t[i0:i1] = a[i0] + np.round(tt * 1e9).astype(np.int64)
+    t = np.minimum(t, a)
+    if info is not None:
+        info["envelope_steps"] = steps
     return t, run
+
+
+def recover_lost_samples(arrival_ns, rate, block=50, gap_s=1.0):
+    """For streams timed by counting samples (BLE): find how many samples were lost, and where.
+
+    r_i = arrival_i − i/rate steps up by one period at each lost sample. Within a short block
+    (default 50 samples, half a second at 100 Hz) the smallest latency is very stable, so the
+    difference between consecutive blocks' minima is a whole number of lost periods plus a
+    negligible crystal drift. Losses are placed at the start of the block that follows them,
+    which costs at most one period per loss for the samples in between. Returns the corrected
+    sample index and the number of samples judged lost (reconnection gaps aren't counted)."""
+    a = (np.asarray(arrival_ns, np.int64) - int(arrival_ns[0])) / 1e9
+    n = len(a)
+    T = 1.0 / rate
+    idx = np.arange(n, dtype=float)
+    if n < 3 * block:
+        return idx, 0
+    r = a - idx * T
+    nb = n // block
+    bmin = r[:nb * block].reshape(nb, block).min(axis=1)
+    if n > nb * block:
+        bmin = np.append(bmin, r[nb * block:].min())
+    starts = np.arange(len(bmin)) * block
+    steps = np.round(np.diff(bmin) / T)
+    gap_at = np.concatenate([[False], np.diff(a) > gap_s])
+    for b in range(len(steps)):          # a reconnection gap isn't a loss
+        if gap_at[starts[b]:starts[b + 1] + 1].any():
+            steps[b] = 0
+    steps = np.maximum(steps, 0)
+    lost = np.zeros(n)
+    lost[starts[1:]] = steps
+    return idx + np.cumsum(lost), int(steps.sum())
 
 
 def decode(arrival_ns, chunks, imu: dict):
@@ -243,7 +304,30 @@ def _decode_spp(arrival_ns, chunks, rng_dps, rng_g, rate):
              "packet_counts": {f"0x{k:02x}": int((typ == k).sum()) for k in SPP_TYPES if (typ == k).any()}}
     # device time for every packet: from the latest 0x50 at or before it, else the gyro index
     tp = typ == 0x50
-    if tp.any():
+    gp = typ == 0x52
+    if tp.any() and gp.sum() > 1.05 * tp.sum():
+        # The device sends its clock less often than the gyro: date each gyro packet from the nearest
+        # preceding clock packet plus its sample offset times the device's sample period.
+        tsec = _spp_time_s(buf, pos[tp])
+        gidx = np.cumsum(gp) - 1                    # gyro index at each packet (for gyro packets)
+        anchor = np.cumsum(gp)[tp]                  # index of the gyro packet that follows each clock packet
+        # the device's sample period, from clock packets that are close in both index and time
+        da, dt = np.diff(anchor), np.diff(tsec)
+        ok = (da > 0) & (dt > 0) & (dt < 2.0 * da / rate)
+        period = float(np.median(dt[ok] / da[ok])) if ok.any() else 1.0 / rate
+        x = np.full(len(pos), np.nan)
+        gi = gidx[gp]
+        # each gyro sample: its nearest preceding clock packet plus whole sample periods (never
+        # across a gap, where the next clock packet may be many seconds later)
+        p = np.clip(np.searchsorted(anchor, gi, side="right") - 1, 0, len(anchor) - 1)
+        x[gp] = tsec[p] + (gi - anchor[p]) * period
+        # other packets share the device time of the gyro packet in their cycle
+        lastg = np.maximum.accumulate(np.where(gp, np.arange(len(pos)), -1))
+        other = ~gp & ~tp & (lastg >= 0)
+        x[other] = x[lastg[other]]
+        stats["time_base"] = "device_clock_interpolated"
+        stats["gyro_per_clock_packet"] = float(gp.sum() / tp.sum())
+    elif tp.any():
         tsec = _spp_time_s(buf, pos[tp])
         last = np.maximum.accumulate(np.where(tp, np.arange(len(pos)), -1))
         has = last >= 0
@@ -314,9 +398,18 @@ def _decode_ble(arrival_ns, chunks, rng_dps, rng_g, rate):
              "packet_counts": {"0x61": int(len(d_pos)), "0x71": int(len(r_pos))}, "time_base": "sample_index"}
     out = {}
     if len(d_pos):
-        x = np.arange(len(d_pos)) / rate
-        t, run = clock_map(x, d_arr)
+        idx, n_lost = recover_lost_samples(d_arr, rate)
+        x = idx / rate
+        info = {}
+        t, run = clock_map(x, d_arr, period_s=1.0 / rate, info=info)
+        stats["samples_lost_detected"] = n_lost
         stats["runs"] = int(run.max() + 1)
+        stats["envelope_steps"] = info["envelope_steps"]
+        # received against expected samples, per run, from the arrival span
+        exp = sum(max(1.0, (d_arr[run == r][-1] - d_arr[run == r][0]) / 1e9 * rate + 1) for r in np.unique(run))
+        stats["samples_expected"] = float(exp)
+        stats["samples_received"] = int(len(d_pos))
+        stats["loss_estimate"] = float(max(0.0, 1 - len(d_pos) / exp))
         raw = _i16(buf, d_pos + 2, 9)
         out["accel"] = _vec_stream(t, raw[:, 0:3] / 32768.0 * rng_g * G0)
         sat = _saturated(raw[:, 3:6])

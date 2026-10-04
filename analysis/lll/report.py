@@ -158,9 +158,12 @@ def session_report(res: dict) -> str:
         out.append("<h2>Mount slip watchdog (magnetometer)</h2>"
                    + _table(["version", "segment", "mount epoch", "slip (°/h)", "slip?", "airframe field"], rows)
                    + "<p class=sub>A slow turn of the IMU in its mount goes straight into the vertical gyro channel. The magnetometer sees "
-                   "it as a turn of the horizontal field. Segments are left out of the gyro fit only when both versions see slip above "
-                   f"{_f(sl['max_slip_dph'], 1)} °/h; the version without a declination model also reacts to declination changes along "
-                   f"the route. Left out: {sl['exclude_segments'] or 'none'}.</p>")
+                   "it as a turn of the horizontal field. A segment is left out of the gyro fit when the version with WMM declination sees "
+                   f"slip above {_f(sl['max_slip_dph'], 1)} °/h (and 3σ). The choice uses only the magnetometer and GPS, never the gyro, so "
+                   "the declination model can only drop data, never favour a model. The version without a declination model is a "
+                   "cross-check; it also reads declination changes along the route as slip. "
+                   f"Left out: {sl['exclude_segments'] or 'none'}"
+                   + (f" (triggered by: {html.escape(str(sl.get('triggered_by')))})" if sl.get("triggered_by") else "") + ".</p>")
     turns = [e["turn"] for e in res.get("mount_epochs", []) if e.get("turn")]
     if turns:
         out.append("<p class=sub>IMU turns during the flight, measured by the gyro: "
@@ -267,11 +270,22 @@ def collation_report(col: dict) -> str:
         out.append(f"<p><span class=flag>{html.escape(f)}</span></p>")
     if col.get("pooled_k"):
         pk = col["pooled_k"]
-        out.append("<h2>Pooled scale factors (random effects: sessions → IMU units → population)</h2>"
+        out.append("<h2>Pooled scale factors (random effects, REML with Hartung–Knapp: sessions → IMU units → population)</h2>"
                    + _k_figure({n: v["k"] for n, v in pk.items() if v}, {n: v["sd"] for n, v in pk.items() if v}))
-        out.append(_table(["term", "pooled k", "units", "sessions", "τ² between units", "heterogeneity p"],
-                          [[html.escape(n), f"{_f(v['k'])} ± {_f(v['sd'])}", v["n_units"], v["n_sessions"],
-                            _f(v["tau2_units"], 3), f"{v['p_het_units']:.2g}"] for n, v in pk.items() if v]))
+        gf = (col.get("ground") or {}).get("fit") or {}
+        notes = {"k_curv": "headline: globe curvature (horizontal tilt of local level)",
+                 "k_rot_sphere": "globe rotation in flight" + (f"; ground horizontal C = {_f(gf['C_cos'])} ± {_f(gf['C_cos_se'])} °/h (15.04 for a rotating globe)" if gf else ""),
+                 "k_disc": "disc transport, from sessions where it was identified (heading-diverse) only"}
+        scope = col.get("scope")
+        if scope and scope != "population":
+            out.append(f"<p><span class=flag>{html.escape(scope)} result</span> Fewer than three IMU units: this describes "
+                       "those units, not a population of instruments.</p>")
+        out.append(_table(["term", "pooled k", "95 % interval (t)", "units", "sessions", "τ² between units", "heterogeneity p", "note"],
+                          [[html.escape(n), f"{_f(pk[n]['k'])} ± {_f(pk[n]['sd'])}", f"{_f(pk[n]['ci95'][0])} … {_f(pk[n]['ci95'][1])}",
+                            pk[n]["n_units"], pk[n]["n_sessions"], _f(pk[n]["tau2_units"], 3), f"{pk[n]['p_het_units']:.2g}",
+                            html.escape(notes[n])]
+                           for n in ("k_curv", "k_rot_sphere", "k_disc") if pk.get(n)]))
+        out.append("<p class=sub>Each term is pooled only from sessions where that term was identified on its flight.</p>")
         out.append("<h2>Each model against the pooled scale factors</h2>"
                    + _table(["Model", "χ² (3 dof)", "p", "rejected at 3σ"],
                             [[MODEL_LABELS[m], _f(t["chi2"], 1), f"{t['p']:.2g}", "yes" if t["rejected"] else "no"]

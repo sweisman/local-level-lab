@@ -22,8 +22,10 @@ change (under 45°) the airframe field is assumed small (c = 0), and the result 
 cruise segment, the slip rate is the slope of the leftover angle, arg(z / (e^{iθ} H + c)).
 
 Declination comes from the World Magnetic Model, which is built on a globe. So the watchdog also
-runs with no declination correction at all (D held constant), and a segment is only excluded from
-the gyro fit when both versions detect slip. Both results are reported. The gyro fit itself never
+runs with no declination correction at all (D held constant), as a cross-check. A segment is
+excluded from the gyro fit when the WMM version detects slip; that choice uses only magnetometer and
+GPS data, so the declination model can only drop data, never favour a model. Both results are
+reported. The gyro fit itself never
 uses the magnetometer, and the raw magnetometer data is kept, untouched, in imu.bin.gz.
 """
 from __future__ import annotations
@@ -110,12 +112,17 @@ def watchdog(bins, hard_iron, year, max_slip_dph):
                              "airframe_field_calibrated": calibrated,
                              "slip": bool(np.isfinite(rate) and abs(rate) > max_slip_dph and abs(rate) > 3 * sd)})
         out["variants"][variant] = rows
-    sets = [{r["seg"] for r in v if r["slip"]} for v in out["variants"].values()]
-    both = set.intersection(*sets) if sets else set()
-    either = sorted({r["seg"] for v in out["variants"].values() for r in v if r["slip"]})
-    out["exclude_segments"] = sorted(set(both))
+    # The WMM version decides (Scott, 2026-10-04). The decision uses only the magnetometer and GPS,
+    # never the gyro, so the declination model can only drop segments, never push k towards a model.
+    # The no-declination version is reported as a cross-check; on its own it reads real declination
+    # change along the route as slip (several °/h on many routes) and would discard clean data.
+    # If the WMM can't be used (date outside its validity), the no-declination version decides.
     by = {v: {r["seg"] for r in rows if r["slip"]} for v, rows in out["variants"].items()}
-    out["wmm_only_segments"] = sorted(by.get("wmm", set()) - set(both))
+    out["decided_by"] = "wmm" if "wmm" in by else "no_declination"
+    excluded = by.get(out["decided_by"], set())
+    either = sorted({r["seg"] for v in out["variants"].values() for r in v if r["slip"]})
+    out["exclude_segments"] = sorted(excluded)
+    out["triggered_by"] = {str(s): sorted(v for v, segs in by.items() if s in segs) for s in sorted(excluded)}
     # without a declination model, a change of declination along the route looks like slip
-    out["no_declination_only_segments"] = sorted(by.get("no_declination", set()) - set(both))
+    out["no_declination_only_segments"] = sorted(by.get("no_declination", set()) - by.get("wmm", set()))
     return out

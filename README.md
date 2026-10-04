@@ -1,6 +1,6 @@
 # Local Level Lab
 
-A crowdsourced, fully open experiment that tests the shape and motion of the Earth with a small motion sensor (an IMU) carried on ordinary flights.
+A fully open experiment that tests the shape and motion of the Earth with a small motion sensor (an IMU) carried on ordinary flights. It starts with a small number of careful operators; crowdsourcing can follow once the instrument has been characterized.
 
 A gyroscope measures angular velocity relative to inertial space, not relative to the ground. If the Earth rotates, a sensor resting on it turns with it at up to 15.04 °/h. And as an aircraft moves, its local horizontal ("local level") turns relative to inertial space at a rate the Earth's shape sets. On a globe it tilts forward at v / R ≈ 8.1 °/h at 900 km/h. On a flat disc it never tilts, but an eastbound track circles the disc's centre. The IMU records the least-processed data it can deliver. The analysis compares it, side by side, against models whose predictions come from the GPS track alone. Four kinematic models are defined; three can be told apart by this protocol, and those are the ones tested:
 
@@ -15,7 +15,7 @@ A spinning disc differs from a still one only by a constant rotation about the v
 
 Sensor resolution isn't the problem; bias stability is. A consumer gyro's drift is comparable to these signals, so the design depends on careful calibration, a rigid mount, turning the IMU during the flight, honest statistics, and **pooling many flights**.
 
-How each choice was made, what was rejected, and how to check it: **[docs/METHODOLOGY.md](docs/METHODOLOGY.md)**.
+How each choice was made, what was rejected, and how to check it: **[docs/METHODOLOGY.md](docs/METHODOLOGY.md)**. Before any flight result means anything, each IMU has to pass the bench validation in **[docs/BENCH.md](docs/BENCH.md)**.
 
 ## Hardware
 
@@ -43,7 +43,7 @@ Pick a mount that lets you take the IMU out and put it back facing the opposite 
 | `android/` | The Android app (Kotlin/Compose). Connects to the IMU, logs its byte stream and GPS in the background, guides calibration, reminds you to turn the IMU, shows a live dashboard, and uploads or shares sessions |
 | `server/` | Upload server (FastAPI + SQLite) that publishes every raw upload as an open dataset |
 | `analysis/` | The `lll` Python package: decoding, single-session analysis and report, pooled analysis, a bench tool, and a synthetic-data generator |
-| `docs/` | [METHODOLOGY](docs/METHODOLOGY.md) (decisions and how to check them), [MATH](docs/MATH.md) (equations), [EVIDENCE](docs/EVIDENCE.md) (reproducible simulation results), [FORMAT](docs/FORMAT.md) (file spec), [PROTOCOL](docs/PROTOCOL.md) (participant steps), shared test vectors |
+| `docs/` | [METHODOLOGY](docs/METHODOLOGY.md) (decisions and how to check them), [MATH](docs/MATH.md) (equations), [EVIDENCE](docs/EVIDENCE.md) (reproducible simulation results), [BENCH](docs/BENCH.md) (hardware validation checklist), [FORMAT](docs/FORMAT.md) (file spec), [PROTOCOL](docs/PROTOCOL.md) (participant steps), shared test vectors |
 
 ## Quick start: analysis
 
@@ -54,9 +54,11 @@ lll synth demo.zip --truth sphere_rotating          # or sphere_still / flat_sti
 lll synth hard.zip --truth flat_still --adverse     # temperature drift, turbulence, mount slip, climb/descent, GNSS gaps
 lll analyze demo.zip                                # writes demo.result.json + demo.report.html
 lll collate . -o collated --include-synthetic       # pools every *.result.json under . (synthetic data is excluded by default)
-lll bench capture.bin.gz --variant spp              # decode a raw IMU capture: rate, noise, quantization, bias stability
+lll bench session.zip                               # bench statistics: decode, timing, quantization, Allan, reversal test
+lll bench off.zip on.zip                            # compare two bench sessions (auto-zero off/on, two ranges)
 pytest analysis/tests server/tests
 python analysis/tests/evidence.py                   # regenerates docs/EVIDENCE.md
+python analysis/tests/coverage.py                   # interval coverage under hardware faults (about 15 min)
 ```
 
 ## Server

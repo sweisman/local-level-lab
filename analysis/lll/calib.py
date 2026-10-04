@@ -142,6 +142,47 @@ def calibrate(sess, prefix: str) -> dict | None:
     }
 
 
+def reversal_test(sess, prefix="rev"):
+    """Repeated same-face reversals: up0 and up180 alternate, as rev.up0.N and rev.up180.N.
+
+    Each pair gives the horizontal ground rate (w₀ − w₁₈₀)/2, free of g-sensitivity because gravity
+    stays on the same IMU axis. The scatter between pairs is the instrument's repeatability for the
+    one measurement this experiment depends on. Returns None with fewer than two complete pairs."""
+    pairs = {}
+    for ph in sess.phases(prefix + "."):
+        parts = ph["name"].split(".")
+        if len(parts) != 3 or parts[1] not in ("up0", "up180"):
+            continue
+        g, sem, n = _still_mean(sess, sess.gyro_stream(), ph["start_ns"], ph["end_ns"])
+        a, _, _ = _still_mean(sess, "accel", ph["start_ns"], ph["end_ns"])
+        if g is None or a is None:
+            continue
+        pairs.setdefault(parts[2], {})[parts[1]] = (g, unit(a), sem)
+    vecs, mags = [], []
+    for key in sorted(pairs, key=lambda k: int(k) if k.isdigit() else 0):
+        pr = pairs[key]
+        if "up0" not in pr or "up180" not in pr:
+            continue
+        (g0, u0, _), (g1, u1, _) = pr["up0"], pr["up180"]
+        u = unit(u0 + u1)
+        h = (g0 - g1) / 2
+        h = h - (h @ u) * u
+        vecs.append(h)
+        mags.append(float(np.linalg.norm(h)))
+    if len(mags) < 2:
+        return None
+    # The pairs are placed against the same edge, so their vectors point the same way: average the
+    # vectors, then remove the noise power from the squared length (a length is biased upward by noise).
+    V = np.array(vecs) * RAD2DPH
+    n = len(V)
+    vbar = V.mean(axis=0)
+    noise = float(np.trace(np.cov(V.T, ddof=1))) / n
+    h = float(np.sqrt(max(vbar @ vbar - noise, 0.0)))
+    mags = np.array(mags) * RAD2DPH
+    return {"pairs": n, "h_dph": mags.tolist(), "h_mean_dph": h, "h_raw_mean_of_lengths_dph": float(mags.mean()),
+            "h_sd_dph": float(mags.std(ddof=1)), "h_sem_dph": float(np.sqrt(noise))}
+
+
 def ground_model_predictions(lat_deg):
     """Predicted (up, horizontal) ground rotation, deg/h, for each model at this latitude."""
     from .models import OMEGA_E

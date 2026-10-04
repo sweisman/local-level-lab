@@ -38,10 +38,10 @@ Four kinematic models are defined. Three of them can be told apart by this proto
 - **Disc transport.** The flat model is an azimuthal-equidistant disc centred on the north pole, with latitude as distance from the centre and north pointing to the centre. Moving east means circling the centre, so local level turns about the vertical once per 360° of longitude:
 
   ```
-  ω_disc = ( 0,  0,  −dλ/dt ),      dλ/dt = v_E / ((R_N + h) cos φ)
+  ω_disc = ( 0,  0,  −dλ/dt )
   ```
 
-  The second formula only undoes the receiver's conversion of the coordinate rate into metres per second. It uses no globe geometry and doesn't depend on the disc's scale. The disc never tilts local level, so there is no horizontal part.
+  The analysis takes dλ/dt straight from the logged GNSS longitudes, differentiated with 30-s smoothing, so the disc's prediction uses no velocity, no Earth radius and no disc scale. Westbound, dλ/dt is negative and local level turns the other way. The disc never tilts local level, so there is no horizontal part. The app's live display, which has only the current fix, uses the equivalent v_E / ((R_N + h) cos φ).
 - **Why the spinning disc isn't tested.** It differs from the still disc only by a constant rotation about the local vertical. This protocol can't separate that from the gyro's bias and g-sensitivity along gravity (see "The vertical channel"), so the two disc models make the same testable predictions. The tested flat model is the still disc, which is also how the flat model is usually stated. The spinning disc is still defined in the geometric truth generator (`analysis/tests/truthgen.py`), so anyone can check that claim.
 
 ### Sign conventions, checked
@@ -84,6 +84,12 @@ m_k = b + d (t_k − t̄) + w_{p_k},     Σ_p w_p = 0
 - **Vertical:** `(w_0 + w_180)/2 · up`. This is the vertical Earth rate plus g-sensitivity along gravity, which can't be separated, and the result is marked as aliased.
 - **IMU magnetic offset:** the mean magnetometer reading over the four positions is the field fixed in the IMU (hard iron), because the Earth's field cancels the same way.
 
+### Reversal test (bench)
+
+The IMU stays label up and is turned 180° about the vertical between placements, six pairs in all (`rev.up0.N`, `rev.up180.N`). Each pair gives `h_N = (w₀ − w₁₈₀)/2` with the part along up removed, free of g-sensitivity for the same reason as above.
+
+The pairs are placed against the same edge, so their vectors point the same way. The horizontal rate is the length of their mean, with the expected noise power subtracted, because a length is biased upward by noise. The scatter of the pair lengths is the unit's repeatability.
+
 ## In flight
 
 ### Segments and bins
@@ -104,7 +110,7 @@ Segments also break at GNSS gaps, Bluetooth drops, bumps and deliberate IMU turn
 |---|---|---|
 | model prediction `ω_in` (NED) | GNSS: latitude, height, north and east velocity | no |
 | up axis | accelerometer | no |
-| azimuth | GNSS course | no |
+| azimuth | GNSS course, plus a fitted crab offset per course leg | no |
 | forward axis | gyro roll rate during banked turns, correlated with the bank GNSS implies | only the large roll transients (°/s), never the slow signal (°/h) |
 | aircraft rotation `ω_nb` | accelerometer tilt rate and GNSS course rate | no |
 | turns of the IMU itself | gyro, integrated over the few seconds of the turn | only the turn itself (tens of °/s) |
@@ -128,6 +134,10 @@ y = m − b_cal(t) − ω_nb  =  C_bn (k_rot·E_globe + k_curv·T_globe + k_disc
   - If cruise chip temperature differs from calibration by 2 °C or more, for most bins, a per-axis coefficient times (T − T_cal) is added.
   - When a drift run measured the coefficient, it is applied, and only the residual is fitted, with a prior of ±30 %.
   - Otherwise the coefficient is fitted freely. The analysis then also reports k without the term and flags `temperature_sensitive` if any k moves by more than 1σ.
+- **Crab:** the IMU's orientation needs the fuselage heading, which in a crosswind differs from the GNSS course. Each course leg (segments within 10° of course share one) gets an offset δψ with a 5° Gaussian prior, so C_bn uses ψ_GNSS + δψ.
+  - It is solved by alternating three times: the linear fit, then a Gauss–Newton step on δψ using ∂C_bn/∂ψ, which maps a NED vector v to C_bn (v_E, −v_N, 0).
+  - It is then linearized into the design, so k's uncertainty includes it.
+  - It has no effect on the vertical-only fallback.
 - **Each bin gives three rows**, or one in vertical-only mode. Weighted least squares fits the three k values and the nuisance terms.
 
 Expected k for each model, in the order (k_rot, k_curv, k_disc): rotating globe (1, 1, 0), still globe (0, 1, 0), disc (0, 0, 1).
@@ -136,8 +146,11 @@ Expected k for each model, in the order (k_rot, k_curv, k_disc): rotating globe 
 
 - **k intervals** are the larger of the analytic value and a moving-block bootstrap over bins. Bias wander correlates neighbouring bins.
 - **χ²** is scaled by `(1 − ρ)/(1 + ρ)`, the effective-sample factor from the lag-1 autocorrelation of bin residuals within segments.
-- **Each model is tested against the free fit.** Fix its k values, refit the nuisance terms, and compare. `Δχ²` follows χ² with 3 degrees of freedom if that model is true. A model is **rejected at p < 0.0027 (3σ)**. Bootstrap ranges of Δχ² are reported. Relative likelihoods `exp(−Δχ²/2)` are shown, labelled as not probabilities.
-- **Identifiability.** For each term: the fraction of its predicted signal that a constant residual bias per gravity orientation could mimic, `sqrt(1 − |r|²/|x|²)`, where r is the term's column after regressing out the bias columns. Near 1 means only the bias prior constrains it. Above 0.95 for k_curv flags `k_not_identified`.
+- **Each model is tested against the free fit.** Fix its k values, refit the nuisance terms (crab included), and compare. `Δχ²` follows χ² with 3 degrees of freedom if that model is true. A model is **rejected at p < 0.0027 (3σ)**.
+- **Bootstrap calibration.** For each model, simulate its null: its fitted values plus block-resampled residuals of the free fit. Refit on the same design and compare the mean Δχ² with the degrees of freedom. If correlated noise inflates it, the observed Δχ² is divided by the inflation. The reported p is the larger of this and the autocorrelation-scaled one.
+- **Systematic floor.** A floor of 0.02 is added in quadrature to the globe-rotation σ. It is calibrated by the coverage study (`analysis/tests/coverage.py`) under every hardware fault at once.
+- Bootstrap ranges of Δχ² are reported. Relative likelihoods `exp(−Δχ²/2)` are shown, labelled as not probabilities.
+- **Identifiability**, per term: the fraction of its predicted signal that a constant residual bias per gravity orientation could mimic, `sqrt(1 − |r|²/|x|²)`, where r is the term's column after regressing out the bias columns. Near 1 means only the bias prior constrains it. Above 0.95 for k_curv flags `k_not_identified`.
 - **Prior sensitivity.** Refit with the bias prior 3× wider. If any k moves by more than 1σ, the flag is `prior_dominated`.
 - **Vertical-only fallback.** With no banked turn, the forward axis is unknown and only the vertical channel is used. On a straight leg that channel can't identify anything (see "The vertical channel"), and the analysis says so.
 
@@ -158,11 +171,13 @@ z(t) = e^{iδ(t)} ( s(t) e^{iθ(t)} H + c ),     θ = ψ − D
 
 The slip rate `δ̇` is the slope of the leftover angle in each segment. A segment is excluded when the slip exceeds 2 °/h and 3σ.
 
-The watchdog runs twice. One version uses `D` and `s` from the World Magnetic Model, which is built on a globe. The other uses none, with `D` constant and `s = 1`. A segment is left out of the gyro fit only when both detect slip, and both results are reported. The gyro fit itself never uses the magnetometer.
+The watchdog runs twice. One version uses `D` and `s` from the World Magnetic Model, which is built on a globe. The other uses none, with `D` constant and `s = 1`, as a cross-check. A segment is left out of the gyro fit when the WMM version sees slip above 1.5 °/h and 3σ. Both results are reported.
+
+The choice uses only the magnetometer and GPS, so the declination model can only drop data, never favour a model. The gyro fit itself never uses the magnetometer. The no-declination version alone would read the route's real declination change as slip.
 
 ## Pooling many sessions
 
-Sessions with the same IMU share its quirks, so pooling is hierarchical, with DerSimonian–Laird random effects at each level:
+Sessions with the same IMU share its quirks, so pooling is hierarchical, with random effects at each level. τ² comes from REML, and standard errors are modified Hartung–Knapp, with t intervals on n − 1 degrees of freedom:
 
 ```
 sessions → per IMU unit → population of units
@@ -188,15 +203,17 @@ Breakdowns by heading, mount, IMU variant and unit are consistency checks. Group
 
 **Unit quality tiers** use instrument criteria only, never which model wins:
 
+Horizontal repeatability comes from the reversal test when there is one, else from the palindrome calibration's σ. Allan deviation is also reported at 60, 900 and 1800 s. Its minimum is descriptive only, because it depends on run length and estimator. All thresholds are provisional until real units are measured ([BENCH.md](BENCH.md)).
+
 | tier | requirement |
 |---|---|
-| qualified | bias instability ≤ 5 °/h on the worst axis, from a still run of 25 minutes or more, and ground horizontal σ ≤ 2 °/h |
-| usable | ≤ 10 °/h and ≤ 4 °/h, where measured |
+| qualified | Allan deviation at 300 s ≤ 3 °/h on the worst axis, and horizontal repeatability ≤ 2 °/h |
+| usable | ≤ 6 °/h and ≤ 4 °/h, where measured |
 | exploratory | anything else |
 
 ## Known approximations (please review)
 
-- **Crab angle.** The aircraft's heading is taken from its GNSS course, so a crab angle of a few degrees rotates the horizontal predictions slightly.
+- **Crab angle.** It is fitted per course leg (see "The fit"). On an eastbound leg it trades against the split between globe rotation and curvature, and an 8° crab still leaves about 2σ of bias (METHODOLOGY §16).
 - **Plumb line.** The accelerometer's plumb line includes small Coriolis and centripetal terms, about 0.2°. They are nearly constant in cruise.
 - **Quantization.** At ±2000 °/s, one 16-bit count is 220 °/h. Noise dithers it, but coarse counts still interact with constant offsets at the °/h level (EVIDENCE §4). The app can select ±250 to ±2000 °/s, and the analysis decodes with the range the IMU reports back. A finer range risks clipping fast hand turns of the IMU; clipped turns are flagged, and the data after them is left out.
 - **Temperature.** Chip temperature is reported by the IMU's firmware. A lag, or a nonlinear response, shows up as `temperature_sensitive`.

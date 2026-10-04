@@ -87,6 +87,11 @@ class Prefs(ctx: Context) {
         get() = p.getInt("imu_gyro_range_dps", 2000)
         set(v) = p.edit().putInt("imu_gyro_range_dps", v).apply()
 
+    /** Accelerometer full scale, g. Cabin accelerations stay well under ±4 g. */
+    var imuAccelRangeG: Int
+        get() = p.getInt("imu_accel_range_g", 16)
+        set(v) = p.edit().putInt("imu_accel_range_g", v).apply()
+
     /** A random ID per physical IMU, so its bias can be modelled across sessions. It is
      *  derived from nothing; the phone keeps the address-to-ID mapping to itself. */
     fun unitId(address: String): String = p.getString("unit_$address", null)
@@ -103,6 +108,12 @@ class Prefs(ctx: Context) {
     var indexAlertMinutes: Int
         get() = p.getInt("index_alert_min", 60)
         set(v) = p.edit().putInt("index_alert_min", v.coerceIn(0, 240)).apply()
+
+    /** Bench test only: record a bench session with the IMU's automatic gyro zeroing ON, to compare
+     *  against a run with it off and confirm the register's polarity. Never applied to flights. */
+    var benchAutoZeroOn: Boolean
+        get() = p.getBoolean("bench_auto_zero_on", false)
+        set(v) = p.edit().putBoolean("bench_auto_zero_on", v).apply()
 
     // ---- the phase being recorded, so a restarted service can resume it ----
 

@@ -59,6 +59,10 @@ object SessionStore {
     val CAL_STEPS = listOf("up0", "up180", "down0", "down180", "down0.b", "up180.b", "up0.b")
     fun calStepLength(step: String) = if (step == "down180") 2 else 1
 
+    /** Bench reversal test: same face up, alternating 0° and 180°, six pairs. Each pair measures the
+     *  horizontal ground rate free of g-sensitivity; their scatter is the unit's repeatability. */
+    val REV_STEPS = (1..6).flatMap { listOf("up0.$it", "up180.$it") }
+
     fun root(ctx: Context) = File(ctx.filesDir, "sessions").apply { mkdirs() }
 
     fun list(ctx: Context): List<Session> =
@@ -78,7 +82,7 @@ object SessionStore {
             .put("variant", v.key).put("model", v.model).put("firmware", "")
             .put("unit_id", p.unitId(p.imuAddress))
             .put("config", JSONObject()
-                .put("rate_hz", p.imuRateHz).put("gyro_range_dps", p.imuGyroRangeDps).put("accel_range_g", 16).put("auto_zero", false)
+                .put("rate_hz", p.imuRateHz).put("gyro_range_dps", p.imuGyroRangeDps).put("accel_range_g", p.imuAccelRangeG).put("auto_zero", false)
                 .put("packets", JSONArray(if (v == Variant.SPP) listOf("0x50", "0x51", "0x52", "0x54") else listOf("0x61", "0x71@0x3a"))))
     }
 
@@ -99,7 +103,8 @@ object SessionStore {
             .put("device", JSONObject()
                 .put("manufacturer", Build.MANUFACTURER).put("model", Build.MODEL)
                 .put("android_sdk", Build.VERSION.SDK_INT).put("android_release", Build.VERSION.RELEASE))
-            .put("imu", imu)
+            .put("imu", imu.also { if (kind == "bench" && Prefs(ctx).benchAutoZeroOn) it.getJSONObject("config").put("auto_zero", true) })
+            .apply { if (kind == "bench") put("bench", JSONObject().put("auto_zero_on", Prefs(ctx).benchAutoZeroOn)) }
             .put("clock", JSONObject().put("elapsed_ns", SystemClock.elapsedRealtimeNanos()).put("utc_ms", System.currentTimeMillis()))
             .put("flight", flight)
             .put("mount", mount)
@@ -119,6 +124,7 @@ object SessionStore {
         for (which in listOf("cal_pre", "cal_post")) {
             if (CAL_STEPS.all { "$which.$it" in names }) q.put(which, true)
         }
+        if (REV_STEPS.all { "rev.$it" in names }) q.put("reversal", true)
         if (name == "placement_check") q.put("placement_check", true)
         s.save()
     }

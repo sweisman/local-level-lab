@@ -6,6 +6,8 @@ This page is for anyone who wants to validate the method rather than take it on 
 - [EVIDENCE.md](EVIDENCE.md) has every number quoted here. Regenerate it with `python analysis/tests/evidence.py`.
 - Run the tests with `pytest analysis/tests server/tests`.
 
+**Scope.** This is an experiment for a small number of careful operators first: the protocol (calibrations, a rigid mount, turning the IMU in flight, a serial or BLE link held for hours) asks a lot. Crowdsourcing can follow once the instrument is characterized. No flight result should be read before the bench validation in [BENCH.md](BENCH.md).
+
 Criticism is welcome. The most useful kind is a synthetic session (`lll synth …`) that the pipeline gets confidently wrong.
 
 ## What is being tested, and what isn't
@@ -39,19 +41,28 @@ The question is: **given an aircraft trajectory in latitude/longitude coordinate
 
 **Why.** Nothing is lost or altered on the device, and anyone can rerun or replace the decoder. The Kotlin parser is for the live display only. Both are tested on the same hand-built packets.
 
-**Clock.** Bluetooth only adds delay, so sample times come from a straight-line map of device time onto phone time, fitted to the earliest arrivals.
+**Clock.** Bluetooth only adds delay, so sample times come from a straight-line map of device time onto phone time, fitted to the earliest arrivals. Two failure modes are handled explicitly:
+- **BLE samples are timed by counting packets,** so each lost notification would make every later sample early by one period. Steps in the earliest-arrival envelope reveal how many were lost and where, and the sample index is restored. Losses are also reported.
+- **A serial IMU might send its clock packet less often than its gyro packets.** Each gyro sample is then dated from the nearest preceding clock packet plus whole sample periods, never interpolated across a gap.
 
-**Evidence.** Within 5 ms over an hour, under random batching, stalls and a ±120 ppm crystal (`test_clock_map_recovers_sample_times`).
+**Evidence.**
+- Within 5 ms over an hour, under random batching, stalls and a ±120 ppm crystal (`test_clock_map_recovers_sample_times`).
+- BLE losses of 0.1 % and 1 % are recovered almost exactly, with 95th-percentile timing errors of 0 and 12 ms (EVIDENCE §12; `test_ble_lost_samples_are_recovered`).
+- Clock packets every fifth sample time as well as every sample (`test_sparse_spp_clock_packets_time_correctly`).
 
 ## 3. The disc's own transport term
 
-**Decision.** The flat model includes `ω_disc = (0, 0, −dλ/dt)`. On a pole-centred disc, a constant-bearing eastward track circles the centre.
+**Decision.** The flat model includes `ω_disc = (0, 0, −dλ/dt)`. On a pole-centred disc, a constant-bearing eastward track circles the centre; westward, it turns the other way.
 
 **Why.** The independent geometric check found the term missing from v0.1, which predicted zero for the disc. At 40°N and 230 m/s eastbound it is 9.7 °/h. Leaving it out made the disc artificially easy to reject.
 
-**Why it is written as dλ/dt.** GNSS east velocity is the coordinate rate converted to metres per second. Dividing by `(R_N + h) cos φ` only undoes that conversion, so no globe geometry enters the disc's prediction and the disc's scale doesn't matter.
+**Why dλ/dt is taken straight from the GNSS longitudes.** The analysis differentiates the logged longitude coordinates (30-s smoothing). The disc's prediction then depends only on successive coordinates and time: no velocity, no Earth radius and no disc scale.
 
-**Evidence.** All three tested models agree with geometry to 9 × 10⁻¹² rad/s (EVIDENCE §1; `test_flat_models_match_geometry`, `test_sphere_models_match_geometry`).
+An earlier version recovered dλ/dt from the east velocity by undoing the receiver's WGS-84 conversion. That would smuggle in a globe radius if a receiver derives its velocity from Doppler rather than from coordinates.
+
+**Evidence.**
+- All three tested models agree with geometry to 9 × 10⁻¹² rad/s (EVIDENCE §1; `test_flat_models_match_geometry`, `test_sphere_models_match_geometry`).
+- With deliberately absurd velocities passed in, the disc prediction from the longitude rate still matches (`test_disc_from_longitude_rate_needs_no_velocity`).
 
 ## 4. Synthetic truth from geometry, not from the model code
 
@@ -94,23 +105,28 @@ The question is: **given an aircraft trajectory in latitude/longitude coordinate
 
 **Guarded by.** The `prior_dominated` flag, and the exclusion of such sessions from pooled results.
 
-## 8. Identifiability is measured, not assumed
+## 8. Identifiability is measured, not assumed, term by term
 
-**Decision.** For each term, report how much of its signal a constant bias could mimic. Flag `k_not_identified` when this exceeds 0.95 for the globe curvature term. Such sessions don't enter the primary pooled result.
+**Decision.**
+- For each term, report how much of its signal a constant bias could mimic. A session is flagged when this exceeds 0.95: `k_not_identified` for curvature, `k_rot_not_identified`, and `k_disc_not_identified`.
+- The primary pooled result requires curvature to be identified.
+- Each term is pooled only from sessions where that term was identified. For example, the disc term comes only from flights whose east velocity changed enough to separate it from bias.
 
 **Why.** On a straight leg, the predicted signal sits on fixed IMU axes, exactly like a bias. A fit can then produce a k with error bars that come entirely from the prior.
+
+**Headline.** Globe curvature comes first. Globe rotation is shown next to the ground horizontal result. The disc term is reported from heading-diverse sessions only.
 
 **Evidence** (EVIDENCE §2, §8):
 
 | route | curvature identified? | curvature uncertainty |
 |---|---|---|
-| north, east, south | yes | ±0.98 |
+| north, east, south | yes | ±0.94 |
 | zigzag | no | |
-| straight | no | ±1.03 |
-| straight, with IMU turned about the vertical | yes | ±0.15 |
-| straight, with IMU flipped | no | ±0.74 |
-| 5-h single-heading cruise | no | ±0.78 |
-| 5-h cruise with hourly turns | yes | ±0.22 |
+| straight | no | ±1.06 |
+| straight, with IMU turned about the vertical | yes | ±0.17 |
+| straight, with IMU flipped | no | ±0.76 |
+| 5-h single-heading cruise | no | ±0.80 |
+| 5-h cruise with hourly turns | yes | ±0.29 |
 
 ## 9. Turning the IMU in flight: same side up
 
@@ -120,31 +136,46 @@ The question is: **given an aircraft trajectory in latitude/longitude coordinate
 
 **Evidence.** EVIDENCE §2 and §8; `test_turns_about_the_vertical_make_a_straight_flight_decisive`, `test_single_heading_airliner_needs_turns_of_the_imu`.
 
-## 10. Model tests: honest χ²
+## 10. Model tests: honest χ², calibrated by bootstrap
 
 **Decision.**
-- Test each model against the free fit, using χ² with 3 degrees of freedom.
-- Scale χ² for correlation between neighbouring bins, and reject at p < 0.0027.
-- Report bootstrap ranges, and label likelihood ratios as not probabilities.
+- Test each model against the free fit, using χ² with 3 degrees of freedom, and reject at p < 0.0027 (3σ).
+- Two corrections for correlated noise, and the more conservative wins:
+  - χ² scaled by the lag-1 autocorrelation of the bin residuals;
+  - a bootstrap calibration. Simulate each model's null as its fitted values plus block-resampled free-fit residuals, refit, and measure how far the mean Δχ² exceeds its degrees of freedom. The observed Δχ² is divided by that excess.
+- Relative likelihoods are reported but labelled as not probabilities.
+- A simulation-calibrated systematic floor of 0.02 is added in quadrature to the globe-rotation uncertainty. See "Evidence".
+
+**Why a calibrated bootstrap rather than a bootstrap p.** Resolving p = 0.0027 directly would need thousands of refits per flight. The calibration needs about a hundred per model.
+
+For the true model the calibration factor comes out at 1.0, so honest tests aren't weakened. For wrong models it is often above 1, from prior shrinkage of their nuisance terms. That only makes rejection more cautious.
 
 **Rejected.** v0.1's "Δχ² > 9 = 3σ" (wrong for a multi-parameter comparison), its unscaled χ², its summed Δχ² across sessions, and its best-model vote counts.
 
-**Evidence.** In every hard scenario the true model is never rejected (EVIDENCE §7; `test_hardware_faults_never_make_it_confidently_wrong`, `test_adverse_conditions_still_recover_truth`). The hard scenarios cover nonlinear and lagging temperature dependence, a bias jump, scale and misalignment errors, vibration rectification, a Bluetooth dropout, g-sensitivity, turbulence, tilt slip, climb and descent, and GNSS gaps.
+**Evidence.**
+- In every hard scenario the true model is never rejected (EVIDENCE §7; `test_hardware_faults_never_make_it_confidently_wrong`, `test_adverse_conditions_still_recover_truth`).
+- Coverage study (`python analysis/tests/coverage.py`; about 15 min): 90 flights, 30 seeds × 3 truths, every hardware fault at once, north-east-south route.
+  - The true model was rejected in 0 of 90.
+  - Before the floor, the globe-rotation intervals covered the truth in 92 % of flights, the most precise term being the most exposed to scale and alignment errors. With the floor: 94 %, with the 95th-percentile error at 1.97σ.
+  - Curvature and disc intervals covered 100 %, so they are conservative.
 
 ## 11. Mount-slip watchdog, with and without a globe-based declination model
 
 **Decision.**
-- Measure slow yaw slip with the magnetometer.
-- Run the watchdog twice, with World Magnetic Model declination and with none.
-- Exclude a segment only when both see slip above 2 °/h. Report both.
+- Measure slow yaw slip with the magnetometer, in two versions: with World Magnetic Model declination, and with none.
+- A segment is left out of the gyro fit when the **WMM version** sees slip above 1.5 °/h and 3σ.
+- The no-declination version is computed and reported as a cross-check.
 
 **Why.**
 - A slow turn of the IMU in its mount goes straight into the vertical channel. In v0.1, an 8 °/h slip turned one truth into another.
-- The WMM is built on a globe, so a watchdog that relied on it alone could be accused of favouring the globe.
-- Requiring both versions is conservative, and the gyro fit never uses the magnetometer.
+- The decision uses only the magnetometer and GPS, never the gyro. So the declination model, built on a globe, can only drop data; it can't push k towards any model.
 - The raw magnetometer data is kept, so anyone can test claims about declination.
 
-**Evidence.** Slips of 0, 2, 3 and 8 °/h are measured as about −0.1, 1.9, 2.9 and 7.8 °/h with the WMM. The version without a declination model reads about 3 °/h higher on the test route, which is the real declination change along it (EVIDENCE §6; `test_slip_watchdog_catches_yaw_slip_and_spares_clean_flights`).
+**Rejected.**
+- **"Both versions must agree" (v0.2).** This missed a true 2 °/h slip whenever the route's declination drift ran the other way.
+- **"Either version".** The no-declination version reads the real declination change along a route as slip, several °/h on many routes. On the test route it discarded two of three clean segments, and the test then rejected nothing at all.
+
+**Evidence.** True slips of 0, 2, 3 and 8 °/h are measured as about −0.1, 1.9, 2.9 and 7.8 °/h with the WMM. Clean flights lose nothing, and the 2 °/h slip is now excluded. The cross-check reads about 3 °/h higher on the test route (EVIDENCE §6; `test_slip_watchdog_catches_yaw_slip_and_spares_clean_flights`).
 
 ## 12. Quantization
 
@@ -167,24 +198,50 @@ The question is: **given an aircraft trajectory in latitude/longitude coordinate
 
 **Evidence.** The coefficients are recovered within 0.12 °/h/°C, and the residual noise drops from 2.12 to 1.39 °/h (EVIDENCE §5; `test_temperature_term_removes_bias`).
 
-## 14. Quality tiers that don't assume an answer
+## 14. Quality tiers that measure this experiment, without assuming an answer
 
-**Decision.** Rate each IMU unit by bias instability and by the precision of its horizontal ground measurement. Never rate it by whether it reproduces the globe's 15 °/h.
+**Decision.** Rate each IMU unit by:
+- its Allan deviation at 300 s, the worst axis, from a long still recording. The minimum of the Allan curve is reported but treated as descriptive, because it depends on run length and estimator.
+- its repeatability in the **reversal test**: repeated same-face 0°/180° turns on a table. Each pair measures the horizontal ground rate free of g-sensitivity, and the pair-to-pair scatter is the unit's repeatability for the one measurement this experiment rests on.
+
+The thresholds (≤ 3 and ≤ 2 °/h for "qualified") are provisional until real units are measured ([BENCH.md](BENCH.md)). A unit is never rated by whether it reproduces the globe's 15 °/h.
 
 **Why.** "The unit recovered the expected Earth rate" would assume which model is true.
 
-**Guarded by.** `test_unit_quality_tier_uses_instrument_criteria_only`.
+**Evidence.**
+- With g-sensitivity up to 40 °/h per g, six reversal pairs give 11.1 ± 0.7 °/h against 11.44 for a rotating globe, and 0.0 ± 0.6 for the disc (EVIDENCE §13).
+- Tests: `test_reversal_test_measures_horizontal_rate_and_its_repeatability`, `test_unit_quality_tier_uses_instrument_criteria_only`.
 
 ## 15. Pooling: sessions → units → population, random effects
 
-**Decision.** DerSimonian–Laird random effects within units, then across units, with hard gates for the primary result. Breakdowns are consistency checks: groups that disagree are flagged, never averaged away.
+**Decision.**
+- REML random effects, with modified Hartung–Knapp standard errors and t intervals, first within each IMU unit, then across units.
+- Hard gates for the primary result.
+- With fewer than three units, the result is labelled "single-unit" or "two-unit" and makes no population claim.
+- Breakdowns are consistency checks: groups that disagree are flagged, never averaged away.
 
-**Why.** Sessions with one IMU share its quirks, and a fixed-effects average treats every 60-s bin as independent.
+**Why.**
+- Sessions with one IMU share its quirks, and a fixed-effects average treats every 60-s bin as independent.
+- DerSimonian–Laird, used in v0.2, is known to be overconfident with few, heterogeneous members.
 
-**Evidence.** With unit offsets beyond the stated errors, random-effects 95 % intervals cover the truth 90 % of the time. Fixed effects cover it 23 % of the time (EVIDENCE §9; `test_hierarchical_pooling_covers_the_truth_when_units_differ`).
+**Evidence.** With unit offsets beyond the stated errors, the random-effects 95 % intervals cover the truth 91 % of the time with 8 units. Fixed effects cover it 23 % of the time (EVIDENCE §9; `test_hierarchical_pooling_covers_the_truth_when_units_differ`).
+
+## 16. Crab: the aircraft's heading isn't its GNSS course
+
+**Decision.** In a crosswind the fuselage points a few degrees off its ground track. The fit gives each GNSS course leg a heading offset with a 5° Gaussian prior, fitted alternately with the linear fit and then linearized into it, so k's uncertainty includes it. Every model's test refits its own offsets.
+
+**Why.** The IMU's orientation in north-east-down coordinates needs the fuselage heading, not the track. Using the course rotates the globe's horizontal predictions.
+
+On a precise flight (a straight route with three same-side-up turns), an 8° crab made the analysis **reject the true rotating globe**, while a flat truth was untouched. Uncorrected crab therefore biases the experiment against the globe.
+
+**Limits.** On an eastbound leg, the globe's rotation and its curvature both tilt local level about the north axis, so a heading offset trades against how the fit splits them. With 8° of crab the true globe is no longer rejected, but k is still about 2σ off. A wider prior only widens the error bars. Heading diversity on the route removes the trade-off.
+
+**Evidence.** EVIDENCE §11; `test_crab_angle_no_longer_rejects_the_true_globe`.
 
 ## Open points
 
-- **Bench test of the real devices:** decoding, scale factors, auto-zero polarity, the gyro range, noise and bias stability.
+- **Bench test of the real devices.** Follow [BENCH.md](BENCH.md): decoding, scale factors, auto-zero polarity, the finest workable ranges, Allan deviation, reversal repeatability, Bluetooth recovery and temperature.
+- **Two IMUs on one flight.** They would be excellent independent checks on sensor-specific systematics, but they share the flight: aircraft motion, GNSS, crab, turbulence and temperature. That needs a schema with a list of IMUs and crossed pooling (flight effect plus unit effect), not two independent flights.
 - **Heading-free fit.** A flight with no banked turn at all has no forward axis, so only the vertical channel is used. The IMU's azimuth could instead be fitted as a nuisance parameter. This would need care so it can't favour one model. The current protocol instead asks participants to keep recording through one course change.
-- **g-sensitivity along gravity per unit:** a datasheet bound or a dedicated test would tighten the vertical channel.
+- **g-sensitivity along gravity, per unit.** A datasheet bound or a dedicated test would tighten the vertical channel.
+- **Crab on single-heading legs.** A magnetometer-based heading constraint would help, but it needs the declination model, so it would add a globe dependence to the predictions, not just to data selection.

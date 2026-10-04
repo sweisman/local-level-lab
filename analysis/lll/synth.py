@@ -72,10 +72,11 @@ def synthesize(path, truth="sphere_rotating", *, fs=25.0, seed=0, lat0=40.6, lon
                noise_dps_rthz=0.007, accel_noise_g_rthz=160e-6, pitch_trim_deg_per_h=0.5,
                cal=("pre", "post"), drift_runs=False, cal_sequence="palindrome", g_sens_dph_per_g=None,
                temp_coef_dph_per_c=(0.0, 0.0, 0.0), flight_temp_rise_c=0.0, turbulence=(),
-               mount_slip_deg_per_h=(0.0, 0.0), climb_min=0.0, descent_min=0.0, gnss_dropouts=(), variant="spp", gyro_range_dps=2000.0, index_turns=(),
+               mount_slip_deg_per_h=(0.0, 0.0), climb_min=0.0, descent_min=0.0, gnss_dropouts=(), variant="spp", gyro_range_dps=2000.0, accel_range_g=16.0, index_turns=(),
                mag_hard_iron_ut=MAG_HARD_IRON_UT, mag_airframe_ut=MAG_AIRFRAME_UT, omega_in_fn=None,
                temp_quad_dph_per_c2=(0.0, 0.0, 0.0), temp_lag_s=0.0, bias_jumps=(), gyro_scale_ppm=(0, 0, 0),
-               gyro_misalign_mrad=0.0, vre_dph=(0.0, 0.0, 0.0), link_dropouts=(), turn_seconds=4.0):
+               gyro_misalign_mrad=0.0, vre_dph=(0.0, 0.0, 0.0), link_dropouts=(), turn_seconds=4.0,
+               spp_time_every=1, ble_loss=0.0, crab_deg=(), reversal_pairs=0, reversal_s=300.0):
     """Write a synthetic session zip. legs = ((course_deg, minutes), ...), with rate-one turns
     (3°/s) between them. variant is the WitMotion link and protocol ("spp" or "ble"); the IMU
     data is written as the byte stream the app would store, so the decoder is exercised too.
@@ -98,6 +99,8 @@ def synthesize(path, truth="sphere_rotating", *, fs=25.0, seed=0, lat0=40.6, lon
       gyro_scale_ppm, gyro_misalign_mrad: scale error per axis, and random cross-axis misalignment
       vre_dph: vibration rectification, a bias offset while the engines run (flight only)
       link_dropouts: ((minute_into_flight, seconds), ...) Bluetooth gaps in the IMU data
+      crab_deg: (deg per leg, ...) the fuselage's angle off the ground track (crosswind); GNSS
+          reports the course, so the analysis has to allow for it
       index_turns: ((minute, axis), ...) the participant turns the IMU 180° about its own axis
           "x", "y" or "z" over turn_seconds (default 4 s), then taps to confirm 15 s later. About z on a tray mount is a
           turn in its plane (gravity stays on z); about x is a flip.
@@ -118,6 +121,10 @@ def synthesize(path, truth="sphere_rotating", *, fs=25.0, seed=0, lat0=40.6, lon
         for p, mult in seq:
             phases.append((f"cal_pre.{p}", t, t + cal_pos_s * mult))
             t += cal_pos_s * mult + 20
+    for i in range(1, reversal_pairs + 1):      # repeated same-face 0°/180° reversals (bench)
+        for pos in ("up0", "up180"):
+            phases.append((f"rev.{pos}.{i}", t, t + reversal_s))
+            t += reversal_s + 20
     if drift_runs:
         phases.append(("drift_pre", t, t + 1800))
         t += 1800
@@ -190,7 +197,7 @@ def synthesize(path, truth="sphere_rotating", *, fs=25.0, seed=0, lat0=40.6, lon
         w_ground = models.predict(truth, lat_cal) if truth.endswith("rotating") else np.zeros(3)
     table_heading = np.radians(37.0)
     for name, a, b in phases:
-        if not name.startswith(("cal", "drift")):
+        if not name.startswith(("cal", "drift", "rev")):
             continue
         ts = np.arange(a, b, dt)
         pos = name.split(".")[1] if "." in name else "up0"
@@ -206,8 +213,10 @@ def synthesize(path, truth="sphere_rotating", *, fs=25.0, seed=0, lat0=40.6, lon
     psi_dot = np.zeros(n)
     psi0 = np.radians(legs[0][0])
     tc = fl_start + 300.0
+    switches = []
     for (c0, m0), (c1, _) in zip(legs[:-1], legs[1:]):
         tc += m0 * 60
+        switches.append(tc)
         d = (np.degrees(np.radians(c1 - c0)) + 180) % 360 - 180
         dur = abs(np.radians(d)) / turn_rate
         ramp = 5.0
@@ -256,7 +265,16 @@ def synthesize(path, truth="sphere_rotating", *, fs=25.0, seed=0, lat0=40.6, lon
         a_vert[m] += rng.normal(0, 1.5, m.sum())
     slip_yaw = np.radians(mount_slip_deg_per_h[0]) * tf / 3600
     slip_tilt = np.radians(mount_slip_deg_per_h[1]) * tf / 3600
-    C_na = np.einsum("nij,njk,nkl->nil", np.array([rot_z(p) for p in psi]),
+    # Crab: in a crosswind the fuselage points crab_deg off the ground track. GNSS still reports the
+    # course (psi); the aircraft's heading is psi + crab, changing over 30 s at each turn.
+    heading = psi
+    if crab_deg:
+        leg = np.searchsorted(np.array(switches), ts)
+        crab = np.radians(np.asarray(crab_deg, float))[np.minimum(leg, len(crab_deg) - 1)]
+        k30 = max(1, int(round(30.0 / dt)))
+        crab = np.convolve(np.pad(crab, (k30 // 2, k30 - 1 - k30 // 2), mode="edge"), np.full(k30, 1.0 / k30), mode="valid")
+        heading = psi + crab
+    C_na = np.einsum("nij,njk,nkl->nil", np.array([rot_z(p) for p in heading]),
                      np.array([rot_y(p) for p in pitch]), np.array([rot_x(p) for p in bank]))
     if any(mount_slip_deg_per_h):
         C_ab = np.einsum("nij,njk,kl->nil", np.array([rot_z(np.radians(mount_yaw_deg) + y) for y in slip_yaw]),
@@ -318,7 +336,8 @@ def synthesize(path, truth="sphere_rotating", *, fs=25.0, seed=0, lat0=40.6, lon
     ts_all, gv, av, mv = (np.concatenate([r[i] for r in rows])[order] for i in range(4))
     temp = np.interp(ts_all, tg, temp_grid)
     imu = encode_imu(variant, t0_ns + np.round(ts_all * 1e9).astype(np.int64), gv, av, mv, temp, fs, rng,
-                     gyro_range_dps=gyro_range_dps)
+                     gyro_range_dps=gyro_range_dps, accel_range_g=accel_range_g, spp_time_every=spp_time_every,
+                     ble_loss=ble_loss)
     streams = {"gnss": gnss}
     manifest = {
         "schema_version": 2, "data_license": "CC0-1.0", "session_id": str(uuid.UUID(int=int(rng.integers(2 ** 63)))),
@@ -326,7 +345,7 @@ def synthesize(path, truth="sphere_rotating", *, fs=25.0, seed=0, lat0=40.6, lon
         "app": {"name": "lll.synth", "version": "0", "build": 0},
         "device": {"manufacturer": "synthetic", "model": f"synth-{truth}", "android_sdk": 0, "android_release": ""},
         "imu": {"variant": variant, "model": "WT901 (synthetic)", "firmware": "", "unit_id": f"synthetic-{variant}",
-                "config": {"rate_hz": fs, "gyro_range_dps": gyro_range_dps, "accel_range_g": 16.0, "auto_zero": False,
+                "config": {"rate_hz": fs, "gyro_range_dps": gyro_range_dps, "accel_range_g": accel_range_g, "auto_zero": False,
                            "packets": ["0x50", "0x51", "0x52", "0x54"] if variant == "spp" else ["0x61", "0x71@0x3a"]}},
         "clock": {"elapsed_ns": t0_ns, "utc_ms": 1_790_000_000_000},
         "flight": {"airline": "SYN", "flight_number": f"SYN{seed}", "date": "2026-10-02", "origin": "", "destination": "",
@@ -343,7 +362,8 @@ def synthesize(path, truth="sphere_rotating", *, fs=25.0, seed=0, lat0=40.6, lon
     return manifest
 
 
-def encode_imu(variant, t_ns, gyro, accel, mag_ut, temp_c, fs, rng, clock_ppm=40.0, gyro_range_dps=2000.0):
+def encode_imu(variant, t_ns, gyro, accel, mag_ut, temp_c, fs, rng, clock_ppm=40.0, gyro_range_dps=2000.0, accel_range_g=16.0,
+               spp_time_every=1, ble_loss=0.0):
     """Turn true samples into what the app would store: Bluetooth read chunks, verbatim bytes,
     stamped with a phone arrival time that lags the sample by a random link latency.
 
@@ -355,26 +375,30 @@ def encode_imu(variant, t_ns, gyro, accel, mag_ut, temp_c, fs, rng, clock_ppm=40
     n = len(t_ns)
     ts = (t_ns - t_ns[0]) / 1e9
     g_raw = witmotion.to_raw(np.degrees(gyro), gyro_range_dps)
-    a_raw = witmotion.to_raw(accel / witmotion.G0, 16.0)
+    a_raw = witmotion.to_raw(accel / witmotion.G0, accel_range_g)
     m_raw = np.clip(np.round(mag_ut * MAG_COUNTS_PER_UT), -32768, 32767).astype(np.int16)
     t_raw = np.round(temp_c * 100).astype(np.int16)[:, None]
     if variant == "spp":
         dev_ms = np.round((ts * (1 + clock_ppm * 1e-6) + 86400 * 3 + 0.123) * 1000).astype(np.int64)
-        cyc = np.concatenate([
+        full = np.concatenate([
             witmotion.spp_time_packets(dev_ms),
             witmotion.spp_packets(0x51, np.hstack([a_raw, t_raw])),
             witmotion.spp_packets(0x52, np.hstack([g_raw, np.full((n, 1), 390, np.int16)])),
             witmotion.spp_packets(0x54, np.hstack([m_raw, t_raw])),
         ], axis=1)
-        L = cyc.shape[1]
-        buf = cyc.reshape(-1).tobytes()
-        k = np.cumsum(rng.integers(1, 5, n))       # sample whose bytes end each read
+        has_t = np.arange(n) % max(1, spp_time_every) == 0      # the device clock packet, every N samples
+        mask = np.ones(full.shape, bool)
+        mask[~has_t, :11] = False
+        lens = mask.sum(axis=1)
+        buf = full[mask].tobytes()
+        offs = np.concatenate([[0], np.cumsum(lens)])           # sample i occupies bytes offs[i]:offs[i+1]
+        k = np.cumsum(rng.integers(1, 5, n))                     # sample whose bytes end each read
         k = k[k < n]
-        ends = np.minimum(k * L + rng.integers(1, L + 1, len(k)), n * L)
+        ends = offs[k] + rng.integers(1, lens[k] + 1)
         # each phase is its own connection, so a read never spans two phases
-        phase_ends = (np.where(np.diff(ts) > 1.0)[0] + 1) * L
-        ends = np.unique(np.concatenate([ends, phase_ends, [n * L]]))
-        last = (ends - 1) // L                     # sample still being sent at the end of each read
+        phase_ends = offs[np.where(np.diff(ts) > 1.0)[0] + 1]
+        ends = np.unique(np.concatenate([ends, phase_ends, [offs[-1]]]))
+        last = np.searchsorted(offs, ends, side="left") - 1      # sample still being sent at each read's end
         arrival = t_ns[last] + np.round((0.004 + rng.exponential(0.010, len(ends))) * 1e9).astype(np.int64)
         starts = np.concatenate([[0], ends[:-1]])
         chunks = [buf[a:b] for a, b in zip(starts.tolist(), ends.tolist())]
@@ -382,6 +406,8 @@ def encode_imu(variant, t_ns, gyro, accel, mag_ut, temp_c, fs, rng, clock_ppm=40
         pk = witmotion.ble_packets(0x61, np.hstack([a_raw, g_raw, np.zeros((n, 3), np.int16)]))
         ci = 7.5e-3
         arr_s = np.maximum.accumulate(np.ceil(ts / ci) * ci + rng.exponential(0.002, n) + 0.003)  # BLE keeps order
+        kept = rng.random(n) >= ble_loss                       # lost notifications never arrive
+        pk, arr_s = pk[kept], arr_s[kept]
         chunks = [p.tobytes() for p in pk]
         reg_i = np.arange(0, n, max(1, int(round(fs))))
         regs = np.zeros((len(reg_i), 9), np.int16)

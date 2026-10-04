@@ -139,7 +139,8 @@ def slip():
         rows.append([f(s, 1), ", ".join(f(x["slip_dph"], 1) for x in sl["variants"]["wmm"]),
                      ", ".join(f(x["slip_dph"], 1) for x in sl["variants"]["no_declination"]),
                      str(sl["exclude_segments"] or "none")])
-    table(["true slip (°/h)", "measured, WMM declination (per segment)", "measured, no declination model", "segments left out"], rows)
+    table(["true slip (°/h)", "measured, WMM declination (per segment)", "measured, no declination model (cross-check)", "segments left out"], rows)
+    print("The WMM version decides, at 1.5 °/h. The cross-check reads the route's declination change as slip.\n")
 
 
 def faults():
@@ -183,7 +184,7 @@ def pooling():
         re_cov += abs(p["k"] - 1) < 2 * p["sd"]
         ks = np.array([i[1]["k_curv"] for i in items])
         fe_cov += abs(ks.mean() - 1) < 2 * 0.1 / np.sqrt(len(ks))
-    table(["method", "95 % interval covers the truth"], [["random effects, sessions → units → population", f"{100 * re_cov / trials:.0f} %"],
+    table(["method", "95 % interval covers the truth"], [["random effects (REML, Hartung–Knapp), sessions → units → population", f"{100 * re_cov / trials:.0f} %"],
                                                         ["fixed effects (all sessions as independent)", f"{100 * fe_cov / trials:.0f} %"]])
     print("8 units × 4 sessions, unit offsets σ = 0.3, session errors σ = 0.1.\n")
 
@@ -194,7 +195,60 @@ def turns():
     print("Measured turn angles (true 180°): " + ", ".join(f"{e['turn']['angle_deg']:.2f}°" for e in r["mount_epochs"] if e["turn"]) + "\n")
 
 
+def crab():
+    print("## 11. Crab angle (fuselage off the GNSS track)\n")
+    import lll.analyze as A
+    import lll.fit as F
+    orig = F.fit
+    rows = []
+    for truth in ("sphere_rotating", "sphere_still"):
+        for label, crab_deg, sig in (("none", (), 5.0), ("8°, no crab term", (8.0, 8.0), 0.0), ("8°, crab term (5° prior)", (8.0, 8.0), 5.0)):
+            try:
+                F.fit = lambda *a, sig=sig, **k: orig(*a, **{**k, "crab_sigma_deg": sig})
+                A.fit.fit = F.fit
+                fi = run(truth, seed=11, fs=20.0, legs=STRAIGHT, index_turns=((50, "z"), (80, "z"), (110, "z")), crab_deg=crab_deg)["fit"]
+            finally:
+                F.fit = orig
+                A.fit.fit = orig
+            rows.append([truth, label, "YES" if fi["rejected"][truth] else "no",
+                         f"{f(fi['k']['k_rot_sphere'])} ± {f(fi['k_sd']['k_rot_sphere'])}", f"{f(fi['k']['k_curv'])} ± {f(fi['k_sd']['k_curv'])}"])
+    table(["truth", "crab", "truth rejected?", "k_rot", "k_curv"], rows)
+    print("Straight route with three same-side-up IMU turns. A flat truth has no horizontal signal, so crab doesn't affect it.\n")
+
+
+def ble_timing():
+    print("## 12. BLE timing under lost notifications\n")
+    from lll import witmotion as w
+    rows = []
+    for loss in (0.0, 0.001, 0.01, 0.03):
+        rng = np.random.default_rng(4)
+        rate, n = 100.0, 100 * 1800
+        true_s = np.arange(n) / rate
+        kept = rng.random(n) >= loss
+        ts = true_s[kept]
+        arr = np.round(np.maximum.accumulate(np.ceil(ts / 7.5e-3) * 7.5e-3 + rng.exponential(0.002, len(ts)) + 0.003) * 1e9).astype(np.int64)
+        idx, nl = w.recover_lost_samples(arr, rate)
+        t, _ = w.clock_map(idx / rate, arr, period_s=1 / rate)
+        e = t / 1e9 - ts
+        rows.append([f"{100 * loss:.1f} %", int(n - kept.sum()), nl, f"{1e3 * np.percentile(np.abs(e - np.median(e)), 95):.1f}"])
+    table(["notification loss", "samples lost", "detected", "timing error, 95th percentile (ms)"], rows)
+    print("30 min at 100 Hz, 7.5-ms connection interval.\n")
+
+
+def reversal():
+    print("## 13. Reversal test with strong g-sensitivity\n")
+    rows = []
+    for truth in ("sphere_rotating", "flat_still"):
+        r = run(truth, seed=5, fs=20.0, cal=("pre",), legs=((90.0, 12.0),), reversal_pairs=6,
+                g_sens_dph_per_g=[[30, 10, -8], [5, -25, 12], [-6, 9, 40]])
+        rv = r["reversal"]
+        rows.append([truth, rv["pairs"], f"{f(rv['h_mean_dph'])} ± {f(rv['h_sem_dph'])}", f(ground_model_predictions(40.5)[truth][1]),
+                     f(rv["h_sd_dph"])])
+    table(["truth", "pairs", "horizontal rate (°/h)", "predicted", "repeatability σ (°/h)"], rows)
+
+
 if __name__ == "__main__":
     print("# Evidence for docs/METHODOLOGY.md\n\nRegenerate with `python analysis/tests/evidence.py`.\n")
-    for fn in (models_vs_geometry, routes, ground_calibration, quantization, temperature, slip, faults, airliner, pooling, turns):
+    for fn in (models_vs_geometry, routes, ground_calibration, quantization, temperature, slip, faults, airliner, pooling, turns,
+               crab, ble_timing, reversal):
         fn()

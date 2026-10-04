@@ -17,6 +17,9 @@ Schema 2 replaces the phone's own motion sensors with an external WitMotion WT90
 Every record and row carries a time on Android's `elapsedRealtimeNanos` clock, which is monotonic and keeps counting through sleep.
 
 - **IMU reads:** the arrival time on the phone. The IMU samples on its own crystal. The analysis maps device time onto the phone clock per connection run, with a straight-line fit corrected to the earliest arrivals, because Bluetooth only ever delays. This removes crystal rate error and link jitter, to within a few milliseconds in simulation.
+  - **BLE:** samples are counted, so lost notifications are found from steps in the earliest-arrival envelope and the sample index is restored. The decode reports `samples_lost_detected` and `loss_estimate`.
+  - **Serial:** if the device sends its clock packet less often than its gyro packets, each gyro sample is dated from the nearest preceding clock packet plus whole sample periods.
+  - **Never late:** no sample is ever timed later than its own arrival.
 - **GNSS:** `Location.getElapsedRealtimeNanos()`.
 - **UTC:** `manifest.clock` maps the session clock to UTC.
 
@@ -35,7 +38,7 @@ CSV files are gzip with one header row. They can be multi-member gzip (one membe
 
 The two device variants use WitMotion's published protocols. Scale factors use the gyro full scale (±250, ±500, ±1000 or ±2000 °/s, chosen in Settings; register 0x20) and ±16 g for the accelerometer.
 
-**Which gyro range is used for decoding.** `imu.config.gyro_range_dps` records the range the app asked for. The app also reads register 0x20 back at every connection and logs it in an `imu_config` event (for example `0x20=0x1`, meaning ±500 °/s). The analysis decodes with the range the device reported, because decoding at the wrong full scale would rescale every rate. It flags `imu_range_differs_from_intended` when the two differ, and `imu_range_inconsistent` when readbacks disagree with each other; in that case it falls back to the intended range.
+**Which gyro range is used for decoding.** `imu.config.gyro_range_dps` records the range the app asked for. The app also reads register 0x20 back at every connection and logs it in an `imu_config` event (for example `0x20=0x1`, meaning ±500 °/s). The analysis decodes with the range the device reported, because decoding at the wrong full scale would rescale every rate. It flags `imu_range_differs_from_intended` when the two differ, and `imu_range_inconsistent` when readbacks disagree with each other; in that case it falls back to the intended range. The accelerometer range works the same way: register 0x21 (0 = ±2, 1 = ±4, 2 = ±8, 3 = ±16 g), recorded as `imu.config.accel_range_g`, with flags `imu_accel_range_differs_from_intended` and `imu_accel_range_inconsistent`.
 
 **Saturation.** A gyro count at full scale (±32767) means the rate may have been clipped. The decoder marks such samples, and a deliberate turn of the IMU that clipped is flagged `imu_turn_saturated`. The IMU's orientation after it is then unknown, so the later flight data is left out.
 
@@ -72,12 +75,13 @@ Decoded streams use the IMU's axes, in SI units: gyro rad/s, accel m/s², magnet
              "aircraft_type": "", "seat": "23A", "seat_position": "window | middle | aisle", "notes": ""},
   "mount": {"type": "window | sidewall | seat_frame | tray | bench | other", "orientation_note": "", "rotated_180_control": false},
   "privacy": {"cal_lat_deg": 40.5},
+  "bench": {"auto_zero_on": false},
   "phases": [{"name": "cal_pre.up0", "start_ns": 0, "end_ns": 0, "still_s": 180.0}],
-  "quality": {"cal_pre": true, "cal_post": true, "placement_check": true, "flags": []}
+  "quality": {"cal_pre": true, "cal_post": true, "placement_check": true, "reversal": false, "flags": []}
 }
 ```
 
-`device` is the phone, which supplies GNSS. `privacy.cal_lat_deg` is the calibration latitude rounded to 0.5°, or `null` if the participant opted out.
+`device` is the phone, which supplies GNSS. `bench` appears only in bench sessions: `auto_zero_on` is true when the session was recorded with the bench-only auto-zero polarity test, which never applies to flights. `privacy.cal_lat_deg` is the calibration latitude rounded to 0.5°, or `null` if the participant opted out.
 
 ### Phase names
 
@@ -86,6 +90,7 @@ Decoded streams use the IMU's axes, in SI units: gyro rad/s, accel m/s², magnet
 | `cal_pre.up0`, `.up180`, `.down0`, `.down180`, `.down0.b`, `.up180.b`, `.up0.b` | Ground calibration as a palindrome: each position twice in mirror order. `down180` is one double-length stay. `.b` marks the second visit. Label up or down, turned 180° about the vertical between pairs. |
 | `drift_pre`, `drift_post` | optional long stationary recordings |
 | `bench` | stationary recording in a bench session |
+| `rev.up0.N`, `rev.up180.N` | bench reversal test: label up, alternating 0° and 180° about the vertical, N = 1…6 |
 | `placement_check` | IMU mounted in the aircraft, stillness verified |
 | `flight` | main recording |
 | `cal_post.*` | the same calibration after the flight |
@@ -101,5 +106,6 @@ Decoded streams use the IMU's axes, in SI units: gyro rad/s, accel m/s², magnet
 | `imu_config`, `imu_config_write` | register readback and whether it matched; writes |
 | `index_turn` | the participant confirmed a deliberate turn of the IMU: `plane180` (same side up, facing the opposite way) or `flip` |
 | `index_skip` | a turn reminder was skipped |
+| `imu_disconnect_test` | the bench "disconnect test" dropped the link on purpose |
 | `placement_shift` | bumped or moved (user-reported, or a tilt change over 2° detected in cruise) |
 | `gnss_provider` | GNSS enabled or disabled |

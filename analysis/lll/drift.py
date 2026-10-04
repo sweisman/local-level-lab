@@ -8,15 +8,22 @@ import numpy as np
 from .calib import RAD2DPH
 
 
-def allan_deviation(x, fs, n_taus=20):
-    """Overlapping Allan deviation of a rate series x (N, 3) sampled at fs Hz."""
+FIXED_TAUS_S = (60.0, 300.0, 900.0, 1800.0)
+
+
+def allan_deviation(x, fs, n_taus=20, taus_s=None):
+    """Overlapping Allan deviation of a rate series x (N, 3) sampled at fs Hz, on a log grid of
+    averaging times, or at the given taus_s (those longer than a third of the run are skipped)."""
     x = np.asarray(x, dtype=float)
     n = len(x)
     if n < 100:
         return np.array([]), np.empty((0, 3))
     theta = np.vstack([np.zeros(3), np.cumsum(x, axis=0)]) / fs
     m_max = n // 3
-    ms = np.unique(np.logspace(0, np.log10(m_max), n_taus).astype(int))
+    if taus_s is not None:
+        ms = np.array([int(round(t * fs)) for t in taus_s if 1 <= round(t * fs) <= m_max], int)
+    else:
+        ms = np.unique(np.logspace(0, np.log10(m_max), n_taus).astype(int))
     taus, adev = [], []
     for m in ms:
         tau = m / fs
@@ -36,9 +43,13 @@ def drift_run(sess, name):
     g = np.column_stack([s["x"], s["y"], s["z"]])
     fs = 1e9 / np.median(np.diff(s["t_ns"]))
     taus, adev = allan_deviation(g, fs)
+    ft, fa = allan_deviation(g, fs, taus_s=FIXED_TAUS_S)
     out = {"duration_s": float((s["t_ns"][-1] - s["t_ns"][0]) / 1e9),
            "tau_s": taus.tolist(), "adev_dph": (adev * RAD2DPH).tolist(),
-           "bias_instability_dph": (adev.min(axis=0) * RAD2DPH).tolist() if len(adev) else None}
+           # The minimum of the curve is descriptive only: it depends on run length and estimator.
+           # Fixed averaging times are comparable between units and runs.
+           "bias_instability_dph": (adev.min(axis=0) * RAD2DPH).tolist() if len(adev) else None,
+           "adev_at_dph": {f"{t:.0f}": (a * RAD2DPH).tolist() for t, a in zip(ft, fa)}}
     # bias vs temperature, using 60-s bins against the IMU chip temperature
     bat = sess.slice("imu_temp", ph["start_ns"], ph["end_ns"])
     if bat is not None and len(bat["t_ns"]) > 5 and np.ptp(bat["temp_c"]) >= 1.0:

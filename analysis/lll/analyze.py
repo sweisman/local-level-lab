@@ -24,34 +24,42 @@ def _clean(o):
     return o
 
 
-QUALIFIED_BI_DPH, USABLE_BI_DPH = 5.0, 10.0          # bias instability, worst axis
-QUALIFIED_H_SD_DPH, USABLE_H_SD_DPH = 2.0, 4.0       # 1σ of the ground horizontal-rate measurement
+# Provisional until real units have been measured (docs/BENCH.md).
+QUALIFIED_ADEV300_DPH, USABLE_ADEV300_DPH = 3.0, 6.0  # Allan deviation at 300 s, worst axis
+QUALIFIED_H_SD_DPH, USABLE_H_SD_DPH = 2.0, 4.0        # repeatability of the horizontal ground rate
 
 
 def unit_quality(res: dict, m: dict) -> dict:
     """A quality tier for the IMU unit from this session's stationary data.
 
-    The criteria are about the instrument, never about which model wins. One is the bias
-    instability of a still run of 25 min or more, on the worst axis. The other is how precisely
-    the ground calibration measures the horizontal rotation. Collation keeps the latest tier per
-    unit_id."""
-    bis = [max(d["bias_instability_dph"]) for d in (res.get("drift") or {}).values()
-           if d and d.get("bias_instability_dph") and d["duration_s"] >= 1500]
-    hsd = [c["earth_h_sd_dph"] for c in (res.get("calibration") or {}).values()]
-    bi = min(bis) if bis else None
-    h = min(hsd) if hsd else None
-    if bi is None and h is None:
+    The criteria are about the instrument, never about which model wins:
+    - Allan deviation at 300 s on the worst axis, from a still run (drift or bench) long enough to
+      have that averaging time;
+    - repeatability of the horizontal ground rate: the scatter between pairs of the reversal test
+      when there is one, else the palindrome calibration's horizontal σ.
+    Collation keeps the latest tier per unit_id."""
+    a300 = [max(d["adev_at_dph"]["300"]) for d in (res.get("drift") or {}).values()
+            if d and d.get("adev_at_dph", {}).get("300")]
+    rv = res.get("reversal")
+    if rv:
+        h, h_src = rv["h_sd_dph"], "reversal test"
+    else:
+        hsd = [c["earth_h_sd_dph"] for c in (res.get("calibration") or {}).values()]
+        h, h_src = (min(hsd), "palindrome calibration") if hsd else (None, None)
+    a = min(a300) if a300 else None
+    if a is None and h is None:
         tier = "unknown"
-    elif bi is not None and bi <= QUALIFIED_BI_DPH and h is not None and h <= QUALIFIED_H_SD_DPH:
+    elif a is not None and a <= QUALIFIED_ADEV300_DPH and h is not None and h <= QUALIFIED_H_SD_DPH:
         tier = "qualified"
-    elif (bi is None or bi <= USABLE_BI_DPH) and (h is None or h <= USABLE_H_SD_DPH):
+    elif (a is None or a <= USABLE_ADEV300_DPH) and (h is None or h <= USABLE_H_SD_DPH):
         tier = "usable"
     else:
         tier = "exploratory"
     return {"unit_id": (m.get("imu") or {}).get("unit_id"), "variant": (m.get("imu") or {}).get("variant"),
-            "bias_instability_dph": bi, "earth_h_sd_dph": h, "tier": tier,
-            "criteria": {"qualified": f"BI ≤ {QUALIFIED_BI_DPH} °/h and ground horizontal σ ≤ {QUALIFIED_H_SD_DPH} °/h",
-                         "usable": f"BI ≤ {USABLE_BI_DPH} °/h and σ ≤ {USABLE_H_SD_DPH} °/h, where measured"}}
+            "adev_300s_dph": a, "horizontal_repeatability_dph": h, "horizontal_repeatability_from": h_src,
+            "tier": tier, "provisional": True,
+            "criteria": {"qualified": f"Allan dev. at 300 s ≤ {QUALIFIED_ADEV300_DPH} °/h and horizontal repeatability ≤ {QUALIFIED_H_SD_DPH} °/h",
+                         "usable": f"≤ {USABLE_ADEV300_DPH} °/h and ≤ {USABLE_H_SD_DPH} °/h, where measured"}}
 
 
 def analyze(path, th: Thresholds | None = None) -> dict:
@@ -81,6 +89,10 @@ def analyze(path, th: Thresholds | None = None) -> dict:
         flags.append("imu_range_differs_from_intended")      # decoded with the range the device reported
     if not st.get("gyro_range_readbacks_consistent", True):
         flags.append("imu_range_inconsistent")              # readbacks disagree: decoded with the intended range
+    if st.get("accel_range_reported_g") is not None and st["accel_range_reported_g"] != st.get("accel_range_intended_g"):
+        flags.append("imu_accel_range_differs_from_intended")
+    if not st.get("accel_range_readbacks_consistent", True):
+        flags.append("imu_accel_range_inconsistent")
     # Each phase is one connection. A gap inside a phase means the link dropped.
     gaps = 0
     for ph in m.get("phases", []):
@@ -107,6 +119,7 @@ def analyze(path, th: Thresholds | None = None) -> dict:
             rec["predicted"] = calib.ground_model_predictions(lat_cal)
         res["calibration"][name] = rec
     res["drift"] = {n: drift.drift_run(sess, n) for n in ("drift_pre", "drift_post", "bench")}
+    res["reversal"] = calib.reversal_test(sess)
     res["unit_quality"] = unit_quality(res, m)
     bias_fn, prior_sigma, bias_mode = drift.bias_model(cal_pre, cal_post, vre_dph=th.vre_budget_dph,
                                                        gsens_dph=th.gsens_budget_dph)
@@ -160,8 +173,9 @@ def analyze(path, th: Thresholds | None = None) -> dict:
     bins = {k: (v[keep] if isinstance(v, np.ndarray) and len(v) == len(keep) else v) for k, v in bins.items()}
     R0 = np.array([e["R0"] for e in epochs])
 
-    # magnetometer watchdog for slow yaw slip in the mount; segments where both versions (with and
-    # without the globe-based declination model) see slip are left out of the gyro fit
+    # magnetometer watchdog for slow yaw slip in the mount; segments where the WMM version sees slip
+    # are left out of the gyro fit (the no-declination version is a reported cross-check). The choice
+    # uses only magnetometer and GPS data, never the gyro.
     hi = next((c.get("mag_hard_iron_counts") for c in (cal_pre, cal_post) if c and c.get("mag_hard_iron_counts")), None)
     gn = sess.streams.get("gnss")
     year = 1970 + float(np.median(gn["utc_ms"])) / 1000 / 86400 / 365.2425 if gn is not None and len(gn["utc_ms"]) else 2026.0
@@ -174,8 +188,6 @@ def analyze(path, th: Thresholds | None = None) -> dict:
             if not len(bins["t"]):
                 flags.append("no_bins")
                 return _clean(res)
-        if res["slip"]["wmm_only_segments"]:
-            flags.append("mount_slip_suspected")          # seen with the declination model only
     else:
         flags.append("slip_watchdog_unavailable")
 
@@ -235,6 +247,11 @@ def analyze(path, th: Thresholds | None = None) -> dict:
             flags.append("temperature_sensitive")
     if not f["identifiability"]["identified"]:
         flags.append("k_not_identified")       # curvature indistinguishable from bias on this flight
+    ibt = f["identifiability"]["identified_by_term"]
+    if not ibt["k_rot_sphere"]:
+        flags.append("k_rot_not_identified")
+    if not ibt["k_disc"]:
+        flags.append("k_disc_not_identified")  # e.g. no change in east velocity along the route
     if f["prior_sensitivity"]["prior_dominated"]:
         flags.append("prior_dominated")        # the bias prior, not the data, is setting k
     y, X, idx, cbns, theta = f["_rows"]

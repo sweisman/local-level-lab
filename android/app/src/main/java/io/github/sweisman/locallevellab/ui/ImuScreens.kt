@@ -81,6 +81,7 @@ fun ImuSettings(nav: androidx.navigation.NavController) {
     var chosen by remember { mutableStateOf(p.imuName.ifEmpty { p.imuAddress }) }
     var rate by remember { mutableIntStateOf(p.imuRateHz) }
     var range by remember { mutableIntStateOf(p.imuGyroRangeDps) }
+    var accRange by remember { mutableIntStateOf(p.imuAccelRangeG) }
     var permOk by remember { mutableStateOf(hasBluetoothPermissions(ctx)) }
     var turnMin by remember { mutableIntStateOf(p.indexAlertMinutes) }
     var motions by remember { mutableStateOf(p.turnMotions) }
@@ -145,6 +146,10 @@ fun ImuSettings(nav: androidx.navigation.NavController) {
         range = it.toInt(); p.imuGyroRangeDps = range
     }
     Para("Finer counts measure slow rotation better, but a quick hand turn can then exceed the range and that turn can't be used. Check the setting with a bench capture: the analysis decodes with the range the IMU reports back, and flags any difference.", muted = true)
+    Text("Accelerometer range", style = MaterialTheme.typography.titleSmall, modifier = Modifier.padding(top = 8.dp))
+    Choice(listOf("16" to "±16 g (default)", "8" to "±8 g", "4" to "±4 g (finer plumb line; enough for a cabin)", "2" to "±2 g"), "$accRange") {
+        accRange = it.toInt(); p.imuAccelRangeG = accRange
+    }
     OutlinedButton({ RecorderService.configure(ctx) }, Modifier.fillMaxWidth(), enabled = chosen.isNotEmpty()) {
         Text("Write and verify IMU settings")
     }
@@ -166,7 +171,13 @@ fun ImuSettings(nav: androidx.navigation.NavController) {
         }, Modifier.fillMaxWidth()) { Text("Let recording run with the screen off") }
         Para("Some phones stop background apps to save battery. This exemption keeps the recording going with the screen off.", muted = true)
     } else Para("Background recording allowed ✓", muted = true)
-    TextButton({ nav.navigate("new?kind=bench") }) { Text("Bench capture (stationary test of the IMU)") }
+    HorizontalDivider(Modifier.padding(vertical = 12.dp))
+    Text("Bench tests (see docs/BENCH.md)", style = MaterialTheme.typography.titleMedium)
+    TextButton({ nav.navigate("new?kind=bench") }) { Text("New bench session (stationary test of the IMU)") }
+    var autoOn by remember { mutableStateOf(p.benchAutoZeroOn) }
+    SwitchRow("Next bench session: auto-zero ON (polarity test)", autoOn) { autoOn = it; p.benchAutoZeroOn = it }
+    Para("Only for a bench session made while this is on. Compare it with one made with it off: with auto-zero on, the Earth's rotation should vanish. Flights always force it off.", muted = true)
+    OutlinedButton({ RecorderService.dropLink(ctx) }, Modifier.fillMaxWidth()) { Text("Disconnect test: drop the link, reconnect in 5 s") }
 }
 
 // ---------- dashboard pieces ----------

@@ -10,11 +10,11 @@ Largest difference over 5 states × 3 models: 8.6e-12 rad/s (1.8e-06 °/h).
 
 | route | bias-likeness k_curv | bias-likeness k_disc | k_curv | wrong models rejected | flagged not identified |
 |---|---|---|---|---|---|
-| north, east, south | 0.92 | 0.45 | 0.79 ± 0.98 | 1 of 2 | no |
-| zigzag 60°/100°/20° | 0.98 | 0.93 | 0.74 ± 0.98 | 1 of 2 | yes |
-| straight, no IMU turns | 1.00 | 0.99 | 0.82 ± 1.03 | 1 of 2 | yes |
-| straight, IMU turned about the vertical ×3 | 0.68 | 0.99 | 1.08 ± 0.15 | 2 of 2 | no |
-| straight, IMU flipped ×3 | 1.00 | 1.00 | 1.02 ± 0.74 | 1 of 2 | yes |
+| north, east, south | 0.92 | 0.45 | 0.97 ± 0.94 | 1 of 2 | no |
+| zigzag 60°/100°/20° | 0.98 | 0.93 | 0.84 ± 0.95 | 1 of 2 | yes |
+| straight, no IMU turns | 1.00 | 0.99 | 1.01 ± 1.06 | 1 of 2 | yes |
+| straight, IMU turned about the vertical ×3 | 0.67 | 0.99 | 1.11 ± 0.17 | 2 of 2 | no |
+| straight, IMU flipped ×3 | 1.00 | 1.00 | 1.08 ± 0.76 | 0 of 2 | yes |
 
 ## 3. Ground calibration: horizontal rate against g-sensitivity
 
@@ -40,48 +40,50 @@ Largest difference over 5 states × 3 models: 8.6e-12 rad/s (1.8e-06 °/h).
 | ±250 °/s | 27 | no | 8.1, -8.5, 8.9 |
 | ±250 °/s | 27 | yes | 7.1, -8.3, 9.6 |
 
-By design, drift and position effects are separated, so g-sensitivity alone can't move the fitted drift. What moves it here is quantization: coarse counts interact with constant offsets. The shift shrinks with finer counts (z: 9.3 at ±2000 °/s, 1.7 at ±500, 0.7 at ±250 °/h per h).
+By design, drift and position effects are separated, so g-sensitivity alone can't move the fitted drift. What moves it here is quantization: coarse counts interact with constant offsets. Compare the z column with and without g-sensitivity at each range.
 
 ## 5. Temperature
 
 |  | with term | without |
 |---|---|---|
-| coefficient (°/h/°C), injected 1.0, −0.8, 0.6 | 0.98, -0.78, 0.72 | – |
+| coefficient (°/h/°C), injected 1.0, −0.8, 0.6 | 0.98, -0.77, 0.72 | – |
 | noise per 60-s bin (°/h) | 1.39 | 2.12 |
-| k_curv | 1.16 ± 0.98 | 1.38 ± 0.96 |
+| k_curv | 1.19 ± 0.99 | 2.39 ± 0.95 |
 
 ## 6. Mount slip watchdog
 
-| true slip (°/h) | measured, WMM declination (per segment) | measured, no declination model | segments left out |
+| true slip (°/h) | measured, WMM declination (per segment) | measured, no declination model (cross-check) | segments left out |
 |---|---|---|---|
 | 0.0 | -0.1, -0.2, -0.1 | 2.7, 3.3, 0.9 | none |
-| 2.0 | 2.0, 1.8, 1.9 | 4.7, 5.3, 2.9 | none |
+| 2.0 | 2.0, 1.8, 1.9 | 4.7, 5.3, 2.9 | [0, 1, 2] |
 | 3.0 | 3.0, 2.8, 2.9 | 5.7, 6.3, 3.9 | [0, 1, 2] |
 | 8.0 | 8.0, 7.7, 7.8 | 10.6, 11.2, 8.8 | [0, 1, 2] |
+
+The WMM version decides, at 1.5 °/h. The cross-check reads the route's declination change as slip.
 
 ## 7. Hard conditions: the true model is never rejected
 
 | condition | truth | truth rejected? | models rejected | largest |k − true| / σ |
 |---|---|---|---|---|
-| adverse flight (temperature, turbulence, tilt slip, climb/descent, GNSS gaps) | sphere_rotating | no | sphere_still, flat_still | 0.4 |
-| adverse flight (temperature, turbulence, tilt slip, climb/descent, GNSS gaps) | sphere_still | no | sphere_rotating, flat_still | 0.9 |
-| adverse flight (temperature, turbulence, tilt slip, climb/descent, GNSS gaps) | flat_still | no | sphere_rotating | 0.4 |
-| hardware faults (all at once) | sphere_rotating | no | sphere_still, flat_still | 2.3 |
-| hardware faults (all at once) | sphere_still | no | sphere_rotating, flat_still | 2.3 |
-| hardware faults (all at once) | flat_still | no | sphere_rotating | 2.3 |
+| adverse flight (temperature, turbulence, tilt slip, climb/descent, GNSS gaps) | sphere_rotating | no | sphere_still, flat_still | 1.0 |
+| adverse flight (temperature, turbulence, tilt slip, climb/descent, GNSS gaps) | sphere_still | no | sphere_rotating, flat_still | 1.5 |
+| adverse flight (temperature, turbulence, tilt slip, climb/descent, GNSS gaps) | flat_still | no | sphere_rotating | 0.7 |
+| hardware faults (all at once) | sphere_rotating | no | sphere_still, flat_still | 1.4 |
+| hardware faults (all at once) | sphere_still | no | sphere_rotating, flat_still | 2.1 |
+| hardware faults (all at once) | flat_still | no | sphere_rotating | 2.2 |
 
 ## 8. Five-hour single-heading cruise
 
 |  | bias-likeness k_curv | k_curv (truth 1) | models rejected (truth: still globe) |
 |---|---|---|---|
-| no IMU turns | 1.00 | 1.28 ± 0.78 | sphere_rotating |
-| IMU turned about the vertical hourly | 0.71 | 1.32 ± 0.22 | sphere_rotating, flat_still |
+| no IMU turns | 1.00 | 1.32 ± 0.80 | sphere_rotating |
+| IMU turned about the vertical hourly | 0.71 | 1.33 ± 0.29 | sphere_rotating, flat_still |
 
 ## 9. Pooling when units differ
 
 | method | 95 % interval covers the truth |
 |---|---|
-| random effects, sessions → units → population | 90 % |
+| random effects (REML, Hartung–Knapp), sessions → units → population | 91 % |
 | fixed effects (all sessions as independent) | 23 % |
 
 8 units × 4 sessions, unit offsets σ = 0.3, session errors σ = 0.1.
@@ -89,4 +91,35 @@ By design, drift and position effects are separated, so g-sensitivity alone can'
 ## 10. IMU turns measured by the gyro
 
 Measured turn angles (true 180°): 179.93°, 179.96°, 179.98°
+
+## 11. Crab angle (fuselage off the GNSS track)
+
+| truth | crab | truth rejected? | k_rot | k_curv |
+|---|---|---|---|---|
+| sphere_rotating | none | no | 1.06 ± 0.19 | 0.92 ± 0.28 |
+| sphere_rotating | 8°, no crab term | YES | 0.63 ± 0.11 | 1.51 ± 0.15 |
+| sphere_rotating | 8°, crab term (5° prior) | no | 0.63 ± 0.20 | 1.54 ± 0.28 |
+| sphere_still | none | no | -0.08 ± 0.12 | 1.11 ± 0.17 |
+| sphere_still | 8°, no crab term | no | -0.19 ± 0.10 | 1.25 ± 0.14 |
+| sphere_still | 8°, crab term (5° prior) | no | -0.22 ± 0.12 | 1.29 ± 0.16 |
+
+Straight route with three same-side-up IMU turns. A flat truth has no horizontal signal, so crab doesn't affect it.
+
+## 12. BLE timing under lost notifications
+
+| notification loss | samples lost | detected | timing error, 95th percentile (ms) |
+|---|---|---|---|
+| 0.0 % | 0 | 0 | 0.0 |
+| 0.1 % | 178 | 178 | 0.0 |
+| 1.0 % | 1781 | 1779 | 11.8 |
+| 3.0 % | 5301 | 5296 | 22.4 |
+
+30 min at 100 Hz, 7.5-ms connection interval.
+
+## 13. Reversal test with strong g-sensitivity
+
+| truth | pairs | horizontal rate (°/h) | predicted | repeatability σ (°/h) |
+|---|---|---|---|---|
+| sphere_rotating | 6 | 11.06 ± 0.72 | 11.44 | 1.25 |
+| flat_still | 6 | 0.00 ± 0.64 | 0.00 | 0.92 |
 

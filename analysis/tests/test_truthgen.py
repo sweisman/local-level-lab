@@ -55,3 +55,16 @@ def test_flat_models_match_geometry(world, case):
     _, v_gnss = tg.truth("sphere_still", traj, t)
     lat, lon, h = traj(t)
     np.testing.assert_allclose(models.predict(world, lat, h, v_gnss[:, 0], v_gnss[:, 1]), w_true, atol=1e-10)
+
+
+@pytest.mark.parametrize("case", CASES)
+def test_disc_from_longitude_rate_needs_no_velocity(case):
+    """The analysis feeds the disc model dλ/dt from successive GNSS longitudes. With that, the
+    prediction uses no velocity and no Earth radius at all, and still matches the geometry."""
+    traj = _traj(*case)
+    t = np.array([0.0, 600.0])
+    w_true, _ = tg.truth("flat_still", traj, t)
+    lat, lon, h = traj(t)
+    lon_rate = (traj(t + 0.5)[1] - traj(t - 0.5)[1]) / 1.0
+    w = models.predict("flat_still", lat, h, v_n=1e6, v_e=-1e6, lon_rate=lon_rate)   # absurd velocities: unused
+    np.testing.assert_allclose(w, w_true, atol=1e-10)

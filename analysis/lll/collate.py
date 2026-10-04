@@ -3,7 +3,7 @@
 
 The experimental unit is not a 60-s bin, and not even a flight: sessions recorded with the same
 IMU share its quirks. So pooling is hierarchical, with random effects at each level
-(DerSimonian–Laird):
+(REML with Hartung–Knapp intervals):
 
     sessions → per IMU unit → population of units
 
@@ -20,7 +20,6 @@ from __future__ import annotations
 import csv
 import json
 from collections import defaultdict
-from math import erfc, sqrt
 from pathlib import Path
 
 import numpy as np
@@ -34,34 +33,39 @@ GOOD_TIERS = ("qualified", "usable")
 P_REJECT = 0.0027
 
 
-def dersimonian_laird(y, sd):
-    """Random-effects pool. Returns {mu, se, tau2, Q, p_het, n}."""
+def random_effects(y, sd):
+    """Random-effects pool: REML for the between-member variance τ², and the modified
+    Hartung–Knapp standard error (never narrower than the classic one) with t intervals on
+    n − 1 degrees of freedom. DerSimonian–Laird is known to be overconfident with few members.
+    Returns {mu, se, se_classic, tau2, Q, p_het, n, df, ci95}."""
+    from scipy.stats import chi2, t as tdist
     y, v = np.asarray(y, float), np.asarray(sd, float) ** 2
     n = len(y)
     if n == 0:
         return None
     if n == 1:
-        return {"mu": float(y[0]), "se": float(np.sqrt(v[0])), "tau2": 0.0, "Q": 0.0, "p_het": 1.0, "n": 1}
-    w = 1 / v
-    ybar = np.sum(w * y) / np.sum(w)
-    Q = float(np.sum(w * (y - ybar) ** 2))
-    C = float(np.sum(w) - np.sum(w ** 2) / np.sum(w))
-    tau2 = max(0.0, (Q - (n - 1)) / C) if C > 0 else 0.0
-    ws = 1 / (v + tau2)
-    return {"mu": float(np.sum(ws * y) / np.sum(ws)), "se": float(1 / np.sqrt(np.sum(ws))), "tau2": tau2,
-            "Q": Q, "p_het": _sf_chi2_df(Q, n - 1), "n": n}
-
-
-def _sf_chi2_df(x, df):
-    """χ² survival function for any integer df (Wilson–Hilferty approximation beyond the closed forms)."""
-    if df <= 0:
-        return 1.0
-    if df == 1:
-        return erfc(sqrt(max(x, 0) / 2))
-    if df in (3, 4):
-        return sf_chi2(x, df)
-    z = ((x / df) ** (1 / 3) - (1 - 2 / (9 * df))) / sqrt(2 / (9 * df))
-    return 0.5 * erfc(z / sqrt(2))
+        se = float(np.sqrt(v[0]))
+        return {"mu": float(y[0]), "se": se, "se_classic": se, "tau2": 0.0, "Q": 0.0, "p_het": 1.0, "n": 1, "df": 0,
+                "ci95": [float(y[0] - 1.96 * se), float(y[0] + 1.96 * se)]}
+    w0 = 1 / v
+    Q = float(np.sum(w0 * (y - np.sum(w0 * y) / np.sum(w0)) ** 2))
+    tau2 = 0.0
+    for _ in range(200):                       # REML by fixed-point iteration (Viechtbauer 2005)
+        w = 1 / (v + tau2)
+        mu = np.sum(w * y) / np.sum(w)
+        new = max(0.0, float(np.sum(w ** 2 * ((y - mu) ** 2 - v)) / np.sum(w ** 2) + 1 / np.sum(w)))
+        if abs(new - tau2) < 1e-12 * max(1.0, tau2):
+            tau2 = new
+            break
+        tau2 = new
+    w = 1 / (v + tau2)
+    mu = float(np.sum(w * y) / np.sum(w))
+    se_c = float(np.sqrt(1 / np.sum(w)))
+    q = float(np.sum(w * (y - mu) ** 2) / (n - 1))
+    se = se_c * np.sqrt(max(q, 1.0))
+    tc = float(tdist.ppf(0.975, n - 1))
+    return {"mu": mu, "se": float(se), "se_classic": se_c, "tau2": tau2, "Q": Q, "p_het": float(chi2.sf(Q, n - 1)),
+            "n": n, "df": n - 1, "ci95": [mu - tc * se, mu + tc * se]}
 
 
 def load_results(paths) -> list[dict]:
@@ -119,19 +123,24 @@ def _heading(r):
 
 
 def pool_hierarchical(items):
-    """items: [(unit, k dict, sd dict)]. Pools within units, then across units, per term."""
+    """items: [(unit, k dict, sd dict[, identified dict])]. Pools within units, then across units,
+    per term. A session contributes to a term only where that term was identified on its flight."""
     out = {}
     by_unit = defaultdict(list)
-    for unit, k, sd in items:
-        by_unit[unit].append((k, sd))
+    for it in items:
+        unit, k, sd = it[:3]
+        ident = it[3] if len(it) > 3 else {}
+        by_unit[unit].append((k, sd, ident))
     for n in TERM_NAMES:
         units = {}
         for u, its in by_unit.items():
-            p = dersimonian_laird([k[n] for k, s in its], [s[n] for k, s in its])
+            use = [(k, s) for k, s, ident in its if ident.get(n, True)]
+            p = random_effects([k[n] for k, s in use], [s[n] for k, s in use])
             if p:
                 units[u] = p
-        pop = dersimonian_laird([p["mu"] for p in units.values()], [p["se"] for p in units.values()])
-        out[n] = {"k": pop["mu"], "sd": pop["se"], "tau2_units": pop["tau2"], "p_het_units": pop["p_het"],
+        pop = random_effects([p["mu"] for p in units.values()], [p["se"] for p in units.values()])
+        out[n] = {"k": pop["mu"], "sd": pop["se"], "df": pop["df"], "ci95": pop["ci95"],
+                  "tau2_units": pop["tau2"], "p_het_units": pop["p_het"],
                   "n_units": pop["n"], "n_sessions": sum(p["n"] for p in units.values()),
                   "tau2_within_units": {str(u): p["tau2"] for u, p in units.items()}} if pop else None
     return out
@@ -170,7 +179,7 @@ def collate(results: list[dict], allow_synthetic: bool = False) -> dict:
                         ground[key + "_sd"].append(c[src + "_sd_dph"])
         if not fit:
             continue
-        item = (imu.get("unit_id"), fit["k"], fit["k_sd"])
+        item = (imu.get("unit_id"), fit["k"], fit["k_sd"], fit.get("identifiability", {}).get("identified_by_term", {}))
         (primary if not why else explore).append(item)
         if not why:
             groups["heading"][_heading(r)].append(item)
@@ -186,12 +195,19 @@ def collate(results: list[dict], allow_synthetic: bool = False) -> dict:
         pk = pool_hierarchical(primary)
         out["pooled_k"] = pk
         # each model's expected k against the pooled k (independent terms): χ² with 3 dof
+        from scipy.stats import norm, t as tdist
         tests = {}
         for m in MODELS:
-            z = [(pk[n]["k"] - e) / pk[n]["sd"] for n, e in zip(TERM_NAMES, EXPECTED_K[m]) if pk[n]]
-            x2 = float(np.sum(np.square(z)))
-            p = sf_chi2(x2, len(z)) if len(z) in (3, 4) else _sf_chi2_df(x2, len(z))
-            tests[m] = {"chi2": x2, "p": p, "rejected": p < P_REJECT, "z": dict(zip(TERM_NAMES, z))}
+            z = {}
+            for n, e in zip(TERM_NAMES, EXPECTED_K[m]):
+                if not pk[n]:
+                    continue
+                tt = (pk[n]["k"] - e) / pk[n]["sd"]
+                # t on df degrees of freedom (Hartung–Knapp) → the normal quantile with the same tail
+                z[n] = float(np.sign(tt) * norm.isf(tdist.sf(abs(tt), pk[n]["df"]))) if pk[n]["df"] > 0 else float(tt)
+            x2 = float(np.sum(np.square(list(z.values()))))
+            p = sf_chi2(x2, len(z)) if z else 1.0
+            tests[m] = {"chi2": x2, "p": p, "rejected": p < P_REJECT, "z": z}
         out["model_tests"] = tests
         cons = {}
         for dim, gs in groups.items():
@@ -202,12 +218,15 @@ def collate(results: list[dict], allow_synthetic: bool = False) -> dict:
             dis = {}
             for n in TERM_NAMES:
                 vals = [(p[n]["k"], p[n]["sd"]) for p in per.values() if p[n]]
-                d = dersimonian_laird([a for a, _ in vals], [b for _, b in vals])
+                d = random_effects([a for a, _ in vals], [b for _, b in vals])
                 dis[n] = {"Q": d["Q"], "p": d["p_het"], "disagree": d["p_het"] < 0.01}
             cons[dim] = {"groups": per, "heterogeneity": dis,
                          "disagreement": any(v["disagree"] for v in dis.values())}
         out["consistency"] = cons
         out["flags"] = [f"groups disagree by {d}" for d, c in cons.items() if c["disagreement"]]
+        nu = max((v["n_units"] for v in pk.values() if v), default=0)
+        # one or two IMU units are not a population: say so instead of extrapolating
+        out["scope"] = {1: "single-unit", 2: "two-unit"}.get(nu, "population")
     out["ground"]["fit"] = ground_fit(ground)
     return out
 

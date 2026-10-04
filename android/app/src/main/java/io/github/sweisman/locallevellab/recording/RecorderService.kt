@@ -174,6 +174,7 @@ class RecorderService : Service(), ImuLink.Listener {
             ACTION_MONITOR -> { goForeground("Connected to the IMU"); handler.post { ensureLink(); scheduleIdleStop() } }
             ACTION_CONFIGURE -> { goForeground("Configuring the IMU"); handler.post { ensureLink(); configApplied = false; applyConfig(); scheduleIdleStop() } }
             ACTION_DISCONNECT -> handler.post { if (phase == null) shutdown() }
+            ACTION_DROP_LINK -> handler.post { dropLinkTest() }
             ACTION_START -> {
                 goForeground("Recording: ${intent.getStringExtra(EXTRA_PHASE) ?: ""}")
                 val sid = intent.getStringExtra(EXTRA_SESSION) ?: return START_STICKY
@@ -231,11 +232,12 @@ class RecorderService : Service(), ImuLink.Listener {
         if (v == null || addr.isEmpty()) { fail("No IMU chosen. Pick one in Settings."); return }
         if (!canConnect()) { fail("Bluetooth permission is missing. Grant it in Settings."); return }
         val range = prefs.imuGyroRangeDps
-        val key = "${v.key}@$addr@$range"
+        val accRange = prefs.imuAccelRangeG
+        val key = "${v.key}@$addr@$range@$accRange"
         if (link != null && key == linkKey) return
         link?.close()
         variant = v; linkKey = key
-        parser = WitParser(v, gyroRangeDps = range.toDouble())
+        parser = WitParser(v, gyroRangeDps = range.toDouble(), accelRangeG = accRange.toDouble())
         imuConnected = false
         readback.clear(); configApplied = false
         Live.state.update { it.copy(imuStatus = "connecting…", imuConnected = false, imuConfigOk = null) }
@@ -292,9 +294,13 @@ class RecorderService : Service(), ImuLink.Listener {
 
     /** Read the config registers back. If anything differs (for example after the IMU was
      *  power-cycled), write the config, save it, and check once more. */
+    /** Auto-zero is only ever on while recording a bench session with the bench toggle set. Every
+     *  other connection forces it off, and the readback check rewrites it if it isn't. */
+    private fun autoZeroWanted() = session?.manifest?.optJSONObject("bench")?.optBoolean("auto_zero_on") == true
+
     private fun checkConfig() {
         val v = variant ?: return
-        val expected = WitConfig.expected(v, prefs.imuRateHz, prefs.imuGyroRangeDps)
+        val expected = WitConfig.expected(v, prefs.imuRateHz, prefs.imuGyroRangeDps, prefs.imuAccelRangeG, autoZeroWanted())
         readback.clear()
         expected.keys.forEachIndexed { i, reg ->
             handler.postDelayed({
@@ -318,10 +324,19 @@ class RecorderService : Service(), ImuLink.Listener {
         val v = variant ?: return
         if (!imuConnected) return  // checkConfig runs again on connect
         configApplied = true
-        val cmds = WitConfig.apply(v, prefs.imuRateHz, prefs.imuGyroRangeDps)
+        val cmds = WitConfig.apply(v, prefs.imuRateHz, prefs.imuGyroRangeDps, prefs.imuAccelRangeG, autoZeroWanted())
         link?.write(cmds)
-        if (phase != null) event("imu_config_write", "rate=${prefs.imuRateHz} gyro_range=${prefs.imuGyroRangeDps}")
+        if (phase != null) event("imu_config_write", "rate=${prefs.imuRateHz} gyro_range=${prefs.imuGyroRangeDps} accel_range=${prefs.imuAccelRangeG}")
         handler.postDelayed({ checkConfig() }, 150L * cmds.size + 1500)
+    }
+
+    private fun dropLinkTest() {
+        if (link == null) return
+        event("imu_disconnect_test", "dropped on purpose")
+        Live.activity("Disconnect test: link dropped, reconnecting in 5 s")
+        link?.close(); link = null; linkKey = ""; imuConnected = false
+        Live.state.update { it.copy(imuConnected = false, imuStatus = "disconnect test") }
+        handler.postDelayed({ ensureLink() }, 5000)
     }
 
     // ---- phases ----
@@ -664,6 +679,7 @@ class RecorderService : Service(), ImuLink.Listener {
         const val ACTION_MONITOR = "monitor"
         const val ACTION_CONFIGURE = "configure"
         const val ACTION_DISCONNECT = "disconnect"
+        const val ACTION_DROP_LINK = "drop_link"
         const val ACTION_TURN_DONE = "turn_done"
         const val EXTRA_SESSION = "session"
         const val EXTRA_PHASE = "phase"
@@ -690,6 +706,11 @@ class RecorderService : Service(), ImuLink.Listener {
 
         fun configure(ctx: Context) {
             ContextCompat.startForegroundService(ctx, Intent(ctx, RecorderService::class.java).setAction(ACTION_CONFIGURE))
+        }
+
+        /** Bench: drop the Bluetooth link and reconnect 5 s later, to test recovery and clock mapping. */
+        fun dropLink(ctx: Context) {
+            ctx.startService(Intent(ctx, RecorderService::class.java).setAction(ACTION_DROP_LINK))
         }
 
         fun disconnect(ctx: Context) {

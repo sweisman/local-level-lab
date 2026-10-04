@@ -95,3 +95,64 @@ def test_bench_on_synthetic_session(tmp_path):
     assert r["rate_hz"] == pytest.approx(20.0, rel=1e-3)
     assert r["gyro_lsb_dph"] == pytest.approx(2000 / 32768 * 3600, rel=1e-9)
     assert all(0 < f < 1 for f in r["gyro_mode_fraction"])
+
+
+def test_sparse_spp_clock_packets_time_correctly(tmp_path):
+    """If the device sends its clock packet only every 5th sample, each gyro sample is dated from
+    the nearest preceding clock packet plus whole sample periods."""
+    from lll.format import read_session
+    from lll.synth import synthesize
+    out = {}
+    for every in (1, 5):
+        p = tmp_path / f"e{every}.zip"
+        synthesize(p, "sphere_still", seed=2, fs=20.0, cal=("pre",), legs=((90.0, 30.0),), spp_time_every=every)
+        out[every] = read_session(p)
+    s = out[5]
+    assert s.imu_stats["time_base"] == "device_clock_interpolated" and s.imu_stats["runs"] == out[1].imu_stats["runs"]
+    d = np.diff(s.streams["gyro"]["t_ns"]) / 1e9
+    assert np.abs(d[d < 1] - 0.05).max() < 0.003
+
+
+@pytest.mark.parametrize("loss,p95_ms", [(0.001, 5.0), (0.01, 20.0)])
+def test_ble_lost_samples_are_recovered(loss, p95_ms):
+    """BLE samples are timed by counting packets, so each lost notification would make every later
+    sample early by one period. The decoder finds the losses from steps in the arrival envelope
+    and restores the true sample index."""
+    rng = np.random.default_rng(4)
+    rate, n = 100.0, 100 * 1800
+    true_s = np.arange(n) / rate
+    kept = rng.random(n) >= loss
+    ts = true_s[kept]
+    arr = np.round(np.maximum.accumulate(np.ceil(ts / 7.5e-3) * 7.5e-3 + rng.exponential(0.002, len(ts)) + 0.003) * 1e9).astype(np.int64)
+    idx, n_lost = w.recover_lost_samples(arr, rate)
+    assert abs(n_lost - (n - kept.sum())) <= 0.01 * (n - kept.sum()) + 1
+    t, _ = w.clock_map(idx / rate, arr, period_s=1 / rate)
+    err = t / 1e9 - ts
+    assert np.all(t <= arr)                                     # never later than its own arrival
+    assert np.percentile(np.abs(err - np.median(err)), 95) < p95_ms / 1000
+
+
+def test_ble_loss_rate_is_reported(tmp_path):
+    from lll.format import read_session
+    from lll.synth import synthesize
+    p = tmp_path / "b.zip"
+    synthesize(p, "sphere_still", seed=2, fs=20.0, cal=("pre",), legs=((90.0, 30.0),), variant="ble", ble_loss=0.02)
+    st = read_session(p).imu_stats
+    assert abs(st["loss_estimate"] - 0.02) < 0.004
+
+
+def test_bench_reports_reversal_stability_and_comparison(tmp_path):
+    from lll.cli import bench, bench_compare
+    from lll.synth import synthesize
+    out = {}
+    for rng in (2000.0, 250.0):
+        p = tmp_path / f"r{rng:.0f}.zip"
+        synthesize(p, "sphere_rotating", seed=3, fs=20.0, cal=("pre",), legs=((90.0, 12.0),), reversal_pairs=3,
+                   drift_runs=True, gyro_range_dps=rng, temp_coef_dph_per_c=(1.0, 0, 0), flight_temp_rise_c=0.0)
+        out[rng] = bench(p)
+    r = out[250.0]
+    assert r["stability_phase"] == "drift_pre" and r["reversal"]["pairs"] == 3
+    assert "300" in r["adev_at_dph"] and r["samples_received"] <= r["samples_expected"] + 1
+    assert r["gyro_lsb_dph"] < out[2000.0]["gyro_lsb_dph"] / 7
+    c = bench_compare(out[2000.0], r)
+    assert c["a"]["gyro_lsb_dph"] > c["b"]["gyro_lsb_dph"]

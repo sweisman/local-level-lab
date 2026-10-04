@@ -23,7 +23,7 @@ class Thresholds:
     vre_budget_dph: float = 5.0           # vibration rectification: in flight only, unseen by ground calibration
     gsens_budget_dph: float = 5.0         # g-sensitivity × gravity: unseen by the 4-position bias estimate
     grav_cluster_cos: float = 0.9         # bins whose up directions agree this well share one residual bias
-    max_slip_dph: float = 2.0             # mount yaw slip the watchdog tolerates
+    max_slip_dph: float = 1.5             # mount yaw slip the watchdog tolerates (either version)
 
 
 def _smooth_grad(t, x, win_s):
@@ -43,6 +43,8 @@ def gnss_kinematics(gn):
         "t": t, "lat": np.radians(gn["lat"]), "lon": np.radians(gn["lon"]), "h": gn["alt_m"],
         "speed": spd, "psi": psi, "v_n": spd * np.cos(psi), "v_e": spd * np.sin(psi),
         "vz": _smooth_grad(t, gn["alt_m"], 30.0),
+        # dλ/dt straight from the coordinates, for the disc model (no velocity, no radius)
+        "lon_rate": _smooth_grad(t, np.unwrap(np.radians(gn["lon"])), 30.0),
         "psi_dot": course_rate(t, np.nan_to_num(gn["bearing_deg"]), smooth_s=30.0),
         "h_acc": np.nan_to_num(gn["h_acc_m"], nan=999.0),
     }
@@ -116,7 +118,7 @@ def make_bins(sess, segs, kin, th: Thresholds):
                 "lat": kin["lat"][km].mean(), "lon": kin["lon"][km].mean(), "h": kin["h"][km].mean(),
                 "mag": (M[(mt >= a) & (mt < b)].mean(axis=0) if M is not None and ((mt >= a) & (mt < b)).sum() >= 5
                         else np.full(3, np.nan)),
-                "v_n": kin["v_n"][km].mean(), "v_e": kin["v_e"][km].mean(),
+                "v_n": kin["v_n"][km].mean(), "v_e": kin["v_e"][km].mean(), "lon_rate": kin["lon_rate"][km].mean(),
                 "psi": np.arctan2(np.sin(kin["psi"][km]).mean(), np.cos(kin["psi"][km]).mean()),
                 "psi_dot": kin["psi_dot"][km].mean(),
                 "speed": kin["speed"][km].mean(),

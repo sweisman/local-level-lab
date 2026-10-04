@@ -62,27 +62,31 @@ def transport_rate(lat_rad, h_m, v_n, v_e):
     return np.stack([v_e / (rn + h_m), -v_n / (rm + h_m), -v_e * np.tan(lat) / (rn + h_m)], axis=-1)
 
 
-def transport_rate_disc(lat_rad, h_m, v_e):
+def transport_rate_disc(lat_rad, h_m, v_e, lon_rate=None):
     """Transport on the pole-centred disc, NED: (0, 0, −dλ/dt). The disc never tilts local
     level, so there is no horizontal part.
 
-    v_e is the GNSS east velocity, which a receiver derives from the coordinate rate on the
-    WGS-84 ellipsoid. Dividing by (R_N + h) cos φ only undoes that conversion to recover dλ/dt,
-    the quantity both worlds agree on. No globe geometry enters the prediction."""
+    The analysis passes lon_rate, the rate of change of the GNSS longitude itself (rad/s), so the
+    disc prediction depends only on successive coordinates and time. Without it (the app's live
+    display) dλ/dt is recovered from the east velocity by undoing the receiver's WGS-84
+    conversion, which assumes the receiver derived its velocity from coordinates."""
     lat = np.asarray(lat_rad, dtype=float)
-    _, rn = radii(lat)
-    lon_rate = np.asarray(v_e, dtype=float) / ((rn + h_m) * np.maximum(np.cos(lat), MIN_COS_LAT))
+    if lon_rate is None:
+        _, rn = radii(lat)
+        lon_rate = np.asarray(v_e, dtype=float) / ((rn + h_m) * np.maximum(np.cos(lat), MIN_COS_LAT))
+    lon_rate = np.asarray(lon_rate, dtype=float) + np.zeros_like(lat)
     z = np.zeros_like(lon_rate)
     return np.stack([z, z, -lon_rate], axis=-1)
 
 
-def terms(lat_rad, h_m=0.0, v_n=0.0, v_e=0.0):
+def terms(lat_rad, h_m=0.0, v_n=0.0, v_e=0.0, lon_rate=None):
     """The three regressors (globe Earth rate, globe transport, disc transport), each NED (..., 3)."""
     lat = np.asarray(lat_rad, dtype=float)
-    return earth_rate_sphere(lat), transport_rate(lat, h_m, v_n, v_e), transport_rate_disc(lat, h_m, v_e)
+    return (earth_rate_sphere(lat), transport_rate(lat, h_m, v_n, v_e),
+            transport_rate_disc(lat, h_m, v_e, lon_rate))
 
 
-def predict(model: str, lat_rad, h_m=0.0, v_n=0.0, v_e=0.0):
+def predict(model: str, lat_rad, h_m=0.0, v_n=0.0, v_e=0.0, lon_rate=None):
     """Predicted rotation of local level relative to inertial space (omega_in), NED."""
     k = EXPECTED_K[model]
-    return sum(ki * term for ki, term in zip(k, terms(lat_rad, h_m, v_n, v_e)))
+    return sum(ki * term for ki, term in zip(k, terms(lat_rad, h_m, v_n, v_e, lon_rate)))

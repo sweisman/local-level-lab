@@ -40,26 +40,27 @@ K = slice(0, NK)                # the k terms are always the first columns
 P_REJECT = 0.0027               # two-sided 3σ
 CORR_NOT_IDENTIFIED = 0.95
 PRIOR_WIDEN = 3.0
+# Systematic floor added in quadrature to each k's σ, calibrated by analysis/tests/coverage.py
+# (every hardware fault at once, 30 seeds × 3 truths): without it the globe-rotation interval
+# covered the truth in 92 % of flights instead of 95 %. Sensor scale and alignment errors matter
+# most for the term measured most precisely. The other terms already cover conservatively.
+K_SYS_FLOOR = {"k_rot_sphere": 0.02, "k_curv": 0.0, "k_disc": 0.0}
 
 
 def sf_chi2(x, dof=NK):
-    """Survival function of χ² with 3 or 4 degrees of freedom (closed forms)."""
-    from math import erfc, exp, pi, sqrt
-    x = max(float(x), 0.0)
-    if dof == 3:
-        return erfc(sqrt(x / 2)) + sqrt(2 * x / pi) * exp(-x / 2)
-    if dof == 4:
-        return exp(-x / 2) * (1 + x / 2)
-    raise ValueError(dof)
+    """Survival function of χ² with dof degrees of freedom."""
+    from scipy.stats import chi2
+    return float(chi2.sf(max(float(x), 0.0), dof))
 
 
-def build_rows(bins, fwd_b, bias_fn, vertical_only=False, temp_ref=None, temp_mean=None):
+def build_rows(bins, fwd_b, bias_fn, vertical_only=False, temp_ref=None, temp_mean=None, dpsi=None):
     """Returns y (n,), X (n, p), bin index per row, per-bin C_bn matrices, and the column layout.
 
     Columns: k terms (3), residual bias (3 per gravity orientation), and, when temp_ref is given,
     bias change per °C (3) multiplied by (IMU chip temperature − temp_ref). temp_mean, when known
-    from a drift run, is subtracted first, so the fitted coefficient is the residual around it."""
-    es, tr, td = models.terms(bins["lat"], bins["h"], bins["v_n"], bins["v_e"])
+    from a drift run, is subtracted first, so the fitted coefficient is the residual around it.
+    dpsi (rad, per bin) is the aircraft heading minus its GNSS course (crab)."""
+    es, tr, td = models.terms(bins["lat"], bins["h"], bins["v_n"], bins["v_e"], bins.get("lon_rate"))
     grav = np.asarray(bins.get("grav", np.zeros(len(bins["t"]), int)), int)
     ng = int(grav.max()) + 1
     nb = NK + 3 * ng
@@ -83,14 +84,15 @@ def build_rows(bins, fwd_b, bias_fn, vertical_only=False, temp_ref=None, temp_me
                 X[nb:] = d_b * dT
             ys.append(y @ d_b); xs.append(X); idx.append(j); cbns.append(None)
             continue
-        C = c_bn(u, fwd_b if np.ndim(fwd_b) == 1 else fwd_b[j], bins["psi"][j])
+        C = c_bn(u, fwd_b if np.ndim(fwd_b) == 1 else fwd_b[j], bins["psi"][j] + (dpsi[j] if dpsi is not None else 0.0))
         X = np.zeros((3, p))
         X[:, :NK] = np.column_stack([C @ es[j], C @ tr[j], C @ td[j]])
         X[:, g0:g0 + 3] = np.eye(3)
         if dT is not None:
             X[:, nb:] = np.eye(3) * dT
         ys.extend(y); xs.extend(X); idx.extend([j] * 3); cbns.append(C)
-    layout = {"n_grav": ng, "bias": slice(NK, nb), "temp": slice(nb, p) if temp_ref is not None else None}
+    layout = {"n_grav": ng, "bias": slice(NK, nb), "temp": slice(nb, p) if temp_ref is not None else None,
+              "terms": (es, tr, td)}
     return np.array(ys), np.array(xs), np.array(idx), cbns, layout
 
 
@@ -129,8 +131,20 @@ def _autocorr_scale(resid, idx, bins):
     return (1 - rho) / (1 + rho), rho
 
 
+def _crab_columns(cbns, lay, idx, k, seg_index, n_seg):
+    """∂(predicted IMU-frame rate)/∂δψ for each segment's crab angle. The azimuth derivative of
+    C_bn maps a NED vector v to C_bn (v_E, −v_N, 0)."""
+    es, tr, td = lay["terms"]
+    J = np.zeros((len(idx), n_seg))
+    for j, C in enumerate(cbns):
+        v = k[0] * es[j] + k[1] * tr[j] + k[2] * td[j]
+        rows = np.where(idx == j)[0]
+        J[rows, seg_index[j]] = C @ np.array([v[1], -v[0], 0.0])
+    return J
+
+
 def fit(bins, fwd_b, bias_fn, prior_sigma, vertical_only=False, n_boot=300, seed=0,
-        temp_ref=None, temp_prior=None, temp_mean=None):
+        temp_ref=None, temp_prior=None, temp_mean=None, crab_sigma_deg=5.0):
     y, X, idx, cbns, lay = build_rows(bins, fwd_b, bias_fn, vertical_only, temp_ref, temp_mean)
     ng = lay["n_grav"]
     if temp_ref is not None and temp_prior is None:
@@ -150,16 +164,77 @@ def fit(bins, fwd_b, bias_fn, prior_sigma, vertical_only=False, n_boot=300, seed
     resid = y - X @ theta
     sigma = max(float(np.sqrt(np.mean(resid ** 2))), 1e-9)
     w = np.full(len(y), 1.0 / sigma ** 2)
-    theta, cov, chi2_free = _solve(y, X, w, prior)
+
+    # Crab: the aircraft's heading differs from its GNSS course by a few degrees in a crosswind. Each
+    # cruise segment gets a heading offset with a Gaussian prior, fitted by alternating with the
+    # linear fit, then linearized into the design so k's uncertainty includes it. Each model's test
+    # refits its own offsets, so none is favoured. (No effect on the vertical-only fallback.)
+    # Crab comes from the wind on a leg, so segments on the same GNSS course (within 10°) share one
+    # offset; a turn of the IMU splits segments but doesn't change the aircraft's crab.
+    seg_ids = np.unique(bins["seg"])
+    course = [np.angle(np.mean(np.exp(1j * bins["psi"][bins["seg"] == sg]))) for sg in seg_ids]
+    group, ref = [], []
+    for c in course:
+        for gi, r in enumerate(ref):
+            if abs(np.angle(np.exp(1j * (c - r)))) < np.radians(10):
+                group.append(gi)
+                break
+        else:
+            ref.append(c)
+            group.append(len(ref) - 1)
+    seg_index = np.array(group)[np.searchsorted(seg_ids, bins["seg"])]
+    n_seg = len(ref)
+    use_crab = (not vertical_only) and crab_sigma_deg and crab_sigma_deg > 0
+    sig_crab = np.radians(crab_sigma_deg) if use_crab else None
+
+    def solve_with_crab(fixed_k=None, iters=3, pri=None):
+        pri = prior if pri is None else pri
+        if not use_crab:
+            th, cv, c2 = _solve(y, X, w, pri, fixed_k)
+            return th, cv, c2, X, np.zeros(0), pri
+        d = np.zeros(n_seg)
+        for _ in range(iters):
+            y_, X_, idx_, cb_, lay_ = build_rows(bins, fwd_b, bias_fn, vertical_only, temp_ref, temp_mean, dpsi=d[seg_index])
+            th, _, _ = _solve(y_, X_, w, pri, fixed_k)
+            full = th if fixed_k is None else np.concatenate([np.asarray(fixed_k, float), th])
+            r = y_ - X_ @ full
+            J = _crab_columns(cb_, lay_, idx_, full[K], seg_index, n_seg)
+            num = (w[:, None] * J * r[:, None]).sum(axis=0) - d / sig_crab ** 2
+            den = (w[:, None] * J ** 2).sum(axis=0) + 1 / sig_crab ** 2
+            d = d + num / den
+        y_, X_, idx_, cb_, lay_ = build_rows(bins, fwd_b, bias_fn, vertical_only, temp_ref, temp_mean, dpsi=d[seg_index])
+        th, _, _ = _solve(y_, X_, w, pri, fixed_k)
+        full = th if fixed_k is None else np.concatenate([np.asarray(fixed_k, float), th])
+        J = _crab_columns(cb_, lay_, idx_, full[K], seg_index, n_seg)
+        Xa = np.hstack([X_, J])
+        pa = np.concatenate([pri, np.full(n_seg, sig_crab)])
+        th, cv, c2 = _solve(y_, Xa, w, pa, fixed_k)
+        c2 += float(np.sum((d / sig_crab) ** 2))       # the prior on the offsets themselves
+        return th, cv, c2, Xa, d, pa
+
+    theta, cov, chi2_free, X_free, crab_d, prior_aug = solve_with_crab()
+    pen_free = float(np.sum((crab_d / sig_crab) ** 2)) if use_crab else 0.0
     k, k_sd = theta[K], np.sqrt(np.diag(cov)[K])
-    resid = y - X @ theta
+    resid = y - X_free @ theta
     scale, rho = _autocorr_scale(resid, idx, bins)
+    model_designs = {}
 
     def compare(yy):
-        c = {name: _solve(yy, X, w, prior, fixed_k=kk)[2] for name, kk in models.EXPECTED_K.items()}
-        return c
+        out = {}
+        for name, kk in models.EXPECTED_K.items():
+            if yy is y:
+                th_m, _, c2, Xm, dm, pm = solve_with_crab(fixed_k=kk)
+                model_designs[name] = (Xm, pm, float(np.sum((dm / sig_crab) ** 2)) if use_crab else 0.0)
+                out[name] = c2
+            else:    # bootstrap replicates reuse each model's crab offsets
+                Xm, pm, pen = model_designs[name]
+                out[name] = _solve(yy, Xm, w, pm, fixed_k=kk)[2] + pen
+        return out
 
     comparison = compare(y)
+    X = X_free
+    if use_crab:
+        prior = prior_aug
 
     # moving-block bootstrap over bins, since bias wander makes neighbouring bins correlated
     rng = np.random.default_rng(seed)
@@ -180,6 +255,30 @@ def fit(bins, fwd_b, bias_fn, prior_sigma, vertical_only=False, n_boot=300, seed
                 boot_dchi.append({m: (v - lo) * scale for m, v in cb.items()})
     k_sd_boot = np.std(boots, axis=0) if boots else np.full(NK, np.nan)
     k_sd_final = np.fmax(k_sd, np.nan_to_num(k_sd_boot))
+    k_sd_final = np.sqrt(k_sd_final ** 2 + np.array([K_SYS_FLOOR[n] for n in TERM_NAMES]) ** 2)
+
+    # Bootstrap calibration of each model's test. Simulate that model's null (its fitted values plus
+    # block-resampled free-fit residuals) and refit: in a well-calibrated test the mean Δχ² against the free fit equals the
+    # degrees of freedom. Correlated noise inflates it; the observed Δχ² is divided by that inflation.
+    # (A direct bootstrap p would need thousands of replicates to resolve p = 0.0027.)
+    boot_cal = {}
+    if n_boot and n_bins >= 2 * blk:
+        starts = np.arange(n_bins - blk + 1)
+        rng_n = np.random.default_rng(seed + 1)
+        for name, kk in models.EXPECTED_K.items():
+            Xm, pm, pen_m = model_designs[name]
+            th_m, _, _ = _solve(y, Xm, w, pm, fixed_k=kk)
+            fit_m = Xm[:, K] @ np.asarray(kk) + np.delete(Xm, np.arange(K.start, K.stop), axis=1) @ th_m
+            ds = []
+            for _ in range(min(n_boot, 100)):
+                # noise from the free fit's residuals (a wrong model's residuals would carry signal)
+                order = np.concatenate([np.arange(st, st + blk) for st in rng_n.choice(starts, n_bins // blk + 1)])[:n_bins]
+                rb = np.concatenate([resid[idx == j] for j in order])
+                yb = fit_m + rb[:len(fit_m)] if len(rb) >= len(fit_m) else fit_m
+                # nested comparison on the model's own design (same crab offsets), so the ratio measures
+                # only how correlated noise inflates Δχ²
+                ds.append(_solve(yb, Xm, w, pm, fixed_k=kk)[2] - _solve(yb, Xm, w, pm)[2])
+            boot_cal[name] = max(1.0, float(np.mean(ds)) / NK)
 
     # Identifiability: how much of each term's predicted signal a constant residual bias (one per
     # gravity orientation) could mimic. 1 means indistinguishable from bias by the flight data
@@ -199,14 +298,21 @@ def fit(bins, fwd_b, bias_fn, prior_sigma, vertical_only=False, n_boot=300, seed
         tie_k[n] = float(np.sqrt(max(0.0, 1 - (r @ r) / e)))
     tie = tie_k["k_curv"]
     # prior sensitivity: widen the bias prior and see how far k moves
-    tw, _, _ = _solve(y, X, w, priors(bias_scale=PRIOR_WIDEN))
+    pw = priors(bias_scale=PRIOR_WIDEN)
+    if use_crab:
+        pw = np.concatenate([pw, np.full(n_seg, sig_crab)])
+    tw, _, _ = _solve(y, X, w, pw)
     shift = (tw[K] - k) / k_sd_final
 
     corr = cov / np.sqrt(np.outer(np.diag(cov), np.diag(cov)))
     best = min(comparison.values())
     d_best = {n: (c - best) * scale for n, c in comparison.items()}
-    d_free = {n: max(c - chi2_free, 0.0) * scale for n, c in comparison.items()}
-    p_free = {n: float(sf_chi2(v)) for n, v in d_free.items()}
+    d_raw = {n: max(c - chi2_free, 0.0) for n, c in comparison.items()}
+    d_free = {n: v * scale for n, v in d_raw.items()}
+    p_asym = {n: float(sf_chi2(v)) for n, v in d_free.items()}
+    p_boot = {n: float(sf_chi2(d_raw[n] / boot_cal[n])) for n in d_raw} if boot_cal else None
+    # the conservative of the two: autocorrelation-scaled and bootstrap-calibrated
+    p_free = {n: max(p_asym[n], p_boot[n]) if p_boot else p_asym[n] for n in d_raw}
     rel = {n: float(np.exp(-v / 2)) for n, v in d_best.items()}
     tot = sum(rel.values())
     ci = None
@@ -220,6 +326,9 @@ def fit(bins, fwd_b, bias_fn, prior_sigma, vertical_only=False, n_boot=300, seed
         "k_sd": dict(zip(TERM_NAMES, k_sd_final.tolist())),
         "k_sd_analytic": dict(zip(TERM_NAMES, k_sd.tolist())),
         "gravity_orientations": ng,
+        "crab": {"prior_sigma_deg": crab_sigma_deg if use_crab else None, "groups": "segments sharing a GNSS course within 10°",
+                 "per_segment_deg": (np.degrees(crab_d + theta[-n_seg:])).tolist() if use_crab else None,
+                 "sd_deg": (np.degrees(np.sqrt(np.diag(cov)[-n_seg:]))).tolist() if use_crab else None},
         "bias_residual_dph": (theta[lay["bias"]].reshape(ng, 3) * RAD2DPH).tolist(),
         "max_bias_k_corr": float(np.max(np.abs(corr[K, lay["bias"]]))),
         "identifiability": {"k_curv_bias_likeness": tie, "bias_likeness_by_term": tie_k,
@@ -237,6 +346,9 @@ def fit(bins, fwd_b, bias_fn, prior_sigma, vertical_only=False, n_boot=300, seed
         "delta_chi2_ci_16_84": ci,
         "delta_chi2_vs_free": d_free,
         "p_vs_free": p_free,
+        "p_asymptotic": p_asym,
+        "p_bootstrap_calibrated": p_boot,
+        "bootstrap_inflation": boot_cal or None,
         "rejected": {n: p < P_REJECT for n, p in p_free.items()},
         "relative_likelihood": {n: v / tot for n, v in rel.items()},
         "best_model": min(comparison, key=comparison.get),
@@ -257,7 +369,7 @@ def accumulated(bins, cbns, y_rows, idx, vertical_only=False):
     out = {"t": bins["t"].tolist(), "seg": bins["seg"].tolist(), "measured_dph": (meas * RAD2DPH).tolist()}
     pred = {}
     for m in models.MODELS:
-        pred[m] = models.predict(m, bins["lat"], bins["h"], bins["v_n"], bins["v_e"])
+        pred[m] = models.predict(m, bins["lat"], bins["h"], bins["v_n"], bins["v_e"], bins.get("lon_rate"))
     out["predicted_dph"] = {m: (p * RAD2DPH).tolist() for m, p in pred.items()}
     segs = []
     for s in np.unique(bins["seg"]):
