@@ -1,4 +1,4 @@
-<p align="center"><img src="docs/img/logo.png?v=1f6d3405" alt="Local Level Lab logo" width="200"></p>
+<p align="center"><img src="docs/img/logo.png" alt="Local Level Lab logo" width="200"></p>
 
 # Local Level Lab
 
