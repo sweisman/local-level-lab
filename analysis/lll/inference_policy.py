@@ -4,10 +4,11 @@ import hashlib
 import json
 
 INFERENCE_POLICY = {
-    "version": "inference-2",
+    "version": "inference-3",
     "k_sys_floor": {"k_rot_sphere": 0.02, "k_curv": 0.0, "k_disc": 0.0},
     "floor_provenance": "Historical 30-seed hardware-fault study; development, not holdout coverage",
     "crab_knot_seconds": 300.0,
+    "wind_knot_seconds": 900.0,
     "crab_rate_sigma_dph": 1.0,
     "variance_shrinkage_bins": 20.0,
     "sigma_floor_rad_s": 1e-9,

@@ -8,7 +8,7 @@ from scipy.optimize import least_squares
 
 from lll import fit, models
 from lll.calib import RAD2DPH
-from lll.inference import CandidateProblem, crab_basis, residual_weights
+from lll.inference import CandidateProblem, crab_basis, residual_weights, science_information
 from lll.inference_policy import INFERENCE_POLICY, digest
 from lll.research_design import seed_range, streams, realize, simulator_options, freeze_manifest, validate_manifest
 from test_release060 import crab_fixture
@@ -24,7 +24,7 @@ def test_partitions_and_frozen_manifest():
     assert seed_range("calibration").start == 1_000_000
     for partition, start, count in [("development", 999999, 2), ("calibration", 999999, 1), ("validation", 3000000, 1)]:
         with pytest.raises(ValueError): seed_range(partition, start, count)
-    assert len(set(streams(123).values())) == 5
+    assert len(set(streams(123).values())) == 7
     assert streams(123) != streams(2_000_123, "validation")
     config = {"seed": 1_000_001, "partition": "calibration"}
     manifest = freeze_manifest(config)
@@ -53,6 +53,36 @@ def test_dynamic_basis_reproduces_linear_rate_across_breaks():
     np.testing.assert_allclose(B @ angles, .03+np.radians(2)*(bins["t"]-knots[0])/3600)
     np.testing.assert_allclose(D @ angles, np.radians(2)/3600, atol=1e-16)
     np.testing.assert_allclose(B.sum(axis=1), 1.)
+
+
+def test_weighted_subspace_and_contrasts():
+    # Curvature and disc coefficients are individually aliased, but their difference is measured.
+    J = np.array([[1., 0., 0., 0.], [0., 1., -1., 0.], [0., 0., 0., 1.],
+                  [0., 0., 0., 1.]])
+    result = science_information(J, np.array([1., 4., 1., 1.]))
+    assert result["report"]["estimable_rank"] == 2
+    assert result["report"]["model_contrast_information"]["sphere_still_vs_flat_still"]["estimable"]
+    assert result["report"]["model_contrast_information"]["sphere_still_vs_flat_still"]["information"] > 0
+    J[:, 1] = J[:, 2] = 0
+    assert not science_information(J, np.ones(4))["report"]["model_contrast_information"]["sphere_still_vs_flat_still"]["estimable"]
+
+
+def test_independent_protocol_and_missingness_streams():
+    from lll.research_design import validate_turn_schedule
+    d = realize(49, "drift+0")
+    changed = realize(49, "drift+0", turn_schedule=[15., 35.])
+    assert changed["simulator"]["legs"] == d["simulator"]["legs"]
+    assert changed["simulator"]["gnss_dropouts"] == d["simulator"]["gnss_dropouts"]
+    assert changed["simulator"]["index_turns"] == [[15., "z"], [35., "z"]]
+    with pytest.raises(ValueError): validate_turn_schedule([5., 10.], 90.)
+
+
+def test_exact_campaign_size():
+    from lll.research_calibration import required_accepted_n
+    from scipy.stats import beta
+    n = required_accepted_n(.0027, 9)
+    assert beta.ppf(1-.05/9, 1, n) <= .0027
+    assert beta.ppf(1-.05/9, 1, n-1) > .0027
 
 
 def test_candidate_prediction_jacobian_and_independent_map():

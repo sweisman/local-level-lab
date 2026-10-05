@@ -14,7 +14,7 @@ from .fit import (NK, K, TERM_NAMES, P_REJECT, PRIOR_WIDEN, CRAB_SWEEP_DEG,
 def crab_basis(bins, model, knot_seconds=300.):
     """Angle and rate bases. Dynamic angles remain continuous across gaps and mount turns."""
     t = np.asarray(bins["t"], float)
-    if model == "dynamic":
+    if model in ("dynamic", "wind"):
         if not np.isfinite(knot_seconds) or knot_seconds <= 0:
             raise ValueError("crab knot spacing must be positive")
         knots = t.min() + np.arange(max(1, int(np.ceil(np.ptp(t) / knot_seconds))) + 1) * knot_seconds
@@ -26,6 +26,12 @@ def crab_basis(bins, model, knot_seconds=300.):
         B[np.arange(len(t)), j+1] = fraction
         D[np.arange(len(t)), j] = -1/np.diff(knots)[j]
         D[np.arange(len(t)), j+1] = 1/np.diff(knots)[j]
+        if model == "wind":
+            psi = np.asarray(bins["psi"], float)
+            rate = np.asarray(bins["psi_dot"], float)
+            shape = np.column_stack([np.sin(psi), np.cos(psi)])
+            derivative = np.column_stack([np.cos(psi)*rate, -np.sin(psi)*rate])
+            return np.einsum("ni,nj->nij", B, shape).reshape(len(t), -1), (np.einsum("ni,nj->nij", D, shape)+np.einsum("ni,nj->nij", B, derivative)).reshape(len(t), -1), knots
         return B, D, knots
     ids = np.unique(bins["seg"])
     refs, groups = [], []
@@ -59,6 +65,61 @@ def residual_weights(residual, bins, model, shrinkage=20.):
     return 1/v.ravel(), {"model": model, "global_sigma_dph": np.sqrt(global_var)*RAD2DPH,
                          "sigma_by_bin_axis_dph": (np.sqrt(v)*RAD2DPH).tolist(),
                          "group_counts": counts, "shrinkage_bins": shrinkage, "frozen_from_free_fit": True}
+
+
+def science_information(J, weights, threshold=np.sqrt(1-CORR_NOT_IDENTIFIED**2)):
+    """Observation-weighted science information after removing unpenalized nuisance directions."""
+    sw = np.sqrt(weights)
+    science = J[:, :NK]*sw[:, None]
+    nuisance = J[:, NK:]*sw[:, None]
+    U, s, _ = np.linalg.svd(nuisance, full_matrices=False)
+    n_rank = int(np.sum(s > (s[0]*max(nuisance.shape)*np.finfo(float).eps if len(s) else 0)))
+    effective = science-U[:, :n_rank] @ (U[:, :n_rank].T @ science)
+    norms = np.linalg.norm(science, axis=0)
+    normalized = effective/np.maximum(norms, 1e-30)
+    _, normalized_s, Vt = np.linalg.svd(normalized, full_matrices=False)
+    rank = int(np.sum(normalized_s >= threshold))
+    # The SVD uses scaled coefficients q=diag(norms) k. Convert retained constraints
+    # back to the physical, dimensionless k coordinates before testing or reporting them.
+    combinations = Vt[:rank]*norms[None, :]
+    _, _, physical_vt = np.linalg.svd(combinations, full_matrices=True)
+    constraints = physical_vt[:rank]
+    retained = normalized @ Vt[:rank].T @ combinations
+    fisher = retained.T @ retained
+    singular_values = np.linalg.svd(retained, compute_uv=False)
+    inverse = np.linalg.pinv(fisher)
+    contrasts = {}
+    names = list(models.EXPECTED_K)
+    for i, a in enumerate(names):
+        for b in names[i+1:]:
+            direction = np.asarray(models.EXPECTED_K[a])-np.asarray(models.EXPECTED_K[b])
+            raw_norm = np.linalg.norm(science @ direction)
+            residual_norm = np.linalg.norm(retained @ direction)
+            ratio = float(residual_norm/raw_norm) if raw_norm else 0.
+            coefficient_estimable = bool(rank and np.linalg.norm(direction-constraints.T @ (constraints @ direction)) <= 1e-8*np.linalg.norm(direction))
+            contrasts[f"{a}_vs_{b}"] = {"information": float(residual_norm**2),
+                                         "estimable": bool(ratio >= threshold), "retained_fraction": ratio,
+                                         "coefficient_contrast_estimable": coefficient_estimable,
+                                         "contrast_sd": float(np.sqrt(max(0., direction @ inverse @ direction))) if coefficient_estimable else None}
+    individual = [bool(rank and np.linalg.norm(np.eye(NK)[i]-constraints.T @ constraints[:, i]) < 1e-8) for i in range(NK)]
+    return {"effective": effective, "fisher": fisher, "constraints": constraints,
+            "report": {"estimable_rank": rank, "singular_values": singular_values.tolist(),
+                       "normalized_singular_values": normalized_s.tolist(),
+                       "condition_number": float(singular_values[0]/singular_values[rank-1]) if rank else None,
+                       "estimable_combinations": constraints.tolist(), "model_contrast_information": contrasts,
+                       "expected_k_sd_without_priors": {name: float(np.sqrt(max(0., inverse[i, i]))) if individual[i] else None for i, name in enumerate(TERM_NAMES)},
+                       "rank_threshold": float(threshold)}}
+
+
+def term_likeness(J, nuisance, weights):
+    sw = np.sqrt(weights)
+    N = nuisance*sw[:, None]
+    out = {}
+    for i, name in enumerate(TERM_NAMES):
+        x = J[:, i]*sw
+        r = x-N @ np.linalg.lstsq(N, x, rcond=None)[0]
+        out[name] = float(np.sqrt(max(0., 1-float(r @ r)/float(x @ x)))) if x @ x else 1.
+    return out
 
 
 def sensor_bias_basis(bins, knot_seconds=900., vertical_only=False):
@@ -138,11 +199,13 @@ class CandidateProblem:
             amp[:, self.p:self.p+self.nc] = np.eye(self.nc)/(self.crab_sigma*crab)
             P = np.vstack([P, amp])
             if self.knots is not None:
-                diff = np.zeros((self.nc-1, self.npar))
+                stride = 2 if self.settings["crab_model"] == "wind" else 1
+                diff = np.zeros((self.nc-stride, self.npar))
                 sd_rate = np.radians(self.settings["crab_rate_sigma_dph"])/3600 * rate
                 if not np.isfinite(sd_rate) or sd_rate <= 0:
                     raise ValueError("crab rate prior must be positive")
-                diff[:, self.p:self.p+self.nc] = np.diff(np.eye(self.nc), axis=0)/(np.diff(self.knots)[:, None]*sd_rate)
+                spacing = np.repeat(np.diff(self.knots), stride)
+                diff[:, self.p:self.p+self.nc] = (np.eye(self.nc)[stride:]-np.eye(self.nc)[:-stride])/(spacing[:, None]*sd_rate)
                 P = np.vstack([P, diff])
         if self.forward:
             a = np.zeros((1, self.npar)); a[0, -1] = 1/(self.forward_sigma*forward)
@@ -218,6 +281,44 @@ class CandidateProblem:
         return dict(z=full, pred=pred, J=J, P=P, objective=float(opt.fun @ opt.fun),
                     cov=covariance, success=bool(opt.success))
 
+    def profile(self, target, constraints, y=None, reference=None, nonlinear=True, record=True):
+        """Fit only C k=C target; leave the unmeasured science combinations free."""
+        y = self.y if y is None else y
+        reference = self.solve(record=False) if reference is None else reference
+        rank = len(constraints)
+        if rank == 0:
+            return self.solve(y, start=reference["z"], record=record) if nonlinear else self.local(y, reference)
+        # science_information supplies orthonormal rows in actual k coordinates.
+        _, _, Vt = np.linalg.svd(constraints, full_matrices=True)
+        null = Vt[rank:].T
+        T = np.zeros((self.npar, NK-rank+self.npar-NK))
+        T[:NK, :NK-rank] = null
+        T[NK:, NK-rank:] = np.eye(self.npar-NK)
+        offset = reference["z"].copy()
+        offset[K] += constraints.T @ (constraints @ (np.asarray(target)-offset[K]))
+        P, sw = self.penalty(), np.sqrt(self.w)
+        if not nonlinear:
+            J = reference["J"]
+            A = np.vstack([J*sw[:, None], P]) @ T
+            b = np.r_[(y-reference["pred"]-J @ (offset-reference["z"]))*sw, -P @ offset]
+            x = np.linalg.lstsq(A, b, rcond=None)[0]
+            residual = b-A @ x
+            return dict(z=offset+T @ x, objective=float(residual @ residual), success=True)
+        def fun(x):
+            z = offset+T @ x
+            return np.r_[(self.prediction(z)-y)*sw, P @ z]
+        def jac(x):
+            _, J = self.prediction(offset+T @ x, True)
+            return np.vstack([J*sw[:, None], P]) @ T
+        opt = least_squares(fun, np.zeros(T.shape[1]), jac=jac, x_scale="jac",
+                            ftol=1e-10, xtol=1e-10, gtol=1e-8, max_nfev=self.settings["max_nfev"])
+        z = offset+T @ opt.x
+        pred, J = self.prediction(z, True)
+        if record:
+            self.convergence.append({"converged": bool(opt.success), "evaluations": opt.nfev,
+                                     "status": int(opt.status), "model_test_rank": rank})
+        return dict(z=z, pred=pred, J=J, P=P, objective=float(opt.fun @ opt.fun), success=bool(opt.success))
+
     def local(self, y, reference, fixed=None):
         z, J, P = reference["z"], reference["J"], reference["P"]
         keep = np.arange(self.npar) if fixed is None else np.arange(NK, self.npar)
@@ -240,6 +341,26 @@ def candidate_fit(bins, fwd_b, bias_fn, prior_sigma, *, settings, vertical_only=
     preliminary = problem.solve()
     problem.w, noise = residual_weights(problem.y-preliminary["pred"], bins, settings["noise_model"], settings["variance_shrinkage_bins"])
     free = problem.solve(start=preliminary["z"])
+    if settings.get("design_only"):
+        z, J, cov = free["z"], free["J"], free["cov"]
+        information = science_information(J, problem.w)
+        likeness = term_likeness(J, J[:, NK:], problem.w)
+        kcov = cov[K, K]+np.diag([INFERENCE_POLICY["k_sys_floor"][m]**2 for m in TERM_NAMES])
+        return {"design_only": True,
+                "convergence": {"converged": all(v["converged"] for v in problem.convergence), "fits": problem.convergence},
+                "k": dict(zip(TERM_NAMES, z[K].tolist())), "k_cov": kcov.tolist(),
+                "k_sd": dict(zip(TERM_NAMES, np.sqrt(np.maximum(np.diag(kcov), 0)).tolist())),
+                "identifiability": {**information["report"], "identified": likeness["k_curv"] < CORR_NOT_IDENTIFIED,
+                                    "identified_by_term": {m: v < CORR_NOT_IDENTIFIED for m, v in likeness.items()},
+                                    "nuisance_likeness_by_term": likeness},
+                "model_test_rank": information["report"]["estimable_rank"],
+                "prior_sensitivity": {"prior_dominated": False, "note": "not evaluated in design-only mode"},
+                "crab_sensitivity": None,
+                "bootstrap": {"empirical_k_cov": None, "bootstrap_valid": False, "attempted": 0, "requested": n_boot,
+                              "note": "not evaluated in design-only mode"},
+                "noise": noise, "chi2_free": free["objective"], "chi2": dict.fromkeys(models.MODELS),
+                "p_vs_free": dict.fromkeys(models.MODELS), "rejected": dict.fromkeys(models.MODELS),
+                "_rows": (problem.y, J, problem.idx, problem.cb, z)}
     fixed = {m: problem.solve(fixed=k) for m, k in models.EXPECTED_K.items()}
     best_fixed = min(fixed.values(), key=lambda s: s["objective"])
     if free["objective"] > best_fixed["objective"]+1e-6:
@@ -247,6 +368,18 @@ def candidate_fit(bins, fwd_b, bias_fn, prior_sigma, *, settings, vertical_only=
         if free["objective"] > best_fixed["objective"]+1e-6:
             problem.convergence.append({"converged": False, "reason": "free/fixed objectives are not nested"})
     z, cov, J = free["z"], free["cov"], free["J"]
+    information = science_information(J, problem.w)
+    test_rank = information["report"]["estimable_rank"]
+    constraints = information["constraints"]
+    profiles = {m: problem.profile(target, constraints, reference=free)
+                for m, target in models.EXPECTED_K.items()} if test_rank else fixed
+    if test_rank:
+        best_profile = min(profiles.values(), key=lambda s: s["objective"])
+        if free["objective"] > best_profile["objective"]+1e-6:
+            free = problem.solve(start=best_profile["z"])
+            if free["objective"] > best_profile["objective"]+1e-6:
+                problem.convergence.append({"converged": False, "reason": "free/profile objectives are not nested"})
+            z, cov, J = free["z"], free["cov"], free["J"]
     k, analytic_sd = z[K], np.sqrt(np.maximum(np.diag(cov)[K], 0))
     residual = problem.y-free["pred"]
     scale, rho = _autocorr_scale(residual*np.sqrt(problem.w), problem.idx, bins)
@@ -262,8 +395,22 @@ def candidate_fit(bins, fwd_b, bias_fn, prior_sigma, *, settings, vertical_only=
         return pred + standardized[order].ravel()/np.sqrt(problem.w)
     nonlinear = settings["bootstrap_refit"] == "nonlinear"
     def refit(y, reference, fixed_k=None):
-        return (problem.solve(y, fixed=fixed_k, start=reference["z"], record=False) if nonlinear
-                else problem.local(y, reference, fixed_k))
+        if not nonlinear:
+            return problem.local(y, reference) if fixed_k is None else problem.profile(
+                fixed_k, constraints, y=y, reference=reference, nonlinear=False, record=False)
+        last = None
+        for alternate in (reference, free, preliminary, None):
+            try:
+                last = (problem.solve(y, start=alternate["z"] if alternate else None, record=False)
+                        if fixed_k is None else problem.profile(fixed_k, constraints, y=y,
+                                                               reference=alternate, record=False))
+                if last["success"]:
+                    return last
+            except (ValueError, np.linalg.LinAlgError):
+                continue
+        if last is None:
+            raise ValueError("all deterministic starts failed")
+        return last
     boots, failures, nulls = [], [], {m: [] for m in fixed}
     attempted = n_boot if n >= 2*block else 0
     for i in range(attempted):
@@ -274,33 +421,35 @@ def candidate_fit(bins, fwd_b, bias_fn, prior_sigma, *, settings, vertical_only=
             boots.append(b["z"][K])
         except (ValueError, np.linalg.LinAlgError) as exc:
             failures.append({"replicate": i, "kind": "free", "error": str(exc)})
-        for m, target in models.EXPECTED_K.items():
+        for m, target in (models.EXPECTED_K.items() if test_rank else ()):
             try:
-                yb = sample(fixed[m]["pred"])
-                fb, mb = refit(yb, fixed[m]), refit(yb, fixed[m], target)
+                yb = sample(profiles[m]["pred"])
+                fb, mb = refit(yb, profiles[m]), refit(yb, profiles[m], target)
+                if nonlinear and fb["objective"] > mb["objective"]+1e-6:
+                    fb = problem.solve(yb, start=mb["z"], record=False)
                 if not (fb["success"] and mb["success"]) or fb["objective"] > mb["objective"]+1e-6:
                     raise ValueError("null refit failed convergence or nesting")
                 nulls[m].append(max(0., mb["objective"]-fb["objective"]))
             except (ValueError, np.linalg.LinAlgError) as exc:
                 failures.append({"replicate": i, "kind": m, "error": str(exc)})
     boot_sd = np.std(boots, axis=0, ddof=1) if len(boots)>1 else np.zeros(NK)
+    bootstrap_valid = free["success"] and all(s["success"] for s in profiles.values()) and attempted >= 20 and len(boots) >= np.ceil(.95*attempted) and all(
+        len(values) >= np.ceil(.95*attempted) for values in nulls.values())
     sd = np.sqrt(np.maximum(analytic_sd, boot_sd)**2 + np.array([INFERENCE_POLICY["k_sys_floor"][m] for m in TERM_NAMES])**2)
     ck = cov[K, K]; denom = np.sqrt(np.outer(np.diag(ck), np.diag(ck)))
     corr = np.divide(ck, denom, out=np.eye(NK), where=denom>0)
     kcov = corr*np.outer(sd, sd)
-    def likeness(N):
-        out = {}
-        for i, name in enumerate(TERM_NAMES):
-            x = J[:, i]; r = x-N @ np.linalg.lstsq(N, x, rcond=None)[0]
-            out[name] = float(np.sqrt(max(0., 1-float(r @ r)/float(x @ x)))) if x @ x else 1.
-        return out
     bias_indices = np.r_[np.arange(problem.p)[problem.layout["bias"]], np.arange(problem.p)[problem.bias_drift_slice]]
-    tie_bias = likeness(J[:, bias_indices]); tie = likeness(J[:, NK:])
+    tie_bias = term_likeness(J, J[:, bias_indices], problem.w)
+    tie = term_likeness(J, J[:, NK:], problem.w)
     prior_k = ["bias"] + (["crab"] if problem.nc else []) + (["temperature"] if temp_ref is not None else [])
-    if problem.nc and settings["crab_model"] == "dynamic": prior_k.append("rate")
+    if problem.nc and settings["crab_model"] in ("dynamic", "wind"): prior_k.append("rate")
     if problem.forward: prior_k.append("forward")
     if problem.dynamic_bias: prior_k.append("bias_drift")
-    shifts = {key: (problem.solve(P=problem.penalty(**{key: PRIOR_WIDEN}), start=z)["z"][K]-k)/sd for key in prior_k}
+    changes = {key: problem.solve(P=problem.penalty(**{key: PRIOR_WIDEN}), start=z)["z"][K]-k for key in prior_k}
+    shifts = {key: value/sd for key, value in changes.items()}
+    combination_sd = np.sqrt(np.maximum(np.diag(constraints @ kcov @ constraints.T), 1e-30))
+    combination_shifts = {key: constraints @ value/combination_sd for key, value in changes.items()}
     sweep = {}
     if problem.nc:
         for value in CRAB_SWEEP_DEG:
@@ -309,10 +458,12 @@ def candidate_fit(bins, fwd_b, bias_fn, prior_sigma, *, settings, vertical_only=
                                    "k_sd_analytic": dict(zip(TERM_NAMES, np.sqrt(np.diag(s["cov"])[K]).tolist()))}
     span = np.ptp([[v["k"][m] for m in TERM_NAMES] for v in sweep.values()], axis=0)/sd if sweep else np.zeros(NK)
     raw = {m: max(0., s["objective"]-free["objective"]) for m, s in fixed.items()}
-    inflation = {m: max(1., float(np.mean(v))/NK) for m, v in nulls.items() if v}
-    asym = {m: sf_chi2(v*scale) for m, v in raw.items()}
-    bootp = {m: sf_chi2(raw[m]/inflation[m]) for m in inflation}
-    p = {m: max(asym[m], bootp.get(m, 0.)) for m in raw}
+    effective_raw = {m: max(0., profiles[m]["objective"]-free["objective"]) if test_rank else 0.
+                     for m in models.EXPECTED_K}
+    inflation = {m: max(1., float(np.mean(v))/test_rank) for m, v in nulls.items() if v and test_rank}
+    asym = {m: sf_chi2(v*scale, test_rank) if test_rank else None for m, v in effective_raw.items()}
+    bootp = {m: sf_chi2(effective_raw[m]/inflation[m], test_rank) for m in inflation} if bootstrap_valid else {}
+    p = {m: max(asym[m], bootp.get(m, 0.)) if asym[m] is not None else None for m in raw}
     best = min(s["objective"] for s in fixed.values())
     dbest = {m: (s["objective"]-best)*scale for m, s in fixed.items()}
     relative = {m: np.exp(-v/2) for m, v in dbest.items()}
@@ -352,23 +503,37 @@ def candidate_fit(bins, fwd_b, bias_fn, prior_sigma, *, settings, vertical_only=
             "bootstrap": {"sampling": bootstrap_sampling, "block_length": block, "replicates": len(boots),
                           "attempted": attempted, "requested": n_boot, "failures": failures,
                           "null_replicates": {m: len(v) for m, v in nulls.items()},
+                          "null_attempted_by_model": {m: attempted if test_rank else 0 for m in nulls},
+                          "free_success_fraction": len(boots)/attempted if attempted else None,
+                          "null_success_fraction_by_model": {m: len(v)/attempted if attempted and test_rank else None for m, v in nulls.items()},
+                          "bootstrap_valid": bool(bootstrap_valid),
+                          "minimum_replicates": 20, "minimum_success_fraction": .95,
                           "empirical_k_cov": np.cov(np.asarray(boots).T).tolist() if len(boots)>1 else None,
                           "refit": settings["bootstrap_refit"]},
             "max_bias_k_corr": float(np.max(np.abs(np.divide(cov[K][:, bias_indices], crossden, out=np.zeros_like(crossden), where=crossden>0)))),
             "identifiability": {"k_curv_bias_likeness": tie_bias["k_curv"], "bias_likeness_by_term": tie_bias,
                                 "k_curv_nuisance_likeness": tie["k_curv"], "nuisance_likeness_by_term": tie,
                                 "identified_by_term": {m: v<CORR_NOT_IDENTIFIED for m, v in tie.items()},
-                                "identified": tie["k_curv"]<CORR_NOT_IDENTIFIED, "note": "all candidate nuisance columns, without priors"},
+                                "identified": tie["k_curv"]<CORR_NOT_IDENTIFIED, "note": "weighted candidate nuisance columns, without priors",
+                                **information["report"]},
             "prior_sensitivity": {"widen": PRIOR_WIDEN, "k_shift_sigma": dict(zip(TERM_NAMES, shifts["bias"].tolist())),
                                   "k_shift_sigma_by_prior": {key: dict(zip(TERM_NAMES, v.tolist())) for key, v in shifts.items()},
-                                  "prior_dominated": any(np.max(np.abs(v))>1 for v in shifts.values())},
+                                  "estimable_shift_sigma_by_prior": {key: v.tolist() for key, v in combination_shifts.items()},
+                                  "prior_dominated": any(np.any(np.abs(v)>1) for v in combination_shifts.values())},
             "crab_sensitivity": {"prior_sigma_deg": list(CRAB_SWEEP_DEG), "fits": sweep,
                                  "k_span_sigma": dict(zip(TERM_NAMES, span.tolist())), "crab_sensitive": bool(np.max(span)>1),
                                  "course_groups": course_groups} if problem.nc else None,
             "chi2_scaling": {"rho_lag1": rho, "scale": scale}, "chi2": {m: s["objective"] for m, s in fixed.items()},
             "chi2_free": free["objective"], "delta_chi2": dbest, "delta_chi2_ci_16_84": None,
-            "delta_chi2_vs_free": {m: v*scale for m, v in raw.items()}, "p_vs_free": p,
+            "delta_chi2_vs_free": {m: v*scale for m, v in effective_raw.items()},
+            "delta_chi2_vs_free_full_model": {m: v*scale for m, v in raw.items()}, "p_vs_free": p,
             "p_asymptotic": asym, "p_bootstrap_calibrated": bootp or None, "bootstrap_inflation": inflation or None,
-            "rejected": {m: v<P_REJECT for m, v in p.items()},
+            "model_test_rank": test_rank,
+            "model_profile_objectives": {m: s["objective"] for m, s in profiles.items()} if test_rank else None,
+            "model_test_note": "nonlinear profile of frozen, observation-only estimable constraints; raw full-model differences remain diagnostic",
+            "tested_contrasts": [m for m, v in information["report"]["model_contrast_information"].items() if v["estimable"]],
+            "unobservable_contrasts": [m for m, v in information["report"]["model_contrast_information"].items() if not v["estimable"]],
+            "delta_chi2_identifiable": effective_raw,
+            "rejected": {m: v<P_REJECT if v is not None else None for m, v in p.items()},
             "relative_likelihood": {m: float(v/total) for m, v in relative.items()}, "best_model": min(dbest, key=dbest.get),
             "_rows": (problem.y, J, problem.idx, problem.cb, z)}

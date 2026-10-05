@@ -34,6 +34,8 @@ def _clean(o):
         return _clean(o.tolist())
     if isinstance(o, (np.floating, float)):
         return None if not np.isfinite(o) else float(o)
+    if isinstance(o, np.bool_):
+        return bool(o)
     if isinstance(o, np.integer):
         return int(o)
     return o

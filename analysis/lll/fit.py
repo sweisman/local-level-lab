@@ -468,23 +468,27 @@ def fit(bins, fwd_b, bias_fn, prior_sigma, vertical_only=False, n_boot=300, seed
         crab_model="constant", noise_model="global", bootstrap_refit="linearized",
         forward_uncertainty=False, forward_sigma_rad=None, forward_tangent=None,
         crab_rate_sigma_dph=None, crab_knot_seconds=None, variance_shrinkage_bins=None,
-        research_candidate=False, decision_thresholds=None, decision_policy_hash=None,
+        research_candidate=False, decision_thresholds=None, decision_policy_hash=None, decision_statistic=None, design_only=False,
         bias_model="constant", bias_knot_seconds=None, bias_rw_sigma_dph_sqrth=None):
     settings = dict(crab_model=crab_model, noise_model=noise_model, bootstrap_refit=bootstrap_refit,
                     forward_uncertainty=forward_uncertainty, crab_sigma_deg=crab_sigma_deg,
                     bootstrap_sampling=bootstrap_sampling, block_length=block_length, n_boot=n_boot,
                     max_nfev=max_nfev,
                     crab_rate_sigma_dph=INFERENCE_POLICY["crab_rate_sigma_dph"] if crab_rate_sigma_dph is None else crab_rate_sigma_dph,
-                    crab_knot_seconds=INFERENCE_POLICY["crab_knot_seconds"] if crab_knot_seconds is None else crab_knot_seconds,
+                    crab_knot_seconds=INFERENCE_POLICY["wind_knot_seconds" if crab_model == "wind" else "crab_knot_seconds"] if crab_knot_seconds is None else crab_knot_seconds,
                     variance_shrinkage_bins=INFERENCE_POLICY["variance_shrinkage_bins"] if variance_shrinkage_bins is None else variance_shrinkage_bins)
     settings.update(bias_model=bias_model,
                     bias_knot_seconds=INFERENCE_POLICY["bias_knot_seconds"] if bias_knot_seconds is None else bias_knot_seconds,
                     bias_rw_sigma_dph_sqrth=INFERENCE_POLICY["bias_rw_sigma_dph_sqrth"] if bias_rw_sigma_dph_sqrth is None else bias_rw_sigma_dph_sqrth)
-    if crab_model not in ("constant", "dynamic") or noise_model not in ("global", "axis", "axis_segment") or bootstrap_refit not in ("linearized", "nonlinear"):
+    if design_only and decision_thresholds is not None:
+        raise ValueError("design-only evaluation cannot apply model decisions")
+    if design_only:
+        settings["design_only"] = True
+    if crab_model not in ("constant", "dynamic", "wind") or noise_model not in ("global", "axis", "axis_segment") or bootstrap_refit not in ("linearized", "nonlinear"):
         raise ValueError("invalid inference candidate")
     if bias_model not in ("constant", "dynamic"):
         raise ValueError("bias_model must be constant or dynamic")
-    candidate = research_candidate or crab_model != "constant" or noise_model != "global" or bootstrap_refit != "linearized" or forward_uncertainty or bias_model == "dynamic"
+    candidate = design_only or research_candidate or crab_model != "constant" or noise_model != "global" or bootstrap_refit != "linearized" or forward_uncertainty or bias_model == "dynamic"
     settings["engine"] = "candidate-1" if candidate else "legacy"
     common = dict(vertical_only=vertical_only, n_boot=n_boot, seed=seed, temp_ref=temp_ref,
                   temp_prior=temp_prior, temp_mean=temp_mean, crab_sigma_deg=crab_sigma_deg,
@@ -496,14 +500,23 @@ def fit(bins, fwd_b, bias_fn, prior_sigma, vertical_only=False, n_boot=300, seed
     else:
         result = _legacy_fit(bins, fwd_b, bias_fn, prior_sigma, **common)
     result["inference_policy"] = provenance(settings)
-    result["delta_chi2_raw"] = {m: max(v - result["chi2_free"], 0.) for m, v in result["chi2"].items()}
+    result["delta_chi2_raw"] = ({m: max(v - result["chi2_free"], 0.) for m, v in result["chi2"].items()}
+                                if not design_only else None)
     if decision_thresholds is not None:
         if not decision_policy_hash or set(decision_thresholds) != set(models.MODELS) or any(not np.isfinite(v) or v < 0 for v in decision_thresholds.values()):
             raise ValueError("complete finite empirical thresholds and policy hash required")
         result["rejected_analytic"] = result["rejected"]
-        result["rejected"] = {m: v > decision_thresholds[m] for m, v in result["delta_chi2_raw"].items()}
+        field = decision_statistic or ("delta_chi2_identifiable" if candidate else "delta_chi2_raw")
+        if field not in ("delta_chi2_identifiable", "delta_chi2_raw") or field not in result:
+            raise ValueError("decision statistic is unavailable for this inference engine")
+        statistic = result[field]
+        valid = bool(result.get("model_test_rank", 3)) and result["convergence"]["converged"] and result["bootstrap"].get("bootstrap_valid", True)
+        result["rejected"] = {m: (v > decision_thresholds[m] if valid else None)
+                              for m, v in statistic.items()}
         result["decision_policy_hash"] = decision_policy_hash
-        result["decision_rule"] = "experimental empirical delta_chi2_raw threshold"
+        result["decision_valid"] = valid
+        result["decision_statistic"] = field
+        result["decision_rule"] = "experimental empirical identifiable-science threshold" if field == "delta_chi2_identifiable" else "experimental empirical delta_chi2_raw threshold"
     return result
 
 

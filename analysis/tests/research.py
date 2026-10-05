@@ -12,6 +12,7 @@ from pathlib import Path
 import tempfile
 import time
 import itertools
+import math
 
 import numpy as np
 from scipy.stats import beta, chi2
@@ -24,14 +25,15 @@ from lll.fit import TERM_NAMES
 from lll.policy import POLICY_VERSION
 from lll.synth import synthesize
 from lll.inference_policy import INFERENCE_POLICY, digest
-from lll.research_calibration import stratum, check_policy
+from lll.research_calibration import stratum, check_policy, required_accepted_n
 from lll.research_design import (INTERACTIONS, PARTITIONS, seed_range, realize, simulator_options,
                                  freeze_manifest, validate_manifest, scenario, trajectory, streams, implementation_hash)
 
 
 DRIFTS = (0, -.5, .5, -1, 1, -2, 2, -5, 5)
 SCENARIOS = [f"drift{x:+g}" for x in DRIFTS] + ["smooth", "transition", "anisotropic", "correlated",
-    "equator", "high_latitude", "dateline", "turn_dropout", "thermal", "long_drift", "hardware", *INTERACTIONS, "fuzz"]
+    "equator", "high_latitude", "dateline", "turn_dropout", "thermal", "long_drift", "hardware", *INTERACTIONS, "fuzz",
+    "bias_step", "bias_ramp", "bias_rw_high", "bias_settling", "bias_very_long", "bias_mixed", "wind"]
 
 
 def scenario_options(name):
@@ -59,19 +61,29 @@ def summarize(records):
     out = []
     for key, rows in groups.items():
         analyzed = [r for r in rows if "rejected" in r]
-        accepted = [r for r in analyzed if not r["exclusions"]]
+        decided = [r for r in analyzed if r["rejected"] is not None]
+        accepted = [r for r in decided if not r["exclusions"]]
         empirical = [r for r in accepted if r.get("rejected_empirical") is not None]
         ks = np.array([[r["k"][n] for n in TERM_NAMES] for r in analyzed if "k" in r])
+        truth_vector = np.asarray(models.EXPECTED_K[key[0]])
+        separated = [r for r in accepted if r.get("rejected_by_model") and
+                     all(v is not None for v in r["rejected_by_model"].values())]
         out.append({"truth": key[0], "scenario": key[1], "sampling": key[2], "block": key[3],
                     "candidate_id": key[4], "partition": key[5], "geometry": key[6], "variant": key[7],
                     "bias": (ks.mean(axis=0)-models.EXPECTED_K[key[0]]).tolist() if len(ks) else None,
                     "variance": np.var(ks, axis=0, ddof=1).tolist() if len(ks)>1 else None,
+                    "coefficient_rmse": np.sqrt(np.mean((ks-truth_vector)**2, axis=0)).tolist() if len(ks) else None,
                     "joint_coverage95": rate_interval(sum(r.get("covariance", {}).get("joint", {}).get("covers95", False) for r in analyzed if "joint" in r.get("covariance", {})),
                                                       sum("joint" in r.get("covariance", {}) for r in analyzed)),
                     "attempted": len(rows), "analysis_failures": len(rows)-len(analyzed),
-                    "eligibility_exclusions": len(analyzed)-len(accepted), "accepted": len(accepted),
+                    "eligibility_exclusions": sum(bool(r["exclusions"]) for r in analyzed), "accepted": len(accepted),
+                    "no_decision": len(analyzed)-len(decided),
+                    "accepted_fraction": len(accepted)/len(rows),
+                    "model_separation_power": (sum(not r["rejected_by_model"][key[0]] and
+                                                     all(rejected for model, rejected in r["rejected_by_model"].items()
+                                                         if model != key[0]) for r in separated)/len(separated)) if separated else None,
                     "exclusion_reasons": dict(Counter(x for r in analyzed for x in r["exclusions"])),
-                    "unconditional": rate_interval(sum(r["rejected"] for r in analyzed), len(analyzed)),
+                    "unconditional": rate_interval(sum(r["rejected"] for r in decided), len(decided)),
                     "conditional_on_acceptance": rate_interval(sum(r["rejected"] for r in accepted), len(accepted)),
                     "empirical_conditional_on_acceptance": rate_interval(sum(r["rejected_empirical"] for r in empirical), len(empirical)),
                     "complete_gated_rule": rate_interval(sum(r["rejected"] for r in accepted), len(rows))})
@@ -84,7 +96,12 @@ def flight_run(truth, scenario, seed, sampling, block, boot, variant, same_side_
     seed_range(partition, seed)
     design = design or realize(seed, scenario, partition=partition, geometry=geometry, variant=variant,
                                same_side_up_turns=same_side_up_turns, hardware=HARDWARE_FAULTS)
-    if design["seed"] != seed or design["partition"] != partition or design["streams"] != streams(seed, partition):
+    expected_streams = streams(seed, partition)
+    if design.get("design_version") == "simulation-design-1":
+        expected_streams = {k: v for k, v in expected_streams.items() if k not in ("protocol", "missingness")}
+    elif design.get("design_version") != "simulation-design-2":
+        raise ValueError("unsupported replay design version")
+    if design["seed"] != seed or design["partition"] != partition or design["streams"] != expected_streams:
         raise ValueError("replay design does not match partition and seed streams")
     settings = {"n_boot": boot, "bootstrap_sampling": sampling, "block_length": block, **(fit_options or {})}
     record = dict(truth=truth, scenario=scenario, seed=seed, sampling=sampling, block=block, variant=variant,
@@ -97,7 +114,9 @@ def flight_run(truth, scenario, seed, sampling, block, boot, variant, same_side_
             raise ValueError("decision policy software version differs")
         if decision_policy.get("implementation_hash") != implementation_hash():
             raise ValueError("implementation changed after calibration")
-        decision = dict(decision_thresholds=decision_policy["thresholds"][stratum(record)], decision_policy_hash=decision_policy["policy_hash"])
+        cell = stratum(record)
+        decision = dict(decision_thresholds=decision_policy["thresholds"][cell],
+                        decision_statistic=decision_policy["statistics"][cell], decision_policy_hash=decision_policy["policy_hash"])
         record["decision_policy_hash"] = decision_policy["policy_hash"]
     start = time.monotonic()
     try:
@@ -111,6 +130,12 @@ def flight_run(truth, scenario, seed, sampling, block, boot, variant, same_side_
         unit = r["imu"]["unit_id"]
         # Explicit simulation assumption: provenance/bench qualification supplied, scientific gates retained.
         reasons = gate(r, {unit: [("", {"tier": "usable"})]}, allow_synthetic=True)
+        if f.get("identifiability", {}).get("model_contrast_information") is not None:
+            reasons = [reason for reason in reasons if reason != "curvature not identified"]
+            if not all(v["estimable"] for v in f["identifiability"]["model_contrast_information"].values()):
+                reasons.append("model contrast not identified")
+            if boot > 0 and not f["bootstrap"]["bootstrap_valid"]:
+                reasons.append("inadequate bootstrap convergence")
         delta = np.array(list(f["k"].values())) - models.EXPECTED_K[truth]
         diagnostics = {}
         for name, covariance in (("joint", f["k_cov"]), ("bootstrap", f["bootstrap"]["empirical_k_cov"])):
@@ -121,6 +146,7 @@ def flight_run(truth, scenario, seed, sampling, block, boot, variant, same_side_
                                  "covers95": bool(delta @ np.linalg.pinv(V) @ delta <= chi2.ppf(.95, 3))}
         return {**record, "elapsed_s": time.monotonic()-start, "rejected": f["rejected"][truth], "exclusions": reasons, "k": f["k"],
                 "delta_chi2_raw": f["delta_chi2_raw"], "rejected_by_model": f["rejected"], "p_vs_free": f["p_vs_free"],
+                "delta_chi2_identifiable": f.get("delta_chi2_identifiable"), "model_test_rank": f.get("model_test_rank"),
                 "inference_policy": f["inference_policy"], "bootstrap": f["bootstrap"], "forward_axis": r.get("forward_axis"),
                 "sensor_bias": f.get("sensor_bias"),
                 "k_sd": f["k_sd"], "covariance": diagnostics, "convergence": f["convergence"],
@@ -167,30 +193,74 @@ def main():
     ap.add_argument("--bootstrap", type=int, default=20)
     ap.add_argument("--sampling", nargs="+", choices=["moving", "segment"], default=["moving"])
     ap.add_argument("--blocks", nargs="+", type=int, default=[15])
-    ap.add_argument("--crab-model", nargs="+", choices=["constant", "dynamic"], default=["constant"])
+    ap.add_argument("--crab-model", nargs="+", choices=["constant", "dynamic", "wind"], default=["constant"])
     ap.add_argument("--noise-model", nargs="+", choices=["global", "axis", "axis_segment"], default=["global"])
     ap.add_argument("--bias-model", nargs="+", choices=["constant", "dynamic"], default=["constant"])
     ap.add_argument("--bias-knot-seconds", nargs="+", type=float, default=[INFERENCE_POLICY["bias_knot_seconds"]])
     ap.add_argument("--bias-rw-sigma-dph-sqrth", nargs="+", type=float, default=[INFERENCE_POLICY["bias_rw_sigma_dph_sqrth"]])
     ap.add_argument("--bootstrap-refit", nargs="+", choices=["linearized", "nonlinear"], default=["linearized"])
     ap.add_argument("--crab-rate-sigma-dph", nargs="+", type=float, default=[1.])
+    ap.add_argument("--crab-knot-seconds", nargs="+", type=float, default=[None])
     ap.add_argument("--forward-uncertainty", action="store_true")
     ap.add_argument("--research-candidate", action="store_true", help="use candidate engine even for constant/global settings")
     ap.add_argument("--manifest", type=Path)
     ap.add_argument("--decision-policy", type=Path)
-    ap.add_argument("--tail-min-accepted", type=int, default=2000)
+    ap.add_argument("--tail-min-accepted", type=int)
+    ap.add_argument("--allowed-failures", type=int, default=0)
+    ap.add_argument("--tail-confidence", type=float, default=.95)
+    ap.add_argument("--development-campaign", type=Path, help="pilot JSON used only for campaign cost estimates")
     ap.add_argument("--write-manifest", type=Path, help="freeze configuration without running simulations")
     ap.add_argument("--replay", type=Path, help="replay the designs and fit settings in a research JSON")
     ap.add_argument("--units", nargs="+", type=int, default=[2, 3, 5, 10, 30])
     ap.add_argument("--variant", choices=["spp", "ble"], default="spp")
     ap.add_argument("--same-side-up-turns", action="store_true", help="turn the mounted IMU at 20, 50 and 80 flight minutes")
+    ap.add_argument("--turn-schedule", nargs="*", type=float, help="explicit same-side-up turn times in flight minutes")
+    ap.add_argument("--turn-min-spacing", type=float, default=10.)
+    ap.add_argument("--turn-edge-margin", type=float, default=5.)
     ap.add_argument("-o", type=Path, required=True)
     args = ap.parse_args()
+    if args.partition != "development" and not args.replay and args.truth != "all":
+        ap.error("calibration and validation campaigns require --truth all")
     from lll.research_design import plain
     decision_policy = json.loads(args.decision_policy.read_text()) if args.decision_policy else None
     if decision_policy: check_policy(decision_policy)
-    config = {k: v for k, v in vars(args).items() if k not in ("o", "manifest", "write_manifest", "replay", "decision_policy")}
+    config = {k: v for k, v in vars(args).items() if k not in ("o", "manifest", "write_manifest", "replay", "decision_policy", "development_campaign")}
     config["decision_policy_hash"] = decision_policy["policy_hash"] if decision_policy else None
+    scenario_count = len(SCENARIOS) if args.scenario == "all" else 1
+    candidate_count = math.prod(len(v) for v in (args.sampling, args.blocks, args.crab_model, args.noise_model,
+                                                  args.bootstrap_refit, args.crab_rate_sigma_dph, args.crab_knot_seconds, args.bias_model,
+                                                  args.bias_knot_seconds, args.bias_rw_sigma_dph_sqrth))
+    family_size = candidate_count*scenario_count*len(models.MODELS)
+    if decision_policy is not None:
+        candidate_count = len(decision_policy["thresholds"])
+        family_size = len(decision_policy["diagnostic_thresholds"])*len(models.MODELS)
+    alpha = decision_policy["alpha"] if decision_policy else .0027
+    required = required_accepted_n(alpha, family_size, args.tail_confidence, args.allowed_failures)
+    if args.tail_min_accepted is not None and args.tail_min_accepted < required:
+        ap.error(f"tail minimum {args.tail_min_accepted} is below exact required count {required}")
+    config["tail_min_accepted"] = args.tail_min_accepted or required
+    pilot = json.loads(args.development_campaign.read_text()) if args.development_campaign else None
+    if pilot is not None and pilot.get("partition") != "development":
+        ap.error("cost estimates require a development campaign")
+    pilot_rows = pilot["records"] if pilot else []
+    acceptance_groups = {}
+    for row in pilot_rows:
+        key = tuple(row.get(k) for k in ("scenario", "candidate_id", "geometry", "variant", "truth"))
+        acceptance_groups.setdefault(key, []).append(row.get("rejected") is not None and not row.get("exclusions"))
+    acceptance = min(float(np.mean(group)) for group in acceptance_groups.values()) if acceptance_groups else None
+    runtimes = [r["elapsed_s"] for r in pilot["records"] if r.get("elapsed_s") is not None] if pilot else []
+    seconds = float(np.mean(runtimes)) if runtimes else None
+    config["campaign_plan"] = {"decision_cells": candidate_count*len(models.MODELS),
+                               "operational_strata": candidate_count, "validation_family_size": family_size,
+                               "required_accepted_per_cell": required, "allowed_failures": args.allowed_failures,
+                               "confidence": args.tail_confidence, "alpha": alpha,
+                               "pilot_campaign_hash": digest(pilot) if pilot else None,
+                               "development_acceptance_probability": acceptance,
+                               "acceptance_estimate_method": "minimum diagnostic/truth cell acceptance, including failed attempts",
+                               "estimated_attempts_total": math.ceil(config["tail_min_accepted"]/acceptance)*family_size if acceptance else None,
+                               "pilot_seconds_per_attempt": seconds,
+                               "estimated_compute_seconds": math.ceil(config["tail_min_accepted"]/acceptance)*family_size*seconds if acceptance and seconds else None}
+    config["preregistered_scenarios"] = SCENARIOS if args.scenario == "all" else [args.scenario]
     seeds = seed_range(args.partition, args.seed, args.seeds)
     config["seed"] = seeds.start
     if args.write_manifest:
@@ -230,17 +300,23 @@ def main():
                 if scenario == "pool":
                     records.extend(pooled_run(truth, seed, n, partition=args.partition, bootstrap=args.bootstrap) for n in args.units)
                 else:
-                    for s, b, crab, noise, refit, rate, bias, knot, rw in itertools.product(
+                    for s, b, crab, noise, refit, rate, crab_knot, bias, knot, rw in itertools.product(
                             args.sampling, args.blocks, args.crab_model, args.noise_model,
-                            args.bootstrap_refit, args.crab_rate_sigma_dph, args.bias_model,
+                            args.bootstrap_refit, args.crab_rate_sigma_dph, args.crab_knot_seconds, args.bias_model,
                             args.bias_knot_seconds, args.bias_rw_sigma_dph_sqrth):
                         settings = dict(crab_model=crab, noise_model=noise, bootstrap_refit=refit,
                                         crab_rate_sigma_dph=rate, forward_uncertainty=args.forward_uncertainty,
-                                        research_candidate=args.research_candidate)
+                                        crab_knot_seconds=crab_knot, research_candidate=args.research_candidate)
                         settings.update(bias_model=bias, bias_knot_seconds=knot, bias_rw_sigma_dph_sqrth=rw)
+                        design = realize(seed, scenario, partition=args.partition, geometry=args.geometry,
+                                         variant=args.variant, same_side_up_turns=args.same_side_up_turns,
+                                         hardware=scenario_options("hardware") if scenario == "hardware" else None,
+                                         turn_schedule=args.turn_schedule, turn_min_spacing=args.turn_min_spacing,
+                                         turn_edge_margin=args.turn_edge_margin)
                         records.append(flight_run(truth, scenario, seed, s, b, args.bootstrap, args.variant,
                                                   args.same_side_up_turns, partition=args.partition,
-                                                  geometry=args.geometry, fit_options=settings, decision_policy=decision_policy))
+                                                  geometry=args.geometry, fit_options=settings, decision_policy=decision_policy,
+                                                  design=design))
                         save()
                 save()
     print(f"{len(records)} runs in {time.monotonic()-start:.1f}s; {args.o}")

@@ -28,7 +28,12 @@ Research partitions are enforced in both harnesses:
 | calibration | 1000000–1999999 | estimate thresholds after selecting a candidate |
 | validation | 2000000–2999999 | evaluate the frozen rule once |
 
-Seeds independently determine geometry, nuisance draws, sensor noise, bootstrap and pooling.
+Seeds independently determine geometry, deliberate-turn protocol, missingness, nuisance draws,
+sensor noise, bootstrap and pooling. Design version 2 separates turn timing and GNSS gaps from
+geometry. An explicit `--turn-schedule` (minutes into flight; an empty list means no turns)
+overrides simulated turn timing without changing route, missingness or sensor-noise inputs.
+Use `--turn-min-spacing` and `--turn-edge-margin` to reproduce custom optimizer constraints.
+Recorded version-1 designs remain replayable with their original five streams.
 Paired candidate comparisons share the complete simulation design. Replays are explicitly marked
 and cannot serve as new calibration or validation evidence. Reserve a new, unused validation seed
 cohort after any retuning; the harness enforces partition boundaries, while the campaign operator
@@ -61,7 +66,11 @@ prior checks. Bootstrap resampling operates on centered, standardized residual v
 destination scales, preserving dependence across axes. `segment` sampling never crosses a segment
 or time break; `moving` remains available for comparison. Both local and nonlinear refits use
 total-parameter priors. Nonlinear mode refits free and fixed models for every null replicate;
-failed replicates, requested counts and effective counts are recorded explicitly.
+failed replicates, requested counts and effective counts are recorded explicitly. Failed nonlinear
+refits retry deterministically from the reference fit, free fit, preliminary fit and default
+initialization. Bootstrap calibration requires at least 20 attempts and 95% success for the free
+and every model-null group. Results expose success fractions and `bootstrap_valid`; invalid runs
+retain analytic diagnostics but provide no bootstrap-calibrated or empirical model decision.
 
 Forward-axis uncertainty uses the horizontal roll/bank regression with a 10-lag Newey-West score
 covariance, then normalization/projected-angle propagation. The single measured angular parameter
@@ -72,7 +81,12 @@ or degenerate angle uncertainty makes the candidate unavailable instead of silen
 Calibration/validation require an exact frozen manifest, including source hashes. Use
 `--write-manifest PATH` with the complete proposed command configuration; it writes only the
 manifest. Repeat the command with `--manifest PATH` after reviewing and approving campaign cost.
-`--seeds` preregisters the attempt count and `--tail-min-accepted` the accepted-sample minimum.
+`--seeds` preregisters the attempt count. The manifest computes the accepted-sample minimum using
+the same exact beta bound as assessment, with the complete family size, `--tail-confidence`
+(default 0.95) and `--allowed-failures` (default zero). `--tail-min-accepted` may increase this
+minimum. `--development-campaign FILE` supplies measured acceptance and runtime estimates,
+using the minimum diagnostic/truth cell acceptance and including failed attempts; without a
+pilot, cost estimates are explicitly unavailable.
 Source or configuration changes invalidate the manifest.
 Campaign provenance hashes the scientific source directly; optional `LLL_GIT_COMMIT` supplies a
 build's commit identifier without analysis invoking git.
@@ -80,11 +94,16 @@ build's commit identifier without analysis invoking git.
 After a calibration campaign with sufficient accepted flights per truth and stratum:
 
 ```sh
-~/venv/bin/python -m lll.research_calibration calibrate calibration.json --min-accepted 2000 -o decision.json
+PYTHONPATH=analysis:server ~/venv/bin/python -m lll.research_calibration calibrate calibration.json -o decision.json
 ```
 
-This selects each truth's 0.9973 quantile of raw free-versus-fixed objective differences using
-the higher order statistic. It does not add another analytic correction. Freeze the validation
+This selects each truth's 0.9973 quantile using the higher order statistic. Candidate fits use
+the objective difference for identifiable constraints; legacy fits retain their raw objective
+statistic, explicitly named per operational cell. Diagnostic strata include scenario and simulated
+geometry. Operational strata include only candidate identity and sensor variant. Their threshold
+is the maximum across the preregistered diagnostic strata, so a flight needs no synthetic scenario
+label. Independent assessment checks each diagnostic stratum separately, retaining the complete
+Bonferroni family. Freeze the validation
 manifest with `--partition validation --decision-policy decision.json` and the chosen sample counts,
 then run it after cost approval. The empirical rule is applied inside analysis, including the WMM
 sensitivity gate, so validation measures acceptance under the actual rule. Calibration acceptance
@@ -98,6 +117,65 @@ Assessment requires every claimed truth/stratum's simultaneous one-sided 95% upp
 at most 0.0027 (Bonferroni over the claimed family), plus its preregistered accepted-sample minimum.
 Insufficient acceptance is inconclusive. Threshold files remain experimental even after assessment;
 production promotion is a separate reviewed policy revision. No tail campaign is run automatically.
+
+## Identifiability and experimental design research
+
+Inference policy **inference-3** adds observation-weighted science-space diagnostics to the
+candidate engine. It whitens the Jacobian with the weights frozen from the free fit, removes
+the unpenalized nuisance column space, then SVDs the residual science columns. Nuisance priors
+cannot supply information in this calculation. Rank selection normalizes each science column
+by its original weighted norm and retains singular values at least `sqrt(1 - 0.95²)`. This is a
+provisional research cutoff derived from the existing likeness limit, not a validated rank rule.
+Reported combinations and singular values are converted back to dimensionless k coordinates.
+Unmeasured individual coefficient uncertainties are `null` in the observation-only report.
+
+Results include `estimable_rank`, `singular_values`, `normalized_singular_values`,
+`condition_number`, `estimable_combinations`, and `model_contrast_information`. Model-separation
+information measures the retained signal difference between each pair of models; it also reports
+whether the corresponding coefficient contrast itself is estimable and its standard error.
+Research acceptance checks the three model contrasts instead of the individual curvature gate.
+Prior sensitivity is evaluated in the retained combinations. Production eligibility is unchanged.
+
+Candidate model tests constrain only the retained combinations to the tested model's values,
+leaving other science directions free and refitting the nuisance parameters. The profiled
+objective difference is `delta_chi2_identifiable`; its asymptotic degrees of freedom and bootstrap
+inflation use `model_test_rank`. Rank zero produces no rejection decision. `tested_contrasts` and
+`unobservable_contrasts` show which pairwise distinctions the flight supports. Full fixed-model
+objectives and `delta_chi2_raw` remain diagnostics. These nonlinear tests still require independent
+empirical calibration. New source hashes invalidate earlier frozen campaigns.
+
+`optimize_turns.py` searches zero through six same-side-up 180° turns with a deterministic beam
+search (default beam width one). It uses a five-minute grid, ten-minute minimum spacing and
+five-minute edge margins, all configurable. Every schedule uses the same seeded route, missingness
+and nuisance history across all three truths, with dynamic crab, dynamic sensor bias and segment
+weights. The score is the worst retained model-contrast information; the smallest normalized
+singular value breaks ties. Schedule evaluation uses two free fits to determine frozen weights
+and the local Jacobian; model tests, bootstrap and prior sweeps are omitted in this design-only
+mode. Outputs include the best schedule, the frontier by turn count,
+per-schedule scores, per-flight diagnostics and source/policy provenance. The heuristic does not
+guarantee a global optimum. Estimate cost before running a search:
+
+```sh
+~/venv/bin/python analysis/tests/optimize_turns.py --routes 2 --estimate-only -o /tmp/turn-cost.json
+```
+
+Supply measured seconds per fit with `--pilot-seconds` to convert the fit-count upper bound into
+a runtime estimate. Removing `--estimate-only` runs the search and should follow cost review.
+Named adversaries now include `bias_step`, `bias_ramp`, `bias_rw_high`, `bias_settling`,
+`bias_very_long`, and `bias_mixed`. The existing bias-knot and random-walk-scale list options form
+a matched grid; summaries report coefficient RMSE, accepted fraction, false rejection and power
+to retain the true model while rejecting every wrong model among accepted flights. Successful
+fits that abstain from a decision remain in coefficient diagnostics and have a separate count.
+
+The independent `wind` simulator holds true airspeed fixed, evolves north/east wind slowly and
+solves the wind triangle on each course, changing both ground speed and crab. The opt-in
+`--crab-model wind` fits `a(t) sin(psi) + b(t) cos(psi)`, including the full heading derivative.
+Its coefficients use fifteen-minute knots by default, compared with five-minute knots for the
+time-only dynamic crab candidate. Override either with `--crab-knot-seconds`:
+
+```sh
+~/venv/bin/python analysis/tests/research.py --scenario wind --truth all --crab-model dynamic wind --bias-model dynamic --bootstrap 0 -o /tmp/wind-pilot.json
+```
 
 Pooled empirical diagnostics resample whole IMUs, retain all member flights, null-center coefficient
 vectors, assign repeated draws distinct unit identities, and recompute the hierarchical covariance

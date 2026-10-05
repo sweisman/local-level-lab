@@ -65,6 +65,23 @@ def _vee_batch(R):
     return np.stack([R[:, 2, 1] - R[:, 1, 2], R[:, 0, 2] - R[:, 2, 0], R[:, 1, 0] - R[:, 0, 1]], axis=1) / 2
 
 
+def wind_velocity(course, elapsed_s, airspeed, wind_ne_mps, wind_rate_ne_mps_per_h=(0., 0.)):
+    """Independent wind triangle: prescribed ground course and true airspeed."""
+    course = np.asarray(course, float)
+    wind = np.asarray(wind_ne_mps, float) + np.asarray(elapsed_s)[:, None]/3600*np.asarray(wind_rate_ne_mps_per_h, float)
+    track = np.column_stack([np.cos(course), np.sin(course)])
+    along = np.sum(wind*track, axis=1)
+    cross = wind[:, 0]*(-track[:, 1])+wind[:, 1]*track[:, 0]
+    if not np.isfinite(wind).all() or not np.isfinite(airspeed) or airspeed <= 0 or np.any(np.abs(cross) >= airspeed):
+        raise ValueError("wind exceeds available airspeed")
+    ground_speed = along+np.sqrt(airspeed**2-cross**2)
+    if np.any(ground_speed <= 0):
+        raise ValueError("wind prevents forward flight on the prescribed course")
+    ground = ground_speed[:, None]*track
+    air = ground-wind
+    return ground_speed, ground, np.arctan2(air[:, 1], air[:, 0])
+
+
 def synthesize(path, truth="sphere_rotating", *, fs=25.0, seed=0, lat0=40.6, lon0=-73.8, h=11000.0,
                speed=230.0, legs=((60.0, 25.0), (100.0, 25.0), (20.0, 25.0)), mount="tray",
                mount_yaw_deg=20.0, mount_tilt_deg=4.0, cal_pos_s=180.0, gap_s=3600.0,
@@ -77,7 +94,9 @@ def synthesize(path, truth="sphere_rotating", *, fs=25.0, seed=0, lat0=40.6, lon
                temp_quad_dph_per_c2=(0.0, 0.0, 0.0), temp_lag_s=0.0, bias_jumps=(), gyro_scale_ppm=(0, 0, 0),
                gyro_misalign_mrad=0.0, vre_dph=(0.0, 0.0, 0.0), link_dropouts=(), turn_seconds=4.0,
                spp_time_every=1, ble_loss=0.0, crab_deg=(), reversal_pairs=0, reversal_s=300.0,
-               crab_trajectory=None, gyro_noise_cov=None, long_drift_dph=(0, 0, 0), long_drift_period_s=7200):
+               crab_trajectory=None, gyro_noise_cov=None, long_drift_dph=(0, 0, 0), long_drift_period_s=7200,
+               bias_settling_dph=(0, 0, 0), bias_settling_tau_s=1800., wind_ne_mps=None,
+               wind_rate_ne_mps_per_h=(0., 0.), wind_airspeed_mps=None):
     """Write a synthetic session zip. legs = ((course_deg, minutes), ...), with rate-one turns
     (3°/s) between them. variant is the WitMotion link and protocol ("spp" or "ble"); the IMU
     data is written as the byte stream the app would store, so the decoder is exercised too.
@@ -106,6 +125,9 @@ def synthesize(path, truth="sphere_rotating", *, fs=25.0, seed=0, lat0=40.6, lon
           The gyro includes its time derivative through the independent attitude matrices.
       gyro_noise_cov: optional 3x3 covariance multiplier for white gyro noise.
       long_drift_dph, long_drift_period_s: sinusoidal sensor bias amplitude and period.
+      bias_settling_dph, bias_settling_tau_s: sensor-frame exponential settling from power-on.
+      wind_ne_mps, wind_rate_ne_mps_per_h, wind_airspeed_mps: wind triangle with slowly changing
+          north/east wind and constant true airspeed (defaults to speed); GNSS measures ground speed.
       index_turns: ((minute, axis), ...) the participant turns the IMU 180° about its own axis
           "x", "y" or "z" over turn_seconds (default 4 s), then taps to confirm 15 s later. About z on a tray mount is a
           turn in its plane (gravity stays on z); about x is a flip.
@@ -150,6 +172,10 @@ def synthesize(path, truth="sphere_rotating", *, fs=25.0, seed=0, lat0=40.6, lon
     rw = np.cumsum(rng.normal(0, np.radians(rw_dph_sqrth / 3600) / 60, (len(tg), 3)), axis=0)  # per sqrt(s)
     bias_grid = np.radians(np.array(bias0_dps)) + np.outer(tg / 3600, np.radians(np.array(drift_dph_per_h) / 3600)) + rw
     bias_grid += np.outer(np.sin(2 * np.pi * tg / long_drift_period_s), np.radians(np.asarray(long_drift_dph) / 3600))
+    if bias_settling_tau_s <= 0:
+        raise ValueError("bias settling time must be positive")
+    bias_grid += np.outer(np.exp(-tg/bias_settling_tau_s),
+                          np.radians(np.asarray(bias_settling_dph)/3600))
 
     # IMU chip temperature: 25 °C on the ground, rising towards 25 + rise in flight
     fl_s = np.clip(tg - fl_start, 0, fl_dur)
@@ -233,7 +259,15 @@ def synthesize(path, truth="sphere_rotating", *, fs=25.0, seed=0, lat0=40.6, lon
         psi_dot += np.sign(d) * turn_rate * prof
         tc += dur + ramp
     psi = psi0 + np.cumsum(psi_dot) * dt
-    v_n, v_e = speed * np.cos(psi), speed * np.sin(psi)
+    tf = ts - fl_start
+    ground_speed = np.full(n, speed)
+    wind_heading = psi
+    if wind_ne_mps is not None:
+        ground_speed, ground, wind_heading = wind_velocity(psi, tf, speed if wind_airspeed_mps is None else wind_airspeed_mps,
+                                                          wind_ne_mps, wind_rate_ne_mps_per_h)
+        v_n, v_e = ground.T
+    else:
+        v_n, v_e = speed * np.cos(psi), speed * np.sin(psi)
     lat = np.empty(n)
     lon = np.empty(n)
     lat[0], lon[0] = np.radians(lat0), np.radians(lon0)
@@ -243,8 +277,7 @@ def synthesize(path, truth="sphere_rotating", *, fs=25.0, seed=0, lat0=40.6, lon
             rm, rn = models.radii(lat[i - 1])
         lat[i] = lat[i - 1] + v_n[i - 1] / (rm + h) * dt
         lon[i] = lon[i - 1] + v_e[i - 1] / ((rn + h) * np.cos(lat[i - 1])) * dt
-    bank = np.arctan(speed * psi_dot / models.G0)
-    tf = ts - fl_start
+    bank = np.arctan(ground_speed * psi_dot / models.G0)
     pitch = np.radians(2.0 + pitch_trim_deg_per_h * tf / 3600) + np.radians(0.1) * np.sin(2 * np.pi * ts / 400)
     # climb / descent profile
     hh = np.full(n, float(h))
@@ -276,13 +309,13 @@ def synthesize(path, truth="sphere_rotating", *, fs=25.0, seed=0, lat0=40.6, lon
     slip_tilt = np.radians(mount_slip_deg_per_h[1]) * tf / 3600
     # Crab: in a crosswind the fuselage points crab_deg off the ground track. GNSS still reports the
     # course (psi); the aircraft's heading is psi + crab, changing over 30 s at each turn.
-    heading = psi
+    heading = wind_heading
     if crab_deg:
         leg = np.searchsorted(np.array(switches), ts)
         crab = np.radians(np.asarray(crab_deg, float))[np.minimum(leg, len(crab_deg) - 1)]
         k30 = max(1, int(round(30.0 / dt)))
         crab = np.convolve(np.pad(crab, (k30 // 2, k30 - 1 - k30 // 2), mode="edge"), np.full(k30, 1.0 / k30), mode="valid")
-        heading = psi + crab
+        heading = heading + crab
     if crab_trajectory is not None:
         heading = heading + np.radians(np.broadcast_to(crab_trajectory(tf), tf.shape))
     C_na = np.einsum("nij,njk,nkl->nil", np.array([rot_z(p) for p in heading]),
@@ -327,7 +360,7 @@ def synthesize(path, truth="sphere_rotating", *, fs=25.0, seed=0, lat0=40.6, lon
         "lat": np.degrees(lat[gi]) + rng.normal(0, 2e-5, len(gi)),
         "lon": (np.degrees(lon[gi]) + rng.normal(0, 2e-5, len(gi)) + 180) % 360 - 180,
         "alt_m": hh[gi] + rng.normal(0, 3, len(gi)),
-        "speed_mps": (speed + rng.normal(0, 0.2, len(gi))).astype(np.float32),
+        "speed_mps": (ground_speed[gi] + rng.normal(0, 0.2, len(gi))).astype(np.float32),
         "bearing_deg": ((np.degrees(psi[gi]) + rng.normal(0, 0.1, len(gi))) % 360).astype(np.float32),
         "h_acc_m": np.full(len(gi), 5.0, np.float32), "v_acc_m": np.full(len(gi), 8.0, np.float32),
         "speed_acc_mps": np.full(len(gi), 0.3, np.float32), "bearing_acc_deg": np.full(len(gi), 0.5, np.float32),

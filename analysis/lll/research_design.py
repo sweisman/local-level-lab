@@ -11,8 +11,8 @@ from .synth import synthesize
 
 PARTITIONS = {"development": (0, 1_000_000), "calibration": (1_000_000, 2_000_000),
               "validation": (2_000_000, 3_000_000)}
-DESIGN_VERSION = "simulation-design-1"
-STREAMS = ("geometry", "nuisance", "sensor", "bootstrap", "pool")
+DESIGN_VERSION = "simulation-design-2"
+STREAMS = ("geometry", "nuisance", "sensor", "bootstrap", "pool", "protocol", "missingness")
 INTERACTIONS = ("crab_long_drift", "correlated_thermal", "forward_crab", "turn_dropout_drift")
 
 
@@ -39,11 +39,29 @@ def plain(value):
 
 def route(rng):
     legs = [[float(rng.uniform(0, 360)), float(rng.uniform(10, 45))] for _ in range(int(rng.integers(2, 7)))]
-    duration = sum(v[1] for v in legs)
-    turns = sorted(float(t) for t in rng.uniform(2, duration-2, int(rng.integers(0, 5))))
-    gaps = [[float(rng.uniform(1, duration-4)), float(rng.uniform(10, 180)/60)] for _ in range(int(rng.integers(0, 4)))]
     return dict(lat0=float(rng.uniform(-70, 70)), lon0=float(rng.uniform(-180, 180)), legs=legs,
-                index_turns=[[t, "z"] for t in turns], gnss_dropouts=gaps)
+                index_turns=[], gnss_dropouts=[])
+
+
+def random_turns(rng, duration):
+    return [[float(t), "z"] for t in sorted(rng.uniform(2, duration-2, int(rng.integers(0, 5))))]
+
+
+def random_gaps(rng, duration):
+    return [[float(rng.uniform(1, duration-4)), float(rng.uniform(10, 180)/60)]
+            for _ in range(int(rng.integers(0, 4)))]
+
+
+def validate_turn_schedule(turns, duration, min_spacing=10., edge_margin=5.):
+    if not np.isfinite([duration, min_spacing, edge_margin]).all() or duration <= 0 or min_spacing <= 0 or edge_margin < 0:
+        raise ValueError("duration and spacing must be positive; edge margin must be nonnegative")
+    times = [float(t) for t in turns]
+    if len(times) > 6 or not all(np.isfinite(times)) or times != sorted(times):
+        raise ValueError("turn schedule must contain at most six finite, sorted times")
+    if times and (times[0] < edge_margin or times[-1] > duration-edge_margin or
+                  any(b-a < min_spacing for a, b in zip(times, times[1:]))):
+        raise ValueError("turn schedule violates spacing or edge margin")
+    return [[t, "z"] for t in times]
 
 
 def trajectory(spec):
@@ -55,7 +73,7 @@ def trajectory(spec):
     raise ValueError("unknown crab trajectory")
 
 
-def scenario(name, rng=None, duration_min=90.):
+def scenario(name, rng=None, duration_min=90., protocol_rng=None, missingness_rng=None):
     opts, analysis = {}, {}
     crab = {"kind": "linear", "rate_dph": 0.}
     if name.startswith("drift"):
@@ -72,6 +90,14 @@ def scenario(name, rng=None, duration_min=90.):
         opts.update(index_turns=[[t, "z"]], link_dropouts=[[t+.02, 3.]])
     elif name == "thermal": opts.update(flight_temp_rise_c=12., temp_coef_dph_per_c=[1., -.5, 2.], temp_lag_s=180.)
     elif name == "long_drift": opts.update(long_drift_dph=[3., -2., 4.], long_drift_period_s=5400.)
+    elif name == "bias_step": opts["bias_jumps"] = [[duration_min*.5, [2., -1., 3.]]]
+    elif name == "bias_ramp": opts["drift_dph_per_h"] = [3., -2., 4.]
+    elif name == "bias_rw_high": opts["rw_dph_sqrth"] = 3.
+    elif name == "bias_settling": opts.update(bias_settling_dph=[12., -9., 6.], bias_settling_tau_s=7200.)
+    elif name == "bias_very_long": opts.update(long_drift_dph=[4., -3., 2.], long_drift_period_s=8*3600.)
+    elif name == "bias_mixed": opts.update(rw_dph_sqrth=1.5, drift_dph_per_h=[2., -1., 2.],
+                                            bias_jumps=[[duration_min*.6, [1., -.5, 1.]]])
+    elif name == "wind": opts.update(wind_ne_mps=[12., -8.], wind_rate_ne_mps_per_h=[3., -2.])
     elif name in INTERACTIONS:
         names = {"crab_long_drift": ("drift+1", "long_drift"), "correlated_thermal": ("correlated", "thermal"),
                  "forward_crab": ("drift+1",), "turn_dropout_drift": ("turn_dropout", "long_drift")}[name]
@@ -90,15 +116,17 @@ def scenario(name, rng=None, duration_min=90.):
                     temp_coef_dph_per_c=rng.uniform(-2, 2, 3).tolist(), temp_lag_s=float(rng.uniform(0, 180)),
                     long_drift_dph=rng.uniform(-4, 4, 3).tolist(), long_drift_period_s=float(rng.uniform(3600, 10800)))
         analysis["research_forward_offset_deg"] = float(rng.uniform(-3, 3))
-        if rng.random() < .5:
-            t = float(rng.uniform(2, duration_min-2))
-            opts.update(index_turns=[[t, "z"]], link_dropouts=[[t+.02, float(rng.uniform(.5, 3))]])
+        protocol_rng = np.random.default_rng(1) if protocol_rng is None else protocol_rng
+        missingness_rng = np.random.default_rng(2) if missingness_rng is None else missingness_rng
+        if missingness_rng.random() < .5:
+            t = float(protocol_rng.uniform(2, duration_min-2))
+            opts.update(index_turns=[[t, "z"]], link_dropouts=[[t+.02, float(missingness_rng.uniform(.5, 3))]])
     elif name != "hardware": raise ValueError(f"unknown scenario {name}")
     return opts, crab, analysis
 
 
 def realize(seed, scenario_name, *, partition="development", geometry="seeded", variant="spp",
-            same_side_up_turns=False, hardware=None):
+            same_side_up_turns=False, hardware=None, turn_schedule=None, turn_min_spacing=10., turn_edge_margin=5.):
     seeds = streams(seed, partition)
     # Resolve simulator defaults as well: replay does not silently acquire new defaults.
     opts = {k: plain(p.default) for k, p in inspect.signature(synthesize).parameters.items()
@@ -107,7 +135,11 @@ def realize(seed, scenario_name, *, partition="development", geometry="seeded", 
     if geometry == "seeded": opts.update(route(np.random.default_rng(seeds["geometry"])))
     elif geometry != "fixed": raise ValueError("geometry must be fixed or seeded")
     duration = sum(l[1] for l in opts["legs"])
-    options, crab, analysis = scenario(scenario_name, np.random.default_rng(seeds["nuisance"]), duration)
+    if geometry == "seeded":
+        opts["index_turns"] = random_turns(np.random.default_rng(seeds["protocol"]), duration)
+        opts["gnss_dropouts"] = random_gaps(np.random.default_rng(seeds["missingness"]), duration)
+    options, crab, analysis = scenario(scenario_name, np.random.default_rng(seeds["nuisance"]), duration,
+                                     np.random.default_rng(seeds["protocol"]), np.random.default_rng(seeds["missingness"]))
     if scenario_name == "hardware":
         if hardware is None: raise ValueError("hardware fixture must be provided")
         options.update(plain(hardware))
@@ -119,6 +151,8 @@ def realize(seed, scenario_name, *, partition="development", geometry="seeded", 
     opts["index_turns"] = [t for t in opts["index_turns"] if t[0] < duration-1]
     if same_side_up_turns and not options.get("index_turns"):
         opts["index_turns"] = [[duration*f, "z"] for f in (2/9, 5/9, 8/9)]
+    if turn_schedule is not None:
+        opts["index_turns"] = validate_turn_schedule(turn_schedule, duration, turn_min_spacing, turn_edge_margin)
     return plain(dict(design_version=DESIGN_VERSION, seed=seed, partition=partition, streams=seeds,
                       geometry=geometry, scenario=scenario_name, simulator=opts, crab_trajectory=crab,
                       analysis_options=analysis))
@@ -140,7 +174,8 @@ def implementation_hash():
     paths = ("analysis/lll/fit.py", "analysis/lll/inference.py", "analysis/lll/attitude.py",
              "analysis/lll/analyze.py", "analysis/lll/policy.py", "analysis/lll/inference_policy.py",
              "analysis/lll/synth.py", "analysis/lll/research_design.py", "analysis/lll/research_calibration.py",
-             "analysis/lll/collate.py", "analysis/tests/research.py", "analysis/tests/truthgen.py")
+             "analysis/lll/collate.py", "analysis/tests/research.py", "analysis/tests/optimize_turns.py",
+             "analysis/tests/truthgen.py")
     paths += ("analysis/lll/calib.py", "analysis/lll/drift.py", "analysis/lll/models.py",
               "analysis/lll/slip.py", "analysis/lll/format.py", "analysis/lll/segments.py",
               "analysis/tests/conftest.py", "analysis/tests/test_analysis.py")
