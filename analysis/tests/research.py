@@ -29,7 +29,7 @@ from lll.synth import synthesize
 from lll.inference_policy import INFERENCE_POLICY, digest
 from lll.research_calibration import stratum, check_policy, required_accepted_n, required_calibration_n
 from lll.research_design import (INTERACTIONS, PARTITIONS, seed_range, realize, simulator_options,
-                                 freeze_manifest, validate_manifest, scenario, trajectory, streams, implementation_hash, geometry_stress_matrix)
+                                 freeze_manifest, validate_manifest, scenario, trajectory, streams, implementation_hash, geometry_stress_matrix, protocol_geometry)
 
 
 DRIFTS = (0, -.5, .5, -1, 1, -2, 2, -5, 5)
@@ -245,6 +245,7 @@ def main():
     ap.add_argument("--partition", choices=list(PARTITIONS), default="development")
     ap.add_argument("--geometry", choices=["fixed", "seeded", "stress"], default="seeded")
     ap.add_argument("--geometry-cells", nargs="+", help="preregister a subset of stress-cell IDs")
+    ap.add_argument("--protocol", type=Path, help="geometry/turn protocol JSON; requires --geometry fixed")
     ap.add_argument("--list-geometry-cells", action="store_true", help="write the matrix without running simulations")
     ap.add_argument("--bootstrap", type=int, default=20)
     ap.add_argument("--sampling", nargs="+", choices=["moving", "segment"], default=["moving"])
@@ -287,7 +288,12 @@ def main():
     if args.list_geometry_cells:
         args.o.write_text(json.dumps(stress_cells, indent=2)+"\n")
         return
+    protocol = protocol_geometry(json.loads(args.protocol.read_text())) if args.protocol else None
+    if protocol is not None and (args.geometry != "fixed" or args.geometry_cells or args.same_side_up_turns
+                                 or args.turn_schedule is not None or args.scenario == "pool"):
+        ap.error("--protocol requires fixed flight geometry and its own turn schedule")
     geometry_cells = args.geometry_cells or [cell["id"] for cell in stress_cells] if args.geometry == "stress" else [None]
+    if protocol is not None: geometry_cells = ["protocol-"+digest(protocol)]
     if args.geometry_cells and args.geometry != "stress": ap.error("--geometry-cells requires --geometry stress")
     if args.geometry == "stress" and (not set(geometry_cells) <= {cell["id"] for cell in stress_cells}
                                      or args.same_side_up_turns or args.turn_schedule is not None):
@@ -299,12 +305,13 @@ def main():
     if decision_policy: check_policy(decision_policy)
     pairwise_policy = json.loads(args.pairwise_decision_policy.read_text()) if args.pairwise_decision_policy else None
     if pairwise_policy: check_pairwise_policy(pairwise_policy, "pool" if args.scenario == "pool" else "flight")
-    config = {k: v for k, v in vars(args).items() if k not in ("o", "manifest", "write_manifest", "replay", "decision_policy", "pairwise_decision_policy", "development_campaign")}
+    config = {k: v for k, v in vars(args).items() if k not in ("o", "manifest", "write_manifest", "replay", "decision_policy", "pairwise_decision_policy", "development_campaign", "protocol")}
+    config["protocol"] = protocol
     config["decision_policy_hash"] = decision_policy["policy_hash"] if decision_policy else None
     config["pairwise_decision_policy_hash"] = pairwise_policy["policy_hash"] if pairwise_policy else None
     config["pairwise_evidence"] = bool(args.pairwise_evidence or pairwise_policy)
     scenarios = SCENARIOS if args.scenario == "all" else [args.scenario]
-    if args.geometry == "stress":
+    if args.geometry == "stress" or protocol is not None:
         geometry_scenarios = {"equator", "high_latitude", "dateline", "turn_dropout", "turn_dropout_drift", "fuzz"}
         if args.scenario != "all" and args.scenario in geometry_scenarios:
             ap.error("stress cells require nuisance-only scenarios")
@@ -404,6 +411,7 @@ def main():
     config["preregistered_geometry_cells"] = [None] if args.scenario == "pool" else geometry_cells
     config["geometry_domain"] = [{key: value for key, value in cell.items() if key != "simulator"}
                                  for cell in stress_cells if cell["id"] in geometry_cells] if args.geometry == "stress" else None
+    if protocol is not None: config["geometry_domain"] = [{"id": geometry_cells[0], **protocol}]
     if args.scenario == "pool": config["geometry"] = None
     config["operational_cells"] = operational_cells
     seeds = seed_range(args.partition, args.seed, args.seeds)
@@ -453,7 +461,7 @@ def main():
                                          variant=args.variant, same_side_up_turns=args.same_side_up_turns,
                                          hardware=scenario_options("hardware") if scenario == "hardware" else None,
                                          turn_schedule=args.turn_schedule, turn_min_spacing=args.turn_min_spacing,
-                                         turn_edge_margin=args.turn_edge_margin, geometry_cell=geometry_cell)
+                                         turn_edge_margin=args.turn_edge_margin, geometry_cell=geometry_cell, protocol=protocol)
                         records.append(flight_run(truth, scenario, seed, job["bootstrap_sampling"], job["block_length"], args.bootstrap, args.variant,
                                                   args.same_side_up_turns, partition=args.partition,
                                                   geometry=args.geometry, fit_options=settings, decision_policy=decision_policy,

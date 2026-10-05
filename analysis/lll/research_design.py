@@ -146,9 +146,24 @@ def scenario(name, rng=None, duration_min=90., protocol_rng=None, missingness_rn
     return opts, crab, analysis
 
 
+def protocol_geometry(value):
+    """Normalize a frozen geometry/turn protocol; nuisance parameters are specified separately."""
+    keys = {"lat0", "lon0", "speed", "legs", "turn_schedule"}
+    if not isinstance(value, dict) or set(value) != keys:
+        raise ValueError("protocol requires exactly lat0, lon0, speed, legs and turn_schedule")
+    lat, lon, speed = (float(value[k]) for k in ("lat0", "lon0", "speed"))
+    legs = [[float(a), float(b)] for a, b in value["legs"]]
+    if (not np.isfinite([lat, lon, speed]).all() or not -90 < lat < 90 or not -180 <= lon <= 180
+            or speed <= 0 or not legs or not np.isfinite(legs).all()
+            or any(not 0 <= bearing < 360 or duration <= 0 for bearing, duration in legs)):
+        raise ValueError("invalid protocol trajectory")
+    turns = validate_turn_schedule(value["turn_schedule"], sum(l[1] for l in legs))
+    return dict(lat0=lat, lon0=lon, speed=speed, legs=legs, turn_schedule=[t[0] for t in turns])
+
+
 def realize(seed, scenario_name, *, partition="development", geometry="seeded", variant="spp",
             same_side_up_turns=False, hardware=None, turn_schedule=None, turn_min_spacing=10., turn_edge_margin=5.,
-            geometry_cell=None):
+            geometry_cell=None, protocol=None):
     seeds = streams(seed, partition)
     # Resolve simulator defaults as well: replay does not silently acquire new defaults.
     opts = {k: plain(p.default) for k, p in inspect.signature(synthesize).parameters.items()
@@ -162,6 +177,13 @@ def realize(seed, scenario_name, *, partition="development", geometry="seeded", 
             raise ValueError("stress cells preregister their own turn schedules")
         opts.update(cells[geometry_cell]["simulator"])
     elif geometry != "fixed": raise ValueError("geometry must be fixed, seeded or stress")
+    if protocol is not None:
+        if geometry != "fixed" or same_side_up_turns or turn_schedule is not None:
+            raise ValueError("protocol requires fixed geometry and its own turn schedule")
+        protocol = protocol_geometry(protocol)
+        opts.update({k: v for k, v in protocol.items() if k != "turn_schedule"})
+        opts["index_turns"] = [[t, "z"] for t in protocol["turn_schedule"]]
+        geometry_cell = "protocol-"+digest(protocol)
     duration = sum(l[1] for l in opts["legs"])
     if geometry == "seeded":
         opts["index_turns"] = random_turns(np.random.default_rng(seeds["protocol"]), duration)
@@ -171,8 +193,8 @@ def realize(seed, scenario_name, *, partition="development", geometry="seeded", 
     if scenario_name == "hardware":
         if hardware is None: raise ValueError("hardware fixture must be provided")
         options.update(plain(hardware))
-    if geometry == "stress" and any(key in options for key in ("lat0", "lon0", "legs", "speed", "index_turns")):
-        raise ValueError("scenario overrides preregistered stress geometry; use a nuisance-only scenario")
+    if (geometry == "stress" or protocol is not None) and any(key in options for key in ("lat0", "lon0", "legs", "speed", "index_turns")):
+        raise ValueError("scenario overrides preregistered geometry; use a nuisance-only scenario")
     opts.update(options)
     duration = sum(l[1] for l in opts["legs"])
     # Dedicated geometry fixtures have their own duration. Regenerate only event times that

@@ -467,6 +467,53 @@ samples; permanently ineligible cells remain development evidence and must be ex
 claimed domain before freezing. The policy records the selected observable cell properties.
 These are finite stress fixtures; they do not by themselves validate every intervening trajectory.
 
+### Fresh development screen, 2026-10-05
+
+The implementation was committed as `f687734` before this screen. The approved ten-minute
+compute budget produced [72 completed development evaluations](design-geometry-pilot-20261005.json)
+across 25 geometry cells; another evaluation was interrupted at the cap. The initial two-cell
+pilot varied all three truths, `bias_mixed` and `wind`, and dynamic/wind crab. Adaptive screening
+then varied all six stress latitudes, 60-minute routes with zero/three/six turns, and 180-minute
+routes with six turns, using six well-separated headings at 270 m/s. Sensor bias was dynamic;
+all evaluations were design-only with zero bootstrap attempts.
+
+[The summary](design-geometry-pilot-20261005-summary.json) records 64 analyzable evaluations
+and eight analysis failures. None of the 64 passed any model-contrast design estimability test;
+all had free-fit model-test rank zero at the frozen cutoff. The development cutoff sweep changed
+rank for 21 of those evaluations; two were within the configured 10% boundary neighborhood.
+These are seed-specific diagnostics, not population rates or independent tail evidence.
+
+No eligible domain was found, so fresh flight/pairwise calibration and independent validation
+were not run. Actual-flight pooling calibration likewise lacks informative inputs from this
+screen. The next required step is a feasible geometry/protocol under the frozen nuisance gate,
+followed by a complete-fit/bootstrap development pilot and reviewed campaign sizing before
+freezing calibration. This bounded screen does not prove that all possible flight protocols,
+or all 288 stress cells, are infeasible. Source/environment hashes are preserved in the records.
+
+### Cruise qualification follow-up
+
+The zero-rank screen exposed a preprocessing conflict: deliberate IMU turns split stable cruise,
+and the ten-minute minimum was reapplied to each resulting fragment. Ten-minute turn spacing,
+minus handling exclusions, therefore discarded otherwise useful alternating orientations.
+`find_segments` now qualifies stable aircraft cruise before splitting it into averaging intervals
+at deliberate IMU turns. Maneuvers, invalid/missing GNSS, placement shifts, disconnections and
+unclassified exclusions still break qualification; bins never span handling windows or mount epochs.
+The original screen remains a record of the earlier implementation, not evidence about this fix.
+
+[Regenerated development trials](cruise-qualification-development-20261005.json) include the exact
+[75-minute protocol](development-protocol-75min.json): bearings 10°, 100°, 190°, 280°, 10°, each
+for 15 minutes, starting at 35° latitude and −30° longitude, speed 270 m/s, with sensor turns at
+5, 15, 25, 35, 45 and 55 minutes. This trial cleared every design contrast and the duration gate
+for both dynamic and wind crab when forward uncertainty was disabled. With measured forward-axis
+uncertainty enabled, dynamic crab still cleared every design contrast; wind crab abstained.
+These were design-only trials with no bootstrap evidence or empirical threshold claims.
+
+Use `research.py --geometry fixed --protocol docs/development-protocol-75min.json` to reproduce
+the selected geometry in fresh campaigns. The protocol content, geometry cell ID and domain are
+frozen in the manifest; nuisance scenarios cannot override the trajectory or turn schedule.
+The next required evidence is a complete-fit/nonlinear-bootstrap development pilot, followed by
+cost review and protocol/configuration freezing before independent calibration and validation.
+
 ## Experimental partial pairwise evidence
 
 Candidate fits emit `pairwise` entries for all three comparisons. Each applies the shared gates

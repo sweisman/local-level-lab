@@ -119,15 +119,45 @@ def find_segments(sess, flight, th: Thresholds, exclude=()):
     n = np.maximum(hi - lo, 1)
     var = (cs2[hi] - cs2[lo]) / n - ((cs[hi] - cs[lo]) / n) ** 2
     a_sd = np.sqrt(np.maximum(var, 0))
-    ok = ((kin["speed"] > th.min_speed_mps) & (np.abs(kin["vz"]) < th.max_vz_mps)
-          & (np.abs(np.degrees(kin["psi_dot"])) < th.max_turn_dps) & (a_sd < th.max_accel_sd)
-          & (kin["h_acc"] < th.max_h_acc_m) & kin["bearing_ok"] & (hi > lo))
-    for a, b in exclude:   # while the IMU was being turned or bumped
-        ok &= ~((kin["t"] >= a) & (kin["t"] <= b))
+    aircraft_ok = ((kin["speed"] > th.min_speed_mps) & (np.abs(kin["vz"]) < th.max_vz_mps)
+                   & (np.abs(np.degrees(kin["psi_dot"])) < th.max_turn_dps)
+                   & (kin["h_acc"] < th.max_h_acc_m) & kin["bearing_ok"] & (hi > lo))
+    ok = aircraft_ok & (a_sd < th.max_accel_sd)
+    events = [(t / 1e9, kind) for t, kind, _ in sess.events]
+    excluded = np.zeros(len(ok), bool)
+    deliberate = np.zeros(len(ok), bool)
+    other_excluded = np.zeros(len(ok), bool)
+    for a, b in exclude:
+        mask = (kin["t"] >= a) & (kin["t"] <= b)
+        kinds = {kind for t, kind in events if a <= t <= b
+                 and kind in ("index_turn", "placement_shift", "imu_disconnect")}
+        excluded |= mask
+        if kinds == {"index_turn"}:
+            deliberate |= mask
+        else:
+            other_excluded |= mask
+    # Qualify aircraft cruise before splitting at deliberate sensor rotations. A hand turn
+    # can perturb the accelerometer but cannot certify an aircraft maneuver or missing fixes.
+    stable = (ok | (deliberate & aircraft_ok)) & ~other_excluded
+    hard_breaks = [t for t, kind in events if kind in ("placement_shift", "imu_disconnect")]
+    qualified = np.zeros(len(ok), bool)
+    t = kin["t"]
+    start = None
+    for i in range(len(t)):
+        brk = start is not None and any(t[i-1] < s <= t[i] for s in hard_breaks)
+        gap = i > 0 and t[i]-t[i-1] > 5.0
+        if start is not None and (not stable[i] or brk or gap):
+            if t[i-1]-t[start] >= th.min_segment_s:
+                qualified[start:i] = True
+            start = None
+        if stable[i] and start is None:
+            start = i
+    if start is not None and t[-1]-t[start] >= th.min_segment_s:
+        qualified[start:] = True
+    ok &= qualified & ~excluded
     # placement shifts, deliberate turns of the IMU and link drops all break segments
     shifts = [t / 1e9 for t, kind, _ in sess.events if kind in ("placement_shift", "index_turn", "imu_disconnect")]
     segs, start = [], None
-    t = kin["t"]
     for i in range(len(t)):
         brk = start is not None and any(t[i - 1] < s <= t[i] for s in shifts)
         gap = i > 0 and t[i] - t[i - 1] > 5.0
@@ -138,7 +168,7 @@ def find_segments(sess, flight, th: Thresholds, exclude=()):
             start = i if (ok[i] and not gap) else None
     if start is not None:
         segs.append((t[start], t[-1]))
-    segs = [(a, b) for a, b in segs if b - a >= th.min_segment_s]
+    segs = [(a, b) for a, b in segs if b - a >= th.bin_s]
     return segs, kin
 
 

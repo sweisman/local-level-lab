@@ -17,7 +17,7 @@ from lll.pairwise_calibration import calibrate as calibrate_pairs, assess as ass
 from lll.policy import CANDIDATE_POLICY, MODEL_CONTRASTS, MODEL_PAIRS, decision_stratum, scientific_exclusions, eligibility_policies
 from lll.rank_sweep import sweep
 from lll.research_calibration import calibrate, required_calibration_n, check_policy
-from lll.research_design import geometry_stress_matrix, realize, freeze_manifest, validate_manifest, implementation_hash, plain
+from lll.research_design import geometry_stress_matrix, realize, freeze_manifest, validate_manifest, implementation_hash, plain, protocol_geometry
 from lll.runtime import numerical_environment
 from test_candidate_eligibility import candidate_fit, campaign
 from test_release060 import crab_fixture
@@ -82,6 +82,40 @@ def test_geometry_matrix_is_deterministic_and_observable():
     assert first["streams"] != second["streams"]
     with pytest.raises(ValueError, match="nuisance-only"):
         realize(49, "equator", geometry="stress", geometry_cell=matrix[0]["id"])
+
+
+def test_exact_protocol_is_frozen_and_cannot_be_overridden(monkeypatch, tmp_path):
+    import research
+    protocol = dict(lat0=35, lon0=-30, speed=270, legs=[[10, 15], [100, 15], [190, 15], [280, 15], [10, 15]],
+                    turn_schedule=[5, 15, 25, 35, 45, 55])
+    normalized = protocol_geometry(protocol)
+    first = realize(49, "bias_mixed", geometry="fixed", protocol=protocol)
+    second = realize(50, "wind", geometry="fixed", protocol=protocol)
+    assert first["simulator"]["legs"] == second["simulator"]["legs"] == normalized["legs"]
+    assert first["simulator"]["index_turns"] == [[t, "z"] for t in protocol["turn_schedule"]]
+    assert first["geometry_cell"] == second["geometry_cell"] == "protocol-"+digest(normalized)
+    for kwargs in (dict(geometry="seeded"), dict(geometry="fixed", turn_schedule=[])):
+        with pytest.raises(ValueError, match="protocol requires"):
+            realize(49, "bias_mixed", protocol=protocol, **kwargs)
+    with pytest.raises(ValueError, match="nuisance-only"):
+        realize(49, "equator", geometry="fixed", protocol=protocol)
+    with pytest.raises(ValueError, match="exactly"):
+        protocol_geometry({**protocol, "bias_model": "constant"})
+    input_file = tmp_path/"protocol.json"
+    output = tmp_path/"manifest.json"
+    input_file.write_text(json.dumps(protocol))
+    monkeypatch.setattr(sys, "argv", ["research.py", "--partition", "calibration", "--truth", "all",
+        "--geometry", "fixed", "--protocol", str(input_file), "--write-manifest", str(output), "-o", str(tmp_path/"unused.json")])
+    research.main()
+    manifest = json.loads(output.read_text())
+    config = manifest["config"]
+    assert config["protocol"] == normalized
+    assert config["preregistered_geometry_cells"] == [first["geometry_cell"]]
+    assert config["geometry_domain"] == [{"id": first["geometry_cell"], **normalized}]
+    changed = copy.deepcopy(config)
+    changed["protocol"]["speed"] = 260
+    with pytest.raises(ValueError, match="frozen manifest"):
+        validate_manifest(manifest, changed)
 
 
 def test_exact_calibration_count_is_independent_of_validation_count():

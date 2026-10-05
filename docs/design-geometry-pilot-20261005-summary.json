@@ -1,0 +1,86 @@
+{
+  "source_commit": "f687734",
+  "partition": "development",
+  "implementation_hash": "569791d1bac21bbd4ec1a85f8f1823503714906579c3c919620b2f8ef53f4b8a",
+  "numerical_environment": {
+    "python": "3.14.7",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1"
+  },
+  "numerical_environment_hash": "2d3dca698a9ce549e53eea62cfe029f2333ee3009b990594cf01399d35e34d41",
+  "elapsed_s": 599.4784776670276,
+  "budget_exhausted": true,
+  "attempted": 73,
+  "completed_evaluations": 72,
+  "interrupted_evaluations": 1,
+  "analyzed": 64,
+  "analysis_failures": 8,
+  "geometry_cells": [
+    "lat+35-h6-good-t180-v270-turn6",
+    "lat+35-h6-good-t60-v270-turn0",
+    "lat+35-h6-good-t60-v270-turn3",
+    "lat+35-h6-good-t60-v270-turn6",
+    "lat+5-h2-poor-t60-v150-turn0",
+    "lat+5-h6-good-t180-v270-turn6",
+    "lat+5-h6-good-t60-v270-turn0",
+    "lat+5-h6-good-t60-v270-turn3",
+    "lat+5-h6-good-t60-v270-turn6",
+    "lat+65-h6-good-t180-v270-turn6",
+    "lat+65-h6-good-t60-v270-turn0",
+    "lat+65-h6-good-t60-v270-turn3",
+    "lat+65-h6-good-t60-v270-turn6",
+    "lat-35-h6-good-t180-v270-turn6",
+    "lat-35-h6-good-t60-v270-turn0",
+    "lat-35-h6-good-t60-v270-turn3",
+    "lat-35-h6-good-t60-v270-turn6",
+    "lat-5-h6-good-t180-v270-turn6",
+    "lat-5-h6-good-t60-v270-turn0",
+    "lat-5-h6-good-t60-v270-turn3",
+    "lat-5-h6-good-t60-v270-turn6",
+    "lat-65-h6-good-t180-v270-turn6",
+    "lat-65-h6-good-t60-v270-turn0",
+    "lat-65-h6-good-t60-v270-turn3",
+    "lat-65-h6-good-t60-v270-turn6"
+  ],
+  "fully_estimable": 0,
+  "estimable_comparison_counts": {
+    "sphere_rotating_vs_sphere_still": 0,
+    "sphere_rotating_vs_flat_still": 0,
+    "sphere_still_vs_flat_still": 0
+  },
+  "free_rank_counts": {
+    "0": 64
+  },
+  "cutoff_sweep_rank_flips": 21,
+  "cutoff_sweep_near_boundary": 2,
+  "seconds_per_analysis_median": 4.455875535000814,
+  "scope": "Two-cell, three-truth, two-scenario pilot followed by adaptive six-heading geometry screening; zero bootstrap attempts, fixed nuisance assumptions.",
+  "limitations": [
+    "Design-only evaluations do not establish full-flight or bootstrap acceptance.",
+    "One development seed per screening geometry; repeated truths are not independent geometry replications.",
+    "The time cap may interrupt a cell; uncompleted analyses are not counted as completed.",
+    "These tested cells do not establish infeasibility over all trajectories or the entire stress matrix."
+  ],
+  "campaign_order": [
+    {
+      "phase": "development geometry screening",
+      "status": "completed within approved compute cap"
+    },
+    {
+      "phase": "freeze eligible domain and complete-fit settings",
+      "status": "blocked: no eligible design found"
+    },
+    {
+      "phase": "fresh flight and pairwise calibration",
+      "status": "not run: no eligible design samples"
+    },
+    {
+      "phase": "independent flight and pairwise validation",
+      "status": "not run: requires frozen calibrated decision policies"
+    },
+    {
+      "phase": "actual-flight pooling calibration and validation",
+      "status": "not run: requires informative independent physical-unit pools"
+    }
+  ]
+}
