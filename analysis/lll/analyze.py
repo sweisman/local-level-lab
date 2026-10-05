@@ -3,8 +3,7 @@
 from __future__ import annotations
 
 import platform
-import subprocess
-from pathlib import Path
+import os
 from datetime import datetime, timezone
 
 import numpy as np
@@ -19,11 +18,9 @@ from .policy import POLICY_VERSION, heading_diversity, verified_config
 def environment() -> dict:
     """What produced a result: the exact code and numerical libraries, so it can be reproduced."""
     import scipy
-    try:
-        commit = subprocess.run(["git", "rev-parse", "HEAD"], cwd=Path(__file__).parent, capture_output=True,
-                                text=True, timeout=5).stdout.strip() or None
-    except (OSError, subprocess.SubprocessError):
-        commit = None
+    # Build/campaign runners may supply VCS provenance explicitly. Analysis itself performs
+    # no git operations; research manifests additionally hash the scientific source files.
+    commit = os.environ.get("LLL_GIT_COMMIT") or None
     return {"python": platform.python_version(), "numpy": np.__version__, "scipy": scipy.__version__,
             "git_commit": commit}
 
@@ -262,10 +259,21 @@ def analyze(path, th: Thresholds | None = None, *, fit_options=None) -> dict:
     G0 = np.einsum("nij,nj->ni", R0[ge[ok]], Gc[ok])
     up_ref = np.median(np.einsum("nij,nj->ni", R0[bins["epoch"]], bins["up"]), axis=0)
     fwd0, fq = estimate_forward_axis(gt[ok], G0, kin["t"], kin["speed"], np.degrees(kin["psi"]), up_ref)
+    fit_options = dict(fit_options or {})
+    injected_angle = fit_options.pop("research_forward_offset_deg", 0.)
+    if injected_angle and fwd0 is not None:
+        from .attitude import expm_so3, unit
+        fwd0 = expm_so3(unit(up_ref)*np.radians(injected_angle)) @ fwd0
+        fq["research_injected_angle_deg"] = injected_angle
     res["forward_axis"] = {"axis_b": None if fwd0 is None else fwd0.tolist(), **fq}
     vertical_only = fwd0 is None
     # each bin's forward axis in its own epoch's frame: v_epoch = R0ᵀ v_0
     fwd = None if fwd0 is None else np.einsum("nji,j->ni", R0[bins["epoch"]], fwd0)
+    if fit_options.get("forward_uncertainty"):
+        from .attitude import unit
+        fit_options["forward_sigma_rad"] = fq.get("angle_sigma_rad")
+        tangent0 = None if fwd0 is None else np.cross(unit(up_ref), fwd0)
+        fit_options["forward_tangent"] = None if tangent0 is None else np.einsum("nji,j->ni", R0[bins["epoch"]], tangent0)
     if vertical_only:
         flags.append("no_heading_reference_vertical_only")
 
@@ -308,7 +316,7 @@ def analyze(path, th: Thresholds | None = None, *, fit_options=None) -> dict:
     if temp_ref is not None and temp_mean is None:
         # A freely fitted temperature term can absorb signal. Report what k would be without it,
         # and flag the session when that moves any k by more than 1σ.
-        f0 = fit.fit(bins, fwd, bias_fn, prior_sigma, vertical_only=vertical_only, n_boot=0)
+        f0 = fit.fit(bins, fwd, bias_fn, prior_sigma, vertical_only=vertical_only, **{**fit_options, "n_boot": 0})
         if not f0["convergence"]["converged"]:
             flags.append("inference_nonconvergence")
         shift = {n: (f["k"][n] - f0["k"][n]) / f["k_sd"][n] for n in fit.TERM_NAMES}
@@ -334,8 +342,11 @@ def analyze(path, th: Thresholds | None = None, *, fit_options=None) -> dict:
         flags.append("single_heading")
     if bins_all is not bins:
         fa = None if fwd0 is None else np.einsum("nji,j->ni", R0[bins_all["epoch"]], fwd0)
+        all_options = dict(fit_options)
+        if all_options.get("forward_uncertainty") and tangent0 is not None:
+            all_options["forward_tangent"] = np.einsum("nji,j->ni", R0[bins_all["epoch"]], tangent0)
         fw = fit.fit(bins_all, fa, bias_fn, prior_sigma, vertical_only=vertical_only, temp_ref=temp_ref,
-                     temp_prior=temp_prior, temp_mean=temp_mean)
+                     temp_prior=temp_prior, temp_mean=temp_mean, **all_options)
         if not fw["convergence"]["converged"]:
             flags.append("inference_nonconvergence")
         moved = {n: (f["k"][n] - fw["k"][n]) / f["k_sd"][n] for n in fit.TERM_NAMES}

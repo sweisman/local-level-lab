@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "lll"
-version = "0.6.0"
+dynamic = ["version"]
 description = "Local Level Lab: analysis of crowdsourced in-flight IMU recordings"
 license = "AGPL-3.0-or-later"
 authors = [{ name = "Scott Weisman" }]
@@ -19,6 +19,9 @@ lll = "lll.cli:main"
 
 [tool.setuptools]
 packages = ["lll"]
+
+[tool.setuptools.dynamic]
+version = {attr = "lll.__version__"}
 
 [tool.setuptools.package-data]
 lll = ["logo.png"]

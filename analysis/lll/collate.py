@@ -230,6 +230,7 @@ def joint_model_tests(joint, per_term):
         p = len(terms)
         pv = (float(fdist.sf(x2 / p, p, df)) if df > 0 else sf_chi2(x2, p)) if p else 1.0
         tests[m] = {"chi2": x2, "dof": p, "df_denominator": df or None, "p": pv, "rejected": pv < P_REJECT,
+                    "method": "approximate F diagnostic", "validated_for_primary_claims": False,
                     "z_marginal": {n: float(d[i] / np.sqrt(V[i, i])) for i, n in enumerate(terms)}}
     return tests
 
@@ -258,7 +259,71 @@ def pool_hierarchical(items):
     return out
 
 
-def collate(results: list[dict], allow_synthetic: bool = False, provenance: dict | None = None) -> dict:
+def bootstrap_joint_tests(items, n_boot=999, seed=0):
+    """Experimental null-centered, studentized whole-unit bootstrap.
+
+    A sampled unit retains every flight, covariance and identification mask. Duplicate draws
+    receive distinct identities. The number of independent units limits tail validity even
+    when the Monte Carlo replicate count is large.
+    """
+    if n_boot < 1:
+        raise ValueError("positive bootstrap replicate count required")
+    by_unit = defaultdict(list)
+    for item in items:
+        by_unit[item[0]].append(item)
+    marginal = pool_hierarchical(items)
+    joint = pool_multivariate(items, marginal)
+    if joint is None or len(by_unit) < 3:
+        return {"status": "unavailable", "reason": "at least three units with identified terms required"}
+    terms = joint["terms"]
+    V_observed = np.asarray(joint["cov"])
+    if not terms or not np.isfinite(V_observed).all() or np.linalg.matrix_rank(V_observed) < len(terms):
+        return {"status": "unavailable", "reason": "pooled covariance is singular"}
+    observed = joint_model_tests(joint, marginal)
+    units = list(by_unit)
+    rng = np.random.default_rng(seed)
+    # Common draws give paired comparisons across null models.
+    draws = rng.integers(0, len(units), size=(n_boot, len(units)))
+    tests = {}
+    from scipy.stats import beta
+    for model, expected in EXPECTED_K.items():
+        target = dict(zip(TERM_NAMES, expected))
+        offset = {t: target[t]-joint["k"][t] for t in terms}
+        stats, failures = [], []
+        for replicate, draw in enumerate(draws):
+            sample = []
+            for identity, index in enumerate(draw):
+                for item in by_unit[units[index]]:
+                    k = {t: v+offset.get(t, 0.) for t, v in item[1].items()}
+                    sample.append((f"bootstrap-{identity}", k, *item[2:]))
+            try:
+                m = pool_hierarchical(sample)
+                j = pool_multivariate(sample, m)
+                if j is None or j["terms"] != terms:
+                    raise ValueError("replicate lost identified terms")
+                V = np.asarray(j["cov"])
+                if not np.isfinite(V).all() or np.linalg.matrix_rank(V) < len(terms):
+                    raise ValueError("singular replicate covariance")
+                d = np.array([j["k"][t]-target[t] for t in terms])
+                stats.append(float(d @ np.linalg.solve(V, d)))
+            except (ValueError, np.linalg.LinAlgError) as exc:
+                failures.append({"replicate": replicate, "error": str(exc)})
+        n = len(stats)
+        exceed = sum(v >= observed[model]["chi2"] for v in stats)
+        pv = (exceed+1)/(n+1) if n else None
+        ci = [0. if not exceed else float(beta.ppf(.025, exceed, n-exceed+1)),
+              1. if exceed == n else float(beta.ppf(.975, exceed+1, n-exceed))] if n else None
+        tests[model] = {"statistic": observed[model]["chi2"], "p": pv, "mc_ci95": ci,
+                        "exceedances": exceed, "replicates": n, "requested": n_boot,
+                        "null_statistics": stats, "failures": failures,
+                        "rejected_experimental": pv < P_REJECT if pv is not None and not failures else None}
+    return {"status": "experimental", "method": "null-centered whole-unit studentized bootstrap",
+            "n_units": len(units), "seed": seed, "tests": tests, "analytic": observed,
+            "validated_for_primary_claims": False}
+
+
+def collate(results: list[dict], allow_synthetic: bool = False, provenance: dict | None = None,
+            *, unit_bootstrap=0, bootstrap_seed=0) -> dict:
     # This mapping comes from a curator-controlled registry, never from uploaded manifests
     # or result JSON. Offline users must explicitly supply their trusted registry.
     provenance = provenance or {}
@@ -271,6 +336,11 @@ def collate(results: list[dict], allow_synthetic: bool = False, provenance: dict
             seen.add(sha)
         unique.append(r)
     results = unique
+    configurations = {((r.get("fit", {}).get("inference_policy") or {}).get("configuration_hash", "historical-unrecorded"),
+                       r["fit"].get("decision_policy_hash"))
+                      for r in results if r.get("fit")}
+    if len(configurations) > 1:
+        raise ValueError("incompatible inference configurations: collate separately or reprocess consistently")
     tiers = unit_tiers(results)
     rows, primary, explore = [], [], []
     groups = {"heading": defaultdict(list), "mount": defaultdict(list), "imu variant": defaultdict(list),
@@ -282,6 +352,8 @@ def collate(results: list[dict], allow_synthetic: bool = False, provenance: dict
         imu = r.get("imu") or {}
         approval = provenance.get(r.get("input_sha256"))
         why = gate(r, tiers, allow_synthetic, approval)
+        if fit and (fit.get("inference_policy", {}).get("settings", {}).get("engine") == "candidate-1" or fit.get("decision_policy_hash")) and not allow_synthetic:
+            why.append("experimental inference candidate")
         canonical = approval["unit_id"] if approval and not provenance_reasons(r, approval) else imu.get("unit_id")
         rows.append({
             "session_id": r.get("session_id"), "kind": r.get("kind", "flight"),
@@ -332,6 +404,8 @@ def collate(results: list[dict], allow_synthetic: bool = False, provenance: dict
         out["pooled_k"] = pk
         joint = pool_multivariate(primary, pk)
         out["pooled_k_joint"] = joint
+        if unit_bootstrap:
+            out["pooled_unit_bootstrap"] = bootstrap_joint_tests(primary, unit_bootstrap, bootstrap_seed)
         # each model's expected k against the jointly pooled k, with the terms' covariance
         out["model_tests"] = joint_model_tests(joint, pk) if joint else {}
         cons = {}

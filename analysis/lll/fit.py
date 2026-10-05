@@ -37,6 +37,7 @@ import numpy as np
 from . import models
 from .attitude import c_bn
 from .calib import RAD2DPH
+from .inference_policy import INFERENCE_POLICY, provenance
 
 TERM_NAMES = ("k_rot_sphere", "k_curv", "k_disc")
 NK = len(TERM_NAMES)
@@ -45,11 +46,7 @@ P_REJECT = 0.0027               # two-sided 3σ
 CORR_NOT_IDENTIFIED = 0.95
 PRIOR_WIDEN = 3.0
 CRAB_SWEEP_DEG = (3.0, 5.0, 10.0, 15.0)   # crab priors refitted for the sensitivity sweep
-# Systematic floor added in quadrature to each k's σ, calibrated by analysis/tests/coverage.py
-# (every hardware fault at once, 30 seeds × 3 truths): without it the globe-rotation interval
-# covered the truth in 92 % of flights instead of 95 %. Sensor scale and alignment errors matter
-# most for the term measured most precisely. The other terms already cover conservatively.
-K_SYS_FLOOR = {"k_rot_sphere": 0.02, "k_curv": 0.0, "k_disc": 0.0}
+K_SYS_FLOOR = INFERENCE_POLICY["k_sys_floor"]  # compatibility alias; provenance lives in policy
 
 
 def sf_chi2(x, dof=NK):
@@ -175,7 +172,7 @@ def bootstrap_order(rng, bins, length, sampling="moving"):
     return order
 
 
-def fit(bins, fwd_b, bias_fn, prior_sigma, vertical_only=False, n_boot=300, seed=0,
+def _legacy_fit(bins, fwd_b, bias_fn, prior_sigma, vertical_only=False, n_boot=300, seed=0,
         temp_ref=None, temp_prior=None, temp_mean=None, crab_sigma_deg=5.0,
         bootstrap_sampling="moving", block_length=None, max_nfev=200):
     y, X, idx, cbns, lay = build_rows(bins, fwd_b, bias_fn, vertical_only, temp_ref, temp_mean)
@@ -463,6 +460,45 @@ def fit(bins, fwd_b, bias_fn, prior_sigma, vertical_only=False, n_boot=300, seed
         "best_model": min(comparison, key=comparison.get),
         "_rows": (y, X, idx, cbns, theta),
     }
+
+
+def fit(bins, fwd_b, bias_fn, prior_sigma, vertical_only=False, n_boot=300, seed=0,
+        temp_ref=None, temp_prior=None, temp_mean=None, crab_sigma_deg=5.0,
+        bootstrap_sampling="moving", block_length=None, max_nfev=200, *,
+        crab_model="constant", noise_model="global", bootstrap_refit="linearized",
+        forward_uncertainty=False, forward_sigma_rad=None, forward_tangent=None,
+        crab_rate_sigma_dph=None, crab_knot_seconds=None, variance_shrinkage_bins=None,
+        research_candidate=False, decision_thresholds=None, decision_policy_hash=None):
+    settings = dict(crab_model=crab_model, noise_model=noise_model, bootstrap_refit=bootstrap_refit,
+                    forward_uncertainty=forward_uncertainty, crab_sigma_deg=crab_sigma_deg,
+                    bootstrap_sampling=bootstrap_sampling, block_length=block_length, n_boot=n_boot,
+                    max_nfev=max_nfev,
+                    crab_rate_sigma_dph=INFERENCE_POLICY["crab_rate_sigma_dph"] if crab_rate_sigma_dph is None else crab_rate_sigma_dph,
+                    crab_knot_seconds=INFERENCE_POLICY["crab_knot_seconds"] if crab_knot_seconds is None else crab_knot_seconds,
+                    variance_shrinkage_bins=INFERENCE_POLICY["variance_shrinkage_bins"] if variance_shrinkage_bins is None else variance_shrinkage_bins)
+    if crab_model not in ("constant", "dynamic") or noise_model not in ("global", "axis", "axis_segment") or bootstrap_refit not in ("linearized", "nonlinear"):
+        raise ValueError("invalid inference candidate")
+    candidate = research_candidate or crab_model != "constant" or noise_model != "global" or bootstrap_refit != "linearized" or forward_uncertainty
+    settings["engine"] = "candidate-1" if candidate else "legacy"
+    common = dict(vertical_only=vertical_only, n_boot=n_boot, seed=seed, temp_ref=temp_ref,
+                  temp_prior=temp_prior, temp_mean=temp_mean, crab_sigma_deg=crab_sigma_deg,
+                  bootstrap_sampling=bootstrap_sampling, block_length=block_length, max_nfev=max_nfev)
+    if candidate:
+        from .inference import candidate_fit
+        result = candidate_fit(bins, fwd_b, bias_fn, prior_sigma, settings=settings,
+                               forward_sigma_rad=forward_sigma_rad, forward_tangent=forward_tangent, **common)
+    else:
+        result = _legacy_fit(bins, fwd_b, bias_fn, prior_sigma, **common)
+    result["inference_policy"] = provenance(settings)
+    result["delta_chi2_raw"] = {m: max(v - result["chi2_free"], 0.) for m, v in result["chi2"].items()}
+    if decision_thresholds is not None:
+        if not decision_policy_hash or set(decision_thresholds) != set(models.MODELS) or any(not np.isfinite(v) or v < 0 for v in decision_thresholds.values()):
+            raise ValueError("complete finite empirical thresholds and policy hash required")
+        result["rejected_analytic"] = result["rejected"]
+        result["rejected"] = {m: v > decision_thresholds[m] for m, v in result["delta_chi2_raw"].items()}
+        result["decision_policy_hash"] = decision_policy_hash
+        result["decision_rule"] = "experimental empirical delta_chi2_raw threshold"
+    return result
 
 
 def accumulated(bins, cbns, y_rows, idx, vertical_only=False):

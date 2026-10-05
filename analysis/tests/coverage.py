@@ -50,20 +50,23 @@ def _null_one(args):
 
 def null_study(n, workers=None):
     from research import summarize
-    jobs = [(truth, seed) for truth in models.MODELS for seed in range(10_000, 10_000 + n)]
+    from lll.research_design import seed_range
+    jobs = [(truth, seed) for truth in models.MODELS for seed in seed_range("development", 10_000, n)]
     with Pool(workers) as pool:
         out = list(pool.imap_unordered(_null_one, jobs, chunksize=4))
-    return {"summary": summarize(out), "records": out}
+    return {"partition": "development", "validation_evidence": False, "summary": summarize(out), "records": out}
 
 
 def study(seeds=30):
+    from lll.research_design import seed_range
+    campaign_seeds = seed_range("development", 100, seeds)
     tmp = Path(tempfile.mkdtemp(prefix="lll-coverage-"))
     hits = {n: 0 for n in TERM_NAMES}
     total = {n: 0 for n in TERM_NAMES}
     rejected, runs = 0, 0
     worst = {n: [] for n in TERM_NAMES}
     for truth in models.MODELS:
-        for seed in range(100, 100 + seeds):
+        for seed in campaign_seeds:
             p = tmp / "s.zip"
             synthesize(p, truth, seed=seed, fs=20.0, legs=NES_LEGS, omega_in_fn=geometric_truth(truth), **HARDWARE_FAULTS)
             f = analyze(p).get("fit")
@@ -80,6 +83,11 @@ def study(seeds=30):
 
 
 if __name__ == "__main__":
+    if "--partition" in sys.argv or "--manifest" in sys.argv:
+        # Modern partitioned coverage uses the same enforced manifest and complete gate.
+        from research import main
+        main()
+        sys.exit(0)
     if len(sys.argv) > 2 and sys.argv[1] == "--null":
         n = int(sys.argv[2])
         workers = int(sys.argv[sys.argv.index("--workers") + 1]) if "--workers" in sys.argv else None

@@ -84,7 +84,8 @@ class Store:
 
 def create_app(data_dir: str | Path | None = None) -> FastAPI:
     store = Store(Path(data_dir or os.environ.get("LLL_DATA", "data")))
-    app = FastAPI(title="Local Level Lab", version="0.5.0")
+    from lll import __version__
+    app = FastAPI(title="Local Level Lab", version=__version__)
     app.state.store = store
     registry.init(store)
     app.add_middleware(Admission, store=store, max_bytes=MAX_BYTES)

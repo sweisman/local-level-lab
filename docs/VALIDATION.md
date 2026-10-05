@@ -5,7 +5,152 @@ and WMM sensitivity check. Dynamic crab, noise weighting, bootstrap dependence, 
 uncertainty and pooled significance remain research questions. Real slow-rate bench evidence and
 demonstrated false-rejection tails remain publication blockers after these software corrections.
 
+## Research candidates and independent campaigns
+
+The opt-in candidate implementation adds continuous piecewise-linear crab (five-minute knots,
+amplitude and rate priors), axis or axis-by-segment residual weighting, measured forward-angle
+uncertainty, and full nonlinear bootstrap refits. Production still selects the historical
+constant-crab/global-noise implementation. Candidate methods and empirical decision rules are
+excluded from primary observational pooling. Mixing inference configurations or decision policies
+in one collation raises an error; reprocess consistently or collate the groups separately.
+
+`lll.inference_policy` owns the systematic floor and candidate defaults. Its version and content
+hash, resolved settings and configuration hash accompany each fit. The 0.02 rotation floor was
+tuned on historical hardware-fault simulations; those runs are **development evidence only**.
+The software version remains 0.6.0; Python packaging, FastAPI and Android now obtain it from
+`lll.__version__`. Candidate identity is tracked separately from software and eligibility policy.
+
+Research partitions are enforced in both harnesses:
+
+| Partition | Seed range | Purpose |
+|---|---|---|
+| development | 0–999999 | debugging, selection and tuning; includes all historical runs |
+| calibration | 1000000–1999999 | estimate thresholds after selecting a candidate |
+| validation | 2000000–2999999 | evaluate the frozen rule once |
+
+Seeds independently determine geometry, nuisance draws, sensor noise, bootstrap and pooling.
+Paired candidate comparisons share the complete simulation design. Replays are explicitly marked
+and cannot serve as new calibration or validation evidence. Reserve a new, unused validation seed
+cohort after any retuning; the harness enforces partition boundaries, while the campaign operator
+must maintain the history of consumed validation cohorts.
+
+The research CLI defaults to one seeded route, one sampling/block setting and 20 replicates.
+Seeded routes vary latitude (±70°), longitude, 2–6 bearings, 10–45-minute legs, index-turn timing
+and GNSS gaps. Weak geometries remain in the results with their exclusion reasons. Fixed routes
+and named equator/high-latitude/dateline fixtures remain available. Interaction scenarios are
+`crab_long_drift`, `correlated_thermal`, `forward_crab`, and `turn_dropout_drift`; `fuzz` draws
+bounded nuisance parameters. Forward-axis error is injected into the estimated axis after
+simulation, explicitly recorded in `analysis_options`; it is an estimator stress test.
+
+Each flight record stores all simulator defaults and overrides, a serializable crab trajectory,
+all random streams, inference options, runtime, raw model statistics, gate exclusions and failures.
+`--replay FILE` reconstructs those inputs. Summaries separate truths, scenarios, candidates,
+partitions, geometry modes and sensor variants, with coverage, bias, variance and rejection rates.
+
+Example development comparisons (estimate runtime from a small pilot before expanding):
+
+```sh
+~/venv/bin/python analysis/tests/research.py --scenario drift+1 --truth all --seed 10000 --geometry seeded --same-side-up-turns --crab-model constant dynamic --noise-model axis_segment --bootstrap-refit nonlinear --sampling segment --blocks 15 --bootstrap 2 -o /tmp/candidate-pilot.json
+~/venv/bin/python analysis/tests/research.py --scenario smooth --research-candidate --crab-model dynamic --crab-rate-sigma-dph 0.5 1 2 --forward-uncertainty --bootstrap 2 -o /tmp/prior-pilot.json
+~/venv/bin/python analysis/tests/research.py --scenario pool --truth all --units 3 5 10 --bootstrap 20 -o /tmp/unit-pilot.json
+```
+
+Axis/segment variances shrink toward global variance by 20 equivalent bins. Candidate weights
+come from a preliminary free nonlinear fit and remain fixed for all model comparisons and
+prior checks. Bootstrap resampling operates on centered, standardized residual vectors and restores
+destination scales, preserving dependence across axes. `segment` sampling never crosses a segment
+or time break; `moving` remains available for comparison. Both local and nonlinear refits use
+total-parameter priors. Nonlinear mode refits free and fixed models for every null replicate;
+failed replicates, requested counts and effective counts are recorded explicitly.
+
+Forward-axis uncertainty uses the horizontal roll/bank regression with a 10-lag Newey-West score
+covariance, then normalization/projected-angle propagation. The single measured angular parameter
+is shared in the reference mount frame and transformed through mount epochs. This does not estimate
+uncertainty in the gravity axis or validate the regression against all systematic errors. A missing
+or degenerate angle uncertainty makes the candidate unavailable instead of silently using zero.
+
+Calibration/validation require an exact frozen manifest, including source hashes. Use
+`--write-manifest PATH` with the complete proposed command configuration; it writes only the
+manifest. Repeat the command with `--manifest PATH` after reviewing and approving campaign cost.
+`--seeds` preregisters the attempt count and `--tail-min-accepted` the accepted-sample minimum.
+Source or configuration changes invalidate the manifest.
+Campaign provenance hashes the scientific source directly; optional `LLL_GIT_COMMIT` supplies a
+build's commit identifier without analysis invoking git.
+
+After a calibration campaign with sufficient accepted flights per truth and stratum:
+
+```sh
+~/venv/bin/python -m lll.research_calibration calibrate calibration.json --min-accepted 2000 -o decision.json
+```
+
+This selects each truth's 0.9973 quantile of raw free-versus-fixed objective differences using
+the higher order statistic. It does not add another analytic correction. Freeze the validation
+manifest with `--partition validation --decision-policy decision.json` and the chosen sample counts,
+then run it after cost approval. The empirical rule is applied inside analysis, including the WMM
+sensitivity gate, so validation measures acceptance under the actual rule. Calibration acceptance
+uses the original diagnostic rule; only independent validation establishes the new gated rule's rate.
+
+```sh
+~/venv/bin/python -m lll.research_calibration assess validation.json --policy decision.json -o assessment.json
+```
+
+Assessment requires every claimed truth/stratum's simultaneous one-sided 95% upper bound to be
+at most 0.0027 (Bonferroni over the claimed family), plus its preregistered accepted-sample minimum.
+Insufficient acceptance is inconclusive. Threshold files remain experimental even after assessment;
+production promotion is a separate reviewed policy revision. No tail campaign is run automatically.
+
+Pooled empirical diagnostics resample whole IMUs, retain all member flights, null-center coefficient
+vectors, assign repeated draws distinct unit identities, and recompute the hierarchical covariance
+and studentized statistic. They report `(exceedances+1)/(replicates+1)`, Monte Carlo intervals and
+failures alongside the approximate F diagnostic. Fewer than three units or singular covariance
+makes this unavailable. Many replicates cannot compensate for very few physical units. Neither
+method establishes pooled 3σ validity without independent campaigns across unit counts and effects.
+
+The legacy `coverage.py N` and `coverage.py --null N` commands are explicitly development-only.
+For partitioned coverage, use `coverage.py --partition ... --manifest ...` with research options;
+it delegates to the same enforced campaign implementation.
+
 ## Regression checks
+
+### Candidate integration pilot, 2026-10-05
+
+[Paired flight records](research-candidates-pilot-060.json) contain 18 analyses: three truths,
+three scenarios (`drift+0`, `drift+1`, `crab_long_drift`) and two methods, using development seed
+10000, seeded geometry, same-side-up turns, SPP, 15-bin blocks and two bootstrap replicates.
+The legacy method uses constant crab/global noise/moving blocks/local refits. The candidate uses
+dynamic crab/axis-by-segment noise/segment blocks/nonlinear refits with forward-angle uncertainty.
+These are paired runs of nine simulated conditions, not 18 independent flights or a comparison
+isolating any single inference change. Total elapsed time was 257.4 seconds.
+
+| Scenario | Accepted, each method | True-model rejections, each method | Rejections among accepted, each method |
+|---|---:|---:|---:|
+| zero crab drift | 2/3 | 0/3 | 0/2 |
+| +1°/h crab drift | 2/3 | 0/3 | 0/2 |
+| +1°/h crab + long sensor drift | 1/3 | 3/3 | 1/1 |
+
+All analyses converged, with no recorded bootstrap failures. The accepted interaction failure is
+the **still-globe truth under both methods on the same fixture**. Its reported true-model p-values
+were 0.000643 (legacy) and 0.0000291 (candidate), both below the nominal 0.0027 threshold. Both fits
+excluded the rotating-globe and flat-disc interaction cases for lack of curvature identification;
+the legacy flat-disc case was also prior-dominated. This pilot does not support promoting the
+candidate or asserting that the gates prevent false rejection under combined faults.
+
+The two-replicate bootstrap only exercises integration: its variance and mean-inflation estimates
+are unstable, and its empirical 3×3 covariance is rank deficient. Do not interpret the stored
+bootstrap covariance coverage diagnostic as joint 95% coverage. These pilot p-values are outputs
+under the explicitly reduced replicate count, not calibrated significance or results for the
+production default of 300 replicates. A separately approved follow-up should first repeat this
+preserved development fixture with adequate bootstrap counts, then vary seeds, geometry and priors.
+Do not tune on the final validation partition.
+
+[Pooled records](unit-bootstrap-pilot-060.json) cover all three truths at 3, 5 and 10 units, with
+20 whole-unit bootstrap replicates per tested null. All nine cases completed in 2.95 seconds,
+with no bootstrap failures and no analytic or empirical true-model rejections. The empirical
+p-value cannot fall below 1/21 at this replicate count, so the absence of empirical 3σ rejections
+is guaranteed by its resolution and supplies no tail evidence.
+
+The implementation's focused suite passed 62 tests before these pilots. No holdout campaign,
+threshold calibration, hardware validation or production-method promotion was performed.
 
 Verified on 2026-10-04 with the pinned Python 3.14 dependencies and JDK 21:
 130 analysis tests, 12 server tests and 14 Android unit tests passed; `lintDebug` and
@@ -39,8 +184,9 @@ dateline crossings, turn dropouts, thermal ramps, long-period bias and combined 
 Repeat with `--variant ble` as well as `spp`. `--sampling moving segment --blocks 5 15 30` compares
 current moving blocks with experimental blocks restricted to contiguous segments. Exports include
 empirical and current joint covariance, their eigenvalues and joint 95% coverage. Empirical
-bootstrap covariance never replaces the production matrix automatically. Bootstrap refits still
-use the local linearization, with a prior on the total crab angle.
+bootstrap covariance never replaces the production matrix automatically. Production bootstrap
+refits use the local linearization, with a prior on the total crab angle; the nonlinear research
+candidate above refits the complete geometry.
 
 Results stay separate by truth, scenario, sampling and block length. Each group reports attempted
 runs, analysis failures, eligibility exclusions, accepted runs, unconditional false rejection among

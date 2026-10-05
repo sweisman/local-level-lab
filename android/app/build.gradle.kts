@@ -13,7 +13,8 @@ android {
         minSdk = 26
         targetSdk = 35
         versionCode = 6
-        versionName = "0.6.0"
+        versionName = Regex("__version__ = \"([^\"]+)\"")
+            .find(rootProject.file("../analysis/lll/__init__.py").readText())!!.groupValues[1]
         val serverUrl = (project.findProperty("lll.serverUrl") as String?) ?: ""
         buildConfigField("String", "DEFAULT_SERVER_URL", "\"$serverUrl\"")
     }

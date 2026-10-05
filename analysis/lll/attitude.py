@@ -112,7 +112,26 @@ def estimate_forward_axis(gyro_t_s, gyro_b, gnss_t_s, speed, bearing_deg, up_b):
     if gain < 0.1 or corr < 0.05:   # only the direction is used; GNSS smoothing lowers the gain
         q["reason"] = "roll/bank correlation too weak"
         return None, q
-    return f / gain, q
+    from .inference_policy import INFERENCE_POLICY
+    # Newey-West covariance of the regression score, with no covariance across GNSS gaps.
+    score = np.zeros_like(g_h)
+    score[ok] = br[:, None] * resid
+    meat = score.T @ score
+    lags = min(INFERENCE_POLICY["forward_hac_lags"], len(score)-1)
+    for lag in range(1, lags+1):
+        continuous = (gnss_t_s[lag:] - gnss_t_s[:-lag]) <= 1.5*lag
+        cross = score[lag:][continuous].T @ score[:-lag][continuous]
+        meat += (1-lag/(lags+1)) * (cross+cross.T)
+    covariance = meat / energy**2
+    axis = f/gain
+    jac = (np.eye(3)-np.outer(axis, axis))/gain
+    axis_cov = jac @ covariance @ jac.T
+    tangent = np.cross(u, axis)
+    angle_variance = float(tangent @ axis_cov @ tangent)
+    q.update(regression_cov=covariance.tolist(), axis_cov=axis_cov.tolist(),
+             angle_sigma_rad=float(np.sqrt(max(0., angle_variance))),
+             uncertainty_method="horizontal regression, Newey-West", hac_lags=lags)
+    return axis, q
 
 
 TURN_RATE_MIN = np.radians(10.0)   # rad/s: a hand turning the IMU, far above any aircraft rate

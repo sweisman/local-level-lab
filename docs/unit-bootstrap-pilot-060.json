@@ -1,0 +1,6289 @@
+{
+  "analysis_version": "0.6.0",
+  "policy_version": "pilot-2",
+  "environment": {
+    "python": "3.14.7",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "git_commit": null
+  },
+  "elapsed_s": 2.9487013940233737,
+  "config": {
+    "scenario": "pool",
+    "truth": "all",
+    "seeds": 1,
+    "seed": 10000,
+    "partition": "development",
+    "geometry": "seeded",
+    "bootstrap": 20,
+    "sampling": [
+      "moving"
+    ],
+    "blocks": [
+      15
+    ],
+    "crab_model": [
+      "constant"
+    ],
+    "noise_model": [
+      "global"
+    ],
+    "bootstrap_refit": [
+      "linearized"
+    ],
+    "crab_rate_sigma_dph": [
+      1.0
+    ],
+    "forward_uncertainty": false,
+    "research_candidate": false,
+    "tail_min_accepted": 2000,
+    "units": [
+      3,
+      5,
+      10
+    ],
+    "variant": "spp",
+    "same_side_up_turns": false,
+    "decision_policy_hash": null
+  },
+  "manifest_hash": null,
+  "manifest": null,
+  "partition": "development",
+  "implementation_hash": "6215e7ed328f17c59bb4c469879f9d5700c3ce876ef3670787fd919f60122faf",
+  "simulation_assumption": "approved provenance and usable bench tier; remaining gates applied",
+  "summary": [
+    {
+      "truth": "sphere_rotating",
+      "scenario": "pool-3-units",
+      "sampling": null,
+      "block": null,
+      "candidate_id": "1fa6d449640a8c34fee6c228a63ae5555651cb71e327cf1e84b93e5f4800d3d0",
+      "partition": "development",
+      "geometry": null,
+      "variant": null,
+      "bias": null,
+      "variance": null,
+      "joint_coverage95": {
+        "count": 0,
+        "n": 0,
+        "rate": null,
+        "ci95": null
+      },
+      "attempted": 1,
+      "analysis_failures": 0,
+      "eligibility_exclusions": 0,
+      "accepted": 1,
+      "exclusion_reasons": {},
+      "unconditional": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      },
+      "conditional_on_acceptance": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      },
+      "empirical_conditional_on_acceptance": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      },
+      "complete_gated_rule": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      }
+    },
+    {
+      "truth": "sphere_rotating",
+      "scenario": "pool-5-units",
+      "sampling": null,
+      "block": null,
+      "candidate_id": "1fa6d449640a8c34fee6c228a63ae5555651cb71e327cf1e84b93e5f4800d3d0",
+      "partition": "development",
+      "geometry": null,
+      "variant": null,
+      "bias": null,
+      "variance": null,
+      "joint_coverage95": {
+        "count": 0,
+        "n": 0,
+        "rate": null,
+        "ci95": null
+      },
+      "attempted": 1,
+      "analysis_failures": 0,
+      "eligibility_exclusions": 0,
+      "accepted": 1,
+      "exclusion_reasons": {},
+      "unconditional": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      },
+      "conditional_on_acceptance": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      },
+      "empirical_conditional_on_acceptance": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      },
+      "complete_gated_rule": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      }
+    },
+    {
+      "truth": "sphere_rotating",
+      "scenario": "pool-10-units",
+      "sampling": null,
+      "block": null,
+      "candidate_id": "1fa6d449640a8c34fee6c228a63ae5555651cb71e327cf1e84b93e5f4800d3d0",
+      "partition": "development",
+      "geometry": null,
+      "variant": null,
+      "bias": null,
+      "variance": null,
+      "joint_coverage95": {
+        "count": 0,
+        "n": 0,
+        "rate": null,
+        "ci95": null
+      },
+      "attempted": 1,
+      "analysis_failures": 0,
+      "eligibility_exclusions": 0,
+      "accepted": 1,
+      "exclusion_reasons": {},
+      "unconditional": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      },
+      "conditional_on_acceptance": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      },
+      "empirical_conditional_on_acceptance": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      },
+      "complete_gated_rule": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      }
+    },
+    {
+      "truth": "sphere_still",
+      "scenario": "pool-3-units",
+      "sampling": null,
+      "block": null,
+      "candidate_id": "1fa6d449640a8c34fee6c228a63ae5555651cb71e327cf1e84b93e5f4800d3d0",
+      "partition": "development",
+      "geometry": null,
+      "variant": null,
+      "bias": null,
+      "variance": null,
+      "joint_coverage95": {
+        "count": 0,
+        "n": 0,
+        "rate": null,
+        "ci95": null
+      },
+      "attempted": 1,
+      "analysis_failures": 0,
+      "eligibility_exclusions": 0,
+      "accepted": 1,
+      "exclusion_reasons": {},
+      "unconditional": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      },
+      "conditional_on_acceptance": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      },
+      "empirical_conditional_on_acceptance": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      },
+      "complete_gated_rule": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      }
+    },
+    {
+      "truth": "sphere_still",
+      "scenario": "pool-5-units",
+      "sampling": null,
+      "block": null,
+      "candidate_id": "1fa6d449640a8c34fee6c228a63ae5555651cb71e327cf1e84b93e5f4800d3d0",
+      "partition": "development",
+      "geometry": null,
+      "variant": null,
+      "bias": null,
+      "variance": null,
+      "joint_coverage95": {
+        "count": 0,
+        "n": 0,
+        "rate": null,
+        "ci95": null
+      },
+      "attempted": 1,
+      "analysis_failures": 0,
+      "eligibility_exclusions": 0,
+      "accepted": 1,
+      "exclusion_reasons": {},
+      "unconditional": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      },
+      "conditional_on_acceptance": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      },
+      "empirical_conditional_on_acceptance": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      },
+      "complete_gated_rule": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      }
+    },
+    {
+      "truth": "sphere_still",
+      "scenario": "pool-10-units",
+      "sampling": null,
+      "block": null,
+      "candidate_id": "1fa6d449640a8c34fee6c228a63ae5555651cb71e327cf1e84b93e5f4800d3d0",
+      "partition": "development",
+      "geometry": null,
+      "variant": null,
+      "bias": null,
+      "variance": null,
+      "joint_coverage95": {
+        "count": 0,
+        "n": 0,
+        "rate": null,
+        "ci95": null
+      },
+      "attempted": 1,
+      "analysis_failures": 0,
+      "eligibility_exclusions": 0,
+      "accepted": 1,
+      "exclusion_reasons": {},
+      "unconditional": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      },
+      "conditional_on_acceptance": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      },
+      "empirical_conditional_on_acceptance": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      },
+      "complete_gated_rule": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      }
+    },
+    {
+      "truth": "flat_still",
+      "scenario": "pool-3-units",
+      "sampling": null,
+      "block": null,
+      "candidate_id": "1fa6d449640a8c34fee6c228a63ae5555651cb71e327cf1e84b93e5f4800d3d0",
+      "partition": "development",
+      "geometry": null,
+      "variant": null,
+      "bias": null,
+      "variance": null,
+      "joint_coverage95": {
+        "count": 0,
+        "n": 0,
+        "rate": null,
+        "ci95": null
+      },
+      "attempted": 1,
+      "analysis_failures": 0,
+      "eligibility_exclusions": 0,
+      "accepted": 1,
+      "exclusion_reasons": {},
+      "unconditional": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      },
+      "conditional_on_acceptance": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      },
+      "empirical_conditional_on_acceptance": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      },
+      "complete_gated_rule": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      }
+    },
+    {
+      "truth": "flat_still",
+      "scenario": "pool-5-units",
+      "sampling": null,
+      "block": null,
+      "candidate_id": "1fa6d449640a8c34fee6c228a63ae5555651cb71e327cf1e84b93e5f4800d3d0",
+      "partition": "development",
+      "geometry": null,
+      "variant": null,
+      "bias": null,
+      "variance": null,
+      "joint_coverage95": {
+        "count": 0,
+        "n": 0,
+        "rate": null,
+        "ci95": null
+      },
+      "attempted": 1,
+      "analysis_failures": 0,
+      "eligibility_exclusions": 0,
+      "accepted": 1,
+      "exclusion_reasons": {},
+      "unconditional": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      },
+      "conditional_on_acceptance": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      },
+      "empirical_conditional_on_acceptance": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      },
+      "complete_gated_rule": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      }
+    },
+    {
+      "truth": "flat_still",
+      "scenario": "pool-10-units",
+      "sampling": null,
+      "block": null,
+      "candidate_id": "1fa6d449640a8c34fee6c228a63ae5555651cb71e327cf1e84b93e5f4800d3d0",
+      "partition": "development",
+      "geometry": null,
+      "variant": null,
+      "bias": null,
+      "variance": null,
+      "joint_coverage95": {
+        "count": 0,
+        "n": 0,
+        "rate": null,
+        "ci95": null
+      },
+      "attempted": 1,
+      "analysis_failures": 0,
+      "eligibility_exclusions": 0,
+      "accepted": 1,
+      "exclusion_reasons": {},
+      "unconditional": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      },
+      "conditional_on_acceptance": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      },
+      "empirical_conditional_on_acceptance": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      },
+      "complete_gated_rule": {
+        "count": 0,
+        "n": 1,
+        "rate": 0.0,
+        "ci95": [
+          0,
+          0.975
+        ]
+      }
+    }
+  ],
+  "records": [
+    {
+      "truth": "sphere_rotating",
+      "scenario": "pool-3-units",
+      "seed": 10000,
+      "partition": "development",
+      "candidate_id": "1fa6d449640a8c34fee6c228a63ae5555651cb71e327cf1e84b93e5f4800d3d0",
+      "rejected": false,
+      "exclusions": [],
+      "empirical": {
+        "status": "experimental",
+        "method": "null-centered whole-unit studentized bootstrap",
+        "n_units": 3,
+        "seed": 2915781126,
+        "tests": {
+          "sphere_rotating": {
+            "statistic": 1.1961861378085594,
+            "p": 0.5714285714285714,
+            "mc_ci95": [
+              0.31527813304054847,
+              0.7694221032240758
+            ],
+            "exceedances": 11,
+            "replicates": 20,
+            "requested": 20,
+            "null_statistics": [
+              4.216260347733626e-29,
+              1.6018326976189765,
+              0.5231097551402694,
+              1.0612484525502466,
+              6.122289573690394,
+              3.6229823317364187,
+              2.951911746907873e-29,
+              6.770213649247136,
+              0.5231097551402669,
+              4.216260347733626e-29,
+              3.608164977019301,
+              3.608164977019301,
+              1.9475791343670744e-29,
+              1.6018326976189765,
+              1.6018326976189736,
+              9.99331740966643,
+              6.122289573690394,
+              4.216260347733626e-29,
+              1.9475791343670744e-29,
+              9.99331740966643
+            ],
+            "failures": [],
+            "rejected_experimental": false
+          },
+          "sphere_still": {
+            "statistic": 206.46328313483815,
+            "p": 0.047619047619047616,
+            "mc_ci95": [
+              0.0,
+              0.1684334709830853
+            ],
+            "exceedances": 0,
+            "replicates": 20,
+            "requested": 20,
+            "null_statistics": [
+              3.411691121354038e-29,
+              1.6018326976189885,
+              0.5231097551402768,
+              1.061248452550276,
+              6.122289573690388,
+              3.622982331736427,
+              3.37349439580196e-29,
+              6.770213649247134,
+              0.5231097551402737,
+              3.411691121354038e-29,
+              3.608164977019307,
+              3.608164977019307,
+              5.641570425813715e-29,
+              1.6018326976189885,
+              1.6018326976189854,
+              9.993317409666433,
+              6.122289573690388,
+              3.411691121354038e-29,
+              5.641570425813715e-29,
+              9.993317409666433
+            ],
+            "failures": [],
+            "rejected_experimental": false
+          },
+          "flat_still": {
+            "statistic": 335.8703842792726,
+            "p": 0.047619047619047616,
+            "mc_ci95": [
+              0.0,
+              0.1684334709830853
+            ],
+            "exceedances": 0,
+            "replicates": 20,
+            "requested": 20,
+            "null_statistics": [
+              9.135888905806126e-29,
+              1.6018326976189925,
+              0.5231097551402765,
+              1.0612484525502701,
+              6.122289573690426,
+              3.6229823317364236,
+              1.3849567017680864e-28,
+              6.770213649247135,
+              0.5231097551402782,
+              9.135888905806126e-29,
+              3.6081649770192934,
+              3.6081649770192934,
+              1.1656844205101005e-28,
+              1.6018326976189925,
+              1.6018326976189925,
+              9.993317409666542,
+              6.122289573690426,
+              9.135888905806126e-29,
+              1.1656844205101005e-28,
+              9.993317409666542
+            ],
+            "failures": [],
+            "rejected_experimental": false
+          }
+        },
+        "analytic": {
+          "sphere_rotating": {
+            "chi2": 1.1961861378085594,
+            "dof": 3,
+            "df_denominator": 2,
+            "p": 0.7710450420742548,
+            "rejected": false,
+            "method": "approximate F diagnostic",
+            "validated_for_primary_claims": false,
+            "z_marginal": {
+              "k_rot_sphere": 0.337912354479401,
+              "k_curv": 0.9658517603453947,
+              "k_disc": -0.42952768962350946
+            }
+          },
+          "sphere_still": {
+            "chi2": 206.46328313483815,
+            "dof": 3,
+            "df_denominator": 2,
+            "p": 0.014356451150649588,
+            "rejected": false,
+            "method": "approximate F diagnostic",
+            "validated_for_primary_claims": false,
+            "z_marginal": {
+              "k_rot_sphere": 14.35940435566992,
+              "k_curv": 0.9658517603453947,
+              "k_disc": -0.42952768962350946
+            }
+          },
+          "flat_still": {
+            "chi2": 335.8703842792726,
+            "dof": 3,
+            "df_denominator": 2,
+            "p": 0.008865991745265327,
+            "rejected": false,
+            "method": "approximate F diagnostic",
+            "validated_for_primary_claims": false,
+            "z_marginal": {
+              "k_rot_sphere": 14.35940435566992,
+              "k_curv": 7.357720315336674,
+              "k_disc": -9.728718467679476
+            }
+          }
+        },
+        "validated_for_primary_claims": false
+      },
+      "rejected_empirical": false,
+      "items": [
+        [
+          "0",
+          {
+            "k_rot_sphere": 0.8945430870505812,
+            "k_curv": 1.093993163538705,
+            "k_disc": -0.06027084839963885
+          },
+          {
+            "k_rot_sphere": 0.11992058037364069,
+            "k_curv": 0.20448068820571383,
+            "k_disc": 0.20947155314333296
+          },
+          {},
+          [
+            [
+              0.014380945597150816,
+              0.0033063122897790784,
+              -0.0018946452530692246
+            ],
+            [
+              0.0033063122897790784,
+              0.04181235184908236,
+              -0.0005074463974672281
+            ],
+            [
+              -0.0018946452530692246,
+              -0.0005074463974672281,
+              0.04387833157628016
+            ]
+          ]
+        ],
+        [
+          "1",
+          {
+            "k_rot_sphere": 1.0328805919730955,
+            "k_curv": 1.053376148802016,
+            "k_disc": -0.311187527796643
+          },
+          {
+            "k_rot_sphere": 0.19471253881335965,
+            "k_curv": 0.22038409326756708,
+            "k_disc": 0.19987686939964797
+          },
+          {},
+          [
+            [
+              0.03791297277114409,
+              0.015511784067958256,
+              0.0012004605754011477
+            ],
+            [
+              0.015511784067958256,
+              0.048569148565367704,
+              -0.009516492123750248
+            ],
+            [
+              0.0012004605754011477,
+              -0.009516492123750248,
+              0.03995076292100393
+            ]
+          ]
+        ],
+        [
+          "1",
+          {
+            "k_rot_sphere": 1.0435309849940717,
+            "k_curv": 0.8243213926036542,
+            "k_disc": 0.07135665960672201
+          },
+          {
+            "k_rot_sphere": 0.11107811401807746,
+            "k_curv": 0.1770794312494868,
+            "k_disc": 0.19641321118013177
+          },
+          {},
+          [
+            [
+              0.012338347413813018,
+              -0.0020165071672674996,
+              -0.0006617428872629089
+            ],
+            [
+              -0.0020165071672674996,
+              0.031357124971641726,
+              0.005460437519474908
+            ],
+            [
+              -0.0006617428872629089,
+              0.005460437519474908,
+              0.03857814952609104
+            ]
+          ]
+        ],
+        [
+          "2",
+          {
+            "k_rot_sphere": 1.0943074289111134,
+            "k_curv": 1.4576534997098638,
+            "k_disc": 0.18430078112320225
+          },
+          {
+            "k_rot_sphere": 0.12732020771623467,
+            "k_curv": 0.1511102738631517,
+            "k_disc": 0.18087118390581908
+          },
+          {},
+          [
+            [
+              0.01621043529290514,
+              0.0008287907282384007,
+              0.0014166798881446352
+            ],
+            [
+              0.0008287907282384007,
+              0.022834314866996712,
+              -0.0008408448058336155
+            ],
+            [
+              0.0014166798881446352,
+              -0.0008408448058336155,
+              0.03271438516749263
+            ]
+          ]
+        ],
+        [
+          "2",
+          {
+            "k_rot_sphere": 0.979576703683454,
+            "k_curv": 1.5963698875703187,
+            "k_disc": 0.07657141506788415
+          },
+          {
+            "k_rot_sphere": 0.1583443806605042,
+            "k_curv": 0.16339697528433894,
+            "k_disc": 0.24808955275145445
+          },
+          {},
+          [
+            [
+              0.025072942886758657,
+              -0.0011972308768744716,
+              -0.01492074179778694
+            ],
+            [
+              -0.0011972308768744716,
+              0.02669857153207087,
+              -0.002952961950599956
+            ],
+            [
+              -0.01492074179778694,
+              -0.002952961950599956,
+              0.061548426184416694
+            ]
+          ]
+        ],
+        [
+          "2",
+          {
+            "k_rot_sphere": 1.421419668018918,
+            "k_curv": 1.14778315362701,
+            "k_disc": -0.33326907816626006
+          },
+          {
+            "k_rot_sphere": 0.14692129512479962,
+            "k_curv": 0.16350704150528478,
+            "k_disc": 0.20721193231353469
+          },
+          {},
+          [
+            [
+              0.02158586696114847,
+              -0.0038238810838438623,
+              -0.010133128191360294
+            ],
+            [
+              -0.0038238810838438623,
+              0.02673455262181092,
+              0.006330233018859878
+            ],
+            [
+              -0.010133128191360294,
+              0.006330233018859878,
+              0.04293678489310888
+            ]
+          ]
+        ]
+      ],
+      "known_unit_covariance": [
+        [
+          0.04,
+          0.025,
+          -0.01
+        ],
+        [
+          0.025,
+          0.09,
+          0.02
+        ],
+        [
+          -0.01,
+          0.02,
+          0.03
+        ]
+      ],
+      "marginal": {
+        "k_rot_sphere": {
+          "k": 1.0292007397965632,
+          "sd": 0.07131908643638589,
+          "df": 2,
+          "ci95": [
+            0.7223394778578096,
+            1.3360620017353169
+          ],
+          "tau2_units": 0.00035977648796755093,
+          "p_het_units": 0.30350468008253945,
+          "n_units": 3,
+          "n_sessions": 6,
+          "tau2_within_units": {
+            "0": 0.0,
+            "1": 0.0,
+            "2": 0.02867561568968651
+          }
+        },
+        "k_curv": {
+          "k": 1.1433810501635955,
+          "sd": 0.15644877415683406,
+          "df": 2,
+          "ci95": [
+            0.4702363049717363,
+            1.8165257953554548
+          ],
+          "tau2_units": 0.04893779070506475,
+          "p_het_units": 0.03523014166743531,
+          "n_units": 3,
+          "n_sessions": 6,
+          "tau2_within_units": {
+            "0": 0.0,
+            "1": 0.0,
+            "2": 0.024924499515148878
+          }
+        },
+        "k_disc": {
+          "k": -0.06177572915598553,
+          "sd": 0.10753623878324756,
+          "df": 2,
+          "ci95": [
+            -0.5244668205037156,
+            0.4009153621917445
+          ],
+          "tau2_units": 0.0,
+          "p_het_units": 0.9280994076872295,
+          "n_units": 3,
+          "n_sessions": 6,
+          "tau2_within_units": {
+            "0": 0.0,
+            "1": 0.033905571433506025,
+            "2": 0.03842877961939847
+          }
+        }
+      },
+      "joint": {
+        "terms": [
+          "k_rot_sphere",
+          "k_curv",
+          "k_disc"
+        ],
+        "k": {
+          "k_rot_sphere": 1.024099600417039,
+          "k_curv": 1.1511063239232573,
+          "k_disc": -0.04618979219537036
+        },
+        "cov": [
+          [
+            0.005086412090120682,
+            0.00038145594974387247,
+            -0.00034194368674169345
+          ],
+          [
+            0.0003814559497438745,
+            0.024476218935176076,
+            -6.546674672568016e-05
+          ],
+          [
+            -0.0003419436867416924,
+            -6.546674672568153e-05,
+            0.011564042651647637
+          ]
+        ],
+        "sessions_without_covariance": 0
+      }
+    },
+    {
+      "truth": "sphere_rotating",
+      "scenario": "pool-5-units",
+      "seed": 10000,
+      "partition": "development",
+      "candidate_id": "1fa6d449640a8c34fee6c228a63ae5555651cb71e327cf1e84b93e5f4800d3d0",
+      "rejected": false,
+      "exclusions": [],
+      "empirical": {
+        "status": "experimental",
+        "method": "null-centered whole-unit studentized bootstrap",
+        "n_units": 5,
+        "seed": 2915781126,
+        "tests": {
+          "sphere_rotating": {
+            "statistic": 2.242299986154984,
+            "p": 0.3333333333333333,
+            "mc_ci95": [
+              0.11893159040572769,
+              0.5427891822762891
+            ],
+            "exceedances": 6,
+            "replicates": 20,
+            "requested": 20,
+            "null_statistics": [
+              0.6772562647510973,
+              0.6597102156260694,
+              0.430025863866262,
+              8.576976342201764,
+              2.021870414530895,
+              2.4937192944286553,
+              0.6677713819363038,
+              6.280644641794617e-30,
+              1.9859971807514902,
+              0.8980374841140726,
+              1.2306671709437793,
+              6.121258634777906,
+              1.9473005188295425,
+              1.3984050051367636,
+              3.12461541413444,
+              11.33778451657172,
+              2.963878817483289,
+              0.9005203875414098,
+              1.3984050051367607,
+              1.985997180751495
+            ],
+            "failures": [],
+            "rejected_experimental": false
+          },
+          "sphere_still": {
+            "statistic": 378.12400734910665,
+            "p": 0.047619047619047616,
+            "mc_ci95": [
+              0.0,
+              0.1684334709830853
+            ],
+            "exceedances": 0,
+            "replicates": 20,
+            "requested": 20,
+            "null_statistics": [
+              0.6772562647510993,
+              0.6597102156260558,
+              0.4300258638662618,
+              8.576976342201773,
+              2.021870414530873,
+              2.4937192944286517,
+              0.6677713819363128,
+              9.819015817868958e-29,
+              1.985997180751457,
+              0.8980374841140625,
+              1.2306671709437766,
+              6.121258634777891,
+              1.9473005188295467,
+              1.3984050051367578,
+              3.124615414134416,
+              11.337784516571737,
+              2.9638788174833244,
+              0.9005203875414114,
+              1.3984050051367594,
+              1.9859971807514536
+            ],
+            "failures": [],
+            "rejected_experimental": false
+          },
+          "flat_still": {
+            "statistic": 645.9261667948465,
+            "p": 0.047619047619047616,
+            "mc_ci95": [
+              0.0,
+              0.1684334709830853
+            ],
+            "exceedances": 0,
+            "replicates": 20,
+            "requested": 20,
+            "null_statistics": [
+              0.6772562647511017,
+              0.6597102156260756,
+              0.4300258638662575,
+              8.576976342201803,
+              2.0218704145308655,
+              2.4937192944286224,
+              0.6677713819362913,
+              1.2161695799436703e-28,
+              1.985997180751458,
+              0.898037484114062,
+              1.2306671709437875,
+              6.121258634777824,
+              1.947300518829559,
+              1.3984050051367747,
+              3.1246154141344267,
+              11.337784516571775,
+              2.9638788174832893,
+              0.9005203875413978,
+              1.39840500513677,
+              1.9859971807514458
+            ],
+            "failures": [],
+            "rejected_experimental": false
+          }
+        },
+        "analytic": {
+          "sphere_rotating": {
+            "chi2": 2.242299986154984,
+            "dof": 3,
+            "df_denominator": 4,
+            "p": 0.5777768909626539,
+            "rejected": false,
+            "method": "approximate F diagnostic",
+            "validated_for_primary_claims": false,
+            "z_marginal": {
+              "k_rot_sphere": 0.7804491915775112,
+              "k_curv": 1.2525280872552151,
+              "k_disc": 0.24384233435485583
+            }
+          },
+          "sphere_still": {
+            "chi2": 378.12400734910665,
+            "dof": 3,
+            "df_denominator": 4,
+            "p": 0.00020473476310230634,
+            "rejected": true,
+            "method": "approximate F diagnostic",
+            "validated_for_primary_claims": false,
+            "z_marginal": {
+              "k_rot_sphere": 19.380192552598615,
+              "k_curv": 1.2525280872552151,
+              "k_disc": 0.24384233435485583
+            }
+          },
+          "flat_still": {
+            "chi2": 645.9261667948465,
+            "dof": 3,
+            "df_denominator": 4,
+            "p": 7.08761796068084e-05,
+            "rejected": true,
+            "method": "approximate F diagnostic",
+            "validated_for_primary_claims": false,
+            "z_marginal": {
+              "k_rot_sphere": 19.380192552598615,
+              "k_curv": 11.55677708411505,
+              "k_disc": -12.656843614865334
+            }
+          }
+        },
+        "validated_for_primary_claims": false
+      },
+      "rejected_empirical": false,
+      "items": [
+        [
+          "0",
+          {
+            "k_rot_sphere": 0.8945430870505812,
+            "k_curv": 1.093993163538705,
+            "k_disc": -0.06027084839963885
+          },
+          {
+            "k_rot_sphere": 0.11992058037364069,
+            "k_curv": 0.20448068820571383,
+            "k_disc": 0.20947155314333296
+          },
+          {},
+          [
+            [
+              0.014380945597150816,
+              0.0033063122897790784,
+              -0.0018946452530692246
+            ],
+            [
+              0.0033063122897790784,
+              0.04181235184908236,
+              -0.0005074463974672281
+            ],
+            [
+              -0.0018946452530692246,
+              -0.0005074463974672281,
+              0.04387833157628016
+            ]
+          ]
+        ],
+        [
+          "1",
+          {
+            "k_rot_sphere": 1.0328805919730955,
+            "k_curv": 1.053376148802016,
+            "k_disc": -0.311187527796643
+          },
+          {
+            "k_rot_sphere": 0.19471253881335965,
+            "k_curv": 0.22038409326756708,
+            "k_disc": 0.19987686939964797
+          },
+          {},
+          [
+            [
+              0.03791297277114409,
+              0.015511784067958256,
+              0.0012004605754011477
+            ],
+            [
+              0.015511784067958256,
+              0.048569148565367704,
+              -0.009516492123750248
+            ],
+            [
+              0.0012004605754011477,
+              -0.009516492123750248,
+              0.03995076292100393
+            ]
+          ]
+        ],
+        [
+          "1",
+          {
+            "k_rot_sphere": 1.0435309849940717,
+            "k_curv": 0.8243213926036542,
+            "k_disc": 0.07135665960672201
+          },
+          {
+            "k_rot_sphere": 0.11107811401807746,
+            "k_curv": 0.1770794312494868,
+            "k_disc": 0.19641321118013177
+          },
+          {},
+          [
+            [
+              0.012338347413813018,
+              -0.0020165071672674996,
+              -0.0006617428872629089
+            ],
+            [
+              -0.0020165071672674996,
+              0.031357124971641726,
+              0.005460437519474908
+            ],
+            [
+              -0.0006617428872629089,
+              0.005460437519474908,
+              0.03857814952609104
+            ]
+          ]
+        ],
+        [
+          "2",
+          {
+            "k_rot_sphere": 1.0943074289111134,
+            "k_curv": 1.4576534997098638,
+            "k_disc": 0.18430078112320225
+          },
+          {
+            "k_rot_sphere": 0.12732020771623467,
+            "k_curv": 0.1511102738631517,
+            "k_disc": 0.18087118390581908
+          },
+          {},
+          [
+            [
+              0.01621043529290514,
+              0.0008287907282384007,
+              0.0014166798881446352
+            ],
+            [
+              0.0008287907282384007,
+              0.022834314866996712,
+              -0.0008408448058336155
+            ],
+            [
+              0.0014166798881446352,
+              -0.0008408448058336155,
+              0.03271438516749263
+            ]
+          ]
+        ],
+        [
+          "2",
+          {
+            "k_rot_sphere": 0.979576703683454,
+            "k_curv": 1.5963698875703187,
+            "k_disc": 0.07657141506788415
+          },
+          {
+            "k_rot_sphere": 0.1583443806605042,
+            "k_curv": 0.16339697528433894,
+            "k_disc": 0.24808955275145445
+          },
+          {},
+          [
+            [
+              0.025072942886758657,
+              -0.0011972308768744716,
+              -0.01492074179778694
+            ],
+            [
+              -0.0011972308768744716,
+              0.02669857153207087,
+              -0.002952961950599956
+            ],
+            [
+              -0.01492074179778694,
+              -0.002952961950599956,
+              0.061548426184416694
+            ]
+          ]
+        ],
+        [
+          "2",
+          {
+            "k_rot_sphere": 1.421419668018918,
+            "k_curv": 1.14778315362701,
+            "k_disc": -0.33326907816626006
+          },
+          {
+            "k_rot_sphere": 0.14692129512479962,
+            "k_curv": 0.16350704150528478,
+            "k_disc": 0.20721193231353469
+          },
+          {},
+          [
+            [
+              0.02158586696114847,
+              -0.0038238810838438623,
+              -0.010133128191360294
+            ],
+            [
+              -0.0038238810838438623,
+              0.02673455262181092,
+              0.006330233018859878
+            ],
+            [
+              -0.010133128191360294,
+              0.006330233018859878,
+              0.04293678489310888
+            ]
+          ]
+        ],
+        [
+          "3",
+          {
+            "k_rot_sphere": 1.0440736936211976,
+            "k_curv": 0.9415181584297088,
+            "k_disc": 0.09984970926825053
+          },
+          {
+            "k_rot_sphere": 0.14798968639842203,
+            "k_curv": 0.19819476208884246,
+            "k_disc": 0.18257854555338238
+          },
+          {},
+          [
+            [
+              0.021900947280303295,
+              -0.00833507058562831,
+              -0.0027767911157880786
+            ],
+            [
+              -0.00833507058562831,
+              0.039281163719452866,
+              0.0032754838545356797
+            ],
+            [
+              -0.0027767911157880786,
+              0.0032754838545356797,
+              0.033334925296388526
+            ]
+          ]
+        ],
+        [
+          "4",
+          {
+            "k_rot_sphere": 1.009491872619456,
+            "k_curv": 1.140795349244205,
+            "k_disc": 0.21036018828748748
+          },
+          {
+            "k_rot_sphere": 0.11320386089725679,
+            "k_curv": 0.1458768113386867,
+            "k_disc": 0.22653448262072662
+          },
+          {},
+          [
+            [
+              0.012815114122045465,
+              -0.0012685517867501088,
+              -0.005645879606416841
+            ],
+            [
+              -0.0012685517867501088,
+              0.0212800440863428,
+              0.0001988587620936368
+            ],
+            [
+              -0.005645879606416841,
+              0.0001988587620936368,
+              0.05131787181624029
+            ]
+          ]
+        ],
+        [
+          "4",
+          {
+            "k_rot_sphere": 1.260175245650068,
+            "k_curv": 1.2956914831194495,
+            "k_disc": 0.01632618732120792
+          },
+          {
+            "k_rot_sphere": 0.1381954232944381,
+            "k_curv": 0.23676299611124674,
+            "k_disc": 0.18116717129222698
+          },
+          {},
+          [
+            [
+              0.019097975019528923,
+              0.01435963945361244,
+              0.0024430394753623985
+            ],
+            [
+              0.01435963945361244,
+              0.05605671632757424,
+              -0.0015205499250493832
+            ],
+            [
+              0.0024430394753623985,
+              -0.0015205499250493832,
+              0.03282154395402711
+            ]
+          ]
+        ]
+      ],
+      "known_unit_covariance": [
+        [
+          0.04,
+          0.025,
+          -0.01
+        ],
+        [
+          0.025,
+          0.09,
+          0.02
+        ],
+        [
+          -0.01,
+          0.02,
+          0.03
+        ]
+      ],
+      "marginal": {
+        "k_rot_sphere": {
+          "k": 1.0484276548777982,
+          "sd": 0.0537641826873627,
+          "df": 4,
+          "ci95": [
+            0.89915435302051,
+            1.1977009567350863
+          ],
+          "tau2_units": 0.0,
+          "p_het_units": 0.5876588716483166,
+          "n_units": 5,
+          "n_sessions": 9,
+          "tau2_within_units": {
+            "0": 0.0,
+            "1": 0.0,
+            "2": 0.02867561568968651,
+            "3": 0.0,
+            "4": 0.0154645321854903
+          }
+        },
+        "k_curv": {
+          "k": 1.124852065131654,
+          "sd": 0.09704734428532781,
+          "df": 4,
+          "ci95": [
+            0.8554054411182106,
+            1.3942986891450975
+          ],
+          "tau2_units": 0.023005121381716072,
+          "p_het_units": 0.0969598953461071,
+          "n_units": 5,
+          "n_sessions": 9,
+          "tau2_within_units": {
+            "0": 0.0,
+            "1": 0.0,
+            "2": 0.024924499515148878,
+            "3": 0.0,
+            "4": 0.0
+          }
+        },
+        "k_disc": {
+          "k": 0.013518654128307534,
+          "sd": 0.07751525802086881,
+          "df": 4,
+          "ci95": [
+            -0.20169820458187768,
+            0.22873551283849272
+          ],
+          "tau2_units": 0.0,
+          "p_het_units": 0.8828709096061281,
+          "n_units": 5,
+          "n_sessions": 9,
+          "tau2_within_units": {
+            "0": 0.0,
+            "1": 0.033905571433506025,
+            "2": 0.03842877961939847,
+            "3": 0.0,
+            "4": 0.0
+          }
+        }
+      },
+      "joint": {
+        "terms": [
+          "k_rot_sphere",
+          "k_curv",
+          "k_disc"
+        ],
+        "k": {
+          "k_rot_sphere": 1.0419602129141778,
+          "k_curv": 1.1215545245109,
+          "k_disc": 0.018901501463927613
+        },
+        "cov": [
+          [
+            0.0028905873400401107,
+            3.3039502940530165e-05,
+            -0.0001887854136494989
+          ],
+          [
+            3.3039502940530456e-05,
+            0.009418187032834948,
+            1.3490295262697287e-05
+          ],
+          [
+            -0.00018878541364949876,
+            1.3490295262693879e-05,
+            0.006008615226041867
+          ]
+        ],
+        "sessions_without_covariance": 0
+      }
+    },
+    {
+      "truth": "sphere_rotating",
+      "scenario": "pool-10-units",
+      "seed": 10000,
+      "partition": "development",
+      "candidate_id": "1fa6d449640a8c34fee6c228a63ae5555651cb71e327cf1e84b93e5f4800d3d0",
+      "rejected": false,
+      "exclusions": [],
+      "empirical": {
+        "status": "experimental",
+        "method": "null-centered whole-unit studentized bootstrap",
+        "n_units": 10,
+        "seed": 2915781126,
+        "tests": {
+          "sphere_rotating": {
+            "statistic": 1.4867484525307197,
+            "p": 0.7142857142857143,
+            "mc_ci95": [
+              0.45721081772371086,
+              0.8810684095942722
+            ],
+            "exceedances": 14,
+            "replicates": 20,
+            "requested": 20,
+            "null_statistics": [
+              2.2138921697691556,
+              1.95080222285052,
+              2.462589892286939,
+              0.34558886165642644,
+              4.588876931879723,
+              1.1023014099989112,
+              1.026815486793554,
+              5.092014128926108,
+              0.6461620797671067,
+              3.1853364507597064,
+              0.7336473248406457,
+              1.8406232586548024,
+              0.6368559009045759,
+              5.7607484795077815,
+              2.2139394542628827,
+              6.793000770144294,
+              3.746340618745121,
+              1.882874004157022,
+              9.670005434962242,
+              2.4672950021474525
+            ],
+            "failures": [],
+            "rejected_experimental": false
+          },
+          "sphere_still": {
+            "statistic": 714.2439057941415,
+            "p": 0.047619047619047616,
+            "mc_ci95": [
+              0.0,
+              0.1684334709830853
+            ],
+            "exceedances": 0,
+            "replicates": 20,
+            "requested": 20,
+            "null_statistics": [
+              2.21389216976917,
+              1.9508022228505213,
+              2.462589892286892,
+              0.3455888616564423,
+              4.588876931879738,
+              1.1023014099989061,
+              1.026815486793557,
+              5.09201412892609,
+              0.6461620797670758,
+              3.1853364507596797,
+              0.7336473248406492,
+              1.8406232586548072,
+              0.6368559009045854,
+              5.760748479507801,
+              2.2139394542628636,
+              6.793000770144297,
+              3.7463406187451365,
+              1.8828740041570289,
+              9.670005434962308,
+              2.467295002147489
+            ],
+            "failures": [],
+            "rejected_experimental": false
+          },
+          "flat_still": {
+            "statistic": 966.9505506861274,
+            "p": 0.047619047619047616,
+            "mc_ci95": [
+              0.0,
+              0.1684334709830853
+            ],
+            "exceedances": 0,
+            "replicates": 20,
+            "requested": 20,
+            "null_statistics": [
+              2.213892169769174,
+              1.9508022228505277,
+              2.4625898922868807,
+              0.34558886165645103,
+              4.588876931879792,
+              1.1023014099989206,
+              1.026815486793554,
+              5.092014128926077,
+              0.6461620797670841,
+              3.1853364507596775,
+              0.7336473248406479,
+              1.8406232586548013,
+              0.6368559009045887,
+              5.7607484795077735,
+              2.2139394542628827,
+              6.793000770144268,
+              3.7463406187451342,
+              1.8828740041570333,
+              9.670005434962304,
+              2.4672950021474342
+            ],
+            "failures": [],
+            "rejected_experimental": false
+          }
+        },
+        "analytic": {
+          "sphere_rotating": {
+            "chi2": 1.4867484525307197,
+            "dof": 3,
+            "df_denominator": 9,
+            "p": 0.6942955342216051,
+            "rejected": false,
+            "method": "approximate F diagnostic",
+            "validated_for_primary_claims": false,
+            "z_marginal": {
+              "k_rot_sphere": 0.40987852584762136,
+              "k_curv": 0.699770466822503,
+              "k_disc": 0.897356422473502
+            }
+          },
+          "sphere_still": {
+            "chi2": 714.2439057941415,
+            "dof": 3,
+            "df_denominator": 9,
+            "p": 6.884413018561865e-09,
+            "rejected": true,
+            "method": "approximate F diagnostic",
+            "validated_for_primary_claims": false,
+            "z_marginal": {
+              "k_rot_sphere": 26.681467641927394,
+              "k_curv": 0.699770466822503,
+              "k_disc": 0.897356422473502
+            }
+          },
+          "flat_still": {
+            "chi2": 966.9505506861274,
+            "dof": 3,
+            "df_denominator": 9,
+            "p": 1.7897853772839206e-09,
+            "rejected": true,
+            "method": "approximate F diagnostic",
+            "validated_for_primary_claims": false,
+            "z_marginal": {
+              "k_rot_sphere": 26.681467641927394,
+              "k_curv": 12.618711596193275,
+              "k_disc": -11.371249126754051
+            }
+          }
+        },
+        "validated_for_primary_claims": false
+      },
+      "rejected_empirical": false,
+      "items": [
+        [
+          "0",
+          {
+            "k_rot_sphere": 0.8945430870505812,
+            "k_curv": 1.093993163538705,
+            "k_disc": -0.06027084839963885
+          },
+          {
+            "k_rot_sphere": 0.11992058037364069,
+            "k_curv": 0.20448068820571383,
+            "k_disc": 0.20947155314333296
+          },
+          {},
+          [
+            [
+              0.014380945597150816,
+              0.0033063122897790784,
+              -0.0018946452530692246
+            ],
+            [
+              0.0033063122897790784,
+              0.04181235184908236,
+              -0.0005074463974672281
+            ],
+            [
+              -0.0018946452530692246,
+              -0.0005074463974672281,
+              0.04387833157628016
+            ]
+          ]
+        ],
+        [
+          "1",
+          {
+            "k_rot_sphere": 1.0328805919730955,
+            "k_curv": 1.053376148802016,
+            "k_disc": -0.311187527796643
+          },
+          {
+            "k_rot_sphere": 0.19471253881335965,
+            "k_curv": 0.22038409326756708,
+            "k_disc": 0.19987686939964797
+          },
+          {},
+          [
+            [
+              0.03791297277114409,
+              0.015511784067958256,
+              0.0012004605754011477
+            ],
+            [
+              0.015511784067958256,
+              0.048569148565367704,
+              -0.009516492123750248
+            ],
+            [
+              0.0012004605754011477,
+              -0.009516492123750248,
+              0.03995076292100393
+            ]
+          ]
+        ],
+        [
+          "1",
+          {
+            "k_rot_sphere": 1.0435309849940717,
+            "k_curv": 0.8243213926036542,
+            "k_disc": 0.07135665960672201
+          },
+          {
+            "k_rot_sphere": 0.11107811401807746,
+            "k_curv": 0.1770794312494868,
+            "k_disc": 0.19641321118013177
+          },
+          {},
+          [
+            [
+              0.012338347413813018,
+              -0.0020165071672674996,
+              -0.0006617428872629089
+            ],
+            [
+              -0.0020165071672674996,
+              0.031357124971641726,
+              0.005460437519474908
+            ],
+            [
+              -0.0006617428872629089,
+              0.005460437519474908,
+              0.03857814952609104
+            ]
+          ]
+        ],
+        [
+          "2",
+          {
+            "k_rot_sphere": 1.0943074289111134,
+            "k_curv": 1.4576534997098638,
+            "k_disc": 0.18430078112320225
+          },
+          {
+            "k_rot_sphere": 0.12732020771623467,
+            "k_curv": 0.1511102738631517,
+            "k_disc": 0.18087118390581908
+          },
+          {},
+          [
+            [
+              0.01621043529290514,
+              0.0008287907282384007,
+              0.0014166798881446352
+            ],
+            [
+              0.0008287907282384007,
+              0.022834314866996712,
+              -0.0008408448058336155
+            ],
+            [
+              0.0014166798881446352,
+              -0.0008408448058336155,
+              0.03271438516749263
+            ]
+          ]
+        ],
+        [
+          "2",
+          {
+            "k_rot_sphere": 0.979576703683454,
+            "k_curv": 1.5963698875703187,
+            "k_disc": 0.07657141506788415
+          },
+          {
+            "k_rot_sphere": 0.1583443806605042,
+            "k_curv": 0.16339697528433894,
+            "k_disc": 0.24808955275145445
+          },
+          {},
+          [
+            [
+              0.025072942886758657,
+              -0.0011972308768744716,
+              -0.01492074179778694
+            ],
+            [
+              -0.0011972308768744716,
+              0.02669857153207087,
+              -0.002952961950599956
+            ],
+            [
+              -0.01492074179778694,
+              -0.002952961950599956,
+              0.061548426184416694
+            ]
+          ]
+        ],
+        [
+          "2",
+          {
+            "k_rot_sphere": 1.421419668018918,
+            "k_curv": 1.14778315362701,
+            "k_disc": -0.33326907816626006
+          },
+          {
+            "k_rot_sphere": 0.14692129512479962,
+            "k_curv": 0.16350704150528478,
+            "k_disc": 0.20721193231353469
+          },
+          {},
+          [
+            [
+              0.02158586696114847,
+              -0.0038238810838438623,
+              -0.010133128191360294
+            ],
+            [
+              -0.0038238810838438623,
+              0.02673455262181092,
+              0.006330233018859878
+            ],
+            [
+              -0.010133128191360294,
+              0.006330233018859878,
+              0.04293678489310888
+            ]
+          ]
+        ],
+        [
+          "3",
+          {
+            "k_rot_sphere": 1.0440736936211976,
+            "k_curv": 0.9415181584297088,
+            "k_disc": 0.09984970926825053
+          },
+          {
+            "k_rot_sphere": 0.14798968639842203,
+            "k_curv": 0.19819476208884246,
+            "k_disc": 0.18257854555338238
+          },
+          {},
+          [
+            [
+              0.021900947280303295,
+              -0.00833507058562831,
+              -0.0027767911157880786
+            ],
+            [
+              -0.00833507058562831,
+              0.039281163719452866,
+              0.0032754838545356797
+            ],
+            [
+              -0.0027767911157880786,
+              0.0032754838545356797,
+              0.033334925296388526
+            ]
+          ]
+        ],
+        [
+          "4",
+          {
+            "k_rot_sphere": 1.009491872619456,
+            "k_curv": 1.140795349244205,
+            "k_disc": 0.21036018828748748
+          },
+          {
+            "k_rot_sphere": 0.11320386089725679,
+            "k_curv": 0.1458768113386867,
+            "k_disc": 0.22653448262072662
+          },
+          {},
+          [
+            [
+              0.012815114122045465,
+              -0.0012685517867501088,
+              -0.005645879606416841
+            ],
+            [
+              -0.0012685517867501088,
+              0.0212800440863428,
+              0.0001988587620936368
+            ],
+            [
+              -0.005645879606416841,
+              0.0001988587620936368,
+              0.05131787181624029
+            ]
+          ]
+        ],
+        [
+          "4",
+          {
+            "k_rot_sphere": 1.260175245650068,
+            "k_curv": 1.2956914831194495,
+            "k_disc": 0.01632618732120792
+          },
+          {
+            "k_rot_sphere": 0.1381954232944381,
+            "k_curv": 0.23676299611124674,
+            "k_disc": 0.18116717129222698
+          },
+          {},
+          [
+            [
+              0.019097975019528923,
+              0.01435963945361244,
+              0.0024430394753623985
+            ],
+            [
+              0.01435963945361244,
+              0.05605671632757424,
+              -0.0015205499250493832
+            ],
+            [
+              0.0024430394753623985,
+              -0.0015205499250493832,
+              0.03282154395402711
+            ]
+          ]
+        ],
+        [
+          "5",
+          {
+            "k_rot_sphere": 0.9896846428324171,
+            "k_curv": 0.8228797847424427,
+            "k_disc": 0.39415795582269963
+          },
+          {
+            "k_rot_sphere": 0.14131795835641656,
+            "k_curv": 0.19232337583497883,
+            "k_disc": 0.1945083731174657
+          },
+          {},
+          [
+            [
+              0.019970765354025886,
+              0.0025442448128106345,
+              0.007814915547531985
+            ],
+            [
+              0.0025442448128106345,
+              0.03698828089256252,
+              -0.0032377508843770236
+            ],
+            [
+              0.007814915547531985,
+              -0.0032377508843770236,
+              0.03783350721280325
+            ]
+          ]
+        ],
+        [
+          "5",
+          {
+            "k_rot_sphere": 0.8287608297039785,
+            "k_curv": 0.9556621988353466,
+            "k_disc": 0.5153815685786699
+          },
+          {
+            "k_rot_sphere": 0.14702657168592806,
+            "k_curv": 0.1718792792065625,
+            "k_disc": 0.21112207887717
+          },
+          {},
+          [
+            [
+              0.021616812781717343,
+              0.010390125231075248,
+              -0.0011380232974026127
+            ],
+            [
+              0.010390125231075248,
+              0.029542486620567472,
+              0.0007537066733472366
+            ],
+            [
+              -0.0011380232974026127,
+              0.0007537066733472366,
+              0.04457253218941799
+            ]
+          ]
+        ],
+        [
+          "5",
+          {
+            "k_rot_sphere": 0.6628552805541886,
+            "k_curv": 1.1462755960259492,
+            "k_disc": 0.381815789184655
+          },
+          {
+            "k_rot_sphere": 0.20436147827277173,
+            "k_curv": 0.15239299931163458,
+            "k_disc": 0.20424623007936485
+          },
+          {},
+          [
+            [
+              0.04176361380183256,
+              0.005553612626204973,
+              0.011042047803796941
+            ],
+            [
+              0.005553612626204973,
+              0.023223626239195858,
+              -0.0006063761281675878
+            ],
+            [
+              0.011042047803796941,
+              -0.0006063761281675878,
+              0.041716522501632845
+            ]
+          ]
+        ],
+        [
+          "6",
+          {
+            "k_rot_sphere": 0.9125759508308171,
+            "k_curv": 0.3693295656042096,
+            "k_disc": 0.4576707048398704
+          },
+          {
+            "k_rot_sphere": 0.11244848586433681,
+            "k_curv": 0.16421267014111385,
+            "k_disc": 0.19394135327312692
+          },
+          {},
+          [
+            [
+              0.012644661973181957,
+              0.004277950566401787,
+              -0.0038046644148113616
+            ],
+            [
+              0.004277950566401787,
+              0.02696580103487426,
+              -0.006294750537301686
+            ],
+            [
+              -0.0038046644148113616,
+              -0.006294750537301686,
+              0.03761324850941182
+            ]
+          ]
+        ],
+        [
+          "7",
+          {
+            "k_rot_sphere": 1.16005714059979,
+            "k_curv": 1.2014952298654307,
+            "k_disc": -0.014147577655050661
+          },
+          {
+            "k_rot_sphere": 0.1337936003980848,
+            "k_curv": 0.16314857626391557,
+            "k_disc": 0.21339700585513885
+          },
+          {},
+          [
+            [
+              0.017900727507482395,
+              -0.004024239015030854,
+              0.0060350051343163605
+            ],
+            [
+              -0.004024239015030854,
+              0.02661745793694268,
+              -0.01010830151370854
+            ],
+            [
+              0.0060350051343163605,
+              -0.01010830151370854,
+              0.045538282107938165
+            ]
+          ]
+        ],
+        [
+          "7",
+          {
+            "k_rot_sphere": 1.0587672815949056,
+            "k_curv": 1.1419826225058167,
+            "k_disc": -0.05434661064331529
+          },
+          {
+            "k_rot_sphere": 0.12888728659718782,
+            "k_curv": 0.1482574205743148,
+            "k_disc": 0.1969672619744218
+          },
+          {},
+          [
+            [
+              0.01661193264638563,
+              -0.0004971078796763825,
+              0.002131557861089022
+            ],
+            [
+              -0.0004971078796763825,
+              0.021980262755349256,
+              0.0038084253764405227
+            ],
+            [
+              0.002131557861089022,
+              0.0038084253764405227,
+              0.03879610228970051
+            ]
+          ]
+        ],
+        [
+          "8",
+          {
+            "k_rot_sphere": 1.2378457545628263,
+            "k_curv": 1.0231240114872528,
+            "k_disc": -0.20928081112099334
+          },
+          {
+            "k_rot_sphere": 0.14917692911254823,
+            "k_curv": 0.1875388690558835,
+            "k_disc": 0.2532223905249116
+          },
+          {},
+          [
+            [
+              0.02225375617945024,
+              -0.005794231831067393,
+              -0.015731133155832966
+            ],
+            [
+              -0.005794231831067393,
+              0.035170827406759815,
+              0.015868108587031964
+            ],
+            [
+              -0.015731133155832966,
+              0.015868108587031964,
+              0.06412157906315083
+            ]
+          ]
+        ],
+        [
+          "8",
+          {
+            "k_rot_sphere": 1.108461924348378,
+            "k_curv": 0.9945083247538153,
+            "k_disc": -0.2134520698282396
+          },
+          {
+            "k_rot_sphere": 0.114505411552469,
+            "k_curv": 0.1442612539141226,
+            "k_disc": 0.2511489480860404
+          },
+          {},
+          [
+            [
+              0.013111489274800303,
+              -0.0002446448101060464,
+              -0.0018149503638039523
+            ],
+            [
+              -0.0002446448101060464,
+              0.020811309380874946,
+              -0.003921552524193877
+            ],
+            [
+              -0.0018149503638039523,
+              -0.003921552524193877,
+              0.0630757941247246
+            ]
+          ]
+        ],
+        [
+          "8",
+          {
+            "k_rot_sphere": 0.9376700632105109,
+            "k_curv": 1.2799578452792368,
+            "k_disc": -0.39321148955983154
+          },
+          {
+            "k_rot_sphere": 0.15416761936223405,
+            "k_curv": 0.1641784557574076,
+            "k_disc": 0.18627952402334202
+          },
+          {},
+          [
+            [
+              0.023767654859818688,
+              -0.003737985547993111,
+              0.002982025285164789
+            ],
+            [
+              -0.003737985547993111,
+              0.02695456533488705,
+              0.003384626794753034
+            ],
+            [
+              0.002982025285164789,
+              0.003384626794753034,
+              0.03470006107036286
+            ]
+          ]
+        ],
+        [
+          "9",
+          {
+            "k_rot_sphere": 0.8550183157635202,
+            "k_curv": 1.161276528639026,
+            "k_disc": 0.21306094062779438
+          },
+          {
+            "k_rot_sphere": 0.11274725582056275,
+            "k_curv": 0.18056046710732745,
+            "k_disc": 0.2251025853029899
+          },
+          {},
+          [
+            [
+              0.01271194369506742,
+              0.004564709990509597,
+              -0.0057053467372776435
+            ],
+            [
+              0.004564709990509597,
+              0.03260208228201628,
+              -0.01161948860102009
+            ],
+            [
+              -0.0057053467372776435,
+              -0.01161948860102009,
+              0.050671173910089844
+            ]
+          ]
+        ]
+      ],
+      "known_unit_covariance": [
+        [
+          0.04,
+          0.025,
+          -0.01
+        ],
+        [
+          0.025,
+          0.09,
+          0.02
+        ],
+        [
+          -0.01,
+          0.02,
+          0.03
+        ]
+      ],
+      "marginal": {
+        "k_rot_sphere": {
+          "k": 1.0103856230833501,
+          "sd": 0.03806393269861017,
+          "df": 9,
+          "ci95": [
+            0.9242790250849203,
+            1.09649222108178
+          ],
+          "tau2_units": 0.0030851405011920827,
+          "p_het_units": 0.27510534604460873,
+          "n_units": 10,
+          "n_sessions": 19,
+          "tau2_within_units": {
+            "0": 0.0,
+            "1": 0.0,
+            "2": 0.02867561568968651,
+            "3": 0.0,
+            "4": 0.0154645321854903,
+            "5": 0.0,
+            "6": 0.0,
+            "7": 0.0,
+            "8": 0.0,
+            "9": 0.0
+          }
+        },
+        "k_curv": {
+          "k": 1.04284465812538,
+          "sd": 0.08390007041278104,
+          "df": 9,
+          "ci95": [
+            0.8530495128818337,
+            1.2326398033689265
+          ],
+          "tau2_units": 0.0470411991972989,
+          "p_het_units": 0.000699680942906427,
+          "n_units": 10,
+          "n_sessions": 19,
+          "tau2_within_units": {
+            "0": 0.0,
+            "1": 0.0,
+            "2": 0.024924499515148878,
+            "3": 0.0,
+            "4": 0.0,
+            "5": 0.0,
+            "6": 0.0,
+            "7": 0.0,
+            "8": 0.0001775776176597462,
+            "9": 0.0
+          }
+        },
+        "k_disc": {
+          "k": 0.07273679318956305,
+          "sd": 0.08150885575280079,
+          "df": 9,
+          "ci95": [
+            -0.11164904868312092,
+            0.25712263506224703
+          ],
+          "tau2_units": 0.03831464531087546,
+          "p_het_units": 0.0041425681309702304,
+          "n_units": 10,
+          "n_sessions": 19,
+          "tau2_within_units": {
+            "0": 0.0,
+            "1": 0.033905571433506025,
+            "2": 0.03842877961939847,
+            "3": 0.0,
+            "4": 0.0,
+            "5": 0.0,
+            "6": 0.0,
+            "7": 0.0,
+            "8": 0.0,
+            "9": 0.0
+          }
+        }
+      },
+      "joint": {
+        "terms": [
+          "k_rot_sphere",
+          "k_curv",
+          "k_disc"
+        ],
+        "k": {
+          "k_rot_sphere": 1.0156015886224694,
+          "k_curv": 1.0587107914391927,
+          "k_disc": 0.07314249519824205
+        },
+        "cov": [
+          [
+            0.0014488629724843248,
+            7.705100026207899e-05,
+            -7.33627925255251e-05
+          ],
+          [
+            7.705100026207943e-05,
+            0.007039221815269618,
+            -0.00010778332451086272
+          ],
+          [
+            -7.336279252552488e-05,
+            -0.0001077833245108531,
+            0.006643693566130887
+          ]
+        ],
+        "sessions_without_covariance": 0
+      }
+    },
+    {
+      "truth": "sphere_still",
+      "scenario": "pool-3-units",
+      "seed": 10000,
+      "partition": "development",
+      "candidate_id": "1fa6d449640a8c34fee6c228a63ae5555651cb71e327cf1e84b93e5f4800d3d0",
+      "rejected": false,
+      "exclusions": [],
+      "empirical": {
+        "status": "experimental",
+        "method": "null-centered whole-unit studentized bootstrap",
+        "n_units": 3,
+        "seed": 2915781126,
+        "tests": {
+          "sphere_rotating": {
+            "statistic": 190.3740293363992,
+            "p": 0.047619047619047616,
+            "mc_ci95": [
+              0.0,
+              0.1684334709830853
+            ],
+            "exceedances": 0,
+            "replicates": 20,
+            "requested": 20,
+            "null_statistics": [
+              1.6180583506080661e-28,
+              1.6018326976189992,
+              0.5231097551402903,
+              1.0612484525502504,
+              6.122289573690414,
+              3.622982331736403,
+              1.885030098247876e-29,
+              6.770213649247175,
+              0.5231097551402903,
+              1.6180583506080661e-28,
+              3.608164977019275,
+              3.608164977019275,
+              4.131257019635629e-29,
+              1.6018326976189992,
+              1.6018326976190007,
+              9.993317409666492,
+              6.122289573690414,
+              1.6180583506080661e-28,
+              4.131257019635629e-29,
+              9.993317409666492
+            ],
+            "failures": [],
+            "rejected_experimental": false
+          },
+          "sphere_still": {
+            "statistic": 1.196186137808561,
+            "p": 0.5714285714285714,
+            "mc_ci95": [
+              0.31527813304054847,
+              0.7694221032240758
+            ],
+            "exceedances": 11,
+            "replicates": 20,
+            "requested": 20,
+            "null_statistics": [
+              1.0317925547464157e-28,
+              1.601832697619001,
+              0.5231097551402878,
+              1.0612484525502544,
+              6.122289573690418,
+              3.622982331736404,
+              1.0332583449144967e-28,
+              6.770213649247061,
+              0.5231097551402878,
+              1.0317925547464157e-28,
+              3.6081649770193023,
+              3.6081649770193023,
+              5.890141178903975e-29,
+              1.601832697619001,
+              1.6018326976190014,
+              9.99331740966649,
+              6.122289573690418,
+              1.0317925547464157e-28,
+              5.890141178903975e-29,
+              9.99331740966649
+            ],
+            "failures": [],
+            "rejected_experimental": false
+          },
+          "flat_still": {
+            "statistic": 148.3484513111132,
+            "p": 0.047619047619047616,
+            "mc_ci95": [
+              0.0,
+              0.1684334709830853
+            ],
+            "exceedances": 0,
+            "replicates": 20,
+            "requested": 20,
+            "null_statistics": [
+              6.167423207209109e-29,
+              1.6018326976190078,
+              0.523109755140293,
+              1.0612484525502586,
+              6.122289573690444,
+              3.6229823317364036,
+              3.8987405347603936e-29,
+              6.770213649247082,
+              0.523109755140293,
+              6.167423207209109e-29,
+              3.608164977019293,
+              3.608164977019293,
+              7.885153501403204e-29,
+              1.6018326976190078,
+              1.601832697618999,
+              9.993317409666576,
+              6.122289573690444,
+              6.167423207209109e-29,
+              7.885153501403204e-29,
+              9.993317409666576
+            ],
+            "failures": [],
+            "rejected_experimental": false
+          }
+        },
+        "analytic": {
+          "sphere_rotating": {
+            "chi2": 190.3740293363992,
+            "dof": 3,
+            "df_denominator": 2,
+            "p": 0.015554018057413807,
+            "rejected": false,
+            "method": "approximate F diagnostic",
+            "validated_for_primary_claims": false,
+            "z_marginal": {
+              "k_rot_sphere": -13.683579646711122,
+              "k_curv": 0.9658517603453975,
+              "k_disc": -0.42952768962350973
+            }
+          },
+          "sphere_still": {
+            "chi2": 1.196186137808561,
+            "dof": 3,
+            "df_denominator": 2,
+            "p": 0.7710450420742545,
+            "rejected": false,
+            "method": "approximate F diagnostic",
+            "validated_for_primary_claims": false,
+            "z_marginal": {
+              "k_rot_sphere": 0.3379123544793946,
+              "k_curv": 0.9658517603453975,
+              "k_disc": -0.42952768962350973
+            }
+          },
+          "flat_still": {
+            "chi2": 148.3484513111132,
+            "dof": 3,
+            "df_denominator": 2,
+            "p": 0.01988714163503813,
+            "rejected": false,
+            "method": "approximate F diagnostic",
+            "validated_for_primary_claims": false,
+            "z_marginal": {
+              "k_rot_sphere": 0.3379123544793946,
+              "k_curv": 7.357720315336676,
+              "k_disc": -9.728718467679476
+            }
+          }
+        },
+        "validated_for_primary_claims": false
+      },
+      "rejected_empirical": false,
+      "items": [
+        [
+          "0",
+          {
+            "k_rot_sphere": -0.10545691294941882,
+            "k_curv": 1.093993163538705,
+            "k_disc": -0.06027084839963885
+          },
+          {
+            "k_rot_sphere": 0.11992058037364069,
+            "k_curv": 0.20448068820571383,
+            "k_disc": 0.20947155314333296
+          },
+          {},
+          [
+            [
+              0.014380945597150816,
+              0.0033063122897790784,
+              -0.0018946452530692246
+            ],
+            [
+              0.0033063122897790784,
+              0.04181235184908236,
+              -0.0005074463974672281
+            ],
+            [
+              -0.0018946452530692246,
+              -0.0005074463974672281,
+              0.04387833157628016
+            ]
+          ]
+        ],
+        [
+          "1",
+          {
+            "k_rot_sphere": 0.032880591973095445,
+            "k_curv": 1.053376148802016,
+            "k_disc": -0.311187527796643
+          },
+          {
+            "k_rot_sphere": 0.19471253881335965,
+            "k_curv": 0.22038409326756708,
+            "k_disc": 0.19987686939964797
+          },
+          {},
+          [
+            [
+              0.03791297277114409,
+              0.015511784067958256,
+              0.0012004605754011477
+            ],
+            [
+              0.015511784067958256,
+              0.048569148565367704,
+              -0.009516492123750248
+            ],
+            [
+              0.0012004605754011477,
+              -0.009516492123750248,
+              0.03995076292100393
+            ]
+          ]
+        ],
+        [
+          "1",
+          {
+            "k_rot_sphere": 0.043530984994071674,
+            "k_curv": 0.8243213926036542,
+            "k_disc": 0.07135665960672201
+          },
+          {
+            "k_rot_sphere": 0.11107811401807746,
+            "k_curv": 0.1770794312494868,
+            "k_disc": 0.19641321118013177
+          },
+          {},
+          [
+            [
+              0.012338347413813018,
+              -0.0020165071672674996,
+              -0.0006617428872629089
+            ],
+            [
+              -0.0020165071672674996,
+              0.031357124971641726,
+              0.005460437519474908
+            ],
+            [
+              -0.0006617428872629089,
+              0.005460437519474908,
+              0.03857814952609104
+            ]
+          ]
+        ],
+        [
+          "2",
+          {
+            "k_rot_sphere": 0.0943074289111135,
+            "k_curv": 1.4576534997098638,
+            "k_disc": 0.18430078112320225
+          },
+          {
+            "k_rot_sphere": 0.12732020771623467,
+            "k_curv": 0.1511102738631517,
+            "k_disc": 0.18087118390581908
+          },
+          {},
+          [
+            [
+              0.01621043529290514,
+              0.0008287907282384007,
+              0.0014166798881446352
+            ],
+            [
+              0.0008287907282384007,
+              0.022834314866996712,
+              -0.0008408448058336155
+            ],
+            [
+              0.0014166798881446352,
+              -0.0008408448058336155,
+              0.03271438516749263
+            ]
+          ]
+        ],
+        [
+          "2",
+          {
+            "k_rot_sphere": -0.020423296316545964,
+            "k_curv": 1.5963698875703187,
+            "k_disc": 0.07657141506788415
+          },
+          {
+            "k_rot_sphere": 0.1583443806605042,
+            "k_curv": 0.16339697528433894,
+            "k_disc": 0.24808955275145445
+          },
+          {},
+          [
+            [
+              0.025072942886758657,
+              -0.0011972308768744716,
+              -0.01492074179778694
+            ],
+            [
+              -0.0011972308768744716,
+              0.02669857153207087,
+              -0.002952961950599956
+            ],
+            [
+              -0.01492074179778694,
+              -0.002952961950599956,
+              0.061548426184416694
+            ]
+          ]
+        ],
+        [
+          "2",
+          {
+            "k_rot_sphere": 0.42141966801891806,
+            "k_curv": 1.14778315362701,
+            "k_disc": -0.33326907816626006
+          },
+          {
+            "k_rot_sphere": 0.14692129512479962,
+            "k_curv": 0.16350704150528478,
+            "k_disc": 0.20721193231353469
+          },
+          {},
+          [
+            [
+              0.02158586696114847,
+              -0.0038238810838438623,
+              -0.010133128191360294
+            ],
+            [
+              -0.0038238810838438623,
+              0.02673455262181092,
+              0.006330233018859878
+            ],
+            [
+              -0.010133128191360294,
+              0.006330233018859878,
+              0.04293678489310888
+            ]
+          ]
+        ]
+      ],
+      "known_unit_covariance": [
+        [
+          0.04,
+          0.025,
+          -0.01
+        ],
+        [
+          0.025,
+          0.09,
+          0.02
+        ],
+        [
+          -0.01,
+          0.02,
+          0.03
+        ]
+      ],
+      "marginal": {
+        "k_rot_sphere": {
+          "k": 0.02920073979656331,
+          "sd": 0.0713190864363859,
+          "df": 2,
+          "ci95": [
+            -0.27766052214219034,
+            0.3360620017353169
+          ],
+          "tau2_units": 0.00035977648796756394,
+          "p_het_units": 0.3035046800825392,
+          "n_units": 3,
+          "n_sessions": 6,
+          "tau2_within_units": {
+            "0": 0.0,
+            "1": 0.0,
+            "2": 0.02867561568968652
+          }
+        },
+        "k_curv": {
+          "k": 1.1433810501635955,
+          "sd": 0.15644877415683406,
+          "df": 2,
+          "ci95": [
+            0.4702363049717363,
+            1.8165257953554548
+          ],
+          "tau2_units": 0.04893779070506475,
+          "p_het_units": 0.03523014166743531,
+          "n_units": 3,
+          "n_sessions": 6,
+          "tau2_within_units": {
+            "0": 0.0,
+            "1": 0.0,
+            "2": 0.024924499515148878
+          }
+        },
+        "k_disc": {
+          "k": -0.06177572915598553,
+          "sd": 0.10753623878324756,
+          "df": 2,
+          "ci95": [
+            -0.5244668205037156,
+            0.4009153621917445
+          ],
+          "tau2_units": 0.0,
+          "p_het_units": 0.9280994076872295,
+          "n_units": 3,
+          "n_sessions": 6,
+          "tau2_within_units": {
+            "0": 0.0,
+            "1": 0.033905571433506025,
+            "2": 0.03842877961939847
+          }
+        }
+      },
+      "joint": {
+        "terms": [
+          "k_rot_sphere",
+          "k_curv",
+          "k_disc"
+        ],
+        "k": {
+          "k_rot_sphere": 0.024099600417038618,
+          "k_curv": 1.1511063239232577,
+          "k_disc": -0.04618979219537039
+        },
+        "cov": [
+          [
+            0.005086412090120683,
+            0.00038145594974387437,
+            -0.0003419436867416921
+          ],
+          [
+            0.000381455949743875,
+            0.024476218935176076,
+            -6.546674672568972e-05
+          ],
+          [
+            -0.000341943686741692,
+            -6.546674672568325e-05,
+            0.011564042651647635
+          ]
+        ],
+        "sessions_without_covariance": 0
+      }
+    },
+    {
+      "truth": "sphere_still",
+      "scenario": "pool-5-units",
+      "seed": 10000,
+      "partition": "development",
+      "candidate_id": "1fa6d449640a8c34fee6c228a63ae5555651cb71e327cf1e84b93e5f4800d3d0",
+      "rejected": false,
+      "exclusions": [],
+      "empirical": {
+        "status": "experimental",
+        "method": "null-centered whole-unit studentized bootstrap",
+        "n_units": 5,
+        "seed": 2915781126,
+        "tests": {
+          "sphere_rotating": {
+            "statistic": 319.7127737282431,
+            "p": 0.047619047619047616,
+            "mc_ci95": [
+              0.0,
+              0.1684334709830853
+            ],
+            "exceedances": 0,
+            "replicates": 20,
+            "requested": 20,
+            "null_statistics": [
+              0.6772562647510898,
+              0.6597102156260668,
+              0.43002586386625696,
+              8.576976342201764,
+              2.02187041453085,
+              2.4937192944286197,
+              0.6677713819363055,
+              4.7996600929948866e-29,
+              1.985997180751455,
+              0.8980374841140623,
+              1.2306671709437602,
+              6.121258634777911,
+              1.9473005188294963,
+              1.398405005136767,
+              3.1246154141344142,
+              11.337784516571686,
+              2.9638788174832644,
+              0.9005203875414046,
+              1.3984050051367674,
+              1.9859971807514882
+            ],
+            "failures": [],
+            "rejected_experimental": false
+          },
+          "sphere_still": {
+            "statistic": 2.2422999861549684,
+            "p": 0.3333333333333333,
+            "mc_ci95": [
+              0.11893159040572769,
+              0.5427891822762891
+            ],
+            "exceedances": 6,
+            "replicates": 20,
+            "requested": 20,
+            "null_statistics": [
+              0.6772562647510961,
+              0.6597102156260614,
+              0.4300258638662704,
+              8.576976342201785,
+              2.0218704145308677,
+              2.493719294428653,
+              0.6677713819363092,
+              7.521687399932927e-30,
+              1.985997180751484,
+              0.8980374841140649,
+              1.2306671709437793,
+              6.121258634777874,
+              1.9473005188295314,
+              1.398405005136785,
+              3.1246154141344245,
+              11.337784516571716,
+              2.9638788174833226,
+              0.9005203875413924,
+              1.3984050051367782,
+              1.985997180751459
+            ],
+            "failures": [],
+            "rejected_experimental": false
+          },
+          "flat_still": {
+            "statistic": 294.2980348752635,
+            "p": 0.047619047619047616,
+            "mc_ci95": [
+              0.0,
+              0.1684334709830853
+            ],
+            "exceedances": 0,
+            "replicates": 20,
+            "requested": 20,
+            "null_statistics": [
+              0.6772562647510948,
+              0.6597102156260707,
+              0.43002586386627156,
+              8.57697634220179,
+              2.021870414530874,
+              2.493719294428623,
+              0.6677713819363,
+              2.4300750225372147e-29,
+              1.9859971807514643,
+              0.8980374841140704,
+              1.2306671709437869,
+              6.121258634777871,
+              1.947300518829543,
+              1.3984050051367776,
+              3.1246154141344187,
+              11.337784516571766,
+              2.963878817483295,
+              0.9005203875413947,
+              1.3984050051367745,
+              1.9859971807514758
+            ],
+            "failures": [],
+            "rejected_experimental": false
+          }
+        },
+        "analytic": {
+          "sphere_rotating": {
+            "chi2": 319.7127737282431,
+            "dof": 3,
+            "df_denominator": 4,
+            "p": 0.0002851050424367426,
+            "rejected": true,
+            "method": "approximate F diagnostic",
+            "validated_for_primary_claims": false,
+            "z_marginal": {
+              "k_rot_sphere": -17.819294169443598,
+              "k_curv": 1.2525280872552151,
+              "k_disc": 0.2438423343548562
+            }
+          },
+          "sphere_still": {
+            "chi2": 2.2422999861549684,
+            "dof": 3,
+            "df_denominator": 4,
+            "p": 0.5777768909626562,
+            "rejected": false,
+            "method": "approximate F diagnostic",
+            "validated_for_primary_claims": false,
+            "z_marginal": {
+              "k_rot_sphere": 0.7804491915775018,
+              "k_curv": 1.2525280872552151,
+              "k_disc": 0.2438423343548562
+            }
+          },
+          "flat_still": {
+            "chi2": 294.2980348752635,
+            "dof": 3,
+            "df_denominator": 4,
+            "p": 0.00033563711462144153,
+            "rejected": true,
+            "method": "approximate F diagnostic",
+            "validated_for_primary_claims": false,
+            "z_marginal": {
+              "k_rot_sphere": 0.7804491915775018,
+              "k_curv": 11.55677708411505,
+              "k_disc": -12.656843614865334
+            }
+          }
+        },
+        "validated_for_primary_claims": false
+      },
+      "rejected_empirical": false,
+      "items": [
+        [
+          "0",
+          {
+            "k_rot_sphere": -0.10545691294941882,
+            "k_curv": 1.093993163538705,
+            "k_disc": -0.06027084839963885
+          },
+          {
+            "k_rot_sphere": 0.11992058037364069,
+            "k_curv": 0.20448068820571383,
+            "k_disc": 0.20947155314333296
+          },
+          {},
+          [
+            [
+              0.014380945597150816,
+              0.0033063122897790784,
+              -0.0018946452530692246
+            ],
+            [
+              0.0033063122897790784,
+              0.04181235184908236,
+              -0.0005074463974672281
+            ],
+            [
+              -0.0018946452530692246,
+              -0.0005074463974672281,
+              0.04387833157628016
+            ]
+          ]
+        ],
+        [
+          "1",
+          {
+            "k_rot_sphere": 0.032880591973095445,
+            "k_curv": 1.053376148802016,
+            "k_disc": -0.311187527796643
+          },
+          {
+            "k_rot_sphere": 0.19471253881335965,
+            "k_curv": 0.22038409326756708,
+            "k_disc": 0.19987686939964797
+          },
+          {},
+          [
+            [
+              0.03791297277114409,
+              0.015511784067958256,
+              0.0012004605754011477
+            ],
+            [
+              0.015511784067958256,
+              0.048569148565367704,
+              -0.009516492123750248
+            ],
+            [
+              0.0012004605754011477,
+              -0.009516492123750248,
+              0.03995076292100393
+            ]
+          ]
+        ],
+        [
+          "1",
+          {
+            "k_rot_sphere": 0.043530984994071674,
+            "k_curv": 0.8243213926036542,
+            "k_disc": 0.07135665960672201
+          },
+          {
+            "k_rot_sphere": 0.11107811401807746,
+            "k_curv": 0.1770794312494868,
+            "k_disc": 0.19641321118013177
+          },
+          {},
+          [
+            [
+              0.012338347413813018,
+              -0.0020165071672674996,
+              -0.0006617428872629089
+            ],
+            [
+              -0.0020165071672674996,
+              0.031357124971641726,
+              0.005460437519474908
+            ],
+            [
+              -0.0006617428872629089,
+              0.005460437519474908,
+              0.03857814952609104
+            ]
+          ]
+        ],
+        [
+          "2",
+          {
+            "k_rot_sphere": 0.0943074289111135,
+            "k_curv": 1.4576534997098638,
+            "k_disc": 0.18430078112320225
+          },
+          {
+            "k_rot_sphere": 0.12732020771623467,
+            "k_curv": 0.1511102738631517,
+            "k_disc": 0.18087118390581908
+          },
+          {},
+          [
+            [
+              0.01621043529290514,
+              0.0008287907282384007,
+              0.0014166798881446352
+            ],
+            [
+              0.0008287907282384007,
+              0.022834314866996712,
+              -0.0008408448058336155
+            ],
+            [
+              0.0014166798881446352,
+              -0.0008408448058336155,
+              0.03271438516749263
+            ]
+          ]
+        ],
+        [
+          "2",
+          {
+            "k_rot_sphere": -0.020423296316545964,
+            "k_curv": 1.5963698875703187,
+            "k_disc": 0.07657141506788415
+          },
+          {
+            "k_rot_sphere": 0.1583443806605042,
+            "k_curv": 0.16339697528433894,
+            "k_disc": 0.24808955275145445
+          },
+          {},
+          [
+            [
+              0.025072942886758657,
+              -0.0011972308768744716,
+              -0.01492074179778694
+            ],
+            [
+              -0.0011972308768744716,
+              0.02669857153207087,
+              -0.002952961950599956
+            ],
+            [
+              -0.01492074179778694,
+              -0.002952961950599956,
+              0.061548426184416694
+            ]
+          ]
+        ],
+        [
+          "2",
+          {
+            "k_rot_sphere": 0.42141966801891806,
+            "k_curv": 1.14778315362701,
+            "k_disc": -0.33326907816626006
+          },
+          {
+            "k_rot_sphere": 0.14692129512479962,
+            "k_curv": 0.16350704150528478,
+            "k_disc": 0.20721193231353469
+          },
+          {},
+          [
+            [
+              0.02158586696114847,
+              -0.0038238810838438623,
+              -0.010133128191360294
+            ],
+            [
+              -0.0038238810838438623,
+              0.02673455262181092,
+              0.006330233018859878
+            ],
+            [
+              -0.010133128191360294,
+              0.006330233018859878,
+              0.04293678489310888
+            ]
+          ]
+        ],
+        [
+          "3",
+          {
+            "k_rot_sphere": 0.04407369362119752,
+            "k_curv": 0.9415181584297088,
+            "k_disc": 0.09984970926825053
+          },
+          {
+            "k_rot_sphere": 0.14798968639842203,
+            "k_curv": 0.19819476208884246,
+            "k_disc": 0.18257854555338238
+          },
+          {},
+          [
+            [
+              0.021900947280303295,
+              -0.00833507058562831,
+              -0.0027767911157880786
+            ],
+            [
+              -0.00833507058562831,
+              0.039281163719452866,
+              0.0032754838545356797
+            ],
+            [
+              -0.0027767911157880786,
+              0.0032754838545356797,
+              0.033334925296388526
+            ]
+          ]
+        ],
+        [
+          "4",
+          {
+            "k_rot_sphere": 0.009491872619456023,
+            "k_curv": 1.140795349244205,
+            "k_disc": 0.21036018828748748
+          },
+          {
+            "k_rot_sphere": 0.11320386089725679,
+            "k_curv": 0.1458768113386867,
+            "k_disc": 0.22653448262072662
+          },
+          {},
+          [
+            [
+              0.012815114122045465,
+              -0.0012685517867501088,
+              -0.005645879606416841
+            ],
+            [
+              -0.0012685517867501088,
+              0.0212800440863428,
+              0.0001988587620936368
+            ],
+            [
+              -0.005645879606416841,
+              0.0001988587620936368,
+              0.05131787181624029
+            ]
+          ]
+        ],
+        [
+          "4",
+          {
+            "k_rot_sphere": 0.26017524565006817,
+            "k_curv": 1.2956914831194495,
+            "k_disc": 0.01632618732120792
+          },
+          {
+            "k_rot_sphere": 0.1381954232944381,
+            "k_curv": 0.23676299611124674,
+            "k_disc": 0.18116717129222698
+          },
+          {},
+          [
+            [
+              0.019097975019528923,
+              0.01435963945361244,
+              0.0024430394753623985
+            ],
+            [
+              0.01435963945361244,
+              0.05605671632757424,
+              -0.0015205499250493832
+            ],
+            [
+              0.0024430394753623985,
+              -0.0015205499250493832,
+              0.03282154395402711
+            ]
+          ]
+        ]
+      ],
+      "known_unit_covariance": [
+        [
+          0.04,
+          0.025,
+          -0.01
+        ],
+        [
+          0.025,
+          0.09,
+          0.02
+        ],
+        [
+          -0.01,
+          0.02,
+          0.03
+        ]
+      ],
+      "marginal": {
+        "k_rot_sphere": {
+          "k": 0.04842765487779838,
+          "sd": 0.0537641826873627,
+          "df": 4,
+          "ci95": [
+            -0.10084564697948975,
+            0.1977009567350865
+          ],
+          "tau2_units": 0.0,
+          "p_het_units": 0.587658871648316,
+          "n_units": 5,
+          "n_sessions": 9,
+          "tau2_within_units": {
+            "0": 0.0,
+            "1": 0.0,
+            "2": 0.02867561568968652,
+            "3": 0.0,
+            "4": 0.015464532185490295
+          }
+        },
+        "k_curv": {
+          "k": 1.124852065131654,
+          "sd": 0.09704734428532781,
+          "df": 4,
+          "ci95": [
+            0.8554054411182106,
+            1.3942986891450975
+          ],
+          "tau2_units": 0.023005121381716072,
+          "p_het_units": 0.0969598953461071,
+          "n_units": 5,
+          "n_sessions": 9,
+          "tau2_within_units": {
+            "0": 0.0,
+            "1": 0.0,
+            "2": 0.024924499515148878,
+            "3": 0.0,
+            "4": 0.0
+          }
+        },
+        "k_disc": {
+          "k": 0.013518654128307534,
+          "sd": 0.07751525802086881,
+          "df": 4,
+          "ci95": [
+            -0.20169820458187768,
+            0.22873551283849272
+          ],
+          "tau2_units": 0.0,
+          "p_het_units": 0.8828709096061281,
+          "n_units": 5,
+          "n_sessions": 9,
+          "tau2_within_units": {
+            "0": 0.0,
+            "1": 0.033905571433506025,
+            "2": 0.03842877961939847,
+            "3": 0.0,
+            "4": 0.0
+          }
+        }
+      },
+      "joint": {
+        "terms": [
+          "k_rot_sphere",
+          "k_curv",
+          "k_disc"
+        ],
+        "k": {
+          "k_rot_sphere": 0.04196021291417734,
+          "k_curv": 1.1215545245109,
+          "k_disc": 0.01890150146392764
+        },
+        "cov": [
+          [
+            0.002890587340040111,
+            3.303950294053029e-05,
+            -0.00018878541364949892
+          ],
+          [
+            3.3039502940530605e-05,
+            0.009418187032834948,
+            1.349029526269491e-05
+          ],
+          [
+            -0.00018878541364949854,
+            1.3490295262693091e-05,
+            0.006008615226041867
+          ]
+        ],
+        "sessions_without_covariance": 0
+      }
+    },
+    {
+      "truth": "sphere_still",
+      "scenario": "pool-10-units",
+      "seed": 10000,
+      "partition": "development",
+      "candidate_id": "1fa6d449640a8c34fee6c228a63ae5555651cb71e327cf1e84b93e5f4800d3d0",
+      "rejected": false,
+      "exclusions": [],
+      "empirical": {
+        "status": "experimental",
+        "method": "null-centered whole-unit studentized bootstrap",
+        "n_units": 10,
+        "seed": 2915781126,
+        "tests": {
+          "sphere_rotating": {
+            "statistic": 670.6750481132773,
+            "p": 0.047619047619047616,
+            "mc_ci95": [
+              0.0,
+              0.1684334709830853
+            ],
+            "exceedances": 0,
+            "replicates": 20,
+            "requested": 20,
+            "null_statistics": [
+              2.21389216976917,
+              1.9508022228505373,
+              2.462589892286929,
+              0.3455888616564261,
+              4.588876931879683,
+              1.1023014099989177,
+              1.0268154867935464,
+              5.092014128926132,
+              0.6461620797670842,
+              3.185336450759708,
+              0.7336473248406448,
+              1.8406232586547908,
+              0.6368559009045852,
+              5.760748479507832,
+              2.213939454262886,
+              6.793000770144266,
+              3.7463406187451107,
+              1.8828740041570289,
+              9.670005434962249,
+              2.467295002147444
+            ],
+            "failures": [],
+            "rejected_experimental": false
+          },
+          "sphere_still": {
+            "statistic": 1.4867484525307226,
+            "p": 0.7142857142857143,
+            "mc_ci95": [
+              0.45721081772371086,
+              0.8810684095942722
+            ],
+            "exceedances": 14,
+            "replicates": 20,
+            "requested": 20,
+            "null_statistics": [
+              2.213892169769171,
+              1.9508022228505204,
+              2.462589892286888,
+              0.34558886165645175,
+              4.588876931879808,
+              1.102301409998911,
+              1.0268154867935537,
+              5.092014128926114,
+              0.6461620797670815,
+              3.185336450759691,
+              0.7336473248406493,
+              1.8406232586548108,
+              0.6368559009045788,
+              5.760748479507792,
+              2.2139394542628787,
+              6.7930007701443,
+              3.7463406187451227,
+              1.8828740041570364,
+              9.670005434962306,
+              2.467295002147492
+            ],
+            "failures": [],
+            "rejected_experimental": false
+          },
+          "flat_still": {
+            "statistic": 284.1085621979092,
+            "p": 0.047619047619047616,
+            "mc_ci95": [
+              0.0,
+              0.1684334709830853
+            ],
+            "exceedances": 0,
+            "replicates": 20,
+            "requested": 20,
+            "null_statistics": [
+              2.2138921697691587,
+              1.950802222850512,
+              2.462589892286881,
+              0.34558886165645003,
+              4.588876931879777,
+              1.1023014099989128,
+              1.026815486793562,
+              5.092014128926078,
+              0.646162079767084,
+              3.1853364507596877,
+              0.733647324840657,
+              1.8406232586547988,
+              0.6368559009045889,
+              5.760748479507787,
+              2.2139394542628805,
+              6.793000770144284,
+              3.746340618745153,
+              1.8828740041570406,
+              9.670005434962302,
+              2.467295002147437
+            ],
+            "failures": [],
+            "rejected_experimental": false
+          }
+        },
+        "analytic": {
+          "sphere_rotating": {
+            "chi2": 670.6750481132773,
+            "dof": 3,
+            "df_denominator": 9,
+            "p": 9.102259594439261e-09,
+            "rejected": true,
+            "method": "approximate F diagnostic",
+            "validated_for_primary_claims": false,
+            "z_marginal": {
+              "k_rot_sphere": -25.861710590232146,
+              "k_curv": 0.6997704668225031,
+              "k_disc": 0.8973564224735037
+            }
+          },
+          "sphere_still": {
+            "chi2": 1.4867484525307226,
+            "dof": 3,
+            "df_denominator": 9,
+            "p": 0.6942955342216047,
+            "rejected": false,
+            "method": "approximate F diagnostic",
+            "validated_for_primary_claims": false,
+            "z_marginal": {
+              "k_rot_sphere": 0.40987852584762047,
+              "k_curv": 0.6997704668225031,
+              "k_disc": 0.8973564224735037
+            }
+          },
+          "flat_still": {
+            "chi2": 284.1085621979092,
+            "dof": 3,
+            "df_denominator": 9,
+            "p": 3.978472313022378e-07,
+            "rejected": true,
+            "method": "approximate F diagnostic",
+            "validated_for_primary_claims": false,
+            "z_marginal": {
+              "k_rot_sphere": 0.40987852584762047,
+              "k_curv": 12.618711596193279,
+              "k_disc": -11.371249126754053
+            }
+          }
+        },
+        "validated_for_primary_claims": false
+      },
+      "rejected_empirical": false,
+      "items": [
+        [
+          "0",
+          {
+            "k_rot_sphere": -0.10545691294941882,
+            "k_curv": 1.093993163538705,
+            "k_disc": -0.06027084839963885
+          },
+          {
+            "k_rot_sphere": 0.11992058037364069,
+            "k_curv": 0.20448068820571383,
+            "k_disc": 0.20947155314333296
+          },
+          {},
+          [
+            [
+              0.014380945597150816,
+              0.0033063122897790784,
+              -0.0018946452530692246
+            ],
+            [
+              0.0033063122897790784,
+              0.04181235184908236,
+              -0.0005074463974672281
+            ],
+            [
+              -0.0018946452530692246,
+              -0.0005074463974672281,
+              0.04387833157628016
+            ]
+          ]
+        ],
+        [
+          "1",
+          {
+            "k_rot_sphere": 0.032880591973095445,
+            "k_curv": 1.053376148802016,
+            "k_disc": -0.311187527796643
+          },
+          {
+            "k_rot_sphere": 0.19471253881335965,
+            "k_curv": 0.22038409326756708,
+            "k_disc": 0.19987686939964797
+          },
+          {},
+          [
+            [
+              0.03791297277114409,
+              0.015511784067958256,
+              0.0012004605754011477
+            ],
+            [
+              0.015511784067958256,
+              0.048569148565367704,
+              -0.009516492123750248
+            ],
+            [
+              0.0012004605754011477,
+              -0.009516492123750248,
+              0.03995076292100393
+            ]
+          ]
+        ],
+        [
+          "1",
+          {
+            "k_rot_sphere": 0.043530984994071674,
+            "k_curv": 0.8243213926036542,
+            "k_disc": 0.07135665960672201
+          },
+          {
+            "k_rot_sphere": 0.11107811401807746,
+            "k_curv": 0.1770794312494868,
+            "k_disc": 0.19641321118013177
+          },
+          {},
+          [
+            [
+              0.012338347413813018,
+              -0.0020165071672674996,
+              -0.0006617428872629089
+            ],
+            [
+              -0.0020165071672674996,
+              0.031357124971641726,
+              0.005460437519474908
+            ],
+            [
+              -0.0006617428872629089,
+              0.005460437519474908,
+              0.03857814952609104
+            ]
+          ]
+        ],
+        [
+          "2",
+          {
+            "k_rot_sphere": 0.0943074289111135,
+            "k_curv": 1.4576534997098638,
+            "k_disc": 0.18430078112320225
+          },
+          {
+            "k_rot_sphere": 0.12732020771623467,
+            "k_curv": 0.1511102738631517,
+            "k_disc": 0.18087118390581908
+          },
+          {},
+          [
+            [
+              0.01621043529290514,
+              0.0008287907282384007,
+              0.0014166798881446352
+            ],
+            [
+              0.0008287907282384007,
+              0.022834314866996712,
+              -0.0008408448058336155
+            ],
+            [
+              0.0014166798881446352,
+              -0.0008408448058336155,
+              0.03271438516749263
+            ]
+          ]
+        ],
+        [
+          "2",
+          {
+            "k_rot_sphere": -0.020423296316545964,
+            "k_curv": 1.5963698875703187,
+            "k_disc": 0.07657141506788415
+          },
+          {
+            "k_rot_sphere": 0.1583443806605042,
+            "k_curv": 0.16339697528433894,
+            "k_disc": 0.24808955275145445
+          },
+          {},
+          [
+            [
+              0.025072942886758657,
+              -0.0011972308768744716,
+              -0.01492074179778694
+            ],
+            [
+              -0.0011972308768744716,
+              0.02669857153207087,
+              -0.002952961950599956
+            ],
+            [
+              -0.01492074179778694,
+              -0.002952961950599956,
+              0.061548426184416694
+            ]
+          ]
+        ],
+        [
+          "2",
+          {
+            "k_rot_sphere": 0.42141966801891806,
+            "k_curv": 1.14778315362701,
+            "k_disc": -0.33326907816626006
+          },
+          {
+            "k_rot_sphere": 0.14692129512479962,
+            "k_curv": 0.16350704150528478,
+            "k_disc": 0.20721193231353469
+          },
+          {},
+          [
+            [
+              0.02158586696114847,
+              -0.0038238810838438623,
+              -0.010133128191360294
+            ],
+            [
+              -0.0038238810838438623,
+              0.02673455262181092,
+              0.006330233018859878
+            ],
+            [
+              -0.010133128191360294,
+              0.006330233018859878,
+              0.04293678489310888
+            ]
+          ]
+        ],
+        [
+          "3",
+          {
+            "k_rot_sphere": 0.04407369362119752,
+            "k_curv": 0.9415181584297088,
+            "k_disc": 0.09984970926825053
+          },
+          {
+            "k_rot_sphere": 0.14798968639842203,
+            "k_curv": 0.19819476208884246,
+            "k_disc": 0.18257854555338238
+          },
+          {},
+          [
+            [
+              0.021900947280303295,
+              -0.00833507058562831,
+              -0.0027767911157880786
+            ],
+            [
+              -0.00833507058562831,
+              0.039281163719452866,
+              0.0032754838545356797
+            ],
+            [
+              -0.0027767911157880786,
+              0.0032754838545356797,
+              0.033334925296388526
+            ]
+          ]
+        ],
+        [
+          "4",
+          {
+            "k_rot_sphere": 0.009491872619456023,
+            "k_curv": 1.140795349244205,
+            "k_disc": 0.21036018828748748
+          },
+          {
+            "k_rot_sphere": 0.11320386089725679,
+            "k_curv": 0.1458768113386867,
+            "k_disc": 0.22653448262072662
+          },
+          {},
+          [
+            [
+              0.012815114122045465,
+              -0.0012685517867501088,
+              -0.005645879606416841
+            ],
+            [
+              -0.0012685517867501088,
+              0.0212800440863428,
+              0.0001988587620936368
+            ],
+            [
+              -0.005645879606416841,
+              0.0001988587620936368,
+              0.05131787181624029
+            ]
+          ]
+        ],
+        [
+          "4",
+          {
+            "k_rot_sphere": 0.26017524565006817,
+            "k_curv": 1.2956914831194495,
+            "k_disc": 0.01632618732120792
+          },
+          {
+            "k_rot_sphere": 0.1381954232944381,
+            "k_curv": 0.23676299611124674,
+            "k_disc": 0.18116717129222698
+          },
+          {},
+          [
+            [
+              0.019097975019528923,
+              0.01435963945361244,
+              0.0024430394753623985
+            ],
+            [
+              0.01435963945361244,
+              0.05605671632757424,
+              -0.0015205499250493832
+            ],
+            [
+              0.0024430394753623985,
+              -0.0015205499250493832,
+              0.03282154395402711
+            ]
+          ]
+        ],
+        [
+          "5",
+          {
+            "k_rot_sphere": -0.010315357167582861,
+            "k_curv": 0.8228797847424427,
+            "k_disc": 0.39415795582269963
+          },
+          {
+            "k_rot_sphere": 0.14131795835641656,
+            "k_curv": 0.19232337583497883,
+            "k_disc": 0.1945083731174657
+          },
+          {},
+          [
+            [
+              0.019970765354025886,
+              0.0025442448128106345,
+              0.007814915547531985
+            ],
+            [
+              0.0025442448128106345,
+              0.03698828089256252,
+              -0.0032377508843770236
+            ],
+            [
+              0.007814915547531985,
+              -0.0032377508843770236,
+              0.03783350721280325
+            ]
+          ]
+        ],
+        [
+          "5",
+          {
+            "k_rot_sphere": -0.17123917029602145,
+            "k_curv": 0.9556621988353466,
+            "k_disc": 0.5153815685786699
+          },
+          {
+            "k_rot_sphere": 0.14702657168592806,
+            "k_curv": 0.1718792792065625,
+            "k_disc": 0.21112207887717
+          },
+          {},
+          [
+            [
+              0.021616812781717343,
+              0.010390125231075248,
+              -0.0011380232974026127
+            ],
+            [
+              0.010390125231075248,
+              0.029542486620567472,
+              0.0007537066733472366
+            ],
+            [
+              -0.0011380232974026127,
+              0.0007537066733472366,
+              0.04457253218941799
+            ]
+          ]
+        ],
+        [
+          "5",
+          {
+            "k_rot_sphere": -0.33714471944581137,
+            "k_curv": 1.1462755960259492,
+            "k_disc": 0.381815789184655
+          },
+          {
+            "k_rot_sphere": 0.20436147827277173,
+            "k_curv": 0.15239299931163458,
+            "k_disc": 0.20424623007936485
+          },
+          {},
+          [
+            [
+              0.04176361380183256,
+              0.005553612626204973,
+              0.011042047803796941
+            ],
+            [
+              0.005553612626204973,
+              0.023223626239195858,
+              -0.0006063761281675878
+            ],
+            [
+              0.011042047803796941,
+              -0.0006063761281675878,
+              0.041716522501632845
+            ]
+          ]
+        ],
+        [
+          "6",
+          {
+            "k_rot_sphere": -0.08742404916918296,
+            "k_curv": 0.3693295656042096,
+            "k_disc": 0.4576707048398704
+          },
+          {
+            "k_rot_sphere": 0.11244848586433681,
+            "k_curv": 0.16421267014111385,
+            "k_disc": 0.19394135327312692
+          },
+          {},
+          [
+            [
+              0.012644661973181957,
+              0.004277950566401787,
+              -0.0038046644148113616
+            ],
+            [
+              0.004277950566401787,
+              0.02696580103487426,
+              -0.006294750537301686
+            ],
+            [
+              -0.0038046644148113616,
+              -0.006294750537301686,
+              0.03761324850941182
+            ]
+          ]
+        ],
+        [
+          "7",
+          {
+            "k_rot_sphere": 0.16005714059979,
+            "k_curv": 1.2014952298654307,
+            "k_disc": -0.014147577655050661
+          },
+          {
+            "k_rot_sphere": 0.1337936003980848,
+            "k_curv": 0.16314857626391557,
+            "k_disc": 0.21339700585513885
+          },
+          {},
+          [
+            [
+              0.017900727507482395,
+              -0.004024239015030854,
+              0.0060350051343163605
+            ],
+            [
+              -0.004024239015030854,
+              0.02661745793694268,
+              -0.01010830151370854
+            ],
+            [
+              0.0060350051343163605,
+              -0.01010830151370854,
+              0.045538282107938165
+            ]
+          ]
+        ],
+        [
+          "7",
+          {
+            "k_rot_sphere": 0.058767281594905726,
+            "k_curv": 1.1419826225058167,
+            "k_disc": -0.05434661064331529
+          },
+          {
+            "k_rot_sphere": 0.12888728659718782,
+            "k_curv": 0.1482574205743148,
+            "k_disc": 0.1969672619744218
+          },
+          {},
+          [
+            [
+              0.01661193264638563,
+              -0.0004971078796763825,
+              0.002131557861089022
+            ],
+            [
+              -0.0004971078796763825,
+              0.021980262755349256,
+              0.0038084253764405227
+            ],
+            [
+              0.002131557861089022,
+              0.0038084253764405227,
+              0.03879610228970051
+            ]
+          ]
+        ],
+        [
+          "8",
+          {
+            "k_rot_sphere": 0.23784575456282625,
+            "k_curv": 1.0231240114872528,
+            "k_disc": -0.20928081112099334
+          },
+          {
+            "k_rot_sphere": 0.14917692911254823,
+            "k_curv": 0.1875388690558835,
+            "k_disc": 0.2532223905249116
+          },
+          {},
+          [
+            [
+              0.02225375617945024,
+              -0.005794231831067393,
+              -0.015731133155832966
+            ],
+            [
+              -0.005794231831067393,
+              0.035170827406759815,
+              0.015868108587031964
+            ],
+            [
+              -0.015731133155832966,
+              0.015868108587031964,
+              0.06412157906315083
+            ]
+          ]
+        ],
+        [
+          "8",
+          {
+            "k_rot_sphere": 0.10846192434837806,
+            "k_curv": 0.9945083247538153,
+            "k_disc": -0.2134520698282396
+          },
+          {
+            "k_rot_sphere": 0.114505411552469,
+            "k_curv": 0.1442612539141226,
+            "k_disc": 0.2511489480860404
+          },
+          {},
+          [
+            [
+              0.013111489274800303,
+              -0.0002446448101060464,
+              -0.0018149503638039523
+            ],
+            [
+              -0.0002446448101060464,
+              0.020811309380874946,
+              -0.003921552524193877
+            ],
+            [
+              -0.0018149503638039523,
+              -0.003921552524193877,
+              0.0630757941247246
+            ]
+          ]
+        ],
+        [
+          "8",
+          {
+            "k_rot_sphere": -0.06232993678948906,
+            "k_curv": 1.2799578452792368,
+            "k_disc": -0.39321148955983154
+          },
+          {
+            "k_rot_sphere": 0.15416761936223405,
+            "k_curv": 0.1641784557574076,
+            "k_disc": 0.18627952402334202
+          },
+          {},
+          [
+            [
+              0.023767654859818688,
+              -0.003737985547993111,
+              0.002982025285164789
+            ],
+            [
+              -0.003737985547993111,
+              0.02695456533488705,
+              0.003384626794753034
+            ],
+            [
+              0.002982025285164789,
+              0.003384626794753034,
+              0.03470006107036286
+            ]
+          ]
+        ],
+        [
+          "9",
+          {
+            "k_rot_sphere": -0.14498168423647978,
+            "k_curv": 1.161276528639026,
+            "k_disc": 0.21306094062779438
+          },
+          {
+            "k_rot_sphere": 0.11274725582056275,
+            "k_curv": 0.18056046710732745,
+            "k_disc": 0.2251025853029899
+          },
+          {},
+          [
+            [
+              0.01271194369506742,
+              0.004564709990509597,
+              -0.0057053467372776435
+            ],
+            [
+              0.004564709990509597,
+              0.03260208228201628,
+              -0.01161948860102009
+            ],
+            [
+              -0.0057053467372776435,
+              -0.01161948860102009,
+              0.050671173910089844
+            ]
+          ]
+        ]
+      ],
+      "known_unit_covariance": [
+        [
+          0.04,
+          0.025,
+          -0.01
+        ],
+        [
+          0.025,
+          0.09,
+          0.02
+        ],
+        [
+          -0.01,
+          0.02,
+          0.03
+        ]
+      ],
+      "marginal": {
+        "k_rot_sphere": {
+          "k": 0.010385623083350138,
+          "sd": 0.03806393269861018,
+          "df": 9,
+          "ci95": [
+            -0.07572097491507968,
+            0.09649222108177996
+          ],
+          "tau2_units": 0.0030851405011920845,
+          "p_het_units": 0.2751053460446085,
+          "n_units": 10,
+          "n_sessions": 19,
+          "tau2_within_units": {
+            "0": 0.0,
+            "1": 0.0,
+            "2": 0.02867561568968652,
+            "3": 0.0,
+            "4": 0.015464532185490295,
+            "5": 0.0,
+            "6": 0.0,
+            "7": 0.0,
+            "8": 0.0,
+            "9": 0.0
+          }
+        },
+        "k_curv": {
+          "k": 1.04284465812538,
+          "sd": 0.08390007041278104,
+          "df": 9,
+          "ci95": [
+            0.8530495128818337,
+            1.2326398033689265
+          ],
+          "tau2_units": 0.0470411991972989,
+          "p_het_units": 0.000699680942906427,
+          "n_units": 10,
+          "n_sessions": 19,
+          "tau2_within_units": {
+            "0": 0.0,
+            "1": 0.0,
+            "2": 0.024924499515148878,
+            "3": 0.0,
+            "4": 0.0,
+            "5": 0.0,
+            "6": 0.0,
+            "7": 0.0,
+            "8": 0.0001775776176597462,
+            "9": 0.0
+          }
+        },
+        "k_disc": {
+          "k": 0.07273679318956305,
+          "sd": 0.08150885575280079,
+          "df": 9,
+          "ci95": [
+            -0.11164904868312092,
+            0.25712263506224703
+          ],
+          "tau2_units": 0.03831464531087546,
+          "p_het_units": 0.0041425681309702304,
+          "n_units": 10,
+          "n_sessions": 19,
+          "tau2_within_units": {
+            "0": 0.0,
+            "1": 0.033905571433506025,
+            "2": 0.03842877961939847,
+            "3": 0.0,
+            "4": 0.0,
+            "5": 0.0,
+            "6": 0.0,
+            "7": 0.0,
+            "8": 0.0,
+            "9": 0.0
+          }
+        }
+      },
+      "joint": {
+        "terms": [
+          "k_rot_sphere",
+          "k_curv",
+          "k_disc"
+        ],
+        "k": {
+          "k_rot_sphere": 0.015601588622469378,
+          "k_curv": 1.0587107914391927,
+          "k_disc": 0.07314249519824216
+        },
+        "cov": [
+          [
+            0.0014488629724843253,
+            7.705100026207917e-05,
+            -7.336279252552484e-05
+          ],
+          [
+            7.705100026207948e-05,
+            0.007039221815269617,
+            -0.00010778332451086193
+          ],
+          [
+            -7.336279252552488e-05,
+            -0.0001077833245108522,
+            0.006643693566130884
+          ]
+        ],
+        "sessions_without_covariance": 0
+      }
+    },
+    {
+      "truth": "flat_still",
+      "scenario": "pool-3-units",
+      "seed": 10000,
+      "partition": "development",
+      "candidate_id": "1fa6d449640a8c34fee6c228a63ae5555651cb71e327cf1e84b93e5f4800d3d0",
+      "rejected": false,
+      "exclusions": [],
+      "empirical": {
+        "status": "experimental",
+        "method": "null-centered whole-unit studentized bootstrap",
+        "n_units": 3,
+        "seed": 2915781126,
+        "tests": {
+          "sphere_rotating": {
+            "statistic": 280.0154405636661,
+            "p": 0.047619047619047616,
+            "mc_ci95": [
+              0.0,
+              0.1684334709830853
+            ],
+            "exceedances": 0,
+            "replicates": 20,
+            "requested": 20,
+            "null_statistics": [
+              1.841820532729716e-28,
+              1.6018326976190047,
+              0.5231097551402816,
+              1.0612484525502772,
+              6.122289573690343,
+              3.622982331736387,
+              9.438688271352222e-29,
+              6.770213649247241,
+              0.5231097551402847,
+              1.841820532729716e-28,
+              3.6081649770192508,
+              3.6081649770192508,
+              4.037913082329465e-29,
+              1.6018326976190047,
+              1.6018326976190047,
+              9.99331740966636,
+              6.122289573690343,
+              1.841820532729716e-28,
+              4.037913082329465e-29,
+              9.99331740966636
+            ],
+            "failures": [],
+            "rejected_experimental": false
+          },
+          "sphere_still": {
+            "statistic": 108.58276139394565,
+            "p": 0.047619047619047616,
+            "mc_ci95": [
+              0.0,
+              0.1684334709830853
+            ],
+            "exceedances": 0,
+            "replicates": 20,
+            "requested": 20,
+            "null_statistics": [
+              4.092411580747206e-29,
+              1.6018326976190045,
+              0.5231097551402751,
+              1.061248452550286,
+              6.122289573690358,
+              3.622982331736402,
+              6.190435371196945e-29,
+              6.770213649247267,
+              0.5231097551402745,
+              4.092411580747206e-29,
+              3.6081649770192623,
+              3.6081649770192623,
+              2.790899955673487e-29,
+              1.6018326976190045,
+              1.6018326976190045,
+              9.993317409666393,
+              6.122289573690358,
+              4.092411580747206e-29,
+              2.790899955673487e-29,
+              9.993317409666393
+            ],
+            "failures": [],
+            "rejected_experimental": false
+          },
+          "flat_still": {
+            "statistic": 1.1961861378085386,
+            "p": 0.5714285714285714,
+            "mc_ci95": [
+              0.31527813304054847,
+              0.7694221032240758
+            ],
+            "exceedances": 11,
+            "replicates": 20,
+            "requested": 20,
+            "null_statistics": [
+              3.625240989883581e-30,
+              1.6018326976190094,
+              0.5231097551402802,
+              1.0612484525502837,
+              6.122289573690371,
+              3.622982331736403,
+              2.0132942505966283e-29,
+              6.770213649247187,
+              0.5231097551402811,
+              3.625240989883581e-30,
+              3.608164977019255,
+              3.608164977019255,
+              3.8481895584331276e-29,
+              1.6018326976190094,
+              1.6018326976190094,
+              9.99331740966648,
+              6.122289573690371,
+              3.625240989883581e-30,
+              3.8481895584331276e-29,
+              9.99331740966648
+            ],
+            "failures": [],
+            "rejected_experimental": false
+          }
+        },
+        "analytic": {
+          "sphere_rotating": {
+            "chi2": 280.0154405636661,
+            "dof": 3,
+            "df_denominator": 2,
+            "p": 0.01061883290080014,
+            "rejected": false,
+            "method": "approximate F diagnostic",
+            "validated_for_primary_claims": false,
+            "z_marginal": {
+              "k_rot_sphere": -13.683579646711122,
+              "k_curv": -5.426016794645893,
+              "k_disc": 8.869663088432462
+            }
+          },
+          "sphere_still": {
+            "chi2": 108.58276139394565,
+            "dof": 3,
+            "df_denominator": 2,
+            "p": 0.027005966331219485,
+            "rejected": false,
+            "method": "approximate F diagnostic",
+            "validated_for_primary_claims": false,
+            "z_marginal": {
+              "k_rot_sphere": 0.33791235447939527,
+              "k_curv": -5.426016794645893,
+              "k_disc": 8.869663088432462
+            }
+          },
+          "flat_still": {
+            "chi2": 1.1961861378085386,
+            "dof": 3,
+            "df_denominator": 2,
+            "p": 0.7710450420742586,
+            "rejected": false,
+            "method": "approximate F diagnostic",
+            "validated_for_primary_claims": false,
+            "z_marginal": {
+              "k_rot_sphere": 0.33791235447939527,
+              "k_curv": 0.9658517603453881,
+              "k_disc": -0.4295276896235031
+            }
+          }
+        },
+        "validated_for_primary_claims": false
+      },
+      "rejected_empirical": false,
+      "items": [
+        [
+          "0",
+          {
+            "k_rot_sphere": -0.10545691294941882,
+            "k_curv": 0.093993163538705,
+            "k_disc": 0.9397291516003612
+          },
+          {
+            "k_rot_sphere": 0.11992058037364069,
+            "k_curv": 0.20448068820571383,
+            "k_disc": 0.20947155314333296
+          },
+          {},
+          [
+            [
+              0.014380945597150816,
+              0.0033063122897790784,
+              -0.0018946452530692246
+            ],
+            [
+              0.0033063122897790784,
+              0.04181235184908236,
+              -0.0005074463974672281
+            ],
+            [
+              -0.0018946452530692246,
+              -0.0005074463974672281,
+              0.04387833157628016
+            ]
+          ]
+        ],
+        [
+          "1",
+          {
+            "k_rot_sphere": 0.032880591973095445,
+            "k_curv": 0.05337614880201591,
+            "k_disc": 0.688812472203357
+          },
+          {
+            "k_rot_sphere": 0.19471253881335965,
+            "k_curv": 0.22038409326756708,
+            "k_disc": 0.19987686939964797
+          },
+          {},
+          [
+            [
+              0.03791297277114409,
+              0.015511784067958256,
+              0.0012004605754011477
+            ],
+            [
+              0.015511784067958256,
+              0.048569148565367704,
+              -0.009516492123750248
+            ],
+            [
+              0.0012004605754011477,
+              -0.009516492123750248,
+              0.03995076292100393
+            ]
+          ]
+        ],
+        [
+          "1",
+          {
+            "k_rot_sphere": 0.043530984994071674,
+            "k_curv": -0.17567860739634583,
+            "k_disc": 1.0713566596067219
+          },
+          {
+            "k_rot_sphere": 0.11107811401807746,
+            "k_curv": 0.1770794312494868,
+            "k_disc": 0.19641321118013177
+          },
+          {},
+          [
+            [
+              0.012338347413813018,
+              -0.0020165071672674996,
+              -0.0006617428872629089
+            ],
+            [
+              -0.0020165071672674996,
+              0.031357124971641726,
+              0.005460437519474908
+            ],
+            [
+              -0.0006617428872629089,
+              0.005460437519474908,
+              0.03857814952609104
+            ]
+          ]
+        ],
+        [
+          "2",
+          {
+            "k_rot_sphere": 0.0943074289111135,
+            "k_curv": 0.4576534997098638,
+            "k_disc": 1.1843007811232023
+          },
+          {
+            "k_rot_sphere": 0.12732020771623467,
+            "k_curv": 0.1511102738631517,
+            "k_disc": 0.18087118390581908
+          },
+          {},
+          [
+            [
+              0.01621043529290514,
+              0.0008287907282384007,
+              0.0014166798881446352
+            ],
+            [
+              0.0008287907282384007,
+              0.022834314866996712,
+              -0.0008408448058336155
+            ],
+            [
+              0.0014166798881446352,
+              -0.0008408448058336155,
+              0.03271438516749263
+            ]
+          ]
+        ],
+        [
+          "2",
+          {
+            "k_rot_sphere": -0.020423296316545964,
+            "k_curv": 0.5963698875703188,
+            "k_disc": 1.0765714150678842
+          },
+          {
+            "k_rot_sphere": 0.1583443806605042,
+            "k_curv": 0.16339697528433894,
+            "k_disc": 0.24808955275145445
+          },
+          {},
+          [
+            [
+              0.025072942886758657,
+              -0.0011972308768744716,
+              -0.01492074179778694
+            ],
+            [
+              -0.0011972308768744716,
+              0.02669857153207087,
+              -0.002952961950599956
+            ],
+            [
+              -0.01492074179778694,
+              -0.002952961950599956,
+              0.061548426184416694
+            ]
+          ]
+        ],
+        [
+          "2",
+          {
+            "k_rot_sphere": 0.42141966801891806,
+            "k_curv": 0.14778315362700994,
+            "k_disc": 0.66673092183374
+          },
+          {
+            "k_rot_sphere": 0.14692129512479962,
+            "k_curv": 0.16350704150528478,
+            "k_disc": 0.20721193231353469
+          },
+          {},
+          [
+            [
+              0.02158586696114847,
+              -0.0038238810838438623,
+              -0.010133128191360294
+            ],
+            [
+              -0.0038238810838438623,
+              0.02673455262181092,
+              0.006330233018859878
+            ],
+            [
+              -0.010133128191360294,
+              0.006330233018859878,
+              0.04293678489310888
+            ]
+          ]
+        ]
+      ],
+      "known_unit_covariance": [
+        [
+          0.04,
+          0.025,
+          -0.01
+        ],
+        [
+          0.025,
+          0.09,
+          0.02
+        ],
+        [
+          -0.01,
+          0.02,
+          0.03
+        ]
+      ],
+      "marginal": {
+        "k_rot_sphere": {
+          "k": 0.02920073979656331,
+          "sd": 0.0713190864363859,
+          "df": 2,
+          "ci95": [
+            -0.27766052214219034,
+            0.3360620017353169
+          ],
+          "tau2_units": 0.00035977648796756394,
+          "p_het_units": 0.3035046800825392,
+          "n_units": 3,
+          "n_sessions": 6,
+          "tau2_within_units": {
+            "0": 0.0,
+            "1": 0.0,
+            "2": 0.02867561568968652
+          }
+        },
+        "k_curv": {
+          "k": 0.1433810501635952,
+          "sd": 0.15644877415683403,
+          "df": 2,
+          "ci95": [
+            -0.5297636950282638,
+            0.8165257953554541
+          ],
+          "tau2_units": 0.048937790705064724,
+          "p_het_units": 0.035230141667435426,
+          "n_units": 3,
+          "n_sessions": 6,
+          "tau2_within_units": {
+            "0": 0.0,
+            "1": 0.0,
+            "2": 0.024924499515148912
+          }
+        },
+        "k_disc": {
+          "k": 0.9382242708440145,
+          "sd": 0.10753623878324756,
+          "df": 2,
+          "ci95": [
+            0.47553317949628443,
+            1.4009153621917445
+          ],
+          "tau2_units": 0.0,
+          "p_het_units": 0.9280994076872294,
+          "n_units": 3,
+          "n_sessions": 6,
+          "tau2_within_units": {
+            "0": 0.0,
+            "1": 0.033905571433506004,
+            "2": 0.038428779619398445
+          }
+        }
+      },
+      "joint": {
+        "terms": [
+          "k_rot_sphere",
+          "k_curv",
+          "k_disc"
+        ],
+        "k": {
+          "k_rot_sphere": 0.024099600417038666,
+          "k_curv": 0.1511063239232562,
+          "k_disc": 0.9538102078046303
+        },
+        "cov": [
+          [
+            0.005086412090120684,
+            0.0003814559497438741,
+            -0.00034194368674169274
+          ],
+          [
+            0.000381455949743875,
+            0.024476218935176056,
+            -6.546674672568485e-05
+          ],
+          [
+            -0.00034194368674169226,
+            -6.546674672567831e-05,
+            0.011564042651647635
+          ]
+        ],
+        "sessions_without_covariance": 0
+      }
+    },
+    {
+      "truth": "flat_still",
+      "scenario": "pool-5-units",
+      "seed": 10000,
+      "partition": "development",
+      "candidate_id": "1fa6d449640a8c34fee6c228a63ae5555651cb71e327cf1e84b93e5f4800d3d0",
+      "rejected": false,
+      "exclusions": [],
+      "empirical": {
+        "status": "experimental",
+        "method": "null-centered whole-unit studentized bootstrap",
+        "n_units": 5,
+        "seed": 2915781126,
+        "tests": {
+          "sphere_rotating": {
+            "statistic": 550.4176464495557,
+            "p": 0.047619047619047616,
+            "mc_ci95": [
+              0.0,
+              0.1684334709830853
+            ],
+            "exceedances": 0,
+            "replicates": 20,
+            "requested": 20,
+            "null_statistics": [
+              0.6772562647510648,
+              0.6597102156260563,
+              0.43002586386627334,
+              8.576976342201794,
+              2.0218704145308775,
+              2.4937192944286295,
+              0.6677713819363268,
+              2.1827139688291963e-28,
+              1.9859971807514865,
+              0.8980374841141041,
+              1.2306671709437924,
+              6.12125863477792,
+              1.9473005188295176,
+              1.3984050051367598,
+              3.1246154141344467,
+              11.337784516571713,
+              2.9638788174833017,
+              0.9005203875413748,
+              1.3984050051367445,
+              1.9859971807514714
+            ],
+            "failures": [],
+            "rejected_experimental": false
+          },
+          "sphere_still": {
+            "statistic": 257.20074815083643,
+            "p": 0.047619047619047616,
+            "mc_ci95": [
+              0.0,
+              0.1684334709830853
+            ],
+            "exceedances": 0,
+            "replicates": 20,
+            "requested": 20,
+            "null_statistics": [
+              0.6772562647510789,
+              0.6597102156260461,
+              0.43002586386627767,
+              8.576976342201812,
+              2.0218704145309094,
+              2.493719294428633,
+              0.6677713819363315,
+              1.5502845625890182e-28,
+              1.9859971807514516,
+              0.8980374841140859,
+              1.2306671709438057,
+              6.121258634777906,
+              1.9473005188295285,
+              1.3984050051367545,
+              3.124615414134452,
+              11.33778451657173,
+              2.9638788174832715,
+              0.9005203875413932,
+              1.3984050051367556,
+              1.9859971807514551
+            ],
+            "failures": [],
+            "rejected_experimental": false
+          },
+          "flat_still": {
+            "statistic": 2.2422999861549773,
+            "p": 0.3333333333333333,
+            "mc_ci95": [
+              0.11893159040572769,
+              0.5427891822762891
+            ],
+            "exceedances": 6,
+            "replicates": 20,
+            "requested": 20,
+            "null_statistics": [
+              0.677256264751078,
+              0.659710215626067,
+              0.43002586386627545,
+              8.57697634220179,
+              2.0218704145308597,
+              2.493719294428634,
+              0.6677713819363174,
+              2.0430552572604423e-29,
+              1.98599718075144,
+              0.8980374841140946,
+              1.2306671709437904,
+              6.1212586347778934,
+              1.947300518829538,
+              1.398405005136762,
+              3.1246154141344276,
+              11.337784516571784,
+              2.9638788174832915,
+              0.9005203875413835,
+              1.3984050051367518,
+              1.9859971807514631
+            ],
+            "failures": [],
+            "rejected_experimental": false
+          }
+        },
+        "analytic": {
+          "sphere_rotating": {
+            "chi2": 550.4176464495557,
+            "dof": 3,
+            "df_denominator": 4,
+            "p": 9.736436607412269e-05,
+            "rejected": true,
+            "method": "approximate F diagnostic",
+            "validated_for_primary_claims": false,
+            "z_marginal": {
+              "k_rot_sphere": -17.819294169443598,
+              "k_curv": -9.051720909604619,
+              "k_disc": 13.144528283575061
+            }
+          },
+          "sphere_still": {
+            "chi2": 257.20074815083643,
+            "dof": 3,
+            "df_denominator": 4,
+            "p": 0.0004374650815590697,
+            "rejected": true,
+            "method": "approximate F diagnostic",
+            "validated_for_primary_claims": false,
+            "z_marginal": {
+              "k_rot_sphere": 0.7804491915775015,
+              "k_curv": -9.051720909604619,
+              "k_disc": 13.144528283575061
+            }
+          },
+          "flat_still": {
+            "chi2": 2.2422999861549773,
+            "dof": 3,
+            "df_denominator": 4,
+            "p": 0.577776890962655,
+            "rejected": false,
+            "method": "approximate F diagnostic",
+            "validated_for_primary_claims": false,
+            "z_marginal": {
+              "k_rot_sphere": 0.7804491915775015,
+              "k_curv": 1.2525280872552162,
+              "k_disc": 0.24384233435486935
+            }
+          }
+        },
+        "validated_for_primary_claims": false
+      },
+      "rejected_empirical": false,
+      "items": [
+        [
+          "0",
+          {
+            "k_rot_sphere": -0.10545691294941882,
+            "k_curv": 0.093993163538705,
+            "k_disc": 0.9397291516003612
+          },
+          {
+            "k_rot_sphere": 0.11992058037364069,
+            "k_curv": 0.20448068820571383,
+            "k_disc": 0.20947155314333296
+          },
+          {},
+          [
+            [
+              0.014380945597150816,
+              0.0033063122897790784,
+              -0.0018946452530692246
+            ],
+            [
+              0.0033063122897790784,
+              0.04181235184908236,
+              -0.0005074463974672281
+            ],
+            [
+              -0.0018946452530692246,
+              -0.0005074463974672281,
+              0.04387833157628016
+            ]
+          ]
+        ],
+        [
+          "1",
+          {
+            "k_rot_sphere": 0.032880591973095445,
+            "k_curv": 0.05337614880201591,
+            "k_disc": 0.688812472203357
+          },
+          {
+            "k_rot_sphere": 0.19471253881335965,
+            "k_curv": 0.22038409326756708,
+            "k_disc": 0.19987686939964797
+          },
+          {},
+          [
+            [
+              0.03791297277114409,
+              0.015511784067958256,
+              0.0012004605754011477
+            ],
+            [
+              0.015511784067958256,
+              0.048569148565367704,
+              -0.009516492123750248
+            ],
+            [
+              0.0012004605754011477,
+              -0.009516492123750248,
+              0.03995076292100393
+            ]
+          ]
+        ],
+        [
+          "1",
+          {
+            "k_rot_sphere": 0.043530984994071674,
+            "k_curv": -0.17567860739634583,
+            "k_disc": 1.0713566596067219
+          },
+          {
+            "k_rot_sphere": 0.11107811401807746,
+            "k_curv": 0.1770794312494868,
+            "k_disc": 0.19641321118013177
+          },
+          {},
+          [
+            [
+              0.012338347413813018,
+              -0.0020165071672674996,
+              -0.0006617428872629089
+            ],
+            [
+              -0.0020165071672674996,
+              0.031357124971641726,
+              0.005460437519474908
+            ],
+            [
+              -0.0006617428872629089,
+              0.005460437519474908,
+              0.03857814952609104
+            ]
+          ]
+        ],
+        [
+          "2",
+          {
+            "k_rot_sphere": 0.0943074289111135,
+            "k_curv": 0.4576534997098638,
+            "k_disc": 1.1843007811232023
+          },
+          {
+            "k_rot_sphere": 0.12732020771623467,
+            "k_curv": 0.1511102738631517,
+            "k_disc": 0.18087118390581908
+          },
+          {},
+          [
+            [
+              0.01621043529290514,
+              0.0008287907282384007,
+              0.0014166798881446352
+            ],
+            [
+              0.0008287907282384007,
+              0.022834314866996712,
+              -0.0008408448058336155
+            ],
+            [
+              0.0014166798881446352,
+              -0.0008408448058336155,
+              0.03271438516749263
+            ]
+          ]
+        ],
+        [
+          "2",
+          {
+            "k_rot_sphere": -0.020423296316545964,
+            "k_curv": 0.5963698875703188,
+            "k_disc": 1.0765714150678842
+          },
+          {
+            "k_rot_sphere": 0.1583443806605042,
+            "k_curv": 0.16339697528433894,
+            "k_disc": 0.24808955275145445
+          },
+          {},
+          [
+            [
+              0.025072942886758657,
+              -0.0011972308768744716,
+              -0.01492074179778694
+            ],
+            [
+              -0.0011972308768744716,
+              0.02669857153207087,
+              -0.002952961950599956
+            ],
+            [
+              -0.01492074179778694,
+              -0.002952961950599956,
+              0.061548426184416694
+            ]
+          ]
+        ],
+        [
+          "2",
+          {
+            "k_rot_sphere": 0.42141966801891806,
+            "k_curv": 0.14778315362700994,
+            "k_disc": 0.66673092183374
+          },
+          {
+            "k_rot_sphere": 0.14692129512479962,
+            "k_curv": 0.16350704150528478,
+            "k_disc": 0.20721193231353469
+          },
+          {},
+          [
+            [
+              0.02158586696114847,
+              -0.0038238810838438623,
+              -0.010133128191360294
+            ],
+            [
+              -0.0038238810838438623,
+              0.02673455262181092,
+              0.006330233018859878
+            ],
+            [
+              -0.010133128191360294,
+              0.006330233018859878,
+              0.04293678489310888
+            ]
+          ]
+        ],
+        [
+          "3",
+          {
+            "k_rot_sphere": 0.04407369362119752,
+            "k_curv": -0.058481841570291265,
+            "k_disc": 1.0998497092682504
+          },
+          {
+            "k_rot_sphere": 0.14798968639842203,
+            "k_curv": 0.19819476208884246,
+            "k_disc": 0.18257854555338238
+          },
+          {},
+          [
+            [
+              0.021900947280303295,
+              -0.00833507058562831,
+              -0.0027767911157880786
+            ],
+            [
+              -0.00833507058562831,
+              0.039281163719452866,
+              0.0032754838545356797
+            ],
+            [
+              -0.0027767911157880786,
+              0.0032754838545356797,
+              0.033334925296388526
+            ]
+          ]
+        ],
+        [
+          "4",
+          {
+            "k_rot_sphere": 0.009491872619456023,
+            "k_curv": 0.14079534924420486,
+            "k_disc": 1.2103601882874875
+          },
+          {
+            "k_rot_sphere": 0.11320386089725679,
+            "k_curv": 0.1458768113386867,
+            "k_disc": 0.22653448262072662
+          },
+          {},
+          [
+            [
+              0.012815114122045465,
+              -0.0012685517867501088,
+              -0.005645879606416841
+            ],
+            [
+              -0.0012685517867501088,
+              0.0212800440863428,
+              0.0001988587620936368
+            ],
+            [
+              -0.005645879606416841,
+              0.0001988587620936368,
+              0.05131787181624029
+            ]
+          ]
+        ],
+        [
+          "4",
+          {
+            "k_rot_sphere": 0.26017524565006817,
+            "k_curv": 0.2956914831194494,
+            "k_disc": 1.016326187321208
+          },
+          {
+            "k_rot_sphere": 0.1381954232944381,
+            "k_curv": 0.23676299611124674,
+            "k_disc": 0.18116717129222698
+          },
+          {},
+          [
+            [
+              0.019097975019528923,
+              0.01435963945361244,
+              0.0024430394753623985
+            ],
+            [
+              0.01435963945361244,
+              0.05605671632757424,
+              -0.0015205499250493832
+            ],
+            [
+              0.0024430394753623985,
+              -0.0015205499250493832,
+              0.03282154395402711
+            ]
+          ]
+        ]
+      ],
+      "known_unit_covariance": [
+        [
+          0.04,
+          0.025,
+          -0.01
+        ],
+        [
+          0.025,
+          0.09,
+          0.02
+        ],
+        [
+          -0.01,
+          0.02,
+          0.03
+        ]
+      ],
+      "marginal": {
+        "k_rot_sphere": {
+          "k": 0.04842765487779838,
+          "sd": 0.0537641826873627,
+          "df": 4,
+          "ci95": [
+            -0.10084564697948975,
+            0.1977009567350865
+          ],
+          "tau2_units": 0.0,
+          "p_het_units": 0.587658871648316,
+          "n_units": 5,
+          "n_sessions": 9,
+          "tau2_within_units": {
+            "0": 0.0,
+            "1": 0.0,
+            "2": 0.02867561568968652,
+            "3": 0.0,
+            "4": 0.015464532185490295
+          }
+        },
+        "k_curv": {
+          "k": 0.12485206513165382,
+          "sd": 0.09704734428532778,
+          "df": 4,
+          "ci95": [
+            -0.14459455888178957,
+            0.3942986891450972
+          ],
+          "tau2_units": 0.023005121381716044,
+          "p_het_units": 0.09695989534610724,
+          "n_units": 5,
+          "n_sessions": 9,
+          "tau2_within_units": {
+            "0": 0.0,
+            "1": 0.0,
+            "2": 0.024924499515148912,
+            "3": 0.0,
+            "4": 0.0
+          }
+        },
+        "k_disc": {
+          "k": 1.0135186541283074,
+          "sd": 0.07751525802086881,
+          "df": 4,
+          "ci95": [
+            0.7983017954181222,
+            1.2287355128384927
+          ],
+          "tau2_units": 0.0,
+          "p_het_units": 0.8828709096061282,
+          "n_units": 5,
+          "n_sessions": 9,
+          "tau2_within_units": {
+            "0": 0.0,
+            "1": 0.033905571433506004,
+            "2": 0.038428779619398445,
+            "3": 0.0,
+            "4": 0.0
+          }
+        }
+      },
+      "joint": {
+        "terms": [
+          "k_rot_sphere",
+          "k_curv",
+          "k_disc"
+        ],
+        "k": {
+          "k_rot_sphere": 0.04196021291417732,
+          "k_curv": 0.12155452451090007,
+          "k_disc": 1.0189015014639287
+        },
+        "cov": [
+          [
+            0.0028905873400401115,
+            3.303950294053092e-05,
+            -0.0001887854136494989
+          ],
+          [
+            3.30395029405308e-05,
+            0.009418187032834945,
+            1.3490295262696377e-05
+          ],
+          [
+            -0.0001887854136494988,
+            1.3490295262694804e-05,
+            0.006008615226041867
+          ]
+        ],
+        "sessions_without_covariance": 0
+      }
+    },
+    {
+      "truth": "flat_still",
+      "scenario": "pool-10-units",
+      "seed": 10000,
+      "partition": "development",
+      "candidate_id": "1fa6d449640a8c34fee6c228a63ae5555651cb71e327cf1e84b93e5f4800d3d0",
+      "rejected": false,
+      "exclusions": [],
+      "empirical": {
+        "status": "experimental",
+        "method": "null-centered whole-unit studentized bootstrap",
+        "n_units": 10,
+        "seed": 2915781126,
+        "tests": {
+          "sphere_rotating": {
+            "statistic": 934.8695657051479,
+            "p": 0.047619047619047616,
+            "mc_ci95": [
+              0.0,
+              0.1684334709830853
+            ],
+            "exceedances": 0,
+            "replicates": 20,
+            "requested": 20,
+            "null_statistics": [
+              2.213892169769174,
+              1.9508022228505397,
+              2.462589892286917,
+              0.3455888616564421,
+              4.588876931879789,
+              1.1023014099989479,
+              1.0268154867935297,
+              5.0920141289260625,
+              0.6461620797670767,
+              3.1853364507597335,
+              0.7336473248406273,
+              1.8406232586547586,
+              0.6368559009046052,
+              5.760748479507805,
+              2.2139394542629107,
+              6.793000770144207,
+              3.746340618745121,
+              1.8828740041570173,
+              9.670005434962189,
+              2.4672950021474325
+            ],
+            "failures": [],
+            "rejected_experimental": false
+          },
+          "sphere_still": {
+            "statistic": 295.59643489779376,
+            "p": 0.047619047619047616,
+            "mc_ci95": [
+              0.0,
+              0.1684334709830853
+            ],
+            "exceedances": 0,
+            "replicates": 20,
+            "requested": 20,
+            "null_statistics": [
+              2.213892169769156,
+              1.9508022228505493,
+              2.462589892286925,
+              0.3455888616564595,
+              4.588876931879898,
+              1.102301409998947,
+              1.0268154867935293,
+              5.0920141289260386,
+              0.6461620797670691,
+              3.1853364507596638,
+              0.7336473248406243,
+              1.8406232586547668,
+              0.6368559009046038,
+              5.760748479507842,
+              2.213939454262888,
+              6.793000770144258,
+              3.7463406187451502,
+              1.8828740041570364,
+              9.670005434962242,
+              2.467295002147462
+            ],
+            "failures": [],
+            "rejected_experimental": false
+          },
+          "flat_still": {
+            "statistic": 1.486748452530684,
+            "p": 0.7142857142857143,
+            "mc_ci95": [
+              0.45721081772371086,
+              0.8810684095942722
+            ],
+            "exceedances": 14,
+            "replicates": 20,
+            "requested": 20,
+            "null_statistics": [
+              2.2138921697691685,
+              1.9508022228505517,
+              2.4625898922868963,
+              0.3455888616564644,
+              4.588876931879885,
+              1.1023014099989548,
+              1.0268154867935197,
+              5.092014128926019,
+              0.6461620797670665,
+              3.1853364507596638,
+              0.7336473248406267,
+              1.8406232586547742,
+              0.6368559009046092,
+              5.760748479507817,
+              2.2139394542629116,
+              6.793000770144268,
+              3.746340618745181,
+              1.882874004157038,
+              9.670005434962244,
+              2.4672950021473894
+            ],
+            "failures": [],
+            "rejected_experimental": false
+          }
+        },
+        "analytic": {
+          "sphere_rotating": {
+            "chi2": 934.8695657051479,
+            "dof": 3,
+            "df_denominator": 9,
+            "p": 2.0800130900902037e-09,
+            "rejected": true,
+            "method": "approximate F diagnostic",
+            "validated_for_primary_claims": false,
+            "z_marginal": {
+              "k_rot_sphere": -25.861710590232146,
+              "k_curv": -11.21917066254828,
+              "k_disc": 13.165961971701044
+            }
+          },
+          "sphere_still": {
+            "chi2": 295.59643489779376,
+            "dof": 3,
+            "df_denominator": 9,
+            "p": 3.348065770901858e-07,
+            "rejected": true,
+            "method": "approximate F diagnostic",
+            "validated_for_primary_claims": false,
+            "z_marginal": {
+              "k_rot_sphere": 0.4098785258476213,
+              "k_curv": -11.21917066254828,
+              "k_disc": 13.165961971701044
+            }
+          },
+          "flat_still": {
+            "chi2": 1.486748452530684,
+            "dof": 3,
+            "df_denominator": 9,
+            "p": 0.6942955342216128,
+            "rejected": false,
+            "method": "approximate F diagnostic",
+            "validated_for_primary_claims": false,
+            "z_marginal": {
+              "k_rot_sphere": 0.4098785258476213,
+              "k_curv": 0.6997704668224954,
+              "k_disc": 0.8973564224734882
+            }
+          }
+        },
+        "validated_for_primary_claims": false
+      },
+      "rejected_empirical": false,
+      "items": [
+        [
+          "0",
+          {
+            "k_rot_sphere": -0.10545691294941882,
+            "k_curv": 0.093993163538705,
+            "k_disc": 0.9397291516003612
+          },
+          {
+            "k_rot_sphere": 0.11992058037364069,
+            "k_curv": 0.20448068820571383,
+            "k_disc": 0.20947155314333296
+          },
+          {},
+          [
+            [
+              0.014380945597150816,
+              0.0033063122897790784,
+              -0.0018946452530692246
+            ],
+            [
+              0.0033063122897790784,
+              0.04181235184908236,
+              -0.0005074463974672281
+            ],
+            [
+              -0.0018946452530692246,
+              -0.0005074463974672281,
+              0.04387833157628016
+            ]
+          ]
+        ],
+        [
+          "1",
+          {
+            "k_rot_sphere": 0.032880591973095445,
+            "k_curv": 0.05337614880201591,
+            "k_disc": 0.688812472203357
+          },
+          {
+            "k_rot_sphere": 0.19471253881335965,
+            "k_curv": 0.22038409326756708,
+            "k_disc": 0.19987686939964797
+          },
+          {},
+          [
+            [
+              0.03791297277114409,
+              0.015511784067958256,
+              0.0012004605754011477
+            ],
+            [
+              0.015511784067958256,
+              0.048569148565367704,
+              -0.009516492123750248
+            ],
+            [
+              0.0012004605754011477,
+              -0.009516492123750248,
+              0.03995076292100393
+            ]
+          ]
+        ],
+        [
+          "1",
+          {
+            "k_rot_sphere": 0.043530984994071674,
+            "k_curv": -0.17567860739634583,
+            "k_disc": 1.0713566596067219
+          },
+          {
+            "k_rot_sphere": 0.11107811401807746,
+            "k_curv": 0.1770794312494868,
+            "k_disc": 0.19641321118013177
+          },
+          {},
+          [
+            [
+              0.012338347413813018,
+              -0.0020165071672674996,
+              -0.0006617428872629089
+            ],
+            [
+              -0.0020165071672674996,
+              0.031357124971641726,
+              0.005460437519474908
+            ],
+            [
+              -0.0006617428872629089,
+              0.005460437519474908,
+              0.03857814952609104
+            ]
+          ]
+        ],
+        [
+          "2",
+          {
+            "k_rot_sphere": 0.0943074289111135,
+            "k_curv": 0.4576534997098638,
+            "k_disc": 1.1843007811232023
+          },
+          {
+            "k_rot_sphere": 0.12732020771623467,
+            "k_curv": 0.1511102738631517,
+            "k_disc": 0.18087118390581908
+          },
+          {},
+          [
+            [
+              0.01621043529290514,
+              0.0008287907282384007,
+              0.0014166798881446352
+            ],
+            [
+              0.0008287907282384007,
+              0.022834314866996712,
+              -0.0008408448058336155
+            ],
+            [
+              0.0014166798881446352,
+              -0.0008408448058336155,
+              0.03271438516749263
+            ]
+          ]
+        ],
+        [
+          "2",
+          {
+            "k_rot_sphere": -0.020423296316545964,
+            "k_curv": 0.5963698875703188,
+            "k_disc": 1.0765714150678842
+          },
+          {
+            "k_rot_sphere": 0.1583443806605042,
+            "k_curv": 0.16339697528433894,
+            "k_disc": 0.24808955275145445
+          },
+          {},
+          [
+            [
+              0.025072942886758657,
+              -0.0011972308768744716,
+              -0.01492074179778694
+            ],
+            [
+              -0.0011972308768744716,
+              0.02669857153207087,
+              -0.002952961950599956
+            ],
+            [
+              -0.01492074179778694,
+              -0.002952961950599956,
+              0.061548426184416694
+            ]
+          ]
+        ],
+        [
+          "2",
+          {
+            "k_rot_sphere": 0.42141966801891806,
+            "k_curv": 0.14778315362700994,
+            "k_disc": 0.66673092183374
+          },
+          {
+            "k_rot_sphere": 0.14692129512479962,
+            "k_curv": 0.16350704150528478,
+            "k_disc": 0.20721193231353469
+          },
+          {},
+          [
+            [
+              0.02158586696114847,
+              -0.0038238810838438623,
+              -0.010133128191360294
+            ],
+            [
+              -0.0038238810838438623,
+              0.02673455262181092,
+              0.006330233018859878
+            ],
+            [
+              -0.010133128191360294,
+              0.006330233018859878,
+              0.04293678489310888
+            ]
+          ]
+        ],
+        [
+          "3",
+          {
+            "k_rot_sphere": 0.04407369362119752,
+            "k_curv": -0.058481841570291265,
+            "k_disc": 1.0998497092682504
+          },
+          {
+            "k_rot_sphere": 0.14798968639842203,
+            "k_curv": 0.19819476208884246,
+            "k_disc": 0.18257854555338238
+          },
+          {},
+          [
+            [
+              0.021900947280303295,
+              -0.00833507058562831,
+              -0.0027767911157880786
+            ],
+            [
+              -0.00833507058562831,
+              0.039281163719452866,
+              0.0032754838545356797
+            ],
+            [
+              -0.0027767911157880786,
+              0.0032754838545356797,
+              0.033334925296388526
+            ]
+          ]
+        ],
+        [
+          "4",
+          {
+            "k_rot_sphere": 0.009491872619456023,
+            "k_curv": 0.14079534924420486,
+            "k_disc": 1.2103601882874875
+          },
+          {
+            "k_rot_sphere": 0.11320386089725679,
+            "k_curv": 0.1458768113386867,
+            "k_disc": 0.22653448262072662
+          },
+          {},
+          [
+            [
+              0.012815114122045465,
+              -0.0012685517867501088,
+              -0.005645879606416841
+            ],
+            [
+              -0.0012685517867501088,
+              0.0212800440863428,
+              0.0001988587620936368
+            ],
+            [
+              -0.005645879606416841,
+              0.0001988587620936368,
+              0.05131787181624029
+            ]
+          ]
+        ],
+        [
+          "4",
+          {
+            "k_rot_sphere": 0.26017524565006817,
+            "k_curv": 0.2956914831194494,
+            "k_disc": 1.016326187321208
+          },
+          {
+            "k_rot_sphere": 0.1381954232944381,
+            "k_curv": 0.23676299611124674,
+            "k_disc": 0.18116717129222698
+          },
+          {},
+          [
+            [
+              0.019097975019528923,
+              0.01435963945361244,
+              0.0024430394753623985
+            ],
+            [
+              0.01435963945361244,
+              0.05605671632757424,
+              -0.0015205499250493832
+            ],
+            [
+              0.0024430394753623985,
+              -0.0015205499250493832,
+              0.03282154395402711
+            ]
+          ]
+        ],
+        [
+          "5",
+          {
+            "k_rot_sphere": -0.010315357167582861,
+            "k_curv": -0.17712021525755733,
+            "k_disc": 1.3941579558226995
+          },
+          {
+            "k_rot_sphere": 0.14131795835641656,
+            "k_curv": 0.19232337583497883,
+            "k_disc": 0.1945083731174657
+          },
+          {},
+          [
+            [
+              0.019970765354025886,
+              0.0025442448128106345,
+              0.007814915547531985
+            ],
+            [
+              0.0025442448128106345,
+              0.03698828089256252,
+              -0.0032377508843770236
+            ],
+            [
+              0.007814915547531985,
+              -0.0032377508843770236,
+              0.03783350721280325
+            ]
+          ]
+        ],
+        [
+          "5",
+          {
+            "k_rot_sphere": -0.17123917029602145,
+            "k_curv": -0.044337801164653426,
+            "k_disc": 1.51538156857867
+          },
+          {
+            "k_rot_sphere": 0.14702657168592806,
+            "k_curv": 0.1718792792065625,
+            "k_disc": 0.21112207887717
+          },
+          {},
+          [
+            [
+              0.021616812781717343,
+              0.010390125231075248,
+              -0.0011380232974026127
+            ],
+            [
+              0.010390125231075248,
+              0.029542486620567472,
+              0.0007537066733472366
+            ],
+            [
+              -0.0011380232974026127,
+              0.0007537066733472366,
+              0.04457253218941799
+            ]
+          ]
+        ],
+        [
+          "5",
+          {
+            "k_rot_sphere": -0.33714471944581137,
+            "k_curv": 0.14627559602594914,
+            "k_disc": 1.381815789184655
+          },
+          {
+            "k_rot_sphere": 0.20436147827277173,
+            "k_curv": 0.15239299931163458,
+            "k_disc": 0.20424623007936485
+          },
+          {},
+          [
+            [
+              0.04176361380183256,
+              0.005553612626204973,
+              0.011042047803796941
+            ],
+            [
+              0.005553612626204973,
+              0.023223626239195858,
+              -0.0006063761281675878
+            ],
+            [
+              0.011042047803796941,
+              -0.0006063761281675878,
+              0.041716522501632845
+            ]
+          ]
+        ],
+        [
+          "6",
+          {
+            "k_rot_sphere": -0.08742404916918296,
+            "k_curv": -0.6306704343957904,
+            "k_disc": 1.4576707048398703
+          },
+          {
+            "k_rot_sphere": 0.11244848586433681,
+            "k_curv": 0.16421267014111385,
+            "k_disc": 0.19394135327312692
+          },
+          {},
+          [
+            [
+              0.012644661973181957,
+              0.004277950566401787,
+              -0.0038046644148113616
+            ],
+            [
+              0.004277950566401787,
+              0.02696580103487426,
+              -0.006294750537301686
+            ],
+            [
+              -0.0038046644148113616,
+              -0.006294750537301686,
+              0.03761324850941182
+            ]
+          ]
+        ],
+        [
+          "7",
+          {
+            "k_rot_sphere": 0.16005714059979,
+            "k_curv": 0.2014952298654307,
+            "k_disc": 0.9858524223449493
+          },
+          {
+            "k_rot_sphere": 0.1337936003980848,
+            "k_curv": 0.16314857626391557,
+            "k_disc": 0.21339700585513885
+          },
+          {},
+          [
+            [
+              0.017900727507482395,
+              -0.004024239015030854,
+              0.0060350051343163605
+            ],
+            [
+              -0.004024239015030854,
+              0.02661745793694268,
+              -0.01010830151370854
+            ],
+            [
+              0.0060350051343163605,
+              -0.01010830151370854,
+              0.045538282107938165
+            ]
+          ]
+        ],
+        [
+          "7",
+          {
+            "k_rot_sphere": 0.058767281594905726,
+            "k_curv": 0.14198262250581664,
+            "k_disc": 0.9456533893566846
+          },
+          {
+            "k_rot_sphere": 0.12888728659718782,
+            "k_curv": 0.1482574205743148,
+            "k_disc": 0.1969672619744218
+          },
+          {},
+          [
+            [
+              0.01661193264638563,
+              -0.0004971078796763825,
+              0.002131557861089022
+            ],
+            [
+              -0.0004971078796763825,
+              0.021980262755349256,
+              0.0038084253764405227
+            ],
+            [
+              0.002131557861089022,
+              0.0038084253764405227,
+              0.03879610228970051
+            ]
+          ]
+        ],
+        [
+          "8",
+          {
+            "k_rot_sphere": 0.23784575456282625,
+            "k_curv": 0.023124011487252988,
+            "k_disc": 0.7907191888790067
+          },
+          {
+            "k_rot_sphere": 0.14917692911254823,
+            "k_curv": 0.1875388690558835,
+            "k_disc": 0.2532223905249116
+          },
+          {},
+          [
+            [
+              0.02225375617945024,
+              -0.005794231831067393,
+              -0.015731133155832966
+            ],
+            [
+              -0.005794231831067393,
+              0.035170827406759815,
+              0.015868108587031964
+            ],
+            [
+              -0.015731133155832966,
+              0.015868108587031964,
+              0.06412157906315083
+            ]
+          ]
+        ],
+        [
+          "8",
+          {
+            "k_rot_sphere": 0.10846192434837806,
+            "k_curv": -0.005491675246184546,
+            "k_disc": 0.7865479301717604
+          },
+          {
+            "k_rot_sphere": 0.114505411552469,
+            "k_curv": 0.1442612539141226,
+            "k_disc": 0.2511489480860404
+          },
+          {},
+          [
+            [
+              0.013111489274800303,
+              -0.0002446448101060464,
+              -0.0018149503638039523
+            ],
+            [
+              -0.0002446448101060464,
+              0.020811309380874946,
+              -0.003921552524193877
+            ],
+            [
+              -0.0018149503638039523,
+              -0.003921552524193877,
+              0.0630757941247246
+            ]
+          ]
+        ],
+        [
+          "8",
+          {
+            "k_rot_sphere": -0.06232993678948906,
+            "k_curv": 0.27995784527923684,
+            "k_disc": 0.6067885104401685
+          },
+          {
+            "k_rot_sphere": 0.15416761936223405,
+            "k_curv": 0.1641784557574076,
+            "k_disc": 0.18627952402334202
+          },
+          {},
+          [
+            [
+              0.023767654859818688,
+              -0.003737985547993111,
+              0.002982025285164789
+            ],
+            [
+              -0.003737985547993111,
+              0.02695456533488705,
+              0.003384626794753034
+            ],
+            [
+              0.002982025285164789,
+              0.003384626794753034,
+              0.03470006107036286
+            ]
+          ]
+        ],
+        [
+          "9",
+          {
+            "k_rot_sphere": -0.14498168423647978,
+            "k_curv": 0.16127652863902608,
+            "k_disc": 1.2130609406277943
+          },
+          {
+            "k_rot_sphere": 0.11274725582056275,
+            "k_curv": 0.18056046710732745,
+            "k_disc": 0.2251025853029899
+          },
+          {},
+          [
+            [
+              0.01271194369506742,
+              0.004564709990509597,
+              -0.0057053467372776435
+            ],
+            [
+              0.004564709990509597,
+              0.03260208228201628,
+              -0.01161948860102009
+            ],
+            [
+              -0.0057053467372776435,
+              -0.01161948860102009,
+              0.050671173910089844
+            ]
+          ]
+        ]
+      ],
+      "known_unit_covariance": [
+        [
+          0.04,
+          0.025,
+          -0.01
+        ],
+        [
+          0.025,
+          0.09,
+          0.02
+        ],
+        [
+          -0.01,
+          0.02,
+          0.03
+        ]
+      ],
+      "marginal": {
+        "k_rot_sphere": {
+          "k": 0.010385623083350138,
+          "sd": 0.03806393269861018,
+          "df": 9,
+          "ci95": [
+            -0.07572097491507968,
+            0.09649222108177996
+          ],
+          "tau2_units": 0.0030851405011920845,
+          "p_het_units": 0.2751053460446085,
+          "n_units": 10,
+          "n_sessions": 19,
+          "tau2_within_units": {
+            "0": 0.0,
+            "1": 0.0,
+            "2": 0.02867561568968652,
+            "3": 0.0,
+            "4": 0.015464532185490295,
+            "5": 0.0,
+            "6": 0.0,
+            "7": 0.0,
+            "8": 0.0,
+            "9": 0.0
+          }
+        },
+        "k_curv": {
+          "k": 0.04284465812537978,
+          "sd": 0.08390007041278102,
+          "df": 9,
+          "ci95": [
+            -0.14695048711816658,
+            0.23263980336892612
+          ],
+          "tau2_units": 0.0470411991972989,
+          "p_het_units": 0.000699680942906427,
+          "n_units": 10,
+          "n_sessions": 19,
+          "tau2_within_units": {
+            "0": 0.0,
+            "1": 0.0,
+            "2": 0.024924499515148912,
+            "3": 0.0,
+            "4": 0.0,
+            "5": 0.0,
+            "6": 0.0,
+            "7": 0.0,
+            "8": 0.00017757761765972886,
+            "9": 0.0
+          }
+        },
+        "k_disc": {
+          "k": 1.0727367931895628,
+          "sd": 0.08150885575280077,
+          "df": 9,
+          "ci95": [
+            0.8883509513168789,
+            1.2571226350622466
+          ],
+          "tau2_units": 0.038314645310875445,
+          "p_het_units": 0.0041425681309702304,
+          "n_units": 10,
+          "n_sessions": 19,
+          "tau2_within_units": {
+            "0": 0.0,
+            "1": 0.033905571433506004,
+            "2": 0.038428779619398445,
+            "3": 0.0,
+            "4": 0.0,
+            "5": 0.0,
+            "6": 0.0,
+            "7": 0.0,
+            "8": 0.0,
+            "9": 0.0
+          }
+        }
+      },
+      "joint": {
+        "terms": [
+          "k_rot_sphere",
+          "k_curv",
+          "k_disc"
+        ],
+        "k": {
+          "k_rot_sphere": 0.015601588622469409,
+          "k_curv": 0.05871079143919203,
+          "k_disc": 1.073142495198241
+        },
+        "cov": [
+          [
+            0.0014488629724843253,
+            7.705100026207914e-05,
+            -7.336279252552502e-05
+          ],
+          [
+            7.705100026207945e-05,
+            0.007039221815269616,
+            -0.0001077833245108619
+          ],
+          [
+            -7.33627925255248e-05,
+            -0.00010778332451085289,
+            0.006643693566130883
+          ]
+        ],
+        "sessions_without_covariance": 0
+      }
+    }
+  ]
+}
