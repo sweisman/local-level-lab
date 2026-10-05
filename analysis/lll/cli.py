@@ -21,12 +21,13 @@ def analyze_to(zip_path, out_dir=None) -> Path:
     return html_path
 
 
-def collate_to(inputs, out_dir, allow_synthetic=False, provenance=None) -> Path:
+def collate_to(inputs, out_dir, allow_synthetic=False, provenance=None, pairwise_decision_policy=None) -> Path:
     from .collate import collate, load_results, write_csv
     from .report import collation_report
     out = Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)
-    col = collate(load_results(inputs), allow_synthetic=allow_synthetic, provenance=provenance)
+    col = collate(load_results(inputs), allow_synthetic=allow_synthetic, provenance=provenance,
+                  pairwise_decision_policy=pairwise_decision_policy)
     (out / "collated.json").write_text(json.dumps(col, indent=1))
     write_csv(col, out / "sessions.csv")
     (out / "collated.html").write_text(collation_report(col))
@@ -169,6 +170,7 @@ def main(argv=None):
     c = sub.add_parser("collate", help="pool *.result.json files from directories/files")
     c.add_argument("inputs", nargs="+")
     c.add_argument("-o", "--out", default="collated")
+    c.add_argument("--pairwise-decision-policy", type=Path, help="experimental pooled-pairwise threshold file")
     c.add_argument("--include-synthetic", action="store_true", help="let synthetic sessions into the primary result (testing only)")
     s = sub.add_parser("synth", help="write a synthetic session zip with a known true model")
     s.add_argument("out")
@@ -191,7 +193,8 @@ def main(argv=None):
         for z in args.zips:
             print(analyze_to(z, args.out))
     elif args.cmd == "collate":
-        print(collate_to(args.inputs, args.out, args.include_synthetic))
+        pairwise_policy = json.loads(args.pairwise_decision_policy.read_text()) if args.pairwise_decision_policy else None
+        print(collate_to(args.inputs, args.out, args.include_synthetic, pairwise_decision_policy=pairwise_policy))
     elif args.cmd == "synth":
         from .synth import ADVERSE, synthesize
         synthesize(args.out, args.truth, seed=args.seed, fs=args.fs, mount=args.mount, variant=args.variant,

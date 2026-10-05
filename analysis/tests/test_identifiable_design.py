@@ -10,6 +10,8 @@ from lll.calib import RAD2DPH
 from lll.inference import CandidateProblem, crab_basis, science_information
 from lll.research_calibration import calibrate, decision_stratum, diagnostic_stratum
 from lll.synth import wind_velocity
+from lll.policy import CANDIDATE_POLICY, MODEL_CONTRASTS, eligibility_policies, eligibility_provenance
+from lll.runtime import numerical_environment
 from test_release060 import crab_fixture
 from test_research_candidates import settings
 
@@ -142,10 +144,20 @@ def test_operational_threshold_covers_each_adversary():
     rows = [{"scenario": scenario, "candidate_id": "x", "variant": "spp", "geometry": geometry,
              "truth": truth, "partition": "calibration", "exclusions": [], "seed": 1_000_000+i,
              "delta_chi2_identifiable": {truth: float(i+shift)}, "model_test_rank": 2,
+             "eligibility_policy": eligibility_provenance(True), "convergence": {"converged": True},
+             "inference_policy": {"settings": {"engine": "candidate-1", "n_boot": 20}},
+             "numerical_environment": numerical_environment(),
+             "design_identifiability": {"rank_threshold": CANDIDATE_POLICY["retention_threshold"],
+                 "assumptions": CANDIDATE_POLICY["design_assumptions"],
+                 "model_contrast_information": {name: {"estimable": True, "retained_fraction": .8, "information": 10.}
+                                                for name in MODEL_CONTRASTS}},
              "bootstrap": {"bootstrap_valid": True}}
             for scenario, geometry, shift in [("bias_step", "fixed", 0), ("bias_mixed", "seeded", 10)]
             for truth in models.MODELS for i in range(5)]
-    policy = calibrate({"partition": "calibration", "manifest_hash": "test", "analysis_version": "0.6.0", "records": rows}, min_accepted=5)
+    policy = calibrate({"partition": "calibration", "manifest_hash": "test", "analysis_version": "0.6.0",
+                        "numerical_environment": numerical_environment(),
+                        "config": {"calibration_tail_observations": 1, "calibration_tail_confidence": .01, "calibration_min_accepted": 5},
+                        "eligibility_policies": eligibility_policies(), "records": rows}, min_accepted=5)
     assert len(policy["thresholds"]) == 1 and len(policy["diagnostic_thresholds"]) == 2
     assert set(next(iter(policy["thresholds"].values())).values()) == {14.}
     assert decision_stratum(rows[0]) == decision_stratum(rows[-1])
@@ -156,18 +168,22 @@ def test_optimizer_pairs_inputs_and_searches_turn_counts(monkeypatch):
     import optimize_turns
     captured = []
     def flight(truth, scenario, seed, *args, design, **kwargs):
-        captured.append((truth, design))
+        captured.append((truth, design, kwargs["fit_options"]["crab_model"]))
         n = len(design["simulator"]["index_turns"])
-        return {"convergence": {"converged": True}, "identifiability": {
+        return {"convergence": {"converged": True}, "design_identifiability": {
+            "assumptions": CANDIDATE_POLICY["design_assumptions"],
             "estimable_rank": 3, "normalized_singular_values": [1., 1., 1.],
-            "model_contrast_information": {"contrast": {"information": float(n)}}}}
+            "rank_threshold": CANDIDATE_POLICY["retention_threshold"],
+            "model_contrast_information": {name: {"information": float(n), "retained_fraction": .5+.1*n, "estimable": True}
+                                           for name in MODEL_CONTRASTS}}}
     monkeypatch.setattr(optimize_turns, "flight_run", flight)
     result = optimize_turns.search(seeds=[49], scenarios=["bias_mixed"], max_turns=2, grid_min=20.)
     assert len(result["best"]["turn_schedule_min"]) == 2
     assert len(result["frontier_by_turn_count"]) == 3
-    inputs = [{k: v for k, v in d["simulator"].items() if k != "index_turns"} for _, d in captured]
+    inputs = [{k: v for k, v in d["simulator"].items() if k != "index_turns"} for _, d, _ in captured]
     assert all(v == inputs[0] for v in inputs)
-    assert {truth for truth, _ in captured} == set(models.MODELS)
+    assert {truth for truth, _, _ in captured} == set(models.MODELS)
+    assert {crab for _, _, crab in captured} == {"dynamic", "wind"}
     assert result == json.loads(json.dumps(result))
 
 
@@ -190,7 +206,7 @@ def test_manifest_cost_includes_failed_attempts(monkeypatch, tmp_path):
         {"failure": "no fit", "elapsed_s": 2.}, {"rejected": False, "exclusions": [], "elapsed_s": 4.}]}))
     manifest = tmp_path/"manifest.json"
     monkeypatch.setattr(sys, "argv", ["research.py", "--truth", "all", "--scenario", "bias_mixed",
-                                    "--bias-model", "dynamic", "--development-campaign", str(pilot),
+                                    "--bias-model", "dynamic", "--model-test-ranks", "3", "--development-campaign", str(pilot),
                                     "--write-manifest", str(manifest), "-o", str(tmp_path/"unused.json")])
     research.main()
     plan = json.loads(manifest.read_text())["config"]["campaign_plan"]

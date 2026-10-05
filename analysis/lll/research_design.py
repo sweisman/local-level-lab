@@ -1,12 +1,15 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 """Serializable simulation design and enforced independent campaign partitions."""
 import inspect
+import itertools
 import json
 from pathlib import Path
 import numpy as np
 
 from . import __version__
 from .inference_policy import INFERENCE_POLICY, digest
+from .policy import eligibility_policies
+from .runtime import numerical_environment, numerical_environment_hash
 from .synth import synthesize
 
 PARTITIONS = {"development": (0, 1_000_000), "calibration": (1_000_000, 2_000_000),
@@ -50,6 +53,24 @@ def random_turns(rng, duration):
 def random_gaps(rng, duration):
     return [[float(rng.uniform(1, duration-4)), float(rng.uniform(10, 180)/60)]
             for _ in range(int(rng.integers(0, 4)))]
+
+
+def geometry_stress_matrix():
+    """Observable, deterministic domain cells; speed labels do not assert measured information."""
+    cells = []
+    for latitude, headings, separation, duration, speed, turns in itertools.product(
+            (-65., -35., -5., 5., 35., 65.), (2, 6), ("poor", "good"), (60., 180.), (150., 270.), (0, 3, 6)):
+        span = 20. if separation == "poor" else (120. if headings == 2 else 300.)
+        bearings = np.linspace(10., 10.+span, headings)
+        cell = {"id": f"lat{latitude:+g}-h{headings}-{separation}-t{duration:g}-v{speed:g}-turn{turns}",
+                "latitude_deg": latitude, "heading_count": headings, "heading_separation": separation,
+                "heading_span_deg": span, "duration_min": duration, "speed_mps": speed, "turn_count": turns,
+                "simulator": {"lat0": latitude, "lon0": -30., "speed": speed,
+                    "legs": [[float(b), duration/headings] for b in bearings],
+                    "index_turns": [[float(t), "z"] for t in np.linspace(10., duration-10., turns)] if turns else [],
+                    "gnss_dropouts": []}}
+        cells.append(cell)
+    return cells
 
 
 def validate_turn_schedule(turns, duration, min_spacing=10., edge_margin=5.):
@@ -126,14 +147,21 @@ def scenario(name, rng=None, duration_min=90., protocol_rng=None, missingness_rn
 
 
 def realize(seed, scenario_name, *, partition="development", geometry="seeded", variant="spp",
-            same_side_up_turns=False, hardware=None, turn_schedule=None, turn_min_spacing=10., turn_edge_margin=5.):
+            same_side_up_turns=False, hardware=None, turn_schedule=None, turn_min_spacing=10., turn_edge_margin=5.,
+            geometry_cell=None):
     seeds = streams(seed, partition)
     # Resolve simulator defaults as well: replay does not silently acquire new defaults.
     opts = {k: plain(p.default) for k, p in inspect.signature(synthesize).parameters.items()
             if p.default is not inspect.Parameter.empty and k not in ("truth", "seed", "omega_in_fn", "crab_trajectory")}
     opts.update(fs=20., variant=variant, legs=[[10., 30.], [100., 30.], [190., 30.]])
     if geometry == "seeded": opts.update(route(np.random.default_rng(seeds["geometry"])))
-    elif geometry != "fixed": raise ValueError("geometry must be fixed or seeded")
+    elif geometry == "stress":
+        cells = {cell["id"]: cell for cell in geometry_stress_matrix()}
+        if geometry_cell not in cells: raise ValueError("stress geometry requires a known geometry cell")
+        if same_side_up_turns or turn_schedule is not None:
+            raise ValueError("stress cells preregister their own turn schedules")
+        opts.update(cells[geometry_cell]["simulator"])
+    elif geometry != "fixed": raise ValueError("geometry must be fixed, seeded or stress")
     duration = sum(l[1] for l in opts["legs"])
     if geometry == "seeded":
         opts["index_turns"] = random_turns(np.random.default_rng(seeds["protocol"]), duration)
@@ -143,6 +171,8 @@ def realize(seed, scenario_name, *, partition="development", geometry="seeded", 
     if scenario_name == "hardware":
         if hardware is None: raise ValueError("hardware fixture must be provided")
         options.update(plain(hardware))
+    if geometry == "stress" and any(key in options for key in ("lat0", "lon0", "legs", "speed", "index_turns")):
+        raise ValueError("scenario overrides preregistered stress geometry; use a nuisance-only scenario")
     opts.update(options)
     duration = sum(l[1] for l in opts["legs"])
     # Dedicated geometry fixtures have their own duration. Regenerate only event times that
@@ -155,6 +185,7 @@ def realize(seed, scenario_name, *, partition="development", geometry="seeded", 
         opts["index_turns"] = validate_turn_schedule(turn_schedule, duration, turn_min_spacing, turn_edge_margin)
     return plain(dict(design_version=DESIGN_VERSION, seed=seed, partition=partition, streams=seeds,
                       geometry=geometry, scenario=scenario_name, simulator=opts, crab_trajectory=crab,
+                      geometry_cell=geometry_cell,
                       analysis_options=analysis))
 
 
@@ -164,6 +195,8 @@ def simulator_options(design):
 
 def freeze_manifest(config):
     content = {"design_version": DESIGN_VERSION, "analysis_version": __version__,
+               "numerical_environment": numerical_environment(), "numerical_environment_hash": numerical_environment_hash(),
+               "eligibility_policies": eligibility_policies(),
                "inference_policy_hash": digest(INFERENCE_POLICY), "implementation_hash": implementation_hash(), "config": config}
     return {**content, "manifest_hash": digest(content)}
 
@@ -177,6 +210,11 @@ def implementation_hash():
              "analysis/lll/collate.py", "analysis/tests/research.py", "analysis/tests/optimize_turns.py",
              "analysis/tests/truthgen.py")
     paths += ("analysis/lll/calib.py", "analysis/lll/drift.py", "analysis/lll/models.py",
+              "analysis/lll/runtime.py",
+              "analysis/lll/rank_sweep.py",
+              "analysis/lll/pairwise.py",
+              "analysis/lll/pairwise_calibration.py",
+              "analysis/lll/cli.py",
               "analysis/lll/slip.py", "analysis/lll/format.py", "analysis/lll/segments.py",
               "analysis/tests/conftest.py", "analysis/tests/test_analysis.py")
     return digest({p: (root/p).read_text() for p in paths})

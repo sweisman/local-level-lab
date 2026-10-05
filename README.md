@@ -94,7 +94,8 @@ The per-IP limit uses the client address uvicorn sees. Behind a reverse proxy on
 
 Open `android/` in Android Studio, or run `./gradlew assembleDebug` (JDK 17 or 21, Android SDK 35). To set the default upload server for your build, use `lll.serverUrl` in `android/gradle.properties`. Users can change it in Settings. Choose and configure the IMU in Settings before the first session.
 
-Software 0.6.0 uses eligibility policy **pilot-2**. Research scenarios, reproducible pilot commands,
+Software 0.6.0 defaults to eligibility policy **pilot-2**; opt-in candidates use the shared
+**candidate-eligibility-2** design-based policy. Research scenarios, reproducible pilot commands,
 and the remaining publication blockers are described in [VALIDATION.md](docs/VALIDATION.md).
 
 ## Openness

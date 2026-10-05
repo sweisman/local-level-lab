@@ -6,6 +6,7 @@ from scipy.optimize import least_squares
 from . import models
 from .calib import RAD2DPH
 from .inference_policy import INFERENCE_POLICY
+from .policy import CANDIDATE_POLICY
 from .fit import (NK, K, TERM_NAMES, P_REJECT, PRIOR_WIDEN, CRAB_SWEEP_DEG,
                   CORR_NOT_IDENTIFIED, build_rows, _solve, _crab_columns,
                   _autocorr_scale, bootstrap_order, sf_chi2)
@@ -67,7 +68,7 @@ def residual_weights(residual, bins, model, shrinkage=20.):
                          "group_counts": counts, "shrinkage_bins": shrinkage, "frozen_from_free_fit": True}
 
 
-def science_information(J, weights, threshold=np.sqrt(1-CORR_NOT_IDENTIFIED**2)):
+def science_information(J, weights, threshold=CANDIDATE_POLICY["retention_threshold"]):
     """Observation-weighted science information after removing unpenalized nuisance directions."""
     sw = np.sqrt(weights)
     science = J[:, :NK]*sw[:, None]
@@ -104,6 +105,7 @@ def science_information(J, weights, threshold=np.sqrt(1-CORR_NOT_IDENTIFIED**2))
     individual = [bool(rank and np.linalg.norm(np.eye(NK)[i]-constraints.T @ constraints[:, i]) < 1e-8) for i in range(NK)]
     return {"effective": effective, "fisher": fisher, "constraints": constraints,
             "report": {"estimable_rank": rank, "singular_values": singular_values.tolist(),
+                       "rank_boundary_margin": float(np.min(np.abs(normalized_s-threshold))) if len(normalized_s) else None,
                        "normalized_singular_values": normalized_s.tolist(),
                        "condition_number": float(singular_values[0]/singular_values[rank-1]) if rank else None,
                        "estimable_combinations": constraints.tolist(), "model_contrast_information": contrasts,
@@ -332,12 +334,37 @@ class CandidateProblem:
         return dict(z=z+delta, objective=float(residual @ residual), success=True)
 
 
+def design_information(problem):
+    """Geometry-only tangent spaces at preregistered science anchors; never fitted gyro weights."""
+    assumptions = CANDIDATE_POLICY["design_assumptions"]
+    weights = np.full(len(problem.y), (RAD2DPH/assumptions["sigma_bin_dph"])**2)
+    anchors = {}
+    for name in assumptions["anchors"]:
+        state = np.zeros(problem.npar)
+        state[K] = models.EXPECTED_K[name]
+        _, jacobian = problem.prediction(state, True)
+        anchors[name] = science_information(jacobian, weights)["report"]
+    reports = list(anchors.values())
+    contrasts = {}
+    for name in CANDIDATE_POLICY["contrasts"]:
+        values = [r["model_contrast_information"][name] for r in reports]
+        limiting = min(anchors, key=lambda anchor: anchors[anchor]["model_contrast_information"][name]["retained_fraction"])
+        contrasts[name] = {"retained_fraction": min(v["retained_fraction"] for v in values),
+                           "information": min(v["information"] for v in values),
+                           "estimable": all(v["estimable"] for v in values), "limiting_anchor": limiting}
+    return {"assumptions": {**assumptions, "anchors": list(assumptions["anchors"])}, "anchors": anchors, "uses_gyro_realization": False,
+            "rank_threshold": CANDIDATE_POLICY["retention_threshold"],
+            "estimable_rank": min(r["estimable_rank"] for r in reports),
+            "model_contrast_information": contrasts}
+
+
 def candidate_fit(bins, fwd_b, bias_fn, prior_sigma, *, settings, vertical_only=False,
                   n_boot=300, seed=0, temp_ref=None, temp_prior=None, temp_mean=None,
                   crab_sigma_deg=5., bootstrap_sampling="moving", block_length=None,
                   max_nfev=200, forward_sigma_rad=None, forward_tangent=None):
     problem = CandidateProblem(bins, fwd_b, bias_fn, prior_sigma, settings, vertical_only,
                                temp_ref, temp_prior, temp_mean, crab_sigma_deg, forward_sigma_rad, forward_tangent)
+    design = design_information(problem)
     preliminary = problem.solve()
     problem.w, noise = residual_weights(problem.y-preliminary["pred"], bins, settings["noise_model"], settings["variance_shrinkage_bins"])
     free = problem.solve(start=preliminary["z"])
@@ -347,6 +374,7 @@ def candidate_fit(bins, fwd_b, bias_fn, prior_sigma, *, settings, vertical_only=
         likeness = term_likeness(J, J[:, NK:], problem.w)
         kcov = cov[K, K]+np.diag([INFERENCE_POLICY["k_sys_floor"][m]**2 for m in TERM_NAMES])
         return {"design_only": True,
+                "design_identifiability": design,
                 "convergence": {"converged": all(v["converged"] for v in problem.convergence), "fits": problem.convergence},
                 "k": dict(zip(TERM_NAMES, z[K].tolist())), "k_cov": kcov.tolist(),
                 "k_sd": dict(zip(TERM_NAMES, np.sqrt(np.maximum(np.diag(kcov), 0)).tolist())),
@@ -485,6 +513,7 @@ def candidate_fit(bins, fwd_b, bias_fn, prior_sigma, *, settings, vertical_only=
                            per_bin_drift_dph=(problem.bias_basis @ drift*RAD2DPH).tolist(),
                            per_bin_drift_sd_dph=(np.sqrt(np.maximum(variance, 0))*RAD2DPH).tolist())
     return {"convergence": {"converged": all(v["converged"] for v in problem.convergence), "fits": problem.convergence},
+            "design_identifiability": design,
             "mode": "vertical_only" if vertical_only else "3-axis", "n_bins": n, "n_rows": len(problem.y),
             "sigma_bin_dph": noise["global_sigma_dph"], "noise": noise,
             "sensor_bias": sensor_bias,

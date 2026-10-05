@@ -22,12 +22,14 @@ from lll import __version__, models
 from lll.analyze import analyze, environment
 from lll.collate import gate, pool_hierarchical, pool_multivariate, joint_model_tests
 from lll.fit import TERM_NAMES
-from lll.policy import POLICY_VERSION
+from lll.policy import POLICY_VERSION, eligibility_policies, eligibility_provenance, candidate_settings, decision_stratum, MODEL_PAIRS
+from lll.pairwise import flight_evidence, pool_evidence, decide, three_model_winner, POOL_METHOD, check_pairwise_policy
+from lll.runtime import numerical_environment, numerical_environment_hash
 from lll.synth import synthesize
 from lll.inference_policy import INFERENCE_POLICY, digest
-from lll.research_calibration import stratum, check_policy, required_accepted_n
+from lll.research_calibration import stratum, check_policy, required_accepted_n, required_calibration_n
 from lll.research_design import (INTERACTIONS, PARTITIONS, seed_range, realize, simulator_options,
-                                 freeze_manifest, validate_manifest, scenario, trajectory, streams, implementation_hash)
+                                 freeze_manifest, validate_manifest, scenario, trajectory, streams, implementation_hash, geometry_stress_matrix)
 
 
 DRIFTS = (0, -.5, .5, -1, 1, -2, 2, -5, 5)
@@ -56,7 +58,8 @@ def summarize(records):
     groups = {}
     for r in records:
         key = (r["truth"], r["scenario"], r.get("sampling"), r.get("block"),
-               r.get("candidate_id"), r.get("partition", "development"), r.get("geometry"), r.get("variant"))
+               r.get("candidate_id"), r.get("partition", "development"), r.get("geometry"), r.get("variant"),
+               r.get("geometry_cell"), r.get("model_test_rank"))
         groups.setdefault(key, []).append(r)
     out = []
     for key, rows in groups.items():
@@ -65,11 +68,28 @@ def summarize(records):
         accepted = [r for r in decided if not r["exclusions"]]
         empirical = [r for r in accepted if r.get("rejected_empirical") is not None]
         ks = np.array([[r["k"][n] for n in TERM_NAMES] for r in analyzed if "k" in r])
+        information = [min(v["information"] for v in r["design_identifiability"]["model_contrast_information"].values())
+                       for r in analyzed if (r.get("design_identifiability") or {}).get("model_contrast_information")]
         truth_vector = np.asarray(models.EXPECTED_K[key[0]])
         separated = [r for r in accepted if r.get("rejected_by_model") and
                      all(v is not None for v in r["rejected_by_model"].values())]
+        pair_summary = {}
+        for name, endpoints in MODEL_PAIRS.items():
+            if not any(name in (row.get("pairwise") or {}) for row in rows): continue
+            entries = [(row.get("pairwise") or {}).get(name, {}) for row in rows]
+            informative = [entry for entry in entries if entry.get("eligible")]
+            null_entries = [entry for entry in informative if key[0] in endpoints and
+                            entry.get("rejected_by_model", {}).get(key[0]) is not None]
+            pair_summary[name] = {"attempted": len(rows), "informative": len(informative),
+                "abstentions": sum(entry.get("status", "abstain") == "abstain" for entry in entries),
+                "conditional_false_rejection": rate_interval(sum(entry["rejected_by_model"][key[0]] for entry in null_entries), len(null_entries)),
+                "conditional_power": rate_interval(sum(entry.get("preferred_model") == key[0] for entry in null_entries), len(null_entries)),
+                "exclusion_reasons": dict(Counter(reason for entry in entries for reason in entry.get("exclusions", [])))}
         out.append({"truth": key[0], "scenario": key[1], "sampling": key[2], "block": key[3],
                     "candidate_id": key[4], "partition": key[5], "geometry": key[6], "variant": key[7],
+                    "geometry_cell": key[8], "model_test_rank": key[9],
+                    "design_contrast_information": {"min": min(information), "median": float(np.median(information)), "max": max(information)} if information else None,
+                    "experimental_pairwise": pair_summary,
                     "bias": (ks.mean(axis=0)-models.EXPECTED_K[key[0]]).tolist() if len(ks) else None,
                     "variance": np.var(ks, axis=0, ddof=1).tolist() if len(ks)>1 else None,
                     "coefficient_rmse": np.sqrt(np.mean((ks-truth_vector)**2, axis=0)).tolist() if len(ks) else None,
@@ -91,7 +111,7 @@ def summarize(records):
 
 
 def flight_run(truth, scenario, seed, sampling, block, boot, variant, same_side_up_turns=False,
-               *, partition="development", geometry="fixed", fit_options=None, design=None, decision_policy=None):
+               *, partition="development", geometry="fixed", fit_options=None, design=None, decision_policy=None, pairwise_decision_policy=None):
     from test_analysis import HARDWARE_FAULTS
     seed_range(partition, seed)
     design = design or realize(seed, scenario, partition=partition, geometry=geometry, variant=variant,
@@ -107,6 +127,9 @@ def flight_run(truth, scenario, seed, sampling, block, boot, variant, same_side_
     record = dict(truth=truth, scenario=scenario, seed=seed, sampling=sampling, block=block, variant=variant,
                   same_side_up_turns=same_side_up_turns, partition=partition, geometry=design["geometry"],
                   design=design, fit_options=settings, candidate_id=digest(settings))
+    record.update(candidate_engine="candidate" if candidate_settings(settings) else "legacy",
+                  geometry_cell=design.get("geometry_cell"), numerical_environment=numerical_environment(),
+                  numerical_environment_hash=numerical_environment_hash())
     decision = {}
     if decision_policy is not None:
         check_policy(decision_policy)
@@ -114,10 +137,14 @@ def flight_run(truth, scenario, seed, sampling, block, boot, variant, same_side_
             raise ValueError("decision policy software version differs")
         if decision_policy.get("implementation_hash") != implementation_hash():
             raise ValueError("implementation changed after calibration")
-        cell = stratum(record)
-        decision = dict(decision_thresholds=decision_policy["thresholds"][cell],
-                        decision_statistic=decision_policy["statistics"][cell], decision_policy_hash=decision_policy["policy_hash"])
+        decision = dict(decision_policy=decision_policy, decision_candidate_id=record["candidate_id"], decision_variant=variant)
         record["decision_policy_hash"] = decision_policy["policy_hash"]
+    if pairwise_decision_policy is not None:
+        check_pairwise_policy(pairwise_decision_policy, "flight")
+        if pairwise_decision_policy.get("implementation_hash") != implementation_hash():
+            raise ValueError("pairwise implementation changed after calibration")
+        decision.update(pairwise_decision_policy=pairwise_decision_policy,
+                        decision_candidate_id=record["candidate_id"], decision_variant=variant)
     start = time.monotonic()
     try:
         with tempfile.TemporaryDirectory(prefix="lll-research-") as d:
@@ -130,12 +157,13 @@ def flight_run(truth, scenario, seed, sampling, block, boot, variant, same_side_
         unit = r["imu"]["unit_id"]
         # Explicit simulation assumption: provenance/bench qualification supplied, scientific gates retained.
         reasons = gate(r, {unit: [("", {"tier": "usable"})]}, allow_synthetic=True)
-        if f.get("identifiability", {}).get("model_contrast_information") is not None:
-            reasons = [reason for reason in reasons if reason != "curvature not identified"]
-            if not all(v["estimable"] for v in f["identifiability"]["model_contrast_information"].values()):
-                reasons.append("model contrast not identified")
-            if boot > 0 and not f["bootstrap"]["bootstrap_valid"]:
-                reasons.append("inadequate bootstrap convergence")
+        pairs = f.get("pairwise") or (flight_evidence(f, r["flags"]) if candidate_settings(settings) else {})
+        pairs = {name: {**entry, "exclusions": list(dict.fromkeys(entry["exclusions"]+
+                    gate(r, {unit: [("", {"tier": "usable"})]}, allow_synthetic=True, comparison=name)))}
+                 for name, entry in pairs.items()}
+        for name, entry in pairs.items():
+            entry["eligible"] = not entry["exclusions"]
+            decide(entry, name, entry.get("applied_thresholds"))
         delta = np.array(list(f["k"].values())) - models.EXPECTED_K[truth]
         diagnostics = {}
         for name, covariance in (("joint", f["k_cov"]), ("bootstrap", f["bootstrap"]["empirical_k_cov"])):
@@ -147,17 +175,20 @@ def flight_run(truth, scenario, seed, sampling, block, boot, variant, same_side_
         return {**record, "elapsed_s": time.monotonic()-start, "rejected": f["rejected"][truth], "exclusions": reasons, "k": f["k"],
                 "delta_chi2_raw": f["delta_chi2_raw"], "rejected_by_model": f["rejected"], "p_vs_free": f["p_vs_free"],
                 "delta_chi2_identifiable": f.get("delta_chi2_identifiable"), "model_test_rank": f.get("model_test_rank"),
-                "inference_policy": f["inference_policy"], "bootstrap": f["bootstrap"], "forward_axis": r.get("forward_axis"),
+                "inference_policy": f["inference_policy"], "eligibility_policy": f["eligibility_policy"],
+                "bootstrap": f["bootstrap"], "forward_axis": r.get("forward_axis"),
                 "sensor_bias": f.get("sensor_bias"),
                 "k_sd": f["k_sd"], "covariance": diagnostics, "convergence": f["convergence"],
                 "prior_sensitivity": f["prior_sensitivity"], "identifiability": f["identifiability"],
+                "design_identifiability": f.get("design_identifiability"),
+                "pairwise": pairs, "pairwise_three_model_winner": three_model_winner(pairs),
                 "wmm_shift_sigma": (r.get("fit_no_wmm_exclusion") or {}).get("k_shift_sigma"),
                 "flags": r["flags"]}
     except Exception as exc:
         return {**record, "failure": repr(exc), "elapsed_s": time.monotonic()-start}
 
 
-def pooled_run(truth, seed, units, *, partition="development", bootstrap=0):
+def pooled_run(truth, seed, units, *, partition="development", bootstrap=0, pairwise=False, pairwise_decision_policy=None):
     from lll.collate import bootstrap_joint_tests
     rng = np.random.default_rng(streams(seed, partition)["pool"])
     items = []
@@ -174,12 +205,35 @@ def pooled_run(truth, seed, units, *, partition="development", bootstrap=0):
     joint = pool_multivariate(items, marginal)
     tests = joint_model_tests(joint, marginal)
     empirical = bootstrap_joint_tests(items, n_boot=bootstrap, seed=streams(seed, partition)["bootstrap"]) if bootstrap else None
+    pair_output = {}
+    if pairwise:
+        evidence = []
+        for item in items:
+            unit, k, _, _, covariance = item
+            vector = np.asarray([k[name] for name in TERM_NAMES])
+            pairs = {}
+            for name, (a, b) in MODEL_PAIRS.items():
+                direction = np.asarray(models.EXPECTED_K[a])-np.asarray(models.EXPECTED_K[b])
+                coordinate = direction/(direction @ direction)
+                pairs[name] = {"eligible": True, "estimate": float(coordinate @ (vector-np.asarray(models.EXPECTED_K[b]))),
+                               "sd": float(np.sqrt(coordinate @ covariance @ coordinate))}
+            evidence.append((unit, pairs))
+        candidate_id = digest({"method": POOL_METHOD, "summary_simulator": "unit-effects-1"})
+        if pairwise_decision_policy is not None:
+            check_pairwise_policy(pairwise_decision_policy, "pool")
+            if pairwise_decision_policy.get("implementation_hash") != implementation_hash():
+                raise ValueError("pairwise pool implementation changed after calibration")
+        output = pool_evidence(evidence, candidate_id, "summary", pairwise_decision_policy)
+        pair_output = {"pairwise": output["pairwise"], "pairwise_three_model_winner": output["three_model_winner"],
+                       "pairwise_mode": "pool", "candidate_id": candidate_id, "variant": "summary", "model_test_rank": 1,
+                       "eligibility_policy": eligibility_provenance(True), "numerical_environment": numerical_environment(),
+                       "numerical_environment_hash": numerical_environment_hash()}
     return {"truth": truth, "scenario": f"pool-{units}-units", "seed": seed,
             "partition": partition, "candidate_id": digest({"pool_bootstrap": bootstrap}),
             "rejected": tests[truth]["rejected"], "exclusions": ["fewer than three units"] if units < 3 else [],
             "empirical": empirical,
             "rejected_empirical": (empirical or {}).get("tests", {}).get(truth, {}).get("rejected_experimental"),
-            "items": items, "known_unit_covariance": U.tolist(), "marginal": marginal, "joint": joint}
+            "items": items, "known_unit_covariance": U.tolist(), "marginal": marginal, "joint": joint, **pair_output}
 
 
 def main():
@@ -189,7 +243,9 @@ def main():
     ap.add_argument("--seeds", type=int, default=1)
     ap.add_argument("--seed", type=int)
     ap.add_argument("--partition", choices=list(PARTITIONS), default="development")
-    ap.add_argument("--geometry", choices=["fixed", "seeded"], default="seeded")
+    ap.add_argument("--geometry", choices=["fixed", "seeded", "stress"], default="seeded")
+    ap.add_argument("--geometry-cells", nargs="+", help="preregister a subset of stress-cell IDs")
+    ap.add_argument("--list-geometry-cells", action="store_true", help="write the matrix without running simulations")
     ap.add_argument("--bootstrap", type=int, default=20)
     ap.add_argument("--sampling", nargs="+", choices=["moving", "segment"], default=["moving"])
     ap.add_argument("--blocks", nargs="+", type=int, default=[15])
@@ -205,7 +261,15 @@ def main():
     ap.add_argument("--research-candidate", action="store_true", help="use candidate engine even for constant/global settings")
     ap.add_argument("--manifest", type=Path)
     ap.add_argument("--decision-policy", type=Path)
+    ap.add_argument("--pairwise-evidence", action="store_true", help="preregister empirical pairwise decisions and their additional validation family")
+    ap.add_argument("--pairwise-decision-policy", type=Path)
     ap.add_argument("--tail-min-accepted", type=int)
+    ap.add_argument("--calibration-min-accepted", type=int)
+    ap.add_argument("--calibration-tail-observations", type=int, default=30)
+    ap.add_argument("--calibration-tail-confidence", type=float, default=.95)
+    ap.add_argument("--model-test-ranks", type=int, nargs="+", choices=[1, 2, 3], default=[1, 2, 3],
+                    help="candidate ranks to preregister; other ranks abstain under the frozen rule")
+    ap.add_argument("--rank-min-relative-margin", type=float, default=0., help="optional preregistered rank-boundary stability gate")
     ap.add_argument("--allowed-failures", type=int, default=0)
     ap.add_argument("--tail-confidence", type=float, default=.95)
     ap.add_argument("--development-campaign", type=Path, help="pilot JSON used only for campaign cost estimates")
@@ -219,48 +283,129 @@ def main():
     ap.add_argument("--turn-edge-margin", type=float, default=5.)
     ap.add_argument("-o", type=Path, required=True)
     args = ap.parse_args()
+    stress_cells = geometry_stress_matrix()
+    if args.list_geometry_cells:
+        args.o.write_text(json.dumps(stress_cells, indent=2)+"\n")
+        return
+    geometry_cells = args.geometry_cells or [cell["id"] for cell in stress_cells] if args.geometry == "stress" else [None]
+    if args.geometry_cells and args.geometry != "stress": ap.error("--geometry-cells requires --geometry stress")
+    if args.geometry == "stress" and (not set(geometry_cells) <= {cell["id"] for cell in stress_cells}
+                                     or args.same_side_up_turns or args.turn_schedule is not None):
+        ap.error("stress geometry requires known cells and their preregistered turn schedules")
     if args.partition != "development" and not args.replay and args.truth != "all":
         ap.error("calibration and validation campaigns require --truth all")
     from lll.research_design import plain
     decision_policy = json.loads(args.decision_policy.read_text()) if args.decision_policy else None
     if decision_policy: check_policy(decision_policy)
-    config = {k: v for k, v in vars(args).items() if k not in ("o", "manifest", "write_manifest", "replay", "decision_policy", "development_campaign")}
+    pairwise_policy = json.loads(args.pairwise_decision_policy.read_text()) if args.pairwise_decision_policy else None
+    if pairwise_policy: check_pairwise_policy(pairwise_policy, "pool" if args.scenario == "pool" else "flight")
+    config = {k: v for k, v in vars(args).items() if k not in ("o", "manifest", "write_manifest", "replay", "decision_policy", "pairwise_decision_policy", "development_campaign")}
     config["decision_policy_hash"] = decision_policy["policy_hash"] if decision_policy else None
-    scenario_count = len(SCENARIOS) if args.scenario == "all" else 1
-    candidate_count = math.prod(len(v) for v in (args.sampling, args.blocks, args.crab_model, args.noise_model,
-                                                  args.bootstrap_refit, args.crab_rate_sigma_dph, args.crab_knot_seconds, args.bias_model,
-                                                  args.bias_knot_seconds, args.bias_rw_sigma_dph_sqrth))
-    family_size = candidate_count*scenario_count*len(models.MODELS)
+    config["pairwise_decision_policy_hash"] = pairwise_policy["policy_hash"] if pairwise_policy else None
+    config["pairwise_evidence"] = bool(args.pairwise_evidence or pairwise_policy)
+    scenarios = SCENARIOS if args.scenario == "all" else [args.scenario]
+    if args.geometry == "stress":
+        geometry_scenarios = {"equator", "high_latitude", "dateline", "turn_dropout", "turn_dropout_drift", "fuzz"}
+        if args.scenario != "all" and args.scenario in geometry_scenarios:
+            ap.error("stress cells require nuisance-only scenarios")
+        scenarios = [s for s in scenarios if s not in geometry_scenarios]
+    jobs = []
+    for s, b, crab, noise, refit, rate, crab_knot, bias, knot, rw in itertools.product(
+            args.sampling, args.blocks, args.crab_model, args.noise_model, args.bootstrap_refit,
+            args.crab_rate_sigma_dph, args.crab_knot_seconds, args.bias_model, args.bias_knot_seconds, args.bias_rw_sigma_dph_sqrth):
+        jobs.append(dict(n_boot=args.bootstrap, bootstrap_sampling=s, block_length=b, crab_model=crab,
+                         noise_model=noise, bootstrap_refit=refit, crab_rate_sigma_dph=rate,
+                         forward_uncertainty=args.forward_uncertainty, crab_knot_seconds=crab_knot,
+                         research_candidate=args.research_candidate or config["pairwise_evidence"], bias_model=bias, bias_knot_seconds=knot,
+                         bias_rw_sigma_dph_sqrth=rw, rank_min_relative_margin=args.rank_min_relative_margin))
+    jobs = list({digest(job): job for job in jobs}.values())
+    operational_cells = sorted({decision_stratum({"candidate_id": digest(job), "variant": args.variant, "model_test_rank": rank})
+                                for job in jobs for rank in (args.model_test_ranks if candidate_settings(job) else [None])})
+    candidate_count = len(operational_cells)
+    attempt_cells = candidate_count*len(scenarios)*len(geometry_cells)*len(models.MODELS)
+    family_size = attempt_cells
+    if config["pairwise_evidence"]:
+        family_size += candidate_count*len(scenarios)*len(geometry_cells)*2*len(MODEL_PAIRS)
+    if args.scenario == "pool" and config["pairwise_evidence"]:
+        if decision_policy is not None: ap.error("summary pairwise pooling uses --pairwise-decision-policy")
+        family_size = len(args.units)*2*len(MODEL_PAIRS)
+        attempt_cells = len(args.units)*len(models.MODELS)
+        config["preregistered_pool_units"] = args.units
+        pool_candidate = digest({"method": POOL_METHOD, "summary_simulator": "unit-effects-1"})
+        operational_cells = [decision_stratum({"candidate_id": pool_candidate, "variant": "summary", "model_test_rank": 1})]
+        candidate_count = 1
+        from lll.pairwise_calibration import group as pair_group
+        config["preregistered_pairwise_groups"] = [pair_group({"scenario": f"pool-{units}-units",
+            "candidate_id": pool_candidate, "variant": "summary", "model_test_rank": 1, "geometry": None,
+            "pairwise": {name: {"n_units": units}}}, name, "pool") for units in args.units for name in MODEL_PAIRS]
     if decision_policy is not None:
         candidate_count = len(decision_policy["thresholds"])
         family_size = len(decision_policy["diagnostic_thresholds"])*len(models.MODELS)
+        operational_cells = sorted(decision_policy["thresholds"])
+        attempt_cells = len(decision_policy["diagnostic_thresholds"])*len(models.MODELS)
+    if pairwise_policy is not None:
+        family_size += pairwise_policy["family_size"] if decision_policy else 0
+        if decision_policy is None: family_size = pairwise_policy["family_size"]
+        primary_diagnostics = set(decision_policy["diagnostic_thresholds"]) if decision_policy else set()
+        pair_diagnostics = {json.loads(key)[0] for key in pairwise_policy["diagnostic_thresholds"]}
+        attempt_cells = len(primary_diagnostics | pair_diagnostics)*len(models.MODELS)
+        if pairwise_policy["mode"] == "flight":
+            operational_cells = sorted(set(decision_policy["thresholds"] if decision_policy else ()) | set(pairwise_policy["thresholds"]))
+            candidate_count = len(operational_cells)
     alpha = decision_policy["alpha"] if decision_policy else .0027
     required = required_accepted_n(alpha, family_size, args.tail_confidence, args.allowed_failures)
     if args.tail_min_accepted is not None and args.tail_min_accepted < required:
         ap.error(f"tail minimum {args.tail_min_accepted} is below exact required count {required}")
     config["tail_min_accepted"] = args.tail_min_accepted or required
+    calibration_required = required_calibration_n(alpha, args.calibration_tail_observations, args.calibration_tail_confidence)
+    if args.calibration_min_accepted is not None and args.calibration_min_accepted < calibration_required:
+        ap.error(f"calibration minimum is below tail-precision required count {calibration_required}")
+    config["calibration_min_accepted"] = args.calibration_min_accepted or calibration_required
+    planned_minimum = (config["tail_min_accepted"] if args.partition == "validation" else config["calibration_min_accepted"]
+                       if args.partition == "calibration" else max(config["tail_min_accepted"], config["calibration_min_accepted"]))
     pilot = json.loads(args.development_campaign.read_text()) if args.development_campaign else None
     if pilot is not None and pilot.get("partition") != "development":
         ap.error("cost estimates require a development campaign")
     pilot_rows = pilot["records"] if pilot else []
     acceptance_groups = {}
     for row in pilot_rows:
-        key = tuple(row.get(k) for k in ("scenario", "candidate_id", "geometry", "variant", "truth"))
-        acceptance_groups.setdefault(key, []).append(row.get("rejected") is not None and not row.get("exclusions"))
-    acceptance = min(float(np.mean(group)) for group in acceptance_groups.values()) if acceptance_groups else None
+        key = tuple(row.get(k) for k in ("scenario", "candidate_id", "geometry", "geometry_cell", "variant", "truth"))
+        acceptance_groups.setdefault(key, []).append(row)
+    probabilities = []
+    for group in acceptance_groups.values():
+        ranks = ([1] if any(row.get("pairwise_mode") == "pool" for row in group) else
+                 args.model_test_ranks if any(row.get("candidate_engine") == "candidate" for row in group) else [None])
+        if (decision_policy or pairwise_policy) and group[0].get("candidate_engine") == "candidate":
+            covered = [json.loads(cell)[2] for cell in operational_cells if json.loads(cell)[:2] ==
+                       [group[0].get("candidate_id"), group[0].get("variant")]]
+            if covered: ranks = sorted(set(covered))
+        probabilities.extend(sum(row.get("model_test_rank") == rank and row.get("rejected") is not None and not row.get("exclusions")
+                                 for row in group)/len(group) for rank in ranks)
+    acceptance = min(probabilities) if probabilities else None
     runtimes = [r["elapsed_s"] for r in pilot["records"] if r.get("elapsed_s") is not None] if pilot else []
     seconds = float(np.mean(runtimes)) if runtimes else None
     config["campaign_plan"] = {"decision_cells": candidate_count*len(models.MODELS),
+                               "attempt_cells": attempt_cells,
                                "operational_strata": candidate_count, "validation_family_size": family_size,
-                               "required_accepted_per_cell": required, "allowed_failures": args.allowed_failures,
+                               "required_accepted_per_cell": planned_minimum,
+                               "required_accepted_validation": config["tail_min_accepted"],
+                               "required_accepted_calibration": config["calibration_min_accepted"], "allowed_failures": args.allowed_failures,
                                "confidence": args.tail_confidence, "alpha": alpha,
                                "pilot_campaign_hash": digest(pilot) if pilot else None,
                                "development_acceptance_probability": acceptance,
                                "acceptance_estimate_method": "minimum diagnostic/truth cell acceptance, including failed attempts",
-                               "estimated_attempts_total": math.ceil(config["tail_min_accepted"]/acceptance)*family_size if acceptance else None,
+                               "estimated_attempts_total": math.ceil(planned_minimum/acceptance)*attempt_cells if acceptance else None,
+                               "estimated_calibration_attempts_total": math.ceil(config["calibration_min_accepted"]/acceptance)*attempt_cells if acceptance else None,
+                               "estimated_validation_attempts_total": math.ceil(config["tail_min_accepted"]/acceptance)*attempt_cells if acceptance else None,
                                "pilot_seconds_per_attempt": seconds,
-                               "estimated_compute_seconds": math.ceil(config["tail_min_accepted"]/acceptance)*family_size*seconds if acceptance and seconds else None}
-    config["preregistered_scenarios"] = SCENARIOS if args.scenario == "all" else [args.scenario]
+                               "estimated_compute_seconds": math.ceil(planned_minimum/acceptance)*attempt_cells*seconds if acceptance and seconds else None,
+                               "estimated_combined_compute_seconds": (math.ceil(config["calibration_min_accepted"]/acceptance)+math.ceil(config["tail_min_accepted"]/acceptance))*attempt_cells*seconds if acceptance and seconds else None}
+    config["preregistered_scenarios"] = [f"pool-{units}-units" for units in args.units] if args.scenario == "pool" else scenarios
+    config["preregistered_geometry_cells"] = [None] if args.scenario == "pool" else geometry_cells
+    config["geometry_domain"] = [{key: value for key, value in cell.items() if key != "simulator"}
+                                 for cell in stress_cells if cell["id"] in geometry_cells] if args.geometry == "stress" else None
+    if args.scenario == "pool": config["geometry"] = None
+    config["operational_cells"] = operational_cells
     seeds = seed_range(args.partition, args.seed, args.seeds)
     config["seed"] = seeds.start
     if args.write_manifest:
@@ -277,8 +422,9 @@ def main():
         args.o.write_text(json.dumps(plain({"analysis_version": __version__, "policy_version": POLICY_VERSION,
             "environment": environment(), "elapsed_s": time.monotonic()-start, "config": config,
             "manifest_hash": manifest_hash, "manifest": freeze_manifest(config) if manifest_hash else None,
-            "partition": args.partition, "implementation_hash": source_hash,
-            "simulation_assumption": "approved provenance and usable bench tier; remaining gates applied",
+            "partition": args.partition, "implementation_hash": source_hash, "eligibility_policies": eligibility_policies(),
+            "numerical_environment": numerical_environment(), "numerical_environment_hash": numerical_environment_hash(),
+        "simulation_assumption": "approved provenance and usable bench tier; remaining gates applied",
             "summary": summarize(records), "records": records}), indent=2, allow_nan=False)+"\n")
     if args.replay:
         original = json.loads(args.replay.read_text())
@@ -288,34 +434,30 @@ def main():
                 ap.error("replay requires flight design records")
             records.append(flight_run(row["truth"], row["scenario"], row["seed"], row["sampling"], row["block"],
                                       row["fit_options"]["n_boot"], row["variant"], partition=row["partition"],
-                                      design=row["design"], fit_options=row["fit_options"], decision_policy=decision_policy))
+                                      design=row["design"], fit_options=row["fit_options"], decision_policy=decision_policy,
+                                      pairwise_decision_policy=pairwise_policy))
             records[-1]["replay"] = True
             save()
         return
     truths = models.MODELS if args.truth == "all" else [args.truth]
-    scenarios = SCENARIOS if args.scenario == "all" else [args.scenario]
     for truth in truths:
         for scenario in scenarios:
             for seed in seeds:
                 if scenario == "pool":
-                    records.extend(pooled_run(truth, seed, n, partition=args.partition, bootstrap=args.bootstrap) for n in args.units)
+                    records.extend(pooled_run(truth, seed, n, partition=args.partition, bootstrap=args.bootstrap,
+                                               pairwise=config["pairwise_evidence"], pairwise_decision_policy=pairwise_policy) for n in args.units)
                 else:
-                    for s, b, crab, noise, refit, rate, crab_knot, bias, knot, rw in itertools.product(
-                            args.sampling, args.blocks, args.crab_model, args.noise_model,
-                            args.bootstrap_refit, args.crab_rate_sigma_dph, args.crab_knot_seconds, args.bias_model,
-                            args.bias_knot_seconds, args.bias_rw_sigma_dph_sqrth):
-                        settings = dict(crab_model=crab, noise_model=noise, bootstrap_refit=refit,
-                                        crab_rate_sigma_dph=rate, forward_uncertainty=args.forward_uncertainty,
-                                        crab_knot_seconds=crab_knot, research_candidate=args.research_candidate)
-                        settings.update(bias_model=bias, bias_knot_seconds=knot, bias_rw_sigma_dph_sqrth=rw)
+                    for job, geometry_cell in itertools.product(jobs, geometry_cells):
+                        settings = {k: v for k, v in job.items() if k not in ("n_boot", "bootstrap_sampling", "block_length")}
                         design = realize(seed, scenario, partition=args.partition, geometry=args.geometry,
                                          variant=args.variant, same_side_up_turns=args.same_side_up_turns,
                                          hardware=scenario_options("hardware") if scenario == "hardware" else None,
                                          turn_schedule=args.turn_schedule, turn_min_spacing=args.turn_min_spacing,
-                                         turn_edge_margin=args.turn_edge_margin)
-                        records.append(flight_run(truth, scenario, seed, s, b, args.bootstrap, args.variant,
+                                         turn_edge_margin=args.turn_edge_margin, geometry_cell=geometry_cell)
+                        records.append(flight_run(truth, scenario, seed, job["bootstrap_sampling"], job["block_length"], args.bootstrap, args.variant,
                                                   args.same_side_up_turns, partition=args.partition,
                                                   geometry=args.geometry, fit_options=settings, decision_policy=decision_policy,
+                                                  pairwise_decision_policy=pairwise_policy,
                                                   design=design))
                         save()
                 save()

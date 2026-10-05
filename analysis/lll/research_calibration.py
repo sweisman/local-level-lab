@@ -5,19 +5,18 @@ import json
 from pathlib import Path
 
 import numpy as np
-from scipy.stats import beta
+from scipy.stats import beta, binom
 
-from . import models
+from . import models, __version__
 from .inference_policy import digest
-from .research_design import seed_range
+from .research_design import seed_range, implementation_hash
+from .policy import research_eligible as eligible, eligibility_policies, eligibility_provenance, is_candidate, decision_stratum
+from .runtime import numerical_environment, numerical_environment_hash, check_environment
 
 
 def diagnostic_stratum(row):
-    return json.dumps([row["scenario"], row.get("candidate_id"), row.get("geometry"), row.get("variant")], separators=(",", ":"))
-
-
-def decision_stratum(row):
-    return json.dumps([row.get("candidate_id"), row.get("variant")], separators=(",", ":"))
+    return json.dumps([row["scenario"], row.get("candidate_id"), row.get("geometry"), row.get("geometry_cell"),
+                       row.get("variant"), row.get("model_test_rank")], separators=(",", ":"))
 
 
 stratum = decision_stratum
@@ -26,13 +25,6 @@ stratum = decision_stratum
 def statistic(row):
     value = row.get("delta_chi2_identifiable")
     return value if value is not None else row.get("delta_chi2_raw")
-
-
-def eligible(row):
-    rank = row.get("model_test_rank")
-    return (not row.get("exclusions") and (rank is None or rank > 0)
-            and row.get("convergence", {}).get("converged", True)
-            and row.get("bootstrap", {}).get("bootstrap_valid", True))
 
 
 def tail_upper(n, failures, family_size, confidence=.95):
@@ -55,14 +47,57 @@ def required_accepted_n(alpha, family_size, confidence=.95, allowed_failures=0):
     return high
 
 
+def required_calibration_n(alpha, tail_observations=30, confidence=.95):
+    """Enough draws that the target tail contains >=k observations with preregistered probability."""
+    if not 0 < alpha < 1 or not 0 < confidence < 1 or not isinstance(tail_observations, (int, np.integer)) or tail_observations < 1:
+        raise ValueError("invalid calibration tail-precision objective")
+    low, high = tail_observations-1, max(tail_observations, 2)
+    while binom.sf(tail_observations-1, high, alpha) < confidence:
+        high *= 2
+    while low+1 < high:
+        mid = (low+high)//2
+        if binom.sf(tail_observations-1, mid, alpha) >= confidence: high = mid
+        else: low = mid
+    return high
+
+
+def calibration_precision(config, alpha):
+    count, confidence = config.get("calibration_tail_observations", 30), config.get("calibration_tail_confidence", .95)
+    return {"tail_observations": count, "confidence": confidence,
+            "minimum_accepted": max(required_calibration_n(alpha, count, confidence), config.get("calibration_min_accepted") or 0)}
+
+
+def preregistered_groups(config):
+    if not config.get("operational_cells"):
+        return None
+    return {diagnostic_stratum({"scenario": scenario, "candidate_id": candidate, "variant": variant,
+                               "model_test_rank": rank, "geometry": config["geometry"], "geometry_cell": geometry_cell}):
+            {m: [] for m in models.MODELS}
+            for candidate, variant, rank in (json.loads(cell) for cell in config["operational_cells"])
+            for scenario in config["preregistered_scenarios"]
+            for geometry_cell in config.get("preregistered_geometry_cells", [None])}
+
+
 def validate_records(campaign, partition):
     """Repeated seeds cannot increase the effective evidence count."""
     seen = set()
+    if campaign.get("eligibility_policies") != eligibility_policies():
+        raise ValueError("campaign eligibility policy mismatch; regenerate the campaign")
+    check_environment(campaign.get("numerical_environment"))
+    if campaign.get("numerical_environment_hash", numerical_environment_hash()) != numerical_environment_hash():
+        raise ValueError("campaign numerical environment hash mismatch")
+    if campaign.get("implementation_hash") is not None and campaign["implementation_hash"] != implementation_hash():
+        raise ValueError("campaign implementation changed; regenerate the campaign")
     for row in campaign["records"]:
         if row.get("replay") or row.get("partition") != partition:
             raise ValueError("replays and other partitions are not independent evidence")
         seed_range(partition, row["seed"])
-        key = (diagnostic_stratum(row), row["truth"], row["seed"])
+        check_environment(row.get("numerical_environment"))
+        if row.get("numerical_environment_hash", numerical_environment_hash()) != numerical_environment_hash():
+            raise ValueError("record numerical environment hash mismatch")
+        if not row.get("failure") and row.get("eligibility_policy") != eligibility_provenance(is_candidate(row)):
+            raise ValueError("record eligibility policy mismatch; regenerate the campaign")
+        key = (diagnostic_stratum({**row, "model_test_rank": None}), row["truth"], row["seed"])
         if key in seen: raise ValueError("duplicate simulation in evidence")
         seen.add(key)
 
@@ -77,13 +112,20 @@ def calibrate(campaign, *, min_accepted=None, alpha=.0027):
     frozen_alpha = config.get("campaign_plan", {}).get("alpha")
     if frozen_alpha is not None and alpha != frozen_alpha:
         raise ValueError("calibration alpha differs from the frozen campaign")
-    groups, statistics = {}, {}
+    groups, statistics = preregistered_groups(config) or {}, {}
+    declared = bool(config.get("operational_cells"))
+    samples = {}
     for row in campaign["records"]:
         if row.get("replay") or row.get("partition") != "calibration":
             raise ValueError("replays and other partitions are not calibration evidence")
         group = diagnostic_stratum(row)
-        groups.setdefault(group, {m: [] for m in models.MODELS})
         values = statistic(row)
+        if declared and group not in groups:
+            continue  # Unpreregistered ranks cannot manufacture calibrated operational cells.
+        if values is None and not declared:
+            continue
+        groups.setdefault(group, {m: [] for m in models.MODELS})
+        samples.setdefault(group, row)
         if values is not None:
             cell = decision_stratum(row)
             field = "delta_chi2_identifiable" if row.get("delta_chi2_identifiable") is not None else "delta_chi2_raw"
@@ -100,38 +142,52 @@ def calibrate(campaign, *, min_accepted=None, alpha=.0027):
         raise ValueError("calibration omits a preregistered scenario")
     if config.get("campaign_plan", {}).get("operational_strata", len(statistics)) != len(statistics):
         raise ValueError("calibration omits a preregistered candidate cell")
-    preregistered = config.get("tail_min_accepted")
-    if min_accepted is not None and preregistered is not None and min_accepted < preregistered:
-        raise ValueError("calibration minimum is below the frozen campaign requirement")
-    if min_accepted is None:
-        min_accepted = preregistered or required_accepted_n(alpha, len(groups)*len(models.MODELS))
+    precision = calibration_precision(config, alpha)
+    if min_accepted is not None and min_accepted < precision["minimum_accepted"]:
+        raise ValueError("calibration minimum is below the frozen tail-precision requirement")
+    min_accepted = min_accepted or precision["minimum_accepted"]
     thresholds, diagnostics, counts = {}, {}, {}
     for group, values in groups.items():
         if any(len(v) < min_accepted for v in values.values()):
             raise ValueError(f"insufficient accepted calibration flights for {group}")
         diagnostics[group] = {m: float(np.quantile(v, 1-alpha, method="higher")) for m, v in values.items()}
-        sample = next(r for r in campaign["records"] if diagnostic_stratum(r) == group)
+        sample = samples[group]
         cell = decision_stratum(sample)
         threshold = thresholds.setdefault(cell, {})
         for m in models.MODELS:
             threshold[m] = max(threshold.get(m, 0.), diagnostics[group][m])
         counts[group] = {m: len(v) for m, v in values.items()}
-    content = {"version": "empirical-decision-2", "statistics": statistics, "alpha": alpha,
+    content = {"version": "empirical-decision-4", "statistics": statistics, "alpha": alpha,
+               "numerical_environment": numerical_environment(), "numerical_environment_hash": numerical_environment_hash(),
+               "stratum_fields": ["candidate_id", "variant", "model_test_rank"],
+               "calibrated_domain": {"geometry_mode": config.get("geometry"), "geometry_cells": config.get("geometry_domain"),
+                                     "scenarios": config.get("preregistered_scenarios")},
+               "eligibility_policies": eligibility_policies(),
                "source_manifest_hash": campaign["manifest_hash"], "source_campaign_hash": digest(campaign),
                "analysis_version": campaign["analysis_version"], "thresholds": thresholds,
                "diagnostic_thresholds": diagnostics, "accepted": counts,
                "minimum_accepted_calibration": min_accepted,
+               "calibration_precision": precision,
                "implementation_hash": campaign.get("implementation_hash"),
                "validated_for_primary_claims": False}
     return {**content, "policy_hash": digest(content)}
 
 
 def check_policy(policy):
-    if policy.get("version") != "empirical-decision-2":
-        raise ValueError("decision policy requires recalibration with the current operational strata")
+    if policy.get("version") != "empirical-decision-4":
+        raise ValueError("decision policy requires recalibration with the current eligibility policy")
     content = {k: v for k, v in policy.items() if k != "policy_hash"}
     if digest(content) != policy.get("policy_hash"):
         raise ValueError("empirical decision policy hash mismatch")
+    if policy.get("eligibility_policies") != eligibility_policies():
+        raise ValueError("empirical decision eligibility policy mismatch")
+    check_environment(policy.get("numerical_environment"))
+    if policy.get("numerical_environment_hash") != numerical_environment_hash():
+        raise ValueError("empirical decision numerical environment hash mismatch")
+    if policy.get("analysis_version") != __version__:
+        raise ValueError("empirical decision software version differs")
+    if policy.get("implementation_hash") is not None and policy["implementation_hash"] != implementation_hash():
+        raise ValueError("empirical decision implementation changed after calibration")
 
 
 def assess(campaign, policy, *, min_accepted=None):
@@ -149,20 +205,23 @@ def assess(campaign, policy, *, min_accepted=None):
         raise ValueError("inference implementation changed after calibration")
     groups = {(group, m): [] for group in policy["diagnostic_thresholds"] for m in models.MODELS}
     confidence = config.get("tail_confidence", .95)
-    minimum = required_accepted_n(policy["alpha"], len(groups), confidence, config.get("allowed_failures", 0))
+    family_size = max(len(groups), config.get("campaign_plan", {}).get("validation_family_size", len(groups)))
+    minimum = required_accepted_n(policy["alpha"], family_size, confidence, config.get("allowed_failures", 0))
     if required < minimum:
         raise ValueError("preregistered minimum is below the exact tail-campaign requirement")
     for row in campaign["records"]:
         if row.get("replay") or row.get("partition") != "validation":
             raise ValueError("replays and other partitions are not validation evidence")
         key = (diagnostic_stratum(row), row["truth"])
-        if key not in groups: raise ValueError("validation stratum has no calibrated threshold")
+        if key not in groups:
+            if not eligible(row) or row.get("rejected") is None:
+                continue
+            raise ValueError("validation stratum has no calibrated threshold")
         if row.get("rejected") is not None:
             if row.get("decision_policy_hash") != policy["policy_hash"]:
                 raise ValueError("complete gate must run with the frozen decision rule")
             if eligible(row):
                 groups[key].append(row)
-    family_size = len(groups)
     out = []
     for (group, truth), rows in groups.items():
         n = len(rows); k = sum(r["rejected"] for r in rows)

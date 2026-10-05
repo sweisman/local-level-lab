@@ -10,6 +10,8 @@ from lll import fit, models
 from lll.calib import RAD2DPH
 from lll.inference import CandidateProblem, crab_basis, residual_weights, science_information
 from lll.inference_policy import INFERENCE_POLICY, digest
+from lll.policy import eligibility_policies, eligibility_provenance
+from lll.runtime import numerical_environment
 from lll.research_design import seed_range, streams, realize, simulator_options, freeze_manifest, validate_manifest
 from test_release060 import crab_fixture
 
@@ -193,8 +195,14 @@ def test_calibration_requires_independent_evidence():
     from lll.research_calibration import calibrate, assess
     from lll import __version__
     rows = [{"scenario": "baseline", "candidate_id": "x", "truth": m, "partition": "calibration", "exclusions": [],
-             "seed": 1_000_000+i, "delta_chi2_raw": {m: float(i)}, "rejected": False} for m in models.MODELS for i in range(5)]
-    campaign = {"partition": "calibration", "manifest_hash": "frozen", "analysis_version": __version__, "records": rows}
+             "seed": 1_000_000+i, "delta_chi2_raw": {m: float(i)}, "rejected": False,
+             "convergence": {"converged": True}, "eligibility_policy": eligibility_provenance()}
+            for m in models.MODELS for i in range(5)]
+    campaign = {"partition": "calibration", "manifest_hash": "frozen", "analysis_version": __version__,
+                "numerical_environment": numerical_environment(),
+                "config": {"calibration_tail_observations": 1, "calibration_tail_confidence": .01, "calibration_min_accepted": 5},
+                "eligibility_policies": eligibility_policies(), "records": rows}
+    for row in rows: row["numerical_environment"] = numerical_environment()
     policy = calibrate(campaign, min_accepted=5)
     with pytest.raises(ValueError): calibrate({**campaign, "partition": "development"}, min_accepted=5)
     with pytest.raises(ValueError): calibrate(campaign, min_accepted=6)

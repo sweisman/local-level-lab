@@ -14,6 +14,18 @@ constant-crab/global-noise implementation. Candidate methods and empirical decis
 excluded from primary observational pooling. Mixing inference configurations or decision policies
 in one collation raises an error; reprocess consistently or collate the groups separately.
 
+Candidate eligibility is **candidate-eligibility-2**, owned by `lll.policy` and shared by
+analysis, collation, research, calibration and validation. It replaces the curvature-only
+exclusion with all three named design model contrasts meeting the frozen retention threshold,
+requires positive model-test rank and converged inference, and requires valid bootstrap
+convergence whenever bootstrap was requested. Missing required diagnostics fail eligibility.
+Other scientific exclusions, provenance and bench gates remain applicable. Individual-term
+identification flags remain diagnostics. The default legacy analysis retains **pilot-2**;
+candidate scientific eligibility does not promote a candidate into primary observational pooling.
+Results and research records carry eligibility version/hash provenance; manifests and empirical
+decision policies freeze both eligibility policies. Old candidate campaigns and decision files
+must be regenerated and recalibrated; mixed or mismatched policies are rejected.
+
 `lll.inference_policy` owns the systematic floor and candidate defaults. Its version and content
 hash, resolved settings and configuration hash accompany each fit. The 0.02 rotation floor was
 tuned on historical hardware-fault simulations; those runs are **development evidence only**.
@@ -78,16 +90,26 @@ is shared in the reference mount frame and transformed through mount epochs. Thi
 uncertainty in the gravity axis or validate the regression against all systematic errors. A missing
 or degenerate angle uncertainty makes the candidate unavailable instead of silently using zero.
 
-Calibration/validation require an exact frozen manifest, including source hashes. Use
+Calibration/validation require an exact frozen manifest, including source hashes and the actual
+Python/NumPy/SciPy versions. Decision policies freeze the same numerical environment; validation
+rejects a campaign, record or policy produced under different versions. Use
 `--write-manifest PATH` with the complete proposed command configuration; it writes only the
 manifest. Repeat the command with `--manifest PATH` after reviewing and approving campaign cost.
-`--seeds` preregisters the attempt count. The manifest computes the accepted-sample minimum using
+`--seeds` preregisters the attempt count. The manifest computes the validation accepted-sample minimum using
 the same exact beta bound as assessment, with the complete family size, `--tail-confidence`
 (default 0.95) and `--allowed-failures` (default zero). `--tail-min-accepted` may increase this
 minimum. `--development-campaign FILE` supplies measured acceptance and runtime estimates,
 using the minimum diagnostic/truth cell acceptance and including failed attempts; without a
 pilot, cost estimates are explicitly unavailable.
-Source or configuration changes invalidate the manifest.
+Calibration has its own minimum: `--calibration-tail-observations` defaults to 30, with
+`--calibration-tail-confidence` 0.95. Exact binomial inversion requires at least that many
+observations in the target tail with the requested probability: **14,640 accepted samples**
+per null/diagnostic cell at alpha 0.0027 (39.528 expected tail observations).
+`--calibration-min-accepted` may increase this minimum; it cannot reduce the frozen precision
+objective. Calibration and validation counts, their separate costs and their combined cost
+are recorded in the plan. Pairwise null tests increase the simultaneous validation family
+without multiplying flight attempts unnecessarily: the same flight supplies several comparisons.
+Source, configuration or numerical-environment changes invalidate the manifest.
 Campaign provenance hashes the scientific source directly; optional `LLL_GIT_COMMIT` supplies a
 build's commit identifier without analysis invoking git.
 
@@ -100,7 +122,9 @@ PYTHONPATH=analysis:server ~/venv/bin/python -m lll.research_calibration calibra
 This selects each truth's 0.9973 quantile using the higher order statistic. Candidate fits use
 the objective difference for identifiable constraints; legacy fits retain their raw objective
 statistic, explicitly named per operational cell. Diagnostic strata include scenario and simulated
-geometry. Operational strata include only candidate identity and sensor variant. Their threshold
+geometry. Operational strata include candidate identity, sensor variant and observed `model_test_rank`.
+The operational cell is selected after fitting, including separately for the WMM sensitivity fit.
+An uncalibrated rank abstains instead of borrowing another rank's threshold. Their threshold
 is the maximum across the preregistered diagnostic strata, so a flight needs no synthetic scenario
 label. Independent assessment checks each diagnostic stratum separately, retaining the complete
 Bonferroni family. Freeze the validation
@@ -129,12 +153,22 @@ provisional research cutoff derived from the existing likeness limit, not a vali
 Reported combinations and singular values are converted back to dimensionless k coordinates.
 Unmeasured individual coefficient uncertainties are `null` in the observation-only report.
 
+Candidate acceptance now uses a separate `design_identifiability` report. It evaluates the
+unpenalized nuisance tangent space at all three science-model anchors, with zero crab/forward
+angle offsets and a frozen uniform 3 °/h bin-noise assumption. Each comparison uses its worst
+retention and information across the anchors. Neither fitted gyro coefficients nor preliminary
+residual weights enter this calculation. The report records its assumptions and per-anchor
+spectra; it describes local tangent identifiability conditional on the retained trajectory and
+configured nuisance bases, rather than a guarantee over arbitrary nonlinear nuisance histories.
+The free-fit SVD remains a diagnostic and defines the profiled model-test subspace and observed
+test rank, whose null distribution is calibrated in its own operational cell.
+
 Results include `estimable_rank`, `singular_values`, `normalized_singular_values`,
 `condition_number`, `estimable_combinations`, and `model_contrast_information`. Model-separation
 information measures the retained signal difference between each pair of models; it also reports
 whether the corresponding coefficient contrast itself is estimable and its standard error.
-Research acceptance checks the three model contrasts instead of the individual curvature gate.
-Prior sensitivity is evaluated in the retained combinations. Production eligibility is unchanged.
+The shared candidate policy checks the three design model contrasts instead of the individual curvature gate.
+Prior sensitivity is evaluated in the retained combinations. Legacy production eligibility is unchanged.
 
 Candidate model tests constrain only the retained combinations to the tested model's values,
 leaving other science directions free and refitting the nuisance parameters. The profiled
@@ -144,23 +178,47 @@ inflation use `model_test_rank`. Rank zero produces no rejection decision. `test
 objectives and `delta_chi2_raw` remain diagnostics. These nonlinear tests still require independent
 empirical calibration. New source hashes invalidate earlier frozen campaigns.
 
+`--model-test-ranks` preregisters the candidate rank envelope (default 1, 2, 3).
+Every declared rank must obtain enough accepted calibration samples; use development evidence
+to choose a supported envelope before freezing. Missing declared cells cannot silently disappear.
+The development-only cutoff sweep reads existing spectra without refits:
+
+```sh
+~/venv/bin/python -m lll.rank_sweep /tmp/development.json -o /tmp/rank-sweep.json
+```
+
+It reports rank changes over a configurable cutoff grid and proximity to the baseline boundary,
+with separate attempted/analyzed denominators. `--rank-min-relative-margin` optionally requires
+distance from that boundary relative to the cutoff; its default zero leaves this extra restriction
+disabled. Select any positive margin on development evidence, then preregister it before calibration.
+
 `optimize_turns.py` searches zero through six same-side-up 180° turns with a deterministic beam
-search (default beam width one). It uses a five-minute grid, ten-minute minimum spacing and
+search (default beam width 16). It uses a five-minute grid, ten-minute minimum spacing and
 five-minute edge margins, all configurable. Every schedule uses the same seeded route, missingness
-and nuisance history across all three truths, with dynamic crab, dynamic sensor bias and segment
-weights. The score is the worst retained model-contrast information; the smallest normalized
-singular value breaks ties. Schedule evaluation uses two free fits to determine frozen weights
+and nuisance history across all three truths and both dynamic and wind crab fits, with dynamic
+sensor bias and segment weights. `--crab-models` can explicitly restrict the nuisance-model set.
+The score first requires all three intended contrasts to be estimable in every evaluation,
+then maximizes the minimum retention margin above the policy threshold, then the minimum
+contrast information. Failed fits or missing/nonfinite diagnostics rank below valid evaluations.
+Equal scores prefer fewer turns, then lexicographic schedule order. Schedule evaluation uses two free fits to determine frozen weights
 and the local Jacobian; model tests, bootstrap and prior sweeps are omitted in this design-only
 mode. Outputs include the best schedule, the frontier by turn count,
-per-schedule scores, per-flight diagnostics and source/policy provenance. The heuristic does not
+per-schedule scores, the limiting evaluation, per-flight diagnostics and source/policy provenance.
+If no schedule passes, `best` is null and `best_diagnostic` retains the highest-ranked schedule;
+`feasible_winner` explicitly states feasibility. This design-only score checks identifiability;
+full-flight acceptance still requires the complete eligibility policy, and information is a power
+proxy rather than a calibrated power estimate. The heuristic does not
 guarantee a global optimum. Estimate cost before running a search:
 
 ```sh
 ~/venv/bin/python analysis/tests/optimize_turns.py --routes 2 --estimate-only -o /tmp/turn-cost.json
 ```
 
-Supply measured seconds per fit with `--pilot-seconds` to convert the fit-count upper bound into
-a runtime estimate. Removing `--estimate-only` runs the search and should follow cost review.
+Cost estimates include both crab models, the beam width and both free fits per evaluation.
+Supply complete measured design-evaluation seconds with `--pilot-evaluation-seconds` for a runtime
+estimate including simulation and anchor SVDs. `--pilot-seconds` retains the narrower free-fit-only
+estimate; its output explicitly excludes that overhead. Removing `--estimate-only` runs the search
+and should follow cost review.
 Named adversaries now include `bias_step`, `bias_ramp`, `bias_rw_high`, `bias_settling`,
 `bias_very_long`, and `bias_mixed`. The existing bias-knot and random-walk-scale list options form
 a matched grid; summaries report coefficient RMSE, accepted fraction, false rejection and power
@@ -385,6 +443,69 @@ Summary-level pooling uses known correlated unit effects, repeated observations 
 covariances and varying unit counts. Closed-form independent univariate reference fixtures live in
 `analysis/tests/pooling_reference.json`. These small checks are not tail calibration or a validation
 of the general multivariate pooling approximation.
+
+## Deterministic geometry stress domain
+
+`--geometry stress` uses 288 named cells: latitude ±5°, ±35°, ±65°; two or six headings;
+poor (20° total span) or good (120° for two headings, 300° for six) separation; 60 or 180
+minutes; nominal speed 150 or 270 m/s; and zero, three or six deliberate turns. Nuisance and
+sensor streams still vary independently by seed. Geometry-changing scenarios and turn overrides
+are rejected in this mode. Speed is a design axis, not a claim of information strength: actual
+worst contrast information and retention are reported from the design calculation.
+
+List the cells without simulations, then select a bounded development subset:
+
+```sh
+~/venv/bin/python analysis/tests/research.py --list-geometry-cells -o /tmp/geometry-cells.json
+```
+
+`--geometry-cells ID ...` defines the preregistered domain. Summaries keep geometry cell and
+test rank separate, including false rejection, model-separation power, information, exclusions
+and denominators. Calibration takes the maximum threshold across the declared diagnostic
+geometry/scenario cells for each operational rank. Every declared cell needs sufficient accepted
+samples; permanently ineligible cells remain development evidence and must be excluded from the
+claimed domain before freezing. The policy records the selected observable cell properties.
+These are finite stress fixtures; they do not by themselves validate every intervening trajectory.
+
+## Experimental partial pairwise evidence
+
+Candidate fits emit `pairwise` entries for all three comparisons. Each applies the shared gates
+with only that comparison's design retention required. The free-fit retained science space defines
+an observable scalar normalized to first model=1 and second model=0, with covariance propagated
+from the joint fit. An unavailable coordinate, invalid bootstrap or failed gate abstains. A preference
+requires rejecting one endpoint while retaining the other; two retained or two rejected endpoints
+also abstain. A three-model winner requires preferences against both alternatives.
+
+Pairwise diagnostics use six-endpoint Bonferroni tests and remain experimental. Enable
+`--pairwise-evidence` when freezing a campaign to preregister the additional validation family.
+It selects the candidate engine, and records per-pair eligibility, rejection, power and abstention
+even for flights excluded from the full three-way gate. Calibrate the pairwise rule separately:
+
+```sh
+~/venv/bin/python -m lll.pairwise_calibration calibrate calibration.json --mode flight -o pairwise-decision.json
+```
+
+Use `--pairwise-decision-policy pairwise-decision.json` in the frozen independent validation
+command, then assess it separately:
+
+```sh
+~/venv/bin/python -m lll.pairwise_calibration assess validation.json --policy pairwise-decision.json -o pairwise-assessment.json
+```
+
+Collation emits `experimental_pairwise` alongside the existing primary result. It pools only
+flights eligible for each comparison, first within physical IMU units, then across units using
+REML and modified Hartung–Knapp uncertainty. At least three informative units are required for
+a pooled decision. Repeated flights never manufacture additional units. Pair-normalized coordinates
+let different retained science projections share the same two null endpoints.
+
+Pooled decisions have their own `--mode pool` calibration artifact, keyed additionally by pair
+and informative unit count; a flight policy cannot calibrate a pool, and uncalibrated unit counts
+abstain. `lll collate --pairwise-decision-policy FILE` applies such an artifact. Summary-level
+pooling campaigns use `--scenario pool --pairwise-evidence --units 3 5 10`; they exercise the
+known-unit-effects generator, not the flight geometry/nuisance pipeline. Their candidate identity
+prevents transferring those thresholds to pools of actual flight analyses. Actual-flight pooled
+campaigns require their own recorded pools, independent cohorts and calibration/assessment.
+None of these artifacts promotes experimental candidates into primary observational claims.
 
 ## Hardware and publication sequence
 

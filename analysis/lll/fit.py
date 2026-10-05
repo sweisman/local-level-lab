@@ -38,6 +38,7 @@ from . import models
 from .attitude import c_bn
 from .calib import RAD2DPH
 from .inference_policy import INFERENCE_POLICY, provenance
+from .policy import eligibility_provenance, scientific_exclusions, candidate_settings, decision_stratum
 
 TERM_NAMES = ("k_rot_sphere", "k_curv", "k_disc")
 NK = len(TERM_NAMES)
@@ -469,6 +470,9 @@ def fit(bins, fwd_b, bias_fn, prior_sigma, vertical_only=False, n_boot=300, seed
         forward_uncertainty=False, forward_sigma_rad=None, forward_tangent=None,
         crab_rate_sigma_dph=None, crab_knot_seconds=None, variance_shrinkage_bins=None,
         research_candidate=False, decision_thresholds=None, decision_policy_hash=None, decision_statistic=None, design_only=False,
+        decision_policy=None, decision_candidate_id=None, decision_variant=None,
+        pairwise_decision_policy=None,
+        rank_min_relative_margin=0.,
         bias_model="constant", bias_knot_seconds=None, bias_rw_sigma_dph_sqrth=None):
     settings = dict(crab_model=crab_model, noise_model=noise_model, bootstrap_refit=bootstrap_refit,
                     forward_uncertainty=forward_uncertainty, crab_sigma_deg=crab_sigma_deg,
@@ -480,7 +484,10 @@ def fit(bins, fwd_b, bias_fn, prior_sigma, vertical_only=False, n_boot=300, seed
     settings.update(bias_model=bias_model,
                     bias_knot_seconds=INFERENCE_POLICY["bias_knot_seconds"] if bias_knot_seconds is None else bias_knot_seconds,
                     bias_rw_sigma_dph_sqrth=INFERENCE_POLICY["bias_rw_sigma_dph_sqrth"] if bias_rw_sigma_dph_sqrth is None else bias_rw_sigma_dph_sqrth)
-    if design_only and decision_thresholds is not None:
+    if not np.isfinite(rank_min_relative_margin) or rank_min_relative_margin < 0:
+        raise ValueError("rank stability margin must be finite and nonnegative")
+    settings["rank_min_relative_margin"] = rank_min_relative_margin
+    if design_only and (decision_thresholds is not None or decision_policy is not None or pairwise_decision_policy is not None):
         raise ValueError("design-only evaluation cannot apply model decisions")
     if design_only:
         settings["design_only"] = True
@@ -488,7 +495,12 @@ def fit(bins, fwd_b, bias_fn, prior_sigma, vertical_only=False, n_boot=300, seed
         raise ValueError("invalid inference candidate")
     if bias_model not in ("constant", "dynamic"):
         raise ValueError("bias_model must be constant or dynamic")
-    candidate = design_only or research_candidate or crab_model != "constant" or noise_model != "global" or bootstrap_refit != "linearized" or forward_uncertainty or bias_model == "dynamic"
+    candidate = candidate_settings({**settings, "design_only": design_only, "research_candidate": research_candidate})
+    if decision_policy is not None:
+        from .research_calibration import check_policy
+        check_policy(decision_policy)
+        if decision_thresholds is not None or not decision_candidate_id or decision_variant not in ("spp", "ble"):
+            raise ValueError("empirical policy requires candidate identity and sensor variant, without direct thresholds")
     settings["engine"] = "candidate-1" if candidate else "legacy"
     common = dict(vertical_only=vertical_only, n_boot=n_boot, seed=seed, temp_ref=temp_ref,
                   temp_prior=temp_prior, temp_mean=temp_mean, crab_sigma_deg=crab_sigma_deg,
@@ -500,8 +512,26 @@ def fit(bins, fwd_b, bias_fn, prior_sigma, vertical_only=False, n_boot=300, seed
     else:
         result = _legacy_fit(bins, fwd_b, bias_fn, prior_sigma, **common)
     result["inference_policy"] = provenance(settings)
+    result["eligibility_policy"] = eligibility_provenance(candidate)
     result["delta_chi2_raw"] = ({m: max(v - result["chi2_free"], 0.) for m, v in result["chi2"].items()}
                                 if not design_only else None)
+    if candidate:
+        from .pairwise import flight_evidence, three_model_winner
+        result["pairwise"] = flight_evidence(result, policy=pairwise_decision_policy,
+                                             candidate_id=decision_candidate_id, variant=decision_variant)
+        result["pairwise_three_model_winner"] = three_model_winner(result["pairwise"])
+    if decision_policy is not None:
+        cell = decision_stratum({"candidate_id": decision_candidate_id, "variant": decision_variant,
+                                 "model_test_rank": result.get("model_test_rank")})
+        result["decision_stratum"] = cell
+        if cell not in decision_policy["thresholds"]:
+            result.update(rejected_analytic=result["rejected"], rejected=dict.fromkeys(models.MODELS),
+                          decision_valid=False, decision_policy_hash=decision_policy["policy_hash"],
+                          decision_unavailable_stratum=cell)
+            return result
+        decision_thresholds = decision_policy["thresholds"][cell]
+        decision_statistic = decision_policy["statistics"][cell]
+        decision_policy_hash = decision_policy["policy_hash"]
     if decision_thresholds is not None:
         if not decision_policy_hash or set(decision_thresholds) != set(models.MODELS) or any(not np.isfinite(v) or v < 0 for v in decision_thresholds.values()):
             raise ValueError("complete finite empirical thresholds and policy hash required")
@@ -510,7 +540,7 @@ def fit(bins, fwd_b, bias_fn, prior_sigma, vertical_only=False, n_boot=300, seed
         if field not in ("delta_chi2_identifiable", "delta_chi2_raw") or field not in result:
             raise ValueError("decision statistic is unavailable for this inference engine")
         statistic = result[field]
-        valid = bool(result.get("model_test_rank", 3)) and result["convergence"]["converged"] and result["bootstrap"].get("bootstrap_valid", True)
+        valid = not scientific_exclusions({"fit": result})
         result["rejected"] = {m: (v > decision_thresholds[m] if valid else None)
                               for m, v in statistic.items()}
         result["decision_policy_hash"] = decision_policy_hash

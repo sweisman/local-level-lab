@@ -31,7 +31,7 @@ import numpy as np
 from . import __version__
 from .fit import TERM_NAMES, sf_chi2
 from .models import EXPECTED_K, MODELS
-from .policy import POLICY_VERSION, PRIMARY_EXCLUSIONS, provenance_reasons
+from .policy import POLICY_VERSION, provenance_reasons, scientific_exclusions, eligibility_provenance, is_candidate
 
 MIN_CRUISE_MIN = 60.0
 GOOD_TIERS = ("qualified", "usable")
@@ -103,7 +103,7 @@ def tier_as_of(tiers, unit, when) -> dict:
     return past[-1] if past else {"tier": "unknown"}
 
 
-def gate(r, tiers, allow_synthetic=False, approval=None) -> list[str]:
+def gate(r, tiers, allow_synthetic=False, approval=None, *, comparison=None) -> list[str]:
     """Reasons a session can't enter the primary result (empty = it can)."""
     why = []
     fl = set(r.get("flags", []))
@@ -111,14 +111,12 @@ def gate(r, tiers, allow_synthetic=False, approval=None) -> list[str]:
         return ["no in-flight fit"]
     if r.get("analysis_version") != __version__:
         why.append("reprocess with analysis " + __version__)
-    if not r["fit"].get("convergence", {}).get("converged", False):
-        why.append("inference did not converge")
     if "synthetic" in fl and not allow_synthetic:
         why.append("synthetic")
     simulation = allow_synthetic and "synthetic" in fl
     if not simulation:
         why.extend(provenance_reasons(r, approval))
-    why.extend(dict.fromkeys(PRIMARY_EXCLUSIONS[f] for f in sorted(fl & PRIMARY_EXCLUSIONS.keys())))
+    why.extend(scientific_exclusions(r, comparison))
     if (r.get("cruise_minutes") or 0) < MIN_CRUISE_MIN:
         why.append(f"under {MIN_CRUISE_MIN:.0f} min of cruise")
     if not (r.get("heading_diversity") or {}).get("adequate") and "insufficient heading diversity" not in why:
@@ -323,7 +321,7 @@ def bootstrap_joint_tests(items, n_boot=999, seed=0):
 
 
 def collate(results: list[dict], allow_synthetic: bool = False, provenance: dict | None = None,
-            *, unit_bootstrap=0, bootstrap_seed=0) -> dict:
+            *, unit_bootstrap=0, bootstrap_seed=0, pairwise_decision_policy=None) -> dict:
     # This mapping comes from a curator-controlled registry, never from uploaded manifests
     # or result JSON. Offline users must explicitly supply their trusted registry.
     provenance = provenance or {}
@@ -336,13 +334,19 @@ def collate(results: list[dict], allow_synthetic: bool = False, provenance: dict
             seen.add(sha)
         unique.append(r)
     results = unique
+    policies = [(r["fit"].get("eligibility_policy") or
+                 ({"version": "unrecorded", "policy_hash": "unrecorded"} if is_candidate(r["fit"]) else eligibility_provenance()))
+                for r in results if r.get("fit")]
     configurations = {((r.get("fit", {}).get("inference_policy") or {}).get("configuration_hash", "historical-unrecorded"),
-                       r["fit"].get("decision_policy_hash"))
+                       r["fit"].get("decision_policy_hash"),
+                       (r["fit"].get("eligibility_policy") or
+                        ({"policy_hash": "unrecorded"} if is_candidate(r["fit"]) else eligibility_provenance()))["policy_hash"])
                       for r in results if r.get("fit")}
     if len(configurations) > 1:
         raise ValueError("incompatible inference configurations: collate separately or reprocess consistently")
     tiers = unit_tiers(results)
     rows, primary, explore = [], [], []
+    pairwise_items = []
     groups = {"heading": defaultdict(list), "mount": defaultdict(list), "imu variant": defaultdict(list),
               "imu unit": defaultdict(list)}
     ground = {"lat": [], "up": [], "up_sd": [], "h": [], "h_sd": [], "unit": []}
@@ -355,6 +359,14 @@ def collate(results: list[dict], allow_synthetic: bool = False, provenance: dict
         if fit and (fit.get("inference_policy", {}).get("settings", {}).get("engine") == "candidate-1" or fit.get("decision_policy_hash")) and not allow_synthetic:
             why.append("experimental inference candidate")
         canonical = approval["unit_id"] if approval and not provenance_reasons(r, approval) else imu.get("unit_id")
+        if fit and is_candidate(fit):
+            from .pairwise import flight_evidence, decide
+            evidence = flight_evidence(fit, r.get("flags", []))
+            for name, entry in evidence.items():
+                entry["exclusions"] = list(dict.fromkeys(entry["exclusions"]+gate(r, tiers, allow_synthetic, approval, comparison=name)))
+                entry["eligible"] = not entry["exclusions"]
+                decide(entry, name)
+            pairwise_items.append((canonical, evidence))
         rows.append({
             "session_id": r.get("session_id"), "kind": r.get("kind", "flight"),
             "flight": f"{fl.get('airline', '')} {fl.get('flight_number', '')}".strip(), "date": fl.get("date"),
@@ -389,7 +401,8 @@ def collate(results: list[dict], allow_synthetic: bool = False, provenance: dict
             groups["imu variant"][imu.get("variant")].append(item)
             groups["imu unit"][canonical].append(item)
 
-    out = {"analysis_version": __version__, "policy_version": POLICY_VERSION,
+    out = {"analysis_version": __version__, "policy_version": policies[0]["version"] if policies else POLICY_VERSION,
+           "eligibility_policy": policies[0] if policies else eligibility_provenance(),
            "validation_status": "provisional", "simulation_mode": allow_synthetic,
            "n_sessions": len(results), "n_primary": len(primary),
            "n_exploratory": len(explore), "unit_tiers": tiers, "rows": rows, "ground": ground,
@@ -428,6 +441,13 @@ def collate(results: list[dict], allow_synthetic: bool = False, provenance: dict
         nu = max((v["n_units"] for v in pk.values() if v), default=0)
         # one or two IMU units are not a population: say so instead of extrapolating
         out["scope"] = {1: "single-unit", 2: "two-unit"}.get(nu, "population")
+    if pairwise_items:
+        from .pairwise import pool_evidence, POOL_METHOD
+        from .inference_policy import digest
+        candidate_id = digest({"method": POOL_METHOD, "inference_configuration": next(iter(configurations))[0]})
+        variants = sorted({(r.get("imu") or {}).get("variant") for r in results if r.get("fit") and (r.get("imu") or {}).get("variant")})
+        out["experimental_pairwise"] = pool_evidence(pairwise_items, candidate_id, variants[0] if len(variants) == 1 else "mixed",
+                                                    policy=pairwise_decision_policy)
     out["ground"]["fit"] = None
     out["ground"]["pooling_status"] = "disabled pending validated magnitude and instrument-effects model"
     return out

@@ -2,7 +2,6 @@
 """Single-session analysis. Produces a JSON-serialisable result dict."""
 from __future__ import annotations
 
-import platform
 import os
 from datetime import datetime, timezone
 
@@ -12,17 +11,16 @@ from . import __version__, calib, drift, fit, models, slip
 from .attitude import epoch_of, estimate_forward_axis, mount_epochs
 from .format import read_session
 from .segments import Thresholds, find_segments, make_bins, InvalidGnssData
-from .policy import POLICY_VERSION, heading_diversity, verified_config
+from .policy import POLICY_VERSION, heading_diversity, verified_config, scientific_exclusions
+from .runtime import numerical_environment
 
 
 def environment() -> dict:
     """What produced a result: the exact code and numerical libraries, so it can be reproduced."""
-    import scipy
     # Build/campaign runners may supply VCS provenance explicitly. Analysis itself performs
     # no git operations; research manifests additionally hash the scientific source files.
     commit = os.environ.get("LLL_GIT_COMMIT") or None
-    return {"python": platform.python_version(), "numpy": np.__version__, "scipy": scipy.__version__,
-            "git_commit": commit}
+    return {**numerical_environment(), "git_commit": commit}
 
 
 def _clean(o):
@@ -358,6 +356,15 @@ def analyze(path, th: Thresholds | None = None, *, fit_options=None) -> dict:
             flags.append("wmm_selection_sensitive")
     y, X, idx, cbns, theta = f["_rows"]
     res["fit"] = f
+    res["eligibility_policy"] = f["eligibility_policy"]
+    res["policy_version"] = f["eligibility_policy"]["version"]
+    res["scientific_exclusions"] = scientific_exclusions(res)
+    if "pairwise" in f:
+        from .pairwise import flight_evidence, three_model_winner
+        options = fit_options or {}
+        f["pairwise"] = flight_evidence(f, flags, policy=options.get("pairwise_decision_policy"),
+                                       candidate_id=options.get("decision_candidate_id"), variant=options.get("decision_variant"))
+        f["pairwise_three_model_winner"] = three_model_winner(f["pairwise"])
     res["fit"]["expected_k"] = models.EXPECTED_K
     res["accumulated"] = fit.accumulated(bins, cbns, y, idx, vertical_only)
     res["cruise_minutes"] = float(bins["dt"].sum() / 60)

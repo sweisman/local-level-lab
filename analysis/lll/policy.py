@@ -1,9 +1,13 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 """Versioned scientific eligibility; provenance is supplied separately by the curator."""
 from datetime import datetime
+import json
 import re
 
 import numpy as np
+
+from . import models
+from .inference_policy import digest
 
 POLICY_VERSION = "pilot-2"
 PRIMARY_EXCLUSIONS = {
@@ -23,6 +27,126 @@ PRIMARY_EXCLUSIONS = {
     "no_heading_reference_vertical_only": "no independent forward axis",
     "single_heading": "insufficient heading diversity",
 }
+MODEL_CONTRASTS = tuple(f"{a}_vs_{b}" for i, a in enumerate(models.EXPECTED_K)
+                        for b in list(models.EXPECTED_K)[i+1:])
+MODEL_PAIRS = {name: tuple(name.split("_vs_")) for name in MODEL_CONTRASTS}
+CANDIDATE_POLICY = {
+    "version": "candidate-eligibility-2",
+    "contrasts": MODEL_CONTRASTS,
+    "retention_threshold": float(np.sqrt(1 - .95**2)),
+    "minimum_model_test_rank": 1,
+    "rank_stability_requirement": "optional preregistered relative singular-value margin; zero disables",
+    "identifiability_source": "design_identifiability",
+    "design_assumptions": {"version": "model-anchor-design-1", "anchors": list(models.EXPECTED_K),
+                           "sigma_bin_dph": 3.0, "nuisance_state": "zero angle; unpenalized nuisance tangent at each model anchor"},
+    "pairwise_eligibility": "same scientific gates with only the requested design contrast required",
+    "require_bootstrap_valid_when_requested": True,
+    "exclusions": {k: v for k, v in PRIMARY_EXCLUSIONS.items() if k != "k_not_identified"},
+}
+
+
+def eligibility_provenance(candidate=False):
+    policy = CANDIDATE_POLICY if candidate else {"version": POLICY_VERSION, "exclusions": PRIMARY_EXCLUSIONS}
+    return {"version": policy["version"], "policy_hash": digest(policy)}
+
+
+def eligibility_policies():
+    return {"legacy": eligibility_provenance(), "candidate": eligibility_provenance(True)}
+
+
+def is_candidate(fit):
+    return (fit.get("inference_policy", {}).get("settings", {}).get("engine") == "candidate-1"
+            or fit.get("delta_chi2_identifiable") is not None or "model_test_rank" in fit)
+
+
+def candidate_settings(settings):
+    return bool(settings.get("design_only") or settings.get("research_candidate")
+                or settings.get("crab_model", "constant") != "constant"
+                or settings.get("noise_model", "global") != "global"
+                or settings.get("bootstrap_refit", "linearized") != "linearized"
+                or settings.get("forward_uncertainty") or settings.get("bias_model", "constant") == "dynamic"
+                or settings.get("rank_min_relative_margin", 0.) > 0)
+
+
+def contrast_eligibility(report, comparison=None):
+    """Shared design criterion; a malformed report cannot certify a flight."""
+    contrasts = report.get("model_contrast_information") or {}
+    threshold = CANDIDATE_POLICY["retention_threshold"]
+    valid = report.get("rank_threshold") == threshold
+    names = MODEL_CONTRASTS if comparison is None else (comparison,)
+    if comparison is not None and comparison not in MODEL_PAIRS:
+        raise ValueError("unknown model comparison")
+    margins, information = {}, {}
+    for name in names:
+        value = contrasts.get(name) or {}
+        retention, info = value.get("retained_fraction"), value.get("information")
+        if (not isinstance(retention, (int, float)) or not np.isfinite(retention) or retention < 0
+                or not isinstance(info, (int, float)) or not np.isfinite(info) or info < 0
+                or not isinstance(value.get("estimable"), bool)):
+            valid = False
+            continue
+        margins[name], information[name] = float(retention-threshold), float(info)
+    complete = valid and len(margins) == len(names)
+    estimable = complete and all(contrasts[name].get("estimable") is True and margins[name] >= 0
+                                 for name in names)
+    return {"valid": bool(complete), "all_estimable": bool(estimable),
+            "worst_margin": min(margins.values()) if complete else None,
+            "worst_information": min(information.values()) if complete else None,
+            "limiting_contrast": min(margins, key=margins.get) if complete else None}
+
+
+def scientific_exclusions(result, comparison=None):
+    """One scientific policy for session analysis, research and empirical campaigns."""
+    fit = result.get("fit")
+    if not fit:
+        return ["no in-flight fit"]
+    candidate = is_candidate(fit)
+    policy = CANDIDATE_POLICY["exclusions"] if candidate else PRIMARY_EXCLUSIONS
+    reasons = []
+    if not fit.get("convergence", {}).get("converged", False):
+        reasons.append("inference did not converge")
+    if not candidate and fit.get("eligibility_policy") is not None and fit["eligibility_policy"] != eligibility_provenance():
+        reasons.append("eligibility policy mismatch; reprocess")
+    reasons.extend(policy[f] for f in sorted(set(result.get("flags", [])) & policy.keys()))
+    if candidate:
+        if fit.get("eligibility_policy") != eligibility_provenance(True):
+            reasons.append("candidate eligibility policy mismatch; reprocess")
+        design = fit.get("design_identifiability") or {}
+        if design.get("assumptions") != CANDIDATE_POLICY["design_assumptions"]:
+            reasons.append("design identifiability assumptions mismatch")
+        if not design_eligibility(design, comparison)["all_estimable"]:
+            reasons.append("model contrast not identified")
+        if (fit.get("model_test_rank") or 0) < CANDIDATE_POLICY["minimum_model_test_rank"]:
+            reasons.append("no identifiable model-test subspace")
+        settings = fit.get("inference_policy", {}).get("settings", {})
+        required_margin = settings.get("rank_min_relative_margin", 0.)
+        information = fit.get("identifiability") or {}
+        margin, cutoff = information.get("rank_boundary_margin"), information.get("rank_threshold")
+        if required_margin > 0 and (margin is None or not cutoff or margin/cutoff < required_margin):
+            reasons.append("unstable model-test rank")
+        requested = settings.get("n_boot", fit.get("bootstrap", {}).get("requested"))
+        if requested is None or (requested > 0 and fit.get("bootstrap", {}).get("bootstrap_valid") is not True):
+            reasons.append("inadequate bootstrap convergence")
+    if fit.get("decision_unavailable_stratum") and comparison is None:
+        reasons.append("uncalibrated model-test rank")
+    return list(dict.fromkeys(reasons))
+
+
+def research_eligible(row):
+    """External gate exclusions plus the same scientific inputs used by analysis."""
+    return not row.get("failure") and not row.get("exclusions") and not scientific_exclusions(
+        {"fit": row, "flags": row.get("flags", [])})
+
+
+def decision_stratum(row):
+    return json.dumps([row.get("candidate_id"), row.get("variant"), row.get("model_test_rank")], separators=(",", ":"))
+
+
+def design_eligibility(report, comparison=None):
+    criterion = contrast_eligibility(report, comparison)
+    if report.get("assumptions") != CANDIDATE_POLICY["design_assumptions"]:
+        criterion.update(valid=False, all_estimable=False, worst_margin=None, worst_information=None, limiting_contrast=None)
+    return criterion
 BENCH_CHECKS = ("decode", "sample_rate", "scale", "autozero", "range", "stability",
                 "reversal", "recovery", "temperature")
 

@@ -9,80 +9,124 @@ from research import flight_run
 from lll import models
 from lll.research_design import realize, seed_range, validate_turn_schedule, implementation_hash, DESIGN_VERSION
 from lll.inference_policy import INFERENCE_POLICY, digest
+from lll.policy import design_eligibility, eligibility_provenance
+from lll.policy import CANDIDATE_POLICY
 
 
 def search(*, seeds, scenarios, max_turns=6, grid_min=5., min_spacing=10.,
-           edge_margin=5., beam_width=1, pilot_seconds=None, estimate_only=False):
+           edge_margin=5., beam_width=16, crab_models=("dynamic", "wind"),
+           pilot_seconds=None, pilot_evaluation_seconds=None, estimate_only=False):
     seeds = list(seeds)
+    scenarios, crab_models = list(scenarios), list(dict.fromkeys(crab_models))
     if not seeds or not scenarios or max_turns < 0 or max_turns > 6 or beam_width < 1 or grid_min <= 0:
         raise ValueError("invalid optimizer inputs")
+    if not crab_models or any(model not in ("dynamic", "wind") for model in crab_models):
+        raise ValueError("optimizer crab models must be dynamic and/or wind")
+    if not all(math.isfinite(v) for v in (grid_min, min_spacing, edge_margin)) or (pilot_seconds is not None and (not math.isfinite(pilot_seconds) or pilot_seconds < 0)):
+        raise ValueError("invalid optimizer cost or grid settings")
+    if pilot_evaluation_seconds is not None and (not math.isfinite(pilot_evaluation_seconds) or pilot_evaluation_seconds < 0):
+        raise ValueError("invalid evaluation timing")
     designs = {(seed, scenario): realize(seed, scenario, turn_schedule=[])
                for seed in seeds for scenario in scenarios}
     shortest = min(sum(leg[1] for leg in d["simulator"]["legs"]) for d in designs.values())
     validate_turn_schedule([], shortest, min_spacing, edge_margin)
     grid = [i*grid_min for i in range(1, math.ceil(shortest/grid_min))
             if edge_margin <= i*grid_min <= shortest-edge_margin]
-    upper = (1+max_turns*max(1, beam_width)*len(grid))*len(designs)*len(models.MODELS)
+    evaluations = (1+max_turns*beam_width*len(grid))*len(designs)*len(models.MODELS)*len(crab_models)
+    upper = 2*evaluations  # Each design-only evaluation performs two free fits.
     if estimate_only:
-        return {"upper_bound_fits": upper, "pilot_seconds_per_fit": pilot_seconds,
-                "estimated_seconds_upper": upper*pilot_seconds if pilot_seconds is not None else None}
+        return {"upper_bound_fits": upper, "upper_bound_evaluations": evaluations,
+                "crab_models": crab_models, "beam_width": beam_width, "pilot_seconds_per_fit": pilot_seconds,
+                "upper_bound_anchor_svd_evaluations": evaluations*len(CANDIDATE_POLICY["design_assumptions"]["anchors"]),
+                "pilot_seconds_per_evaluation": pilot_evaluation_seconds,
+                "cost_basis": "complete design evaluation" if pilot_evaluation_seconds is not None else "free fits only; simulation/SVD overhead excluded",
+                "estimated_seconds_upper": evaluations*pilot_evaluation_seconds if pilot_evaluation_seconds is not None else
+                                           upper*pilot_seconds if pilot_seconds is not None else None}
     cache = {}
     def evaluate(schedule):
         key = tuple(schedule)
         if key in cache: return cache[key]
-        info, smallest, details = [], [], []
+        details = []
         for (seed, scenario), base in designs.items():
             duration = sum(leg[1] for leg in base["simulator"]["legs"])
             turns = validate_turn_schedule(schedule, duration, min_spacing, edge_margin)
             design = {**base, "simulator": {**base["simulator"], "index_turns": turns}}
             for truth in models.MODELS:
-                row = flight_run(truth, scenario, seed, "moving", 15, 0, "spp", design=design,
-                                 fit_options={"research_candidate": True, "crab_model": "dynamic",
-                                              "noise_model": "axis_segment", "bias_model": "dynamic", "design_only": True})
-                report = row.get("identifiability") or {}
-                contrasts = report.get("model_contrast_information") or {}
-                converged = row.get("convergence", {}).get("converged", False)
-                score = min((v["information"] for v in contrasts.values()), default=0.) if converged else 0.
-                info.append(score)
-                smallest.append(min(report.get("normalized_singular_values", [0.])) if converged else 0.)
-                details.append({"seed": seed, "scenario": scenario, "truth": truth,
-                                "information": score, "rank": report.get("estimable_rank"),
-                                "singular_values": report.get("singular_values"),
-                                "condition_number": report.get("condition_number"),
-                                "model_contrast_information": contrasts,
-                                "expected_k_sd_without_priors": report.get("expected_k_sd_without_priors"),
-                                "k_sd": row.get("k_sd"), "elapsed_s": row.get("elapsed_s"),
-                                "failure": row.get("failure")})
-        result = {"turn_schedule_min": list(schedule), "worst_contrast_information": min(info),
-                  "worst_normalized_singular_value": min(smallest), "flights": details}
+                for crab_model in crab_models:
+                    row = flight_run(truth, scenario, seed, "moving", 15, 0, "spp", design=design,
+                                     fit_options={"research_candidate": True, "crab_model": crab_model,
+                                                  "noise_model": "axis_segment", "bias_model": "dynamic", "design_only": True})
+                    report = row.get("design_identifiability") or {}
+                    criterion = design_eligibility(report)
+                    rank = report.get("estimable_rank")
+                    valid = (criterion["valid"] and isinstance(rank, int) and rank >= 0
+                             and not row.get("failure") and row.get("convergence", {}).get("converged", False))
+                    details.append(_json_safe({"seed": seed, "scenario": scenario, "truth": truth,
+                                    "crab_model": crab_model, "valid": bool(valid),
+                                    "all_estimable": bool(valid and criterion["all_estimable"] and (report.get("estimable_rank") or 0) > 0),
+                                    "margin": criterion["worst_margin"] if valid else None,
+                                    "information": criterion["worst_information"] if valid else None,
+                                    "limiting_contrast": criterion["limiting_contrast"], "rank": report.get("estimable_rank"),
+                                    "singular_values": report.get("singular_values"),
+                                    "condition_number": report.get("condition_number"),
+                                    "model_contrast_information": report.get("model_contrast_information"),
+                                    "free_fit_identifiability": row.get("identifiability"),
+                                    "model_test_rank": row.get("model_test_rank"),
+                                    "expected_k_sd_without_priors": report.get("expected_k_sd_without_priors"),
+                                    "k_sd": row.get("k_sd"), "elapsed_s": row.get("elapsed_s"),
+                                    "failure": row.get("failure")}))
+        valid = all(d["valid"] for d in details)
+        limiting = min(details, key=lambda d: (d["valid"], d["margin"] if d["margin"] is not None else -math.inf,
+                                              d["information"] if d["information"] is not None else -math.inf))
+        result = {"turn_schedule_min": list(schedule), "valid_evaluations": valid,
+                  "all_estimable": all(d["all_estimable"] for d in details),
+                  "worst_estimability_margin": min(d["margin"] for d in details) if valid else None,
+                  "worst_contrast_information": min(d["information"] for d in details) if valid else None,
+                  "limiting_evaluation": {k: limiting[k] for k in ("seed", "scenario", "truth", "crab_model", "limiting_contrast")},
+                  "flights": details}
         cache[key] = result
         return result
     best = evaluate(())
     frontier = [best]
-    def score(result):
-        return result["worst_contrast_information"], result["worst_normalized_singular_value"]
     beam = [()]
     for _ in range(max_turns):
         candidates = {tuple(sorted((*schedule, t))) for schedule in beam for t in grid if t not in schedule}
-        feasible = [s for s in candidates if all(
+        feasible = [s for s in sorted(candidates) if all(
             not _invalid_schedule(s, sum(leg[1] for leg in d["simulator"]["legs"]), min_spacing, edge_margin)
             for d in designs.values())]
         if not feasible: break
         ranked = sorted((evaluate(s) for s in feasible),
-                        key=lambda r: (-r["worst_contrast_information"], -r["worst_normalized_singular_value"], r["turn_schedule_min"]))
+                        key=_ranking)
         beam = [tuple(r["turn_schedule_min"]) for r in ranked[:beam_width]]
         frontier.append(ranked[0])
-        if score(ranked[0]) > score(best):
+        if _ranking(ranked[0]) < _ranking(best):
             best = ranked[0]
-    return {"best": best, "frontier_by_turn_count": frontier,
+    return {"best": best if best["all_estimable"] else None, "best_diagnostic": best,
+            "feasible_winner": best["all_estimable"], "frontier_by_turn_count": frontier,
             "schedule_scores": [{k: v for k, v in result.items() if k != "flights"} for result in cache.values()],
             "design_version": DESIGN_VERSION, "implementation_hash": implementation_hash(),
             "inference_policy_hash": digest(INFERENCE_POLICY),
+            "eligibility_policy": eligibility_provenance(True), "crab_models": crab_models,
+            "score_order": ["all_estimable", "worst_estimability_margin", "worst_contrast_information"],
             "search_method": "deterministic beam search; no global-optimum guarantee",
-            "evaluated_schedules": len(cache), "upper_bound_fits": upper,
+            "evaluated_schedules": len(cache), "upper_bound_fits": upper, "upper_bound_evaluations": evaluations,
             "scenarios": list(scenarios), "seeds": seeds, "settings": {"max_turns": max_turns,
             "grid_min": grid_min, "min_spacing_min": min_spacing, "edge_margin_min": edge_margin,
             "beam_width": beam_width}}
+
+
+def _ranking(result):
+    return (-int(result["all_estimable"]), -int(result["valid_evaluations"]),
+            -result["worst_estimability_margin"] if result["worst_estimability_margin"] is not None else math.inf,
+            -result["worst_contrast_information"] if result["worst_contrast_information"] is not None else math.inf,
+            len(result["turn_schedule_min"]), result["turn_schedule_min"])
+
+
+def _json_safe(value):
+    if isinstance(value, dict): return {k: _json_safe(v) for k, v in value.items()}
+    if isinstance(value, (list, tuple)): return [_json_safe(v) for v in value]
+    if isinstance(value, float) and not math.isfinite(value): return None
+    return value
 
 
 def _invalid_schedule(schedule, duration, spacing, margin):
@@ -100,15 +144,17 @@ def main():
     ap.add_argument("--grid-min", type=float, default=5.)
     ap.add_argument("--min-spacing", type=float, default=10.)
     ap.add_argument("--edge-margin", type=float, default=5.)
-    ap.add_argument("--beam-width", type=int, default=1)
+    ap.add_argument("--beam-width", type=int, default=16)
+    ap.add_argument("--crab-models", nargs="+", choices=["dynamic", "wind"], default=["dynamic", "wind"])
     ap.add_argument("--pilot-seconds", type=float)
+    ap.add_argument("--pilot-evaluation-seconds", type=float, help="measured complete flight/design evaluation time, including SVD and simulation")
     ap.add_argument("--estimate-only", action="store_true")
     ap.add_argument("-o", type=Path, required=True)
     args = ap.parse_args()
     result = search(seeds=seed_range("development", args.seed, args.routes), scenarios=args.scenarios,
                     max_turns=args.max_turns, grid_min=args.grid_min, min_spacing=args.min_spacing,
-                    edge_margin=args.edge_margin, beam_width=args.beam_width,
-                    pilot_seconds=args.pilot_seconds, estimate_only=args.estimate_only)
+                    edge_margin=args.edge_margin, beam_width=args.beam_width, crab_models=args.crab_models,
+                    pilot_seconds=args.pilot_seconds, pilot_evaluation_seconds=args.pilot_evaluation_seconds, estimate_only=args.estimate_only)
     args.o.write_text(json.dumps(result, indent=2, allow_nan=False)+"\n")
 
 
