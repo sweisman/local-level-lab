@@ -61,6 +61,24 @@ def residual_weights(residual, bins, model, shrinkage=20.):
                          "group_counts": counts, "shrinkage_bins": shrinkage, "frozen_from_free_fit": True}
 
 
+def sensor_bias_basis(bins, knot_seconds=900., vertical_only=False):
+    """Sensor-frame bias variations, anchored to zero at the first retained time.
+
+    The existing residual offsets retain the unknown level. Knot increments are shared across
+    all segments and mount/gravity orientations; rotating the sensor does not rotate its bias.
+    Values use rad/s, with knot-major xyz coefficient ordering.
+    """
+    if not np.isfinite(knot_seconds) or knot_seconds <= 0:
+        raise ValueError("bias knot spacing must be positive and finite")
+    B, _, knots = crab_basis(bins, "dynamic", knot_seconds)
+    B = B[:, 1:]  # remove the constant-level ambiguity with the existing residual bias
+    H = (B[:, :, None]*(-np.asarray(bins["up"]))[:, None, :]).reshape(len(B), -1) if vertical_only else np.kron(B, np.eye(3))
+    differences = np.diff(np.eye(len(knots)), axis=0)[:, 1:]
+    # Unit random-walk scale: 1 (rad/s)/sqrt(hour). Actual scale is applied in penalty().
+    P = np.kron(differences/np.sqrt(np.diff(knots)/3600)[:, None], np.eye(3))
+    return H, B, knots, P
+
+
 class CandidateProblem:
     """Nonlinear predictions and total-parameter Gaussian penalties, shared by all refits."""
     def __init__(self, bins, fwd, bias_fn, prior_sigma, settings, vertical_only=False,
@@ -70,9 +88,22 @@ class CandidateProblem:
         self.settings, self.vertical = settings, vertical_only
         self.temp_ref, self.temp_mean = temp_ref, temp_mean
         self.y, self.X, self.idx, self.cb, self.layout = build_rows(bins, fwd, bias_fn, vertical_only, temp_ref, temp_mean)
-        self.p = self.X.shape[1]
+        self.base_p = self.X.shape[1]
         self.prior = np.r_[np.full(NK, np.inf), np.tile(prior_sigma, self.layout["n_grav"]),
                            np.broadcast_to(np.inf if temp_prior is None else temp_prior, (3,)) if temp_ref is not None else []]
+        self.dynamic_bias = settings.get("bias_model", "constant") == "dynamic"
+        self.bias_columns = np.empty((len(self.y), 0))
+        self.bias_knots = None
+        if self.dynamic_bias:
+            self.bias_rw_sigma = settings.get("bias_rw_sigma_dph_sqrth", INFERENCE_POLICY["bias_rw_sigma_dph_sqrth"])
+            if not np.isfinite(self.bias_rw_sigma) or self.bias_rw_sigma <= 0:
+                raise ValueError("bias random-walk scale must be positive and finite")
+            self.bias_columns, self.bias_basis, self.bias_knots, self.bias_penalty = sensor_bias_basis(
+                bins, settings.get("bias_knot_seconds", INFERENCE_POLICY["bias_knot_seconds"]), vertical_only)
+            self.X = np.column_stack([self.X, self.bias_columns])
+            self.prior = np.r_[self.prior, np.full(self.bias_columns.shape[1], np.inf)]
+        self.p = self.X.shape[1]
+        self.bias_drift_slice = slice(self.base_p, self.p)
         self.B, self.D, self.knots = crab_basis(bins, settings["crab_model"], settings["crab_knot_seconds"])
         self.use_crab = not vertical_only and crab_sigma_deg is not None and crab_sigma_deg > 0
         if not self.use_crab:
@@ -90,7 +121,7 @@ class CandidateProblem:
         self.w = np.full(len(self.y), 1/(3/RAD2DPH)**2)
         self.convergence = []
 
-    def penalty(self, bias=1., crab=1., temperature=1., rate=1., forward=1.):
+    def penalty(self, bias=1., crab=1., temperature=1., rate=1., forward=1., bias_drift=1.):
         sd = self.prior.copy()
         sd[self.layout["bias"]] *= bias
         if self.temp_ref is not None:
@@ -98,6 +129,10 @@ class CandidateProblem:
         finite = np.flatnonzero(np.isfinite(sd))
         P = np.zeros((len(finite), self.npar))
         P[np.arange(len(finite)), finite] = 1/sd[finite]
+        if self.dynamic_bias:
+            drift = np.zeros((self.bias_penalty.shape[0], self.npar))
+            drift[:, self.bias_drift_slice] = self.bias_penalty/(self.bias_rw_sigma/RAD2DPH*bias_drift)
+            P = np.vstack([P, drift])
         if self.nc:
             amp = np.zeros((self.nc, self.npar))
             amp[:, self.p:self.p+self.nc] = np.eye(self.nc)/(self.crab_sigma*crab)
@@ -121,6 +156,8 @@ class CandidateProblem:
             fwd = self.fwd*np.cos(z[-1]) + self.tangent*np.sin(z[-1])
         _, X, idx, cb, layout = build_rows(self.bins, fwd, self.bias_fn, self.vertical,
                                           self.temp_ref, self.temp_mean, dpsi=self.B @ d)
+        if self.dynamic_bias:
+            X = np.column_stack([X, self.bias_columns])
         # Extra fuselage heading rotation is about down, independent of the k terms.
         rate = (-self.bins["up"] * (self.D @ d)[:, None]).ravel() if not self.vertical else np.zeros(len(self.y))
         pred = X @ z[:self.p] + rate
@@ -146,6 +183,13 @@ class CandidateProblem:
         z = np.zeros(self.npar)
         initial = _solve(y, self.X, self.w, self.prior, fixed)[0]
         z[:self.p] = initial if fixed is None else np.r_[fixed, initial]
+        if self.dynamic_bias:
+            linear = np.arange(self.p) if fixed is None else np.arange(NK, self.p)
+            offset = np.zeros(self.npar)
+            if fixed is not None: offset[K] = fixed
+            A = np.vstack([self.X[:, linear]*np.sqrt(self.w)[:, None], P[:, linear]])
+            b = np.r_[(y-self.X @ offset[:self.p])*np.sqrt(self.w), -P @ offset]
+            z[linear] = np.linalg.lstsq(A, b, rcond=None)[0]
         if start is not None:
             z = start.copy()
         if fixed is not None:
@@ -250,10 +294,12 @@ def candidate_fit(bins, fwd_b, bias_fn, prior_sigma, *, settings, vertical_only=
             x = J[:, i]; r = x-N @ np.linalg.lstsq(N, x, rcond=None)[0]
             out[name] = float(np.sqrt(max(0., 1-float(r @ r)/float(x @ x)))) if x @ x else 1.
         return out
-    tie_bias = likeness(J[:, problem.layout["bias"]]); tie = likeness(J[:, NK:])
+    bias_indices = np.r_[np.arange(problem.p)[problem.layout["bias"]], np.arange(problem.p)[problem.bias_drift_slice]]
+    tie_bias = likeness(J[:, bias_indices]); tie = likeness(J[:, NK:])
     prior_k = ["bias"] + (["crab"] if problem.nc else []) + (["temperature"] if temp_ref is not None else [])
     if problem.nc and settings["crab_model"] == "dynamic": prior_k.append("rate")
     if problem.forward: prior_k.append("forward")
+    if problem.dynamic_bias: prior_k.append("bias_drift")
     shifts = {key: (problem.solve(P=problem.penalty(**{key: PRIOR_WIDEN}), start=z)["z"][K]-k)/sd for key in prior_k}
     sweep = {}
     if problem.nc:
@@ -274,10 +320,23 @@ def candidate_fit(bins, fwd_b, bias_fn, prior_sigma, *, settings, vertical_only=
     crab = z[problem.p:problem.p+problem.nc]
     course_groups = crab_basis(bins, "constant")[0].shape[1]
     bsl = problem.layout["bias"]
-    crossden = np.sqrt(np.outer(np.diag(cov)[K], np.diag(cov)[bsl]))
+    crossden = np.sqrt(np.outer(np.diag(cov)[K], np.diag(cov)[bias_indices]))
+    sensor_bias = {"model": "dynamic" if problem.dynamic_bias else "constant", "frame": "sensor"}
+    if problem.dynamic_bias:
+        drift = z[problem.bias_drift_slice].reshape(-1, 3)
+        body_design = np.kron(problem.bias_basis, np.eye(3)).reshape(n, 3, -1)
+        drift_cov = cov[problem.bias_drift_slice, problem.bias_drift_slice]
+        variance = np.einsum("nai,ij,naj->na", body_design, drift_cov, body_design)
+        sensor_bias.update(knot_times_s=problem.bias_knots.tolist(),
+                           anchor="zero variation at first retained time; level is residual bias",
+                           rw_sigma_dph_sqrth=problem.bias_rw_sigma,
+                           knot_drift_dph=(np.vstack([np.zeros(3), drift])*RAD2DPH).tolist(),
+                           per_bin_drift_dph=(problem.bias_basis @ drift*RAD2DPH).tolist(),
+                           per_bin_drift_sd_dph=(np.sqrt(np.maximum(variance, 0))*RAD2DPH).tolist())
     return {"convergence": {"converged": all(v["converged"] for v in problem.convergence), "fits": problem.convergence},
             "mode": "vertical_only" if vertical_only else "3-axis", "n_bins": n, "n_rows": len(problem.y),
             "sigma_bin_dph": noise["global_sigma_dph"], "noise": noise,
+            "sensor_bias": sensor_bias,
             "k": dict(zip(TERM_NAMES, k.tolist())), "k_sd": dict(zip(TERM_NAMES, sd.tolist())),
             "k_sd_analytic": dict(zip(TERM_NAMES, analytic_sd.tolist())), "k_cov": kcov.tolist(),
             "gravity_orientations": problem.layout["n_grav"],
@@ -295,7 +354,7 @@ def candidate_fit(bins, fwd_b, bias_fn, prior_sigma, *, settings, vertical_only=
                           "null_replicates": {m: len(v) for m, v in nulls.items()},
                           "empirical_k_cov": np.cov(np.asarray(boots).T).tolist() if len(boots)>1 else None,
                           "refit": settings["bootstrap_refit"]},
-            "max_bias_k_corr": float(np.max(np.abs(np.divide(cov[K, bsl], crossden, out=np.zeros_like(crossden), where=crossden>0)))),
+            "max_bias_k_corr": float(np.max(np.abs(np.divide(cov[K][:, bias_indices], crossden, out=np.zeros_like(crossden), where=crossden>0)))),
             "identifiability": {"k_curv_bias_likeness": tie_bias["k_curv"], "bias_likeness_by_term": tie_bias,
                                 "k_curv_nuisance_likeness": tie["k_curv"], "nuisance_likeness_by_term": tie,
                                 "identified_by_term": {m: v<CORR_NOT_IDENTIFIED for m, v in tie.items()},

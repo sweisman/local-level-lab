@@ -1,0 +1,976 @@
+{
+  "purpose": "paired development ablations of the accepted still-globe rejection",
+  "implementation_hash": "6215e7ed328f17c59bb4c469879f9d5700c3ce876ef3670787fd919f60122faf",
+  "environment": {
+    "python": "3.14.7",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "git_commit": null
+  },
+  "records": [
+    {
+      "truth": "sphere_still",
+      "scenario": "long_drift",
+      "seed": 10000,
+      "sampling": "moving",
+      "block": 15,
+      "variant": "spp",
+      "same_side_up_turns": false,
+      "partition": "development",
+      "geometry": "seeded",
+      "design": {
+        "design_version": "simulation-design-1",
+        "seed": 10000,
+        "partition": "development",
+        "streams": {
+          "geometry": 687766700,
+          "nuisance": 1035087755,
+          "sensor": 4224662479,
+          "bootstrap": 2915781126,
+          "pool": 3548933265
+        },
+        "geometry": "seeded",
+        "scenario": "long_drift",
+        "simulator": {
+          "fs": 20.0,
+          "lat0": 21.854053131797258,
+          "lon0": -68.60644005387087,
+          "h": 11000.0,
+          "speed": 230.0,
+          "legs": [
+            [
+              4.202239210945482,
+              21.202632399985067
+            ],
+            [
+              196.1130090403132,
+              19.432679049235126
+            ],
+            [
+              261.7205447607168,
+              36.45831965832724
+            ],
+            [
+              221.57585474357893,
+              18.382697728412097
+            ]
+          ],
+          "mount": "tray",
+          "mount_yaw_deg": 20.0,
+          "mount_tilt_deg": 4.0,
+          "cal_pos_s": 180.0,
+          "gap_s": 3600.0,
+          "bias0_dps": [
+            0.3,
+            -0.2,
+            0.15
+          ],
+          "drift_dph_per_h": [
+            1.0,
+            -0.8,
+            0.5
+          ],
+          "rw_dph_sqrth": 0.3,
+          "noise_dps_rthz": 0.007,
+          "accel_noise_g_rthz": 0.00016,
+          "pitch_trim_deg_per_h": 0.5,
+          "cal": [
+            "pre",
+            "post"
+          ],
+          "drift_runs": false,
+          "cal_sequence": "palindrome",
+          "g_sens_dph_per_g": null,
+          "temp_coef_dph_per_c": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "flight_temp_rise_c": 0.0,
+          "turbulence": [],
+          "mount_slip_deg_per_h": [
+            0.0,
+            0.0
+          ],
+          "climb_min": 0.0,
+          "descent_min": 0.0,
+          "gnss_dropouts": [
+            [
+              26.9438755518191,
+              1.9886248477127353
+            ],
+            [
+              38.544125087676,
+              1.883504654371674
+            ],
+            [
+              50.27692947805457,
+              1.054824709735154
+            ]
+          ],
+          "variant": "spp",
+          "gyro_range_dps": 2000.0,
+          "accel_range_g": 16.0,
+          "index_turns": [
+            [
+              21.216961963546563,
+              "z"
+            ],
+            [
+              53.04240490886641,
+              "z"
+            ],
+            [
+              84.86784785418625,
+              "z"
+            ]
+          ],
+          "mag_hard_iron_ut": [
+            8.0,
+            -5.0,
+            3.0
+          ],
+          "mag_airframe_ut": [
+            6.0,
+            -2.0,
+            4.0
+          ],
+          "temp_quad_dph_per_c2": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "temp_lag_s": 0.0,
+          "bias_jumps": [],
+          "gyro_scale_ppm": [
+            0,
+            0,
+            0
+          ],
+          "gyro_misalign_mrad": 0.0,
+          "vre_dph": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "link_dropouts": [],
+          "turn_seconds": 4.0,
+          "spp_time_every": 1,
+          "ble_loss": 0.0,
+          "crab_deg": [],
+          "reversal_pairs": 0,
+          "reversal_s": 300.0,
+          "gyro_noise_cov": null,
+          "long_drift_dph": [
+            3.0,
+            -2.0,
+            4.0
+          ],
+          "long_drift_period_s": 5400.0
+        },
+        "crab_trajectory": {
+          "kind": "linear",
+          "rate_dph": 0.0
+        },
+        "analysis_options": {}
+      },
+      "fit_options": {
+        "n_boot": 300,
+        "bootstrap_sampling": "moving",
+        "block_length": 15
+      },
+      "candidate_id": "5308040b6b456fef1d2e2e20506b1d07cda276b04771e88444a72f388985de54",
+      "elapsed_s": 6.143545611994341,
+      "rejected": true,
+      "exclusions": [],
+      "k": {
+        "k_rot_sphere": -0.1543986326875753,
+        "k_curv": 0.8201813932813271,
+        "k_disc": 0.5960418626188565
+      },
+      "delta_chi2_raw": {
+        "sphere_rotating": 602.7204268548791,
+        "sphere_still": 23.98193634326907,
+        "flat_still": 219.57970367488556
+      },
+      "rejected_by_model": {
+        "sphere_rotating": true,
+        "sphere_still": true,
+        "flat_still": true
+      },
+      "p_vs_free": {
+        "sphere_rotating": 3.5699435461271016e-07,
+        "sphere_still": 0.00019389292803954786,
+        "flat_still": 6.65059727234101e-39
+      },
+      "inference_policy": {
+        "version": "inference-1",
+        "policy_hash": "684da228879e4ee6ff9015da04c4ab78bb8db171ff2e8a6ad533b4490e4c4081",
+        "settings": {
+          "crab_model": "constant",
+          "noise_model": "global",
+          "bootstrap_refit": "linearized",
+          "forward_uncertainty": false,
+          "crab_sigma_deg": 5.0,
+          "bootstrap_sampling": "moving",
+          "block_length": 15,
+          "n_boot": 300,
+          "max_nfev": 200,
+          "crab_rate_sigma_dph": 1.0,
+          "crab_knot_seconds": 300.0,
+          "variance_shrinkage_bins": 20.0,
+          "engine": "legacy"
+        },
+        "configuration_hash": "ae9163c65a8066cb3259f92fa9105fc85e668d157e8cd508a07ea0c2c27862e9"
+      },
+      "bootstrap": {
+        "sampling": "moving",
+        "block_length": 15,
+        "replicates": 300,
+        "empirical_k_cov": [
+          [
+            0.0007542251680651089,
+            0.0006488984391574181,
+            0.00036990109048365617
+          ],
+          [
+            0.0006488984391574181,
+            0.0019300496411289783,
+            0.0006327891996118001
+          ],
+          [
+            0.00036990109048365617,
+            0.0006327891996118001,
+            0.027289699937857948
+          ]
+        ],
+        "refit": "local linearization with total-angle prior"
+      },
+      "forward_axis": {
+        "axis_b": [
+          -0.3142175968341069,
+          0.9428828244956431,
+          -0.11063128450360218
+        ],
+        "gain": 0.43378905283688113,
+        "r2": 0.316442684287763,
+        "bank_energy": 1.4971934295313158,
+        "regression_cov": [
+          [
+            0.003669221551629663,
+            -0.006734153762865598,
+            0.0008121891301754022
+          ],
+          [
+            -0.006734153762865598,
+            0.014120505968859514,
+            -0.0016881890682690142
+          ],
+          [
+            0.0008121891301754022,
+            -0.0016881890682690142,
+            0.00020194245431746035
+          ]
+        ],
+        "axis_cov": [
+          [
+            0.00322959815323795,
+            0.0010680755818174691,
+            -6.98396400808659e-05
+          ],
+          [
+            0.0010680755818174691,
+            0.0003532282947743792,
+            -2.309699556228291e-05
+          ],
+          [
+            -6.983964008086592e-05,
+            -2.309699556228299e-05,
+            1.5102731346709567e-06
+          ]
+        ],
+        "angle_sigma_rad": 0.0598693303883299,
+        "uncertainty_method": "horizontal regression, Newey-West",
+        "hac_lags": 10
+      },
+      "k_sd": {
+        "k_rot_sphere": 0.06103037964375863,
+        "k_curv": 0.09865141981793728,
+        "k_disc": 0.1649203876765951
+      },
+      "covariance": {
+        "joint": {
+          "covariance": [
+            [
+              0.0037247072394613083,
+              0.004267274322660894,
+              -0.0021999772035752345
+            ],
+            [
+              0.004267274320685723,
+              0.009732102632094909,
+              -0.004951697572818676
+            ],
+            [
+              -0.0021999756876734523,
+              -0.004951693527853109,
+              0.027198734271398423
+            ]
+          ],
+          "min_eigenvalue": 0.0015052823175700047,
+          "covers95": false
+        },
+        "bootstrap": {
+          "covariance": [
+            [
+              0.0007542251680651089,
+              0.0006488984391574181,
+              0.00036990109048365617
+            ],
+            [
+              0.0006488984391574181,
+              0.0019300496411289783,
+              0.0006327891996118001
+            ],
+            [
+              0.00036990109048365617,
+              0.0006327891996118001,
+              0.027289699937857948
+            ]
+          ],
+          "min_eigenvalue": 0.0004662661398448416,
+          "covers95": false
+        }
+      },
+      "convergence": {
+        "converged": true,
+        "fits": [
+          {
+            "converged": true,
+            "evaluations": 5,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 16,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 6,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 1,
+            "status": 1,
+            "message": "`gtol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 5,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 6,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 5,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 5,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 6,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 6,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          }
+        ]
+      },
+      "prior_sensitivity": {
+        "widen": 3.0,
+        "k_shift_sigma": {
+          "k_rot_sphere": -0.019488687589995324,
+          "k_curv": -0.017766070121269018,
+          "k_disc": 0.02103704847475675
+        },
+        "k_shift_sigma_by_prior": {
+          "bias": {
+            "k_rot_sphere": -0.019488687589995324,
+            "k_curv": -0.017766070121269018,
+            "k_disc": 0.02103704847475675
+          },
+          "crab": {
+            "k_rot_sphere": 0.33409803169253116,
+            "k_curv": 0.24835366855924967,
+            "k_disc": -0.010022654842207592
+          }
+        },
+        "prior_dominated": false
+      },
+      "identifiability": {
+        "k_curv_bias_likeness": 0.45960980048205285,
+        "bias_likeness_by_term": {
+          "k_rot_sphere": 0.5850634840835124,
+          "k_curv": 0.45960980048205285,
+          "k_disc": 0.7855753916907856
+        },
+        "k_curv_nuisance_likeness": 0.6788686957909347,
+        "nuisance_likeness_by_term": {
+          "k_rot_sphere": 0.745257503907865,
+          "k_curv": 0.6788686957909347,
+          "k_disc": 0.7897236776946776
+        },
+        "identified_by_term": {
+          "k_rot_sphere": true,
+          "k_curv": true,
+          "k_disc": true
+        },
+        "identified": true,
+        "note": "fraction of each term's signal the nuisance terms (residual bias per gravity orientation, temperature, crab) could mimic together, with no priors"
+      },
+      "wmm_shift_sigma": null,
+      "flags": [
+        "synthetic",
+        "imu_turned_in_flight"
+      ],
+      "fit_diagnostics": {
+        "chi2": {
+          "sphere_rotating": 812.1217489231584,
+          "sphere_still": 233.38325841154838,
+          "flat_still": 428.9810257431649
+        },
+        "chi2_free": 209.4013220682793,
+        "chi2_scaling": {
+          "rho_lag1": 0.09749399182845074,
+          "scale": 0.8223334386258945
+        },
+        "bootstrap_inflation": {
+          "sphere_rotating": 18.382350267477886,
+          "sphere_still": 1.0,
+          "flat_still": 1.0
+        },
+        "p_asymptotic": {
+          "sphere_rotating": 4.2087539229244664e-107,
+          "sphere_still": 0.00019389292803954786,
+          "flat_still": 6.65059727234101e-39
+        },
+        "p_bootstrap_calibrated": {
+          "sphere_rotating": 3.5699435461271016e-07,
+          "sphere_still": 2.5197833174672175e-05,
+          "flat_still": 2.474992255228026e-47
+        },
+        "sigma_bin_dph": 3.882516142358949,
+        "bias_residual_dph": [
+          [
+            -1.3823829808426489,
+            0.8150447440658501,
+            2.073916222903958
+          ]
+        ]
+      }
+    },
+    {
+      "truth": "sphere_still",
+      "scenario": "drift+1",
+      "seed": 10000,
+      "sampling": "moving",
+      "block": 15,
+      "variant": "spp",
+      "same_side_up_turns": false,
+      "partition": "development",
+      "geometry": "seeded",
+      "design": {
+        "design_version": "simulation-design-1",
+        "seed": 10000,
+        "partition": "development",
+        "streams": {
+          "geometry": 687766700,
+          "nuisance": 1035087755,
+          "sensor": 4224662479,
+          "bootstrap": 2915781126,
+          "pool": 3548933265
+        },
+        "geometry": "seeded",
+        "scenario": "drift+1",
+        "simulator": {
+          "fs": 20.0,
+          "lat0": 21.854053131797258,
+          "lon0": -68.60644005387087,
+          "h": 11000.0,
+          "speed": 230.0,
+          "legs": [
+            [
+              4.202239210945482,
+              21.202632399985067
+            ],
+            [
+              196.1130090403132,
+              19.432679049235126
+            ],
+            [
+              261.7205447607168,
+              36.45831965832724
+            ],
+            [
+              221.57585474357893,
+              18.382697728412097
+            ]
+          ],
+          "mount": "tray",
+          "mount_yaw_deg": 20.0,
+          "mount_tilt_deg": 4.0,
+          "cal_pos_s": 180.0,
+          "gap_s": 3600.0,
+          "bias0_dps": [
+            0.3,
+            -0.2,
+            0.15
+          ],
+          "drift_dph_per_h": [
+            1.0,
+            -0.8,
+            0.5
+          ],
+          "rw_dph_sqrth": 0.3,
+          "noise_dps_rthz": 0.007,
+          "accel_noise_g_rthz": 0.00016,
+          "pitch_trim_deg_per_h": 0.5,
+          "cal": [
+            "pre",
+            "post"
+          ],
+          "drift_runs": false,
+          "cal_sequence": "palindrome",
+          "g_sens_dph_per_g": null,
+          "temp_coef_dph_per_c": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "flight_temp_rise_c": 0.0,
+          "turbulence": [],
+          "mount_slip_deg_per_h": [
+            0.0,
+            0.0
+          ],
+          "climb_min": 0.0,
+          "descent_min": 0.0,
+          "gnss_dropouts": [
+            [
+              26.9438755518191,
+              1.9886248477127353
+            ],
+            [
+              38.544125087676,
+              1.883504654371674
+            ],
+            [
+              50.27692947805457,
+              1.054824709735154
+            ]
+          ],
+          "variant": "spp",
+          "gyro_range_dps": 2000.0,
+          "accel_range_g": 16.0,
+          "index_turns": [
+            [
+              21.216961963546563,
+              "z"
+            ],
+            [
+              53.04240490886641,
+              "z"
+            ],
+            [
+              84.86784785418625,
+              "z"
+            ]
+          ],
+          "mag_hard_iron_ut": [
+            8.0,
+            -5.0,
+            3.0
+          ],
+          "mag_airframe_ut": [
+            6.0,
+            -2.0,
+            4.0
+          ],
+          "temp_quad_dph_per_c2": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "temp_lag_s": 0.0,
+          "bias_jumps": [],
+          "gyro_scale_ppm": [
+            0,
+            0,
+            0
+          ],
+          "gyro_misalign_mrad": 0.0,
+          "vre_dph": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "link_dropouts": [],
+          "turn_seconds": 4.0,
+          "spp_time_every": 1,
+          "ble_loss": 0.0,
+          "crab_deg": [],
+          "reversal_pairs": 0,
+          "reversal_s": 300.0,
+          "gyro_noise_cov": null,
+          "long_drift_dph": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "long_drift_period_s": 5400.0
+        },
+        "crab_trajectory": {
+          "kind": "linear",
+          "rate_dph": 1.0
+        },
+        "analysis_options": {}
+      },
+      "fit_options": {
+        "n_boot": 300,
+        "bootstrap_sampling": "moving",
+        "block_length": 15
+      },
+      "candidate_id": "5308040b6b456fef1d2e2e20506b1d07cda276b04771e88444a72f388985de54",
+      "elapsed_s": 7.85941437195288,
+      "rejected": false,
+      "exclusions": [],
+      "k": {
+        "k_rot_sphere": 0.034237564722288005,
+        "k_curv": 0.9505797693773578,
+        "k_disc": 0.16070792975276504
+      },
+      "delta_chi2_raw": {
+        "sphere_rotating": 466.0550642467979,
+        "sphere_still": 3.3490565398886645,
+        "flat_still": 195.47014154929033
+      },
+      "rejected_by_model": {
+        "sphere_rotating": true,
+        "sphere_still": false,
+        "flat_still": true
+      },
+      "p_vs_free": {
+        "sphere_rotating": 6.54514965963248e-07,
+        "sphere_still": 0.34087304166380605,
+        "flat_still": 4.016828969413797e-42
+      },
+      "inference_policy": {
+        "version": "inference-1",
+        "policy_hash": "684da228879e4ee6ff9015da04c4ab78bb8db171ff2e8a6ad533b4490e4c4081",
+        "settings": {
+          "crab_model": "constant",
+          "noise_model": "global",
+          "bootstrap_refit": "linearized",
+          "forward_uncertainty": false,
+          "crab_sigma_deg": 5.0,
+          "bootstrap_sampling": "moving",
+          "block_length": 15,
+          "n_boot": 300,
+          "max_nfev": 200,
+          "crab_rate_sigma_dph": 1.0,
+          "crab_knot_seconds": 300.0,
+          "variance_shrinkage_bins": 20.0,
+          "engine": "legacy"
+        },
+        "configuration_hash": "ae9163c65a8066cb3259f92fa9105fc85e668d157e8cd508a07ea0c2c27862e9"
+      },
+      "bootstrap": {
+        "sampling": "moving",
+        "block_length": 15,
+        "replicates": 300,
+        "empirical_k_cov": [
+          [
+            0.002028583402649314,
+            0.002055103727139994,
+            -0.0021083426946809456
+          ],
+          [
+            0.002055103727139994,
+            0.004847051855855026,
+            -0.003433909668432162
+          ],
+          [
+            -0.0021083426946809456,
+            -0.003433909668432162,
+            0.014083736014883413
+          ]
+        ],
+        "refit": "local linearization with total-angle prior"
+      },
+      "forward_axis": {
+        "axis_b": [
+          -0.31422822182432947,
+          0.9428852509209201,
+          -0.11058041510554074
+        ],
+        "gain": 0.4337895894743294,
+        "r2": 0.3164405751850269,
+        "bank_energy": 1.4971934295313158,
+        "regression_cov": [
+          [
+            0.0036693068363752145,
+            -0.006734230286968417,
+            0.0008118415196866433
+          ],
+          [
+            -0.006734230286968417,
+            0.014120533088361451,
+            -0.0016874376402096292
+          ],
+          [
+            0.0008118415196866433,
+            -0.0016874376402096292,
+            0.0002017625248830882
+          ]
+        ],
+        "axis_cov": [
+          [
+            0.0032295210489254513,
+            0.0010680963337699845,
+            -6.976259644441557e-05
+          ],
+          [
+            0.0010680963337699838,
+            0.00035325045445747013,
+            -2.3072515202013442e-05
+          ],
+          [
+            -6.976259644441576e-05,
+            -2.3072515202013445e-05,
+            1.5069788333754695e-06
+          ]
+        ],
+        "angle_sigma_rad": 0.05986884400267217,
+        "uncertainty_method": "horizontal regression, Newey-West",
+        "hac_lags": 10
+      },
+      "k_sd": {
+        "k_rot_sphere": 0.05799924925592157,
+        "k_curv": 0.09179892279099063,
+        "k_disc": 0.13107720230781644
+      },
+      "covariance": {
+        "joint": {
+          "covariance": [
+            [
+              0.0033639129142505188,
+              0.003617358106840079,
+              -0.0015422333404602562
+            ],
+            [
+              0.003617358075674067,
+              0.008427042225586259,
+              -0.0036212895753114744
+            ],
+            [
+              -0.0015422323596308216,
+              -0.0036212878644495544,
+              0.017181232964844237
+            ]
+          ],
+          "min_eigenvalue": 0.0014736200097776565,
+          "covers95": true
+        },
+        "bootstrap": {
+          "covariance": [
+            [
+              0.002028583402649314,
+              0.002055103727139994,
+              -0.0021083426946809456
+            ],
+            [
+              0.002055103727139994,
+              0.004847051855855026,
+              -0.003433909668432162
+            ],
+            [
+              -0.0021083426946809456,
+              -0.003433909668432162,
+              0.014083736014883413
+            ]
+          ],
+          "min_eigenvalue": 0.0009388708618395294,
+          "covers95": true
+        }
+      },
+      "convergence": {
+        "converged": true,
+        "fits": [
+          {
+            "converged": true,
+            "evaluations": 5,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 14,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 5,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 1,
+            "status": 1,
+            "message": "`gtol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 5,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 4,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 4,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 5,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 5,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 4,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          }
+        ]
+      },
+      "prior_sensitivity": {
+        "widen": 3.0,
+        "k_shift_sigma": {
+          "k_rot_sphere": 0.006791666405848235,
+          "k_curv": 0.0036783212478702257,
+          "k_disc": -0.0035566270848577217
+        },
+        "k_shift_sigma_by_prior": {
+          "bias": {
+            "k_rot_sphere": 0.006791666405848235,
+            "k_curv": 0.0036783212478702257,
+            "k_disc": -0.0035566270848577217
+          },
+          "crab": {
+            "k_rot_sphere": -0.03470610007047187,
+            "k_curv": -0.012044745197109272,
+            "k_disc": -0.033484817084270764
+          }
+        },
+        "prior_dominated": false
+      },
+      "identifiability": {
+        "k_curv_bias_likeness": 0.45803964513007195,
+        "bias_likeness_by_term": {
+          "k_rot_sphere": 0.593514495346795,
+          "k_curv": 0.45803964513007195,
+          "k_disc": 0.7855753916907856
+        },
+        "k_curv_nuisance_likeness": 0.5616884682792576,
+        "nuisance_likeness_by_term": {
+          "k_rot_sphere": 0.7598549386890755,
+          "k_curv": 0.5616884682792576,
+          "k_disc": 0.7913155160930647
+        },
+        "identified_by_term": {
+          "k_rot_sphere": true,
+          "k_curv": true,
+          "k_disc": true
+        },
+        "identified": true,
+        "note": "fraction of each term's signal the nuisance terms (residual bias per gravity orientation, temperature, crab) could mimic together, with no priors"
+      },
+      "wmm_shift_sigma": null,
+      "flags": [
+        "synthetic",
+        "imu_turned_in_flight"
+      ],
+      "fit_diagnostics": {
+        "chi2": {
+          "sphere_rotating": 675.9431244602783,
+          "sphere_still": 213.23711675336915,
+          "flat_still": 405.3582017627708
+        },
+        "chi2_free": 209.8880602134805,
+        "chi2_scaling": {
+          "rho_lag1": 0.0,
+          "scale": 1.0
+        },
+        "bootstrap_inflation": {
+          "sphere_rotating": 14.77709113795491,
+          "sphere_still": 1.0,
+          "flat_still": 1.0
+        },
+        "p_asymptotic": {
+          "sphere_rotating": 1.0827201418334355e-100,
+          "sphere_still": 0.34087304166380605,
+          "flat_still": 4.016828969413797e-42
+        },
+        "p_bootstrap_calibrated": {
+          "sphere_rotating": 6.54514965963248e-07,
+          "sphere_still": 0.34087304166380605,
+          "flat_still": 4.016828969413797e-42
+        },
+        "sigma_bin_dph": 3.7854726161472447,
+        "bias_residual_dph": [
+          [
+            -0.2146719491379849,
+            -1.166815539563963,
+            -0.2336010427217438
+          ]
+        ]
+      }
+    }
+  ]
+}

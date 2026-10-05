@@ -152,6 +152,114 @@ is guaranteed by its resolution and supplies no tail evidence.
 The implementation's focused suite passed 62 tests before these pilots. No holdout campaign,
 threshold calibration, hardware validation or production-method promotion was performed.
 
+### Investigation of the accepted false rejection
+
+The implementation and initial pilots were committed and pushed as `bb20798`, after incorporating
+the remote README update. The following experiments remain development diagnostics on the same
+preserved still-globe fixture (seed 10000); they do not add independent validation observations.
+
+[Legacy reproduction with 300 replicates](false-rejection-legacy300-060.json) confirms that the
+accepted false rejection is not just a two-replicate pilot artifact. It converged and passed every
+gate, with true-model p = 0.00010945. The free-versus-true-model raw objective difference was 24.1517;
+lag-1 residual correlation was only 0.0717, giving an effective-sample scaling factor of 0.8661.
+The true-model bootstrap mean-inflation factor stayed at its lower bound of 1.0. The reproduction
+took 4.03 seconds on the recorded environment.
+
+[Matched fault-removal controls](false-rejection-ablations-060.json) retain geometry, sensor seed,
+turns, dropouts and inference settings, with 300 moving-block bootstrap replicates:
+
+| Injected time dependence | True still-globe p | Gates | Outcome |
+|---|---:|---|---|
+| crab drift only, +1°/h | 0.340873 | pass | truth retained |
+| sensor drift only, 90-minute period and (3, −2, 4)°/h amplitudes | 0.000193893 | pass | truth rejected |
+| both effects | 0.000109452 | pass | truth rejected |
+
+The long sensor drift is sufficient to produce the failure; the interaction with crab drift is
+not necessary on this fixture. [Block-length checks](false-rejection-blocks-060.json) at 5 and 30
+bins also retained the accepted rejection with p = 0.000109452, matching the 15-bin reproduction.
+These checks took 14.0 and 18.5 seconds respectively; no threshold or systematic floor was adjusted.
+
+[The candidate reproduction with 300 full nonlinear replicates](false-rejection-nonlinear300-060.json)
+also converged and passed all gates, while still rejecting the true still-globe model at
+p = 0.0000290647. All 300 free-fit bootstrap replicates and 300 null replicates per model completed
+without recorded failures. Its lag-1 residual correlation was zero after clipping; every bootstrap
+mean-inflation factor remained at the lower bound of 1.0. Thus its reported p-value matched the
+two-replicate pilot even after the much larger refit. Runtime was 548.5 seconds (9m09s), longer
+than the initial estimate; use this measurement when costing further nonlinear campaigns.
+Neither method's accepted false rejection disappeared at the higher bootstrap count.
+
+[Paired response decomposition](false-rejection-decomposition-060.json) compares the crab-only and
+combined cases without bootstrap, on the same 70 retained bins. Adding sensor drift changes the
+calibration-corrected response by 2.325°/h RMS. After refitting, the change remaining in residuals
+is 1.463°/h RMS: 60.4% of the added response's squared magnitude is absorbed by the fitted mean
+(model signal plus residual bias). The inferred coefficient changes are −0.1816 in globe rotation,
+−0.1209 in curvature, and +0.4423 in disc transport. The RMS change in fitted model signal alone
+is 2.238°/h. These are descriptive paired differences, not an independent variance estimate.
+
+The code and controls support an omitted-bias-dynamics explanation: calibration supplies a linear
+interpolation between pre/post bias estimates, and the fit adds a constant residual bias per gravity
+orientation. Neither represents this oscillating sensor bias. Dynamic crab and forward-angle
+uncertainty represent different physical effects. Once the free fit absorbs part of the drift into
+model coefficients, resampling its residuals does not reconstruct that absorbed component; a small
+residual lag-1 correlation and weak sensitivity to existing priors do not establish robustness to
+an omitted time-dependent bias basis.
+
+The sensor-bias candidate below tests this missing degree of freedom. Its prior scale cannot be
+justified by fitting this one failure. No gate based on whether a model was rejected has been
+added, and no production decision rule has been changed to hide the result.
+
+### Time-varying sensor-bias candidate
+
+Inference policy **inference-2** adds `bias_model="dynamic"`, selected in research with
+`--bias-model dynamic`. Production continues to use constant residual bias. The new component
+is a continuous piecewise-linear curve for each physical sensor axis, with 900-second knots by
+default. It is shared across course segments, GNSS gaps and mount epochs: a mount turn rotates
+the physical signal relative to the sensor, but does not rotate the sensor's own bias curve.
+Vertical-only fits project the same three-axis curve onto each bin's down direction.
+
+The drift component is anchored to zero at the first retained time to remove its constant-level
+ambiguity with the existing residual offsets. Those offsets, their calibration-derived priors
+and their gravity-orientation dependence remain in the fit. Successive bias-knot increments
+(in °/h) have independent Gaussian priors with variance `sigma_rw² × elapsed_hours` per axis.
+This is a random-walk regularization of the curve, not a claim that hardware bias has this law.
+The default `sigma_rw = 3 (°/h)/sqrt(hour)` is explicitly an unvalidated research assumption;
+it was specified before this candidate's pilot and not selected to achieve a target p-value.
+
+`--bias-knot-seconds` and `--bias-rw-sigma-dph-sqrth` accept lists for matched sensitivity campaigns.
+All free, fixed-model, local-bootstrap and nonlinear-bootstrap fits include the same bias basis
+and penalty. The preliminary free fit estimates observation weights, which are then frozen.
+Joint covariance includes the bias coefficients. The existing identifiability calculation now
+includes their columns, and the prior-sensitivity check widens their random-walk scale threefold
+under the `bias_drift` key. Results record knot times, estimated drift, drift uncertainty, prior
+scale, frame and inference-policy provenance. Old frozen manifests require a new review after
+this scientific source/policy change.
+
+[The four-fit development pilot](sensor-bias-pilot-060.json) used the same preserved still-globe
+control and failure inputs, dynamic crab, axis-by-segment weights, forward-angle uncertainty,
+and zero bootstrap replicates. All four fits converged in 37.25 seconds total:
+
+| Scenario | Bias model | True-model p (diagnostic) | Curvature nuisance likeness | Gates |
+|---|---|---:|---:|---|
+| crab drift only | constant | 0.4324 | 0.8671 | pass |
+| crab drift only | dynamic | 0.7224 | 0.9974 | excluded |
+| crab + long sensor drift | constant | 0.0000291 | 0.6683 | pass |
+| crab + long sensor drift | dynamic | 0.02374 | 0.9852 | excluded |
+
+Both dynamic-bias fits cross the existing 0.95 curvature-identifiability limit; that limit was
+not changed. On the failure fixture the analytic curvature standard error grows from 0.0866
+to 0.1976. The true model is no longer rejected at 0.0027, but its fitted curvature moves from
+0.8080 to 0.7089 rather than toward the true value 1. The candidate exposes uncertainty and
+confounding; it does **not** demonstrate improved coefficient accuracy or retained measurement
+power. It also excludes the clean sensor-drift control, so there is a real cost in eligibility.
+
+These four reused development inputs/settings are a functional comparison, not independent
+coverage or tail validation. No full-size nonlinear bootstrap or broad seed/prior/knot campaign
+was run for this candidate. Before promotion, assess bias-prior and knot sensitivity, varied
+turn timing/geometry, accepted fractions and conditional false rejection on independent campaigns.
+Small tests cover body-frame continuity and projection, random-walk units/time scaling,
+independent Gaussian MAP/covariance references, combined Jacobians, frozen weights, both bootstrap
+paths, the tight-prior limit and research CLI forwarding.
+
 Verified on 2026-10-04 with the pinned Python 3.14 dependencies and JDK 21:
 130 analysis tests, 12 server tests and 14 Android unit tests passed; `lintDebug` and
 `assembleDebug` passed. Server tests required execution outside the sandbox because its

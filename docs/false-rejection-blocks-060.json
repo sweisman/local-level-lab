@@ -1,0 +1,900 @@
+{
+  "purpose": "development block-length sensitivity, no threshold tuning",
+  "implementation_hash": "6215e7ed328f17c59bb4c469879f9d5700c3ce876ef3670787fd919f60122faf",
+  "records": [
+    {
+      "truth": "sphere_still",
+      "scenario": "crab_long_drift",
+      "seed": 10000,
+      "sampling": "moving",
+      "block": 5,
+      "variant": "spp",
+      "same_side_up_turns": false,
+      "partition": "development",
+      "geometry": "seeded",
+      "design": {
+        "design_version": "simulation-design-1",
+        "seed": 10000,
+        "partition": "development",
+        "streams": {
+          "geometry": 687766700,
+          "nuisance": 1035087755,
+          "sensor": 4224662479,
+          "bootstrap": 2915781126,
+          "pool": 3548933265
+        },
+        "geometry": "seeded",
+        "scenario": "crab_long_drift",
+        "simulator": {
+          "fs": 20.0,
+          "lat0": 21.854053131797258,
+          "lon0": -68.60644005387087,
+          "h": 11000.0,
+          "speed": 230.0,
+          "legs": [
+            [
+              4.202239210945482,
+              21.202632399985067
+            ],
+            [
+              196.1130090403132,
+              19.432679049235126
+            ],
+            [
+              261.7205447607168,
+              36.45831965832724
+            ],
+            [
+              221.57585474357893,
+              18.382697728412097
+            ]
+          ],
+          "mount": "tray",
+          "mount_yaw_deg": 20.0,
+          "mount_tilt_deg": 4.0,
+          "cal_pos_s": 180.0,
+          "gap_s": 3600.0,
+          "bias0_dps": [
+            0.3,
+            -0.2,
+            0.15
+          ],
+          "drift_dph_per_h": [
+            1.0,
+            -0.8,
+            0.5
+          ],
+          "rw_dph_sqrth": 0.3,
+          "noise_dps_rthz": 0.007,
+          "accel_noise_g_rthz": 0.00016,
+          "pitch_trim_deg_per_h": 0.5,
+          "cal": [
+            "pre",
+            "post"
+          ],
+          "drift_runs": false,
+          "cal_sequence": "palindrome",
+          "g_sens_dph_per_g": null,
+          "temp_coef_dph_per_c": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "flight_temp_rise_c": 0.0,
+          "turbulence": [],
+          "mount_slip_deg_per_h": [
+            0.0,
+            0.0
+          ],
+          "climb_min": 0.0,
+          "descent_min": 0.0,
+          "gnss_dropouts": [
+            [
+              26.9438755518191,
+              1.9886248477127353
+            ],
+            [
+              38.544125087676,
+              1.883504654371674
+            ],
+            [
+              50.27692947805457,
+              1.054824709735154
+            ]
+          ],
+          "variant": "spp",
+          "gyro_range_dps": 2000.0,
+          "accel_range_g": 16.0,
+          "index_turns": [
+            [
+              21.216961963546563,
+              "z"
+            ],
+            [
+              53.04240490886641,
+              "z"
+            ],
+            [
+              84.86784785418625,
+              "z"
+            ]
+          ],
+          "mag_hard_iron_ut": [
+            8.0,
+            -5.0,
+            3.0
+          ],
+          "mag_airframe_ut": [
+            6.0,
+            -2.0,
+            4.0
+          ],
+          "temp_quad_dph_per_c2": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "temp_lag_s": 0.0,
+          "bias_jumps": [],
+          "gyro_scale_ppm": [
+            0,
+            0,
+            0
+          ],
+          "gyro_misalign_mrad": 0.0,
+          "vre_dph": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "link_dropouts": [],
+          "turn_seconds": 4.0,
+          "spp_time_every": 1,
+          "ble_loss": 0.0,
+          "crab_deg": [],
+          "reversal_pairs": 0,
+          "reversal_s": 300.0,
+          "gyro_noise_cov": null,
+          "long_drift_dph": [
+            3.0,
+            -2.0,
+            4.0
+          ],
+          "long_drift_period_s": 5400.0
+        },
+        "crab_trajectory": {
+          "kind": "linear",
+          "rate_dph": 1.0
+        },
+        "analysis_options": {}
+      },
+      "fit_options": {
+        "n_boot": 300,
+        "bootstrap_sampling": "moving",
+        "block_length": 5
+      },
+      "candidate_id": "2a7766ddaf9e59d35a7b508435fd5057dae969f372be4a0c84cd30f481b68435",
+      "elapsed_s": 10.035273592045996,
+      "rejected": true,
+      "exclusions": [],
+      "k": {
+        "k_rot_sphere": -0.1473706110920033,
+        "k_curv": 0.8296838924752921,
+        "k_disc": 0.6029695227365486
+      },
+      "delta_chi2_raw": {
+        "sphere_rotating": 604.8414165968259,
+        "sphere_still": 24.151679228447477,
+        "flat_still": 221.1391176423756
+      },
+      "rejected_by_model": {
+        "sphere_rotating": true,
+        "sphere_still": true,
+        "flat_still": true
+      },
+      "p_vs_free": {
+        "sphere_rotating": 2.2271094092857647e-07,
+        "sphere_still": 0.00010945216010630333,
+        "flat_still": 2.84231859690667e-41
+      },
+      "inference_policy": {
+        "version": "inference-1",
+        "policy_hash": "684da228879e4ee6ff9015da04c4ab78bb8db171ff2e8a6ad533b4490e4c4081",
+        "settings": {
+          "crab_model": "constant",
+          "noise_model": "global",
+          "bootstrap_refit": "linearized",
+          "forward_uncertainty": false,
+          "crab_sigma_deg": 5.0,
+          "bootstrap_sampling": "moving",
+          "block_length": 5,
+          "n_boot": 300,
+          "max_nfev": 200,
+          "crab_rate_sigma_dph": 1.0,
+          "crab_knot_seconds": 300.0,
+          "variance_shrinkage_bins": 20.0,
+          "engine": "legacy"
+        },
+        "configuration_hash": "4ce2fb2ee19e94f6c2100b9447e404e2b5461d67d4c4115867727e0623e8140a"
+      },
+      "bootstrap": {
+        "sampling": "moving",
+        "block_length": 5,
+        "replicates": 300,
+        "empirical_k_cov": [
+          [
+            0.0011438886758317443,
+            0.0012361222282036368,
+            0.0005808184678026161
+          ],
+          [
+            0.0012361222282036368,
+            0.0033923553201179097,
+            0.0010911979635163857
+          ],
+          [
+            0.0005808184678026161,
+            0.0010911979635163857,
+            0.027475687492514243
+          ]
+        ],
+        "refit": "local linearization with total-angle prior"
+      },
+      "forward_axis": {
+        "axis_b": [
+          -0.3142218748427567,
+          0.9428814096846682,
+          -0.11063119199102896
+        ],
+        "gain": 0.43379246291645784,
+        "r2": 0.31644894227995357,
+        "bank_energy": 1.4971934295313158,
+        "regression_cov": [
+          [
+            0.0036692975150525967,
+            -0.006734222358760272,
+            0.0008121980004400063
+          ],
+          [
+            -0.006734222358760272,
+            0.014120539602516012,
+            -0.0016881939025928682
+          ],
+          [
+            0.0008121980004400063,
+            -0.0016881939025928682,
+            0.00020194313386891975
+          ]
+        ],
+        "axis_cov": [
+          [
+            0.0032295864403366348,
+            0.0010680877596007474,
+            -6.98411873810139e-05
+          ],
+          [
+            0.0010680877596007483,
+            0.0003532376306639535,
+            -2.3097854395830604e-05
+          ],
+          [
+            -6.984118738101417e-05,
+            -2.309785439583062e-05,
+            1.5103455333656149e-06
+          ]
+        ],
+        "angle_sigma_rad": 0.05986931114130141,
+        "uncertainty_method": "horizontal regression, Newey-West",
+        "hac_lags": 10
+      },
+      "k_sd": {
+        "k_rot_sphere": 0.06084058309653803,
+        "k_curv": 0.09832236926361987,
+        "k_disc": 0.1654814245392491
+      },
+      "covariance": {
+        "joint": {
+          "covariance": [
+            [
+              0.003701576551526749,
+              0.004245050972150229,
+              -0.002202463347123401
+            ],
+            [
+              0.004245050877024884,
+              0.009667288297611622,
+              -0.004969563559992348
+            ],
+            [
+              -0.0022024625702930637,
+              -0.0049695627540190706,
+              0.027384101867539205
+            ]
+          ],
+          "min_eigenvalue": 0.0014912733795410362,
+          "covers95": false
+        },
+        "bootstrap": {
+          "covariance": [
+            [
+              0.0011438886758317443,
+              0.0012361222282036368,
+              0.0005808184678026161
+            ],
+            [
+              0.0012361222282036368,
+              0.0033923553201179097,
+              0.0010911979635163857
+            ],
+            [
+              0.0005808184678026161,
+              0.0010911979635163857,
+              0.027475687492514243
+            ]
+          ],
+          "min_eigenvalue": 0.0005969188888668411,
+          "covers95": false
+        }
+      },
+      "convergence": {
+        "converged": true,
+        "fits": [
+          {
+            "converged": true,
+            "evaluations": 5,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 16,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 6,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 1,
+            "status": 1,
+            "message": "`gtol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 5,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 6,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 5,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 5,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 6,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 6,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          }
+        ]
+      },
+      "prior_sensitivity": {
+        "widen": 3.0,
+        "k_shift_sigma": {
+          "k_rot_sphere": -0.013689359298017477,
+          "k_curv": -0.013125858080550544,
+          "k_disc": 0.012000023899090695
+        },
+        "k_shift_sigma_by_prior": {
+          "bias": {
+            "k_rot_sphere": -0.013689359298017477,
+            "k_curv": -0.013125858080550544,
+            "k_disc": 0.012000023899090695
+          },
+          "crab": {
+            "k_rot_sphere": 0.3002549897875035,
+            "k_curv": 0.21485436992584722,
+            "k_disc": -0.02090038108441694
+          }
+        },
+        "prior_dominated": false
+      },
+      "identifiability": {
+        "k_curv_bias_likeness": 0.45928140374426896,
+        "bias_likeness_by_term": {
+          "k_rot_sphere": 0.5837456545374878,
+          "k_curv": 0.45928140374426896,
+          "k_disc": 0.7855753916907856
+        },
+        "k_curv_nuisance_likeness": 0.6688072594018231,
+        "nuisance_likeness_by_term": {
+          "k_rot_sphere": 0.7430920023932841,
+          "k_curv": 0.6688072594018231,
+          "k_disc": 0.78973426200996
+        },
+        "identified_by_term": {
+          "k_rot_sphere": true,
+          "k_curv": true,
+          "k_disc": true
+        },
+        "identified": true,
+        "note": "fraction of each term's signal the nuisance terms (residual bias per gravity orientation, temperature, crab) could mimic together, with no priors"
+      },
+      "wmm_shift_sigma": null,
+      "flags": [
+        "synthetic",
+        "imu_turned_in_flight"
+      ]
+    },
+    {
+      "truth": "sphere_still",
+      "scenario": "crab_long_drift",
+      "seed": 10000,
+      "sampling": "moving",
+      "block": 30,
+      "variant": "spp",
+      "same_side_up_turns": false,
+      "partition": "development",
+      "geometry": "seeded",
+      "design": {
+        "design_version": "simulation-design-1",
+        "seed": 10000,
+        "partition": "development",
+        "streams": {
+          "geometry": 687766700,
+          "nuisance": 1035087755,
+          "sensor": 4224662479,
+          "bootstrap": 2915781126,
+          "pool": 3548933265
+        },
+        "geometry": "seeded",
+        "scenario": "crab_long_drift",
+        "simulator": {
+          "fs": 20.0,
+          "lat0": 21.854053131797258,
+          "lon0": -68.60644005387087,
+          "h": 11000.0,
+          "speed": 230.0,
+          "legs": [
+            [
+              4.202239210945482,
+              21.202632399985067
+            ],
+            [
+              196.1130090403132,
+              19.432679049235126
+            ],
+            [
+              261.7205447607168,
+              36.45831965832724
+            ],
+            [
+              221.57585474357893,
+              18.382697728412097
+            ]
+          ],
+          "mount": "tray",
+          "mount_yaw_deg": 20.0,
+          "mount_tilt_deg": 4.0,
+          "cal_pos_s": 180.0,
+          "gap_s": 3600.0,
+          "bias0_dps": [
+            0.3,
+            -0.2,
+            0.15
+          ],
+          "drift_dph_per_h": [
+            1.0,
+            -0.8,
+            0.5
+          ],
+          "rw_dph_sqrth": 0.3,
+          "noise_dps_rthz": 0.007,
+          "accel_noise_g_rthz": 0.00016,
+          "pitch_trim_deg_per_h": 0.5,
+          "cal": [
+            "pre",
+            "post"
+          ],
+          "drift_runs": false,
+          "cal_sequence": "palindrome",
+          "g_sens_dph_per_g": null,
+          "temp_coef_dph_per_c": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "flight_temp_rise_c": 0.0,
+          "turbulence": [],
+          "mount_slip_deg_per_h": [
+            0.0,
+            0.0
+          ],
+          "climb_min": 0.0,
+          "descent_min": 0.0,
+          "gnss_dropouts": [
+            [
+              26.9438755518191,
+              1.9886248477127353
+            ],
+            [
+              38.544125087676,
+              1.883504654371674
+            ],
+            [
+              50.27692947805457,
+              1.054824709735154
+            ]
+          ],
+          "variant": "spp",
+          "gyro_range_dps": 2000.0,
+          "accel_range_g": 16.0,
+          "index_turns": [
+            [
+              21.216961963546563,
+              "z"
+            ],
+            [
+              53.04240490886641,
+              "z"
+            ],
+            [
+              84.86784785418625,
+              "z"
+            ]
+          ],
+          "mag_hard_iron_ut": [
+            8.0,
+            -5.0,
+            3.0
+          ],
+          "mag_airframe_ut": [
+            6.0,
+            -2.0,
+            4.0
+          ],
+          "temp_quad_dph_per_c2": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "temp_lag_s": 0.0,
+          "bias_jumps": [],
+          "gyro_scale_ppm": [
+            0,
+            0,
+            0
+          ],
+          "gyro_misalign_mrad": 0.0,
+          "vre_dph": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "link_dropouts": [],
+          "turn_seconds": 4.0,
+          "spp_time_every": 1,
+          "ble_loss": 0.0,
+          "crab_deg": [],
+          "reversal_pairs": 0,
+          "reversal_s": 300.0,
+          "gyro_noise_cov": null,
+          "long_drift_dph": [
+            3.0,
+            -2.0,
+            4.0
+          ],
+          "long_drift_period_s": 5400.0
+        },
+        "crab_trajectory": {
+          "kind": "linear",
+          "rate_dph": 1.0
+        },
+        "analysis_options": {}
+      },
+      "fit_options": {
+        "n_boot": 300,
+        "bootstrap_sampling": "moving",
+        "block_length": 30
+      },
+      "candidate_id": "5c379b3a85a2bf3a4a21c18fc81341702ade2de5b35569869878ee29d36f00cf",
+      "elapsed_s": 8.417779143026564,
+      "rejected": true,
+      "exclusions": [],
+      "k": {
+        "k_rot_sphere": -0.1473706110920033,
+        "k_curv": 0.8296838924752921,
+        "k_disc": 0.6029695227365486
+      },
+      "delta_chi2_raw": {
+        "sphere_rotating": 604.8414165968259,
+        "sphere_still": 24.151679228447477,
+        "flat_still": 221.1391176423756
+      },
+      "rejected_by_model": {
+        "sphere_rotating": true,
+        "sphere_still": true,
+        "flat_still": true
+      },
+      "p_vs_free": {
+        "sphere_rotating": 4.7021741342698203e-07,
+        "sphere_still": 0.00010945216010630333,
+        "flat_still": 2.84231859690667e-41
+      },
+      "inference_policy": {
+        "version": "inference-1",
+        "policy_hash": "684da228879e4ee6ff9015da04c4ab78bb8db171ff2e8a6ad533b4490e4c4081",
+        "settings": {
+          "crab_model": "constant",
+          "noise_model": "global",
+          "bootstrap_refit": "linearized",
+          "forward_uncertainty": false,
+          "crab_sigma_deg": 5.0,
+          "bootstrap_sampling": "moving",
+          "block_length": 30,
+          "n_boot": 300,
+          "max_nfev": 200,
+          "crab_rate_sigma_dph": 1.0,
+          "crab_knot_seconds": 300.0,
+          "variance_shrinkage_bins": 20.0,
+          "engine": "legacy"
+        },
+        "configuration_hash": "012123e93fe7b11ae9b908a197138f9314160212160dee878d866007efb710ca"
+      },
+      "bootstrap": {
+        "sampling": "moving",
+        "block_length": 30,
+        "replicates": 300,
+        "empirical_k_cov": [
+          [
+            0.0005004687145889304,
+            0.0004294865438789151,
+            0.0008895813663270916
+          ],
+          [
+            0.0004294865438789151,
+            0.0015635677008115846,
+            8.922114066901624e-05
+          ],
+          [
+            0.0008895813663270916,
+            8.922114066901624e-05,
+            0.022738636644420555
+          ]
+        ],
+        "refit": "local linearization with total-angle prior"
+      },
+      "forward_axis": {
+        "axis_b": [
+          -0.3142218748427567,
+          0.9428814096846682,
+          -0.11063119199102896
+        ],
+        "gain": 0.43379246291645784,
+        "r2": 0.31644894227995357,
+        "bank_energy": 1.4971934295313158,
+        "regression_cov": [
+          [
+            0.0036692975150525967,
+            -0.006734222358760272,
+            0.0008121980004400063
+          ],
+          [
+            -0.006734222358760272,
+            0.014120539602516012,
+            -0.0016881939025928682
+          ],
+          [
+            0.0008121980004400063,
+            -0.0016881939025928682,
+            0.00020194313386891975
+          ]
+        ],
+        "axis_cov": [
+          [
+            0.0032295864403366348,
+            0.0010680877596007474,
+            -6.98411873810139e-05
+          ],
+          [
+            0.0010680877596007483,
+            0.0003532376306639535,
+            -2.3097854395830604e-05
+          ],
+          [
+            -6.984118738101417e-05,
+            -2.309785439583062e-05,
+            1.5103455333656149e-06
+          ]
+        ],
+        "angle_sigma_rad": 0.05986931114130141,
+        "uncertainty_method": "horizontal regression, Newey-West",
+        "hac_lags": 10
+      },
+      "k_sd": {
+        "k_rot_sphere": 0.06084058309653803,
+        "k_curv": 0.09832236926361987,
+        "k_disc": 0.15054182538065344
+      },
+      "covariance": {
+        "joint": {
+          "covariance": [
+            [
+              0.003701576551526749,
+              0.004245050972150229,
+              -0.002003625805936303
+            ],
+            [
+              0.004245050877024884,
+              0.009667288297611622,
+              -0.004520913279236273
+            ],
+            [
+              -0.002003625099237909,
+              -0.004520912546025951,
+              0.022662841188939156
+            ]
+          ],
+          "min_eigenvalue": 0.0014912062864493572,
+          "covers95": false
+        },
+        "bootstrap": {
+          "covariance": [
+            [
+              0.0005004687145889304,
+              0.0004294865438789151,
+              0.0008895813663270916
+            ],
+            [
+              0.0004294865438789151,
+              0.0015635677008115846,
+              8.922114066901624e-05
+            ],
+            [
+              0.0008895813663270916,
+              8.922114066901624e-05,
+              0.022738636644420555
+            ]
+          ],
+          "min_eigenvalue": 0.0003193145937557074,
+          "covers95": false
+        }
+      },
+      "convergence": {
+        "converged": true,
+        "fits": [
+          {
+            "converged": true,
+            "evaluations": 5,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 16,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 6,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 1,
+            "status": 1,
+            "message": "`gtol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 5,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 6,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 5,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 5,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 6,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          },
+          {
+            "converged": true,
+            "evaluations": 6,
+            "status": 2,
+            "message": "`ftol` termination condition is satisfied."
+          }
+        ]
+      },
+      "prior_sensitivity": {
+        "widen": 3.0,
+        "k_shift_sigma": {
+          "k_rot_sphere": -0.013689359298017477,
+          "k_curv": -0.013125858080550544,
+          "k_disc": 0.013190892592841915
+        },
+        "k_shift_sigma_by_prior": {
+          "bias": {
+            "k_rot_sphere": -0.013689359298017477,
+            "k_curv": -0.013125858080550544,
+            "k_disc": 0.013190892592841915
+          },
+          "crab": {
+            "k_rot_sphere": 0.3002549897875035,
+            "k_curv": 0.21485436992584722,
+            "k_disc": -0.022974511080340397
+          }
+        },
+        "prior_dominated": false
+      },
+      "identifiability": {
+        "k_curv_bias_likeness": 0.45928140374426896,
+        "bias_likeness_by_term": {
+          "k_rot_sphere": 0.5837456545374878,
+          "k_curv": 0.45928140374426896,
+          "k_disc": 0.7855753916907856
+        },
+        "k_curv_nuisance_likeness": 0.6688072594018231,
+        "nuisance_likeness_by_term": {
+          "k_rot_sphere": 0.7430920023932841,
+          "k_curv": 0.6688072594018231,
+          "k_disc": 0.78973426200996
+        },
+        "identified_by_term": {
+          "k_rot_sphere": true,
+          "k_curv": true,
+          "k_disc": true
+        },
+        "identified": true,
+        "note": "fraction of each term's signal the nuisance terms (residual bias per gravity orientation, temperature, crab) could mimic together, with no priors"
+      },
+      "wmm_shift_sigma": null,
+      "flags": [
+        "synthetic",
+        "imu_turned_in_flight"
+      ]
+    }
+  ]
+}

@@ -468,7 +468,8 @@ def fit(bins, fwd_b, bias_fn, prior_sigma, vertical_only=False, n_boot=300, seed
         crab_model="constant", noise_model="global", bootstrap_refit="linearized",
         forward_uncertainty=False, forward_sigma_rad=None, forward_tangent=None,
         crab_rate_sigma_dph=None, crab_knot_seconds=None, variance_shrinkage_bins=None,
-        research_candidate=False, decision_thresholds=None, decision_policy_hash=None):
+        research_candidate=False, decision_thresholds=None, decision_policy_hash=None,
+        bias_model="constant", bias_knot_seconds=None, bias_rw_sigma_dph_sqrth=None):
     settings = dict(crab_model=crab_model, noise_model=noise_model, bootstrap_refit=bootstrap_refit,
                     forward_uncertainty=forward_uncertainty, crab_sigma_deg=crab_sigma_deg,
                     bootstrap_sampling=bootstrap_sampling, block_length=block_length, n_boot=n_boot,
@@ -476,9 +477,14 @@ def fit(bins, fwd_b, bias_fn, prior_sigma, vertical_only=False, n_boot=300, seed
                     crab_rate_sigma_dph=INFERENCE_POLICY["crab_rate_sigma_dph"] if crab_rate_sigma_dph is None else crab_rate_sigma_dph,
                     crab_knot_seconds=INFERENCE_POLICY["crab_knot_seconds"] if crab_knot_seconds is None else crab_knot_seconds,
                     variance_shrinkage_bins=INFERENCE_POLICY["variance_shrinkage_bins"] if variance_shrinkage_bins is None else variance_shrinkage_bins)
+    settings.update(bias_model=bias_model,
+                    bias_knot_seconds=INFERENCE_POLICY["bias_knot_seconds"] if bias_knot_seconds is None else bias_knot_seconds,
+                    bias_rw_sigma_dph_sqrth=INFERENCE_POLICY["bias_rw_sigma_dph_sqrth"] if bias_rw_sigma_dph_sqrth is None else bias_rw_sigma_dph_sqrth)
     if crab_model not in ("constant", "dynamic") or noise_model not in ("global", "axis", "axis_segment") or bootstrap_refit not in ("linearized", "nonlinear"):
         raise ValueError("invalid inference candidate")
-    candidate = research_candidate or crab_model != "constant" or noise_model != "global" or bootstrap_refit != "linearized" or forward_uncertainty
+    if bias_model not in ("constant", "dynamic"):
+        raise ValueError("bias_model must be constant or dynamic")
+    candidate = research_candidate or crab_model != "constant" or noise_model != "global" or bootstrap_refit != "linearized" or forward_uncertainty or bias_model == "dynamic"
     settings["engine"] = "candidate-1" if candidate else "legacy"
     common = dict(vertical_only=vertical_only, n_boot=n_boot, seed=seed, temp_ref=temp_ref,
                   temp_prior=temp_prior, temp_mean=temp_mean, crab_sigma_deg=crab_sigma_deg,

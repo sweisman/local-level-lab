@@ -23,7 +23,7 @@ from lll.collate import gate, pool_hierarchical, pool_multivariate, joint_model_
 from lll.fit import TERM_NAMES
 from lll.policy import POLICY_VERSION
 from lll.synth import synthesize
-from lll.inference_policy import digest
+from lll.inference_policy import INFERENCE_POLICY, digest
 from lll.research_calibration import stratum, check_policy
 from lll.research_design import (INTERACTIONS, PARTITIONS, seed_range, realize, simulator_options,
                                  freeze_manifest, validate_manifest, scenario, trajectory, streams, implementation_hash)
@@ -122,6 +122,7 @@ def flight_run(truth, scenario, seed, sampling, block, boot, variant, same_side_
         return {**record, "elapsed_s": time.monotonic()-start, "rejected": f["rejected"][truth], "exclusions": reasons, "k": f["k"],
                 "delta_chi2_raw": f["delta_chi2_raw"], "rejected_by_model": f["rejected"], "p_vs_free": f["p_vs_free"],
                 "inference_policy": f["inference_policy"], "bootstrap": f["bootstrap"], "forward_axis": r.get("forward_axis"),
+                "sensor_bias": f.get("sensor_bias"),
                 "k_sd": f["k_sd"], "covariance": diagnostics, "convergence": f["convergence"],
                 "prior_sensitivity": f["prior_sensitivity"], "identifiability": f["identifiability"],
                 "wmm_shift_sigma": (r.get("fit_no_wmm_exclusion") or {}).get("k_shift_sigma"),
@@ -168,6 +169,9 @@ def main():
     ap.add_argument("--blocks", nargs="+", type=int, default=[15])
     ap.add_argument("--crab-model", nargs="+", choices=["constant", "dynamic"], default=["constant"])
     ap.add_argument("--noise-model", nargs="+", choices=["global", "axis", "axis_segment"], default=["global"])
+    ap.add_argument("--bias-model", nargs="+", choices=["constant", "dynamic"], default=["constant"])
+    ap.add_argument("--bias-knot-seconds", nargs="+", type=float, default=[INFERENCE_POLICY["bias_knot_seconds"]])
+    ap.add_argument("--bias-rw-sigma-dph-sqrth", nargs="+", type=float, default=[INFERENCE_POLICY["bias_rw_sigma_dph_sqrth"]])
     ap.add_argument("--bootstrap-refit", nargs="+", choices=["linearized", "nonlinear"], default=["linearized"])
     ap.add_argument("--crab-rate-sigma-dph", nargs="+", type=float, default=[1.])
     ap.add_argument("--forward-uncertainty", action="store_true")
@@ -226,11 +230,14 @@ def main():
                 if scenario == "pool":
                     records.extend(pooled_run(truth, seed, n, partition=args.partition, bootstrap=args.bootstrap) for n in args.units)
                 else:
-                    for s, b, crab, noise, refit, rate in itertools.product(args.sampling, args.blocks, args.crab_model,
-                                                                           args.noise_model, args.bootstrap_refit, args.crab_rate_sigma_dph):
+                    for s, b, crab, noise, refit, rate, bias, knot, rw in itertools.product(
+                            args.sampling, args.blocks, args.crab_model, args.noise_model,
+                            args.bootstrap_refit, args.crab_rate_sigma_dph, args.bias_model,
+                            args.bias_knot_seconds, args.bias_rw_sigma_dph_sqrth):
                         settings = dict(crab_model=crab, noise_model=noise, bootstrap_refit=refit,
                                         crab_rate_sigma_dph=rate, forward_uncertainty=args.forward_uncertainty,
                                         research_candidate=args.research_candidate)
+                        settings.update(bias_model=bias, bias_knot_seconds=knot, bias_rw_sigma_dph_sqrth=rw)
                         records.append(flight_run(truth, scenario, seed, s, b, args.bootstrap, args.variant,
                                                   args.same_side_up_turns, partition=args.partition,
                                                   geometry=args.geometry, fit_options=settings, decision_policy=decision_policy))
