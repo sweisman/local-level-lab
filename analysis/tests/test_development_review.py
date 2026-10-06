@@ -59,3 +59,10 @@ def test_campaign_cost_uses_proposed_rank_margin_without_mutating_pilot():
     assert not planning_eligible(data['records'][0], .1)
     assert planning_eligible(data['records'][1], .1)
     assert data == original
+
+
+def test_cost_planning_cannot_count_missing_or_failed_convergence_as_acceptance():
+    row = {'rejected': False, 'exclusions': []}
+    assert not planning_eligible(row, 0.)
+    assert not planning_eligible({**row, 'convergence': {'converged': False}}, 0.)
+    assert planning_eligible({**row, 'convergence': {'converged': True}}, 0.)

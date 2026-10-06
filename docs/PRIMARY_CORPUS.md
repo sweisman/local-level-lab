@@ -28,6 +28,15 @@ Use `lll-server --data /path/to/data` before each command:
 
 There is no public administrative endpoint. Protect the data directory and CLI credentials. This is a controlled research corpus, not cryptographic proof of a physical flight: trusted curators must inspect evidence and prevent duplicate physical registrations.
 
+New app sessions require operating-carrier selection, a consistent flight number, departure-local
+date and route codes. This is collection metadata, not curator approval: `track_verification` stays
+`pending`, and neither directory membership nor opening the history page proves that a flight flew.
+A dated actual track can support a provenance review and GPS cross-check. Keep it separately with
+its provider terms and source; it does not replace the archive hash bound by approval. Missing-GPS
+IMU recordings remain publishable/exploratory. External-track substitution has no implemented or
+validated primary policy and cannot bypass the current scientific gates. See
+[PROTOCOL.md](PROTOCOL.md) and [VALIDATION.md](VALIDATION.md#external-flight-tracks-and-missing-gnss).
+
 ## Eligibility
 
 Primary flights also require both calibrations, 60 retained cruise minutes, identified curvature, acceptable prior and WMM selection sensitivity, and two retained course groups separated by at least 30°, each containing at least 600 seconds. These heading thresholds are provisional. Single-heading flights remain exploratory even when IMU reversals improve identifiability.

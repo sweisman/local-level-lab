@@ -158,6 +158,11 @@ the IMU and save a public track after landing. It can cross-check GPS and potent
 geometry, subject to observed coverage, time alignment and uncertainty checks. Automatic
 external-track fallback is not yet part of the scientific analysis. See [the protocol](docs/PROTOCOL.md).
 
+The protocol covers codeshares, delayed flights crossing midnight, missing-GPS recording and
+what to preserve in a downloaded track. [Privacy](PRIVACY.md) explains the external browser lookup;
+[validation](docs/VALIDATION.md#external-flight-tracks-and-missing-gnss) records the remaining
+scientific work before an external track can replace phone GNSS.
+
 The bundled airline directory is [OpenFlights data](https://openflights.org/data.php), licensed
 under ODbL-1.0; its license is in `android/app/src/main/assets/airlines-LICENSE.txt`.
 

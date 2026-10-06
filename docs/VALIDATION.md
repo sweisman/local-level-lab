@@ -5,6 +5,42 @@ and WMM sensitivity check. Dynamic crab, noise weighting, bootstrap dependence, 
 uncertainty and pooled significance remain research questions. Real slow-rate bench evidence and
 demonstrated false-rejection tails remain publication blockers after these software corrections.
 
+## External flight tracks and missing GNSS
+
+The collection app now requires a selected operating airline, its flight number, the scheduled
+origin-local departure date and route codes. The directory is available offline and includes
+historical carriers. Format-valid entry, directory membership and opening a flight-history link
+do not verify a flown flight. Actual identity/date/route verification remains a manual provider
+record check, separate from instrument provenance and scientific eligibility.
+
+An acknowledged missing fix permits IMU recording; GNSS logging continues if reception returns.
+Phone-clock anchors at creation and flight start/resume help document timing but do not establish
+UTC accuracy. External browser lookup is user-initiated and separate from upload consent.
+See [PROTOCOL.md](PROTOCOL.md), [FORMAT.md](FORMAT.md) and [PRIVACY.md](../PRIVACY.md).
+
+The [supplied](flight-geometry-20261006/README.md) and
+[publicly extracted](scraped-flight-geometry-20261006/README.md) position tracks are development
+geometry artifacts. Import/extraction preserves source labels, estimate flags, missing values,
+gaps and timestamp provenance. That establishes parser behavior, not scientific GPS-fallback
+validation. The present analyzer does not accept these tracks as substitutes for phone GNSS,
+and they supply no IMU, wind or sensor-calibration evidence.
+
+Before an external-track method can support scientific conclusions, its policy must define:
+
+- Matching of operating flight/date/route and the recording's actual time interval, including
+  origin-local versus UTC day boundaries and codeshare ambiguity.
+- Independent clock alignment and position/timing uncertainty, without alignment or source
+  selection based on gyro agreement or which physical model wins.
+- Observed-coverage, gap and sampling requirements that preserve uncertainty in course changes
+  and maneuvers; provider estimates are not measured fixes. Missing GNSS accuracy/satellite fields
+  must not be invented, and reported altitude needs an established reference or uncertainty.
+- A frozen source-selection/gap policy, retention of the immutable original session and separate
+  provider provenance, followed by calibration and independent validation covering that source.
+
+This is additional analysis work. The running development campaign uses its original simulated
+GNSS assumptions and makes no external-track recovery claim. Collection may preserve a useful
+recording without guaranteeing admission under `pilot-2` or `candidate-eligibility-2`.
+
 ## Research candidates and independent campaigns
 
 The opt-in candidate implementation adds continuous piecewise-linear crab (five-minute knots,

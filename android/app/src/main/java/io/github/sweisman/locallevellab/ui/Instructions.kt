@@ -16,9 +16,11 @@ val INSTRUCTIONS = listOf(
         "Charge the IMU and the phone fully. A power bank for the phone is fine; the IMU runs on its own battery.",
         "Pair the IMU and choose it in Settings, then tap “Write and verify IMU settings”.",
         "In Settings, allow recording with the screen off, so the phone can't stop the recording to save battery.",
+        "Set the phone's date and time automatically before going offline. Recorded phone-clock anchors help align a public track later, but they do not certify UTC accuracy.",
         "Bring a rigid mount: a clamp or suction window mount, or Dual Lock / Velcro. Examples are listed in the README.",
         "Book a window seat if you can. GPS needs a view of the sky, and the sidewall is the stiffest place to mount.",
         "When creating a flight session, choose the operating airline from the searchable directory and enter its flight number, the departure date at the origin, and the origin/destination airport codes. On a codeshare, use the operating flight. Open flight history to check the date and route; entering valid details alone does not verify a flown flight.",
+        "Use the scheduled departure date at the origin, even if a delay crosses midnight. Confirm the default date, which comes from the phone. The directory includes historical carriers; a missing carrier needs a directory update. Flight setup checks entry format, not airport existence or whether the flight operated.",
         "Do the pre-flight calibration at home or at the gate, on a solid table. That takes about 20 minutes.",
     )),
     Section("calibration", "Calibration (4 positions, 7 placements)", listOf(
@@ -55,6 +57,7 @@ val INSTRUCTIONS = listOf(
         "Record as much of the cruise as you can, and keep recording through at least one course change of the aircraft (for example the turn onto the cruise track). The analysis needs one banked turn to find which way the aircraft's nose points relative to the IMU. Routes with north-south travel are the most informative.",
         "The phone's screen can be off. Recording carries on in the background, and the app reconnects to the IMU on its own if the link drops.",
         "If GPS is unavailable, acknowledge this on the placement screen and keep recording the IMU. The phone keeps looking for GPS. A public track may help recover the trajectory after landing; it must have observed positions, usable timestamps and enough coverage. Estimated positions and long gaps cannot substitute for measured GPS.",
+        "Precise-location permission, the 60-second placement check and verified IMU settings are still required without GPS. Check the IMU link separately from GPS reception; a completed recording is not automatically eligible for scientific analysis.",
         "If turn reminders are on, the phone will buzz every so often. Slowly, over about 5 seconds, turn the IMU to face the opposite way, keeping the same side up, fix it firmly again, and tap the button on the notification or the dashboard. On a clamp mount, take it out and put it back facing the other way.",
         "Those turns are what make a straight route count: the signal moves to other sensor axes while the sensor's bias stays put. Turning it upside down helps much less. If your mount only allows that, choose it in Settings.",
         "The dashboard shows the link, both batteries, the IMU temperature, GPS, what each model predicts, and a running activity log. The live 'measured' number is only a rough 5-minute average.",
@@ -64,6 +67,7 @@ val INSTRUCTIONS = listOf(
         "Then tap Upload. Uploads only happen when you ask, and by default only on Wi-Fi.",
         "You can also Share the session file and analyze it yourself. The analysis software is open source.",
         "If GPS was missing, save the complete public flight track promptly, including its source link and displayed timezone. Keep the original recording intact. External tracks can also cross-check phone GPS; scientific use needs a separately checked time alignment and uncertainty model.",
+        "Save the position/time table, reporting sources, estimate labels and gaps. Do not assume displayed times are UTC; coarse samples may miss turns. Share the track separately from the session zip. Automatic external-track fallback is not yet supported by the analysis, and a position track alone supplies no IMU evidence.",
     )),
     Section("controls", "Control experiments", listOf(
         "Turn the IMU to face the opposite way, same side up, during long flights (the turn reminders do this). A real rotation of the aircraft frame shows up on different sensor axes, while sensor bias stays on the same axes.",
@@ -75,5 +79,6 @@ val INSTRUCTIONS = listOf(
         "Not recorded: your name, account, contacts or precise home location. Calibrations save only latitude rounded to 0.5°, and you can turn that off in Settings.",
         "The IMU's Bluetooth address never leaves the phone. A random unit ID links sessions made with the same IMU so its bias can be modelled, and a random install ID links your own sessions. Neither is tied to you.",
         "Uploaded data is released into the public domain (CC0) so anyone can reanalyze it. The app, server and analysis code are AGPL-3.0 open source.",
+        "Airline selection is offline. Open flight history launches an external browser with the carrier and flight identifier; that website has its own privacy policy. Third-party tracks and the bundled airline directory retain their own licenses.",
     )),
 )

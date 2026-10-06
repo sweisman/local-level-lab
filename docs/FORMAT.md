@@ -76,7 +76,10 @@ Decoded streams use the IMU's axes, in SI units: gyro rad/s, accel m/s², magnet
     "config": {"rate_hz": 100, "gyro_range_dps": 250, "accel_range_g": 16, "auto_zero": false, "packets": ["0x50", "0x51", "0x52", "0x54"]}
   },
   "clock": {"elapsed_ns": 0, "utc_ms": 0},
-  "flight": {"airline": "", "flight_number": "", "date": "YYYY-MM-DD", "origin": "", "destination": "",
+  "flight": {"airline": "Etihad Airways", "flight_number": "EY10", "date": "2025-09-01", "origin": "ORD", "destination": "AUH",
+             "airline_id": "openflights:2222", "airline_iata": "EY", "airline_icao": "ETD",
+             "airline_directory_revision": "5d623a6969a1adee7961cf1c9a8a212c4a784713",
+             "date_basis": "origin-local", "track_verification": "pending",
              "aircraft_type": "", "seat_position": "unspecified | window | middle | aisle", "notes": ""},
   "mount": {"type": "window | sidewall | seat_frame | tray | bench | other", "orientation_note": "", "rotated_180_control": false},
   "privacy": {"cal_locations": {"cal_pre": {"lat_deg": 40.5, "age_s": 12}, "cal_post": {"lat_deg": 51.5, "age_s": 8}}},
@@ -95,6 +98,11 @@ New flight manifests additionally carry `airline_id` (OpenFlights record ID), `a
 `track_verification="pending"`. Airline selection, a matching flight-number prefix, a valid
 calendar date, and different three-letter airport codes are required in the app. The date is
 the scheduled departure date at the origin, which can differ from a track's first UTC date.
+It stays the scheduled date when a delay crosses midnight. The app's default date comes from
+the phone and must be confirmed. Numbers are normalized to the carrier's IATA prefix, or ICAO
+when IATA is unavailable; bare numbers and matching prefixes are accepted. Shared codes retain
+distinct directory IDs, names and ICAO codes. Airport checks cover syntax, not actual existence
+or a scheduled route.
 These fields identify the intended flight; they do not establish that it operated or that its
 track is useful. Historical archives without these optional metadata fields remain readable.
 
@@ -122,6 +130,8 @@ must be checked before any separately validated analysis can use a fallback.
 | kind | detail |
 |---|---|
 | `phase_start`, `phase_resume`, `phase_stop` | the phase; `phase_resume` follows an automatic service restart |
+| `clock_anchor` | Flight start/resume: `elapsed_ns`, `utc_ms`, `elapsed_after_ns`, `source=phone_wall_clock`; elapsed timestamps bracket the wall-clock read without certifying UTC accuracy |
+| `gnss_start` | Flight start/resume: `fresh_fix`, `acknowledged`, `resume`; acknowledgment is the start request's value, while automatic resume can continue without a fresh fix |
 | `imu_connect`, `imu_disconnect` | link state |
 | `imu_config`, `imu_config_write` | register readback and whether it matched; writes |
 | `index_turn` | the participant confirmed a deliberate turn of the IMU: `plane180` (same side up, facing the opposite way) or `flip` |

@@ -10,6 +10,14 @@ This page is for anyone who wants to validate the method rather than take it on 
 
 Criticism is welcome. The most useful kind is a synthetic session (`lll synth …`) that the pipeline gets confidently wrong.
 
+**Trajectory source.** Current flight analysis uses the recorded phone GNSS. The collection
+protocol allows IMU recording without a fresh fix and saves operating-flight metadata and clock
+anchors for later review. Public tracks can support GPS cross-checks and development geometry,
+but scientific substitution is not implemented or validated. Coarse or provider-estimated
+positions cannot be treated as receiver fixes. The required source, timing, uncertainty and
+calibration work is described in [VALIDATION.md](VALIDATION.md#external-flight-tracks-and-missing-gnss);
+participant steps are in [PROTOCOL.md](PROTOCOL.md).
+
 ## What is being tested, and what isn't
 
 The question is: **given an aircraft trajectory in latitude/longitude coordinates, does an independent inertial sensor measure the rotation that a rotating globe, a still globe, or a still flat disc predicts?**

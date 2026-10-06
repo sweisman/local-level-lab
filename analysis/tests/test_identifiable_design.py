@@ -203,7 +203,8 @@ def test_manifest_cost_includes_failed_attempts(monkeypatch, tmp_path):
     import sys
     pilot = tmp_path/"pilot.json"
     pilot.write_text(json.dumps({"partition": "development", "records": [
-        {"failure": "no fit", "elapsed_s": 2.}, {"rejected": False, "exclusions": [], "elapsed_s": 4.}]}))
+        {"failure": "no fit", "elapsed_s": 2.}, {"rejected": False, "exclusions": [],
+        "convergence": {"converged": True}, "elapsed_s": 4.}]}))
     manifest = tmp_path/"manifest.json"
     monkeypatch.setattr(sys, "argv", ["research.py", "--truth", "all", "--scenario", "bias_mixed",
                                     "--bias-model", "dynamic", "--model-test-ranks", "3", "--development-campaign", str(pilot),

@@ -126,6 +126,19 @@ The published manifest alone is not a resumable checkpoint: if a fresh clone lac
 records, recover the original journal before resuming, never rerun completed attempts.
 Further git operations require fresh consent after this authorized commit/push.
 
+Stable work was committed and pushed as **`8f2b423`**. Only the active campaign's frozen manifest
+was included; changing worker outputs remain local. Scott subsequently authorized committing
+and pushing the documentation refresh and Python CI fixture fix together, excluding campaign
+outputs. Further git operations require fresh consent after that operation.
+CI run `37431079994` reported 271 passing tests and one failure: the campaign-cost fixture
+omitted convergence evidence now required by the shared gate. The fixture is corrected; the
+scientific gate is unchanged, with a regression check that missing/failed convergence is excluded.
+Both changed test files are outside the active campaign's explicit implementation-hash list.
+Verification: the repaired cost test and four development-review tests passed (5 total, 1.15s).
+The scientific implementation hash remains unchanged. The documentation refresh covers protocol,
+in-app guidance, privacy/browser behavior, format metadata/events, third-party licensing,
+primary-corpus/validation boundaries, methodology, README and contribution guidance.
+
 ### Real position tracks supplied during the active pilot
 
 Scott explicitly supplied these three files in `/home/sweisman/` for development geometry:
