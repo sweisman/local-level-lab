@@ -69,10 +69,13 @@ def geometry_problem(design,schedule,crab_model,*,kin=None):
     bins=dict(t=t,dt=np.full(len(t),60.),seg=epoch,epoch=epoch,lat=lat,h=h,v_n=vn,v_e=ve,
         psi=interpolate('psi'),psi_dot=np.zeros(len(t)),lon_rate=ve/((rn+h)*np.cos(lat)),
         up=up,dup_dt=np.zeros((len(t),3)),gyro=np.zeros((len(t),3)))
-    settings=dict(crab_model=crab_model,crab_knot_seconds=INFERENCE_POLICY['wind_knot_seconds' if crab_model=='wind' else 'crab_knot_seconds'],
+    settings=dict(crab_model=crab_model,crab_knot_seconds=INFERENCE_POLICY['wind_knot_seconds' if crab_model in ('wind','wind_tas') else 'crab_knot_seconds'],
         crab_rate_sigma_dph=INFERENCE_POLICY['crab_rate_sigma_dph'],crab_sigma_deg=5.,
         bias_model='dynamic',bias_knot_seconds=INFERENCE_POLICY['bias_knot_seconds'],
         bias_rw_sigma_dph_sqrth=INFERENCE_POLICY['bias_rw_sigma_dph_sqrth'],forward_uncertainty=True,
         design_mode='envelope',max_nfev=200)
+    if crab_model=='wind_tas':
+        from .wind_tas import WIND_TAS_POLICY
+        settings['wind_tas_policy']=dict(WIND_TAS_POLICY)
     return CandidateProblem(bins,forward,lambda _:0.,np.full(3,2/RAD2DPH),settings,
                             forward_sigma_rad=np.radians(5.))

@@ -46,9 +46,61 @@ endpoint p-values and uncalibrated winners remain development diagnostics.
 Preparation freezes 2,160 unrun evaluations and search bounds, with zero execution allowance.
 The ±10-minute controls violate spacing and are blocked; unsafe retained controls must abstain.
 New runtime/storage are unmeasured. Historical calibration plans are stale for this source.
-**177 focused checks passed in 5.97s.** Physical wind/TAS, modeled magnetic ambiguity,
-operational domain enforcement and sharded execution remain deferred. Default three-model
+**177 focused checks passed in 5.97s** for that source freeze. Physical wind/TAS was subsequently
+implemented as described below. Modeled magnetic ambiguity, operational domain enforcement and
+sharded execution remain deferred. Default three-model
 rules and the science cutoff are preserved apart from the new orientation integrity safeguard.
+
+## Physical wind/airspeed candidate and CI repair, 2026-10-06
+
+The opt-in `crab_model='wind_tas'` candidate models north/east wind and log true airspeed
+at 900-second knots. The air vector is the observed ground vector minus wind; its direction
+and analytic turning rate supply crab and crab-rate predictions. A conditional residual
+`(norm(ground-wind)-TAS)/2 m/s` checks speed consistency. TAS is latent, not a separate
+airspeed observation. The constraint must not be interpreted as independent heading evidence.
+
+`wind-tas-1` freezes 20 m/s wind-level and 10 m/s/hour wind-change priors, a 250 m/s TAS
+reference with 0.2 log-level and 0.08/hour log-change priors, component wind bounds ±60 m/s,
+TAS bounds 120–350 m/s and minimum observed ground speed 100 m/s. These are provisional
+development assumptions, not measured airline uncertainty bounds. Priors on wind, its rate,
+TAS and its rate are separately widened for sensitivity checks. Free, fixed-model, global
+and pair-line fits include the speed residual, nonlinear derivatives and bounds. A fit within
+1% of a bound causes abstention for its test. Requested bootstrap requires complete nonlinear
+refits and holds GNSS fixed; it does not propagate unknown public-track position errors.
+
+The primary test checks its free/fixed/profile boundaries. Direct pair profiles check their
+own free/endpoints and retain their own convergence, prior and bootstrap gates. Physical
+candidate eligibility has a distinct version; old empirical policies cannot be reused.
+Diagnostics retain the physical curves and speed-constraint objective. Existing fit-row
+arrays remain gyro rows, not an export of the augmented speed-constraint Jacobian.
+
+The physical design envelope checks 13 bounded wind corner/drift states crossed with five
+TAS level/drift states, all model anchors, forward-angle and mount-epoch perturbations.
+Both 3 and 6 degrees/hour gyro noise levels are explicitly evaluated because the fixed speed
+constraint prevents uniform scaling of the augmented information. Search can include this
+candidate in its worst-case nuisance-model set. The finite grid does not certify the entire
+bounded nuisance space. The independent wind-truth generator is unchanged.
+
+Controlled checks cover analytic derivatives, known wind triangles, agreement with the
+independent wind simulator, bounded/nested profiles, geometry independence from measured gyro,
+eligibility and the public fit entry point with an intentionally insufficient bootstrap.
+No matched campaign, optimizer search, fresh calibration or independent validation has run.
+
+GitHub Python run 37465056735 failed four existing turn/crab regressions while 321 passed.
+The maneuver guard's second derivative amplified GNSS course noise. The repair uses the same
+30-second smoothing window as course-rate estimation; yaw, bank, coverage and integrity limits
+are unchanged. A realistic position-noise regression was added, and the four previously failing
+checks pass locally. Earlier prospective proposals and route masks are historical for their
+old source and must be refrozen before execution.
+
+The complete Python CI suite passed locally outside the sandbox: **336 passed in 282.13s**,
+with one Starlette dependency deprecation warning. A 45-second diagnostic reproduced the
+sandbox-only stall in the concurrent-upload async transport; all 13 server checks passed
+outside it in 12.26s. No server behavior or concurrency assertion was changed.
+The [physical-wind comparison preparation](wind-tas-development-20261006/README.md) freezes
+54 unrun evaluations on a supplied airline route, with combined nuisance cases. Its 20/40/60
+minute schedule passes the revised buffered assumed-geometry mask but is not optimized or
+certified through reconstructed orientation. Execution allowance remains zero.
 
 ## External flight tracks and missing GNSS
 

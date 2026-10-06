@@ -47,8 +47,8 @@ CANDIDATE_POLICY = {
 
 def candidate_policy(settings=None):
     if (settings or {}).get('design_mode') == 'envelope':
-        from .design_envelope import ENVELOPE_ASSUMPTIONS
-        return {**CANDIDATE_POLICY, 'version':'candidate-envelope-1', 'design_assumptions':ENVELOPE_ASSUMPTIONS,
+        from .design_envelope import envelope_assumptions
+        return {**CANDIDATE_POLICY, 'version':'candidate-wind-tas-1' if settings.get('crab_model')=='wind_tas' else 'candidate-envelope-1', 'design_assumptions':envelope_assumptions(settings),
                 'pairwise_method':(settings or {}).get('pairwise_method','observable_coordinate')}
     return CANDIDATE_POLICY
 
@@ -61,7 +61,9 @@ def eligibility_provenance(candidate=False, settings=None):
 def eligibility_policies():
     return {"legacy": eligibility_provenance(), "candidate": eligibility_provenance(True),
             'envelope':eligibility_provenance(True,{'design_mode':'envelope'}),
-            'profile':eligibility_provenance(True,{'design_mode':'envelope','pairwise_method':'profile'})}
+            'profile':eligibility_provenance(True,{'design_mode':'envelope','pairwise_method':'profile'}),
+            'wind_tas':eligibility_provenance(True,{'design_mode':'envelope','crab_model':'wind_tas'}),
+            'wind_tas_profile':eligibility_provenance(True,{'design_mode':'envelope','crab_model':'wind_tas','pairwise_method':'profile'})}
 
 
 def is_candidate(fit):
@@ -125,6 +127,9 @@ def scientific_exclusions(result, comparison=None):
     ignored = {'prior_dominated','crab_sensitive','inference_nonconvergence'} if pair else set()
     reasons.extend(policy[f] for f in sorted((set(result.get("flags", []))-ignored) & policy.keys()))
     if candidate:
+        if settings.get('crab_model')=='wind_tas' and not pair:
+            if fit.get('wind_tas_test_near_boundary') is not False:
+                reasons.append('physical wind/TAS fit near parameter boundary or diagnostic unavailable')
         if fit.get("eligibility_policy") != eligibility_provenance(True,settings):
             reasons.append("candidate eligibility policy mismatch; reprocess")
         design = fit.get("design_identifiability") or {}
@@ -177,8 +182,8 @@ def decision_stratum(row):
 
 def design_eligibility(report, comparison=None):
     criterion = contrast_eligibility(report, comparison)
-    from .design_envelope import ENVELOPE_ASSUMPTIONS
-    if report.get("assumptions") not in (CANDIDATE_POLICY["design_assumptions"], ENVELOPE_ASSUMPTIONS):
+    from .design_envelope import ENVELOPE_ASSUMPTIONS,PHYSICAL_ENVELOPE_ASSUMPTIONS
+    if report.get("assumptions") not in (CANDIDATE_POLICY["design_assumptions"], ENVELOPE_ASSUMPTIONS,PHYSICAL_ENVELOPE_ASSUMPTIONS):
         criterion.update(valid=False, all_estimable=False, worst_margin=None, worst_information=None, limiting_contrast=None)
     return criterion
 BENCH_CHECKS = ("decode", "sample_rate", "scale", "autozero", "range", "stability",

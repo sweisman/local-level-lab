@@ -494,12 +494,18 @@ def fit(bins, fwd_b, bias_fn, prior_sigma, vertical_only=False, n_boot=300, seed
         raise ValueError('pair profile requires nuisance-envelope design')
     if pairwise_method == 'profile' and n_boot>0 and bootstrap_refit!='nonlinear':
         raise ValueError('pair profile bootstrap requires complete nonlinear refits')
+    if crab_model=='wind_tas':
+        from .wind_tas import WIND_TAS_POLICY
+        if design_mode!='envelope': raise ValueError('physical wind/TAS requires nuisance-envelope design')
+        if n_boot>0 and bootstrap_refit!='nonlinear': raise ValueError('physical wind/TAS bootstrap requires nonlinear refits')
+        if crab_sigma_deg!=5. or crab_rate_sigma_dph not in (None,1.) or crab_knot_seconds not in (None,WIND_TAS_POLICY['knot_seconds']):
+            raise ValueError('physical wind/TAS uses its versioned policy, not crab angle/rate overrides')
     settings = dict(crab_model=crab_model, noise_model=noise_model, bootstrap_refit=bootstrap_refit,
                     forward_uncertainty=forward_uncertainty, crab_sigma_deg=crab_sigma_deg,
                     bootstrap_sampling=bootstrap_sampling, block_length=block_length, n_boot=n_boot,
                     max_nfev=max_nfev,
                     crab_rate_sigma_dph=INFERENCE_POLICY["crab_rate_sigma_dph"] if crab_rate_sigma_dph is None else crab_rate_sigma_dph,
-                    crab_knot_seconds=INFERENCE_POLICY["wind_knot_seconds" if crab_model == "wind" else "crab_knot_seconds"] if crab_knot_seconds is None else crab_knot_seconds,
+                    crab_knot_seconds=INFERENCE_POLICY["wind_knot_seconds" if crab_model in ("wind","wind_tas") else "crab_knot_seconds"] if crab_knot_seconds is None else crab_knot_seconds,
                     variance_shrinkage_bins=INFERENCE_POLICY["variance_shrinkage_bins"] if variance_shrinkage_bins is None else variance_shrinkage_bins)
     settings.update(bias_model=bias_model,
                     bias_knot_seconds=INFERENCE_POLICY["bias_knot_seconds"] if bias_knot_seconds is None else bias_knot_seconds,
@@ -509,11 +515,12 @@ def fit(bins, fwd_b, bias_fn, prior_sigma, vertical_only=False, n_boot=300, seed
     settings["rank_min_relative_margin"] = rank_min_relative_margin
     if design_mode != 'anchor': settings['design_mode'] = design_mode
     if pairwise_method != 'observable_coordinate': settings['pairwise_method'] = pairwise_method
+    if crab_model=='wind_tas': settings['wind_tas_policy']=dict(WIND_TAS_POLICY)
     if design_only and (decision_thresholds is not None or decision_policy is not None or pairwise_decision_policy is not None):
         raise ValueError("design-only evaluation cannot apply model decisions")
     if design_only:
         settings["design_only"] = True
-    if crab_model not in ("constant", "dynamic", "wind") or noise_model not in ("global", "axis", "axis_segment") or bootstrap_refit not in ("linearized", "nonlinear"):
+    if crab_model not in ("constant", "dynamic", "wind",'wind_tas') or noise_model not in ("global", "axis", "axis_segment") or bootstrap_refit not in ("linearized", "nonlinear"):
         raise ValueError("invalid inference candidate")
     if bias_model not in ("constant", "dynamic"):
         raise ValueError("bias_model must be constant or dynamic")

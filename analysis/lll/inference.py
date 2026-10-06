@@ -179,11 +179,19 @@ class CandidateProblem:
             self.prior = np.r_[self.prior, np.full(self.bias_columns.shape[1], np.inf)]
         self.p = self.X.shape[1]
         self.bias_drift_slice = slice(self.base_p, self.p)
-        self.B, self.D, self.knots = crab_basis(bins, settings["crab_model"], settings["crab_knot_seconds"])
+        self.wind_tas = None
+        if settings['crab_model']=='wind_tas':
+            from .wind_tas import WindTAS
+            if vertical_only or fwd is None or crab_sigma_deg is None or crab_sigma_deg<=0:
+                raise ValueError('physical wind/TAS requires a three-axis forward reference')
+            self.wind_tas=WindTAS(bins,settings['wind_tas_policy'])
+            self.B,self.D,self.knots=self.wind_tas.B,self.wind_tas.D,self.wind_tas.knots
+        else:
+            self.B, self.D, self.knots = crab_basis(bins, settings["crab_model"], settings["crab_knot_seconds"])
         self.use_crab = not vertical_only and crab_sigma_deg is not None and crab_sigma_deg > 0
         if not self.use_crab:
             self.B, self.D = self.B[:, :0], self.D[:, :0]
-        self.nc = self.B.shape[1]
+        self.nc = self.wind_tas.npar if self.wind_tas is not None else self.B.shape[1]
         self.forward = settings["forward_uncertainty"]
         if self.forward and (vertical_only or forward_sigma_rad is None or not np.isfinite(forward_sigma_rad) or forward_sigma_rad <= 0):
             raise ValueError("forward uncertainty unavailable: positive measured angle uncertainty required")
@@ -196,7 +204,7 @@ class CandidateProblem:
         self.w = np.full(len(self.y), 1/(3/RAD2DPH)**2)
         self.convergence = []
 
-    def penalty(self, bias=1., crab=1., temperature=1., rate=1., forward=1., bias_drift=1.):
+    def penalty(self, bias=1., crab=1., temperature=1., rate=1., forward=1., bias_drift=1.,airspeed=1.,airspeed_rate=1.):
         sd = self.prior.copy()
         sd[self.layout["bias"]] *= bias
         if self.temp_ref is not None:
@@ -208,7 +216,11 @@ class CandidateProblem:
             drift = np.zeros((self.bias_penalty.shape[0], self.npar))
             drift[:, self.bias_drift_slice] = self.bias_penalty/(self.bias_rw_sigma/RAD2DPH*bias_drift)
             P = np.vstack([P, drift])
-        if self.nc:
+        if self.wind_tas is not None:
+            physical=self.wind_tas.penalty(crab,rate,airspeed,airspeed_rate)
+            block=np.zeros((len(physical),self.npar)); block[:,self.p:self.p+self.nc]=physical
+            P=np.vstack([P,block])
+        elif self.nc:
             amp = np.zeros((self.nc, self.npar))
             amp[:, self.p:self.p+self.nc] = np.eye(self.nc)/(self.crab_sigma*crab)
             P = np.vstack([P, amp])
@@ -228,21 +240,26 @@ class CandidateProblem:
 
     def prediction(self, z, jac=False):
         d = z[self.p:self.p+self.nc]
+        if self.wind_tas is not None:
+            if jac: angle,angle_rate,B,D=self.wind_tas.angles(d,True)
+            else: angle,angle_rate=self.wind_tas.angles(d)
+        else:
+            B,D=self.B,self.D; angle,angle_rate=B@d,D@d
         fwd = self.fwd
         if self.forward:
             fwd = self.fwd*np.cos(z[-1]) + self.tangent*np.sin(z[-1])
         _, X, idx, cb, layout = build_rows(self.bins, fwd, self.bias_fn, self.vertical,
-                                          self.temp_ref, self.temp_mean, dpsi=self.B @ d)
+                                          self.temp_ref, self.temp_mean, dpsi=angle)
         if self.dynamic_bias:
             X = np.column_stack([X, self.bias_columns])
         # Extra fuselage heading rotation is about down, independent of the k terms.
-        rate = (-self.bins["up"] * (self.D @ d)[:, None]).ravel() if not self.vertical else np.zeros(len(self.y))
+        rate = (-self.bins["up"] * angle_rate[:, None]).ravel() if not self.vertical else np.zeros(len(self.y))
         pred = X @ z[:self.p] + rate
         if not jac:
             return pred
         if self.nc:
             Jangle = _crab_columns(cb, layout, idx, z[K], np.arange(len(self.B)), len(self.B))
-            Jcrab = Jangle @ self.B + (-self.bins["up"][:, :, None]*self.D[:, None, :]).reshape(len(self.y), self.nc)
+            Jcrab = Jangle @ B + (-self.bins["up"][:, :, None]*D[:, None, :]).reshape(len(self.y), self.nc)
         else:
             Jcrab = np.empty((len(self.y), 0))
         J = np.column_stack([X, Jcrab])
@@ -252,6 +269,31 @@ class CandidateProblem:
             plus[-1] += h; minus[-1] -= h
             J = np.column_stack([J, (self.prediction(plus)-self.prediction(minus))/(2*h)])
         return pred, J
+
+    def auxiliary(self,z,jac=False):
+        if self.wind_tas is None:
+            return (np.zeros(0),np.zeros((0,self.npar))) if jac else np.zeros(0)
+        q=z[self.p:self.p+self.nc]
+        if not jac: return self.wind_tas.speed_constraint(q)
+        residual,small=self.wind_tas.speed_constraint(q,True)
+        J=np.zeros((len(residual),self.npar)); J[:,self.p:self.p+self.nc]=small
+        return residual,J
+
+    def observation_information(self,z,J,weights):
+        _,aux=self.auxiliary(z,True)
+        return np.vstack([J,aux]),np.r_[weights,np.ones(len(aux))]
+
+    def bounds(self):
+        lo,hi=np.full(self.npar,-np.inf),np.full(self.npar,np.inf)
+        if self.wind_tas is not None: lo[self.p:self.p+self.nc],hi[self.p:self.p+self.nc]=self.wind_tas.bounds()
+        return lo,hi
+
+    def objective_residual(self,z,y,P):
+        return np.r_[(self.prediction(z)-y)*np.sqrt(self.w),self.auxiliary(z),P@z]
+
+    def objective_jacobian(self,z,P):
+        _,J=self.prediction(z,True); _,aux=self.auxiliary(z,True)
+        return np.vstack([J*np.sqrt(self.w)[:,None],aux,P])
 
     def solve(self, y=None, fixed=None, P=None, start=None, record=True):
         y = self.y if y is None else y
@@ -271,21 +313,22 @@ class CandidateProblem:
             z = start.copy()
         if fixed is not None:
             z[K] = fixed
+        lo,hi=self.bounds()
+        z=np.clip(z,lo,hi)
         sw = np.sqrt(self.w)
         def unpack(x):
             full = z.copy(); full[keep] = x
             return full
         def fun(x):
             full = unpack(x)
-            return np.r_[(self.prediction(full)-y)*sw, P @ full]
+            return self.objective_residual(full,y,P)
         def jac(x):
-            _, J = self.prediction(unpack(x), True)
-            return np.vstack([J[:, keep]*sw[:, None], P[:, keep]])
+            return self.objective_jacobian(unpack(x),P)[:,keep]
         opt = least_squares(fun, z[keep], jac=jac, x_scale="jac", ftol=1e-10, xtol=1e-10,
-                            gtol=1e-8, max_nfev=self.settings["max_nfev"])
+                            gtol=1e-8, max_nfev=self.settings["max_nfev"],bounds=(lo[keep],hi[keep]))
         full = unpack(opt.x)
         pred, J = self.prediction(full, True)
-        A = np.vstack([J[:, keep]*sw[:, None], P[:, keep]])
+        A = self.objective_jacobian(full,P)[:,keep]
         info = {"converged": bool(opt.success), "evaluations": opt.nfev, "status": int(opt.status)}
         if record:
             self.convergence.append(info)
@@ -312,6 +355,7 @@ class CandidateProblem:
         offset[K] += constraints.T @ (constraints @ (np.asarray(target)-offset[K]))
         P, sw = self.penalty(), np.sqrt(self.w)
         if not nonlinear:
+            if self.wind_tas is not None: raise ValueError('physical wind/TAS profiles require nonlinear refits')
             J = reference["J"]
             A = np.vstack([J*sw[:, None], P]) @ T
             b = np.r_[(y-reference["pred"]-J @ (offset-reference["z"]))*sw, -P @ offset]
@@ -320,12 +364,14 @@ class CandidateProblem:
             return dict(z=offset+T @ x, objective=float(residual @ residual), success=True)
         def fun(x):
             z = offset+T @ x
-            return np.r_[(self.prediction(z)-y)*sw, P @ z]
+            return self.objective_residual(z,y,P)
         def jac(x):
-            _, J = self.prediction(offset+T @ x, True)
-            return np.vstack([J*sw[:, None], P]) @ T
+            return self.objective_jacobian(offset+T@x,P)@T
+        lo,hi=self.bounds()
+        lower=np.r_[np.full(NK-rank,-np.inf),lo[NK:]-offset[NK:]]
+        upper=np.r_[np.full(NK-rank,np.inf),hi[NK:]-offset[NK:]]
         opt = least_squares(fun, np.zeros(T.shape[1]), jac=jac, x_scale="jac",
-                            ftol=1e-10, xtol=1e-10, gtol=1e-8, max_nfev=self.settings["max_nfev"])
+                            ftol=1e-10, xtol=1e-10, gtol=1e-8, max_nfev=self.settings["max_nfev"],bounds=(lower,upper))
         z = offset+T @ opt.x
         pred, J = self.prediction(z, True)
         if record:
@@ -334,6 +380,7 @@ class CandidateProblem:
         return dict(z=z, pred=pred, J=J, P=P, objective=float(opt.fun @ opt.fun), success=bool(opt.success))
 
     def local(self, y, reference, fixed=None):
+        if self.wind_tas is not None: raise ValueError('physical wind/TAS requires nonlinear refits')
         z, J, P = reference["z"], reference["J"], reference["P"]
         keep = np.arange(self.npar) if fixed is None else np.arange(NK, self.npar)
         delta = np.zeros(self.npar)
@@ -358,7 +405,7 @@ def design_information(problem):
         state = np.zeros(problem.npar)
         state[K] = models.EXPECTED_K[name]
         _, jacobian = problem.prediction(state, True)
-        anchors[name] = science_information(jacobian, weights)["report"]
+        anchors[name] = science_information(*problem.observation_information(state,jacobian,weights))["report"]
     reports = list(anchors.values())
     contrasts = {}
     for name in CANDIDATE_POLICY["contrasts"]:
@@ -386,8 +433,9 @@ def candidate_fit(bins, fwd_b, bias_fn, prior_sigma, *, settings, vertical_only=
     free = problem.solve(start=preliminary["z"])
     if settings.get("design_only"):
         z, J, cov = free["z"], free["J"], free["cov"]
-        information = science_information(J, problem.w)
-        likeness = term_likeness(J, J[:, NK:], problem.w)
+        design_J,design_w=problem.observation_information(z,J,problem.w)
+        information = science_information(design_J, design_w)
+        likeness = term_likeness(design_J, design_J[:, NK:], design_w)
         kcov = cov[K, K]+np.diag([INFERENCE_POLICY["k_sys_floor"][m]**2 for m in TERM_NAMES])
         return {"design_only": True,
                 "design_identifiability": design,
@@ -412,7 +460,8 @@ def candidate_fit(bins, fwd_b, bias_fn, prior_sigma, *, settings, vertical_only=
         if free["objective"] > best_fixed["objective"]+1e-6:
             problem.convergence.append({"converged": False, "reason": "free/fixed objectives are not nested"})
     z, cov, J = free["z"], free["cov"], free["J"]
-    information = science_information(J, problem.w)
+    design_J,design_w=problem.observation_information(free['z'],J,problem.w)
+    information = science_information(design_J, design_w)
     test_rank = information["report"]["estimable_rank"]
     constraints = information["constraints"]
     profiles = {m: problem.profile(target, constraints, reference=free)
@@ -484,10 +533,12 @@ def candidate_fit(bins, fwd_b, bias_fn, prior_sigma, *, settings, vertical_only=
     corr = np.divide(ck, denom, out=np.eye(NK), where=denom>0)
     kcov = corr*np.outer(sd, sd)
     bias_indices = np.r_[np.arange(problem.p)[problem.layout["bias"]], np.arange(problem.p)[problem.bias_drift_slice]]
-    tie_bias = term_likeness(J, J[:, bias_indices], problem.w)
-    tie = term_likeness(J, J[:, NK:], problem.w)
+    design_J,design_w=problem.observation_information(z,J,problem.w)
+    tie_bias = term_likeness(design_J, design_J[:, bias_indices], design_w)
+    tie = term_likeness(design_J, design_J[:, NK:], design_w)
     prior_k = ["bias"] + (["crab"] if problem.nc else []) + (["temperature"] if temp_ref is not None else [])
-    if problem.nc and settings["crab_model"] in ("dynamic", "wind"): prior_k.append("rate")
+    if problem.nc and settings["crab_model"] in ("dynamic", "wind",'wind_tas'): prior_k.append("rate")
+    if problem.wind_tas is not None: prior_k+=['airspeed','airspeed_rate']
     if problem.forward: prior_k.append("forward")
     if problem.dynamic_bias: prior_k.append("bias_drift")
     changes = {key: problem.solve(P=problem.penalty(**{key: PRIOR_WIDEN}), start=z)["z"][K]-k for key in prior_k}
@@ -513,6 +564,14 @@ def candidate_fit(bins, fwd_b, bias_fn, prior_sigma, *, settings, vertical_only=
     relative = {m: np.exp(-v/2) for m, v in dbest.items()}
     total = sum(relative.values())
     crab = z[problem.p:problem.p+problem.nc]
+    physical_report=None;physical_near_boundary=None
+    if problem.wind_tas is not None:
+        physical_report=problem.wind_tas.report(crab)
+        physical_near_boundary=any(problem.wind_tas.boundary(v['z'][problem.p:problem.p+problem.nc])['near_boundary']
+                                  for v in [free,*fixed.values(),*profiles.values()])
+        crab_angles,crab_rates=problem.wind_tas.angles(crab)
+    else:
+        crab_angles,crab_rates=problem.B@crab,problem.D@crab
     course_groups = crab_basis(bins, "constant")[0].shape[1]
     bsl = problem.layout["bias"]
     crossden = np.sqrt(np.outer(np.diag(cov)[K], np.diag(cov)[bias_indices]))
@@ -533,6 +592,7 @@ def candidate_fit(bins, fwd_b, bias_fn, prior_sigma, *, settings, vertical_only=
                            per_bin_drift_dph=(problem.bias_basis @ drift*RAD2DPH).tolist(),
                            per_bin_drift_sd_dph=(np.sqrt(np.maximum(variance, 0))*RAD2DPH).tolist())
     return {"convergence": {"converged": all(v["converged"] for v in problem.convergence), "fits": problem.convergence},
+            'wind_tas':physical_report,'wind_tas_test_near_boundary':physical_near_boundary,
             'pairwise_profile':pair_profiles,
             "design_identifiability": design,
             "mode": "vertical_only" if vertical_only else "3-axis", "n_bins": n, "n_rows": len(problem.y),
@@ -541,11 +601,11 @@ def candidate_fit(bins, fwd_b, bias_fn, prior_sigma, *, settings, vertical_only=
             "k": dict(zip(TERM_NAMES, k.tolist())), "k_sd": dict(zip(TERM_NAMES, sd.tolist())),
             "k_sd_analytic": dict(zip(TERM_NAMES, analytic_sd.tolist())), "k_cov": kcov.tolist(),
             "gravity_orientations": problem.layout["n_grav"],
-            "crab": {"model": settings["crab_model"], "prior_sigma_deg": crab_sigma_deg, "groups": settings["crab_model"],
-                     "per_segment_deg": np.degrees(crab).tolist(), "per_bin_deg": np.degrees(problem.B @ crab).tolist(),
-                     "rate_dph": ((problem.D @ crab)*RAD2DPH).tolist(),
+            "crab": {"model": settings["crab_model"], "prior_sigma_deg": None if physical_report is not None else crab_sigma_deg, "groups": settings["crab_model"],
+                     "per_segment_deg": None if physical_report is not None else np.degrees(crab).tolist(), "per_bin_deg": np.degrees(crab_angles).tolist(),
+                     "rate_dph": (crab_rates*RAD2DPH).tolist(),
                      "knot_times_s": problem.knots.tolist() if problem.knots is not None else None,
-                     "sd_deg": np.degrees(np.sqrt(np.diag(cov)[problem.p:problem.p+problem.nc])).tolist()},
+                     "sd_deg": None if physical_report is not None else np.degrees(np.sqrt(np.diag(cov)[problem.p:problem.p+problem.nc])).tolist()},
             "forward_uncertainty": {"enabled": problem.forward, "prior_sigma_rad": forward_sigma_rad,
                                     "angle_rad": float(z[-1]) if problem.forward else None},
             "bias_residual_dph": (z[bsl].reshape(-1, 3)*RAD2DPH).tolist(),
@@ -570,7 +630,8 @@ def candidate_fit(bins, fwd_b, bias_fn, prior_sigma, *, settings, vertical_only=
                                   "k_shift_sigma_by_prior": {key: dict(zip(TERM_NAMES, v.tolist())) for key, v in shifts.items()},
                                   "estimable_shift_sigma_by_prior": {key: v.tolist() for key, v in combination_shifts.items()},
                                   "prior_dominated": any(np.any(np.abs(v)>1) for v in combination_shifts.values())},
-            "crab_sensitivity": {"prior_sigma_deg": list(CRAB_SWEEP_DEG), "fits": sweep,
+            "crab_sensitivity": {"prior_sigma_deg": None if physical_report is not None else list(CRAB_SWEEP_DEG),
+                                 'prior_wind_sigma_mps': [value/crab_sigma_deg*problem.wind_tas.policy['wind_sigma_mps'] for value in CRAB_SWEEP_DEG] if physical_report is not None else None, "fits": sweep,
                                  "k_span_sigma": dict(zip(TERM_NAMES, span.tolist())), "crab_sensitive": bool(np.max(span)>1),
                                  "course_groups": course_groups} if problem.nc else None,
             "chi2_scaling": {"rho_lag1": rho, "scale": scale}, "chi2": {m: s["objective"] for m, s in fixed.items()},

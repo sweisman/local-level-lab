@@ -135,7 +135,7 @@ def search_geometry(designs,*,max_turns=6,grid_min=5.,min_spacing=10.,edge_margi
         raise ValueError('invalid geometry optimizer inputs')
     if not all(math.isfinite(v) for v in (grid_min,min_spacing,edge_margin,maneuver_buffer_s)) or maneuver_buffer_s < 0:
         raise ValueError('invalid geometry optimizer grid or buffer')
-    if not crab_models or not set(crab_models)<={'dynamic','wind'}: raise ValueError('invalid crab models')
+    if not crab_models or not set(crab_models)<={'dynamic','wind','wind_tas'}: raise ValueError('invalid crab models')
     geometry=[geometry_kinematics(d) for d in designs]
     duration=min(v[1]/60. for v in geometry)
     validate_turn_schedule([],duration,min_spacing,edge_margin)
@@ -144,15 +144,16 @@ def search_geometry(designs,*,max_turns=6,grid_min=5.,min_spacing=10.,edge_margi
           if edge_margin<=i*grid_min<=duration-edge_margin and all(
               turn_motion_check(mask,i*grid_min*60.-1.,i*grid_min*60.+25.)['safe'] for mask in masks)]
     upper=(1+max_turns*beam_width*len(grid))*len(designs)
-    states_per_schedule=sum(9 if crab=='dynamic' else 13 for crab in crab_models)*3*3*(1+2*(max_turns+1))
+    states_per_schedule=sum({'dynamic':9,'wind':13,'wind_tas':65*2}[crab] for crab in crab_models)*3*3*(1+2*(max_turns+1))
     from lll.runtime import numerical_environment,numerical_environment_hash
-    from lll.design_envelope import ENVELOPE_ASSUMPTIONS
+    from lll.design_envelope import ENVELOPE_ASSUMPTIONS,PHYSICAL_ENVELOPE_ASSUMPTIONS
     estimate=dict(upper_bound_schedules=1+max_turns*beam_width*len(grid),upper_bound_fits=0,
         upper_bound_anchor_svd_evaluations=upper*states_per_schedule,feasible_grid_min=grid,
         maneuver_buffer_s=maneuver_buffer_s,comparison=comparison,
         implementation_hash=implementation_hash(),numerical_environment=numerical_environment(),
         numerical_environment_hash=numerical_environment_hash(),input_designs_hash=digest(designs),
         envelope_assumptions=ENVELOPE_ASSUMPTIONS,
+        physical_envelope_assumptions=PHYSICAL_ENVELOPE_ASSUMPTIONS if 'wind_tas' in crab_models else None,
         evidence_scope='finite assumed-geometry envelope; no simulator, fit, power or acceptance certification')
     if estimate_only: return estimate
     cache={}
@@ -223,12 +224,14 @@ def main():
     ap.add_argument("--min-spacing", type=float, default=10.)
     ap.add_argument("--edge-margin", type=float, default=5.)
     ap.add_argument("--beam-width", type=int, default=16)
-    ap.add_argument("--crab-models", nargs="+", choices=["dynamic", "wind"], default=["dynamic", "wind"])
+    ap.add_argument("--crab-models", nargs="+", choices=["dynamic", "wind",'wind_tas'], default=["dynamic", "wind"])
     ap.add_argument("--pilot-seconds", type=float)
     ap.add_argument("--pilot-evaluation-seconds", type=float, help="measured complete flight/design evaluation time, including SVD and simulation")
     ap.add_argument("--estimate-only", action="store_true")
     ap.add_argument("-o", type=Path, required=True)
     args = ap.parse_args()
+    if args.mode=='pipeline' and 'wind_tas' in args.crab_models:
+        ap.error('physical wind/TAS is available in geometry-envelope search; use research.py for matched complete-pipeline comparisons')
     if args.mode=='geometry':
         from lll.trajectory import track_spec
         if args.track_plan:

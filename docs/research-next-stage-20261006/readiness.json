@@ -1,7 +1,7 @@
 {
-  "state": "core_pipeline_prepared_no_protocol_approved",
+  "state": "wind_tas_integrated_software_verified_no_protocol_approved",
   "additional_authorized_flight_attempts": 0,
-  "current_implementation_hash": "194a1c6ed0762dc8673adccee615d86d325cf44fc3079f0b251db4bbf46e629a",
+  "current_implementation_hash": "923281e6dc3765a2bdcea82f73bca860bde62f9c9f29c03d5df7405849066b99",
   "calibration_manifest_hash": "10ee614c1cce1fff9b0f094a0b90659244e30b548d7c9fb4cd3a1e969a3cf168",
   "artifact_sha256": {
     "docs/research-next-stage-20261006/pilot-comparison.json": "cae58fc0106bdce8f9d478881c29181f0ebb43d139f5fb7127c2c47eaa2e4540",
@@ -34,7 +34,10 @@
     "docs/core-pipeline-20261006/trajectories/2026-10-02-icelandair-680-sea-kef-simulated_high_rate.json": "2ef030f4b5bc9338ee25570d5aa48d7d58ea0b84df390de3ce33f026542dfce8",
     "docs/core-pipeline-20261006/trajectories/2026-10-02-lufthansa-572-fra-jnb-observed_fixes.json": "34d92827e154c10731743e11cf81d3c88194f421814b559e963721399b4897ed",
     "docs/core-pipeline-20261006/trajectories/2026-10-02-lufthansa-572-fra-jnb-simulated_high_rate.json": "d7ad38b21f320a07f17908d593b84ae5aff0d63464c6d2cf190ad0b3c7ea0f92",
-    "docs/core-pipeline-20261006/README.md": "ccc5256157525e43a02e42f427331cfe0a834c1e605668c6bba7a5681cc27f5e"
+    "docs/core-pipeline-20261006/README.md": "ad1444761311d07622315a7297bcc571bdae21bf3e48eff0e44351cc5028cbbe",
+    "docs/wind-tas-development-20261006/README.md": "a3a51557a56eab9b6e2da86e0fb3a4d29bb97ed267f5c997c2cd386da267903f",
+    "docs/wind-tas-development-20261006/proposal.json": "ff1437ffc893b24583dd31183057ad12be53d191bedda6f4c2b9f3779d7db80d",
+    "docs/wind-tas-development-20261006/optimizer-estimate.json": "cc4111f6444dd4730d3c0e6e721f7638dd5b52a91724195dd51a6cc7ba909915"
   },
   "stages": {
     "saved_record_review": "complete",
@@ -46,10 +49,14 @@
     "geometry_audit": "complete: unit-dependent nuisance rank fixed; qualification/bias/watchdog/cutoff effects recorded",
     "protocol_comparison": "complete: 72 evaluations, zero fit failures; neither protocol passes every comparison across both crab models",
     "processing_audit": "complete without flights/fits: cutoff and projection losses separated; independent fixtures demonstrate overlap-induced mount error; timing-only proposal remains unrun",
-    "core_pipeline": "maneuver guard, diagnostics, envelope/search, composite adversaries and direct pair profiles implemented; no campaign/search run"
+    "core_pipeline": "maneuver guard, diagnostics, envelope/search, composite adversaries and direct pair profiles implemented; earlier proposal/masks historical after noise-proxy repair; no campaign/search run",
+    "physical_wind_tas": "integrated and software verified; 54 matched airline-route evaluations prepared but unrun; latent TAS/conditional speed assumptions remain provisional",
+    "magnetic_ambiguity_model": "pending; conservative exclusions remain",
+    "operational_domain_enforcement": "pending; empirical observed-track policies remain refused",
+    "sharded_execution": "pending"
   },
   "order": [
-    "Review finite envelope, blocked/unsafe timing controls and per-route maneuver masks.",
+    "Review finite physical-wind envelope and refreshed per-route maneuver masks; historical core timing masks are stale.",
     "Authorize a bounded runtime/storage pilot and separately bounded per-route search/replay; retain all diagnostics/failures.",
     "Review final domain, refreeze source/configuration/policy/environment and obtain calibration budget.",
     "Run fresh primary and method-specific pairwise calibration, freeze thresholds, then freeze and run independent validation."
@@ -66,9 +73,21 @@
   "protocol_charged_evaluation_seconds": 516.9065152532421,
   "previous_implementation_hash": "27e73b122c3a073357d4a03112da11779969a710bb3a6cc3eb06c333da52ad51",
   "core_pipeline_manifest_hash": "7a5c3a8f592eca621f9e0edca034fbd038c4815028752c3a45f9aa56319fc2aa",
+  "core_pipeline_implementation_hash": "194a1c6ed0762dc8673adccee615d86d325cf44fc3079f0b251db4bbf46e629a",
   "core_pipeline_verification": {
     "passed": 177,
     "elapsed_s": 5.97,
     "scope": "focused controlled fixtures; no campaign evidence"
-  }
+  },
+  "current_software_verification": {
+    "passed": 336,
+    "elapsed_s": 282.13,
+    "warnings": 1,
+    "exit_code": 0,
+    "scope": "full analysis/tests and server/tests, outside sandbox, two numerical threads; software evidence only"
+  },
+  "wind_tas_proposal_manifest_hash": "5d4e1cb9b44a5af92d3b69784f83ef77d5baa389be76139f85f827ad3403f2d8",
+  "wind_tas_proposed_evaluations": 54,
+  "wind_tas_completed_evaluations": 0,
+  "wind_tas_optimizer_svd_upper_bound": 5571423
 }

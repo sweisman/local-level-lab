@@ -183,6 +183,7 @@ def flight_run(truth, scenario, seed, sampling, block, boot, variant, same_side_
                 "inference_policy": f["inference_policy"], "eligibility_policy": f["eligibility_policy"],
                 "bootstrap": f["bootstrap"], "forward_axis": r.get("forward_axis"),
                 "sensor_bias": f.get("sensor_bias"),
+                'wind_tas':f.get('wind_tas'),'wind_tas_test_near_boundary':f.get('wind_tas_test_near_boundary'),
                 "k_sd": f["k_sd"], "covariance": diagnostics, "convergence": f["convergence"],
                 "prior_sensitivity": f["prior_sensitivity"], "identifiability": f["identifiability"],
                 "design_identifiability": f.get("design_identifiability"),
@@ -271,7 +272,7 @@ def main():
     ap.add_argument("--bootstrap", type=int, default=20)
     ap.add_argument("--sampling", nargs="+", choices=["moving", "segment"], default=["moving"])
     ap.add_argument("--blocks", nargs="+", type=int, default=[15])
-    ap.add_argument("--crab-model", nargs="+", choices=["constant", "dynamic", "wind"], default=["constant"])
+    ap.add_argument("--crab-model", nargs="+", choices=["constant", "dynamic", "wind",'wind_tas'], default=["constant"])
     ap.add_argument("--noise-model", nargs="+", choices=["global", "axis", "axis_segment"], default=["global"])
     ap.add_argument("--bias-model", nargs="+", choices=["constant", "dynamic"], default=["constant"])
     ap.add_argument("--bias-knot-seconds", nargs="+", type=float, default=[INFERENCE_POLICY["bias_knot_seconds"]])
@@ -308,6 +309,10 @@ def main():
     ap.add_argument("--turn-edge-margin", type=float, default=5.)
     ap.add_argument("-o", type=Path, required=True)
     args = ap.parse_args()
+    if 'wind_tas' in args.crab_model:
+        if args.design_mode!='envelope': ap.error('physical wind/TAS requires --design-mode envelope')
+        if args.bootstrap>0 and any(v!='nonlinear' for v in args.bootstrap_refit):
+            ap.error('physical wind/TAS bootstrap requires --bootstrap-refit nonlinear')
     if args.pairwise_method == 'profile' and args.bootstrap > 0 and any(
             refit != 'nonlinear' for refit in args.bootstrap_refit):
         ap.error('pair profiles with bootstrap require --bootstrap-refit nonlinear')

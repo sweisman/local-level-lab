@@ -360,6 +360,10 @@ def _analyze(path, th: Thresholds | None = None, *, fit_options=None, diagnostic
     if diagnostics_directory is not None and '_rows' in f:
         y,J,idx,_,z = f['_rows']
         np.savez_compressed(diagnostics_directory/'fit-rows.npz',y=y,jacobian=J,bin_index=idx,parameters=z)
+        if f.get('wind_tas') is not None:
+            # Speed constraints participate in inference but are distinct from gyro rows.
+            import json
+            (diagnostics_directory/'wind-tas.json').write_text(json.dumps(f['wind_tas'],indent=2,allow_nan=False)+'\n')
     if not f["convergence"]["converged"]:
         flags.append("inference_nonconvergence")
     if temp_ref is not None and temp_mean is None:

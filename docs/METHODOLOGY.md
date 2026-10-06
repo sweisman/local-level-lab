@@ -53,6 +53,14 @@ Wind adds another distinction: the aircraft can point sideways relative to the p
 over the ground. The IMU follows the aircraft, while GPS describes the ground path.
 The analysis allows for that difference and tests more than one way it might vary.
 
+One experimental correction describes wind blowing north or east and the aircraft's speed
+through the air, allowing each to change slowly. Those motions must combine to match the GPS
+ground motion. This gives a physically consistent estimate of sideways pointing, but GPS
+alone cannot determine wind and airspeed separately. Assumptions about their ranges and
+changes therefore remain part of the correction. The software checks whether relaxing those
+assumptions changes the result, and abstains when a fit reaches a permitted range boundary.
+Its usefulness still needs testing against simulated flights and real recordings.
+
 A long straight flight can leave IMU drift and the model predictions too similar to separate.
 Several headings can help, but only if the recording contains enough steady cruise on them.
 Recent tests found that scheduling a leg at exactly the minimum permitted length can leave

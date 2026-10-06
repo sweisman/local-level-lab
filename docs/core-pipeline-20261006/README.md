@@ -31,6 +31,12 @@ No final empirical decision threshold or real-IMU evidence has been added.
 
 Five windows have two frozen replay specifications each. Two remain coverage-blocked.
 
+The table and preparation artifacts below describe the earlier source freeze. A subsequent
+CI repair smooths the bank-change estimate over the same 30-second window as the GPS course
+estimate, preventing position noise from falsely blocking clean IMU turns. The maneuver masks,
+timing controls and prospective freezes must be refreshed before new runs; this historical
+table is not a recommendation under the revised implementation.
+
 | Window | Permitted five-minute-grid turns with the two-minute buffer |
 |---|---|
 | ORD–AUH | 10, 15, 30, 40 minutes |
@@ -85,6 +91,7 @@ and at most two total CPU threads. A manifest is not run permission.
 **177 focused checks passed in 5.97 seconds**, covering encoded replay, fixed ground path/gaps,
 unsafe turns, diagnostics, optimizer ordering/caching, profile fitting/eligibility/calibration
 compatibility/pooling and prior/bootstrap failure abstention. These fixtures are software checks.
-Physical wind/TAS, modeled magnetic ambiguity, operational domain enforcement and sharded execution
-remain deferred. Magnetic exclusions remain. Final-domain approval, fresh calibration and independent
+The physical wind/airspeed candidate has subsequently been implemented and checked; its matched
+campaign comparison remains unrun. Modeled magnetic ambiguity, operational domain enforcement and
+sharded execution remain deferred. Magnetic exclusions remain. Final-domain approval, fresh calibration and independent
 validation still require separately authorized work.

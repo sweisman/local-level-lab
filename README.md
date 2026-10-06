@@ -111,6 +111,12 @@ allowing several plausible wind and mounting conditions, and preserve evidence a
 model pairs. Five of seven archived tracks have usable development windows; two remain blocked
 by missing observations. These tools have not yet been tested in a new flight campaign.
 
+An experimental wind correction now describes the aircraft's movement through the air and
+the wind as separate, slowly changing motions. It uses GPS ground speed to check their
+consistency. Aircraft heading and airspeed are still unknown, so the correction depends on
+explicit assumptions about plausible wind and speed changes. Tests check its calculations;
+whether it preserves more useful model separation remains to be measured.
+
 Readable summaries are in [Evidence so far](docs/EVIDENCE.md) and
 [What still needs validation](docs/VALIDATION.md).
 

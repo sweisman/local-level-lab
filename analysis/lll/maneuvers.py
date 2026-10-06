@@ -16,7 +16,11 @@ def maneuver_mask(kin, *, buffer_s=0., max_gap_s=5., max_turn_dps=.05,
         raise ValueError('maneuver times must be finite and increasing')
     rate, speed = np.asarray(kin['psi_dot']), np.asarray(kin['speed'])
     bank = np.arctan(speed*rate/9.80665)
-    bank_rate = np.gradient(bank, t)
+    # Course rate is already estimated over a 30-second GNSS window. Differentiating
+    # that estimate sample by sample amplifies bearing noise into false bank changes.
+    # Use the same physical time window for the second derivative.
+    from .segments import _smooth_grad
+    bank_rate = _smooth_grad(t,bank,30.)
     valid = np.isfinite(rate) & np.isfinite(speed) & np.isfinite(bank_rate)
     valid &= np.isfinite(kin.get('vz',np.zeros(len(t))))
     valid &= speed >= min_speed_mps

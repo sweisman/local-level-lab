@@ -54,6 +54,19 @@ def test_motion_mask_requires_usable_position_evidence(field,value):
     assert not turn_motion_check(maneuver_mask(kin),17.,22.)['safe']
 
 
+def test_bank_change_proxy_does_not_amplify_gnss_course_noise():
+    from lll.attitude import course_rate
+    t=np.arange(600.)
+    bearing=90.+np.random.default_rng(11).normal(0.,.1,len(t))
+    kin=dict(t=t,speed=np.full(len(t),250.),psi_dot=course_rate(t,bearing,smooth_s=30.))
+    bank=np.arctan(kin['speed']*kin['psi_dot']/9.80665)
+    assert np.max(np.abs(np.degrees(np.gradient(bank,t))))>.05
+    mask=maneuver_mask(kin)
+    assert turn_motion_check(mask,100.,500.)['safe']
+    kin['psi_dot'][250:280]=np.radians(3.)
+    assert not turn_motion_check(maneuver_mask(kin),250.,280.)['safe']
+
+
 def test_replay_preserves_gaps_estimates_and_longitude_wrap():
     case=track_case(); case['rows'][2]['is_provider_estimate']=True
     case['rows'][-1]['longitude_deg']=-179.98

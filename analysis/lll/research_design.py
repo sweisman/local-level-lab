@@ -264,6 +264,7 @@ def implementation_hash():
     paths += ("analysis/lll/calib.py", "analysis/lll/drift.py", "analysis/lll/models.py",
               "analysis/lll/maneuvers.py", "analysis/lll/trajectory.py", "analysis/lll/design_envelope.py",
               "analysis/lll/profile_pairs.py", "analysis/lll/design_geometry.py",
+              "analysis/lll/wind_tas.py",
               "analysis/lll/runtime.py",
               "analysis/lll/rank_sweep.py",
               "analysis/lll/pairwise.py",

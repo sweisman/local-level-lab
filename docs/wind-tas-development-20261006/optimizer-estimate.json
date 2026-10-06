@@ -1,0 +1,87 @@
+{
+  "upper_bound_schedules": 481,
+  "upper_bound_fits": 0,
+  "upper_bound_anchor_svd_evaluations": 5571423,
+  "feasible_grid_min": [
+    5.0,
+    10.0,
+    20.0,
+    30.0,
+    35.0,
+    40.0,
+    50.0,
+    55.0,
+    60.0,
+    65.0
+  ],
+  "maneuver_buffer_s": 120.0,
+  "comparison": null,
+  "implementation_hash": "923281e6dc3765a2bdcea82f73bca860bde62f9c9f29c03d5df7405849066b99",
+  "numerical_environment": {
+    "python": "3.14.7",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "thread_settings": {
+      "OPENBLAS_NUM_THREADS": "2",
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2"
+    }
+  },
+  "numerical_environment_hash": "52cba9baed64e4096cc4b0bba352dbe3a3a366127a70ebcb4aa24fd8a91a8c98",
+  "input_designs_hash": "807b0458b14e1b804648a1c147077f7f21c07630d052b0ec23087227b5b89b23",
+  "envelope_assumptions": {
+    "version": "nuisance-envelope-1",
+    "anchors": [
+      "sphere_rotating",
+      "sphere_still",
+      "flat_still"
+    ],
+    "sigma_bin_dph": [
+      3.0,
+      6.0
+    ],
+    "prior_multiplier": 3.0,
+    "planning_forward_sigma_deg": 5.0,
+    "epoch_yaw_deg": 1.0,
+    "nuisance_state": "dynamic intercept/drift grid or wind coefficient corners and individual drifts",
+    "weighting": "fixed isotropic design noise; no fitted gyro coefficients or residual weights",
+    "limitations": "Finite development grid, not a bound over every admissible nuisance trajectory"
+  },
+  "physical_envelope_assumptions": {
+    "version": "physical-wind-envelope-1",
+    "anchors": [
+      "sphere_rotating",
+      "sphere_still",
+      "flat_still"
+    ],
+    "sigma_bin_dph": [
+      3.0,
+      6.0
+    ],
+    "prior_multiplier": 3.0,
+    "planning_forward_sigma_deg": 5.0,
+    "epoch_yaw_deg": 1.0,
+    "nuisance_state": "bounded north/east wind corners and drifts crossed with TAS levels/drifts",
+    "weighting": "fixed gyro noise 3 and 6 dph and conditional GNSS speed constraint; no gyro fit/residual weights",
+    "limitations": "Finite development grid, not a bound over every admissible nuisance trajectory",
+    "wind_tas_policy": {
+      "version": "wind-tas-1",
+      "knot_seconds": 900.0,
+      "wind_sigma_mps": 20.0,
+      "wind_rate_sigma_mps_per_h": 10.0,
+      "wind_component_bound_mps": 60.0,
+      "tas_reference_mps": 250.0,
+      "tas_log_sigma": 0.2,
+      "tas_log_rate_sigma_per_h": 0.08,
+      "tas_min_mps": 120.0,
+      "tas_max_mps": 350.0,
+      "ground_constraint_sigma_mps": 2.0,
+      "boundary_fraction": 0.01,
+      "minimum_ground_speed_mps": 100.0,
+      "evidence": "Conditional GNSS speed constraint with latent smooth TAS; no independent heading or airspeed observation",
+      "provenance": "Provisional development assumptions; independent wind truth, calibration and hardware checks required"
+    }
+  },
+  "evidence_scope": "finite assumed-geometry envelope; no simulator, fit, power or acceptance certification",
+  "blocked_tracks": []
+}

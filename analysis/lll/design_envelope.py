@@ -14,9 +14,33 @@ ENVELOPE_ASSUMPTIONS = dict(version='nuisance-envelope-1', anchors=list(models.E
     weighting='fixed isotropic design noise; no fitted gyro coefficients or residual weights',
     limitations='Finite development grid, not a bound over every admissible nuisance trajectory')
 
+from .wind_tas import WIND_TAS_POLICY
+PHYSICAL_ENVELOPE_ASSUMPTIONS={**ENVELOPE_ASSUMPTIONS,'version':'physical-wind-envelope-1',
+    'wind_tas_policy':WIND_TAS_POLICY,'nuisance_state':'bounded north/east wind corners and drifts crossed with TAS levels/drifts',
+    'weighting':'fixed gyro noise 3 and 6 dph and conditional GNSS speed constraint; no gyro fit/residual weights'}
+
+
+def envelope_assumptions(settings):
+    return PHYSICAL_ENVELOPE_ASSUMPTIONS if settings.get('crab_model')=='wind_tas' else ENVELOPE_ASSUMPTIONS
+
 
 def nuisance_states(problem):
     if problem.nc == 0: return [('no-crab', np.zeros(0))]
+    if problem.wind_tas is not None:
+        p=problem.wind_tas.policy; times=problem.knots-np.mean(problem.knots)
+        states=[]
+        wind_states=[(f'wind-{a}-{b}',np.tile([a*p['wind_component_bound_mps'],b*p['wind_component_bound_mps']],(len(times),1)))
+                      for a,b in itertools.product((-1,0,1),repeat=2)]
+        for axis,sign in itertools.product((0,1),(-1,1)):
+            values=np.zeros((len(times),2)); values[:,axis]=np.clip(sign*3*p['wind_rate_sigma_mps_per_h']*times/3600.,
+                -p['wind_component_bound_mps'],p['wind_component_bound_mps'])
+            wind_states.append((f'wind-drift-{axis}-{sign}',values))
+        lo,hi=problem.wind_tas.bounds()
+        tas_states=[(f'tas-{v}',np.full(len(times),np.log(v/p['tas_reference_mps']))) for v in [p['tas_min_mps'],p['tas_reference_mps'],p['tas_max_mps']]]
+        tas_states += [(f'tas-drift-{sign}',np.clip(sign*3*p['tas_log_rate_sigma_per_h']*times/3600.,lo[2],hi[2])) for sign in (-1,1)]
+        for (wind_id,wind),(tas_id,tas) in itertools.product(wind_states,tas_states):
+            states.append((wind_id+'/'+tas_id,np.column_stack([wind,tas]).ravel()))
+        return states
     amplitude = 3*np.radians(problem.settings.get('crab_sigma_deg', 5.))
     rate = 3*np.radians(problem.settings['crab_rate_sigma_dph'])/3600.
     center = np.mean(problem.knots) if problem.knots is not None else np.mean(problem.bins['t'])
@@ -36,7 +60,7 @@ def nuisance_states(problem):
 
 def envelope_size(problem):
     epochs = len(np.unique(problem.bins.get('epoch', [0])))
-    return len(models.EXPECTED_K)*len(nuisance_states(problem))*3*(1+2*epochs)
+    return len(models.EXPECTED_K)*len(nuisance_states(problem))*3*(1+2*epochs)*(2 if problem.wind_tas is not None else 1)
 
 
 def envelope_information(problem):
@@ -45,7 +69,7 @@ def envelope_information(problem):
     variations = [('nominal', None, 0.)]+[(f'epoch-{e}-{sign}', e, sign*np.radians(1.))
             for e in np.unique(epochs) for sign in (-1, 1)]
     sigma = problem.forward_sigma if problem.forward_sigma is not None else np.radians(5.)
-    weights = np.full(len(problem.y), (RAD2DPH/6.)**2)
+    noise_levels=(3.,6.) if problem.wind_tas is not None else (6.,)
     states, anchors, worst, pre = [], {}, {}, {}
     for mapping_id, epoch, angle in variations:
         p = copy.copy(problem)
@@ -58,13 +82,14 @@ def envelope_information(problem):
             p.tangent = np.cross(p.bins['up'], p.fwd)
         for nuisance_id, values in nuisance_states(p):
             for forward in (-3*sigma, 0., 3*sigma):
-                for anchor, coefficients in models.EXPECTED_K.items():
+                for (anchor, coefficients),noise in itertools.product(models.EXPECTED_K.items(),noise_levels):
                     z = np.zeros(p.npar); z[:3] = coefficients
                     z[p.p:p.p+p.nc] = values
                     if p.forward: z[-1] = forward
                     _, jac = p.prediction(z, True)
-                    report = science_information(jac, weights)['report']
-                    state_id = f'{mapping_id}/{nuisance_id}/forward-{forward:.9g}/{anchor}'
+                    augmented,weights=p.observation_information(z,jac,np.full(len(problem.y),(RAD2DPH/noise)**2))
+                    report = science_information(augmented, weights)['report']
+                    state_id = f'{mapping_id}/{nuisance_id}/forward-{forward:.9g}/{anchor}/noise-{noise:g}'
                     states.append(dict(state_id=state_id, anchor=anchor, rank=report['estimable_rank'],
                         minimum_retention=min(c['retained_fraction'] for c in report['model_contrast_information'].values())))
                     # Anchors retain the most limiting complete state for rank diagnostics.
@@ -83,7 +108,7 @@ def envelope_information(problem):
                                 if retention < old['retained_fraction']:
                                     old.update(retained_fraction=retention, limiting_state=state_id)
                                 old['estimable'] &= retention >= CANDIDATE_POLICY['retention_threshold']
-    return dict(assumptions=copy.deepcopy(ENVELOPE_ASSUMPTIONS), uses_gyro_realization=False,
+    return dict(assumptions=copy.deepcopy(envelope_assumptions(problem.settings)), uses_gyro_realization=False,
         conditioning='retained bins and supplied forward/mount axes; preprocessing may use gyro',
         rank_threshold=CANDIDATE_POLICY['retention_threshold'],
         estimable_rank=min(v['rank'] for v in states), anchors={a: v['report'] for a,v in anchors.items()},
@@ -91,5 +116,6 @@ def envelope_information(problem):
         envelope_configuration=dict(crab_sigma_deg=problem.settings.get('crab_sigma_deg',5.),
             crab_rate_sigma_dph=problem.settings['crab_rate_sigma_dph'],
             crab_knot_seconds=problem.settings['crab_knot_seconds'], forward_sigma_rad=sigma,
-            evaluated_noise_dph=6., information_at_3dph_multiplier=4.),
+            evaluated_noise_dph=list(noise_levels) if problem.wind_tas is not None else 6.,
+            information_at_3dph_multiplier=None if problem.wind_tas is not None else 4.),
         svd_evaluations=len(states))

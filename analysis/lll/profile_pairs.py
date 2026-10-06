@@ -27,15 +27,17 @@ def solve_pair(problem, comparison, *, y=None, endpoint=None, start=None, penalt
     if start is not None:
         if first: initial[0] = np.dot(start['z'][:3]-base,direction)/np.dot(direction,direction)
         initial[first:] = start['z'][3:]
-    sw = np.sqrt(problem.w)
     def fun(x):
         z = offset+T @ x
-        return np.r_[(problem.prediction(z)-y)*sw,P @ z]
+        return problem.objective_residual(z,y,P)
     def jac(x):
-        _, J = problem.prediction(offset+T @ x, True)
-        return np.vstack([J*sw[:,None],P]) @ T
+        return problem.objective_jacobian(offset+T@x,P)@T
+    lo,hi=problem.bounds()
+    lower=np.r_[[-np.inf] if first else [],lo[3:]]
+    upper=np.r_[[np.inf] if first else [],hi[3:]]
+    initial=np.clip(initial,lower,upper)
     opt = least_squares(fun, initial, jac=jac, x_scale='jac', max_nfev=problem.settings['max_nfev'],
-                        ftol=1e-10, xtol=1e-10, gtol=1e-8)
+                        ftol=1e-10, xtol=1e-10, gtol=1e-8,bounds=(lower,upper))
     z = offset+T @ opt.x
     A = jac(opt.x)
     inverse = np.linalg.pinv(A)
@@ -59,6 +61,9 @@ def profile_evidence(problem, design, *, n_boot=0, seed=0, block=15, sampling='m
         converged = free['success'] and all(v['success'] for v in endpoints.values())
         converged &= free['objective'] <= best['objective']+1e-6
         if not converged: reasons.append('pair profile did not converge or nest')
+        if problem.wind_tas is not None and any(problem.wind_tas.boundary(v['z'][problem.p:problem.p+problem.nc])['near_boundary']
+                for v in [free,*endpoints.values()]):
+            reasons.append('physical wind/TAS fit near parameter boundary')
         residual = problem.y-free['pred']
         scale,_ = _autocorr_scale(residual*np.sqrt(problem.w),problem.idx,problem.bins)
         statistics = {m:max(0.,v['objective']-free['objective'])*scale for m,v in endpoints.items()}
@@ -85,6 +90,7 @@ def profile_evidence(problem, design, *, n_boot=0, seed=0, block=15, sampling='m
         sd = float(np.sqrt(max(free['sd']/np.sqrt(scale), np.std(estimates,ddof=1) if len(estimates)>1 else 0.)**2+floor**2))
         shifts = {}
         keys = ['bias']+(['bias_drift'] if problem.dynamic_bias else [])+(['crab','rate'] if problem.nc else [])+(['forward'] if problem.forward else [])
+        if problem.wind_tas is not None: keys+=['airspeed','airspeed_rate']
         if problem.temp_ref is not None: keys.append('temperature')
         for key in keys:
             widened = solve_pair(problem,name,start=free,penalty=problem.penalty(**{key:3.}))

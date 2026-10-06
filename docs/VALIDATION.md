@@ -51,6 +51,12 @@ The [processing review](protocol-development-20261006/PROCESSING_REVIEW.md) iden
 correction to test. Aircraft-motion checks during deliberate IMU turns are now implemented;
 a new campaign must assess their effect on useful data and orientation errors.
 
+An experimental wind correction now uses a slowly changing wind vector and speed through
+the air, constrained to agree with GPS ground motion. Controlled checks cover its fitting,
+uncertainty calculations and refusal to decide near its parameter limits. These checks do
+not yet show that it preserves the Earth-model differences better than the earlier correction.
+A comparison using the same simulated recordings for both corrections is needed next.
+
 Real IMUs must pass the [bench tests](BENCH.md). These include preserving a separately imposed
 slow rotation, repeatability on different days, drift, temperature and Bluetooth behavior.
 The current project work has no completed real-IMU validation evidence.

@@ -79,7 +79,7 @@ Preparation-only tool: `analysis/tests/prepare_core_pipeline.py`. Documented cor
 `docs/core-pipeline-20261006/README.md`, `proposal.json`, `optimizer-estimates.json`,
 and the ten explicitly generated specs in its `trajectories/` directory. The proposal records
 the current implementation/config/policy/two-thread environment, source archives and input hashes.
-Verification: 177 focused checks passed in 5.97s. Current source hash is
+Verification: 177 focused checks passed in 5.97s for that historical source hash:
 `194a1c6ed0762dc8673adccee615d86d325cf44fc3079f0b251db4bbf46e629a`;
 prospective manifest hash is `7a5c3a8f592eca621f9e0edca034fbd038c4815028752c3a45f9aa56319fc2aa`.
 The user subsequently authorized committing and pushing this implementation together with the
@@ -104,13 +104,66 @@ Next: review the prepared timing controls and finite envelope, obtain a separate
 budget for new runtime/storage measurement, then real-route replay/search and complete-pipeline
 comparisons. The ±10-minute single-turn controls violate the unchanged spacing rule and are
 recorded as blocked. Unsafe timing controls must abstain, never become recommendations.
-Physical wind/TAS fitting, modeled magnetic ambiguity, operational domain enforcement and a
-sharded runner were explicitly deferred. Keep the watchdog exclusions. No production promotion,
+Physical wind/TAS fitting was subsequently implemented in the continuation below. Modeled
+magnetic ambiguity, operational domain enforcement and a sharded runner remain deferred.
+Keep the watchdog exclusions. No production promotion,
 fresh calibration, git commit or push is authorized by this implementation request.
 
 Historical source freezes and cost plans below remain historical; they are stale for new runs.
 All completed allowances are exhausted. Use at most two total CPU threads; further calibration
 requires final domain/source/environment approval, fresh calibration, then independent validation.
+
+**Continuation and CI repair:** core work was committed as `a7efc53` and pushed with `bc00ec0`.
+The user requested continued development and then reported failing Python CI. Run
+37465056735 failed four existing end-to-end IMU-turn/crab checks; 321 checks passed. The new
+bank-rate proxy differentiated a noisy GNSS estimate sample by sample, falsely marking clean
+turns unresolved. It now uses the same 30-second physical window as the GNSS course estimate.
+A new deterministic noise/maneuver regression covers this mechanism. Do not weaken the yaw,
+bank, coverage or integrity thresholds to satisfy the old power assertions. Full recorded
+campaigns remain historical; source changes invalidate their prospective freezes.
+
+The opt-in physical wind/TAS candidate is integrated through free/fixed/global/pair profiles,
+conditional speed constraints, bounded nonlinear bootstrap, geometry scoring and diagnostics.
+`analysis/lll/wind_tas.py` freezes `wind-tas-1`; GPS supplies no independent aircraft heading
+or airspeed observation. It requires `design_mode='envelope'`; requested bootstrap requires
+`bootstrap_refit='nonlinear'`. Near-boundary fits abstain. The finite envelope checks both
+3/6 dph noise levels explicitly. All defaults and the independent wind-truth generator remain.
+Ten deterministic fixtures in `analysis/tests/test_wind_tas.py` passed in 8.80s, including an
+independent simulator triangle and the public fit entry point with one deliberately inadequate
+bootstrap replicate. The four previous CI failures passed locally in 98.09s. These are software
+checks, not campaign/power/tail evidence.
+
+Scott explicitly declined committing the CI repair and authorized the full Python suite.
+The first run passed its analysis checks but stalled at the server's concurrent upload test
+inside the sandbox. After a model change the agent mistakenly interpreted "back to normal"
+as cancellation and interrupted that run; it did not produce a complete suite result.
+Scott then authorized diagnosing and completing verification/documentation. A bounded
+45-second server diagnostic isolated the stall in AnyIO's local async transport. Outside the
+sandbox, all 13 server checks passed in 12.26s. Do not alter server code or weaken the race
+test to accommodate sandbox behavior. Full-suite verification outside the sandbox completed:
+**336 passed in 282.13 seconds**, one Starlette dependency deprecation warning, exit 0.
+Future full-suite runs should use a process deadline and faulthandler diagnostics, with at
+most two numerical threads, outside the sandbox for the async server tests.
+
+Documented prospective corpus: `docs/wind-tas-development-20261006/README.md`, with its
+preparation-only proposal and maneuver/optimizer estimate generated during this continuation.
+The generated files are `proposal.json` and `optimizer-estimate.json`. They freeze current
+scientific source `923281e6dc3765a2bdcea82f73bca860bde62f9c9f29c03d5df7405849066b99`
+and two-thread environment `52cba9baed64e4096cc4b0bba352dbe3a3a366127a70ebcb4aa24fd8a91a8c98`.
+Prospective manifest hash: `5d4e1cb9b44a5af92d3b69784f83ef77d5baa389be76139f85f827ad3403f2d8`.
+The proposed FRA–JNB simulated-frequent-GPS lane uses shared fresh seeds 600700–600702,
+three truths × wind/wind+bias_mixed/wind+bias_mixed+correlated+thermal × wind/wind_tas,
+dynamic bias, axis/segment noise, measured forward uncertainty, envelope and pair profiles,
+bootstrap zero: 27 shared recordings/54 evaluations. Turns 20/40/60 minutes pass the refreshed
+two-minute-buffered assumed-path mask; no schedule search or real reconstruction ran.
+Search upper bound is 5,571,423 SVD evaluations for beam 16, at most three turns and both fits.
+New runtime/storage are unmeasured. The manifest was validated without running a flight;
+there is no `campaign.json`. All additional execution allowances remain zero.
+Older core proposals, timing masks and calibration plans remain historical and stale for this
+source. Refresh rather than overwrite their evidence. Modeled magnetic ambiguity, domain
+enforcement and sharding remain outstanding; no campaign/search/calibration/promotion is
+authorized by this continuation. The CI repair and wind work must remain uncommitted until
+fresh explicit git consent. No agents/delegation were used.
 
 **Subsequent saved-processing audit (no additional flights or fits):** the user authorized
 the proposed diagnostic work after publication of `314c1b7`. New tool/tests:
