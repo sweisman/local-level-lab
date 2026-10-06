@@ -1,0 +1,54 @@
+{
+  "partition": "development",
+  "cells": {
+    "sphere_rotating/bias_mixed": {
+      "attempts": 167,
+      "flagged": 1,
+      "excluded_bins": 4,
+      "design_failures": 1,
+      "unstable_rank": 0,
+      "flagged_segments_without_airframe_calibration": 0
+    },
+    "sphere_rotating/wind": {
+      "attempts": 167,
+      "flagged": 40,
+      "excluded_bins": 223,
+      "design_failures": 23,
+      "unstable_rank": 0,
+      "flagged_segments_without_airframe_calibration": 12
+    },
+    "sphere_still/bias_mixed": {
+      "attempts": 167,
+      "flagged": 1,
+      "excluded_bins": 4,
+      "design_failures": 1,
+      "unstable_rank": 1,
+      "flagged_segments_without_airframe_calibration": 0
+    },
+    "sphere_still/wind": {
+      "attempts": 167,
+      "flagged": 40,
+      "excluded_bins": 223,
+      "design_failures": 23,
+      "unstable_rank": 31,
+      "flagged_segments_without_airframe_calibration": 12
+    },
+    "flat_still/bias_mixed": {
+      "attempts": 166,
+      "flagged": 1,
+      "excluded_bins": 4,
+      "design_failures": 1,
+      "unstable_rank": 5,
+      "flagged_segments_without_airframe_calibration": 0
+    },
+    "flat_still/wind": {
+      "attempts": 166,
+      "flagged": 40,
+      "excluded_bins": 223,
+      "design_failures": 23,
+      "unstable_rank": 16,
+      "flagged_segments_without_airframe_calibration": 12
+    }
+  },
+  "note": "Magnetic rates are apparent yaw change, not confirmed mount slip; no thresholds estimated."
+}

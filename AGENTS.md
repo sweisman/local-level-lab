@@ -58,6 +58,66 @@ Use tool output limits or scripts that print less.
 
 ### Latest authorization and handoff — 2026-10-06
 
+**Latest next-stage work:** Scott said no IMUs are available yet and authorized the suggested
+saved-record review, geometry preparation, revised freeze/budget and publication of completed
+campaign artifacts. No additional flight attempts or multi-week calibration/validation budget
+were authorized. Real bench testing remains pending hardware.
+
+Documented new corpus: `docs/research-next-stage-20261006/README.md`, `pilot-comparison.json`,
+`geometry-stress-plan.json`, `compute-budget.json`, `calibration-proposed-manifest.json`,
+`readiness.json`. Tool: `analysis/tests/prepare_next_stage.py`; tests: `test_next_stage.py`.
+It reads both compressed campaigns and both normalized-track archives, performs no fits, rejects
+holdouts/replays/overlaps/policy mismatches and preserves source versions. Under the common
+10% margin, the first/second pilots have 894/905 eligible flights and 870/884 eligible rank 2;
+the first's one diagnostic null rejection remains. Wind/watchdog exclusions persist; do not
+disable them or manufacture a zero-rejection claim by dropping development records.
+
+The plan prepares 24 synthetic stress cells, five observed windows and two coverage-blocked
+tracks. It proposes 288 geometry-only evaluations (plus 12 exact-protocol controls) but has
+not executed them. Observed-trajectory replay still needs integration before running: no actual
+IMU, heading/wind, clock accuracy or altitude reference is supplied by a position export.
+The synthetic matrix formerly spaced six turns eight minutes apart in 60-minute cases; corrected
+to 5/15/25/35/45/55 minutes. All 288 schedules pass the ten-minute/five-minute feasibility rule.
+
+That prospective scientific-source change gives hash
+`642cbec30013a211b36221b072b6ba63159bceab9ecd439a6bdcfee6a433aafc`.
+Do not mix or resume the completed older-source campaigns under it. The new restricted proposal
+has manifest hash `10ee614c1cce1fff9b0f094a0b90659244e30b548d7c9fb4cd3a1e969a3cf168`,
+rank 2 / 10% margin / exact 75-minute protocol / SPP / mixed bias and wind, with separate primary
+and pairwise endpoints. It is not a broad real-flight eligibility envelope or permission to run.
+Goals remain 29,285 accepted calibration and 33,169 accepted validation samples per cell.
+Latest point cost: 485,976 attempts / 69 days. Conditional reserve: 560,670 / 80 days, split into
+43,830 calibration and 49,615 validation attempts per cell. Bounds assume stable independent
+within-cell acceptance; runtime and future acceptance are not guaranteed.
+
+Next: obtain a bounded geometry-development budget, run/check those diagnostics and implement
+observed-trajectory replay, review/refreeze the final domain, then obtain a calibration/validation
+budget. Fresh calibration and actual frozen primary/pairwise thresholds must precede independent
+validation. Keep the stages in `readiness.json` current. No fresh empirical threshold exists.
+Verification: 27 focused offline tests passed, complete archive/journal records agree, and the
+previous CI fixture fix passed GitHub Actions at `0f1ae60`. Bundle this related preparation and
+the completed second-campaign artifacts in Scott's authorized publication commit/push; further
+git operations require fresh consent afterward.
+
+**Second pilot complete:** `docs/development-1000-20261006/status.json` is `complete`.
+All 1,000 attempts finished in approximately 3h24m, with zero analysis failures, 905 eligible
+flights (884 rank 2), 998 valid bootstraps and zero eligible diagnostic null rejections.
+Ranks: 936 rank 2, 62 rank 1, two rank 0. The 53 ±10%-cutoff rank flips are all excluded
+by the frozen margin. Pairwise three-model outcomes: 888 correct, zero incorrect, 112 abstain.
+Do not resume this worker or rerun any completed attempts. The authorized budget is exhausted.
+
+Complete results, journal archives, rank sweeps and magnetic summary are saved locally; the
+new corpus README documents the six cells and limitations. README/VALIDATION are refreshed.
+At worst rank-2 acceptance 128/166, existing full sample goals imply 485,976 attempts / about
+69 serial days before reserve, provisionally. Review the envelope and refresh the frozen
+proposal before requesting another compute budget. No thresholds or independent validation
+have run, and external-track recovery remains separate, unvalidated analysis work.
+
+The latest completed commit/push is `0f1ae60` (documentation and CI fixture fix); final campaign
+artifacts and this result handoff remain uncommitted. Further git operations need fresh consent.
+The historical launch/resume instructions below apply only to a genuinely interrupted original
+run; they must never be used to restart this completed campaign or treat a missing journal as empty.
+
 Scott authorized the eight-case watchdog diagnostic and then **another exactly 1,000 development
 flight attempts** (~3.3 hours), choosing that budget explicitly. The new documented corpus is
 `docs/development-1000-20261006/`. Fresh seeds are 600300–600466, disjoint from the original pilot;

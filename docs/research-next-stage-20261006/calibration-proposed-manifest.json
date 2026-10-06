@@ -1,0 +1,216 @@
+{
+  "design_version": "simulation-design-2",
+  "analysis_version": "0.6.0",
+  "numerical_environment": {
+    "python": "3.14.7",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "thread_settings": {
+      "OPENBLAS_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1"
+    }
+  },
+  "numerical_environment_hash": "20ef393862e7723ba90e825b625826081cde501e4d9c944f2dbff29526ebdd69",
+  "eligibility_policies": {
+    "legacy": {
+      "version": "pilot-2",
+      "policy_hash": "52a0b74a83d85ca1095fd4c4dcdc0e44ab69066047caa5818b426661ce5f6086"
+    },
+    "candidate": {
+      "version": "candidate-eligibility-2",
+      "policy_hash": "205642bdf33aa647a0c0472c02a25563ffbfa0fba6b51fea97b2c16c8145170a"
+    }
+  },
+  "inference_policy_hash": "f66abeda49cd6cbe7642fe69705ca0d0f8c37168562dc7b8b10a5050ecad790d",
+  "implementation_hash": "642cbec30013a211b36221b072b6ba63159bceab9ecd439a6bdcfee6a433aafc",
+  "config": {
+    "scenario": "drift+0",
+    "scenarios": [
+      "bias_mixed",
+      "wind"
+    ],
+    "truth": "all",
+    "seeds": 43830,
+    "seed": 1000000,
+    "partition": "calibration",
+    "geometry": "fixed",
+    "geometry_cells": null,
+    "list_geometry_cells": false,
+    "bootstrap": 20,
+    "sampling": [
+      "moving"
+    ],
+    "blocks": [
+      15
+    ],
+    "crab_model": [
+      "dynamic"
+    ],
+    "noise_model": [
+      "axis_segment"
+    ],
+    "bias_model": [
+      "dynamic"
+    ],
+    "bias_knot_seconds": [
+      900.0
+    ],
+    "bias_rw_sigma_dph_sqrth": [
+      3.0
+    ],
+    "bootstrap_refit": [
+      "nonlinear"
+    ],
+    "crab_rate_sigma_dph": [
+      1.0
+    ],
+    "crab_knot_seconds": [
+      null
+    ],
+    "forward_uncertainty": true,
+    "research_candidate": true,
+    "pairwise_evidence": true,
+    "tail_min_accepted": 33169,
+    "calibration_min_accepted": 29285,
+    "calibration_tail_observations": 30,
+    "calibration_tail_confidence": 0.95,
+    "calibration_alpha": 0.00135,
+    "validation_design_rate": 0.00135,
+    "validation_power": 0.9,
+    "model_test_ranks": [
+      2
+    ],
+    "rank_min_relative_margin": 0.1,
+    "allowed_failures": 64,
+    "tail_confidence": 0.95,
+    "units": [
+      2,
+      3,
+      5,
+      10,
+      30
+    ],
+    "variant": "spp",
+    "same_side_up_turns": false,
+    "turn_schedule": null,
+    "turn_min_spacing": 10.0,
+    "turn_edge_margin": 5.0,
+    "protocol": {
+      "lat0": 35.0,
+      "lon0": -30.0,
+      "speed": 270.0,
+      "legs": [
+        [
+          10.0,
+          15.0
+        ],
+        [
+          100.0,
+          15.0
+        ],
+        [
+          190.0,
+          15.0
+        ],
+        [
+          280.0,
+          15.0
+        ],
+        [
+          10.0,
+          15.0
+        ]
+      ],
+      "turn_schedule": [
+        5.0,
+        15.0,
+        25.0,
+        35.0,
+        45.0,
+        55.0
+      ]
+    },
+    "decision_policy_hash": null,
+    "pairwise_decision_policy_hash": null,
+    "campaign_plan": {
+      "decision_cells": 3,
+      "validation_power_plan": {
+        "required_accepted": 33169,
+        "allowed_failures": 64,
+        "design_rate": 0.00135,
+        "desired_power": 0.9,
+        "achieved_power": 0.9523396535478805,
+        "per_cell_power": 0.9973522029748823,
+        "power_method": "union bound over the validation family"
+      },
+      "attempt_cells": 6,
+      "operational_strata": 1,
+      "validation_family_size": 18,
+      "required_accepted_per_cell": 29285,
+      "required_accepted_validation": 33169,
+      "required_accepted_calibration": 29285,
+      "allowed_failures": 64,
+      "confidence": 0.95,
+      "alpha": 0.0027,
+      "pilot_campaign_hash": "a2803451500810b5c95d39b2b28daebad267066718c813701cf8fea7b0a002a5",
+      "development_acceptance_probability": 0.7710843373493976,
+      "acceptance_estimate_method": "minimum diagnostic/truth cell acceptance with proposed rank margin, including failed attempts; historical pilot is provisional",
+      "estimated_attempts_total": 227874,
+      "estimated_calibration_attempts_total": 227874,
+      "estimated_validation_attempts_total": 258102,
+      "pilot_seconds_per_attempt": 12.243771171678206,
+      "estimated_compute_seconds": 2790037.111975,
+      "estimated_combined_compute_seconds": 5950178.938927488
+    },
+    "preregistered_scenarios": [
+      "bias_mixed",
+      "wind"
+    ],
+    "preregistered_geometry_cells": [
+      "protocol-a763d9e4f8ff88b3141bca80049a491bfb7ab8781ee51096a3c4a0190345c21a"
+    ],
+    "geometry_domain": [
+      {
+        "id": "protocol-a763d9e4f8ff88b3141bca80049a491bfb7ab8781ee51096a3c4a0190345c21a",
+        "lat0": 35.0,
+        "lon0": -30.0,
+        "speed": 270.0,
+        "legs": [
+          [
+            10.0,
+            15.0
+          ],
+          [
+            100.0,
+            15.0
+          ],
+          [
+            190.0,
+            15.0
+          ],
+          [
+            280.0,
+            15.0
+          ],
+          [
+            10.0,
+            15.0
+          ]
+        ],
+        "turn_schedule": [
+          5.0,
+          15.0,
+          25.0,
+          35.0,
+          45.0,
+          55.0
+        ]
+      }
+    ],
+    "operational_cells": [
+      "[\"b85841b42774992154f8b9fbe48cdbd3d0376ece296a782985554e369d3ef68a\",\"spp\",2]"
+    ]
+  },
+  "manifest_hash": "10ee614c1cce1fff9b0f094a0b90659244e30b548d7c9fb4cd3a1e969a3cf168"
+}

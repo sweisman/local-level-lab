@@ -777,6 +777,70 @@ calibration next, freeze actual primary and pairwise threshold files, then freez
 validation using those files. A validation manifest cannot yet be finalized without the thresholds.
 The old proposed manifest and old development evidence retain their original source hashes.
 
+### Completed second development pilot, 2026-10-06
+
+The fresh-seed pilot is complete: 1,000 attempts in approximately 3h24m, zero analysis failures,
+905 eligible flights (884 rank 2), and zero eligible diagnostic generating-model rejections.
+[The complete report](development-1000-20261006/README.md) separates the six truth/scenario
+cells, ranks, selection, bootstrap validity, model separation and pairwise outcomes.
+The full campaign and completed journal are saved as lossless `.json.gz`/`.jsonl.gz` archives.
+The worker must not be resumed or its attempts rerun.
+
+Ranks were 936 rank 2, 62 rank 1 and two rank 0. Bootstrap validity was 998/1,000; both invalid
+fits were still-globe/wind rank-0 records and were excluded. Overlapping exclusions were 72
+design-contrast failures, 53 rank-margin failures, 11 WMM-selection failures, two unavailable
+subspaces and two inadequate bootstraps. The ±10% cutoff sweep changes rank in 53 flights;
+none is eligible. The wide sensitivity sweep changes rank in 942 flights.
+
+The watchdog flags 120/500 wind and 3/500 mixed-bias attempts with zero injected mount creep.
+All 72 design failures coincide with those flags (69 wind, three mixed bias), confirming that
+selection remains a material limitation. This association does not identify mount motion as
+the cause; apparent yaw/crab confounding and conservative exclusions remain part of the method.
+
+Primary diagnostic separation is 888/905 eligible flights. Pairwise decisions/abstentions are
+922/78 (rotating versus still globe), 626/374 (rotating globe versus disc), and 887/113 (still
+globe versus disc). Pairwise three-model winners are 888 correct, zero incorrect and 112
+abstentions. These are uncalibrated development diagnostics from paired seeds, not validated
+false-rejection or power estimates.
+
+At worst observed eligible rank-2 acceptance 128/166 and 12.26 seconds per attempt, the existing
+sample goals imply 485,976 combined calibration/validation attempts, about 69 serial days before
+reserve. Refresh the frozen proposal and obtain a new budget before launching anything.
+Fresh calibration and separate pairwise thresholds must still precede a frozen independent
+validation campaign. No thresholds or production policy were promoted by this pilot.
+
+### Next-stage preparation and revised freeze, 2026-10-06
+
+[Preparation artifacts](research-next-stage-20261006/README.md) compare both completed pilots
+using saved inputs and the shared 10% margin. Eligible counts are 894 and 905, including 870
+and 884 rank-2 flights. The first pilot's one eligible diagnostic null rejection remains;
+source versions/candidates are kept separate and never pooled into an empirical decision rule.
+Wind/watchdog selection persists; no protective exclusions or outcome-dependent gates are relaxed.
+
+The prospective geometry plan contains 24 deterministic cells covering the stress-matrix factors
+and poor-heading/no-turn interactions, plus five observed-track windows and two explicitly
+coverage-blocked tracks. Every full-matrix schedule meets the ten-minute spacing/five-minute
+edge rule after correcting the former eight-minute spacing in 60-minute/six-turn cases.
+No stress flights, information/SVD evaluations or observed-trajectory replay have run. The latter
+still requires trajectory integration and checked simulated mount/sensor/nuisance assumptions.
+
+The [restricted calibration proposal](research-next-stage-20261006/calibration-proposed-manifest.json)
+is frozen to the current source/configuration/policy/environment, retaining exact 75-minute
+geometry, SPP, rank 2, the 10% margin, both nuisance scenarios and primary/separate pairwise
+endpoints. The old proposal retains its historical freeze and must not be launched with the
+new source. Real-flight, external-GNSS and pooled-summary domains remain outside this proposal.
+
+Sample goals remain 29,285 accepted calibration and 33,169 accepted validation samples per
+truth/scenario cell. The latest point estimate is 485,976 attempts / 69 days. A conditional
+reserve using simultaneous acceptance bounds and negative-binomial attempt caps is 560,670
+attempts / 80 days: 43,830 calibration and 49,615 validation attempts per cell. Planning error
+is split between acceptance bounds and attempt caps; this assumes stable independent within-cell
+acceptance and does not bound runtime or future calibrated-rule acceptance.
+
+No additional compute is authorized. Prospective geometry review precedes final envelope approval;
+source changes require another freeze. Fresh calibration must generate actual primary/pairwise
+threshold files before independent validation can be frozen. Real IMU bench work awaits hardware.
+
 ## Experimental partial pairwise evidence
 
 Candidate fits emit `pairwise` entries for all three comparisons. Each applies the shared gates

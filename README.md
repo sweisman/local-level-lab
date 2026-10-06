@@ -105,14 +105,24 @@ quantifies proposed rank-margin gates. The subsequent
 [eight-case magnetic diagnostic](docs/VALIDATION.md#magnetic-watchdog-diagnostic-and-next-pilot-2026-10-06)
 confirmed that wind can trigger conservative segment exclusions without mount creep.
 Analysis now labels that ambiguity explicitly and retains the protective exclusions.
-Scott authorized another **1,000 development attempts**, with fresh seeds and a 10% rank-stability
-margin, at the same geometry. Its durable progress and frozen configuration are in
-`docs/development-1000-20261006/`; results are generated automatically at completion.
-While it runs, only the frozen manifest is published; live progress and checkpoints remain local.
+The [second **1,000-attempt development pilot**](docs/development-1000-20261006/README.md)
+completed in **3h24m**, with zero analysis failures, 905 eligible flights (884 rank 2), and
+zero eligible diagnostic rejections of the generating model. Bootstrap was valid in 998 fits;
+the two invalid rank-0 fits were excluded. The preregistered rank margin excluded all 53 flights
+that changed rank under a ±10% cutoff sweep. Results and lossless checkpoints are saved.
 This pilot precedes fresh calibration. The refreshed
-[calibration proposal](docs/flight-calibration-proposed-manifest-20261006.json) remains unrun
-and must be reviewed against the new pilot before approval; full calibration and validation
-still cost approximately 70 serial days before an attempt reserve.
+[calibration proposal](docs/research-next-stage-20261006/calibration-proposed-manifest.json) remains unrun
+and must be reviewed against the prepared geometry cases before approval; full calibration and validation
+still cost approximately 486,000 attempts / 69 serial days at the new pilot's measured
+rank-2 acceptance and runtime, before an attempt reserve. This is a point estimate, not an
+approved budget or a validated false-rejection claim.
+
+[Next-stage preparation](docs/research-next-stage-20261006/README.md) compares both pilots
+under the common 10% gate, preserving the first pilot's diagnostic rejection. It prepares
+24 synthetic geometry cases and five observed-track windows, while retaining two coverage-blocked
+tracks. A prospective turn-spacing bug is fixed and the restricted calibration proposal is
+refrozen. The conditional attempt reserve is about 561,000 attempts / 80 serial days. No
+additional simulations, calibration or validation have run; real IMU testing awaits hardware.
 
 Three [observed flight tracks](docs/flight-geometry-20261006/README.md) are also normalized for
 future development geometry tests. They provide real position/course histories at coarse sampling;

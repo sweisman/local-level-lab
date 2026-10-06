@@ -1,0 +1,289 @@
+{
+  "partition": "development",
+  "mode": "saved-record comparison; no fits or threshold estimation",
+  "common_rank_margin": 0.1,
+  "current_implementation_hash": "642cbec30013a211b36221b072b6ba63159bceab9ecd439a6bdcfee6a433aafc",
+  "gate_source_sha256": "5ccbfe7afd305e550e202580d8db5a9a04e4ae7fb0fdd5b7adc73a958dccb575",
+  "source_versions_pooled_for_inference": false,
+  "reports": [
+    {
+      "source_implementation_hash": "484978c7cf384a3b181f03ca2aae532b7d166cd02f465c46a8149a013ff80cff",
+      "source_manifest_hash": "b6aea66d97e910c0692672c375018ed31a20c115426534abaf9eb9478aa2908e",
+      "candidate_ids": [
+        "ac55fbae48450f403a86844a2e792f70e9c806b0e4ba6a6fe44252da3da5d54b"
+      ],
+      "recorded_rank_margin": 0.0,
+      "recorded_eligible": 906,
+      "seconds_per_attempt": 11.727833574109011,
+      "cells": {
+        "sphere_rotating/bias_mixed": {
+          "attempts": 167,
+          "eligible_common_margin": 166,
+          "eligible_rank2": 166,
+          "diagnostic_null_rejections": 1,
+          "analysis_failures": 0,
+          "valid_bootstrap": 167,
+          "rank_counts": {
+            "2": 167
+          },
+          "watchdog_flags": 2,
+          "design_failures": 1,
+          "design_failures_with_watchdog_flag": 1,
+          "watchdog_flags_with_zero_injected_creep": 2,
+          "rank_boundary_failures": 0,
+          "pairwise_correct_winners": 166,
+          "pairwise_wrong_winners": 0,
+          "seconds_per_attempt": 10.962170488130674
+        },
+        "sphere_rotating/wind": {
+          "attempts": 167,
+          "eligible_common_margin": 137,
+          "eligible_rank2": 137,
+          "diagnostic_null_rejections": 0,
+          "analysis_failures": 0,
+          "valid_bootstrap": 167,
+          "rank_counts": {
+            "2": 166,
+            "1": 1
+          },
+          "watchdog_flags": 44,
+          "design_failures": 30,
+          "design_failures_with_watchdog_flag": 30,
+          "watchdog_flags_with_zero_injected_creep": 44,
+          "rank_boundary_failures": 0,
+          "pairwise_correct_winners": 137,
+          "pairwise_wrong_winners": 0,
+          "seconds_per_attempt": 12.399816155169804
+        },
+        "sphere_still/bias_mixed": {
+          "attempts": 167,
+          "eligible_common_margin": 166,
+          "eligible_rank2": 166,
+          "diagnostic_null_rejections": 0,
+          "analysis_failures": 0,
+          "valid_bootstrap": 167,
+          "rank_counts": {
+            "2": 166,
+            "1": 1
+          },
+          "watchdog_flags": 2,
+          "design_failures": 1,
+          "design_failures_with_watchdog_flag": 1,
+          "watchdog_flags_with_zero_injected_creep": 2,
+          "rank_boundary_failures": 0,
+          "pairwise_correct_winners": 166,
+          "pairwise_wrong_winners": 0,
+          "seconds_per_attempt": 10.884356533184517
+        },
+        "sphere_still/wind": {
+          "attempts": 167,
+          "eligible_common_margin": 130,
+          "eligible_rank2": 130,
+          "diagnostic_null_rejections": 0,
+          "analysis_failures": 0,
+          "valid_bootstrap": 167,
+          "rank_counts": {
+            "2": 140,
+            "1": 27
+          },
+          "watchdog_flags": 44,
+          "design_failures": 29,
+          "design_failures_with_watchdog_flag": 29,
+          "watchdog_flags_with_zero_injected_creep": 44,
+          "rank_boundary_failures": 0,
+          "pairwise_correct_winners": 138,
+          "pairwise_wrong_winners": 0,
+          "seconds_per_attempt": 12.57578677268215
+        },
+        "flat_still/bias_mixed": {
+          "attempts": 166,
+          "eligible_common_margin": 162,
+          "eligible_rank2": 150,
+          "diagnostic_null_rejections": 0,
+          "analysis_failures": 0,
+          "valid_bootstrap": 166,
+          "rank_counts": {
+            "2": 153,
+            "1": 13
+          },
+          "watchdog_flags": 2,
+          "design_failures": 1,
+          "design_failures_with_watchdog_flag": 1,
+          "watchdog_flags_with_zero_injected_creep": 2,
+          "rank_boundary_failures": 0,
+          "pairwise_correct_winners": 151,
+          "pairwise_wrong_winners": 0,
+          "seconds_per_attempt": 11.008224048783248
+        },
+        "flat_still/wind": {
+          "attempts": 166,
+          "eligible_common_margin": 133,
+          "eligible_rank2": 121,
+          "diagnostic_null_rejections": 0,
+          "analysis_failures": 0,
+          "valid_bootstrap": 166,
+          "rank_counts": {
+            "2": 135,
+            "1": 31
+          },
+          "watchdog_flags": 44,
+          "design_failures": 29,
+          "design_failures_with_watchdog_flag": 29,
+          "watchdog_flags_with_zero_injected_creep": 44,
+          "rank_boundary_failures": 0,
+          "pairwise_correct_winners": 122,
+          "pairwise_wrong_winners": 0,
+          "seconds_per_attempt": 12.419898175163173
+        }
+      },
+      "watchdog_details_available": false,
+      "detailed_flagged_segments": 0,
+      "flagged_segments_without_airframe_calibration": 0
+    },
+    {
+      "source_implementation_hash": "3f720b4148e0b0bd8989eaa7e72600997b64f3a88664dc3cd5d21155d3a4be8d",
+      "source_manifest_hash": "bebc8dee5a6c6d291015fa3973b0759d05f408efdc8404335e89dac35d47fb0f",
+      "candidate_ids": [
+        "b85841b42774992154f8b9fbe48cdbd3d0376ece296a782985554e369d3ef68a"
+      ],
+      "recorded_rank_margin": 0.1,
+      "recorded_eligible": 905,
+      "seconds_per_attempt": 12.263557059298037,
+      "cells": {
+        "sphere_rotating/bias_mixed": {
+          "attempts": 167,
+          "eligible_common_margin": 166,
+          "eligible_rank2": 166,
+          "diagnostic_null_rejections": 0,
+          "analysis_failures": 0,
+          "valid_bootstrap": 167,
+          "rank_counts": {
+            "2": 167
+          },
+          "watchdog_flags": 1,
+          "design_failures": 1,
+          "design_failures_with_watchdog_flag": 1,
+          "watchdog_flags_with_zero_injected_creep": 1,
+          "rank_boundary_failures": 0,
+          "pairwise_correct_winners": 166,
+          "pairwise_wrong_winners": 0,
+          "seconds_per_attempt": 11.506873212339256
+        },
+        "sphere_rotating/wind": {
+          "attempts": 167,
+          "eligible_common_margin": 144,
+          "eligible_rank2": 144,
+          "diagnostic_null_rejections": 0,
+          "analysis_failures": 0,
+          "valid_bootstrap": 167,
+          "rank_counts": {
+            "2": 167
+          },
+          "watchdog_flags": 40,
+          "design_failures": 23,
+          "design_failures_with_watchdog_flag": 23,
+          "watchdog_flags_with_zero_injected_creep": 40,
+          "rank_boundary_failures": 0,
+          "pairwise_correct_winners": 145,
+          "pairwise_wrong_winners": 0,
+          "seconds_per_attempt": 13.085597203921772
+        },
+        "sphere_still/bias_mixed": {
+          "attempts": 167,
+          "eligible_common_margin": 166,
+          "eligible_rank2": 166,
+          "diagnostic_null_rejections": 0,
+          "analysis_failures": 0,
+          "valid_bootstrap": 167,
+          "rank_counts": {
+            "2": 167
+          },
+          "watchdog_flags": 1,
+          "design_failures": 1,
+          "design_failures_with_watchdog_flag": 1,
+          "watchdog_flags_with_zero_injected_creep": 1,
+          "rank_boundary_failures": 1,
+          "pairwise_correct_winners": 166,
+          "pairwise_wrong_winners": 0,
+          "seconds_per_attempt": 11.457826605770029
+        },
+        "sphere_still/wind": {
+          "attempts": 167,
+          "eligible_common_margin": 132,
+          "eligible_rank2": 132,
+          "diagnostic_null_rejections": 0,
+          "analysis_failures": 0,
+          "valid_bootstrap": 165,
+          "rank_counts": {
+            "2": 143,
+            "1": 22,
+            "0": 2
+          },
+          "watchdog_flags": 40,
+          "design_failures": 23,
+          "design_failures_with_watchdog_flag": 23,
+          "watchdog_flags_with_zero_injected_creep": 40,
+          "rank_boundary_failures": 31,
+          "pairwise_correct_winners": 132,
+          "pairwise_wrong_winners": 0,
+          "seconds_per_attempt": 12.86638531553375
+        },
+        "flat_still/bias_mixed": {
+          "attempts": 166,
+          "eligible_common_margin": 161,
+          "eligible_rank2": 148,
+          "diagnostic_null_rejections": 0,
+          "analysis_failures": 0,
+          "valid_bootstrap": 166,
+          "rank_counts": {
+            "2": 149,
+            "1": 17
+          },
+          "watchdog_flags": 1,
+          "design_failures": 1,
+          "design_failures_with_watchdog_flag": 1,
+          "watchdog_flags_with_zero_injected_creep": 1,
+          "rank_boundary_failures": 5,
+          "pairwise_correct_winners": 148,
+          "pairwise_wrong_winners": 0,
+          "seconds_per_attempt": 11.585636608725475
+        },
+        "flat_still/wind": {
+          "attempts": 166,
+          "eligible_common_margin": 136,
+          "eligible_rank2": 128,
+          "diagnostic_null_rejections": 0,
+          "analysis_failures": 0,
+          "valid_bootstrap": 166,
+          "rank_counts": {
+            "2": 143,
+            "1": 23
+          },
+          "watchdog_flags": 40,
+          "design_failures": 23,
+          "design_failures_with_watchdog_flag": 23,
+          "watchdog_flags_with_zero_injected_creep": 40,
+          "rank_boundary_failures": 16,
+          "pairwise_correct_winners": 131,
+          "pairwise_wrong_winners": 0,
+          "seconds_per_attempt": 12.96065990515937
+        }
+      },
+      "watchdog_details_available": true,
+      "detailed_flagged_segments": 129,
+      "flagged_segments_without_airframe_calibration": 36
+    }
+  ],
+  "conclusions": [
+    "Report wind/watchdog selection separately; retain protective exclusions.",
+    "Rank 2 with a 10% margin remains the restricted proposed calibration stratum.",
+    "Common-margin review does not overwrite recorded decisions or erase retained null rejections.",
+    "No guarantees outside the exact simulated protocol/scenarios/sensor are established.",
+    "No independent aircraft heading or real IMU evidence is available."
+  ],
+  "source_archives": {
+    "docs/development-1000-20261005/campaign.json.gz": "2ace7a57330a0b9e7b079aa0ef675b39fa18b70d08a4a59b6a69fed48fd046be",
+    "docs/development-1000-20261006/campaign.json.gz": "180456a4422583e8eebf64996d8c85cb403814930572b787b888ea2395aec1e0"
+  },
+  "preparation_source_sha256": "490e9a88669a182cb73acdf2ee84e0dbdce67c63fe2cd8eb170357e96b19b904"
+}

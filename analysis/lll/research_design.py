@@ -67,7 +67,7 @@ def geometry_stress_matrix():
                 "heading_span_deg": span, "duration_min": duration, "speed_mps": speed, "turn_count": turns,
                 "simulator": {"lat0": latitude, "lon0": -30., "speed": speed,
                     "legs": [[float(b), duration/headings] for b in bearings],
-                    "index_turns": [[float(t), "z"] for t in np.linspace(10., duration-10., turns)] if turns else [],
+                    "index_turns": [[float(t), "z"] for t in np.linspace(5., duration-5., turns)] if turns else [],
                     "gnss_dropouts": []}}
         cells.append(cell)
     return cells

@@ -1,0 +1,48 @@
+{
+  "state": "proposal_not_authorized",
+  "accepted_goals": {
+    "calibration": 29285,
+    "validation": 33169
+  },
+  "source": "latest pilot only; earlier source remains a separate sensitivity comparison",
+  "latest_cell_acceptance": {
+    "sphere_rotating/bias_mixed": 0.9940119760479041,
+    "sphere_rotating/wind": 0.8622754491017964,
+    "sphere_still/bias_mixed": 0.9940119760479041,
+    "sphere_still/wind": 0.7904191616766467,
+    "flat_still/bias_mixed": 0.891566265060241,
+    "flat_still/wind": 0.7710843373493976
+  },
+  "simultaneous_one_sided975_lower_acceptance": {
+    "sphere_rotating/bias_mixed": 0.9551694457340842,
+    "sphere_rotating/wind": 0.7781665325646477,
+    "sphere_still/bias_mixed": 0.9551694457340842,
+    "sphere_still/wind": 0.6962202042869002,
+    "flat_still/bias_mixed": 0.812870764907802,
+    "flat_still/wind": 0.6745632328616143
+  },
+  "profiles": {
+    "point_estimate": {
+      "acceptance_probability": 0.7710843373493976,
+      "calibration_attempts_per_cell": 37979,
+      "validation_attempts_per_cell": 43017,
+      "combined_attempts": 485976,
+      "estimated_serial_days": 68.97910191492387
+    },
+    "conditional_attempt_reserve": {
+      "acceptance_probability": 0.6745632328616143,
+      "calibration_attempts_per_cell": 43830,
+      "validation_attempts_per_cell": 49615,
+      "combined_attempts": 560670,
+      "estimated_serial_days": 79.58111731986841
+    }
+  },
+  "reserve_method": "Split 5% planning error equally: Bonferroni acceptance bounds over cells, then negative-binomial caps over two phases per cell",
+  "limitations": [
+    "Reserve assumes independent attempts within each cell and stable future acceptance.",
+    "Development-selected gates, source revisions and unknown calibrated-rule acceptance prevent a guaranteed budget.",
+    "Runtime is extrapolated, not bounded; parallel scaling has not been measured.",
+    "No real-flight or external-track domain is covered by this restricted proposal."
+  ],
+  "preparation_source_sha256": "490e9a88669a182cb73acdf2ee84e0dbdce67c63fe2cd8eb170357e96b19b904"
+}

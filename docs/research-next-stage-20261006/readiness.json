@@ -1,0 +1,27 @@
+{
+  "state": "prepared_not_authorized",
+  "additional_authorized_flight_attempts": 0,
+  "current_implementation_hash": "642cbec30013a211b36221b072b6ba63159bceab9ecd439a6bdcfee6a433aafc",
+  "calibration_manifest_hash": "10ee614c1cce1fff9b0f094a0b90659244e30b548d7c9fb4cd3a1e969a3cf168",
+  "artifact_sha256": {
+    "docs/research-next-stage-20261006/pilot-comparison.json": "cae58fc0106bdce8f9d478881c29181f0ebb43d139f5fb7127c2c47eaa2e4540",
+    "docs/research-next-stage-20261006/geometry-stress-plan.json": "94b2bddc3fc497b2a145add617b85bb6363ed76fb9fc690541a0758f05e9a5bd",
+    "docs/research-next-stage-20261006/compute-budget.json": "177542b3b688f9d6c53756d8d449cf584c2c313ffd855ae9ec23815859806790",
+    "docs/research-next-stage-20261006/calibration-proposed-manifest.json": "09548650d65e2b133a30b63ad3543a629f35d6ddcf482a3888ae346a22b7f930"
+  },
+  "stages": {
+    "saved_record_review": "complete",
+    "synthetic_geometry_cases": "prepared_not_run",
+    "observed_geometry_replay": "inputs_prepared; trajectory integration and execution pending",
+    "calibration": "restricted proposal frozen; budget and final envelope review pending",
+    "validation": "manifest waits for actual primary and pairwise calibration threshold files",
+    "real_imu_bench": "pending hardware; collection and production qualification remain separate"
+  },
+  "order": [
+    "Review prospective geometry and obtain a bounded development budget.",
+    "Run geometry diagnostics; implement and check observed-trajectory replay before use.",
+    "Review final domain and refreeze any changed source/configuration/policy/environment.",
+    "Obtain calibration/validation budget, run fresh calibration and freeze thresholds.",
+    "Freeze independent validation with actual thresholds, run it and assess simultaneous bounds."
+  ]
+}
