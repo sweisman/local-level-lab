@@ -96,7 +96,7 @@ def synthesize(path, truth="sphere_rotating", *, fs=25.0, seed=0, lat0=40.6, lon
                spp_time_every=1, ble_loss=0.0, crab_deg=(), reversal_pairs=0, reversal_s=300.0,
                crab_trajectory=None, gyro_noise_cov=None, long_drift_dph=(0, 0, 0), long_drift_period_s=7200,
                bias_settling_dph=(0, 0, 0), bias_settling_tau_s=1800., wind_ne_mps=None,
-               wind_rate_ne_mps_per_h=(0., 0.), wind_airspeed_mps=None):
+               wind_rate_ne_mps_per_h=(0., 0.), wind_airspeed_mps=None, trajectory_input=None):
     """Write a synthetic session zip. legs = ((course_deg, minutes), ...), with rate-one turns
     (3°/s) between them. variant is the WitMotion link and protocol ("spp" or "ble"); the IMU
     data is written as the byte stream the app would store, so the decoder is exercised too.
@@ -133,6 +133,14 @@ def synthesize(path, truth="sphere_rotating", *, fs=25.0, seed=0, lat0=40.6, lon
           turn in its plane (gravity stays on z); about x is a flip.
     """
     rng = np.random.default_rng(seed)
+    replay = None
+    if trajectory_input is not None:
+        if wind_airspeed_mps is not None:
+            raise ValueError('observed replay derives airspeed from ground velocity and wind')
+        from .trajectory import TrackReplay
+        replay = TrackReplay(trajectory_input)
+        first = replay.sample(np.array([replay.blocks[0][0]]))
+        lat0, lon0 = float(np.degrees(first['lat'][0])), float(np.degrees(first['lon'][0]))
     dt = 1.0 / fs
     g_sens = None if g_sens_dph_per_g is None else np.radians(np.asarray(g_sens_dph_per_g, float) / 3600)
     t0_ns = 10 ** 12
@@ -158,7 +166,7 @@ def synthesize(path, truth="sphere_rotating", *, fs=25.0, seed=0, lat0=40.6, lon
     t += gap_s
     fl_start = t
     turn_rate = np.radians(3.0)
-    fl_dur = sum(m for _, m in legs) * 60 + 600  # + 10 min slack for turns
+    fl_dur = replay.duration if replay else sum(m for _, m in legs) * 60 + 600
     phases.append(("flight", fl_start, fl_start + fl_dur))
     t = fl_start + fl_dur + gap_s
     if "post" in cal:
@@ -244,6 +252,8 @@ def synthesize(path, truth="sphere_rotating", *, fs=25.0, seed=0, lat0=40.6, lon
 
     # flight
     ts = np.arange(fl_start, fl_start + fl_dur, dt)
+    if replay:
+        ts = ts[replay.support(ts-fl_start)]
     n = len(ts)
     psi_dot = np.zeros(n)
     psi0 = np.radians(legs[0][0])
@@ -296,6 +306,16 @@ def synthesize(path, truth="sphere_rotating", *, fs=25.0, seed=0, lat0=40.6, lon
         k = max(1, int(round(30.0 / dt)))
         vz = np.convolve(vz, np.full(k, 1.0 / k), mode="same")
         hh = (h if climb_min == 0 else 1000.0) + np.cumsum(vz) * dt
+    if replay:
+        path_motion = replay.sample(tf)
+        lat, lon, hh, v_n, v_e, vz, psi, psi_dot, ground_speed = (
+            path_motion[key] for key in ('lat','lon','h','v_n','v_e','vz','psi','psi_dot','speed'))
+        bank = np.arctan(ground_speed*psi_dot/models.G0)
+        wind_heading = psi.copy()
+        if wind_ne_mps is not None:
+            wind = np.asarray(wind_ne_mps)+tf[:, None]/3600*np.asarray(wind_rate_ne_mps_per_h)
+            air = np.column_stack([v_n, v_e])-wind
+            wind_heading = np.arctan2(air[:, 1], air[:, 0])
     # turbulence: low-passed attitude jitter and vertical bumps
     a_vert = np.zeros(n)
     for start, dur, rms in turbulence:
@@ -327,6 +347,10 @@ def synthesize(path, truth="sphere_rotating", *, fs=25.0, seed=0, lat0=40.6, lon
         C_ab = rot_z(np.radians(mount_yaw_deg)) @ rot_y(np.radians(mount_tilt_deg)) @ MOUNTS[mount]
     C_nb = C_na @ C_ab
     turn_events = []
+    if replay:
+        for (_,end,_),(start,_,_) in zip(replay.blocks[:-1],replay.blocks[1:]):
+            turn_events.extend([(t0_ns+int((fl_start+end)*1e9),'imu_disconnect','synthetic trajectory support gap'),
+                                (t0_ns+int((fl_start+start)*1e9),'imu_connect','synthetic trajectory support resumes')])
     if index_turns:
         R_turn = np.broadcast_to(np.eye(3), (n, 3, 3)).copy()
         rot = {"x": rot_x, "y": rot_y, "z": rot_z}
@@ -341,9 +365,12 @@ def synthesize(path, truth="sphere_rotating", *, fs=25.0, seed=0, lat0=40.6, lon
     R_rel = np.einsum("nji,njk->nik", C_nb[:-1], C_nb[1:])
     w_nb = _vee_batch(R_rel) / dt
     w_nb = np.vstack([w_nb, w_nb[-1:]])
+    if replay:
+        w_nb[:-1][np.diff(ts) > 1.5*dt] = 0.
     w_in = omega_in_fn(ts, lat, lon, hh) if omega_in_fn is not None else models.predict(truth, lat, hh, v_n, v_e)
     w_ib = np.einsum("nij,nj->ni", C_bn, w_in) + w_nb
-    a_n = np.column_stack([np.gradient(v_n, dt), np.gradient(v_e, dt), np.gradient(-vz, dt) + a_vert])
+    derivative_time = ts if replay else dt
+    a_n = np.column_stack([np.gradient(v_n, derivative_time), np.gradient(v_e, derivative_time), np.gradient(-vz, derivative_time) + a_vert])
     grid = np.arange(0, n, max(1, int(60 * fs)))
     b_grid = wmm_ned_ut(np.degrees(lat[grid]), np.degrees(lon[grid]), hh[grid])
     b_ned = np.column_stack([np.interp(np.arange(n), grid, b_grid[:, i]) for i in range(3)])
@@ -366,6 +393,8 @@ def synthesize(path, truth="sphere_rotating", *, fs=25.0, seed=0, lat0=40.6, lon
         "speed_acc_mps": np.full(len(gi), 0.3, np.float32), "bearing_acc_deg": np.full(len(gi), 0.5, np.float32),
         "sats_used": np.full(len(gi), 12, np.int64),
     }
+    if replay and replay.spec['mode'] == 'observed_fixes':
+        gnss = replay.observed_gnss(fl_start, t0_ns, 1_790_000_000_000)
 
     if link_dropouts:   # Bluetooth gaps: the IMU data simply isn't there, and the app logs the drop
         r0 = rows[-1]
@@ -401,6 +430,9 @@ def synthesize(path, truth="sphere_rotating", *, fs=25.0, seed=0, lat0=40.6, lon
         "quality": {"cal_pre": "pre" in cal, "cal_post": "post" in cal, "placement_check": True, "flags": ["synthetic"]},
         "synthetic_truth": truth,
     }
+    if replay:
+        manifest['trajectory_replay'] = replay.spec
+        manifest['replay_evidence_use'] = 'development only; simulated IMU and assumed trajectory between observations'
     events = sorted([(t0_ns + int(a * 1e9), "phase_start", nm) for nm, a, _ in phases] + turn_events)
     # Simulated readbacks describe the actual generated settings. Synthetic provenance remains explicit.
     rate_code = {10: 6, 20: 7, 50: 8, 100: 9, 200: 11}.get(fs)
@@ -408,7 +440,8 @@ def synthesize(path, truth="sphere_rotating", *, fs=25.0, seed=0, lat0=40.6, lon
         gyro_code = next(k for k, v in witmotion.GYRO_RANGE_DPS.items() if v == gyro_range_dps)
         accel_code = next(k for k, v in witmotion.ACC_RANGE_G.items() if v == accel_range_g)
         detail = f"0x02=0x17 0x03=0x{rate_code:x} 0x20=0x{gyro_code:x} 0x21=0x{accel_code:x} 0x63=0x1 ok=true"
-        events = sorted(events + [(t0_ns + int(a * 1e9), "imu_config", detail) for _, a, _ in phases])
+        events = sorted(events + [(t0_ns + int(a * 1e9), "imu_config", detail) for _, a, _ in phases]
+                        + [(stamp,'imu_config',detail) for stamp,kind,_ in turn_events if kind=='imu_connect'])
     write_session(path, manifest, streams, events, imu=imu)
     return manifest
 

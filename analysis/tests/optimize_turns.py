@@ -3,6 +3,7 @@
 import argparse
 import json
 import math
+import numpy as np
 from pathlib import Path
 
 from research import flight_run
@@ -122,6 +123,77 @@ def _ranking(result):
             len(result["turn_schedule_min"]), result["turn_schedule_min"])
 
 
+def search_geometry(designs,*,max_turns=6,grid_min=5.,min_spacing=10.,edge_margin=5.,
+                    beam_width=16,crab_models=('dynamic','wind'),maneuver_buffer_s=120.,
+                    comparison=None,estimate_only=False):
+    from lll.design_geometry import geometry_kinematics,geometry_problem
+    from lll.design_envelope import envelope_information
+    from lll.maneuvers import maneuver_mask,turn_motion_check
+    from lll.policy import MODEL_PAIRS
+    if comparison is not None and comparison not in MODEL_PAIRS: raise ValueError('unknown comparison')
+    if not designs or not 0<=max_turns<=6 or beam_width<1 or grid_min<=0:
+        raise ValueError('invalid geometry optimizer inputs')
+    if not all(math.isfinite(v) for v in (grid_min,min_spacing,edge_margin,maneuver_buffer_s)) or maneuver_buffer_s < 0:
+        raise ValueError('invalid geometry optimizer grid or buffer')
+    if not crab_models or not set(crab_models)<={'dynamic','wind'}: raise ValueError('invalid crab models')
+    geometry=[geometry_kinematics(d) for d in designs]
+    duration=min(v[1]/60. for v in geometry)
+    validate_turn_schedule([],duration,min_spacing,edge_margin)
+    masks=[maneuver_mask(k,buffer_s=maneuver_buffer_s) for k,_ in geometry]
+    grid=[i*grid_min for i in range(1,math.ceil(duration/grid_min))
+          if edge_margin<=i*grid_min<=duration-edge_margin and all(
+              turn_motion_check(mask,i*grid_min*60.-1.,i*grid_min*60.+25.)['safe'] for mask in masks)]
+    upper=(1+max_turns*beam_width*len(grid))*len(designs)
+    states_per_schedule=sum(9 if crab=='dynamic' else 13 for crab in crab_models)*3*3*(1+2*(max_turns+1))
+    from lll.runtime import numerical_environment,numerical_environment_hash
+    from lll.design_envelope import ENVELOPE_ASSUMPTIONS
+    estimate=dict(upper_bound_schedules=1+max_turns*beam_width*len(grid),upper_bound_fits=0,
+        upper_bound_anchor_svd_evaluations=upper*states_per_schedule,feasible_grid_min=grid,
+        maneuver_buffer_s=maneuver_buffer_s,comparison=comparison,
+        implementation_hash=implementation_hash(),numerical_environment=numerical_environment(),
+        numerical_environment_hash=numerical_environment_hash(),input_designs_hash=digest(designs),
+        envelope_assumptions=ENVELOPE_ASSUMPTIONS,
+        evidence_scope='finite assumed-geometry envelope; no simulator, fit, power or acceptance certification')
+    if estimate_only: return estimate
+    cache={}
+    def evaluate(schedule):
+        key=tuple(schedule)
+        if key in cache: return cache[key]
+        details=[]
+        for design,kin in zip(designs,geometry):
+            for crab in crab_models:
+                try:
+                    problem=geometry_problem(design,schedule,crab,kin=kin)
+                    report=envelope_information(problem)
+                    if comparison is not None:
+                        report={**report,'model_contrast_information':report['untruncated_contrasts']}
+                    score=design_eligibility(report,comparison)
+                    details.append(dict(track=design.get('geometry_cell'),crab_model=crab,**score))
+                except (ValueError,np.linalg.LinAlgError) as exc:
+                    details.append(dict(valid=False,all_estimable=False,worst_margin=None,worst_information=None,failure=str(exc)))
+        valid=all(v['valid'] for v in details)
+        row=dict(turn_schedule_min=list(schedule),valid_evaluations=valid,
+            all_estimable=valid and all(v['all_estimable'] for v in details),
+            worst_estimability_margin=min(v['worst_margin'] for v in details) if valid else None,
+            worst_contrast_information=min(v['worst_information'] for v in details) if valid else None,details=details)
+        cache[key]=row; return row
+    best=evaluate(()); beam=[()]; frontier=[best]
+    for _ in range(max_turns):
+        schedules={tuple(sorted((*s,t))) for s in beam for t in grid if t not in s}
+        schedules=[s for s in sorted(schedules) if not _invalid_schedule(s,duration,min_spacing,edge_margin)]
+        if not schedules: break
+        ranked=sorted((evaluate(s) for s in schedules),key=_ranking)
+        beam=[tuple(v['turn_schedule_min']) for v in ranked[:beam_width]]; frontier.append(ranked[0])
+        if _ranking(ranked[0])<_ranking(best): best=ranked[0]
+    return dict(**estimate,best=best if best['all_estimable'] else None,best_diagnostic=best,
+        feasible_winner=best['all_estimable'],frontier_by_turn_count=frontier,schedule_scores=list(cache.values()),
+        evaluated_schedules=len(cache),
+        search_method='deterministic geometry-envelope beam search; no global-optimum guarantee',
+        score_order=['all_estimable','worst_estimability_margin','worst_contrast_information'],
+        settings=dict(max_turns=max_turns,grid_min=grid_min,min_spacing=min_spacing,edge_margin=edge_margin,
+                      beam_width=beam_width,crab_models=list(crab_models)))
+
+
 def _json_safe(value):
     if isinstance(value, dict): return {k: _json_safe(v) for k, v in value.items()}
     if isinstance(value, (list, tuple)): return [_json_safe(v) for v in value]
@@ -137,7 +209,13 @@ def _invalid_schedule(schedule, duration, spacing, margin):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--seed", type=int, default=600600)
+    ap.add_argument('--mode',choices=['geometry','pipeline'],default='geometry')
+    ap.add_argument('--track-plan',type=Path)
+    ap.add_argument('--track-id')
+    ap.add_argument('--protocol',type=Path)
+    ap.add_argument('--comparison',choices=list(CANDIDATE_POLICY['contrasts']))
+    ap.add_argument('--maneuver-buffer-s',type=float,default=120.)
     ap.add_argument("--routes", type=int, default=2)
     ap.add_argument("--scenarios", nargs="+", default=["bias_mixed", "wind"])
     ap.add_argument("--max-turns", type=int, default=6)
@@ -151,6 +229,26 @@ def main():
     ap.add_argument("--estimate-only", action="store_true")
     ap.add_argument("-o", type=Path, required=True)
     args = ap.parse_args()
+    if args.mode=='geometry':
+        from lll.trajectory import track_spec
+        if args.track_plan:
+            cases=json.loads(args.track_plan.read_text())['observed_track_cases']
+            if args.track_id: cases=[v for v in cases if v['id']==args.track_id]
+            if not cases: ap.error('no matching track in the frozen plan')
+            designs=[realize(args.seed,'wind+bias_mixed',geometry='observed',trajectory_input=track_spec(v))
+                     for v in cases if v['status']=='prepared_geometry_only']
+        else:
+            protocol=json.loads(args.protocol.read_text()) if args.protocol else None
+            designs=[realize(seed,'wind+bias_mixed',geometry='fixed' if protocol else 'seeded',protocol=protocol)
+                     for seed in seed_range('development',args.seed,args.routes)]
+        result=search_geometry(designs,max_turns=args.max_turns,grid_min=args.grid_min,
+            min_spacing=args.min_spacing,edge_margin=args.edge_margin,beam_width=args.beam_width,
+            crab_models=args.crab_models,maneuver_buffer_s=args.maneuver_buffer_s,
+            comparison=args.comparison,estimate_only=args.estimate_only)
+        if args.track_plan:
+            result['blocked_tracks']=[{'id':v['id'],'status':v['status']} for v in cases
+                                      if v['status']!='prepared_geometry_only']
+        args.o.write_text(json.dumps(result,indent=2,allow_nan=False)+'\n'); return
     result = search(seeds=seed_range("development", args.seed, args.routes), scenarios=args.scenarios,
                     max_turns=args.max_turns, grid_min=args.grid_min, min_spacing=args.min_spacing,
                     edge_margin=args.edge_margin, beam_width=args.beam_width, crab_models=args.crab_models,

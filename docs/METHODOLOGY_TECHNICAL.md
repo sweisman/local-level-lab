@@ -10,6 +10,12 @@ This page is for anyone who wants to validate the method rather than take it on 
 
 Criticism is welcome. The most useful kind is a synthetic session (`lll synth …`) that the pipeline gets confidently wrong.
 
+**Development extensions, 2026-10-06.** [Core-pipeline preparation](core-pipeline-20261006/README.md)
+documents optional envelope scoring, geometry-only timing search, two observed-route simulation
+modes and direct pair profiles. Aircraft-motion checks during integrated IMU turns are now
+an analysis integrity safeguard. Other new scientific candidates remain opt-in; controlled
+checks do not provide calibration or establish a real-flight domain.
+
 **Trajectory source.** Current flight analysis uses the recorded phone GNSS. The collection
 protocol allows IMU recording without a fresh fix and saves operating-flight metadata and clock
 anchors for later review. Public tracks can support GPS cross-checks and development geometry,

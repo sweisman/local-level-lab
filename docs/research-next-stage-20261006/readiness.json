@@ -1,7 +1,7 @@
 {
-  "state": "protocol_development_complete_no_protocol_approved",
+  "state": "core_pipeline_prepared_no_protocol_approved",
   "additional_authorized_flight_attempts": 0,
-  "current_implementation_hash": "27e73b122c3a073357d4a03112da11779969a710bb3a6cc3eb06c333da52ad51",
+  "current_implementation_hash": "194a1c6ed0762dc8673adccee615d86d325cf44fc3079f0b251db4bbf46e629a",
   "calibration_manifest_hash": "10ee614c1cce1fff9b0f094a0b90659244e30b548d7c9fb4cd3a1e969a3cf168",
   "artifact_sha256": {
     "docs/research-next-stage-20261006/pilot-comparison.json": "cae58fc0106bdce8f9d478881c29181f0ebb43d139f5fb7127c2c47eaa2e4540",
@@ -21,25 +21,38 @@
     "docs/protocol-development-20261006/processing-audit.json": "3ea9ed00e82c426c61193af07366b5537efb885edf9d7e543825b4c7eaabc1a8",
     "docs/protocol-development-20261006/PROCESSING_REVIEW.md": "6c7b9bdc781f3a1cb7433f487742ceeabadd6f25dbccff7f7ba48da88cd6dedc",
     "analysis/tests/audit_processing.py": "2b44a78f1f38c0bcfbf25e9a128ce87f677259cd256f721a059f469da1f70826",
-    "analysis/tests/test_processing_audit.py": "18f1b0a9838f68ed241d6a4c698c9064f79ce92f26fdcde28448ab76e33bc9b6"
+    "analysis/tests/test_processing_audit.py": "18f1b0a9838f68ed241d6a4c698c9064f79ce92f26fdcde28448ab76e33bc9b6",
+    "docs/core-pipeline-20261006/proposal.json": "22a31b3a45ee550e10af949602bca92d8eae720dc85d6eaf55036703aca5df7d",
+    "docs/core-pipeline-20261006/optimizer-estimates.json": "3ae08a04cfc2c75905c4fe6380e94b8686ba3c4b554e5bd81c06e2de7d33d0df",
+    "docs/core-pipeline-20261006/trajectories/2025-09-01-etihad-10-ord-auh-observed_fixes.json": "e38f169fe83ba451ff08a5a4b0fa21e617e9ccfd6cdc7c01eb33c56fa71a35c9",
+    "docs/core-pipeline-20261006/trajectories/2025-09-01-etihad-10-ord-auh-simulated_high_rate.json": "e76e21c3b972673b0cc929b654cd04f448c46796889bf5431639bb04d4ffd56a",
+    "docs/core-pipeline-20261006/trajectories/2025-08-19-etihad-9-auh-ord-observed_fixes.json": "c19754b86b1f7caaed3faea7b2aae75471725c30daf7a163677912675964ef06",
+    "docs/core-pipeline-20261006/trajectories/2025-08-19-etihad-9-auh-ord-simulated_high_rate.json": "195732675f62d5b52e02fcc4b03e36b31e4ac90c69e7c9ac9d8fc6a02fdc2e66",
+    "docs/core-pipeline-20261006/trajectories/2025-08-19-aa-1433-ord-lax-observed_fixes.json": "6b35e17be979091974d511722bf6d9e7bcba867ee2e14ff1e0934d4c8122462f",
+    "docs/core-pipeline-20261006/trajectories/2025-08-19-aa-1433-ord-lax-simulated_high_rate.json": "b71197eaeaa3fa1787d875a98f466e7e54dd0a31831c51124e3e500feacb9be0",
+    "docs/core-pipeline-20261006/trajectories/2026-10-02-icelandair-680-sea-kef-observed_fixes.json": "5bd54cc183ef711595fc0e6ac1f4a97c16b680e106f00198929ac5b3b8c86b96",
+    "docs/core-pipeline-20261006/trajectories/2026-10-02-icelandair-680-sea-kef-simulated_high_rate.json": "2ef030f4b5bc9338ee25570d5aa48d7d58ea0b84df390de3ce33f026542dfce8",
+    "docs/core-pipeline-20261006/trajectories/2026-10-02-lufthansa-572-fra-jnb-observed_fixes.json": "34d92827e154c10731743e11cf81d3c88194f421814b559e963721399b4897ed",
+    "docs/core-pipeline-20261006/trajectories/2026-10-02-lufthansa-572-fra-jnb-simulated_high_rate.json": "d7ad38b21f320a07f17908d593b84ae5aff0d63464c6d2cf190ad0b3c7ea0f92",
+    "docs/core-pipeline-20261006/README.md": "ccc5256157525e43a02e42f427331cfe0a834c1e605668c6bba7a5681cc27f5e"
   },
   "stages": {
     "saved_record_review": "complete",
     "synthetic_geometry_cases": "complete: 300 evaluations, six no fit; no geometry passes across both crab models",
-    "observed_geometry_replay": "inputs_prepared; trajectory integration and execution pending",
-    "calibration": "old proposal stale after source and thread changes; usable protocol, final domain review, refreeze and budget pending",
+    "observed_geometry_replay": "implemented and controlled checks passed; five windows/two modes frozen, two blocked; actual replay pending",
+    "calibration": "historical proposal stale; final domain, source/environment refreeze and budget pending",
     "validation": "manifest waits for actual primary and pairwise calibration threshold files",
     "real_imu_bench": "pending hardware; collection and production qualification remain separate",
     "geometry_audit": "complete: unit-dependent nuisance rank fixed; qualification/bias/watchdog/cutoff effects recorded",
     "protocol_comparison": "complete: 72 evaluations, zero fit failures; neither protocol passes every comparison across both crab models",
-    "processing_audit": "complete without flights/fits: cutoff and projection losses separated; independent fixtures demonstrate overlap-induced mount error; timing-only proposal remains unrun"
+    "processing_audit": "complete without flights/fits: cutoff and projection losses separated; independent fixtures demonstrate overlap-induced mount error; timing-only proposal remains unrun",
+    "core_pipeline": "maneuver guard, diagnostics, envelope/search, composite adversaries and direct pair profiles implemented; no campaign/search run"
   },
   "order": [
-    "Define turn-overlap/orientation safeguard and review the timing-only protocol proposal; obtain a new bounded development budget.",
-    "Retain raw sessions/bins/mount matrices in paired timing comparisons; implement and check observed-trajectory replay before use.",
-    "Review final domain and refreeze any changed source/configuration/policy/environment.",
-    "Obtain calibration/validation budget, run fresh calibration and freeze thresholds.",
-    "Freeze independent validation with actual thresholds, run it and assess simultaneous bounds."
+    "Review finite envelope, blocked/unsafe timing controls and per-route maneuver masks.",
+    "Authorize a bounded runtime/storage pilot and separately bounded per-route search/replay; retain all diagnostics/failures.",
+    "Review final domain, refreeze source/configuration/policy/environment and obtain calibration budget.",
+    "Run fresh primary and method-specific pairwise calibration, freeze thresholds, then freeze and run independent validation."
   ],
   "geometry_evaluation_wall_time_cap_s": 3600,
   "geometry_campaign_manifest_hash": "81f6ff596ed2432d7925fd4fa97bded4492ad33ad0c57a7c525be3667941e97e",
@@ -50,5 +63,12 @@
   "protocol_evaluation_wall_time_cap_s": 900,
   "protocol_campaign_manifest_hash": "77a9c8e829368a8dcb3d4e202e0cc826c72978ea96267d215b82be911ec71838",
   "protocol_campaign_status_path": "docs/protocol-development-20261006/status.json",
-  "protocol_charged_evaluation_seconds": 516.9065152532421
+  "protocol_charged_evaluation_seconds": 516.9065152532421,
+  "previous_implementation_hash": "27e73b122c3a073357d4a03112da11779969a710bb3a6cc3eb06c333da52ad51",
+  "core_pipeline_manifest_hash": "7a5c3a8f592eca621f9e0edca034fbd038c4815028752c3a45f9aa56319fc2aa",
+  "core_pipeline_verification": {
+    "passed": 177,
+    "elapsed_s": 5.97,
+    "scope": "focused controlled fixtures; no campaign evidence"
+  }
 }

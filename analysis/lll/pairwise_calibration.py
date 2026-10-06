@@ -8,7 +8,7 @@ import numpy as np
 
 from . import __version__
 from .inference_policy import digest
-from .pairwise import pair_stratum, check_pairwise_policy, POOL_METHOD
+from .pairwise import pair_stratum, check_pairwise_policy, POOL_METHOD, PROFILE_POOL_METHOD
 from .policy import MODEL_PAIRS, eligibility_policies, scientific_exclusions
 from .research_calibration import (diagnostic_stratum, validate_records, calibration_precision,
                                    preregistered_groups, required_accepted_n, tail_upper)
@@ -16,7 +16,9 @@ from .runtime import numerical_environment, numerical_environment_hash
 
 
 def group(row, comparison, mode):
-    return json.dumps([diagnostic_stratum(row), comparison,
+    entry=(row.get('pairwise') or {}).get(comparison,{})
+    diagnostic_row={**row,'model_test_rank':1} if entry.get('method')=='pair-line-profile-1' else row
+    return json.dumps([diagnostic_stratum(diagnostic_row), comparison,
                        row["pairwise"][comparison].get("n_units") if mode == "pool" else None], separators=(",", ":"))
 
 
@@ -25,7 +27,7 @@ def eligible(row, comparison, mode):
     if not entry.get("eligible") or entry.get("exclusions") or not entry.get("statistics"):
         return False
     if mode == "pool":
-        return row.get("pairwise_mode") == "pool" and entry.get("method") == POOL_METHOD and entry.get("n_units", 0) >= 3
+        return row.get("pairwise_mode") == "pool" and entry.get("method") in (POOL_METHOD,PROFILE_POOL_METHOD) and entry.get("n_units", 0) >= 3
     return not scientific_exclusions({"fit": row, "flags": row.get("flags", [])}, comparison)
 
 
@@ -42,6 +44,8 @@ def calibrate(campaign, mode="flight", alpha=.0027, min_accepted=None):
     minimum = min_accepted or precision["minimum_accepted"]
     samples, cells = {}, {}
     declared = preregistered_groups(config) if mode == "flight" else None
+    if declared and config.get('pairwise_method')=='profile':
+        declared={json.dumps([*json.loads(key)[:-1],1],separators=(',',':')):value for key,value in declared.items()}
     if declared:
         for diagnostic in declared:
             for name, endpoints in MODEL_PAIRS.items():
@@ -73,7 +77,10 @@ def calibrate(campaign, mode="flight", alpha=.0027, min_accepted=None):
         for model, value in diagnostics[key].items(): threshold[model] = max(threshold.get(model, 0.), value)
         counts[key] = {model: len(v) for model, v in values.items()}
         diagnostic_cells[key] = {"cell": cell, "comparison": name}
-    content = {"version": "pairwise-empirical-1", "mode": mode, "alpha": alpha,
+    methods = sorted({entry.get('method','observable-coordinate-1') for row in campaign['records']
+                      for entry in (row.get('pairwise') or {}).values()})
+    content = {"version": "pairwise-empirical-2" if set(methods)&{'pair-line-profile-1',PROFILE_POOL_METHOD} else 'pairwise-empirical-1', "mode": mode, "alpha": alpha,
+               'statistic_methods':methods,
                "calibration_alpha": precision["calibration_alpha"],
                "analysis_version": __version__, "implementation_hash": campaign.get("implementation_hash"),
                "source_manifest_hash": campaign["manifest_hash"], "source_campaign_hash": digest(campaign),

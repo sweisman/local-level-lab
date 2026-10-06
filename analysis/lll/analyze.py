@@ -10,7 +10,8 @@ import numpy as np
 from . import __version__, calib, drift, fit, models, slip
 from .attitude import epoch_of, estimate_forward_axis, mount_epochs
 from .format import read_session
-from .segments import Thresholds, find_segments, make_bins, InvalidGnssData
+from .segments import Thresholds, find_segments, make_bins, InvalidGnssData, gnss_kinematics
+from .maneuvers import maneuver_mask
 from .policy import POLICY_VERSION, heading_diversity, verified_config, scientific_exclusions
 from .runtime import numerical_environment
 
@@ -81,10 +82,31 @@ def unit_quality(res: dict, m: dict) -> dict:
                          "usable": f"both measured: ≤ {USABLE_ADEV300_DPH} °/h and ≤ {USABLE_H_SD_DPH} °/h"}}
 
 
-def analyze(path, th: Thresholds | None = None, *, fit_options=None) -> dict:
+def analyze(path, th: Thresholds | None = None, *, fit_options=None, diagnostics_directory=None) -> dict:
+    if diagnostics_directory is None:
+        return _analyze(path,th,fit_options=fit_options)
+    import json
+    from pathlib import Path
+    import shutil
+    output = Path(diagnostics_directory)
+    output.mkdir(parents=True,exist_ok=False)
+    shutil.copyfile(path,output/'session.zip')
+    try:
+        result = _analyze(path,th,fit_options=fit_options,diagnostics_directory=output)
+        (output/'analysis.json').write_text(json.dumps(result,indent=2,allow_nan=False)+'\n')
+        return result
+    except Exception as exc:
+        (output/'failure.json').write_text(json.dumps({'error':str(exc),'type':type(exc).__name__})+'\n')
+        raise
+
+
+def _analyze(path, th: Thresholds | None = None, *, fit_options=None, diagnostics_directory=None) -> dict:
     th = th or Thresholds()
     sess = read_session(path)
     m = sess.manifest
+    if m.get('trajectory_replay') and any((fit_options or {}).get(key) is not None
+            for key in ('decision_policy','pairwise_decision_policy','decision_thresholds')):
+        raise ValueError('observed trajectory replay cannot apply empirical thresholds before domain enforcement')
     flags = list(m.get("quality", {}).get("flags", []))
     res = {
         "analysis_version": __version__,
@@ -182,7 +204,20 @@ def analyze(path, th: Thresholds | None = None, *, fit_options=None) -> dict:
     ev = [(t / 1e9, kind) for t, kind, _ in sess.events if kind in ("index_turn", "placement_shift")
           and flight["start_ns"] <= t <= flight["end_ns"]]
     rate = (m.get("imu", {}).get("config") or {}).get("rate_hz")
-    epochs, exclude = mount_epochs(gt, Gc, ev, sat=gs.get("sat"), expected_period=1 / rate if rate else None)
+    motion_gn = sess.slice('gnss', flight['start_ns'], flight['end_ns'])
+    try:
+        motion = maneuver_mask(None if motion_gn is None else gnss_kinematics(motion_gn, th),
+                               max_turn_dps=th.max_turn_dps, max_vz_mps=th.max_vz_mps,
+                               min_speed_mps=th.min_speed_mps,max_h_acc_m=th.max_h_acc_m)
+    except InvalidGnssData:
+        motion = maneuver_mask(None)
+    epochs, exclude = mount_epochs(gt, Gc, ev, sat=gs.get("sat"), expected_period=1 / rate if rate else None,
+                                  aircraft_motion=motion)
+    R0 = np.array([e['R0'] for e in epochs])
+    if diagnostics_directory is not None:
+        np.save(diagnostics_directory/'mount-matrices.npy',R0,allow_pickle=False)
+        np.savez_compressed(diagnostics_directory/'turn-input.npz',t=gt,calibrated_gyro=Gc)
+    res['aircraft_motion_mask'] = motion
     if any(e.get("orientation_unresolved") for e in epochs):
         flags.append("orientation_unresolved")
     res["mount_epochs"] = [{"t0_s": e["t0_s"], "t1_s": e["t1_s"], "turn": e["turn"],
@@ -214,6 +249,8 @@ def analyze(path, th: Thresholds | None = None, *, fit_options=None) -> dict:
         flags.append("no_bins")
         return _clean(res)
     bins["epoch"] = epoch_of(bins["t"], epochs)
+    if diagnostics_directory is not None:
+        np.savez_compressed(diagnostics_directory/'pre-selection-bins.npz',**bins)
     keep = bins["epoch"] >= 0
     # After a turn whose rate was clipped, the IMU's new orientation is unknown (the accelerometer
     # can't see a turn about the vertical), so later epochs can't be mapped and are left out.
@@ -229,7 +266,8 @@ def analyze(path, th: Thresholds | None = None, *, fit_options=None) -> dict:
         flags.append("no_bins")
         return _clean(res)
     bins = {k: (v[keep] if isinstance(v, np.ndarray) and len(v) == len(keep) else v) for k, v in bins.items()}
-    R0 = np.array([e["R0"] for e in epochs])
+    if diagnostics_directory is not None:
+        np.savez_compressed(diagnostics_directory/'orientation-qualified-bins.npz',**bins)
 
     # magnetometer watchdog for slow yaw slip in the mount; segments where the WMM version sees slip
     # are left out of the gyro fit (the no-declination version is a reported cross-check). The choice
@@ -313,8 +351,15 @@ def analyze(path, th: Thresholds | None = None, *, fit_options=None) -> dict:
                           "coefficient_source": None if temp_ref is None else ("drift_run" if temp_mean is not None else "free_fit"),
                           "prior_dph_per_c": None if temp_prior is None else (np.asarray(temp_prior) * calib.RAD2DPH).tolist()}
 
+    if diagnostics_directory is not None:
+        arrays = {**bins,'mount_matrices':R0,'up_reference':up_ref}
+        if fwd is not None: arrays['forward'] = fwd
+        np.savez_compressed(diagnostics_directory/'fit-input.npz',**arrays)
     f = fit.fit(bins, fwd, bias_fn, prior_sigma, vertical_only=vertical_only, temp_ref=temp_ref, temp_prior=temp_prior,
                 temp_mean=temp_mean, **(fit_options or {}))
+    if diagnostics_directory is not None and '_rows' in f:
+        y,J,idx,_,z = f['_rows']
+        np.savez_compressed(diagnostics_directory/'fit-rows.npz',y=y,jacobian=J,bin_index=idx,parameters=z)
     if not f["convergence"]["converged"]:
         flags.append("inference_nonconvergence")
     if temp_ref is not None and temp_mean is None:

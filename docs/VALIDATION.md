@@ -48,7 +48,8 @@ First, the project needs a practical route and IMU-turn procedure that remains i
 after the full recording and analysis process. All required model comparisons must survive
 the allowed IMU and aircraft uncertainties, rather than only the simplest calculation.
 The [processing review](protocol-development-20261006/PROCESSING_REVIEW.md) identifies a timing
-correction to test and the need to detect aircraft motion during deliberate IMU turns.
+correction to test. Aircraft-motion checks during deliberate IMU turns are now implemented;
+a new campaign must assess their effect on useful data and orientation errors.
 
 Real IMUs must pass the [bench tests](BENCH.md). These include preserving a separately imposed
 slow rotation, repeatability on different days, drift, temperature and Bluetooth behavior.
@@ -77,9 +78,12 @@ positions and long gaps cannot be treated as measured fixes. Reported altitude a
 known reference or explicit uncertainty. The original recording remains unchanged and the
 external track remains a separate source with its own terms.
 
-Seven public or supplied position tracks have been prepared for development. They provide
-route information, not IMU evidence. Replaying their geometry with simulated IMU behavior
-still needs integration and checking.
+Seven public or supplied position tracks have been reviewed for development. Five have prepared
+windows; two remain blocked by coverage. Replaying their geometry with simulated IMU behavior
+is implemented and checked with controlled examples. It has not yet run on those actual routes.
+The sparse-fix replay preserves the original observations. A second replay explicitly assumes
+a path between nearby fixes and simulates frequent GPS; neither supplies real IMU evidence
+or enables operational use of an external track.
 
 ## Combining flights and partial evidence
 
@@ -87,6 +91,11 @@ A flight may separate two models while being unable to separate another pair. Ex
 code preserves that distinction and can abstain where information is missing. Combining such
 comparisons needs its own decision rules and validation. Repeated use of the same physical
 IMU must not be counted as independent instruments.
+
+The newer experimental comparison fits each model pair directly, so usefulness for that pair
+does not depend on a numerical choice about the complete three-model fit. It has its own
+convergence, uncertainty and calibration rules. It cannot reuse thresholds for the older
+comparison or supply a validated winner without fresh calibration and independent checking.
 
 ## Detailed research record
 

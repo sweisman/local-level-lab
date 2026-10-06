@@ -35,7 +35,8 @@ from lll.research_design import (INTERACTIONS, PARTITIONS, seed_range, realize, 
 DRIFTS = (0, -.5, .5, -1, 1, -2, 2, -5, 5)
 SCENARIOS = [f"drift{x:+g}" for x in DRIFTS] + ["smooth", "transition", "anisotropic", "correlated",
     "equator", "high_latitude", "dateline", "turn_dropout", "thermal", "long_drift", "hardware", *INTERACTIONS, "fuzz",
-    "bias_step", "bias_ramp", "bias_rw_high", "bias_settling", "bias_very_long", "bias_mixed", "wind"]
+    "bias_step", "bias_ramp", "bias_rw_high", "bias_settling", "bias_very_long", "bias_mixed", "wind",
+    "wind+bias_mixed", "wind+bias_mixed+correlated+thermal"]
 
 
 def scenario_options(name):
@@ -111,12 +112,15 @@ def summarize(records):
 
 
 def flight_run(truth, scenario, seed, sampling, block, boot, variant, same_side_up_turns=False,
-               *, partition="development", geometry="fixed", fit_options=None, design=None, decision_policy=None, pairwise_decision_policy=None):
+               *, partition="development", geometry="fixed", fit_options=None, design=None, decision_policy=None, pairwise_decision_policy=None,
+               diagnostics_directory=None):
     from test_analysis import HARDWARE_FAULTS
     seed_range(partition, seed)
     design = design or realize(seed, scenario, partition=partition, geometry=geometry, variant=variant,
                                same_side_up_turns=same_side_up_turns, hardware=HARDWARE_FAULTS)
     expected_streams = streams(seed, partition)
+    if design.get('geometry') == 'observed' and (partition != 'development' or decision_policy is not None or pairwise_decision_policy is not None):
+        raise ValueError('observed trajectory replay cannot apply empirical thresholds before domain enforcement')
     if design.get("design_version") == "simulation-design-1":
         expected_streams = {k: v for k, v in expected_streams.items() if k not in ("protocol", "missingness")}
     elif design.get("design_version") != "simulation-design-2":
@@ -150,7 +154,8 @@ def flight_run(truth, scenario, seed, sampling, block, boot, variant, same_side_
         with tempfile.TemporaryDirectory(prefix="lll-research-") as d:
             p = Path(d) / "session.zip"
             synthesize(p, truth, omega_in_fn=geometric_truth(truth), **simulator_options(design))
-            r = analyze(p, fit_options={**settings, **design["analysis_options"], **decision, "seed": design["streams"]["bootstrap"]})
+            options = {**settings, **design['analysis_options'], **decision, 'seed': design['streams']['bootstrap']}
+            r = analyze(p,fit_options=options,**({'diagnostics_directory':diagnostics_directory} if diagnostics_directory is not None else {}))
         if not r.get("fit"):
             return {**record, "failure": "no fit", "flags": r["flags"], "slip": r.get("slip"), "elapsed_s": time.monotonic()-start}
         f = r["fit"]
@@ -182,6 +187,7 @@ def flight_run(truth, scenario, seed, sampling, block, boot, variant, same_side_
                 "prior_sensitivity": f["prior_sensitivity"], "identifiability": f["identifiability"],
                 "design_identifiability": f.get("design_identifiability"),
                 "pairwise": pairs, "pairwise_three_model_winner": three_model_winner(pairs),
+                'pairwise_profile':f.get('pairwise_profile'),
                 "wmm_shift_sigma": (r.get("fit_no_wmm_exclusion") or {}).get("k_shift_sigma"),
                 "slip": r.get("slip"), "heading_diversity": r.get("heading_diversity"),
                 "flags": r["flags"]}
@@ -254,7 +260,11 @@ def main():
     ap.add_argument("--seeds", type=int, default=1)
     ap.add_argument("--seed", type=int)
     ap.add_argument("--partition", choices=list(PARTITIONS), default="development")
-    ap.add_argument("--geometry", choices=["fixed", "seeded", "stress"], default="seeded")
+    ap.add_argument("--geometry", choices=["fixed", "seeded", "stress",'observed'], default="seeded")
+    ap.add_argument('--trajectory',type=Path,help='frozen development trajectory replay specification')
+    ap.add_argument('--diagnostics-root',type=Path,help='retain complete per-task diagnostic artifacts')
+    ap.add_argument('--design-mode',choices=['anchor','envelope'],default='anchor')
+    ap.add_argument('--pairwise-method',choices=['observable_coordinate','profile'],default='observable_coordinate')
     ap.add_argument("--geometry-cells", nargs="+", help="preregister a subset of stress-cell IDs")
     ap.add_argument("--protocol", type=Path, help="geometry/turn protocol JSON; requires --geometry fixed")
     ap.add_argument("--list-geometry-cells", action="store_true", help="write the matrix without running simulations")
@@ -298,6 +308,16 @@ def main():
     ap.add_argument("--turn-edge-margin", type=float, default=5.)
     ap.add_argument("-o", type=Path, required=True)
     args = ap.parse_args()
+    if args.pairwise_method == 'profile' and args.bootstrap > 0 and any(
+            refit != 'nonlinear' for refit in args.bootstrap_refit):
+        ap.error('pair profiles with bootstrap require --bootstrap-refit nonlinear')
+    trajectory_input=json.loads(args.trajectory.read_text()) if args.trajectory else None
+    if (args.geometry=='observed') != (trajectory_input is not None):
+        ap.error('observed geometry requires --trajectory; other geometry cannot use it')
+    if args.geometry=='observed' and (args.partition!='development' or args.decision_policy or args.pairwise_decision_policy):
+        ap.error('observed replay is development only without empirical policies')
+    if args.pairwise_method=='profile' and args.design_mode!='envelope':
+        ap.error('pair profile requires --design-mode envelope')
     if args.scenarios and args.scenario != "drift+0":
         ap.error("use --scenarios instead of --scenario for an explicit flight subset")
     stress_cells = geometry_stress_matrix()
@@ -310,6 +330,7 @@ def main():
         ap.error("--protocol requires fixed flight geometry and its own turn schedule")
     geometry_cells = args.geometry_cells or [cell["id"] for cell in stress_cells] if args.geometry == "stress" else [None]
     if protocol is not None: geometry_cells = ["protocol-"+digest(protocol)]
+    if trajectory_input is not None: geometry_cells = ['trajectory-'+trajectory_input['trajectory_hash']]
     if args.geometry_cells and args.geometry != "stress": ap.error("--geometry-cells requires --geometry stress")
     if args.geometry == "stress" and (not set(geometry_cells) <= {cell["id"] for cell in stress_cells}
                                      or args.same_side_up_turns or args.turn_schedule is not None):
@@ -321,13 +342,14 @@ def main():
     if decision_policy: check_policy(decision_policy)
     pairwise_policy = json.loads(args.pairwise_decision_policy.read_text()) if args.pairwise_decision_policy else None
     if pairwise_policy: check_pairwise_policy(pairwise_policy, "pool" if args.scenario == "pool" else "flight")
-    config = {k: v for k, v in vars(args).items() if k not in ("o", "manifest", "write_manifest", "replay", "decision_policy", "pairwise_decision_policy", "development_campaign", "protocol")}
+    config = {k: v for k, v in vars(args).items() if k not in ("o", "manifest", "write_manifest", "replay", "decision_policy", "pairwise_decision_policy", "development_campaign", "protocol",'trajectory','diagnostics_root')}
+    config['trajectory_input']=trajectory_input
     config["protocol"] = protocol
     config["decision_policy_hash"] = decision_policy["policy_hash"] if decision_policy else None
     config["pairwise_decision_policy_hash"] = pairwise_policy["policy_hash"] if pairwise_policy else None
-    config["pairwise_evidence"] = bool(args.pairwise_evidence or pairwise_policy)
+    config["pairwise_evidence"] = bool(args.pairwise_evidence or pairwise_policy or args.pairwise_method=='profile')
     scenarios = sorted(set(args.scenarios)) if args.scenarios else SCENARIOS if args.scenario == "all" else [args.scenario]
-    if args.geometry == "stress" or protocol is not None:
+    if args.geometry in ('stress','observed') or protocol is not None:
         geometry_scenarios = {"equator", "high_latitude", "dateline", "turn_dropout", "turn_dropout_drift", "fuzz"}
         if args.scenario != "all" and set(scenarios) & geometry_scenarios:
             ap.error("stress cells and explicit protocols require nuisance-only scenarios")
@@ -341,6 +363,8 @@ def main():
                          forward_uncertainty=args.forward_uncertainty, crab_knot_seconds=crab_knot,
                          research_candidate=args.research_candidate or config["pairwise_evidence"], bias_model=bias, bias_knot_seconds=knot,
                          bias_rw_sigma_dph_sqrth=rw, rank_min_relative_margin=args.rank_min_relative_margin))
+        if args.design_mode!='anchor': jobs[-1]['design_mode']=args.design_mode
+        if args.pairwise_method!='observable_coordinate': jobs[-1]['pairwise_method']=args.pairwise_method
     jobs = list({digest(job): job for job in jobs}.values())
     operational_cells = sorted({decision_stratum({"candidate_id": digest(job), "variant": args.variant, "model_test_rank": rank})
                                 for job in jobs for rank in (args.model_test_ranks if candidate_settings(job) else [None])})
@@ -348,7 +372,8 @@ def main():
     attempt_cells = candidate_count*len(scenarios)*len(geometry_cells)*len(models.MODELS)
     family_size = attempt_cells
     if config["pairwise_evidence"]:
-        family_size += candidate_count*len(scenarios)*len(geometry_cells)*2*len(MODEL_PAIRS)
+        pair_candidates = len(jobs) if args.pairwise_method == 'profile' else candidate_count
+        family_size += pair_candidates*len(scenarios)*len(geometry_cells)*2*len(MODEL_PAIRS)
     if args.scenario == "pool" and config["pairwise_evidence"]:
         if decision_policy is not None: ap.error("summary pairwise pooling uses --pairwise-decision-policy")
         family_size = len(args.units)*2*len(MODEL_PAIRS)
@@ -441,6 +466,9 @@ def main():
     config["geometry_domain"] = [{key: value for key, value in cell.items() if key != "simulator"}
                                  for cell in stress_cells if cell["id"] in geometry_cells] if args.geometry == "stress" else None
     if protocol is not None: config["geometry_domain"] = [{"id": geometry_cells[0], **protocol}]
+    if trajectory_input is not None:
+        config['geometry_domain'] = [{'id':geometry_cells[0], 'trajectory_hash':trajectory_input['trajectory_hash'],
+                                     'mode':trajectory_input['mode'], 'evidence_use':'development only'}]
     if args.scenario == "pool": config["geometry"] = None
     config["operational_cells"] = operational_cells
     seeds = seed_range(args.partition, args.seed, args.seeds)
@@ -472,7 +500,10 @@ def main():
             records.append(flight_run(row["truth"], row["scenario"], row["seed"], row["sampling"], row["block"],
                                       row["fit_options"]["n_boot"], row["variant"], partition=row["partition"],
                                       design=row["design"], fit_options=row["fit_options"], decision_policy=decision_policy,
-                                      pairwise_decision_policy=pairwise_policy))
+                                      pairwise_decision_policy=pairwise_policy,
+                                      diagnostics_directory=None if args.diagnostics_root is None else
+                                      args.diagnostics_root/digest({'replay':True,'truth':row['truth'],
+                                          'design':row['design'],'settings':row['fit_options']})))
             records[-1]["replay"] = True
             save()
         return
@@ -490,12 +521,14 @@ def main():
                                          variant=args.variant, same_side_up_turns=args.same_side_up_turns,
                                          hardware=scenario_options("hardware") if scenario == "hardware" else None,
                                          turn_schedule=args.turn_schedule, turn_min_spacing=args.turn_min_spacing,
-                                         turn_edge_margin=args.turn_edge_margin, geometry_cell=geometry_cell, protocol=protocol)
+                                         turn_edge_margin=args.turn_edge_margin, geometry_cell=geometry_cell, protocol=protocol,
+                                         trajectory_input=trajectory_input)
                         records.append(flight_run(truth, scenario, seed, job["bootstrap_sampling"], job["block_length"], args.bootstrap, args.variant,
                                                   args.same_side_up_turns, partition=args.partition,
                                                   geometry=args.geometry, fit_options=settings, decision_policy=decision_policy,
                                                   pairwise_decision_policy=pairwise_policy,
-                                                  design=design))
+                                                  design=design,diagnostics_directory=None if args.diagnostics_root is None else
+                                                  args.diagnostics_root/digest({'truth':truth,'design':design,'settings':job})))
                         save()
                 save()
     print(f"{len(records)} runs in {time.monotonic()-start:.1f}s; {args.o}")

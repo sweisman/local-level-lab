@@ -48,7 +48,9 @@ When following a turn reminder, wait for steady cruise. Slowly turn the IMU to f
 opposite way, keeping the same side up, over about five seconds. Secure it again and confirm
 the turn in the app. Choose a steady period before, during and after the movement; avoid doing
 this while the aircraft banks or turns. Aircraft motion during the movement can be mistaken
-for a change in IMU orientation. Turning upside down
+for a change in IMU orientation. The analysis checks position data during the movement;
+if steady aircraft motion cannot be verified, later measurements may be unusable because
+the IMU orientation is uncertain. Turning upside down
 provides different, often less useful information; choose that option in Settings if it is the
 only movement the mount permits. Tap **I moved the IMU** if it is bumped unexpectedly.
 

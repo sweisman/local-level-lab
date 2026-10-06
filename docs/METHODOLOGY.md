@@ -8,7 +8,7 @@ specific Earth models along a flight path: a rotating globe, a stationary globe,
 flat disc. The position record describes where the aircraft went. The gyroscope measures turning.
 Each model is compared with the same recording.
 
-The difficult part is separating the small signal from the instrument and aircraft. A IMU
+The difficult part is separating the small signal from the instrument and aircraft. An IMU
 can drift, its mount can move, and wind can make the aircraft point away from its direction of
 travel. Allowing for these effects is essential, but a correction flexible enough to explain
 anything can also explain away the signal. The experiment needs a route and procedure that
@@ -39,7 +39,9 @@ positions helps separate orientation effects from gradual drift.
 
 Similar same-side-up turns during cruise can make useful differences in the flight measurements.
 They must be slow, recorded and followed by secure mounting. Turning during an aircraft maneuver
-can complicate the reconstruction; a timetable alone does not make a turn useful.
+can corrupt the reconstructed orientation; a timetable alone does not make a turn useful.
+The analysis checks GPS for aircraft motion during each movement. If that check fails or
+the position coverage is too sparse to verify it, the later orientation is treated as uncertain.
 
 ## Why do the route and wind matter?
 
@@ -69,6 +71,12 @@ effects. The development method checks this at each model prediction rather than
 on whichever model the noisy recording happens to favor. Retained data and reconstructed IMU
 orientation still affect that check, so it is not a guarantee based on the route alone.
 
+An experimental extension repeats the calculation with different wind-related pointing errors,
+uncertain forward direction and small changes in mounting direction. It keeps the weakest
+model separation found. A schedule-search tool can compare when to turn the IMU on a fixed
+route while avoiding aircraft maneuvers. These checks cover specified examples of uncertainty;
+they do not guarantee success under every possible condition.
+
 Only an informative recording can support a comparison. The method can report that one pair of
 models is distinguishable while another pair is not. That partial evidence does not establish
 a winner among all three. Its statistical decision rules still require independent validation.
@@ -83,6 +91,13 @@ Simulations are limited by what they assume. Real instrument measurements are st
 Development runs are used to find defects and choose a procedure. After those choices are fixed,
 new runs will set decision thresholds, and a separate set will test the resulting error rate.
 The same recordings cannot honestly serve all three purposes.
+
+Public airline tracks can now supply the route for a simulated recording. One replay keeps
+the original sparse position fixes and their missing accuracy information. Another assumes
+a smooth path between nearby observations and generates simulated frequent GPS measurements
+along it. Neither fills long gaps or treats provider estimates as observations. Wind changes
+the simulated aircraft's pointing direction while the observed ground route stays fixed.
+The generated IMU readings and frequent GPS remain assumptions, not measurements from that flight.
 
 ## Combining flights
 

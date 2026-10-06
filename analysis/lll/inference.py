@@ -348,6 +348,9 @@ class CandidateProblem:
 
 def design_information(problem):
     """Geometry-only tangent spaces at preregistered science anchors; never fitted gyro weights."""
+    if problem.settings.get('design_mode') == 'envelope':
+        from .design_envelope import envelope_information
+        return envelope_information(problem)
     assumptions = CANDIDATE_POLICY["design_assumptions"]
     weights = np.full(len(problem.y), (RAD2DPH/assumptions["sigma_bin_dph"])**2)
     anchors = {}
@@ -514,6 +517,10 @@ def candidate_fit(bins, fwd_b, bias_fn, prior_sigma, *, settings, vertical_only=
     bsl = problem.layout["bias"]
     crossden = np.sqrt(np.outer(np.diag(cov)[K], np.diag(cov)[bias_indices]))
     sensor_bias = {"model": "dynamic" if problem.dynamic_bias else "constant", "frame": "sensor"}
+    pair_profiles = None
+    if settings.get('pairwise_method') == 'profile':
+        from .profile_pairs import profile_evidence
+        pair_profiles = profile_evidence(problem,design,n_boot=n_boot,seed=seed,block=block,sampling=bootstrap_sampling)
     if problem.dynamic_bias:
         drift = z[problem.bias_drift_slice].reshape(-1, 3)
         body_design = np.kron(problem.bias_basis, np.eye(3)).reshape(n, 3, -1)
@@ -526,6 +533,7 @@ def candidate_fit(bins, fwd_b, bias_fn, prior_sigma, *, settings, vertical_only=
                            per_bin_drift_dph=(problem.bias_basis @ drift*RAD2DPH).tolist(),
                            per_bin_drift_sd_dph=(np.sqrt(np.maximum(variance, 0))*RAD2DPH).tolist())
     return {"convergence": {"converged": all(v["converged"] for v in problem.convergence), "fits": problem.convergence},
+            'pairwise_profile':pair_profiles,
             "design_identifiability": design,
             "mode": "vertical_only" if vertical_only else "3-axis", "n_bins": n, "n_rows": len(problem.y),
             "sigma_bin_dph": noise["global_sigma_dph"], "noise": noise,

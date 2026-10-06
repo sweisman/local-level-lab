@@ -122,7 +122,8 @@ def validate_records(campaign, partition):
         check_environment(row.get("numerical_environment"))
         if row.get("numerical_environment_hash", numerical_environment_hash()) != numerical_environment_hash():
             raise ValueError("record numerical environment hash mismatch")
-        if not row.get("failure") and row.get("eligibility_policy") != eligibility_provenance(is_candidate(row)):
+        if not row.get("failure") and row.get("eligibility_policy") != eligibility_provenance(is_candidate(row),
+                row.get('inference_policy',{}).get('settings',row.get('fit_options',{}))):
             raise ValueError("record eligibility policy mismatch; regenerate the campaign")
         key = (diagnostic_stratum({**row, "model_test_rank": None}), row["truth"], row["seed"])
         if key in seen: raise ValueError("duplicate simulation in evidence")

@@ -84,16 +84,18 @@ tracks remain in the plan, with their gaps/estimates, for coarse inspection. Pre
 are not certified cruise or scientific eligibility. Unconfirmed UTC and altitude references
 remain explicit; elapsed geometry alone does not align a real IMU recording.
 
-Actual observed-trajectory replay still needs implementation and checking before execution.
-Mount turns, airframe heading, wind, sensor noise and bias would be simulated assumptions,
-not recovered measurements. No GNSS accuracy is fabricated and no gaps are interpolated.
+Observed-trajectory replay is now implemented with controlled checks; execution on these tracks
+is still pending. [Core-pipeline preparation](../core-pipeline-20261006/README.md) freezes two
+explicit modes: original observed fixes, and simulated frequent GPS on an assumed path inside
+short observed intervals. Neither bridges long gaps or uses provider estimates as observations.
+Mount turns, airframe heading, wind, sensor noise and bias are simulated assumptions.
+Original accuracy remains unknown; the frequent-GPS mode has explicitly simulated accuracy.
 
 ## Frozen proposal and compute budget
 
 `calibration-proposed-manifest.json` preserves the earlier source, configuration, eligibility and
 one-thread numerical environment. It is now **stale**. `readiness.json` records current stage
-status and artifact hashes. Current source is
-`27e73b122c3a073357d4a03112da11779969a710bb3a6cc3eb06c333da52ad51`;
+status and artifact hashes. The original source freeze is historical;
 the protocol comparison used a new two-thread environment freeze. Review the final domain and
 refreeze before calibration. The historical proposal is not a final validation policy or run permission.
 
@@ -131,7 +133,8 @@ of estimated positions, rejection of holdouts/overlaps and conservative attempt 
 The previous Python CI fixture fix passed GitHub Actions before this preparation.
 
 Next use saved processing diagnostics and independent trajectory/attitude fixtures; additional
-flights require a new bounded compute budget. Observed-trajectory integration remains pending,
-then review/refreeze of the final domain. Fresh calibration, threshold freezing and independent
+flights require a new bounded compute budget. Observed-trajectory integration has controlled
+checks; a bounded real-route campaign and review/refreeze of the final domain remain pending.
+Fresh calibration, threshold freezing and independent
 validation follow only after separate compute authorization. Real IMU bench qualification and
 production promotion remain pending hardware/evidence.

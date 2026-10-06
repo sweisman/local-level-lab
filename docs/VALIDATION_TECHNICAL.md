@@ -5,6 +5,51 @@ and WMM sensitivity check. Dynamic crab, noise weighting, bootstrap dependence, 
 uncertainty and pooled significance remain research questions. Real slow-rate bench evidence and
 demonstrated false-rejection tails remain publication blockers after these software corrections.
 
+## Core-pipeline follow-up, 2026-10-06
+
+[Implementation and prospective inputs](core-pipeline-20261006/README.md) supersede earlier
+statements that trajectory integration, turn safeguards and diagnostic capture are pending.
+Historical campaign outcomes are unchanged. No actual-route replay, optimizer search,
+calibration or validation has run, and no further campaign allowance exists.
+
+`maneuvers.py` supplies the shared course-rate/bank-rate/climb/gap mask. Analysis checks the
+integrated turn interval and excludes unsafe/unverified later epochs; geometry search adds
+120 seconds of buffer. Optional diagnostics retain raw sessions, turn inputs, mount matrices,
+pre-selection/orientation-qualified bins, final fit arrays and failure metadata.
+
+`design_mode='envelope'` enables `nuisance-envelope-1`: all physical anchors, dynamic intercept/
+drift combinations or wind-coefficient corners/drifts, ±3 forward sigmas and individual ±1°
+mount epochs. Planning forward sigma is 5°. Fixed isotropic 3/6°/h noise changes information,
+not retention: SVDs at 6°/h suffice; information at 3°/h is four times larger. Cutoff and
+untruncated contrasts and limiting states are separate. Actual wind/dynamic crab knots are
+900/300 seconds; the historical timing audit used 300-second wind knots. This finite grid
+does not bound all nuisance trajectories or remove preprocessing dependence on gyro data.
+Geometry search uses beam 16 and worst dynamic/wind eligibility, margin, then information.
+Known assumed axes still require complete-pipeline confirmation.
+
+Five prepared routes have observed-fix and simulated-high-rate replay specs; two remain blocked.
+PCHIP is restricted to short observed intervals; estimated positions/long gaps split support.
+Reported height is assumed geometric. Wind preserves ground geometry and changes the air vector.
+The original lane preserves missing accuracies. Both harness and analyzer refuse empirical
+replay policies pending domain enforcement. New composable adversaries are wind+mixed bias
+and wind+mixed bias+correlated+thermal with independently named component RNG streams.
+
+`pairwise_method='profile'` requires the envelope and implements `pair-line-profile-1` along
+`k_b + theta (k_a-k_b)` with endpoints 0/1. It uses the untruncated envelope difference and
+its own free/endpoint nesting, nonlinear bootstrap and widened-prior checks, independent of
+global-rank eligibility. Integrity/selection checks remain. Flight threshold keys are
+`[candidate_id, variant, comparison, method]`; diagnostic rank is one. Pooling uses
+`pair-line-profile-reml-hk-1`, keeps repeated sessions within units and rejects mixed methods.
+Version-2 policies declare statistic methods. Fresh calibration is required; analytic
+endpoint p-values and uncalibrated winners remain development diagnostics.
+
+Preparation freezes 2,160 unrun evaluations and search bounds, with zero execution allowance.
+The ±10-minute controls violate spacing and are blocked; unsafe retained controls must abstain.
+New runtime/storage are unmeasured. Historical calibration plans are stale for this source.
+**177 focused checks passed in 5.97s.** Physical wind/TAS, modeled magnetic ambiguity,
+operational domain enforcement and sharded execution remain deferred. Default three-model
+rules and the science cutoff are preserved apart from the new orientation integrity safeguard.
+
 ## External flight tracks and missing GNSS
 
 The collection app now requires a selected operating airline, its flight number, the scheduled

@@ -73,3 +73,11 @@ Public guides explain the method and current evidence without requiring raw rese
 [technical validation record](VALIDATION_TECHNICAL.md), [technical bench checklist](BENCH_TECHNICAL.md)
 and [recording format](FORMAT.md) preserve equations, thresholds, commands and data contracts.
 [Contributing](../CONTRIBUTING.md) describes checks appropriate to a proposed change.
+
+## Experimental route replay and design
+
+The [core-pipeline handoff](core-pipeline-20261006/README.md) documents the new optional research
+paths and frozen prospective inputs. Preparation writes specifications and cost bounds without
+running flights. Geometry search uses assumed axes and a finite uncertainty grid; empirical
+policies remain unavailable for observed-track replay. A campaign or nontrivial optimizer search
+requires a separate compute budget. Keep at most two total numerical threads/workers.

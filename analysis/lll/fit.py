@@ -486,7 +486,14 @@ def fit(bins, fwd_b, bias_fn, prior_sigma, vertical_only=False, n_boot=300, seed
         decision_policy=None, decision_candidate_id=None, decision_variant=None,
         pairwise_decision_policy=None,
         rank_min_relative_margin=0.,
-        bias_model="constant", bias_knot_seconds=None, bias_rw_sigma_dph_sqrth=None):
+        bias_model="constant", bias_knot_seconds=None, bias_rw_sigma_dph_sqrth=None,
+        design_mode='anchor', pairwise_method='observable_coordinate'):
+    if design_mode not in ('anchor','envelope') or pairwise_method not in ('observable_coordinate','profile'):
+        raise ValueError('invalid design or pairwise method')
+    if pairwise_method == 'profile' and design_mode != 'envelope':
+        raise ValueError('pair profile requires nuisance-envelope design')
+    if pairwise_method == 'profile' and n_boot>0 and bootstrap_refit!='nonlinear':
+        raise ValueError('pair profile bootstrap requires complete nonlinear refits')
     settings = dict(crab_model=crab_model, noise_model=noise_model, bootstrap_refit=bootstrap_refit,
                     forward_uncertainty=forward_uncertainty, crab_sigma_deg=crab_sigma_deg,
                     bootstrap_sampling=bootstrap_sampling, block_length=block_length, n_boot=n_boot,
@@ -500,6 +507,8 @@ def fit(bins, fwd_b, bias_fn, prior_sigma, vertical_only=False, n_boot=300, seed
     if not np.isfinite(rank_min_relative_margin) or rank_min_relative_margin < 0:
         raise ValueError("rank stability margin must be finite and nonnegative")
     settings["rank_min_relative_margin"] = rank_min_relative_margin
+    if design_mode != 'anchor': settings['design_mode'] = design_mode
+    if pairwise_method != 'observable_coordinate': settings['pairwise_method'] = pairwise_method
     if design_only and (decision_thresholds is not None or decision_policy is not None or pairwise_decision_policy is not None):
         raise ValueError("design-only evaluation cannot apply model decisions")
     if design_only:
@@ -525,7 +534,7 @@ def fit(bins, fwd_b, bias_fn, prior_sigma, vertical_only=False, n_boot=300, seed
     else:
         result = _legacy_fit(bins, fwd_b, bias_fn, prior_sigma, **common)
     result["inference_policy"] = provenance(settings)
-    result["eligibility_policy"] = eligibility_provenance(candidate)
+    result["eligibility_policy"] = eligibility_provenance(candidate, settings)
     result["delta_chi2_raw"] = ({m: max(v - result["chi2_free"], 0.) for m, v in result["chi2"].items()}
                                 if not design_only else None)
     if candidate:

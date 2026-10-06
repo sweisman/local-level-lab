@@ -56,6 +56,12 @@ discarded by the numerical cutoff. Neither effect alone has been shown to explai
 The [processing review](protocol-development-20261006/PROCESSING_REVIEW.md) describes the findings
 and an untested timing correction.
 
+The follow-up software now checks aircraft motion during IMU turns, can replay observed routes
+with simulated IMU behavior, and tests model separation over several wind and mounting
+conditions. It also supports direct comparisons of individual model pairs and simultaneous
+wind and changing IMU errors. Controlled software checks cover these additions. No new
+flight campaign has run, so the results above remain the latest campaign evidence.
+
 ## What the evidence does not establish
 
 There are no completed real-IMU bench measurements in the current project work. Public flight

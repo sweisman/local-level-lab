@@ -45,13 +45,23 @@ CANDIDATE_POLICY = {
 }
 
 
-def eligibility_provenance(candidate=False):
-    policy = CANDIDATE_POLICY if candidate else {"version": POLICY_VERSION, "exclusions": PRIMARY_EXCLUSIONS}
+def candidate_policy(settings=None):
+    if (settings or {}).get('design_mode') == 'envelope':
+        from .design_envelope import ENVELOPE_ASSUMPTIONS
+        return {**CANDIDATE_POLICY, 'version':'candidate-envelope-1', 'design_assumptions':ENVELOPE_ASSUMPTIONS,
+                'pairwise_method':(settings or {}).get('pairwise_method','observable_coordinate')}
+    return CANDIDATE_POLICY
+
+
+def eligibility_provenance(candidate=False, settings=None):
+    policy = candidate_policy(settings) if candidate else {"version": POLICY_VERSION, "exclusions": PRIMARY_EXCLUSIONS}
     return {"version": policy["version"], "policy_hash": digest(policy)}
 
 
 def eligibility_policies():
-    return {"legacy": eligibility_provenance(), "candidate": eligibility_provenance(True)}
+    return {"legacy": eligibility_provenance(), "candidate": eligibility_provenance(True),
+            'envelope':eligibility_provenance(True,{'design_mode':'envelope'}),
+            'profile':eligibility_provenance(True,{'design_mode':'envelope','pairwise_method':'profile'})}
 
 
 def is_candidate(fit):
@@ -60,7 +70,7 @@ def is_candidate(fit):
 
 
 def candidate_settings(settings):
-    return bool(settings.get("design_only") or settings.get("research_candidate")
+    return bool(settings.get('design_mode') == 'envelope' or settings.get('pairwise_method') == 'profile' or settings.get("design_only") or settings.get("research_candidate")
                 or settings.get("crab_model", "constant") != "constant"
                 or settings.get("noise_model", "global") != "global"
                 or settings.get("bootstrap_refit", "linearized") != "linearized"
@@ -101,31 +111,54 @@ def scientific_exclusions(result, comparison=None):
     if not fit:
         return ["no in-flight fit"]
     candidate = is_candidate(fit)
+    settings = fit.get('inference_policy',{}).get('settings',{})
+    pair = (fit.get('pairwise_profile') or {}).get(comparison) if comparison else None
+    profile_requested = comparison is not None and settings.get('pairwise_method') == 'profile'
+    if pair and not profile_requested:
+        return ['pair profile settings mismatch']
     policy = CANDIDATE_POLICY["exclusions"] if candidate else PRIMARY_EXCLUSIONS
     reasons = []
-    if not fit.get("convergence", {}).get("converged", False):
+    if not pair and not fit.get("convergence", {}).get("converged", False):
         reasons.append("inference did not converge")
     if not candidate and fit.get("eligibility_policy") is not None and fit["eligibility_policy"] != eligibility_provenance():
         reasons.append("eligibility policy mismatch; reprocess")
-    reasons.extend(policy[f] for f in sorted(set(result.get("flags", [])) & policy.keys()))
+    ignored = {'prior_dominated','crab_sensitive','inference_nonconvergence'} if pair else set()
+    reasons.extend(policy[f] for f in sorted((set(result.get("flags", []))-ignored) & policy.keys()))
     if candidate:
-        if fit.get("eligibility_policy") != eligibility_provenance(True):
+        if fit.get("eligibility_policy") != eligibility_provenance(True,settings):
             reasons.append("candidate eligibility policy mismatch; reprocess")
         design = fit.get("design_identifiability") or {}
-        if design.get("assumptions") != CANDIDATE_POLICY["design_assumptions"]:
+        if design.get("assumptions") != candidate_policy(settings)["design_assumptions"]:
             reasons.append("design identifiability assumptions mismatch")
-        if not design_eligibility(design, comparison)["all_estimable"]:
+        if pair:
+            reasons.extend(pair.get('exclusions',[]))
+            if not pair.get('converged'): reasons.append('pair profile did not converge')
+            if pair.get('method') != 'pair-line-profile-1' or settings.get('design_mode') != 'envelope':
+                reasons.append('pair profile method mismatch')
+            pair_design = {**design, 'model_contrast_information':design.get('untruncated_contrasts',{})}
+            if not design_eligibility(pair_design,comparison)['all_estimable']:
+                reasons.append('pair contrast not identified')
+            if (not isinstance(pair.get('sd'),(float,int)) or not np.isfinite(pair['sd']) or pair['sd'] <= 0
+                    or not isinstance(pair.get('estimate'),(float,int)) or not np.isfinite(pair['estimate'])):
+                reasons.append('pair coordinate unavailable')
+            requested = settings.get('n_boot', fit.get('bootstrap',{}).get('requested'))
+            boot = pair.get('bootstrap',{})
+            if requested is None or boot.get('requested') != requested or (requested > 0 and boot.get('bootstrap_valid') is not True):
+                reasons.append('inadequate pair bootstrap convergence')
+        elif profile_requested:
+            reasons.append('pair profile unavailable')
+        elif not design_eligibility(design, comparison)["all_estimable"]:
             reasons.append("model contrast not identified")
-        if (fit.get("model_test_rank") or 0) < CANDIDATE_POLICY["minimum_model_test_rank"]:
+        if not pair and (fit.get("model_test_rank") or 0) < CANDIDATE_POLICY["minimum_model_test_rank"]:
             reasons.append("no identifiable model-test subspace")
         settings = fit.get("inference_policy", {}).get("settings", {})
         required_margin = settings.get("rank_min_relative_margin", 0.)
         information = fit.get("identifiability") or {}
         margin, cutoff = information.get("rank_boundary_margin"), information.get("rank_threshold")
-        if required_margin > 0 and (margin is None or not cutoff or margin/cutoff < required_margin):
+        if not pair and required_margin > 0 and (margin is None or not cutoff or margin/cutoff < required_margin):
             reasons.append("unstable model-test rank")
         requested = settings.get("n_boot", fit.get("bootstrap", {}).get("requested"))
-        if requested is None or (requested > 0 and fit.get("bootstrap", {}).get("bootstrap_valid") is not True):
+        if not pair and (requested is None or (requested > 0 and fit.get("bootstrap", {}).get("bootstrap_valid") is not True)):
             reasons.append("inadequate bootstrap convergence")
     if fit.get("decision_unavailable_stratum") and comparison is None:
         reasons.append("uncalibrated model-test rank")
@@ -144,7 +177,8 @@ def decision_stratum(row):
 
 def design_eligibility(report, comparison=None):
     criterion = contrast_eligibility(report, comparison)
-    if report.get("assumptions") != CANDIDATE_POLICY["design_assumptions"]:
+    from .design_envelope import ENVELOPE_ASSUMPTIONS
+    if report.get("assumptions") not in (CANDIDATE_POLICY["design_assumptions"], ENVELOPE_ASSUMPTIONS):
         criterion.update(valid=False, all_estimable=False, worst_margin=None, worst_information=None, limiting_contrast=None)
     return criterion
 BENCH_CHECKS = ("decode", "sample_rate", "scale", "autozero", "range", "stability",

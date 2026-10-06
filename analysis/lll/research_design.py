@@ -94,7 +94,27 @@ def trajectory(spec):
     raise ValueError("unknown crab trajectory")
 
 
-def scenario(name, rng=None, duration_min=90., protocol_rng=None, missingness_rng=None):
+def scenario(name, rng=None, duration_min=90., protocol_rng=None, missingness_rng=None, component_seeds=None):
+    if '+' in name and not name.startswith('drift'):
+        components = sorted(set(name.split('+')))
+        if len(components) != len(name.split('+')):
+            raise ValueError('duplicate nuisance component')
+        supported = {'wind', 'bias_mixed', 'correlated', 'thermal'}
+        if not set(components) <= supported:
+            raise ValueError('unsupported nuisance component combination')
+        opts, analysis, crab = {}, {}, {'kind': 'linear', 'rate_dph': 0.}
+        for component in components:
+            root = 0 if rng is None else int(digest(plain(rng.bit_generator.state))[:8], 16)
+            sub_seed = (component_seeds or {}).get(component, int(np.random.SeedSequence(
+                [root, int(digest(component)[:8], 16)]).generate_state(1)[0]))
+            o, c, a = scenario(component, np.random.default_rng(sub_seed), duration_min, protocol_rng, missingness_rng)
+            for destination, values in ((opts, o), (analysis, a)):
+                if set(destination) & set(values):
+                    raise ValueError('conflicting nuisance components')
+                destination.update(values)
+            if c != crab:
+                raise ValueError('conflicting crab trajectories')
+        return opts, crab, analysis
     opts, analysis = {}, {}
     crab = {"kind": "linear", "rate_dph": 0.}
     if name.startswith("drift"):
@@ -163,7 +183,7 @@ def protocol_geometry(value):
 
 def realize(seed, scenario_name, *, partition="development", geometry="seeded", variant="spp",
             same_side_up_turns=False, hardware=None, turn_schedule=None, turn_min_spacing=10., turn_edge_margin=5.,
-            geometry_cell=None, protocol=None):
+            geometry_cell=None, protocol=None, trajectory_input=None):
     seeds = streams(seed, partition)
     # Resolve simulator defaults as well: replay does not silently acquire new defaults.
     opts = {k: plain(p.default) for k, p in inspect.signature(synthesize).parameters.items()
@@ -176,7 +196,14 @@ def realize(seed, scenario_name, *, partition="development", geometry="seeded", 
         if same_side_up_turns or turn_schedule is not None:
             raise ValueError("stress cells preregister their own turn schedules")
         opts.update(cells[geometry_cell]["simulator"])
-    elif geometry != "fixed": raise ValueError("geometry must be fixed, seeded or stress")
+    elif geometry == 'observed':
+        from .trajectory import TrackReplay
+        if partition != 'development' or trajectory_input is None or protocol is not None:
+            raise ValueError('observed trajectory replay is development only with a frozen trajectory input')
+        replay = TrackReplay(trajectory_input)
+        opts.update(trajectory_input=trajectory_input, legs=[[0., replay.duration/60.]])
+        geometry_cell = 'trajectory-'+trajectory_input['trajectory_hash']
+    elif geometry != "fixed": raise ValueError("geometry must be fixed, seeded, stress or observed")
     if protocol is not None:
         if geometry != "fixed" or same_side_up_turns or turn_schedule is not None:
             raise ValueError("protocol requires fixed geometry and its own turn schedule")
@@ -188,12 +215,14 @@ def realize(seed, scenario_name, *, partition="development", geometry="seeded", 
     if geometry == "seeded":
         opts["index_turns"] = random_turns(np.random.default_rng(seeds["protocol"]), duration)
         opts["gnss_dropouts"] = random_gaps(np.random.default_rng(seeds["missingness"]), duration)
+    component_seeds = {c: int(np.random.SeedSequence([seeds['nuisance'], int(digest(c)[:8], 16)]).generate_state(1)[0])
+                       for c in sorted(scenario_name.split('+'))} if '+' in scenario_name and not scenario_name.startswith('drift') else {}
     options, crab, analysis = scenario(scenario_name, np.random.default_rng(seeds["nuisance"]), duration,
-                                     np.random.default_rng(seeds["protocol"]), np.random.default_rng(seeds["missingness"]))
+                                     np.random.default_rng(seeds["protocol"]), np.random.default_rng(seeds["missingness"]), component_seeds)
     if scenario_name == "hardware":
         if hardware is None: raise ValueError("hardware fixture must be provided")
         options.update(plain(hardware))
-    if (geometry == "stress" or protocol is not None) and any(key in options for key in ("lat0", "lon0", "legs", "speed", "index_turns")):
+    if (geometry in ('stress','observed') or protocol is not None) and any(key in options for key in ("lat0", "lon0", "legs", "speed", "index_turns")):
         raise ValueError("scenario overrides preregistered geometry; use a nuisance-only scenario")
     opts.update(options)
     duration = sum(l[1] for l in opts["legs"])
@@ -208,6 +237,7 @@ def realize(seed, scenario_name, *, partition="development", geometry="seeded", 
     return plain(dict(design_version=DESIGN_VERSION, seed=seed, partition=partition, streams=seeds,
                       geometry=geometry, scenario=scenario_name, simulator=opts, crab_trajectory=crab,
                       geometry_cell=geometry_cell,
+                      **({'nuisance_component_streams': component_seeds} if component_seeds else {}),
                       analysis_options=analysis))
 
 
@@ -232,6 +262,8 @@ def implementation_hash():
              "analysis/lll/collate.py", "analysis/tests/research.py", "analysis/tests/optimize_turns.py",
              "analysis/tests/truthgen.py", "analysis/tests/development_campaign.py")
     paths += ("analysis/lll/calib.py", "analysis/lll/drift.py", "analysis/lll/models.py",
+              "analysis/lll/maneuvers.py", "analysis/lll/trajectory.py", "analysis/lll/design_envelope.py",
+              "analysis/lll/profile_pairs.py", "analysis/lll/design_geometry.py",
               "analysis/lll/runtime.py",
               "analysis/lll/rank_sweep.py",
               "analysis/lll/pairwise.py",

@@ -66,6 +66,52 @@ Use tool output limits or scripts that print less.
 
 ### Current state and documentation — 2026-10-06
 
+**Core-pipeline implementation (supersedes the source/pending-work statements below):**
+The authorized pass implements shared aircraft-motion checks, diagnostics retention, observed
+trajectory replay, a finite nuisance envelope and geometry-only turn optimizer, composable
+wind/bias/noise/thermal adversaries, and opt-in direct pair-line profiles with separate calibration
+and compatible pooling. No new campaign/search/calibration/validation is authorized or run.
+Do not launch the prospective plan just because it has a manifest.
+
+New scientific modules: `analysis/lll/maneuvers.py`, `trajectory.py`, `design_envelope.py`,
+`design_geometry.py`, `profile_pairs.py`. New checks: `analysis/tests/test_core_pipeline.py`.
+Preparation-only tool: `analysis/tests/prepare_core_pipeline.py`. Documented corpus:
+`docs/core-pipeline-20261006/README.md`, `proposal.json`, `optimizer-estimates.json`,
+and the ten explicitly generated specs in its `trajectories/` directory. The proposal records
+the current implementation/config/policy/two-thread environment, source archives and input hashes.
+Verification: 177 focused checks passed in 5.97s. Current source hash is
+`194a1c6ed0762dc8673adccee615d86d325cf44fc3079f0b251db4bbf46e629a`;
+prospective manifest hash is `7a5c3a8f592eca621f9e0edca034fbd038c4815028752c3a45f9aa56319fc2aa`.
+The user subsequently authorized committing and pushing this implementation together with the
+prior local audit commit `bc00ec0`, then continuing development. Further campaign execution,
+calibration and promotion still require separate authorization. New development edits after
+that commit remain separate from this completed core-pipeline unit.
+Five archived tracks have two replay modes each; two stay coverage-blocked. No actual-route
+simulation has run. Original observations preserve unknown accuracy; dense observations and
+the latent short-interval path are simulated assumptions. Long gaps and provider estimates
+remain unsupported. The recorded ground path stays fixed under injected wind.
+
+The maneuver guard rejects unsafe or unverified integrated IMU turns, excludes later uncertain
+epochs and retains an integrity exclusion. Default analysis/three-model rules and the science
+rank cutoff are otherwise preserved. Experimental `design_mode='envelope'` and
+`pairwise_method='profile'` have new identities; old thresholds cannot be reused. Profiles use
+their own convergence/bootstrap/prior gates and untruncated pair differences, while hardware,
+orientation and selection checks still apply. Requested profile bootstrap must be nonlinear.
+Observed replay cannot apply empirical policies in the harness or analyzer until calibrated
+domain enforcement exists. Known axes in cheap design search do not certify reconstructed axes.
+
+Next: review the prepared timing controls and finite envelope, obtain a separately bounded pilot
+budget for new runtime/storage measurement, then real-route replay/search and complete-pipeline
+comparisons. The ±10-minute single-turn controls violate the unchanged spacing rule and are
+recorded as blocked. Unsafe timing controls must abstain, never become recommendations.
+Physical wind/TAS fitting, modeled magnetic ambiguity, operational domain enforcement and a
+sharded runner were explicitly deferred. Keep the watchdog exclusions. No production promotion,
+fresh calibration, git commit or push is authorized by this implementation request.
+
+Historical source freezes and cost plans below remain historical; they are stale for new runs.
+All completed allowances are exhausted. Use at most two total CPU threads; further calibration
+requires final domain/source/environment approval, fresh calibration, then independent validation.
+
 **Subsequent saved-processing audit (no additional flights or fits):** the user authorized
 the proposed diagnostic work after publication of `314c1b7`. New tool/tests:
 `analysis/tests/audit_processing.py`, `analysis/tests/test_processing_audit.py`.

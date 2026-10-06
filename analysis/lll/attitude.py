@@ -188,7 +188,7 @@ def turn_rotation(t_s, gyro_b, t_event, window_s=300.0, pad_s=1.0, sat=None, exp
     return R, {"t0_s": float(a), "t1_s": float(b), "angle_deg": angle, "saturated_samples": n_sat}
 
 
-def mount_epochs(t_s, gyro_b, events_s, sat=None, expected_period=None):
+def mount_epochs(t_s, gyro_b, events_s, sat=None, expected_period=None, aircraft_motion=None):
     """Split the flight at deliberate turns and bumps. Returns a list of epochs
     {t0_s, t1_s, R0}, where R0 maps that epoch's IMU frame to the first epoch's (v_0 = R0 v),
     plus the intervals to exclude while the IMU was being turned."""
@@ -210,8 +210,12 @@ def mount_epochs(t_s, gyro_b, events_s, sat=None, expected_period=None):
             continue
         epochs[-1]["t1_s"] = info["t0_s"]
         consumed_until = info["t1_s"]
+        if aircraft_motion is not None:
+            from .maneuvers import turn_motion_check
+            info['aircraft_motion'] = turn_motion_check(aircraft_motion, info['t0_s'], info['t1_s'])
         epochs.append({"t0_s": info["t1_s"], "R0": epochs[-1]["R0"] @ R, "turn": {"kind": kind, **info}})
-        if info.get("unresolved_gap") or info.get("saturated_samples"):
+        if (info.get("unresolved_gap") or info.get("saturated_samples") or
+                info.get('aircraft_motion', {}).get('safe') is False):
             epochs[-1]["orientation_unresolved"] = True
         exclude.append((info["t0_s"], max(te, info["t1_s"]) + 1.0))
     epochs[-1]["t1_s"] = np.inf

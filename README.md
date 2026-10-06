@@ -101,8 +101,15 @@ but neither the old nor revised schedule passed every comparison. These are usef
 they show what the experimental design still has to solve.
 
 Independent motion checks have since confirmed that turning the IMU while the aircraft turns
-can corrupt the recovered IMU orientation. A corrected timing schedule is ready for review,
-but its performance through the complete analysis has not been tested.
+can corrupt the recovered IMU orientation. The analysis now refuses to trust that turn when
+GPS shows an aircraft maneuver or cannot verify steady motion. Later data with uncertain
+orientation are excluded.
+
+The next research tools are implemented and checked with small controlled examples. They
+can replay actual airline routes with simulated IMU behavior, compare turn schedules while
+allowing several plausible wind and mounting conditions, and preserve evidence about individual
+model pairs. Five of seven archived tracks have usable development windows; two remain blocked
+by missing observations. These tools have not yet been tested in a new flight campaign.
 
 Readable summaries are in [Evidence so far](docs/EVIDENCE.md) and
 [What still needs validation](docs/VALIDATION.md).

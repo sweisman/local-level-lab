@@ -1,0 +1,493 @@
+[
+  {
+    "track_id": "2025-09-01-etihad-10-ord-auh",
+    "upper_bound_schedules": 385,
+    "upper_bound_fits": 0,
+    "upper_bound_anchor_svd_evaluations": 1143450,
+    "feasible_grid_min": [
+      10.0,
+      15.0,
+      30.0,
+      40.0
+    ],
+    "maneuver_buffer_s": 120.0,
+    "comparison": null,
+    "implementation_hash": "194a1c6ed0762dc8673adccee615d86d325cf44fc3079f0b251db4bbf46e629a",
+    "numerical_environment": {
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "thread_settings": {
+        "OPENBLAS_NUM_THREADS": "2",
+        "OMP_NUM_THREADS": "2",
+        "MKL_NUM_THREADS": "2"
+      }
+    },
+    "numerical_environment_hash": "52cba9baed64e4096cc4b0bba352dbe3a3a366127a70ebcb4aa24fd8a91a8c98",
+    "input_designs_hash": "f999fe874940e25d5fd584931802f37727cc01b0066b8f8ada71673f57dd913b",
+    "envelope_assumptions": {
+      "version": "nuisance-envelope-1",
+      "anchors": [
+        "sphere_rotating",
+        "sphere_still",
+        "flat_still"
+      ],
+      "sigma_bin_dph": [
+        3.0,
+        6.0
+      ],
+      "prior_multiplier": 3.0,
+      "planning_forward_sigma_deg": 5.0,
+      "epoch_yaw_deg": 1.0,
+      "nuisance_state": "dynamic intercept/drift grid or wind coefficient corners and individual drifts",
+      "weighting": "fixed isotropic design noise; no fitted gyro coefficients or residual weights",
+      "limitations": "Finite development grid, not a bound over every admissible nuisance trajectory"
+    },
+    "evidence_scope": "finite assumed-geometry envelope; no simulator, fit, power or acceptance certification",
+    "control_turn_checks": [
+      {
+        "minute": 5.0,
+        "safe": false,
+        "reason": "aircraft maneuver",
+        "evidence": [
+          {
+            "start_s": 250.0,
+            "end_s": 492.0,
+            "reason": "aircraft maneuver"
+          }
+        ]
+      },
+      {
+        "minute": 25.0,
+        "safe": false,
+        "reason": "aircraft maneuver",
+        "evidence": [
+          {
+            "start_s": 1244.0,
+            "end_s": 1683.0,
+            "reason": "aircraft maneuver"
+          }
+        ]
+      },
+      {
+        "minute": 45.0,
+        "safe": false,
+        "reason": "aircraft maneuver",
+        "evidence": [
+          {
+            "start_s": 2525.0,
+            "end_s": 4510.0,
+            "reason": "aircraft maneuver"
+          }
+        ]
+      },
+      {
+        "minute": 65.0,
+        "safe": false,
+        "reason": "aircraft maneuver",
+        "evidence": [
+          {
+            "start_s": 2525.0,
+            "end_s": 4510.0,
+            "reason": "aircraft maneuver"
+          }
+        ]
+      }
+    ],
+    "prospective_objectives": [
+      "all contrasts",
+      "sphere_rotating_vs_sphere_still",
+      "sphere_rotating_vs_flat_still",
+      "sphere_still_vs_flat_still"
+    ]
+  },
+  {
+    "track_id": "2025-08-19-etihad-9-auh-ord",
+    "upper_bound_schedules": 1,
+    "upper_bound_fits": 0,
+    "upper_bound_anchor_svd_evaluations": 2970,
+    "feasible_grid_min": [],
+    "maneuver_buffer_s": 120.0,
+    "comparison": null,
+    "implementation_hash": "194a1c6ed0762dc8673adccee615d86d325cf44fc3079f0b251db4bbf46e629a",
+    "numerical_environment": {
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "thread_settings": {
+        "OPENBLAS_NUM_THREADS": "2",
+        "OMP_NUM_THREADS": "2",
+        "MKL_NUM_THREADS": "2"
+      }
+    },
+    "numerical_environment_hash": "52cba9baed64e4096cc4b0bba352dbe3a3a366127a70ebcb4aa24fd8a91a8c98",
+    "input_designs_hash": "1796f5b85dd453c50920e4626801706bac70706c2fbed3082177e561aca8e70d",
+    "envelope_assumptions": {
+      "version": "nuisance-envelope-1",
+      "anchors": [
+        "sphere_rotating",
+        "sphere_still",
+        "flat_still"
+      ],
+      "sigma_bin_dph": [
+        3.0,
+        6.0
+      ],
+      "prior_multiplier": 3.0,
+      "planning_forward_sigma_deg": 5.0,
+      "epoch_yaw_deg": 1.0,
+      "nuisance_state": "dynamic intercept/drift grid or wind coefficient corners and individual drifts",
+      "weighting": "fixed isotropic design noise; no fitted gyro coefficients or residual weights",
+      "limitations": "Finite development grid, not a bound over every admissible nuisance trajectory"
+    },
+    "evidence_scope": "finite assumed-geometry envelope; no simulator, fit, power or acceptance certification",
+    "control_turn_checks": [
+      {
+        "minute": 5.0,
+        "safe": false,
+        "reason": "aircraft maneuver",
+        "evidence": [
+          {
+            "start_s": -96.0,
+            "end_s": 4304.0,
+            "reason": "aircraft maneuver"
+          }
+        ]
+      },
+      {
+        "minute": 25.0,
+        "safe": false,
+        "reason": "aircraft maneuver",
+        "evidence": [
+          {
+            "start_s": -96.0,
+            "end_s": 4304.0,
+            "reason": "aircraft maneuver"
+          }
+        ]
+      },
+      {
+        "minute": 45.0,
+        "safe": false,
+        "reason": "aircraft maneuver",
+        "evidence": [
+          {
+            "start_s": -96.0,
+            "end_s": 4304.0,
+            "reason": "aircraft maneuver"
+          }
+        ]
+      },
+      {
+        "minute": 65.0,
+        "safe": false,
+        "reason": "aircraft maneuver",
+        "evidence": [
+          {
+            "start_s": -96.0,
+            "end_s": 4304.0,
+            "reason": "aircraft maneuver"
+          }
+        ]
+      }
+    ],
+    "prospective_objectives": [
+      "all contrasts",
+      "sphere_rotating_vs_sphere_still",
+      "sphere_rotating_vs_flat_still",
+      "sphere_still_vs_flat_still"
+    ]
+  },
+  {
+    "track_id": "2025-08-19-aa-1433-ord-lax",
+    "upper_bound_schedules": 1,
+    "upper_bound_fits": 0,
+    "upper_bound_anchor_svd_evaluations": 2970,
+    "feasible_grid_min": [],
+    "maneuver_buffer_s": 120.0,
+    "comparison": null,
+    "implementation_hash": "194a1c6ed0762dc8673adccee615d86d325cf44fc3079f0b251db4bbf46e629a",
+    "numerical_environment": {
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "thread_settings": {
+        "OPENBLAS_NUM_THREADS": "2",
+        "OMP_NUM_THREADS": "2",
+        "MKL_NUM_THREADS": "2"
+      }
+    },
+    "numerical_environment_hash": "52cba9baed64e4096cc4b0bba352dbe3a3a366127a70ebcb4aa24fd8a91a8c98",
+    "input_designs_hash": "03bd8556e620615257570cfe04d79bf0cf185a92098bc1b1888c3ec977dd973a",
+    "envelope_assumptions": {
+      "version": "nuisance-envelope-1",
+      "anchors": [
+        "sphere_rotating",
+        "sphere_still",
+        "flat_still"
+      ],
+      "sigma_bin_dph": [
+        3.0,
+        6.0
+      ],
+      "prior_multiplier": 3.0,
+      "planning_forward_sigma_deg": 5.0,
+      "epoch_yaw_deg": 1.0,
+      "nuisance_state": "dynamic intercept/drift grid or wind coefficient corners and individual drifts",
+      "weighting": "fixed isotropic design noise; no fitted gyro coefficients or residual weights",
+      "limitations": "Finite development grid, not a bound over every admissible nuisance trajectory"
+    },
+    "evidence_scope": "finite assumed-geometry envelope; no simulator, fit, power or acceptance certification",
+    "control_turn_checks": [
+      {
+        "minute": 5.0,
+        "safe": false,
+        "reason": "aircraft maneuver",
+        "evidence": [
+          {
+            "start_s": -42.0,
+            "end_s": 321.0,
+            "reason": "aircraft maneuver"
+          }
+        ]
+      },
+      {
+        "minute": 25.0,
+        "safe": false,
+        "reason": "aircraft maneuver",
+        "evidence": [
+          {
+            "start_s": 1383.0,
+            "end_s": 1685.0,
+            "reason": "aircraft maneuver"
+          }
+        ]
+      },
+      {
+        "minute": 45.0,
+        "safe": false,
+        "reason": "aircraft maneuver",
+        "evidence": [
+          {
+            "start_s": 2570.0,
+            "end_s": 4612.0,
+            "reason": "aircraft maneuver"
+          }
+        ]
+      },
+      {
+        "minute": 65.0,
+        "safe": false,
+        "reason": "aircraft maneuver",
+        "evidence": [
+          {
+            "start_s": 2570.0,
+            "end_s": 4612.0,
+            "reason": "aircraft maneuver"
+          }
+        ]
+      }
+    ],
+    "prospective_objectives": [
+      "all contrasts",
+      "sphere_rotating_vs_sphere_still",
+      "sphere_rotating_vs_flat_still",
+      "sphere_still_vs_flat_still"
+    ]
+  },
+  {
+    "track_id": "2026-10-02-icelandair-680-sea-kef",
+    "upper_bound_schedules": 97,
+    "upper_bound_fits": 0,
+    "upper_bound_anchor_svd_evaluations": 288090,
+    "feasible_grid_min": [
+      45.0
+    ],
+    "maneuver_buffer_s": 120.0,
+    "comparison": null,
+    "implementation_hash": "194a1c6ed0762dc8673adccee615d86d325cf44fc3079f0b251db4bbf46e629a",
+    "numerical_environment": {
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "thread_settings": {
+        "OPENBLAS_NUM_THREADS": "2",
+        "OMP_NUM_THREADS": "2",
+        "MKL_NUM_THREADS": "2"
+      }
+    },
+    "numerical_environment_hash": "52cba9baed64e4096cc4b0bba352dbe3a3a366127a70ebcb4aa24fd8a91a8c98",
+    "input_designs_hash": "c3b5d434fb91c187a05002ff08dc75355502d0ff2405993ca03102ff5a702427",
+    "envelope_assumptions": {
+      "version": "nuisance-envelope-1",
+      "anchors": [
+        "sphere_rotating",
+        "sphere_still",
+        "flat_still"
+      ],
+      "sigma_bin_dph": [
+        3.0,
+        6.0
+      ],
+      "prior_multiplier": 3.0,
+      "planning_forward_sigma_deg": 5.0,
+      "epoch_yaw_deg": 1.0,
+      "nuisance_state": "dynamic intercept/drift grid or wind coefficient corners and individual drifts",
+      "weighting": "fixed isotropic design noise; no fitted gyro coefficients or residual weights",
+      "limitations": "Finite development grid, not a bound over every admissible nuisance trajectory"
+    },
+    "evidence_scope": "finite assumed-geometry envelope; no simulator, fit, power or acceptance certification",
+    "control_turn_checks": [
+      {
+        "minute": 5.0,
+        "safe": false,
+        "reason": "aircraft maneuver",
+        "evidence": [
+          {
+            "start_s": -113.0,
+            "end_s": 2305.0,
+            "reason": "aircraft maneuver"
+          }
+        ]
+      },
+      {
+        "minute": 25.0,
+        "safe": false,
+        "reason": "aircraft maneuver",
+        "evidence": [
+          {
+            "start_s": -113.0,
+            "end_s": 2305.0,
+            "reason": "aircraft maneuver"
+          }
+        ]
+      },
+      {
+        "minute": 45.0,
+        "safe": true,
+        "reason": null,
+        "evidence": []
+      },
+      {
+        "minute": 65.0,
+        "safe": false,
+        "reason": "aircraft maneuver",
+        "evidence": [
+          {
+            "start_s": 2760.0,
+            "end_s": 3913.0,
+            "reason": "aircraft maneuver"
+          }
+        ]
+      }
+    ],
+    "prospective_objectives": [
+      "all contrasts",
+      "sphere_rotating_vs_sphere_still",
+      "sphere_rotating_vs_flat_still",
+      "sphere_still_vs_flat_still"
+    ]
+  },
+  {
+    "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+    "upper_bound_schedules": 385,
+    "upper_bound_fits": 0,
+    "upper_bound_anchor_svd_evaluations": 1143450,
+    "feasible_grid_min": [
+      20.0,
+      30.0,
+      40.0,
+      60.0
+    ],
+    "maneuver_buffer_s": 120.0,
+    "comparison": null,
+    "implementation_hash": "194a1c6ed0762dc8673adccee615d86d325cf44fc3079f0b251db4bbf46e629a",
+    "numerical_environment": {
+      "python": "3.14.7",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "thread_settings": {
+        "OPENBLAS_NUM_THREADS": "2",
+        "OMP_NUM_THREADS": "2",
+        "MKL_NUM_THREADS": "2"
+      }
+    },
+    "numerical_environment_hash": "52cba9baed64e4096cc4b0bba352dbe3a3a366127a70ebcb4aa24fd8a91a8c98",
+    "input_designs_hash": "1c8760badcd0c2a47b3cf7aee52cedf948e5144f8f24f20632a5b163ab85190d",
+    "envelope_assumptions": {
+      "version": "nuisance-envelope-1",
+      "anchors": [
+        "sphere_rotating",
+        "sphere_still",
+        "flat_still"
+      ],
+      "sigma_bin_dph": [
+        3.0,
+        6.0
+      ],
+      "prior_multiplier": 3.0,
+      "planning_forward_sigma_deg": 5.0,
+      "epoch_yaw_deg": 1.0,
+      "nuisance_state": "dynamic intercept/drift grid or wind coefficient corners and individual drifts",
+      "weighting": "fixed isotropic design noise; no fitted gyro coefficients or residual weights",
+      "limitations": "Finite development grid, not a bound over every admissible nuisance trajectory"
+    },
+    "evidence_scope": "finite assumed-geometry envelope; no simulator, fit, power or acceptance certification",
+    "control_turn_checks": [
+      {
+        "minute": 5.0,
+        "safe": false,
+        "reason": "aircraft maneuver",
+        "evidence": [
+          {
+            "start_s": 239.0,
+            "end_s": 663.0,
+            "reason": "aircraft maneuver"
+          }
+        ]
+      },
+      {
+        "minute": 25.0,
+        "safe": false,
+        "reason": "aircraft maneuver",
+        "evidence": [
+          {
+            "start_s": 1231.0,
+            "end_s": 1596.0,
+            "reason": "aircraft maneuver"
+          }
+        ]
+      },
+      {
+        "minute": 45.0,
+        "safe": false,
+        "reason": "aircraft maneuver",
+        "evidence": [
+          {
+            "start_s": 2498.0,
+            "end_s": 2897.0,
+            "reason": "aircraft maneuver"
+          }
+        ]
+      },
+      {
+        "minute": 65.0,
+        "safe": false,
+        "reason": "aircraft maneuver",
+        "evidence": [
+          {
+            "start_s": 3686.0,
+            "end_s": 3988.0,
+            "reason": "aircraft maneuver"
+          }
+        ]
+      }
+    ],
+    "prospective_objectives": [
+      "all contrasts",
+      "sphere_rotating_vs_sphere_still",
+      "sphere_rotating_vs_flat_still",
+      "sphere_still_vs_flat_still"
+    ]
+  }
+]

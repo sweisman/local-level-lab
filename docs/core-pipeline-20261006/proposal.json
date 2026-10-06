@@ -1,0 +1,850 @@
+{
+  "design_version": "simulation-design-2",
+  "analysis_version": "0.6.0",
+  "numerical_environment": {
+    "python": "3.14.7",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "thread_settings": {
+      "OPENBLAS_NUM_THREADS": "2",
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2"
+    }
+  },
+  "numerical_environment_hash": "52cba9baed64e4096cc4b0bba352dbe3a3a366127a70ebcb4aa24fd8a91a8c98",
+  "eligibility_policies": {
+    "legacy": {
+      "version": "pilot-2",
+      "policy_hash": "52a0b74a83d85ca1095fd4c4dcdc0e44ab69066047caa5818b426661ce5f6086"
+    },
+    "candidate": {
+      "version": "candidate-eligibility-2",
+      "policy_hash": "205642bdf33aa647a0c0472c02a25563ffbfa0fba6b51fea97b2c16c8145170a"
+    },
+    "envelope": {
+      "version": "candidate-envelope-1",
+      "policy_hash": "c11f4682a13f39de16ce1c64179063661287aa095438cc4d01a4b0b3fbd45468"
+    },
+    "profile": {
+      "version": "candidate-envelope-1",
+      "policy_hash": "6ce37920f2b4f981b5cc5e55e0970f0b527eabe33852fd9ac6f4eeddb7fde6e1"
+    }
+  },
+  "inference_policy_hash": "f66abeda49cd6cbe7642fe69705ca0d0f8c37168562dc7b8b10a5050ecad790d",
+  "implementation_hash": "194a1c6ed0762dc8673adccee615d86d325cf44fc3079f0b251db4bbf46e629a",
+  "config": {
+    "partition": "development",
+    "state": "prepared_not_run",
+    "execution_authorized": false,
+    "authorized_additional_attempts": 0,
+    "seeds": [
+      600600,
+      600601,
+      600602
+    ],
+    "truths": [
+      "sphere_rotating",
+      "sphere_still",
+      "flat_still"
+    ],
+    "scenarios": [
+      "bias_mixed",
+      "wind",
+      "wind+bias_mixed",
+      "wind+bias_mixed+correlated+thermal"
+    ],
+    "candidates": [
+      {
+        "research_candidate": true,
+        "crab_model": "dynamic",
+        "bias_model": "dynamic",
+        "noise_model": "axis_segment",
+        "forward_uncertainty": true,
+        "n_boot": 0
+      },
+      {
+        "research_candidate": true,
+        "crab_model": "dynamic",
+        "bias_model": "dynamic",
+        "noise_model": "axis_segment",
+        "forward_uncertainty": true,
+        "n_boot": 0,
+        "design_mode": "envelope",
+        "pairwise_method": "profile"
+      },
+      {
+        "research_candidate": true,
+        "crab_model": "wind",
+        "bias_model": "dynamic",
+        "noise_model": "axis_segment",
+        "forward_uncertainty": true,
+        "n_boot": 0
+      },
+      {
+        "research_candidate": true,
+        "crab_model": "wind",
+        "bias_model": "dynamic",
+        "noise_model": "axis_segment",
+        "forward_uncertainty": true,
+        "n_boot": 0,
+        "design_mode": "envelope",
+        "pairwise_method": "profile"
+      }
+    ],
+    "bootstrap": 0,
+    "diagnostics_required": true,
+    "replay_inputs": [
+      {
+        "track_id": "2025-09-01-etihad-10-ord-auh",
+        "mode": "observed_fixes",
+        "path": "trajectories/2025-09-01-etihad-10-ord-auh-observed_fixes.json",
+        "trajectory_hash": "7dc53fba42189504d08cd8a2f890771d306bd94bd9d737aa51434022c61351fa",
+        "source_sha256": "8ff71a1951b4caa1f4a994b023755e78ca779ea438baf1957d901c7aba209e4e",
+        "turn_schedule_min": [
+          5.0,
+          25.0,
+          45.0,
+          65.0
+        ],
+        "state": "unrun control; not optimized or certified"
+      },
+      {
+        "track_id": "2025-09-01-etihad-10-ord-auh",
+        "mode": "simulated_high_rate",
+        "path": "trajectories/2025-09-01-etihad-10-ord-auh-simulated_high_rate.json",
+        "trajectory_hash": "3b1f25f980040e309df8444a3c679006ceeda146059d2b84a2284dd1dd8f2eb8",
+        "source_sha256": "8ff71a1951b4caa1f4a994b023755e78ca779ea438baf1957d901c7aba209e4e",
+        "turn_schedule_min": [
+          5.0,
+          25.0,
+          45.0,
+          65.0
+        ],
+        "state": "unrun control; not optimized or certified"
+      },
+      {
+        "track_id": "2025-08-19-etihad-9-auh-ord",
+        "mode": "observed_fixes",
+        "path": "trajectories/2025-08-19-etihad-9-auh-ord-observed_fixes.json",
+        "trajectory_hash": "a00e08e68f25cd8f98da1bdb8ed99d348812da877733b2cc610d5013c0686e28",
+        "source_sha256": "6afb2c020d9beb5b55cc1ce9f7548b941b2876080593fb628ec8c84e4871efad",
+        "turn_schedule_min": [
+          5.0,
+          25.0,
+          45.0,
+          65.0
+        ],
+        "state": "unrun control; not optimized or certified"
+      },
+      {
+        "track_id": "2025-08-19-etihad-9-auh-ord",
+        "mode": "simulated_high_rate",
+        "path": "trajectories/2025-08-19-etihad-9-auh-ord-simulated_high_rate.json",
+        "trajectory_hash": "ebdf617a0ddf18859a804516ddb8f3cfc4e847d7760a9b29846da04be1b9bcbe",
+        "source_sha256": "6afb2c020d9beb5b55cc1ce9f7548b941b2876080593fb628ec8c84e4871efad",
+        "turn_schedule_min": [
+          5.0,
+          25.0,
+          45.0,
+          65.0
+        ],
+        "state": "unrun control; not optimized or certified"
+      },
+      {
+        "track_id": "2025-08-19-aa-1433-ord-lax",
+        "mode": "observed_fixes",
+        "path": "trajectories/2025-08-19-aa-1433-ord-lax-observed_fixes.json",
+        "trajectory_hash": "109be0058ad9cbd1687dc97ca2d86214678de9d98ebd384f94d3739fc89141ad",
+        "source_sha256": "c82e2ce68379f10b7194d4e262a3968107323e808a23883cacb7d53af6a7fe53",
+        "turn_schedule_min": [
+          5.0,
+          25.0,
+          45.0,
+          65.0
+        ],
+        "state": "unrun control; not optimized or certified"
+      },
+      {
+        "track_id": "2025-08-19-aa-1433-ord-lax",
+        "mode": "simulated_high_rate",
+        "path": "trajectories/2025-08-19-aa-1433-ord-lax-simulated_high_rate.json",
+        "trajectory_hash": "f4414bed7c29b81b8aed25d720f1c333006beee5fa74ce0d779b6af53fe8eaf9",
+        "source_sha256": "c82e2ce68379f10b7194d4e262a3968107323e808a23883cacb7d53af6a7fe53",
+        "turn_schedule_min": [
+          5.0,
+          25.0,
+          45.0,
+          65.0
+        ],
+        "state": "unrun control; not optimized or certified"
+      },
+      {
+        "track_id": "2026-10-02-icelandair-680-sea-kef",
+        "mode": "observed_fixes",
+        "path": "trajectories/2026-10-02-icelandair-680-sea-kef-observed_fixes.json",
+        "trajectory_hash": "cc126c1a8fc4cd2c5bfac40f8999f2a8f533c64a35083ea47c9caf4090397b03",
+        "source_sha256": "5cbcf2b6db55f44f35bf41c83aed6acd423b20831be6b5c111d5b9e22999553f",
+        "turn_schedule_min": [
+          5.0,
+          25.0,
+          45.0,
+          65.0
+        ],
+        "state": "unrun control; not optimized or certified"
+      },
+      {
+        "track_id": "2026-10-02-icelandair-680-sea-kef",
+        "mode": "simulated_high_rate",
+        "path": "trajectories/2026-10-02-icelandair-680-sea-kef-simulated_high_rate.json",
+        "trajectory_hash": "ce2b067cbb8d3d61ffeef0fec5f38b9b1bfa8b62b1384adc7ce9f0fd3b2e2190",
+        "source_sha256": "5cbcf2b6db55f44f35bf41c83aed6acd423b20831be6b5c111d5b9e22999553f",
+        "turn_schedule_min": [
+          5.0,
+          25.0,
+          45.0,
+          65.0
+        ],
+        "state": "unrun control; not optimized or certified"
+      },
+      {
+        "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+        "mode": "observed_fixes",
+        "path": "trajectories/2026-10-02-lufthansa-572-fra-jnb-observed_fixes.json",
+        "trajectory_hash": "402157a190903f7548281b843a8bd9f9fcaac1a93e67a0fe27098a4155a8853e",
+        "source_sha256": "b4ef76e6465d6aa11c54dbc58876a774bd23c7f7aef1dd6b7e993df311cc237c",
+        "turn_schedule_min": [
+          5.0,
+          25.0,
+          45.0,
+          65.0
+        ],
+        "state": "unrun control; not optimized or certified"
+      },
+      {
+        "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+        "mode": "simulated_high_rate",
+        "path": "trajectories/2026-10-02-lufthansa-572-fra-jnb-simulated_high_rate.json",
+        "trajectory_hash": "5a2ff46c08b4e2d1aab15bdb4aa4115154cfcc5980ba2a4feccbd2032c868dd4",
+        "source_sha256": "b4ef76e6465d6aa11c54dbc58876a774bd23c7f7aef1dd6b7e993df311cc237c",
+        "turn_schedule_min": [
+          5.0,
+          25.0,
+          45.0,
+          65.0
+        ],
+        "state": "unrun control; not optimized or certified"
+      }
+    ],
+    "blocked_tracks": [
+      {
+        "id": "2026-10-02-singapore-938-sin-dps",
+        "status": "blocked_by_observed_coverage",
+        "source_sha256": "37a7265240fd68a470b5f6badeb07062ba8db4e36578960a7f2a154f98009aa1",
+        "candidate_window": {
+          "start_s": 2100,
+          "end_s": 6600,
+          "observed_coverage_fraction": 0.9335555555555556,
+          "table_coverage_fraction": 0.9435555555555556,
+          "minimum_course_arc_deg": 20.0
+        }
+      },
+      {
+        "id": "2026-10-02-emirates-761-dxb-jnb",
+        "status": "blocked_by_observed_coverage",
+        "source_sha256": "672bd88d1d313be1054ae063ef2635cd29d02f561f377be74c34d28e6a922d4c",
+        "candidate_window": {
+          "start_s": 22800,
+          "end_s": 27300,
+          "observed_coverage_fraction": 0.6837777777777778,
+          "table_coverage_fraction": 0.7364444444444445,
+          "minimum_course_arc_deg": 212.0
+        }
+      }
+    ],
+    "matched_timing_arms": [
+      {
+        "name": "exact-protocol",
+        "protocol": {
+          "lat0": 35.0,
+          "lon0": -30.0,
+          "speed": 270.0,
+          "legs": [
+            [
+              10.0,
+              15.0
+            ],
+            [
+              100.0,
+              15.0
+            ],
+            [
+              190.0,
+              15.0
+            ],
+            [
+              280.0,
+              15.0
+            ],
+            [
+              10.0,
+              15.0
+            ]
+          ],
+          "turn_schedule": [
+            5.0,
+            15.0,
+            25.0,
+            35.0,
+            45.0,
+            55.0
+          ]
+        },
+        "state": "unrun matched diagnostic",
+        "eligible_to_schedule": true,
+        "maneuver_checks": [
+          {
+            "minute": 5.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 15.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 25.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 35.0,
+            "safe": false,
+            "reason": "aircraft maneuver",
+            "evidence": [
+              {
+                "start_s": 2014.0,
+                "end_s": 2291.0,
+                "reason": "aircraft maneuver"
+              }
+            ]
+          },
+          {
+            "minute": 45.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 55.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          }
+        ],
+        "optimizer_feasible": false,
+        "interpretation": "unsafe controls must abstain; never deploy as a turn recommendation"
+      },
+      {
+        "name": "repeated-opposing-directions-90min",
+        "protocol": {
+          "lat0": 35.0,
+          "lon0": -30.0,
+          "speed": 270.0,
+          "legs": [
+            [
+              10.0,
+              15.0
+            ],
+            [
+              190.0,
+              15.0
+            ],
+            [
+              100.0,
+              15.0
+            ],
+            [
+              280.0,
+              15.0
+            ],
+            [
+              10.0,
+              15.0
+            ],
+            [
+              190.0,
+              15.0
+            ]
+          ],
+          "turn_schedule": [
+            5.0,
+            20.0,
+            35.0,
+            50.0,
+            65.0,
+            80.0
+          ]
+        },
+        "state": "unrun matched diagnostic",
+        "eligible_to_schedule": true,
+        "maneuver_checks": [
+          {
+            "minute": 5.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 20.0,
+            "safe": false,
+            "reason": "aircraft maneuver",
+            "evidence": [
+              {
+                "start_s": 1079.0,
+                "end_s": 1386.0,
+                "reason": "aircraft maneuver"
+              }
+            ]
+          },
+          {
+            "minute": 35.0,
+            "safe": false,
+            "reason": "aircraft maneuver",
+            "evidence": [
+              {
+                "start_s": 2044.0,
+                "end_s": 2321.0,
+                "reason": "aircraft maneuver"
+              }
+            ]
+          },
+          {
+            "minute": 50.0,
+            "safe": false,
+            "reason": "aircraft maneuver",
+            "evidence": [
+              {
+                "start_s": 2979.0,
+                "end_s": 3286.0,
+                "reason": "aircraft maneuver"
+              }
+            ]
+          },
+          {
+            "minute": 65.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 80.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          }
+        ],
+        "optimizer_feasible": false,
+        "interpretation": "unsafe controls must abstain; never deploy as a turn recommendation"
+      },
+      {
+        "name": "second-turn-shift--10",
+        "protocol": {
+          "lat0": 35.0,
+          "lon0": -30.0,
+          "speed": 270.0,
+          "legs": [
+            [
+              10.0,
+              15.0
+            ],
+            [
+              190.0,
+              15.0
+            ],
+            [
+              100.0,
+              15.0
+            ],
+            [
+              280.0,
+              15.0
+            ],
+            [
+              10.0,
+              15.0
+            ],
+            [
+              190.0,
+              15.0
+            ]
+          ],
+          "turn_schedule": [
+            5.0,
+            10.0,
+            35.0,
+            50.0,
+            65.0,
+            80.0
+          ]
+        },
+        "state": "blocked by unchanged spacing/edge rule",
+        "failure": "turn schedule violates spacing or edge margin",
+        "eligible_to_schedule": false
+      },
+      {
+        "name": "second-turn-shift--5",
+        "protocol": {
+          "lat0": 35.0,
+          "lon0": -30.0,
+          "speed": 270.0,
+          "legs": [
+            [
+              10.0,
+              15.0
+            ],
+            [
+              190.0,
+              15.0
+            ],
+            [
+              100.0,
+              15.0
+            ],
+            [
+              280.0,
+              15.0
+            ],
+            [
+              10.0,
+              15.0
+            ],
+            [
+              190.0,
+              15.0
+            ]
+          ],
+          "turn_schedule": [
+            5.0,
+            15.0,
+            35.0,
+            50.0,
+            65.0,
+            80.0
+          ]
+        },
+        "state": "unrun matched diagnostic",
+        "eligible_to_schedule": true,
+        "maneuver_checks": [
+          {
+            "minute": 5.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 15.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 35.0,
+            "safe": false,
+            "reason": "aircraft maneuver",
+            "evidence": [
+              {
+                "start_s": 2044.0,
+                "end_s": 2321.0,
+                "reason": "aircraft maneuver"
+              }
+            ]
+          },
+          {
+            "minute": 50.0,
+            "safe": false,
+            "reason": "aircraft maneuver",
+            "evidence": [
+              {
+                "start_s": 2979.0,
+                "end_s": 3286.0,
+                "reason": "aircraft maneuver"
+              }
+            ]
+          },
+          {
+            "minute": 65.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 80.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          }
+        ],
+        "optimizer_feasible": false,
+        "interpretation": "unsafe controls must abstain; never deploy as a turn recommendation"
+      },
+      {
+        "name": "second-turn-shift-+5",
+        "protocol": {
+          "lat0": 35.0,
+          "lon0": -30.0,
+          "speed": 270.0,
+          "legs": [
+            [
+              10.0,
+              15.0
+            ],
+            [
+              190.0,
+              15.0
+            ],
+            [
+              100.0,
+              15.0
+            ],
+            [
+              280.0,
+              15.0
+            ],
+            [
+              10.0,
+              15.0
+            ],
+            [
+              190.0,
+              15.0
+            ]
+          ],
+          "turn_schedule": [
+            5.0,
+            25.0,
+            35.0,
+            50.0,
+            65.0,
+            80.0
+          ]
+        },
+        "state": "unrun matched diagnostic",
+        "eligible_to_schedule": true,
+        "maneuver_checks": [
+          {
+            "minute": 5.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 25.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 35.0,
+            "safe": false,
+            "reason": "aircraft maneuver",
+            "evidence": [
+              {
+                "start_s": 2044.0,
+                "end_s": 2321.0,
+                "reason": "aircraft maneuver"
+              }
+            ]
+          },
+          {
+            "minute": 50.0,
+            "safe": false,
+            "reason": "aircraft maneuver",
+            "evidence": [
+              {
+                "start_s": 2979.0,
+                "end_s": 3286.0,
+                "reason": "aircraft maneuver"
+              }
+            ]
+          },
+          {
+            "minute": 65.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 80.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          }
+        ],
+        "optimizer_feasible": false,
+        "interpretation": "unsafe controls must abstain; never deploy as a turn recommendation"
+      },
+      {
+        "name": "second-turn-shift-+10",
+        "protocol": {
+          "lat0": 35.0,
+          "lon0": -30.0,
+          "speed": 270.0,
+          "legs": [
+            [
+              10.0,
+              15.0
+            ],
+            [
+              190.0,
+              15.0
+            ],
+            [
+              100.0,
+              15.0
+            ],
+            [
+              280.0,
+              15.0
+            ],
+            [
+              10.0,
+              15.0
+            ],
+            [
+              190.0,
+              15.0
+            ]
+          ],
+          "turn_schedule": [
+            5.0,
+            30.0,
+            35.0,
+            50.0,
+            65.0,
+            80.0
+          ]
+        },
+        "state": "blocked by unchanged spacing/edge rule",
+        "failure": "turn schedule violates spacing or edge margin",
+        "eligible_to_schedule": false
+      },
+      {
+        "name": "timing-correction",
+        "protocol": {
+          "lat0": 35.0,
+          "lon0": -30.0,
+          "speed": 270.0,
+          "legs": [
+            [
+              10.0,
+              15.0
+            ],
+            [
+              190.0,
+              15.0
+            ],
+            [
+              100.0,
+              15.0
+            ],
+            [
+              280.0,
+              15.0
+            ],
+            [
+              10.0,
+              15.0
+            ],
+            [
+              190.0,
+              15.0
+            ]
+          ],
+          "turn_schedule": [
+            5.0,
+            25.0,
+            40.0,
+            55.0,
+            70.0,
+            80.0
+          ]
+        },
+        "state": "unrun matched diagnostic",
+        "eligible_to_schedule": true,
+        "maneuver_checks": [
+          {
+            "minute": 5.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 25.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 40.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 55.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 70.0,
+            "safe": false,
+            "reason": "aircraft maneuver",
+            "evidence": [
+              {
+                "start_s": 3944.0,
+                "end_s": 4221.0,
+                "reason": "aircraft maneuver"
+              }
+            ]
+          },
+          {
+            "minute": 80.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          }
+        ],
+        "optimizer_feasible": false,
+        "interpretation": "unsafe controls must abstain; never deploy as a turn recommendation"
+      }
+    ],
+    "seed_pairing": "same sensor/nuisance/bootstrap streams across schedule, crab and candidate arms; not independent cells",
+    "comparison_protocol": "matched original/shifted/corrected controls; safety failures retained as abstentions",
+    "source_inputs": {
+      "docs/research-next-stage-20261006/geometry-stress-plan.json": "94b2bddc3fc497b2a145add617b85bb6363ed76fb9fc690541a0758f05e9a5bd",
+      "docs/protocol-development-20261006/manifest.json": "5af2156baba6e232faa17c7b408455bba833f64e91c61d28365a645c488fcb2a",
+      "docs/protocol-development-20261006/processing-audit.json": "3ea9ed00e82c426c61193af07366b5537efb885edf9d7e543825b4c7eaabc1a8",
+      "docs/protocol-development-20261006/status.json": "0496c11cfd9d665c6497f6e74f281e13174ee9220888a2bcb14fa941ca47890e"
+    },
+    "preparation_script_sha256": "b84d774749ec60e0903dd5d46d00aecfa81f37dbecc62058a3d575e4e76c78dc",
+    "cost": {
+      "proposed_replay_attempts": 1440,
+      "proposed_matched_timing_attempts": 720,
+      "proposed_total_attempts": 2160,
+      "historical_seconds_per_attempt": 7.179257156295029,
+      "new_seconds_per_attempt": null,
+      "estimated_new_runtime": null,
+      "optimizer_svd_upper_per_objective": 2580930,
+      "optimizer_objective_count": 4,
+      "optimizer_fits": 0,
+      "pricing_status": "New runtime and storage must be measured in an authorized bounded pilot; historical cost is not a quote"
+    },
+    "evidence_scope": "Prepared inputs and maneuver masks only; no new flight, optimizer search, SVD study, calibration or validation"
+  },
+  "manifest_hash": "7a5c3a8f592eca621f9e0edca034fbd038c4815028752c3a45f9aa56319fc2aa"
+}
