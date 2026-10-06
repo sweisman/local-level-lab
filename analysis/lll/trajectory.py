@@ -1,12 +1,22 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 """Development-only replay of observed positions with explicit latent-path assumptions."""
 import numpy as np
-from scipy.interpolate import PchipInterpolator
+from scipy.interpolate import CubicSpline, PchipInterpolator
 
 from . import models
 from .inference_policy import digest
 
 TRACK_VERSION = 'observed-trajectory-replay-1'
+SMOOTH_TRACK_VERSION = 'observed-trajectory-replay-2'
+
+
+def smooth_track_spec(spec):
+    """Explicit alternative latent path; keep all observation/support/provenance fields."""
+    TrackReplay(spec)
+    content = {k: v for k, v in spec.items() if k != 'trajectory_hash'}
+    content.update(version=SMOOTH_TRACK_VERSION, curve_model='cubic_natural',
+        interpolation='Natural C2 cubic within short observed intervals only; no provider estimates or long-gap bridging; development latent-path assumption')
+    return {**content, 'trajectory_hash': digest(content)}
 
 
 def track_spec(case, mode='simulated_high_rate'):
@@ -26,8 +36,11 @@ def track_spec(case, mode='simulated_high_rate'):
 
 class TrackReplay:
     def __init__(self, spec):
-        if spec.get('version') != TRACK_VERSION or spec.get('mode') not in ('observed_fixes', 'simulated_high_rate'):
+        if spec.get('version') not in (TRACK_VERSION, SMOOTH_TRACK_VERSION) or spec.get('mode') not in ('observed_fixes', 'simulated_high_rate'):
             raise ValueError('unsupported trajectory input')
+        smooth = spec['version'] == SMOOTH_TRACK_VERSION
+        if (smooth and spec.get('curve_model') != 'cubic_natural') or (not smooth and 'curve_model' in spec):
+            raise ValueError('trajectory curve model must match its explicit version')
         if spec.get('trajectory_hash') != digest({k: v for k, v in spec.items() if k != 'trajectory_hash'}):
             raise ValueError('trajectory hash mismatch')
         self.spec, self.duration = spec, float(spec['end_s']-spec['start_s'])
@@ -58,7 +71,9 @@ class TrackReplay:
             if not np.isfinite(lat).all() or not np.isfinite(lon).all() or not np.isfinite(height).all():
                 raise ValueError('replay requires finite positions and declared reported-height assumption')
             if np.any(np.abs(lat)>np.pi/2.): raise ValueError('invalid replay latitude')
-            self.blocks.append((t[0], t[-1], [PchipInterpolator(t, a, extrapolate=False) for a in (lat, lon, height)]))
+            curves = [CubicSpline(t, a, bc_type='natural', extrapolate=False) if smooth
+                      else PchipInterpolator(t, a, extrapolate=False) for a in (lat, lon, height)]
+            self.blocks.append((t[0], t[-1], curves))
 
     def support(self, t):
         t = np.asarray(t)

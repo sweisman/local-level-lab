@@ -1,5 +1,13 @@
 # Comparing two wind corrections
 
+This preparation describes the source committed as `db28900`. Subsequent magnetic-ambiguity
+development changed the implementation and policy freeze. The proposal below is historical
+and cannot be executed under current source without refreezing; no evaluations have run.
+
+A subsequent [airline assumption review and smaller pilot](../airline-pilot-preparation-20261006/README.md)
+freezes the current source and single-thread worker environment, with an initial proposed
+three-evaluation timing stage. It preserves this original proposal as historical evidence.
+
 The experimental physical wind/airspeed correction is implemented. It describes wind and
 aircraft movement through the air separately, then checks whether their combination agrees
 with GPS ground motion. The earlier wind correction instead allows slowly changing sideways

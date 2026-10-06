@@ -9,8 +9,285 @@ demonstrated false-rejection tails remain publication blockers after these softw
 
 [Implementation and prospective inputs](core-pipeline-20261006/README.md) supersede earlier
 statements that trajectory integration, turn safeguards and diagnostic capture are pending.
-Historical campaign outcomes are unchanged. No actual-route replay, optimizer search,
-calibration or validation has run, and no further campaign allowance exists.
+Historical campaign outcomes are unchanged. The initial three matched actual-route development
+evaluations subsequently failed before fitting, as recorded below. No optimizer search,
+fresh calibration or independent validation has run, and no further campaign allowance exists.
+
+### Initial airline-route replay outcome
+
+The [fresh airline pilot](airline-pilot-preparation-20261006/README.md) spent its approved
+three-attempt prefix on rotating-globe truth, wind plus mixed bias, seed 600900, simulated
+frequent GPS on LH572 FRA–JNB. Wind/exclude, wind-TAS/exclude and wind-TAS/model-and-compare
+all failed before fitting. Saved-data reconstruction reproduced identical forward regression
+gain 0.0487347, R² 0.0122685 and bank energy 0.657473; the existing gain/R² minimums are
+0.1/0.05. No orientation epoch was unresolved and 57 bins remained. The forward estimator
+reported `roll/bank correlation too weak`; this is not an absent-turn classification.
+
+The first error required positive measured forward uncertainty; the latter two required a
+three-axis forward reference. No science fit, nuisance-envelope score, profile statistic or
+winner was obtained. Per-attempt times were 8.1355/8.2483/6.3878 seconds, summing to 22.7715
+known attempt-seconds; they cannot estimate successful-fit cost. Saved run files occupied
+14,958,617 bytes at completion. The sharded export is partial, with three preserved failures
+and 15 unrun cases; its status is `budget_complete`. No attempts remain authorized.
+
+`analysis/tests/audit_airline_pilot.py` independently reconstructs the saved preprocessing
+inputs without synthesis, science fitting, SVDs or search and writes `processing-review.json`.
+Do not substitute simulator orientation, relax the reference gate or retry the failed tasks.
+Review replay bank/roll and GNSS-proxy compatibility before another budgeted trial; public
+interpolation does not establish the behavior of an actual flight with measured IMU data.
+
+Subsequent saved-data analysis separates predictor noise from assumed-path roughness. The
+scalar roll diagnostic explains 0.0122842 of variation with saved GPS versus 0.278223 with
+noise-free assumed GPS. Position PCHIP has C1 continuity, but acceleration and coordinated
+bank can jump: 137 interior knots, 11 bank jumps above 1°, maximum 15.9084°. Knot neighborhoods
+contain 92.6293% of the sampled scalar roll energy. At 20 Hz, the full latent geometry's
+scalar roll extrema are −162.189/+23.508°/s. These are interpolation artifacts, not empirical
+aircraft-turn measurements.
+
+Research-only matching of a centered 30-second Hann filter on the GPS bank-rate proxy and
+horizontal gyro gives gain 0.925229 and R² 0.897332 over 4,187 fully supported windows.
+Filtering splits at GPS/gyro gaps and rejects windows spanning missing observations. Existing
+gain/R² minima remain 0.1/0.05; no angular uncertainty, primary gate, science fit or empirical
+decision is supplied. The 30-second filter is development evidence; its error-in-predictor and
+correlated residual uncertainty remain unresolved before integration. No smoothing sweep or
+new flights were run.
+
+`trajectory.smooth_track_spec` declares `observed-trajectory-replay-2`, selecting an explicit
+natural C2 cubic per observed support block. Legacy version 1 remains PCHIP; version/model
+mismatches are rejected. Position/height knots and support gaps are preserved. The prepared
+FRA–JNB alternative hash is `5e69715fb544fd45612318a48f15136f7df97354289ecfdbc939e7dc16229d83`.
+Its 20 Hz scalar roll extrema are −0.186935/+0.330154°/s; a finite one-sided knot check is
+below 0.000307888°. Cubic overshoot and natural endpoint curvature remain latent-path assumptions;
+these metrics do not validate real trajectory reconstruction or model separation.
+
+Focused checks passed 51 tests in 2.39s, including independent rotation fixtures, noise-only
+negative controls, missing-data support, cubic continuity, legacy compatibility and existing
+core/preparation/audit checks. Current scientific source is now
+`3b42547d5a2ffa2a2ef5d975382b4b1b2b0a762fe831493d40cb1b7f469cb682`.
+The completed pilot retains its original `d5d63a6...` freeze; all prospective execution plans
+must be refreshed after this source change. Additional attempt allowance remains zero.
+
+### Opt-in matched forward-reference uncertainty
+
+`forward_reference.py` implements `matched-forward-1`: common 30s Hann filtering, 5s course
+differences, run-separated 60s Bartlett HAC, four complete covariance-duration windows and
+frequent GPS (median interval at most 2s). Existing energy/gain/R² minima remain
+`1e-4 / 0.1 / 0.05`. Direction comes from the normalized GPS/IMU cross-moment; its joint score
+covariance uses observed predictor and response variation. For the angular tangent the
+normalization's parallel component drops out. This assumes independent-error direction and
+does not correct correlated-error or model bias. Gap boundaries sever covariance pairs;
+duration-window counts do not guarantee statistically independent maneuvers.
+
+Analyzer dispatch and measured sigma/tangent propagation are wired into an opt-in research
+candidate. Method and policy appear in fitting provenance and the module is source-hashed.
+Default analysis remains legacy; requesting the method without both research candidate and
+forward uncertainty is rejected. Sparse-fix replay cannot supply it. Research CLI accepts
+`--forward-reference matched`. Saved sessions yield sigma 0.0101930 rad (0.58402°), gain
+0.925229 and R² 0.897332, with no science fit rerun.
+
+Independent SciPy rotation fixtures include sub-degree bank oscillations, extra body yaw,
+a larger transient, noisy GPS/IMU and slowly correlated gyro disturbances. Tests check
+covariance, rotational invariance, noise-only abstention, gaps, duration and engine propagation
+without fitting a science model. An eight-noise panel checks gross underestimation; it is
+not coverage evidence. Focused integration checks passed 102 tests in 4.73s; 11 method checks
+then passed in 0.37s after adding body-yaw/transient stress. No full suite or campaign ran.
+
+Qualitative infrared-footage context reports a 135 mm lens and QHY585 mono camera at a
+right-side passenger window, frequent apparent adjustments below a degree and occasional
+larger view changes. No optical frames were ingested or converted to heading/bank; mounting
+geometry, timing and calibration would be needed. This motivates both motion scales without
+equating short variation with GPS error.
+
+The [fresh matched pilot](matched-airline-pilot-20261006/README.md) freezes source
+`82c882d2abf351cb0feb0e8efa237702d1deeccd475d682960419677bf479412`, one-thread environment,
+C2 route, three candidates and fresh seed 600901. It proposes 18 evaluations; the separately
+authorized initial three are now complete, with the remaining 15 unrun and unapproved. Plan hash:
+`e3064a50835a631d6968b11757d8451cff1e87c20e9ae74bf02580f2fa06bf78`. Independent-error
+covariance assumptions, latent-route realism and full-pipeline separation remain unvalidated.
+
+### Completed matched-reference prefix and route screen
+
+All three full-pipeline evaluations converged with zero analysis failures. The generating
+condition was rotating-globe truth with `wind+bias_mixed` on the assumed 75-minute C2
+FRA–JNB window, IMU turns 20/40/60 minutes, seed 600901, zero bootstrap. Candidates were
+wind/exclude, wind-TAS/exclude and wind-TAS/model-and-compare. Source and plan hashes above
+remain unchanged. The approved prefix is exhausted; status is `budget_complete`, both shards
+are complete, and no worker is active.
+
+The common matched reference passed with gain 0.7850611217, R² 0.7497273565 and estimated
+sigma 0.01196597175 rad (0.6855996791°), supported by 67 covariance windows. This resolves
+the previous reference exception for this condition, not uncertainty coverage. Retained cruise
+was 57 minutes, elapsed support 69.333 minutes, retained heading span 15.464972°, four mount
+epochs and maximum gap 582 seconds. Cruise duration and shared heading-diversity gates fail.
+All primary and pairwise decisions abstain.
+
+Fitted model-test ranks were 0/1/1; the conservative design-envelope rank was 0 for all three.
+After SVD truncation every worst contrast retained fraction and information were zero. Before
+truncation the existing wind candidate's worst retained fractions were 0.01944/0.09100/0.12364;
+the physical candidate's were 0.02119/0.18374/0.20055, in rotating-vs-still, rotating-vs-disc,
+still-vs-disc order. All remain below the unchanged 0.3122498999 retention threshold.
+Corresponding untruncated information improved from 0.13543/4.05948/1.84434 to
+0.16124/16.69905/4.96566. A rank-cutoff change alone would not fix this gate.
+
+No magnetic boundaries were flagged. Retained/excluded coefficients and pair shifts were
+identical (zero shift), but agreement was unavailable because both paths lacked identifiable
+contrasts. The false agreement flag is not numerical disagreement or a mount-slip detection.
+The physical speed-constraint chi-square was 74.968414, relative boundary margin 0.232470,
+without a boundary flag. Neither result establishes a successful wind or mount correction.
+
+Attempt times were 6.260351/72.624785/123.957378 seconds, sum 202.842514 seconds. Observed
+two-worker wall time was 131.358896 seconds, measured from launch UTC to final status file
+mtime on the original host. Saved run storage at review was 39,234,307 bytes. These are one
+condition's zero-bootstrap costs, not calibration estimates. `results-review.json` in the
+pilot corpus records results and provenance; `analysis/tests/review_matched_pilot.py` reads
+the preserved campaign without rerunning inference.
+
+`analysis/tests/review_route_geometry.py` additionally screened five explicit assumed C2
+75-minute paths, sampling course at one second and applying the existing shared heading gate:
+two 10° heading groups, each supported for at least 600 seconds and separated by at least 30°.
+This optimistic screen applies no IMU, maneuver, magnetic or cruise-bin losses and performs
+no simulation, fitting or SVD. AUH–ORD alone passes. Sampled spans are 96.86° ORD–AUH,
+41.85° AUH–ORD, 19.98° ORD–LAX, 12.78° SEA–KEF and 24.97° FRA–JNB. ORD–AUH fails despite
+wide overall span because distant heading groups are too short. Adequate raw heading duration
+does not guarantee adequate retained geometry or nuisance separation. The next stage is a
+route/window and turn-timing preflight before any newly budgeted full fit. No remaining case,
+calibration or validation is authorized by this report.
+
+### Observable route/turn preflight and extended-window proposal
+
+No new flights, fits or SVD evaluations were run. `preflight_route_turns.py` mirrors the
+analytic geometry's shared motion mask, ten-minute continuous qualification and full-minute
+bin support, then applies the shared heading-duration rule and IMU-turn exclusions. It is
+an assumed-kinematics screen, not the complete IMU/GNSS preprocessing or an acceptance bound.
+Buffered turn checks use 120 seconds; the grid is five minutes, spacing at least ten minutes,
+three turns with five-second motion and twenty-second recovery. No threshold was changed.
+
+The original five windows all fail; their no-turn screened minutes are 30/0/41/61/57 in
+ORD–AUH/AUH–ORD/ORD–LAX/SEA–KEF/FRA–JNB order. AUH–ORD exceeds the course limit for 845
+sampled seconds, vertical limit for 1,169 and bank-rate limit for 950; counts overlap.
+Joint-mask qualification has no ten-minute run. Omitting bank rate only for diagnosis yields
+one 638-second run. Sparse-coordinate derivatives and reported height can contribute to these
+losses; the report does not attribute them to measured aircraft motion. Bank rate belongs to
+the maneuver mask; full cruise selection has different and additional criteria.
+
+`preflight_route_windows.py` reads the two explicit normalized-track archives and checks all
+192 overlapping 75-minute windows having at least 95% observed interval coverage. Provider
+estimates and gaps over 90 seconds remain unusable. One FRA–JNB window fails for nonfinite
+reported height. Seventy-three evaluable windows have at least 60 no-turn screened minutes;
+9,640 safe three-turn schedules were enumerated in those windows. None passes. Only one
+AUH–ORD window (41,400–45,900 elapsed seconds) passes both no-turn duration and heading,
+with exactly 60 screened minutes before turn losses. Windows below 60 minutes are pruned
+only on duration; heading-group failures are not used to prune because regrouping can change.
+
+`preflight_extended_window.py` then checks 21 five-minute-grid extensions containing that
+anchor, for durations 90/105/120 minutes. All evaluate, 19 have passing three-turn schedules.
+The best 120-minute window is AUH–ORD elapsed seconds 40,200–47,400, observed coverage
+0.99583333, turns 25/50/85 minutes, screened cruise 91 minutes across epochs 23/20/23/25.
+The qualified heading-duration margin is 420 seconds; the 90-minute alternative has 69
+screened minutes and only 60 seconds of heading margin. This exploratory selection is
+conditioned on development screening and is not independent validation or science optimization.
+
+The [extended pilot](extended-airline-pilot-20261006/README.md) freezes seed 600902 and the
+same three candidate methods, with source `82c882d2...`, one-thread worker environment,
+zero bootstrap and plan hash `d2337e3a4bbe4da89f9b446d9b49c7ca0f19f13d94172a0bb81861696549eae0`.
+Its initial three tasks share rotating-globe truth and wind plus mixed bias. The separately
+authorized prefix is now complete, as recorded below; the other 15 tasks remain unrun and
+unapproved. The earlier pilots also remain complete and spent.
+
+Reports are retained in the matched-pilot corpus as `turn-preflight.json`,
+`turn-motion-review.json`, `window-preflight.json` and `extended-window-preflight.json`;
+source/archive hashes accompany the helpers' outputs. Four independent focused controls
+passed in 0.29 seconds, covering short runs separated by a gap, one-heading abstention,
+buffered-maneuver refusal and heading-reference rotation. No full-suite rerun or calibrated
+error/power claim follows from these screens.
+
+### Completed extended airline prefix
+
+The 120-minute AUH–ORD prefix (seed 600902, turns 25/50/85 minutes) completed with no analysis
+failures and all nonlinear fits converged. Actual preprocessing retained 97 minutes across
+97 bins and four epochs, elapsed support 117.333333 minutes, heading span 51.095929°,
+maximum gap 520 seconds, latitude 42.443237–48.516658°N, speed 225.679357–250.296199 m/s.
+The shared cruise-duration and heading-diversity gates pass. Actual bin selection differs
+from the analytic screen's 91 minutes, so the preliminary screen is not a certified bound.
+
+The matched forward reference passed: gain 0.9791684278, R² 0.9254233357, angle sigma
+0.03823755676 rad (2.190850622°), with 112 covariance support windows. This covariance remains
+unvalidated; it is not a measurement of device calibration accuracy. The envelope therefore
+evaluates forward offsets up to ±0.1147126703 rad (±3 estimated sigma).
+
+Fitted model-test ranks and conservative design ranks were all zero. Every intended primary
+and pairwise contrast failed; all decisions abstain. Untruncated worst retained fractions,
+ordered rotating-vs-still, rotating-vs-disc, still-vs-disc, were:
+
+| Candidate | Retained fractions | Contrast information |
+|---|---|---|
+| Wind/exclude | 0.135268 / 0.048735 / 0.173710 | 11.153662 / 1.341455 / 5.454470 |
+| Physical wind/exclude | 0.174659 / 0.077359 / 0.196523 | 18.726941 / 3.395131 / 7.002463 |
+| Physical wind/model-and-compare | Same | Same |
+
+All are below the unchanged 0.3122498999 retention criterion before truncation. Increasing
+the kept singular subspace alone would not remove these failures. The physical candidate
+preserves more information in this matched condition, but that does not establish useful power.
+Design-envelope evaluations were 1,053 for wind and 10,530 per physical candidate. This
+comparison does not isolate forward uncertainty, wind, bias and epoch nuisance contributions.
+
+No watchdog boundaries were flagged. Retained/excluded paths gave identical coefficients and
+zero pair shifts; agreement is unavailable because both fail identifiability, not because of
+numerical disagreement or detected mount slip. Physical speed-constraint chi-square was
+207.895981, relative margin 0.320117, with no near-boundary flag.
+
+Attempt runtimes: 24.285724 / 147.287569 / 256.638571 seconds, sum 428.211864. Observed wall
+time was 282.394589 seconds, launch UTC to final status mtime on the original host, and run
+storage snapshot 49,961,789 bytes. `results-review.json` in the extended corpus records
+provenance and individual outcomes; campaign SHA256
+`270b5dc62022021bd8fc10d790100bdd48a723527c100f5e646dfee5ec6944bf`.
+`run/status.json` is `budget_complete`, both shards complete, no worker active. The three-case
+allowance is spent; the other 15 cases remain unrun. Neither calibration nor independent
+validation was performed. Zero bootstrap and one shared generating condition cannot establish
+error rates or coverage. Different routes and seeds between the 75- and 120-minute pilots
+prevent a controlled duration-only comparison. The saved-diagnostic follow-up below separates
+nuisance contributions; do not relax the acceptance gate or extend the spent allowance.
+
+### Nuisance attribution and analytic course-gap repair
+
+The [diagnostic review](extended-airline-pilot-20261006/DIAGNOSTIC_REVIEW.md) uses only saved
+bins, axes and Jacobians. It reproduces recorded worst-retention states, checks nominal
+anchors and zero-forward-offset controls, and allocates lost squared retention across all
+nuisance-family orders. Physical speed rows remain; fitting priors do not enter the projection.
+The two distinct saved Jacobians are reconstructed exactly within numerical tolerance; the
+third candidate's saved tangent/parameters/row indices are identical. Four hundred subset
+projections take 0.286s. Seven independent algebraic/physical controls pass in 0.19s.
+
+At the nominal rotating anchor, physical-wind pre-cutoff retention is
+0.185994/0.107847/0.199518. Removing bias drift for diagnosis gives
+0.5262/0.2895/0.6058; removing wind gives 0.1886/0.1107/0.2011. No single group omission
+restores all contrasts at the checked states. Bias drift dominates most all-orders loss
+allocations. Zero forward offsets do not fix nominal overlap. Unpenalized tangents allow
+arbitrary compensating amplitude; this is not evidence that real bias reaches that amplitude
+or that all compensations satisfy nonlinear bounds/priors.
+
+Raw geometry also limits rotating-vs-disc: mean east speed −206.754938 m/s gives north Earth
+rotation +10.661420°/h and globe transport −6.663162°/h, net +3.998258°/h. The contrast has
+horizontal RMS 5.531714°/h, vertical mean −13.379071°/h and vertical standard deviation
+0.137925°/h. Same-side yaw rotations do not modulate the vertical component. Residual bias
+level alone leaves pre-cutoff retention 0.309661 for this contrast, below 0.3122499.
+
+During six fixed nominal turn controls, the analytic design tool exposed a separate bug:
+course `np.unwrap` across NaNs poisoned all later supported data. The repair unwraps finite
+runs separately, keeping full-bin gap/motion exclusions. Two regression cases pass (wind
+and physical wind, 0.21s); four existing coverage/envelope/optimizer controls pass (0.84s).
+Only original three turns and distributed six at 10/30/50/70/90/110 pass the buffered mask.
+The six-turn physical candidate's worst nominal pre-cutoff retentions improve to
+0.271480/0.124577/0.305099, all still below threshold. Four tested ten-minute patterns are
+blocked by turns at 45, 75 or 95 minutes. This is a fixed-pattern nominal control, not
+complete-envelope optimization, empirical acceptance or a deployed protocol.
+
+Saved pilot/audit source remains `82c882d2...`. The analytic repair changes current source to
+`a7cc619428f8a24f96e3ab77e5d99f1c5b1b92639b2f6c6e3cfed937176cf44f`; the turn-screen report
+records both source versions. Old prospective manifests are stale. No full-suite rerun,
+flight, fit, bootstrap, calibration or independent validation was performed in this diagnosis.
+Next screen directionally different routes and feasible modulation patterns with the full
+nuisance model; refreeze and budget only promising complete-envelope/full-pipeline comparisons.
 
 `maneuvers.py` supplies the shared course-rate/bank-rate/climb/gap mask. Analysis checks the
 integrated turn interval and excludes unsafe/unverified later epochs; geometry search adds
@@ -31,7 +308,8 @@ Five prepared routes have observed-fix and simulated-high-rate replay specs; two
 PCHIP is restricted to short observed intervals; estimated positions/long gaps split support.
 Reported height is assumed geometric. Wind preserves ground geometry and changes the air vector.
 The original lane preserves missing accuracies. Both harness and analyzer refuse empirical
-replay policies pending domain enforcement. New composable adversaries are wind+mixed bias
+replay policies pending validated position/timing uncertainty and an approved replay domain.
+New composable adversaries are wind+mixed bias
 and wind+mixed bias+correlated+thermal with independently named component RNG streams.
 
 `pairwise_method='profile'` requires the envelope and implements `pair-line-profile-1` along
@@ -47,8 +325,8 @@ Preparation freezes 2,160 unrun evaluations and search bounds, with zero executi
 The ±10-minute controls violate spacing and are blocked; unsafe retained controls must abstain.
 New runtime/storage are unmeasured. Historical calibration plans are stale for this source.
 **177 focused checks passed in 5.97s** for that source freeze. Physical wind/TAS was subsequently
-implemented as described below. Modeled magnetic ambiguity, operational domain enforcement and
-sharded execution remain deferred. Default three-model
+implemented as described below, followed by modeled magnetic ambiguity and observable-domain
+enforcement and the sharded runner. Default three-model
 rules and the science cutoff are preserved apart from the new orientation integrity safeguard.
 
 ## Physical wind/airspeed candidate and CI repair, 2026-10-06
@@ -101,6 +379,108 @@ The [physical-wind comparison preparation](wind-tas-development-20261006/README.
 54 unrun evaluations on a supplied airline route, with combined nuisance cases. Its 20/40/60
 minute schedule passes the revised buffered assumed-geometry mask but is not optimized or
 certified through reconstructed orientation. Execution allowance remains zero.
+
+## Magnetic ambiguity follow-up, 2026-10-06
+
+The [two-path research candidate](magnetic-ambiguity-development-20261006/README.md) is
+implemented and opt-in. `MountYaw` adds an offset and a finite-duration linear yaw rate for
+each flagged segment/mount epoch. The offset persists within that epoch; the rate stops at
+the segment boundary. In the gyro prediction it subtracts from crab azimuth/rate, giving
+positive IMU yaw a positive rate about up. Both angle and rate derivatives participate in
+weighted nuisance projection, nonlinear fits, profiles, bounds and prior sensitivity. First
+flagged boundary bins are excluded to avoid an unmodeled instantaneous angular impulse.
+
+The finite envelope adds nominal and individual ±3-sigma mount offset/rate states, using
+the same provisional policy as fitting. It does not evaluate the full Cartesian product of
+all mount states. The retained fit is compared with an actual rerun of the original exclusion
+path, including independent preprocessing, forward uncertainty and WMM selection sensitivity.
+Public scientific eligibility requires both paths to be eligible, identical endpoint decisions
+and compatible estimates; pair gates remain independent of global rank. Missing/invalid decisions
+and unavailable controls fail closed. The retained/excluded agreement uses development diagnostic
+thresholds only. Applying empirical policies and non-development harness runs is refused until
+a dual-path calibration design exists. There is no production promotion.
+
+**119 focused checks passed in 15.90s**; the previous committed source `db28900` passed the
+full 336-test suite. No new campaign or search was run and no performance improvement is claimed.
+This source/policy extension invalidates earlier prospective manifests, including the wind/TAS
+comparison prepared before it. Preserve historical artifacts and refreeze before any approved run.
+
+## Observable-domain enforcement, 2026-10-06
+
+The [domain contract](flight-domain-development-20261006/README.md) binds primary and flight
+pairwise empirical policies to `observable-flight-domain-1`, with canonical identity, explicit
+finite observable bounds, retained mount-epoch timing and a single acquisition lane. The
+analyzer derives that lane from the recording; synthetic/recorded GPS and both replay modes
+cannot share a domain. Membership uses retained geometry rather than fitted science coefficients.
+The same recomputed membership gates research, calibration, validation and threshold application.
+Missing/inconsistent/outside bindings abstain; diagnostic fits remain available.
+
+New primary policies are `empirical-decision-5`; flight pair policies are `pairwise-empirical-3`.
+Their operational strata include `domain_id`. The harness freezes `--flight-domain` content,
+and validation must match calibration exactly. Direct profiles preserve rank independence;
+their comparison/method threshold keys are no longer misread as global-rank campaign cells.
+Historical unscoped artifacts remain offline research records and cannot issue empirical flight
+decisions. No domain has been scientifically approved and no new threshold has been calibrated.
+Public-track empirical analysis and magnetic dual-path empirical decisions remain refused;
+summary pooling needs separate domain work. Prior prospective freezes are stale.
+
+**156 focused checks passed in 29.71s**, followed by **70 domain/eligibility/hardening checks
+in 1.14s** after adding the domain module to the scientific source freeze. Those checks include
+a regression proving a domain-module change alters the frozen hash. The earlier 336-test full
+suite applies to `db28900`, before magnetic/domain changes. No campaign, search or new full-suite
+run occurred in this stage.
+
+## Durable sharded execution, 2026-10-06
+
+The [runner contract](sharded-campaigns-20261006/README.md) implements deterministic implicit
+flight tasks bound to exact candidate jobs, source/configuration/policy/environment and fixed
+shards. The research harness's `--write-sharded-plan` prepares without executing; runtime requires
+an explicit total attempt prefix, with at most two single-thread workers. Fresh subprocesses
+initialize numerical thread limits before NumPy/SciPy imports. Source/environment changes stop
+the run before a result is committed. Existing freezes need renewal; the old two-thread
+environment cannot be reused for these workers.
+
+Hash-chained shard journals fsync starts and completions. Resume preserves successes/failures
+and records a lost started attempt as an infrastructure failure rather than fitting it again.
+Incomplete final bytes are archived before tail repair; malformed complete records are rejected.
+Locks exclude duplicate workers, live merging and orphan replacement. An explicit detached launch
+supports terminal/chat disconnection. Merging streams all records in task order, checks provenance
+and duplicates, and retains failures. Partial exports cannot become holdout evidence. No stopping
+depends on acceptance or model outcomes. Existing calibration precision and exact-bound rules
+remain; no threshold or scientific decision is automatically created by the executor.
+
+No flight simulation, optimizer search, calibration or validation ran during this implementation.
+Actual campaign speedup/storage remain unmeasured; additional compute allowance remains zero.
+
+**94 focused checks passed in 6.90s** across runner, domain, eligibility, research hardening and
+existing worker recovery. Two OS processes wrote fixture records; a fresh interpreter checked
+one-thread setup before numerical imports. These are software checks, not flight/tail evidence.
+The earlier full suite remains historical and has not been rerun after the subsequent extensions.
+
+## Airline assumption review and refreshed pilot, 2026-10-06
+
+The [preparation record](airline-pilot-preparation-20261006/README.md) reviews five existing
+assumed route paths without flight synthesis, fitting, SVDs or schedule search. The 20/40/60
+minute control passes the buffered mask on FRA–JNB and SEA–KEF, and fails on the three supplied
+route windows; failures remain recorded. Prescribed wind and sampled-knot log-TAS interpolation
+give a FRA–JNB speed mismatch median 2.95, p95 11.41 and maximum 20.68 m/s across supported
+path samples. These include potentially excluded intervals and are not optimal-spline residuals.
+None of the 65 independent wind/TAS grid states is within 6 m/s at every sample on any reviewed
+path. Off-manifold states remain in the finite envelope; no constraint, grid or cutoff changed.
+
+This identifies an assumption to test: a 2 m/s conditional speed constraint plus 15-minute TAS
+knots may interact with assumed public-position interpolation. No independent airspeed/heading
+exists, and the review does not prove failure or establish real motion between observations.
+Six preparation checks passed in 1.07s and explicitly prohibit flight fits/SVDs.
+
+The new one-thread sharded proposal freezes seed 600900, FRA–JNB dense simulated GPS, three truths,
+wind+mixed bias and wind+mixed bias+correlated+thermal, and wind/exclude, wind_tas/exclude and
+wind_tas/model_and_compare candidates. It has 18 matched evaluations, zero bootstrap and zero
+authorized execution. The initial proposed prefix is three evaluations of the same rotating
+truth/wind-plus-bias condition to measure current time/storage before further budget decisions.
+No wall-time quote or limit is invented from old runtimes. The remaining 15, true-slip controls,
+other routes/modes, search and nonzero bootstrap remain separately scoped. The scientific source
+is unchanged from the sharded-runner freeze. No scientific domain, threshold or policy is promoted.
 
 ## External flight tracks and missing GNSS
 
@@ -1028,6 +1408,95 @@ contrasts, but has a narrow 0.3274 minimum retention and no demonstrated full-pi
 Raw sessions, bins and mount matrices must be retained in a later budgeted comparison.
 
 ## Experimental partial pairwise evidence
+
+The versioned derived shape rule `globe-disc-pair-rule-1` emits `shape_evidence` in candidate
+fits, final session analysis, research records and pairwise pools. It ignores the rotating-versus-
+stationary-globe comparison. At least one eligible, internally consistent globe-versus-disc
+preference supports the globe family; disc requires both comparisons to prefer disc. Opposing
+preferences cause abstention. Neither/both endpoint rejections alone supply no preference.
+All contributing pair-specific gates and calibration-domain restrictions remain in force.
+This is evidence about the two implemented globes versus the implemented stationary disc.
+
+The family rule is experimental even when its contributing pair thresholds are calibrated.
+`pairwise_thresholds_calibrated` describes only those inputs; `error_rate_validated` and
+`validated_for_primary_claims` remain false. Under disc truth, choosing either globe comparison
+can accumulate false rejections. An endpoint bound is not a same-sized family bound, especially
+with different data-dependent eligibility sets. Preregister the composite rule/error budget and
+validate wrong-shape outcomes under all three truths, retaining failures and abstentions.
+Existing endpoint assessments do not certify this new conclusion.
+
+The geometry optimizer's `--objective globe-disc` requires both untruncated pair contrasts to
+survive the same nuisance envelope, without requiring globe-rotation separation or global
+science rank. `--comparison` still permits a single pair design. A full three-model objective
+remains the default; shape and single-pair objectives are explicit alternatives, not relaxed
+three-model qualification.
+
+`analysis/tests/review_shape_evidence.py` derives preferences solely from preserved decisions
+in the two development campaigns. Results in `research-next-stage-20261006/shape-review.json`
+bind original input hashes/freezes and the current rule. Counts are 889/0/111 and 900/0/100
+correct/incorrect/abstaining, with 9 and 12 additional shape preferences beyond recorded
+three-model winners. These historical observable-coordinate fits are not fresh direct profiles,
+current airline replay, calibration or independent validation.
+
+The subsequent fixed nominal direction screen, `research-next-stage-20261006/route-direction-screen.json`,
+contains 21 route/pattern controls: 12 safe, 24 candidate evaluations, two preserved no-bin
+failures, in0.542s. Five prepared75-minute paths plus the extended120-minute path are compared
+with its counterfactual reverse. With six distributed turns, the reversed physical-wind case
+has shape pre-cutoff retentions0.415376/0.436039 and rotation retention0.298360,85 analytic
+minutes and adequate headings. Original westbound shape retentions are0.124577/0.305099.
+Broader wind fails the reversed shape contrasts at0.253845/0.293767. No case passes both shape
+contrasts across both candidates. The physical-wind SEA–KEF nominal pass at0.333473/0.415521
+fails observable qualification at55 minutes and inadequate headings. These are nominal
+zero-nuisance controls, not complete envelopes, full preprocessing or power. Two reversal
+controls passed0.39s; no new simulated flight, analysis refit or empirical threshold ran.
+
+The [airborne-source inspection](research-next-stage-20261006/AIRBORNE_DATA.md) preserves four
+public catalog responses and `airborne-catalog-review.json`, generated offline by
+`analysis/tests/review_airborne_sources.py`. ILVIS0 current collectionC3162704221-NSIDC_CPRD,
+DOI10.5067/E6JPQ3QNW77R, has actualgyro file candidates. A64KB range probe returned302 to
+Earthdata login with0 measurement bytes. The supplied C1386246599-NSIDCV0 identifies distinct
+IPUTI0, DOI10.5067/7K31MCH5XXZA; its directory also redirects to login. IPUTI0 metadata advertises
+ASCII position/velocity/orientation, not confirmed independent gyro columns. The2014 Applanix
+V6 ICD documents packets but leaves IMU payload formats unpublished; its applicability to the
+2009 log is unverified. The user has since registered and supplied an IPUTI0 binary sample,
+clock file and three format descriptions. `analysis/tests/inspect_iputi0_sample.py` preserves
+these in `research-next-stage-20261006/airborne-sample-iputi0/inputs/` with SHA256 provenance,
+and produces an exploratory navigation CSV and inspection record. The binary interleaves
+3500 system status and3501 navigation solution: position, velocity, pitch, roll and heading,
+with no independent gyro rate/increment fields. Signed fixed-point decoding follows the
+supplied scaling; little-endian word/checksum conventions are inferred from observed data.
+There are1,527 verified packets of each type. A checksum-failed candidate at offset10,800
+overlaps valid frames recovered11bytes later;11unframed bytes are preserved, not repaired.
+The clock's relative span is1,525.99469s at approximately1Hz; timezone, binary time-tag
+representation/epoch/alignment and status-bit semantics remain unresolved. Horizontal
+speed69.51–93.69m/s is consistent with airborne motion. Three focused decoder checks pass0.02s.
+No navigation-rate substitution, credential inspection, full-pipeline fit or empirical
+discriminator result exists. The subsequent ILVIS0 log now provides a time-tagged IMU stream,
+but physical payload decoding remains unresolved. Offline `analysis/tests/inspect_ilvis0_sample.py`
+preserves the13,086,748-byte original and produces the explicitly documented
+`research-next-stage-20261006/airborne-sample-ilvis0/` corpus with opaque timed IMU payloads,
+fused navigation, reconstructed primary GPS and hashes. All143,471 outer frames pass the
+documented whole-frame16bit checksum (including endmarker); no repair/resync is performed.
+132,444 Group4 IMU8 packets span662.2256497321068s at approximately200Hz, no gaps>7.5ms.
+Headerdata/status0; AV-510 VER5 firmware04.60/ICD15.00/IMU8 identifies exact format target.
+The2014 V6 ICD is compatible with observed containers but not verified for every2009 field.
+Payload24bytes remains opaque: scaling, axis order, increments/rates and corrections unknown.
+Group10002 is absent.662 Group1 fused navigation packets must not replace independent gyro.
+Reassembling5934 Group10001 GPSframes recovers660 checksum-valid GGA,660 VTG and660 ZDA;
+all GGA fix-quality1, ZDA date2009-04-14.10GGA markers span frame boundaries. Compatible
+timebyte2 denotes UTCtime1/POSsincepowerontime2; latency/leverarms still unverified. Track
+79.72N→78.86N over Greenland, navaltitude~6.9→7.5km and rollmin−17.5deg indicate climb and
+maneuvers, not a qualified entirelevelwindow. Two focused checks pass0.02s. No physicalgyro
+decoder, mainpipelineimport, calibration, empiricaldiscrimination or WT901claim. A precise
+IMU8documentation-request draft is saved in AIRBORNE_DATA; no external message was sent.
+
+The subsequent bounded design check runs at most30 SVDs, not simulated flights:
+`analysis/tests/check_direction_counterexamples.py` records exact registered physical-wind
+states at reference TAS on the reversed120-minute path/sixsafe turns. All30 tested states
+retain both globe/disc contrasts, minimum fractions0.403480/0.431011 versus0.312250;
+elapsed0.100963s. The cap stops mid-grid, so no complete-envelope pass is established.
+Broadwind already fails nominal; no fullpipeline/power result or protocol promotion follows.
+`research-next-stage-20261006/PLAN_STATUS.md` maps implementation versus outstanding evidence.
 
 Candidate fits emit `pairwise` entries for all three comparisons. Each applies the shared gates
 with only that comparison's design retention required. The free-fit retained science space defines

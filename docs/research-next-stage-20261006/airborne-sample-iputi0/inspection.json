@@ -1,0 +1,508 @@
+{
+  "dataset": "IPUTI0",
+  "doi": "10.5067/7K31MCH5XXZA",
+  "state": "navigation_sample_decoded_independent_gyro_unavailable",
+  "input_provenance": {
+    "ASB_JKB0a_GL0017a_AVNcp1.bxds": {
+      "bytes": 152711,
+      "sha256": "c2008e77ca50b62227bff356ae6ec0c97606c933877260cb30fa87909d6293e0"
+    },
+    "ASB_JKB0a_GL0017a_AVNcp1.ct": {
+      "bytes": 84817,
+      "sha256": "e1f037bb7d2ccdbf032cfeec5e693d7d3a9f2a7899238ed0954829931625c589"
+    },
+    "AN09.IPUTI0.AVNcp1.bxds.format": {
+      "bytes": 3001,
+      "sha256": "2322df427348656b3f66d78163b099d2383a15481de6b059de05cc3ab05d4aae"
+    },
+    "AN09.IPUTI0.AVNcp2.bxds.format": {
+      "bytes": 3085,
+      "sha256": "7a7aae0d95aa3cc69a25363c0ddd790be14b090365f069b2ac2a150caacd5a8c"
+    },
+    "AN09.IPUTI0.ct.format": {
+      "bytes": 654,
+      "sha256": "fd5b148e9d50809845b1372d7160bafd5c3ece9517373beecf2c24e57883b06f"
+    }
+  },
+  "helper_sha256": "ab88cce492ce77253053e14f73d2982b10e496694c22cbaa73831200db598716",
+  "checksum_convention": "inferred little-endian uint16 additive sums modulo65536 equal zero",
+  "packet_counts": {
+    "3500": 1527,
+    "3501": 1527
+  },
+  "rejected_packet_candidates": [
+    {
+      "offset": 10800,
+      "message_id": 3501,
+      "reason": "data_checksum",
+      "residue": 1478
+    }
+  ],
+  "unframed_ranges": [
+    {
+      "offset": 10800,
+      "bytes": 11
+    }
+  ],
+  "unframed_bytes": 11,
+  "status_field_order": [
+    "mode",
+    "ssv",
+    "nsv",
+    "npmp",
+    "nvmp",
+    "fom"
+  ],
+  "status_values": [
+    {
+      "raw_words": [
+        7,
+        3082,
+        0,
+        0,
+        0,
+        8993
+      ],
+      "count": 2
+    },
+    {
+      "raw_words": [
+        7,
+        3082,
+        0,
+        0,
+        0,
+        9249
+      ],
+      "count": 2
+    },
+    {
+      "raw_words": [
+        7,
+        3083,
+        9,
+        7,
+        9,
+        8993
+      ],
+      "count": 1
+    },
+    {
+      "raw_words": [
+        7,
+        3083,
+        9,
+        8,
+        9,
+        8993
+      ],
+      "count": 1
+    },
+    {
+      "raw_words": [
+        7,
+        3083,
+        9,
+        9,
+        9,
+        8993
+      ],
+      "count": 10
+    },
+    {
+      "raw_words": [
+        7,
+        3083,
+        9,
+        9,
+        9,
+        9265
+      ],
+      "count": 5
+    },
+    {
+      "raw_words": [
+        7,
+        3083,
+        10,
+        8,
+        10,
+        8993
+      ],
+      "count": 1
+    },
+    {
+      "raw_words": [
+        7,
+        3083,
+        10,
+        8,
+        10,
+        9249
+      ],
+      "count": 2
+    },
+    {
+      "raw_words": [
+        7,
+        3083,
+        10,
+        9,
+        9,
+        9265
+      ],
+      "count": 3
+    },
+    {
+      "raw_words": [
+        7,
+        3083,
+        10,
+        9,
+        10,
+        8993
+      ],
+      "count": 11
+    },
+    {
+      "raw_words": [
+        7,
+        3083,
+        10,
+        9,
+        10,
+        9249
+      ],
+      "count": 3
+    },
+    {
+      "raw_words": [
+        7,
+        3083,
+        10,
+        9,
+        10,
+        9265
+      ],
+      "count": 11
+    },
+    {
+      "raw_words": [
+        7,
+        3083,
+        10,
+        10,
+        0,
+        8993
+      ],
+      "count": 1
+    },
+    {
+      "raw_words": [
+        7,
+        3083,
+        10,
+        10,
+        0,
+        9249
+      ],
+      "count": 1
+    },
+    {
+      "raw_words": [
+        7,
+        3083,
+        10,
+        10,
+        6,
+        8993
+      ],
+      "count": 1
+    },
+    {
+      "raw_words": [
+        7,
+        3083,
+        10,
+        10,
+        9,
+        8993
+      ],
+      "count": 9
+    },
+    {
+      "raw_words": [
+        7,
+        3083,
+        10,
+        10,
+        9,
+        9249
+      ],
+      "count": 2
+    },
+    {
+      "raw_words": [
+        7,
+        3083,
+        10,
+        10,
+        9,
+        9265
+      ],
+      "count": 4
+    },
+    {
+      "raw_words": [
+        7,
+        3083,
+        10,
+        10,
+        10,
+        8993
+      ],
+      "count": 885
+    },
+    {
+      "raw_words": [
+        7,
+        3083,
+        10,
+        10,
+        10,
+        9249
+      ],
+      "count": 146
+    },
+    {
+      "raw_words": [
+        7,
+        3083,
+        10,
+        10,
+        10,
+        9265
+      ],
+      "count": 322
+    },
+    {
+      "raw_words": [
+        7,
+        3083,
+        11,
+        8,
+        10,
+        9249
+      ],
+      "count": 1
+    },
+    {
+      "raw_words": [
+        7,
+        3083,
+        11,
+        9,
+        11,
+        9249
+      ],
+      "count": 6
+    },
+    {
+      "raw_words": [
+        7,
+        3083,
+        11,
+        10,
+        10,
+        9249
+      ],
+      "count": 1
+    },
+    {
+      "raw_words": [
+        7,
+        3083,
+        11,
+        10,
+        10,
+        9265
+      ],
+      "count": 1
+    },
+    {
+      "raw_words": [
+        7,
+        3083,
+        11,
+        10,
+        11,
+        9249
+      ],
+      "count": 10
+    },
+    {
+      "raw_words": [
+        7,
+        3083,
+        11,
+        10,
+        11,
+        9265
+      ],
+      "count": 18
+    },
+    {
+      "raw_words": [
+        7,
+        3083,
+        11,
+        11,
+        10,
+        9249
+      ],
+      "count": 8
+    },
+    {
+      "raw_words": [
+        7,
+        3083,
+        11,
+        11,
+        10,
+        9265
+      ],
+      "count": 2
+    },
+    {
+      "raw_words": [
+        7,
+        3083,
+        11,
+        11,
+        11,
+        9249
+      ],
+      "count": 40
+    },
+    {
+      "raw_words": [
+        7,
+        3083,
+        11,
+        11,
+        11,
+        9265
+      ],
+      "count": 15
+    },
+    {
+      "raw_words": [
+        7,
+        3147,
+        10,
+        10,
+        10,
+        8993
+      ],
+      "count": 2
+    }
+  ],
+  "status_bit_meanings_verified": false,
+  "clock": {
+    "rows": 1527,
+    "first_fields": [
+      "ASB",
+      "JKB0a",
+      "GL0017a",
+      "2",
+      "2010",
+      "01",
+      "01",
+      "07",
+      "31",
+      "49",
+      "09",
+      "29721"
+    ],
+    "last_fields": [
+      "ASB",
+      "JKB0a",
+      "GL0017a",
+      "15262",
+      "2010",
+      "01",
+      "01",
+      "07",
+      "57",
+      "14",
+      "93",
+      "152629190"
+    ],
+    "relative_time_span_s": 1525.9946900000002,
+    "relative_step_s_min": 0.9922400000000001,
+    "relative_step_s_max": 1.00759,
+    "sequence_steps": {
+      "10": 1526
+    },
+    "clock_time_approximate": true,
+    "clock_timezone_verified": false,
+    "packet_alignment_verified": false,
+    "inferred_clock_cadence_hz": 1.000060003600216
+  },
+  "navigation_ranges": {
+    "latitude_deg": {
+      "min": -67.7461201697588,
+      "max": -66.707026027143
+    },
+    "longitude_deg": {
+      "min": 126.39192558825016,
+      "max": 127.09460567682981
+    },
+    "altitude_m": {
+      "min": 627.5596923828125,
+      "max": 2013.6043243408203
+    },
+    "velocity_north_mps": {
+      "min": -87.10200119018555,
+      "max": 44.45802116394043
+    },
+    "velocity_east_mps": {
+      "min": -93.5831470489502,
+      "max": 43.077239990234375
+    },
+    "velocity_up_mps": {
+      "min": -1.8147673606872559,
+      "max": 5.155467510223389
+    },
+    "pitch_deg": {
+      "min": -0.7199025526642799,
+      "max": 5.954526476562023
+    },
+    "roll_deg": {
+      "min": -16.796231232583523,
+      "max": 9.414946921169758
+    },
+    "heading_deg": {
+      "min": -179.9778063967824,
+      "max": 179.9999862536788
+    }
+  },
+  "horizontal_speed_mps": {
+    "min": 69.50763516611426,
+    "max": 93.68985119138031,
+    "mean": 81.78869685779658
+  },
+  "raw_gyro_fields_present": false,
+  "empirical_discrimination_tested": false,
+  "valid_navigation_csv": "navigation.csv",
+  "limitations": [
+    "3500 is system status;3501 is a navigation solution, not raw gyro measurements.",
+    "Do not differentiate orientation and treat it as independent gyro evidence.",
+    "Signed fixed-point fields follow supplied scaling; byte order/checksum rule inferred from sample.",
+    "64bit time-tag representation/word order and epoch unresolved; exact bytes preserved, no guessed times.",
+    "Clock relative time is documented in10microsecond units; approximate wall clock/timezone and binary alignment unresolved.",
+    "Status tokens/validity flags have not been interpreted; navigation values are exploratory only.",
+    "Reported corruption retained; no repair or missing-data interpolation.",
+    "No source corrections, mount axes, raw rates, gyro calibration or WT901 validation established."
+  ]
+}

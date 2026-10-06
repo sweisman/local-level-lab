@@ -64,6 +64,9 @@ def profile_evidence(problem, design, *, n_boot=0, seed=0, block=15, sampling='m
         if problem.wind_tas is not None and any(problem.wind_tas.boundary(v['z'][problem.p:problem.p+problem.nc])['near_boundary']
                 for v in [free,*endpoints.values()]):
             reasons.append('physical wind/TAS fit near parameter boundary')
+        if problem.mount_yaw is not None and any(problem.mount_yaw.near_boundary(v['z'][problem.mount_slice])
+                for v in [free,*endpoints.values()]):
+            reasons.append('mount yaw fit near parameter boundary')
         residual = problem.y-free['pred']
         scale,_ = _autocorr_scale(residual*np.sqrt(problem.w),problem.idx,problem.bins)
         statistics = {m:max(0.,v['objective']-free['objective'])*scale for m,v in endpoints.items()}
@@ -91,6 +94,7 @@ def profile_evidence(problem, design, *, n_boot=0, seed=0, block=15, sampling='m
         shifts = {}
         keys = ['bias']+(['bias_drift'] if problem.dynamic_bias else [])+(['crab','rate'] if problem.nc else [])+(['forward'] if problem.forward else [])
         if problem.wind_tas is not None: keys+=['airspeed','airspeed_rate']
+        if problem.nm: keys.append('mount_yaw')
         if problem.temp_ref is not None: keys.append('temperature')
         for key in keys:
             widened = solve_pair(problem,name,start=free,penalty=problem.penalty(**{key:3.}))

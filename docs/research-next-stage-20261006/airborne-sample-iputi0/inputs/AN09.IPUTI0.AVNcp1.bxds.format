@@ -1,0 +1,66 @@
+________________________________________________________________________________________
+
+   Stream Code:  AVNcp1                Stream ID#:  N/A              # of Bytes:   44
+
+           Device:  Systron Donner Inertial MMQ-G (Message 3500 - MMQ-G System Status)
+________________________________________________________________________________________
+
+
+  Packet                                     # of     FARCE     Decoded         Decoded
+  Sect:     Attr:    Description:            Bytes:   Form:     Units:          Format:
+  ______    ____     _____________________   _____    _____     _____________   ______
+
+     +-----------------------------------------------------------------------------+
+     |                                                                             |
+     |    NOTE:  The value of many decoded field must be scaled (divided) by       |
+     |    the indicated resolution, to determine the true value:                   |
+     |                                                                             |
+     |                                  DF20 = 2^43                                |
+     |                                  F15  = 2^16                                |
+     |                                  F10  = 2^21                                |
+     |                                                                             |
+     +-----------------------------------------------------------------------------+
+
+   XDS      sw       synchronization word       2     u-int     N/A (0x81FF)     I
+
+            mid      message ID number          2     u-int     N/A (3500)       I
+
+            wc       word count                 2     u-int     count            I
+
+            flag     flag word                  2     bits      N/A              I
+
+            hcksum   header checksum            2     u-int     N/A              I
+
+            tt       time tag                   8     double    sec (DF20)       F
+
+            mode     current mode               2     s-int     N/A (token)      I
+
+            ssv      system status validity     2     bits      N/A              I
+
+            nsv      number current SVs tracked 2     s-int     count            I
+
+            npmp     # position measurements    2     s-int     count            I
+
+            nvmp     # velocity measurements    2     s-int     count            I
+
+            fom      FOM information            2     bits      N/A              I
+
+            ehpe     horizontal position error  4     float     m (F15)          F
+
+            evpe     vertical position error    4     float     m (F15)          F
+
+            eve      velocity error             4     float     m/s (F10)        F
+
+            dcksum   data checksum              2     s-int     N/A              I
+________________________________________________________________________________________
+
+
+
+
+
+
+
+
+
+
+________________________________________________________________________________________

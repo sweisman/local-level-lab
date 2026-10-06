@@ -366,4 +366,6 @@ def test_profile_candidate_reaches_fit_and_separate_calibration():
     check_pairwise_policy(policy,'flight')
     name=next(iter(MODEL_PAIRS)); row=data['records'][0]
     assert group(row,name,'flight')==group({**row,'model_test_rank':3},name,'flight')
-    assert flight_evidence(row,policy=policy,candidate_id='x',variant='spp')[name]['calibrated']
+    # Unscoped historical calibration cannot issue flight decisions.
+    evidence=flight_evidence(row,policy=policy,candidate_id='x',variant='spp')[name]
+    assert not evidence['calibrated'] and evidence['status']=='abstain'

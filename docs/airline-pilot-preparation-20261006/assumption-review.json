@@ -1,0 +1,4112 @@
+{
+  "state": "prepared_not_run",
+  "execution_authorized": false,
+  "authorized_additional_attempts": 0,
+  "source_inputs": {
+    "docs/core-pipeline-20261006/proposal.json": "22a31b3a45ee550e10af949602bca92d8eae720dc85d6eaf55036703aca5df7d",
+    "docs/core-pipeline-20261006/trajectories/2025-09-01-etihad-10-ord-auh-simulated_high_rate.json": "e76e21c3b972673b0cc929b654cd04f448c46796889bf5431639bb04d4ffd56a",
+    "docs/core-pipeline-20261006/trajectories/2025-08-19-etihad-9-auh-ord-simulated_high_rate.json": "195732675f62d5b52e02fcc4b03e36b31e4ac90c69e7c9ac9d8fc6a02fdc2e66",
+    "docs/core-pipeline-20261006/trajectories/2025-08-19-aa-1433-ord-lax-simulated_high_rate.json": "b71197eaeaa3fa1787d875a98f466e7e54dd0a31831c51124e3e500feacb9be0",
+    "docs/core-pipeline-20261006/trajectories/2026-10-02-icelandair-680-sea-kef-simulated_high_rate.json": "2ef030f4b5bc9338ee25570d5aa48d7d58ea0b84df390de3ce33f026542dfce8",
+    "docs/core-pipeline-20261006/trajectories/2026-10-02-lufthansa-572-fra-jnb-simulated_high_rate.json": "d7ad38b21f320a07f17908d593b84ae5aff0d63464c6d2cf190ad0b3c7ea0f92",
+    "analysis/tests/prepare_airline_pilot.py": "2737ecf9305c84298f3b50792f672b46351eb5ad813032492a0858c228235247"
+  },
+  "routes": [
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "trajectory_hash": "3b1f25f980040e309df8444a3c679006ceeda146059d2b84a2284dd1dd8f2eb8",
+      "mode": "simulated_high_rate",
+      "status": "assumed-path review only; not reconstructed IMU, receiver accuracy or scientific eligibility",
+      "duration_minutes": 75.0,
+      "supported_fraction_on_1s_grid": 0.992,
+      "supported_intervals": [
+        {
+          "start_s": 25.0,
+          "end_s": 4488.0
+        }
+      ],
+      "public_observation_interval_seconds": {
+        "min": 16.0,
+        "median": 31.0,
+        "p95": 53.19999999999999,
+        "max": 90.0
+      },
+      "assumed_ground_speed_mps": {
+        "min": 157.97825824500663,
+        "median": 260.904117881832,
+        "p95": 271.99851987900695,
+        "max": 289.16739837116353
+      },
+      "assumed_vertical_speed_mps": {
+        "min": 0.0,
+        "median": 0.0,
+        "p95": 8.735016509575717,
+        "max": 15.20064929085026
+      },
+      "assumed_latitude_deg": {
+        "min": 24.783000000000005,
+        "median": 28.59997855120165,
+        "p95": 32.6778338930585,
+        "max": 33.1069
+      },
+      "reported_minus_assumed_speed_mps": {
+        "min": -9.710314044724072,
+        "median": 0.16620813241600274,
+        "p95": 5.218311334619695,
+        "max": 15.095682229173178
+      },
+      "proposed_turns": [
+        {
+          "minute": 20.0,
+          "safe": true,
+          "reason": null,
+          "evidence": []
+        },
+        {
+          "minute": 40.0,
+          "safe": true,
+          "reason": null,
+          "evidence": []
+        },
+        {
+          "minute": 60.0,
+          "safe": false,
+          "reason": "aircraft maneuver",
+          "evidence": [
+            {
+              "start_s": 2676.0,
+              "end_s": 4489.0,
+              "reason": "aircraft maneuver"
+            }
+          ]
+        }
+      ],
+      "all_proposed_turns_pass_assumed_mask": false,
+      "physical_speed_review": {
+        "available": true,
+        "sample_seconds": 10,
+        "states": [
+          {
+            "state": "wind--1--1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 0.8685986183447056,
+              "median": 136.94314588503832,
+              "p95": 150.0944735860802,
+              "max": 161.69245975503793
+            },
+            "fraction_within_3_constraint_sigma": 0.002242152466367713
+          },
+          {
+            "state": "wind--1--1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 0.08729417641714576,
+              "median": 10.581960260281065,
+              "p95": 81.24849614842297,
+              "max": 170.6688142267809
+            },
+            "fraction_within_3_constraint_sigma": 0.18834080717488788
+          },
+          {
+            "state": "wind--1--1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 68.30754024496207,
+              "median": 93.05685411496168,
+              "p95": 181.248496148423,
+              "max": 270.6688142267809
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind--1--1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.2260044584379557,
+              "median": 16.217177692214705,
+              "p95": 50.8560823554925,
+              "max": 137.14075124158217
+            },
+            "fraction_within_3_constraint_sigma": 0.10089686098654709
+          },
+          {
+            "state": "wind--1--1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.008682292356354537,
+              "median": 18.932654468285136,
+              "p95": 116.46093313678668,
+              "max": 209.38984135800933
+            },
+            "fraction_within_3_constraint_sigma": 0.31614349775784756
+          },
+          {
+            "state": "wind--1-0/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 2.324368776383565,
+              "median": 92.31352330921344,
+              "p95": 102.15353889882113,
+              "max": 113.00380889246173
+            },
+            "fraction_within_3_constraint_sigma": 0.011210762331838564
+          },
+          {
+            "state": "wind--1-0/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 16.996191107538266,
+              "median": 37.68647669078656,
+              "p95": 108.45100301742157,
+              "max": 139.87997170630013
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind--1-0/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 116.99619110753827,
+              "median": 137.68647669078655,
+              "p95": 208.45100301742156,
+              "max": 239.87997170630013
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind--1-0/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 1.810317861626345,
+              "median": 47.63140271328088,
+              "p95": 76.85238241131387,
+              "max": 106.39316533299608
+            },
+            "fraction_within_3_constraint_sigma": 0.008968609865470852
+          },
+          {
+            "state": "wind--1-0/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.09818843907299879,
+              "median": 37.020641066133294,
+              "p95": 144.1533591587371,
+              "max": 178.60099883752855
+            },
+            "fraction_within_3_constraint_sigma": 0.10762331838565023
+          },
+          {
+            "state": "wind--1-1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 4.044116796472977,
+              "median": 59.04793034905691,
+              "p95": 75.35229919923546,
+              "max": 99.77777801371525
+            },
+            "fraction_within_3_constraint_sigma": 0.011210762331838564
+          },
+          {
+            "state": "wind--1-1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 30.22222198628475,
+              "median": 70.95206965094309,
+              "p95": 113.13170119647774,
+              "max": 125.95588320352702
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind--1-1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 130.22222198628475,
+              "median": 170.9520696509431,
+              "p95": 213.13170119647774,
+              "max": 225.95588320352704
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind--1-1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 19.77990875801791,
+              "median": 73.48384849221063,
+              "p95": 108.75072776103823,
+              "max": 112.1558972120844
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind--1-1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 32.936809651915354,
+              "median": 62.73162296429443,
+              "p95": 145.35209689247776,
+              "max": 158.04595521122343
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-0--1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 18.37480350590849,
+              "median": 176.02006517096564,
+              "p95": 186.34826775067415,
+              "max": 197.6073119894262
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-0--1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 0.4911009071370529,
+              "median": 46.74778380553221,
+              "p95": 59.91981394426422,
+              "max": 111.62519649409151
+            },
+            "fraction_within_3_constraint_sigma": 0.02242152466367713
+          },
+          {
+            "state": "wind-0--1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 32.392688010573806,
+              "median": 53.97993482903436,
+              "p95": 131.5405485154768,
+              "max": 211.6251964940915
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-0--1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 1.5204823577306854,
+              "median": 36.94322072901443,
+              "p95": 69.42817365279609,
+              "max": 82.79318523533811
+            },
+            "fraction_within_3_constraint_sigma": 0.02466367713004484
+          },
+          {
+            "state": "wind-0--1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.031813551457446465,
+              "median": 48.375777754281955,
+              "p95": 87.81617531852967,
+              "max": 150.34622362531994
+            },
+            "fraction_within_3_constraint_sigma": 0.02914798206278027
+          },
+          {
+            "state": "wind-0-0/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 38.05242750593564,
+              "median": 140.73715463543692,
+              "p95": 152.38705163053305,
+              "max": 168.95796578108138
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-0-0/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 0.09849817698562902,
+              "median": 13.6086071360848,
+              "p95": 51.17200931820512,
+              "max": 91.94757249406436
+            },
+            "fraction_within_3_constraint_sigma": 0.09417040358744394
+          },
+          {
+            "state": "wind-0-0/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 61.042034218918616,
+              "median": 89.26284536456308,
+              "p95": 151.1720093182051,
+              "max": 191.94757249406436
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-0-0/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.036972844919432646,
+              "median": 13.630309323396219,
+              "p95": 39.17554780190055,
+              "max": 58.419509508865616
+            },
+            "fraction_within_3_constraint_sigma": 0.17937219730941703
+          },
+          {
+            "state": "wind-0-0/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.12301851368908956,
+              "median": 29.732567449374898,
+              "p95": 86.70746208791769,
+              "max": 130.66859962529279
+            },
+            "fraction_within_3_constraint_sigma": 0.06950672645739911
+          },
+          {
+            "state": "wind-0-1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 46.19978506965245,
+              "median": 113.39259699461489,
+              "p95": 134.0448641820537,
+              "max": 159.6826867186271
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-0-1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 0.13197909777272798,
+              "median": 16.82280069372659,
+              "p95": 67.71647869880208,
+              "max": 83.80021493034755
+            },
+            "fraction_within_3_constraint_sigma": 0.1547085201793722
+          },
+          {
+            "state": "wind-0-1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 70.31731328137289,
+              "median": 116.60740300538511,
+              "p95": 167.71647869880206,
+              "max": 183.80021493034755
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-0-1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.6084103425192495,
+              "median": 24.877733738002092,
+              "p95": 55.50347503325547,
+              "max": 58.390594544799
+            },
+            "fraction_within_3_constraint_sigma": 0.08968609865470852
+          },
+          {
+            "state": "wind-0-1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.14020878274610027,
+              "median": 14.986336873293496,
+              "p95": 97.2137410347425,
+              "max": 112.86973254506538
+            },
+            "fraction_within_3_constraint_sigma": 0.2600896860986547
+          },
+          {
+            "state": "wind-1--1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 77.99428136795407,
+              "median": 223.28397898844761,
+              "p95": 234.0135765684214,
+              "max": 244.81658442021973
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-1--1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 12.053814116056202,
+              "median": 93.28397898844761,
+              "p95": 104.01357656842139,
+              "max": 114.81658442021973
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-1--1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 0.027922806828314606,
+              "median": 6.847843076183892,
+              "p95": 77.6651660655228,
+              "max": 152.00571863204593
+            },
+            "fraction_within_3_constraint_sigma": 0.4260089686098655
+          },
+          {
+            "state": "wind-1--1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.15707747118202064,
+              "median": 84.38001882324596,
+              "p95": 113.49538981193474,
+              "max": 125.44266245573138
+            },
+            "fraction_within_3_constraint_sigma": 0.011210762331838564
+          },
+          {
+            "state": "wind-1--1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 3.498282449805288,
+              "median": 95.794026348917,
+              "p95": 128.6912892850892,
+              "max": 134.31021306364724
+            },
+            "fraction_within_3_constraint_sigma": 0.017937219730941704
+          },
+          {
+            "state": "wind-1-0/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 92.21385216246563,
+              "median": 192.80011425761063,
+              "p95": 206.75289883906981,
+              "max": 227.29935146764154
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-1-0/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 0.7167900384007169,
+              "median": 62.80011425761063,
+              "p95": 76.7528988390698,
+              "max": 97.29935146764154
+            },
+            "fraction_within_3_constraint_sigma": 0.01569506726457399
+          },
+          {
+            "state": "wind-1-0/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 2.700648532358457,
+              "median": 37.19988574238937,
+              "p95": 95.88211491218703,
+              "max": 137.78614783753437
+            },
+            "fraction_within_3_constraint_sigma": 0.002242152466367713
+          },
+          {
+            "state": "wind-1-0/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.5335874245762966,
+              "median": 48.79131212531831,
+              "p95": 86.33010901413822,
+              "max": 107.74166469590838
+            },
+            "fraction_within_3_constraint_sigma": 0.02242152466367713
+          },
+          {
+            "state": "wind-1-0/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.16111412206157638,
+              "median": 71.07225912431534,
+              "p95": 95.51386675045643,
+              "max": 100.94776654520749
+            },
+            "fraction_within_3_constraint_sigma": 0.05605381165919283
+          },
+          {
+            "state": "wind-1-1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 89.04887536390567,
+              "median": 169.72534821702607,
+              "p95": 192.80532202030165,
+              "max": 219.62116952812812
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-1-1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 0.031641815106240756,
+              "median": 39.74312714894981,
+              "p95": 62.805322020301645,
+              "max": 89.62116952812812
+            },
+            "fraction_within_3_constraint_sigma": 0.04932735426008968
+          },
+          {
+            "state": "wind-1-1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 10.37883047187188,
+              "median": 60.27465178297393,
+              "p95": 123.71418792474114,
+              "max": 140.95112463609433
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-1-1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.01066840842321426,
+              "median": 33.4973946839135,
+              "p95": 66.01706035102833,
+              "max": 100.06348275639496
+            },
+            "fraction_within_3_constraint_sigma": 0.1905829596412556
+          },
+          {
+            "state": "wind-1-1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.23796458062531656,
+              "median": 54.256716118037545,
+              "p95": 73.09154411159253,
+              "max": 80.79705175463727
+            },
+            "fraction_within_3_constraint_sigma": 0.011210762331838564
+          },
+          {
+            "state": "wind-drift-0--1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 22.717641088216226,
+              "median": 143.97420506059763,
+              "p95": 158.09875367869694,
+              "max": 163.80553730833657
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-drift-0--1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 0.2136789813824862,
+              "median": 19.1263792220021,
+              "p95": 67.5578981484409,
+              "max": 107.28235891178377
+            },
+            "fraction_within_3_constraint_sigma": 0.04932735426008968
+          },
+          {
+            "state": "wind-drift-0--1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 66.19446269166343,
+              "median": 86.02579493940237,
+              "p95": 167.5578981484409,
+              "max": 207.28235891178377
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-drift-0--1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.11071803949488412,
+              "median": 10.947165057814004,
+              "p95": 39.519872061063424,
+              "max": 73.75429592658503
+            },
+            "fraction_within_3_constraint_sigma": 0.2982062780269058
+          },
+          {
+            "state": "wind-drift-0--1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.09823237040296817,
+              "median": 37.542876610854535,
+              "p95": 103.02541632114264,
+              "max": 146.0033860430122
+            },
+            "fraction_within_3_constraint_sigma": 0.09865470852017937
+          },
+          {
+            "state": "wind-drift-0-1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 53.898863145373014,
+              "median": 133.61490008210052,
+              "p95": 155.60226343168728,
+              "max": 174.11684388809914
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-drift-0-1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 0.0003064890388202457,
+              "median": 10.441065064037232,
+              "p95": 38.564540937863484,
+              "max": 76.10113685462699
+            },
+            "fraction_within_3_constraint_sigma": 0.3273542600896861
+          },
+          {
+            "state": "wind-drift-0-1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 55.88315611190086,
+              "median": 96.3850999178995,
+              "p95": 135.37656299959121,
+              "max": 176.101136854627
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-drift-0-1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.1624888715554107,
+              "median": 17.69125162370544,
+              "p95": 41.22919501587102,
+              "max": 54.55915711636598
+            },
+            "fraction_within_3_constraint_sigma": 0.18161434977578475
+          },
+          {
+            "state": "wind-drift-0-1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 1.0155642631407886,
+              "median": 21.59903237905594,
+              "p95": 70.16989029835301,
+              "max": 114.82216398585541
+            },
+            "fraction_within_3_constraint_sigma": 0.053811659192825115
+          },
+          {
+            "state": "wind-drift-1--1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 29.915558772106664,
+              "median": 135.99616853199092,
+              "p95": 152.93208172170137,
+              "max": 170.368691778347
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-drift-1--1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 0.016442782251459676,
+              "median": 10.931620938421077,
+              "p95": 49.03426849236065,
+              "max": 100.08444122789334
+            },
+            "fraction_within_3_constraint_sigma": 0.32286995515695066
+          },
+          {
+            "state": "wind-drift-1--1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 59.631308221653,
+              "median": 94.00383146800908,
+              "p95": 149.03426849236064,
+              "max": 200.08444122789334
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-drift-1--1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.036251007725581985,
+              "median": 17.0571374346122,
+              "p95": 42.91808371690063,
+              "max": 66.55637824269459
+            },
+            "fraction_within_3_constraint_sigma": 0.13004484304932734
+          },
+          {
+            "state": "wind-drift-1--1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.49942963144525265,
+              "median": 23.86477707398197,
+              "p95": 84.51183455218958,
+              "max": 138.80546835912176
+            },
+            "fraction_within_3_constraint_sigma": 0.05605381165919283
+          },
+          {
+            "state": "wind-drift-1-1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 47.73331487538522,
+              "median": 143.23972351838245,
+              "p95": 154.96270124964803,
+              "max": 167.63922489900682
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-drift-1-1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 0.19911662556896204,
+              "median": 17.790712041788055,
+              "p95": 52.60401726485243,
+              "max": 82.26668512461478
+            },
+            "fraction_within_3_constraint_sigma": 0.0515695067264574
+          },
+          {
+            "state": "wind-drift-1-1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 62.36077510099318,
+              "median": 86.76027648161755,
+              "p95": 152.60401726485242,
+              "max": 182.26668512461478
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-drift-1-1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.20342399098711894,
+              "median": 11.590123284068824,
+              "p95": 34.715356544531055,
+              "max": 48.8138858840918
+            },
+            "fraction_within_3_constraint_sigma": 0.24887892376681614
+          },
+          {
+            "state": "wind-drift-1-1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.15344443964937682,
+              "median": 35.42785862540485,
+              "p95": 88.7415620030208,
+              "max": 120.9877122558432
+            },
+            "fraction_within_3_constraint_sigma": 0.08295964125560538
+          }
+        ],
+        "state_count": 65,
+        "states_with_every_sample_within_3_sigma": 0,
+        "independently_prescribed_wind_ne_mps": [
+          12.0,
+          -8.0
+        ],
+        "independently_prescribed_wind_rate_ne_mps_per_h": [
+          3.0,
+          -2.0
+        ],
+        "implied_true_airspeed_mps": {
+          "min": 167.32179100551477,
+          "median": 276.6867534770338,
+          "p95": 289.3036144369331,
+          "max": 305.4246936684723
+        },
+        "knot_interpolation_speed_residual_mps": {
+          "min": 0.0,
+          "median": 4.112987524302895,
+          "p95": 24.916239203905562,
+          "max": 48.65778518366781
+        },
+        "knot_interpolation_fraction_within_3_constraint_sigma": 0.6210762331838565,
+        "interpretation": "Off-manifold states and knot mismatch are diagnostics only. No state removed, constraint changed, SVD scored or model fitted."
+      },
+      "assumptions": {
+        "interpolation": "PCHIP within short observed intervals only; no provider estimates or long-gap bridging",
+        "altitude": "reported altitude treated as geometric height; actual reference unknown",
+        "clock": "synthetic clock; source timezone does not align a real IMU",
+        "accuracy": "Dense GPS is simulated; latent motion between public fixes is assumed, not observed",
+        "maneuver_mask": "Two-minute buffered assumed-path mask; actual reconstruction may differ"
+      }
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "trajectory_hash": "ebdf617a0ddf18859a804516ddb8f3cfc4e847d7760a9b29846da04be1b9bcbe",
+      "mode": "simulated_high_rate",
+      "status": "assumed-path review only; not reconstructed IMU, receiver accuracy or scientific eligibility",
+      "duration_minutes": 75.0,
+      "supported_fraction_on_1s_grid": 0.9833333333333333,
+      "supported_intervals": [
+        {
+          "start_s": 24.0,
+          "end_s": 4448.0
+        }
+      ],
+      "public_observation_interval_seconds": {
+        "min": 18.0,
+        "median": 30.0,
+        "p95": 43.0,
+        "max": 53.0
+      },
+      "assumed_ground_speed_mps": {
+        "min": 211.55183569676277,
+        "median": 267.555844769564,
+        "p95": 279.28847591912654,
+        "max": 293.09503732787505
+      },
+      "assumed_vertical_speed_mps": {
+        "min": 0.0,
+        "median": 0.0,
+        "p95": 3.8631973098747943,
+        "max": 7.9747727117733085
+      },
+      "assumed_latitude_deg": {
+        "min": 25.3315,
+        "median": 28.27043341722311,
+        "p95": 31.922656151696764,
+        "max": 32.3286
+      },
+      "reported_minus_assumed_speed_mps": {
+        "min": -13.059518208094971,
+        "median": 0.2908280540883652,
+        "p95": 4.827150991731855,
+        "max": 8.331412833843501
+      },
+      "proposed_turns": [
+        {
+          "minute": 20.0,
+          "safe": false,
+          "reason": "aircraft maneuver",
+          "evidence": [
+            {
+              "start_s": 1199.0,
+              "end_s": 1924.0,
+              "reason": "aircraft maneuver"
+            }
+          ]
+        },
+        {
+          "minute": 40.0,
+          "safe": false,
+          "reason": "aircraft maneuver",
+          "evidence": [
+            {
+              "start_s": 2134.0,
+              "end_s": 2471.0,
+              "reason": "aircraft maneuver"
+            }
+          ]
+        },
+        {
+          "minute": 60.0,
+          "safe": true,
+          "reason": null,
+          "evidence": []
+        }
+      ],
+      "all_proposed_turns_pass_assumed_mask": false,
+      "physical_speed_review": {
+        "available": true,
+        "sample_seconds": 10,
+        "states": [
+          {
+            "state": "wind--1--1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 104.1072289959152,
+              "median": 161.94597926294492,
+              "p95": 183.44607115806525,
+              "max": 205.48783552754378
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind--1--1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 0.0737166853559188,
+              "median": 31.945979262944917,
+              "p95": 53.446071158065244,
+              "max": 75.48783552754378
+            },
+            "fraction_within_3_constraint_sigma": 0.11764705882352941
+          },
+          {
+            "state": "wind--1--1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 24.51216447245622,
+              "median": 68.05402073705508,
+              "p95": 117.13451194187543,
+              "max": 125.8927710040848
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind--1--1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.8742862657818478,
+              "median": 44.24619143566382,
+              "p95": 71.19568957073511,
+              "max": 85.77039038442265
+            },
+            "fraction_within_3_constraint_sigma": 0.011312217194570135
+          },
+          {
+            "state": "wind--1--1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.21683729117927442,
+              "median": 19.207897863456395,
+              "p95": 49.88370513861576,
+              "max": 64.76421583985297
+            },
+            "fraction_within_3_constraint_sigma": 0.17873303167420815
+          },
+          {
+            "state": "wind--1-0/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 136.83002601102777,
+              "median": 192.14011030632025,
+              "p95": 206.97742629095393,
+              "max": 226.295226980187
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind--1-0/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 6.830026011027769,
+              "median": 62.14011030632025,
+              "p95": 76.97742629095393,
+              "max": 96.29522698018701
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind--1-0/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 3.70477301981299,
+              "median": 37.85988969367975,
+              "p95": 72.27146467053342,
+              "max": 93.16997398897223
+            },
+            "fraction_within_3_constraint_sigma": 0.0022624434389140274
+          },
+          {
+            "state": "wind--1-0/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.07020319446297663,
+              "median": 67.96105741303595,
+              "p95": 99.52599246039182,
+              "max": 111.64067298760216
+            },
+            "fraction_within_3_constraint_sigma": 0.09954751131221719
+          },
+          {
+            "state": "wind--1-0/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 20.884373600204526,
+              "median": 60.262396689040244,
+              "p95": 76.6068033609715,
+              "max": 85.5716072924962
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind--1-1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 177.08878500738763,
+              "median": 231.16055790375154,
+              "p95": 243.4551946957932,
+              "max": 257.43402493036285
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind--1-1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 47.08878500738763,
+              "median": 101.16055790375154,
+              "p95": 113.45519469579321,
+              "max": 127.43402493036285
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind--1-1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 0.004661905413911427,
+              "median": 6.32330070524651,
+              "p95": 27.817825278777185,
+              "max": 52.91121499261237
+            },
+            "fraction_within_3_constraint_sigma": 0.47737556561085975
+          },
+          {
+            "state": "wind--1-1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 9.903504389869568,
+              "median": 101.03022225731011,
+              "p95": 136.60113701945858,
+              "max": 148.89491443226086
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind--1-1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 57.968533964627795,
+              "median": 101.57406052673328,
+              "p95": 118.77587229124029,
+              "max": 133.28207142561675
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-0--1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 53.09974384123686,
+              "median": 109.84477812188533,
+              "p95": 126.83080122309809,
+              "max": 148.1189571316134
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-0--1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 0.08411424331697503,
+              "median": 20.155221878114673,
+              "p95": 55.64107414562943,
+              "max": 76.90025615876314
+            },
+            "fraction_within_3_constraint_sigma": 0.08597285067873303
+          },
+          {
+            "state": "wind-0--1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 81.8810428683866,
+              "median": 120.15522187811467,
+              "p95": 155.64107414562943,
+              "max": 176.90025615876314
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-0--1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.011569772816699242,
+              "median": 18.73546460962193,
+              "p95": 88.30970108058918,
+              "max": 114.0855367762812
+            },
+            "fraction_within_3_constraint_sigma": 0.20361990950226244
+          },
+          {
+            "state": "wind-0--1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.08121452439476684,
+              "median": 21.815288770053584,
+              "p95": 49.728415383697836,
+              "max": 61.795183927757506
+            },
+            "fraction_within_3_constraint_sigma": 0.05656108597285068
+          },
+          {
+            "state": "wind-0-0/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 92.28190039247906,
+              "median": 147.5612022122604,
+              "p95": 159.22487338383985,
+              "max": 173.0287158730315
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-0-0/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 0.1378745870698026,
+              "median": 18.197099814111,
+              "p95": 29.355261901402923,
+              "max": 43.0287158730315
+            },
+            "fraction_within_3_constraint_sigma": 0.1244343891402715
+          },
+          {
+            "state": "wind-0-0/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 56.9712841269685,
+              "median": 82.43879778773959,
+              "p95": 112.13914761775168,
+              "max": 137.71809960752094
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-0-0/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.00873378546970116,
+              "median": 28.193156222245534,
+              "p95": 55.536843191204554,
+              "max": 74.903380225039
+            },
+            "fraction_within_3_constraint_sigma": 0.15384615384615385
+          },
+          {
+            "state": "wind-0-0/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.13789985582144482,
+              "median": 18.45145727049794,
+              "p95": 37.76431847725722,
+              "max": 51.83652852711779
+            },
+            "fraction_within_3_constraint_sigma": 0.14027149321266968
+          },
+          {
+            "state": "wind-0-1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 139.54515821063393,
+              "median": 191.78166201747806,
+              "p95": 207.9066276221872,
+              "max": 219.8422478132985
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-0-1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 9.545158210633929,
+              "median": 61.781662017478055,
+              "p95": 77.90662762218719,
+              "max": 89.84224781329851
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-0-1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 10.157752186701487,
+              "median": 38.218337982521945,
+              "p95": 65.78574078054608,
+              "max": 90.45484178936607
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-0-1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.24056856755191802,
+              "median": 60.00358198980223,
+              "p95": 97.34726178305186,
+              "max": 106.9452702309286
+            },
+            "fraction_within_3_constraint_sigma": 0.03167420814479638
+          },
+          {
+            "state": "wind-0-1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 16.205962148197216,
+              "median": 59.26160771499515,
+              "p95": 93.744472322904,
+              "max": 106.65754039034485
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-1--1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 7.536129356818009,
+              "median": 64.62583274722238,
+              "p95": 77.4795047639534,
+              "max": 92.21031848211942
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-1--1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 37.78968151788058,
+              "median": 65.37416725277764,
+              "p95": 96.76839227985963,
+              "max": 122.46387064318199
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-1--1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 137.78968151788058,
+              "median": 165.37416725277762,
+              "p95": 196.76839227985963,
+              "max": 222.463870643182
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-1--1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 20.425153921034052,
+              "median": 65.11158990568715,
+              "p95": 133.0920607771351,
+              "max": 159.64915126070005
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-1--1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 26.71945065029925,
+              "median": 65.36140594348062,
+              "p95": 97.96274783576091,
+              "max": 111.33946867997827
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-1-0/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 57.103213431206825,
+              "median": 109.19552296227211,
+              "p95": 133.86868263260058,
+              "max": 143.70717417254588
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-1-0/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 0.05891593702614273,
+              "median": 20.804477037727892,
+              "p95": 48.64927028590965,
+              "max": 72.89678656879317
+            },
+            "fraction_within_3_constraint_sigma": 0.083710407239819
+          },
+          {
+            "state": "wind-1-0/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 86.29282582745412,
+              "median": 120.80447703772789,
+              "p95": 148.64927028590967,
+              "max": 172.89678656879317
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-1-0/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.2943265771035328,
+              "median": 21.98516910475648,
+              "p95": 86.82720626004726,
+              "max": 110.08206718631124
+            },
+            "fraction_within_3_constraint_sigma": 0.1334841628959276
+          },
+          {
+            "state": "wind-1-0/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.000975921803330948,
+              "median": 25.929431709672713,
+              "p95": 55.511140969481424,
+              "max": 68.23008864711701
+            },
+            "fraction_within_3_constraint_sigma": 0.07013574660633484
+          },
+          {
+            "state": "wind-1-1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 111.65843849080954,
+              "median": 159.199231009104,
+              "p95": 192.81512075131474,
+              "max": 203.24240475686446
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-1-1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 0.05171663075475408,
+              "median": 29.19923100910401,
+              "p95": 62.81512075131474,
+              "max": 73.24240475686446
+            },
+            "fraction_within_3_constraint_sigma": 0.06108597285067873
+          },
+          {
+            "state": "wind-1-1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 26.75759524313554,
+              "median": 70.80076899089599,
+              "p95": 98.54114575030741,
+              "max": 118.34156150919046
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-1-1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.11943357674630306,
+              "median": 31.271052363012302,
+              "p95": 65.03730722709939,
+              "max": 73.33132278654492
+            },
+            "fraction_within_3_constraint_sigma": 0.038461538461538464
+          },
+          {
+            "state": "wind-1-1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.07765957350318331,
+              "median": 23.175427300089908,
+              "p95": 80.49477441619622,
+              "max": 90.91965107656355
+            },
+            "fraction_within_3_constraint_sigma": 0.12895927601809956
+          },
+          {
+            "state": "wind-drift-0--1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 80.91498999412838,
+              "median": 149.1136705282276,
+              "p95": 166.9362627650414,
+              "max": 177.5872384154195
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-drift-0--1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 0.008685204135360891,
+              "median": 21.00358745698756,
+              "p95": 37.42718007407192,
+              "max": 49.085010005871624
+            },
+            "fraction_within_3_constraint_sigma": 0.11990950226244344
+          },
+          {
+            "state": "wind-drift-0--1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 52.412761584580494,
+              "median": 80.8863294717724,
+              "p95": 124.43054693713725,
+              "max": 149.08501000587162
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-drift-0--1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.06696480186116105,
+              "median": 32.196505591779314,
+              "p95": 67.14594672856745,
+              "max": 86.27029062338968
+            },
+            "fraction_within_3_constraint_sigma": 0.16968325791855204
+          },
+          {
+            "state": "wind-drift-0--1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.00022483960634644973,
+              "median": 16.407768050930713,
+              "p95": 33.60694103232005,
+              "max": 46.07148627386633
+            },
+            "fraction_within_3_constraint_sigma": 0.23529411764705882
+          },
+          {
+            "state": "wind-drift-0-1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 104.41315949166838,
+              "median": 144.71989990353393,
+              "p95": 157.20218220349759,
+              "max": 168.4937038908821
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-drift-0-1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 0.010107121615931192,
+              "median": 14.850143926126407,
+              "p95": 27.20218220349758,
+              "max": 38.4937038908821
+            },
+            "fraction_within_3_constraint_sigma": 0.12895927601809956
+          },
+          {
+            "state": "wind-drift-0-1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 61.5062961091179,
+              "median": 85.28010009646607,
+              "p95": 101.4633264768398,
+              "max": 125.58684050833162
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-drift-0-1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.23277226927473293,
+              "median": 24.642902523116305,
+              "p95": 44.13055476292279,
+              "max": 62.77212112584968
+            },
+            "fraction_within_3_constraint_sigma": 0.09728506787330317
+          },
+          {
+            "state": "wind-drift-0-1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.13257871456778503,
+              "median": 23.2348033062797,
+              "p95": 41.72895074312335,
+              "max": 58.13775210703412
+            },
+            "fraction_within_3_constraint_sigma": 0.09502262443438914
+          },
+          {
+            "state": "wind-drift-1--1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 105.31377264474418,
+              "median": 145.66094816645753,
+              "p95": 159.34497862647362,
+              "max": 170.4398581037443
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-drift-1--1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 0.3827187805544554,
+              "median": 15.74511270999929,
+              "p95": 29.34497862647361,
+              "max": 40.439858103744314
+            },
+            "fraction_within_3_constraint_sigma": 0.10180995475113122
+          },
+          {
+            "state": "wind-drift-1--1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 59.560141896255686,
+              "median": 84.33905183354247,
+              "p95": 100.32858193779595,
+              "max": 124.68622735525582
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-drift-1--1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.18616409428364022,
+              "median": 24.01231959891311,
+              "p95": 44.485980308618636,
+              "max": 61.871507972773884
+            },
+            "fraction_within_3_constraint_sigma": 0.10633484162895927
+          },
+          {
+            "state": "wind-drift-1--1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.17072475481711535,
+              "median": 22.828291019001213,
+              "p95": 46.68747753173311,
+              "max": 64.0668466715006
+            },
+            "fraction_within_3_constraint_sigma": 0.09049773755656108
+          },
+          {
+            "state": "wind-drift-1-1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 79.90448522723602,
+              "median": 147.59762028178582,
+              "p95": 166.10798398152582,
+              "max": 178.07969611049043
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-drift-1-1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 0.747062267332609,
+              "median": 20.929591122525522,
+              "p95": 37.27951345925909,
+              "max": 50.09551477276398
+            },
+            "fraction_within_3_constraint_sigma": 0.09276018099547512
+          },
+          {
+            "state": "wind-drift-1-1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 51.92030388950957,
+              "median": 82.40237971821418,
+              "p95": 123.76450883356569,
+              "max": 150.09551477276398
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-drift-1-1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.1068974565254166,
+              "median": 33.35005750449399,
+              "p95": 66.91093264022385,
+              "max": 87.28079539028204
+            },
+            "fraction_within_3_constraint_sigma": 0.1493212669683258
+          },
+          {
+            "state": "wind-drift-1-1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.07676653147177603,
+              "median": 15.033174550043455,
+              "p95": 30.368107331363074,
+              "max": 39.7385420597208
+            },
+            "fraction_within_3_constraint_sigma": 0.2330316742081448
+          }
+        ],
+        "state_count": 65,
+        "states_with_every_sample_within_3_sigma": 0,
+        "independently_prescribed_wind_ne_mps": [
+          12.0,
+          -8.0
+        ],
+        "independently_prescribed_wind_rate_ne_mps_per_h": [
+          3.0,
+          -2.0
+        ],
+        "implied_true_airspeed_mps": {
+          "min": 198.09539940277318,
+          "median": 250.78121271550606,
+          "p95": 262.6202427005509,
+          "max": 275.7303666935306
+        },
+        "knot_interpolation_speed_residual_mps": {
+          "min": 0.0,
+          "median": 4.911343479979607,
+          "p95": 16.01608394595474,
+          "max": 26.947165710493493
+        },
+        "knot_interpolation_fraction_within_3_constraint_sigma": 0.5769230769230769,
+        "interpretation": "Off-manifold states and knot mismatch are diagnostics only. No state removed, constraint changed, SVD scored or model fitted."
+      },
+      "assumptions": {
+        "interpolation": "PCHIP within short observed intervals only; no provider estimates or long-gap bridging",
+        "altitude": "reported altitude treated as geometric height; actual reference unknown",
+        "clock": "synthetic clock; source timezone does not align a real IMU",
+        "accuracy": "Dense GPS is simulated; latent motion between public fixes is assumed, not observed",
+        "maneuver_mask": "Two-minute buffered assumed-path mask; actual reconstruction may differ"
+      }
+    },
+    {
+      "track_id": "2025-08-19-aa-1433-ord-lax",
+      "trajectory_hash": "f4414bed7c29b81b8aed25d720f1c333006beee5fa74ce0d779b6af53fe8eaf9",
+      "mode": "simulated_high_rate",
+      "status": "assumed-path review only; not reconstructed IMU, receiver accuracy or scientific eligibility",
+      "duration_minutes": 75.0,
+      "supported_fraction_on_1s_grid": 0.9942222222222222,
+      "supported_intervals": [
+        {
+          "start_s": 19.0,
+          "end_s": 4492.0
+        }
+      ],
+      "public_observation_interval_seconds": {
+        "min": 18.0,
+        "median": 30.0,
+        "p95": 31.0,
+        "max": 45.0
+      },
+      "assumed_ground_speed_mps": {
+        "min": 201.21376920992677,
+        "median": 224.30418071068806,
+        "p95": 233.66788331837145,
+        "max": 252.0480048390229
+      },
+      "assumed_vertical_speed_mps": {
+        "min": 0.0,
+        "median": 0.0,
+        "p95": 4.9090113247863325,
+        "max": 12.177534780018958
+      },
+      "assumed_latitude_deg": {
+        "min": 34.3335,
+        "median": 37.17673253287173,
+        "p95": 39.022068960975155,
+        "max": 39.2098
+      },
+      "reported_minus_assumed_speed_mps": {
+        "min": -8.492867610919347,
+        "median": 0.25670908053979247,
+        "p95": 4.6976903595066535,
+        "max": 7.2311233597861815
+      },
+      "proposed_turns": [
+        {
+          "minute": 20.0,
+          "safe": true,
+          "reason": null,
+          "evidence": []
+        },
+        {
+          "minute": 40.0,
+          "safe": true,
+          "reason": null,
+          "evidence": []
+        },
+        {
+          "minute": 60.0,
+          "safe": false,
+          "reason": "aircraft maneuver",
+          "evidence": [
+            {
+              "start_s": 3474.0,
+              "end_s": 3732.0,
+              "reason": "aircraft maneuver"
+            }
+          ]
+        }
+      ],
+      "all_proposed_turns_pass_assumed_mask": false,
+      "physical_speed_review": {
+        "available": true,
+        "sample_seconds": 10,
+        "states": [
+          {
+            "state": "wind--1--1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 3.1527982926167084,
+              "median": 23.26395314626079,
+              "p95": 35.03498434801164,
+              "max": 52.59254300601856
+            },
+            "fraction_within_3_constraint_sigma": 0.017857142857142856
+          },
+          {
+            "state": "wind--1--1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 77.40745699398144,
+              "median": 106.73604685373921,
+              "p95": 119.87433294893835,
+              "max": 126.84720170738329
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind--1--1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 177.40745699398144,
+              "median": 206.7360468537392,
+              "p95": 219.87433294893836,
+              "max": 226.8472017073833
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind--1--1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 54.185373162240865,
+              "median": 109.59888088087513,
+              "p95": 134.34212420925513,
+              "max": 159.01817334419775
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind--1--1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 44.89195719133039,
+              "median": 109.71951007153821,
+              "p95": 149.64879892534734,
+              "max": 160.90099836765313
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind--1-0/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 52.16120914358547,
+              "median": 77.85509404117155,
+              "p95": 93.35231069832291,
+              "max": 111.21072137026087
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind--1-0/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 18.78927862973913,
+              "median": 52.144905958828446,
+              "p95": 68.47042837367556,
+              "max": 77.83879085641453
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind--1-0/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 118.78927862973913,
+              "median": 152.14490595882845,
+              "p95": 168.47042837367556,
+              "max": 177.83879085641453
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind--1-0/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 1.5683354960490021,
+              "median": 53.98141429434307,
+              "p95": 75.45558601606648,
+              "max": 99.73716635851372
+            },
+            "fraction_within_3_constraint_sigma": 0.004464285714285714
+          },
+          {
+            "state": "wind--1-0/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.16336194895416156,
+              "median": 55.748382905518625,
+              "p95": 97.40259932583815,
+              "max": 109.07260185514218
+            },
+            "fraction_within_3_constraint_sigma": 0.026785714285714284
+          },
+          {
+            "state": "wind--1-1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 106.52229943266252,
+              "median": 134.69064256264667,
+              "p95": 152.1809368709141,
+              "max": 170.39388673287948
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind--1-1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 0.016071458235785485,
+              "median": 9.4094610977603,
+              "p95": 22.401468993305333,
+              "max": 40.39388673287948
+            },
+            "fraction_within_3_constraint_sigma": 0.34151785714285715
+          },
+          {
+            "state": "wind--1-1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 59.60611326712052,
+              "median": 95.30935743735333,
+              "p95": 113.66835506603569,
+              "max": 123.47770056733748
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind--1-1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.018129531380367325,
+              "median": 9.461586566158672,
+              "p95": 27.707991918222387,
+              "max": 59.10955641551956
+            },
+            "fraction_within_3_constraint_sigma": 0.3549107142857143
+          },
+          {
+            "state": "wind--1-1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.007338701279365978,
+              "median": 29.04439531721455,
+              "p95": 52.15097246004389,
+              "max": 72.90938653553053
+            },
+            "fraction_within_3_constraint_sigma": 0.13616071428571427
+          },
+          {
+            "state": "wind-0--1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 30.79380442912199,
+              "median": 56.53501422446932,
+              "p95": 71.57512409123534,
+              "max": 79.99454906627508
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-0--1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 50.005450933724916,
+              "median": 73.46498577553068,
+              "p95": 83.48364648255456,
+              "max": 99.20619557087801
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-0--1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 150.00545093372492,
+              "median": 173.4649857755307,
+              "p95": 183.48364648255455,
+              "max": 199.206195570878
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-0--1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 18.070683764306608,
+              "median": 71.8256778298515,
+              "p95": 110.84263001959788,
+              "max": 135.8176796149999
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-0--1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 21.268877733366054,
+              "median": 72.81285729153643,
+              "p95": 104.4459200419069,
+              "max": 127.63105215342193
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-0-0/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 83.42253840049906,
+              "median": 104.32190172744069,
+              "p95": 113.11850323111962,
+              "max": 129.34069518271642
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-0-0/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 0.6593048172835836,
+              "median": 25.67809827255931,
+              "p95": 36.64292979186435,
+              "max": 46.577461599500936
+            },
+            "fraction_within_3_constraint_sigma": 0.015625
+          },
+          {
+            "state": "wind-0-0/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 100.65930481728358,
+              "median": 125.67809827255931,
+              "p95": 136.64292979186433,
+              "max": 146.57746159950094
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-0-0/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.007425861399440237,
+              "median": 27.021353506510223,
+              "p95": 57.886692287309735,
+              "max": 83.18894564362282
+            },
+            "fraction_within_3_constraint_sigma": 0.15178571428571427
+          },
+          {
+            "state": "wind-0-0/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.041706639370318044,
+              "median": 26.880449784383657,
+              "p95": 65.3881285850933,
+              "max": 76.60640993199121
+            },
+            "fraction_within_3_constraint_sigma": 0.15401785714285715
+          },
+          {
+            "state": "wind-0-1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 134.79667033852505,
+              "median": 155.96151035745316,
+              "p95": 167.62139757041842,
+              "max": 185.02621862632122
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-0-1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 4.796670338525047,
+              "median": 25.961510357453164,
+              "p95": 37.62139757041841,
+              "max": 55.026218626321224
+            },
+            "fraction_within_3_constraint_sigma": 0.004464285714285714
+          },
+          {
+            "state": "wind-0-1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 44.973781373678776,
+              "median": 74.03848964254684,
+              "p95": 87.57934551637764,
+              "max": 95.20332966147495
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-0-1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.0142780663742883,
+              "median": 24.34269082169763,
+              "p95": 53.975950193953686,
+              "max": 79.96097362698842
+            },
+            "fraction_within_3_constraint_sigma": 0.14508928571428573
+          },
+          {
+            "state": "wind-0-1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.12855367926312056,
+              "median": 24.71938457393648,
+              "p95": 64.53451922674165,
+              "max": 87.54171842897227
+            },
+            "fraction_within_3_constraint_sigma": 0.12946428571428573
+          },
+          {
+            "state": "wind-1--1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 70.7812621120041,
+              "median": 102.63146092031128,
+              "p95": 122.63610953753137,
+              "max": 131.7877064950898
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-1--1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 1.3684539647142913,
+              "median": 27.368539079688716,
+              "p95": 42.566485977722856,
+              "max": 59.2187378879959
+            },
+            "fraction_within_3_constraint_sigma": 0.03125
+          },
+          {
+            "state": "wind-1--1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 98.2122935049102,
+              "median": 127.36853907968872,
+              "p95": 142.56648597772286,
+              "max": 159.2187378879959
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-1--1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.2055413149901142,
+              "median": 25.699590481398744,
+              "p95": 72.91975743342222,
+              "max": 95.83022193211778
+            },
+            "fraction_within_3_constraint_sigma": 0.09821428571428571
+          },
+          {
+            "state": "wind-1--1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.37715802369828566,
+              "median": 27.730550770856965,
+              "p95": 51.79624031270132,
+              "max": 86.9371912888081
+            },
+            "fraction_within_3_constraint_sigma": 0.04017857142857143
+          },
+          {
+            "state": "wind-1-0/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 114.60487558476581,
+              "median": 140.6740581567079,
+              "p95": 155.26639888163243,
+              "max": 163.83129139814093
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-1-0/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 0.39936636430505246,
+              "median": 10.933674122662552,
+              "p95": 25.26639888163243,
+              "max": 33.831291398140934
+            },
+            "fraction_within_3_constraint_sigma": 0.234375
+          },
+          {
+            "state": "wind-1-0/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 66.16870860185907,
+              "median": 89.3259418432921,
+              "p95": 99.38711033998013,
+              "max": 115.39512441523419
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-1-0/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.3258370786147111,
+              "median": 22.132758515527797,
+              "p95": 50.62988219434831,
+              "max": 65.76605856755924
+            },
+            "fraction_within_3_constraint_sigma": 0.09821428571428571
+          },
+          {
+            "state": "wind-1-0/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.003121150098650105,
+              "median": 14.783934944029298,
+              "p95": 40.273805569295774,
+              "max": 61.94915359518228
+            },
+            "fraction_within_3_constraint_sigma": 0.20089285714285715
+          },
+          {
+            "state": "wind-1-1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 164.39656348703943,
+              "median": 187.34450508762927,
+              "p95": 196.6764243493654,
+              "max": 210.08086682980615
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-1-1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 34.39656348703943,
+              "median": 57.34450508762927,
+              "p95": 66.67642434936539,
+              "max": 80.08086682980615
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-1-1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 19.919133170193845,
+              "median": 42.65549491237073,
+              "p95": 52.61178637149323,
+              "max": 65.60343651296057
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-1-1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.3258749685885505,
+              "median": 57.13074430460597,
+              "p95": 90.30525763574938,
+              "max": 110.62760716989979
+            },
+            "fraction_within_3_constraint_sigma": 0.008928571428571428
+          },
+          {
+            "state": "wind-1-1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 5.6812144983389885,
+              "median": 57.62997642155935,
+              "p95": 89.64546682863902,
+              "max": 112.5963666324572
+            },
+            "fraction_within_3_constraint_sigma": 0.002232142857142857
+          },
+          {
+            "state": "wind-drift-0--1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 78.18780420062117,
+              "median": 103.90711574256373,
+              "p95": 116.54007395683952,
+              "max": 136.99831554336595
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-drift-0--1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 1.3620565493005756,
+              "median": 26.092884257436268,
+              "p95": 43.32702481073062,
+              "max": 51.81219579937883
+            },
+            "fraction_within_3_constraint_sigma": 0.008928571428571428
+          },
+          {
+            "state": "wind-drift-0--1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 93.00168445663405,
+              "median": 126.09288425743627,
+              "p95": 143.32702481073062,
+              "max": 151.81219579937883
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-drift-0--1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.1996622962255401,
+              "median": 26.97126395243707,
+              "p95": 51.00792473949269,
+              "max": 75.57473346149825
+            },
+            "fraction_within_3_constraint_sigma": 0.08482142857142858
+          },
+          {
+            "state": "wind-drift-0--1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.015298455447464221,
+              "median": 27.14658188711975,
+              "p95": 74.81016613582644,
+              "max": 87.43299104003034
+            },
+            "fraction_within_3_constraint_sigma": 0.13839285714285715
+          },
+          {
+            "state": "wind-drift-0-1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 76.99905765685301,
+              "median": 104.28920633473585,
+              "p95": 119.93010732404693,
+              "max": 134.054361667906
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-drift-0-1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 1.1774141641203073,
+              "median": 25.71079366526415,
+              "p95": 34.96212428547123,
+              "max": 53.00094234314699
+            },
+            "fraction_within_3_constraint_sigma": 0.015625
+          },
+          {
+            "state": "wind-drift-0-1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 95.945638332094,
+              "median": 125.71079366526415,
+              "p95": 134.96212428547125,
+              "max": 153.000942343147
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-drift-0-1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.1671875361205366,
+              "median": 27.95628909196151,
+              "p95": 64.5271238022378,
+              "max": 89.61242638726887
+            },
+            "fraction_within_3_constraint_sigma": 0.13392857142857142
+          },
+          {
+            "state": "wind-drift-0-1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.06825021988049684,
+              "median": 25.886374188569548,
+              "p95": 56.04408792680294,
+              "max": 67.2764498994137
+            },
+            "fraction_within_3_constraint_sigma": 0.125
+          },
+          {
+            "state": "wind-drift-1--1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 77.1037821759071,
+              "median": 104.26191036633605,
+              "p95": 122.97072511944994,
+              "max": 145.31124933864646
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-drift-1--1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 0.025723518048692995,
+              "median": 25.738089633663947,
+              "p95": 46.314145631266335,
+              "max": 52.8962178240929
+            },
+            "fraction_within_3_constraint_sigma": 0.03125
+          },
+          {
+            "state": "wind-drift-1--1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 84.68875066135354,
+              "median": 125.73808963366395,
+              "p95": 146.31414563126634,
+              "max": 152.8962178240929
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-drift-1--1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.09292220094968684,
+              "median": 26.492225902198598,
+              "p95": 44.61579204097565,
+              "max": 67.51025396335365
+            },
+            "fraction_within_3_constraint_sigma": 0.06473214285714286
+          },
+          {
+            "state": "wind-drift-1--1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.13110507551579076,
+              "median": 29.709903808743647,
+              "p95": 76.35735497462642,
+              "max": 92.00246307984327
+            },
+            "fraction_within_3_constraint_sigma": 0.11607142857142858
+          },
+          {
+            "state": "wind-drift-1-1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 67.98880230283626,
+              "median": 103.33818979851264,
+              "p95": 120.32736450453906,
+              "max": 139.43599761941
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-drift-1-1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 1.7231490826952438,
+              "median": 26.661810201487356,
+              "p95": 40.645769223497865,
+              "max": 62.01119769716374
+            },
+            "fraction_within_3_constraint_sigma": 0.011160714285714286
+          },
+          {
+            "state": "wind-drift-1-1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 90.56400238059001,
+              "median": 126.66181020148736,
+              "p95": 140.64576922349787,
+              "max": 162.01119769716374
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-drift-1-1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.040464701831155026,
+              "median": 28.091604994859537,
+              "p95": 73.81770291081864,
+              "max": 98.62268174128562
+            },
+            "fraction_within_3_constraint_sigma": 0.12946428571428573
+          },
+          {
+            "state": "wind-drift-1-1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.15335931043338746,
+              "median": 26.560609806442443,
+              "p95": 54.4736757506952,
+              "max": 62.83593557903197
+            },
+            "fraction_within_3_constraint_sigma": 0.03794642857142857
+          }
+        ],
+        "state_count": 65,
+        "states_with_every_sample_within_3_sigma": 0,
+        "independently_prescribed_wind_ne_mps": [
+          12.0,
+          -8.0
+        ],
+        "independently_prescribed_wind_rate_ne_mps_per_h": [
+          3.0,
+          -2.0
+        ],
+        "implied_true_airspeed_mps": {
+          "min": 201.5606853109539,
+          "median": 224.6248070072594,
+          "p95": 234.6757806048891,
+          "max": 247.37783664985324
+        },
+        "knot_interpolation_speed_residual_mps": {
+          "min": 0.0,
+          "median": 5.172373413619198,
+          "p95": 16.123530041126862,
+          "max": 29.05109518561767
+        },
+        "knot_interpolation_fraction_within_3_constraint_sigma": 0.5535714285714286,
+        "interpretation": "Off-manifold states and knot mismatch are diagnostics only. No state removed, constraint changed, SVD scored or model fitted."
+      },
+      "assumptions": {
+        "interpolation": "PCHIP within short observed intervals only; no provider estimates or long-gap bridging",
+        "altitude": "reported altitude treated as geometric height; actual reference unknown",
+        "clock": "synthetic clock; source timezone does not align a real IMU",
+        "accuracy": "Dense GPS is simulated; latent motion between public fixes is assumed, not observed",
+        "maneuver_mask": "Two-minute buffered assumed-path mask; actual reconstruction may differ"
+      }
+    },
+    {
+      "track_id": "2026-10-02-icelandair-680-sea-kef",
+      "trajectory_hash": "ce2b067cbb8d3d61ffeef0fec5f38b9b1bfa8b62b1384adc7ce9f0fd3b2e2190",
+      "mode": "simulated_high_rate",
+      "status": "assumed-path review only; not reconstructed IMU, receiver accuracy or scientific eligibility",
+      "duration_minutes": 75.0,
+      "supported_fraction_on_1s_grid": 0.9984444444444445,
+      "supported_intervals": [
+        {
+          "start_s": 7.0,
+          "end_s": 4499.0
+        }
+      ],
+      "public_observation_interval_seconds": {
+        "min": 21.0,
+        "median": 30.0,
+        "p95": 32.0,
+        "max": 36.0
+      },
+      "assumed_ground_speed_mps": {
+        "min": 222.51898386229036,
+        "median": 242.86285830121977,
+        "p95": 254.54974965990357,
+        "max": 260.64103051807126
+      },
+      "assumed_vertical_speed_mps": {
+        "min": 0.0,
+        "median": 0.0653196576451415,
+        "p95": 3.3746135199999703,
+        "max": 7.006323098412661
+      },
+      "assumed_latitude_deg": {
+        "min": 48.8998,
+        "median": 52.85603156424422,
+        "p95": 56.15283766147557,
+        "max": 56.507000000000005
+      },
+      "reported_minus_assumed_speed_mps": {
+        "min": -8.30247997129581,
+        "median": -0.0583810766609929,
+        "p95": 5.22385568705303,
+        "max": 7.500476899602859
+      },
+      "proposed_turns": [
+        {
+          "minute": 20.0,
+          "safe": true,
+          "reason": null,
+          "evidence": []
+        },
+        {
+          "minute": 40.0,
+          "safe": true,
+          "reason": null,
+          "evidence": []
+        },
+        {
+          "minute": 60.0,
+          "safe": true,
+          "reason": null,
+          "evidence": []
+        }
+      ],
+      "all_proposed_turns_pass_assumed_mask": true,
+      "physical_speed_review": {
+        "available": true,
+        "sample_seconds": 10,
+        "states": [
+          {
+            "state": "wind--1--1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 187.1975443550624,
+              "median": 207.06306746948422,
+              "p95": 219.32922407641004,
+              "max": 224.73368151477263
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind--1--1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 57.197544355062405,
+              "median": 77.06306746948422,
+              "p95": 89.32922407641004,
+              "max": 94.73368151477263
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind--1--1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 5.266318485227373,
+              "median": 22.936932530515776,
+              "p95": 33.67671572485482,
+              "max": 42.802455644937595
+            },
+            "fraction_within_3_constraint_sigma": 0.008908685968819599
+          },
+          {
+            "state": "wind--1--1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 23.627002284306116,
+              "median": 78.33876215615712,
+              "p95": 110.66828308320355,
+              "max": 120.17541220152933
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind--1--1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 30.659025399078928,
+              "median": 78.3442779186079,
+              "p95": 113.95445627904255,
+              "max": 127.24918131742368
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind--1-0/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 152.67544504085288,
+              "median": 171.7353398939593,
+              "p95": 182.90083808384125,
+              "max": 192.9161040885449
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind--1-0/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 22.67544504085288,
+              "median": 41.73533989395929,
+              "p95": 52.900838083841265,
+              "max": 62.9161040885449
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind--1-0/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 37.0838959114551,
+              "median": 58.26466010604071,
+              "p95": 67.73310933315372,
+              "max": 77.32455495914712
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind--1-0/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.2573769151622969,
+              "median": 42.21883244727164,
+              "p95": 72.3344702612319,
+              "max": 81.32357506970911
+            },
+            "fraction_within_3_constraint_sigma": 0.0378619153674833
+          },
+          {
+            "state": "wind--1-0/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.04133757618234313,
+              "median": 43.23989529716371,
+              "p95": 77.97211982604077,
+              "max": 92.95275930238395
+            },
+            "fraction_within_3_constraint_sigma": 0.0757238307349666
+          },
+          {
+            "state": "wind--1-1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 123.70875646605538,
+              "median": 145.24389519944344,
+              "p95": 156.38773034095368,
+              "max": 171.66359504869763
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind--1-1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 0.5995754988401529,
+              "median": 15.243895199443443,
+              "p95": 26.387730340953667,
+              "max": 41.66359504869763
+            },
+            "fraction_within_3_constraint_sigma": 0.0467706013363029
+          },
+          {
+            "state": "wind--1-1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 58.33640495130237,
+              "median": 84.75610480055656,
+              "p95": 93.9145648579374,
+              "max": 106.29124353394462
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind--1-1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.10114542495574597,
+              "median": 18.822213811108895,
+              "p95": 42.215668873329754,
+              "max": 50.43588502662013
+            },
+            "fraction_within_3_constraint_sigma": 0.1492204899777283
+          },
+          {
+            "state": "wind--1-1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.012088920094413425,
+              "median": 24.42220171867919,
+              "p95": 53.628223616772594,
+              "max": 71.70025026253668
+            },
+            "fraction_within_3_constraint_sigma": 0.133630289532294
+          },
+          {
+            "state": "wind-0--1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 140.85526701128737,
+              "median": 164.95215069544406,
+              "p95": 176.59138531373293,
+              "max": 184.26258873368386
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-0--1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 10.855267011287367,
+              "median": 34.95215069544406,
+              "p95": 46.591385313732935,
+              "max": 54.262588733683856
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-0--1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 45.737411266316144,
+              "median": 65.04784930455594,
+              "p95": 79.10265276720429,
+              "max": 89.14473298871263
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-0--1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.008733511924560844,
+              "median": 36.14768668686813,
+              "p95": 70.30174495153715,
+              "max": 80.27447809091055
+            },
+            "fraction_within_3_constraint_sigma": 0.1870824053452116
+          },
+          {
+            "state": "wind-0--1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.09142203804213977,
+              "median": 34.881603993307806,
+              "p95": 73.22068663790448,
+              "max": 86.76321895537683
+            },
+            "fraction_within_3_constraint_sigma": 0.10244988864142539
+          },
+          {
+            "state": "wind-0-0/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 103.87031725434477,
+              "median": 122.73380588201942,
+              "p95": 134.6243121187752,
+              "max": 140.30942395477706
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-0-0/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 0.0033349915440794575,
+              "median": 7.5585857980245805,
+              "p95": 17.636837210456143,
+              "max": 26.12968274565523
+            },
+            "fraction_within_3_constraint_sigma": 0.38084632516703787
+          },
+          {
+            "state": "wind-0-0/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 89.69057604522294,
+              "median": 107.26619411798058,
+              "p95": 117.63683721045615,
+              "max": 126.12968274565523
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-0-0/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.0493687139627923,
+              "median": 19.733527810459606,
+              "p95": 43.324087003363516,
+              "max": 59.70022481641152
+            },
+            "fraction_within_3_constraint_sigma": 0.16481069042316257
+          },
+          {
+            "state": "wind-0-0/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.005943996139109231,
+              "median": 17.6725367526804,
+              "p95": 43.45273345774088,
+              "max": 54.163975362533336
+            },
+            "fraction_within_3_constraint_sigma": 0.24498886414253898
+          },
+          {
+            "state": "wind-0-1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 69.85404263412462,
+              "median": 90.1244132713899,
+              "p95": 101.14434862267214,
+              "max": 114.33343909575831
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-0-1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 15.666560904241692,
+              "median": 39.8755867286101,
+              "p95": 48.94124314134116,
+              "max": 60.145957365875375
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-0-1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 115.66656090424169,
+              "median": 139.8755867286101,
+              "p95": 148.94124314134118,
+              "max": 160.14595736587538
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-0-1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 2.098771349463277,
+              "median": 39.00906334905255,
+              "p95": 72.57981983126201,
+              "max": 87.1704166391896
+            },
+            "fraction_within_3_constraint_sigma": 0.013363028953229399
+          },
+          {
+            "state": "wind-0-1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.2844741743485315,
+              "median": 37.77169107636118,
+              "p95": 80.04907182259578,
+              "max": 90.1472588162724
+            },
+            "fraction_within_3_constraint_sigma": 0.07349665924276169
+          },
+          {
+            "state": "wind-1--1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 101.18003842408464,
+              "median": 130.42644068839306,
+              "p95": 142.13683017085071,
+              "max": 151.18058570238134
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-1--1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 0.030765582728832896,
+              "median": 6.954691917331843,
+              "p95": 19.97360737701879,
+              "max": 28.819961575915357
+            },
+            "fraction_within_3_constraint_sigma": 0.41870824053452116
+          },
+          {
+            "state": "wind-1--1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 78.81941429761866,
+              "median": 99.57355931160694,
+              "p95": 118.55282513388282,
+              "max": 128.81996157591536
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-1--1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.08028371314787819,
+              "median": 24.85879755824095,
+              "p95": 44.02435263579804,
+              "max": 62.39050364667165
+            },
+            "fraction_within_3_constraint_sigma": 0.1091314031180401
+          },
+          {
+            "state": "wind-1--1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.025922046098543206,
+              "median": 11.096643065746832,
+              "p95": 39.37756948282521,
+              "max": 53.60964958929458
+            },
+            "fraction_within_3_constraint_sigma": 0.32516703786191536
+          },
+          {
+            "state": "wind-1-0/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 56.048453606700264,
+              "median": 80.74036781008269,
+              "p95": 92.39522880674605,
+              "max": 100.20821258892434
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-1-0/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 29.79178741107566,
+              "median": 49.25963218991731,
+              "p95": 63.718494609502564,
+              "max": 73.95154639329974
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-1-0/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 129.79178741107566,
+              "median": 149.2596321899173,
+              "p95": 163.71849460950256,
+              "max": 173.95154639329974
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-1-0/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 3.5593585476717635,
+              "median": 48.30586022269614,
+              "p95": 87.65885384897686,
+              "max": 107.52208846405603
+            },
+            "fraction_within_3_constraint_sigma": 0.0066815144766146995
+          },
+          {
+            "state": "wind-1-0/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.26017736297367833,
+              "median": 49.59618041424281,
+              "p95": 82.5742188355569,
+              "max": 93.31145871436331
+            },
+            "fraction_within_3_constraint_sigma": 0.028953229398663696
+          },
+          {
+            "state": "wind-1-1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 21.050193302983217,
+              "median": 39.265876502011025,
+              "p95": 50.275951812600894,
+              "max": 58.76428245083039
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-1-1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 71.2357175491696,
+              "median": 90.73412349798897,
+              "p95": 100.59603053115434,
+              "max": 108.94980669701678
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-1-1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 171.2357175491696,
+              "median": 190.73412349798897,
+              "p95": 200.59603053115436,
+              "max": 208.94980669701678
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-1-1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 49.50980088796385,
+              "median": 90.65341817500436,
+              "p95": 126.69439181847979,
+              "max": 141.21357301991765
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-1-1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 41.19906233533055,
+              "median": 89.72430004074786,
+              "p95": 128.26506364294642,
+              "max": 138.9511081474138
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-drift-0--1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 90.71474901717303,
+              "median": 123.53622908579442,
+              "p95": 138.9236243923845,
+              "max": 147.4302848775402
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-drift-0--1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 0.042802560973882464,
+              "median": 8.06598075452166,
+              "p95": 25.33851701592038,
+              "max": 39.285250982826966
+            },
+            "fraction_within_3_constraint_sigma": 0.37639198218262804
+          },
+          {
+            "state": "wind-drift-0--1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 82.5697151224598,
+              "median": 106.46377091420558,
+              "p95": 125.33851701592037,
+              "max": 139.28525098282697
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-drift-0--1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.0881064766683437,
+              "median": 28.050631035004784,
+              "p95": 54.775325382727736,
+              "max": 72.85579305358326
+            },
+            "fraction_within_3_constraint_sigma": 0.12472160356347439
+          },
+          {
+            "state": "wind-drift-0--1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.012194282069089013,
+              "median": 11.006193799808187,
+              "p95": 30.81766702932151,
+              "max": 43.640887699306404
+            },
+            "fraction_within_3_constraint_sigma": 0.29175946547884185
+          },
+          {
+            "state": "wind-drift-0-1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 95.73163747891567,
+              "median": 122.27189838269635,
+              "p95": 141.7834323676894,
+              "max": 154.04098367314316
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-drift-0-1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 0.08897210600861172,
+              "median": 9.06389403368496,
+              "p95": 21.130711790371148,
+              "max": 34.26836252108433
+            },
+            "fraction_within_3_constraint_sigma": 0.32516703786191536
+          },
+          {
+            "state": "wind-drift-0-1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 75.95901632685684,
+              "median": 107.72810161730365,
+              "p95": 120.38708841147515,
+              "max": 134.26836252108433
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-drift-0-1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.026925222627681933,
+              "median": 12.479419941341291,
+              "p95": 31.924160429711687,
+              "max": 46.228473651034875
+            },
+            "fraction_within_3_constraint_sigma": 0.2650334075723831
+          },
+          {
+            "state": "wind-drift-0-1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.004408677197659472,
+              "median": 24.159028290152236,
+              "p95": 54.71063991957221,
+              "max": 64.26966397148135
+            },
+            "fraction_within_3_constraint_sigma": 0.1403118040089087
+          },
+          {
+            "state": "wind-drift-1--1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 95.8819103359962,
+              "median": 123.92873595704032,
+              "p95": 138.3039095257416,
+              "max": 146.71530678060674
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-drift-1--1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 0.06309768407206207,
+              "median": 7.733423377045284,
+              "p95": 21.94173168567294,
+              "max": 34.118089664003804
+            },
+            "fraction_within_3_constraint_sigma": 0.40979955456570155
+          },
+          {
+            "state": "wind-drift-1--1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 83.28469321939326,
+              "median": 106.07126404295968,
+              "p95": 121.94173168567293,
+              "max": 134.1180896640038
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-drift-1--1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.05506040021001013,
+              "median": 26.33258175055994,
+              "p95": 51.590404897935,
+              "max": 67.6886317347601
+            },
+            "fraction_within_3_constraint_sigma": 0.12694877505567928
+          },
+          {
+            "state": "wind-drift-1--1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.015202051201356426,
+              "median": 12.463276972380413,
+              "p95": 31.759437394845,
+              "max": 44.23674046861626
+            },
+            "fraction_within_3_constraint_sigma": 0.3028953229398664
+          },
+          {
+            "state": "wind-drift-1-1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 96.3826619278662,
+              "median": 121.6634725960902,
+              "p95": 139.94442461701166,
+              "max": 152.16039286106627
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-drift-1-1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 0.01033003123430376,
+              "median": 9.211544185936646,
+              "p95": 20.295641555886313,
+              "max": 33.617338072133805
+            },
+            "fraction_within_3_constraint_sigma": 0.3184855233853007
+          },
+          {
+            "state": "wind-drift-1-1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 77.83960713893373,
+              "median": 108.3365274039098,
+              "p95": 120.02171914617205,
+              "max": 133.6173380721338
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-drift-1-1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.08385663012902,
+              "median": 13.248519687767185,
+              "p95": 34.70262541173065,
+              "max": 50.918519331208955
+            },
+            "fraction_within_3_constraint_sigma": 0.25389755011135856
+          },
+          {
+            "state": "wind-drift-1-1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.20947832846340475,
+              "median": 22.719692862857613,
+              "p95": 54.26418664584344,
+              "max": 63.61863952253083
+            },
+            "fraction_within_3_constraint_sigma": 0.16703786191536749
+          }
+        ],
+        "state_count": 65,
+        "states_with_every_sample_within_3_sigma": 0,
+        "independently_prescribed_wind_ne_mps": [
+          12.0,
+          -8.0
+        ],
+        "independently_prescribed_wind_rate_ne_mps_per_h": [
+          3.0,
+          -2.0
+        ],
+        "implied_true_airspeed_mps": {
+          "min": 218.25310479193226,
+          "median": 238.39712890605512,
+          "p95": 250.92669498278724,
+          "max": 257.0314196344522
+        },
+        "knot_interpolation_speed_residual_mps": {
+          "min": 0.0,
+          "median": 4.9358669331237195,
+          "p95": 17.173615698868495,
+          "max": 23.48766299959155
+        },
+        "knot_interpolation_fraction_within_3_constraint_sigma": 0.5924276169265034,
+        "interpretation": "Off-manifold states and knot mismatch are diagnostics only. No state removed, constraint changed, SVD scored or model fitted."
+      },
+      "assumptions": {
+        "interpolation": "PCHIP within short observed intervals only; no provider estimates or long-gap bridging",
+        "altitude": "reported altitude treated as geometric height; actual reference unknown",
+        "clock": "synthetic clock; source timezone does not align a real IMU",
+        "accuracy": "Dense GPS is simulated; latent motion between public fixes is assumed, not observed",
+        "maneuver_mask": "Two-minute buffered assumed-path mask; actual reconstruction may differ"
+      }
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "trajectory_hash": "5a2ff46c08b4e2d1aab15bdb4aa4115154cfcc5980ba2a4feccbd2032c868dd4",
+      "mode": "simulated_high_rate",
+      "status": "assumed-path review only; not reconstructed IMU, receiver accuracy or scientific eligibility",
+      "duration_minutes": 75.0,
+      "supported_fraction_on_1s_grid": 0.9715555555555555,
+      "supported_intervals": [
+        {
+          "start_s": 0.0,
+          "end_s": 4229.0
+        },
+        {
+          "start_s": 4340.0,
+          "end_s": 4481.0
+        }
+      ],
+      "public_observation_interval_seconds": {
+        "min": 18.0,
+        "median": 30.0,
+        "p95": 42.14999999999995,
+        "max": 111.0
+      },
+      "assumed_ground_speed_mps": {
+        "min": 253.90188833110366,
+        "median": 268.50342566953077,
+        "p95": 278.9727222636711,
+        "max": 286.0034195907579
+      },
+      "assumed_vertical_speed_mps": {
+        "min": 0.0,
+        "median": 0.0,
+        "p95": 0.0,
+        "max": 0.24308139814879792
+      },
+      "assumed_latitude_deg": {
+        "min": 34.2921,
+        "median": 39.80380970839062,
+        "p95": 44.552957101328886,
+        "max": 45.0635
+      },
+      "reported_minus_assumed_speed_mps": {
+        "min": -9.039435380594682,
+        "median": 0.09073510080548886,
+        "p95": 4.378895404197749,
+        "max": 7.811120402079553
+      },
+      "proposed_turns": [
+        {
+          "minute": 20.0,
+          "safe": true,
+          "reason": null,
+          "evidence": []
+        },
+        {
+          "minute": 40.0,
+          "safe": true,
+          "reason": null,
+          "evidence": []
+        },
+        {
+          "minute": 60.0,
+          "safe": true,
+          "reason": null,
+          "evidence": []
+        }
+      ],
+      "all_proposed_turns_pass_assumed_mask": true,
+      "physical_speed_review": {
+        "available": true,
+        "sample_seconds": 10,
+        "states": [
+          {
+            "state": "wind--1--1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 74.74271486010244,
+              "median": 100.92782500815447,
+              "p95": 119.31378200852488,
+              "max": 131.7726961019116
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind--1--1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 0.18257541136108557,
+              "median": 29.07217499184553,
+              "p95": 41.15767343938694,
+              "max": 55.25728513989756
+            },
+            "fraction_within_3_constraint_sigma": 0.0273972602739726
+          },
+          {
+            "state": "wind--1--1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 98.2273038980884,
+              "median": 129.07217499184554,
+              "p95": 141.15767343938694,
+              "max": 155.25728513989756
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind--1--1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.35095561203161196,
+              "median": 29.530988730368676,
+              "p95": 53.68688256943157,
+              "max": 62.916060203594554
+            },
+            "fraction_within_3_constraint_sigma": 0.03424657534246575
+          },
+          {
+            "state": "wind--1--1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.16881664342560043,
+              "median": 27.511155330792974,
+              "p95": 69.8818516476583,
+              "max": 92.63408644429623
+            },
+            "fraction_within_3_constraint_sigma": 0.0319634703196347
+          },
+          {
+            "state": "wind--1-0/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 74.36155402393535,
+              "median": 89.6089553151299,
+              "p95": 100.17609134046742,
+              "max": 107.12187896883435
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind--1-0/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 22.878121031165648,
+              "median": 40.391044684870096,
+              "p95": 48.87644686119339,
+              "max": 55.638445976064645
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind--1-0/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 122.87812103116565,
+              "median": 140.3910446848701,
+              "p95": 148.8764468611934,
+              "max": 155.63844597606465
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind--1-0/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 5.700751543973695,
+              "median": 37.10031856580002,
+              "p95": 76.36429923733147,
+              "max": 89.16189814350187
+            },
+            "fraction_within_3_constraint_sigma": 0.00228310502283105
+          },
+          {
+            "state": "wind--1-0/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.344889133393508,
+              "median": 34.26758630449348,
+              "p95": 78.54693053975502,
+              "max": 88.08647338834686
+            },
+            "fraction_within_3_constraint_sigma": 0.045662100456621
+          },
+          {
+            "state": "wind--1-1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 69.54310083849663,
+              "median": 94.95436968109453,
+              "p95": 108.05763269484,
+              "max": 113.52643766380282
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind--1-1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 16.473562336197176,
+              "median": 35.04563031890547,
+              "p95": 53.2519807438156,
+              "max": 60.45689916150337
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind--1-1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 116.47356233619718,
+              "median": 135.04563031890547,
+              "p95": 153.2519807438156,
+              "max": 160.45689916150337
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind--1-1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.13318033798665851,
+              "median": 28.125603541677776,
+              "p95": 86.95473626506697,
+              "max": 99.37047115197441
+            },
+            "fraction_within_3_constraint_sigma": 0.02511415525114155
+          },
+          {
+            "state": "wind--1-1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.909565485798538,
+              "median": 27.53633026327222,
+              "p95": 68.52592480739509,
+              "max": 77.51266299665946
+            },
+            "fraction_within_3_constraint_sigma": 0.00684931506849315
+          },
+          {
+            "state": "wind-0--1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 134.6051825893303,
+              "median": 158.9265636667295,
+              "p95": 172.51824864918353,
+              "max": 184.92570516377083
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-0--1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 4.605182589330298,
+              "median": 28.926563666729493,
+              "p95": 42.518248649183526,
+              "max": 54.92570516377083
+            },
+            "fraction_within_3_constraint_sigma": 0.00228310502283105
+          },
+          {
+            "state": "wind-0--1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 45.07429483622917,
+              "median": 71.07343633327051,
+              "p95": 83.52444061247563,
+              "max": 95.3948174106697
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-0--1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.05322218299892256,
+              "median": 28.880205903661206,
+              "p95": 50.47689273566175,
+              "max": 60.941769137750725
+            },
+            "fraction_within_3_constraint_sigma": 0.136986301369863
+          },
+          {
+            "state": "wind-0--1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.08889514076639671,
+              "median": 31.648691727315338,
+              "p95": 71.76300784633322,
+              "max": 82.85330070874105
+            },
+            "fraction_within_3_constraint_sigma": 0.1506849315068493
+          },
+          {
+            "state": "wind-0-0/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 134.34454117526099,
+              "median": 148.46834062074151,
+              "p95": 159.03821130699754,
+              "max": 166.00341959075791
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-0-0/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 4.344541175260986,
+              "median": 18.468340620741515,
+              "p95": 29.03821130699753,
+              "max": 36.003419590757915
+            },
+            "fraction_within_3_constraint_sigma": 0.00684931506849315
+          },
+          {
+            "state": "wind-0-0/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 63.996580409242085,
+              "median": 81.53165937925849,
+              "p95": 89.65929523402615,
+              "max": 95.65545882473901
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-0-0/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.10629627885822401,
+              "median": 23.379996148062816,
+              "p95": 46.060243307225264,
+              "max": 53.17638146307604
+            },
+            "fraction_within_3_constraint_sigma": 0.08904109589041095
+          },
+          {
+            "state": "wind-0-0/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.14404228646702677,
+              "median": 26.224247490109178,
+              "p95": 51.59735453913351,
+              "max": 62.2530787083048
+            },
+            "fraction_within_3_constraint_sigma": 0.1004566210045662
+          },
+          {
+            "state": "wind-0-1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 129.5369346353175,
+              "median": 153.3975375911985,
+              "p95": 165.34585793539136,
+              "max": 171.709963023701
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-0-1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 0.4630653646825067,
+              "median": 23.3975375911985,
+              "p95": 35.34585793539136,
+              "max": 41.70996302370099
+            },
+            "fraction_within_3_constraint_sigma": 0.03881278538812785
+          },
+          {
+            "state": "wind-0-1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 58.29003697629901,
+              "median": 76.6024624088015,
+              "p95": 93.25928899022026,
+              "max": 100.4630653646825
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-0-1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.6305084715702947,
+              "median": 30.531172162587808,
+              "p95": 53.26485414161569,
+              "max": 70.15166082081456
+            },
+            "fraction_within_3_constraint_sigma": 0.04794520547945205
+          },
+          {
+            "state": "wind-0-1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.03057049959318192,
+              "median": 31.199102576304384,
+              "p95": 47.75801585109002,
+              "max": 60.472298189386436
+            },
+            "fraction_within_3_constraint_sigma": 0.14383561643835616
+          },
+          {
+            "state": "wind-1--1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 194.52006774069167,
+              "median": 217.23187681463523,
+              "p95": 228.76729923315605,
+              "max": 240.23586833742735
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-1--1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 64.52006774069167,
+              "median": 87.23187681463523,
+              "p95": 98.76729923315604,
+              "max": 110.23586833742735
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-1--1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 0.5563675817387548,
+              "median": 12.768123185364772,
+              "p95": 24.852075912017824,
+              "max": 35.47993225930833
+            },
+            "fraction_within_3_constraint_sigma": 0.11643835616438356
+          },
+          {
+            "state": "wind-1--1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 44.19161361506076,
+              "median": 87.73144061421517,
+              "p95": 109.07272197494709,
+              "max": 119.5622707816259
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-1--1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 27.143266436293004,
+              "median": 90.49682451632772,
+              "p95": 126.74685652763384,
+              "max": 137.9177640896946
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-1-0/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 194.33402228952076,
+              "median": 208.13715876498827,
+              "p95": 218.38076571384198,
+              "max": 225.98693966018254
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-1-0/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 64.33402228952076,
+              "median": 78.13715876498827,
+              "p95": 88.38076571384198,
+              "max": 95.98693966018254
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-1-0/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 4.013060339817457,
+              "median": 21.86284123501173,
+              "p95": 29.96746309303287,
+              "max": 35.66597771047924
+            },
+            "fraction_within_3_constraint_sigma": 0.00684931506849315
+          },
+          {
+            "state": "wind-1-0/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 26.97394050108403,
+              "median": 82.88855367884325,
+              "p95": 105.78697645670957,
+              "max": 113.16496029584442
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-1-0/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 29.97912320531259,
+              "median": 85.72237158415122,
+              "p95": 110.13849107848165,
+              "max": 120.7060258431753
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-1-1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 189.53315883586515,
+              "median": 212.25843039596108,
+              "p95": 223.5896494730176,
+              "max": 230.506502031891
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-1-1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 59.53315883586515,
+              "median": 82.25843039596108,
+              "p95": 93.5896494730176,
+              "max": 100.50650203189099
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-1-1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 0.1110330004060529,
+              "median": 17.741569604038915,
+              "p95": 33.263828544981756,
+              "max": 40.46684116413485
+            },
+            "fraction_within_3_constraint_sigma": 0.04794520547945205
+          },
+          {
+            "state": "wind-1-1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 20.61958684539411,
+              "median": 88.67372884909891,
+              "p95": 112.28201864962848,
+              "max": 126.36536743403403
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-1-1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 39.75019508826114,
+              "median": 90.2382730033262,
+              "p95": 107.44082870728596,
+              "max": 119.62494128217162
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-drift-0--1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 120.96855741143733,
+              "median": 153.55188943752918,
+              "p95": 167.65775208078634,
+              "max": 176.5047854657832
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-drift-0--1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 0.12167787850120249,
+              "median": 23.551889437529184,
+              "p95": 37.65775208078635,
+              "max": 46.504785465783186
+            },
+            "fraction_within_3_constraint_sigma": 0.22602739726027396
+          },
+          {
+            "state": "wind-drift-0--1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 53.495214534216814,
+              "median": 76.44811056247082,
+              "p95": 102.04398000432398,
+              "max": 109.03144258856267
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-drift-0--1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.11327256583570033,
+              "median": 21.329305185293364,
+              "p95": 30.794861949536955,
+              "max": 39.40750527302626
+            },
+            "fraction_within_3_constraint_sigma": 0.1735159817351598
+          },
+          {
+            "state": "wind-drift-0--1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.16024142094300942,
+              "median": 32.687723286582326,
+              "p95": 67.72982414324404,
+              "max": 80.12901664039677
+            },
+            "fraction_within_3_constraint_sigma": 0.06621004566210045
+          },
+          {
+            "state": "wind-drift-0-1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 119.88667778080867,
+              "median": 151.7024757684972,
+              "p95": 162.4439900469044,
+              "max": 169.50227067183107
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-drift-0-1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 0.03628569775131041,
+              "median": 21.70247576849721,
+              "p95": 32.44399004690439,
+              "max": 39.50227067183107
+            },
+            "fraction_within_3_constraint_sigma": 0.1643835616438356
+          },
+          {
+            "state": "wind-drift-0-1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 60.49772932816893,
+              "median": 78.29752423150279,
+              "p95": 100.28243473420923,
+              "max": 110.11332221919133
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-drift-0-1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.1408095283017019,
+              "median": 30.136181516354966,
+              "p95": 61.96735314770959,
+              "max": 70.61694524889955
+            },
+            "fraction_within_3_constraint_sigma": 0.09360730593607305
+          },
+          {
+            "state": "wind-drift-0-1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.02023733874506206,
+              "median": 23.03624660160976,
+              "p95": 36.90296250933896,
+              "max": 45.80645176080836
+            },
+            "fraction_within_3_constraint_sigma": 0.2146118721461187
+          },
+          {
+            "state": "wind-drift-1--1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 133.54894978573012,
+              "median": 147.8344918702073,
+              "p95": 158.34533897374112,
+              "max": 166.1150327290361
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-drift-1--1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 3.548949785730116,
+              "median": 17.8344918702073,
+              "p95": 28.34533897374111,
+              "max": 36.1150327290361
+            },
+            "fraction_within_3_constraint_sigma": 0.0136986301369863
+          },
+          {
+            "state": "wind-drift-1--1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 63.8849672709639,
+              "median": 82.1655081297927,
+              "p95": 90.849509053801,
+              "max": 96.45105021426988
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-drift-1--1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.05750009069816997,
+              "median": 24.252035049656868,
+              "p95": 45.15264523841399,
+              "max": 53.97476337604559
+            },
+            "fraction_within_3_constraint_sigma": 0.0730593607305936
+          },
+          {
+            "state": "wind-drift-1--1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.06737102407794282,
+              "median": 26.677264908721625,
+              "p95": 48.059117519420546,
+              "max": 58.344424502616846
+            },
+            "fraction_within_3_constraint_sigma": 0.1050228310502283
+          },
+          {
+            "state": "wind-drift-1-1/tas-120.0",
+            "absolute_speed_residual_mps": {
+              "min": 134.31291217317136,
+              "median": 150.3328906012394,
+              "p95": 161.04343249884107,
+              "max": 167.9110366883204
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-drift-1-1/tas-250.0",
+            "absolute_speed_residual_mps": {
+              "min": 4.312912173171355,
+              "median": 20.3328906012394,
+              "p95": 31.043432498841078,
+              "max": 37.911036688320394
+            },
+            "fraction_within_3_constraint_sigma": 0.00684931506849315
+          },
+          {
+            "state": "wind-drift-1-1/tas-350.0",
+            "absolute_speed_residual_mps": {
+              "min": 62.088963311679606,
+              "median": 79.6671093987606,
+              "p95": 88.37188890390574,
+              "max": 95.68708782682864
+            },
+            "fraction_within_3_constraint_sigma": 0.0
+          },
+          {
+            "state": "wind-drift-1-1/tas-drift--1",
+            "absolute_speed_residual_mps": {
+              "min": 0.031918016064309995,
+              "median": 23.031341574577226,
+              "p95": 47.04836734052829,
+              "max": 56.8496992570463
+            },
+            "fraction_within_3_constraint_sigma": 0.10730593607305935
+          },
+          {
+            "state": "wind-drift-1-1/tas-drift-1",
+            "absolute_speed_residual_mps": {
+              "min": 0.08841611827233464,
+              "median": 25.73530346814576,
+              "p95": 56.067480061405924,
+              "max": 67.38573170962215
+            },
+            "fraction_within_3_constraint_sigma": 0.1004566210045662
+          }
+        ],
+        "state_count": 65,
+        "states_with_every_sample_within_3_sigma": 0,
+        "independently_prescribed_wind_ne_mps": [
+          12.0,
+          -8.0
+        ],
+        "independently_prescribed_wind_rate_ne_mps_per_h": [
+          3.0,
+          -2.0
+        ],
+        "implied_true_airspeed_mps": {
+          "min": 269.46439973016874,
+          "median": 282.74475247150724,
+          "p95": 292.84381334006525,
+          "max": 300.606322897543
+        },
+        "knot_interpolation_speed_residual_mps": {
+          "min": 0.0,
+          "median": 2.950489751277104,
+          "p95": 11.413989444656456,
+          "max": 20.678095030190434
+        },
+        "knot_interpolation_fraction_within_3_constraint_sigma": 0.7968036529680366,
+        "interpretation": "Off-manifold states and knot mismatch are diagnostics only. No state removed, constraint changed, SVD scored or model fitted."
+      },
+      "assumptions": {
+        "interpolation": "PCHIP within short observed intervals only; no provider estimates or long-gap bridging",
+        "altitude": "reported altitude treated as geometric height; actual reference unknown",
+        "clock": "synthetic clock; source timezone does not align a real IMU",
+        "accuracy": "Dense GPS is simulated; latent motion between public fixes is assumed, not observed",
+        "maneuver_mask": "Two-minute buffered assumed-path mask; actual reconstruction may differ"
+      }
+    }
+  ],
+  "selected_track": "2026-10-02-lufthansa-572-fra-jnb",
+  "plan_hash": "74b7de930a28daeb5dc56884f1baefc990a32c1bcc68b285ea33ef6c4a75bfe7",
+  "task_count": 18,
+  "distinct_recording_conditions": 6,
+  "initial_proposed_prefix": 3,
+  "initial_conditions": "rotating-globe truth, wind+mixed bias; same seed and path under all three fit candidates",
+  "full_proposed_prefix": 18,
+  "tasks": [
+    {
+      "index": 0,
+      "truth": "sphere_rotating",
+      "scenario": "wind+bias_mixed",
+      "seed": 600900,
+      "geometry_cell": "trajectory-5a2ff46c08b4e2d1aab15bdb4aa4115154cfcc5980ba2a4feccbd2032c868dd4",
+      "variant": "spp",
+      "partition": "development",
+      "geometry": "observed",
+      "task_id": "2e386fad56e0bbc02d59a42609aa6bd23483b55d60645fb5facb0cb9cda5ef23"
+    },
+    {
+      "index": 1,
+      "truth": "sphere_rotating",
+      "scenario": "wind+bias_mixed",
+      "seed": 600900,
+      "geometry_cell": "trajectory-5a2ff46c08b4e2d1aab15bdb4aa4115154cfcc5980ba2a4feccbd2032c868dd4",
+      "variant": "spp",
+      "partition": "development",
+      "geometry": "observed",
+      "task_id": "6b547df33f18fe313548195262a23323ef9230b171252b2059f913ae1e589314"
+    },
+    {
+      "index": 2,
+      "truth": "sphere_rotating",
+      "scenario": "wind+bias_mixed",
+      "seed": 600900,
+      "geometry_cell": "trajectory-5a2ff46c08b4e2d1aab15bdb4aa4115154cfcc5980ba2a4feccbd2032c868dd4",
+      "variant": "spp",
+      "partition": "development",
+      "geometry": "observed",
+      "task_id": "542522e6dd89312e16a9508a7a0414129075ff76b559ac1e641f4cf58f2b6533"
+    },
+    {
+      "index": 3,
+      "truth": "sphere_rotating",
+      "scenario": "wind+bias_mixed+correlated+thermal",
+      "seed": 600900,
+      "geometry_cell": "trajectory-5a2ff46c08b4e2d1aab15bdb4aa4115154cfcc5980ba2a4feccbd2032c868dd4",
+      "variant": "spp",
+      "partition": "development",
+      "geometry": "observed",
+      "task_id": "ec374d1724c7e9569347e806bf40ed1beff6e19b79a817848d126f62fe7aaa45"
+    },
+    {
+      "index": 4,
+      "truth": "sphere_rotating",
+      "scenario": "wind+bias_mixed+correlated+thermal",
+      "seed": 600900,
+      "geometry_cell": "trajectory-5a2ff46c08b4e2d1aab15bdb4aa4115154cfcc5980ba2a4feccbd2032c868dd4",
+      "variant": "spp",
+      "partition": "development",
+      "geometry": "observed",
+      "task_id": "1c007f5ec71fff009cd789914b86297c1aab8e8b85b16cb75e56ba4d70824be4"
+    },
+    {
+      "index": 5,
+      "truth": "sphere_rotating",
+      "scenario": "wind+bias_mixed+correlated+thermal",
+      "seed": 600900,
+      "geometry_cell": "trajectory-5a2ff46c08b4e2d1aab15bdb4aa4115154cfcc5980ba2a4feccbd2032c868dd4",
+      "variant": "spp",
+      "partition": "development",
+      "geometry": "observed",
+      "task_id": "3d6146e28b7c79b5e769b09ee073f979385081c9ab18b9c021671659533126f2"
+    },
+    {
+      "index": 6,
+      "truth": "sphere_still",
+      "scenario": "wind+bias_mixed",
+      "seed": 600900,
+      "geometry_cell": "trajectory-5a2ff46c08b4e2d1aab15bdb4aa4115154cfcc5980ba2a4feccbd2032c868dd4",
+      "variant": "spp",
+      "partition": "development",
+      "geometry": "observed",
+      "task_id": "c285a6a0ed4f3dfb601ae4b9a4e2e6b50b5990c014c30af9b9557094f6bf802a"
+    },
+    {
+      "index": 7,
+      "truth": "sphere_still",
+      "scenario": "wind+bias_mixed",
+      "seed": 600900,
+      "geometry_cell": "trajectory-5a2ff46c08b4e2d1aab15bdb4aa4115154cfcc5980ba2a4feccbd2032c868dd4",
+      "variant": "spp",
+      "partition": "development",
+      "geometry": "observed",
+      "task_id": "dbf21183106b08e492cd5577ef29b00769944d9c583f108112f71334fec8f7f7"
+    },
+    {
+      "index": 8,
+      "truth": "sphere_still",
+      "scenario": "wind+bias_mixed",
+      "seed": 600900,
+      "geometry_cell": "trajectory-5a2ff46c08b4e2d1aab15bdb4aa4115154cfcc5980ba2a4feccbd2032c868dd4",
+      "variant": "spp",
+      "partition": "development",
+      "geometry": "observed",
+      "task_id": "34bad48b31f409a5c6a6f2ce54a1aa48d88e6926879ced8be4a98ea441251172"
+    },
+    {
+      "index": 9,
+      "truth": "sphere_still",
+      "scenario": "wind+bias_mixed+correlated+thermal",
+      "seed": 600900,
+      "geometry_cell": "trajectory-5a2ff46c08b4e2d1aab15bdb4aa4115154cfcc5980ba2a4feccbd2032c868dd4",
+      "variant": "spp",
+      "partition": "development",
+      "geometry": "observed",
+      "task_id": "e2c800a701973227a562291ee2320073355dd1c65a38bfcb20ac474d0ded5211"
+    },
+    {
+      "index": 10,
+      "truth": "sphere_still",
+      "scenario": "wind+bias_mixed+correlated+thermal",
+      "seed": 600900,
+      "geometry_cell": "trajectory-5a2ff46c08b4e2d1aab15bdb4aa4115154cfcc5980ba2a4feccbd2032c868dd4",
+      "variant": "spp",
+      "partition": "development",
+      "geometry": "observed",
+      "task_id": "18717961c548cdf290e8de10cf78c98ddbe5c20f738d6f6bd836f27202497962"
+    },
+    {
+      "index": 11,
+      "truth": "sphere_still",
+      "scenario": "wind+bias_mixed+correlated+thermal",
+      "seed": 600900,
+      "geometry_cell": "trajectory-5a2ff46c08b4e2d1aab15bdb4aa4115154cfcc5980ba2a4feccbd2032c868dd4",
+      "variant": "spp",
+      "partition": "development",
+      "geometry": "observed",
+      "task_id": "c39939adeda11b40d67e423953dec574dd041855e39082e0ba1566de0df0e705"
+    },
+    {
+      "index": 12,
+      "truth": "flat_still",
+      "scenario": "wind+bias_mixed",
+      "seed": 600900,
+      "geometry_cell": "trajectory-5a2ff46c08b4e2d1aab15bdb4aa4115154cfcc5980ba2a4feccbd2032c868dd4",
+      "variant": "spp",
+      "partition": "development",
+      "geometry": "observed",
+      "task_id": "0b285fd4f12535087fc93f1f0d73729775b48160e048483ea4d9b1195d28e145"
+    },
+    {
+      "index": 13,
+      "truth": "flat_still",
+      "scenario": "wind+bias_mixed",
+      "seed": 600900,
+      "geometry_cell": "trajectory-5a2ff46c08b4e2d1aab15bdb4aa4115154cfcc5980ba2a4feccbd2032c868dd4",
+      "variant": "spp",
+      "partition": "development",
+      "geometry": "observed",
+      "task_id": "0395e9a6842f2d54c581eb53538e16c18fe5f50e350d76c2d3e168545b0cce5d"
+    },
+    {
+      "index": 14,
+      "truth": "flat_still",
+      "scenario": "wind+bias_mixed",
+      "seed": 600900,
+      "geometry_cell": "trajectory-5a2ff46c08b4e2d1aab15bdb4aa4115154cfcc5980ba2a4feccbd2032c868dd4",
+      "variant": "spp",
+      "partition": "development",
+      "geometry": "observed",
+      "task_id": "f0e260845d772a2c966cf09e84ebe520b68443c6a794e2c8f2805fa79a3f8705"
+    },
+    {
+      "index": 15,
+      "truth": "flat_still",
+      "scenario": "wind+bias_mixed+correlated+thermal",
+      "seed": 600900,
+      "geometry_cell": "trajectory-5a2ff46c08b4e2d1aab15bdb4aa4115154cfcc5980ba2a4feccbd2032c868dd4",
+      "variant": "spp",
+      "partition": "development",
+      "geometry": "observed",
+      "task_id": "f8b9f411c6452b1ec54f5b82533e5deebc0767eb0a81865242a0bed06fa0145d"
+    },
+    {
+      "index": 16,
+      "truth": "flat_still",
+      "scenario": "wind+bias_mixed+correlated+thermal",
+      "seed": 600900,
+      "geometry_cell": "trajectory-5a2ff46c08b4e2d1aab15bdb4aa4115154cfcc5980ba2a4feccbd2032c868dd4",
+      "variant": "spp",
+      "partition": "development",
+      "geometry": "observed",
+      "task_id": "3e78982bb621849c5df1797773bb8710210dd37de988babe0f1c86c777a008cb"
+    },
+    {
+      "index": 17,
+      "truth": "flat_still",
+      "scenario": "wind+bias_mixed+correlated+thermal",
+      "seed": 600900,
+      "geometry_cell": "trajectory-5a2ff46c08b4e2d1aab15bdb4aa4115154cfcc5980ba2a4feccbd2032c868dd4",
+      "variant": "spp",
+      "partition": "development",
+      "geometry": "observed",
+      "task_id": "1748f94596cd4b6e4e896ade314418d43c9c9b74aa6a4cf3850b9e903ad3f0a3"
+    }
+  ],
+  "numerical_threads_per_worker": 1,
+  "maximum_local_workers": 2,
+  "new_seconds_per_evaluation": null,
+  "new_storage_bytes_per_evaluation": null,
+  "runtime_quote": "Unavailable until an approved pilot measures this implementation. Historical 7-12 s flights do not estimate the new envelope and dual-path cost.",
+  "acceptance_review": [
+    "Scientific exclusions and every failure are retained.",
+    "All-contrast and pair-specific availability are separate.",
+    "Preserve forward-axis uncertainty, watchdog/control path, prior sensitivity, parameter-boundary diagnostics and actual domain observables.",
+    "A fitted crab or airspeed curve is model-dependent, not independent truth.",
+    "Bootstrap zero cannot establish error rates or promotion."
+  ],
+  "policies": {
+    "wind_tas": {
+      "version": "wind-tas-1",
+      "knot_seconds": 900.0,
+      "wind_sigma_mps": 20.0,
+      "wind_rate_sigma_mps_per_h": 10.0,
+      "wind_component_bound_mps": 60.0,
+      "tas_reference_mps": 250.0,
+      "tas_log_sigma": 0.2,
+      "tas_log_rate_sigma_per_h": 0.08,
+      "tas_min_mps": 120.0,
+      "tas_max_mps": 350.0,
+      "ground_constraint_sigma_mps": 2.0,
+      "boundary_fraction": 0.01,
+      "minimum_ground_speed_mps": 100.0,
+      "evidence": "Conditional GNSS speed constraint with latent smooth TAS; no independent heading or airspeed observation",
+      "provenance": "Provisional development assumptions; independent wind truth, calibration and hardware checks required"
+    },
+    "mount_yaw": {
+      "version": "mount-yaw-1",
+      "angle_sigma_deg": 3.0,
+      "rate_sigma_dph": 3.0,
+      "angle_bound_deg": 15.0,
+      "rate_bound_dph": 15.0,
+      "boundary_fraction": 0.01,
+      "flag_source": "magnetic-watchdog-2",
+      "basis": "step and finite-duration linear yaw within each flagged segment and mount epoch",
+      "agreement": "both scientific paths eligible, identical endpoint decisions and shifts <= 1 sigma",
+      "provenance": "Provisional research assumptions; no independent measurement of mount yaw"
+    },
+    "ordinary_envelope": {
+      "version": "nuisance-envelope-1",
+      "anchors": [
+        "sphere_rotating",
+        "sphere_still",
+        "flat_still"
+      ],
+      "sigma_bin_dph": [
+        3.0,
+        6.0
+      ],
+      "prior_multiplier": 3.0,
+      "planning_forward_sigma_deg": 5.0,
+      "epoch_yaw_deg": 1.0,
+      "nuisance_state": "dynamic intercept/drift grid or wind coefficient corners and individual drifts",
+      "weighting": "fixed isotropic design noise; no fitted gyro coefficients or residual weights",
+      "limitations": "Finite development grid, not a bound over every admissible nuisance trajectory"
+    },
+    "physical_envelope": {
+      "version": "physical-wind-envelope-1",
+      "anchors": [
+        "sphere_rotating",
+        "sphere_still",
+        "flat_still"
+      ],
+      "sigma_bin_dph": [
+        3.0,
+        6.0
+      ],
+      "prior_multiplier": 3.0,
+      "planning_forward_sigma_deg": 5.0,
+      "epoch_yaw_deg": 1.0,
+      "nuisance_state": "bounded north/east wind corners and drifts crossed with TAS levels/drifts",
+      "weighting": "fixed gyro noise 3 and 6 dph and conditional GNSS speed constraint; no gyro fit/residual weights",
+      "limitations": "Finite development grid, not a bound over every admissible nuisance trajectory",
+      "wind_tas_policy": {
+        "version": "wind-tas-1",
+        "knot_seconds": 900.0,
+        "wind_sigma_mps": 20.0,
+        "wind_rate_sigma_mps_per_h": 10.0,
+        "wind_component_bound_mps": 60.0,
+        "tas_reference_mps": 250.0,
+        "tas_log_sigma": 0.2,
+        "tas_log_rate_sigma_per_h": 0.08,
+        "tas_min_mps": 120.0,
+        "tas_max_mps": 350.0,
+        "ground_constraint_sigma_mps": 2.0,
+        "boundary_fraction": 0.01,
+        "minimum_ground_speed_mps": 100.0,
+        "evidence": "Conditional GNSS speed constraint with latent smooth TAS; no independent heading or airspeed observation",
+        "provenance": "Provisional development assumptions; independent wind truth, calibration and hardware checks required"
+      }
+    }
+  },
+  "pending_controls": [
+    "Matched true mount-slip controls and slowly varying/nonlinear wind/TAS departures remain necessary before protocol selection.",
+    "Other routes, original sparse-fix mode, schedule search and nonzero complete bootstrap need separately bounded stages.",
+    "Do not prune off-manifold envelope states or loosen the speed constraint based on favorable retained-model information."
+  ]
+}

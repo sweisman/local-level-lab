@@ -57,7 +57,16 @@ def geometry_problem(design,schedule,crab_model,*,kin=None):
         safe &= (centers+30.<minute*60.-1.) | (centers-30.>minute*60.+sim['turn_seconds']+20.)
     t=centers[safe]
     if not len(t): raise ValueError('no qualifying analytic bins')
-    def interpolate(key): return np.interp(t,kin['t'],np.unwrap(kin[key]) if key=='psi' else kin[key])
+    def interpolate(key):
+        values = np.asarray(kin[key])
+        if key == 'psi':
+            # Missing supported fixes must not poison every later course. Unwrap
+            # within finite runs; full-bin motion checks above exclude gap crossings.
+            values = values.copy()
+            edges = np.flatnonzero(np.diff(np.r_[False, np.isfinite(values), False]))
+            for a, b in zip(edges[::2], edges[1::2]):
+                values[a:b] = np.unwrap(values[a:b])
+        return np.interp(t, kin['t'], values)
     epoch=np.searchsorted(np.array(schedule)*60.+sim['turn_seconds'],t)
     tray=np.array([[0.,1.,0.],[1.,0.,0.],[0.,0.,-1.]])
     if sim['mount']!='tray': raise ValueError('geometry search supports same-side-up tray turns')

@@ -13,6 +13,7 @@ from .policy import MODEL_PAIRS, eligibility_policies, scientific_exclusions
 from .research_calibration import (diagnostic_stratum, validate_records, calibration_precision,
                                    preregistered_groups, required_accepted_n, tail_upper)
 from .runtime import numerical_environment, numerical_environment_hash
+from .flight_domain import descriptor
 
 
 def group(row, comparison, mode):
@@ -36,6 +37,8 @@ def calibrate(campaign, mode="flight", alpha=.0027, min_accepted=None):
         raise ValueError("pairwise calibration requires a frozen calibration campaign and a known mode")
     validate_records(campaign, "calibration")
     config = campaign.get("config", {})
+    if mode=='pool' and config.get('flight_domain') is not None:
+        raise ValueError('summary pooling requires its own domain calibration; flight domains do not transfer')
     frozen_alpha = config.get("campaign_plan", {}).get("alpha")
     if frozen_alpha is not None and alpha != frozen_alpha: raise ValueError("pairwise alpha differs from the frozen campaign")
     precision = calibration_precision(config, alpha)
@@ -45,7 +48,7 @@ def calibrate(campaign, mode="flight", alpha=.0027, min_accepted=None):
     samples, cells = {}, {}
     declared = preregistered_groups(config) if mode == "flight" else None
     if declared and config.get('pairwise_method')=='profile':
-        declared={json.dumps([*json.loads(key)[:-1],1],separators=(',',':')):value for key,value in declared.items()}
+        declared={json.dumps([*json.loads(key)[:5],1,*json.loads(key)[6:]],separators=(',',':')):value for key,value in declared.items()}
     if declared:
         for diagnostic in declared:
             for name, endpoints in MODEL_PAIRS.items():
@@ -91,6 +94,9 @@ def calibrate(campaign, mode="flight", alpha=.0027, min_accepted=None):
                "minimum_accepted_calibration": minimum, "validated_for_primary_claims": False}
     content["calibrated_domain"] = {"geometry_mode": config.get("geometry"), "geometry_cells": config.get("geometry_domain"),
                                     "scenarios": config.get("preregistered_scenarios"), "pool_units": config.get("preregistered_pool_units")}
+    if config.get('flight_domain') is not None:
+        domain = descriptor(config['flight_domain'])
+        content.update(version='pairwise-empirical-3',flight_domain=domain,domain_id=domain['domain_id'])
     return {**content, "policy_hash": digest(content)}
 
 
@@ -101,6 +107,8 @@ def assess(campaign, policy):
         raise ValueError("pairwise assessment requires a frozen independent validation campaign")
     validate_records(campaign, "validation")
     config = campaign.get("config", {})
+    if config.get('flight_domain') != policy.get('flight_domain'):
+        raise ValueError('pairwise validation flight domain differs from calibration')
     if config.get("pairwise_decision_policy_hash") != policy["policy_hash"]:
         raise ValueError("validation did not preregister this pairwise decision policy")
     if campaign.get("implementation_hash") != policy.get("implementation_hash"):

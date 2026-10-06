@@ -1,0 +1,256 @@
+{
+  "state": "public_metadata_inspected_authentication_and_payload_schema_pending",
+  "collections": [
+    {
+      "short_name": "ILVIS0",
+      "concept_id": "C3162704221-NSIDC_CPRD",
+      "doi": "10.5067/E6JPQ3QNW77R"
+    },
+    {
+      "short_name": "IPUTI0",
+      "concept_id": "C1386246599-NSIDCV0",
+      "doi": "10.5067/7K31MCH5XXZA"
+    }
+  ],
+  "alternative_is_same_dataset": false,
+  "imu_filename_candidates": [
+    {
+      "concept_id": "G3437021331-NSIDC_CPRD",
+      "filename": "ILVIS0_gyro_54935_atm_applanix_14Apr09.013",
+      "catalog_size": "12.4805",
+      "catalog_start": "2009-04-14T00:00:00.000Z",
+      "catalog_end": "2009-04-14T23:59:59.990Z",
+      "download_urls": [
+        "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/04/14/ILVIS0_gyro_54935_atm_applanix_14Apr09.013"
+      ],
+      "measurement_columns_verified": false,
+      "actual_sample_times_verified": false
+    },
+    {
+      "concept_id": "G3437021356-NSIDC_CPRD",
+      "filename": "ILVIS0_gyro_54935_lvis_applanix_POSAV.031",
+      "catalog_size": "12.4801",
+      "catalog_start": "2009-04-14T00:00:00.000Z",
+      "catalog_end": "2009-04-14T23:59:59.990Z",
+      "download_urls": [
+        "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/04/14/ILVIS0_gyro_54935_lvis_applanix_POSAV.031"
+      ],
+      "measurement_columns_verified": false,
+      "actual_sample_times_verified": false
+    },
+    {
+      "concept_id": "G3437021371-NSIDC_CPRD",
+      "filename": "ILVIS0_gyro_54935_atm_applanix_14Apr09.039",
+      "catalog_size": "12.4771",
+      "catalog_start": "2009-04-14T00:00:00.000Z",
+      "catalog_end": "2009-04-14T23:59:59.990Z",
+      "download_urls": [
+        "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/04/14/ILVIS0_gyro_54935_atm_applanix_14Apr09.039"
+      ],
+      "measurement_columns_verified": false,
+      "actual_sample_times_verified": false
+    },
+    {
+      "concept_id": "G3437021377-NSIDC_CPRD",
+      "filename": "ILVIS0_gyro_54935_lvis_applanix_POSAV.037",
+      "catalog_size": "12.477",
+      "catalog_start": "2009-04-14T00:00:00.000Z",
+      "catalog_end": "2009-04-14T23:59:59.990Z",
+      "download_urls": [
+        "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/04/14/ILVIS0_gyro_54935_lvis_applanix_POSAV.037"
+      ],
+      "measurement_columns_verified": false,
+      "actual_sample_times_verified": false
+    },
+    {
+      "concept_id": "G3437021390-NSIDC_CPRD",
+      "filename": "ILVIS0_gyro_54935_atm_applanix_14Apr09.007",
+      "catalog_size": "12.4763",
+      "catalog_start": "2009-04-14T00:00:00.000Z",
+      "catalog_end": "2009-04-14T23:59:59.990Z",
+      "download_urls": [
+        "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/04/14/ILVIS0_gyro_54935_atm_applanix_14Apr09.007"
+      ],
+      "measurement_columns_verified": false,
+      "actual_sample_times_verified": false
+    },
+    {
+      "concept_id": "G3437021391-NSIDC_CPRD",
+      "filename": "ILVIS0_gyro_54935_atm_applanix_14Apr09.051",
+      "catalog_size": "12.4795",
+      "catalog_start": "2009-04-14T00:00:00.000Z",
+      "catalog_end": "2009-04-14T23:59:59.990Z",
+      "download_urls": [
+        "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/04/14/ILVIS0_gyro_54935_atm_applanix_14Apr09.051"
+      ],
+      "measurement_columns_verified": false,
+      "actual_sample_times_verified": false
+    },
+    {
+      "concept_id": "G3437021393-NSIDC_CPRD",
+      "filename": "ILVIS0_gyro_54935_atm_applanix_14Apr09.004",
+      "catalog_size": "12.4746",
+      "catalog_start": "2009-04-14T00:00:00.000Z",
+      "catalog_end": "2009-04-14T23:59:59.990Z",
+      "download_urls": [
+        "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/04/14/ILVIS0_gyro_54935_atm_applanix_14Apr09.004"
+      ],
+      "measurement_columns_verified": false,
+      "actual_sample_times_verified": false
+    },
+    {
+      "concept_id": "G3437021400-NSIDC_CPRD",
+      "filename": "ILVIS0_gyro_54935_atm_applanix_14Apr09.050",
+      "catalog_size": "12.4734",
+      "catalog_start": "2009-04-14T00:00:00.000Z",
+      "catalog_end": "2009-04-14T23:59:59.990Z",
+      "download_urls": [
+        "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/04/14/ILVIS0_gyro_54935_atm_applanix_14Apr09.050"
+      ],
+      "measurement_columns_verified": false,
+      "actual_sample_times_verified": false
+    },
+    {
+      "concept_id": "G3437021465-NSIDC_CPRD",
+      "filename": "ILVIS0_gyro_54935_atm_applanix_14Apr09.030",
+      "catalog_size": "12.4723",
+      "catalog_start": "2009-04-14T00:00:00.000Z",
+      "catalog_end": "2009-04-14T23:59:59.990Z",
+      "download_urls": [
+        "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/04/14/ILVIS0_gyro_54935_atm_applanix_14Apr09.030"
+      ],
+      "measurement_columns_verified": false,
+      "actual_sample_times_verified": false
+    },
+    {
+      "concept_id": "G3437021489-NSIDC_CPRD",
+      "filename": "ILVIS0_gyro_54935_atm_applanix_14Apr09.005",
+      "catalog_size": "12.4742",
+      "catalog_start": "2009-04-14T00:00:00.000Z",
+      "catalog_end": "2009-04-14T23:59:59.990Z",
+      "download_urls": [
+        "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/04/14/ILVIS0_gyro_54935_atm_applanix_14Apr09.005"
+      ],
+      "measurement_columns_verified": false,
+      "actual_sample_times_verified": false
+    }
+  ],
+  "gps_filename_candidates": [
+    {
+      "concept_id": "G3437021380-NSIDC_CPRD",
+      "filename": "ILVIS0_gps_54935_remote_N426NA_Ashtech_alm09.104",
+      "catalog_size": "0.00213623",
+      "catalog_start": "2009-04-14T00:00:00.000Z",
+      "catalog_end": "2009-04-14T23:59:59.990Z",
+      "download_urls": [
+        "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/04/14/ILVIS0_gps_54935_remote_N426NA_Ashtech_alm09.104"
+      ],
+      "measurement_columns_verified": false,
+      "actual_sample_times_verified": false
+    },
+    {
+      "concept_id": "G3437035951-NSIDC_CPRD",
+      "filename": "ILVIS0_gps_54935_remote_N426NA_Ashtech_B1490A09.104",
+      "catalog_size": "79.137",
+      "catalog_start": "2009-04-14T00:00:00.000Z",
+      "catalog_end": "2009-04-14T23:59:59.990Z",
+      "download_urls": [
+        "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/04/14/ILVIS0_gps_54935_remote_N426NA_Ashtech_B1490A09.104"
+      ],
+      "measurement_columns_verified": false,
+      "actual_sample_times_verified": false
+    },
+    {
+      "concept_id": "G3437021434-NSIDC_CPRD",
+      "filename": "ILVIS0_gps_54935_remote_N426NA_Ashtech_E1490A09.104",
+      "catalog_size": "0.0111952",
+      "catalog_start": "2009-04-14T00:00:00.000Z",
+      "catalog_end": "2009-04-14T23:59:59.990Z",
+      "download_urls": [
+        "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/04/14/ILVIS0_gps_54935_remote_N426NA_Ashtech_E1490A09.104"
+      ],
+      "measurement_columns_verified": false,
+      "actual_sample_times_verified": false
+    },
+    {
+      "concept_id": "G3437022075-NSIDC_CPRD",
+      "filename": "ILVIS0_gps_54935_remote_N426NA_Ashtech_S1490A09.104",
+      "catalog_size": "4.71115E-4",
+      "catalog_start": "2009-04-14T00:00:00.000Z",
+      "catalog_end": "2009-04-14T23:59:59.990Z",
+      "download_urls": [
+        "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/04/14/ILVIS0_gps_54935_remote_N426NA_Ashtech_S1490A09.104"
+      ],
+      "measurement_columns_verified": false,
+      "actual_sample_times_verified": false
+    },
+    {
+      "concept_id": "G3437036796-NSIDC_CPRD",
+      "filename": "ILVIS0_gps_54935_remote_N426NA_Novatel_00441040.PDC",
+      "catalog_size": "427.737",
+      "catalog_start": "2009-04-14T00:00:00.000Z",
+      "catalog_end": "2009-04-14T23:59:59.990Z",
+      "download_urls": [
+        "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/04/14/ILVIS0_gps_54935_remote_N426NA_Novatel_00441040.PDC"
+      ],
+      "measurement_columns_verified": false,
+      "actual_sample_times_verified": false
+    }
+  ],
+  "input_provenance": {
+    "docs/research-next-stage-20261006/airborne-metadata/ilvis0-collections.json.gz": {
+      "request_url": "https://cmr.earthdata.nasa.gov/search/collections.json?short_name=ILVIS0&page_size=10",
+      "sha256": "317a29b14bf71a91b21049ab693c50fb946dd447a0216f63912e781ecaa5b5d9",
+      "uncompressed_sha256": "becbb1b0187c382dda48bf460ef936f07b5d6f57803c66af8e7d4b09749205f0"
+    },
+    "docs/research-next-stage-20261006/airborne-metadata/ilvis0-granules.json.gz": {
+      "request_url": "https://cmr.earthdata.nasa.gov/search/granules.json?collection_concept_id=C3162704221-NSIDC_CPRD&page_size=20&sort_key=start_date",
+      "sha256": "cfdc02c7c0f98d02a54a36b506c6403e3788071bd16de845ca3cc72c1fc8208f",
+      "uncompressed_sha256": "1fe0b3d39dcc4ae8859f268487cb08030a6963e77b4fa1aec81fe5854d680971"
+    },
+    "docs/research-next-stage-20261006/airborne-metadata/ilvis0-gps-granules.json.gz": {
+      "request_url": "https://cmr.earthdata.nasa.gov/search/granules.json?collection_concept_id=C3162704221-NSIDC_CPRD&page_size=40&producer_granule_id=ILVIS0_gps_54935_remote*&options%5Bproducer_granule_id%5D%5Bpattern%5D=true&sort_key=producer_granule_id",
+      "sha256": "72190f37b16aeab7f183b0e9e27f325e664ab40d4587a07493945b385bc19c84",
+      "uncompressed_sha256": "6623dd2e9ad9e7bcae8af3519c28eb5121c200474199aad9fff7bdc05ea8a799"
+    },
+    "docs/research-next-stage-20261006/airborne-metadata/iputi0-collection.json.gz": {
+      "request_url": "https://cmr.earthdata.nasa.gov/search/concepts/C1386246599-NSIDCV0.umm_json",
+      "sha256": "c39cc66c3a497c073bc1c741545a5de310572a62210514437fabf4311f637585",
+      "uncompressed_sha256": "b064399d8dc93e005bf9a344f719cdc36b06136b6dec938b79d9b2e58b3e5ad8"
+    }
+  },
+  "helper_sha256": "48233a2319fbba5d73ac8ff1be730445795db4e185b9b20aeddc4137b877647b",
+  "access_checks": [
+    {
+      "source": "ILVIS0",
+      "target": "ILVIS0_gyro_54935_atm_applanix_14Apr09.013",
+      "requested_byte_range": [
+        0,
+        65535
+      ],
+      "http_status": 302,
+      "redirect_host": "urs.earthdata.nasa.gov",
+      "measurement_bytes_received": 0
+    },
+    {
+      "source": "IPUTI0",
+      "target": "published directory",
+      "http_status": 302,
+      "redirect_host": "urs.earthdata.nasa.gov",
+      "directory_listing_received": false
+    }
+  ],
+  "decoded_measurement_files": 0,
+  "empirical_discrimination_tested": false,
+  "format_sources": [
+    "https://asapdata.arc.nasa.gov/share/ASF_Applanix/POSv6_User_ICD.pdf",
+    "https://nsidc.org/sites/default/files/ilvis0-v001-userguide_1.pdf"
+  ],
+  "limitations": [
+    "Catalog filename indicates a candidate only; no actual gyro payload or GPS columns inspected.",
+    "Catalog intervals are day-wide; files sharing a date are not proven to share a flight or sample overlap.",
+    "2014 POS AV V6 documentation is a format lead, not a verified specification for the 2009 sample.",
+    "Group4 and10002 IMU payload details are not fully public in that document; do not guess scaling or decode navigation rates as raw gyro.",
+    "IPUTI0 metadata lists text position/velocity/orientation; independent raw gyro channels remain unconfirmed."
+  ]
+}

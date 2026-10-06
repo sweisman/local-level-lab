@@ -1,0 +1,156 @@
+{
+  "dataset": "ILVIS0",
+  "doi": "10.5067/E6JPQ3QNW77R",
+  "state": "timed_imu_payload_preserved_type8_physical_decoding_pending",
+  "original_filename": "ILVIS0_gyro_54935_atm_applanix_14Apr09.013",
+  "original_bytes": 13086748,
+  "original_sha256": "18c48772bcd7e83566f2301ae3689d691c1675dfc2e60c0650b6e0017b764096",
+  "helper_sha256": "bddbd4263dbe0faf15c0797f9b9260a147f73860f29d3ab28fc67fba5802e427",
+  "frame_count": 143471,
+  "frame_counts": {
+    "$GRP:4": 132444,
+    "$GRP:10001": 5934,
+    "$GRP:101": 662,
+    "$GRP:20102": 662,
+    "$GRP:20101": 662,
+    "$GRP:1": 662,
+    "$GRP:2": 662,
+    "$GRP:99": 133,
+    "$MSG:2": 66,
+    "$MSG:3": 66,
+    "$MSG:16": 66,
+    "$MSG:20203": 66,
+    "$MSG:20216": 66,
+    "$MSG:4": 66,
+    "$MSG:6": 66,
+    "$MSG:5": 66,
+    "$MSG:17": 66,
+    "$MSG:104": 132,
+    "$MSG:110": 66,
+    "$MSG:20205": 66,
+    "$MSG:102": 66,
+    "$MSG:11": 66,
+    "$MSG:1": 66,
+    "$MSG:7": 66,
+    "$MSG:13": 66,
+    "$MSG:101": 66,
+    "$MSG:106": 66,
+    "$MSG:107": 66,
+    "$MSG:20001": 66,
+    "$MSG:20101": 66,
+    "$MSG:103": 66,
+    "$MSG:20102": 66
+  },
+  "checksum_failures": 0,
+  "unframed_bytes": 0,
+  "version_strings": {
+    "AV-510,VER5,S/N2036,HW3.5-7,SW04.60-Oct21/08,ICD15.00,OS425B14,IMU8,PGPS16,SGPS0": 133
+  },
+  "imu": {
+    "packets": 132444,
+    "first_time1_s": 217770.42382466956,
+    "last_time1_s": 218432.64947440167,
+    "span_s": 662.2256497321068,
+    "step_min_s": 0.0049982593627646565,
+    "step_max_s": 0.005016994109610096,
+    "step_median_s": 0.005000235018087551,
+    "gaps_over_7_5ms": 0,
+    "time_types": {
+      "2": 132444
+    },
+    "types": {
+      "8": 132444
+    },
+    "rate_codes": {
+      "2": 132444
+    },
+    "data_status": {
+      "0": 132444
+    },
+    "imu_status": {
+      "0": 132444
+    },
+    "physical_payload_decoded": false,
+    "scaling_verified": false,
+    "axes_verified": false
+  },
+  "navigation": {
+    "packets": 662,
+    "ranges": {
+      "latitude_deg": {
+        "min": 78.85534654031899,
+        "max": 79.71776993013574
+      },
+      "longitude_deg": {
+        "min": -41.02007407890922,
+        "max": -39.109738093942795
+      },
+      "altitude_m": {
+        "min": 6931.84367613826,
+        "max": 7521.296942490459
+      },
+      "velocity_north_mps": {
+        "min": -167.1600799560547,
+        "max": -135.23622131347656
+      },
+      "velocity_east_mps": {
+        "min": 28.118755340576172,
+        "max": 75.11605072021484
+      },
+      "velocity_down_mps": {
+        "min": -7.068231582641602,
+        "max": 1.2220237255096436
+      },
+      "roll_deg": {
+        "min": -17.543258763153805,
+        "max": 7.159207375447174
+      },
+      "pitch_deg": {
+        "min": 0.4679348097212921,
+        "max": 4.445419303412002
+      },
+      "heading_deg": {
+        "min": 154.43274863081228,
+        "max": 170.98088119344058
+      }
+    },
+    "alignment_status": {
+      "0": 662
+    }
+  },
+  "gps": {
+    "receiver_types": {
+      "16": 5934
+    },
+    "reconstructed_stream_bytes": 2815349,
+    "valid_sentence_counts": {
+      "GPGGA": 660,
+      "GPVTG": 660,
+      "GPZDA": 660
+    },
+    "checksum_failed_sentences": [],
+    "dates": {
+      "2009-04-14": 660
+    },
+    "position_fixes": 660,
+    "fix_quality": {
+      "1": 660
+    }
+  },
+  "documentation_urls": [
+    "https://asapdata.arc.nasa.gov/share/ASF_Applanix/POSv6_User_ICD.pdf",
+    "https://receiverhelp.trimble.com/oem-gnss/nmea0183-messages-gga.html",
+    "https://receiverhelp.trimble.com/oem-gnss/nmea0183-messages-zda.html"
+  ],
+  "empirical_discrimination_tested": false,
+  "main_pipeline_imported": false,
+  "limitations": [
+    "Observed AV510 VER5 firmware04.60 ICD15.00; public2014 V6 ICD is a compatible container lead, not the exact firmware specification.",
+    "24byte Group4 payload remains opaque: no guessed axis order, scales, rate/increment convention or corrections.",
+    "Group1 is a fused navigation solution: orientation/angular rates are not independent gyro evidence.",
+    "Time-types byte2 denotes UTC time1/POS time2 in public ICD; date from independent receiver ZDA; detailed sensor/antenna timing and lever arms unverified.",
+    "GGA fixes are receiver navigation outputs, not raw pseudoranges; ellipsoid height has not been substituted for orthometric height.",
+    "IMU8 status0 is recorded without an undocumented sensor-status interpretation.",
+    "Short fixed-mount segment; no identification, power, calibration or WT901 performance claim."
+  ]
+}

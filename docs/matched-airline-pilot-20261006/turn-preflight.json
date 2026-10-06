@@ -1,0 +1,987 @@
+{
+  "state": "preflight_complete_no_flights",
+  "input_sha256": {
+    "docs/core-pipeline-20261006/trajectories/2025-09-01-etihad-10-ord-auh-simulated_high_rate.json": "e76e21c3b972673b0cc929b654cd04f448c46796889bf5431639bb04d4ffd56a",
+    "docs/core-pipeline-20261006/trajectories/2025-08-19-etihad-9-auh-ord-simulated_high_rate.json": "195732675f62d5b52e02fcc4b03e36b31e4ac90c69e7c9ac9d8fc6a02fdc2e66",
+    "docs/core-pipeline-20261006/trajectories/2025-08-19-aa-1433-ord-lax-simulated_high_rate.json": "b71197eaeaa3fa1787d875a98f466e7e54dd0a31831c51124e3e500feacb9be0",
+    "docs/core-pipeline-20261006/trajectories/2026-10-02-icelandair-680-sea-kef-simulated_high_rate.json": "2ef030f4b5bc9338ee25570d5aa48d7d58ea0b84df390de3ce33f026542dfce8",
+    "docs/core-pipeline-20261006/trajectories/2026-10-02-lufthansa-572-fra-jnb-simulated_high_rate.json": "d7ad38b21f320a07f17908d593b84ae5aff0d63464c6d2cf190ad0b3c7ea0f92"
+  },
+  "helper_sha256": "35c5c944c07a60acb15c467b85aef2a91ad4cce6cdc4e089e1f42649c94fb396",
+  "thresholds": {
+    "min_cruise_minutes": 60.0,
+    "maneuver_buffer_seconds": 120.0,
+    "grid_minutes": 5.0,
+    "min_turn_spacing_minutes": 10.0,
+    "turn_count": 3
+  },
+  "cases": [
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "trajectory_hash": "564e90ca280b984a4cee64e736dcf2fad610c9d06ac8f973ae8598079793f964",
+      "qualified_run_seconds": [
+        [
+          41.0,
+          1361.0
+        ],
+        [
+          2192.0,
+          2806.0
+        ]
+      ],
+      "buffered_motion_intervals": [
+        {
+          "start_s": 1242.0,
+          "end_s": 1635.0,
+          "reason": "aircraft maneuver"
+        },
+        {
+          "start_s": 1940.0,
+          "end_s": 2311.0,
+          "reason": "aircraft maneuver"
+        },
+        {
+          "start_s": 2687.0,
+          "end_s": 4531.0,
+          "reason": "aircraft maneuver"
+        },
+        {
+          "start_s": -120.0,
+          "end_s": 160.0,
+          "reason": "unverified aircraft motion"
+        },
+        {
+          "start_s": 4353.0,
+          "end_s": 4619.0,
+          "reason": "unverified aircraft motion"
+        }
+      ],
+      "feasible_turn_grid_minutes": [
+        5.0,
+        10.0,
+        15.0,
+        20.0,
+        30.0,
+        40.0
+      ],
+      "feasible_three_turn_schedules": 10,
+      "passing_three_turn_schedules": 0,
+      "no_turn": {
+        "schedule_minutes": [],
+        "turn_checks": [],
+        "screened_minutes": 30.0,
+        "heading_diversity": {
+          "adequate": false,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 144.30418306705204,
+              "seconds": 1800.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": null,
+        "retained_minutes_by_epoch": [
+          30.0
+        ],
+        "passes_screen": false,
+        "exclusions": [
+          "insufficient screened cruise duration",
+          "insufficient screened heading diversity"
+        ]
+      },
+      "original_schedule": {
+        "schedule_minutes": [
+          20.0,
+          40.0,
+          60.0
+        ],
+        "turn_checks": [
+          {
+            "minute": 20.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 40.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 60.0,
+            "safe": false,
+            "reason": "aircraft maneuver",
+            "evidence": [
+              {
+                "start_s": 2687.0,
+                "end_s": 4531.0,
+                "reason": "aircraft maneuver"
+              }
+            ]
+          }
+        ],
+        "screened_minutes": 26.0,
+        "heading_diversity": {
+          "adequate": false,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 144.30418306705204,
+              "seconds": 1560.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": null,
+        "retained_minutes_by_epoch": [
+          18.0,
+          3.0,
+          5.0,
+          0.0
+        ],
+        "passes_screen": false,
+        "exclusions": [
+          "unsafe or unverified turn",
+          "insufficient screened cruise duration",
+          "insufficient screened heading diversity"
+        ]
+      },
+      "best_screened_schedule": {
+        "schedule_minutes": [
+          5.0,
+          15.0,
+          30.0
+        ],
+        "turn_checks": [
+          {
+            "minute": 5.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 15.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 30.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          }
+        ],
+        "screened_minutes": 26.0,
+        "heading_diversity": {
+          "adequate": false,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 144.30418306705204,
+              "seconds": 1560.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": null,
+        "retained_minutes_by_epoch": [
+          3.0,
+          8.0,
+          6.0,
+          9.0
+        ],
+        "passes_screen": false,
+        "exclusions": [
+          "insufficient screened cruise duration",
+          "insufficient screened heading diversity"
+        ]
+      }
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "trajectory_hash": "6702e9212f03c59e36cafbc00e50a68fc16f8ba3c4630137c50461749f9a5ef8",
+      "qualified_run_seconds": [],
+      "buffered_motion_intervals": [
+        {
+          "start_s": -82.0,
+          "end_s": 1093.0,
+          "reason": "aircraft maneuver"
+        },
+        {
+          "start_s": 1195.0,
+          "end_s": 1922.0,
+          "reason": "aircraft maneuver"
+        },
+        {
+          "start_s": 2144.0,
+          "end_s": 2460.0,
+          "reason": "aircraft maneuver"
+        },
+        {
+          "start_s": 2664.0,
+          "end_s": 3298.0,
+          "reason": "aircraft maneuver"
+        },
+        {
+          "start_s": 3653.0,
+          "end_s": 4023.0,
+          "reason": "aircraft maneuver"
+        },
+        {
+          "start_s": -120.0,
+          "end_s": 159.0,
+          "reason": "unverified aircraft motion"
+        },
+        {
+          "start_s": 4313.0,
+          "end_s": 4619.0,
+          "reason": "unverified aircraft motion"
+        }
+      ],
+      "feasible_turn_grid_minutes": [
+        35.0,
+        55.0,
+        60.0,
+        70.0
+      ],
+      "feasible_three_turn_schedules": 2,
+      "passing_three_turn_schedules": 0,
+      "no_turn": {
+        "schedule_minutes": [],
+        "turn_checks": [],
+        "screened_minutes": 0.0,
+        "heading_diversity": {
+          "adequate": false,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": []
+        },
+        "heading_duration_margin_seconds": null,
+        "retained_minutes_by_epoch": [
+          0.0
+        ],
+        "passes_screen": false,
+        "exclusions": [
+          "insufficient screened cruise duration",
+          "insufficient screened heading diversity"
+        ]
+      },
+      "original_schedule": {
+        "schedule_minutes": [
+          20.0,
+          40.0,
+          60.0
+        ],
+        "turn_checks": [
+          {
+            "minute": 20.0,
+            "safe": false,
+            "reason": "aircraft maneuver",
+            "evidence": [
+              {
+                "start_s": 1195.0,
+                "end_s": 1922.0,
+                "reason": "aircraft maneuver"
+              }
+            ]
+          },
+          {
+            "minute": 40.0,
+            "safe": false,
+            "reason": "aircraft maneuver",
+            "evidence": [
+              {
+                "start_s": 2144.0,
+                "end_s": 2460.0,
+                "reason": "aircraft maneuver"
+              }
+            ]
+          },
+          {
+            "minute": 60.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          }
+        ],
+        "screened_minutes": 0.0,
+        "heading_diversity": {
+          "adequate": false,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": []
+        },
+        "heading_duration_margin_seconds": null,
+        "retained_minutes_by_epoch": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "passes_screen": false,
+        "exclusions": [
+          "unsafe or unverified turn",
+          "insufficient screened cruise duration",
+          "insufficient screened heading diversity"
+        ]
+      },
+      "best_screened_schedule": {
+        "schedule_minutes": [
+          35.0,
+          55.0,
+          70.0
+        ],
+        "turn_checks": [
+          {
+            "minute": 35.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 55.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 70.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          }
+        ],
+        "screened_minutes": 0.0,
+        "heading_diversity": {
+          "adequate": false,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": []
+        },
+        "heading_duration_margin_seconds": null,
+        "retained_minutes_by_epoch": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "passes_screen": false,
+        "exclusions": [
+          "insufficient screened cruise duration",
+          "insufficient screened heading diversity"
+        ]
+      }
+    },
+    {
+      "track_id": "2025-08-19-aa-1433-ord-lax",
+      "trajectory_hash": "523db1bcb54fb860573854677788a332b8f7eb1f576028fc3eedfd70fa2ca3bb",
+      "qualified_run_seconds": [
+        [
+          35.0,
+          1943.0
+        ],
+        [
+          2025.0,
+          2691.0
+        ]
+      ],
+      "buffered_motion_intervals": [
+        {
+          "start_s": 1824.0,
+          "end_s": 2144.0,
+          "reason": "aircraft maneuver"
+        },
+        {
+          "start_s": 2572.0,
+          "end_s": 2870.0,
+          "reason": "aircraft maneuver"
+        },
+        {
+          "start_s": 3023.0,
+          "end_s": 3357.0,
+          "reason": "aircraft maneuver"
+        },
+        {
+          "start_s": 3474.0,
+          "end_s": 3716.0,
+          "reason": "aircraft maneuver"
+        },
+        {
+          "start_s": 4003.0,
+          "end_s": 4598.0,
+          "reason": "aircraft maneuver"
+        },
+        {
+          "start_s": -120.0,
+          "end_s": 154.0,
+          "reason": "unverified aircraft motion"
+        },
+        {
+          "start_s": 4357.0,
+          "end_s": 4619.0,
+          "reason": "unverified aircraft motion"
+        }
+      ],
+      "feasible_turn_grid_minutes": [
+        5.0,
+        10.0,
+        15.0,
+        20.0,
+        25.0,
+        40.0,
+        65.0
+      ],
+      "feasible_three_turn_schedules": 18,
+      "passing_three_turn_schedules": 0,
+      "no_turn": {
+        "schedule_minutes": [],
+        "turn_checks": [],
+        "screened_minutes": 41.0,
+        "heading_diversity": {
+          "adequate": false,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 233.10987390549866,
+              "seconds": 600.0
+            },
+            {
+              "heading_deg": 243.2399207645051,
+              "seconds": 1860.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": null,
+        "retained_minutes_by_epoch": [
+          41.0
+        ],
+        "passes_screen": false,
+        "exclusions": [
+          "insufficient screened cruise duration",
+          "insufficient screened heading diversity"
+        ]
+      },
+      "original_schedule": {
+        "schedule_minutes": [
+          20.0,
+          40.0,
+          60.0
+        ],
+        "turn_checks": [
+          {
+            "minute": 20.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 40.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 60.0,
+            "safe": false,
+            "reason": "aircraft maneuver",
+            "evidence": [
+              {
+                "start_s": 3474.0,
+                "end_s": 3716.0,
+                "reason": "aircraft maneuver"
+              }
+            ]
+          }
+        ],
+        "screened_minutes": 37.0,
+        "heading_diversity": {
+          "adequate": false,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 233.10987390549866,
+              "seconds": 480.0
+            },
+            {
+              "heading_deg": 243.2399207645051,
+              "seconds": 1740.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": null,
+        "retained_minutes_by_epoch": [
+          18.0,
+          16.0,
+          3.0,
+          0.0
+        ],
+        "passes_screen": false,
+        "exclusions": [
+          "unsafe or unverified turn",
+          "insufficient screened cruise duration",
+          "insufficient screened heading diversity"
+        ]
+      },
+      "best_screened_schedule": {
+        "schedule_minutes": [
+          5.0,
+          15.0,
+          65.0
+        ],
+        "turn_checks": [
+          {
+            "minute": 5.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 15.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 65.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          }
+        ],
+        "screened_minutes": 37.0,
+        "heading_diversity": {
+          "adequate": false,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 233.10987390549866,
+              "seconds": 600.0
+            },
+            {
+              "heading_deg": 243.2399207645051,
+              "seconds": 1620.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": null,
+        "retained_minutes_by_epoch": [
+          3.0,
+          8.0,
+          26.0,
+          0.0
+        ],
+        "passes_screen": false,
+        "exclusions": [
+          "insufficient screened cruise duration",
+          "insufficient screened heading diversity"
+        ]
+      }
+    },
+    {
+      "track_id": "2026-10-02-icelandair-680-sea-kef",
+      "trajectory_hash": "c3b871e2048e530ab67daeec490bf4915def9708eb59f48018ca1ba022cb1f31",
+      "qualified_run_seconds": [
+        [
+          609.0,
+          1743.0
+        ],
+        [
+          1834.0,
+          4499.0
+        ]
+      ],
+      "buffered_motion_intervals": [
+        {
+          "start_s": -99.0,
+          "end_s": 728.0,
+          "reason": "aircraft maneuver"
+        },
+        {
+          "start_s": 1624.0,
+          "end_s": 1953.0,
+          "reason": "aircraft maneuver"
+        },
+        {
+          "start_s": -120.0,
+          "end_s": 142.0,
+          "reason": "unverified aircraft motion"
+        }
+      ],
+      "feasible_turn_grid_minutes": [
+        15.0,
+        20.0,
+        25.0,
+        35.0,
+        40.0,
+        45.0,
+        50.0,
+        55.0,
+        60.0,
+        65.0,
+        70.0
+      ],
+      "feasible_three_turn_schedules": 91,
+      "passing_three_turn_schedules": 0,
+      "no_turn": {
+        "schedule_minutes": [],
+        "turn_checks": [],
+        "screened_minutes": 61.0,
+        "heading_diversity": {
+          "adequate": false,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 32.31433294320016,
+              "seconds": 2820.0
+            },
+            {
+              "heading_deg": 42.54616637771127,
+              "seconds": 840.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": null,
+        "retained_minutes_by_epoch": [
+          61.0
+        ],
+        "passes_screen": false,
+        "exclusions": [
+          "insufficient screened heading diversity"
+        ]
+      },
+      "original_schedule": {
+        "schedule_minutes": [
+          20.0,
+          40.0,
+          60.0
+        ],
+        "turn_checks": [
+          {
+            "minute": 20.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 40.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 60.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          }
+        ],
+        "screened_minutes": 55.0,
+        "heading_diversity": {
+          "adequate": false,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 32.31433294320016,
+              "seconds": 2520.0
+            },
+            {
+              "heading_deg": 42.57288173145049,
+              "seconds": 780.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": null,
+        "retained_minutes_by_epoch": [
+          8.0,
+          16.0,
+          18.0,
+          13.0
+        ],
+        "passes_screen": false,
+        "exclusions": [
+          "insufficient screened cruise duration",
+          "insufficient screened heading diversity"
+        ]
+      },
+      "best_screened_schedule": {
+        "schedule_minutes": [
+          25.0,
+          45.0,
+          60.0
+        ],
+        "turn_checks": [
+          {
+            "minute": 25.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 45.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 60.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          }
+        ],
+        "screened_minutes": 55.0,
+        "heading_diversity": {
+          "adequate": false,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 32.31433294320016,
+              "seconds": 2520.0
+            },
+            {
+              "heading_deg": 42.57288173145049,
+              "seconds": 780.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": null,
+        "retained_minutes_by_epoch": [
+          13.0,
+          16.0,
+          13.0,
+          13.0
+        ],
+        "passes_screen": false,
+        "exclusions": [
+          "insufficient screened cruise duration",
+          "insufficient screened heading diversity"
+        ]
+      }
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "trajectory_hash": "5e69715fb544fd45612318a48f15136f7df97354289ecfdbc939e7dc16229d83",
+      "qualified_run_seconds": [
+        [
+          0.0,
+          849.0
+        ],
+        [
+          1442.0,
+          2621.0
+        ],
+        [
+          2683.0,
+          4213.0
+        ]
+      ],
+      "buffered_motion_intervals": [
+        {
+          "start_s": 730.0,
+          "end_s": 1092.0,
+          "reason": "aircraft maneuver"
+        },
+        {
+          "start_s": 1268.0,
+          "end_s": 1561.0,
+          "reason": "aircraft maneuver"
+        },
+        {
+          "start_s": 2502.0,
+          "end_s": 2802.0,
+          "reason": "aircraft maneuver"
+        },
+        {
+          "start_s": 4094.0,
+          "end_s": 4619.0,
+          "reason": "unverified aircraft motion"
+        }
+      ],
+      "feasible_turn_grid_minutes": [
+        5.0,
+        10.0,
+        20.0,
+        30.0,
+        35.0,
+        40.0,
+        50.0,
+        55.0,
+        60.0,
+        65.0
+      ],
+      "feasible_three_turn_schedules": 75,
+      "passing_three_turn_schedules": 0,
+      "no_turn": {
+        "schedule_minutes": [],
+        "turn_checks": [],
+        "screened_minutes": 57.0,
+        "heading_diversity": {
+          "adequate": false,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 165.6770627667151,
+              "seconds": 840.0
+            },
+            {
+              "heading_deg": 178.5747885586137,
+              "seconds": 2580.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": null,
+        "retained_minutes_by_epoch": [
+          57.0
+        ],
+        "passes_screen": false,
+        "exclusions": [
+          "insufficient screened cruise duration",
+          "insufficient screened heading diversity"
+        ]
+      },
+      "original_schedule": {
+        "schedule_minutes": [
+          20.0,
+          40.0,
+          60.0
+        ],
+        "turn_checks": [
+          {
+            "minute": 20.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 40.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 60.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          }
+        ],
+        "screened_minutes": 53.0,
+        "heading_diversity": {
+          "adequate": false,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 165.6770627667151,
+              "seconds": 840.0
+            },
+            {
+              "heading_deg": 178.5747885586137,
+              "seconds": 2340.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": null,
+        "retained_minutes_by_epoch": [
+          14.0,
+          14.0,
+          16.0,
+          9.0
+        ],
+        "passes_screen": false,
+        "exclusions": [
+          "insufficient screened cruise duration",
+          "insufficient screened heading diversity"
+        ]
+      },
+      "best_screened_schedule": {
+        "schedule_minutes": [
+          20.0,
+          40.0,
+          55.0
+        ],
+        "turn_checks": [
+          {
+            "minute": 20.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 40.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 55.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          }
+        ],
+        "screened_minutes": 53.0,
+        "heading_diversity": {
+          "adequate": false,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 165.6770627667151,
+              "seconds": 840.0
+            },
+            {
+              "heading_deg": 178.5747885586137,
+              "seconds": 2340.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": null,
+        "retained_minutes_by_epoch": [
+          14.0,
+          14.0,
+          11.0,
+          14.0
+        ],
+        "passes_screen": false,
+        "exclusions": [
+          "insufficient screened cruise duration",
+          "insufficient screened heading diversity"
+        ]
+      }
+    }
+  ],
+  "authorized_additional_attempts": 0,
+  "limitations": [
+    "Assumed C2 trajectory and one-second kinematics; no noisy GNSS or IMU.",
+    "Analytic geometry qualification is a screen, not full preprocessing or a certified upper bound.",
+    "No forward-reference check, nuisance projection, identifiability, power or decision calibration.",
+    "Schedule ranking uses only observable screened geometry, not the scientific optimizer objective."
+  ]
+}

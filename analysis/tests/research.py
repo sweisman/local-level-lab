@@ -23,7 +23,7 @@ from lll.analyze import analyze, environment
 from lll.collate import gate, pool_hierarchical, pool_multivariate, joint_model_tests
 from lll.fit import TERM_NAMES
 from lll.policy import POLICY_VERSION, eligibility_policies, eligibility_provenance, candidate_settings, decision_stratum, MODEL_PAIRS, research_eligible
-from lll.pairwise import flight_evidence, pool_evidence, decide, three_model_winner, POOL_METHOD, check_pairwise_policy
+from lll.pairwise import flight_evidence, pool_evidence, decide, three_model_winner, shape_evidence, POOL_METHOD, check_pairwise_policy
 from lll.runtime import numerical_environment, numerical_environment_hash
 from lll.synth import synthesize
 from lll.inference_policy import INFERENCE_POLICY, digest
@@ -86,11 +86,20 @@ def summarize(records):
                 "conditional_false_rejection": rate_interval(sum(entry["rejected_by_model"][key[0]] for entry in null_entries), len(null_entries)),
                 "conditional_power": rate_interval(sum(entry.get("preferred_model") == key[0] for entry in null_entries), len(null_entries)),
                 "exclusion_reasons": dict(Counter(reason for entry in entries for reason in entry.get("exclusions", [])))}
+        shapes = [shape_evidence(row.get('pairwise') or {}) for row in rows]
+        expected_shape = 'disc' if key[0] == 'flat_still' else 'globe'
+        shape_summary = dict(attempted=len(rows),
+            informative=sum(bool(s['informative_comparisons']) for s in shapes),
+            correct_preferences=sum(s['preferred_family'] == expected_shape for s in shapes),
+            incorrect_preferences=sum(s['preferred_family'] not in (None, expected_shape) for s in shapes),
+            abstentions=sum(s['status'] == 'abstain' for s in shapes),
+            conflicts=sum(s['conflicting_preferences'] for s in shapes), error_rate_validated=False)
         out.append({"truth": key[0], "scenario": key[1], "sampling": key[2], "block": key[3],
                     "candidate_id": key[4], "partition": key[5], "geometry": key[6], "variant": key[7],
                     "geometry_cell": key[8], "model_test_rank": key[9],
                     "design_contrast_information": {"min": min(information), "median": float(np.median(information)), "max": max(information)} if information else None,
                     "experimental_pairwise": pair_summary,
+                    'experimental_shape': shape_summary,
                     "bias": (ks.mean(axis=0)-models.EXPECTED_K[key[0]]).tolist() if len(ks) else None,
                     "variance": np.var(ks, axis=0, ddof=1).tolist() if len(ks)>1 else None,
                     "coefficient_rmse": np.sqrt(np.mean((ks-truth_vector)**2, axis=0)).tolist() if len(ks) else None,
@@ -128,6 +137,9 @@ def flight_run(truth, scenario, seed, sampling, block, boot, variant, same_side_
     if design["seed"] != seed or design["partition"] != partition or design["streams"] != expected_streams:
         raise ValueError("replay design does not match partition and seed streams")
     settings = {"n_boot": boot, "bootstrap_sampling": sampling, "block_length": block, **(fit_options or {})}
+    from lll.flight_domain import resolve_domain
+    domain = resolve_domain(settings.get('flight_domain'),decision_policy,pairwise_decision_policy)
+    if domain is not None: settings['flight_domain'] = domain
     record = dict(truth=truth, scenario=scenario, seed=seed, sampling=sampling, block=block, variant=variant,
                   same_side_up_turns=same_side_up_turns, partition=partition, geometry=design["geometry"],
                   design=design, fit_options=settings, candidate_id=digest(settings))
@@ -183,11 +195,16 @@ def flight_run(truth, scenario, seed, sampling, block, boot, variant, same_side_
                 "inference_policy": f["inference_policy"], "eligibility_policy": f["eligibility_policy"],
                 "bootstrap": f["bootstrap"], "forward_axis": r.get("forward_axis"),
                 "sensor_bias": f.get("sensor_bias"),
+                'domain_observables':f.get('domain_observables'),'domain_membership':f.get('domain_membership'),
+                'domain_id':f.get('domain_id'),'flight_domain':f.get('flight_domain'),
                 'wind_tas':f.get('wind_tas'),'wind_tas_test_near_boundary':f.get('wind_tas_test_near_boundary'),
+                'mount_yaw':f.get('mount_yaw'),'mount_yaw_test_near_boundary':f.get('mount_yaw_test_near_boundary'),
+                'magnetic_ambiguity_comparison':f.get('magnetic_ambiguity_comparison'),
                 "k_sd": f["k_sd"], "covariance": diagnostics, "convergence": f["convergence"],
                 "prior_sensitivity": f["prior_sensitivity"], "identifiability": f["identifiability"],
                 "design_identifiability": f.get("design_identifiability"),
                 "pairwise": pairs, "pairwise_three_model_winner": three_model_winner(pairs),
+                'shape_evidence':shape_evidence(pairs),
                 'pairwise_profile':f.get('pairwise_profile'),
                 "wmm_shift_sigma": (r.get("fit_no_wmm_exclusion") or {}).get("k_shift_sigma"),
                 "slip": r.get("slip"), "heading_diversity": r.get("heading_diversity"),
@@ -241,6 +258,7 @@ def pooled_run(truth, seed, units, *, partition="development", bootstrap=0, pair
                 raise ValueError("pairwise pool implementation changed after calibration")
         output = pool_evidence(evidence, candidate_id, "summary", pairwise_decision_policy)
         pair_output = {"pairwise": output["pairwise"], "pairwise_three_model_winner": output["three_model_winner"],
+                       'shape_evidence':output['shape_evidence'],
                        "pairwise_mode": "pool", "candidate_id": candidate_id, "variant": "summary", "model_test_rank": 1,
                        "eligibility_policy": eligibility_provenance(True), "numerical_environment": numerical_environment(),
                        "numerical_environment_hash": numerical_environment_hash()}
@@ -266,6 +284,8 @@ def main():
     ap.add_argument('--diagnostics-root',type=Path,help='retain complete per-task diagnostic artifacts')
     ap.add_argument('--design-mode',choices=['anchor','envelope'],default='anchor')
     ap.add_argument('--pairwise-method',choices=['observable_coordinate','profile'],default='observable_coordinate')
+    ap.add_argument('--magnetic-ambiguity',choices=['exclude','model_and_compare'],default='exclude')
+    ap.add_argument('--flight-domain',type=Path,help='explicit preregistered observable route/protocol envelope')
     ap.add_argument("--geometry-cells", nargs="+", help="preregister a subset of stress-cell IDs")
     ap.add_argument("--protocol", type=Path, help="geometry/turn protocol JSON; requires --geometry fixed")
     ap.add_argument("--list-geometry-cells", action="store_true", help="write the matrix without running simulations")
@@ -281,6 +301,7 @@ def main():
     ap.add_argument("--crab-rate-sigma-dph", nargs="+", type=float, default=[1.])
     ap.add_argument("--crab-knot-seconds", nargs="+", type=float, default=[None])
     ap.add_argument("--forward-uncertainty", action="store_true")
+    ap.add_argument('--forward-reference', choices=['legacy','matched'], default='legacy')
     ap.add_argument("--research-candidate", action="store_true", help="use candidate engine even for constant/global settings")
     ap.add_argument("--manifest", type=Path)
     ap.add_argument("--decision-policy", type=Path)
@@ -300,6 +321,8 @@ def main():
     ap.add_argument("--tail-confidence", type=float, default=.95)
     ap.add_argument("--development-campaign", type=Path, help="pilot JSON used only for campaign cost estimates")
     ap.add_argument("--write-manifest", type=Path, help="freeze configuration without running simulations")
+    ap.add_argument('--write-sharded-plan',type=Path,help='freeze deterministic flight shards without running any tasks')
+    ap.add_argument('--shards',type=int,default=2,help='fixed shard count; execution uses at most two local workers')
     ap.add_argument("--replay", type=Path, help="replay the designs and fit settings in a research JSON")
     ap.add_argument("--units", nargs="+", type=int, default=[2, 3, 5, 10, 30])
     ap.add_argument("--variant", choices=["spp", "ble"], default="spp")
@@ -309,6 +332,13 @@ def main():
     ap.add_argument("--turn-edge-margin", type=float, default=5.)
     ap.add_argument("-o", type=Path, required=True)
     args = ap.parse_args()
+    if args.magnetic_ambiguity=='model_and_compare':
+        if args.partition!='development' or args.decision_policy or args.pairwise_decision_policy:
+            ap.error('magnetic two-path candidate is development only pending dual-path calibration')
+        if args.design_mode!='envelope' or args.pairwise_method!='profile':
+            ap.error('magnetic comparison requires --design-mode envelope --pairwise-method profile')
+        if args.bootstrap>0 and any(v!='nonlinear' for v in args.bootstrap_refit):
+            ap.error('magnetic comparison bootstrap requires nonlinear refits')
     if 'wind_tas' in args.crab_model:
         if args.design_mode!='envelope': ap.error('physical wind/TAS requires --design-mode envelope')
         if args.bootstrap>0 and any(v!='nonlinear' for v in args.bootstrap_refit):
@@ -347,7 +377,16 @@ def main():
     if decision_policy: check_policy(decision_policy)
     pairwise_policy = json.loads(args.pairwise_decision_policy.read_text()) if args.pairwise_decision_policy else None
     if pairwise_policy: check_pairwise_policy(pairwise_policy, "pool" if args.scenario == "pool" else "flight")
-    config = {k: v for k, v in vars(args).items() if k not in ("o", "manifest", "write_manifest", "replay", "decision_policy", "pairwise_decision_policy", "development_campaign", "protocol",'trajectory','diagnostics_root')}
+    from lll.flight_domain import resolve_domain
+    try:
+        domain = resolve_domain(json.loads(args.flight_domain.read_text()) if args.flight_domain else None,
+                                decision_policy,pairwise_policy)
+    except ValueError as exc: ap.error(str(exc))
+    if domain is not None and args.scenario=='pool': ap.error('summary pooling has a separate domain; flight domains do not transfer')
+    if args.partition!='development' and args.scenario!='pool' and domain is None:
+        ap.error('new flight calibration/validation requires --flight-domain or a domain-bound decision policy')
+    config = {k: v for k, v in vars(args).items() if k not in ("o", "manifest", "write_manifest", "replay", "decision_policy", "pairwise_decision_policy", "development_campaign", "protocol",'trajectory','diagnostics_root','flight_domain','write_sharded_plan','shards')}
+    config['flight_domain'] = domain
     config['trajectory_input']=trajectory_input
     config["protocol"] = protocol
     config["decision_policy_hash"] = decision_policy["policy_hash"] if decision_policy else None
@@ -370,8 +409,15 @@ def main():
                          bias_rw_sigma_dph_sqrth=rw, rank_min_relative_margin=args.rank_min_relative_margin))
         if args.design_mode!='anchor': jobs[-1]['design_mode']=args.design_mode
         if args.pairwise_method!='observable_coordinate': jobs[-1]['pairwise_method']=args.pairwise_method
+        if args.magnetic_ambiguity!='exclude': jobs[-1]['magnetic_ambiguity']=args.magnetic_ambiguity
+        if args.forward_reference!='legacy':
+            if not args.forward_uncertainty or not jobs[-1]['research_candidate']:
+                ap.error('matched forward reference requires --forward-uncertainty and research candidate')
+            jobs[-1]['forward_reference']=args.forward_reference
+        if domain is not None: jobs[-1]['flight_domain']=domain
     jobs = list({digest(job): job for job in jobs}.values())
-    operational_cells = sorted({decision_stratum({"candidate_id": digest(job), "variant": args.variant, "model_test_rank": rank})
+    operational_cells = sorted({decision_stratum({"candidate_id": digest(job), "variant": args.variant, "model_test_rank": rank,
+                                                  'domain_id':domain['domain_id'] if domain else None})
                                 for job in jobs for rank in (args.model_test_ranks if candidate_settings(job) else [None])})
     candidate_count = len(operational_cells)
     attempt_cells = candidate_count*len(scenarios)*len(geometry_cells)*len(models.MODELS)
@@ -403,7 +449,14 @@ def main():
         pair_diagnostics = {json.loads(key)[0] for key in pairwise_policy["diagnostic_thresholds"]}
         attempt_cells = len(primary_diagnostics | pair_diagnostics)*len(models.MODELS)
         if pairwise_policy["mode"] == "flight":
-            operational_cells = sorted(set(decision_policy["thresholds"] if decision_policy else ()) | set(pairwise_policy["thresholds"]))
+            # Pair-line threshold keys contain a comparison/method, not a global rank.
+            # Recover campaign cells from diagnostic metadata rather than misreading those keys.
+            pair_cells=set()
+            for diagnostic in pair_diagnostics:
+                fields=json.loads(diagnostic)
+                pair_cells.add(decision_stratum({'candidate_id':fields[1],'variant':fields[4],
+                    'model_test_rank':fields[5],'domain_id':fields[6] if len(fields)>6 else None}))
+            operational_cells = sorted(set(decision_policy["thresholds"] if decision_policy else ()) | pair_cells)
             candidate_count = len(operational_cells)
     alpha = decision_policy["alpha"] if decision_policy else .0027
     calibration_alpha = args.calibration_alpha if args.calibration_alpha is not None else (
@@ -478,6 +531,14 @@ def main():
     config["operational_cells"] = operational_cells
     seeds = seed_range(args.partition, args.seed, args.seeds)
     config["seed"] = seeds.start
+    if args.write_sharded_plan:
+        if args.replay or args.scenario=='pool' or args.write_manifest:
+            ap.error('sharded preparation requires fresh flight tasks and a single plan output')
+        from lll.campaign_shards import build_plan
+        try: plan=build_plan(freeze_manifest(config),jobs,args.shards,decision_policy,pairwise_policy)
+        except ValueError as exc: ap.error(str(exc))
+        args.write_sharded_plan.write_text(json.dumps(plain(plan),indent=2,allow_nan=False)+'\n')
+        return
     if args.write_manifest:
         args.write_manifest.write_text(json.dumps(freeze_manifest(config), indent=2)+"\n")
         return

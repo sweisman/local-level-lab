@@ -125,12 +125,14 @@ def _ranking(result):
 
 def search_geometry(designs,*,max_turns=6,grid_min=5.,min_spacing=10.,edge_margin=5.,
                     beam_width=16,crab_models=('dynamic','wind'),maneuver_buffer_s=120.,
-                    comparison=None,estimate_only=False):
+                    comparison=None,objective='three-model',estimate_only=False):
     from lll.design_geometry import geometry_kinematics,geometry_problem
     from lll.design_envelope import envelope_information
     from lll.maneuvers import maneuver_mask,turn_motion_check
     from lll.policy import MODEL_PAIRS
     if comparison is not None and comparison not in MODEL_PAIRS: raise ValueError('unknown comparison')
+    if objective not in ('three-model','globe-disc') or (comparison is not None and objective != 'three-model'):
+        raise ValueError('choose either a comparison or a geometry objective')
     if not designs or not 0<=max_turns<=6 or beam_width<1 or grid_min<=0:
         raise ValueError('invalid geometry optimizer inputs')
     if not all(math.isfinite(v) for v in (grid_min,min_spacing,edge_margin,maneuver_buffer_s)) or maneuver_buffer_s < 0:
@@ -149,7 +151,7 @@ def search_geometry(designs,*,max_turns=6,grid_min=5.,min_spacing=10.,edge_margi
     from lll.design_envelope import ENVELOPE_ASSUMPTIONS,PHYSICAL_ENVELOPE_ASSUMPTIONS
     estimate=dict(upper_bound_schedules=1+max_turns*beam_width*len(grid),upper_bound_fits=0,
         upper_bound_anchor_svd_evaluations=upper*states_per_schedule,feasible_grid_min=grid,
-        maneuver_buffer_s=maneuver_buffer_s,comparison=comparison,
+        maneuver_buffer_s=maneuver_buffer_s,comparison=comparison,objective=objective,
         implementation_hash=implementation_hash(),numerical_environment=numerical_environment(),
         numerical_environment_hash=numerical_environment_hash(),input_designs_hash=digest(designs),
         envelope_assumptions=ENVELOPE_ASSUMPTIONS,
@@ -166,9 +168,7 @@ def search_geometry(designs,*,max_turns=6,grid_min=5.,min_spacing=10.,edge_margi
                 try:
                     problem=geometry_problem(design,schedule,crab,kin=kin)
                     report=envelope_information(problem)
-                    if comparison is not None:
-                        report={**report,'model_contrast_information':report['untruncated_contrasts']}
-                    score=design_eligibility(report,comparison)
+                    score=geometry_criterion(report,comparison,objective)
                     details.append(dict(track=design.get('geometry_cell'),crab_model=crab,**score))
                 except (ValueError,np.linalg.LinAlgError) as exc:
                     details.append(dict(valid=False,all_estimable=False,worst_margin=None,worst_information=None,failure=str(exc)))
@@ -195,6 +195,23 @@ def search_geometry(designs,*,max_turns=6,grid_min=5.,min_spacing=10.,edge_margi
                       beam_width=beam_width,crab_models=list(crab_models)))
 
 
+def geometry_criterion(report, comparison=None, objective='three-model'):
+    """Shape designs protect both globe alternatives, without requiring rotation separation."""
+    from lll.pairwise import GLOBE_DISC_PAIRS
+    if objective not in ('three-model','globe-disc') or (comparison is not None and objective != 'three-model'):
+        raise ValueError('choose either a comparison or a geometry objective')
+    if comparison is not None or objective == 'globe-disc':
+        report={**report,'model_contrast_information':report.get('untruncated_contrasts',{})}
+    if objective == 'three-model': return design_eligibility(report,comparison)
+    scores=[design_eligibility(report,name) for name in GLOBE_DISC_PAIRS]
+    valid=all(s['valid'] for s in scores)
+    limiting=min(scores,key=lambda s:s['worst_margin'] if s['valid'] else -math.inf)
+    return dict(valid=valid,all_estimable=valid and all(s['all_estimable'] for s in scores),
+        worst_margin=min(s['worst_margin'] for s in scores) if valid else None,
+        worst_information=min(s['worst_information'] for s in scores) if valid else None,
+        limiting_contrast=limiting['limiting_contrast'],comparisons=list(GLOBE_DISC_PAIRS))
+
+
 def _json_safe(value):
     if isinstance(value, dict): return {k: _json_safe(v) for k, v in value.items()}
     if isinstance(value, (list, tuple)): return [_json_safe(v) for v in value]
@@ -216,6 +233,8 @@ def main():
     ap.add_argument('--track-id')
     ap.add_argument('--protocol',type=Path)
     ap.add_argument('--comparison',choices=list(CANDIDATE_POLICY['contrasts']))
+    ap.add_argument('--objective',choices=['three-model','globe-disc'],default='three-model',
+                    help='globe-disc protects both shape comparisons without requiring rotation separation')
     ap.add_argument('--maneuver-buffer-s',type=float,default=120.)
     ap.add_argument("--routes", type=int, default=2)
     ap.add_argument("--scenarios", nargs="+", default=["bias_mixed", "wind"])
@@ -230,6 +249,8 @@ def main():
     ap.add_argument("--estimate-only", action="store_true")
     ap.add_argument("-o", type=Path, required=True)
     args = ap.parse_args()
+    if args.objective != 'three-model' and (args.mode != 'geometry' or args.comparison):
+        ap.error('--objective globe-disc requires geometry mode and no --comparison')
     if args.mode=='pipeline' and 'wind_tas' in args.crab_models:
         ap.error('physical wind/TAS is available in geometry-envelope search; use research.py for matched complete-pipeline comparisons')
     if args.mode=='geometry':
@@ -247,7 +268,7 @@ def main():
         result=search_geometry(designs,max_turns=args.max_turns,grid_min=args.grid_min,
             min_spacing=args.min_spacing,edge_margin=args.edge_margin,beam_width=args.beam_width,
             crab_models=args.crab_models,maneuver_buffer_s=args.maneuver_buffer_s,
-            comparison=args.comparison,estimate_only=args.estimate_only)
+            comparison=args.comparison,objective=args.objective,estimate_only=args.estimate_only)
         if args.track_plan:
             result['blocked_tracks']=[{'id':v['id'],'status':v['status']} for v in cases
                                       if v['status']!='prepared_geometry_only']

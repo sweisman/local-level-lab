@@ -200,11 +200,18 @@ class CandidateProblem:
         if self.forward and self.tangent is None:
             self.tangent = np.cross(bins["up"], fwd)
         self.crab_sigma = np.radians(crab_sigma_deg) if self.use_crab else None
-        self.npar = self.p + self.nc + int(self.forward)
+        self.mount_yaw=None
+        if settings.get('mount_yaw_model')=='piecewise':
+            from .mount_yaw import MountYaw
+            if vertical_only or fwd is None: raise ValueError('mount yaw requires a three-axis forward reference')
+            self.mount_yaw=MountYaw(bins,settings['mount_yaw_segments'])
+        self.nm=self.mount_yaw.npar if self.mount_yaw is not None else 0
+        self.mount_slice=slice(self.p+self.nc,self.p+self.nc+self.nm)
+        self.npar = self.p + self.nc + self.nm + int(self.forward)
         self.w = np.full(len(self.y), 1/(3/RAD2DPH)**2)
         self.convergence = []
 
-    def penalty(self, bias=1., crab=1., temperature=1., rate=1., forward=1., bias_drift=1.,airspeed=1.,airspeed_rate=1.):
+    def penalty(self, bias=1., crab=1., temperature=1., rate=1., forward=1., bias_drift=1.,airspeed=1.,airspeed_rate=1.,mount_yaw=1.):
         sd = self.prior.copy()
         sd[self.layout["bias"]] *= bias
         if self.temp_ref is not None:
@@ -233,6 +240,9 @@ class CandidateProblem:
                 spacing = np.repeat(np.diff(self.knots), stride)
                 diff[:, self.p:self.p+self.nc] = (np.eye(self.nc)[stride:]-np.eye(self.nc)[:-stride])/(spacing[:, None]*sd_rate)
                 P = np.vstack([P, diff])
+        if self.nm:
+            block=np.zeros((self.nm,self.npar)); block[:,self.mount_slice]=self.mount_yaw.penalty(mount_yaw)
+            P=np.vstack([P,block])
         if self.forward:
             a = np.zeros((1, self.npar)); a[0, -1] = 1/(self.forward_sigma*forward)
             P = np.vstack([P, a])
@@ -245,6 +255,10 @@ class CandidateProblem:
             else: angle,angle_rate=self.wind_tas.angles(d)
         else:
             B,D=self.B,self.D; angle,angle_rate=B@d,D@d
+        if self.nm:
+            # IMU yaw about up has the opposite sign to fuselage heading about down.
+            angle=angle-self.mount_yaw.B@z[self.mount_slice]
+            angle_rate=angle_rate-self.mount_yaw.D@z[self.mount_slice]
         fwd = self.fwd
         if self.forward:
             fwd = self.fwd*np.cos(z[-1]) + self.tangent*np.sin(z[-1])
@@ -257,12 +271,16 @@ class CandidateProblem:
         pred = X @ z[:self.p] + rate
         if not jac:
             return pred
-        if self.nc:
+        if self.nc or self.nm:
             Jangle = _crab_columns(cb, layout, idx, z[K], np.arange(len(self.B)), len(self.B))
+        if self.nc:
             Jcrab = Jangle @ B + (-self.bins["up"][:, :, None]*D[:, None, :]).reshape(len(self.y), self.nc)
         else:
             Jcrab = np.empty((len(self.y), 0))
         J = np.column_stack([X, Jcrab])
+        if self.nm:
+            Jmount=-Jangle@self.mount_yaw.B+(self.bins['up'][:,:,None]*self.mount_yaw.D[:,None,:]).reshape(len(self.y),self.nm)
+            J=np.column_stack([J,Jmount])
         if self.forward:
             h = 1e-6
             plus, minus = z.copy(), z.copy()
@@ -286,6 +304,7 @@ class CandidateProblem:
     def bounds(self):
         lo,hi=np.full(self.npar,-np.inf),np.full(self.npar,np.inf)
         if self.wind_tas is not None: lo[self.p:self.p+self.nc],hi[self.p:self.p+self.nc]=self.wind_tas.bounds()
+        if self.nm: lo[self.mount_slice],hi[self.mount_slice]=self.mount_yaw.bounds()
         return lo,hi
 
     def objective_residual(self,z,y,P):
@@ -355,7 +374,7 @@ class CandidateProblem:
         offset[K] += constraints.T @ (constraints @ (np.asarray(target)-offset[K]))
         P, sw = self.penalty(), np.sqrt(self.w)
         if not nonlinear:
-            if self.wind_tas is not None: raise ValueError('physical wind/TAS profiles require nonlinear refits')
+            if self.wind_tas is not None or self.mount_yaw is not None: raise ValueError('bounded nuisance profiles require nonlinear refits')
             J = reference["J"]
             A = np.vstack([J*sw[:, None], P]) @ T
             b = np.r_[(y-reference["pred"]-J @ (offset-reference["z"]))*sw, -P @ offset]
@@ -380,7 +399,7 @@ class CandidateProblem:
         return dict(z=z, pred=pred, J=J, P=P, objective=float(opt.fun @ opt.fun), success=bool(opt.success))
 
     def local(self, y, reference, fixed=None):
-        if self.wind_tas is not None: raise ValueError('physical wind/TAS requires nonlinear refits')
+        if self.wind_tas is not None or self.mount_yaw is not None: raise ValueError('bounded nuisance requires nonlinear refits')
         z, J, P = reference["z"], reference["J"], reference["P"]
         keep = np.arange(self.npar) if fixed is None else np.arange(NK, self.npar)
         delta = np.zeros(self.npar)
@@ -539,6 +558,7 @@ def candidate_fit(bins, fwd_b, bias_fn, prior_sigma, *, settings, vertical_only=
     prior_k = ["bias"] + (["crab"] if problem.nc else []) + (["temperature"] if temp_ref is not None else [])
     if problem.nc and settings["crab_model"] in ("dynamic", "wind",'wind_tas'): prior_k.append("rate")
     if problem.wind_tas is not None: prior_k+=['airspeed','airspeed_rate']
+    if problem.nm: prior_k.append('mount_yaw')
     if problem.forward: prior_k.append("forward")
     if problem.dynamic_bias: prior_k.append("bias_drift")
     changes = {key: problem.solve(P=problem.penalty(**{key: PRIOR_WIDEN}), start=z)["z"][K]-k for key in prior_k}
@@ -572,6 +592,9 @@ def candidate_fit(bins, fwd_b, bias_fn, prior_sigma, *, settings, vertical_only=
         crab_angles,crab_rates=problem.wind_tas.angles(crab)
     else:
         crab_angles,crab_rates=problem.B@crab,problem.D@crab
+    mount_report=problem.mount_yaw.report(z[problem.mount_slice]) if problem.mount_yaw is not None else None
+    mount_near_boundary=any(problem.mount_yaw.near_boundary(v['z'][problem.mount_slice])
+        for v in [free,*fixed.values(),*profiles.values()]) if problem.mount_yaw is not None else None
     course_groups = crab_basis(bins, "constant")[0].shape[1]
     bsl = problem.layout["bias"]
     crossden = np.sqrt(np.outer(np.diag(cov)[K], np.diag(cov)[bias_indices]))
@@ -593,6 +616,7 @@ def candidate_fit(bins, fwd_b, bias_fn, prior_sigma, *, settings, vertical_only=
                            per_bin_drift_sd_dph=(np.sqrt(np.maximum(variance, 0))*RAD2DPH).tolist())
     return {"convergence": {"converged": all(v["converged"] for v in problem.convergence), "fits": problem.convergence},
             'wind_tas':physical_report,'wind_tas_test_near_boundary':physical_near_boundary,
+            'mount_yaw':mount_report,'mount_yaw_test_near_boundary':mount_near_boundary,
             'pairwise_profile':pair_profiles,
             "design_identifiability": design,
             "mode": "vertical_only" if vertical_only else "3-axis", "n_bins": n, "n_rows": len(problem.y),

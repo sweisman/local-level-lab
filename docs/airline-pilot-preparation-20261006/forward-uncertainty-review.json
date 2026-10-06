@@ -1,0 +1,274 @@
+{
+  "scope": "saved preprocessing only; no synthesis, science fit, SVD or search",
+  "campaign_sha256": "430bbcae6d4ca03f649cd5e8de4e30efb98b1984551ea8ed6df1f29c2e798ca7",
+  "execution": {
+    "version": "sharded-flight-campaign-1",
+    "task_count": 18,
+    "completed": 3,
+    "missing": 15,
+    "complete": false,
+    "analysis_failures": 3,
+    "contiguous_prefix": true,
+    "runtime_unknown_attempts": 0
+  },
+  "cases": [
+    {
+      "task_index": 0,
+      "task_id": "2e386fad56e0bbc02d59a42609aa6bd23483b55d60645fb5facb0cb9cda5ef23",
+      "failure": "ValueError('forward uncertainty unavailable: positive measured angle uncertainty required')",
+      "elapsed_s": 8.135478498996235,
+      "crab_model": "wind",
+      "magnetic_ambiguity": "exclude",
+      "forward_available": false,
+      "forward_quality": {
+        "gain": 0.04873471083588454,
+        "r2": 0.012268495488914177,
+        "bank_energy": 0.6574725883881618,
+        "reason": "roll/bank correlation too weak"
+      },
+      "matched_reference_uncertainty": {
+        "available": true,
+        "axis": [
+          -0.33637037210887233,
+          0.9355793868553104,
+          -0.10745316960788108
+        ],
+        "quality": {
+          "reference_method": "matched",
+          "reference_policy": {
+            "version": "matched-forward-1",
+            "window_seconds": 30.0,
+            "course_difference_seconds": 5.0,
+            "hac_seconds": 60.0,
+            "minimum_covariance_windows": 4,
+            "minimum_bank_energy": 0.0001,
+            "minimum_gain": 0.1,
+            "minimum_r2": 0.05,
+            "maximum_gps_interval_seconds": 2.0,
+            "coverage_status": "development; independent calibration and real-device checks pending"
+          },
+          "gain": 0.9252288372361356,
+          "r2": 0.8973317649386933,
+          "bank_energy": 0.0027731736491331755,
+          "samples": 4187,
+          "hac_lags": 60,
+          "covariance_support_windows": 67,
+          "regression_cov": [
+            [
+              0.0003809693141807769,
+              -0.0008469211021960913,
+              9.838570679167494e-05
+            ],
+            [
+              -0.0008469211021960913,
+              0.002540593787660035,
+              -0.0002908225779519849
+            ],
+            [
+              9.838570679167494e-05,
+              -0.0002908225779519849,
+              3.331152675373101e-05
+            ]
+          ],
+          "axis_cov": [
+            [
+              9.212044072243474e-05,
+              3.2860807418056236e-05,
+              -2.258591996577054e-06
+            ],
+            [
+              3.286080741805626e-05,
+              1.1721965892675124e-05,
+              -8.056752231473621e-07
+            ],
+            [
+              -2.2585919965770425e-06,
+              -8.05675223147359e-07,
+              5.5375742527960814e-08
+            ]
+          ],
+          "angle_sigma_rad": 0.010193026162903622,
+          "uncertainty_method": "joint GPS/IMU moment, run-separated Bartlett HAC",
+          "predictor_treatment": "random observed predictor; independent-error direction assumption",
+          "coverage_status": "development; independent calibration and real-device checks pending"
+        },
+        "full_pipeline_fitted": false
+      },
+      "retained_bins": 57,
+      "orientation_unresolved_epoch": null,
+      "saved_session_sha256": "4efb7e7759f6a3d245479700ea0e9d2349fd5ac6b3f327ba60bd199ced82d307"
+    },
+    {
+      "task_index": 1,
+      "task_id": "6b547df33f18fe313548195262a23323ef9230b171252b2059f913ae1e589314",
+      "failure": "ValueError('physical wind/TAS requires a three-axis forward reference')",
+      "elapsed_s": 8.248265241039917,
+      "crab_model": "wind_tas",
+      "magnetic_ambiguity": "exclude",
+      "forward_available": false,
+      "forward_quality": {
+        "gain": 0.04873471083588454,
+        "r2": 0.012268495488914177,
+        "bank_energy": 0.6574725883881618,
+        "reason": "roll/bank correlation too weak"
+      },
+      "matched_reference_uncertainty": {
+        "available": true,
+        "axis": [
+          -0.33637037210887233,
+          0.9355793868553104,
+          -0.10745316960788108
+        ],
+        "quality": {
+          "reference_method": "matched",
+          "reference_policy": {
+            "version": "matched-forward-1",
+            "window_seconds": 30.0,
+            "course_difference_seconds": 5.0,
+            "hac_seconds": 60.0,
+            "minimum_covariance_windows": 4,
+            "minimum_bank_energy": 0.0001,
+            "minimum_gain": 0.1,
+            "minimum_r2": 0.05,
+            "maximum_gps_interval_seconds": 2.0,
+            "coverage_status": "development; independent calibration and real-device checks pending"
+          },
+          "gain": 0.9252288372361356,
+          "r2": 0.8973317649386933,
+          "bank_energy": 0.0027731736491331755,
+          "samples": 4187,
+          "hac_lags": 60,
+          "covariance_support_windows": 67,
+          "regression_cov": [
+            [
+              0.0003809693141807769,
+              -0.0008469211021960913,
+              9.838570679167494e-05
+            ],
+            [
+              -0.0008469211021960913,
+              0.002540593787660035,
+              -0.0002908225779519849
+            ],
+            [
+              9.838570679167494e-05,
+              -0.0002908225779519849,
+              3.331152675373101e-05
+            ]
+          ],
+          "axis_cov": [
+            [
+              9.212044072243474e-05,
+              3.2860807418056236e-05,
+              -2.258591996577054e-06
+            ],
+            [
+              3.286080741805626e-05,
+              1.1721965892675124e-05,
+              -8.056752231473621e-07
+            ],
+            [
+              -2.2585919965770425e-06,
+              -8.05675223147359e-07,
+              5.5375742527960814e-08
+            ]
+          ],
+          "angle_sigma_rad": 0.010193026162903622,
+          "uncertainty_method": "joint GPS/IMU moment, run-separated Bartlett HAC",
+          "predictor_treatment": "random observed predictor; independent-error direction assumption",
+          "coverage_status": "development; independent calibration and real-device checks pending"
+        },
+        "full_pipeline_fitted": false
+      },
+      "retained_bins": 57,
+      "orientation_unresolved_epoch": null,
+      "saved_session_sha256": "4efb7e7759f6a3d245479700ea0e9d2349fd5ac6b3f327ba60bd199ced82d307"
+    },
+    {
+      "task_index": 2,
+      "task_id": "542522e6dd89312e16a9508a7a0414129075ff76b559ac1e641f4cf58f2b6533",
+      "failure": "ValueError('physical wind/TAS requires a three-axis forward reference')",
+      "elapsed_s": 6.387762292986736,
+      "crab_model": "wind_tas",
+      "magnetic_ambiguity": "model_and_compare",
+      "forward_available": false,
+      "forward_quality": {
+        "gain": 0.04873471083588454,
+        "r2": 0.012268495488914177,
+        "bank_energy": 0.6574725883881618,
+        "reason": "roll/bank correlation too weak"
+      },
+      "matched_reference_uncertainty": {
+        "available": true,
+        "axis": [
+          -0.33637037210887233,
+          0.9355793868553104,
+          -0.10745316960788108
+        ],
+        "quality": {
+          "reference_method": "matched",
+          "reference_policy": {
+            "version": "matched-forward-1",
+            "window_seconds": 30.0,
+            "course_difference_seconds": 5.0,
+            "hac_seconds": 60.0,
+            "minimum_covariance_windows": 4,
+            "minimum_bank_energy": 0.0001,
+            "minimum_gain": 0.1,
+            "minimum_r2": 0.05,
+            "maximum_gps_interval_seconds": 2.0,
+            "coverage_status": "development; independent calibration and real-device checks pending"
+          },
+          "gain": 0.9252288372361356,
+          "r2": 0.8973317649386933,
+          "bank_energy": 0.0027731736491331755,
+          "samples": 4187,
+          "hac_lags": 60,
+          "covariance_support_windows": 67,
+          "regression_cov": [
+            [
+              0.0003809693141807769,
+              -0.0008469211021960913,
+              9.838570679167494e-05
+            ],
+            [
+              -0.0008469211021960913,
+              0.002540593787660035,
+              -0.0002908225779519849
+            ],
+            [
+              9.838570679167494e-05,
+              -0.0002908225779519849,
+              3.331152675373101e-05
+            ]
+          ],
+          "axis_cov": [
+            [
+              9.212044072243474e-05,
+              3.2860807418056236e-05,
+              -2.258591996577054e-06
+            ],
+            [
+              3.286080741805626e-05,
+              1.1721965892675124e-05,
+              -8.056752231473621e-07
+            ],
+            [
+              -2.2585919965770425e-06,
+              -8.05675223147359e-07,
+              5.5375742527960814e-08
+            ]
+          ],
+          "angle_sigma_rad": 0.010193026162903622,
+          "uncertainty_method": "joint GPS/IMU moment, run-separated Bartlett HAC",
+          "predictor_treatment": "random observed predictor; independent-error direction assumption",
+          "coverage_status": "development; independent calibration and real-device checks pending"
+        },
+        "full_pipeline_fitted": false
+      },
+      "retained_bins": 57,
+      "orientation_unresolved_epoch": null,
+      "saved_session_sha256": "2151265d222a67a5b411d9595082403db1bdcd56b95766a169fb6ef6cdd3240a"
+    }
+  ]
+}

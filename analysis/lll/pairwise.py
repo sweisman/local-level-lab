@@ -10,29 +10,79 @@ from . import models, __version__
 from .inference_policy import digest
 from .policy import MODEL_PAIRS, scientific_exclusions, decision_stratum, eligibility_policies
 from .runtime import numerical_environment, numerical_environment_hash, check_environment
+from .flight_domain import check_policy_domain, decision_exclusions
 
 POOL_METHOD = "pair-normalized-reml-hk-1"
 PROFILE_POOL_METHOD = 'pair-line-profile-reml-hk-1'
+SHAPE_METHOD = 'globe-disc-pair-rule-1'
+GLOBE_DISC_PAIRS = ('sphere_rotating_vs_flat_still', 'sphere_still_vs_flat_still')
+
+
+def shape_evidence(pairs):
+    """Experimental composite preference, independent of the rotation-only comparison.
+
+    This derives evidence from existing endpoint tests, without certifying a composite
+    error rate. Selecting either globe comparison can accumulate endpoint errors.
+    """
+    usable, preferences, unavailable = [], {}, {}
+    for name in GLOBE_DISC_PAIRS:
+        entry = pairs.get(name) or {}
+        globe, disc = MODEL_PAIRS[name]
+        rejected = entry.get('rejected_by_model') or {}
+        if not entry.get('eligible') or entry.get('exclusions'):
+            unavailable[name] = entry.get('exclusions') or ['pair evidence unavailable']
+            continue
+        if any(type(rejected.get(m)) is not bool for m in (globe, disc)):
+            unavailable[name] = ['endpoint decisions unavailable']
+            continue
+        usable.append(name)
+        preference = globe if not rejected[globe] and rejected[disc] else disc if rejected[globe] and not rejected[disc] else None
+        if entry.get('preferred_model') != preference or entry.get('status') != ('decision' if preference else 'abstain'):
+            unavailable[name] = ['inconsistent pair decision']
+            usable.remove(name)
+            continue
+        if preference: preferences[name] = 'disc' if preference == disc else 'globe'
+    globe_support = [name for name, preference in preferences.items() if preference == 'globe']
+    disc_support = [name for name, preference in preferences.items() if preference == 'disc']
+    conflict = bool(globe_support and disc_support)
+    preferred = None if conflict else 'globe' if globe_support else 'disc' if len(disc_support) == 2 else None
+    support = globe_support if preferred == 'globe' else disc_support if preferred == 'disc' else []
+    return dict(method=SHAPE_METHOD, status='decision' if preferred else 'abstain',
+        preferred_family=preferred, families={'globe':['sphere_rotating','sphere_still'], 'disc':['flat_still']},
+        comparisons=list(GLOBE_DISC_PAIRS), informative_comparisons=usable,
+        supporting_comparisons=support, conflicting_preferences=conflict, unavailable_comparisons=unavailable,
+        abstention_reason=None if preferred else 'conflicting shape preferences' if conflict else 'insufficient shape evidence',
+        pairwise_thresholds_calibrated=bool(support) and all(pairs[name].get('calibrated') is True for name in support),
+        error_rate_validated=False, validated_for_primary_claims=False,
+        scope='these two globe models versus the specified stationary disc; other non-globe models are not tested')
 
 
 def pair_stratum(row, comparison, mode="flight"):
     entry = (row.get('pairwise') or row.get('pairwise_profile') or {}).get(comparison,{})
     if mode == 'flight' and entry.get('method') == 'pair-line-profile-1':
-        return json.dumps([row.get('candidate_id'),row.get('variant'),comparison,entry['method']],separators=(',',':'))
+        fields = [row.get('candidate_id'),row.get('variant'),comparison,entry['method']]
+        if row.get('domain_id') is not None: fields.append(row['domain_id'])
+        return json.dumps(fields,separators=(',',':'))
     if mode == "flight": return decision_stratum(row)
     return json.dumps([row.get("candidate_id"), row.get("variant"), entry.get('method',POOL_METHOD), comparison,
                        row["pairwise"][comparison].get("n_units")], separators=(",", ":"))
 
 
 def check_pairwise_policy(policy, mode):
-    if policy.get("version") not in ("pairwise-empirical-1",'pairwise-empirical-2') or policy.get("mode") != mode:
+    if policy.get("version") not in ("pairwise-empirical-1",'pairwise-empirical-2','pairwise-empirical-3') or policy.get("mode") != mode:
         raise ValueError("pairwise policy requires calibration for this decision mode")
     methods=set(policy.get('statistic_methods',[]))
     allowed={'observable-coordinate-1','pair-line-profile-1'} if mode=='flight' else {POOL_METHOD,PROFILE_POOL_METHOD}
-    if not methods <= allowed or (policy.get('version')=='pairwise-empirical-2' and not methods):
+    if not methods <= allowed or (policy.get('version') in ('pairwise-empirical-2','pairwise-empirical-3') and not methods):
         raise ValueError('unknown or missing pairwise statistic method')
     if digest({k: v for k, v in policy.items() if k != "policy_hash"}) != policy.get("policy_hash"):
         raise ValueError("pairwise policy hash mismatch")
+    if policy['version']=='pairwise-empirical-3':
+        domain = check_policy_domain(policy)
+        if mode!='flight' or any(len(json.loads(cell)) not in (4,5) or json.loads(cell)[-1]!=domain['domain_id'] for cell in policy['thresholds']):
+            raise ValueError('pairwise threshold stratum flight domain mismatch')
+    elif policy.get('flight_domain') is not None or policy.get('domain_id') is not None:
+        raise ValueError('legacy pairwise policy cannot bind a flight domain')
     if policy.get("eligibility_policies") != eligibility_policies():
         raise ValueError("pairwise eligibility policy mismatch")
     check_environment(policy.get("numerical_environment"))
@@ -78,6 +128,7 @@ def flight_evidence(fit, flags=(), policy=None, candidate_id=None, variant=None)
     k = np.asarray([fit.get("k", {}).get(name, np.nan) for name in ("k_rot_sphere", "k_curv", "k_disc")])
     for name, (a, b) in MODEL_PAIRS.items():
         reasons = scientific_exclusions({"fit": fit, "flags": flags}, name)
+        if policy is not None: reasons.extend(decision_exclusions(fit,policy))
         profile = (fit.get('pairwise_profile') or {}).get(name)
         if profile is not None:
             entry = {**profile,'exclusions':list(dict.fromkeys(reasons+profile['exclusions']))}
@@ -85,8 +136,8 @@ def flight_evidence(fit, flags=(), policy=None, candidate_id=None, variant=None)
             if policy is not None:
                 if profile['method'] not in policy.get('statistic_methods',[]):
                     raise ValueError('pairwise statistic method differs from calibrated policy')
-                cell = pair_stratum({'candidate_id':candidate_id,'variant':variant,'pairwise':{name:entry}},name)
-                thresholds = policy['thresholds'].get(cell,{}).get(name)
+                cell = pair_stratum({'candidate_id':candidate_id,'variant':variant,'pairwise':{name:entry},'domain_id':fit.get('domain_id')},name)
+                thresholds = None if decision_exclusions(fit,policy) else policy['thresholds'].get(cell,{}).get(name)
                 if thresholds is None: entry['exclusions'].append('uncalibrated pairwise stratum')
                 entry['decision_policy_hash'] = policy['policy_hash']
             entry['eligible'] = not entry['exclusions']
@@ -115,8 +166,8 @@ def flight_evidence(fit, flags=(), policy=None, candidate_id=None, variant=None)
         if entry["statistics"] is None: entry["exclusions"].append("observable pair coordinate unavailable")
         thresholds = None
         if policy is not None:
-            cell = decision_stratum({"candidate_id": candidate_id, "variant": variant, "model_test_rank": fit.get("model_test_rank")})
-            thresholds = policy["thresholds"].get(cell, {}).get(name)
+            cell = decision_stratum({"candidate_id": candidate_id, "variant": variant, "model_test_rank": fit.get("model_test_rank"), 'domain_id':fit.get('domain_id')})
+            thresholds = None if decision_exclusions(fit,policy) else policy["thresholds"].get(cell, {}).get(name)
             if thresholds is None: entry["exclusions"].append("uncalibrated pairwise stratum")
             entry["decision_policy_hash"] = policy["policy_hash"]
         entry["eligible"] = not entry["exclusions"]
@@ -163,4 +214,5 @@ def pool_evidence(items, candidate_id, variant, policy=None):
         pairs[name] = decide(entry, name, thresholds)
     return {"status": "experimental", "method": POOL_METHOD, "candidate_id": candidate_id,
             "variant": variant, "pairwise": pairs, "three_model_winner": three_model_winner(pairs),
+            "shape_evidence": shape_evidence(pairs),
             "validated_for_primary_claims": False}

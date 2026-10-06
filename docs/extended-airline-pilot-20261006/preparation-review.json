@@ -1,0 +1,148 @@
+{
+  "state": "prepared_not_run",
+  "plan_hash": "d2337e3a4bbe4da89f9b446d9b49c7ca0f19f13d94172a0bb81861696549eae0",
+  "implementation_hash": "82c882d2abf351cb0feb0e8efa237702d1deeccd475d682960419677bf479412",
+  "numerical_environment_hash": "20ef393862e7723ba90e825b625826081cde501e4d9c944f2dbff29526ebdd69",
+  "seed": 600902,
+  "selected_window": {
+    "track_id": "2025-08-19-etihad-9-auh-ord",
+    "start_s": 40200.0,
+    "end_s": 47400.0,
+    "minutes": 120.0,
+    "observed_coverage_fraction": 0.9958333333333333,
+    "trajectory_hash": "0dcd534e05f0621361898f0c1f6a98663aaa76635d07f9059dcb4e5719e7bf16",
+    "no_turn": {
+      "schedule_minutes": [],
+      "turn_checks": [],
+      "screened_minutes": 97.0,
+      "heading_diversity": {
+        "adequate": true,
+        "provisional": true,
+        "min_separation_deg": 30,
+        "min_seconds_per_heading": 600,
+        "groups": [
+          {
+            "heading_deg": 228.81606473471032,
+            "seconds": 2580.0
+          },
+          {
+            "heading_deg": 241.46090762388104,
+            "seconds": 1560.0
+          },
+          {
+            "heading_deg": 262.9080830477362,
+            "seconds": 660.0
+          },
+          {
+            "heading_deg": 278.15689324618563,
+            "seconds": 1020.0
+          }
+        ]
+      },
+      "heading_duration_margin_seconds": 420.0,
+      "retained_minutes_by_epoch": [
+        97.0
+      ],
+      "passes_screen": true,
+      "exclusions": []
+    },
+    "evaluated_schedules": 602,
+    "passing_schedules": 602,
+    "best_schedule": {
+      "schedule_minutes": [
+        25.0,
+        50.0,
+        85.0
+      ],
+      "turn_checks": [
+        {
+          "minute": 25.0,
+          "safe": true,
+          "reason": null,
+          "evidence": []
+        },
+        {
+          "minute": 50.0,
+          "safe": true,
+          "reason": null,
+          "evidence": []
+        },
+        {
+          "minute": 85.0,
+          "safe": true,
+          "reason": null,
+          "evidence": []
+        }
+      ],
+      "screened_minutes": 91.0,
+      "heading_diversity": {
+        "adequate": true,
+        "provisional": true,
+        "min_separation_deg": 30,
+        "min_seconds_per_heading": 600,
+        "groups": [
+          {
+            "heading_deg": 228.81606473471032,
+            "seconds": 2460.0
+          },
+          {
+            "heading_deg": 241.46090762388104,
+            "seconds": 1440.0
+          },
+          {
+            "heading_deg": 262.9080830477362,
+            "seconds": 540.0
+          },
+          {
+            "heading_deg": 278.15689324618563,
+            "seconds": 1020.0
+          }
+        ]
+      },
+      "heading_duration_margin_seconds": 420.0,
+      "retained_minutes_by_epoch": [
+        23.0,
+        20.0,
+        23.0,
+        25.0
+      ],
+      "passes_screen": true,
+      "exclusions": []
+    }
+  },
+  "proposed_evaluations": 18,
+  "initial_proposed_evaluations": 3,
+  "authorized_evaluations": 0,
+  "completed_evaluations": 0,
+  "first_tasks": [
+    {
+      "index": 0,
+      "task_id": "d412a3874e5f02c4a9e7a61cbd8a6fa29aafbf7f81ce4b553e4ad0b01f1f5293",
+      "truth": "sphere_rotating",
+      "scenario": "wind+bias_mixed",
+      "seed": 600902
+    },
+    {
+      "index": 1,
+      "task_id": "8e2179ae092966549e4e6be4a109de2c3b19ccf3f32bb822ce2068b93b37e09c",
+      "truth": "sphere_rotating",
+      "scenario": "wind+bias_mixed",
+      "seed": 600902
+    },
+    {
+      "index": 2,
+      "task_id": "2407632284c58129888211f4d4712b2e3f8c619f9f44479247cfdcbabd234ef6",
+      "truth": "sphere_rotating",
+      "scenario": "wind+bias_mixed",
+      "seed": 600902
+    }
+  ],
+  "runtime_basis": "Previous 75-minute prefix: 202.842514 attempt-seconds, 131.358896 wall-seconds; extended route runtime unknown.",
+  "limitations": [
+    "Chosen using observable development screens, not a nuisance-envelope optimizer.",
+    "C2 between-fix motion and reported altitude remain assumptions.",
+    "Forward reference, complete preprocessing and model contrast retention untested here.",
+    "Zero bootstrap; one generating condition shared across initial three candidates.",
+    "No new flights, remaining 15 evaluations, calibration, validation or git operations authorized."
+  ]
+}

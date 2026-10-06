@@ -481,13 +481,32 @@ def fit(bins, fwd_b, bias_fn, prior_sigma, vertical_only=False, n_boot=300, seed
         bootstrap_sampling="moving", block_length=None, max_nfev=200, *,
         crab_model="constant", noise_model="global", bootstrap_refit="linearized",
         forward_uncertainty=False, forward_sigma_rad=None, forward_tangent=None,
+        forward_reference='legacy',
         crab_rate_sigma_dph=None, crab_knot_seconds=None, variance_shrinkage_bins=None,
         research_candidate=False, decision_thresholds=None, decision_policy_hash=None, decision_statistic=None, design_only=False,
         decision_policy=None, decision_candidate_id=None, decision_variant=None,
         pairwise_decision_policy=None,
         rank_min_relative_margin=0.,
         bias_model="constant", bias_knot_seconds=None, bias_rw_sigma_dph_sqrth=None,
-        design_mode='anchor', pairwise_method='observable_coordinate'):
+        design_mode='anchor', pairwise_method='observable_coordinate',
+        mount_yaw_model='none',mount_yaw_segments=None,
+        flight_domain=None, domain_source='binned_input'):
+    from .flight_domain import resolve_domain, observables, membership, decision_exclusions
+    flight_domain = resolve_domain(flight_domain, decision_policy, pairwise_decision_policy)
+    if forward_reference not in ('legacy','matched'):
+        raise ValueError('invalid forward reference method')
+    if forward_reference=='matched' and (not research_candidate or not forward_uncertainty):
+        raise ValueError('matched forward reference requires research candidate and measured forward uncertainty')
+    measured_domain = observables(bins, domain_source)
+    if mount_yaw_model not in ('none','piecewise'): raise ValueError('invalid mount yaw model')
+    if mount_yaw_model=='piecewise':
+        from .mount_yaw import MOUNT_YAW_POLICY
+        if design_mode!='envelope' or pairwise_method!='profile':
+            raise ValueError('mount yaw comparison requires envelope and pair profiles')
+        if n_boot>0 and bootstrap_refit!='nonlinear': raise ValueError('mount yaw bootstrap requires nonlinear refits')
+        if mount_yaw_segments is None: raise ValueError('mount yaw requires watchdog segment IDs')
+        if any(v is not None for v in (decision_thresholds,decision_policy,pairwise_decision_policy)):
+            raise ValueError('magnetic two-path candidate has no empirical dual-path calibration')
     if design_mode not in ('anchor','envelope') or pairwise_method not in ('observable_coordinate','profile'):
         raise ValueError('invalid design or pairwise method')
     if pairwise_method == 'profile' and design_mode != 'envelope':
@@ -510,12 +529,18 @@ def fit(bins, fwd_b, bias_fn, prior_sigma, vertical_only=False, n_boot=300, seed
     settings.update(bias_model=bias_model,
                     bias_knot_seconds=INFERENCE_POLICY["bias_knot_seconds"] if bias_knot_seconds is None else bias_knot_seconds,
                     bias_rw_sigma_dph_sqrth=INFERENCE_POLICY["bias_rw_sigma_dph_sqrth"] if bias_rw_sigma_dph_sqrth is None else bias_rw_sigma_dph_sqrth)
+    if forward_reference=='matched':
+        from .forward_reference import FORWARD_REFERENCE_POLICY
+        settings.update(forward_reference=forward_reference,forward_reference_policy=dict(FORWARD_REFERENCE_POLICY))
     if not np.isfinite(rank_min_relative_margin) or rank_min_relative_margin < 0:
         raise ValueError("rank stability margin must be finite and nonnegative")
     settings["rank_min_relative_margin"] = rank_min_relative_margin
     if design_mode != 'anchor': settings['design_mode'] = design_mode
     if pairwise_method != 'observable_coordinate': settings['pairwise_method'] = pairwise_method
     if crab_model=='wind_tas': settings['wind_tas_policy']=dict(WIND_TAS_POLICY)
+    if mount_yaw_model=='piecewise':
+        settings.update(mount_yaw_model=mount_yaw_model,mount_yaw_segments=list(mount_yaw_segments),
+                        mount_yaw_policy=dict(MOUNT_YAW_POLICY))
     if design_only and (decision_thresholds is not None or decision_policy is not None or pairwise_decision_policy is not None):
         raise ValueError("design-only evaluation cannot apply model decisions")
     if design_only:
@@ -542,16 +567,23 @@ def fit(bins, fwd_b, bias_fn, prior_sigma, vertical_only=False, n_boot=300, seed
         result = _legacy_fit(bins, fwd_b, bias_fn, prior_sigma, **common)
     result["inference_policy"] = provenance(settings)
     result["eligibility_policy"] = eligibility_provenance(candidate, settings)
+    result['domain_observables'] = measured_domain
+    if flight_domain is not None:
+        report = membership(flight_domain, measured_domain)
+        result.update(flight_domain=flight_domain,domain_membership=report,domain_id=report['domain_id'])
+    if decision_policy is not None or decision_thresholds is not None:
+        result['decision_domain_exclusions'] = decision_exclusions(result, decision_policy)
     result["delta_chi2_raw"] = ({m: max(v - result["chi2_free"], 0.) for m, v in result["chi2"].items()}
                                 if not design_only else None)
     if candidate:
-        from .pairwise import flight_evidence, three_model_winner
+        from .pairwise import flight_evidence, three_model_winner, shape_evidence
         result["pairwise"] = flight_evidence(result, policy=pairwise_decision_policy,
                                              candidate_id=decision_candidate_id, variant=decision_variant)
         result["pairwise_three_model_winner"] = three_model_winner(result["pairwise"])
+        result['shape_evidence'] = shape_evidence(result['pairwise'])
     if decision_policy is not None:
         cell = decision_stratum({"candidate_id": decision_candidate_id, "variant": decision_variant,
-                                 "model_test_rank": result.get("model_test_rank")})
+                                 "model_test_rank": result.get("model_test_rank"), 'domain_id':result.get('domain_id')})
         result["decision_stratum"] = cell
         if cell not in decision_policy["thresholds"]:
             result.update(rejected_analytic=result["rejected"], rejected=dict.fromkeys(models.MODELS),

@@ -12,11 +12,14 @@ from .inference_policy import digest
 from .research_design import seed_range, implementation_hash
 from .policy import research_eligible as eligible, eligibility_policies, eligibility_provenance, is_candidate, decision_stratum
 from .runtime import numerical_environment, numerical_environment_hash, check_environment
+from .flight_domain import descriptor, check_record_domain, check_policy_domain
 
 
 def diagnostic_stratum(row):
-    return json.dumps([row["scenario"], row.get("candidate_id"), row.get("geometry"), row.get("geometry_cell"),
-                       row.get("variant"), row.get("model_test_rank")], separators=(",", ":"))
+    fields = [row['scenario'],row.get('candidate_id'),row.get('geometry'),row.get('geometry_cell'),
+              row.get('variant'),row.get('model_test_rank')]
+    if row.get('domain_id') is not None: fields.append(row['domain_id'])
+    return json.dumps(fields,separators=(',',':'))
 
 
 stratum = decision_stratum
@@ -97,10 +100,11 @@ def calibration_precision(config, alpha):
 def preregistered_groups(config):
     if not config.get("operational_cells"):
         return None
-    return {diagnostic_stratum({"scenario": scenario, "candidate_id": candidate, "variant": variant,
-                               "model_test_rank": rank, "geometry": config["geometry"], "geometry_cell": geometry_cell}):
+    return {diagnostic_stratum({"scenario": scenario, "candidate_id": cell[0], "variant": cell[1],
+                               "model_test_rank": cell[2], "geometry": config["geometry"], "geometry_cell": geometry_cell,
+                               'domain_id':cell[3] if len(cell)==4 else None}):
             {m: [] for m in models.MODELS}
-            for candidate, variant, rank in (json.loads(cell) for cell in config["operational_cells"])
+            for cell in (json.loads(cell) for cell in config["operational_cells"])
             for scenario in config["preregistered_scenarios"]
             for geometry_cell in config.get("preregistered_geometry_cells", [None])}
 
@@ -108,6 +112,14 @@ def preregistered_groups(config):
 def validate_records(campaign, partition):
     """Repeated seeds cannot increase the effective evidence count."""
     seen = set()
+    if campaign.get('execution') is not None and campaign['execution'].get('complete') is not True:
+        raise ValueError('incomplete sharded campaigns are development diagnostics, not holdout evidence')
+    frozen_domain = campaign.get('config',{}).get('flight_domain')
+    if frozen_domain is not None: frozen_domain = descriptor(frozen_domain)
+    for encoded in campaign.get('config',{}).get('operational_cells',[]):
+        cell=json.loads(encoded)
+        if frozen_domain is not None and (len(cell)!=4 or cell[3]!=frozen_domain['domain_id']):
+            raise ValueError('preregistered operational cell flight domain mismatch')
     if campaign.get("eligibility_policies") != eligibility_policies():
         raise ValueError("campaign eligibility policy mismatch; regenerate the campaign")
     check_environment(campaign.get("numerical_environment"))
@@ -116,6 +128,10 @@ def validate_records(campaign, partition):
     if campaign.get("implementation_hash") is not None and campaign["implementation_hash"] != implementation_hash():
         raise ValueError("campaign implementation changed; regenerate the campaign")
     for row in campaign["records"]:
+        if frozen_domain is not None and not row.get('failure'):
+            check_record_domain(row, frozen_domain)
+        elif frozen_domain is None and row.get('flight_domain') is not None:
+            raise ValueError('record flight domain was not preregistered')
         if row.get("replay") or row.get("partition") != partition:
             raise ValueError("replays and other partitions are not independent evidence")
         seed_range(partition, row["seed"])
@@ -125,7 +141,7 @@ def validate_records(campaign, partition):
         if not row.get("failure") and row.get("eligibility_policy") != eligibility_provenance(is_candidate(row),
                 row.get('inference_policy',{}).get('settings',row.get('fit_options',{}))):
             raise ValueError("record eligibility policy mismatch; regenerate the campaign")
-        key = (diagnostic_stratum({**row, "model_test_rank": None}), row["truth"], row["seed"])
+        key = (diagnostic_stratum({**row, "model_test_rank": None, 'domain_id':None}), row["truth"], row["seed"])
         if key in seen: raise ValueError("duplicate simulation in evidence")
         seen.add(key)
 
@@ -199,15 +215,26 @@ def calibrate(campaign, *, min_accepted=None, alpha=.0027):
                "calibration_precision": precision,
                "implementation_hash": campaign.get("implementation_hash"),
                "validated_for_primary_claims": False}
+    if config.get('flight_domain') is not None:
+        domain = descriptor(config['flight_domain'])
+        content.update(version='empirical-decision-5',flight_domain=domain,domain_id=domain['domain_id'],
+                       stratum_fields=['candidate_id','variant','model_test_rank','domain_id'])
     return {**content, "policy_hash": digest(content)}
 
 
 def check_policy(policy):
-    if policy.get("version") != "empirical-decision-4":
+    if policy.get("version") not in ('empirical-decision-4','empirical-decision-5'):
         raise ValueError("decision policy requires recalibration with the current eligibility policy")
     content = {k: v for k, v in policy.items() if k != "policy_hash"}
     if digest(content) != policy.get("policy_hash"):
         raise ValueError("empirical decision policy hash mismatch")
+    if policy['version']=='empirical-decision-5':
+        domain = check_policy_domain(policy)
+        if policy.get('stratum_fields') != ['candidate_id','variant','model_test_rank','domain_id'] or any(
+                len(json.loads(cell))!=4 or json.loads(cell)[3]!=domain['domain_id'] for cell in policy['thresholds']):
+            raise ValueError('empirical threshold stratum flight domain mismatch')
+    elif policy.get('flight_domain') is not None or policy.get('domain_id') is not None:
+        raise ValueError('legacy empirical policy cannot bind a flight domain')
     if policy.get("eligibility_policies") != eligibility_policies():
         raise ValueError("empirical decision eligibility policy mismatch")
     check_environment(policy.get("numerical_environment"))
@@ -225,6 +252,8 @@ def assess(campaign, policy, *, min_accepted=None):
         raise ValueError("tail assessment requires a frozen validation campaign")
     validate_records(campaign, "validation")
     config = campaign["config"]
+    if config.get('flight_domain') != policy.get('flight_domain'):
+        raise ValueError('validation flight domain differs from calibration')
     required = config.get("tail_min_accepted")
     if required is None or required < 1 or (min_accepted is not None and min_accepted != required):
         raise ValueError("minimum accepted sample size must be preregistered in the manifest")

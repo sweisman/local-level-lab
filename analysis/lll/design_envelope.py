@@ -21,7 +21,12 @@ PHYSICAL_ENVELOPE_ASSUMPTIONS={**ENVELOPE_ASSUMPTIONS,'version':'physical-wind-e
 
 
 def envelope_assumptions(settings):
-    return PHYSICAL_ENVELOPE_ASSUMPTIONS if settings.get('crab_model')=='wind_tas' else ENVELOPE_ASSUMPTIONS
+    assumptions=PHYSICAL_ENVELOPE_ASSUMPTIONS if settings.get('crab_model')=='wind_tas' else ENVELOPE_ASSUMPTIONS
+    if settings.get('mount_yaw_model')=='piecewise':
+        from .mount_yaw import MOUNT_YAW_POLICY
+        return {**assumptions,'version':assumptions['version']+'-mount-yaw-1',
+                'mount_yaw_policy':MOUNT_YAW_POLICY,'mount_states':'zero and individual +/-3 sigma step/rate perturbations; no Cartesian guarantee'}
+    return assumptions
 
 
 def nuisance_states(problem):
@@ -60,7 +65,8 @@ def nuisance_states(problem):
 
 def envelope_size(problem):
     epochs = len(np.unique(problem.bins.get('epoch', [0])))
-    return len(models.EXPECTED_K)*len(nuisance_states(problem))*3*(1+2*epochs)*(2 if problem.wind_tas is not None else 1)
+    mount_states=1 if problem.mount_yaw is None else len(problem.mount_yaw.states())
+    return len(models.EXPECTED_K)*len(nuisance_states(problem))*3*(1+2*epochs)*(2 if problem.wind_tas is not None else 1)*mount_states
 
 
 def envelope_information(problem):
@@ -70,6 +76,7 @@ def envelope_information(problem):
             for e in np.unique(epochs) for sign in (-1, 1)]
     sigma = problem.forward_sigma if problem.forward_sigma is not None else np.radians(5.)
     noise_levels=(3.,6.) if problem.wind_tas is not None else (6.,)
+    mount_states=[('none',np.zeros(0))] if problem.mount_yaw is None else problem.mount_yaw.states()
     states, anchors, worst, pre = [], {}, {}, {}
     for mapping_id, epoch, angle in variations:
         p = copy.copy(problem)
@@ -82,14 +89,15 @@ def envelope_information(problem):
             p.tangent = np.cross(p.bins['up'], p.fwd)
         for nuisance_id, values in nuisance_states(p):
             for forward in (-3*sigma, 0., 3*sigma):
-                for (anchor, coefficients),noise in itertools.product(models.EXPECTED_K.items(),noise_levels):
+                for (anchor, coefficients),noise,(mount_id,mount) in itertools.product(models.EXPECTED_K.items(),noise_levels,mount_states):
                     z = np.zeros(p.npar); z[:3] = coefficients
                     z[p.p:p.p+p.nc] = values
+                    z[p.mount_slice]=mount
                     if p.forward: z[-1] = forward
                     _, jac = p.prediction(z, True)
                     augmented,weights=p.observation_information(z,jac,np.full(len(problem.y),(RAD2DPH/noise)**2))
                     report = science_information(augmented, weights)['report']
-                    state_id = f'{mapping_id}/{nuisance_id}/forward-{forward:.9g}/{anchor}/noise-{noise:g}'
+                    state_id = f'{mapping_id}/{nuisance_id}/forward-{forward:.9g}/{anchor}/noise-{noise:g}/{mount_id}'
                     states.append(dict(state_id=state_id, anchor=anchor, rank=report['estimable_rank'],
                         minimum_retention=min(c['retained_fraction'] for c in report['model_contrast_information'].values())))
                     # Anchors retain the most limiting complete state for rank diagnostics.

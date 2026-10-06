@@ -1,0 +1,10 @@
+{
+  "state": "complete",
+  "pid": 3623180,
+  "shard": 1,
+  "plan_hash": "d2337e3a4bbe4da89f9b446d9b49c7ca0f19f13d94172a0bb81861696549eae0",
+  "completed": 1,
+  "attempt_limit": 3,
+  "error": null,
+  "updated_utc": "2026-10-06T18:34:56.712236+00:00"
+}

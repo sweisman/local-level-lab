@@ -1,0 +1,52 @@
+{
+  "scope": "20 Hz latent-path geometry only; no synthesized flight, science fit or search",
+  "original_trajectory_hash": "5a2ff46c08b4e2d1aab15bdb4aa4115154cfcc5980ba2a4feccbd2032c868dd4",
+  "alternative_trajectory_hash": "5e69715fb544fd45612318a48f15136f7df97354289ecfdbc939e7dc16229d83",
+  "current_implementation_hash": "3b42547d5a2ffa2a2ef5d975382b4b1b2b0a762fe831493d40cb1b7f469cb682",
+  "position_knots_preserved": true,
+  "gap_support_preserved": true,
+  "original": {
+    "supported_samples": 87402,
+    "ground_speed_mps": [
+      253.8981207976928,
+      286.0080951164807
+    ],
+    "vertical_speed_mps": [
+      -0.19372881355934235,
+      0.24319148936172758
+    ],
+    "bank_deg": [
+      -5.647857735945489,
+      16.913462785886967
+    ],
+    "scalar_roll_rate_dps": [
+      -162.18943731064263,
+      23.50819449180626
+    ],
+    "max_absolute_one_sided_bank_jump_deg": 15.908407245420783,
+    "bank_jumps_over_one_degree": 11
+  },
+  "alternative": {
+    "supported_samples": 87402,
+    "ground_speed_mps": [
+      254.31533816354738,
+      285.42974313276153
+    ],
+    "vertical_speed_mps": [
+      -0.18755327101988653,
+      0.20817222124129459
+    ],
+    "bank_deg": [
+      -2.607366212426829,
+      7.248428163357621
+    ],
+    "scalar_roll_rate_dps": [
+      -0.1869348561714685,
+      0.3301544213244875
+    ],
+    "max_absolute_one_sided_bank_jump_deg": 0.00030788733844860623,
+    "bank_jumps_over_one_degree": 0
+  },
+  "authorized_attempts": 0,
+  "assumptions": "Natural endpoint curvature and between-fix motion are unmeasured. C2 continuity avoids bank steps but does not guarantee physical motion, accuracy or science eligibility."
+}

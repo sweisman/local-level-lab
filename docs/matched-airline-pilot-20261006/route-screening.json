@@ -1,0 +1,180 @@
+{
+  "scope": "geometry-only one-second sampling, optimistic retention; no IMU or complete preprocessing",
+  "cases": [
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "curve_model": "cubic_natural",
+      "trajectory_hash": "564e90ca280b984a4cee64e736dcf2fad610c9d06ac8f973ae8598079793f964",
+      "duration_minutes": 75.0,
+      "optimistic_supported_minutes": 74.4,
+      "sampled_assumed_heading_span_deg": 96.85557140182601,
+      "optimistic_heading_diversity": {
+        "adequate": false,
+        "provisional": true,
+        "min_separation_deg": 30,
+        "min_seconds_per_heading": 600,
+        "groups": [
+          {
+            "heading_deg": 116.94378253741422,
+            "seconds": 436.0
+          },
+          {
+            "heading_deg": 126.96040603669049,
+            "seconds": 29.0
+          },
+          {
+            "heading_deg": 137.2150584965146,
+            "seconds": 1937.0
+          },
+          {
+            "heading_deg": 147.2514970285078,
+            "seconds": 889.0
+          },
+          {
+            "heading_deg": 157.2805879259447,
+            "seconds": 929.0
+          },
+          {
+            "heading_deg": 167.4188495192633,
+            "seconds": 46.0
+          },
+          {
+            "heading_deg": 177.76911046740324,
+            "seconds": 10.0
+          },
+          {
+            "heading_deg": 187.94179058350406,
+            "seconds": 11.0
+          },
+          {
+            "heading_deg": 198.64463815306706,
+            "seconds": 31.0
+          },
+          {
+            "heading_deg": 208.65952693668302,
+            "seconds": 146.0
+          }
+        ]
+      },
+      "heading_span_below_required_separation": false
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "curve_model": "cubic_natural",
+      "trajectory_hash": "6702e9212f03c59e36cafbc00e50a68fc16f8ba3c4630137c50461749f9a5ef8",
+      "duration_minutes": 75.0,
+      "optimistic_supported_minutes": 73.75,
+      "sampled_assumed_heading_span_deg": 41.8494287629029,
+      "optimistic_heading_diversity": {
+        "adequate": true,
+        "provisional": true,
+        "min_separation_deg": 30,
+        "min_seconds_per_heading": 600,
+        "groups": [
+          {
+            "heading_deg": 288.9440336129014,
+            "seconds": 1020.0
+          },
+          {
+            "heading_deg": 298.9983186129835,
+            "seconds": 113.0
+          },
+          {
+            "heading_deg": 309.01958060355946,
+            "seconds": 1651.0
+          },
+          {
+            "heading_deg": 319.02001786580706,
+            "seconds": 1423.0
+          },
+          {
+            "heading_deg": 329.0459659465333,
+            "seconds": 218.0
+          }
+        ]
+      },
+      "heading_span_below_required_separation": false
+    },
+    {
+      "track_id": "2025-08-19-aa-1433-ord-lax",
+      "curve_model": "cubic_natural",
+      "trajectory_hash": "523db1bcb54fb860573854677788a332b8f7eb1f576028fc3eedfd70fa2ca3bb",
+      "duration_minutes": 75.0,
+      "optimistic_supported_minutes": 74.56666666666666,
+      "sampled_assumed_heading_span_deg": 19.98143799461917,
+      "optimistic_heading_diversity": {
+        "adequate": false,
+        "provisional": true,
+        "min_separation_deg": 30,
+        "min_seconds_per_heading": 600,
+        "groups": [
+          {
+            "heading_deg": 226.00005344661255,
+            "seconds": 2408.0
+          },
+          {
+            "heading_deg": 236.0126065693625,
+            "seconds": 2066.0
+          }
+        ]
+      },
+      "heading_span_below_required_separation": true
+    },
+    {
+      "track_id": "2026-10-02-icelandair-680-sea-kef",
+      "curve_model": "cubic_natural",
+      "trajectory_hash": "c3b871e2048e530ab67daeec490bf4915def9708eb59f48018ca1ba022cb1f31",
+      "duration_minutes": 75.0,
+      "optimistic_supported_minutes": 74.88333333333334,
+      "sampled_assumed_heading_span_deg": 12.782513109296133,
+      "optimistic_heading_diversity": {
+        "adequate": false,
+        "provisional": true,
+        "min_separation_deg": 30,
+        "min_seconds_per_heading": 600,
+        "groups": [
+          {
+            "heading_deg": 31.612845492230324,
+            "seconds": 2951.0
+          },
+          {
+            "heading_deg": 41.61472329208942,
+            "seconds": 1542.0
+          }
+        ]
+      },
+      "heading_span_below_required_separation": true
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "curve_model": "cubic_natural",
+      "trajectory_hash": "5e69715fb544fd45612318a48f15136f7df97354289ecfdbc939e7dc16229d83",
+      "duration_minutes": 75.0,
+      "optimistic_supported_minutes": 72.86666666666666,
+      "sampled_assumed_heading_span_deg": 24.969200975452225,
+      "optimistic_heading_diversity": {
+        "adequate": false,
+        "provisional": true,
+        "min_separation_deg": 30,
+        "min_seconds_per_heading": 600,
+        "groups": [
+          {
+            "heading_deg": 165.63334058476386,
+            "seconds": 916.0
+          },
+          {
+            "heading_deg": 175.77326589376523,
+            "seconds": 3314.0
+          },
+          {
+            "heading_deg": 190.0962669940991,
+            "seconds": 142.0
+          }
+        ]
+      },
+      "heading_span_below_required_separation": true
+    }
+  ],
+  "authorized_attempts": 0,
+  "interpretation": "All supported seconds counted before motion/accelerometer/watchdog/bin losses. A pass is not eligibility or identifiability; narrow sampled heading spans flag poor proposed windows. No gate, threshold or observations changed."
+}

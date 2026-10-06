@@ -1,0 +1,70 @@
+{
+  "scope": "saved preprocessing only; no synthesis, science fit, SVD or search",
+  "campaign_sha256": "430bbcae6d4ca03f649cd5e8de4e30efb98b1984551ea8ed6df1f29c2e798ca7",
+  "execution": {
+    "version": "sharded-flight-campaign-1",
+    "task_count": 18,
+    "completed": 3,
+    "missing": 15,
+    "complete": false,
+    "analysis_failures": 3,
+    "contiguous_prefix": true,
+    "runtime_unknown_attempts": 0
+  },
+  "cases": [
+    {
+      "task_index": 0,
+      "task_id": "2e386fad56e0bbc02d59a42609aa6bd23483b55d60645fb5facb0cb9cda5ef23",
+      "failure": "ValueError('forward uncertainty unavailable: positive measured angle uncertainty required')",
+      "elapsed_s": 8.135478498996235,
+      "crab_model": "wind",
+      "magnetic_ambiguity": "exclude",
+      "forward_available": false,
+      "forward_quality": {
+        "gain": 0.04873471083588454,
+        "r2": 0.012268495488914177,
+        "bank_energy": 0.6574725883881618,
+        "reason": "roll/bank correlation too weak"
+      },
+      "retained_bins": 57,
+      "orientation_unresolved_epoch": null,
+      "saved_session_sha256": "4efb7e7759f6a3d245479700ea0e9d2349fd5ac6b3f327ba60bd199ced82d307"
+    },
+    {
+      "task_index": 1,
+      "task_id": "6b547df33f18fe313548195262a23323ef9230b171252b2059f913ae1e589314",
+      "failure": "ValueError('physical wind/TAS requires a three-axis forward reference')",
+      "elapsed_s": 8.248265241039917,
+      "crab_model": "wind_tas",
+      "magnetic_ambiguity": "exclude",
+      "forward_available": false,
+      "forward_quality": {
+        "gain": 0.04873471083588454,
+        "r2": 0.012268495488914177,
+        "bank_energy": 0.6574725883881618,
+        "reason": "roll/bank correlation too weak"
+      },
+      "retained_bins": 57,
+      "orientation_unresolved_epoch": null,
+      "saved_session_sha256": "4efb7e7759f6a3d245479700ea0e9d2349fd5ac6b3f327ba60bd199ced82d307"
+    },
+    {
+      "task_index": 2,
+      "task_id": "542522e6dd89312e16a9508a7a0414129075ff76b559ac1e641f4cf58f2b6533",
+      "failure": "ValueError('physical wind/TAS requires a three-axis forward reference')",
+      "elapsed_s": 6.387762292986736,
+      "crab_model": "wind_tas",
+      "magnetic_ambiguity": "model_and_compare",
+      "forward_available": false,
+      "forward_quality": {
+        "gain": 0.04873471083588454,
+        "r2": 0.012268495488914177,
+        "bank_energy": 0.6574725883881618,
+        "reason": "roll/bank correlation too weak"
+      },
+      "retained_bins": 57,
+      "orientation_unresolved_epoch": null,
+      "saved_session_sha256": "2151265d222a67a5b411d9595082403db1bdcd56b95766a169fb6ef6cdd3240a"
+    }
+  ]
+}

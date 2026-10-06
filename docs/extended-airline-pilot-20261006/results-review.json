@@ -1,0 +1,395 @@
+{
+  "state": "approved_prefix_complete_no_eligible_contrasts",
+  "campaign_sha256": "270b5dc62022021bd8fc10d790100bdd48a723527c100f5e646dfee5ec6944bf",
+  "implementation_hash": "82c882d2abf351cb0feb0e8efa237702d1deeccd475d682960419677bf479412",
+  "plan_hash": "d2337e3a4bbe4da89f9b446d9b49c7ca0f19f13d94172a0bb81861696549eae0",
+  "execution": {
+    "version": "sharded-flight-campaign-1",
+    "task_count": 18,
+    "completed": 3,
+    "missing": 15,
+    "complete": false,
+    "analysis_failures": 0,
+    "contiguous_prefix": true,
+    "runtime_unknown_attempts": 0
+  },
+  "known_attempt_seconds": 428.2118644589791,
+  "observed_wall_seconds": 282.394589,
+  "wall_time_basis": "launch UTC to final status filesystem mtime on original host",
+  "captured_finish_mtime_utc": "2026-10-06T18:37:10.973453+00:00",
+  "run_storage_snapshot_bytes": 49961789,
+  "remaining_authorized_evaluations": 0,
+  "cases": [
+    {
+      "task_index": 0,
+      "task_id": "d412a3874e5f02c4a9e7a61cbd8a6fa29aafbf7f81ce4b553e4ad0b01f1f5293",
+      "crab_model": "wind",
+      "magnetic_ambiguity": "exclude",
+      "failure": null,
+      "elapsed_s": 24.285723973996937,
+      "converged": true,
+      "model_test_rank": 0,
+      "design_rank": 0,
+      "svd_evaluations": 1053,
+      "design_contrasts": {
+        "sphere_rotating_vs_sphere_still": {
+          "retained_fraction": 0.0,
+          "information": 0.0,
+          "estimable": false,
+          "limiting_state": "nominal/wind-constant--1--1/forward--0.11471267/sphere_rotating/noise-6/none"
+        },
+        "sphere_rotating_vs_flat_still": {
+          "retained_fraction": 0.0,
+          "information": 0.0,
+          "estimable": false,
+          "limiting_state": "nominal/wind-constant--1--1/forward--0.11471267/sphere_rotating/noise-6/none"
+        },
+        "sphere_still_vs_flat_still": {
+          "retained_fraction": 0.0,
+          "information": 0.0,
+          "estimable": false,
+          "limiting_state": "nominal/wind-constant--1--1/forward--0.11471267/sphere_rotating/noise-6/none"
+        }
+      },
+      "untruncated_contrasts": {
+        "sphere_rotating_vs_sphere_still": {
+          "retained_fraction": 0.1352681313341136,
+          "information": 11.15366249927914,
+          "estimable": false,
+          "limiting_state": "epoch-2--1/wind-constant-1-1/forward--0.11471267/sphere_rotating/noise-6/none"
+        },
+        "sphere_rotating_vs_flat_still": {
+          "retained_fraction": 0.048734753766926646,
+          "information": 1.3414554740802305,
+          "estimable": false,
+          "limiting_state": "epoch-2-1/wind-constant--1--1/forward-0.11471267/sphere_still/noise-6/none"
+        },
+        "sphere_still_vs_flat_still": {
+          "retained_fraction": 0.17371013250026307,
+          "information": 5.454470015783847,
+          "estimable": false,
+          "limiting_state": "epoch-2--1/wind-constant-1-1/forward--0.11471267/sphere_rotating/noise-6/none"
+        }
+      },
+      "retention_threshold": 0.31224989991991997,
+      "forward_sigma_deg": 2.190850621506535,
+      "forward_gain": 0.9791684277781239,
+      "forward_r2": 0.9254233356860628,
+      "domain_observables": {
+        "version": "observable-flight-domain-1",
+        "source": "replay_simulated_high_rate",
+        "latitude_min_deg": 42.44323673159777,
+        "latitude_max_deg": 48.516658141718395,
+        "speed_min_mps": 225.67935693259275,
+        "speed_max_mps": 250.2961985220131,
+        "usable_minutes": 96.99999999999999,
+        "elapsed_minutes": 117.33333333370001,
+        "heading_span_deg": 51.09592905427053,
+        "max_gap_seconds": 520.0000000070013,
+        "max_bin_seconds": 60.0,
+        "n_bins": 97,
+        "n_epochs": 4,
+        "epoch_start_minutes": [
+          0.0,
+          25.183333333433332,
+          50.18333333351666,
+          85.18333333364998
+        ]
+      },
+      "exclusions": [
+        "model contrast not identified",
+        "no identifiable model-test subspace"
+      ],
+      "pairwise": {
+        "sphere_rotating_vs_sphere_still": {
+          "eligible": false,
+          "decision": null,
+          "exclusions": [
+            "pair contrast not identified"
+          ]
+        },
+        "sphere_rotating_vs_flat_still": {
+          "eligible": false,
+          "decision": null,
+          "exclusions": [
+            "pair contrast not identified"
+          ]
+        },
+        "sphere_still_vs_flat_still": {
+          "eligible": false,
+          "decision": null,
+          "exclusions": [
+            "pair contrast not identified"
+          ]
+        }
+      },
+      "watchdog_excluded_segments": [],
+      "wind_tas_speed_constraint_chi2": null,
+      "wind_tas_relative_margin": null,
+      "wind_tas_near_boundary": null,
+      "magnetic_comparison": {}
+    },
+    {
+      "task_index": 1,
+      "task_id": "8e2179ae092966549e4e6be4a109de2c3b19ccf3f32bb822ce2068b93b37e09c",
+      "crab_model": "wind_tas",
+      "magnetic_ambiguity": "exclude",
+      "failure": null,
+      "elapsed_s": 147.287569219945,
+      "converged": true,
+      "model_test_rank": 0,
+      "design_rank": 0,
+      "svd_evaluations": 10530,
+      "design_contrasts": {
+        "sphere_rotating_vs_sphere_still": {
+          "retained_fraction": 0.0,
+          "information": 0.0,
+          "estimable": false,
+          "limiting_state": "nominal/wind--1--1/tas-120.0/forward--0.11471267/sphere_rotating/noise-3/none"
+        },
+        "sphere_rotating_vs_flat_still": {
+          "retained_fraction": 0.0,
+          "information": 0.0,
+          "estimable": false,
+          "limiting_state": "nominal/wind--1--1/tas-120.0/forward--0.11471267/sphere_rotating/noise-3/none"
+        },
+        "sphere_still_vs_flat_still": {
+          "retained_fraction": 0.0,
+          "information": 0.0,
+          "estimable": false,
+          "limiting_state": "nominal/wind--1--1/tas-120.0/forward--0.11471267/sphere_rotating/noise-3/none"
+        }
+      },
+      "untruncated_contrasts": {
+        "sphere_rotating_vs_sphere_still": {
+          "retained_fraction": 0.17465937613525845,
+          "information": 18.726940924915596,
+          "estimable": false,
+          "limiting_state": "epoch-3--1/wind-1--1/tas-drift--1/forward--0.11471267/sphere_rotating/noise-3/none"
+        },
+        "sphere_rotating_vs_flat_still": {
+          "retained_fraction": 0.07735866750868828,
+          "information": 3.3951313423832357,
+          "estimable": false,
+          "limiting_state": "epoch-3--1/wind-1--1/tas-drift-1/forward--0.11471267/sphere_still/noise-3/none"
+        },
+        "sphere_still_vs_flat_still": {
+          "retained_fraction": 0.19652257657743555,
+          "information": 7.0024631815629705,
+          "estimable": false,
+          "limiting_state": "epoch-3--1/wind-1-1/tas-120.0/forward--0.11471267/sphere_rotating/noise-3/none"
+        }
+      },
+      "retention_threshold": 0.31224989991991997,
+      "forward_sigma_deg": 2.190850621506535,
+      "forward_gain": 0.9791684277781239,
+      "forward_r2": 0.9254233356860628,
+      "domain_observables": {
+        "version": "observable-flight-domain-1",
+        "source": "replay_simulated_high_rate",
+        "latitude_min_deg": 42.44323673159777,
+        "latitude_max_deg": 48.516658141718395,
+        "speed_min_mps": 225.67935693259275,
+        "speed_max_mps": 250.2961985220131,
+        "usable_minutes": 96.99999999999999,
+        "elapsed_minutes": 117.33333333370001,
+        "heading_span_deg": 51.09592905427053,
+        "max_gap_seconds": 520.0000000070013,
+        "max_bin_seconds": 60.0,
+        "n_bins": 97,
+        "n_epochs": 4,
+        "epoch_start_minutes": [
+          0.0,
+          25.183333333433332,
+          50.18333333351666,
+          85.18333333364998
+        ]
+      },
+      "exclusions": [
+        "model contrast not identified",
+        "no identifiable model-test subspace"
+      ],
+      "pairwise": {
+        "sphere_rotating_vs_sphere_still": {
+          "eligible": false,
+          "decision": null,
+          "exclusions": [
+            "pair contrast not identified"
+          ]
+        },
+        "sphere_rotating_vs_flat_still": {
+          "eligible": false,
+          "decision": null,
+          "exclusions": [
+            "pair contrast not identified"
+          ]
+        },
+        "sphere_still_vs_flat_still": {
+          "eligible": false,
+          "decision": null,
+          "exclusions": [
+            "pair contrast not identified"
+          ]
+        }
+      },
+      "watchdog_excluded_segments": [],
+      "wind_tas_speed_constraint_chi2": 207.8959805889124,
+      "wind_tas_relative_margin": 0.32011665466927197,
+      "wind_tas_near_boundary": false,
+      "magnetic_comparison": {}
+    },
+    {
+      "task_index": 2,
+      "task_id": "2407632284c58129888211f4d4712b2e3f8c619f9f44479247cfdcbabd234ef6",
+      "crab_model": "wind_tas",
+      "magnetic_ambiguity": "model_and_compare",
+      "failure": null,
+      "elapsed_s": 256.63857126503717,
+      "converged": true,
+      "model_test_rank": 0,
+      "design_rank": 0,
+      "svd_evaluations": 10530,
+      "design_contrasts": {
+        "sphere_rotating_vs_sphere_still": {
+          "retained_fraction": 0.0,
+          "information": 0.0,
+          "estimable": false,
+          "limiting_state": "nominal/wind--1--1/tas-120.0/forward--0.11471267/sphere_rotating/noise-3/nominal"
+        },
+        "sphere_rotating_vs_flat_still": {
+          "retained_fraction": 0.0,
+          "information": 0.0,
+          "estimable": false,
+          "limiting_state": "nominal/wind--1--1/tas-120.0/forward--0.11471267/sphere_rotating/noise-3/nominal"
+        },
+        "sphere_still_vs_flat_still": {
+          "retained_fraction": 0.0,
+          "information": 0.0,
+          "estimable": false,
+          "limiting_state": "nominal/wind--1--1/tas-120.0/forward--0.11471267/sphere_rotating/noise-3/nominal"
+        }
+      },
+      "untruncated_contrasts": {
+        "sphere_rotating_vs_sphere_still": {
+          "retained_fraction": 0.17465937613525845,
+          "information": 18.726940924915596,
+          "estimable": false,
+          "limiting_state": "epoch-3--1/wind-1--1/tas-drift--1/forward--0.11471267/sphere_rotating/noise-3/nominal"
+        },
+        "sphere_rotating_vs_flat_still": {
+          "retained_fraction": 0.07735866750868828,
+          "information": 3.3951313423832357,
+          "estimable": false,
+          "limiting_state": "epoch-3--1/wind-1--1/tas-drift-1/forward--0.11471267/sphere_still/noise-3/nominal"
+        },
+        "sphere_still_vs_flat_still": {
+          "retained_fraction": 0.19652257657743555,
+          "information": 7.0024631815629705,
+          "estimable": false,
+          "limiting_state": "epoch-3--1/wind-1-1/tas-120.0/forward--0.11471267/sphere_rotating/noise-3/nominal"
+        }
+      },
+      "retention_threshold": 0.31224989991991997,
+      "forward_sigma_deg": 2.190850621506535,
+      "forward_gain": 0.9791684277781239,
+      "forward_r2": 0.9254233356860628,
+      "domain_observables": {
+        "version": "observable-flight-domain-1",
+        "source": "replay_simulated_high_rate",
+        "latitude_min_deg": 42.44323673159777,
+        "latitude_max_deg": 48.516658141718395,
+        "speed_min_mps": 225.67935693259275,
+        "speed_max_mps": 250.2961985220131,
+        "usable_minutes": 96.99999999999999,
+        "elapsed_minutes": 117.33333333370001,
+        "heading_span_deg": 51.09592905427053,
+        "max_gap_seconds": 520.0000000070013,
+        "max_bin_seconds": 60.0,
+        "n_bins": 97,
+        "n_epochs": 4,
+        "epoch_start_minutes": [
+          0.0,
+          25.183333333433332,
+          50.18333333351666,
+          85.18333333364998
+        ]
+      },
+      "exclusions": [
+        "model contrast not identified",
+        "no identifiable model-test subspace",
+        "magnetic retained/excluded paths disagree or comparison unavailable"
+      ],
+      "pairwise": {
+        "sphere_rotating_vs_sphere_still": {
+          "eligible": false,
+          "decision": null,
+          "exclusions": [
+            "pair contrast not identified",
+            "magnetic retained/excluded paths disagree or comparison unavailable"
+          ]
+        },
+        "sphere_rotating_vs_flat_still": {
+          "eligible": false,
+          "decision": null,
+          "exclusions": [
+            "pair contrast not identified",
+            "magnetic retained/excluded paths disagree or comparison unavailable"
+          ]
+        },
+        "sphere_still_vs_flat_still": {
+          "eligible": false,
+          "decision": null,
+          "exclusions": [
+            "pair contrast not identified",
+            "magnetic retained/excluded paths disagree or comparison unavailable"
+          ]
+        }
+      },
+      "watchdog_excluded_segments": [],
+      "wind_tas_speed_constraint_chi2": 207.8959805889124,
+      "wind_tas_relative_margin": 0.32011665466927197,
+      "wind_tas_near_boundary": false,
+      "magnetic_comparison": {
+        "version": "magnetic-two-path-1",
+        "primary_agree": false,
+        "pairwise": {
+          "sphere_rotating_vs_sphere_still": {
+            "agree": false,
+            "reasons": [
+              "pair contrast not identified"
+            ],
+            "shift_sigma": 0.0
+          },
+          "sphere_rotating_vs_flat_still": {
+            "agree": false,
+            "reasons": [
+              "pair contrast not identified"
+            ],
+            "shift_sigma": 0.0
+          },
+          "sphere_still_vs_flat_still": {
+            "agree": false,
+            "reasons": [
+              "pair contrast not identified"
+            ],
+            "shift_sigma": 0.0
+          }
+        },
+        "retained_exclusions": [
+          "model contrast not identified",
+          "no identifiable model-test subspace"
+        ],
+        "excluded_exclusions": [
+          "model contrast not identified",
+          "no identifiable model-test subspace"
+        ],
+        "k_shift_sigma": {
+          "k_rot_sphere": 0.0,
+          "k_curv": 0.0,
+          "k_disc": 0.0
+        }
+      }
+    }
+  ],
+  "interpretation": "One generating condition under three matched candidates, bootstrap zero; no error-rate, coverage or model winner claim. Do not spend remaining proposed cases without a new budget and reviewed geometry."
+}

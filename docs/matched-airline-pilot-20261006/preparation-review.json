@@ -1,0 +1,63 @@
+{
+  "state": "prepared_not_run",
+  "plan_hash": "e3064a50835a631d6968b11757d8451cff1e87c20e9ae74bf02580f2fa06bf78",
+  "implementation_hash": "82c882d2abf351cb0feb0e8efa237702d1deeccd475d682960419677bf479412",
+  "numerical_environment_hash": "20ef393862e7723ba90e825b625826081cde501e4d9c944f2dbff29526ebdd69",
+  "proposed_evaluations": 18,
+  "initial_proposed_evaluations": 3,
+  "authorized_evaluations": 0,
+  "completed_evaluations": 0,
+  "first_tasks": [
+    {
+      "index": 0,
+      "task_id": "e506e8d5eb39fedd0e31d6f62b2afe1f2e9bb82591337393720f4cc5fb0644e2",
+      "truth": "sphere_rotating",
+      "scenario": "wind+bias_mixed",
+      "seed": 600901,
+      "candidate_id": "c00661371b5f82cc13fe17d161e9a6397755149ca0d266b6dae2c87ece99babf"
+    },
+    {
+      "index": 1,
+      "task_id": "3a5f9b67e12233d5bd2f8f0c854bcc8086a847a3a37503f566bb0ee0ea625884",
+      "truth": "sphere_rotating",
+      "scenario": "wind+bias_mixed",
+      "seed": 600901,
+      "candidate_id": "77b88e780156a9db169022b6e227d5c269288d6d0ed79b9a2eb5632f73244e1e"
+    },
+    {
+      "index": 2,
+      "task_id": "d9678d8191f4be09b7da7270a31305c1e7707449c85d8a28c850d62d0d2fcf0f",
+      "truth": "sphere_rotating",
+      "scenario": "wind+bias_mixed",
+      "seed": 600901,
+      "candidate_id": "1347128f785a1818dbe69d517b3c52a5192af7885fb2c509d37affdcc87e188c"
+    }
+  ],
+  "turn_checks": [
+    {
+      "minute": 20.0,
+      "safe": true,
+      "reason": null,
+      "evidence": []
+    },
+    {
+      "minute": 40.0,
+      "safe": true,
+      "reason": null,
+      "evidence": []
+    },
+    {
+      "minute": 60.0,
+      "safe": true,
+      "reason": null,
+      "evidence": []
+    }
+  ],
+  "limitations": [
+    "Matched-angle covariance remains uncalibrated; independent predictor-error assumption.",
+    "C2 between-fix motion and natural endpoint curvature are assumptions, not observed aircraft behavior.",
+    "Small real aircraft corrections are physical motion; controlled tests do not measure their actual population.",
+    "No IMU hardware qualification, full-pipeline successful runtime or rare-error validation.",
+    "Three planned candidates share generating conditions; failures are spent attempts, not retries."
+  ]
+}

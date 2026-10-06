@@ -7,6 +7,99 @@ required comparisons across both crab models. No fresh calibration or validation
 Real IMU testing is pending hardware. The current scientific gate is retained; no production
 policy or external-GPS fallback is promoted.
 
+Subsequent [observable-domain enforcement](../flight-domain-development-20261006/README.md)
+binds flight thresholds to an explicit route/protocol envelope and acquisition source. It
+abstains outside that envelope and rejects calibration/validation domain mismatches. This
+software guard does not approve the historical restricted proposal below; its source freeze
+is stale, no usable experimental domain has been established, and further execution allowance
+remains zero.
+
+The [sharded runner](../sharded-campaigns-20261006/README.md) now implements deterministic
+task identities, two single-thread local workers, durable independent journals, interrupted
+attempt preservation and streaming duplicate-checked merging. It has software-fixture checks,
+including two actual processes; it subsequently completed the initial three-attempt airline
+pilot, preserving all three preprocessing failures. Sharded preparation needs a
+fresh one-thread environment freeze. These engineering changes do not approve a usable domain,
+set decision thresholds or grant additional compute.
+
+A refreshed [airline-route pilot](../airline-pilot-preparation-20261006/README.md) now freezes
+18 matched evaluations under the current source and one-thread worker environment.
+Its authorized initial three evaluations are complete, all failing before fitting for weak
+forward-reference correlation; the remaining 15 are unrun and unapproved. Five archived
+paths were reviewed without fits or SVDs; speed/interpolation diagnostics expose assumptions
+that need testing. Its three-attempt allowance is exhausted and does not revive older plans.
+
+The saved-data follow-up identifies amplified GPS course noise and artificial bank jumps
+from the original position interpolation. Matched smoothing is a research-only forward-reference
+diagnostic with no angle uncertainty or flight acceptance. An explicit C2 route alternative
+preserves positions and gaps while eliminating bank steps on the selected window. Neither
+has run through the complete science fit. The trajectory extension changes the scientific
+source freeze, so the completed pilot plan remains historical and cannot be resumed as new work.
+
+The [fresh matched-reference pilot](../matched-airline-pilot-20261006/README.md) now freezes
+the opt-in uncertainty-aware method and smoother route with fresh seed 600901. Controlled
+checks include continuous small aircraft corrections; covariance treats GPS and gyro jointly
+and splits at gaps. Its approved initial three evaluations are complete: all fits converged,
+none passed the scientific gate. Only 57 minutes of cruise survived; heading diversity and
+every intended design contrast failed. The other 15 remain unrun and unapproved. Coverage,
+calibration and independent validation remain pending.
+
+Subsequent geometry-only preflight screened 192 overlapping 75-minute windows across the saved
+tracks and 9,640 safe three-turn schedules, with no passing window and one missing-height
+failure. Twenty-one longer extensions around the sole no-turn duration/heading pass produced
+19 observable-screen passes. The [extended airline pilot](../extended-airline-pilot-20261006/README.md)
+uses a 120-minute AUH–ORD window with 25/50/85-minute turns. Its approved three-case prefix
+is now complete: all fits converged without analysis failures, retaining 97 cruise minutes
+with sufficient heading diversity and a passing forward reference. Every intended design
+contrast still failed, with fitted and worst design ranks zero. All pairwise decisions
+abstained; the optional mount comparison was unavailable, with no flags or coefficient shifts.
+Wall time was about 4m42s. The budget is spent and 15 cases remain unrun. Source and acceptance
+gates are unchanged. Diagnose nuisance/contrast losses before another expensive pilot.
+
+That saved-array diagnosis is now [complete](../extended-airline-pilot-20261006/DIAGNOSTIC_REVIEW.md):
+smooth bias drift dominates most checked projection losses, and westbound geometry weakens
+rotating-globe versus disc separation. Six fixed nominal turn controls do not restore all
+contrasts. A course-gap interpolation bug in the analytic design tool is repaired; source
+was `a7cc6194...` after that repair; the later shape-rule extension changes it again, so old prospective execution freezes are stale. Completed pilots and
+their decisions remain unchanged. Next compare route direction and feasible signal modulation,
+keeping the nuisance space, before budgeting a complete-envelope/full-pipeline comparison.
+
+The analysis now also preserves **globe versus the specified disc** as a separate experimental
+result when rotation cannot be resolved. It uses the existing gated comparisons; it does not
+rescue a route whose globe/disc contrasts fail. The saved first and second pilots give 889 and
+900 correct shape preferences, zero incorrect preferences, and 111 and 100 abstentions. These
+add 9 and 12 preferences beyond their three-model winners. No new fits or flights ran, and
+the composite decision still needs its own error-budget validation.
+
+The geometry tool can explicitly optimize both shape comparisons without requiring rotation
+separation. Keep both globe alternatives in that design objective, or declare a single pair
+when only that question is intended. Next screen different route directions and safe turn
+patterns under these explicit objectives with the same nuisance space.
+
+A potentially useful real airborne source is also [documented for inspection](AIRBORNE_DATA.md).
+Its raw IMU archive could support a separate empirical discriminator test after format and
+processing checks. The first supplied IPUTI0 measurement sample has now been decoded for
+inspection; its status/navigation messages provide no independent raw gyro channels.
+
+The [direction controls](DIRECTION_REVIEW.md) are now complete: 21 fixed patterns, 12 safe,
+24 candidate evaluations, including two no-bin failures. Opposite traversal of the longer
+route gives a nominal globe/disc pass under physical wind, while rotation remains unresolved.
+It still fails under the broader wind correction; no accepted protocol was found.
+The NASA inspection has confirmed actual ILVIS0 gyro filenames, a second distinct IPUTI0
+source and login redirects on both access paths. An Earthdata account is now available.
+The [preserved IPUTI0 sample](airborne-sample-iputi0/README.md) spans about 25½ minutes,
+with 1,527 verified packets of each message type and 11 unframed bytes preserved without
+repair. Three focused decoder checks passed. The
+[subsequent ILVIS0 sample](airborne-sample-ilvis0/README.md) contains 132,444 time-tagged IMU8
+packets at approximately 200 Hz over 662.226 s, with GPS in the same log. All 143,471 outer checksums
+pass. Timed opaque payloads are preserved, but physical gyro units/axes/corrections still
+need documentation. Two focused checks pass; no empirical Earth-model test has been run.
+
+The [remaining plan](PLAN_STATUS.md) separates implemented review features from the geometry,
+device qualification and fresh calibration/validation evidence still needed. A 30-state
+follow-up preserves the reversed physical-wind shape pass in a small registered subset;
+it does not certify the full envelope, and the broader wind candidate still fails.
+
 ## Saved-record review and chosen restricted domain
 
 `pilot-comparison.json` compares both pilots under the same 10% rank-margin requirement,

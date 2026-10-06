@@ -24,6 +24,14 @@ from test_release060 import crab_fixture
 from test_research_candidates import settings
 
 
+@pytest.fixture
+def domain_file(tmp_path):
+    from test_flight_domain import envelope
+    path=tmp_path/'flight-domain.json'
+    path.write_text(json.dumps(envelope('synthetic_gnss')))
+    return path
+
+
 @pytest.mark.parametrize("crab,bias,forward_uncertainty", [("dynamic", "constant", False), ("wind", "dynamic", False), ("dynamic", "dynamic", True)])
 def test_design_information_ignores_gyro_and_fitted_weights(crab, bias, forward_uncertainty):
     bins, forward = crab_fixture()
@@ -84,7 +92,7 @@ def test_geometry_matrix_is_deterministic_and_observable():
         realize(49, "equator", geometry="stress", geometry_cell=matrix[0]["id"])
 
 
-def test_exact_protocol_is_frozen_and_cannot_be_overridden(monkeypatch, tmp_path):
+def test_exact_protocol_is_frozen_and_cannot_be_overridden(monkeypatch, tmp_path, domain_file):
     import research
     protocol = dict(lat0=35, lon0=-30, speed=270, legs=[[10, 15], [100, 15], [190, 15], [280, 15], [10, 15]],
                     turn_schedule=[5, 15, 25, 35, 45, 55])
@@ -105,7 +113,7 @@ def test_exact_protocol_is_frozen_and_cannot_be_overridden(monkeypatch, tmp_path
     output = tmp_path/"manifest.json"
     input_file.write_text(json.dumps(protocol))
     monkeypatch.setattr(sys, "argv", ["research.py", "--partition", "calibration", "--truth", "all",
-        "--geometry", "fixed", "--protocol", str(input_file), "--write-manifest", str(output), "-o", str(tmp_path/"unused.json")])
+        "--geometry", "fixed", "--protocol", str(input_file), '--flight-domain',str(domain_file), "--write-manifest", str(output), "-o", str(tmp_path/"unused.json")])
     research.main()
     manifest = json.loads(output.read_text())
     config = manifest["config"]
@@ -184,7 +192,8 @@ def test_numerical_thread_settings_are_frozen(monkeypatch):
 
 
 def test_rank_strata_select_threshold_after_fitting_and_abstain_when_unseen(monkeypatch):
-    data = campaign()
+    from test_flight_domain import scoped_campaign, geometry
+    data = scoped_campaign()
     extra = []
     for row in data["records"]:
         second = copy.deepcopy(row)
@@ -199,11 +208,11 @@ def test_rank_strata_select_threshold_after_fitting_and_abstain_when_unseen(monk
     result.update(model_test_rank=2, chi2_free=0., chi2={m: 12. for m in models.MODELS},
                   delta_chi2_identifiable={m: 12. for m in models.MODELS}, rejected=dict.fromkeys(models.MODELS, False))
     monkeypatch.setattr("lll.inference.candidate_fit", lambda *args, **kwargs: copy.deepcopy(result))
-    observed = fit.fit(None, None, None, None, research_candidate=True, n_boot=0,
+    observed = fit.fit(geometry(), None, None, None, research_candidate=True, n_boot=0,
                        decision_policy=policy, decision_candidate_id="x", decision_variant="spp")
     assert all(value is False for value in observed["rejected"].values())  # rank-2 cutoff=14, rank-3 cutoff=4.
     result["model_test_rank"] = 1
-    observed = fit.fit(None, None, None, None, research_candidate=True, n_boot=0,
+    observed = fit.fit(geometry(), None, None, None, research_candidate=True, n_boot=0,
                        decision_policy=policy, decision_candidate_id="x", decision_variant="spp")
     assert not observed["decision_valid"] and all(value is None for value in observed["rejected"].values())
 
@@ -216,17 +225,18 @@ def test_duplicate_seed_cannot_migrate_between_rank_strata():
     with pytest.raises(ValueError, match="duplicate"): calibrate(data, min_accepted=5)
 
 
-def test_manifest_preregisters_geometry_rank_and_both_sample_goals(monkeypatch, tmp_path):
+def test_manifest_preregisters_geometry_rank_and_both_sample_goals(monkeypatch, tmp_path, domain_file):
     import research
     cells = [cell["id"] for cell in geometry_stress_matrix()[:2]]
     output = tmp_path/"manifest.json"
     monkeypatch.setattr(sys, "argv", ["research.py", "--partition", "calibration", "--truth", "all",
         "--geometry", "stress", "--geometry-cells", *cells, "--research-candidate", "--model-test-ranks", "2",
-        "--pairwise-evidence", "--write-manifest", str(output), "-o", str(tmp_path/"unused.json")])
+        "--pairwise-evidence", '--flight-domain',str(domain_file), "--write-manifest", str(output), "-o", str(tmp_path/"unused.json")])
     research.main()
     config = json.loads(output.read_text())["config"]
     assert config["preregistered_geometry_cells"] == cells
     assert all(json.loads(cell)[2] == 2 for cell in config["operational_cells"])
+    assert all(json.loads(cell)[3] == config['flight_domain']['domain_id'] for cell in config['operational_cells'])
     assert config["campaign_plan"]["validation_family_size"] == 18
     assert config["campaign_plan"]["attempt_cells"] == 6
     assert config["calibration_min_accepted"] == required_calibration_n(.0027)
@@ -242,13 +252,13 @@ def test_optimizer_cost_can_include_full_design_evaluation(monkeypatch):
     assert output["cost_basis"] == "complete design evaluation"
 
 
-def test_manifest_freezes_explicit_nuisance_subset_and_validation_power(monkeypatch, tmp_path):
+def test_manifest_freezes_explicit_nuisance_subset_and_validation_power(monkeypatch, tmp_path, domain_file):
     import research
     output = tmp_path/"manifest.json"
     monkeypatch.setattr(sys, "argv", ["research.py", "--partition", "calibration", "--truth", "all",
         "--scenarios", "wind", "bias_mixed", "wind", "--geometry", "fixed", "--research-candidate",
         "--model-test-ranks", "2", "--pairwise-evidence", "--calibration-alpha", ".00135",
-        "--validation-design-rate", ".00135", "--write-manifest", str(output), "-o", str(tmp_path/"unused.json")])
+        "--validation-design-rate", ".00135", '--flight-domain',str(domain_file), "--write-manifest", str(output), "-o", str(tmp_path/"unused.json")])
     research.main()
     config = json.loads(output.read_text())["config"]
     assert config["preregistered_scenarios"] == ["bias_mixed", "wind"]
@@ -261,6 +271,7 @@ def test_manifest_freezes_explicit_nuisance_subset_and_validation_power(monkeypa
 
 def test_replay_applies_supplied_pairwise_policy(monkeypatch, tmp_path):
     import research
+    from lll.research_calibration import diagnostic_stratum
     original = tmp_path/"original.json"
     policy_file = tmp_path/"pairwise.json"
     output = tmp_path/"replayed.json"
@@ -268,7 +279,8 @@ def test_replay_applies_supplied_pairwise_policy(monkeypatch, tmp_path):
                fit_options={"n_boot": 0}, variant="spp", partition="development", design={})
     policy = {"policy_hash": "frozen", "mode": "flight", "family_size": 6,
               "thresholds": {json.dumps(["x", "spp", 3]): {}},
-              "diagnostic_thresholds": {json.dumps(["fixture", MODEL_CONTRASTS[0]]): {}}}
+              "diagnostic_thresholds": {json.dumps([diagnostic_stratum({'scenario':'baseline','candidate_id':'x',
+                  'variant':'spp','model_test_rank':3}), MODEL_CONTRASTS[0],None]): {}}}
     original.write_text(json.dumps({"records": [row]}))
     policy_file.write_text(json.dumps(policy))
     calls = []
@@ -326,7 +338,8 @@ def test_pair_pool_keeps_units_and_excludes_uninformative_flights():
 
 
 def test_flight_pairwise_calibration_is_separate_and_validation_applies_it():
-    data = campaign()
+    from test_flight_domain import scoped_campaign
+    data = scoped_campaign()
     data["implementation_hash"] = implementation_hash()
     for row in data["records"]:
         row.update(measured_fit(row["truth"]))

@@ -1,0 +1,181 @@
+{
+  "method": "globe-disc-pair-rule-1",
+  "implementation_hash": "1bf8f7c0120fa84504d98c377db61807cacf9f2db6fdcec20f814b9f4a4d8500",
+  "campaigns": [
+    {
+      "input_path": "docs/development-1000-20261005/campaign.json.gz",
+      "input_sha256": "2ace7a57330a0b9e7b079aa0ef675b39fa18b70d08a4a59b6a69fed48fd046be",
+      "original_implementation_hash": "484978c7cf384a3b181f03ca2aae532b7d166cd02f465c46a8149a013ff80cff",
+      "original_manifest_hash": "b6aea66d97e910c0692672c375018ed31a20c115426534abaf9eb9478aa2908e",
+      "cells": [
+        {
+          "truth": "flat_still",
+          "scenario": "bias_mixed",
+          "attempted": 166,
+          "correct": 151,
+          "incorrect": 0,
+          "abstain": 15,
+          "conflict": 0,
+          "shape_without_three_model_winner": 0,
+          "calibrated_pairwise_inputs": 0
+        },
+        {
+          "truth": "flat_still",
+          "scenario": "wind",
+          "attempted": 166,
+          "correct": 122,
+          "incorrect": 0,
+          "abstain": 44,
+          "conflict": 0,
+          "shape_without_three_model_winner": 0,
+          "calibrated_pairwise_inputs": 0
+        },
+        {
+          "truth": "sphere_rotating",
+          "scenario": "bias_mixed",
+          "attempted": 167,
+          "correct": 166,
+          "incorrect": 0,
+          "abstain": 1,
+          "conflict": 0,
+          "shape_without_three_model_winner": 0,
+          "calibrated_pairwise_inputs": 0
+        },
+        {
+          "truth": "sphere_rotating",
+          "scenario": "wind",
+          "attempted": 167,
+          "correct": 146,
+          "incorrect": 0,
+          "abstain": 21,
+          "conflict": 0,
+          "shape_without_three_model_winner": 9,
+          "calibrated_pairwise_inputs": 0
+        },
+        {
+          "truth": "sphere_still",
+          "scenario": "bias_mixed",
+          "attempted": 167,
+          "correct": 166,
+          "incorrect": 0,
+          "abstain": 1,
+          "conflict": 0,
+          "shape_without_three_model_winner": 0,
+          "calibrated_pairwise_inputs": 0
+        },
+        {
+          "truth": "sphere_still",
+          "scenario": "wind",
+          "attempted": 167,
+          "correct": 138,
+          "incorrect": 0,
+          "abstain": 29,
+          "conflict": 0,
+          "shape_without_three_model_winner": 0,
+          "calibrated_pairwise_inputs": 0
+        }
+      ],
+      "totals": {
+        "attempted": 1000,
+        "correct": 889,
+        "incorrect": 0,
+        "abstain": 111,
+        "conflict": 0,
+        "shape_without_three_model_winner": 9,
+        "calibrated_pairwise_inputs": 0
+      }
+    },
+    {
+      "input_path": "docs/development-1000-20261006/campaign.json.gz",
+      "input_sha256": "180456a4422583e8eebf64996d8c85cb403814930572b787b888ea2395aec1e0",
+      "original_implementation_hash": "3f720b4148e0b0bd8989eaa7e72600997b64f3a88664dc3cd5d21155d3a4be8d",
+      "original_manifest_hash": "bebc8dee5a6c6d291015fa3973b0759d05f408efdc8404335e89dac35d47fb0f",
+      "cells": [
+        {
+          "truth": "flat_still",
+          "scenario": "bias_mixed",
+          "attempted": 166,
+          "correct": 148,
+          "incorrect": 0,
+          "abstain": 18,
+          "conflict": 0,
+          "shape_without_three_model_winner": 0,
+          "calibrated_pairwise_inputs": 0
+        },
+        {
+          "truth": "flat_still",
+          "scenario": "wind",
+          "attempted": 166,
+          "correct": 131,
+          "incorrect": 0,
+          "abstain": 35,
+          "conflict": 0,
+          "shape_without_three_model_winner": 0,
+          "calibrated_pairwise_inputs": 0
+        },
+        {
+          "truth": "sphere_rotating",
+          "scenario": "bias_mixed",
+          "attempted": 167,
+          "correct": 166,
+          "incorrect": 0,
+          "abstain": 1,
+          "conflict": 0,
+          "shape_without_three_model_winner": 0,
+          "calibrated_pairwise_inputs": 0
+        },
+        {
+          "truth": "sphere_rotating",
+          "scenario": "wind",
+          "attempted": 167,
+          "correct": 157,
+          "incorrect": 0,
+          "abstain": 10,
+          "conflict": 0,
+          "shape_without_three_model_winner": 12,
+          "calibrated_pairwise_inputs": 0
+        },
+        {
+          "truth": "sphere_still",
+          "scenario": "bias_mixed",
+          "attempted": 167,
+          "correct": 166,
+          "incorrect": 0,
+          "abstain": 1,
+          "conflict": 0,
+          "shape_without_three_model_winner": 0,
+          "calibrated_pairwise_inputs": 0
+        },
+        {
+          "truth": "sphere_still",
+          "scenario": "wind",
+          "attempted": 167,
+          "correct": 132,
+          "incorrect": 0,
+          "abstain": 35,
+          "conflict": 0,
+          "shape_without_three_model_winner": 0,
+          "calibrated_pairwise_inputs": 0
+        }
+      ],
+      "totals": {
+        "attempted": 1000,
+        "correct": 900,
+        "incorrect": 0,
+        "abstain": 100,
+        "conflict": 0,
+        "shape_without_three_model_winner": 12,
+        "calibrated_pairwise_inputs": 0
+      }
+    }
+  ],
+  "helper_sha256": "45e3696f10fd29cff394433891ccba36610d89a597631e5e71136ff5bf6209ad",
+  "additional_flight_attempts": 0,
+  "error_rate_validated": false,
+  "limitations": [
+    "Uses stored pairwise eligibility, endpoint decisions and diagnostic thresholds; no new fits, gate repair or calibration.",
+    "Historical synthetic routes and nuisance scenarios differ from current observed-airline profiles.",
+    "Counts are descriptive; seeds shared across truths/scenarios are not independent null draws.",
+    "The composite shape decision needs its own preregistered error budget and independent validation."
+  ]
+}

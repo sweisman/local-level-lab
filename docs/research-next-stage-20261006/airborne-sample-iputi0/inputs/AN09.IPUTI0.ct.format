@@ -1,0 +1,18 @@
+Files in ct files:
+field name               units
+
+project name             n/a (token)     
+set name                 n/a (token)     
+transect name            n/a (token)     
+sequence number          n/a (number)    
+clock - year             years           
+clock - month            months          
+clock - day              days            
+clock - hours            hours           
+clock - minutes          minutes         
+clock - seconds          seconds         
+clock - hunds            0.01 seconds    
+time relative to SOT     10 usecs        
+
+NOTE: clock times are approximate.  For accurate timing only time
+relative to SOT should be used.

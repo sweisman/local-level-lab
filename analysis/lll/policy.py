@@ -48,7 +48,7 @@ CANDIDATE_POLICY = {
 def candidate_policy(settings=None):
     if (settings or {}).get('design_mode') == 'envelope':
         from .design_envelope import envelope_assumptions
-        return {**CANDIDATE_POLICY, 'version':'candidate-wind-tas-1' if settings.get('crab_model')=='wind_tas' else 'candidate-envelope-1', 'design_assumptions':envelope_assumptions(settings),
+        return {**CANDIDATE_POLICY, 'version':'candidate-magnetic-two-path-1' if settings.get('mount_yaw_model')=='piecewise' else 'candidate-wind-tas-1' if settings.get('crab_model')=='wind_tas' else 'candidate-envelope-1', 'design_assumptions':envelope_assumptions(settings),
                 'pairwise_method':(settings or {}).get('pairwise_method','observable_coordinate')}
     return CANDIDATE_POLICY
 
@@ -60,10 +60,13 @@ def eligibility_provenance(candidate=False, settings=None):
 
 def eligibility_policies():
     return {"legacy": eligibility_provenance(), "candidate": eligibility_provenance(True),
+            'flight_domain':{'version':'observable-flight-domain-1','empirical_rule':'matching explicit observable envelope required; otherwise abstain'},
             'envelope':eligibility_provenance(True,{'design_mode':'envelope'}),
             'profile':eligibility_provenance(True,{'design_mode':'envelope','pairwise_method':'profile'}),
             'wind_tas':eligibility_provenance(True,{'design_mode':'envelope','crab_model':'wind_tas'}),
-            'wind_tas_profile':eligibility_provenance(True,{'design_mode':'envelope','crab_model':'wind_tas','pairwise_method':'profile'})}
+            'wind_tas_profile':eligibility_provenance(True,{'design_mode':'envelope','crab_model':'wind_tas','pairwise_method':'profile'}),
+            'magnetic_two_path':eligibility_provenance(True,{'design_mode':'envelope','mount_yaw_model':'piecewise','pairwise_method':'profile'}),
+            'magnetic_two_path_wind_tas':eligibility_provenance(True,{'design_mode':'envelope','crab_model':'wind_tas','mount_yaw_model':'piecewise','pairwise_method':'profile'})}
 
 
 def is_candidate(fit):
@@ -107,7 +110,7 @@ def contrast_eligibility(report, comparison=None):
             "limiting_contrast": min(margins, key=margins.get) if complete else None}
 
 
-def scientific_exclusions(result, comparison=None):
+def _scientific_path_exclusions(result, comparison=None):
     """One scientific policy for session analysis, research and empirical campaigns."""
     fit = result.get("fit")
     if not fit:
@@ -120,6 +123,13 @@ def scientific_exclusions(result, comparison=None):
         return ['pair profile settings mismatch']
     policy = CANDIDATE_POLICY["exclusions"] if candidate else PRIMARY_EXCLUSIONS
     reasons = []
+    if fit.get('flight_domain') is not None:
+        from .flight_domain import membership
+        expected = membership(fit['flight_domain'], fit.get('domain_observables'))
+        if fit.get('domain_membership') != expected or fit.get('domain_id') != expected['domain_id']:
+            reasons.append('flight domain binding missing or inconsistent')
+        reasons.extend(expected['exclusions'])
+    reasons.extend(fit.get('decision_domain_exclusions', []))
     if not pair and not fit.get("convergence", {}).get("converged", False):
         reasons.append("inference did not converge")
     if not candidate and fit.get("eligibility_policy") is not None and fit["eligibility_policy"] != eligibility_provenance():
@@ -127,6 +137,9 @@ def scientific_exclusions(result, comparison=None):
     ignored = {'prior_dominated','crab_sensitive','inference_nonconvergence'} if pair else set()
     reasons.extend(policy[f] for f in sorted((set(result.get("flags", []))-ignored) & policy.keys()))
     if candidate:
+        if settings.get('mount_yaw_model')=='piecewise' and not pair:
+            if fit.get('mount_yaw_test_near_boundary') is not False:
+                reasons.append('mount yaw fit near parameter boundary or diagnostic unavailable')
         if settings.get('crab_model')=='wind_tas' and not pair:
             if fit.get('wind_tas_test_near_boundary') is not False:
                 reasons.append('physical wind/TAS fit near parameter boundary or diagnostic unavailable')
@@ -170,6 +183,17 @@ def scientific_exclusions(result, comparison=None):
     return list(dict.fromkeys(reasons))
 
 
+def scientific_exclusions(result,comparison=None):
+    reasons=_scientific_path_exclusions(result,comparison)
+    fit=result.get('fit') or {}
+    if fit.get('inference_policy',{}).get('settings',{}).get('mount_yaw_model')=='piecewise':
+        report=fit.get('magnetic_ambiguity_comparison') or {}
+        agree=report.get('primary_agree') if comparison is None else report.get('pairwise',{}).get(comparison,{}).get('agree')
+        if report.get('version')!='magnetic-two-path-1' or agree is not True:
+            reasons.append('magnetic retained/excluded paths disagree or comparison unavailable')
+    return list(dict.fromkeys(reasons))
+
+
 def research_eligible(row):
     """External gate exclusions plus the same scientific inputs used by analysis."""
     return not row.get("failure") and not row.get("exclusions") and not scientific_exclusions(
@@ -177,13 +201,16 @@ def research_eligible(row):
 
 
 def decision_stratum(row):
-    return json.dumps([row.get("candidate_id"), row.get("variant"), row.get("model_test_rank")], separators=(",", ":"))
+    fields = [row.get("candidate_id"), row.get("variant"), row.get("model_test_rank")]
+    if row.get('domain_id') is not None: fields.append(row['domain_id'])
+    return json.dumps(fields, separators=(",", ":"))
 
 
 def design_eligibility(report, comparison=None):
     criterion = contrast_eligibility(report, comparison)
-    from .design_envelope import ENVELOPE_ASSUMPTIONS,PHYSICAL_ENVELOPE_ASSUMPTIONS
-    if report.get("assumptions") not in (CANDIDATE_POLICY["design_assumptions"], ENVELOPE_ASSUMPTIONS,PHYSICAL_ENVELOPE_ASSUMPTIONS):
+    from .design_envelope import ENVELOPE_ASSUMPTIONS,PHYSICAL_ENVELOPE_ASSUMPTIONS,envelope_assumptions
+    mount=[envelope_assumptions({'mount_yaw_model':'piecewise','crab_model':crab}) for crab in ('wind','wind_tas')]
+    if report.get("assumptions") not in (CANDIDATE_POLICY["design_assumptions"], ENVELOPE_ASSUMPTIONS,PHYSICAL_ENVELOPE_ASSUMPTIONS,*mount):
         criterion.update(valid=False, all_estimable=False, worst_margin=None, worst_information=None, limiting_contrast=None)
     return criterion
 BENCH_CHECKS = ("decode", "sample_rate", "scale", "autozero", "range", "stability",

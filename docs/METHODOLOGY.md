@@ -74,6 +74,14 @@ orientation and possible mount movement can exclude portions or the whole flight
 measurements help check apparent mount movement, but changing wind can resemble it; the analysis
 reports that ambiguity and retains its protective checks.
 
+An optional research path allows an unknown change in mounting direction and slow mounting
+drift during flagged intervals. It retains most of those measurements, while removing a
+boundary measurement that could contain an abrupt movement. It separately repeats the original
+analysis that excludes the flagged intervals. A comparison can proceed only when both paths
+pass their checks, give the same model decisions and have compatible estimates. If the original
+path has too little usable data, the research path also abstains. This comparison has passed
+controlled software checks and still needs campaign validation.
+
 Next it asks whether differences between the Earth models survive the allowed IMU and wind
 effects. The development method checks this at each model prediction rather than relying only
 on whichever model the noisy recording happens to favor. Retained data and reconstructed IMU
@@ -88,6 +96,24 @@ they do not guarantee success under every possible condition.
 Only an informative recording can support a comparison. The method can report that one pair of
 models is distinguishable while another pair is not. That partial evidence does not establish
 a winner among all three. Its statistical decision rules still require independent validation.
+
+Globe versus the specified stationary disc is also a useful question in its own right.
+The experimental shape result can favor a globe when one usable comparison rules out the disc
+and retains its globe alternative, even when rotation remains unresolved. Favoring the disc
+requires both globe comparisons to rule out their globe alternatives and retain the disc.
+Opposing shape preferences cause abstention. Each contributing comparison must pass its own
+recording, geometry and uncertainty checks. Combining informative flights follows the same
+rules after accounting for repeated recordings from the same physical IMU.
+
+Trying either globe comparison creates more opportunities to reject a true disc by chance.
+Calibrating each comparison therefore does not automatically calibrate the combined shape
+decision. Its error budget and independent validation must cover that choice explicitly.
+
+Any calibrated threshold must also state which flight conditions it covers. The software checks
+the retained GPS geometry, usable time, gaps and IMU-turn timing against those limits before
+making a decision. It abstains outside them. The limits are fixed before calibration and cannot
+expand automatically to admit an otherwise attractive result. Simulated and recorded GPS belong
+to separate ranges; real-flight thresholds still require their own evidence.
 
 ## Why use simulations, and why are they not enough?
 

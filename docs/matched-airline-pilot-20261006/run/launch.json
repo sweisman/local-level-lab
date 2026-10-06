@@ -1,0 +1,19 @@
+{
+  "pid": 3616857,
+  "command": [
+    "/home/sweisman/venv/bin/python",
+    "/site/repo/local-level-lab/analysis/tests/sharded_campaign.py",
+    "run",
+    "docs/matched-airline-pilot-20261006/run/plan.json",
+    "--output",
+    "docs/matched-airline-pilot-20261006/run",
+    "--attempt-limit",
+    "3",
+    "--workers",
+    "2"
+  ],
+  "plan_hash": "e3064a50835a631d6968b11757d8451cff1e87c20e9ae74bf02580f2fa06bf78",
+  "attempt_limit": 3,
+  "workers": 2,
+  "started_utc": "2026-10-06T17:53:54.810484+00:00"
+}

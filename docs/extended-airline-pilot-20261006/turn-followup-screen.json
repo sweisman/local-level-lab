@@ -1,0 +1,1197 @@
+{
+  "scope": "six fixed schedule controls on unchanged assumed route; nominal anchors only",
+  "implementation_hash": "a7cc619428f8a24f96e3ab77e5d99f1c5b1b92639b2f6c6e3cfed937176cf44f",
+  "input_plan_implementation_hash": "82c882d2abf351cb0feb0e8efa237702d1deeccd475d682960419677bf479412",
+  "helper_sha256": "795600d99fac7e10a929b783d17f1b9038b31c9f8b814be8a47a19fcb21db37d",
+  "input_sha256": {
+    "docs/extended-airline-pilot-20261006/plan.json": "8fdde4377d6333bd667c4d13c881d12e58731f24874408d465862aa046b91a4d"
+  },
+  "cases": [
+    {
+      "name": "original-three",
+      "schedule_minutes": [
+        25.0,
+        50.0,
+        85.0
+      ],
+      "turn_checks": [
+        {
+          "minute": 25.0,
+          "safe": true,
+          "reason": null,
+          "evidence": []
+        },
+        {
+          "minute": 50.0,
+          "safe": true,
+          "reason": null,
+          "evidence": []
+        },
+        {
+          "minute": 85.0,
+          "safe": true,
+          "reason": null,
+          "evidence": []
+        }
+      ],
+      "all_turns_safe": true,
+      "state": "nominal geometry evaluated",
+      "candidates": [
+        {
+          "crab_model": "wind",
+          "screened_minutes": 91.0,
+          "heading_diversity": {
+            "adequate": true,
+            "provisional": true,
+            "min_separation_deg": 30,
+            "min_seconds_per_heading": 600,
+            "groups": [
+              {
+                "heading_deg": 228.81606473471032,
+                "seconds": 2460.0
+              },
+              {
+                "heading_deg": 241.46090762388104,
+                "seconds": 1440.0
+              },
+              {
+                "heading_deg": 262.9080830477362,
+                "seconds": 540.0
+              },
+              {
+                "heading_deg": 278.15689324618563,
+                "seconds": 1020.0
+              }
+            ]
+          },
+          "anchors": {
+            "sphere_rotating": {
+              "estimable_rank": 0,
+              "singular_values": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "nuisance_projection": {
+                "column_scaling": "unit weighted column norm",
+                "rank": 46,
+                "columns": 46
+              },
+              "rank_boundary_margin": 0.13509634275149804,
+              "normalized_singular_values": [
+                0.17715355716842193,
+                0.03306629943246167,
+                0.017691809298789146
+              ],
+              "condition_number": null,
+              "estimable_combinations": [],
+              "model_contrast_information": {
+                "sphere_rotating_vs_sphere_still": {
+                  "information": 0.0,
+                  "estimable": false,
+                  "retained_fraction": 0.0,
+                  "pre_cutoff_information": 9.623156270651412,
+                  "pre_cutoff_retained_fraction": 0.1297211174599168,
+                  "coefficient_contrast_estimable": false,
+                  "contrast_sd": null
+                },
+                "sphere_rotating_vs_flat_still": {
+                  "information": 0.0,
+                  "estimable": false,
+                  "retained_fraction": 0.0,
+                  "pre_cutoff_information": 1.6742545919734786,
+                  "pre_cutoff_retained_fraction": 0.05616614662433618,
+                  "coefficient_contrast_estimable": false,
+                  "contrast_sd": null
+                },
+                "sphere_still_vs_flat_still": {
+                  "information": 0.0,
+                  "estimable": false,
+                  "retained_fraction": 0.0,
+                  "pre_cutoff_information": 4.068816472682368,
+                  "pre_cutoff_retained_fraction": 0.15439477292028486,
+                  "coefficient_contrast_estimable": false,
+                  "contrast_sd": null
+                }
+              },
+              "expected_k_sd_without_priors": {
+                "k_rot_sphere": null,
+                "k_curv": null,
+                "k_disc": null
+              },
+              "rank_threshold": 0.31224989991991997
+            },
+            "sphere_still": {
+              "estimable_rank": 0,
+              "singular_values": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "nuisance_projection": {
+                "column_scaling": "unit weighted column norm",
+                "rank": 46,
+                "columns": 46
+              },
+              "rank_boundary_margin": 0.10228910334633465,
+              "normalized_singular_values": [
+                0.20996079657358532,
+                0.029532130225486567,
+                0.01783920281938094
+              ],
+              "condition_number": null,
+              "estimable_combinations": [],
+              "model_contrast_information": {
+                "sphere_rotating_vs_sphere_still": {
+                  "information": 0.0,
+                  "estimable": false,
+                  "retained_fraction": 0.0,
+                  "pre_cutoff_information": 10.587507028619191,
+                  "pre_cutoff_retained_fraction": 0.1360657336945728,
+                  "coefficient_contrast_estimable": false,
+                  "contrast_sd": null
+                },
+                "sphere_rotating_vs_flat_still": {
+                  "information": 0.0,
+                  "estimable": false,
+                  "retained_fraction": 0.0,
+                  "pre_cutoff_information": 0.9387240046453479,
+                  "pre_cutoff_retained_fraction": 0.042056472355630106,
+                  "coefficient_contrast_estimable": false,
+                  "contrast_sd": null
+                },
+                "sphere_still_vs_flat_still": {
+                  "information": 0.0,
+                  "estimable": false,
+                  "retained_fraction": 0.0,
+                  "pre_cutoff_information": 6.460344497679391,
+                  "pre_cutoff_retained_fraction": 0.19454782561056588,
+                  "coefficient_contrast_estimable": false,
+                  "contrast_sd": null
+                }
+              },
+              "expected_k_sd_without_priors": {
+                "k_rot_sphere": null,
+                "k_curv": null,
+                "k_disc": null
+              },
+              "rank_threshold": 0.31224989991991997
+            },
+            "flat_still": {
+              "estimable_rank": 0,
+              "singular_values": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "nuisance_projection": {
+                "column_scaling": "unit weighted column norm",
+                "rank": 43,
+                "columns": 46
+              },
+              "rank_boundary_margin": 0.0034758159213482687,
+              "normalized_singular_values": [
+                0.3087740839985717,
+                0.03341504873925237,
+                0.019014385365735933
+              ],
+              "condition_number": null,
+              "estimable_combinations": [],
+              "model_contrast_information": {
+                "sphere_rotating_vs_sphere_still": {
+                  "information": 0.0,
+                  "estimable": false,
+                  "retained_fraction": 0.0,
+                  "pre_cutoff_information": 26.503971154327946,
+                  "pre_cutoff_retained_fraction": 0.21528183525719138,
+                  "coefficient_contrast_estimable": false,
+                  "contrast_sd": null
+                },
+                "sphere_rotating_vs_flat_still": {
+                  "information": 0.0,
+                  "estimable": false,
+                  "retained_fraction": 0.0,
+                  "pre_cutoff_information": 2.972164639438917,
+                  "pre_cutoff_retained_fraction": 0.0748342329464996,
+                  "coefficient_contrast_estimable": false,
+                  "contrast_sd": null
+                },
+                "sphere_still_vs_flat_still": {
+                  "information": 0.0,
+                  "estimable": false,
+                  "retained_fraction": 0.0,
+                  "pre_cutoff_information": 13.02858288781714,
+                  "pre_cutoff_retained_fraction": 0.2762785275235068,
+                  "coefficient_contrast_estimable": false,
+                  "contrast_sd": null
+                }
+              },
+              "expected_k_sd_without_priors": {
+                "k_rot_sphere": null,
+                "k_curv": null,
+                "k_disc": null
+              },
+              "rank_threshold": 0.31224989991991997
+            }
+          },
+          "worst_pre_cutoff_retention": {
+            "sphere_rotating_vs_sphere_still": 0.1297211174599168,
+            "sphere_rotating_vs_flat_still": 0.042056472355630106,
+            "sphere_still_vs_flat_still": 0.15439477292028486
+          },
+          "all_nominal_contrasts_estimable": false
+        },
+        {
+          "crab_model": "wind_tas",
+          "screened_minutes": 91.0,
+          "heading_diversity": {
+            "adequate": true,
+            "provisional": true,
+            "min_separation_deg": 30,
+            "min_seconds_per_heading": 600,
+            "groups": [
+              {
+                "heading_deg": 228.81606473471032,
+                "seconds": 2460.0
+              },
+              {
+                "heading_deg": 241.46090762388104,
+                "seconds": 1440.0
+              },
+              {
+                "heading_deg": 262.9080830477362,
+                "seconds": 540.0
+              },
+              {
+                "heading_deg": 278.15689324618563,
+                "seconds": 1020.0
+              }
+            ]
+          },
+          "anchors": {
+            "sphere_rotating": {
+              "estimable_rank": 0,
+              "singular_values": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "nuisance_projection": {
+                "column_scaling": "unit weighted column norm",
+                "rank": 55,
+                "columns": 55
+              },
+              "rank_boundary_margin": 0.1172690378527578,
+              "normalized_singular_values": [
+                0.19498086206716217,
+                0.06806798942372745,
+                0.02130369126786831
+              ],
+              "condition_number": null,
+              "estimable_combinations": [],
+              "model_contrast_information": {
+                "sphere_rotating_vs_sphere_still": {
+                  "information": 0.0,
+                  "estimable": false,
+                  "retained_fraction": 0.0,
+                  "pre_cutoff_information": 14.746503194114656,
+                  "pre_cutoff_retained_fraction": 0.16058184247786977,
+                  "coefficient_contrast_estimable": false,
+                  "contrast_sd": null
+                },
+                "sphere_rotating_vs_flat_still": {
+                  "information": 0.0,
+                  "estimable": false,
+                  "retained_fraction": 0.0,
+                  "pre_cutoff_information": 5.4385471000100445,
+                  "pre_cutoff_retained_fraction": 0.10122908866063342,
+                  "coefficient_contrast_estimable": false,
+                  "contrast_sd": null
+                },
+                "sphere_still_vs_flat_still": {
+                  "information": 0.0,
+                  "estimable": false,
+                  "retained_fraction": 0.0,
+                  "pre_cutoff_information": 4.48723117752346,
+                  "pre_cutoff_retained_fraction": 0.16213910253376743,
+                  "coefficient_contrast_estimable": false,
+                  "contrast_sd": null
+                }
+              },
+              "expected_k_sd_without_priors": {
+                "k_rot_sphere": null,
+                "k_curv": null,
+                "k_disc": null
+              },
+              "rank_threshold": 0.31224989991991997
+            },
+            "sphere_still": {
+              "estimable_rank": 0,
+              "singular_values": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "nuisance_projection": {
+                "column_scaling": "unit weighted column norm",
+                "rank": 55,
+                "columns": 55
+              },
+              "rank_boundary_margin": 0.005069245123731192,
+              "normalized_singular_values": [
+                0.3071806547961888,
+                0.04519768338316697,
+                0.019513382079017153
+              ],
+              "condition_number": null,
+              "estimable_combinations": [],
+              "model_contrast_information": {
+                "sphere_rotating_vs_sphere_still": {
+                  "information": 0.0,
+                  "estimable": false,
+                  "retained_fraction": 0.0,
+                  "pre_cutoff_information": 22.636947701973206,
+                  "pre_cutoff_retained_fraction": 0.1989577430615913,
+                  "coefficient_contrast_estimable": false,
+                  "contrast_sd": null
+                },
+                "sphere_rotating_vs_flat_still": {
+                  "information": 0.0,
+                  "estimable": false,
+                  "retained_fraction": 0.0,
+                  "pre_cutoff_information": 2.5969138687743714,
+                  "pre_cutoff_retained_fraction": 0.06995079470895267,
+                  "coefficient_contrast_estimable": false,
+                  "contrast_sd": null
+                },
+                "sphere_still_vs_flat_still": {
+                  "information": 0.0,
+                  "estimable": false,
+                  "retained_fraction": 0.0,
+                  "pre_cutoff_information": 13.783779549279998,
+                  "pre_cutoff_retained_fraction": 0.2841729278396746,
+                  "coefficient_contrast_estimable": false,
+                  "contrast_sd": null
+                }
+              },
+              "expected_k_sd_without_priors": {
+                "k_rot_sphere": null,
+                "k_curv": null,
+                "k_disc": null
+              },
+              "rank_threshold": 0.31224989991991997
+            },
+            "flat_still": {
+              "estimable_rank": 1,
+              "singular_values": [
+                6.315656377373987,
+                5.490168885278839e-16,
+                1.77404485133229e-17
+              ],
+              "nuisance_projection": {
+                "column_scaling": "unit weighted column norm",
+                "rank": 54,
+                "columns": 55
+              },
+              "rank_boundary_margin": 0.002568236179514738,
+              "normalized_singular_values": [
+                0.3148181360994347,
+                0.08057276197739696,
+                0.02117159310847548
+              ],
+              "condition_number": 1.0,
+              "estimable_combinations": [
+                [
+                  -0.8028979399918046,
+                  0.5960124850478842,
+                  0.01113623024019502
+                ]
+              ],
+              "model_contrast_information": {
+                "sphere_rotating_vs_sphere_still": {
+                  "information": 25.71329148495744,
+                  "estimable": false,
+                  "retained_fraction": 0.21204632423490452,
+                  "pre_cutoff_information": 27.609942313491253,
+                  "pre_cutoff_retained_fraction": 0.21972762504599444,
+                  "coefficient_contrast_estimable": false,
+                  "contrast_sd": null
+                },
+                "sphere_rotating_vs_flat_still": {
+                  "information": 1.8959914303880374,
+                  "estimable": false,
+                  "retained_fraction": 0.05976983611503299,
+                  "pre_cutoff_information": 5.6483658503710545,
+                  "pre_cutoff_retained_fraction": 0.10316331505345303,
+                  "coefficient_contrast_estimable": false,
+                  "contrast_sd": null
+                },
+                "sphere_still_vs_flat_still": {
+                  "information": 13.644730605650896,
+                  "estimable": false,
+                  "retained_fraction": 0.2827359451899089,
+                  "pre_cutoff_information": 14.03870081809242,
+                  "pre_cutoff_retained_fraction": 0.2867886779440898,
+                  "coefficient_contrast_estimable": false,
+                  "contrast_sd": null
+                }
+              },
+              "expected_k_sd_without_priors": {
+                "k_rot_sphere": null,
+                "k_curv": null,
+                "k_disc": null
+              },
+              "rank_threshold": 0.31224989991991997
+            }
+          },
+          "worst_pre_cutoff_retention": {
+            "sphere_rotating_vs_sphere_still": 0.16058184247786977,
+            "sphere_rotating_vs_flat_still": 0.06995079470895267,
+            "sphere_still_vs_flat_still": 0.16213910253376743
+          },
+          "all_nominal_contrasts_estimable": false
+        }
+      ]
+    },
+    {
+      "name": "distributed-six",
+      "schedule_minutes": [
+        10.0,
+        30.0,
+        50.0,
+        70.0,
+        90.0,
+        110.0
+      ],
+      "turn_checks": [
+        {
+          "minute": 10.0,
+          "safe": true,
+          "reason": null,
+          "evidence": []
+        },
+        {
+          "minute": 30.0,
+          "safe": true,
+          "reason": null,
+          "evidence": []
+        },
+        {
+          "minute": 50.0,
+          "safe": true,
+          "reason": null,
+          "evidence": []
+        },
+        {
+          "minute": 70.0,
+          "safe": true,
+          "reason": null,
+          "evidence": []
+        },
+        {
+          "minute": 90.0,
+          "safe": true,
+          "reason": null,
+          "evidence": []
+        },
+        {
+          "minute": 110.0,
+          "safe": true,
+          "reason": null,
+          "evidence": []
+        }
+      ],
+      "all_turns_safe": true,
+      "state": "nominal geometry evaluated",
+      "candidates": [
+        {
+          "crab_model": "wind",
+          "screened_minutes": 85.0,
+          "heading_diversity": {
+            "adequate": true,
+            "provisional": true,
+            "min_separation_deg": 30,
+            "min_seconds_per_heading": 600,
+            "groups": [
+              {
+                "heading_deg": 228.81606473471032,
+                "seconds": 2340.0
+              },
+              {
+                "heading_deg": 241.46090762388104,
+                "seconds": 1320.0
+              },
+              {
+                "heading_deg": 262.9080830477362,
+                "seconds": 540.0
+              },
+              {
+                "heading_deg": 278.15689324618563,
+                "seconds": 900.0
+              }
+            ]
+          },
+          "anchors": {
+            "sphere_rotating": {
+              "estimable_rank": 0,
+              "singular_values": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "nuisance_projection": {
+                "column_scaling": "unit weighted column norm",
+                "rank": 46,
+                "columns": 46
+              },
+              "rank_boundary_margin": 0.00709461347315965,
+              "normalized_singular_values": [
+                0.3051552864467603,
+                0.04914580418310459,
+                0.01939350819117072
+              ],
+              "condition_number": null,
+              "estimable_combinations": [],
+              "model_contrast_information": {
+                "sphere_rotating_vs_sphere_still": {
+                  "information": 0.0,
+                  "estimable": false,
+                  "retained_fraction": 0.0,
+                  "pre_cutoff_information": 27.95425501121085,
+                  "pre_cutoff_retained_fraction": 0.22876369708408892,
+                  "coefficient_contrast_estimable": false,
+                  "contrast_sd": null
+                },
+                "sphere_rotating_vs_flat_still": {
+                  "information": 0.0,
+                  "estimable": false,
+                  "retained_fraction": 0.0,
+                  "pre_cutoff_information": 5.33437646803136,
+                  "pre_cutoff_retained_fraction": 0.1037029059170494,
+                  "coefficient_contrast_estimable": false,
+                  "contrast_sd": null
+                },
+                "sphere_still_vs_flat_still": {
+                  "information": 0.0,
+                  "estimable": false,
+                  "retained_fraction": 0.0,
+                  "pre_cutoff_information": 10.576883873560911,
+                  "pre_cutoff_retained_fraction": 0.25768322432703894,
+                  "coefficient_contrast_estimable": false,
+                  "contrast_sd": null
+                }
+              },
+              "expected_k_sd_without_priors": {
+                "k_rot_sphere": null,
+                "k_curv": null,
+                "k_disc": null
+              },
+              "rank_threshold": 0.31224989991991997
+            },
+            "sphere_still": {
+              "estimable_rank": 1,
+              "singular_values": [
+                6.592301202385426,
+                1.5406720521528023e-15,
+                8.40974962463805e-18
+              ],
+              "nuisance_projection": {
+                "column_scaling": "unit weighted column norm",
+                "rank": 46,
+                "columns": 46
+              },
+              "rank_boundary_margin": 0.03480213089426604,
+              "normalized_singular_values": [
+                0.347052030814186,
+                0.037539559303662186,
+                0.020677052574549614
+              ],
+              "condition_number": 1.0,
+              "estimable_combinations": [
+                [
+                  -0.7713407398015109,
+                  0.6361439082259857,
+                  0.018825279531186474
+                ]
+              ],
+              "model_contrast_information": {
+                "sphere_rotating_vs_sphere_still": {
+                  "information": 25.856314655131495,
+                  "estimable": false,
+                  "retained_fraction": 0.22001204479971903,
+                  "pre_cutoff_information": 26.286040531426956,
+                  "pre_cutoff_retained_fraction": 0.22183278515781688,
+                  "coefficient_contrast_estimable": false,
+                  "contrast_sd": null
+                },
+                "sphere_rotating_vs_flat_still": {
+                  "information": 1.030956230639469,
+                  "estimable": false,
+                  "retained_fraction": 0.04558995975648215,
+                  "pre_cutoff_information": 1.9576086155138488,
+                  "pre_cutoff_retained_fraction": 0.06282203911204501,
+                  "coefficient_contrast_estimable": false,
+                  "contrast_sd": null
+                },
+                "sphere_still_vs_flat_still": {
+                  "information": 16.56123995514085,
+                  "estimable": true,
+                  "retained_fraction": 0.3224435565997524,
+                  "pre_cutoff_information": 16.72577830720729,
+                  "pre_cutoff_retained_fraction": 0.32404135985919674,
+                  "coefficient_contrast_estimable": false,
+                  "contrast_sd": null
+                }
+              },
+              "expected_k_sd_without_priors": {
+                "k_rot_sphere": null,
+                "k_curv": null,
+                "k_disc": null
+              },
+              "rank_threshold": 0.31224989991991997
+            },
+            "flat_still": {
+              "estimable_rank": 1,
+              "singular_values": [
+                9.262911899151513,
+                5.893230053941281e-16,
+                5.589452055235378e-19
+              ],
+              "nuisance_projection": {
+                "column_scaling": "unit weighted column norm",
+                "rank": 43,
+                "columns": 46
+              },
+              "rank_boundary_margin": 0.1621055119192607,
+              "normalized_singular_values": [
+                0.4743554118391807,
+                0.042666079419873534,
+                0.020790866077840198
+              ],
+              "condition_number": 1.0,
+              "estimable_combinations": [
+                [
+                  -0.8136234233830066,
+                  0.5813919715702894,
+                  0.0005480110662428828
+                ]
+              ],
+              "model_contrast_information": {
+                "sphere_rotating_vs_sphere_still": {
+                  "information": 56.79916521129203,
+                  "estimable": true,
+                  "retained_fraction": 0.3260874778610856,
+                  "pre_cutoff_information": 57.29185503596204,
+                  "pre_cutoff_retained_fraction": 0.3274987053292753,
+                  "coefficient_contrast_estimable": false,
+                  "contrast_sd": null
+                },
+                "sphere_rotating_vs_flat_still": {
+                  "information": 4.649265957679072,
+                  "estimable": false,
+                  "retained_fraction": 0.09681469691310267,
+                  "pre_cutoff_information": 5.834683497059414,
+                  "pre_cutoff_retained_fraction": 0.10845703970402987,
+                  "coefficient_contrast_estimable": false,
+                  "contrast_sd": null
+                },
+                "sphere_still_vs_flat_still": {
+                  "information": 28.947697316244057,
+                  "estimable": true,
+                  "retained_fraction": 0.42629897599898203,
+                  "pre_cutoff_information": 29.159476143221795,
+                  "pre_cutoff_retained_fraction": 0.42785551735699906,
+                  "coefficient_contrast_estimable": false,
+                  "contrast_sd": null
+                }
+              },
+              "expected_k_sd_without_priors": {
+                "k_rot_sphere": null,
+                "k_curv": null,
+                "k_disc": null
+              },
+              "rank_threshold": 0.31224989991991997
+            }
+          },
+          "worst_pre_cutoff_retention": {
+            "sphere_rotating_vs_sphere_still": 0.22183278515781688,
+            "sphere_rotating_vs_flat_still": 0.06282203911204501,
+            "sphere_still_vs_flat_still": 0.25768322432703894
+          },
+          "all_nominal_contrasts_estimable": false
+        },
+        {
+          "crab_model": "wind_tas",
+          "screened_minutes": 85.0,
+          "heading_diversity": {
+            "adequate": true,
+            "provisional": true,
+            "min_separation_deg": 30,
+            "min_seconds_per_heading": 600,
+            "groups": [
+              {
+                "heading_deg": 228.81606473471032,
+                "seconds": 2340.0
+              },
+              {
+                "heading_deg": 241.46090762388104,
+                "seconds": 1320.0
+              },
+              {
+                "heading_deg": 262.9080830477362,
+                "seconds": 540.0
+              },
+              {
+                "heading_deg": 278.15689324618563,
+                "seconds": 900.0
+              }
+            ]
+          },
+          "anchors": {
+            "sphere_rotating": {
+              "estimable_rank": 1,
+              "singular_values": [
+                7.066619161642691,
+                1.2164987587162819e-15,
+                5.702937843390038e-18
+              ],
+              "nuisance_projection": {
+                "column_scaling": "unit weighted column norm",
+                "rank": 55,
+                "columns": 55
+              },
+              "rank_boundary_margin": 0.038382051488031754,
+              "normalized_singular_values": [
+                0.3506319514079517,
+                0.10943990114424108,
+                0.028194011781585246
+              ],
+              "condition_number": 1.0,
+              "estimable_combinations": [
+                [
+                  -0.8569255026665068,
+                  0.5153556241370799,
+                  -0.009341496134758294
+                ]
+              ],
+              "model_contrast_information": {
+                "sphere_rotating_vs_sphere_still": {
+                  "information": 36.669881726974644,
+                  "estimable": false,
+                  "retained_fraction": 0.26201001976880073,
+                  "pre_cutoff_information": 39.36852452714355,
+                  "pre_cutoff_retained_fraction": 0.2714799212162263,
+                  "coefficient_contrast_estimable": false,
+                  "contrast_sd": null
+                },
+                "sphere_rotating_vs_flat_still": {
+                  "information": 5.511842975742253,
+                  "estimable": false,
+                  "retained_fraction": 0.10541381070530408,
+                  "pre_cutoff_information": 12.428449187368624,
+                  "pre_cutoff_retained_fraction": 0.1582914894230739,
+                  "coefficient_contrast_estimable": false,
+                  "contrast_sd": null
+                },
+                "sphere_still_vs_flat_still": {
+                  "information": 13.748038341773512,
+                  "estimable": false,
+                  "retained_fraction": 0.2937836656112977,
+                  "pre_cutoff_information": 14.827447302798785,
+                  "pre_cutoff_retained_fraction": 0.30509878110277094,
+                  "coefficient_contrast_estimable": false,
+                  "contrast_sd": null
+                }
+              },
+              "expected_k_sd_without_priors": {
+                "k_rot_sphere": null,
+                "k_curv": null,
+                "k_disc": null
+              },
+              "rank_threshold": 0.31224989991991997
+            },
+            "sphere_still": {
+              "estimable_rank": 1,
+              "singular_values": [
+                9.055220270324055,
+                5.018356041136923e-16,
+                6.099656625175113e-17
+              ],
+              "nuisance_projection": {
+                "column_scaling": "unit weighted column norm",
+                "rank": 55,
+                "columns": 55
+              },
+              "rank_boundary_margin": 0.16157399379206294,
+              "normalized_singular_values": [
+                0.4738238937119829,
+                0.0819388905856425,
+                0.019734124162618973
+              ],
+              "condition_number": 1.0,
+              "estimable_combinations": [
+                [
+                  -0.7810844292899857,
+                  0.6240312037374404,
+                  0.02218492918038566
+                ]
+              ],
+              "model_contrast_information": {
+                "sphere_rotating_vs_sphere_still": {
+                  "information": 50.02579497624975,
+                  "estimable": false,
+                  "retained_fraction": 0.3060272817463165,
+                  "pre_cutoff_information": 52.11590070633998,
+                  "pre_cutoff_retained_fraction": 0.31235486119046935,
+                  "coefficient_contrast_estimable": false,
+                  "contrast_sd": null
+                },
+                "sphere_rotating_vs_flat_still": {
+                  "information": 2.6342619966385143,
+                  "estimable": false,
+                  "retained_fraction": 0.07287500176417827,
+                  "pre_cutoff_information": 7.698008890678558,
+                  "pre_cutoff_retained_fraction": 0.12457712362508082,
+                  "coefficient_contrast_estimable": false,
+                  "contrast_sd": null
+                },
+                "sphere_still_vs_flat_still": {
+                  "information": 29.700871398694694,
+                  "estimable": true,
+                  "retained_fraction": 0.43180918271629,
+                  "pre_cutoff_information": 30.405171683436386,
+                  "pre_cutoff_retained_fraction": 0.43689895707024695,
+                  "coefficient_contrast_estimable": false,
+                  "contrast_sd": null
+                }
+              },
+              "expected_k_sd_without_priors": {
+                "k_rot_sphere": null,
+                "k_curv": null,
+                "k_disc": null
+              },
+              "rank_threshold": 0.31224989991991997
+            },
+            "flat_still": {
+              "estimable_rank": 1,
+              "singular_values": [
+                9.457019696559788,
+                5.125975379769377e-16,
+                6.646734192952673e-17
+              ],
+              "nuisance_projection": {
+                "column_scaling": "unit weighted column norm",
+                "rank": 54,
+                "columns": 55
+              },
+              "rank_boundary_margin": 0.17463267934018678,
+              "normalized_singular_values": [
+                0.48688257926010675,
+                0.1187482928039819,
+                0.028215680487745597
+              ],
+              "condition_number": 1.0,
+              "estimable_combinations": [
+                [
+                  -0.8058290029943724,
+                  0.592063430735323,
+                  0.010025563276713554
+                ]
+              ],
+              "model_contrast_information": {
+                "sphere_rotating_vs_sphere_still": {
+                  "information": 58.07568963017974,
+                  "estimable": true,
+                  "retained_fraction": 0.3297314201517185,
+                  "pre_cutoff_information": 61.99279860449418,
+                  "pre_cutoff_retained_fraction": 0.34066990278859094,
+                  "coefficient_contrast_estimable": false,
+                  "contrast_sd": null
+                },
+                "sphere_rotating_vs_flat_still": {
+                  "information": 4.4791370094471805,
+                  "estimable": false,
+                  "retained_fraction": 0.09502683582808988,
+                  "pre_cutoff_information": 12.799057173997614,
+                  "pre_cutoff_retained_fraction": 0.16063422582629003,
+                  "coefficient_contrast_estimable": false,
+                  "contrast_sd": null
+                },
+                "sphere_still_vs_flat_still": {
+                  "information": 30.29779821035551,
+                  "estimable": true,
+                  "retained_fraction": 0.4361268376405545,
+                  "pre_cutoff_information": 31.241728327546618,
+                  "pre_cutoff_retained_fraction": 0.44286851277663286,
+                  "coefficient_contrast_estimable": false,
+                  "contrast_sd": null
+                }
+              },
+              "expected_k_sd_without_priors": {
+                "k_rot_sphere": null,
+                "k_curv": null,
+                "k_disc": null
+              },
+              "rank_threshold": 0.31224989991991997
+            }
+          },
+          "worst_pre_cutoff_retention": {
+            "sphere_rotating_vs_sphere_still": 0.2714799212162263,
+            "sphere_rotating_vs_flat_still": 0.12457712362508082,
+            "sphere_still_vs_flat_still": 0.30509878110277094
+          },
+          "all_nominal_contrasts_estimable": false
+        }
+      ]
+    },
+    {
+      "name": "middle-ten-minute-six",
+      "schedule_minutes": [
+        25.0,
+        35.0,
+        45.0,
+        55.0,
+        65.0,
+        75.0
+      ],
+      "turn_checks": [
+        {
+          "minute": 25.0,
+          "safe": true,
+          "reason": null,
+          "evidence": []
+        },
+        {
+          "minute": 35.0,
+          "safe": true,
+          "reason": null,
+          "evidence": []
+        },
+        {
+          "minute": 45.0,
+          "safe": false,
+          "reason": "aircraft maneuver",
+          "evidence": [
+            {
+              "start_s": 2536.0,
+              "end_s": 2928.0,
+              "reason": "aircraft maneuver"
+            }
+          ]
+        },
+        {
+          "minute": 55.0,
+          "safe": true,
+          "reason": null,
+          "evidence": []
+        },
+        {
+          "minute": 65.0,
+          "safe": true,
+          "reason": null,
+          "evidence": []
+        },
+        {
+          "minute": 75.0,
+          "safe": false,
+          "reason": "aircraft maneuver",
+          "evidence": [
+            {
+              "start_s": 4280.0,
+              "end_s": 4597.0,
+              "reason": "aircraft maneuver"
+            }
+          ]
+        }
+      ],
+      "all_turns_safe": false,
+      "state": "blocked by buffered aircraft-motion check"
+    },
+    {
+      "name": "two-ten-minute-blocks",
+      "schedule_minutes": [
+        15.0,
+        25.0,
+        35.0,
+        85.0,
+        95.0,
+        105.0
+      ],
+      "turn_checks": [
+        {
+          "minute": 15.0,
+          "safe": true,
+          "reason": null,
+          "evidence": []
+        },
+        {
+          "minute": 25.0,
+          "safe": true,
+          "reason": null,
+          "evidence": []
+        },
+        {
+          "minute": 35.0,
+          "safe": true,
+          "reason": null,
+          "evidence": []
+        },
+        {
+          "minute": 85.0,
+          "safe": true,
+          "reason": null,
+          "evidence": []
+        },
+        {
+          "minute": 95.0,
+          "safe": false,
+          "reason": "aircraft maneuver",
+          "evidence": [
+            {
+              "start_s": 5542.0,
+              "end_s": 6165.0,
+              "reason": "aircraft maneuver"
+            }
+          ]
+        },
+        {
+          "minute": 105.0,
+          "safe": true,
+          "reason": null,
+          "evidence": []
+        }
+      ],
+      "all_turns_safe": false,
+      "state": "blocked by buffered aircraft-motion check"
+    },
+    {
+      "name": "early-ten-minute-six",
+      "schedule_minutes": [
+        5.0,
+        15.0,
+        25.0,
+        35.0,
+        45.0,
+        55.0
+      ],
+      "turn_checks": [
+        {
+          "minute": 5.0,
+          "safe": true,
+          "reason": null,
+          "evidence": []
+        },
+        {
+          "minute": 15.0,
+          "safe": true,
+          "reason": null,
+          "evidence": []
+        },
+        {
+          "minute": 25.0,
+          "safe": true,
+          "reason": null,
+          "evidence": []
+        },
+        {
+          "minute": 35.0,
+          "safe": true,
+          "reason": null,
+          "evidence": []
+        },
+        {
+          "minute": 45.0,
+          "safe": false,
+          "reason": "aircraft maneuver",
+          "evidence": [
+            {
+              "start_s": 2536.0,
+              "end_s": 2928.0,
+              "reason": "aircraft maneuver"
+            }
+          ]
+        },
+        {
+          "minute": 55.0,
+          "safe": true,
+          "reason": null,
+          "evidence": []
+        }
+      ],
+      "all_turns_safe": false,
+      "state": "blocked by buffered aircraft-motion check"
+    },
+    {
+      "name": "late-ten-minute-six",
+      "schedule_minutes": [
+        55.0,
+        65.0,
+        75.0,
+        85.0,
+        95.0,
+        105.0
+      ],
+      "turn_checks": [
+        {
+          "minute": 55.0,
+          "safe": true,
+          "reason": null,
+          "evidence": []
+        },
+        {
+          "minute": 65.0,
+          "safe": true,
+          "reason": null,
+          "evidence": []
+        },
+        {
+          "minute": 75.0,
+          "safe": false,
+          "reason": "aircraft maneuver",
+          "evidence": [
+            {
+              "start_s": 4280.0,
+              "end_s": 4597.0,
+              "reason": "aircraft maneuver"
+            }
+          ]
+        },
+        {
+          "minute": 85.0,
+          "safe": true,
+          "reason": null,
+          "evidence": []
+        },
+        {
+          "minute": 95.0,
+          "safe": false,
+          "reason": "aircraft maneuver",
+          "evidence": [
+            {
+              "start_s": 5542.0,
+              "end_s": 6165.0,
+              "reason": "aircraft maneuver"
+            }
+          ]
+        },
+        {
+          "minute": 105.0,
+          "safe": true,
+          "reason": null,
+          "evidence": []
+        }
+      ],
+      "all_turns_safe": false,
+      "state": "blocked by buffered aircraft-motion check"
+    }
+  ],
+  "elapsed_s": 0.11281745589803904,
+  "authorized_additional_attempts": 0,
+  "limitations": [
+    "Same dynamic bias, wind models and acceptance cutoff; no nuisance removal or weaker gate.",
+    "Analytic motion/bins and known assumed mount; differs from saved full preprocessing.",
+    "Zero nuisance state and zero forward offset at three anchors, fixed 6 dph noise with physical speed rows.",
+    "No nuisance envelope, actual forward-reference recovery, noisy IMU/GNSS, bootstrap or power.",
+    "These six patterns are diagnostic controls, not optimizer output or a recommended collection protocol."
+  ]
+}

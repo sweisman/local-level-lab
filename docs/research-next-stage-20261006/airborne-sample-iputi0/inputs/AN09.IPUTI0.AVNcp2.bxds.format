@@ -1,0 +1,66 @@
+________________________________________________________________________________________
+
+   Stream Code:  AVNcp2                Stream ID#:  N/A              # of Bytes:   56
+
+           Device:  Systron Donner Inertial MMQ-G (Message 3501 - Navigation Solution)
+________________________________________________________________________________________
+
+
+  Packet                                     # of     FARCE     Decoded         Decoded
+  Sect:     Attr:    Description:            Bytes:   Form:     Units:          Format:
+  ______    ____     _____________________   _____    _____     _____________   ______
+
+     +-----------------------------------------------------------------------------+
+     |                                                                             |
+     |    NOTE:  The value of many decoded field must be scaled (divided) by       |
+     |    the indicated resolution, to determine the true value:                   |
+     |                                                                             |
+     |                                  DF20 = 2^43                                |
+     |                                  F15  = 2^16                                |
+     |                                  F10  = 2^21                                |
+     |                                  F0   = 2^31                                |
+     |                                                                             |
+     +-----------------------------------------------------------------------------+
+
+   XDS      sw       synchronization word       2     u-int     N/A (0x81FF)     I
+
+            mid      message ID number          2     u-int     N/A (3501)       I
+
+            wc       word count                 2     u-int     count            I
+
+            flag     flag word                  2     bits      N/A              I
+
+            hcksum   header checksum            2     u-int     N/A              I
+
+            tt       time tag                   8     double    sec (DF20)       F
+
+            lat      latitude                   4     float     semicircles (F0) F
+
+            lon      longitude                  4     float     semicircles (F0) F
+
+            alt      altitude                   4     float     m (F15)          F
+
+            veln     velocity north             4     float     m/s (F10)        I
+
+            vele     velocity east              4     float     m/s (F10)        I
+
+            velu     velocity up                4     float     m/s (F10)        I
+
+            pitch    pitch                      4     float     semicircles (F0) I
+
+            roll     roll                       4     float     semicircles (F0) I
+
+            head     true heading               4     float     semicircles (F0) I
+
+            dcksum   data checksum              2     s-int     N/A              I
+________________________________________________________________________________________
+
+
+
+
+
+
+
+
+
+________________________________________________________________________________________

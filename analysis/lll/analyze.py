@@ -102,8 +102,28 @@ def analyze(path, th: Thresholds | None = None, *, fit_options=None, diagnostics
 
 def _analyze(path, th: Thresholds | None = None, *, fit_options=None, diagnostics_directory=None) -> dict:
     th = th or Thresholds()
+    fit_options=dict(fit_options or {})
+    reference_method = fit_options.get('forward_reference', 'legacy')
+    if reference_method not in ('legacy', 'matched'):
+        raise ValueError('invalid forward reference method')
+    if reference_method == 'matched' and (not fit_options.get('research_candidate') or not fit_options.get('forward_uncertainty')):
+        raise ValueError('matched forward reference requires research candidate and measured forward uncertainty')
+    ambiguity_mode=fit_options.pop('magnetic_ambiguity','exclude')
+    if ambiguity_mode not in ('exclude','model_and_compare'): raise ValueError('invalid magnetic ambiguity mode')
+    if ambiguity_mode=='model_and_compare':
+        if any(k in fit_options for k in ('mount_yaw_model','mount_yaw_segments')):
+            raise ValueError('analyzer mount yaw boundaries must come from the watchdog')
+        if fit_options.get('design_mode')!='envelope' or fit_options.get('pairwise_method')!='profile':
+            raise ValueError('magnetic ambiguity comparison requires envelope and pair profiles')
+        if any(fit_options.get(k) is not None for k in ('decision_policy','pairwise_decision_policy','decision_thresholds')):
+            raise ValueError('magnetic two-path candidate has no empirical dual-path calibration')
+    exclusion_options=dict(fit_options)
     sess = read_session(path)
     m = sess.manifest
+    if 'domain_source' in fit_options:
+        raise ValueError('analyzer acquisition source must come from the recording manifest')
+    from .flight_domain import acquisition_source
+    fit_options['domain_source'] = acquisition_source(m)
     if m.get('trajectory_replay') and any((fit_options or {}).get(key) is not None
             for key in ('decision_policy','pairwise_decision_policy','decision_thresholds')):
         raise ValueError('observed trajectory replay cannot apply empirical thresholds before domain enforcement')
@@ -286,12 +306,25 @@ def _analyze(path, th: Thresholds | None = None, *, fit_options=None, diagnostic
             keep = ~np.isin(bins["seg"], res["slip"]["exclude_segments"])
             res["slip"]["excluded_bins"] = int((~keep).sum())
             res["slip"]["retained_bins"] = int(keep.sum())
-            bins = {k: (v[keep] if isinstance(v, np.ndarray) and len(v) == len(keep) else v) for k, v in bins.items()}
-            if not len(bins["t"]):
-                flags.append("no_bins")
-                return _clean(res)
+            if ambiguity_mode=='exclude':
+                bins = {k: (v[keep] if isinstance(v, np.ndarray) and len(v) == len(keep) else v) for k, v in bins.items()}
+                if not len(bins["t"]):
+                    flags.append("no_bins")
+                    return _clean(res)
+            else:
+                res['slip'].update(would_exclude_bins=int((~keep).sum()),excluded_bins=0,retained_bins=len(bins['t']),
+                    selection_policy='experimental retained mount-yaw fit and original exclusion-path agreement')
     else:
         flags.append("slip_watchdog_unavailable")
+    if ambiguity_mode=='model_and_compare':
+        from .mount_yaw import boundary_keep
+        keep=boundary_keep(bins,res['slip'].get('exclude_segments',[]))
+        res['slip']['ambiguous_boundary_bins']=int((~keep).sum())
+        bins={k:(v[keep] if isinstance(v,np.ndarray) and len(v)==len(keep) else v) for k,v in bins.items()}
+        res['slip']['retained_bins']=len(bins['t'])
+        if not len(bins['t']):
+            flags.append('no_bins'); return _clean(res)
+        fit_options.update(mount_yaw_model='piecewise',mount_yaw_segments=res['slip'].get('exclude_segments',[]))
 
     # forward axis from banked turns over the whole flight, in the first epoch's frame
     ge = epoch_of(gt, epochs)
@@ -300,7 +333,10 @@ def _analyze(path, th: Thresholds | None = None, *, fit_options=None, diagnostic
         ok &= ge < unresolved
     G0 = np.einsum("nij,nj->ni", R0[ge[ok]], Gc[ok])
     up_ref = np.median(np.einsum("nij,nj->ni", R0[bins["epoch"]], bins["up"]), axis=0)
-    fwd0, fq = estimate_forward_axis(gt[ok], G0, kin["t"], kin["speed"], np.degrees(kin["psi"]), up_ref)
+    reference_estimator = estimate_forward_axis
+    if reference_method == 'matched':
+        from .forward_reference import estimate_forward_axis as reference_estimator
+    fwd0, fq = reference_estimator(gt[ok], G0, kin["t"], kin["speed"], np.degrees(kin["psi"]), up_ref)
     fit_options = dict(fit_options or {})
     injected_angle = fit_options.pop("research_forward_offset_deg", 0.)
     if injected_angle and fwd0 is not None:
@@ -364,6 +400,9 @@ def _analyze(path, th: Thresholds | None = None, *, fit_options=None, diagnostic
             # Speed constraints participate in inference but are distinct from gyro rows.
             import json
             (diagnostics_directory/'wind-tas.json').write_text(json.dumps(f['wind_tas'],indent=2,allow_nan=False)+'\n')
+        if f.get('mount_yaw') is not None:
+            import json
+            (diagnostics_directory/'mount-yaw.json').write_text(json.dumps(f['mount_yaw'],indent=2,allow_nan=False)+'\n')
     if not f["convergence"]["converged"]:
         flags.append("inference_nonconvergence")
     if temp_ref is not None and temp_mean is None:
@@ -393,7 +432,7 @@ def _analyze(path, th: Thresholds | None = None, *, fit_options=None, diagnostic
         flags.append("crab_sensitive")
     if cs and cs["course_groups"] == 1:
         flags.append("single_heading")
-    if bins_all is not bins:
+    if bins_all is not bins and ambiguity_mode=='exclude':
         fa = None if fwd0 is None else np.einsum("nji,j->ni", R0[bins_all["epoch"]], fwd0)
         all_options = dict(fit_options)
         if all_options.get("forward_uncertainty") and tangent0 is not None:
@@ -409,15 +448,29 @@ def _analyze(path, th: Thresholds | None = None, *, fit_options=None, diagnostic
             flags.append("wmm_selection_sensitive")
     y, X, idx, cbns, theta = f["_rows"]
     res["fit"] = f
+    if ambiguity_mode=='model_and_compare':
+        from .mount_yaw import compare_paths
+        control=None; control_error=None
+        try:
+            control=analyze(path,th,fit_options=exclusion_options,
+                diagnostics_directory=diagnostics_directory/'excluded-path' if diagnostics_directory is not None else None)
+        except (ValueError,np.linalg.LinAlgError) as exc:
+            control_error=str(exc)
+        # Re-run the original path, including its own preprocessing and selection sensitivity.
+        baseline=(control or {}).get('fit') if res['slip'].get('available') else None
+        f['magnetic_ambiguity_comparison']=compare_paths(f,baseline,flags,(control or {}).get('flags',[]))
+        if control_error: f['magnetic_ambiguity_comparison']['excluded_path_error']=control_error
+        res['magnetic_exclusion_path']={key:(control or {}).get(key) for key in ('fit','flags','slip','forward_axis','input_sha256')}
     res["eligibility_policy"] = f["eligibility_policy"]
     res["policy_version"] = f["eligibility_policy"]["version"]
     res["scientific_exclusions"] = scientific_exclusions(res)
     if "pairwise" in f:
-        from .pairwise import flight_evidence, three_model_winner
+        from .pairwise import flight_evidence, three_model_winner, shape_evidence
         options = fit_options or {}
         f["pairwise"] = flight_evidence(f, flags, policy=options.get("pairwise_decision_policy"),
                                        candidate_id=options.get("decision_candidate_id"), variant=options.get("decision_variant"))
         f["pairwise_three_model_winner"] = three_model_winner(f["pairwise"])
+        f['shape_evidence'] = shape_evidence(f['pairwise'])
     res["fit"]["expected_k"] = models.EXPECTED_K
     res["accumulated"] = fit.accumulated(bins, cbns, y, idx, vertical_only)
     res["cruise_minutes"] = float(bins["dt"].sum() / 60)

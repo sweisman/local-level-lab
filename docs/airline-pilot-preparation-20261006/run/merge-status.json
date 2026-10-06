@@ -1,0 +1,11 @@
+{
+  "version": "sharded-flight-campaign-1",
+  "task_count": 18,
+  "completed": 3,
+  "missing": 15,
+  "complete": false,
+  "analysis_failures": 3,
+  "contiguous_prefix": true,
+  "runtime_unknown_attempts": 0,
+  "plan_hash": "74b7de930a28daeb5dc56884f1baefc990a32c1bcc68b285ea33ef6c4a75bfe7"
+}

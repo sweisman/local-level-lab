@@ -1,0 +1,2036 @@
+{
+  "state": "extended_window_preflight_complete_no_flights",
+  "cases": [
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "start_s": 41400.0,
+      "end_s": 46800.0,
+      "minutes": 90.0,
+      "observed_coverage_fraction": 0.9935185185185185,
+      "trajectory_hash": "c75a532662e426c499231d49fe19ac6a658f918a4c8fcc924d7efc84b52b1997",
+      "no_turn": {
+        "schedule_minutes": [],
+        "turn_checks": [],
+        "screened_minutes": 60.0,
+        "heading_diversity": {
+          "adequate": true,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 228.81606473471032,
+              "seconds": 1380.0
+            },
+            {
+              "heading_deg": 241.46090762388104,
+              "seconds": 1560.0
+            },
+            {
+              "heading_deg": 262.9080830477362,
+              "seconds": 660.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": 60.0,
+        "retained_minutes_by_epoch": [
+          60.0
+        ],
+        "passes_screen": true,
+        "exclusions": []
+      },
+      "evaluated_schedules": 145,
+      "passing_schedules": 0,
+      "best_schedule": null
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "start_s": 41100.0,
+      "end_s": 46500.0,
+      "minutes": 90.0,
+      "observed_coverage_fraction": 0.992037037037037,
+      "trajectory_hash": "7eae81afaa580a880673985a804af9076a488b8c8be632d34cdcf4034017cb53",
+      "no_turn": {
+        "schedule_minutes": [],
+        "turn_checks": [],
+        "screened_minutes": 65.0,
+        "heading_diversity": {
+          "adequate": true,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 228.81606473471032,
+              "seconds": 1680.0
+            },
+            {
+              "heading_deg": 241.46090762388104,
+              "seconds": 1560.0
+            },
+            {
+              "heading_deg": 262.90808304773617,
+              "seconds": 660.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": 60.0,
+        "retained_minutes_by_epoch": [
+          65.0
+        ],
+        "passes_screen": true,
+        "exclusions": []
+      },
+      "evaluated_schedules": 136,
+      "passing_schedules": 0,
+      "best_schedule": null
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "start_s": 40800.0,
+      "end_s": 46200.0,
+      "minutes": 90.0,
+      "observed_coverage_fraction": 0.9955555555555555,
+      "trajectory_hash": "53252dfdf4b98d6d8c0a1f4d8bf8391fa2aad971e53998f4fcc467285a6b349f",
+      "no_turn": {
+        "schedule_minutes": [],
+        "turn_checks": [],
+        "screened_minutes": 70.0,
+        "heading_diversity": {
+          "adequate": true,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 228.81606473471032,
+              "seconds": 1980.0
+            },
+            {
+              "heading_deg": 241.46090762388104,
+              "seconds": 1560.0
+            },
+            {
+              "heading_deg": 262.9080831066193,
+              "seconds": 660.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": 60.0,
+        "retained_minutes_by_epoch": [
+          70.0
+        ],
+        "passes_screen": true,
+        "exclusions": []
+      },
+      "evaluated_schedules": 183,
+      "passing_schedules": 91,
+      "best_schedule": {
+        "schedule_minutes": [
+          15.0,
+          30.0,
+          50.0
+        ],
+        "turn_checks": [
+          {
+            "minute": 15.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 30.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 50.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          }
+        ],
+        "screened_minutes": 64.0,
+        "heading_diversity": {
+          "adequate": true,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 228.81606473471032,
+              "seconds": 1740.0
+            },
+            {
+              "heading_deg": 241.46090762388104,
+              "seconds": 1440.0
+            },
+            {
+              "heading_deg": 262.9080831066193,
+              "seconds": 660.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": 60.0,
+        "retained_minutes_by_epoch": [
+          13.0,
+          13.0,
+          15.0,
+          23.0
+        ],
+        "passes_screen": true,
+        "exclusions": []
+      }
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "start_s": 40500.0,
+      "end_s": 45900.0,
+      "minutes": 90.0,
+      "observed_coverage_fraction": 0.9968518518518519,
+      "trajectory_hash": "95f1bc45ed934c80dc874b31c2a12f7832c89ff058a4e4ab3105cbb18ad58fe3",
+      "no_turn": {
+        "schedule_minutes": [],
+        "turn_checks": [],
+        "screened_minutes": 75.0,
+        "heading_diversity": {
+          "adequate": true,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 228.81606473471032,
+              "seconds": 2280.0
+            },
+            {
+              "heading_deg": 241.46090762388104,
+              "seconds": 1560.0
+            },
+            {
+              "heading_deg": 262.8721399374053,
+              "seconds": 660.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": 60.0,
+        "retained_minutes_by_epoch": [
+          75.0
+        ],
+        "passes_screen": true,
+        "exclusions": []
+      },
+      "evaluated_schedules": 240,
+      "passing_schedules": 128,
+      "best_schedule": {
+        "schedule_minutes": [
+          15.0,
+          30.0,
+          50.0
+        ],
+        "turn_checks": [
+          {
+            "minute": 15.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 30.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 50.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          }
+        ],
+        "screened_minutes": 69.0,
+        "heading_diversity": {
+          "adequate": true,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 228.81606473471032,
+              "seconds": 2040.0
+            },
+            {
+              "heading_deg": 241.46090762388104,
+              "seconds": 1440.0
+            },
+            {
+              "heading_deg": 262.8721399374053,
+              "seconds": 660.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": 60.0,
+        "retained_minutes_by_epoch": [
+          13.0,
+          13.0,
+          15.0,
+          28.0
+        ],
+        "passes_screen": true,
+        "exclusions": []
+      }
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "start_s": 41400.0,
+      "end_s": 47700.0,
+      "minutes": 105.0,
+      "observed_coverage_fraction": 0.9953968253968254,
+      "trajectory_hash": "9803ea271506d336733195a46ec8d4110cc2657a0a84c51c5d0c22cdfbd82633",
+      "no_turn": {
+        "schedule_minutes": [],
+        "turn_checks": [],
+        "screened_minutes": 77.0,
+        "heading_diversity": {
+          "adequate": true,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 228.81606473471032,
+              "seconds": 1380.0
+            },
+            {
+              "heading_deg": 241.46090762388104,
+              "seconds": 1560.0
+            },
+            {
+              "heading_deg": 262.9080830477362,
+              "seconds": 660.0
+            },
+            {
+              "heading_deg": 278.15679392450653,
+              "seconds": 1020.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": 420.0,
+        "retained_minutes_by_epoch": [
+          77.0
+        ],
+        "passes_screen": true,
+        "exclusions": []
+      },
+      "evaluated_schedules": 250,
+      "passing_schedules": 250,
+      "best_schedule": {
+        "schedule_minutes": [
+          20.0,
+          40.0,
+          70.0
+        ],
+        "turn_checks": [
+          {
+            "minute": 20.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 40.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 70.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          }
+        ],
+        "screened_minutes": 71.0,
+        "heading_diversity": {
+          "adequate": true,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 228.81606473471032,
+              "seconds": 1260.0
+            },
+            {
+              "heading_deg": 241.46090762388104,
+              "seconds": 1440.0
+            },
+            {
+              "heading_deg": 262.9080830477362,
+              "seconds": 540.0
+            },
+            {
+              "heading_deg": 278.15679392450653,
+              "seconds": 1020.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": 420.0,
+        "retained_minutes_by_epoch": [
+          18.0,
+          15.0,
+          18.0,
+          20.0
+        ],
+        "passes_screen": true,
+        "exclusions": []
+      }
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "start_s": 41100.0,
+      "end_s": 47400.0,
+      "minutes": 105.0,
+      "observed_coverage_fraction": 0.9944444444444445,
+      "trajectory_hash": "af46071e7df516542560552cee34db69326b7a3501ed853ac4295f8f55bd043b",
+      "no_turn": {
+        "schedule_minutes": [],
+        "turn_checks": [],
+        "screened_minutes": 82.0,
+        "heading_diversity": {
+          "adequate": true,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 228.81606473471032,
+              "seconds": 1680.0
+            },
+            {
+              "heading_deg": 241.46090762388104,
+              "seconds": 1560.0
+            },
+            {
+              "heading_deg": 262.9080830477362,
+              "seconds": 660.0
+            },
+            {
+              "heading_deg": 278.15689324618563,
+              "seconds": 1020.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": 420.0,
+        "retained_minutes_by_epoch": [
+          82.0
+        ],
+        "passes_screen": true,
+        "exclusions": []
+      },
+      "evaluated_schedules": 319,
+      "passing_schedules": 319,
+      "best_schedule": {
+        "schedule_minutes": [
+          20.0,
+          45.0,
+          75.0
+        ],
+        "turn_checks": [
+          {
+            "minute": 20.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 45.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 75.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          }
+        ],
+        "screened_minutes": 76.0,
+        "heading_diversity": {
+          "adequate": true,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 228.81606473471032,
+              "seconds": 1560.0
+            },
+            {
+              "heading_deg": 241.46090762388104,
+              "seconds": 1440.0
+            },
+            {
+              "heading_deg": 262.9080830477362,
+              "seconds": 540.0
+            },
+            {
+              "heading_deg": 278.15689324618563,
+              "seconds": 1020.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": 420.0,
+        "retained_minutes_by_epoch": [
+          18.0,
+          20.0,
+          18.0,
+          20.0
+        ],
+        "passes_screen": true,
+        "exclusions": []
+      }
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "start_s": 40800.0,
+      "end_s": 47100.0,
+      "minutes": 105.0,
+      "observed_coverage_fraction": 0.9949206349206349,
+      "trajectory_hash": "cabe344159ecf25378cff5cd29f8289894b4b1d34091495a36596cf026a1d997",
+      "no_turn": {
+        "schedule_minutes": [],
+        "turn_checks": [],
+        "screened_minutes": 83.0,
+        "heading_diversity": {
+          "adequate": true,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 228.81606473471032,
+              "seconds": 1980.0
+            },
+            {
+              "heading_deg": 241.46090762388104,
+              "seconds": 1560.0
+            },
+            {
+              "heading_deg": 262.9080830477362,
+              "seconds": 660.0
+            },
+            {
+              "heading_deg": 278.5251214991367,
+              "seconds": 780.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": 180.0,
+        "retained_minutes_by_epoch": [
+          83.0
+        ],
+        "passes_screen": true,
+        "exclusions": []
+      },
+      "evaluated_schedules": 319,
+      "passing_schedules": 319,
+      "best_schedule": {
+        "schedule_minutes": [
+          20.0,
+          45.0,
+          75.0
+        ],
+        "turn_checks": [
+          {
+            "minute": 20.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 45.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 75.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          }
+        ],
+        "screened_minutes": 77.0,
+        "heading_diversity": {
+          "adequate": true,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 228.81606473471032,
+              "seconds": 1860.0
+            },
+            {
+              "heading_deg": 241.46090762388104,
+              "seconds": 1440.0
+            },
+            {
+              "heading_deg": 262.9080830477362,
+              "seconds": 540.0
+            },
+            {
+              "heading_deg": 278.5251214991367,
+              "seconds": 780.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": 180.0,
+        "retained_minutes_by_epoch": [
+          18.0,
+          20.0,
+          18.0,
+          21.0
+        ],
+        "passes_screen": true,
+        "exclusions": []
+      }
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "start_s": 40500.0,
+      "end_s": 46800.0,
+      "minutes": 105.0,
+      "observed_coverage_fraction": 0.9949206349206349,
+      "trajectory_hash": "44d290b114569edfbb8c2fd32851c872862bcefd528ee0edecbead0450ffd8a7",
+      "no_turn": {
+        "schedule_minutes": [],
+        "turn_checks": [],
+        "screened_minutes": 75.0,
+        "heading_diversity": {
+          "adequate": true,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 228.81606473471032,
+              "seconds": 2280.0
+            },
+            {
+              "heading_deg": 241.46090762388104,
+              "seconds": 1560.0
+            },
+            {
+              "heading_deg": 262.9080830477362,
+              "seconds": 660.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": 60.0,
+        "retained_minutes_by_epoch": [
+          75.0
+        ],
+        "passes_screen": true,
+        "exclusions": []
+      },
+      "evaluated_schedules": 320,
+      "passing_schedules": 184,
+      "best_schedule": {
+        "schedule_minutes": [
+          5.0,
+          15.0,
+          100.0
+        ],
+        "turn_checks": [
+          {
+            "minute": 5.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 15.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 100.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          }
+        ],
+        "screened_minutes": 71.0,
+        "heading_diversity": {
+          "adequate": true,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 228.81606473471032,
+              "seconds": 2040.0
+            },
+            {
+              "heading_deg": 241.46090762388104,
+              "seconds": 1560.0
+            },
+            {
+              "heading_deg": 262.9080830477362,
+              "seconds": 660.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": 60.0,
+        "retained_minutes_by_epoch": [
+          3.0,
+          8.0,
+          60.0,
+          0.0
+        ],
+        "passes_screen": true,
+        "exclusions": []
+      }
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "start_s": 40200.0,
+      "end_s": 46500.0,
+      "minutes": 105.0,
+      "observed_coverage_fraction": 0.993968253968254,
+      "trajectory_hash": "4e0d1d5538f785a4f4039d331bd414e0b084b11caca23e96d11651172d390eff",
+      "no_turn": {
+        "schedule_minutes": [],
+        "turn_checks": [],
+        "screened_minutes": 80.0,
+        "heading_diversity": {
+          "adequate": true,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 228.81606473471032,
+              "seconds": 2580.0
+            },
+            {
+              "heading_deg": 241.46090762388104,
+              "seconds": 1560.0
+            },
+            {
+              "heading_deg": 262.90808304773617,
+              "seconds": 660.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": 60.0,
+        "retained_minutes_by_epoch": [
+          80.0
+        ],
+        "passes_screen": true,
+        "exclusions": []
+      },
+      "evaluated_schedules": 308,
+      "passing_schedules": 174,
+      "best_schedule": {
+        "schedule_minutes": [
+          20.0,
+          40.0,
+          65.0
+        ],
+        "turn_checks": [
+          {
+            "minute": 20.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 40.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 65.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          }
+        ],
+        "screened_minutes": 74.0,
+        "heading_diversity": {
+          "adequate": true,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 228.81606473471032,
+              "seconds": 2340.0
+            },
+            {
+              "heading_deg": 241.46090762388104,
+              "seconds": 1440.0
+            },
+            {
+              "heading_deg": 262.90808304773617,
+              "seconds": 660.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": 60.0,
+        "retained_minutes_by_epoch": [
+          18.0,
+          18.0,
+          20.0,
+          18.0
+        ],
+        "passes_screen": true,
+        "exclusions": []
+      }
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "start_s": 39900.0,
+      "end_s": 46200.0,
+      "minutes": 105.0,
+      "observed_coverage_fraction": 0.9976190476190476,
+      "trajectory_hash": "2592da9d5890a5c77ef2e239efa8611623e264ce0787846355acc0c5dc95912a",
+      "no_turn": {
+        "schedule_minutes": [],
+        "turn_checks": [],
+        "screened_minutes": 85.0,
+        "heading_diversity": {
+          "adequate": true,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 228.81606473471032,
+              "seconds": 2880.0
+            },
+            {
+              "heading_deg": 241.46090762388104,
+              "seconds": 1560.0
+            },
+            {
+              "heading_deg": 262.9080831066193,
+              "seconds": 660.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": 60.0,
+        "retained_minutes_by_epoch": [
+          85.0
+        ],
+        "passes_screen": true,
+        "exclusions": []
+      },
+      "evaluated_schedules": 388,
+      "passing_schedules": 230,
+      "best_schedule": {
+        "schedule_minutes": [
+          20.0,
+          40.0,
+          65.0
+        ],
+        "turn_checks": [
+          {
+            "minute": 20.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 40.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 65.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          }
+        ],
+        "screened_minutes": 79.0,
+        "heading_diversity": {
+          "adequate": true,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 228.81606473471032,
+              "seconds": 2640.0
+            },
+            {
+              "heading_deg": 241.46090762388104,
+              "seconds": 1440.0
+            },
+            {
+              "heading_deg": 262.9080831066193,
+              "seconds": 660.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": 60.0,
+        "retained_minutes_by_epoch": [
+          18.0,
+          18.0,
+          20.0,
+          23.0
+        ],
+        "passes_screen": true,
+        "exclusions": []
+      }
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "start_s": 39600.0,
+      "end_s": 45900.0,
+      "minutes": 105.0,
+      "observed_coverage_fraction": 0.9987301587301587,
+      "trajectory_hash": "76214c51bfb782cc470b55b1d59b6d64fdaa31864731b80637c88b902436c846",
+      "no_turn": {
+        "schedule_minutes": [],
+        "turn_checks": [],
+        "screened_minutes": 90.0,
+        "heading_diversity": {
+          "adequate": true,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 228.81606473471032,
+              "seconds": 3180.0
+            },
+            {
+              "heading_deg": 241.46090762388104,
+              "seconds": 1560.0
+            },
+            {
+              "heading_deg": 262.8721399374053,
+              "seconds": 660.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": 60.0,
+        "retained_minutes_by_epoch": [
+          90.0
+        ],
+        "passes_screen": true,
+        "exclusions": []
+      },
+      "evaluated_schedules": 481,
+      "passing_schedules": 297,
+      "best_schedule": {
+        "schedule_minutes": [
+          20.0,
+          40.0,
+          65.0
+        ],
+        "turn_checks": [
+          {
+            "minute": 20.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 40.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 65.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          }
+        ],
+        "screened_minutes": 84.0,
+        "heading_diversity": {
+          "adequate": true,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 228.81606473471032,
+              "seconds": 2940.0
+            },
+            {
+              "heading_deg": 241.46090762388104,
+              "seconds": 1440.0
+            },
+            {
+              "heading_deg": 262.8721399374053,
+              "seconds": 660.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": 60.0,
+        "retained_minutes_by_epoch": [
+          18.0,
+          18.0,
+          20.0,
+          28.0
+        ],
+        "passes_screen": true,
+        "exclusions": []
+      }
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "start_s": 41400.0,
+      "end_s": 48600.0,
+      "minutes": 120.0,
+      "observed_coverage_fraction": 0.9959722222222223,
+      "trajectory_hash": "1eacbcd9b144e324a9134efcf0a5f77b2d7341d0a5c67eba2f1f1c62abe42a66",
+      "no_turn": {
+        "schedule_minutes": [],
+        "turn_checks": [],
+        "screened_minutes": 77.0,
+        "heading_diversity": {
+          "adequate": true,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 228.81606473471032,
+              "seconds": 1380.0
+            },
+            {
+              "heading_deg": 241.46090762388104,
+              "seconds": 1560.0
+            },
+            {
+              "heading_deg": 262.9080830477362,
+              "seconds": 660.0
+            },
+            {
+              "heading_deg": 278.15679392343594,
+              "seconds": 1020.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": 420.0,
+        "retained_minutes_by_epoch": [
+          77.0
+        ],
+        "passes_screen": true,
+        "exclusions": []
+      },
+      "evaluated_schedules": 250,
+      "passing_schedules": 250,
+      "best_schedule": {
+        "schedule_minutes": [
+          20.0,
+          40.0,
+          70.0
+        ],
+        "turn_checks": [
+          {
+            "minute": 20.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 40.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 70.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          }
+        ],
+        "screened_minutes": 71.0,
+        "heading_diversity": {
+          "adequate": true,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 228.81606473471032,
+              "seconds": 1260.0
+            },
+            {
+              "heading_deg": 241.46090762388104,
+              "seconds": 1440.0
+            },
+            {
+              "heading_deg": 262.9080830477362,
+              "seconds": 540.0
+            },
+            {
+              "heading_deg": 278.15679392343594,
+              "seconds": 1020.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": 420.0,
+        "retained_minutes_by_epoch": [
+          18.0,
+          15.0,
+          18.0,
+          20.0
+        ],
+        "passes_screen": true,
+        "exclusions": []
+      }
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "start_s": 41100.0,
+      "end_s": 48300.0,
+      "minutes": 120.0,
+      "observed_coverage_fraction": 0.99625,
+      "trajectory_hash": "c5111a04ebf0063bc3b519958b623bcf6f672a3258c93e022cb72089f42da738",
+      "no_turn": {
+        "schedule_minutes": [],
+        "turn_checks": [],
+        "screened_minutes": 82.0,
+        "heading_diversity": {
+          "adequate": true,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 228.81606473471032,
+              "seconds": 1680.0
+            },
+            {
+              "heading_deg": 241.46090762388104,
+              "seconds": 1560.0
+            },
+            {
+              "heading_deg": 262.9080830477362,
+              "seconds": 660.0
+            },
+            {
+              "heading_deg": 278.15679392343594,
+              "seconds": 1020.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": 420.0,
+        "retained_minutes_by_epoch": [
+          82.0
+        ],
+        "passes_screen": true,
+        "exclusions": []
+      },
+      "evaluated_schedules": 319,
+      "passing_schedules": 319,
+      "best_schedule": {
+        "schedule_minutes": [
+          20.0,
+          45.0,
+          75.0
+        ],
+        "turn_checks": [
+          {
+            "minute": 20.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 45.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 75.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          }
+        ],
+        "screened_minutes": 76.0,
+        "heading_diversity": {
+          "adequate": true,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 228.81606473471032,
+              "seconds": 1560.0
+            },
+            {
+              "heading_deg": 241.46090762388104,
+              "seconds": 1440.0
+            },
+            {
+              "heading_deg": 262.9080830477362,
+              "seconds": 540.0
+            },
+            {
+              "heading_deg": 278.15679392343594,
+              "seconds": 1020.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": 420.0,
+        "retained_minutes_by_epoch": [
+          18.0,
+          20.0,
+          18.0,
+          20.0
+        ],
+        "passes_screen": true,
+        "exclusions": []
+      }
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "start_s": 40800.0,
+      "end_s": 48000.0,
+      "minutes": 120.0,
+      "observed_coverage_fraction": 0.9945833333333334,
+      "trajectory_hash": "6ff34366db6dca32827253e6e0c02366f6b8dc5b51216f237e0fdde9c71df67d",
+      "no_turn": {
+        "schedule_minutes": [],
+        "turn_checks": [],
+        "screened_minutes": 87.0,
+        "heading_diversity": {
+          "adequate": true,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 228.81606473471032,
+              "seconds": 1980.0
+            },
+            {
+              "heading_deg": 241.46090762388104,
+              "seconds": 1560.0
+            },
+            {
+              "heading_deg": 262.9080830477362,
+              "seconds": 660.0
+            },
+            {
+              "heading_deg": 278.15679392343594,
+              "seconds": 1020.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": 420.0,
+        "retained_minutes_by_epoch": [
+          87.0
+        ],
+        "passes_screen": true,
+        "exclusions": []
+      },
+      "evaluated_schedules": 400,
+      "passing_schedules": 400,
+      "best_schedule": {
+        "schedule_minutes": [
+          20.0,
+          45.0,
+          75.0
+        ],
+        "turn_checks": [
+          {
+            "minute": 20.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 45.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 75.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          }
+        ],
+        "screened_minutes": 81.0,
+        "heading_diversity": {
+          "adequate": true,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 228.81606473471032,
+              "seconds": 1860.0
+            },
+            {
+              "heading_deg": 241.46090762388104,
+              "seconds": 1440.0
+            },
+            {
+              "heading_deg": 262.9080830477362,
+              "seconds": 540.0
+            },
+            {
+              "heading_deg": 278.15679392343594,
+              "seconds": 1020.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": 420.0,
+        "retained_minutes_by_epoch": [
+          18.0,
+          20.0,
+          18.0,
+          25.0
+        ],
+        "passes_screen": true,
+        "exclusions": []
+      }
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "start_s": 40500.0,
+      "end_s": 47700.0,
+      "minutes": 120.0,
+      "observed_coverage_fraction": 0.9963888888888889,
+      "trajectory_hash": "f65c9735aad339892c9808184df2ae45c12f8142c52c0093eb7f2e758d7fb023",
+      "no_turn": {
+        "schedule_minutes": [],
+        "turn_checks": [],
+        "screened_minutes": 92.0,
+        "heading_diversity": {
+          "adequate": true,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 228.81606473471032,
+              "seconds": 2280.0
+            },
+            {
+              "heading_deg": 241.46090762388104,
+              "seconds": 1560.0
+            },
+            {
+              "heading_deg": 262.9080830477362,
+              "seconds": 660.0
+            },
+            {
+              "heading_deg": 278.15679392450653,
+              "seconds": 1020.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": 420.0,
+        "retained_minutes_by_epoch": [
+          92.0
+        ],
+        "passes_screen": true,
+        "exclusions": []
+      },
+      "evaluated_schedules": 494,
+      "passing_schedules": 494,
+      "best_schedule": {
+        "schedule_minutes": [
+          25.0,
+          50.0,
+          85.0
+        ],
+        "turn_checks": [
+          {
+            "minute": 25.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 50.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 85.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          }
+        ],
+        "screened_minutes": 86.0,
+        "heading_diversity": {
+          "adequate": true,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 228.81606473471032,
+              "seconds": 2160.0
+            },
+            {
+              "heading_deg": 241.46090762388104,
+              "seconds": 1440.0
+            },
+            {
+              "heading_deg": 262.9080830477362,
+              "seconds": 540.0
+            },
+            {
+              "heading_deg": 278.15679392450653,
+              "seconds": 1020.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": 420.0,
+        "retained_minutes_by_epoch": [
+          23.0,
+          20.0,
+          23.0,
+          20.0
+        ],
+        "passes_screen": true,
+        "exclusions": []
+      }
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "start_s": 40200.0,
+      "end_s": 47400.0,
+      "minutes": 120.0,
+      "observed_coverage_fraction": 0.9958333333333333,
+      "trajectory_hash": "0dcd534e05f0621361898f0c1f6a98663aaa76635d07f9059dcb4e5719e7bf16",
+      "no_turn": {
+        "schedule_minutes": [],
+        "turn_checks": [],
+        "screened_minutes": 97.0,
+        "heading_diversity": {
+          "adequate": true,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 228.81606473471032,
+              "seconds": 2580.0
+            },
+            {
+              "heading_deg": 241.46090762388104,
+              "seconds": 1560.0
+            },
+            {
+              "heading_deg": 262.9080830477362,
+              "seconds": 660.0
+            },
+            {
+              "heading_deg": 278.15689324618563,
+              "seconds": 1020.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": 420.0,
+        "retained_minutes_by_epoch": [
+          97.0
+        ],
+        "passes_screen": true,
+        "exclusions": []
+      },
+      "evaluated_schedules": 602,
+      "passing_schedules": 602,
+      "best_schedule": {
+        "schedule_minutes": [
+          25.0,
+          50.0,
+          85.0
+        ],
+        "turn_checks": [
+          {
+            "minute": 25.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 50.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 85.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          }
+        ],
+        "screened_minutes": 91.0,
+        "heading_diversity": {
+          "adequate": true,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 228.81606473471032,
+              "seconds": 2460.0
+            },
+            {
+              "heading_deg": 241.46090762388104,
+              "seconds": 1440.0
+            },
+            {
+              "heading_deg": 262.9080830477362,
+              "seconds": 540.0
+            },
+            {
+              "heading_deg": 278.15689324618563,
+              "seconds": 1020.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": 420.0,
+        "retained_minutes_by_epoch": [
+          23.0,
+          20.0,
+          23.0,
+          25.0
+        ],
+        "passes_screen": true,
+        "exclusions": []
+      }
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "start_s": 39900.0,
+      "end_s": 47100.0,
+      "minutes": 120.0,
+      "observed_coverage_fraction": 0.9968055555555555,
+      "trajectory_hash": "100efe920470a2c8b4f358877bf22c4cabbf861e5bcf539676de241738888c5e",
+      "no_turn": {
+        "schedule_minutes": [],
+        "turn_checks": [],
+        "screened_minutes": 98.0,
+        "heading_diversity": {
+          "adequate": true,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 228.81606473471032,
+              "seconds": 2880.0
+            },
+            {
+              "heading_deg": 241.46090762388104,
+              "seconds": 1560.0
+            },
+            {
+              "heading_deg": 262.9080830477362,
+              "seconds": 660.0
+            },
+            {
+              "heading_deg": 278.5251214991367,
+              "seconds": 780.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": 180.0,
+        "retained_minutes_by_epoch": [
+          98.0
+        ],
+        "passes_screen": true,
+        "exclusions": []
+      },
+      "evaluated_schedules": 602,
+      "passing_schedules": 602,
+      "best_schedule": {
+        "schedule_minutes": [
+          25.0,
+          55.0,
+          90.0
+        ],
+        "turn_checks": [
+          {
+            "minute": 25.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 55.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 90.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          }
+        ],
+        "screened_minutes": 92.0,
+        "heading_diversity": {
+          "adequate": true,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 228.81606473471032,
+              "seconds": 2760.0
+            },
+            {
+              "heading_deg": 241.46090762388104,
+              "seconds": 1440.0
+            },
+            {
+              "heading_deg": 262.9080830477362,
+              "seconds": 540.0
+            },
+            {
+              "heading_deg": 278.5251214991367,
+              "seconds": 780.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": 180.0,
+        "retained_minutes_by_epoch": [
+          23.0,
+          25.0,
+          23.0,
+          21.0
+        ],
+        "passes_screen": true,
+        "exclusions": []
+      }
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "start_s": 39600.0,
+      "end_s": 46800.0,
+      "minutes": 120.0,
+      "observed_coverage_fraction": 0.9968055555555555,
+      "trajectory_hash": "5910618117316793343b44d6ae5784a706430e1c27f5fa886f1b47295c249646",
+      "no_turn": {
+        "schedule_minutes": [],
+        "turn_checks": [],
+        "screened_minutes": 90.0,
+        "heading_diversity": {
+          "adequate": true,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 228.81606473471032,
+              "seconds": 3180.0
+            },
+            {
+              "heading_deg": 241.46090762388104,
+              "seconds": 1560.0
+            },
+            {
+              "heading_deg": 262.9080830477362,
+              "seconds": 660.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": 60.0,
+        "retained_minutes_by_epoch": [
+          90.0
+        ],
+        "passes_screen": true,
+        "exclusions": []
+      },
+      "evaluated_schedules": 603,
+      "passing_schedules": 389,
+      "best_schedule": {
+        "schedule_minutes": [
+          5.0,
+          15.0,
+          115.0
+        ],
+        "turn_checks": [
+          {
+            "minute": 5.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 15.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 115.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          }
+        ],
+        "screened_minutes": 86.0,
+        "heading_diversity": {
+          "adequate": true,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 228.81606473471032,
+              "seconds": 2940.0
+            },
+            {
+              "heading_deg": 241.46090762388104,
+              "seconds": 1560.0
+            },
+            {
+              "heading_deg": 262.9080830477362,
+              "seconds": 660.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": 60.0,
+        "retained_minutes_by_epoch": [
+          3.0,
+          8.0,
+          75.0,
+          0.0
+        ],
+        "passes_screen": true,
+        "exclusions": []
+      }
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "start_s": 39300.0,
+      "end_s": 46500.0,
+      "minutes": 120.0,
+      "observed_coverage_fraction": 0.9956944444444444,
+      "trajectory_hash": "468ef5e18c7da3666b57559d9b1e79467220b516f3b96353c49a9f48a0572435",
+      "no_turn": {
+        "schedule_minutes": [],
+        "turn_checks": [],
+        "screened_minutes": 95.0,
+        "heading_diversity": {
+          "adequate": true,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 228.81606473471032,
+              "seconds": 3480.0
+            },
+            {
+              "heading_deg": 241.46090762388104,
+              "seconds": 1560.0
+            },
+            {
+              "heading_deg": 262.90808304773617,
+              "seconds": 660.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": 60.0,
+        "retained_minutes_by_epoch": [
+          95.0
+        ],
+        "passes_screen": true,
+        "exclusions": []
+      },
+      "evaluated_schedules": 588,
+      "passing_schedules": 376,
+      "best_schedule": {
+        "schedule_minutes": [
+          25.0,
+          50.0,
+          75.0
+        ],
+        "turn_checks": [
+          {
+            "minute": 25.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 50.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 75.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          }
+        ],
+        "screened_minutes": 89.0,
+        "heading_diversity": {
+          "adequate": true,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 228.81606473471032,
+              "seconds": 3240.0
+            },
+            {
+              "heading_deg": 241.46090762388104,
+              "seconds": 1440.0
+            },
+            {
+              "heading_deg": 262.90808304773617,
+              "seconds": 660.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": 60.0,
+        "retained_minutes_by_epoch": [
+          23.0,
+          23.0,
+          20.0,
+          23.0
+        ],
+        "passes_screen": true,
+        "exclusions": []
+      }
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "start_s": 39000.0,
+      "end_s": 46200.0,
+      "minutes": 120.0,
+      "observed_coverage_fraction": 0.9956944444444444,
+      "trajectory_hash": "8047d15cf70affb9c65636792ffb63e8046a5ab07811bdaa9655ddefe83a0b0a",
+      "no_turn": {
+        "schedule_minutes": [],
+        "turn_checks": [],
+        "screened_minutes": 100.0,
+        "heading_diversity": {
+          "adequate": true,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 228.81606473471032,
+              "seconds": 3780.0
+            },
+            {
+              "heading_deg": 241.46090762388104,
+              "seconds": 1560.0
+            },
+            {
+              "heading_deg": 262.9080831066193,
+              "seconds": 660.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": 60.0,
+        "retained_minutes_by_epoch": [
+          100.0
+        ],
+        "passes_screen": true,
+        "exclusions": []
+      },
+      "evaluated_schedules": 710,
+      "passing_schedules": 468,
+      "best_schedule": {
+        "schedule_minutes": [
+          25.0,
+          50.0,
+          80.0
+        ],
+        "turn_checks": [
+          {
+            "minute": 25.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 50.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 80.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          }
+        ],
+        "screened_minutes": 94.0,
+        "heading_diversity": {
+          "adequate": true,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 228.81606473471032,
+              "seconds": 3540.0
+            },
+            {
+              "heading_deg": 241.46090762388104,
+              "seconds": 1440.0
+            },
+            {
+              "heading_deg": 262.9080831066193,
+              "seconds": 660.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": 60.0,
+        "retained_minutes_by_epoch": [
+          23.0,
+          23.0,
+          25.0,
+          23.0
+        ],
+        "passes_screen": true,
+        "exclusions": []
+      }
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "start_s": 38700.0,
+      "end_s": 45900.0,
+      "minutes": 120.0,
+      "observed_coverage_fraction": 0.9986111111111111,
+      "trajectory_hash": "fcf626458f3a0a6452d9b4206eb42a103a1736f29a5fe229a62b90faa96f7c5d",
+      "no_turn": {
+        "schedule_minutes": [],
+        "turn_checks": [],
+        "screened_minutes": 105.0,
+        "heading_diversity": {
+          "adequate": true,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 228.81606473471032,
+              "seconds": 4080.0
+            },
+            {
+              "heading_deg": 241.46090762388104,
+              "seconds": 1560.0
+            },
+            {
+              "heading_deg": 262.8721399374053,
+              "seconds": 660.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": 60.0,
+        "retained_minutes_by_epoch": [
+          105.0
+        ],
+        "passes_screen": true,
+        "exclusions": []
+      },
+      "evaluated_schedules": 848,
+      "passing_schedules": 574,
+      "best_schedule": {
+        "schedule_minutes": [
+          25.0,
+          50.0,
+          80.0
+        ],
+        "turn_checks": [
+          {
+            "minute": 25.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 50.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          },
+          {
+            "minute": 80.0,
+            "safe": true,
+            "reason": null,
+            "evidence": []
+          }
+        ],
+        "screened_minutes": 99.0,
+        "heading_diversity": {
+          "adequate": true,
+          "provisional": true,
+          "min_separation_deg": 30,
+          "min_seconds_per_heading": 600,
+          "groups": [
+            {
+              "heading_deg": 228.81606473471032,
+              "seconds": 3840.0
+            },
+            {
+              "heading_deg": 241.46090762388104,
+              "seconds": 1440.0
+            },
+            {
+              "heading_deg": 262.8721399374053,
+              "seconds": 660.0
+            }
+          ]
+        },
+        "heading_duration_margin_seconds": 60.0,
+        "retained_minutes_by_epoch": [
+          23.0,
+          23.0,
+          25.0,
+          28.0
+        ],
+        "passes_screen": true,
+        "exclusions": []
+      }
+    }
+  ],
+  "input_sha256": {
+    "docs/flight-geometry-20261006/normalized-tracks.json.gz": "76daa57528bf64384b9d95c96bf2ea49e9bdedafcda1d9f50b7f57650122f6cf",
+    "docs/matched-airline-pilot-20261006/window-preflight.json": "823976053fa0edee7fe199e931d18a1103f08db33758526b6b0756d9aac2976e"
+  },
+  "helper_sha256": "d5d60c45b465478673fb91021cb1520028d7df9af234d5ca9d0be1ce4c1319bf",
+  "preflight_helper_sha256": "35c5c944c07a60acb15c467b85aef2a91ad4cce6cdc4e089e1f42649c94fb396",
+  "authorized_additional_attempts": 0,
+  "scope": "Exploratory overlapping extensions chosen after development screening; not independent evidence.",
+  "limitations": [
+    "Only duration changed; coverage, heading, motion and turn rules unchanged.",
+    "Assumed C2 motion; full preprocessing, forward reference and nuisance separation untested.",
+    "No fit, SVD, power, empirical threshold or validation; no new protocol adopted."
+  ]
+}

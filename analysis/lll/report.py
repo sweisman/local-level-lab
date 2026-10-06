@@ -72,6 +72,21 @@ def _f(x, nd=2):
     return "–" if x is None else f"{x:.{nd}f}"
 
 
+def _shape_report(evidence):
+    if not evidence or 'pairwise' not in evidence: return ''
+    from .pairwise import shape_evidence
+    shape=shape_evidence(evidence.get('pairwise') or {})
+    label={'globe':'Globe preference; rotation may remain unresolved',
+           'disc':'Stationary disc preference',None:'Insufficient evidence to distinguish globe from disc'}[shape['preferred_family']]
+    if shape['conflicting_preferences']: label='Conflicting comparisons; no shape preference'
+    return ('<h2>Globe versus disc: experimental evidence</h2><p><b>'+html.escape(label)+'</b></p>'
+        '<p>A globe preference needs one informative comparison that rules out the disc while retaining a globe model. '
+        'A disc preference needs both comparisons to rule out their globe alternatives while retaining the disc. '
+        'Conflicting preferences cause abstention. This tests the specified stationary disc, rather than every possible non-globe model.</p>'
+        '<p class=sub>The shape error rate has not been validated, even if individual comparisons use calibrated thresholds. '
+        'This is provisional evidence, with no validated significance claim.</p>')
+
+
 def page(title, body) -> str:
     return (f"<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport "
             f"content='width=device-width,initial-scale=1'><title>{html.escape(title)}</title>"
@@ -111,6 +126,7 @@ def session_report(res: dict) -> str:
 
     fit = res.get("fit")
     if fit:
+        out.append(_shape_report(fit))
         idn = fit["identifiability"]
         not_rej = [MODEL_LABELS[m] for m in MODEL_LABELS if not fit["rejected"][m]]
         verdict = (" or ".join(not_rej) if not_rej else "none: check the flags") + (
@@ -279,6 +295,7 @@ def collation_report(col: dict) -> str:
            f"WMM slip exclusion, an IMU unit rated {' or '.join(col['gates']['unit_tiers'])} at the time, curator approval tied to the archive hash, a complete bench certificate predating the flight, verified integrity, two retained headings at least 30° apart with 10 minutes each, and not synthetic.</p>"]
     for f in col.get("flags", []):
         out.append(f"<p><span class=flag>{html.escape(f)}</span></p>")
+    out.append(_shape_report(col.get('experimental_pairwise')))
     if col.get("pooled_k"):
         pk = col["pooled_k"]
         out.append("<h2>Pooled scale factors (random effects, REML with Hartung–Knapp: sessions → IMU units → population)</h2>"

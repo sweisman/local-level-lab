@@ -92,6 +92,7 @@ and at most two total CPU threads. A manifest is not run permission.
 unsafe turns, diagnostics, optimizer ordering/caching, profile fitting/eligibility/calibration
 compatibility/pooling and prior/bootstrap failure abstention. These fixtures are software checks.
 The physical wind/airspeed candidate has subsequently been implemented and checked; its matched
-campaign comparison remains unrun. Modeled magnetic ambiguity, operational domain enforcement and
-sharded execution remain deferred. Magnetic exclusions remain. Final-domain approval, fresh calibration and independent
+campaign comparison remains unrun. The optional magnetic-ambiguity comparison has also been
+implemented and checked; its campaign comparison remains unrun. Operational domain enforcement
+and sharded execution remain deferred. Default magnetic exclusions remain. Final-domain approval, fresh calibration and independent
 validation still require separately authorized work.
