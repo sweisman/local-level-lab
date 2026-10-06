@@ -69,11 +69,12 @@ def calibrate(campaign, mode="flight", alpha=.0027, min_accepted=None):
         if any(len(v) < minimum for v in values.values()): raise ValueError("insufficient accepted pairwise calibration flights or pools")
         cell, name = cells[key]
         threshold = thresholds.setdefault(cell, {}).setdefault(name, {})
-        diagnostics[key] = {model: float(np.quantile(v, 1-alpha, method="higher")) for model, v in values.items()}
+        diagnostics[key] = {model: float(np.quantile(v, 1-precision["calibration_alpha"], method="higher")) for model, v in values.items()}
         for model, value in diagnostics[key].items(): threshold[model] = max(threshold.get(model, 0.), value)
         counts[key] = {model: len(v) for model, v in values.items()}
         diagnostic_cells[key] = {"cell": cell, "comparison": name}
     content = {"version": "pairwise-empirical-1", "mode": mode, "alpha": alpha,
+               "calibration_alpha": precision["calibration_alpha"],
                "analysis_version": __version__, "implementation_hash": campaign.get("implementation_hash"),
                "source_manifest_hash": campaign["manifest_hash"], "source_campaign_hash": digest(campaign),
                "eligibility_policies": eligibility_policies(), "numerical_environment": numerical_environment(),

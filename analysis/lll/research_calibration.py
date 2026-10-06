@@ -61,10 +61,37 @@ def required_calibration_n(alpha, tail_observations=30, confidence=.95):
     return high
 
 
+def validation_power_plan(alpha, family_size, design_rate, confidence=.95, power=.90):
+    """Conservative failure budget with exact confidence bounds and binomial design power.
+
+    Family power uses a union bound, without assuming independent tests. It assumes the
+    specified true rate in every cell and is not validation evidence. Doubling the
+    allowed failures finds a sufficient plan without claiming a globally minimal count.
+    """
+    if not 0 < design_rate < alpha or not 0 < power < 1:
+        raise ValueError("validation design rate must be positive and below the claimed rate")
+    failures = 0
+    while True:
+        count = required_accepted_n(alpha, family_size, confidence, failures)
+        per_cell_power = float(binom.cdf(failures, count, design_rate))
+        achieved = max(0., 1-family_size*(1-per_cell_power))
+        if achieved >= power:
+            return dict(required_accepted=count, allowed_failures=failures,
+                        design_rate=design_rate, desired_power=power, achieved_power=achieved,
+                        per_cell_power=per_cell_power, power_method="union bound over the validation family")
+        failures = max(1, 2*failures)
+        if failures > 1_000_000:
+            raise ValueError("validation design rate is too close to the claimed rate for this planner")
+
+
 def calibration_precision(config, alpha):
     count, confidence = config.get("calibration_tail_observations", 30), config.get("calibration_tail_confidence", .95)
-    return {"tail_observations": count, "confidence": confidence,
-            "minimum_accepted": max(required_calibration_n(alpha, count, confidence), config.get("calibration_min_accepted") or 0)}
+    calibration_alpha = config.get("calibration_alpha")
+    if calibration_alpha is None: calibration_alpha = alpha
+    if not 0 < calibration_alpha <= alpha:
+        raise ValueError("calibration tail target must be positive and no greater than the claimed rate")
+    return {"tail_observations": count, "confidence": confidence, "calibration_alpha": calibration_alpha,
+            "minimum_accepted": max(required_calibration_n(calibration_alpha, count, confidence), config.get("calibration_min_accepted") or 0)}
 
 
 def preregistered_groups(config):
@@ -150,7 +177,7 @@ def calibrate(campaign, *, min_accepted=None, alpha=.0027):
     for group, values in groups.items():
         if any(len(v) < min_accepted for v in values.values()):
             raise ValueError(f"insufficient accepted calibration flights for {group}")
-        diagnostics[group] = {m: float(np.quantile(v, 1-alpha, method="higher")) for m, v in values.items()}
+        diagnostics[group] = {m: float(np.quantile(v, 1-precision["calibration_alpha"], method="higher")) for m, v in values.items()}
         sample = samples[group]
         cell = decision_stratum(sample)
         threshold = thresholds.setdefault(cell, {})
@@ -158,6 +185,7 @@ def calibrate(campaign, *, min_accepted=None, alpha=.0027):
             threshold[m] = max(threshold.get(m, 0.), diagnostics[group][m])
         counts[group] = {m: len(v) for m, v in values.items()}
     content = {"version": "empirical-decision-4", "statistics": statistics, "alpha": alpha,
+               "calibration_alpha": precision["calibration_alpha"],
                "numerical_environment": numerical_environment(), "numerical_environment_hash": numerical_environment_hash(),
                "stratum_fields": ["candidate_id", "variant", "model_test_rank"],
                "calibrated_domain": {"geometry_mode": config.get("geometry"), "geometry_cells": config.get("geometry_domain"),

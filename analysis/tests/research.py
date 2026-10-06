@@ -27,7 +27,7 @@ from lll.pairwise import flight_evidence, pool_evidence, decide, three_model_win
 from lll.runtime import numerical_environment, numerical_environment_hash
 from lll.synth import synthesize
 from lll.inference_policy import INFERENCE_POLICY, digest
-from lll.research_calibration import stratum, check_policy, required_accepted_n, required_calibration_n
+from lll.research_calibration import stratum, check_policy, required_accepted_n, required_calibration_n, validation_power_plan
 from lll.research_design import (INTERACTIONS, PARTITIONS, seed_range, realize, simulator_options,
                                  freeze_manifest, validate_manifest, scenario, trajectory, streams, implementation_hash, geometry_stress_matrix, protocol_geometry)
 
@@ -239,6 +239,8 @@ def pooled_run(truth, seed, units, *, partition="development", bootstrap=0, pair
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--scenario", choices=SCENARIOS + ["all", "pool"], default="drift+0")
+    ap.add_argument("--scenarios", nargs="+", choices=SCENARIOS,
+                    help="explicit flight nuisance subset; use instead of --scenario")
     ap.add_argument("--truth", choices=[*models.MODELS, "all"], default="sphere_rotating")
     ap.add_argument("--seeds", type=int, default=1)
     ap.add_argument("--seed", type=int)
@@ -268,6 +270,9 @@ def main():
     ap.add_argument("--calibration-min-accepted", type=int)
     ap.add_argument("--calibration-tail-observations", type=int, default=30)
     ap.add_argument("--calibration-tail-confidence", type=float, default=.95)
+    ap.add_argument("--calibration-alpha", type=float, help="threshold tail target; defaults to the claimed 0.0027 rate")
+    ap.add_argument("--validation-design-rate", type=float, help="assumed true false-rejection rate for validation power planning")
+    ap.add_argument("--validation-power", type=float, default=.90)
     ap.add_argument("--model-test-ranks", type=int, nargs="+", choices=[1, 2, 3], default=[1, 2, 3],
                     help="candidate ranks to preregister; other ranks abstain under the frozen rule")
     ap.add_argument("--rank-min-relative-margin", type=float, default=0., help="optional preregistered rank-boundary stability gate")
@@ -284,6 +289,8 @@ def main():
     ap.add_argument("--turn-edge-margin", type=float, default=5.)
     ap.add_argument("-o", type=Path, required=True)
     args = ap.parse_args()
+    if args.scenarios and args.scenario != "drift+0":
+        ap.error("use --scenarios instead of --scenario for an explicit flight subset")
     stress_cells = geometry_stress_matrix()
     if args.list_geometry_cells:
         args.o.write_text(json.dumps(stress_cells, indent=2)+"\n")
@@ -310,11 +317,11 @@ def main():
     config["decision_policy_hash"] = decision_policy["policy_hash"] if decision_policy else None
     config["pairwise_decision_policy_hash"] = pairwise_policy["policy_hash"] if pairwise_policy else None
     config["pairwise_evidence"] = bool(args.pairwise_evidence or pairwise_policy)
-    scenarios = SCENARIOS if args.scenario == "all" else [args.scenario]
+    scenarios = sorted(set(args.scenarios)) if args.scenarios else SCENARIOS if args.scenario == "all" else [args.scenario]
     if args.geometry == "stress" or protocol is not None:
         geometry_scenarios = {"equator", "high_latitude", "dateline", "turn_dropout", "turn_dropout_drift", "fuzz"}
-        if args.scenario != "all" and args.scenario in geometry_scenarios:
-            ap.error("stress cells require nuisance-only scenarios")
+        if args.scenario != "all" and set(scenarios) & geometry_scenarios:
+            ap.error("stress cells and explicit protocols require nuisance-only scenarios")
         scenarios = [s for s in scenarios if s not in geometry_scenarios]
     jobs = []
     for s, b, crab, noise, refit, rate, crab_knot, bias, knot, rw in itertools.product(
@@ -360,11 +367,23 @@ def main():
             operational_cells = sorted(set(decision_policy["thresholds"] if decision_policy else ()) | set(pairwise_policy["thresholds"]))
             candidate_count = len(operational_cells)
     alpha = decision_policy["alpha"] if decision_policy else .0027
+    calibration_alpha = args.calibration_alpha if args.calibration_alpha is not None else (
+        (decision_policy or pairwise_policy or {}).get("calibration_alpha", alpha))
+    if not 0 < calibration_alpha <= alpha: ap.error("calibration alpha must be positive and no greater than the claimed rate")
+    for policy in (decision_policy, pairwise_policy):
+        if policy is not None and policy.get("calibration_alpha", alpha) != calibration_alpha:
+            ap.error("calibration alpha differs from the frozen decision policy")
+    config["calibration_alpha"] = calibration_alpha
+    power_plan = None
+    if args.validation_design_rate is not None:
+        power_plan = validation_power_plan(alpha, family_size, args.validation_design_rate, args.tail_confidence, args.validation_power)
+        args.allowed_failures = max(args.allowed_failures, power_plan["allowed_failures"])
+        config["allowed_failures"] = args.allowed_failures
     required = required_accepted_n(alpha, family_size, args.tail_confidence, args.allowed_failures)
     if args.tail_min_accepted is not None and args.tail_min_accepted < required:
         ap.error(f"tail minimum {args.tail_min_accepted} is below exact required count {required}")
     config["tail_min_accepted"] = args.tail_min_accepted or required
-    calibration_required = required_calibration_n(alpha, args.calibration_tail_observations, args.calibration_tail_confidence)
+    calibration_required = required_calibration_n(calibration_alpha, args.calibration_tail_observations, args.calibration_tail_confidence)
     if args.calibration_min_accepted is not None and args.calibration_min_accepted < calibration_required:
         ap.error(f"calibration minimum is below tail-precision required count {calibration_required}")
     config["calibration_min_accepted"] = args.calibration_min_accepted or calibration_required
@@ -392,6 +411,7 @@ def main():
     runtimes = [r["elapsed_s"] for r in pilot["records"] if r.get("elapsed_s") is not None] if pilot else []
     seconds = float(np.mean(runtimes)) if runtimes else None
     config["campaign_plan"] = {"decision_cells": candidate_count*len(models.MODELS),
+                               "validation_power_plan": power_plan,
                                "attempt_cells": attempt_cells,
                                "operational_strata": candidate_count, "validation_family_size": family_size,
                                "required_accepted_per_cell": planned_minimum,

@@ -1,0 +1,102 @@
+{
+  "design_version": "simulation-design-2",
+  "analysis_version": "0.6.0",
+  "numerical_environment": {
+    "python": "3.14.7",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "thread_settings": {
+      "OPENBLAS_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1"
+    }
+  },
+  "numerical_environment_hash": "20ef393862e7723ba90e825b625826081cde501e4d9c944f2dbff29526ebdd69",
+  "eligibility_policies": {
+    "legacy": {
+      "version": "pilot-2",
+      "policy_hash": "52a0b74a83d85ca1095fd4c4dcdc0e44ab69066047caa5818b426661ce5f6086"
+    },
+    "candidate": {
+      "version": "candidate-eligibility-2",
+      "policy_hash": "205642bdf33aa647a0c0472c02a25563ffbfa0fba6b51fea97b2c16c8145170a"
+    }
+  },
+  "inference_policy_hash": "f66abeda49cd6cbe7642fe69705ca0d0f8c37168562dc7b8b10a5050ecad790d",
+  "implementation_hash": "484978c7cf384a3b181f03ca2aae532b7d166cd02f465c46a8149a013ff80cff",
+  "config": {
+    "partition": "development",
+    "requested_flights": 1000,
+    "first_seed": 600100,
+    "truths": [
+      "sphere_rotating",
+      "sphere_still",
+      "flat_still"
+    ],
+    "scenarios": [
+      "bias_mixed",
+      "wind"
+    ],
+    "variant": "spp",
+    "geometry": "fixed",
+    "protocol": {
+      "lat0": 35.0,
+      "lon0": -30.0,
+      "speed": 270.0,
+      "legs": [
+        [
+          10.0,
+          15.0
+        ],
+        [
+          100.0,
+          15.0
+        ],
+        [
+          190.0,
+          15.0
+        ],
+        [
+          280.0,
+          15.0
+        ],
+        [
+          10.0,
+          15.0
+        ]
+      ],
+      "turn_schedule": [
+        5.0,
+        15.0,
+        25.0,
+        35.0,
+        45.0,
+        55.0
+      ]
+    },
+    "fit_options": {
+      "n_boot": 20,
+      "bootstrap_sampling": "moving",
+      "block_length": 15,
+      "crab_model": "dynamic",
+      "noise_model": "axis_segment",
+      "bootstrap_refit": "nonlinear",
+      "crab_rate_sigma_dph": 1.0,
+      "forward_uncertainty": true,
+      "crab_knot_seconds": null,
+      "research_candidate": true,
+      "bias_model": "dynamic",
+      "bias_knot_seconds": 900.0,
+      "bias_rw_sigma_dph_sqrth": 3.0,
+      "rank_min_relative_margin": 0.0
+    },
+    "model_test_ranks": [
+      1,
+      2,
+      3
+    ],
+    "pairwise_evidence": true,
+    "evidence_use": "development only; no threshold estimation or independent validation"
+  },
+  "manifest_hash": "b6aea66d97e910c0692672c375018ed31a20c115426534abaf9eb9478aa2908e"
+}

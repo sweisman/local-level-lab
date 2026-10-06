@@ -12,3 +12,10 @@ android/app/build/
 android/local.properties
 android/.idea/
 *.iml
+
+# Published campaign archives retain these generated local files losslessly.
+/docs/development-1000-20261005/campaign.json
+/docs/development-1000-20261005/records.jsonl
+/docs/development-1000-20261005/worker.log
+/docs/development-1000-20261005/run.lock
+/docs/development-1000-20261005/launch.json

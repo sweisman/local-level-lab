@@ -45,8 +45,8 @@ Pick a mount that lets you take the IMU out and put it back facing the opposite 
 | `android/` | The Android app (Kotlin/Compose). Connects to the IMU, logs its byte stream and GPS in the background, guides calibration, reminds you to turn the IMU, shows a live dashboard, and uploads or shares sessions |
 | `server/` | Upload server (FastAPI + SQLite) that publishes every raw upload as an open dataset |
 | `docs/PRIMARY_CORPUS.md` | Curator approval, bench certificates, provisional primary gates and migration |
-| `analysis/` | The `lll` Python package: decoding, single-session analysis and report, pooled analysis, a bench tool, and a synthetic-data generator |
-| `docs/` | [METHODOLOGY](docs/METHODOLOGY.md) (decisions and how to check them), [MATH](docs/MATH.md) (equations), [EVIDENCE](docs/EVIDENCE.md) (reproducible simulation results), [BENCH](docs/BENCH.md) (hardware validation checklist), [FORMAT](docs/FORMAT.md) (file spec), [PROTOCOL](docs/PROTOCOL.md) (participant steps), shared test vectors |
+| `analysis/` | The `lll` Python package: decoding, single-session and pooled analysis, bench tools, synthetic data, turn optimization, and independent research calibration/validation |
+| `docs/` | [METHODOLOGY](docs/METHODOLOGY.md) (decisions and how to check them), [MATH](docs/MATH.md) (equations), [EVIDENCE](docs/EVIDENCE.md) (reproducible simulation results), [VALIDATION](docs/VALIDATION.md) (analysis candidates, campaign plans and current limitations), [BENCH](docs/BENCH.md) (hardware validation checklist), [FORMAT](docs/FORMAT.md) (file spec), [PROTOCOL](docs/PROTOCOL.md) (participant steps), shared test vectors |
 
 ## Quick start: analysis
 
@@ -66,6 +66,40 @@ pytest analysis/tests server/tests
 python analysis/tests/evidence.py                   # regenerates docs/EVIDENCE.md
 python analysis/tests/coverage.py                   # interval coverage under hardware faults (about 15 min)
 ```
+
+## Analysis validation status
+
+Software 0.6.0 uses eligibility policy **pilot-2** by default. Opt-in research candidates use
+the shared **candidate-eligibility-2** policy across analysis, research and calibration.
+The candidate engine includes weighted SVD and identifiable-subspace model tests, dynamic
+sensor bias, dynamic or wind-driven crab, forward-axis uncertainty, and complete nonlinear
+bootstrap refits. Its primary identifiability gate evaluates trajectory geometry at all three
+model anchors; the free-fit SVD remains a diagnostic. The turn optimizer prioritizes estimable
+contrasts and their retention margin across the selected nuisance models.
+
+The initial [development pilots](docs/bootstrap-development-20261005.json) completed 18 flights
+across all three truths, mixed-bias and wind scenarios. Every run passed candidate eligibility
+and bootstrap convergence, with test rank 2. A separate earlier run had rank 1; operational
+calibration therefore keeps ranks separate and abstains at uncalibrated ranks. These small
+pilots establish feasibility for one experimental [75-minute geometry](docs/development-protocol-75min.json),
+not false-rejection control or a validated flight domain.
+
+The required order is development geometry/stability screening, a frozen source/configuration/
+numerical environment, fresh threshold calibration, then independent validation. Calibration
+and validation have separate exact sample-size criteria. The [proposed flight campaign](docs/flight-calibration-proposed-manifest-20261005.json)
+has not run; **no fresh empirical threshold or 3σ validation claim is available**. Pairwise
+decisions and pooling are experimental and require their own calibration rules. Commands,
+deterministic geometry stress cells, campaign costs and promotion requirements are in
+[VALIDATION.md](docs/VALIDATION.md).
+
+The bounded [**1,000-flight development campaign**](docs/development-1000-20261005/campaign.json.gz)
+completed in **3 hours 16 minutes**: 906 flights passed eligibility, with zero analysis failures
+and valid bootstrap convergence in every fit. One eligible flight rejected its generating model
+under the diagnostic rule. Observed ranks were 927 rank-2 and 73 rank-1; moving the rank cutoff
+by ±10% changed rank in 47 flights. Wind cases had lower acceptance than mixed-bias cases.
+These findings require fresh calibration and rank/geometry review before independent validation.
+Detailed results and remaining work are in [VALIDATION.md](docs/VALIDATION.md#completed-development-results-2026-10-06)
+and the [campaign handoff](AGENTS.md#analysis-campaign-handoff--2026-10-05).
 
 ## Server
 
@@ -93,10 +127,6 @@ The per-IP limit uses the client address uvicorn sees. Behind a reverse proxy on
 ## Android
 
 Open `android/` in Android Studio, or run `./gradlew assembleDebug` (JDK 17 or 21, Android SDK 35). To set the default upload server for your build, use `lll.serverUrl` in `android/gradle.properties`. Users can change it in Settings. Choose and configure the IMU in Settings before the first session.
-
-Software 0.6.0 defaults to eligibility policy **pilot-2**; opt-in candidates use the shared
-**candidate-eligibility-2** design-based policy. Research scenarios, reproducible pilot commands,
-and the remaining publication blockers are described in [VALIDATION.md](docs/VALIDATION.md).
 
 ## Openness
 

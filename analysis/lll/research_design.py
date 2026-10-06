@@ -230,7 +230,7 @@ def implementation_hash():
              "analysis/lll/analyze.py", "analysis/lll/policy.py", "analysis/lll/inference_policy.py",
              "analysis/lll/synth.py", "analysis/lll/research_design.py", "analysis/lll/research_calibration.py",
              "analysis/lll/collate.py", "analysis/tests/research.py", "analysis/tests/optimize_turns.py",
-             "analysis/tests/truthgen.py")
+             "analysis/tests/truthgen.py", "analysis/tests/development_campaign.py")
     paths += ("analysis/lll/calib.py", "analysis/lll/drift.py", "analysis/lll/models.py",
               "analysis/lll/runtime.py",
               "analysis/lll/rank_sweep.py",

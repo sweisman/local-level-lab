@@ -91,8 +91,9 @@ uncertainty in the gravity axis or validate the regression against all systemati
 or degenerate angle uncertainty makes the candidate unavailable instead of silently using zero.
 
 Calibration/validation require an exact frozen manifest, including source hashes and the actual
-Python/NumPy/SciPy versions. Decision policies freeze the same numerical environment; validation
-rejects a campaign, record or policy produced under different versions. Use
+Python/NumPy/SciPy versions and declared `OPENBLAS_NUM_THREADS`, `OMP_NUM_THREADS` and
+`MKL_NUM_THREADS` settings. Decision policies freeze the same numerical environment; validation
+rejects a campaign, record or policy produced under different versions or thread settings. Use
 `--write-manifest PATH` with the complete proposed command configuration; it writes only the
 manifest. Repeat the command with `--manifest PATH` after reviewing and approving campaign cost.
 `--seeds` preregisters the attempt count. The manifest computes the validation accepted-sample minimum using
@@ -113,13 +114,31 @@ Source, configuration or numerical-environment changes invalidate the manifest.
 Campaign provenance hashes the scientific source directly; optional `LLL_GIT_COMMIT` supplies a
 build's commit identifier without analysis invoking git.
 
+Calibration can reserve a rejection-rate margin with `--calibration-alpha`, for example
+0.00135 while retaining the claimed rate 0.0027. This estimates a more conservative threshold
+and sizes calibration at the actual target tail; 30 tail observations with 95% probability
+then require **29,285 accepted samples** per null/diagnostic cell. Validation still assesses
+the claimed 0.0027 rate. The target and claimed rate are separately frozen in the decision file.
+The default remains 0.0027. This costs power and additional calibration runs.
+
+A zero-failure validation plan has little chance of passing when the true rejection rate
+equals the claimed bound: with a nine-test family, the minimum 1,921 accepted flights have
+only about 0.56% probability of zero failures at rate 0.0027. Optional
+`--validation-design-rate RATE --validation-power 0.90` sizes a sufficient nonzero-failure
+plan using exact binomial power, a union bound over the full validation family and the same
+simultaneous confidence bound. It doubles the
+failure budget until sufficient, rather than claiming a globally minimal plan. The design
+rate is a planning assumption, not measured evidence; independent validation still must pass
+the exact bound. Freeze these options before calibration and repeat them for validation.
+
 After a calibration campaign with sufficient accepted flights per truth and stratum:
 
 ```sh
 PYTHONPATH=analysis:server ~/venv/bin/python -m lll.research_calibration calibrate calibration.json -o decision.json
 ```
 
-This selects each truth's 0.9973 quantile using the higher order statistic. Candidate fits use
+This selects each truth's `1 - calibration_alpha` quantile using the higher order statistic
+(0.9973 by default). Candidate fits use
 the objective difference for identifiable constraints; legacy fits retain their raw objective
 statistic, explicitly named per operational cell. Diagnostic strata include scenario and simulated
 geometry. Operational strata include candidate identity, sensor variant and observed `model_test_rank`.
@@ -467,6 +486,10 @@ samples; permanently ineligible cells remain development evidence and must be ex
 claimed domain before freezing. The policy records the selected observable cell properties.
 These are finite stress fixtures; they do not by themselves validate every intervening trajectory.
 
+Use `--scenarios bias_mixed wind` to freeze an explicit nuisance subset, instead of a single
+`--scenario` or the full `--scenario all` population. Duplicate names are removed. Explicit
+protocols and stress cells reject geometry-changing members of an explicit subset.
+
 ### Fresh development screen, 2026-10-05
 
 The implementation was committed as `f687734` before this screen. The approved ten-minute
@@ -511,8 +534,123 @@ These were design-only trials with no bootstrap evidence or empirical threshold 
 Use `research.py --geometry fixed --protocol docs/development-protocol-75min.json` to reproduce
 the selected geometry in fresh campaigns. The protocol content, geometry cell ID and domain are
 frozen in the manifest; nuisance scenarios cannot override the trajectory or turn schedule.
-The next required evidence is a complete-fit/nonlinear-bootstrap development pilot, followed by
-cost review and protocol/configuration freezing before independent calibration and validation.
+The complete-fit/nonlinear-bootstrap pilot below supplies the next development evidence;
+cost review and protocol/configuration freezing still precede independent calibration and validation.
+
+### Complete-bootstrap pilot and proposed campaign, 2026-10-05
+
+[Fresh paired development pilots](bootstrap-development-20261005.json) used seeds 600030–600032
+for all three truths in `bias_mixed` and `wind`, with dynamic crab, dynamic sensor bias,
+axis/segment weighting, measured forward uncertainty and 20 complete nonlinear bootstrap
+replicates. **18/18 runs cleared eligibility and bootstrap convergence**, all at test rank 2.
+A development cutoff sweep at 90%, 100% and 110% of the retention threshold found no rank
+flips and no flights within 10% of the boundary. These are small development samples, not
+tail validation. Full records and source/environment provenance are preserved in the
+[compressed raw artifact](bootstrap-development-20261005.json.gz).
+
+Repeated row construction and crab Jacobians now use batched coordinate calculations.
+A matched flat-disc fit fell from 65.68 to 6.84 seconds; fitted coefficients changed by at
+most 1.99e−14, with the same eligibility and rank. That repeated seed is timing evidence,
+not an additional independent flight. The earlier flat-disc fit had rank 1, so the proposed
+first campaign preregisters rank 2 only; other ranks abstain under its empirical rule.
+The focused physical-mapping, Jacobian, gate and calibration checks passed 111 tests.
+Python/NumPy/SciPy versions and the three declared numerical thread settings are frozen;
+these pilots set all three thread counts to 1.
+
+The [proposed calibration manifest](flight-calibration-proposed-manifest-20261005.json) restricts
+the domain to this exact protocol, one candidate, rank 2 and the two tested nuisance scenarios.
+It reserves threshold margin with calibration alpha 0.00135 and retains the claimed 0.0027
+rate. The 18-test validation family includes the primary tests and pairwise endpoints.
+Calibration requires 29,285 accepted flights per truth/scenario cell. Validation requires
+33,169 per cell, allowing up to 64 false rejections for its exact bound; under the assumed
+0.00135 rate, a union bound gives at least 95.23% family passing probability, exceeding the
+requested 90% design power. That probability is conditional on the planning assumption.
+
+At the pilot's 11.08 seconds per attempt and observed 100% acceptance, the minimum combined
+compute estimate is **48 serial days**. Preregistering 35,000 calibration attempts and 40,000
+validation attempts per truth/scenario cell reserves some acceptance loss and implies about
+**58 serial days**. The validation manifest must be created after threshold estimation so it
+freezes the actual primary and pairwise decision files. Actual acceptance under that rule
+may be lower. Summary-level pairwise pooling needs a separate campaign and is not included
+in these flight counts. The current per-record JSON rewrite should be replaced by checkpointed
+batch output before a campaign this large. **No full calibration or validation campaign has run.**
+
+### Bounded 1,000-flight development campaign
+
+Scott authorized 1,000 additional development attempts, about 3–3.5 hours, instead of the full
+campaign above. `analysis/tests/development_campaign.py` interleaves fresh seeds 600100–600266
+across the three truths and `bias_mixed`/`wind`, retaining all observed ranks. Each cell has
+166 or 167 attempts. Settings match the complete-bootstrap pilot. Outcomes do not affect the
+fixed attempt count; recorded analysis failures are retained and never retried to improve acceptance.
+
+The worker freezes its own source/configuration/environment manifest and appends/fsyncs every
+completed attempt to `docs/development-1000-20261005/records.jsonl`. Atomic `status.json` tracks
+progress; `campaign.json` and `rank-sweep.json` are generated automatically on completion.
+The detached worker needs no network or further model calls. It can survive chat disconnection
+while its host remains running; after process/host interruption, resume uses durable checkpoints.
+The process lock prevents duplicate workers. Changed source/environment/configuration prevents
+resume, and source changes during a run stop it. A partial final write is preserved before repair;
+complete malformed records are rejected. See [AGENTS.md](../AGENTS.md#analysis-campaign-handoff--2026-10-05)
+for the fresh-chat handoff and remaining research order.
+
+```sh
+env OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 ~/venv/bin/python analysis/tests/development_campaign.py --detach
+```
+
+For an interrupted campaign, repeat with `--resume --detach`. This is development evidence;
+the six cells share paired seeds, and about 166 observations per cell cannot establish the
+planned 0.0027 conditional false-rejection bound. Threshold calibration and independent
+validation remain unfunded by this smaller authorization.
+
+### Completed development results, 2026-10-06
+
+The [1,000-flight campaign](development-1000-20261005/campaign.json.gz) finished in **3h16m**
+(11.73 seconds per attempt). All attempts are checkpointed; there were **zero analysis
+failures**, valid bootstrap convergence in **1,000/1,000** fits, and **906 eligible flights**.
+The six cells use paired development seeds, so aggregated counts are descriptive rather than
+1,000 independent observations from one null distribution.
+The full campaign and append-only checkpoints are published as lossless `.gz` archives;
+the worker uses their unpacked counterparts locally. Archive extraction instructions are in
+the campaign handoff.
+
+| Truth | Scenario | Attempts | Eligible | Eligible rank 2 | Eligible null rejections | Correct primary separation |
+|---|---|---:|---:|---:|---:|---:|
+| rotating globe | mixed bias | 167 | 166 | 166 | 1 | 165 |
+| rotating globe | wind | 167 | 137 | 137 | 0 | 137 |
+| still globe | mixed bias | 167 | 166 | 166 | 0 | 166 |
+| still globe | wind | 167 | 138 | 135 | 0 | 138 |
+| flat disc | mixed bias | 166 | 164 | 151 | 0 | 152 |
+| flat disc | wind | 166 | 135 | 122 | 0 | 124 |
+
+Correct primary separation requires retaining the generating model and rejecting both
+alternatives among eligible flights. These decisions use the uncalibrated diagnostic rule.
+The one eligible null rejection was in the rotating-globe/mixed-bias cell: 1/166 (0.60%).
+Its illustrative simultaneous one-sided 95% upper bound with an 18-test family is 4.77%,
+far above 0.27%. Neither that event nor the zero-event cells establish the intended tail rate.
+Fresh threshold calibration and independent validation remain necessary.
+
+There were 927 rank-2 and 73 rank-1 fits, including 877 eligible rank-2 fits.
+The [default wide cutoff sweep](development-1000-20261005/rank-sweep.json) (0.5–1.5 times
+the baseline) changed rank in 916 flights. The [narrow ±10% sweep](development-1000-20261005/rank-sweep-narrow.json)
+changed rank in **47 flights**, all within 10% of the current cutoff. This supersedes the
+small pilot's zero observed near-boundary cases and warrants development review of a rank
+stability restriction before freezing calibration. No cutoff or eligibility policy was changed.
+
+The 94 excluded flights had overlapping reasons: 91 failed the design-contrast gate,
+16 depended on the WMM slip exclusion, and one was prior-dominated. Wind acceptance was
+about 81–83%, versus about 99% in mixed bias; the exact geometry still needs review under
+wind. Partial pairwise diagnostics produced 880 three-model winners, all matching their
+generating model, and 120 abstentions. These were uncalibrated flight decisions; pooled
+calibration/validation was not part of this campaign.
+
+Using the worst observed eligible rank-2 fraction, 122/166, to plan equal attempt counts
+across cells gives 39,847 calibration and 45,132 validation attempts per cell for the current
+accepted-sample goals: **509,874 combined attempts, approximately 69 serial days** at the
+measured runtime. This is an estimate, not a guarantee; acceptance under calibrated gates
+may differ. The historical proposed 35,000/40,000 attempt reserves are insufficient at this
+observed acceptance and must be revised before any launch. The next step is development
+review of geometry/rank stability, then a fresh frozen plan and separately authorized budget.
+No thresholds were estimated, no independent validation ran, and no primary policy was promoted.
 
 ## Experimental partial pairwise evidence
 

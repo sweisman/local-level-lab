@@ -1,0 +1,31 @@
+{
+  "state": "complete",
+  "pid": 3445487,
+  "updated_utc": "2026-10-05T21:19:44.116158+00:00",
+  "requested_flights": 1000,
+  "completed_flights": 1000,
+  "remaining_flights": 0,
+  "completed_cells": {
+    "sphere_rotating/bias_mixed": 167,
+    "sphere_rotating/wind": 167,
+    "sphere_still/bias_mixed": 167,
+    "sphere_still/wind": 167,
+    "flat_still/bias_mixed": 166,
+    "flat_still/wind": 166
+  },
+  "analysis_failures": 0,
+  "accepted_flights": 906,
+  "rank_counts": {
+    "2": 927,
+    "1": 73
+  },
+  "prior_fit_seconds": 0,
+  "current_worker_seconds": 11729.231012374978,
+  "manifest_hash": "b6aea66d97e910c0692672c375018ed31a20c115426534abaf9eb9478aa2908e",
+  "last_task": {
+    "truth": "sphere_still",
+    "scenario": "wind",
+    "seed": 600266
+  },
+  "error": null
+}

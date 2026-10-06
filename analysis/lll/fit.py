@@ -35,7 +35,7 @@ from __future__ import annotations
 import numpy as np
 
 from . import models
-from .attitude import c_bn
+from .attitude import unit
 from .calib import RAD2DPH
 from .inference_policy import INFERENCE_POLICY, provenance
 from .policy import eligibility_provenance, scientific_exclusions, candidate_settings, decision_stratum
@@ -68,35 +68,47 @@ def build_rows(bins, fwd_b, bias_fn, vertical_only=False, temp_ref=None, temp_me
     ng = int(grav.max()) + 1
     nb = NK + 3 * ng
     p = nb + (3 if temp_ref is not None else 0)
-    ys, xs, idx, cbns = [], [], [], []
-    for j in range(len(bins["t"])):
-        u = bins["up"][j]
-        d_b = -u
-        # aircraft rotation relative to local level, IMU frame
-        w_nb = np.cross(bins["dup_dt"][j], u) + bins["psi_dot"][j] * d_b
-        dT = (bins["temp"][j] - temp_ref) if temp_ref is not None else None
-        y = bins["gyro"][j] - bias_fn(bins["t"][j]) - w_nb
-        if dT is not None and temp_mean is not None:
-            y = y - np.asarray(temp_mean) * dT
-        g0 = NK + 3 * grav[j]
-        if vertical_only:
-            X = np.zeros(p)
-            X[:NK] = [es[j][2], tr[j][2], td[j][2]]
-            X[g0:g0 + 3] = d_b
-            if dT is not None:
-                X[nb:] = d_b * dT
-            ys.append(y @ d_b); xs.append(X); idx.append(j); cbns.append(None)
-            continue
-        C = c_bn(u, fwd_b if np.ndim(fwd_b) == 1 else fwd_b[j], bins["psi"][j] + (dpsi[j] if dpsi is not None else 0.0))
-        X = np.zeros((3, p))
-        X[:, :NK] = np.column_stack([C @ es[j], C @ tr[j], C @ td[j]])
-        X[:, g0:g0 + 3] = np.eye(3)
+    n = len(bins["t"])
+    u = np.asarray(bins["up"])
+    down = -u
+    w_nb = np.cross(bins["dup_dt"], u) + np.asarray(bins["psi_dot"])[:, None] * down
+    # Keep the scalar-time callback contract, including callbacks returning a scalar bias.
+    bias = np.asarray([bias_fn(t) for t in bins["t"]])
+    if bias.ndim == 1:
+        bias = bias[:, None]
+    y = np.asarray(bins["gyro"]) - bias - w_nb
+    dT = np.asarray(bins["temp"]) - temp_ref if temp_ref is not None else None
+    if dT is not None and temp_mean is not None:
+        y = y - np.asarray(temp_mean) * dT[:, None]
+    rows = np.arange(n)[:, None]
+    bias_columns = NK + 3 * grav[:, None] + np.arange(3)
+    if vertical_only:
+        X = np.zeros((n, p))
+        X[:, :NK] = np.column_stack([es[:, 2], tr[:, 2], td[:, 2]])
+        X[rows, bias_columns] = down
         if dT is not None:
-            X[:, nb:] = np.eye(3) * dT
-        ys.extend(y); xs.extend(X); idx.extend([j] * 3); cbns.append(C)
+            X[:, nb:] = down * dT[:, None]
+        y = np.einsum("ni,ni->n", y, down)
+        idx, cbns = np.arange(n), [None] * n
+    else:
+        # c_bn's orthonormal basis evaluated for every bin in one batch.
+        up = unit(u)
+        fwd = np.broadcast_to(np.asarray(fwd_b), (n, 3))
+        h1 = unit(fwd - np.einsum("ni,ni->n", fwd, up)[:, None] * up)
+        h2 = np.cross(-up, h1)
+        azimuth = np.asarray(bins["psi"]) + (dpsi if dpsi is not None else 0.0)
+        ca, sa = np.cos(azimuth)[:, None], np.sin(azimuth)[:, None]
+        C = np.stack([ca*h1 - sa*h2, sa*h1 + ca*h2, -up], axis=-1)
+        X = np.zeros((n, 3, p))
+        X[:, :, :NK] = np.einsum("nij,njk->nik", C, np.stack([es, tr, td], axis=-1))
+        X[rows, np.arange(3), bias_columns] = 1.0
+        if dT is not None:
+            X[:, :, nb:] = np.eye(3)[None, :, :] * dT[:, None, None]
+        y, X = y.ravel(), X.reshape(-1, p)
+        idx, cbns = np.repeat(np.arange(n), 3), list(C)
     layout = {"n_grav": ng, "bias": slice(NK, nb), "temp": slice(nb, p) if temp_ref is not None else None,
               "terms": (es, tr, td)}
-    return np.array(ys), np.array(xs), np.array(idx), cbns, layout
+    return y, X, idx, cbns, layout
 
 
 def _solve(y, X, w, prior, fixed_k=None, prior_mean=None):
@@ -148,10 +160,11 @@ def _crab_columns(cbns, lay, idx, k, seg_index, n_seg):
     C_bn maps a NED vector v to C_bn (v_E, −v_N, 0)."""
     es, tr, td = lay["terms"]
     J = np.zeros((len(idx), n_seg))
-    for j, C in enumerate(cbns):
-        v = k[0] * es[j] + k[1] * tr[j] + k[2] * td[j]
-        rows = np.where(idx == j)[0]
-        J[rows, seg_index[j]] = C @ np.array([v[1], -v[0], 0.0])
+    v = k[0] * es + k[1] * tr + k[2] * td
+    tangent = np.column_stack([v[:, 1], -v[:, 0], np.zeros(len(v))])
+    values = np.einsum("nij,nj->ni", np.asarray(cbns), tangent)
+    # Full-axis rows have bin-major, x/y/z order, as returned by build_rows.
+    J[np.arange(len(idx)), np.asarray(seg_index)[idx]] = values.ravel()
     return J
 
 

@@ -16,7 +16,7 @@ from lll.pairwise import flight_evidence, pool_evidence, three_model_winner, che
 from lll.pairwise_calibration import calibrate as calibrate_pairs, assess as assess_pairs
 from lll.policy import CANDIDATE_POLICY, MODEL_CONTRASTS, MODEL_PAIRS, decision_stratum, scientific_exclusions, eligibility_policies
 from lll.rank_sweep import sweep
-from lll.research_calibration import calibrate, required_calibration_n, check_policy
+from lll.research_calibration import calibrate, required_calibration_n, required_accepted_n, check_policy, validation_power_plan, tail_upper, calibration_precision
 from lll.research_design import geometry_stress_matrix, realize, freeze_manifest, validate_manifest, implementation_hash, plain, protocol_geometry
 from lll.runtime import numerical_environment
 from test_candidate_eligibility import candidate_fit, campaign
@@ -129,6 +129,33 @@ def test_exact_calibration_count_is_independent_of_validation_count():
         calibrate(data, min_accepted=5)
 
 
+def test_calibration_margin_preserves_claimed_rate_and_sizes_actual_tail(monkeypatch):
+    data = campaign()
+    data["config"].update(calibration_alpha=.00135, calibration_tail_confidence=.001)
+    quantiles = []
+    original = np.quantile
+    def quantile(values, q, **kwargs):
+        quantiles.append(q)
+        return original(values, q, **kwargs)
+    monkeypatch.setattr(np, "quantile", quantile)
+    policy = calibrate(data, min_accepted=5)
+    assert policy["alpha"] == .0027 and policy["calibration_alpha"] == .00135
+    assert quantiles and all(q == 1-.00135 for q in quantiles)
+    assert calibration_precision({"calibration_alpha": .00135}, .0027)["minimum_accepted"] == required_calibration_n(.00135)
+    with pytest.raises(ValueError, match="tail target"):
+        calibration_precision({"calibration_alpha": 0.}, .0027)
+
+
+def test_validation_power_plan_has_exact_bound_and_declared_power():
+    plan = validation_power_plan(.0027, 9, .00135)
+    assert tail_upper(plan["required_accepted"], plan["allowed_failures"], 9) <= .0027
+    assert binom.cdf(plan["allowed_failures"], plan["required_accepted"], .00135) >= .9
+    assert plan["achieved_power"] >= plan["desired_power"] == .9
+    assert plan["achieved_power"] == pytest.approx(1-9*(1-plan["per_cell_power"]))
+    with pytest.raises(ValueError, match="below the claimed"):
+        validation_power_plan(.0027, 9, .0027)
+
+
 def test_environment_freezing_and_record_mismatch():
     manifest = freeze_manifest({})
     assert manifest["numerical_environment"] == numerical_environment()
@@ -144,6 +171,16 @@ def test_environment_freezing_and_record_mismatch():
     with pytest.raises(ValueError, match="numerical environment"): check_policy(changed)
     data["records"][0]["numerical_environment"] = {**numerical_environment(), "python": "different"}
     with pytest.raises(ValueError, match="numerical environment"): calibrate(data, min_accepted=5)
+
+
+def test_numerical_thread_settings_are_frozen(monkeypatch):
+    from lll.runtime import check_environment
+    monkeypatch.setenv("OPENBLAS_NUM_THREADS", "1")
+    expected = numerical_environment()
+    assert expected["thread_settings"]["OPENBLAS_NUM_THREADS"] == "1"
+    monkeypatch.setenv("OPENBLAS_NUM_THREADS", "2")
+    with pytest.raises(ValueError, match="thread settings"):
+        check_environment(expected)
 
 
 def test_rank_strata_select_threshold_after_fitting_and_abstain_when_unseen(monkeypatch):
@@ -203,6 +240,23 @@ def test_optimizer_cost_can_include_full_design_evaluation(monkeypatch):
     assert output["estimated_seconds_upper"] == 10.*output["upper_bound_evaluations"]
     assert output["upper_bound_anchor_svd_evaluations"] == 3*output["upper_bound_evaluations"]
     assert output["cost_basis"] == "complete design evaluation"
+
+
+def test_manifest_freezes_explicit_nuisance_subset_and_validation_power(monkeypatch, tmp_path):
+    import research
+    output = tmp_path/"manifest.json"
+    monkeypatch.setattr(sys, "argv", ["research.py", "--partition", "calibration", "--truth", "all",
+        "--scenarios", "wind", "bias_mixed", "wind", "--geometry", "fixed", "--research-candidate",
+        "--model-test-ranks", "2", "--pairwise-evidence", "--calibration-alpha", ".00135",
+        "--validation-design-rate", ".00135", "--write-manifest", str(output), "-o", str(tmp_path/"unused.json")])
+    research.main()
+    config = json.loads(output.read_text())["config"]
+    assert config["preregistered_scenarios"] == ["bias_mixed", "wind"]
+    assert config["campaign_plan"]["validation_family_size"] == 18
+    assert config["campaign_plan"]["attempt_cells"] == 6
+    assert config["calibration_min_accepted"] == required_calibration_n(.00135)
+    assert config["tail_min_accepted"] == required_accepted_n(.0027, 18, allowed_failures=config["allowed_failures"])
+    assert config["campaign_plan"]["validation_power_plan"]["achieved_power"] >= .90
 
 
 def test_replay_applies_supplied_pairwise_policy(monkeypatch, tmp_path):
