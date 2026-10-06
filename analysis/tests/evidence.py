@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
-"""Regenerate every simulation number quoted in docs/METHODOLOGY.md.
+"""Generate simulation tables for the technical evidence record.
 
-    python analysis/tests/evidence.py > evidence.md
+    python analysis/tests/evidence.py > /tmp/evidence-technical.md
 
 Each section re-runs the synthetic scenarios behind one claim and prints a markdown table. Gyro
 truth comes from the independent geometric generator (truthgen.py), never from lll.models. Seeds
@@ -255,7 +255,7 @@ def reversal():
 
 
 if __name__ == "__main__":
-    print("# Evidence for docs/METHODOLOGY.md\n\nRegenerate with `python analysis/tests/evidence.py`.\n")
+    print("# Technical simulation evidence\n\nThese tables describe this generator's configuration; they do not establish independent tail validation.\n\nSee docs/EVIDENCE.md for the readable current-status summary.\n")
     for fn in (models_vs_geometry, routes, ground_calibration, quantization, temperature, slip, faults, airliner, pooling, turns,
                crab, ble_timing, reversal):
         fn()

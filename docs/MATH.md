@@ -1,6 +1,10 @@
 # The math
 
-All rates are angular velocities in rad/s, expressed in the local **NED** frame (north, east, down) unless noted. Reports convert them to °/h (1 rad/s = 206 264.8 °/h). The reasons behind each choice, the alternatives rejected and the simulation evidence are in [METHODOLOGY.md](METHODOLOGY.md). The numbers come from [EVIDENCE.md](EVIDENCE.md).
+This is the mathematical reference for readers checking the equations. Start with the
+[plain-language methodology](METHODOLOGY.md) for the flight signal and measurement procedure.
+An IMU (inertial measurement unit) combines instruments for measuring turning and acceleration.
+
+All rates are angular velocities in rad/s, expressed in the local **NED** frame (north, east, down) unless noted. Reports convert them to °/h (1 rad/s = 206 264.8 °/h). The reasons behind each choice, the alternatives rejected and the simulation evidence are in [METHODOLOGY.md](METHODOLOGY.md). Historical numerical tables are in [the technical evidence record](EVIDENCE_TECHNICAL.md); [Evidence so far](EVIDENCE.md) explains their limits and the current results.
 
 ## What a gyro measures
 

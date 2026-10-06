@@ -1,0 +1,743 @@
+{
+  "design_version": "simulation-design-2",
+  "analysis_version": "0.6.0",
+  "numerical_environment": {
+    "python": "3.14.7",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "thread_settings": {
+      "OPENBLAS_NUM_THREADS": "2",
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2"
+    }
+  },
+  "numerical_environment_hash": "52cba9baed64e4096cc4b0bba352dbe3a3a366127a70ebcb4aa24fd8a91a8c98",
+  "eligibility_policies": {
+    "legacy": {
+      "version": "pilot-2",
+      "policy_hash": "52a0b74a83d85ca1095fd4c4dcdc0e44ab69066047caa5818b426661ce5f6086"
+    },
+    "candidate": {
+      "version": "candidate-eligibility-2",
+      "policy_hash": "205642bdf33aa647a0c0472c02a25563ffbfa0fba6b51fea97b2c16c8145170a"
+    }
+  },
+  "inference_policy_hash": "f66abeda49cd6cbe7642fe69705ca0d0f8c37168562dc7b8b10a5050ecad790d",
+  "implementation_hash": "27e73b122c3a073357d4a03112da11779969a710bb3a6cc3eb06c333da52ad51",
+  "config": {
+    "partition": "development",
+    "mode": "geometry-only; no bootstrap or calibrated decisions",
+    "wall_time_cap_s": 900.0,
+    "case_time_cap_s": 300.0,
+    "cases": [
+      {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "bias_mixed",
+        "crab_model": "dynamic",
+        "seed": 600501
+      },
+      {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "bias_mixed",
+        "crab_model": "dynamic",
+        "seed": 600501
+      },
+      {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "bias_mixed",
+        "crab_model": "wind",
+        "seed": 600501
+      },
+      {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "bias_mixed",
+        "crab_model": "wind",
+        "seed": 600501
+      },
+      {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "wind",
+        "crab_model": "dynamic",
+        "seed": 600501
+      },
+      {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "wind",
+        "crab_model": "dynamic",
+        "seed": 600501
+      },
+      {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "wind",
+        "crab_model": "wind",
+        "seed": 600501
+      },
+      {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "wind",
+        "crab_model": "wind",
+        "seed": 600501
+      },
+      {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "bias_mixed",
+        "crab_model": "dynamic",
+        "seed": 600501
+      },
+      {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "bias_mixed",
+        "crab_model": "dynamic",
+        "seed": 600501
+      },
+      {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "bias_mixed",
+        "crab_model": "wind",
+        "seed": 600501
+      },
+      {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "bias_mixed",
+        "crab_model": "wind",
+        "seed": 600501
+      },
+      {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "wind",
+        "crab_model": "dynamic",
+        "seed": 600501
+      },
+      {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "wind",
+        "crab_model": "dynamic",
+        "seed": 600501
+      },
+      {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "wind",
+        "crab_model": "wind",
+        "seed": 600501
+      },
+      {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "wind",
+        "crab_model": "wind",
+        "seed": 600501
+      },
+      {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "bias_mixed",
+        "crab_model": "dynamic",
+        "seed": 600501
+      },
+      {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "bias_mixed",
+        "crab_model": "dynamic",
+        "seed": 600501
+      },
+      {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "bias_mixed",
+        "crab_model": "wind",
+        "seed": 600501
+      },
+      {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "bias_mixed",
+        "crab_model": "wind",
+        "seed": 600501
+      },
+      {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "wind",
+        "crab_model": "dynamic",
+        "seed": 600501
+      },
+      {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "wind",
+        "crab_model": "dynamic",
+        "seed": 600501
+      },
+      {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "wind",
+        "crab_model": "wind",
+        "seed": 600501
+      },
+      {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "wind",
+        "crab_model": "wind",
+        "seed": 600501
+      },
+      {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "bias_mixed",
+        "crab_model": "dynamic",
+        "seed": 600502
+      },
+      {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "bias_mixed",
+        "crab_model": "dynamic",
+        "seed": 600502
+      },
+      {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "bias_mixed",
+        "crab_model": "wind",
+        "seed": 600502
+      },
+      {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "bias_mixed",
+        "crab_model": "wind",
+        "seed": 600502
+      },
+      {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "wind",
+        "crab_model": "dynamic",
+        "seed": 600502
+      },
+      {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "wind",
+        "crab_model": "dynamic",
+        "seed": 600502
+      },
+      {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "wind",
+        "crab_model": "wind",
+        "seed": 600502
+      },
+      {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "wind",
+        "crab_model": "wind",
+        "seed": 600502
+      },
+      {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "bias_mixed",
+        "crab_model": "dynamic",
+        "seed": 600502
+      },
+      {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "bias_mixed",
+        "crab_model": "dynamic",
+        "seed": 600502
+      },
+      {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "bias_mixed",
+        "crab_model": "wind",
+        "seed": 600502
+      },
+      {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "bias_mixed",
+        "crab_model": "wind",
+        "seed": 600502
+      },
+      {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "wind",
+        "crab_model": "dynamic",
+        "seed": 600502
+      },
+      {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "wind",
+        "crab_model": "dynamic",
+        "seed": 600502
+      },
+      {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "wind",
+        "crab_model": "wind",
+        "seed": 600502
+      },
+      {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "wind",
+        "crab_model": "wind",
+        "seed": 600502
+      },
+      {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "bias_mixed",
+        "crab_model": "dynamic",
+        "seed": 600502
+      },
+      {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "bias_mixed",
+        "crab_model": "dynamic",
+        "seed": 600502
+      },
+      {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "bias_mixed",
+        "crab_model": "wind",
+        "seed": 600502
+      },
+      {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "bias_mixed",
+        "crab_model": "wind",
+        "seed": 600502
+      },
+      {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "wind",
+        "crab_model": "dynamic",
+        "seed": 600502
+      },
+      {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "wind",
+        "crab_model": "dynamic",
+        "seed": 600502
+      },
+      {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "wind",
+        "crab_model": "wind",
+        "seed": 600502
+      },
+      {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "wind",
+        "crab_model": "wind",
+        "seed": 600502
+      },
+      {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "bias_mixed",
+        "crab_model": "dynamic",
+        "seed": 600503
+      },
+      {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "bias_mixed",
+        "crab_model": "dynamic",
+        "seed": 600503
+      },
+      {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "bias_mixed",
+        "crab_model": "wind",
+        "seed": 600503
+      },
+      {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "bias_mixed",
+        "crab_model": "wind",
+        "seed": 600503
+      },
+      {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "wind",
+        "crab_model": "dynamic",
+        "seed": 600503
+      },
+      {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "wind",
+        "crab_model": "dynamic",
+        "seed": 600503
+      },
+      {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "wind",
+        "crab_model": "wind",
+        "seed": 600503
+      },
+      {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "wind",
+        "crab_model": "wind",
+        "seed": 600503
+      },
+      {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "bias_mixed",
+        "crab_model": "dynamic",
+        "seed": 600503
+      },
+      {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "bias_mixed",
+        "crab_model": "dynamic",
+        "seed": 600503
+      },
+      {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "bias_mixed",
+        "crab_model": "wind",
+        "seed": 600503
+      },
+      {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "bias_mixed",
+        "crab_model": "wind",
+        "seed": 600503
+      },
+      {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "wind",
+        "crab_model": "dynamic",
+        "seed": 600503
+      },
+      {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "wind",
+        "crab_model": "dynamic",
+        "seed": 600503
+      },
+      {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "wind",
+        "crab_model": "wind",
+        "seed": 600503
+      },
+      {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "wind",
+        "crab_model": "wind",
+        "seed": 600503
+      },
+      {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "bias_mixed",
+        "crab_model": "dynamic",
+        "seed": 600503
+      },
+      {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "bias_mixed",
+        "crab_model": "dynamic",
+        "seed": 600503
+      },
+      {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "bias_mixed",
+        "crab_model": "wind",
+        "seed": 600503
+      },
+      {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "bias_mixed",
+        "crab_model": "wind",
+        "seed": 600503
+      },
+      {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "wind",
+        "crab_model": "dynamic",
+        "seed": 600503
+      },
+      {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "wind",
+        "crab_model": "dynamic",
+        "seed": 600503
+      },
+      {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "wind",
+        "crab_model": "wind",
+        "seed": 600503
+      },
+      {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "wind",
+        "crab_model": "wind",
+        "seed": 600503
+      }
+    ],
+    "inputs": {
+      "/site/repo/local-level-lab/docs/geometry-development-20261006/protocol-comparison-plan.json": "fe751361eb944dbd755d95d7a4148b2fc9db69a46f76441effad6cffa4f16ca0"
+    },
+    "runner_sha256": "6b09735a379490f15328989b6b0d6940c0bdd94042e4d9046fdc2329f59b7184",
+    "protocol": {
+      "lat0": 35.0,
+      "lon0": -30.0,
+      "speed": 270.0,
+      "legs": [
+        [
+          10.0,
+          15.0
+        ],
+        [
+          100.0,
+          15.0
+        ],
+        [
+          190.0,
+          15.0
+        ],
+        [
+          280.0,
+          15.0
+        ],
+        [
+          10.0,
+          15.0
+        ]
+      ],
+      "turn_schedule": [
+        5.0,
+        15.0,
+        25.0,
+        35.0,
+        45.0,
+        55.0
+      ]
+    },
+    "fit_options": {
+      "research_candidate": true,
+      "design_only": true,
+      "noise_model": "axis_segment",
+      "bias_model": "dynamic",
+      "forward_uncertainty": true,
+      "bootstrap_refit": "nonlinear",
+      "crab_rate_sigma_dph": 1.0,
+      "crab_knot_seconds": null,
+      "bias_knot_seconds": 900.0,
+      "bias_rw_sigma_dph_sqrth": 3.0,
+      "rank_min_relative_margin": 0.1
+    },
+    "variant": "spp",
+    "seed_pairing": "shared within seed across protocols/truths/scenarios/crab models",
+    "protocols": {
+      "exact-protocol": {
+        "lat0": 35.0,
+        "lon0": -30.0,
+        "speed": 270.0,
+        "legs": [
+          [
+            10.0,
+            15.0
+          ],
+          [
+            100.0,
+            15.0
+          ],
+          [
+            190.0,
+            15.0
+          ],
+          [
+            280.0,
+            15.0
+          ],
+          [
+            10.0,
+            15.0
+          ]
+        ],
+        "turn_schedule": [
+          5.0,
+          15.0,
+          25.0,
+          35.0,
+          45.0,
+          55.0
+        ]
+      },
+      "repeated-opposing-directions-90min": {
+        "lat0": 35.0,
+        "lon0": -30.0,
+        "speed": 270.0,
+        "legs": [
+          [
+            10.0,
+            15.0
+          ],
+          [
+            190.0,
+            15.0
+          ],
+          [
+            100.0,
+            15.0
+          ],
+          [
+            280.0,
+            15.0
+          ],
+          [
+            10.0,
+            15.0
+          ],
+          [
+            190.0,
+            15.0
+          ]
+        ],
+        "turn_schedule": [
+          5.0,
+          20.0,
+          35.0,
+          50.0,
+          65.0,
+          80.0
+        ]
+      }
+    },
+    "protocol_plan_path": "/site/repo/local-level-lab/docs/geometry-development-20261006/protocol-comparison-plan.json"
+  },
+  "manifest_hash": "77a9c8e829368a8dcb3d4e202e0cc826c72978ea96267d215b82be911ec71838"
+}

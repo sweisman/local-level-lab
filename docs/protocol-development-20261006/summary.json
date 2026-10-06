@@ -1,0 +1,1878 @@
+{
+  "partition": "development",
+  "state": "complete",
+  "manifest_hash": "77a9c8e829368a8dcb3d4e202e0cc826c72978ea96267d215b82be911ec71838",
+  "completed_evaluations": 72,
+  "score_order": [
+    "all_estimable",
+    "worst_estimability_margin",
+    "worst_contrast_information"
+  ],
+  "geometry_scores": [
+    {
+      "cell_id": "repeated-opposing-directions-90min",
+      "completed_evaluations": 36,
+      "complete": true,
+      "all_estimable": false,
+      "worst_estimability_margin": -0.3079312511521038,
+      "worst_contrast_information": 0.040787754533037526,
+      "all_rank2_stable": false,
+      "evaluations": [
+        {
+          "case": {
+            "cell_id": "repeated-opposing-directions-90min",
+            "geometry": "fixed",
+            "truth": "sphere_rotating",
+            "scenario": "bias_mixed",
+            "crab_model": "dynamic",
+            "seed": 600501
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.02616130198075778,
+          "information": 65.58692593450803,
+          "limiting_contrast": "sphere_still_vs_flat_still",
+          "rank": 2,
+          "rank_stable": true,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "repeated-opposing-directions-90min",
+            "geometry": "fixed",
+            "truth": "sphere_rotating",
+            "scenario": "bias_mixed",
+            "crab_model": "wind",
+            "seed": 600501
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.2977631293550387,
+          "information": 0.45896248854227467,
+          "limiting_contrast": "sphere_rotating_vs_sphere_still",
+          "rank": 2,
+          "rank_stable": false,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified",
+            "unstable model-test rank"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "repeated-opposing-directions-90min",
+            "geometry": "fixed",
+            "truth": "sphere_rotating",
+            "scenario": "wind",
+            "crab_model": "dynamic",
+            "seed": 600501
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.04747066365336228,
+          "information": 56.21168416343955,
+          "limiting_contrast": "sphere_still_vs_flat_still",
+          "rank": 2,
+          "rank_stable": true,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "repeated-opposing-directions-90min",
+            "geometry": "fixed",
+            "truth": "sphere_rotating",
+            "scenario": "wind",
+            "crab_model": "wind",
+            "seed": 600501
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.30681181391140183,
+          "information": 0.06467347127386472,
+          "limiting_contrast": "sphere_rotating_vs_sphere_still",
+          "rank": 2,
+          "rank_stable": false,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified",
+            "unstable model-test rank"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "repeated-opposing-directions-90min",
+            "geometry": "fixed",
+            "truth": "sphere_still",
+            "scenario": "bias_mixed",
+            "crab_model": "dynamic",
+            "seed": 600501
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.025959419607292034,
+          "information": 65.67952323592995,
+          "limiting_contrast": "sphere_still_vs_flat_still",
+          "rank": 2,
+          "rank_stable": false,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified",
+            "unstable model-test rank"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "repeated-opposing-directions-90min",
+            "geometry": "fixed",
+            "truth": "sphere_still",
+            "scenario": "bias_mixed",
+            "crab_model": "wind",
+            "seed": 600501
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.29775326939863445,
+          "information": 0.4595874573888868,
+          "limiting_contrast": "sphere_rotating_vs_sphere_still",
+          "rank": 1,
+          "rank_stable": false,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified",
+            "unstable model-test rank"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_rot_not_identified",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "repeated-opposing-directions-90min",
+            "geometry": "fixed",
+            "truth": "sphere_still",
+            "scenario": "wind",
+            "crab_model": "dynamic",
+            "seed": 600501
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.04735948982833682,
+          "information": 56.25889768349639,
+          "limiting_contrast": "sphere_still_vs_flat_still",
+          "rank": 2,
+          "rank_stable": false,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified",
+            "unstable model-test rank"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "repeated-opposing-directions-90min",
+            "geometry": "fixed",
+            "truth": "sphere_still",
+            "scenario": "wind",
+            "crab_model": "wind",
+            "seed": 600501
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.30680531551586765,
+          "information": 0.06482813043346994,
+          "limiting_contrast": "sphere_rotating_vs_sphere_still",
+          "rank": 1,
+          "rank_stable": false,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified",
+            "unstable model-test rank"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_rot_not_identified",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "repeated-opposing-directions-90min",
+            "geometry": "fixed",
+            "truth": "flat_still",
+            "scenario": "bias_mixed",
+            "crab_model": "dynamic",
+            "seed": 600501
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.026115005027248783,
+          "information": 65.60815516611648,
+          "limiting_contrast": "sphere_still_vs_flat_still",
+          "rank": 2,
+          "rank_stable": true,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "repeated-opposing-directions-90min",
+            "geometry": "fixed",
+            "truth": "flat_still",
+            "scenario": "bias_mixed",
+            "crab_model": "wind",
+            "seed": 600501
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.2977602356567497,
+          "information": 0.45914586020598464,
+          "limiting_contrast": "sphere_rotating_vs_sphere_still",
+          "rank": 2,
+          "rank_stable": true,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "repeated-opposing-directions-90min",
+            "geometry": "fixed",
+            "truth": "flat_still",
+            "scenario": "wind",
+            "crab_model": "dynamic",
+            "seed": 600501
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.04745276462218623,
+          "information": 56.21928422082135,
+          "limiting_contrast": "sphere_still_vs_flat_still",
+          "rank": 2,
+          "rank_stable": true,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "repeated-opposing-directions-90min",
+            "geometry": "fixed",
+            "truth": "flat_still",
+            "scenario": "wind",
+            "crab_model": "wind",
+            "seed": 600501
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.3068089068907365,
+          "information": 0.0647426343464554,
+          "limiting_contrast": "sphere_rotating_vs_sphere_still",
+          "rank": 2,
+          "rank_stable": true,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "repeated-opposing-directions-90min",
+            "geometry": "fixed",
+            "truth": "sphere_rotating",
+            "scenario": "bias_mixed",
+            "crab_model": "dynamic",
+            "seed": 600502
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.026217069274808213,
+          "information": 65.56161909374961,
+          "limiting_contrast": "sphere_still_vs_flat_still",
+          "rank": 2,
+          "rank_stable": false,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified",
+            "unstable model-test rank"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "repeated-opposing-directions-90min",
+            "geometry": "fixed",
+            "truth": "sphere_rotating",
+            "scenario": "bias_mixed",
+            "crab_model": "wind",
+            "seed": 600502
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.2970880075842438,
+          "information": 0.5027369944616777,
+          "limiting_contrast": "sphere_rotating_vs_sphere_still",
+          "rank": 2,
+          "rank_stable": false,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified",
+            "unstable model-test rank"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "repeated-opposing-directions-90min",
+            "geometry": "fixed",
+            "truth": "sphere_rotating",
+            "scenario": "wind",
+            "crab_model": "dynamic",
+            "seed": 600502
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.04734540820782335,
+          "information": 56.26514623533041,
+          "limiting_contrast": "sphere_still_vs_flat_still",
+          "rank": 2,
+          "rank_stable": false,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified",
+            "unstable model-test rank"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "repeated-opposing-directions-90min",
+            "geometry": "fixed",
+            "truth": "sphere_rotating",
+            "scenario": "wind",
+            "crab_model": "wind",
+            "seed": 600502
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.3064708876133396,
+          "information": 0.07303672084160452,
+          "limiting_contrast": "sphere_rotating_vs_sphere_still",
+          "rank": 2,
+          "rank_stable": false,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified",
+            "unstable model-test rank"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "repeated-opposing-directions-90min",
+            "geometry": "fixed",
+            "truth": "sphere_still",
+            "scenario": "bias_mixed",
+            "crab_model": "dynamic",
+            "seed": 600502
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.025972421542679147,
+          "information": 65.67381852757399,
+          "limiting_contrast": "sphere_still_vs_flat_still",
+          "rank": 2,
+          "rank_stable": false,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified",
+            "unstable model-test rank"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "repeated-opposing-directions-90min",
+            "geometry": "fixed",
+            "truth": "sphere_still",
+            "scenario": "bias_mixed",
+            "crab_model": "wind",
+            "seed": 600502
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.29707826013582556,
+          "information": 0.5033836127103891,
+          "limiting_contrast": "sphere_rotating_vs_sphere_still",
+          "rank": 1,
+          "rank_stable": false,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified",
+            "unstable model-test rank"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_rot_not_identified",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "repeated-opposing-directions-90min",
+            "geometry": "fixed",
+            "truth": "sphere_still",
+            "scenario": "wind",
+            "crab_model": "dynamic",
+            "seed": 600502
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.04720943506901237,
+          "information": 56.32292186585565,
+          "limiting_contrast": "sphere_still_vs_flat_still",
+          "rank": 2,
+          "rank_stable": false,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified",
+            "unstable model-test rank"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "repeated-opposing-directions-90min",
+            "geometry": "fixed",
+            "truth": "sphere_still",
+            "scenario": "wind",
+            "crab_model": "wind",
+            "seed": 600502
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.30646510382342057,
+          "information": 0.07318298820233832,
+          "limiting_contrast": "sphere_rotating_vs_sphere_still",
+          "rank": 1,
+          "rank_stable": false,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified",
+            "unstable model-test rank"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_rot_not_identified",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "repeated-opposing-directions-90min",
+            "geometry": "fixed",
+            "truth": "flat_still",
+            "scenario": "bias_mixed",
+            "crab_model": "dynamic",
+            "seed": 600502
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.0260949250505762,
+          "information": 65.61762443343495,
+          "limiting_contrast": "sphere_still_vs_flat_still",
+          "rank": 2,
+          "rank_stable": false,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified",
+            "unstable model-test rank"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "repeated-opposing-directions-90min",
+            "geometry": "fixed",
+            "truth": "flat_still",
+            "scenario": "bias_mixed",
+            "crab_model": "wind",
+            "seed": 600502
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.2970796830686038,
+          "information": 0.5032891934566904,
+          "limiting_contrast": "sphere_rotating_vs_sphere_still",
+          "rank": 2,
+          "rank_stable": true,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "repeated-opposing-directions-90min",
+            "geometry": "fixed",
+            "truth": "flat_still",
+            "scenario": "wind",
+            "crab_model": "dynamic",
+            "seed": 600502
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.04734562991619484,
+          "information": 56.26505205460406,
+          "limiting_contrast": "sphere_still_vs_flat_still",
+          "rank": 2,
+          "rank_stable": false,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified",
+            "unstable model-test rank"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "repeated-opposing-directions-90min",
+            "geometry": "fixed",
+            "truth": "flat_still",
+            "scenario": "wind",
+            "crab_model": "wind",
+            "seed": 600502
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.3064663215317924,
+          "information": 0.07315218118461675,
+          "limiting_contrast": "sphere_rotating_vs_sphere_still",
+          "rank": 2,
+          "rank_stable": true,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "repeated-opposing-directions-90min",
+            "geometry": "fixed",
+            "truth": "sphere_rotating",
+            "scenario": "bias_mixed",
+            "crab_model": "dynamic",
+            "seed": 600503
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.026763078658383566,
+          "information": 65.3115089461694,
+          "limiting_contrast": "sphere_still_vs_flat_still",
+          "rank": 2,
+          "rank_stable": true,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "repeated-opposing-directions-90min",
+            "geometry": "fixed",
+            "truth": "sphere_rotating",
+            "scenario": "bias_mixed",
+            "crab_model": "wind",
+            "seed": 600503
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.2988718611433335,
+          "information": 0.39139829414748967,
+          "limiting_contrast": "sphere_rotating_vs_sphere_still",
+          "rank": 2,
+          "rank_stable": false,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified",
+            "unstable model-test rank"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "repeated-opposing-directions-90min",
+            "geometry": "fixed",
+            "truth": "sphere_rotating",
+            "scenario": "wind",
+            "crab_model": "dynamic",
+            "seed": 600503
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.048011211900014505,
+          "information": 55.98254957981258,
+          "limiting_contrast": "sphere_still_vs_flat_still",
+          "rank": 2,
+          "rank_stable": false,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified",
+            "unstable model-test rank"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "repeated-opposing-directions-90min",
+            "geometry": "fixed",
+            "truth": "sphere_rotating",
+            "scenario": "wind",
+            "crab_model": "wind",
+            "seed": 600503
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.3079312511521038,
+          "information": 0.040787754533037526,
+          "limiting_contrast": "sphere_rotating_vs_sphere_still",
+          "rank": 2,
+          "rank_stable": false,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified",
+            "unstable model-test rank"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "repeated-opposing-directions-90min",
+            "geometry": "fixed",
+            "truth": "sphere_still",
+            "scenario": "bias_mixed",
+            "crab_model": "dynamic",
+            "seed": 600503
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.026544178971443233,
+          "information": 65.41170376322549,
+          "limiting_contrast": "sphere_still_vs_flat_still",
+          "rank": 2,
+          "rank_stable": false,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified",
+            "unstable model-test rank"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "repeated-opposing-directions-90min",
+            "geometry": "fixed",
+            "truth": "sphere_still",
+            "scenario": "bias_mixed",
+            "crab_model": "wind",
+            "seed": 600503
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.2988612100896864,
+          "information": 0.3920217732410532,
+          "limiting_contrast": "sphere_rotating_vs_sphere_still",
+          "rank": 1,
+          "rank_stable": true,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_rot_not_identified",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "repeated-opposing-directions-90min",
+            "geometry": "fixed",
+            "truth": "sphere_still",
+            "scenario": "wind",
+            "crab_model": "dynamic",
+            "seed": 600503
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.04783905450233156,
+          "information": 56.055521102246686,
+          "limiting_contrast": "sphere_still_vs_flat_still",
+          "rank": 2,
+          "rank_stable": false,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified",
+            "unstable model-test rank"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "repeated-opposing-directions-90min",
+            "geometry": "fixed",
+            "truth": "sphere_still",
+            "scenario": "wind",
+            "crab_model": "wind",
+            "seed": 600503
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.3079226814279017,
+          "information": 0.0409497897580297,
+          "limiting_contrast": "sphere_rotating_vs_sphere_still",
+          "rank": 1,
+          "rank_stable": true,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_rot_not_identified",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "repeated-opposing-directions-90min",
+            "geometry": "fixed",
+            "truth": "flat_still",
+            "scenario": "bias_mixed",
+            "crab_model": "dynamic",
+            "seed": 600503
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.026611081557476934,
+          "information": 65.3810729467063,
+          "limiting_contrast": "sphere_still_vs_flat_still",
+          "rank": 2,
+          "rank_stable": false,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified",
+            "unstable model-test rank"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "repeated-opposing-directions-90min",
+            "geometry": "fixed",
+            "truth": "flat_still",
+            "scenario": "bias_mixed",
+            "crab_model": "wind",
+            "seed": 600503
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.2988649608451824,
+          "information": 0.39180215924137,
+          "limiting_contrast": "sphere_rotating_vs_sphere_still",
+          "rank": 2,
+          "rank_stable": true,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "repeated-opposing-directions-90min",
+            "geometry": "fixed",
+            "truth": "flat_still",
+            "scenario": "wind",
+            "crab_model": "dynamic",
+            "seed": 600503
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.04789668252038182,
+          "information": 56.03108930143027,
+          "limiting_contrast": "sphere_still_vs_flat_still",
+          "rank": 2,
+          "rank_stable": false,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified",
+            "unstable model-test rank"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "repeated-opposing-directions-90min",
+            "geometry": "fixed",
+            "truth": "flat_still",
+            "scenario": "wind",
+            "crab_model": "wind",
+            "seed": 600503
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.30792543586519544,
+          "information": 0.04089767418790296,
+          "limiting_contrast": "sphere_rotating_vs_sphere_still",
+          "rank": 2,
+          "rank_stable": true,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_id": "exact-protocol",
+      "completed_evaluations": 36,
+      "complete": true,
+      "all_estimable": false,
+      "worst_estimability_margin": -0.3115050849309542,
+      "worst_contrast_information": 0.0003905110464351065,
+      "all_rank2_stable": false,
+      "evaluations": [
+        {
+          "case": {
+            "cell_id": "exact-protocol",
+            "geometry": "fixed",
+            "truth": "sphere_rotating",
+            "scenario": "bias_mixed",
+            "crab_model": "dynamic",
+            "seed": 600501
+          },
+          "valid": true,
+          "all_estimable": true,
+          "margin": 0.10133390579328055,
+          "information": 150.7294969939556,
+          "limiting_contrast": "sphere_rotating_vs_flat_still",
+          "rank": 2,
+          "rank_stable": true,
+          "failure": null,
+          "exclusions": [],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "exact-protocol",
+            "geometry": "fixed",
+            "truth": "sphere_rotating",
+            "scenario": "bias_mixed",
+            "crab_model": "wind",
+            "seed": 600501
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.2878144710763645,
+          "information": 0.409346045742022,
+          "limiting_contrast": "sphere_still_vs_flat_still",
+          "rank": 2,
+          "rank_stable": true,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "exact-protocol",
+            "geometry": "fixed",
+            "truth": "sphere_rotating",
+            "scenario": "wind",
+            "crab_model": "dynamic",
+            "seed": 600501
+          },
+          "valid": true,
+          "all_estimable": true,
+          "margin": 0.08165168224785968,
+          "information": 158.37849523515322,
+          "limiting_contrast": "sphere_rotating_vs_flat_still",
+          "rank": 2,
+          "rank_stable": true,
+          "failure": null,
+          "exclusions": [],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "exact-protocol",
+            "geometry": "fixed",
+            "truth": "sphere_rotating",
+            "scenario": "wind",
+            "crab_model": "wind",
+            "seed": 600501
+          },
+          "valid": true,
+          "all_estimable": true,
+          "margin": 0.016743365408249,
+          "information": 76.18988372762107,
+          "limiting_contrast": "sphere_still_vs_flat_still",
+          "rank": 2,
+          "rank_stable": true,
+          "failure": null,
+          "exclusions": [],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "exact-protocol",
+            "geometry": "fixed",
+            "truth": "sphere_still",
+            "scenario": "bias_mixed",
+            "crab_model": "dynamic",
+            "seed": 600501
+          },
+          "valid": true,
+          "all_estimable": true,
+          "margin": 0.10167812951947641,
+          "information": 171.68811789088977,
+          "limiting_contrast": "sphere_rotating_vs_flat_still",
+          "rank": 2,
+          "rank_stable": true,
+          "failure": null,
+          "exclusions": [],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "exact-protocol",
+            "geometry": "fixed",
+            "truth": "sphere_still",
+            "scenario": "bias_mixed",
+            "crab_model": "wind",
+            "seed": 600501
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.28559911490836076,
+          "information": 0.4869346509293405,
+          "limiting_contrast": "sphere_still_vs_flat_still",
+          "rank": 2,
+          "rank_stable": false,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified",
+            "unstable model-test rank"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "exact-protocol",
+            "geometry": "fixed",
+            "truth": "sphere_still",
+            "scenario": "wind",
+            "crab_model": "dynamic",
+            "seed": 600501
+          },
+          "valid": true,
+          "all_estimable": true,
+          "margin": 0.08319135983318582,
+          "information": 181.7316575522194,
+          "limiting_contrast": "sphere_rotating_vs_flat_still",
+          "rank": 2,
+          "rank_stable": true,
+          "failure": null,
+          "exclusions": [],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "exact-protocol",
+            "geometry": "fixed",
+            "truth": "sphere_still",
+            "scenario": "wind",
+            "crab_model": "wind",
+            "seed": 600501
+          },
+          "valid": true,
+          "all_estimable": true,
+          "margin": 0.017188848494388953,
+          "information": 76.39635776663616,
+          "limiting_contrast": "sphere_still_vs_flat_still",
+          "rank": 2,
+          "rank_stable": false,
+          "failure": null,
+          "exclusions": [
+            "unstable model-test rank"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "exact-protocol",
+            "geometry": "fixed",
+            "truth": "flat_still",
+            "scenario": "bias_mixed",
+            "crab_model": "dynamic",
+            "seed": 600501
+          },
+          "valid": true,
+          "all_estimable": true,
+          "margin": 0.10158009342364177,
+          "information": 186.60287313396373,
+          "limiting_contrast": "sphere_rotating_vs_flat_still",
+          "rank": 2,
+          "rank_stable": true,
+          "failure": null,
+          "exclusions": [],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "exact-protocol",
+            "geometry": "fixed",
+            "truth": "flat_still",
+            "scenario": "bias_mixed",
+            "crab_model": "wind",
+            "seed": 600501
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.2859029021376366,
+          "information": 0.47589696880489735,
+          "limiting_contrast": "sphere_still_vs_flat_still",
+          "rank": 2,
+          "rank_stable": true,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "exact-protocol",
+            "geometry": "fixed",
+            "truth": "flat_still",
+            "scenario": "wind",
+            "crab_model": "dynamic",
+            "seed": 600501
+          },
+          "valid": true,
+          "all_estimable": true,
+          "margin": 0.08348093497593684,
+          "information": 197.50471902084155,
+          "limiting_contrast": "sphere_rotating_vs_flat_still",
+          "rank": 2,
+          "rank_stable": true,
+          "failure": null,
+          "exclusions": [],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "exact-protocol",
+            "geometry": "fixed",
+            "truth": "flat_still",
+            "scenario": "wind",
+            "crab_model": "wind",
+            "seed": 600501
+          },
+          "valid": true,
+          "all_estimable": true,
+          "margin": 0.017060833036107503,
+          "information": 76.33699611214922,
+          "limiting_contrast": "sphere_still_vs_flat_still",
+          "rank": 2,
+          "rank_stable": true,
+          "failure": null,
+          "exclusions": [],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "exact-protocol",
+            "geometry": "fixed",
+            "truth": "sphere_rotating",
+            "scenario": "bias_mixed",
+            "crab_model": "dynamic",
+            "seed": 600502
+          },
+          "valid": true,
+          "all_estimable": true,
+          "margin": 0.10122629384368476,
+          "information": 167.95307205994345,
+          "limiting_contrast": "sphere_rotating_vs_flat_still",
+          "rank": 2,
+          "rank_stable": true,
+          "failure": null,
+          "exclusions": [],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "exact-protocol",
+            "geometry": "fixed",
+            "truth": "sphere_rotating",
+            "scenario": "bias_mixed",
+            "crab_model": "wind",
+            "seed": 600502
+          },
+          "valid": true,
+          "all_estimable": true,
+          "margin": 0.01905535977901518,
+          "information": 75.25188951675916,
+          "limiting_contrast": "sphere_still_vs_flat_still",
+          "rank": 2,
+          "rank_stable": true,
+          "failure": null,
+          "exclusions": [],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "exact-protocol",
+            "geometry": "fixed",
+            "truth": "sphere_rotating",
+            "scenario": "wind",
+            "crab_model": "dynamic",
+            "seed": 600502
+          },
+          "valid": true,
+          "all_estimable": true,
+          "margin": 0.08174507124107988,
+          "information": 174.69996147888034,
+          "limiting_contrast": "sphere_rotating_vs_flat_still",
+          "rank": 2,
+          "rank_stable": true,
+          "failure": null,
+          "exclusions": [],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "exact-protocol",
+            "geometry": "fixed",
+            "truth": "sphere_rotating",
+            "scenario": "wind",
+            "crab_model": "wind",
+            "seed": 600502
+          },
+          "valid": true,
+          "all_estimable": true,
+          "margin": 0.024325787273542954,
+          "information": 79.74425289116354,
+          "limiting_contrast": "sphere_still_vs_flat_still",
+          "rank": 2,
+          "rank_stable": true,
+          "failure": null,
+          "exclusions": [],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "exact-protocol",
+            "geometry": "fixed",
+            "truth": "sphere_still",
+            "scenario": "bias_mixed",
+            "crab_model": "dynamic",
+            "seed": 600502
+          },
+          "valid": true,
+          "all_estimable": true,
+          "margin": 0.10165587529812592,
+          "information": 179.73667847910914,
+          "limiting_contrast": "sphere_rotating_vs_flat_still",
+          "rank": 2,
+          "rank_stable": true,
+          "failure": null,
+          "exclusions": [],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "exact-protocol",
+            "geometry": "fixed",
+            "truth": "sphere_still",
+            "scenario": "bias_mixed",
+            "crab_model": "wind",
+            "seed": 600502
+          },
+          "valid": true,
+          "all_estimable": true,
+          "margin": 0.019485502762082052,
+          "information": 75.44741967591384,
+          "limiting_contrast": "sphere_still_vs_flat_still",
+          "rank": 2,
+          "rank_stable": false,
+          "failure": null,
+          "exclusions": [
+            "unstable model-test rank"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "exact-protocol",
+            "geometry": "fixed",
+            "truth": "sphere_still",
+            "scenario": "wind",
+            "crab_model": "dynamic",
+            "seed": 600502
+          },
+          "valid": true,
+          "all_estimable": true,
+          "margin": 0.08308135146357765,
+          "information": 194.64864334160606,
+          "limiting_contrast": "sphere_rotating_vs_flat_still",
+          "rank": 2,
+          "rank_stable": true,
+          "failure": null,
+          "exclusions": [],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "exact-protocol",
+            "geometry": "fixed",
+            "truth": "sphere_still",
+            "scenario": "wind",
+            "crab_model": "wind",
+            "seed": 600502
+          },
+          "valid": true,
+          "all_estimable": true,
+          "margin": 0.024852472516756707,
+          "information": 79.99402127579333,
+          "limiting_contrast": "sphere_still_vs_flat_still",
+          "rank": 1,
+          "rank_stable": false,
+          "failure": null,
+          "exclusions": [
+            "unstable model-test rank"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "exact-protocol",
+            "geometry": "fixed",
+            "truth": "flat_still",
+            "scenario": "bias_mixed",
+            "crab_model": "dynamic",
+            "seed": 600502
+          },
+          "valid": true,
+          "all_estimable": true,
+          "margin": 0.10160758875909803,
+          "information": 196.28856982511587,
+          "limiting_contrast": "sphere_rotating_vs_flat_still",
+          "rank": 2,
+          "rank_stable": true,
+          "failure": null,
+          "exclusions": [],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "exact-protocol",
+            "geometry": "fixed",
+            "truth": "flat_still",
+            "scenario": "bias_mixed",
+            "crab_model": "wind",
+            "seed": 600502
+          },
+          "valid": true,
+          "all_estimable": true,
+          "margin": 0.019522936508815314,
+          "information": 75.46444793955966,
+          "limiting_contrast": "sphere_still_vs_flat_still",
+          "rank": 2,
+          "rank_stable": true,
+          "failure": null,
+          "exclusions": [],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "exact-protocol",
+            "geometry": "fixed",
+            "truth": "flat_still",
+            "scenario": "wind",
+            "crab_model": "dynamic",
+            "seed": 600502
+          },
+          "valid": true,
+          "all_estimable": true,
+          "margin": 0.08363692126738237,
+          "information": 212.36903409613438,
+          "limiting_contrast": "sphere_rotating_vs_flat_still",
+          "rank": 2,
+          "rank_stable": true,
+          "failure": null,
+          "exclusions": [],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "exact-protocol",
+            "geometry": "fixed",
+            "truth": "flat_still",
+            "scenario": "wind",
+            "crab_model": "wind",
+            "seed": 600502
+          },
+          "valid": true,
+          "all_estimable": true,
+          "margin": 0.024950944092206162,
+          "information": 80.04076249417709,
+          "limiting_contrast": "sphere_still_vs_flat_still",
+          "rank": 2,
+          "rank_stable": true,
+          "failure": null,
+          "exclusions": [],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "exact-protocol",
+            "geometry": "fixed",
+            "truth": "sphere_rotating",
+            "scenario": "bias_mixed",
+            "crab_model": "dynamic",
+            "seed": 600503
+          },
+          "valid": true,
+          "all_estimable": true,
+          "margin": 0.10104787514431152,
+          "information": 176.9803853603026,
+          "limiting_contrast": "sphere_rotating_vs_flat_still",
+          "rank": 2,
+          "rank_stable": true,
+          "failure": null,
+          "exclusions": [],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "exact-protocol",
+            "geometry": "fixed",
+            "truth": "sphere_rotating",
+            "scenario": "bias_mixed",
+            "crab_model": "wind",
+            "seed": 600503
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.27432189331472984,
+          "information": 0.9862419883002747,
+          "limiting_contrast": "sphere_still_vs_flat_still",
+          "rank": 2,
+          "rank_stable": true,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "exact-protocol",
+            "geometry": "fixed",
+            "truth": "sphere_rotating",
+            "scenario": "wind",
+            "crab_model": "dynamic",
+            "seed": 600503
+          },
+          "valid": true,
+          "all_estimable": true,
+          "margin": 0.08233759029689819,
+          "information": 182.4571206462679,
+          "limiting_contrast": "sphere_rotating_vs_flat_still",
+          "rank": 2,
+          "rank_stable": true,
+          "failure": null,
+          "exclusions": [],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "exact-protocol",
+            "geometry": "fixed",
+            "truth": "sphere_rotating",
+            "scenario": "wind",
+            "crab_model": "wind",
+            "seed": 600503
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.3085566223306529,
+          "information": 0.00960197141753453,
+          "limiting_contrast": "sphere_still_vs_flat_still",
+          "rank": 2,
+          "rank_stable": true,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "exact-protocol",
+            "geometry": "fixed",
+            "truth": "sphere_still",
+            "scenario": "bias_mixed",
+            "crab_model": "dynamic",
+            "seed": 600503
+          },
+          "valid": true,
+          "all_estimable": true,
+          "margin": 0.10140754251413059,
+          "information": 190.80777980334832,
+          "limiting_contrast": "sphere_rotating_vs_flat_still",
+          "rank": 2,
+          "rank_stable": true,
+          "failure": null,
+          "exclusions": [],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "exact-protocol",
+            "geometry": "fixed",
+            "truth": "sphere_still",
+            "scenario": "bias_mixed",
+            "crab_model": "wind",
+            "seed": 600503
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.27170692842400795,
+          "information": 1.1269239386523924,
+          "limiting_contrast": "sphere_still_vs_flat_still",
+          "rank": 1,
+          "rank_stable": false,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified",
+            "unstable model-test rank"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_not_identified",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "exact-protocol",
+            "geometry": "fixed",
+            "truth": "sphere_still",
+            "scenario": "wind",
+            "crab_model": "dynamic",
+            "seed": 600503
+          },
+          "valid": true,
+          "all_estimable": true,
+          "margin": 0.08341840322038435,
+          "information": 202.03376173127876,
+          "limiting_contrast": "sphere_rotating_vs_flat_still",
+          "rank": 2,
+          "rank_stable": true,
+          "failure": null,
+          "exclusions": [],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "exact-protocol",
+            "geometry": "fixed",
+            "truth": "sphere_still",
+            "scenario": "wind",
+            "crab_model": "wind",
+            "seed": 600503
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.3115050849309542,
+          "information": 0.0003905110464351065,
+          "limiting_contrast": "sphere_still_vs_flat_still",
+          "rank": 1,
+          "rank_stable": false,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified",
+            "unstable model-test rank"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_not_identified",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "exact-protocol",
+            "geometry": "fixed",
+            "truth": "flat_still",
+            "scenario": "bias_mixed",
+            "crab_model": "dynamic",
+            "seed": 600503
+          },
+          "valid": true,
+          "all_estimable": true,
+          "margin": 0.10103582552925722,
+          "information": 203.480886654119,
+          "limiting_contrast": "sphere_rotating_vs_flat_still",
+          "rank": 2,
+          "rank_stable": true,
+          "failure": null,
+          "exclusions": [],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "exact-protocol",
+            "geometry": "fixed",
+            "truth": "flat_still",
+            "scenario": "bias_mixed",
+            "crab_model": "wind",
+            "seed": 600503
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.2726468288368623,
+          "information": 1.0752790464188353,
+          "limiting_contrast": "sphere_still_vs_flat_still",
+          "rank": 2,
+          "rank_stable": true,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "exact-protocol",
+            "geometry": "fixed",
+            "truth": "flat_still",
+            "scenario": "wind",
+            "crab_model": "dynamic",
+            "seed": 600503
+          },
+          "valid": true,
+          "all_estimable": true,
+          "margin": 0.08346898213178439,
+          "information": 216.188481068999,
+          "limiting_contrast": "sphere_rotating_vs_flat_still",
+          "rank": 2,
+          "rank_stable": true,
+          "failure": null,
+          "exclusions": [],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        },
+        {
+          "case": {
+            "cell_id": "exact-protocol",
+            "geometry": "fixed",
+            "truth": "flat_still",
+            "scenario": "wind",
+            "crab_model": "wind",
+            "seed": 600503
+          },
+          "valid": true,
+          "all_estimable": false,
+          "margin": -0.3109371518737856,
+          "information": 0.001213107446212772,
+          "limiting_contrast": "sphere_still_vs_flat_still",
+          "rank": 2,
+          "rank_stable": true,
+          "failure": null,
+          "exclusions": [
+            "model contrast not identified"
+          ],
+          "flags": [
+            "synthetic",
+            "imu_turned_in_flight",
+            "k_disc_not_identified"
+          ]
+        }
+      ]
+    }
+  ],
+  "evidence_scope": "Paired development geometry screening; no calibrated power, tail guarantee or real IMU evidence."
+}

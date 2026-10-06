@@ -53,15 +53,134 @@ Use tool output limits or scripts that print less.
 
 - Always use `~/venv/bin/python` and its pip for Python work and tests; do not use system Python or create another environment.
 - Always use the installed JDK under `~/.local` for Java/Gradle work (currently `~/.local/jdk21`), with `JAVA_HOME` set accordingly; do not use the system JDK or download another.
+- Scott has an 11th-generation i7 and authorizes up to two CPU threads/workers for routine
+  computation. For new numerical runs, default `OPENBLAS_NUM_THREADS=2`, `OMP_NUM_THREADS=2`
+  and `MKL_NUM_THREADS=2`; use at most two workers for builds and other parallel tasks.
+  Avoid multiplying worker concurrency by numerical thread counts beyond two total.
+  This is a resource preference, not authorization for additional campaign attempts or time.
+  Existing frozen campaigns retain their original thread settings on resume. The completed
+  `geometry-development-20261006` batch used one numerical thread; switching a future
+  campaign to two requires a new environment freeze and refreshed runtime/cost measurement.
 
 ## Analysis campaign handoff — 2026-10-05
 
+### Current state and documentation — 2026-10-06
+
+**All campaigns are complete; no worker is active and no additional flights are authorized.**
+The latest 72-case protocol comparison finished with zero fit failures, all fits converged,
+and 516.9065152532421 charged seconds (8m37s). Do not resume completed campaigns or spend
+unused time on extra cases. Both 36-case arms fail the all-comparisons requirement.
+Original/dynamic: 18/18 design and screen passes, all rank 2. Original/wind: 9/18 design,
+6/18 screen passes, 15 rank 2 and 3 rank 1. Revised/dynamic: zero passes, all rank 2;
+revised/wind: zero passes, 12 rank 2 and 6 rank 1. All model decisions abstain.
+The revised IMU turn at minute 20 overlaps the first simulated aircraft turn; its causal
+effect remains unisolated. The simplified ideal-axis fixture did not establish a usable protocol.
+`docs/protocol-development-20261006/review.json` verifies the freeze, task identities,
+compressed journal and recomputed scores. Current source is
+`27e73b122c3a073357d4a03112da11779969a710bb3a6cc3eb06c333da52ad51`,
+environment `52cba9baed64e4096cc4b0bba352dbe3a3a366127a70ebcb4aa24fd8a91a8c98`,
+manifest `77a9c8e829368a8dcb3d4e202e0cc826c72978ea96267d215b82be911ec71838`.
+
+Next use saved processing diagnostics and independently checked trajectory/attitude fixtures
+before choosing another protocol. More flights require a fresh budget. Old calibration
+proposals are stale; review/refreeze the final source/configuration/policy/environment,
+then fresh primary and pairwise calibration, frozen thresholds, and independent validation.
+Real IMU bench qualification and observed-track replay remain pending. Never present
+development screens as calibrated decisions or as a demonstrated three-model separation.
+
+Reader-facing documentation must be understandable to literate nonspecialists: explain
+**IMU (inertial measurement unit)** on first use, then use IMU throughout; lead with the
+expected rotation signal in steady level flight and distinguish it from measurement bias.
+Explain what the project does, how it works, measured status, limits and next needs in prose.
+No JSON-file links or personal/chat/authorization narratives in the public overview and guides.
+Keep technical records separately rather than deleting evidence. New documented files are
+`docs/DEVELOPMENT.md`, `docs/METHODOLOGY_TECHNICAL.md`, `docs/VALIDATION_TECHNICAL.md`,
+`docs/BENCH_TECHNICAL.md`, `docs/CURATION.md` and `docs/EVIDENCE_TECHNICAL.md`.
+The README and public methodology/protocol/bench/curation/validation/evidence guides were
+rewritten accordingly. The related implementation, campaign results and documentation form
+one coherent publication unit. The user authorized committing and pushing that unit after
+the documentation update; subsequent git operations need fresh explicit authorization.
+Scientific verification: 57 focused checks passed in 1.65s before documentation-only edits.
+
 ### Latest authorization and handoff — 2026-10-06
+
+**Latest audit and protocol follow-up:** Scott authorized the saved-record audit, then explicitly
+approved **72 geometry-only evaluations with a 15-minute cumulative cap and two numerical threads**.
+New corpus: `docs/protocol-development-20261006/` (see its README for launch/resume and artifacts).
+Historical initial launch: outside-sandbox PID **3564298**, four checkpointed evaluations, no failures.
+Manifest hash `77a9c8e829368a8dcb3d4e202e0cc826c72978ea96267d215b82be911ec71838`,
+two-thread numerical environment hash
+`52cba9baed64e4096cc4b0bba352dbe3a3a366127a70ebcb4aa24fd8a91a8c98`.
+Those initial counts are superseded by the completed 72-case results above. Do not resume.
+Input: `docs/geometry-development-20261006/protocol-comparison-plan.json`. Paired fresh seeds
+600501–600503, old exact protocol versus nominal 90-minute opposing/repeated headings, three truths,
+two nuisance scenarios, both crab fits, zero bootstrap. Protocols interleave; each arm has 36 cases.
+Do not exceed 72 cases or 900 charged seconds, refill budgets, restart old campaigns or ask again
+to resume these same missing attempts under an unchanged freeze. Git operations still need consent.
+
+Audit tool/artifact: `analysis/tests/audit_geometry.py`, `docs/geometry-development-20261006/audit.json`.
+It uses saved records and analytic bins only, never flights or nonlinear solves. Fixed nuisance-SVD
+unit dependence in `inference.py` by unit-column scaling; added pre-cutoff contrast diagnostics and
+explicit conditioning on retained bins/forward/mount axes. Wind Jacobians pass anchor finite-difference
+checks. Six-heading 60-minute fixtures hit the ten-minute cruise minimum and lose intermediate headings;
+the 180-minute analytic fixture loses rank to dynamic bias. All six no-fit records are watchdog/no-bins.
+Seven saved evaluations (all six wind controls plus one stress case) flip worst-anchor rank under ±10%
+cutoff changes. Keep thresholds and protective gates unchanged; do not overwrite historical results.
+The opposing 90-minute candidate passed ideal tangent checks but failed the completed simulator
+comparison. It has not been tested with a real IMU.
+Verification: 57 focused checks passed in 1.65s. Current scientific source hash is
+`27e73b122c3a073357d4a03112da11779969a710bb3a6cc3eb06c333da52ad51`.
+Old calibration freezes are stale after source/thread changes; review/refreeze the final domain first.
+Completed campaign artifacts preserve both arms and all failures/selection/ranks/contrast retention
+by seed/scenario/truth/crab. No calibration or promotion
+is authorized. Unused time does not authorize extra cases. Bench IMU and observed-track replay pending.
+
+**Current geometry follow-up:** Scott said "go" after the published next-stage preparation.
+**Complete:** `docs/geometry-development-20261006/status.json` reports 300/300 evaluations,
+six retained no-fit results, 1,838.56 charged seconds (~31 minutes). Do not resume or use the
+unused time for extra cases. Zero of 25 geometries passes all contrasts across both crab models.
+The exact control passes all six dynamic-crab cases and no wind-crab cases; still-globe versus
+disc is limiting under wind. Dynamic/wind fits have 133/130 rank-zero results. All six no-fit
+cases share the -65° / two poor headings / 180-minute / 270 m/s / no-turn / mixed-bias cell.
+`review.json` verifies freeze, case identities, archive equality and recomputed scores.
+The later saved-record/tangent audit and authorized protocol comparison are described above.
+No broader geometry guarantee is established; the
+restricted dynamic-crab calibration proposal remains unrun. Future work may use two total
+threads/workers with a new environment freeze. Further compute and git operations need consent.
+Historical launch/recovery instructions below must not restart this completed batch.
+The worker `analysis/tests/geometry_campaign.py` prepares exactly 300 geometry-only evaluations
+(24 stress cells plus exact-protocol controls × three truths × two scenarios × two crab models),
+seed 600500, zero bootstrap. Its documented corpus is `docs/geometry-development-20261006/`.
+Scott's further "go" authorizes launch using the stated default one-hour cumulative evaluation
+budget (3,600 seconds), up to 300 cases. Do not refill this cap or add cases automatically.
+Check `docs/geometry-development-20261006/status.json` before any resume; do not start duplicates
+or edit scientific source, runner or frozen input files while it runs. Ten focused offline checks passed.
+Initial launch verified: outside-sandbox PID **3557150**, manifest hash
+`81f6ff596ed2432d7925fd4fa97bded4492ad33ad0c57a7c525be3667941e97e`, scientific source
+`642cbec30013a211b36221b072b6ba63159bceab9ecd439a6bdcfee6a433aafc`, numerical environment
+`20ef393862e7723ba90e825b625826081cde501e4d9c944f2dbff29526ebdd69`.
+The first evaluation checkpointed with no failure; that is an initial check, not a current count.
+The worker needs no network or model calls. Resume only missing cases within the same cap:
+
+```sh
+env OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 /home/sweisman/venv/bin/python analysis/tests/geometry_campaign.py --wall-time-minutes 60 --resume --detach
+```
+
+Use escalated execution so the authorized background process survives sandbox exit. A stale
+status needs an outside-sandbox PID check, since sandbox process visibility is incomplete.
+After `complete` or `budget_exhausted`, review `summary.json` and archived records and update
+README/VALIDATION/readiness with measured results; never silently extend the cap.
+Publication was completed as `e9a12ea`; further git operations need fresh consent.
+The runner freezes its own hash and input hashes in addition to scientific source/environment,
+fsyncs successes and failures, conservatively charges interrupted per-case reservations,
+enforces a cumulative budget and rejects missing-original-journal resume. Consult its README
+for launch/resume; outside-sandbox execution is required for detachment. No full calibration,
+validation or additional bootstrap pilot is authorized. Observed-track replay remains pending.
 
 **Latest next-stage work:** Scott said no IMUs are available yet and authorized the suggested
 saved-record review, geometry preparation, revised freeze/budget and publication of completed
-campaign artifacts. No additional flight attempts or multi-week calibration/validation budget
-were authorized. Real bench testing remains pending hardware.
+campaign artifacts. No multi-week calibration/validation budget was authorized. The later
+one-hour geometry batch is separately authorized above. Real bench testing remains pending hardware.
 
 Documented new corpus: `docs/research-next-stage-20261006/README.md`, `pilot-comparison.json`,
 `geometry-stress-plan.json`, `compute-budget.json`, `calibration-proposed-manifest.json`,
@@ -113,8 +232,8 @@ At worst rank-2 acceptance 128/166, existing full sample goals imply 485,976 att
 proposal before requesting another compute budget. No thresholds or independent validation
 have run, and external-track recovery remains separate, unvalidated analysis work.
 
-The latest completed commit/push is `0f1ae60` (documentation and CI fixture fix); final campaign
-artifacts and this result handoff remain uncommitted. Further git operations need fresh consent.
+The latest completed commit/push is `e9a12ea` (completed pilot, geometry preparation and revised
+calibration proposal). The geometry runner follow-up remains uncommitted. Further git operations need fresh consent.
 The historical launch/resume instructions below apply only to a genuinely interrupted original
 run; they must never be used to restart this completed campaign or treat a missing journal as empty.
 

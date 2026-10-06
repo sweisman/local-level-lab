@@ -1,59 +1,77 @@
-# Participant protocol
+# Recording a flight
 
-The in-app instructions are in `android/app/src/main/java/io/github/sweisman/locallevellab/ui/Instructions.kt`. Keep their guidance consistent with this checklist. A completed recording does not by itself establish scientific eligibility.
+An **IMU (inertial measurement unit)** is the external device that measures turning and acceleration.
+The phone records the IMU and supplies GPS positions.
 
-1. **Before you fly.** Charge the IMU and the phone. Pair the IMU, choose it in Settings, and tap **Write and verify IMU settings**. Allow recording with the screen off. Set the phone's date and time automatically before going offline; the recorded phone-clock anchors help later alignment but do not certify UTC accuracy. Bring a rigid mount (see the README for examples). Book a window seat if you can. Create a session using the required flight details below.
-2. **Pre-flight calibration (~25 min).** Put the IMU on a solid table, one long side against a straight edge. Visit 4 positions, then go back through them in mirror order: label up, label up turned 180°, label down, label down turned 180° (one double-length stay), label down, label up turned 180°, label up. That is 7 placements, about 3 still minutes each. Don't touch anything.
-3. **Optional drift run.** 30+ minutes lying still, for example overnight.
-4. **Mount the IMU.** Best is a window frame or sidewall mount. Good is clamped to the seat structure. Acceptable is fixed to a locked tray (cruise only). Never hold it or leave it loose, and don't connect a cable. The orientation doesn't matter as long as it stays fixed. Optionally choose window/middle/aisle; no exact seat number is collected. Run the placement check (60 s stable). The phone can be anywhere it gets GPS.
-5. **Record the flight.** Airplane mode on, then Bluetooth and Location on. If there is no fresh GPS fix, acknowledge **Record without a fresh GPS fix** on the placement screen and keep recording. Precise-location permission, the 60-second placement check and verified IMU settings are still required. Record as much of the cruise as you can, including a natural banked course change to help find the aircraft's nose direction. The screen can be off. If turn reminders are on, turn the IMU slowly, over about five seconds, to face the opposite way, keeping the same side up, fix it firmly again and confirm. Turning it upside down helps much less; if your mount allows only that, choose it in Settings. Tap **I moved the IMU** if it gets bumped.
-6. **Post-flight calibration.** The same 7 placements, as soon as you can after landing.
-7. **Upload or share.** Uploads happen only after you tap Upload and explicitly consent to permanently publishing the original recording and identifying metadata. Flight recording requires precise-location permission; missing or stale GNSS requires explicit acknowledgment.
+This guide explains how to collect a complete, reviewable recording. It does not promise that
+the flight will distinguish the Earth models. That depends on the instrument, route, data
+quality and analysis. Read [How the experiment works](METHODOLOGY.md) and arrange the
+[instrument checks](BENCH.md) before planning to use a flight as scientific evidence.
 
-## Required flight details
+## Before leaving
 
-| Field | What to enter |
-|---|---|
-| Operating airline | Select the airline operating the aircraft from the searchable directory. Search by name, IATA/ICAO code or country; check the full name when codes are shared. |
-| Operating flight number | Enter the number alone or with that carrier's prefix: for example, `10`, `EY10` or `ETD10` for Etihad. For a codeshare, use the operating flight rather than a different marketing carrier's number. |
-| Departure date | The **scheduled departure date at the origin**, in `YYYY-MM-DD` format. Confirm the default, which comes from the phone. Keep the scheduled date if a delay crosses midnight. |
-| From / To | Different three-letter IATA airport codes, for example `ORD` and `AUH`. |
+Charge the phone and IMU. Pair them, select the instrument in Settings, and tap
+**Write and verify IMU settings**. Check that recording
+can continue with the screen off. Set the phone date and time automatically before going
+offline; the recorded clock information helps later checks but does not certify exact UTC time.
 
-Aircraft type, notes and seat position are optional; no exact seat number is collected. The directory
-includes historical carriers and is not a current operating-status register. A missing carrier needs
-a directory update; do not select another carrier to get past setup.
+Create a session with the operating airline, operating flight number, scheduled departure date
+at the origin, and departure and arrival airport codes. For a codeshare, use the airline actually
+flying the aircraft. Keep the scheduled origin date if a delay crosses midnight.
 
-**Open flight history** opens FlightAware in your external browser. Check the actual date and route
-when connectivity is available. A future flight may have no track yet. The app checks entry format
-and carrier-prefix consistency, not airport existence or whether a flight operated. Opening the
-link leaves verification pending and contacts a website separately from session-upload consent.
+The searchable airline directory includes historical entries. Selecting a carrier and entering
+a valid number does not verify that a flight operated. **Open flight history** opens an external
+website where the date and route can be checked; opening it does not complete verification.
 
-## Missing GPS and public-track checks
+## Calibrate before the flight
 
-Missing GPS does not stop IMU capture after acknowledgment. The phone continues looking for GPS
-and records fixes if reception returns. Check the IMU link and activity log separately from GPS
-reception. Continue the normal mount-turn and post-flight calibration steps.
+Allow about 25 minutes on a solid, stationary table. Follow the seven placements shown by the
+app. They visit four positions and return through them in reverse order. Keep each placement
+still for about three minutes; the middle placement lasts twice as long. A straight edge helps
+you return to the same facing direction. Do not touch the IMU during a still recording.
 
-After landing, promptly save a complete public track if GPS was missing or to cross-check collected
-GPS. Preserve the exact historical link, provider, flight date/route, downloaded position/time table,
-displayed timezone, reporting-source labels, estimate labels and gaps. A map screenshot alone is
-insufficient. Do not assume displayed times are UTC: departure-local date and the first UTC
-observation may fall on different days. A complete table may still contain estimated positions and gaps.
+An optional still recording of 30 minutes or more can help characterize drift. It does not
+replace the full calibration or bench tests.
 
-Keep the original session unchanged and share the external track as a separate artifact. Provider
-terms remain applicable; the recording's CC0 release does not relicense third-party tracks.
+## Mount and record
 
-An observed track can potentially cross-check phone GPS or recover missing trajectory geometry.
-The present analysis does **not** automatically substitute it for phone GNSS. Scientific use requires
-verified identity, recording-time overlap, adequate observed coverage, checked clock alignment and
-a validated timing/position uncertainty model. Coarse samples may miss turns. Estimated positions
-and long gaps cannot be treated as measured fixes; a position track alone supplies no IMU evidence.
-See [VALIDATION.md](VALIDATION.md#external-flight-tracks-and-missing-gnss) for the analysis boundary.
+Fix the IMU firmly to a suitable surface, following airline and crew instructions. A locked
+tray is usable only during cruise. Do not hold the IMU or leave it loose. It must be possible
+to turn it deliberately and secure it again. The phone can be elsewhere if it receives GPS.
 
-**Controls:**
+Complete the 60-second placement check. Use airplane mode with Bluetooth and Location enabled
+where permitted. Record as much cruise as possible, including natural course changes; these
+help the analysis determine the aircraft direction relative to the IMU. Recording can
+continue with the screen off.
 
-- Turn the IMU to face the opposite way, same side up, during long flights.
-- Mount two IMUs in different orientations.
-- Ground-only stationary recordings (Settings → bench capture) test Earth rotation at your latitude.
+When following a turn reminder, wait for steady cruise. Slowly turn the IMU to face the
+opposite way, keeping the same side up, over about five seconds. Secure it again and confirm
+the turn in the app. Avoid doing this while the aircraft banks or turns. Turning upside down
+provides different, often less useful information; choose that option in Settings if it is the
+only movement the mount permits. Tap **I moved the IMU** if it is bumped unexpectedly.
 
-Always follow crew instructions and airline rules on devices.
+## If GPS is unavailable
+
+Acknowledge **Record without a fresh GPS fix** and keep the motion recording going. Precise
+location permission, verified instrument settings and the placement check are still required.
+The phone will continue looking for fixes and save them if reception returns.
+
+After landing, save the complete public flight track if possible. Keep its provider, exact
+history link, date, route, displayed timezone, position-and-time table, estimate labels and gaps.
+A map screenshot alone is insufficient. Do not assume the displayed times are UTC.
+
+Keep that track separately from the unchanged original recording. A position export can help
+cross-check GPS and may eventually recover the route; it contains no IMU data.
+Replacing missing phone GPS with an external track is not yet a validated part of the analysis.
+Provider terms still apply to the downloaded track. See [Validation](VALIDATION.md#external-flight-tracks-and-missing-gnss).
+
+## After landing
+
+Repeat the same seven-placement calibration as soon as practical. Keep the complete session,
+including both calibrations, recording interruptions and unexpected movements. Do not edit
+the raw recording to improve its appearance.
+
+You can share a session privately or upload it. Uploading requires explicit consent to
+permanently publish the original recording and identifying flight details. Read the
+[privacy policy](../PRIVACY.md) before consenting. Saving or uploading a recording does not
+by itself make it eligible for the main research result.

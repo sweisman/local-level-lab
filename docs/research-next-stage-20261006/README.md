@@ -1,7 +1,9 @@
 # Next-stage research preparation — 2026-10-06
 
-Both 1,000-attempt pilots are complete. This preparation uses their saved records and seven
-observed position tracks; **no additional flights, fits, calibration or validation were run**.
+Both 1,000-attempt pilots are complete. The original preparation used their saved records and
+seven observed position tracks without new fits. Subsequent 300-case geometry and 72-case
+protocol diagnostics are also complete; neither established a protocol that passes all
+required comparisons across both crab models. No fresh calibration or validation has run.
 Real IMU testing is pending hardware. The current scientific gate is retained; no production
 policy or external-GPS fallback is promoted.
 
@@ -56,9 +58,13 @@ evidence retains its original hashes and is not rewritten.
 
 The next proposed design comparison is three truths × two nuisance scenarios × dynamic/wind
 crab fits for each selected cell: **288 evaluations**, plus 12 exact-protocol controls if included.
-It uses fresh development seeds starting at 600500, geometry-only fitting and zero bootstrap;
-no trial has run and no additional compute budget is authorized. Shortlist regions by design
-contrast retention/information and rank stability across nuisance models before power/tail work.
+The [300-case diagnostic batch](../geometry-development-20261006/README.md) used fresh development
+seed 600500, geometry-only fitting, zero bootstrap and a one-hour cumulative evaluation cap.
+It completed with six no-fit records; no geometry passed all comparisons. A saved-record audit
+corrected unit-dependent nuisance rank selection, followed by a
+[72-case protocol comparison](../protocol-development-20261006/README.md). All 72 fits converged,
+but neither protocol passed every comparison. Processing/timing diagnostics remain necessary
+before choosing a domain for power and tail work.
 
 Observed cases preserve the position rows, estimate flags and explicitly usable intervals:
 
@@ -84,11 +90,12 @@ not recovered measurements. No GNSS accuracy is fabricated and no gaps are inter
 
 ## Frozen proposal and compute budget
 
-`calibration-proposed-manifest.json` freezes the current source, configuration, eligibility and
-numerical environment. `readiness.json` checks that freeze and hashes the preparation artifacts.
-The new source hash is `642cbec30013a211b36221b072b6ba63159bceab9ecd439a6bdcfee6a433aafc`.
-The manifest is a reviewable **proposal**, not permission to run or a final validation policy.
-Revisit it after the prospective geometry work; any further scientific changes require refreezing.
+`calibration-proposed-manifest.json` preserves the earlier source, configuration, eligibility and
+one-thread numerical environment. It is now **stale**. `readiness.json` records current stage
+status and artifact hashes. Current source is
+`27e73b122c3a073357d4a03112da11779969a710bb3a6cc3eb06c333da52ad51`;
+the protocol comparison used a new two-thread environment freeze. Review the final domain and
+refreeze before calibration. The historical proposal is not a final validation policy or run permission.
 
 Sample goals remain **29,285 accepted calibration** and **33,169 accepted validation** samples
 per truth/scenario cell, with calibration alpha 0.00135, claimed alpha 0.0027, 18-test family,
@@ -123,7 +130,8 @@ Verification: 27 focused offline checks passed, including protocol feasibility, 
 of estimated positions, rejection of holdouts/overlaps and conservative attempt planning.
 The previous Python CI fixture fix passed GitHub Actions before this preparation.
 
-Next work requires a bounded development compute budget and observed-trajectory integration,
+Next use saved processing diagnostics and independent trajectory/attitude fixtures; additional
+flights require a new bounded compute budget. Observed-trajectory integration remains pending,
 then review/refreeze of the final domain. Fresh calibration, threshold freezing and independent
 validation follow only after separate compute authorization. Real IMU bench qualification and
 production promotion remain pending hardware/evidence.

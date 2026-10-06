@@ -24,3 +24,15 @@ android/.idea/
 /docs/development-1000-20261006/worker.log
 /docs/development-1000-20261006/run.lock
 /docs/development-1000-20261006/launch.json
+/docs/geometry-development-20261006/records.jsonl
+/docs/geometry-development-20261006/worker.log
+/docs/geometry-development-20261006/run.lock
+/docs/geometry-development-20261006/launch.json
+/docs/geometry-development-20261006/case-input.json
+/docs/geometry-development-20261006/case-output.json
+/docs/protocol-development-20261006/records.jsonl
+/docs/protocol-development-20261006/worker.log
+/docs/protocol-development-20261006/run.lock
+/docs/protocol-development-20261006/launch.json
+/docs/protocol-development-20261006/case-input.json
+/docs/protocol-development-20261006/case-output.json

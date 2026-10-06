@@ -1,0 +1,108 @@
+{
+  "partition": "development",
+  "manifest_hash": "81f6ff596ed2432d7925fd4fa97bded4492ad33ad0c57a7c525be3667941e97e",
+  "state": "complete",
+  "evaluations": 300,
+  "fit_failures": 6,
+  "charged_evaluation_seconds": 1838.5605530194007,
+  "completed_geometry_cells": 25,
+  "all_contrasts_estimable_across_both_crab_models": 0,
+  "all_rank2_stable_cells": 0,
+  "by_crab_model": {
+    "dynamic": {
+      "evaluations": 150,
+      "fit_failures": 3,
+      "design_rank_positive_valid": 12,
+      "all_contrasts_estimable": 6,
+      "model_test_rank_counts": {
+        "1": 8,
+        "0": 133,
+        "2": 6,
+        "None": 3
+      }
+    },
+    "wind": {
+      "evaluations": 150,
+      "fit_failures": 3,
+      "design_rank_positive_valid": 15,
+      "all_contrasts_estimable": 0,
+      "model_test_rank_counts": {
+        "1": 13,
+        "0": 130,
+        "2": 4,
+        "None": 3
+      }
+    }
+  },
+  "exact_protocol": {
+    "dynamic": {
+      "all_estimable": 6,
+      "evaluations": 6,
+      "worst_margin": 0.08400665394956008,
+      "limiting_contrasts": [
+        "sphere_rotating_vs_flat_still"
+      ]
+    },
+    "wind": {
+      "all_estimable": 0,
+      "evaluations": 6,
+      "worst_margin": -0.3113711657950492,
+      "limiting_contrasts": [
+        "sphere_still_vs_flat_still"
+      ]
+    }
+  },
+  "failure_cases": [
+    {
+      "cell_id": "lat-65-h2-poor-t180-v270-turn0",
+      "geometry": "stress",
+      "truth": "sphere_rotating",
+      "scenario": "bias_mixed",
+      "crab_model": "dynamic",
+      "seed": 600500
+    },
+    {
+      "cell_id": "lat-65-h2-poor-t180-v270-turn0",
+      "geometry": "stress",
+      "truth": "sphere_rotating",
+      "scenario": "bias_mixed",
+      "crab_model": "wind",
+      "seed": 600500
+    },
+    {
+      "cell_id": "lat-65-h2-poor-t180-v270-turn0",
+      "geometry": "stress",
+      "truth": "sphere_still",
+      "scenario": "bias_mixed",
+      "crab_model": "dynamic",
+      "seed": 600500
+    },
+    {
+      "cell_id": "lat-65-h2-poor-t180-v270-turn0",
+      "geometry": "stress",
+      "truth": "sphere_still",
+      "scenario": "bias_mixed",
+      "crab_model": "wind",
+      "seed": 600500
+    },
+    {
+      "cell_id": "lat-65-h2-poor-t180-v270-turn0",
+      "geometry": "stress",
+      "truth": "flat_still",
+      "scenario": "bias_mixed",
+      "crab_model": "dynamic",
+      "seed": 600500
+    },
+    {
+      "cell_id": "lat-65-h2-poor-t180-v270-turn0",
+      "geometry": "stress",
+      "truth": "flat_still",
+      "scenario": "bias_mixed",
+      "crab_model": "wind",
+      "seed": 600500
+    }
+  ],
+  "verification": "Source/environment/runner/input freeze, task identities, gzip journal and recomputed scores match.",
+  "next_step": "Inspect wind-crab nuisance tangent/anchor assumptions and stress-cell rank loss using saved records before additional flights or calibration.",
+  "limitations": "One shared development seed, simulated sensors, zero bootstrap; no calibrated power, independent validation or real-flight guarantee."
+}

@@ -1,5 +1,10 @@
 # Session file format (schema_version 3; schema 2 readable)
 
+This is the technical description of a saved recording. For collecting a flight, start with
+the [participant guide](PROTOCOL.md). For what the experiment measures and why, start with
+[the methodology](METHODOLOGY.md). An IMU (inertial measurement unit) measures turning and acceleration;
+its original messages and the phone's position record are preserved for later analysis.
+
 A session is one `.zip` file. It's the contract between the Android app, the upload server and the analysis package. Everything in it is released under **CC0-1.0**.
 
 Schema 2 replaces the phone's own motion sensors with an external WitMotion WT901 IMU. No schema 1 data was ever collected, the analysis reads schemas 2 and 3. Schema 3 removes exact seat from new recordings and stores separate, fresh calibration locations. Historical archives remain unchanged.

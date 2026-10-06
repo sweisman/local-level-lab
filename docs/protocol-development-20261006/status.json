@@ -1,0 +1,17 @@
+{
+  "state": "complete",
+  "updated_utc": "2026-10-06T11:07:50.962023+00:00",
+  "pid": 3564298,
+  "completed_evaluations": 72,
+  "requested_evaluations": 72,
+  "failures": 0,
+  "completed_cells": {
+    "exact-protocol": 36,
+    "repeated-opposing-directions-90min": 36
+  },
+  "charged_s": 516.9065152532421,
+  "reserved_s": 0.0,
+  "wall_time_cap_s": 900.0,
+  "manifest_hash": "77a9c8e829368a8dcb3d4e202e0cc826c72978ea96267d215b82be911ec71838",
+  "error": null
+}

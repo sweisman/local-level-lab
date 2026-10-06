@@ -73,7 +73,14 @@ def science_information(J, weights, threshold=CANDIDATE_POLICY["retention_thresh
     sw = np.sqrt(weights)
     science = J[:, :NK]*sw[:, None]
     nuisance = J[:, NK:]*sw[:, None]
-    U, s, _ = np.linalg.svd(nuisance, full_matrices=False)
+    # Rank must not depend on whether an angle is expressed in radians/degrees or a
+    # bias in rad/s versus degrees/hour. Scale each nonzero weighted column before
+    # selecting the numerical nuisance span; penalties are deliberately excluded.
+    largest = np.max(np.abs(nuisance), axis=0) if len(nuisance) else np.zeros(nuisance.shape[1])
+    scaled = np.divide(nuisance, largest, out=np.zeros_like(nuisance), where=largest > 0)
+    norms_n = np.linalg.norm(scaled, axis=0)
+    scaled = np.divide(scaled, norms_n, out=np.zeros_like(scaled), where=norms_n > 0)
+    U, s, _ = np.linalg.svd(scaled, full_matrices=False)
     n_rank = int(np.sum(s > (s[0]*max(nuisance.shape)*np.finfo(float).eps if len(s) else 0)))
     effective = science-U[:, :n_rank] @ (U[:, :n_rank].T @ science)
     norms = np.linalg.norm(science, axis=0)
@@ -96,15 +103,20 @@ def science_information(J, weights, threshold=CANDIDATE_POLICY["retention_thresh
             direction = np.asarray(models.EXPECTED_K[a])-np.asarray(models.EXPECTED_K[b])
             raw_norm = np.linalg.norm(science @ direction)
             residual_norm = np.linalg.norm(retained @ direction)
+            projected_norm = np.linalg.norm(effective @ direction)
             ratio = float(residual_norm/raw_norm) if raw_norm else 0.
             coefficient_estimable = bool(rank and np.linalg.norm(direction-constraints.T @ (constraints @ direction)) <= 1e-8*np.linalg.norm(direction))
             contrasts[f"{a}_vs_{b}"] = {"information": float(residual_norm**2),
                                          "estimable": bool(ratio >= threshold), "retained_fraction": ratio,
+                                         "pre_cutoff_information": float(projected_norm**2),
+                                         "pre_cutoff_retained_fraction": float(projected_norm/raw_norm) if raw_norm else 0.,
                                          "coefficient_contrast_estimable": coefficient_estimable,
                                          "contrast_sd": float(np.sqrt(max(0., direction @ inverse @ direction))) if coefficient_estimable else None}
     individual = [bool(rank and np.linalg.norm(np.eye(NK)[i]-constraints.T @ constraints[:, i]) < 1e-8) for i in range(NK)]
     return {"effective": effective, "fisher": fisher, "constraints": constraints,
             "report": {"estimable_rank": rank, "singular_values": singular_values.tolist(),
+                       "nuisance_projection": {"column_scaling": "unit weighted column norm",
+                                               "rank": n_rank, "columns": nuisance.shape[1]},
                        "rank_boundary_margin": float(np.min(np.abs(normalized_s-threshold))) if len(normalized_s) else None,
                        "normalized_singular_values": normalized_s.tolist(),
                        "condition_number": float(singular_values[0]/singular_values[rank-1]) if rank else None,
@@ -353,6 +365,7 @@ def design_information(problem):
                            "information": min(v["information"] for v in values),
                            "estimable": all(v["estimable"] for v in values), "limiting_anchor": limiting}
     return {"assumptions": {**assumptions, "anchors": list(assumptions["anchors"])}, "anchors": anchors, "uses_gyro_realization": False,
+            "conditioning": "retained bins and supplied forward/mount axes; preprocessing may use gyro",
             "rank_threshold": CANDIDATE_POLICY["retention_threshold"],
             "estimable_rank": min(r["estimable_rank"] for r in reports),
             "model_contrast_information": contrasts}

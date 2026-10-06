@@ -1,0 +1,102 @@
+{
+  "partition": "development",
+  "state": "authorized_development_comparison",
+  "bootstrap": 0,
+  "seeds": [
+    600501,
+    600502,
+    600503
+  ],
+  "truths": [
+    "sphere_rotating",
+    "sphere_still",
+    "flat_still"
+  ],
+  "scenarios": [
+    "bias_mixed",
+    "wind"
+  ],
+  "crab_models": [
+    "dynamic",
+    "wind"
+  ],
+  "protocols": {
+    "exact-protocol": {
+      "lat0": 35.0,
+      "lon0": -30.0,
+      "speed": 270.0,
+      "legs": [
+        [
+          10.0,
+          15.0
+        ],
+        [
+          100.0,
+          15.0
+        ],
+        [
+          190.0,
+          15.0
+        ],
+        [
+          280.0,
+          15.0
+        ],
+        [
+          10.0,
+          15.0
+        ]
+      ],
+      "turn_schedule": [
+        5.0,
+        15.0,
+        25.0,
+        35.0,
+        45.0,
+        55.0
+      ]
+    },
+    "repeated-opposing-directions-90min": {
+      "lat0": 35.0,
+      "lon0": -30.0,
+      "speed": 270.0,
+      "legs": [
+        [
+          10.0,
+          15.0
+        ],
+        [
+          190.0,
+          15.0
+        ],
+        [
+          100.0,
+          15.0
+        ],
+        [
+          280.0,
+          15.0
+        ],
+        [
+          10.0,
+          15.0
+        ],
+        [
+          190.0,
+          15.0
+        ]
+      ],
+      "turn_schedule": [
+        5.0,
+        20.0,
+        35.0,
+        50.0,
+        65.0,
+        80.0
+      ]
+    }
+  },
+  "maximum_evaluations": 72,
+  "proposed_wall_time_cap_s": 900.0,
+  "evidence_scope": "Development geometry comparison only; protective gates retained. No calibration, validation, threshold relaxation or production promotion."
+}
