@@ -17,7 +17,11 @@
     "docs/protocol-development-20261006/manifest.json": "5af2156baba6e232faa17c7b408455bba833f64e91c61d28365a645c488fcb2a",
     "docs/protocol-development-20261006/summary.json": "a8735469cd1443a04031391e1dc47545cd6929daa7744f1f3f7da2390d594742",
     "docs/protocol-development-20261006/review.json": "f2e8371e6195b80383ad17bf7e25aa3ebef44b87863bb56ecc8473db1aa19125",
-    "docs/protocol-development-20261006/records.jsonl.gz": "c64bdc148698b697ec8d49cdcc667c1ce3a417e4763a580efa55a12e359edb7e"
+    "docs/protocol-development-20261006/records.jsonl.gz": "c64bdc148698b697ec8d49cdcc667c1ce3a417e4763a580efa55a12e359edb7e",
+    "docs/protocol-development-20261006/processing-audit.json": "3ea9ed00e82c426c61193af07366b5537efb885edf9d7e543825b4c7eaabc1a8",
+    "docs/protocol-development-20261006/PROCESSING_REVIEW.md": "6c7b9bdc781f3a1cb7433f487742ceeabadd6f25dbccff7f7ba48da88cd6dedc",
+    "analysis/tests/audit_processing.py": "2b44a78f1f38c0bcfbf25e9a128ce87f677259cd256f721a059f469da1f70826",
+    "analysis/tests/test_processing_audit.py": "18f1b0a9838f68ed241d6a4c698c9064f79ce92f26fdcde28448ab76e33bc9b6"
   },
   "stages": {
     "saved_record_review": "complete",
@@ -27,11 +31,12 @@
     "validation": "manifest waits for actual primary and pairwise calibration threshold files",
     "real_imu_bench": "pending hardware; collection and production qualification remain separate",
     "geometry_audit": "complete: unit-dependent nuisance rank fixed; qualification/bias/watchdog/cutoff effects recorded",
-    "protocol_comparison": "complete: 72 evaluations, zero fit failures; neither protocol passes every comparison across both crab models"
+    "protocol_comparison": "complete: 72 evaluations, zero fit failures; neither protocol passes every comparison across both crab models",
+    "processing_audit": "complete without flights/fits: cutoff and projection losses separated; independent fixtures demonstrate overlap-induced mount error; timing-only proposal remains unrun"
   },
   "order": [
-    "Review prospective geometry and obtain a bounded development budget.",
-    "Run geometry diagnostics; implement and check observed-trajectory replay before use.",
+    "Define turn-overlap/orientation safeguard and review the timing-only protocol proposal; obtain a new bounded development budget.",
+    "Retain raw sessions/bins/mount matrices in paired timing comparisons; implement and check observed-trajectory replay before use.",
     "Review final domain and refreeze any changed source/configuration/policy/environment.",
     "Obtain calibration/validation budget, run fresh calibration and freeze thresholds.",
     "Freeze independent validation with actual thresholds, run it and assess simultaneous bounds."

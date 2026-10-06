@@ -100,6 +100,10 @@ short cruise legs, changing IMU error and turn timing. A further 72-case compari
 but neither the old nor revised schedule passed every comparison. These are useful failures:
 they show what the experimental design still has to solve.
 
+Independent motion checks have since confirmed that turning the IMU while the aircraft turns
+can corrupt the recovered IMU orientation. A corrected timing schedule is ready for review,
+but its performance through the complete analysis has not been tested.
+
 Readable summaries are in [Evidence so far](docs/EVIDENCE.md) and
 [What still needs validation](docs/VALIDATION.md).
 

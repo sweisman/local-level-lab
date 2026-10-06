@@ -917,6 +917,19 @@ lossless compressed journal and recomputed scores. Next use saved processing dia
 independently checked trajectory/attitude fixtures before selecting a new protocol. No extra
 cases or corrective reruns are authorized by the remaining time; do not resume completed batches.
 
+### Saved-processing and independent attitude audit
+
+The later [processing review](protocol-development-20261006/PROCESSING_REVIEW.md) uses saved
+diagnostics and independent component fixtures, with no additional flights or nonlinear fits.
+Before/after-cutoff all-contrast passes are original/dynamic 18/18→18/18, original/wind
+14/18→9/18, revised/dynamic 18/18→0/18 and revised/wind 0/18→0/18. There are no watchdog
+exclusions in these 72 cases. Independent aircraft/IMU-turn overlaps cause mount-mapping
+errors of 14.85° (constant aircraft yaw) and 7.46° (coordinated bank); no gap flag detects the
+motion confounding. This isolates a mechanism, not its contribution in the historical campaign.
+The unrun 5/25/40/55/70/80-minute proposal avoids known overlap and passes coarse known-axis
+contrasts, but has a narrow 0.3274 minimum retention and no demonstrated full-pipeline acceptance.
+Raw sessions, bins and mount matrices must be retained in a later budgeted comparison.
+
 ## Experimental partial pairwise evidence
 
 Candidate fits emit `pairwise` entries for all three comparisons. Each applies the shared gates

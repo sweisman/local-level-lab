@@ -49,8 +49,12 @@ checks under either description. Neither procedure therefore passed the complete
 
 The longer procedure had looked promising with known IMU orientation in a simplified calculation.
 Its failure in the complete simulator shows why route calculations alone are insufficient.
-A planned IMU turn also coincided with an aircraft turn. That is a timing problem to investigate,
-not a demonstrated explanation for every failure.
+A planned IMU turn also coincided with an aircraft turn. Independent motion examples now show
+that the turn reconstruction can mistake aircraft motion for a change in IMU orientation.
+Saved diagnostics also distinguish information lost to wind/IMU uncertainty from information
+discarded by the numerical cutoff. Neither effect alone has been shown to explain every failure.
+The [processing review](protocol-development-20261006/PROCESSING_REVIEW.md) describes the findings
+and an untested timing correction.
 
 ## What the evidence does not establish
 

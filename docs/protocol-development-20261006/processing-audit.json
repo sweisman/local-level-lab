@@ -1,0 +1,2544 @@
+{
+  "partition": "development",
+  "mode": "saved diagnostics and independent attitude fixtures; no flights or fits",
+  "historical_manifest_hash": "77a9c8e829368a8dcb3d4e202e0cc826c72978ea96267d215b82be911ec71838",
+  "historical_implementation_hash": "27e73b122c3a073357d4a03112da11779969a710bb3a6cc3eb06c333da52ad51",
+  "source_archive_sha256": "c64bdc148698b697ec8d49cdcc667c1ce3a417e4763a580efa55a12e359edb7e",
+  "audit_implementation_hash": "27e73b122c3a073357d4a03112da11779969a710bb3a6cc3eb06c333da52ad51",
+  "audit_environment": {
+    "python": "3.14.7",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "thread_settings": {
+      "OPENBLAS_NUM_THREADS": "2",
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2"
+    }
+  },
+  "audit_script_sha256": "2b44a78f1f38c0bcfbf25e9a128ce87f677259cd256f721a059f469da1f70826",
+  "groups": [
+    {
+      "protocol": "exact-protocol",
+      "crab_model": "dynamic",
+      "evaluations": 18,
+      "before_cutoff_pass": 18,
+      "after_cutoff_pass": 18,
+      "cutoff_only_failures": 0,
+      "pre_cutoff_min_retention_range": [
+        0.40048367684291086,
+        0.41939049408615825
+      ],
+      "retained_min_retention_range": [
+        0.39390158216777965,
+        0.4139280294393964
+      ],
+      "nominal_horizontal_forward_error_deg_range": [
+        -0.1879002147150733,
+        -0.09494039351307051
+      ],
+      "forward_sigma_deg_range": [
+        1.5390400607622041,
+        1.5972294793596453
+      ],
+      "forward_r2_range": [
+        0.4837000578812929,
+        0.5116947167884491
+      ],
+      "pre_watchdog_bins": [
+        74
+      ],
+      "watchdog_excluded_cases": 0
+    },
+    {
+      "protocol": "repeated-opposing-directions-90min",
+      "crab_model": "dynamic",
+      "evaluations": 18,
+      "before_cutoff_pass": 18,
+      "after_cutoff_pass": 0,
+      "cutoff_only_failures": 18,
+      "pre_cutoff_min_retention_range": [
+        0.3276695187613491,
+        0.32810997147276044
+      ],
+      "retained_min_retention_range": [
+        0.26423868801990547,
+        0.28629048031262794
+      ],
+      "nominal_horizontal_forward_error_deg_range": [
+        4.819240200152138,
+        5.2122990148007
+      ],
+      "forward_sigma_deg_range": [
+        1.465288610034598,
+        1.5064914874005173
+      ],
+      "forward_r2_range": [
+        0.4368702106510307,
+        0.44790165676309057
+      ],
+      "pre_watchdog_bins": [
+        87
+      ],
+      "watchdog_excluded_cases": 0
+    },
+    {
+      "protocol": "exact-protocol",
+      "crab_model": "wind",
+      "evaluations": 18,
+      "before_cutoff_pass": 14,
+      "after_cutoff_pass": 9,
+      "cutoff_only_failures": 5,
+      "pre_cutoff_min_retention_range": [
+        0.30831893762371837,
+        0.3376692453333722
+      ],
+      "retained_min_retention_range": [
+        0.0007448149889657642,
+        0.33720084401212613
+      ],
+      "nominal_horizontal_forward_error_deg_range": [
+        -0.1879002147150733,
+        -0.09494039351307051
+      ],
+      "forward_sigma_deg_range": [
+        1.5390400607622041,
+        1.5972294793596453
+      ],
+      "forward_r2_range": [
+        0.4837000578812929,
+        0.5116947167884491
+      ],
+      "pre_watchdog_bins": [
+        74
+      ],
+      "watchdog_excluded_cases": 0
+    },
+    {
+      "protocol": "repeated-opposing-directions-90min",
+      "crab_model": "wind",
+      "evaluations": 18,
+      "before_cutoff_pass": 0,
+      "after_cutoff_pass": 0,
+      "cutoff_only_failures": 0,
+      "pre_cutoff_min_retention_range": [
+        0.27781886556228097,
+        0.2913346866853705
+      ],
+      "retained_min_retention_range": [
+        0.004318648767816161,
+        0.01517163978409439
+      ],
+      "nominal_horizontal_forward_error_deg_range": [
+        4.819240200152138,
+        5.2122990148007
+      ],
+      "forward_sigma_deg_range": [
+        1.465288610034598,
+        1.5064914874005173
+      ],
+      "forward_r2_range": [
+        0.4368702106510307,
+        0.44790165676309057
+      ],
+      "pre_watchdog_bins": [
+        87
+      ],
+      "watchdog_excluded_cases": 0
+    }
+  ],
+  "cases": [
+    {
+      "case": {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "bias_mixed",
+        "crab_model": "dynamic",
+        "seed": 600501
+      },
+      "pre_cutoff_min_retention": 0.41907338095639046,
+      "retained_min_retention": 0.4135838057132005,
+      "before_pass": true,
+      "after_pass": true,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": -0.10149893928498625,
+      "forward_sigma_deg": 1.5803545053577248,
+      "forward_r2": 0.4905340171994539,
+      "pre_watchdog_bins": 74,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": []
+    },
+    {
+      "case": {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "bias_mixed",
+        "crab_model": "dynamic",
+        "seed": 600501
+      },
+      "pre_cutoff_min_retention": 0.32808319965730104,
+      "retained_min_retention": 0.2860885979391622,
+      "before_pass": true,
+      "after_pass": false,
+      "cutoff_only_failure": true,
+      "nominal_horizontal_forward_error_deg": 4.923601975680637,
+      "forward_sigma_deg": 1.4757044218037714,
+      "forward_r2": 0.4432434380962206,
+      "pre_watchdog_bins": 87,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": [
+        {
+          "imu_turn_min": 20.0,
+          "axis": "z",
+          "aircraft_turn": {
+            "start_s": 1200.0,
+            "end_s": 1265.0,
+            "change_deg": -180.0
+          },
+          "integration_padding_s": 1.0
+        }
+      ]
+    },
+    {
+      "case": {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "bias_mixed",
+        "crab_model": "wind",
+        "seed": 600501
+      },
+      "pre_cutoff_min_retention": 0.3257558704875972,
+      "retained_min_retention": 0.024435428843555478,
+      "before_pass": true,
+      "after_pass": false,
+      "cutoff_only_failure": true,
+      "nominal_horizontal_forward_error_deg": -0.10149893928498625,
+      "forward_sigma_deg": 1.5803545053577248,
+      "forward_r2": 0.4905340171994539,
+      "pre_watchdog_bins": 74,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": []
+    },
+    {
+      "case": {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "bias_mixed",
+        "crab_model": "wind",
+        "seed": 600501
+      },
+      "pre_cutoff_min_retention": 0.2795895214085978,
+      "retained_min_retention": 0.014486770564881284,
+      "before_pass": false,
+      "after_pass": false,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": 4.923601975680637,
+      "forward_sigma_deg": 1.4757044218037714,
+      "forward_r2": 0.4432434380962206,
+      "pre_watchdog_bins": 87,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": [
+        {
+          "imu_turn_min": 20.0,
+          "axis": "z",
+          "aircraft_turn": {
+            "start_s": 1200.0,
+            "end_s": 1265.0,
+            "change_deg": -180.0
+          },
+          "integration_padding_s": 1.0
+        }
+      ]
+    },
+    {
+      "case": {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "wind",
+        "crab_model": "dynamic",
+        "seed": 600501
+      },
+      "pre_cutoff_min_retention": 0.40048367684291086,
+      "retained_min_retention": 0.39390158216777965,
+      "before_pass": true,
+      "after_pass": true,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": -0.1234482690758458,
+      "forward_sigma_deg": 1.591576008260405,
+      "forward_r2": 0.48389252159013996,
+      "pre_watchdog_bins": 74,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": []
+    },
+    {
+      "case": {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "wind",
+        "crab_model": "dynamic",
+        "seed": 600501
+      },
+      "pre_cutoff_min_retention": 0.3276770867475304,
+      "retained_min_retention": 0.2647792362665577,
+      "before_pass": true,
+      "after_pass": false,
+      "cutoff_only_failure": true,
+      "nominal_horizontal_forward_error_deg": 5.186531250075435,
+      "forward_sigma_deg": 1.5056519596224065,
+      "forward_r2": 0.4368702106510307,
+      "pre_watchdog_bins": 87,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": [
+        {
+          "imu_turn_min": 20.0,
+          "axis": "z",
+          "aircraft_turn": {
+            "start_s": 1200.0,
+            "end_s": 1265.0,
+            "change_deg": -180.0
+          },
+          "integration_padding_s": 1.0
+        }
+      ]
+    },
+    {
+      "case": {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "wind",
+        "crab_model": "wind",
+        "seed": 600501
+      },
+      "pre_cutoff_min_retention": 0.3294699880935852,
+      "retained_min_retention": 0.32899326532816897,
+      "before_pass": true,
+      "after_pass": true,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": -0.1234482690758458,
+      "forward_sigma_deg": 1.591576008260405,
+      "forward_r2": 0.48389252159013996,
+      "pre_watchdog_bins": 74,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": []
+    },
+    {
+      "case": {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "wind",
+        "crab_model": "wind",
+        "seed": 600501
+      },
+      "pre_cutoff_min_retention": 0.2783202109961492,
+      "retained_min_retention": 0.00543808600851816,
+      "before_pass": false,
+      "after_pass": false,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": 5.186531250075435,
+      "forward_sigma_deg": 1.5056519596224065,
+      "forward_r2": 0.4368702106510307,
+      "pre_watchdog_bins": 87,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": [
+        {
+          "imu_turn_min": 20.0,
+          "axis": "z",
+          "aircraft_turn": {
+            "start_s": 1200.0,
+            "end_s": 1265.0,
+            "change_deg": -180.0
+          },
+          "integration_padding_s": 1.0
+        }
+      ]
+    },
+    {
+      "case": {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "bias_mixed",
+        "crab_model": "dynamic",
+        "seed": 600501
+      },
+      "pre_cutoff_min_retention": 0.41939044772316814,
+      "retained_min_retention": 0.4139280294393964,
+      "before_pass": true,
+      "after_pass": true,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": -0.16937395105796713,
+      "forward_sigma_deg": 1.5823283571487636,
+      "forward_r2": 0.49043918200658365,
+      "pre_watchdog_bins": 74,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": []
+    },
+    {
+      "case": {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "bias_mixed",
+        "crab_model": "dynamic",
+        "seed": 600501
+      },
+      "pre_cutoff_min_retention": 0.3280696968427164,
+      "retained_min_retention": 0.28629048031262794,
+      "before_pass": true,
+      "after_pass": false,
+      "cutoff_only_failure": true,
+      "nominal_horizontal_forward_error_deg": 4.862453976570367,
+      "forward_sigma_deg": 1.4740008226315318,
+      "forward_r2": 0.4434531715925679,
+      "pre_watchdog_bins": 87,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": [
+        {
+          "imu_turn_min": 20.0,
+          "axis": "z",
+          "aircraft_turn": {
+            "start_s": 1200.0,
+            "end_s": 1265.0,
+            "change_deg": -180.0
+          },
+          "integration_padding_s": 1.0
+        }
+      ]
+    },
+    {
+      "case": {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "bias_mixed",
+        "crab_model": "wind",
+        "seed": 600501
+      },
+      "pre_cutoff_min_retention": 0.3261743712368106,
+      "retained_min_retention": 0.026650785011559232,
+      "before_pass": true,
+      "after_pass": false,
+      "cutoff_only_failure": true,
+      "nominal_horizontal_forward_error_deg": -0.16937395105796713,
+      "forward_sigma_deg": 1.5823283571487636,
+      "forward_r2": 0.49043918200658365,
+      "pre_watchdog_bins": 74,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": []
+    },
+    {
+      "case": {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "bias_mixed",
+        "crab_model": "wind",
+        "seed": 600501
+      },
+      "pre_cutoff_min_retention": 0.27959282075578284,
+      "retained_min_retention": 0.014496630521285548,
+      "before_pass": false,
+      "after_pass": false,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": 4.862453976570367,
+      "forward_sigma_deg": 1.4740008226315318,
+      "forward_r2": 0.4434531715925679,
+      "pre_watchdog_bins": 87,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": [
+        {
+          "imu_turn_min": 20.0,
+          "axis": "z",
+          "aircraft_turn": {
+            "start_s": 1200.0,
+            "end_s": 1265.0,
+            "change_deg": -180.0
+          },
+          "integration_padding_s": 1.0
+        }
+      ]
+    },
+    {
+      "case": {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "wind",
+        "crab_model": "dynamic",
+        "seed": 600501
+      },
+      "pre_cutoff_min_retention": 0.40193547589875167,
+      "retained_min_retention": 0.3954412597531058,
+      "before_pass": true,
+      "after_pass": true,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": -0.1879002147150733,
+      "forward_sigma_deg": 1.5942622163007791,
+      "forward_r2": 0.48377927878470695,
+      "pre_watchdog_bins": 74,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": []
+    },
+    {
+      "case": {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "wind",
+        "crab_model": "dynamic",
+        "seed": 600501
+      },
+      "pre_cutoff_min_retention": 0.3276695187613491,
+      "retained_min_retention": 0.26489041009158315,
+      "before_pass": true,
+      "after_pass": false,
+      "cutoff_only_failure": true,
+      "nominal_horizontal_forward_error_deg": 5.166939968454384,
+      "forward_sigma_deg": 1.5025923077488392,
+      "forward_r2": 0.4370898398474482,
+      "pre_watchdog_bins": 87,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": [
+        {
+          "imu_turn_min": 20.0,
+          "axis": "z",
+          "aircraft_turn": {
+            "start_s": 1200.0,
+            "end_s": 1265.0,
+            "change_deg": -180.0
+          },
+          "integration_padding_s": 1.0
+        }
+      ]
+    },
+    {
+      "case": {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "wind",
+        "crab_model": "wind",
+        "seed": 600501
+      },
+      "pre_cutoff_min_retention": 0.3299148175071571,
+      "retained_min_retention": 0.3294387484143089,
+      "before_pass": true,
+      "after_pass": true,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": -0.1879002147150733,
+      "forward_sigma_deg": 1.5942622163007791,
+      "forward_r2": 0.48377927878470695,
+      "pre_watchdog_bins": 74,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": []
+    },
+    {
+      "case": {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "wind",
+        "crab_model": "wind",
+        "seed": 600501
+      },
+      "pre_cutoff_min_retention": 0.27832322989234315,
+      "retained_min_retention": 0.005444584404052342,
+      "before_pass": false,
+      "after_pass": false,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": 5.166939968454384,
+      "forward_sigma_deg": 1.5025923077488392,
+      "forward_r2": 0.4370898398474482,
+      "pre_watchdog_bins": 87,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": [
+        {
+          "imu_turn_min": 20.0,
+          "axis": "z",
+          "aircraft_turn": {
+            "start_s": 1200.0,
+            "end_s": 1265.0,
+            "change_deg": -180.0
+          },
+          "integration_padding_s": 1.0
+        }
+      ]
+    },
+    {
+      "case": {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "bias_mixed",
+        "crab_model": "dynamic",
+        "seed": 600501
+      },
+      "pre_cutoff_min_retention": 0.4193004502709813,
+      "retained_min_retention": 0.41382999334356174,
+      "before_pass": true,
+      "after_pass": true,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": -0.1647189617837706,
+      "forward_sigma_deg": 1.5873732276978494,
+      "forward_r2": 0.49033791813656225,
+      "pre_watchdog_bins": 74,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": []
+    },
+    {
+      "case": {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "bias_mixed",
+        "crab_model": "dynamic",
+        "seed": 600501
+      },
+      "pre_cutoff_min_retention": 0.32807974785425975,
+      "retained_min_retention": 0.2861348948926712,
+      "before_pass": true,
+      "after_pass": false,
+      "cutoff_only_failure": true,
+      "nominal_horizontal_forward_error_deg": 4.908742311145181,
+      "forward_sigma_deg": 1.4780206126016227,
+      "forward_r2": 0.44336346598690657,
+      "pre_watchdog_bins": 87,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": [
+        {
+          "imu_turn_min": 20.0,
+          "axis": "z",
+          "aircraft_turn": {
+            "start_s": 1200.0,
+            "end_s": 1265.0,
+            "change_deg": -180.0
+          },
+          "integration_padding_s": 1.0
+        }
+      ]
+    },
+    {
+      "case": {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "bias_mixed",
+        "crab_model": "wind",
+        "seed": 600501
+      },
+      "pre_cutoff_min_retention": 0.3261963144433841,
+      "retained_min_retention": 0.02634699778228339,
+      "before_pass": true,
+      "after_pass": false,
+      "cutoff_only_failure": true,
+      "nominal_horizontal_forward_error_deg": -0.1647189617837706,
+      "forward_sigma_deg": 1.5873732276978494,
+      "forward_r2": 0.49033791813656225,
+      "pre_watchdog_bins": 74,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": []
+    },
+    {
+      "case": {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "bias_mixed",
+        "crab_model": "wind",
+        "seed": 600501
+      },
+      "pre_cutoff_min_retention": 0.2795910391086709,
+      "retained_min_retention": 0.014489664263170289,
+      "before_pass": false,
+      "after_pass": false,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": 4.908742311145181,
+      "forward_sigma_deg": 1.4780206126016227,
+      "forward_r2": 0.44336346598690657,
+      "pre_watchdog_bins": 87,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": [
+        {
+          "imu_turn_min": 20.0,
+          "axis": "z",
+          "aircraft_turn": {
+            "start_s": 1200.0,
+            "end_s": 1265.0,
+            "change_deg": -180.0
+          },
+          "integration_padding_s": 1.0
+        }
+      ]
+    },
+    {
+      "case": {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "wind",
+        "crab_model": "dynamic",
+        "seed": 600501
+      },
+      "pre_cutoff_min_retention": 0.40220081193217305,
+      "retained_min_retention": 0.3957308348958568,
+      "before_pass": true,
+      "after_pass": true,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": -0.1595868179058479,
+      "forward_sigma_deg": 1.5972294793596453,
+      "forward_r2": 0.4837000578812929,
+      "pre_watchdog_bins": 74,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": []
+    },
+    {
+      "case": {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "wind",
+        "crab_model": "dynamic",
+        "seed": 600501
+      },
+      "pre_cutoff_min_retention": 0.32767318477533997,
+      "retained_min_retention": 0.26479713529773374,
+      "before_pass": true,
+      "after_pass": false,
+      "cutoff_only_failure": true,
+      "nominal_horizontal_forward_error_deg": 5.1946589137823755,
+      "forward_sigma_deg": 1.5064914874005173,
+      "forward_r2": 0.4370071879615477,
+      "pre_watchdog_bins": 87,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": [
+        {
+          "imu_turn_min": 20.0,
+          "axis": "z",
+          "aircraft_turn": {
+            "start_s": 1200.0,
+            "end_s": 1265.0,
+            "change_deg": -180.0
+          },
+          "integration_padding_s": 1.0
+        }
+      ]
+    },
+    {
+      "case": {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "wind",
+        "crab_model": "wind",
+        "seed": 600501
+      },
+      "pre_cutoff_min_retention": 0.3297869900253228,
+      "retained_min_retention": 0.3293107329560275,
+      "before_pass": true,
+      "after_pass": true,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": -0.1595868179058479,
+      "forward_sigma_deg": 1.5972294793596453,
+      "forward_r2": 0.4837000578812929,
+      "pre_watchdog_bins": 74,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": []
+    },
+    {
+      "case": {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "wind",
+        "crab_model": "wind",
+        "seed": 600501
+      },
+      "pre_cutoff_min_retention": 0.27832249798006264,
+      "retained_min_retention": 0.0054409930291834906,
+      "before_pass": false,
+      "after_pass": false,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": 5.1946589137823755,
+      "forward_sigma_deg": 1.5064914874005173,
+      "forward_r2": 0.4370071879615477,
+      "pre_watchdog_bins": 87,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": [
+        {
+          "imu_turn_min": 20.0,
+          "axis": "z",
+          "aircraft_turn": {
+            "start_s": 1200.0,
+            "end_s": 1265.0,
+            "change_deg": -180.0
+          },
+          "integration_padding_s": 1.0
+        }
+      ]
+    },
+    {
+      "case": {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "bias_mixed",
+        "crab_model": "dynamic",
+        "seed": 600502
+      },
+      "pre_cutoff_min_retention": 0.4189715691922663,
+      "retained_min_retention": 0.4134761937636047,
+      "before_pass": true,
+      "after_pass": true,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": -0.10743086341357333,
+      "forward_sigma_deg": 1.5434571892153361,
+      "forward_r2": 0.5116947167884491,
+      "pre_watchdog_bins": 74,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": []
+    },
+    {
+      "case": {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "bias_mixed",
+        "crab_model": "dynamic",
+        "seed": 600502
+      },
+      "pre_cutoff_min_retention": 0.3281001863674808,
+      "retained_min_retention": 0.28603283064511176,
+      "before_pass": true,
+      "after_pass": false,
+      "cutoff_only_failure": true,
+      "nominal_horizontal_forward_error_deg": 4.933428565954685,
+      "forward_sigma_deg": 1.4682590024330568,
+      "forward_r2": 0.4476829703294358,
+      "pre_watchdog_bins": 87,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": [
+        {
+          "imu_turn_min": 20.0,
+          "axis": "z",
+          "aircraft_turn": {
+            "start_s": 1200.0,
+            "end_s": 1265.0,
+            "change_deg": -180.0
+          },
+          "integration_padding_s": 1.0
+        }
+      ]
+    },
+    {
+      "case": {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "bias_mixed",
+        "crab_model": "wind",
+        "seed": 600502
+      },
+      "pre_cutoff_min_retention": 0.3317992357861895,
+      "retained_min_retention": 0.33130525969893515,
+      "before_pass": true,
+      "after_pass": true,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": -0.10743086341357333,
+      "forward_sigma_deg": 1.5434571892153361,
+      "forward_r2": 0.5116947167884491,
+      "pre_watchdog_bins": 74,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": []
+    },
+    {
+      "case": {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "bias_mixed",
+        "crab_model": "wind",
+        "seed": 600502
+      },
+      "pre_cutoff_min_retention": 0.2913319062846572,
+      "retained_min_retention": 0.015161892335676138,
+      "before_pass": false,
+      "after_pass": false,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": 4.933428565954685,
+      "forward_sigma_deg": 1.4682590024330568,
+      "forward_r2": 0.4476829703294358,
+      "pre_watchdog_bins": 87,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": [
+        {
+          "imu_turn_min": 20.0,
+          "axis": "z",
+          "aircraft_turn": {
+            "start_s": 1200.0,
+            "end_s": 1265.0,
+            "change_deg": -180.0
+          },
+          "integration_padding_s": 1.0
+        }
+      ]
+    },
+    {
+      "case": {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "wind",
+        "crab_model": "dynamic",
+        "seed": 600502
+      },
+      "pre_cutoff_min_retention": 0.4005567028113656,
+      "retained_min_retention": 0.39399497116099985,
+      "before_pass": true,
+      "after_pass": true,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": -0.10748227965817155,
+      "forward_sigma_deg": 1.5493310367328244,
+      "forward_r2": 0.5063858015138963,
+      "pre_watchdog_bins": 74,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": []
+    },
+    {
+      "case": {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "wind",
+        "crab_model": "dynamic",
+        "seed": 600502
+      },
+      "pre_cutoff_min_retention": 0.3276950814404705,
+      "retained_min_retention": 0.2649044917120966,
+      "before_pass": true,
+      "after_pass": false,
+      "cutoff_only_failure": true,
+      "nominal_horizontal_forward_error_deg": 5.2122990148007,
+      "forward_sigma_deg": 1.498091692657289,
+      "forward_r2": 0.44087807343231833,
+      "pre_watchdog_bins": 87,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": [
+        {
+          "imu_turn_min": 20.0,
+          "axis": "z",
+          "aircraft_turn": {
+            "start_s": 1200.0,
+            "end_s": 1265.0,
+            "change_deg": -180.0
+          },
+          "integration_padding_s": 1.0
+        }
+      ]
+    },
+    {
+      "case": {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "wind",
+        "crab_model": "wind",
+        "seed": 600502
+      },
+      "pre_cutoff_min_retention": 0.3370449566423811,
+      "retained_min_retention": 0.3365756871934629,
+      "before_pass": true,
+      "after_pass": true,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": -0.10748227965817155,
+      "forward_sigma_deg": 1.5493310367328244,
+      "forward_r2": 0.5063858015138963,
+      "pre_watchdog_bins": 74,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": []
+    },
+    {
+      "case": {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "wind",
+        "crab_model": "wind",
+        "seed": 600502
+      },
+      "pre_cutoff_min_retention": 0.2897211208519423,
+      "retained_min_retention": 0.005779012306580342,
+      "before_pass": false,
+      "after_pass": false,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": 5.2122990148007,
+      "forward_sigma_deg": 1.498091692657289,
+      "forward_r2": 0.44087807343231833,
+      "pre_watchdog_bins": 87,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": [
+        {
+          "imu_turn_min": 20.0,
+          "axis": "z",
+          "aircraft_turn": {
+            "start_s": 1200.0,
+            "end_s": 1265.0,
+            "change_deg": -180.0
+          },
+          "integration_padding_s": 1.0
+        }
+      ]
+    },
+    {
+      "case": {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "bias_mixed",
+        "crab_model": "dynamic",
+        "seed": 600502
+      },
+      "pre_cutoff_min_retention": 0.41939049408615825,
+      "retained_min_retention": 0.4139057752180459,
+      "before_pass": true,
+      "after_pass": true,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": -0.16650856328030544,
+      "forward_sigma_deg": 1.5461917056490033,
+      "forward_r2": 0.5116152078031272,
+      "pre_watchdog_bins": 74,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": []
+    },
+    {
+      "case": {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "bias_mixed",
+        "crab_model": "dynamic",
+        "seed": 600502
+      },
+      "pre_cutoff_min_retention": 0.3280896448586812,
+      "retained_min_retention": 0.2862774783772408,
+      "before_pass": true,
+      "after_pass": false,
+      "cutoff_only_failure": true,
+      "nominal_horizontal_forward_error_deg": 4.884535179583555,
+      "forward_sigma_deg": 1.465288610034598,
+      "forward_r2": 0.44790165676309057,
+      "pre_watchdog_bins": 87,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": [
+        {
+          "imu_turn_min": 20.0,
+          "axis": "z",
+          "aircraft_turn": {
+            "start_s": 1200.0,
+            "end_s": 1265.0,
+            "change_deg": -180.0
+          },
+          "integration_padding_s": 1.0
+        }
+      ]
+    },
+    {
+      "case": {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "bias_mixed",
+        "crab_model": "wind",
+        "seed": 600502
+      },
+      "pre_cutoff_min_retention": 0.33222874472106556,
+      "retained_min_retention": 0.331735402682002,
+      "before_pass": true,
+      "after_pass": true,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": -0.16650856328030544,
+      "forward_sigma_deg": 1.5461917056490033,
+      "forward_r2": 0.5116152078031272,
+      "pre_watchdog_bins": 74,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": []
+    },
+    {
+      "case": {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "bias_mixed",
+        "crab_model": "wind",
+        "seed": 600502
+      },
+      "pre_cutoff_min_retention": 0.2913346866853705,
+      "retained_min_retention": 0.01517163978409439,
+      "before_pass": false,
+      "after_pass": false,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": 4.884535179583555,
+      "forward_sigma_deg": 1.465288610034598,
+      "forward_r2": 0.44790165676309057,
+      "pre_watchdog_bins": 87,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": [
+        {
+          "imu_turn_min": 20.0,
+          "axis": "z",
+          "aircraft_turn": {
+            "start_s": 1200.0,
+            "end_s": 1265.0,
+            "change_deg": -180.0
+          },
+          "integration_padding_s": 1.0
+        }
+      ]
+    },
+    {
+      "case": {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "wind",
+        "crab_model": "dynamic",
+        "seed": 600502
+      },
+      "pre_cutoff_min_retention": 0.4018276985040762,
+      "retained_min_retention": 0.3953312513834976,
+      "before_pass": true,
+      "after_pass": true,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": -0.17719058871455667,
+      "forward_sigma_deg": 1.5521733850839168,
+      "forward_r2": 0.506289034609237,
+      "pre_watchdog_bins": 74,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": []
+    },
+    {
+      "case": {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "wind",
+        "crab_model": "dynamic",
+        "seed": 600502
+      },
+      "pre_cutoff_min_retention": 0.3276856260467481,
+      "retained_min_retention": 0.2650404648509076,
+      "before_pass": true,
+      "after_pass": false,
+      "cutoff_only_failure": true,
+      "nominal_horizontal_forward_error_deg": 5.164895154402348,
+      "forward_sigma_deg": 1.496111775095397,
+      "forward_r2": 0.4410384335468417,
+      "pre_watchdog_bins": 87,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": [
+        {
+          "imu_turn_min": 20.0,
+          "axis": "z",
+          "aircraft_turn": {
+            "start_s": 1200.0,
+            "end_s": 1265.0,
+            "change_deg": -180.0
+          },
+          "integration_padding_s": 1.0
+        }
+      ]
+    },
+    {
+      "case": {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "wind",
+        "crab_model": "wind",
+        "seed": 600502
+      },
+      "pre_cutoff_min_retention": 0.33757091202642514,
+      "retained_min_retention": 0.3371023724366767,
+      "before_pass": true,
+      "after_pass": true,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": -0.17719058871455667,
+      "forward_sigma_deg": 1.5521733850839168,
+      "forward_r2": 0.506289034609237,
+      "pre_watchdog_bins": 74,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": []
+    },
+    {
+      "case": {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "wind",
+        "crab_model": "wind",
+        "seed": 600502
+      },
+      "pre_cutoff_min_retention": 0.28972442239592616,
+      "retained_min_retention": 0.00578479609649942,
+      "before_pass": false,
+      "after_pass": false,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": 5.164895154402348,
+      "forward_sigma_deg": 1.496111775095397,
+      "forward_r2": 0.4410384335468417,
+      "pre_watchdog_bins": 87,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": [
+        {
+          "imu_turn_min": 20.0,
+          "axis": "z",
+          "aircraft_turn": {
+            "start_s": 1200.0,
+            "end_s": 1265.0,
+            "change_deg": -180.0
+          },
+          "integration_padding_s": 1.0
+        }
+      ]
+    },
+    {
+      "case": {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "bias_mixed",
+        "crab_model": "dynamic",
+        "seed": 600502
+      },
+      "pre_cutoff_min_retention": 0.4193413809230347,
+      "retained_min_retention": 0.413857488679018,
+      "before_pass": true,
+      "after_pass": true,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": -0.16272684386405042,
+      "forward_sigma_deg": 1.549731429766837,
+      "forward_r2": 0.5115351002170663,
+      "pre_watchdog_bins": 74,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": []
+    },
+    {
+      "case": {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "bias_mixed",
+        "crab_model": "dynamic",
+        "seed": 600502
+      },
+      "pre_cutoff_min_retention": 0.32809450257786843,
+      "retained_min_retention": 0.28615497486934377,
+      "before_pass": true,
+      "after_pass": false,
+      "cutoff_only_failure": true,
+      "nominal_horizontal_forward_error_deg": 4.919686488003496,
+      "forward_sigma_deg": 1.4697442448744695,
+      "forward_r2": 0.4478031631236804,
+      "pre_watchdog_bins": 87,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": [
+        {
+          "imu_turn_min": 20.0,
+          "axis": "z",
+          "aircraft_turn": {
+            "start_s": 1200.0,
+            "end_s": 1265.0,
+            "change_deg": -180.0
+          },
+          "integration_padding_s": 1.0
+        }
+      ]
+    },
+    {
+      "case": {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "bias_mixed",
+        "crab_model": "wind",
+        "seed": 600502
+      },
+      "pre_cutoff_min_retention": 0.3322661195655273,
+      "retained_min_retention": 0.3317728364287353,
+      "before_pass": true,
+      "after_pass": true,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": -0.16272684386405042,
+      "forward_sigma_deg": 1.549731429766837,
+      "forward_r2": 0.5115351002170663,
+      "pre_watchdog_bins": 74,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": []
+    },
+    {
+      "case": {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "bias_mixed",
+        "crab_model": "wind",
+        "seed": 600502
+      },
+      "pre_cutoff_min_retention": 0.29133398941713323,
+      "retained_min_retention": 0.015170216851316186,
+      "before_pass": false,
+      "after_pass": false,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": 4.919686488003496,
+      "forward_sigma_deg": 1.4697442448744695,
+      "forward_r2": 0.4478031631236804,
+      "pre_watchdog_bins": 87,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": [
+        {
+          "imu_turn_min": 20.0,
+          "axis": "z",
+          "aircraft_turn": {
+            "start_s": 1200.0,
+            "end_s": 1265.0,
+            "change_deg": -180.0
+          },
+          "integration_padding_s": 1.0
+        }
+      ]
+    },
+    {
+      "case": {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "wind",
+        "crab_model": "dynamic",
+        "seed": 600502
+      },
+      "pre_cutoff_min_retention": 0.40235122307320725,
+      "retained_min_retention": 0.39588682118730234,
+      "before_pass": true,
+      "after_pass": true,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": -0.1770119949770038,
+      "forward_sigma_deg": 1.5560759985828758,
+      "forward_r2": 0.506209318007828,
+      "pre_watchdog_bins": 74,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": []
+    },
+    {
+      "case": {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "wind",
+        "crab_model": "dynamic",
+        "seed": 600502
+      },
+      "pre_cutoff_min_retention": 0.3276918611126944,
+      "retained_min_retention": 0.26490427000372513,
+      "before_pass": true,
+      "after_pass": false,
+      "cutoff_only_failure": true,
+      "nominal_horizontal_forward_error_deg": 5.202056881062773,
+      "forward_sigma_deg": 1.4994469826294792,
+      "forward_r2": 0.4409353152851945,
+      "pre_watchdog_bins": 87,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": [
+        {
+          "imu_turn_min": 20.0,
+          "axis": "z",
+          "aircraft_turn": {
+            "start_s": 1200.0,
+            "end_s": 1265.0,
+            "change_deg": -180.0
+          },
+          "integration_padding_s": 1.0
+        }
+      ]
+    },
+    {
+      "case": {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "wind",
+        "crab_model": "wind",
+        "seed": 600502
+      },
+      "pre_cutoff_min_retention": 0.3376692453333722,
+      "retained_min_retention": 0.33720084401212613,
+      "before_pass": true,
+      "after_pass": true,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": -0.1770119949770038,
+      "forward_sigma_deg": 1.5560759985828758,
+      "forward_r2": 0.506209318007828,
+      "pre_watchdog_bins": 74,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": []
+    },
+    {
+      "case": {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "wind",
+        "crab_model": "wind",
+        "seed": 600502
+      },
+      "pre_cutoff_min_retention": 0.28972334123593113,
+      "retained_min_retention": 0.005783578388127606,
+      "before_pass": false,
+      "after_pass": false,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": 5.202056881062773,
+      "forward_sigma_deg": 1.4994469826294792,
+      "forward_r2": 0.4409353152851945,
+      "pre_watchdog_bins": 87,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": [
+        {
+          "imu_turn_min": 20.0,
+          "axis": "z",
+          "aircraft_turn": {
+            "start_s": 1200.0,
+            "end_s": 1265.0,
+            "change_deg": -180.0
+          },
+          "integration_padding_s": 1.0
+        }
+      ]
+    },
+    {
+      "case": {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "bias_mixed",
+        "crab_model": "dynamic",
+        "seed": 600503
+      },
+      "pre_cutoff_min_retention": 0.4187809236782744,
+      "retained_min_retention": 0.4132977750642315,
+      "before_pass": true,
+      "after_pass": true,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": -0.09947790892488939,
+      "forward_sigma_deg": 1.5390400607622041,
+      "forward_r2": 0.5014952922037589,
+      "pre_watchdog_bins": 74,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": []
+    },
+    {
+      "case": {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "bias_mixed",
+        "crab_model": "dynamic",
+        "seed": 600503
+      },
+      "pre_cutoff_min_retention": 0.32810997147276044,
+      "retained_min_retention": 0.2854868212615364,
+      "before_pass": true,
+      "after_pass": false,
+      "cutoff_only_failure": true,
+      "nominal_horizontal_forward_error_deg": 4.881087643267338,
+      "forward_sigma_deg": 1.4713500227645433,
+      "forward_r2": 0.44412639471441373,
+      "pre_watchdog_bins": 87,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": [
+        {
+          "imu_turn_min": 20.0,
+          "axis": "z",
+          "aircraft_turn": {
+            "start_s": 1200.0,
+            "end_s": 1265.0,
+            "change_deg": -180.0
+          },
+          "integration_padding_s": 1.0
+        }
+      ]
+    },
+    {
+      "case": {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "bias_mixed",
+        "crab_model": "wind",
+        "seed": 600503
+      },
+      "pre_cutoff_min_retention": 0.30831893762371837,
+      "retained_min_retention": 0.037928006605190134,
+      "before_pass": false,
+      "after_pass": false,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": -0.09947790892488939,
+      "forward_sigma_deg": 1.5390400607622041,
+      "forward_r2": 0.5014952922037589,
+      "pre_watchdog_bins": 74,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": []
+    },
+    {
+      "case": {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "bias_mixed",
+        "crab_model": "wind",
+        "seed": 600503
+      },
+      "pre_cutoff_min_retention": 0.2790339953665889,
+      "retained_min_retention": 0.01337803877658648,
+      "before_pass": false,
+      "after_pass": false,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": 4.881087643267338,
+      "forward_sigma_deg": 1.4713500227645433,
+      "forward_r2": 0.44412639471441373,
+      "pre_watchdog_bins": 87,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": [
+        {
+          "imu_turn_min": 20.0,
+          "axis": "z",
+          "aircraft_turn": {
+            "start_s": 1200.0,
+            "end_s": 1265.0,
+            "change_deg": -180.0
+          },
+          "integration_padding_s": 1.0
+        }
+      ]
+    },
+    {
+      "case": {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "wind",
+        "crab_model": "dynamic",
+        "seed": 600503
+      },
+      "pre_cutoff_min_retention": 0.4011079405136631,
+      "retained_min_retention": 0.39458749021681816,
+      "before_pass": true,
+      "after_pass": true,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": -0.09494039351307051,
+      "forward_sigma_deg": 1.5477379152232056,
+      "forward_r2": 0.49645710734813064,
+      "pre_watchdog_bins": 74,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": []
+    },
+    {
+      "case": {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "wind",
+        "crab_model": "dynamic",
+        "seed": 600503
+      },
+      "pre_cutoff_min_retention": 0.3276982594688958,
+      "retained_min_retention": 0.26423868801990547,
+      "before_pass": true,
+      "after_pass": false,
+      "cutoff_only_failure": true,
+      "nominal_horizontal_forward_error_deg": 5.15881454117026,
+      "forward_sigma_deg": 1.4998231500837094,
+      "forward_r2": 0.4379415388936776,
+      "pre_watchdog_bins": 87,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": [
+        {
+          "imu_turn_min": 20.0,
+          "axis": "z",
+          "aircraft_turn": {
+            "start_s": 1200.0,
+            "end_s": 1265.0,
+            "change_deg": -180.0
+          },
+          "integration_padding_s": 1.0
+        }
+      ]
+    },
+    {
+      "case": {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "wind",
+        "crab_model": "wind",
+        "seed": 600503
+      },
+      "pre_cutoff_min_retention": 0.31223453209090757,
+      "retained_min_retention": 0.003693277589267062,
+      "before_pass": false,
+      "after_pass": false,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": -0.09494039351307051,
+      "forward_sigma_deg": 1.5477379152232056,
+      "forward_r2": 0.49645710734813064,
+      "pre_watchdog_bins": 74,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": []
+    },
+    {
+      "case": {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_rotating",
+        "scenario": "wind",
+        "crab_model": "wind",
+        "seed": 600503
+      },
+      "pre_cutoff_min_retention": 0.27781886556228097,
+      "retained_min_retention": 0.004318648767816161,
+      "before_pass": false,
+      "after_pass": false,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": 5.15881454117026,
+      "forward_sigma_deg": 1.4998231500837094,
+      "forward_r2": 0.4379415388936776,
+      "pre_watchdog_bins": 87,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": [
+        {
+          "imu_turn_min": 20.0,
+          "axis": "z",
+          "aircraft_turn": {
+            "start_s": 1200.0,
+            "end_s": 1265.0,
+            "change_deg": -180.0
+          },
+          "integration_padding_s": 1.0
+        }
+      ]
+    },
+    {
+      "case": {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "bias_mixed",
+        "crab_model": "dynamic",
+        "seed": 600503
+      },
+      "pre_cutoff_min_retention": 0.4191361921555467,
+      "retained_min_retention": 0.41365744243405056,
+      "before_pass": true,
+      "after_pass": true,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": -0.17463140730601234,
+      "forward_sigma_deg": 1.5419056369603235,
+      "forward_r2": 0.5014405319577412,
+      "pre_watchdog_bins": 74,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": []
+    },
+    {
+      "case": {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "bias_mixed",
+        "crab_model": "dynamic",
+        "seed": 600503
+      },
+      "pre_cutoff_min_retention": 0.32809564849516815,
+      "retained_min_retention": 0.28570572094847674,
+      "before_pass": true,
+      "after_pass": false,
+      "cutoff_only_failure": true,
+      "nominal_horizontal_forward_error_deg": 4.819240200152138,
+      "forward_sigma_deg": 1.4689622264098046,
+      "forward_r2": 0.44438885680805784,
+      "pre_watchdog_bins": 87,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": [
+        {
+          "imu_turn_min": 20.0,
+          "axis": "z",
+          "aircraft_turn": {
+            "start_s": 1200.0,
+            "end_s": 1265.0,
+            "change_deg": -180.0
+          },
+          "integration_padding_s": 1.0
+        }
+      ]
+    },
+    {
+      "case": {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "bias_mixed",
+        "crab_model": "wind",
+        "seed": 600503
+      },
+      "pre_cutoff_min_retention": 0.3087854251145624,
+      "retained_min_retention": 0.04054297149591204,
+      "before_pass": false,
+      "after_pass": false,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": -0.17463140730601234,
+      "forward_sigma_deg": 1.5419056369603235,
+      "forward_r2": 0.5014405319577412,
+      "pre_watchdog_bins": 74,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": []
+    },
+    {
+      "case": {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "bias_mixed",
+        "crab_model": "wind",
+        "seed": 600503
+      },
+      "pre_cutoff_min_retention": 0.27903720273235844,
+      "retained_min_retention": 0.013388689830233568,
+      "before_pass": false,
+      "after_pass": false,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": 4.819240200152138,
+      "forward_sigma_deg": 1.4689622264098046,
+      "forward_r2": 0.44438885680805784,
+      "pre_watchdog_bins": 87,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": [
+        {
+          "imu_turn_min": 20.0,
+          "axis": "z",
+          "aircraft_turn": {
+            "start_s": 1200.0,
+            "end_s": 1265.0,
+            "change_deg": -180.0
+          },
+          "integration_padding_s": 1.0
+        }
+      ]
+    },
+    {
+      "case": {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "wind",
+        "crab_model": "dynamic",
+        "seed": 600503
+      },
+      "pre_cutoff_min_retention": 0.402138505278634,
+      "retained_min_retention": 0.3956683031403043,
+      "before_pass": true,
+      "after_pass": true,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": -0.18561368863897487,
+      "forward_sigma_deg": 1.5499114992229768,
+      "forward_r2": 0.49638219537075456,
+      "pre_watchdog_bins": 74,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": []
+    },
+    {
+      "case": {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "wind",
+        "crab_model": "dynamic",
+        "seed": 600503
+      },
+      "pre_cutoff_min_retention": 0.32769256022748394,
+      "retained_min_retention": 0.2644108454175884,
+      "before_pass": true,
+      "after_pass": false,
+      "cutoff_only_failure": true,
+      "nominal_horizontal_forward_error_deg": 5.1220563689214265,
+      "forward_sigma_deg": 1.4971760473636653,
+      "forward_r2": 0.43819094501678657,
+      "pre_watchdog_bins": 87,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": [
+        {
+          "imu_turn_min": 20.0,
+          "axis": "z",
+          "aircraft_turn": {
+            "start_s": 1200.0,
+            "end_s": 1265.0,
+            "change_deg": -180.0
+          },
+          "integration_padding_s": 1.0
+        }
+      ]
+    },
+    {
+      "case": {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "wind",
+        "crab_model": "wind",
+        "seed": 600503
+      },
+      "pre_cutoff_min_retention": 0.31283537591754745,
+      "retained_min_retention": 0.0007448149889657642,
+      "before_pass": true,
+      "after_pass": false,
+      "cutoff_only_failure": true,
+      "nominal_horizontal_forward_error_deg": -0.18561368863897487,
+      "forward_sigma_deg": 1.5499114992229768,
+      "forward_r2": 0.49638219537075456,
+      "pre_watchdog_bins": 74,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": []
+    },
+    {
+      "case": {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "sphere_still",
+        "scenario": "wind",
+        "crab_model": "wind",
+        "seed": 600503
+      },
+      "pre_cutoff_min_retention": 0.27782200353045344,
+      "retained_min_retention": 0.004327218492018291,
+      "before_pass": false,
+      "after_pass": false,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": 5.1220563689214265,
+      "forward_sigma_deg": 1.4971760473636653,
+      "forward_r2": 0.43819094501678657,
+      "pre_watchdog_bins": 87,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": [
+        {
+          "imu_turn_min": 20.0,
+          "axis": "z",
+          "aircraft_turn": {
+            "start_s": 1200.0,
+            "end_s": 1265.0,
+            "change_deg": -180.0
+          },
+          "integration_padding_s": 1.0
+        }
+      ]
+    },
+    {
+      "case": {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "bias_mixed",
+        "crab_model": "dynamic",
+        "seed": 600503
+      },
+      "pre_cutoff_min_retention": 0.41877370795524954,
+      "retained_min_retention": 0.4132857254491772,
+      "before_pass": true,
+      "after_pass": true,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": -0.15183139897703302,
+      "forward_sigma_deg": 1.5456390104404012,
+      "forward_r2": 0.5013549827093953,
+      "pre_watchdog_bins": 74,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": []
+    },
+    {
+      "case": {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "bias_mixed",
+        "crab_model": "dynamic",
+        "seed": 600503
+      },
+      "pre_cutoff_min_retention": 0.3281035054273241,
+      "retained_min_retention": 0.28563881836244304,
+      "before_pass": true,
+      "after_pass": false,
+      "cutoff_only_failure": true,
+      "nominal_horizontal_forward_error_deg": 4.849687737714536,
+      "forward_sigma_deg": 1.4731749821740427,
+      "forward_r2": 0.4442693835301027,
+      "pre_watchdog_bins": 87,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": [
+        {
+          "imu_turn_min": 20.0,
+          "axis": "z",
+          "aircraft_turn": {
+            "start_s": 1200.0,
+            "end_s": 1265.0,
+            "change_deg": -180.0
+          },
+          "integration_padding_s": 1.0
+        }
+      ]
+    },
+    {
+      "case": {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "bias_mixed",
+        "crab_model": "wind",
+        "seed": 600503
+      },
+      "pre_cutoff_min_retention": 0.3086003982935412,
+      "retained_min_retention": 0.03960307108305765,
+      "before_pass": false,
+      "after_pass": false,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": -0.15183139897703302,
+      "forward_sigma_deg": 1.5456390104404012,
+      "forward_r2": 0.5013549827093953,
+      "pre_watchdog_bins": 74,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": []
+    },
+    {
+      "case": {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "bias_mixed",
+        "crab_model": "wind",
+        "seed": 600503
+      },
+      "pre_cutoff_min_retention": 0.27903633249681775,
+      "retained_min_retention": 0.013384939074737603,
+      "before_pass": false,
+      "after_pass": false,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": 4.849687737714536,
+      "forward_sigma_deg": 1.4731749821740427,
+      "forward_r2": 0.4442693835301027,
+      "pre_watchdog_bins": 87,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": [
+        {
+          "imu_turn_min": 20.0,
+          "axis": "z",
+          "aircraft_turn": {
+            "start_s": 1200.0,
+            "end_s": 1265.0,
+            "change_deg": -180.0
+          },
+          "integration_padding_s": 1.0
+        }
+      ]
+    },
+    {
+      "case": {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "wind",
+        "crab_model": "dynamic",
+        "seed": 600503
+      },
+      "pre_cutoff_min_retention": 0.40217800051363295,
+      "retained_min_retention": 0.39571888205170436,
+      "before_pass": true,
+      "after_pass": true,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": -0.16833078734347365,
+      "forward_sigma_deg": 1.5539457603228632,
+      "forward_r2": 0.496347612026092,
+      "pre_watchdog_bins": 74,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": []
+    },
+    {
+      "case": {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "wind",
+        "crab_model": "dynamic",
+        "seed": 600503
+      },
+      "pre_cutoff_min_retention": 0.3276957953529435,
+      "retained_min_retention": 0.26435321739953815,
+      "before_pass": true,
+      "after_pass": false,
+      "cutoff_only_failure": true,
+      "nominal_horizontal_forward_error_deg": 5.148079349725902,
+      "forward_sigma_deg": 1.5004740024044698,
+      "forward_r2": 0.4380846677666974,
+      "pre_watchdog_bins": 87,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": [
+        {
+          "imu_turn_min": 20.0,
+          "axis": "z",
+          "aircraft_turn": {
+            "start_s": 1200.0,
+            "end_s": 1265.0,
+            "change_deg": -180.0
+          },
+          "integration_padding_s": 1.0
+        }
+      ]
+    },
+    {
+      "case": {
+        "cell_id": "exact-protocol",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "wind",
+        "crab_model": "wind",
+        "seed": 600503
+      },
+      "pre_cutoff_min_retention": 0.3127225792469499,
+      "retained_min_retention": 0.001312748046134324,
+      "before_pass": true,
+      "after_pass": false,
+      "cutoff_only_failure": true,
+      "nominal_horizontal_forward_error_deg": -0.16833078734347365,
+      "forward_sigma_deg": 1.5539457603228632,
+      "forward_r2": 0.496347612026092,
+      "pre_watchdog_bins": 74,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": []
+    },
+    {
+      "case": {
+        "cell_id": "repeated-opposing-directions-90min",
+        "geometry": "fixed",
+        "truth": "flat_still",
+        "scenario": "wind",
+        "crab_model": "wind",
+        "seed": 600503
+      },
+      "pre_cutoff_min_retention": 0.2778220853041843,
+      "retained_min_retention": 0.004324464054724555,
+      "before_pass": false,
+      "after_pass": false,
+      "cutoff_only_failure": false,
+      "nominal_horizontal_forward_error_deg": 5.148079349725902,
+      "forward_sigma_deg": 1.5004740024044698,
+      "forward_r2": 0.4380846677666974,
+      "pre_watchdog_bins": 87,
+      "watchdog_excluded_segments": [],
+      "retained_heading_groups": 4,
+      "turn_overlaps": [
+        {
+          "imu_turn_min": 20.0,
+          "axis": "z",
+          "aircraft_turn": {
+            "start_s": 1200.0,
+            "end_s": 1265.0,
+            "change_deg": -180.0
+          },
+          "integration_padding_s": 1.0
+        }
+      ]
+    }
+  ],
+  "orientation_fixture": {
+    "cases": 3,
+    "max_matrix_error": 2.220446049250313e-16,
+    "independent_reference": "SciPy rotations and explicit frame composition"
+  },
+  "isolated_turn_fixtures": [
+    {
+      "aircraft_rate_dps": 0.0,
+      "known_mount_turn_deg": 180.0,
+      "recovered_angle_deg": 179.99999852122068,
+      "mount_rotation_error_deg": 8.335144212142553e-15,
+      "flagged_unresolved": false,
+      "integration": {
+        "t0_s": 19.0,
+        "t1_s": 24.950000000000003,
+        "angle_deg": 179.99999852122068,
+        "saturated_samples": 0
+      }
+    },
+    {
+      "aircraft_rate_dps": -3.0,
+      "known_mount_turn_deg": 180.0,
+      "recovered_angle_deg": 165.15000000000023,
+      "mount_rotation_error_deg": 14.849999999999998,
+      "flagged_unresolved": false,
+      "integration": {
+        "t0_s": 19.0,
+        "t1_s": 24.950000000000003,
+        "angle_deg": 165.15000000000023,
+        "saturated_samples": 0
+      }
+    },
+    {
+      "aircraft_rate_dps": 3.0,
+      "known_mount_turn_deg": 180.0,
+      "recovered_angle_deg": 165.14999999999955,
+      "mount_rotation_error_deg": 14.849999999999973,
+      "flagged_unresolved": false,
+      "integration": {
+        "t0_s": 19.0,
+        "t1_s": 24.950000000000003,
+        "angle_deg": 165.14999999999955,
+        "saturated_samples": 0
+      }
+    }
+  ],
+  "coordinated_forward_fixtures": [
+    {
+      "hand_start_s": null,
+      "forward_available": true,
+      "horizontal_axis_error_deg": 0.006869271673394136,
+      "mount_mapping_error_deg": null,
+      "quality": {
+        "gain": 1.0418238492048912,
+        "r2": 0.9441562624429674,
+        "bank_energy": 0.0116807692064252,
+        "regression_cov": [
+          [
+            0.0005046341094984681,
+            0.0001622482472054971,
+            -1.134550267050262e-05
+          ],
+          [
+            0.0001622482472054971,
+            0.00015791717314426096,
+            -1.1042644469109364e-05
+          ],
+          [
+            -1.134550267050262e-05,
+            -1.1042644469109364e-05,
+            7.721769231504461e-07
+          ]
+        ],
+        "axis_cov": [
+          [
+            0.0004626366614029118,
+            0.00016803845798750084,
+            -1.1750393650969105e-05
+          ],
+          [
+            0.00016803845798750084,
+            6.103477246526611e-05,
+            -4.267967056193487e-06
+          ],
+          [
+            -1.1750393650969105e-05,
+            -4.2679670561934864e-06,
+            2.9844532971953143e-07
+          ]
+        ],
+        "angle_sigma_rad": 0.022890388358389583,
+        "uncertainty_method": "horizontal regression, Newey-West",
+        "hac_lags": 10
+      },
+      "mount_turn": null
+    },
+    {
+      "hand_start_s": 20.0,
+      "forward_available": true,
+      "horizontal_axis_error_deg": 0.006869271673416472,
+      "mount_mapping_error_deg": 1.4143704486068263e-14,
+      "quality": {
+        "gain": 1.041823849204892,
+        "r2": 0.9441562624429672,
+        "bank_energy": 0.0116807692064252,
+        "regression_cov": [
+          [
+            0.0005046341094984736,
+            0.00016224824720549661,
+            -1.1345502670502701e-05
+          ],
+          [
+            0.00016224824720549661,
+            0.0001579171731442611,
+            -1.1042644469109415e-05
+          ],
+          [
+            -1.1345502670502701e-05,
+            -1.1042644469109415e-05,
+            7.721769231504526e-07
+          ]
+        ],
+        "axis_cov": [
+          [
+            0.00046263666140291474,
+            0.00016803845798750214,
+            -1.1750393650969302e-05
+          ],
+          [
+            0.00016803845798750214,
+            6.103477246526668e-05,
+            -4.2679670561935635e-06
+          ],
+          [
+            -1.1750393650969302e-05,
+            -4.267967056193564e-06,
+            2.984453297195395e-07
+          ]
+        ],
+        "angle_sigma_rad": 0.02289038835838966,
+        "uncertainty_method": "horizontal regression, Newey-West",
+        "hac_lags": 10
+      },
+      "mount_turn": {
+        "kind": "index_turn",
+        "t0_s": 19.0,
+        "t1_s": 24.950000000000003,
+        "angle_deg": 180.0,
+        "saturated_samples": 0
+      }
+    },
+    {
+      "hand_start_s": 60.0,
+      "forward_available": true,
+      "horizontal_axis_error_deg": -0.7445815845795882,
+      "mount_mapping_error_deg": 7.455677434684228,
+      "quality": {
+        "gain": 1.0359623003104947,
+        "r2": 0.959566393187483,
+        "bank_energy": 0.009131020859240245,
+        "regression_cov": [
+          [
+            0.00011233172798334717,
+            -2.101062941486481e-05,
+            1.4692063319082326e-06
+          ],
+          [
+            -2.101062941486481e-05,
+            0.0001722496413555724,
+            -1.20448682784082e-05
+          ],
+          [
+            1.4692063319082326e-06,
+            -1.20448682784082e-05,
+            8.422592389886032e-07
+          ]
+        ],
+        "axis_cov": [
+          [
+            8.788169657868294e-05,
+            3.06242058833864e-05,
+            -2.1414530857267387e-06
+          ],
+          [
+            3.062420588338639e-05,
+            1.0671641792308386e-05,
+            -7.462338887391964e-07
+          ],
+          [
+            -2.1414530857267383e-06,
+            -7.462338887391967e-07,
+            5.218175680373696e-08
+          ]
+        ],
+        "angle_sigma_rad": 0.009930031224915412,
+        "uncertainty_method": "horizontal regression, Newey-West",
+        "hac_lags": 10
+      },
+      "mount_turn": {
+        "kind": "index_turn",
+        "t0_s": 59.0,
+        "t1_s": 64.95,
+        "angle_deg": 178.83952283198417,
+        "saturated_samples": 0
+      }
+    }
+  ],
+  "known_axis_timing_tangents": {
+    "exact-protocol": {
+      "turn_schedule_min": [
+        5.0,
+        15.0,
+        25.0,
+        35.0,
+        45.0,
+        55.0
+      ],
+      "bins": 80,
+      "tangent_results": [
+        {
+          "crab_model": "dynamic",
+          "anchor": "sphere_rotating",
+          "rank": 2,
+          "all_estimable": true,
+          "worst_retained_fraction": 0.5743814640098958,
+          "worst_pre_cutoff_retained_fraction": 0.5743822557988205
+        },
+        {
+          "crab_model": "dynamic",
+          "anchor": "sphere_still",
+          "rank": 2,
+          "all_estimable": true,
+          "worst_retained_fraction": 0.43139523181944084,
+          "worst_pre_cutoff_retained_fraction": 0.43725927169083517
+        },
+        {
+          "crab_model": "dynamic",
+          "anchor": "flat_still",
+          "rank": 2,
+          "all_estimable": true,
+          "worst_retained_fraction": 0.5883065468609439,
+          "worst_pre_cutoff_retained_fraction": 0.5883097718603154
+        },
+        {
+          "crab_model": "wind",
+          "anchor": "sphere_rotating",
+          "rank": 1,
+          "all_estimable": true,
+          "worst_retained_fraction": 0.42331466290688896,
+          "worst_pre_cutoff_retained_fraction": 0.4792544890472233
+        },
+        {
+          "crab_model": "wind",
+          "anchor": "sphere_still",
+          "rank": 1,
+          "all_estimable": false,
+          "worst_retained_fraction": 0.01434667685878662,
+          "worst_pre_cutoff_retained_fraction": 0.24630301254212983
+        },
+        {
+          "crab_model": "wind",
+          "anchor": "flat_still",
+          "rank": 2,
+          "all_estimable": true,
+          "worst_retained_fraction": 0.5880561671253064,
+          "worst_pre_cutoff_retained_fraction": 0.5880561671253068
+        }
+      ],
+      "limitations": "Known axes; sharp headings, approximate spherical latitude and coarse maneuver mask; no production qualification, noise, watchdog, calibration or fits."
+    },
+    "repeated-opposing-directions-90min": {
+      "turn_schedule_min": [
+        5.0,
+        20.0,
+        35.0,
+        50.0,
+        65.0,
+        80.0
+      ],
+      "bins": 92,
+      "tangent_results": [
+        {
+          "crab_model": "dynamic",
+          "anchor": "sphere_rotating",
+          "rank": 3,
+          "all_estimable": true,
+          "worst_retained_fraction": 0.433106099560449,
+          "worst_pre_cutoff_retained_fraction": 0.4331060995604488
+        },
+        {
+          "crab_model": "dynamic",
+          "anchor": "sphere_still",
+          "rank": 3,
+          "all_estimable": true,
+          "worst_retained_fraction": 0.4114063792077811,
+          "worst_pre_cutoff_retained_fraction": 0.41140637920778117
+        },
+        {
+          "crab_model": "dynamic",
+          "anchor": "flat_still",
+          "rank": 3,
+          "all_estimable": true,
+          "worst_retained_fraction": 0.4273276140477093,
+          "worst_pre_cutoff_retained_fraction": 0.42732761404770925
+        },
+        {
+          "crab_model": "wind",
+          "anchor": "sphere_rotating",
+          "rank": 2,
+          "all_estimable": true,
+          "worst_retained_fraction": 0.401490691915304,
+          "worst_pre_cutoff_retained_fraction": 0.4014906967013337
+        },
+        {
+          "crab_model": "wind",
+          "anchor": "sphere_still",
+          "rank": 1,
+          "all_estimable": false,
+          "worst_retained_fraction": 0.0037764288821945133,
+          "worst_pre_cutoff_retained_fraction": 0.2694982092005979
+        },
+        {
+          "crab_model": "wind",
+          "anchor": "flat_still",
+          "rank": 2,
+          "all_estimable": true,
+          "worst_retained_fraction": 0.4374767469590298,
+          "worst_pre_cutoff_retained_fraction": 0.4374767469590473
+        }
+      ],
+      "limitations": "Known axes; sharp headings, approximate spherical latitude and coarse maneuver mask; no production qualification, noise, watchdog, calibration or fits."
+    }
+  },
+  "timing_only_proposal": {
+    "state": "unrun proposal; not optimized or scientifically approved",
+    "turn_schedule_min": [
+      5.0,
+      25.0,
+      40.0,
+      55.0,
+      70.0,
+      80.0
+    ],
+    "known_aircraft_turn_overlaps": [],
+    "known_axis_tangents": {
+      "turn_schedule_min": [
+        5.0,
+        25.0,
+        40.0,
+        55.0,
+        70.0,
+        80.0
+      ],
+      "bins": 92,
+      "tangent_results": [
+        {
+          "crab_model": "dynamic",
+          "anchor": "sphere_rotating",
+          "rank": 3,
+          "all_estimable": true,
+          "worst_retained_fraction": 0.47386798056611307,
+          "worst_pre_cutoff_retained_fraction": 0.47386798056611334
+        },
+        {
+          "crab_model": "dynamic",
+          "anchor": "sphere_still",
+          "rank": 3,
+          "all_estimable": true,
+          "worst_retained_fraction": 0.4697200810961534,
+          "worst_pre_cutoff_retained_fraction": 0.4697200810961536
+        },
+        {
+          "crab_model": "dynamic",
+          "anchor": "flat_still",
+          "rank": 3,
+          "all_estimable": true,
+          "worst_retained_fraction": 0.484634978459652,
+          "worst_pre_cutoff_retained_fraction": 0.48463497845965203
+        },
+        {
+          "crab_model": "wind",
+          "anchor": "sphere_rotating",
+          "rank": 1,
+          "all_estimable": true,
+          "worst_retained_fraction": 0.35480260946197417,
+          "worst_pre_cutoff_retained_fraction": 0.43069960909131255
+        },
+        {
+          "crab_model": "wind",
+          "anchor": "sphere_still",
+          "rank": 2,
+          "all_estimable": true,
+          "worst_retained_fraction": 0.327394429949515,
+          "worst_pre_cutoff_retained_fraction": 0.32739442998781737
+        },
+        {
+          "crab_model": "wind",
+          "anchor": "flat_still",
+          "rank": 2,
+          "all_estimable": true,
+          "worst_retained_fraction": 0.4986011795219731,
+          "worst_pre_cutoff_retained_fraction": 0.4986012580608191
+        }
+      ],
+      "limitations": "Known axes; sharp headings, approximate spherical latitude and coarse maneuver mask; no production qualification, noise, watchdog, calibration or fits."
+    }
+  },
+  "limitations": [
+    "Saved summaries omit raw gyro/bins and mount matrices; exact historical reconstruction is unavailable.",
+    "Nominal mount-axis comparisons omit pitch/bank averaging and accumulated mapping errors; they are diagnostic, not certified uncertainty coverage.",
+    "Component fixtures isolate a mechanism, not its causal contribution in any historical campaign case.",
+    "No gate, cutoff, source-selection rule or calibration threshold is changed."
+  ]
+}

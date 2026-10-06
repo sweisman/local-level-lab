@@ -66,6 +66,33 @@ Use tool output limits or scripts that print less.
 
 ### Current state and documentation — 2026-10-06
 
+**Subsequent saved-processing audit (no additional flights or fits):** the user authorized
+the proposed diagnostic work after publication of `314c1b7`. New tool/tests:
+`analysis/tests/audit_processing.py`, `analysis/tests/test_processing_audit.py`.
+New documented artifacts: `docs/protocol-development-20261006/processing-audit.json` and
+`PROCESSING_REVIEW.md` in that directory. Eight focused checks passed in 0.23s.
+Combined processing and prior geometry-audit verification: 17 checks passed in 0.26s;
+reader links, Python syntax, current source hash and zero additional-attempt allowance verified.
+The independent fixtures use SciPy rotations, known axes and small coordinated maneuvers,
+not the flight synthesizer or nonlinear fitter. Basic frame reconstruction agrees to numerical
+precision; clean turns recover orientation. An overlapping 3°/s aircraft yaw causes 14.85°
+mount-mapping error without a gap warning; overlapping bank produces 7.46° error.
+Nominal horizontal forward-axis errors in saved revised/original cases are 4.82–5.21° versus
+under 0.2°, with revised reported sigma 1.47–1.51°. Nominal geometry is diagnostic, not exact
+historical orientation truth; summaries omit raw gyro/bins/mount matrices needed to isolate cause.
+All 72 have zero watchdog exclusions. Before/after science-cutoff all-contrast passes are
+original/dynamic 18/18 -> 18/18, original/wind 14/18 -> 9/18, revised/dynamic 18/18 -> 0/18,
+revised/wind 0/18 -> 0/18. Do not treat cutoff-only failures as absence of all projected
+information, or relax cutoff/nuisance gates to manufacture success.
+An unrun timing-only proposal uses 5/25/40/55/70/80 minute IMU turns on the same 90-minute
+route, avoids known aircraft-turn overlap, and passes coarse known-axis tangents at all anchors
+and both crab fits. Its worst retention is only 0.3274 versus 0.31225 cutoff. This is neither
+an optimized protocol nor a simulator/real-IMU guarantee. Next define a turn-overlap/orientation
+safeguard, then obtain a separate small campaign budget retaining raw sessions, bins and mount
+matrices to isolate the mechanism. No scientific source, gates or thresholds were changed.
+The user authorized committing the audit and follow-up documentation as one unit.
+Pushing that commit or subsequent git operations requires separate explicit consent.
+
 **All campaigns are complete; no worker is active and no additional flights are authorized.**
 The latest 72-case protocol comparison finished with zero fit failures, all fits converged,
 and 516.9065152532421 charged seconds (8m37s). Do not resume completed campaigns or spend

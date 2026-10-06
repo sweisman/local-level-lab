@@ -58,6 +58,11 @@ observed-track replay remain pending.
 
 ## Technical record and recovery
 
+The subsequent [processing review](PROCESSING_REVIEW.md) separates nuisance-projection and
+rank-cutoff losses, checks orientation against independent fixtures, and records an unrun
+timing correction. Its additional artifacts are `processing-audit.json` and
+`PROCESSING_REVIEW.md`; the original manifest, journal and completed results are unchanged.
+
 Worker: [geometry_campaign.py](../../analysis/tests/geometry_campaign.py). The documented corpus
 contains `manifest.json`, `records.jsonl`, `records.jsonl.gz`, `budget.json`, `status.json`,
 `summary.json`, `review.json`, `launch.json`, `worker.log`, `run.lock`, `case-input.json`,

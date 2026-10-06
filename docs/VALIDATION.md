@@ -33,7 +33,10 @@ neither the original schedule nor a proposed 90-minute schedule passed all compa
 The original schedule worked consistently under one description of wind-related uncertainty,
 while the other description remained unreliable. The longer schedule failed its required
 separation checks despite looking promising in a simplified calculation. One planned IMU turn
-also overlapped an aircraft turn; the size of that effect has not been isolated.
+also overlapped an aircraft turn. Independent motion examples show that such an overlap can
+corrupt the recovered IMU orientation, but its contribution to the campaign failures remains
+unisolated. Saved diagnostics show separate losses to allowed measurement effects and the
+numerical cutoff; moving the turns alone is not an established solution.
 
 This leaves experimental design and reconstructed orientation as immediate research questions.
 A longer flight or a more elaborate correction cannot be assumed to improve the result.
@@ -44,6 +47,8 @@ See [Evidence so far](EVIDENCE.md) for a readable account of the completed work.
 First, the project needs a practical route and IMU-turn procedure that remains informative
 after the full recording and analysis process. All required model comparisons must survive
 the allowed IMU and aircraft uncertainties, rather than only the simplest calculation.
+The [processing review](protocol-development-20261006/PROCESSING_REVIEW.md) identifies a timing
+correction to test and the need to detect aircraft motion during deliberate IMU turns.
 
 Real IMUs must pass the [bench tests](BENCH.md). These include preserving a separately imposed
 slow rotation, repeatability on different days, drift, temperature and Bluetooth behavior.
