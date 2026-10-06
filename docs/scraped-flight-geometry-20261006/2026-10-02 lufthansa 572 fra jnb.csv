@@ -1,0 +1,603 @@
+Time,Latitude,Longitude,Course,Knots,MPH,Feet,Rate,Source
+Fri 20:25:32,50.0035,8.5262,↓ 180°,184,212,,Level,FlightAware ADS-B (ETOU)
+Fri 20:25:48,49.9908,8.5263,↓ 180°,182,209,425,1781 Climbing,FlightAware ADS-B (EDEP)
+Fri 20:26:04,49.9772,8.5268,↓ 177°,179,206,950,1688 Climbing,FlightAware ADS-B (QEF / EDFE)
+Fri 20:26:20,49.9629,8.5283,↓ 176°,190,219,1325,1317 Climbing,FlightAware ADS-B (FRA / EDDF)
+Fri 20:26:45,49.9403,8.5304,↓ 177°,207,238,1850,1145 Climbing,FlightAware ADS-B (EDFZ)
+Fri 20:27:15,49.9086,8.5327,↓ 178°,243,280,2375,1450 Climbing,FlightAware ADS-B (QEF / EDFE)
+Fri 20:27:45,49.8733,8.5351,↓ 178°,263,303,3300,2525 Climbing,FlightAware ADS-B (EDFZ)
+Fri 20:28:15,49.8369,8.5378,↓ 177°,265,305,4900,3025 Climbing,FlightAware ADS-B (FRA / EDDF)
+Fri 20:28:45,49.7991,8.5404,↓ 178°,273,314,6325,2969 Climbing,FlightAware ADS-B (EDEP)
+Fri 20:29:04,49.7760,8.5408,↓ 182°,271,312,7325,3000 Climbing,FlightAware ADS-B (QEF / EDFE)
+Fri 20:29:20,49.7557,8.5386,↓ 186°,273,314,8075,2837 Climbing,FlightAware ADS-B (NUE / EDDN)
+Fri 20:29:50,49.7161,8.5327,↓ 186°,279,321,9500,1720 Climbing,FlightAware ADS-B (EDEP)
+Fri 20:30:35,49.6561,8.5248,↓ 185°,311,358,10225,1000 Climbing,FlightAware ADS-B (EDTX)
+Fri 20:31:05,49.6124,8.5192,↓ 185°,330,380,10750,975 Climbing,FlightAware ADS-B (FRA / EDDF)
+Fri 20:31:35,49.5652,8.5129,↓ 185°,350,403,11200,925 Climbing,FlightAware ADS-B (QEF / EDFE)
+Fri 20:32:05,49.5147,8.5062,↓ 185°,369,425,11675,775 Climbing,FlightAware ADS-B (QEF / EDFE)
+Fri 20:32:35,49.4624,8.4993,↓ 185°,391,450,11975,850 Climbing,FlightAware ADS-B (FRA / EDDF)
+Fri 20:33:05,49.4064,8.4921,↓ 185°,404,465,12525,1325 Climbing,FlightAware ADS-B (MHG / EDFM)
+Fri 20:33:35,49.3506,8.4848,↓ 185°,411,473,13300,1450 Climbing,FlightAware ADS-B (EDPO)
+Fri 20:34:05,49.2940,8.4775,↓ 185°,418,481,13975,1175 Climbing,FlightAware ADS-B (EDRF)
+Fri 20:34:35,49.2366,8.4700,↓ 185°,421,484,14475,1300 Climbing,FlightAware ADS-B (EDFV)
+Fri 20:35:05,49.1790,8.4625,↓ 185°,423,487,15275,1550 Climbing,FlightAware ADS-B (EDRL)
+Fri 20:35:35,49.1189,8.4547,↓ 185°,428,493,16025,1527 Climbing,FlightAware ADS-B (STR / EDDS)
+Fri 20:36:00,49.0697,8.4464,↓ 188°,430,495,16675,1463 Climbing,FlightAware ADS-B (EDTO)
+Fri 20:36:16,49.0396,8.4387,↓ 191°,431,496,17025,1435 Climbing,FlightAware ADS-B (LSPL)
+Fri 20:36:46,48.9800,8.4185,↓ 193°,436,502,17775,1400 Climbing,FlightAware ADS-B (ZRH / LSZH)
+Fri 20:37:16,48.9217,8.3983,↓ 193°,441,507,18425,1337 Climbing,FlightAware ADS-B (STR / EDDS)
+Fri 20:37:32,48.8861,8.3864,↓ 191°,445,512,18800,1263 Climbing,FlightAware ADS-B (FRA / EDDF)
+Fri 20:37:54,48.8439,8.3786,↓ 184°,450,518,19225,1214 Climbing,FlightAware ADS-B (EDSA)
+Fri 20:38:14,48.8024,8.3776,↓ 178°,455,524,19650,1350 Climbing,FlightAware ADS-B (RMS / ETAR)
+Fri 20:38:44,48.7375,8.3813,↓ 178°,459,528,20350,1350 Climbing,FlightAware ADS-B (OBF / EDMO)
+Fri 20:39:14,48.6757,8.3848,↓ 178°,463,533,21000,1375 Climbing,FlightAware ADS-B (EDTC)
+Fri 20:39:44,48.6118,8.3882,↓ 178°,465,535,21725,1375 Climbing,FlightAware ADS-B (EAP / LFSB)
+Fri 20:40:14,48.5451,8.3918,↓ 178°,469,540,22375,1225 Climbing,FlightAware ADS-B (EAP / LFSB)
+Fri 20:40:44,48.4800,8.3952,↓ 178°,473,544,22950,1025 Climbing,FlightAware ADS-B (FRA / EDDF)
+Fri 20:41:14,48.4151,8.3986,↓ 178°,480,552,23400,1025 Climbing,FlightAware ADS-B (ELNT)
+Fri 20:41:44,48.3484,8.4022,↓ 178°,482,555,23975,1125 Climbing,FlightAware ADS-B (STR / EDDS)
+Fri 20:42:14,48.2793,8.4059,↓ 178°,483,556,24525,1100 Climbing,FlightAware ADS-B (MUC / EDDM)
+Fri 20:42:44,48.2129,8.4095,↓ 178°,488,562,25075,1075 Climbing,FlightAware ADS-B (LSZK)
+Fri 20:43:14,48.1446,8.4131,↓ 178°,491,565,25600,975 Climbing,FlightAware ADS-B (STR / EDDS)
+Fri 20:43:44,48.0778,8.4166,↓ 178°,496,571,26050,925 Climbing,FlightAware ADS-B (VIP / LSMP)
+Fri 20:44:14,48.0085,8.4203,↓ 178°,500,575,26525,975 Climbing,FlightAware ADS-B (STR / EDDS)
+Fri 20:44:44,47.9373,8.4240,↓ 178°,504,580,27025,975 Climbing,FlightAware ADS-B (STR / EDDS)
+Fri 20:45:14,47.8693,8.4276,↓ 178°,507,583,27500,1075 Climbing,FlightAware ADS-B (LSZI)
+Fri 20:45:44,47.7970,8.4314,↓ 178°,506,582,28100,1225 Climbing,FlightAware ADS-B (EAP / LFSB)
+Fri 20:46:14,47.7257,8.4352,↓ 177°,506,582,28725,1300 Climbing,FlightAware ADS-B (ZRH / LSZH)
+Fri 20:46:44,47.6593,8.4418,↓ 175°,503,579,29400,1400 Climbing,FlightAware ADS-B (BRN / LSZB)
+Fri 20:47:14,47.5891,8.4517,↓ 174°,502,578,30125,1300 Climbing,FlightAware ADS-B (LSZF)
+Fri 20:47:44,47.5189,8.4621,↓ 174°,501,577,30700,950 Climbing,FlightAware ADS-B (LSZK)
+Fri 20:48:14,47.4501,8.4722,↓ 174°,502,578,31075,1025 Climbing,FlightAware ADS-B (ZRH / LSZH)
+Fri 20:48:44,47.3822,8.4823,↓ 174°,501,577,31725,1225 Climbing,FlightAware ADS-B (CMR / LFGA)
+Fri 20:49:14,47.3125,8.4924,↓ 174°,499,574,32300,1050 Climbing,FlightAware ADS-B (EDTM)
+Fri 20:49:44,47.2423,8.5026,↓ 174°,498,573,32775,700 Climbing,FlightAware ADS-B (LSPL)
+Fri 20:50:14,47.1723,8.5128,↓ 174°,500,575,33000,225 Climbing,FlightAware ADS-B (LSPK)
+Fri 20:50:44,47.1071,8.5223,↓ 174°,497,572,33000,Level,FlightAware ADS-B (BXO / LSZC)
+Fri 20:51:14,47.0380,8.5323,↓ 174°,495,570,33000,Level,FlightAware ADS-B (BXO / LSZC)
+Fri 20:51:44,46.9699,8.5421,↓ 174°,494,568,33000,Level,FlightAware ADS-B (BXO / LSZC)
+Fri 20:52:14,46.9018,8.5520,↓ 174°,493,567,33000,Level,FlightAware ADS-B (LSXE)
+Fri 20:52:44,46.8339,8.5617,↓ 174°,494,568,33000,Level,FlightAware ADS-B (ZRH / LSZH)
+Fri 20:53:15,46.7630,8.5718,↓ 174°,495,570,33000,Level,FlightAware ADS-B (ZRH / LSZH)
+Fri 20:53:45,46.6942,8.5817,↓ 174°,496,571,33000,Level,FlightAware ADS-B (LSZG)
+Fri 20:54:15,46.6259,8.5914,↓ 174°,497,572,33000,Level,FlightAware ADS-B (BXO / LSZC)
+Fri 20:54:45,46.5576,8.6011,↓ 175°,498,573,33000,Level,FlightAware ADS-B (LILR)
+Fri 20:55:15,46.4894,8.6108,↓ 174°,500,575,33000,Level,FlightAware ADS-B (HOH / LOIH)
+Fri 20:55:45,46.4180,8.6208,↓ 174°,501,577,33000,Level,FlightAware ADS-B (LSMM)
+Fri 20:56:15,46.3499,8.6304,↓ 174°,503,579,33000,Level,FlightAware ADS-B (VIP / LSMP)
+Fri 20:56:45,46.2809,8.6401,↓ 174°,503,579,33000,Level,FlightAware ADS-B (VCE / LIPZ)
+Fri 20:57:15,46.2112,8.6500,↓ 174°,504,580,33000,Level,FlightAware ADS-B (LILE)
+Fri 20:57:45,46.1401,8.6606,↓ 172°,507,583,33000,Level,FlightAware ADS-B (FDH / EDNY)
+Fri 20:58:01,46.1039,8.6693,↓ 169°,509,586,33000,Level,FlightAware ADS-B (LIDU)
+Fri 20:58:31,46.0357,8.6935,↓ 164°,515,593,33000,Level,FlightAware ADS-B (LSZF)
+Fri 20:59:01,45.9660,8.7224,↓ 164°,515,593,33000,Level,FlightAware ADS-B (LSPR)
+Fri 20:59:31,45.8962,8.7514,↓ 164°,515,593,33000,Level,FlightAware ADS-B (LIPF)
+Fri 21:00:01,45.8284,8.7794,↓ 164°,516,594,33000,Level,FlightAware ADS-B (ZRH / LSZH)
+Fri 21:00:31,45.7617,8.8069,↓ 164°,517,595,33000,Level,FlightAware ADS-B (MXP / LIMC)
+Fri 21:01:01,45.6917,8.8356,↓ 164°,517,595,33000,Level,FlightAware ADS-B (LILN)
+Fri 21:01:31,45.6234,8.8635,↓ 164°,518,596,33000,Level,FlightAware ADS-B (TRN / LIMF)
+Fri 21:02:02,45.5527,8.8924,↓ 164°,519,597,33000,Level,FlightAware ADS-B (LIN / LIML)
+Fri 21:02:32,45.4819,8.9212,↓ 164°,520,598,33000,Level,FlightAware ADS-B (GOA / LIMJ)
+Fri 21:03:02,45.4121,8.9496,↓ 164°,520,598,33000,Level,FlightAware ADS-B (LILN)
+Fri 21:03:32,45.3430,8.9776,↓ 164°,520,598,33000,Level,FlightAware ADS-B (MXP / LIMC)
+Fri 21:04:02,45.2747,9.0036,↓ 166°,521,600,33000,Level,FlightAware ADS-B (LIDU)
+Fri 21:04:32,45.2024,9.0292,↓ 166°,521,600,33000,Level,FlightAware ADS-B (LIMB)
+Fri 21:05:02,45.1345,9.0533,↓ 166°,521,600,33000,Level,FlightAware ADS-B (LILB)
+Fri 21:05:32,45.0635,9.0787,↓ 166°,521,600,33000,Level,FlightAware ADS-B (MXP / LIMC)
+Fri 21:06:02,44.9937,9.1037,↓ 166°,522,601,33000,Level,FlightAware ADS-B (AVB / LIPA)
+Fri 21:06:32,44.9218,9.1296,↓ 166°,522,601,33000,Level,FlightAware ADS-B (TRN / LIMF)
+Fri 21:07:02,44.8539,9.1538,↓ 166°,522,601,33000,Level,FlightAware ADS-B (LILB)
+Fri 21:07:32,44.7844,9.1786,↓ 166°,523,602,33000,Level,FlightAware ADS-B (LIKO)
+Fri 21:08:02,44.7139,9.2037,↓ 166°,523,602,33000,Level,FlightAware ADS-B (VCE / LIPZ)
+Fri 21:08:32,44.6415,9.2294,↓ 166°,523,602,33000,Level,FlightAware ADS-B (BGY / LIME)
+Fri 21:09:02,44.5729,9.2536,↓ 166°,523,602,33000,Level,FlightAware ADS-B (CEQ / LFMD)
+Fri 21:09:32,44.5022,9.2785,↓ 166°,522,601,33000,Level,FlightAware ADS-B (CEQ / LFMD)
+Fri 21:10:02,44.4297,9.3040,↓ 166°,522,601,33000,Level,FlightAware ADS-B (LIQQ)
+Fri 21:10:32,44.3606,9.3282,↓ 166°,521,600,33000,Level,FlightAware ADS-B (LIQQ)
+Fri 21:11:02,44.2917,9.3524,↓ 166°,522,601,33000,Level,FlightAware ADS-B (CEQ / LFMD)
+Fri 21:11:32,44.2220,9.3766,↓ 166°,521,600,33000,Level,FlightAware ADS-B (VCE / LIPZ)
+Fri 21:12:02,44.1519,9.4010,↓ 166°,521,600,33000,Level,FlightAware ADS-B (LIRV)
+Fri 21:12:32,44.0821,9.4253,↓ 166°,522,601,33000,Level,FlightAware ADS-B (LIVV)
+Fri 21:13:02,44.0117,9.4497,↓ 166°,522,601,33000,Level,FlightAware ADS-B (LIVV)
+Fri 21:13:32,43.9394,9.4746,↓ 166°,522,601,33000,Level,FlightAware ADS-B (LIVV)
+Fri 21:14:03,43.8679,9.4992,↓ 166°,522,601,33000,Level,FlightAware ADS-B (LILQ)
+Fri 21:14:34,43.7956,9.5241,↓ 166°,522,601,33000,Level,FlightAware ADS-B (LIN / LIML)
+Fri 21:15:04,43.7273,9.5476,↓ 166°,522,601,33000,Level,FlightAware ADS-B (LIN / LIML)
+Fri 21:15:34,43.6563,9.5718,↓ 166°,522,601,33000,Level,FlightAware ADS-B (LIRV)
+Fri 21:16:04,43.5875,9.5953,↓ 166°,522,601,33000,Level,FlightAware ADS-B (LIRV)
+Fri 21:16:34,43.5144,9.6202,↓ 166°,522,601,33000,Level,FlightAware ADS-B (LIRV)
+Fri 21:17:04,43.4446,9.6439,↓ 166°,522,601,33000,Level,FlightAware ADS-B (GOA / LIMJ)
+Fri 21:17:34,43.3736,9.6680,↓ 166°,522,601,33000,Level,FlightAware ADS-B (LIRV)
+Fri 21:18:04,43.3034,9.6917,↓ 166°,523,602,33000,Level,FlightAware ADS-B (GOA / LIMJ)
+Fri 21:18:34,43.2344,9.7150,↓ 166°,523,602,33000,Level,FlightAware ADS-B (LILQ)
+Fri 21:19:04,43.1628,9.7391,↓ 166°,523,602,33000,Level,FlightAware ADS-B (LIRL)
+Fri 21:19:34,43.0931,9.7625,↓ 166°,523,602,33000,Level,FlightAware ADS-B (LILQ)
+Fri 21:20:04,43.0195,9.7871,↓ 166°,524,603,33000,Level,FlightAware ADS-B (PSA / LIRP)
+Fri 21:20:22,42.9783,9.7990,↓ 171°,523,602,33000,Level,FlightAware ADS-B (LIRV)
+Fri 21:20:54,42.9027,9.8104,↓ 177°,522,601,33000,Level,FlightAware ADS-B (LIQQ)
+Fri 21:21:26,42.8268,9.8131,↓ 179°,521,600,33000,Level,FlightAware ADS-B (FLR / LIRQ)
+Fri 21:21:58,42.7458,9.8157,↓ 179°,521,600,33000,Level,FlightAware ADS-B (LIAF)
+Fri 21:22:28,42.6723,9.8179,↓ 179°,521,600,33000,Level,FlightAware ADS-B (LIAF)
+Fri 21:22:59,42.5998,9.8203,↓ 179°,521,600,33000,Level,FlightAware ADS-B (LIAF)
+Fri 21:23:29,42.5273,9.8226,↓ 179°,521,600,33000,Level,FlightAware ADS-B (LIAF)
+Fri 21:24:00,42.4543,9.8250,↓ 179°,521,600,33000,Level,FlightAware ADS-B (TTB / LIET)
+Fri 21:24:32,42.3781,9.8275,↓ 179°,522,601,33000,Level,FlightAware ADS-B (TTB / LIET)
+Fri 21:25:03,42.3017,9.8299,↓ 179°,524,603,33000,Level,FlightAware ADS-B (LIQQ)
+Fri 21:25:33,42.2298,9.8321,↓ 179°,526,605,33000,Level,FlightAware ADS-B (LIQQ)
+Fri 21:26:04,42.1543,9.8345,↓ 179°,528,608,33000,Level,FlightAware ADS-B (LIQQ)
+Fri 21:26:34,42.0807,9.8368,↓ 179°,529,609,33000,Level,FlightAware ADS-B (LIQQ)
+Fri 21:27:04,42.0072,9.8391,↓ 179°,530,610,33000,Level,FlightAware ADS-B (LIQQ)
+Fri 21:27:34,41.9337,9.8414,↓ 179°,531,611,33000,Level,FlightAware ADS-B (TTB / LIET)
+Fri 21:28:05,41.8576,9.8438,↓ 179°,531,611,33000,Level,FlightAware ADS-B (TTB / LIET)
+Fri 21:28:35,41.7833,9.8461,↓ 179°,532,612,33000,Level,FlightAware ADS-B (TTB / LIET)
+Fri 21:29:05,41.7100,9.8471,↓ 181°,532,612,33000,Level,FlightAware ADS-B (FNU / LIER)
+Fri 21:29:35,41.6354,9.8452,↓ 181°,533,613,33000,Level,FlightAware ADS-B (MCM / LNMC)
+Fri 21:30:06,41.5604,9.8432,↓ 181°,534,615,33000,Level,FlightAware ADS-B (FNU / LIER)
+Fri 21:30:36,41.4860,9.8416,↓ 181°,535,616,33000,Level,FlightAware ADS-B (MCM / LNMC)
+Fri 21:31:06,41.4121,9.8403,↓ 181°,535,616,33000,Level,FlightAware ADS-B (PSA / LIRP)
+Fri 21:31:36,41.3399,9.8391,↓ 181°,535,616,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:32:06,41.2652,9.8379,↓ 181°,534,615,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:32:36,41.1889,9.8366,↓ 181°,534,615,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:33:06,41.1149,9.8354,↓ 181°,534,615,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:33:36,41.0417,9.8341,↓ 181°,533,613,33000,Level,FlightAware ADS-B (CEQ / LFMD)
+Fri 21:34:06,40.9674,9.8329,↓ 181°,533,613,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:34:36,40.8919,9.8315,↓ 181°,533,613,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:35:07,40.8177,9.8303,↓ 181°,533,613,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:35:37,40.7438,9.8290,↓ 181°,533,613,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:36:07,40.6692,9.8277,↓ 181°,533,613,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:36:37,40.5950,9.8264,↓ 181°,533,613,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:37:07,40.5208,9.8251,↓ 181°,533,613,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:37:38,40.4459,9.8238,↓ 181°,533,613,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:38:08,40.3717,9.8225,↓ 181°,533,613,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:38:38,40.2981,9.8213,↓ 181°,534,615,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:39:08,40.2226,9.8200,↓ 181°,534,615,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:39:38,40.1478,9.8187,↓ 181°,534,615,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:40:08,40.0733,9.8174,↓ 181°,533,613,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:40:38,39.9991,9.8162,↓ 181°,532,612,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:41:09,39.9226,9.8148,↓ 181°,532,612,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:41:39,39.8489,9.8136,↓ 181°,533,613,33000,Level,FlightAware ADS-B (FSC / LFKF)
+Fri 21:42:09,39.7757,9.8124,↓ 181°,533,613,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:42:39,39.7015,9.8111,↓ 181°,533,613,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:43:09,39.6269,9.8099,↓ 181°,534,615,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:43:40,39.5526,9.8086,↓ 181°,534,615,33000,Level,FlightAware ADS-B (AHO / LIEA)
+Fri 21:44:10,39.4775,9.8073,↓ 181°,534,615,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:44:40,39.4031,9.8061,↓ 181°,534,615,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:45:10,39.3296,9.8049,↓ 181°,534,615,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:45:40,39.2546,9.8036,↓ 181°,533,613,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:46:10,39.1806,9.8024,↓ 181°,533,613,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:46:40,39.1068,9.8012,↓ 181°,532,612,33000,Level,FlightAware ADS-B (AHO / LIEA)
+Fri 21:47:10,39.0327,9.8000,↓ 181°,531,611,33000,Level,FlightAware ADS-B (AHO / LIEA)
+Fri 21:47:41,38.9579,9.7987,↓ 181°,530,610,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:48:11,38.8836,9.7975,↓ 181°,530,610,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:48:41,38.8113,9.7963,↓ 181°,529,609,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:49:12,38.7365,9.7950,↓ 181°,528,608,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:49:44,38.6593,9.7938,↓ 180°,528,608,33000,Level,FlightAware ADS-B (NAP / LIRN)
+Fri 21:50:18,38.5729,9.7961,↓ 178°,528,608,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:50:48,38.4998,9.7987,↓ 179°,526,605,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:51:18,38.4267,9.8010,↓ 179°,526,605,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:51:48,38.3535,9.8030,↓ 179°,525,604,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:52:18,38.2802,9.8049,↓ 179°,525,604,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:52:48,38.2082,9.8067,↓ 179°,524,603,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:53:19,38.1342,9.8086,↓ 179°,524,603,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:53:49,38.0627,9.8105,↓ 179°,524,603,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:54:19,37.9890,9.8125,↓ 179°,523,602,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:54:49,37.9160,9.8144,↓ 179°,522,601,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:55:19,37.8441,9.8163,↓ 179°,522,601,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:55:49,37.7709,9.8183,↓ 179°,521,600,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:56:19,37.6989,9.8202,↓ 179°,520,598,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:56:49,37.6259,9.8221,↓ 179°,518,596,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:57:19,37.5543,9.8240,↓ 179°,518,596,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:57:49,37.4820,9.8259,↓ 179°,517,595,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:58:19,37.4103,9.8277,↓ 179°,516,594,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:58:49,37.3388,9.8297,↓ 179°,515,593,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:59:19,37.2672,9.8316,↓ 179°,513,590,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 21:59:52,37.1891,9.8336,↓ 179°,513,590,33000,Level,FlightAware ADS-B (TUN / DTTA)
+Fri 22:00:22,37.1179,9.8355,↓ 179°,512,589,33000,Level,FlightAware ADS-B (TUN / DTTA)
+Fri 22:00:52,37.0487,9.8373,↓ 179°,512,589,33000,Level,FlightAware ADS-B (TUN / DTTA)
+Fri 22:01:22,36.9760,9.8392,↓ 179°,512,589,33000,Level,FlightAware ADS-B (TUN / DTTA)
+Fri 22:01:52,36.9043,9.8411,↓ 179°,513,590,33000,Level,FlightAware ADS-B (TUN / DTTA)
+Fri 22:02:22,36.8329,9.8429,↓ 179°,512,589,33000,Level,FlightAware ADS-B (TUN / DTTA)
+Fri 22:02:52,36.7618,9.8447,↓ 179°,512,589,33000,Level,FlightAware ADS-B (TUN / DTTA)
+Fri 22:03:23,36.6896,9.8466,↓ 179°,512,589,33000,Level,FlightAware ADS-B (TUN / DTTA)
+Fri 22:03:53,36.6188,9.8484,↓ 179°,512,589,33000,Level,FlightAware ADS-B (TUN / DTTA)
+Fri 22:04:23,36.5477,9.8502,↓ 179°,512,589,33000,Level,FlightAware ADS-B (TUN / DTTA)
+Fri 22:04:53,36.4773,9.8521,↓ 179°,513,590,33000,Level,FlightAware ADS-B (TUN / DTTA)
+Fri 22:05:23,36.4060,9.8539,↓ 179°,513,590,33000,Level,FlightAware ADS-B (TUN / DTTA)
+Fri 22:05:54,36.3329,9.8558,↓ 179°,513,590,33000,Level,FlightAware ADS-B (TUN / DTTA)
+Fri 22:06:24,36.2614,9.8576,↓ 179°,512,589,33000,Level,FlightAware ADS-B (TUN / DTTA)
+Fri 22:06:54,36.1895,9.8594,↓ 179°,512,589,33000,Level,FlightAware ADS-B (TUN / DTTA)
+Fri 22:07:27,36.1098,9.8614,↓ 179°,513,590,33000,Level,FlightAware ADS-B (DCI / LIED)
+Fri 22:07:58,36.0373,9.8633,↓ 179°,512,589,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 22:08:28,35.9664,9.8651,↓ 179°,512,589,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 22:08:59,35.8948,9.8669,↓ 179°,512,589,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 22:09:29,35.8232,9.8688,↓ 179°,513,590,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 22:09:59,35.7517,9.8705,↓ 179°,513,590,33000,Level,FlightAware ADS-B (CAG / LIEE)
+Fri 22:10:39,35.6553,9.8729,↓ 179°,515,593,33000,Level,FlightAware ADS-B (TPS / LICT)
+Fri 22:11:25,35.5454,9.8757,↓ 179°,517,595,33000,Level,FlightAware ADS-B (TUN / DTTA)
+Fri 22:12:03,35.4553,9.8780,↓ 179°,518,596,33000,18 Climbing,FlightAware ADS-B (TPS / LICT)
+Fri 22:12:50,35.3432,9.8808,↓ 179°,518,596,33025,Level,FlightAware ADS-B (TUN / DTTA)
+Fri 22:13:49,35.2000,9.8843,↓ 179°,517,595,33000,-15 Descending,FlightAware ADS-B (TPS / LICT)
+Fri 22:14:31,35.1008,9.8868,↓ 179°,516,594,33000,Level,FlightAware ADS-B (TPS / LICT)
+Fri 22:15:01,35.0274,9.8887,↓ 179°,516,594,33000,Level,FlightAware ADS-B (TPS / LICT)
+Fri 22:16:01,34.8850,9.8921,↓ 179°,514,592,33000,Level,FlightAware ADS-B (TPS / LICT)
+Fri 22:17:52,34.6228,9.8878,↓ 188°,511,588,33000,Level,FlightAware ADS-B (TPS / LICT)
+Fri 22:18:28,34.5395,9.8697,↓ 191°,513,590,33000,Level,FlightAware ADS-B (TPS / LICT)
+Fri 22:19:13,34.4327,9.8457,↓ 191°,515,593,33000,Level,FlightAware ADS-B (GZM / LMMG)
+Fri 22:20:13,34.2921,9.8143,↓ 191°,516,594,33000,Level,FlightAware ADS-B (TPS / LICT)
+Fri 22:20:49,34.2081,9.7956,↓ 191°,516,594,33000,Level,FlightAware ADS-B (TPS / LICT)
+Fri 22:21:41,34.0847,9.7682,↓ 191°,517,595,33000,Level,FlightAware ADS-B (TPS / LICT)
+Fri 22:22:11,34.0149,9.7527,↓ 191°,516,594,33000,Level,FlightAware ADS-B (ZIS / HLZN)
+Fri 22:22:59,33.9017,9.7277,↓ 190°,514,592,33000,Level,FlightAware ADS-B (ZIS / HLZN)
+Fri 22:23:40,33.8081,9.7070,↓ 190°,511,588,33000,Level,FlightAware ADS-B (ZIS / HLZN)
+Fri 22:24:39,33.6698,9.6766,↓ 190°,510,587,33000,Level,FlightAware ADS-B (ZIS / HLZN)
+Fri 22:25:40,33.5286,9.6456,↓ 190°,509,586,33000,Level,FlightAware ADS-B (ZIS / HLZN)
+Fri 22:26:10,33.4578,9.6301,↓ 190°,510,587,33000,Level,FlightAware ADS-B (ZIS / HLZN)
+Fri 22:26:40,33.3875,9.6147,↓ 190°,509,586,33000,Level,FlightAware ADS-B (ZIS / HLZN)
+Fri 22:27:10,33.3185,9.5997,↓ 190°,508,585,33000,Level,FlightAware ADS-B (ZIS / HLZN)
+Fri 22:27:40,33.2493,9.5846,↓ 190°,507,583,33000,Level,FlightAware ADS-B (ZIS / HLZN)
+Fri 22:28:10,33.1803,9.5696,↓ 190°,506,582,33000,Level,FlightAware ADS-B (ZIS / HLZN)
+Fri 22:28:40,33.1110,9.5546,↓ 190°,505,581,33000,Level,FlightAware ADS-B (ZIS / HLZN)
+Fri 22:29:40,32.9728,9.5247,↓ 190°,503,579,33000,Level,FlightAware ADS-B (ZIS / HLZN)
+Fri 22:30:11,32.9032,9.5097,↓ 190°,502,578,33000,Level,FlightAware ADS-B (ZIS / HLZN)
+Fri 22:30:41,32.8346,9.4948,↓ 190°,502,578,33000,Level,FlightAware ADS-B (ZIS / HLZN)
+Fri 22:31:17,32.7518,9.4770,↓ 190°,502,578,33000,Level,FlightAware ADS-B (ZIS / HLZN)
+Fri 22:32:11,32.6294,9.4507,↓ 190°,502,578,33000,Level,FlightAware ADS-B (ZIS / HLZN)
+Fri 22:32:42,32.5588,9.4356,↓ 190°,503,579,33000,Level,FlightAware ADS-B (ZIS / HLZN)
+Fri 22:33:12,32.4896,9.4208,↓ 190°,504,580,33000,Level,FlightAware ADS-B (ZIS / HLZN)
+Fri 22:33:42,32.4197,9.4059,↓ 190°,505,581,33000,Level,FlightAware ADS-B (ZIS / HLZN)
+Fri 22:34:40,32.2884,9.3779,↓ 190°,506,582,33000,Level,FlightAware ADS-B (ZIS / HLZN)
+Fri 22:35:15,32.2073,9.3540,↓ 199°,503,579,33000,Level,FlightAware ADS-B (ZIS / HLZN)
+Fri 22:35:45,32.1428,9.3208,↙ 207°,502,578,33000,Level,FlightAware ADS-B (ZIS / HLZN)
+Fri 22:36:45,32.0184,9.2480,↙ 207°,503,579,33000,Level,FlightAware ADS-B (ZIS / HLZN)
+Fri 22:37:44,31.8962,9.1769,↙ 206°,506,582,33000,10 Climbing,FlightAware ADS-B (ZIS / HLZN)
+Fri 22:40:12,31.5785,9.3099,↓ 160°,,,,Level,Estimated
+Fri 22:42:04,31.3379,9.4099,↓ 160°,,,,Level,Estimated
+Fri 22:43:13,31.1897,9.4713,↓ 160°,,,,Level,Estimated
+Fri 22:44:16,31.0543,9.5272,↓ 161°,,,,Level,Estimated
+Fri 22:46:13,30.8028,9.6305,↓ 161°,,,,Level,Estimated
+Fri 22:48:15,30.5405,9.7377,↓ 161°,,,,Level,Estimated
+Fri 22:50:08,30.2975,9.8365,↓ 161°,,,,Level,Estimated
+Fri 22:51:16,30.1512,9.8957,↓ 161°,,,,Level,Estimated
+Fri 22:53:09,29.9080,9.9937,↓ 161°,,,,Level,Estimated
+Fri 22:54:16,29.7638,10.0516,↓ 161°,,,,Level,Estimated
+Fri 22:55:16,29.6347,10.1033,↓ 161°,,,,Level,Estimated
+Fri 22:56:16,29.5055,10.1548,↓ 161°,,,,Level,Estimated
+Fri 22:57:16,29.3763,10.2062,↓ 161°,,,,Level,Estimated
+Fri 22:59:16,29.1178,10.3087,↓ 161°,,,,Level,Estimated
+Fri 23:00:16,28.9885,10.3597,↓ 161°,,,,Level,Estimated
+Fri 23:02:14,28.7343,10.4597,↓ 161°,,,,Level,Estimated
+Fri 23:04:15,28.4735,10.5618,↓ 161°,,,,Level,Estimated
+Fri 23:06:16,28.2126,10.6633,↓ 161°,,,,Level,Estimated
+Fri 23:08:13,27.9603,10.7610,↓ 161°,,,,Level,Estimated
+Fri 23:10:15,27.6971,10.8624,↓ 161°,,,,Level,Estimated
+Fri 23:12:16,27.4360,10.9625,↓ 161°,,,,Level,Estimated
+Fri 23:13:16,27.3065,11.0120,↓ 161°,,,,Level,Estimated
+Fri 23:15:17,27.0453,11.1113,↓ 161°,,,,Level,Estimated
+Fri 23:17:12,26.7969,11.2053,↓ 161°,,,,Level,Estimated
+Fri 23:19:13,26.5356,11.3038,↓ 161°,,,,Level,Estimated
+Fri 23:20:16,26.3995,11.3549,↓ 161°,,,,Level,Estimated
+Fri 23:21:16,26.2699,11.4035,↓ 161°,,,,Level,Estimated
+Fri 23:22:16,26.1402,11.4519,↓ 161°,,,,Level,Estimated
+Fri 23:24:16,25.8809,11.5485,↓ 161°,,,,Level,Estimated
+Fri 23:26:13,25.6279,11.6423,↓ 162°,,,,Level,Estimated
+Fri 23:28:09,25.3771,11.7348,↓ 162°,,,,Level,Estimated
+Fri 23:30:07,25.1219,11.8286,↓ 162°,,,,Level,Estimated
+Fri 23:31:09,24.9878,11.8777,↓ 162°,,,,Level,Estimated
+Fri 23:33:13,24.7195,11.9756,↓ 162°,,,,Level,Estimated
+Fri 23:35:09,24.4685,12.0668,↓ 162°,,,,Level,Estimated
+Fri 23:36:15,24.3256,12.1185,↓ 162°,,,,Level,Estimated
+Fri 23:38:10,24.0767,12.2083,↓ 162°,,,,Level,Estimated
+Fri 23:39:17,23.9316,12.2605,↓ 162°,,,,Level,Estimated
+Fri 23:41:16,23.6739,12.3529,↓ 162°,,,,Level,Estimated
+Fri 23:42:16,23.5440,12.3994,↓ 162°,,,,Level,Estimated
+Fri 23:44:02,23.3144,12.4812,↓ 162°,,,,Level,Estimated
+Fri 23:45:14,23.1584,12.5366,↓ 162°,,,,Level,Estimated
+Fri 23:47:12,22.9027,12.6272,↓ 162°,,,,Level,Estimated
+Fri 23:49:14,22.6383,12.7205,↓ 162°,,,,Level,Estimated
+Fri 23:51:14,22.3782,12.8119,↓ 162°,,,,Level,Estimated
+Fri 23:53:13,22.1202,12.9022,↓ 162°,,,,Level,Estimated
+Fri 23:55:16,21.8534,12.9952,↓ 162°,,,,Level,Estimated
+Fri 23:57:13,21.5997,13.0833,↓ 162°,,,,Level,Estimated
+Fri 23:59:00,21.3675,13.1636,↓ 162°,,,,Level,Estimated
+Sat 00:00:09,21.2178,13.2153,↓ 162°,,,,Level,Estimated
+Sat 00:02:06,20.9640,13.3026,↓ 162°,,,,Level,Estimated
+Sat 00:04:13,20.6883,13.3971,↓ 162°,,,,Level,Estimated
+Sat 00:05:16,20.5516,13.4439,↓ 162°,,,,Level,Estimated
+Sat 00:06:16,20.4213,13.4883,↓ 162°,,,,Level,Estimated
+Sat 00:08:07,20.1803,13.5703,↓ 162°,,,,Level,Estimated
+Sat 00:10:11,19.9111,13.6617,↓ 162°,,,,Level,Estimated
+Sat 00:12:17,19.6374,13.7542,↓ 162°,,,,Level,Estimated
+Sat 00:14:15,19.3811,13.8405,↓ 162°,,,,Level,Estimated
+Sat 00:16:14,19.1226,13.9273,↓ 162°,,,,Level,Estimated
+Sat 00:18:10,18.8705,14.0116,↓ 162°,,,,Level,Estimated
+Sat 00:19:10,18.7401,14.0551,↓ 162°,,,,Level,Estimated
+Sat 00:20:14,18.6010,14.1015,↓ 162°,,,,Level,Estimated
+Sat 00:22:02,18.3663,14.1795,↓ 162°,,,,Level,Estimated
+Sat 00:23:14,18.2098,14.2314,↓ 163°,,,,Level,Estimated
+Sat 00:24:15,18.0771,14.2753,↓ 163°,,,,Level,Estimated
+Sat 00:26:13,17.8206,14.3601,↓ 163°,,,,Level,Estimated
+Sat 00:28:11,17.5640,14.4446,↓ 163°,,,,Level,Estimated
+Sat 00:30:07,17.3117,14.5274,↓ 163°,,,,Level,Estimated
+Sat 00:32:16,17.0311,14.6193,↓ 163°,,,,Level,Estimated
+Sat 00:34:13,16.7766,14.7024,↓ 163°,,,,Level,Estimated
+Sat 00:35:13,16.6461,14.7449,↓ 163°,,,,Level,Estimated
+Sat 00:36:16,16.5090,14.7895,↓ 163°,,,,Level,Estimated
+Sat 00:37:16,16.3784,14.8318,↓ 163°,,,,Level,Estimated
+Sat 00:39:01,16.1499,14.9059,↓ 163°,,,,Level,Estimated
+Sat 00:40:10,15.9998,14.9545,↓ 163°,,,,Level,Estimated
+Sat 00:41:15,15.8583,15.0002,↓ 163°,,,,Level,Estimated
+Sat 00:43:03,15.6232,15.0760,↓ 163°,,,,Level,Estimated
+Sat 00:44:14,15.4687,15.1257,↓ 163°,,,,Level,Estimated
+Sat 00:46:05,15.2270,15.2033,↓ 163°,,,,Level,Estimated
+Sat 00:48:07,14.9614,15.2883,↓ 163°,,,,Level,Estimated
+Sat 00:50:14,14.6848,15.3767,↓ 163°,,,,Level,Estimated
+Sat 00:52:16,14.4191,15.4613,↓ 163°,,,,Level,Estimated
+Sat 00:54:09,14.1730,15.5395,↓ 163°,,,,Level,Estimated
+Sat 00:55:14,14.0314,15.5844,↓ 163°,,,,Level,Estimated
+Sat 00:57:00,13.8005,15.6576,↓ 163°,,,,Level,Estimated
+Sat 00:58:10,13.6480,15.7058,↓ 163°,,,,Level,Estimated
+Sat 01:00:11,13.3843,15.7890,↓ 163°,,,,Level,Estimated
+Sat 01:01:15,13.2449,15.8329,↓ 163°,,,,Level,Estimated
+Sat 01:03:06,13.0030,15.9090,↓ 163°,,,,Level,Estimated
+Sat 01:04:16,12.8505,15.9569,↓ 163°,,,,Level,Estimated
+Sat 01:06:11,12.5998,16.0354,↓ 163°,,,,Level,Estimated
+Sat 01:07:15,12.4603,16.0791,↓ 163°,,,,Level,Estimated
+Sat 01:09:16,12.1966,16.1615,↓ 163°,,,,Level,Estimated
+Sat 01:11:15,11.9372,16.2424,↓ 163°,,,,Level,Estimated
+Sat 01:12:16,11.8042,16.2838,↓ 163°,,,,Level,Estimated
+Sat 01:14:11,11.5534,16.3617,↓ 163°,,,,Level,Estimated
+Sat 01:15:14,11.4161,16.4044,↓ 163°,,,,Level,Estimated
+Sat 01:17:05,11.1740,16.4794,↓ 163°,,,,Level,Estimated
+Sat 01:18:14,11.0236,16.5260,↓ 163°,,,,Level,Estimated
+Sat 01:20:15,10.7597,16.6075,↓ 163°,,,,Level,Estimated
+Sat 01:21:15,10.6288,16.6479,↓ 163°,,,,Level,Estimated
+Sat 01:22:15,10.4980,16.6883,↓ 163°,,,,Level,Estimated
+Sat 01:24:16,10.2341,16.7696,↓ 163°,,,,Level,Estimated
+Sat 01:25:59,10.0094,16.8387,↓ 163°,,,,Level,Estimated
+Sat 01:27:11,9.8523,16.8869,↓ 163°,,,,Level,Estimated
+Sat 01:28:11,9.7214,16.9270,↓ 163°,,,,Level,Estimated
+Sat 01:29:15,9.5818,16.9699,↓ 163°,,,,Level,Estimated
+Sat 01:31:03,9.3462,17.0420,↓ 163°,,,,Level,Estimated
+Sat 01:32:15,9.1891,17.0900,↓ 163°,,,,Level,Estimated
+Sat 01:34:03,8.9535,17.1620,↓ 163°,,,,Level,Estimated
+Sat 01:35:13,8.8007,17.2086,↓ 163°,,,,Level,Estimated
+Sat 01:37:17,8.5301,17.2911,↓ 163°,,,,Level,Estimated
+Sat 01:39:02,8.3010,17.3609,↓ 163°,,,,Level,Estimated
+Sat 01:40:12,8.1482,17.4073,↓ 163°,,,,Level,Estimated
+Sat 01:41:16,8.0086,17.4498,↓ 163°,,,,Level,Estimated
+Sat 01:42:17,7.8754,17.4902,↓ 163°,,,,Level,Estimated
+Sat 01:44:13,7.6222,17.5670,↓ 163°,,,,Level,Estimated
+Sat 01:45:14,7.4891,17.6073,↓ 163°,,,,Level,Estimated
+Sat 01:47:12,7.2315,17.6853,↓ 163°,,,,Level,Estimated
+Sat 01:48:16,7.0918,17.7276,↓ 163°,,,,Level,Estimated
+Sat 01:50:12,6.8386,17.8041,↓ 163°,,,,Level,Estimated
+Sat 01:51:12,6.7076,17.8436,↓ 163°,,,,Level,Estimated
+Sat 01:53:07,6.4566,17.9194,↓ 163°,,,,Level,Estimated
+Sat 01:54:08,6.3234,17.9595,↓ 163°,,,,Level,Estimated
+Sat 01:56:16,6.0439,18.0437,↓ 163°,,,,Level,Estimated
+Sat 01:58:02,5.8125,18.1133,↓ 163°,,,,Level,Estimated
+Sat 01:59:16,5.6509,18.1619,↓ 163°,,,,Level,Estimated
+Sat 02:01:02,5.4195,18.2315,↓ 163°,,,,Level,Estimated
+Sat 02:02:15,5.2601,18.2793,↓ 163°,,,,Level,Estimated
+Sat 02:04:12,5.0046,18.3560,↓ 163°,,,,Level,Estimated
+Sat 02:05:15,4.8670,18.3972,↓ 163°,,,,Level,Estimated
+Sat 02:07:11,4.6137,18.4732,↓ 163°,,,,Level,Estimated
+Sat 02:09:05,4.3648,18.5477,↓ 163°,,,,Level,Estimated
+Sat 02:10:11,4.2206,18.5909,↓ 163°,,,,Level,Estimated
+Sat 02:11:13,4.0852,18.6314,↓ 163°,,,,Level,Estimated
+Sat 02:13:09,3.8319,18.7071,↓ 163°,,,,Level,Estimated
+Sat 02:14:14,3.6900,18.7496,↓ 163°,,,,Level,Estimated
+Sat 02:16:14,3.4279,18.8279,↓ 163°,,,,Level,Estimated
+Sat 02:18:11,3.1723,18.9042,↓ 163°,,,,Level,Estimated
+Sat 02:19:11,3.0413,18.9433,↓ 163°,,,,Level,Estimated
+Sat 02:20:16,2.8993,18.9857,↓ 163°,,,,Level,Estimated
+Sat 02:21:16,2.7683,19.0248,↓ 163°,,,,Level,Estimated
+Sat 02:23:16,2.5062,19.1029,↓ 163°,,,,Level,Estimated
+Sat 02:25:09,2.2593,19.1765,↓ 163°,,,,Level,Estimated
+Sat 02:26:10,2.1261,19.2162,↓ 163°,,,,Level,Estimated
+Sat 02:27:10,1.9951,19.2553,↓ 163°,,,,Level,Estimated
+Sat 02:29:08,1.7373,19.3320,↓ 163°,,,,Level,Estimated
+Sat 02:30:11,1.5997,19.3730,↓ 163°,,,,Level,Estimated
+Sat 02:31:14,1.4621,19.4140,↓ 163°,,,,Level,Estimated
+Sat 02:32:14,1.3310,19.4530,↓ 163°,,,,Level,Estimated
+Sat 02:34:12,1.0733,19.5298,↓ 163°,,,,Level,Estimated
+Sat 02:35:15,0.9357,19.5707,↓ 163°,,,,Level,Estimated
+Sat 02:37:10,0.6845,19.6455,↓ 163°,,,,Level,Estimated
+Sat 02:38:16,0.5403,19.6884,↓ 163°,,,,Level,Estimated
+Sat 02:40:14,0.2825,19.7651,↓ 163°,,,,Level,Estimated
+Sat 02:42:16,0.0160,19.8444,↓ 163°,,,,Level,Estimated
+Sat 02:43:16,-0.1150,19.8834,↓ 163°,,,,Level,Estimated
+Sat 02:45:09,-0.3619,19.9568,↓ 163°,,,,Level,Estimated
+Sat 02:46:13,-0.5017,19.9984,↓ 163°,,,,Level,Estimated
+Sat 02:47:15,-0.6371,20.0388,↓ 163°,,,,Level,Estimated
+Sat 02:49:04,-0.8752,20.1096,↓ 163°,,,,Level,Estimated
+Sat 02:50:14,-1.0281,20.1551,↓ 163°,,,,Level,Estimated
+Sat 02:51:14,-1.1591,20.1942,↓ 163°,,,,Level,Estimated
+Sat 02:53:14,-1.4213,20.2722,↓ 163°,,,,Level,Estimated
+Sat 02:55:11,-1.6768,20.3483,↓ 163°,,,,Level,Estimated
+Sat 02:56:13,-1.8123,20.3886,↓ 163°,,,,Level,Estimated
+Sat 02:57:14,-1.9455,20.4283,↓ 163°,,,,Level,Estimated
+Sat 02:59:14,-2.2076,20.5064,↓ 163°,,,,Level,Estimated
+Sat 03:00:16,-2.3430,20.5468,↓ 163°,,,,Level,Estimated
+Sat 03:02:11,-2.5942,20.6217,↓ 163°,,,,Level,Estimated
+Sat 03:04:15,-2.8651,20.7025,↓ 163°,,,,Level,Estimated
+Sat 03:06:01,-3.0966,20.7715,↓ 163°,,,,Level,Estimated
+Sat 03:07:09,-3.2451,20.8159,↓ 163°,,,,Level,Estimated
+Sat 03:08:15,-3.3892,20.8589,↓ 163°,,,,Level,Estimated
+Sat 03:10:11,-3.6426,20.9346,↓ 163°,,,,Level,Estimated
+Sat 03:11:14,-3.7802,20.9757,↓ 163°,,,,Level,Estimated
+Sat 03:13:10,-4.0335,21.0515,↓ 163°,,,,Level,Estimated
+Sat 03:14:15,-4.1755,21.0939,↓ 163°,,,,Level,Estimated
+Sat 03:16:11,-4.4288,21.1698,↓ 163°,,,,Level,Estimated
+Sat 03:17:17,-4.5729,21.2129,↓ 163°,,,,Level,Estimated
+Sat 03:19:14,-4.8284,21.2895,↓ 163°,,,,Level,Estimated
+Sat 03:21:08,-5.0774,21.3642,↓ 163°,,,,Level,Estimated
+Sat 03:22:11,-5.2149,21.4054,↓ 163°,,,,Level,Estimated
+Sat 03:23:13,-5.3503,21.4461,↓ 163°,,,,Level,Estimated
+Sat 03:25:10,-5.6058,21.5228,↓ 163°,,,,Level,Estimated
+Sat 03:27:07,-5.8612,21.5997,↓ 163°,,,,Level,Estimated
+Sat 03:28:09,-5.9966,21.6404,↓ 163°,,,,Level,Estimated
+Sat 03:29:11,-6.1319,21.6811,↓ 163°,,,,Level,Estimated
+Sat 03:30:15,-6.2717,21.7232,↓ 163°,,,,Level,Estimated
+Sat 03:31:57,-6.4944,21.7904,↓ 163°,,,,Level,Estimated
+Sat 03:33:07,-6.6472,21.8365,↓ 163°,,,,Level,Estimated
+Sat 03:34:15,-6.7956,21.8813,↓ 163°,,,,Level,Estimated
+Sat 03:36:05,-7.0358,21.9538,↓ 163°,,,,Level,Estimated
+Sat 03:37:14,-7.1864,21.9994,↓ 163°,,,,Level,Estimated
+Sat 03:38:15,-7.3195,22.0397,↓ 163°,,,,Level,Estimated
+Sat 03:40:05,-7.5596,22.1124,↓ 163°,,,,Level,Estimated
+Sat 03:41:15,-7.7124,22.1587,↓ 163°,,,,Level,Estimated
+Sat 03:43:03,-7.9481,22.2302,↓ 163°,,,,Level,Estimated
+Sat 03:44:17,-8.1096,22.2793,↓ 163°,,,,Level,Estimated
+Sat 03:46:14,-8.3650,22.3569,↓ 163°,,,,Level,Estimated
+Sat 03:48:08,-8.6137,22.4327,↓ 163°,,,,Level,Estimated
+Sat 03:49:10,-8.7490,22.4739,↓ 163°,,,,Level,Estimated
+Sat 03:50:12,-8.8843,22.5152,↓ 163°,,,,Level,Estimated
+Sat 03:52:11,-9.1440,22.5945,↓ 163°,,,,Level,Estimated
+Sat 03:54:16,-9.4167,22.6779,↓ 163°,,,,Level,Estimated
+Sat 03:56:15,-9.6763,22.7574,↓ 163°,,,,Level,Estimated
+Sat 03:57:16,-9.8094,22.7983,↓ 163°,,,,Level,Estimated
+Sat 03:59:02,-10.0406,22.8693,↓ 163°,,,,Level,Estimated
+Sat 04:00:16,-10.2020,22.9189,↓ 163°,,,,Level,Estimated
+Sat 04:02:11,-10.4529,22.9962,↓ 163°,,,,Level,Estimated
+Sat 04:03:16,-10.5946,23.0399,↓ 163°,,,,Level,Estimated
+Sat 04:05:15,-10.8542,23.1200,↓ 163°,,,,Level,Estimated
+Sat 04:07:05,-11.0940,23.1942,↓ 163°,,,,Level,Estimated
+Sat 04:09:16,-11.3797,23.2827,↓ 163°,,,,Level,Estimated
+Sat 04:10:16,-11.5105,23.3233,↓ 163°,,,,Level,Estimated
+Sat 04:11:51,-11.7177,23.3876,↓ 163°,,,,Level,Estimated
+Sat 04:13:15,-11.9008,23.4446,↓ 163°,,,,Level,Estimated
+Sat 04:15:05,-12.1406,23.5194,↓ 163°,,,,Level,Estimated
+Sat 04:16:09,-12.2801,23.5629,↓ 163°,,,,Level,Estimated
+Sat 04:18:08,-12.5395,23.6440,↓ 163°,,,,Level,Estimated
+Sat 04:20:09,-12.8032,23.7266,↓ 163°,,,,Level,Estimated
+Sat 04:21:14,-12.9449,23.7711,↓ 163°,,,,Level,Estimated
+Sat 04:22:14,-13.0756,23.8122,↓ 163°,,,,Level,Estimated
+Sat 04:24:13,-13.3349,23.8938,↓ 163°,,,,Level,Estimated
+Sat 04:26:16,-13.6029,23.9783,↓ 163°,,,,Level,Estimated
+Sat 04:28:11,-13.8534,24.0575,↓ 163°,,,,Level,Estimated
+Sat 04:29:14,-13.9907,24.1010,↓ 163°,,,,Level,Estimated
+Sat 04:31:04,-14.2303,24.1770,↓ 163°,,,,Level,Estimated
+Sat 04:32:08,-14.3697,24.2213,↓ 163°,,,,Level,Estimated
+Sat 04:33:16,-14.5178,24.2684,↓ 163°,,,,Level,Estimated
+Sat 04:35:01,-14.7465,24.3413,↓ 163°,,,,Level,Estimated
+Sat 04:36:16,-14.9098,24.3935,↓ 163°,,,,Level,Estimated
+Sat 04:38:10,-15.1580,24.4730,↓ 163°,,,,Level,Estimated
+Sat 04:40:13,-15.4258,24.5589,↓ 163°,,,,Level,Estimated
+Sat 04:41:13,-15.5564,24.6009,↓ 163°,,,,Level,Estimated
+Sat 04:43:07,-15.8046,24.6808,↓ 163°,,,,Level,Estimated
+Sat 04:44:10,-15.9417,24.7251,↓ 163°,,,,Level,Estimated
+Sat 04:45:13,-16.0788,24.7694,↓ 163°,,,,Level,Estimated
+Sat 04:47:11,-16.3356,24.8526,↓ 163°,,,,Level,Estimated
+Sat 04:48:14,-16.4727,24.8971,↓ 163°,,,,Level,Estimated
+Sat 04:50:09,-16.7229,24.9785,↓ 163°,,,,Level,Estimated
+Sat 04:52:11,-16.9883,25.0650,↓ 163°,,,,Level,Estimated
+Sat 04:54:05,-17.2363,25.1462,↓ 163°,,,,Level,Estimated
+Sat 04:55:13,-17.3842,25.1947,↓ 163°,,,,Level,Estimated
+Sat 04:57:14,-17.6473,25.2812,↓ 163°,,,,Level,Estimated
+Sat 04:58:16,-17.7821,25.3256,↓ 163°,,,,Level,Estimated
+Sat 05:00:08,-18.0256,25.4060,↓ 163°,,,,Level,Estimated
+Sat 05:01:16,-18.1735,25.4549,↓ 163°,,,,Level,Estimated
+Sat 05:03:09,-18.4191,25.5364,↓ 163°,,,,Level,Estimated
+Sat 05:04:10,-18.5517,25.5804,↓ 163°,,,,Level,Estimated
+Sat 05:05:13,-18.6886,25.6260,↓ 162°,,,,Level,Estimated
+Sat 05:07:09,-18.9407,25.7102,↓ 162°,,,,Level,Estimated
+Sat 05:08:16,-19.0863,25.7589,↓ 162°,,,,Level,Estimated
+Sat 05:10:06,-19.3253,25.8391,↓ 162°,,,,Level,Estimated
+Sat 05:11:14,-19.4730,25.8888,↓ 162°,,,,Level,Estimated
+Sat 05:12:14,-19.6033,25.9327,↓ 162°,,,,Level,Estimated
+Sat 05:14:10,-19.8553,26.0178,↓ 162°,,,,Level,Estimated
+Sat 05:16:06,-20.1072,26.1031,↓ 162°,,,,Level,Estimated
+Sat 05:17:11,-20.2483,26.1511,↓ 162°,,,,Level,Estimated
+Sat 05:19:11,-20.5088,26.2399,↓ 162°,,,,Level,Estimated
+Sat 05:20:13,-20.6434,26.2858,↓ 162°,,,,Level,Estimated
+Sat 05:22:08,-20.8930,26.3713,↓ 162°,,,,Level,Estimated
+Sat 05:22:25,-22.7391,25.9924,↓ 157°,524,603,37000,Level,FlightAware ADS-B (GCJ / FAGC)
+Sat 05:22:55,-22.8059,26.0235,↓ 157°,523,602,37000,Level,FlightAware ADS-B (GCJ / FAGC)
+Sat 05:23:26,-22.8738,26.0551,↓ 157°,523,602,37000,Level,FlightAware ADS-B (GCJ / FAGC)
+Sat 05:23:56,-22.9414,26.0865,↓ 157°,523,602,37000,Level,FlightAware ADS-B (HLA / FALA)
+Sat 05:24:30,-23.0162,26.1214,↓ 157°,523,602,37000,Level,FlightAware ADS-B (HLA / FALA)
+Sat 05:25:06,-23.0977,26.1594,↓ 157°,524,603,37000,Level,FlightAware ADS-B (GCJ / FAGC)
+Sat 05:25:36,-23.1641,26.1905,↓ 157°,524,603,37000,Level,FlightAware ADS-B (GCJ / FAGC)
+Sat 05:26:07,-23.2333,26.2228,↓ 157°,524,603,37000,Level,FlightAware ADS-B (GCJ / FAGC)
+Sat 05:26:37,-23.2997,26.2540,↓ 157°,523,602,37000,Level,FlightAware ADS-B (GCJ / FAGC)
+Sat 05:27:07,-23.3679,26.2860,↓ 157°,524,603,37000,Level,FlightAware ADS-B (GCJ / FAGC)
+Sat 05:27:38,-23.4342,26.3170,↓ 157°,524,603,37000,Level,FlightAware ADS-B (GCJ / FAGC)
+Sat 05:28:08,-23.5030,26.3494,↓ 157°,525,604,37000,Level,FlightAware ADS-B (GCJ / FAGC)
+Sat 05:28:38,-23.5705,26.3811,↓ 157°,526,605,37000,Level,FlightAware ADS-B (GCJ / FAGC)
+Sat 05:29:08,-23.6383,26.4131,↓ 157°,527,606,37000,Level,FlightAware ADS-B (GCJ / FAGC)
+Sat 05:29:38,-23.7058,26.4449,↓ 157°,528,608,37000,Level,FlightAware ADS-B (GCJ / FAGC)
+Sat 05:30:19,-23.7969,26.4877,↓ 157°,528,608,37000,Level,FlightAware ADS-B (HLA / FALA)
+Sat 05:30:49,-23.8644,26.5193,↓ 157°,528,608,37000,Level,FlightAware ADS-B (HLA / FALA)
+Sat 05:31:19,-23.9315,26.5508,↓ 157°,528,608,37000,Level,FlightAware ADS-B (HLA / FALA)
+Sat 05:31:50,-24.0005,26.5832,↓ 157°,527,606,37000,Level,FlightAware ADS-B (WKF / FAWK)
+Sat 05:32:20,-24.0673,26.6147,↓ 157°,528,608,37000,Level,FlightAware ADS-B (JNB / FAOR)
+Sat 05:32:50,-24.1364,26.6473,↓ 157°,527,606,37000,Level,FlightAware ADS-B (FALI)
+Sat 05:33:20,-24.2029,26.6787,↓ 157°,526,605,37000,Level,FlightAware ADS-B (FALI)
+Sat 05:33:49,-24.2688,26.7101,↓ 156°,526,605,37000,Level,FlightAware ADS-B (JNB / FAOR)
+Sat 05:34:10,-24.3147,26.7380,↘ 148°,533,613,37000,Level,FlightAware ADS-B (WKF / FAWK)
+Sat 05:34:38,-24.3674,26.7808,↘ 141°,537,618,37000,Level,FlightAware ADS-B (WKF / FAWK)
+Sat 05:35:14,-24.4353,26.8468,↘ 138°,538,619,37000,-321 Descending,FlightAware ADS-B (GCJ / FAGC)
+Sat 05:35:48,-24.4987,26.9087,↘ 138°,533,613,36625,-984 Descending,FlightAware ADS-B (WKF / FAWK)
+Sat 05:36:18,-24.5522,26.9607,↘ 138°,528,608,35950,-1167 Descending,FlightAware ADS-B (WKF / FAWK)
+Sat 05:36:51,-24.6121,27.0193,↘ 138°,508,585,35400,-976 Descending,FlightAware ADS-B (HLA / FALA)
+Sat 05:37:21,-24.6648,27.0708,↘ 138°,489,563,34925,-1375 Descending,FlightAware ADS-B (FALI)
+Sat 05:37:51,-24.7147,27.1196,↘ 138°,483,556,34025,-1825 Descending,FlightAware ADS-B (FALI)
+Sat 05:38:21,-24.7654,27.1691,↘ 138°,478,550,33100,-1672 Descending,FlightAware ADS-B (FALI)
+Sat 05:38:52,-24.8146,27.2174,↘ 138°,469,540,32325,-1500 Descending,FlightAware ADS-B (HLA / FALA)
+Sat 05:39:22,-24.8636,27.2656,↘ 138°,460,529,31575,-1575 Descending,FlightAware ADS-B (WKF / FAWK)
+Sat 05:39:52,-24.9108,27.3119,↘ 138°,453,521,30750,-1742 Descending,FlightAware ADS-B (GCJ / FAGC)
+Sat 05:40:24,-24.9605,27.3608,↘ 138°,448,516,29775,-1815 Descending,FlightAware ADS-B (GCJ / FAGC)
+Sat 05:40:54,-25.0068,27.4056,↘ 144°,442,509,28875,-1694 Descending,FlightAware ADS-B (FALI)
+Sat 05:41:18,-25.0506,27.4293,↓ 163°,427,491,28250,-1683 Descending,FlightAware ADS-B (WKF / FAWK)
+Sat 05:41:35,-25.0834,27.4356,↓ 176°,415,478,27725,-1472 Descending,FlightAware ADS-B (HLA / FALA)
+Sat 05:42:12,-25.1516,27.4364,↓ 179°,401,461,26925,-1346 Descending,FlightAware ADS-B (JNB / FAOR)
+Sat 05:42:43,-25.2081,27.4372,↓ 179°,394,453,26200,-1597 Descending,FlightAware ADS-B (JNB / FAOR)
+Sat 05:43:14,-25.2655,27.4379,↓ 179°,392,451,25275,-1623 Descending,FlightAware ADS-B (HLA / FALA)
+Sat 05:43:44,-25.3188,27.4386,↓ 179°,386,444,24550,-1450 Descending,FlightAware ADS-B (JNB / FAOR)
+Sat 05:44:14,-25.3733,27.4394,↓ 179°,379,436,23825,-1475 Descending,FlightAware ADS-B (HLA / FALA)
+Sat 05:44:44,-25.4243,27.4402,↓ 179°,375,432,23075,-1525 Descending,FlightAware ADS-B (HLA / FALA)
+Sat 05:45:14,-25.4763,27.4409,↓ 179°,370,426,22300,-1300 Descending,FlightAware ADS-B (JNB / FAOR)
+Sat 05:45:44,-25.5268,27.4416,↓ 179°,359,413,21775,-1225 Descending,FlightAware ADS-B (JNB / FAOR)
+Sat 05:46:14,-25.5774,27.4423,↓ 179°,353,406,21075,-1225 Descending,FlightAware ADS-B (JNB / FAOR)
+Sat 05:46:44,-25.6260,27.4430,↓ 179°,355,409,20550,-1250 Descending,FlightAware ADS-B (GCJ / FAGC)
+Sat 05:47:14,-25.6754,27.4435,↓ 179°,353,406,19825,-1330 Descending,FlightAware ADS-B (HLA / FALA)
+Sat 05:47:37,-25.7136,27.4543,↘ 152°,350,403,19375,-1043 Descending,FlightAware ADS-B (HLA / FALA)
+Sat 05:48:00,-25.7393,27.4795,↘ 127°,348,400,19025,-934 Descending,FlightAware ADS-B (HLA / FALA)
+Sat 05:48:38,-25.7722,27.5378,↘ 122°,345,397,18425,-926 Descending,FlightAware ADS-B (JNB / FAOR)
+Sat 05:49:08,-25.7965,27.5817,↘ 121°,341,392,17975,-950 Descending,FlightAware ADS-B (GCJ / FAGC)
+Sat 05:49:38,-25.8216,27.6271,↘ 122°,339,390,17475,-1000 Descending,FlightAware ADS-B (JNB / FAOR)
+Sat 05:50:08,-25.8466,27.6719,↘ 122°,335,386,16975,-925 Descending,FlightAware ADS-B (JNB / FAOR)
+Sat 05:50:38,-25.8703,27.7142,↘ 122°,332,382,16550,-825 Descending,FlightAware ADS-B (JNB / FAOR)
+Sat 05:51:08,-25.8941,27.7565,↘ 122°,327,376,16150,-550 Descending,FlightAware ADS-B (JNB / FAOR)
+Sat 05:51:38,-25.9185,27.8004,↘ 122°,327,376,16000,-148 Descending,FlightAware ADS-B (HLA / FALA)
+Sat 05:52:09,-25.9427,27.8437,↘ 122°,307,353,16000,Level,FlightAware ADS-B (JNB / FAOR)
+Sat 05:52:39,-25.9643,27.8825,↘ 122°,302,348,16000,Level,FlightAware ADS-B (HLA / FALA)
+Sat 05:53:09,-25.9864,27.9225,↘ 121°,303,349,16000,-225 Descending,FlightAware ADS-B (HLA / FALA)
+Sat 05:53:39,-26.0084,27.9621,↘ 121°,305,351,15775,-725 Descending,FlightAware ADS-B (GCJ / FAGC)
+Sat 05:54:09,-26.0300,28.0013,↘ 122°,291,335,15275,-949 Descending,FlightAware ADS-B (KXE / FAKD)
+Sat 05:54:28,-26.0428,28.0264,↘ 111°,277,319,15000,-770 Descending,FlightAware ADS-B (HLA / FALA)
+Sat 05:54:46,-26.0439,28.0528,→ 78°,274,315,14800,-667 Descending,FlightAware ADS-B (FAKR)
+Sat 05:55:04,-26.0337,28.0746,↗ 47°,275,316,14600,-846 Descending,FlightAware ADS-B (QRA / FAGM)
+Sat 05:55:25,-26.0113,28.0905,↑ 20°,270,311,14250,-1347 Descending,FlightAware ADS-B (FAKR)
+Sat 05:55:53,-25.9784,28.1021,↑ 19°,266,306,13500,-1424 Descending,FlightAware ADS-B (FAKR)
+Sat 05:56:24,-25.9488,28.1254,↗ 42°,256,295,12850,-1445 Descending,FlightAware ADS-B (HLA / FALA)
+Sat 05:56:48,-25.9281,28.1464,↗ 45°,256,295,12175,-1646 Descending,FlightAware ADS-B (HLA / FALA)
+Sat 05:57:05,-25.9174,28.1660,→ 69°,250,288,11725,-1636 Descending,FlightAware ADS-B (WKF / FAWK)
+Sat 05:57:43,-25.9022,28.2115,→ 68°,247,284,10675,-1750 Descending,FlightAware ADS-B (HLA / FALA)
+Sat 05:58:05,-25.8966,28.2383,→ 91°,243,280,9975,-1691 Descending,FlightAware ADS-B (WKF / FAWK)
+Sat 05:58:30,-25.9000,28.2666,→ 99°,233,268,9350,-1427 Descending,FlightAware ADS-B (WKF / FAWK)
+Sat 05:58:46,-25.9051,28.2848,↘ 118°,220,253,9000,-1409 Descending,FlightAware ADS-B (HLA / FALA)
+Sat 05:59:03,-25.9186,28.2968,↘ 155°,208,239,8575,-1243 Descending,FlightAware ADS-B (WKF / FAWK)
+Sat 05:59:21,-25.9349,28.2990,↓ 187°,200,230,8275,-750 Descending,FlightAware ADS-B (JNB / FAOR)
+Sat 05:59:47,-25.9557,28.2929,↓ 196°,182,209,8025,-519 Descending,FlightAware ADS-B (GCJ / FAGC)
+Sat 06:00:13,-25.9775,28.2865,↓ 195°,182,209,7825,-777 Descending,FlightAware ADS-B (WKF / FAWK)
+Sat 06:00:43,-26.0019,28.2790,↓ 195°,171,197,7300,-925 Descending,FlightAware ADS-B (JNB / FAOR)
+Sat 06:01:13,-26.0236,28.2722,↓ 196°,168,193,6900,-875 Descending,FlightAware ADS-B (WKF / FAWK)
+Sat 06:01:43,-26.0461,28.2656,↓ 195°,162,186,6425,-847 Descending,FlightAware ADS-B (WKF / FAWK)
+Sat 06:02:15,-26.0680,28.2585,↓ 196°,158,182,6025,-783 Descending,Surface and Near-Surface
+Sat 06:02:29,-26.0783,28.2554,↓ 195°,163,188,5825,-871 Descending,FlightAware ADS-B (JNB / FAOR)
+Sat 06:02:46,-26.0910,28.2515,↓ 195°,164,189,5575,-818 Descending,FlightAware ADS-B (GCJ / FAGC)
+Sat 06:03:02,-26.1022,28.2480,↓ 196°,167,192,5375,-844 Descending,FlightAware ADS-B (WKF / FAWK)
+Sat 06:03:18,-26.1146,28.2442,↓ 196°,163,188,5125,-441 Descending,FlightAware ADS-B (GCJ / FAGC)
+Sat 06:03:36,-26.1258,28.2407,↓ 196°,112,129,5125,Level,FlightAware ADS-B (JNB / FAOR)

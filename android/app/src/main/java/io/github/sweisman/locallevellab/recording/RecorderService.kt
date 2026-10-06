@@ -359,10 +359,12 @@ class RecorderService : Service(), ImuLink.Listener {
         synchronized(SessionStore) {
         if (resume && (prefs.activeSession != sessionId || prefs.activePhase != ph)) return
         recovery.clear()
+        var flightStartedWithoutFix = false
         if (ph == "flight") {
             if (!hasPerm(Manifest.permission.ACCESS_FINE_LOCATION)) { fail("Precise location permission is required"); return }
             val fresh = lastFixNs > 0 && SystemClock.elapsedRealtimeNanos() - lastFixNs < 30_000_000_000L && Live.state.value.hAccM < 100
             if (!fresh && !allowNoGps && !resume) { fail("GPS is missing or stale; acknowledge this on the placement screen"); return }
+            flightStartedWithoutFix = !fresh
         }
         if (phase == "placement_check" && ph == "flight" && session?.id == sessionId) closePhase()
         if (phase != null) { fail("Stop the current phase first"); return }
@@ -417,6 +419,15 @@ class RecorderService : Service(), ImuLink.Listener {
         }
         events = CsvGz(File(s.dir, "events.csv.journal"), "t_ns,kind,detail")
         event(if (resume) "phase_resume" else "phase_start", ph)
+        if (ph == "flight") {
+            // Preserve a fresh phone-clock anchor even when there is no GNSS. This is
+            // a wall-clock observation, not a claim that the phone clock is correct.
+            val elapsedBefore = SystemClock.elapsedRealtimeNanos()
+            val utcMs = System.currentTimeMillis()
+            val elapsedAfter = SystemClock.elapsedRealtimeNanos()
+            event("clock_anchor", "elapsed_ns=$elapsedBefore utc_ms=$utcMs elapsed_after_ns=$elapsedAfter source=phone_wall_clock")
+            event("gnss_start", "fresh_fix=${!flightStartedWithoutFix} acknowledged=$allowNoGps resume=$resume")
+        }
         imuOut = ImuWriter(File(s.dir, "imu.bin.journal"))
         ensureLink()
         if (imuConnected) {

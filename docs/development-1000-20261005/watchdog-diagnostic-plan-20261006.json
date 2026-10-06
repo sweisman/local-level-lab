@@ -1,0 +1,97 @@
+{
+  "purpose": "test magnetic-watchdog specificity under wind; preserve segment-level rates and exclusion geometry",
+  "status": "authorized and completed 2026-10-06; eight cases in 52.05 seconds; see watchdog-diagnostic-20261006.json",
+  "partition": "development",
+  "replay": true,
+  "source_archive_sha256": "2ace7a57330a0b9e7b079aa0ef675b39fa18b70d08a4a59b6a69fed48fd046be",
+  "source_implementation_hash": "484978c7cf384a3b181f03ca2aae532b7d166cd02f465c46a8149a013ff80cff",
+  "maximum_wall_seconds": 120,
+  "requested_cases": 8,
+  "fit_mode": "geometry only, zero bootstrap; no new inference or threshold evidence",
+  "outputs": [
+    "WMM and no-declination per-segment rates, standard errors and classification",
+    "discarded segment IDs",
+    "retained-bin count and heading diversity",
+    "worst model-anchor contrast retention and information",
+    "simulator wind and mount-creep settings",
+    "errors, timing and incomplete-at-cap cases"
+  ],
+  "cases": [
+    {
+      "truth": "sphere_rotating",
+      "scenario": "bias_mixed",
+      "seed": 600100,
+      "mount_yaw_creep_dph": 0.0,
+      "mount_tilt_creep_dph": 0.0,
+      "case_type": "recorded-input diagnostic replay",
+      "original_exclusions": []
+    },
+    {
+      "truth": "sphere_rotating",
+      "scenario": "bias_mixed",
+      "seed": 600100,
+      "mount_yaw_creep_dph": 3.0,
+      "mount_tilt_creep_dph": 0.0,
+      "case_type": "positive control using injected mount creep",
+      "original_exclusions": []
+    },
+    {
+      "truth": "sphere_rotating",
+      "scenario": "wind",
+      "seed": 600100,
+      "mount_yaw_creep_dph": 0.0,
+      "mount_tilt_creep_dph": 0.0,
+      "case_type": "recorded-input diagnostic replay",
+      "original_exclusions": []
+    },
+    {
+      "truth": "sphere_rotating",
+      "scenario": "wind",
+      "seed": 600100,
+      "mount_yaw_creep_dph": 3.0,
+      "mount_tilt_creep_dph": 0.0,
+      "case_type": "positive control using injected mount creep",
+      "original_exclusions": []
+    },
+    {
+      "truth": "sphere_rotating",
+      "scenario": "bias_mixed",
+      "seed": 600107,
+      "mount_yaw_creep_dph": 0.0,
+      "mount_tilt_creep_dph": 0.0,
+      "case_type": "recorded-input diagnostic replay",
+      "original_exclusions": []
+    },
+    {
+      "truth": "sphere_rotating",
+      "scenario": "bias_mixed",
+      "seed": 600107,
+      "mount_yaw_creep_dph": 3.0,
+      "mount_tilt_creep_dph": 0.0,
+      "case_type": "positive control using injected mount creep",
+      "original_exclusions": []
+    },
+    {
+      "truth": "sphere_rotating",
+      "scenario": "wind",
+      "seed": 600107,
+      "mount_yaw_creep_dph": 0.0,
+      "mount_tilt_creep_dph": 0.0,
+      "case_type": "recorded-input diagnostic replay",
+      "original_exclusions": [
+        "model contrast not identified"
+      ]
+    },
+    {
+      "truth": "sphere_rotating",
+      "scenario": "wind",
+      "seed": 600107,
+      "mount_yaw_creep_dph": 3.0,
+      "mount_tilt_creep_dph": 0.0,
+      "case_type": "positive control using injected mount creep",
+      "original_exclusions": [
+        "model contrast not identified"
+      ]
+    }
+  ]
+}

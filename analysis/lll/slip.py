@@ -10,8 +10,8 @@ first axis counter-clockwise about up):
 
     z(t) = e^{iδ(t)} (e^{iθ(t)} H + c) + d
 
-- θ = ψ − D: the aircraft's course minus the magnetic declination, the angle of the Earth's field
-  relative to the airframe. ψ comes from GNSS.
+- θ = ψ + β − D: aircraft heading minus magnetic declination. GNSS supplies course ψ;
+  crab β is unavailable here, so the implemented course reference assumes β = 0.
 - H: the Earth's horizontal field, c: the airframe's own field near the seat. Both turn with the
   airframe, so both turn with any slip δ of the IMU relative to it.
 - d: the IMU's own magnetic offset (hard iron). It is fixed in the IMU, so it doesn't turn with
@@ -23,9 +23,10 @@ cruise segment, the slip rate is the slope of the leftover angle, arg(z / (e^{i�
 
 Declination comes from the World Magnetic Model, which is built on a globe. So the watchdog also
 runs with no declination correction at all (D held constant), as a cross-check. A segment is
-excluded from the gyro fit when the WMM version detects slip; that choice uses only magnetometer and
-GPS data, so the declination model can only drop data, never favour a model. Both results are
-reported. The gyro fit itself never
+excluded from the gyro fit when the WMM version detects an apparent yaw change. Changing crab
+can also cause that signal; without independent heading, this is a conservative exclusion,
+not confirmation of mount slip. Both results are reported. Selection can affect subsequent
+model decisions and must be included in calibration and independent validation. The gyro fit itself never
 uses the magnetometer, and the raw magnetometer data is kept, untouched, in imu.bin.gz.
 """
 from __future__ import annotations
@@ -76,7 +77,12 @@ def watchdog(bins, hard_iron, year, max_slip_dph):
         D["wmm"] = None
         wmm_error = str(e)
     m = bins["mag"] - np.asarray(hard_iron)
-    out = {"available": True, "max_slip_dph": max_slip_dph, "variants": {}}
+    out = {"available": True, "version": "magnetic-watchdog-2", "max_slip_dph": max_slip_dph,
+           "heading_reference": "GNSS course; crab unmodeled",
+           "interpretation": "apparent yaw change; mount slip and changing crab can be confounded",
+           "mount_slip_confirmed": False,
+           "selection_policy": "conservatively exclude flagged segments; no crab correction",
+           "variants": {}}
     if D["wmm"] is None:
         out["wmm_unavailable"] = wmm_error
         del D["wmm"]
@@ -109,11 +115,12 @@ def watchdog(bins, hard_iron, year, max_slip_dph):
                 js = bins["seg"][ie] == s
                 rate, sd = _slope(bins["t"][ie][js] / 3600.0, np.degrees(ang[js]))
                 rows.append({"seg": int(s), "epoch": int(e), "slip_dph": rate, "sd_dph": sd,
+                             "apparent_yaw_rate_dph": rate,
                              "airframe_field_calibrated": calibrated,
                              "slip": bool(np.isfinite(rate) and abs(rate) > max_slip_dph and abs(rate) > 3 * sd)})
         out["variants"][variant] = rows
     # The WMM version decides (Scott, 2026-10-04). The decision uses only the magnetometer and GPS,
-    # never the gyro, so the declination model can only drop segments, never push k towards a model.
+    # never the gyro. Dropping segments still changes the design and conditional decision distribution.
     # The no-declination version is reported as a cross-check; on its own it reads real declination
     # change along the route as slip (several °/h on many routes) and would discard clean data.
     # If the WMM can't be used (date outside its validity), the no-declination version decides.

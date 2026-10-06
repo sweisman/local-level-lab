@@ -240,10 +240,14 @@ def analyze(path, th: Thresholds | None = None, *, fit_options=None) -> dict:
     gn = sess.streams.get("gnss")
     year = 1970 + float(np.median(gn["utc_ms"])) / 1000 / 86400 / 365.2425 if gn is not None and len(gn["utc_ms"]) else 2026.0
     res["slip"] = slip.watchdog(bins, hi, year, th.max_slip_dph)
+    res["slip"]["pre_exclusion_geometry"] = {"n_bins": len(bins["t"]), "heading_diversity": heading_diversity(bins)}
     if res["slip"].get("available"):
         if res["slip"]["exclude_segments"]:
             flags.append("mount_slip_detected")
+            flags.append("magnetic_yaw_change_ambiguous")
             keep = ~np.isin(bins["seg"], res["slip"]["exclude_segments"])
+            res["slip"]["excluded_bins"] = int((~keep).sum())
+            res["slip"]["retained_bins"] = int(keep.sum())
             bins = {k: (v[keep] if isinstance(v, np.ndarray) and len(v) == len(keep) else v) for k, v in bins.items()}
             if not len(bins["t"]):
                 flags.append("no_bins")

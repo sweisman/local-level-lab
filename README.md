@@ -100,6 +100,26 @@ by ±10% changed rank in 47 flights. Wind cases had lower acceptance than mixed-
 These findings require fresh calibration and rank/geometry review before independent validation.
 Detailed results and remaining work are in [VALIDATION.md](docs/VALIDATION.md#completed-development-results-2026-10-06)
 and the [campaign handoff](AGENTS.md#analysis-campaign-handoff--2026-10-05).
+A [saved-record selection review](docs/VALIDATION.md#selection-review-from-saved-records-2026-10-06)
+quantifies proposed rank-margin gates. The subsequent
+[eight-case magnetic diagnostic](docs/VALIDATION.md#magnetic-watchdog-diagnostic-and-next-pilot-2026-10-06)
+confirmed that wind can trigger conservative segment exclusions without mount creep.
+Analysis now labels that ambiguity explicitly and retains the protective exclusions.
+Scott authorized another **1,000 development attempts**, with fresh seeds and a 10% rank-stability
+margin, at the same geometry. Its durable progress and frozen configuration are in
+`docs/development-1000-20261006/`; results are generated automatically at completion.
+While it runs, only the frozen manifest is published; live progress and checkpoints remain local.
+This pilot precedes fresh calibration. The refreshed
+[calibration proposal](docs/flight-calibration-proposed-manifest-20261006.json) remains unrun
+and must be reviewed against the new pilot before approval; full calibration and validation
+still cost approximately 70 serial days before an attempt reserve.
+
+Three [observed flight tracks](docs/flight-geometry-20261006/README.md) are also normalized for
+future development geometry tests. They provide real position/course histories at coarse sampling;
+simulated sensor and nuisance processes will remain explicit. They supply no IMU validation evidence.
+Four further [directly scraped public tracks](docs/scraped-flight-geometry-20261006/README.md)
+cover high latitude, the equator, and Europe/Middle East–South Africa routes. Source estimates
+and coverage gaps are preserved and excluded from reported-position coverage calculations.
 
 ## Server
 
@@ -127,6 +147,19 @@ The per-IP limit uses the client address uvicorn sees. Behind a reverse proxy on
 ## Android
 
 Open `android/` in Android Studio, or run `./gradlew assembleDebug` (JDK 17 or 21, Android SDK 35). To set the default upload server for your build, use `lll.serverUrl` in `android/gradle.properties`. Users can change it in Settings. Choose and configure the IMU in Settings before the first session.
+
+## Flight identity and GPS recovery
+
+Flight setup requires a searchable airline selection, its operating flight number, the departure
+date at the origin, and airport codes. The offline directory contains 6,136 coded OpenFlights
+records, including historical carriers; listing is not verification that a flight operated.
+Use **Open flight history** to check the date and route. If phone GPS is missing, keep recording
+the IMU and save a public track after landing. It can cross-check GPS and potentially recover
+geometry, subject to observed coverage, time alignment and uncertainty checks. Automatic
+external-track fallback is not yet part of the scientific analysis. See [the protocol](docs/PROTOCOL.md).
+
+The bundled airline directory is [OpenFlights data](https://openflights.org/data.php), licensed
+under ODbL-1.0; its license is in `android/app/src/main/assets/airlines-LICENSE.txt`.
 
 ## Openness
 

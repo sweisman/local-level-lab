@@ -1,0 +1,162 @@
+{
+  "source_url": "https://www.flightaware.com/live/flight/SIA938/history/20261002/0125Z/WSSS/WADD/tracklog",
+  "scheduled_departure_utc": "2026-10-02T01:25:00+00:00",
+  "displayed_timezone": "EDT",
+  "export_timezone": "UTC",
+  "first_observation_utc": "2026-10-02T01:39:16+00:00",
+  "last_observation_utc": "2026-10-02T04:05:46+00:00",
+  "coordinate_rows": 270,
+  "html_sha256": "5277414b7541fab575af9aa518e47c5785670ffa99042cb578faccb561dacad3",
+  "completeness": "all public coordinate rows in the retrieved table; coverage gaps remain explicit",
+  "export_sha256": "37a7265240fd68a470b5f6badeb07062ba8db4e36578960a7f2a154f98009aa1",
+  "retrieved_utc": "2026-10-06T06:05:22.295967+00:00",
+  "partition": "development",
+  "extractor_sha256": "7e8e6cc92444e7260734952b96fed7d037d3fc68118ce33d438d36c6d6f39108",
+  "geometry_summary": {
+    "id": "2026-10-02-singapore-938-sin-dps",
+    "origin": "SIN",
+    "destination": "DPS",
+    "points": 270,
+    "duration_hours": 2.441666666666667,
+    "latitude_range_deg": [
+      -8.8134,
+      1.495
+    ],
+    "longitude_range_deg": [
+      103.9963,
+      115.1531
+    ],
+    "median_sampling_seconds": 30,
+    "maximum_sampling_gap_seconds": 148,
+    "duplicate_time_intervals": 0,
+    "gaps_over_90_seconds": [
+      {
+        "start_s": 1842,
+        "end_s": 1980,
+        "seconds": 138
+      },
+      {
+        "start_s": 2280,
+        "end_s": 2386,
+        "seconds": 106
+      },
+      {
+        "start_s": 3506,
+        "end_s": 3654,
+        "seconds": 148
+      },
+      {
+        "start_s": 6642,
+        "end_s": 6771,
+        "seconds": 129
+      },
+      {
+        "start_s": 6771,
+        "end_s": 6897,
+        "seconds": 126
+      },
+      {
+        "start_s": 6897,
+        "end_s": 7013,
+        "seconds": 116
+      }
+    ],
+    "missing_speed_points": 5,
+    "missing_altitude_points": 5,
+    "median_ground_speed_mps": 235.61555555555555,
+    "maximum_reported_altitude_m": 11894.82,
+    "windows_75min": [
+      {
+        "start_s": 0,
+        "end_s": 4500,
+        "observed_coverage_fraction": 0.9128888888888889,
+        "minimum_course_arc_deg": 144.0
+      },
+      {
+        "start_s": 300,
+        "end_s": 4800,
+        "observed_coverage_fraction": 0.9128888888888889,
+        "minimum_course_arc_deg": 47.0
+      },
+      {
+        "start_s": 600,
+        "end_s": 5100,
+        "observed_coverage_fraction": 0.9128888888888889,
+        "minimum_course_arc_deg": 44.0
+      },
+      {
+        "start_s": 900,
+        "end_s": 5400,
+        "observed_coverage_fraction": 0.9128888888888889,
+        "minimum_course_arc_deg": 18.0
+      },
+      {
+        "start_s": 1200,
+        "end_s": 5700,
+        "observed_coverage_fraction": 0.9128888888888889,
+        "minimum_course_arc_deg": 15.0
+      },
+      {
+        "start_s": 1500,
+        "end_s": 6000,
+        "observed_coverage_fraction": 0.9128888888888889,
+        "minimum_course_arc_deg": 15.0
+      },
+      {
+        "start_s": 1800,
+        "end_s": 6300,
+        "observed_coverage_fraction": 0.9128888888888889,
+        "minimum_course_arc_deg": 23.0
+      },
+      {
+        "start_s": 2100,
+        "end_s": 6600,
+        "observed_coverage_fraction": 0.9435555555555556,
+        "minimum_course_arc_deg": 20.0
+      },
+      {
+        "start_s": 2400,
+        "end_s": 6900,
+        "observed_coverage_fraction": 0.9097777777777778,
+        "minimum_course_arc_deg": 23.0
+      },
+      {
+        "start_s": 2700,
+        "end_s": 7200,
+        "observed_coverage_fraction": 0.8846666666666667,
+        "minimum_course_arc_deg": 23.0
+      },
+      {
+        "start_s": 3000,
+        "end_s": 7500,
+        "observed_coverage_fraction": 0.8846666666666667,
+        "minimum_course_arc_deg": 153.0
+      },
+      {
+        "start_s": 3300,
+        "end_s": 7800,
+        "observed_coverage_fraction": 0.8846666666666667,
+        "minimum_course_arc_deg": 168.0
+      },
+      {
+        "start_s": 3600,
+        "end_s": 8100,
+        "observed_coverage_fraction": 0.9055555555555556,
+        "minimum_course_arc_deg": 320.0
+      },
+      {
+        "start_s": 3900,
+        "end_s": 8400,
+        "observed_coverage_fraction": 0.9175555555555556,
+        "minimum_course_arc_deg": 323.0
+      },
+      {
+        "start_s": 4200,
+        "end_s": 8700,
+        "observed_coverage_fraction": 0.9175555555555556,
+        "minimum_course_arc_deg": 323.0
+      }
+    ],
+    "coverage95_windows": 0
+  }
+}

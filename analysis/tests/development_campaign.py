@@ -7,10 +7,13 @@ import base64
 from collections import Counter
 from datetime import datetime, timezone
 import fcntl
+import gzip
 import json
+import math
 import os
 from pathlib import Path
 import signal
+import shutil
 import subprocess
 import sys
 import time
@@ -20,7 +23,7 @@ sys.path[:0] = [str(ROOT/'analysis'), str(ROOT/'server')]
 import research
 from lll import __version__, models
 from lll.inference_policy import INFERENCE_POLICY, digest
-from lll.policy import POLICY_VERSION, eligibility_policies
+from lll.policy import POLICY_VERSION, CANDIDATE_POLICY, eligibility_policies
 from lll.rank_sweep import sweep
 from lll.research_design import freeze_manifest, implementation_hash, plain, protocol_geometry, realize, seed_range
 from lll.runtime import numerical_environment, numerical_environment_hash
@@ -28,9 +31,11 @@ from lll.runtime import numerical_environment, numerical_environment_hash
 DEFAULT_OUTPUT = ROOT/'docs/development-1000-20261005'
 
 
-def plan(flights=1000, first_seed=600100):
+def plan(flights=1000, first_seed=600100, rank_margin=0.):
     if flights < 1:
         raise ValueError('flight count must be positive')
+    if not math.isfinite(rank_margin) or rank_margin < 0:
+        raise ValueError('rank margin must be finite and nonnegative')
     seed_range('development', first_seed, (flights+5)//6)
     return dict(partition='development', requested_flights=flights, first_seed=first_seed,
         truths=list(models.MODELS), scenarios=['bias_mixed', 'wind'], variant='spp', geometry='fixed',
@@ -39,7 +44,7 @@ def plan(flights=1000, first_seed=600100):
             crab_model='dynamic', noise_model='axis_segment', bootstrap_refit='nonlinear',
             crab_rate_sigma_dph=1., forward_uncertainty=True, crab_knot_seconds=None,
             research_candidate=True, bias_model='dynamic', bias_knot_seconds=INFERENCE_POLICY['bias_knot_seconds'],
-            bias_rw_sigma_dph_sqrth=INFERENCE_POLICY['bias_rw_sigma_dph_sqrth'], rank_min_relative_margin=0.),
+            bias_rw_sigma_dph_sqrth=INFERENCE_POLICY['bias_rw_sigma_dph_sqrth'], rank_min_relative_margin=rank_margin),
         model_test_ranks=[1, 2, 3], pairwise_evidence=True,
         evidence_use='development only; no threshold estimation or independent validation')
 
@@ -60,6 +65,33 @@ def atomic_json(path, data):
     temporary = path.with_suffix(path.suffix+'.tmp')
     temporary.write_text(json.dumps(plain(data), indent=2, allow_nan=False)+'\n')
     os.replace(temporary, path)
+
+
+def archive(path):
+    destination = path.with_suffix(path.suffix+'.gz')
+    temporary = destination.with_suffix(destination.suffix+'.tmp')
+    with path.open('rb') as source, gzip.open(temporary, 'wb', compresslevel=6) as output:
+        shutil.copyfileobj(source, output)
+    os.replace(temporary, destination)
+
+
+def magnetic_summary(records):
+    groups = {}
+    for row in records:
+        key = row['truth']+'/'+row['scenario']
+        group = groups.setdefault(key, dict(attempts=0, flagged=0, excluded_bins=0,
+            design_failures=0, unstable_rank=0, flagged_segments_without_airframe_calibration=0))
+        group['attempts'] += 1
+        group['flagged'] += 'mount_slip_detected' in row.get('flags', [])
+        watchdog = row.get('slip') or {}
+        group['excluded_bins'] += watchdog.get('excluded_bins', 0)
+        group['design_failures'] += 'model contrast not identified' in row.get('exclusions', [])
+        group['unstable_rank'] += 'unstable model-test rank' in row.get('exclusions', [])
+        variant = watchdog.get('variants', {}).get(watchdog.get('decided_by'), [])
+        group['flagged_segments_without_airframe_calibration'] += sum(
+            item['slip'] and not item['airframe_field_calibrated'] for item in variant)
+    return dict(partition='development', cells=groups,
+        note='Magnetic rates are apparent yaw change, not confirmed mount slip; no thresholds estimated.')
 
 
 def load_records(path, config):
@@ -176,6 +208,11 @@ def run_campaign(output, config, resume=False, flight_runner=None):
                 simulation_assumption='approved provenance and usable bench tier; remaining gates applied')
             atomic_json(output/'campaign.json', campaign)
             atomic_json(output/'rank-sweep.json', sweep(campaign))
+            cutoff = CANDIDATE_POLICY['retention_threshold']
+            atomic_json(output/'rank-sweep-narrow.json', sweep(campaign, [cutoff*f for f in (.9, 1., 1.1)]))
+            atomic_json(output/'magnetic-summary.json', magnetic_summary(records))
+            archive(output/'campaign.json')
+            archive(records_path)
             status('complete')
             print(f'Completed {len(records)} development attempts; {output}', flush=True)
         except BaseException as exc:
@@ -188,17 +225,19 @@ def main():
     parser.add_argument('--output', type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument('--flights', type=int, default=1000)
     parser.add_argument('--seed', type=int, default=600100)
+    parser.add_argument('--rank-min-relative-margin', type=float, default=0.)
     parser.add_argument('--resume', action='store_true')
     parser.add_argument('--detach', action='store_true', help='start a background worker with a durable log')
     args = parser.parse_args()
-    config = plan(args.flights, args.seed)
+    config = plan(args.flights, args.seed, args.rank_min_relative_margin)
     if args.detach:
         args.output.mkdir(parents=True, exist_ok=True)
         existing = args.output/'manifest.json'
         if existing.exists() and (not args.resume or json.loads(existing.read_text()) != freeze_manifest(config)):
             raise ValueError('existing campaign needs --resume with its unchanged source/environment/configuration')
         command = [sys.executable, str(Path(__file__).resolve()), '--output', str(args.output.resolve()),
-                   '--flights', str(args.flights), '--seed', str(args.seed)]
+                   '--flights', str(args.flights), '--seed', str(args.seed),
+                   '--rank-min-relative-margin', str(args.rank_min_relative_margin)]
         if args.resume:
             command.append('--resume')
         with (args.output/'worker.log').open('ab') as log:

@@ -1,0 +1,257 @@
+{
+  "partition": "development",
+  "mode": "recorded gate sensitivity; no refits, no cutoff changes, no calibration",
+  "source_implementation_hash": "484978c7cf384a3b181f03ca2aae532b7d166cd02f465c46a8149a013ff80cff",
+  "source_manifest_hash": "b6aea66d97e910c0692672c375018ed31a20c115426534abaf9eb9478aa2908e",
+  "original_attempts": 1000,
+  "seconds_per_attempt": 11.727833574109011,
+  "sample_goals": {
+    "calibration_accepted_per_cell": 29285,
+    "validation_accepted_per_cell": 33169
+  },
+  "scenarios": {
+    "bias_mixed": {
+      "attempts": 500,
+      "slip_flags": 6,
+      "design_failures": 3,
+      "design_failures_with_slip_flag": 3,
+      "flagged_with_zero_injected_mount_slip": 6,
+      "failed_contrasts": {
+        "sphere_rotating_vs_sphere_still": 3,
+        "sphere_rotating_vs_flat_still": 3,
+        "sphere_still_vs_flat_still": 3
+      }
+    },
+    "wind": {
+      "attempts": 500,
+      "slip_flags": 132,
+      "design_failures": 88,
+      "design_failures_with_slip_flag": 88,
+      "flagged_with_zero_injected_mount_slip": 132,
+      "failed_contrasts": {
+        "sphere_rotating_vs_flat_still": 61,
+        "sphere_still_vs_flat_still": 88,
+        "sphere_rotating_vs_sphere_still": 27
+      }
+    }
+  },
+  "rank_margin_profiles": [
+    {
+      "proposed_relative_rank_margin": 0.0,
+      "eligible": 906,
+      "null_rejections": 1,
+      "eligible_rank_counts": {
+        "2": 877,
+        "1": 29
+      },
+      "cells": {
+        "sphere_rotating/bias_mixed": {
+          "attempts": 167,
+          "eligible": 166,
+          "eligible_rank2": 166,
+          "null_rejections": 1
+        },
+        "sphere_rotating/wind": {
+          "attempts": 167,
+          "eligible": 137,
+          "eligible_rank2": 137,
+          "null_rejections": 0
+        },
+        "sphere_still/bias_mixed": {
+          "attempts": 167,
+          "eligible": 166,
+          "eligible_rank2": 166,
+          "null_rejections": 0
+        },
+        "sphere_still/wind": {
+          "attempts": 167,
+          "eligible": 138,
+          "eligible_rank2": 135,
+          "null_rejections": 0
+        },
+        "flat_still/bias_mixed": {
+          "attempts": 166,
+          "eligible": 164,
+          "eligible_rank2": 151,
+          "null_rejections": 0
+        },
+        "flat_still/wind": {
+          "attempts": 166,
+          "eligible": 135,
+          "eligible_rank2": 122,
+          "null_rejections": 0
+        }
+      },
+      "minimum_observed_rank2_acceptance": 0.7349397590361446,
+      "estimated_calibration_attempts_per_cell": 39847,
+      "estimated_validation_attempts_per_cell": 45132,
+      "estimated_combined_attempts": 509874,
+      "estimated_serial_days": 69.2096923120979
+    },
+    {
+      "proposed_relative_rank_margin": 0.05,
+      "eligible": 897,
+      "null_rejections": 1,
+      "eligible_rank_counts": {
+        "2": 873,
+        "1": 24
+      },
+      "cells": {
+        "sphere_rotating/bias_mixed": {
+          "attempts": 167,
+          "eligible": 166,
+          "eligible_rank2": 166,
+          "null_rejections": 1
+        },
+        "sphere_rotating/wind": {
+          "attempts": 167,
+          "eligible": 137,
+          "eligible_rank2": 137,
+          "null_rejections": 0
+        },
+        "sphere_still/bias_mixed": {
+          "attempts": 167,
+          "eligible": 166,
+          "eligible_rank2": 166,
+          "null_rejections": 0
+        },
+        "sphere_still/wind": {
+          "attempts": 167,
+          "eligible": 132,
+          "eligible_rank2": 132,
+          "null_rejections": 0
+        },
+        "flat_still/bias_mixed": {
+          "attempts": 166,
+          "eligible": 162,
+          "eligible_rank2": 150,
+          "null_rejections": 0
+        },
+        "flat_still/wind": {
+          "attempts": 166,
+          "eligible": 134,
+          "eligible_rank2": 122,
+          "null_rejections": 0
+        }
+      },
+      "minimum_observed_rank2_acceptance": 0.7349397590361446,
+      "estimated_calibration_attempts_per_cell": 39847,
+      "estimated_validation_attempts_per_cell": 45132,
+      "estimated_combined_attempts": 509874,
+      "estimated_serial_days": 69.2096923120979
+    },
+    {
+      "proposed_relative_rank_margin": 0.1,
+      "eligible": 894,
+      "null_rejections": 1,
+      "eligible_rank_counts": {
+        "2": 870,
+        "1": 24
+      },
+      "cells": {
+        "sphere_rotating/bias_mixed": {
+          "attempts": 167,
+          "eligible": 166,
+          "eligible_rank2": 166,
+          "null_rejections": 1
+        },
+        "sphere_rotating/wind": {
+          "attempts": 167,
+          "eligible": 137,
+          "eligible_rank2": 137,
+          "null_rejections": 0
+        },
+        "sphere_still/bias_mixed": {
+          "attempts": 167,
+          "eligible": 166,
+          "eligible_rank2": 166,
+          "null_rejections": 0
+        },
+        "sphere_still/wind": {
+          "attempts": 167,
+          "eligible": 130,
+          "eligible_rank2": 130,
+          "null_rejections": 0
+        },
+        "flat_still/bias_mixed": {
+          "attempts": 166,
+          "eligible": 162,
+          "eligible_rank2": 150,
+          "null_rejections": 0
+        },
+        "flat_still/wind": {
+          "attempts": 166,
+          "eligible": 133,
+          "eligible_rank2": 121,
+          "null_rejections": 0
+        }
+      },
+      "minimum_observed_rank2_acceptance": 0.7289156626506024,
+      "estimated_calibration_attempts_per_cell": 40177,
+      "estimated_validation_attempts_per_cell": 45505,
+      "estimated_combined_attempts": 514092,
+      "estimated_serial_days": 69.7822386317228
+    },
+    {
+      "proposed_relative_rank_margin": 0.2,
+      "eligible": 866,
+      "null_rejections": 1,
+      "eligible_rank_counts": {
+        "2": 846,
+        "1": 20
+      },
+      "cells": {
+        "sphere_rotating/bias_mixed": {
+          "attempts": 167,
+          "eligible": 166,
+          "eligible_rank2": 166,
+          "null_rejections": 1
+        },
+        "sphere_rotating/wind": {
+          "attempts": 167,
+          "eligible": 137,
+          "eligible_rank2": 137,
+          "null_rejections": 0
+        },
+        "sphere_still/bias_mixed": {
+          "attempts": 167,
+          "eligible": 164,
+          "eligible_rank2": 164,
+          "null_rejections": 0
+        },
+        "sphere_still/wind": {
+          "attempts": 167,
+          "eligible": 111,
+          "eligible_rank2": 111,
+          "null_rejections": 0
+        },
+        "flat_still/bias_mixed": {
+          "attempts": 166,
+          "eligible": 158,
+          "eligible_rank2": 149,
+          "null_rejections": 0
+        },
+        "flat_still/wind": {
+          "attempts": 166,
+          "eligible": 130,
+          "eligible_rank2": 119,
+          "null_rejections": 0
+        }
+      },
+      "minimum_observed_rank2_acceptance": 0.6646706586826348,
+      "estimated_calibration_attempts_per_cell": 44060,
+      "estimated_validation_attempts_per_cell": 49903,
+      "estimated_combined_attempts": 563778,
+      "estimated_serial_days": 76.52655736972258
+    }
+  ],
+  "limitations": [
+    "Proposed gates were not applied to any deployed policy.",
+    "Calibration/validation costs use minimum observed cell acceptance, not a confidence bound.",
+    "Future calibrated-rule acceptance can differ.",
+    "Association with watchdog flags does not establish why a segment was excluded.",
+    "No development results are independent validation evidence."
+  ],
+  "source_archive_sha256": "2ace7a57330a0b9e7b079aa0ef675b39fa18b70d08a4a59b6a69fed48fd046be",
+  "review_source_sha256": "e05130ad39eae0912d5bf13884b52ee5c46e6ceb5ff7abaf17aebd8555e04eb4"
+}

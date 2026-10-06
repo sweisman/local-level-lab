@@ -5,6 +5,7 @@ import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.view.WindowManager
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -63,6 +64,9 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import io.github.sweisman.locallevellab.Prefs
 import io.github.sweisman.locallevellab.model.Transport
+import io.github.sweisman.locallevellab.model.Airline
+import io.github.sweisman.locallevellab.model.AirlineDirectory
+import io.github.sweisman.locallevellab.model.FlightIdentity
 import io.github.sweisman.locallevellab.recording.Live
 import io.github.sweisman.locallevellab.recording.RecorderService
 import io.github.sweisman.locallevellab.recording.Session
@@ -270,18 +274,32 @@ fun NewSessionScreen(nav: NavController, kind: String = "flight") {
     var mount by remember { mutableStateOf("window") }
     var orientation by remember { mutableStateOf("") }
     var rotated by remember { mutableStateOf(false) }
+    val directory = remember { runCatching {
+        ctx.assets.open("airlines.json").bufferedReader().use { AirlineDirectory.read(it.readText()) }
+    }.getOrNull() }
+    var airline by remember { mutableStateOf<Airline?>(null) }
+    val identityValid = FlightIdentity.valid(airline, f.value["flight_number"] ?: "", f.value["date"] ?: "",
+        f.value["origin"] ?: "", f.value["destination"] ?: "")
     @Composable
     fun field(key: String, label: String, kb: KeyboardType = KeyboardType.Text) =
         OutlinedTextField(f.value[key] ?: "", { f.value = f.value + (key to it) }, label = { Text(label) }, singleLine = true,
             modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp), keyboardOptions = KeyboardOptions(keyboardType = kb))
     Page("New flight session", nav, help = "before") {
-        field("airline", "Airline (e.g. United)")
-        field("flight_number", "Flight number (e.g. UA 123)")
-        field("date", "Date (YYYY-MM-DD)")
+        AirlinePicker(directory, airline) { airline = it }
+        field("flight_number", "Operating flight number (e.g. 123 or UA 123)")
+        field("date", "Departure date at origin (YYYY-MM-DD)")
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             Box(Modifier.weight(1f)) { field("origin", "From (IATA)") }
             Box(Modifier.weight(1f)) { field("destination", "To (IATA)") }
         }
+        Para("Use the operating flight on your booking, with its departure date and airport codes. These details let us check your GPS against a public track and investigate GPS gaps after landing.")
+        airline?.historyUrl(f.value["flight_number"] ?: "")?.let { url ->
+            OutlinedButton({
+                runCatching { ctx.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url))) }
+                    .onFailure { android.widget.Toast.makeText(ctx, "No browser is available", android.widget.Toast.LENGTH_SHORT).show() }
+            }, Modifier.fillMaxWidth()) { Text("Open flight history") }
+        }
+        Para("Check the date and route in the flight history. Offline entry does not verify that a flight flew; a future flight may have no track yet.")
         field("aircraft_type", "Aircraft type, if known (e.g. A321)")
         Choice(listOf("unspecified" to "Unspecified", "window" to "Window", "middle" to "Middle", "aisle" to "Aisle"), f.value["seat_position"] ?: "unspecified") {
             f.value = f.value + ("seat_position" to it)
@@ -300,12 +318,20 @@ fun NewSessionScreen(nav: NavController, kind: String = "flight") {
         Spacer(Modifier.height(12.dp))
         Button({
             val flight = JSONObject()
-            listOf("airline", "flight_number", "date", "origin", "destination", "aircraft_type", "seat_position", "notes")
+            listOf("date", "origin", "destination", "aircraft_type", "seat_position", "notes")
                 .forEach { flight.put(it, (f.value[it] ?: "").trim()) }
+            val carrier = requireNotNull(airline)
+            flight.put("airline", carrier.name).put("flight_number", carrier.number(f.value["flight_number"] ?: ""))
+                .put("airline_id", carrier.id).put("airline_iata", carrier.iata).put("airline_icao", carrier.icao)
+                .put("airline_directory_revision", directory!!.revision).put("date_basis", "origin-local")
+                .put("track_verification", "pending")
+                .put("origin", flight.getString("origin").uppercase(Locale.ROOT))
+                .put("destination", flight.getString("destination").uppercase(Locale.ROOT))
             val m = JSONObject().put("type", mount).put("orientation_note", orientation.trim()).put("rotated_180_control", rotated)
             val s = SessionStore.create(ctx, flight, m)
             nav.navigate("session/${s.id}") { popUpTo("home") }
-        }, Modifier.fillMaxWidth(), enabled = true) { Text("Create session") }
+        }, Modifier.fillMaxWidth(), enabled = identityValid) { Text("Create session") }
+        if (!identityValid) Text("Choose an airline, enter its flight number, a valid departure date, and two different three-letter airport codes.")
     }
 }
 
@@ -523,7 +549,7 @@ fun PlacementScreen(id: String, nav: NavController) {
             Stat("Gravity axis", live.gravityAxis)
             Stat("GPS", if (live.hasFix) "fix, ${live.sats} sats" else "searching…")
             Para("Light vibration is normal. If the counter keeps resetting, the IMU isn't held firmly enough.", muted = true)
-            if (!live.hasFix) SwitchRow("Start without a fresh GPS fix; data may be unusable", allowNoGps) { allowNoGps = it }
+        if (!live.hasFix) SwitchRow("Record without a fresh GPS fix; a public track may help recover geometry after landing", allowNoGps) { allowNoGps = it }
             Button({ RecorderService.start(ctx, id, "flight", allowNoGps = allowNoGps); nav.navigate("record/$id") { popUpTo("session/$id") } },
                 Modifier.fillMaxWidth(), enabled = live.stillStreakS >= 60 && (live.hasFix || allowNoGps) && live.imuConfigOk == true) { Text("Start flight recording") }
             TextButton({ RecorderService.stop(ctx) }) { Text("Cancel check") }

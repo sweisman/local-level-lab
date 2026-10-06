@@ -1,0 +1,657 @@
+{
+  "source_url": "https://www.flightaware.com/live/flight/ICE680/history/20261002/2250Z/KSEA/BIKF/tracklog",
+  "scheduled_departure_utc": "2026-10-02T22:50:00+00:00",
+  "displayed_timezone": "EDT",
+  "export_timezone": "UTC",
+  "first_observation_utc": "2026-10-02T22:55:42+00:00",
+  "last_observation_utc": "2026-10-03T05:55:50+00:00",
+  "coordinate_rows": 560,
+  "html_sha256": "cf04354ca7b9b95406c60863c05d14d1379cd77faf12f6444c035198a238745c",
+  "completeness": "all public coordinate rows in the retrieved table; coverage gaps remain explicit",
+  "export_sha256": "5cbcf2b6db55f44f35bf41c83aed6acd423b20831be6b5c111d5b9e22999553f",
+  "retrieved_utc": "2026-10-06T06:05:12.221747+00:00",
+  "partition": "development",
+  "extractor_sha256": "7e8e6cc92444e7260734952b96fed7d037d3fc68118ce33d438d36c6d6f39108",
+  "geometry_summary": {
+    "id": "2026-10-02-icelandair-680-sea-kef",
+    "origin": "SEA",
+    "destination": "KEF",
+    "points": 560,
+    "duration_hours": 7.002222222222223,
+    "latitude_range_deg": [
+      47.3135,
+      68.0063
+    ],
+    "longitude_range_deg": [
+      -122.3096,
+      -22.6053
+    ],
+    "median_sampling_seconds": 30,
+    "maximum_sampling_gap_seconds": 430,
+    "duplicate_time_intervals": 0,
+    "gaps_over_90_seconds": [
+      {
+        "start_s": 6995,
+        "end_s": 7107,
+        "seconds": 112
+      },
+      {
+        "start_s": 7384,
+        "end_s": 7504,
+        "seconds": 120
+      },
+      {
+        "start_s": 9141,
+        "end_s": 9571,
+        "seconds": 430
+      },
+      {
+        "start_s": 10242,
+        "end_s": 10354,
+        "seconds": 112
+      },
+      {
+        "start_s": 12288,
+        "end_s": 12389,
+        "seconds": 101
+      },
+      {
+        "start_s": 12454,
+        "end_s": 12567,
+        "seconds": 113
+      },
+      {
+        "start_s": 12688,
+        "end_s": 12806,
+        "seconds": 118
+      },
+      {
+        "start_s": 12992,
+        "end_s": 13110,
+        "seconds": 118
+      },
+      {
+        "start_s": 13173,
+        "end_s": 13288,
+        "seconds": 115
+      },
+      {
+        "start_s": 13354,
+        "end_s": 13472,
+        "seconds": 118
+      },
+      {
+        "start_s": 13472,
+        "end_s": 13594,
+        "seconds": 122
+      },
+      {
+        "start_s": 13654,
+        "end_s": 13767,
+        "seconds": 113
+      },
+      {
+        "start_s": 13865,
+        "end_s": 13985,
+        "seconds": 120
+      },
+      {
+        "start_s": 18272,
+        "end_s": 18683,
+        "seconds": 411
+      },
+      {
+        "start_s": 18683,
+        "end_s": 18814,
+        "seconds": 131
+      },
+      {
+        "start_s": 18874,
+        "end_s": 18969,
+        "seconds": 95
+      },
+      {
+        "start_s": 19053,
+        "end_s": 19163,
+        "seconds": 110
+      },
+      {
+        "start_s": 19227,
+        "end_s": 19346,
+        "seconds": 119
+      },
+      {
+        "start_s": 19346,
+        "end_s": 19467,
+        "seconds": 121
+      },
+      {
+        "start_s": 19592,
+        "end_s": 19711,
+        "seconds": 119
+      },
+      {
+        "start_s": 19711,
+        "end_s": 19834,
+        "seconds": 123
+      },
+      {
+        "start_s": 19834,
+        "end_s": 19949,
+        "seconds": 115
+      },
+      {
+        "start_s": 20012,
+        "end_s": 20122,
+        "seconds": 110
+      },
+      {
+        "start_s": 20254,
+        "end_s": 20359,
+        "seconds": 105
+      },
+      {
+        "start_s": 20434,
+        "end_s": 20548,
+        "seconds": 114
+      },
+      {
+        "start_s": 20548,
+        "end_s": 20671,
+        "seconds": 123
+      },
+      {
+        "start_s": 20731,
+        "end_s": 20845,
+        "seconds": 114
+      },
+      {
+        "start_s": 20971,
+        "end_s": 21089,
+        "seconds": 118
+      },
+      {
+        "start_s": 21152,
+        "end_s": 21267,
+        "seconds": 115
+      },
+      {
+        "start_s": 21267,
+        "end_s": 21389,
+        "seconds": 122
+      },
+      {
+        "start_s": 21389,
+        "end_s": 21503,
+        "seconds": 114
+      },
+      {
+        "start_s": 21571,
+        "end_s": 21692,
+        "seconds": 121
+      },
+      {
+        "start_s": 21754,
+        "end_s": 21866,
+        "seconds": 112
+      },
+      {
+        "start_s": 21934,
+        "end_s": 22047,
+        "seconds": 113
+      },
+      {
+        "start_s": 22171,
+        "end_s": 22287,
+        "seconds": 116
+      },
+      {
+        "start_s": 22354,
+        "end_s": 22464,
+        "seconds": 110
+      },
+      {
+        "start_s": 22592,
+        "end_s": 22708,
+        "seconds": 116
+      },
+      {
+        "start_s": 22708,
+        "end_s": 22824,
+        "seconds": 116
+      },
+      {
+        "start_s": 22889,
+        "end_s": 23009,
+        "seconds": 120
+      }
+    ],
+    "missing_speed_points": 70,
+    "missing_altitude_points": 70,
+    "median_ground_speed_mps": 241.7888888888889,
+    "maximum_reported_altitude_m": 10698.480000000001,
+    "windows_75min": [
+      {
+        "start_s": 0,
+        "end_s": 4500,
+        "observed_coverage_fraction": 1.0,
+        "minimum_course_arc_deg": 178.0
+      },
+      {
+        "start_s": 300,
+        "end_s": 4800,
+        "observed_coverage_fraction": 1.0,
+        "minimum_course_arc_deg": 39.0
+      },
+      {
+        "start_s": 600,
+        "end_s": 5100,
+        "observed_coverage_fraction": 1.0,
+        "minimum_course_arc_deg": 39.0
+      },
+      {
+        "start_s": 900,
+        "end_s": 5400,
+        "observed_coverage_fraction": 1.0,
+        "minimum_course_arc_deg": 12.0
+      },
+      {
+        "start_s": 1200,
+        "end_s": 5700,
+        "observed_coverage_fraction": 1.0,
+        "minimum_course_arc_deg": 12.0
+      },
+      {
+        "start_s": 1500,
+        "end_s": 6000,
+        "observed_coverage_fraction": 1.0,
+        "minimum_course_arc_deg": 13.0
+      },
+      {
+        "start_s": 1800,
+        "end_s": 6300,
+        "observed_coverage_fraction": 1.0,
+        "minimum_course_arc_deg": 13.0
+      },
+      {
+        "start_s": 2100,
+        "end_s": 6600,
+        "observed_coverage_fraction": 1.0,
+        "minimum_course_arc_deg": 13.0
+      },
+      {
+        "start_s": 2400,
+        "end_s": 6900,
+        "observed_coverage_fraction": 1.0,
+        "minimum_course_arc_deg": 14.0
+      },
+      {
+        "start_s": 2700,
+        "end_s": 7200,
+        "observed_coverage_fraction": 0.9751111111111112,
+        "minimum_course_arc_deg": 13.0
+      },
+      {
+        "start_s": 3000,
+        "end_s": 7500,
+        "observed_coverage_fraction": 0.9493333333333334,
+        "minimum_course_arc_deg": 12.0
+      },
+      {
+        "start_s": 3300,
+        "end_s": 7800,
+        "observed_coverage_fraction": 0.9484444444444444,
+        "minimum_course_arc_deg": 13.0
+      },
+      {
+        "start_s": 3600,
+        "end_s": 8100,
+        "observed_coverage_fraction": 0.9484444444444444,
+        "minimum_course_arc_deg": 16.0
+      },
+      {
+        "start_s": 3900,
+        "end_s": 8400,
+        "observed_coverage_fraction": 0.9484444444444444,
+        "minimum_course_arc_deg": 15.0
+      },
+      {
+        "start_s": 4200,
+        "end_s": 8700,
+        "observed_coverage_fraction": 0.9484444444444444,
+        "minimum_course_arc_deg": 17.0
+      },
+      {
+        "start_s": 4500,
+        "end_s": 9000,
+        "observed_coverage_fraction": 0.9484444444444444,
+        "minimum_course_arc_deg": 16.0
+      },
+      {
+        "start_s": 4800,
+        "end_s": 9300,
+        "observed_coverage_fraction": 0.9131111111111111,
+        "minimum_course_arc_deg": 16.0
+      },
+      {
+        "start_s": 5100,
+        "end_s": 9600,
+        "observed_coverage_fraction": 0.8528888888888889,
+        "minimum_course_arc_deg": 16.0
+      },
+      {
+        "start_s": 5400,
+        "end_s": 9900,
+        "observed_coverage_fraction": 0.8528888888888889,
+        "minimum_course_arc_deg": 16.0
+      },
+      {
+        "start_s": 5700,
+        "end_s": 10200,
+        "observed_coverage_fraction": 0.8528888888888889,
+        "minimum_course_arc_deg": 16.0
+      },
+      {
+        "start_s": 6000,
+        "end_s": 10500,
+        "observed_coverage_fraction": 0.828,
+        "minimum_course_arc_deg": 16.0
+      },
+      {
+        "start_s": 6300,
+        "end_s": 10800,
+        "observed_coverage_fraction": 0.828,
+        "minimum_course_arc_deg": 16.0
+      },
+      {
+        "start_s": 6600,
+        "end_s": 11100,
+        "observed_coverage_fraction": 0.828,
+        "minimum_course_arc_deg": 17.0
+      },
+      {
+        "start_s": 6900,
+        "end_s": 11400,
+        "observed_coverage_fraction": 0.828,
+        "minimum_course_arc_deg": 18.0
+      },
+      {
+        "start_s": 7200,
+        "end_s": 11700,
+        "observed_coverage_fraction": 0.8528888888888889,
+        "minimum_course_arc_deg": 19.0
+      },
+      {
+        "start_s": 7500,
+        "end_s": 12000,
+        "observed_coverage_fraction": 0.8786666666666667,
+        "minimum_course_arc_deg": 20.0
+      },
+      {
+        "start_s": 7800,
+        "end_s": 12300,
+        "observed_coverage_fraction": 0.8768888888888889,
+        "minimum_course_arc_deg": 21.0
+      },
+      {
+        "start_s": 8100,
+        "end_s": 12600,
+        "observed_coverage_fraction": 0.832,
+        "minimum_course_arc_deg": 22.0
+      },
+      {
+        "start_s": 8400,
+        "end_s": 12900,
+        "observed_coverage_fraction": 0.8057777777777778,
+        "minimum_course_arc_deg": 19.0
+      },
+      {
+        "start_s": 8700,
+        "end_s": 13200,
+        "observed_coverage_fraction": 0.7735555555555556,
+        "minimum_course_arc_deg": 18.0
+      },
+      {
+        "start_s": 9000,
+        "end_s": 13500,
+        "observed_coverage_fraction": 0.7215555555555555,
+        "minimum_course_arc_deg": 16.0
+      },
+      {
+        "start_s": 9300,
+        "end_s": 13800,
+        "observed_coverage_fraction": 0.7108888888888889,
+        "minimum_course_arc_deg": 17.0
+      },
+      {
+        "start_s": 9600,
+        "end_s": 14100,
+        "observed_coverage_fraction": 0.7444444444444445,
+        "minimum_course_arc_deg": 22.0
+      },
+      {
+        "start_s": 9900,
+        "end_s": 14400,
+        "observed_coverage_fraction": 0.7444444444444445,
+        "minimum_course_arc_deg": 21.0
+      },
+      {
+        "start_s": 10200,
+        "end_s": 14700,
+        "observed_coverage_fraction": 0.7444444444444445,
+        "minimum_course_arc_deg": 26.0
+      },
+      {
+        "start_s": 10500,
+        "end_s": 15000,
+        "observed_coverage_fraction": 0.7693333333333333,
+        "minimum_course_arc_deg": 25.0
+      },
+      {
+        "start_s": 10800,
+        "end_s": 15300,
+        "observed_coverage_fraction": 0.7693333333333333,
+        "minimum_course_arc_deg": 25.0
+      },
+      {
+        "start_s": 11100,
+        "end_s": 15600,
+        "observed_coverage_fraction": 0.7693333333333333,
+        "minimum_course_arc_deg": 24.0
+      },
+      {
+        "start_s": 11400,
+        "end_s": 15900,
+        "observed_coverage_fraction": 0.7693333333333333,
+        "minimum_course_arc_deg": 23.0
+      },
+      {
+        "start_s": 11700,
+        "end_s": 16200,
+        "observed_coverage_fraction": 0.7693333333333333,
+        "minimum_course_arc_deg": 22.0
+      },
+      {
+        "start_s": 12000,
+        "end_s": 16500,
+        "observed_coverage_fraction": 0.7693333333333333,
+        "minimum_course_arc_deg": 28.0
+      },
+      {
+        "start_s": 12300,
+        "end_s": 16800,
+        "observed_coverage_fraction": 0.772,
+        "minimum_course_arc_deg": 27.0
+      },
+      {
+        "start_s": 12600,
+        "end_s": 17100,
+        "observed_coverage_fraction": 0.8168888888888889,
+        "minimum_course_arc_deg": 26.0
+      },
+      {
+        "start_s": 12900,
+        "end_s": 17400,
+        "observed_coverage_fraction": 0.8431111111111111,
+        "minimum_course_arc_deg": 24.0
+      },
+      {
+        "start_s": 13200,
+        "end_s": 17700,
+        "observed_coverage_fraction": 0.8753333333333333,
+        "minimum_course_arc_deg": 24.0
+      },
+      {
+        "start_s": 13500,
+        "end_s": 18000,
+        "observed_coverage_fraction": 0.9273333333333333,
+        "minimum_course_arc_deg": 24.0
+      },
+      {
+        "start_s": 13800,
+        "end_s": 18300,
+        "observed_coverage_fraction": 0.9671111111111111,
+        "minimum_course_arc_deg": 32.0
+      },
+      {
+        "start_s": 14100,
+        "end_s": 18600,
+        "observed_coverage_fraction": 0.9271111111111111,
+        "minimum_course_arc_deg": 32.0
+      },
+      {
+        "start_s": 14400,
+        "end_s": 18900,
+        "observed_coverage_fraction": 0.8737777777777778,
+        "minimum_course_arc_deg": 31.0
+      },
+      {
+        "start_s": 14700,
+        "end_s": 19200,
+        "observed_coverage_fraction": 0.834,
+        "minimum_course_arc_deg": 31.0
+      },
+      {
+        "start_s": 15000,
+        "end_s": 19500,
+        "observed_coverage_fraction": 0.7806666666666666,
+        "minimum_course_arc_deg": 24.0
+      },
+      {
+        "start_s": 15300,
+        "end_s": 19800,
+        "observed_coverage_fraction": 0.7344444444444445,
+        "minimum_course_arc_deg": 24.0
+      },
+      {
+        "start_s": 15600,
+        "end_s": 20100,
+        "observed_coverage_fraction": 0.6817777777777778,
+        "minimum_course_arc_deg": 24.0
+      },
+      {
+        "start_s": 15900,
+        "end_s": 20400,
+        "observed_coverage_fraction": 0.6535555555555556,
+        "minimum_course_arc_deg": 24.0
+      },
+      {
+        "start_s": 16200,
+        "end_s": 20700,
+        "observed_coverage_fraction": 0.6008888888888889,
+        "minimum_course_arc_deg": 26.0
+      },
+      {
+        "start_s": 16500,
+        "end_s": 21000,
+        "observed_coverage_fraction": 0.5691111111111111,
+        "minimum_course_arc_deg": 27.0
+      },
+      {
+        "start_s": 16800,
+        "end_s": 21300,
+        "observed_coverage_fraction": 0.5164444444444445,
+        "minimum_course_arc_deg": 25.0
+      },
+      {
+        "start_s": 17100,
+        "end_s": 21600,
+        "observed_coverage_fraction": 0.4648888888888889,
+        "minimum_course_arc_deg": 26.0
+      },
+      {
+        "start_s": 17400,
+        "end_s": 21900,
+        "observed_coverage_fraction": 0.41955555555555557,
+        "minimum_course_arc_deg": 27.0
+      },
+      {
+        "start_s": 17700,
+        "end_s": 22200,
+        "observed_coverage_fraction": 0.388,
+        "minimum_course_arc_deg": 28.0
+      },
+      {
+        "start_s": 18000,
+        "end_s": 22500,
+        "observed_coverage_fraction": 0.3442222222222222,
+        "minimum_course_arc_deg": 26.0
+      },
+      {
+        "start_s": 18300,
+        "end_s": 22800,
+        "observed_coverage_fraction": 0.3042222222222222,
+        "minimum_course_arc_deg": 28.0
+      },
+      {
+        "start_s": 18600,
+        "end_s": 23100,
+        "observed_coverage_fraction": 0.3388888888888889,
+        "minimum_course_arc_deg": 29.0
+      },
+      {
+        "start_s": 18900,
+        "end_s": 23400,
+        "observed_coverage_fraction": 0.39222222222222225,
+        "minimum_course_arc_deg": 26.0
+      },
+      {
+        "start_s": 19200,
+        "end_s": 23700,
+        "observed_coverage_fraction": 0.432,
+        "minimum_course_arc_deg": 25.0
+      },
+      {
+        "start_s": 19500,
+        "end_s": 24000,
+        "observed_coverage_fraction": 0.48533333333333334,
+        "minimum_course_arc_deg": 25.0
+      },
+      {
+        "start_s": 19800,
+        "end_s": 24300,
+        "observed_coverage_fraction": 0.5315555555555556,
+        "minimum_course_arc_deg": 25.0
+      },
+      {
+        "start_s": 20100,
+        "end_s": 24600,
+        "observed_coverage_fraction": 0.5842222222222222,
+        "minimum_course_arc_deg": 24.0
+      },
+      {
+        "start_s": 20400,
+        "end_s": 24900,
+        "observed_coverage_fraction": 0.6124444444444445,
+        "minimum_course_arc_deg": 23.0
+      },
+      {
+        "start_s": 20700,
+        "end_s": 25200,
+        "observed_coverage_fraction": 0.6651111111111111,
+        "minimum_course_arc_deg": 81.0
+      }
+    ],
+    "coverage95_windows": 11
+  }
+}

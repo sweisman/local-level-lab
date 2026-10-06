@@ -22,7 +22,7 @@ from lll import __version__, models
 from lll.analyze import analyze, environment
 from lll.collate import gate, pool_hierarchical, pool_multivariate, joint_model_tests
 from lll.fit import TERM_NAMES
-from lll.policy import POLICY_VERSION, eligibility_policies, eligibility_provenance, candidate_settings, decision_stratum, MODEL_PAIRS
+from lll.policy import POLICY_VERSION, eligibility_policies, eligibility_provenance, candidate_settings, decision_stratum, MODEL_PAIRS, research_eligible
 from lll.pairwise import flight_evidence, pool_evidence, decide, three_model_winner, POOL_METHOD, check_pairwise_policy
 from lll.runtime import numerical_environment, numerical_environment_hash
 from lll.synth import synthesize
@@ -152,7 +152,7 @@ def flight_run(truth, scenario, seed, sampling, block, boot, variant, same_side_
             synthesize(p, truth, omega_in_fn=geometric_truth(truth), **simulator_options(design))
             r = analyze(p, fit_options={**settings, **design["analysis_options"], **decision, "seed": design["streams"]["bootstrap"]})
         if not r.get("fit"):
-            return {**record, "failure": "no fit", "flags": r["flags"], "elapsed_s": time.monotonic()-start}
+            return {**record, "failure": "no fit", "flags": r["flags"], "slip": r.get("slip"), "elapsed_s": time.monotonic()-start}
         f = r["fit"]
         unit = r["imu"]["unit_id"]
         # Explicit simulation assumption: provenance/bench qualification supplied, scientific gates retained.
@@ -183,9 +183,18 @@ def flight_run(truth, scenario, seed, sampling, block, boot, variant, same_side_
                 "design_identifiability": f.get("design_identifiability"),
                 "pairwise": pairs, "pairwise_three_model_winner": three_model_winner(pairs),
                 "wmm_shift_sigma": (r.get("fit_no_wmm_exclusion") or {}).get("k_shift_sigma"),
+                "slip": r.get("slip"), "heading_diversity": r.get("heading_diversity"),
                 "flags": r["flags"]}
     except Exception as exc:
         return {**record, "failure": repr(exc), "elapsed_s": time.monotonic()-start}
+
+
+def planning_eligible(row, rank_margin):
+    """Apply the proposed stability gate to pilot evidence without changing saved records."""
+    policy = row.get("inference_policy", {})
+    proposed = {**row, "inference_policy": {**policy, "settings": {
+        **policy.get("settings", {}), "rank_min_relative_margin": rank_margin}}}
+    return row.get("rejected") is not None and research_eligible(proposed)
 
 
 def pooled_run(truth, seed, units, *, partition="development", bootstrap=0, pairwise=False, pairwise_decision_policy=None):
@@ -405,7 +414,7 @@ def main():
             covered = [json.loads(cell)[2] for cell in operational_cells if json.loads(cell)[:2] ==
                        [group[0].get("candidate_id"), group[0].get("variant")]]
             if covered: ranks = sorted(set(covered))
-        probabilities.extend(sum(row.get("model_test_rank") == rank and row.get("rejected") is not None and not row.get("exclusions")
+        probabilities.extend(sum(row.get("model_test_rank") == rank and planning_eligible(row, args.rank_min_relative_margin)
                                  for row in group)/len(group) for rank in ranks)
     acceptance = min(probabilities) if probabilities else None
     runtimes = [r["elapsed_s"] for r in pilot["records"] if r.get("elapsed_s") is not None] if pilot else []
@@ -420,7 +429,7 @@ def main():
                                "confidence": args.tail_confidence, "alpha": alpha,
                                "pilot_campaign_hash": digest(pilot) if pilot else None,
                                "development_acceptance_probability": acceptance,
-                               "acceptance_estimate_method": "minimum diagnostic/truth cell acceptance, including failed attempts",
+                               "acceptance_estimate_method": "minimum diagnostic/truth cell acceptance with proposed rank margin, including failed attempts; historical pilot is provisional",
                                "estimated_attempts_total": math.ceil(planned_minimum/acceptance)*attempt_cells if acceptance else None,
                                "estimated_calibration_attempts_total": math.ceil(config["calibration_min_accepted"]/acceptance)*attempt_cells if acceptance else None,
                                "estimated_validation_attempts_total": math.ceil(config["tail_min_accepted"]/acceptance)*attempt_cells if acceptance else None,

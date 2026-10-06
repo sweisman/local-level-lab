@@ -23,6 +23,11 @@ Every record and row carries a time on Android's `elapsedRealtimeNanos` clock, w
 - **GNSS:** `Location.getElapsedRealtimeNanos()`.
 - **UTC:** `manifest.clock` maps the session clock to UTC.
 
+New flight phases also log `clock_anchor` at start/resume with `elapsed_ns`, `utc_ms`,
+`elapsed_after_ns` and `source=phone_wall_clock`. These bracket a phone wall-clock read;
+they do not certify UTC accuracy. `gnss_start` records fresh-fix availability, acknowledgment
+and resume status. A missing fix does not stop IMU capture or later GNSS logging.
+
 ## Files
 
 | file | content |
@@ -82,6 +87,21 @@ Decoded streams use the IMU's axes, in SI units: gyro rad/s, accel m/s², magnet
 ```
 
 `device` is the phone, which supplies GNSS. `bench` appears only in bench sessions: `auto_zero_on` is true when the session was recorded with the bench-only auto-zero polarity test, which never applies to flights. `privacy.cal_locations` stores each calibration latitude rounded to 0.5° and the fix age (at most 900 seconds). Missing, stale and legacy shared locations are unknown for model comparisons; departure latitude is never reused for arrival. Exact legacy `flight.seat` remains readable. New sessions use optional `seat_position`, default unspecified.
+
+### Flight identity and external tracks
+
+New flight manifests additionally carry `airline_id` (OpenFlights record ID), `airline_iata`,
+`airline_icao`, `airline_directory_revision`, `date_basis="origin-local"`, and
+`track_verification="pending"`. Airline selection, a matching flight-number prefix, a valid
+calendar date, and different three-letter airport codes are required in the app. The date is
+the scheduled departure date at the origin, which can differ from a track's first UTC date.
+These fields identify the intended flight; they do not establish that it operated or that its
+track is useful. Historical archives without these optional metadata fields remain readable.
+
+External provider tracks remain separate provenance-bearing artifacts. Do not replace
+`gnss.csv.gz`, invent GNSS accuracy/satellite fields, or select a track by gyro/model agreement.
+Observed-versus-estimated positions, timestamp basis, coverage and timing/position uncertainty
+must be checked before any separately validated analysis can use a fallback.
 
 ### Phase names
 

@@ -652,6 +652,95 @@ observed acceptance and must be revised before any launch. The next step is deve
 review of geometry/rank stability, then a fresh frozen plan and separately authorized budget.
 No thresholds were estimated, no independent validation ran, and no primary policy was promoted.
 
+### Selection review from saved records, 2026-10-06
+
+The completed development work was published in commit `dd8575f`. A subsequent
+[saved-record review](development-1000-20261005/selection-review-20261006.json) uses the same
+shared scientific gate to evaluate hypothetical rank-margin settings. It does not refit,
+change singular-value cutoffs, estimate thresholds, or alter the original campaign.
+
+| Minimum relative rank margin | Eligible flights | Eligible rank 2 | Eligible null rejections | Estimated full campaign days |
+|---|---:|---:|---:|---:|
+| 0% (recorded rule) | 906 | 877 | 1 | 69.2 |
+| 5% | 897 | 873 | 1 | 69.2 |
+| 10% | 894 | 870 | 1 | 69.8 |
+| 20% | 866 | 846 | 1 | 76.5 |
+
+Costs use the worst observed eligible rank-2 fraction in a truth/scenario cell; they are
+point estimates, not guaranteed budgets. The 10% margin costs 12 currently eligible flights
+and does not remove the observed null rejection. It remains a development proposal rather
+than an adopted eligibility policy or a substitute for calibration.
+
+All 91 design-contrast failures coincide with a magnetic-watchdog slip flag: 88 in wind and
+3 in mixed bias. The watchdog flagged 132/500 wind and 6/500 mixed-bias flights even though
+the saved simulator configurations specify zero mount creep. The current watchdog compares
+magnetic direction with GNSS course and WMM declination; it includes no wind-crab heading
+term. Confounding aircraft-heading change with mount motion is therefore a concrete
+hypothesis to test. These records lack the per-segment watchdog output and rejected-bin
+geometry needed to establish the causal effect. The next development diagnostic should
+retain those quantities and compare wind with genuine mount slip, preserving the protective
+gate while testing specificity. No further flights were authorized or run for this review.
+
+Reproduce the report from the published archive:
+
+```sh
+env PYTHONPATH=analysis:server OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 ~/venv/bin/python analysis/tests/review_development.py docs/development-1000-20261005/campaign.json.gz -o /tmp/selection-review.json
+```
+
+### Magnetic watchdog diagnostic and next pilot, 2026-10-06
+
+Scott authorized the [eight-case plan](development-1000-20261005/watchdog-diagnostic-plan-20261006.json).
+All eight paired development replays completed in **52.05 seconds**, with zero bootstrap
+replicates and geometry-only fitting. The [complete diagnostic](development-1000-20261005/watchdog-diagnostic-20261006.json)
+preserves magnetic bins, both watchdog variants, simulator settings and before/after selection
+geometry. These are replays and counterfactual mount-creep controls, never new independent evidence.
+
+At rotating-globe/wind seed 600107, zero injected mount creep still flagged segments 0 and 6
+at apparent rates +1.605 and −2.027°/h. Selection removed nine of 74 bins and lowered the
+minimum design contrast retention from 0.394 to 0.196, below the 0.31225 threshold.
+The [saved-bin oracle review](development-1000-20261005/watchdog-review-20261006.json) supplies
+the simulator's known wind to the heading reference: it removes those false flags while retaining
+slip detections in every 3°/h positive control. All four zero-creep cases then have no exclusions.
+This establishes crab confounding in these cases, rather than its population-wide frequency.
+
+The oracle is a diagnostic, not an operational correction: independent aircraft heading or a
+validated wind/airspeed estimator is unavailable to the present watchdog. With zero airframe
+field, changing crab and mount yaw can produce identical magnetic signals. `magnetic-watchdog-2`
+therefore describes an **apparent yaw change**, reports `mount_slip_confirmed=false`, and
+retains conservative exclusions. Legacy fields and flags remain for compatibility; analysis also
+emits `magnetic_yaw_change_ambiguous`. Research records now retain the full watchdog output
+and pre-exclusion geometry, including failed attempts, so future reviews need fewer replays.
+The WMM sensitivity check and eligibility criteria continue to account for selection.
+
+The next authorized development pilot has **exactly 1,000 attempts**, paired seeds 600300–600466,
+the same three truths and `bias_mixed`/`wind` scenarios, full 20-replicate nonlinear bootstrap,
+and a preregistered 10% relative rank-boundary margin. All observed ranks are recorded; the
+proposed calibration domain covers rank 2 only. It makes no guarantee for other routes, latitudes,
+sensor variants, nuisance scenarios, or pooled pairwise summaries. A broader flight domain still
+requires the deterministic geometry stress matrix and separate calibration/validation.
+
+The documented corpus is `development-1000-20261006/`: `manifest.json`, fsynced
+`records.jsonl`, atomic `status.json`, worker launch/log/lock, and automatic `campaign.json`,
+`rank-sweep.json`, `rank-sweep-narrow.json`, `magnetic-summary.json`, and compressed campaign/journal
+archives. Freeze all scientific code and numerical thread settings while the worker runs.
+See [AGENTS.md](../AGENTS.md) for the exact launch/resume command and authorization.
+
+The [refreshed calibration proposal](flight-calibration-proposed-manifest-20261006.json)
+freezes current source/environment, rank 2, the 10% margin, and primary plus separate pairwise
+endpoints. Cost estimates now apply the proposed rank margin to historical pilot records:
+241,062 calibration attempts plus 273,030 validation attempts, **514,092 total / about 70 serial days**.
+Sample goals remain 29,285 accepted calibration and 33,169 accepted validation flights per
+truth/scenario cell, calibration alpha 0.00135 and claimed alpha 0.0027, with an 18-test family.
+The draft calibration reserve is 45,000 attempts per cell; a matching future validation reserve
+would be 51,000 per cell (576,000 combined / about 78 days at the historical runtime).
+These are planning estimates, not guaranteed acceptance or an approved compute budget.
+
+After the fresh pilot finishes, review its rank, selection, convergence and separation results,
+refresh costs and freeze the final method before seeking full-campaign authorization. Run fresh
+calibration next, freeze actual primary and pairwise threshold files, then freeze independent
+validation using those files. A validation manifest cannot yet be finalized without the thresholds.
+The old proposed manifest and old development evidence retain their original source hashes.
+
 ## Experimental partial pairwise evidence
 
 Candidate fits emit `pairwise` entries for all three comparisons. Each applies the shared gates

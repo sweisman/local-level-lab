@@ -34,6 +34,14 @@ def test_thousand_attempts_are_balanced_fresh_and_deterministic():
     assert worker.tasks(config) == tasks
 
 
+def test_new_pilot_has_disjoint_seeds_and_frozen_rank_margin():
+    config = worker.plan(1000, 600300, .1)
+    assert config['fit_options']['rank_min_relative_margin'] == .1
+    assert not set(worker.tasks(config)) & set(worker.tasks(worker.plan()))
+    with pytest.raises(ValueError, match='rank margin'):
+        worker.plan(rank_margin=float('nan'))
+
+
 def test_interruption_resumes_without_repeating_successes_or_failures(tmp_path):
     config, attempts = worker.plan(6), []
     def interrupting(*args, **kwargs):
@@ -55,6 +63,8 @@ def test_interruption_resumes_without_repeating_successes_or_failures(tmp_path):
     data = json.loads((tmp_path/'campaign.json').read_text())
     assert len(data['records']) == 6 and data['records'][0]['failure']
     assert json.loads((tmp_path/'status.json').read_text())['state'] == 'complete'
+    assert (tmp_path/'campaign.json.gz').exists() and (tmp_path/'records.jsonl.gz').exists()
+    assert (tmp_path/'rank-sweep-narrow.json').exists() and (tmp_path/'magnetic-summary.json').exists()
     # Resuming a completed run never manufactures more evidence.
     worker.run_campaign(tmp_path, config, resume=True, flight_runner=lambda *a, **k: pytest.fail('repeated fit'))
 
