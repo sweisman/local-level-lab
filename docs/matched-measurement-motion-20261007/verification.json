@@ -1,0 +1,71 @@
+{
+  "complete": true,
+  "cases": [
+    {
+      "task_id": "bed4aa85790e4d01e95115b8cf19b386a8d2c07c1ad3f7bac00b825813c939a4",
+      "minimum_eigenvalue": 10.06622907526206,
+      "adjacent_minute_pairs": 66,
+      "induced_adjacent_minute_axis_correlation_range": [
+        0.04562565112040279,
+        0.06972516854809112
+      ],
+      "residual_to_independent_gyro_scale_ratio": 2.097865247845303
+    },
+    {
+      "task_id": "dc5bb68180f11fc6ba59dedc0cd23b05e1aaf13870bff06c8549bb73506b03a2",
+      "minimum_eigenvalue": 10.06622907526206,
+      "adjacent_minute_pairs": 66,
+      "induced_adjacent_minute_axis_correlation_range": [
+        0.04562565112040279,
+        0.06972516854809112
+      ],
+      "residual_to_independent_gyro_scale_ratio": 2.0056761518943658
+    },
+    {
+      "task_id": "f94593ee49b996b4de1ef7ae7fcebd7299384ce89bff672d82f4debc755a2425",
+      "minimum_eigenvalue": 10.091349446532984,
+      "adjacent_minute_pairs": 66,
+      "induced_adjacent_minute_axis_correlation_range": [
+        0.04490888085168686,
+        0.0681203512583517
+      ],
+      "residual_to_independent_gyro_scale_ratio": 2.1070731505918205
+    },
+    {
+      "task_id": "119d674e186dfaee3ec65d36ca6d02568cea20e8bb58bc8d059d72fab7576ab0",
+      "minimum_eigenvalue": 10.091349446532984,
+      "adjacent_minute_pairs": 66,
+      "induced_adjacent_minute_axis_correlation_range": [
+        0.04490888085168686,
+        0.0681203512583517
+      ],
+      "residual_to_independent_gyro_scale_ratio": 2.0417079231616952
+    },
+    {
+      "task_id": "b545f5f3aec5efaaa0a8cc1da285bcce8b50f66952e8b0977f176b944c0b145b",
+      "minimum_eigenvalue": 10.11049477725034,
+      "adjacent_minute_pairs": 66,
+      "induced_adjacent_minute_axis_correlation_range": [
+        0.045912981183731126,
+        0.06694873078608432
+      ],
+      "residual_to_independent_gyro_scale_ratio": 2.118379621649808
+    },
+    {
+      "task_id": "e71b3a92ed6b8216f7b4767ad03d33773fec77bc3d9f8efb6ce01536ffb1b84f",
+      "minimum_eigenvalue": 10.11049477725034,
+      "adjacent_minute_pairs": 66,
+      "induced_adjacent_minute_axis_correlation_range": [
+        0.045912981183731126,
+        0.06694873078608432
+      ],
+      "residual_to_independent_gyro_scale_ratio": 2.028174134229982
+    }
+  ],
+  "review_sha256": "704f860361021a7d161cc9b35c529ac96ebf85b3232bedbaf106a20ff9f0f2b2",
+  "helper_sha256": "5d62b2d5df349895c461e23888b986a742f2137e82946d564d2324e365c8b535",
+  "optimizer_calls": 0,
+  "additional_flight_attempts": 0,
+  "production_enabled": false,
+  "decisions_enabled": false
+}

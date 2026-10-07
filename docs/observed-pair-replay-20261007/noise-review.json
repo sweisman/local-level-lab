@@ -1,0 +1,205 @@
+{
+  "scope": "saved residual-weight and planning-information comparison only",
+  "cases": [
+    {
+      "task_index": 0,
+      "truth": "sphere_rotating",
+      "crab_model": "wind",
+      "analysis_sha256": "2e9f6e2565525ae1179816fdc5d6eff7a0769e21d4324ba18cee1ed879d8bb16",
+      "residual_global_sigma_dph": 38.30662383401766,
+      "residual_axis_sigma_range_dph": [
+        [
+          34.17929959199289,
+          65.30522139422531
+        ],
+        [
+          26.17741112917896,
+          39.54446457131017
+        ],
+        [
+          25.331840776900535,
+          35.815614953828785
+        ]
+      ],
+      "planning_gyro_sigma_dph": 6.0,
+      "planning_worst_pair_information": 27.24137315791305,
+      "free_fit_weighted_pair_information": 0.5170961152585264,
+      "free_fit_pair_retention": 0.3534652183686765,
+      "profile_sd": 0.6436598404935099,
+      "profile_statistics": {
+        "sphere_still": 2.353523353492434,
+        "flat_still": 0.0003604891221757274
+      }
+    },
+    {
+      "task_index": 1,
+      "truth": "sphere_rotating",
+      "crab_model": "wind_tas",
+      "analysis_sha256": "c39c67eb0cedf43d33c18ef513123f7aeb8727d9121090d613abcb79f723e6db",
+      "residual_global_sigma_dph": 38.284404725534145,
+      "residual_axis_sigma_range_dph": [
+        [
+          34.1618750991194,
+          65.28680564703483
+        ],
+        [
+          26.171033602955955,
+          39.51892769431041
+        ],
+        [
+          25.270002957539823,
+          35.782018814542944
+        ]
+      ],
+      "planning_gyro_sigma_dph": [
+        3.0,
+        6.0
+      ],
+      "planning_worst_pair_information": 40.65441156310421,
+      "free_fit_weighted_pair_information": 0.5554430737534584,
+      "free_fit_pair_retention": 0.36230295137952895,
+      "profile_sd": 0.6386443186216296,
+      "profile_statistics": {
+        "sphere_still": 2.2797401578340684,
+        "flat_still": 0.0030915854304859286
+      }
+    },
+    {
+      "task_index": 2,
+      "truth": "sphere_still",
+      "crab_model": "wind",
+      "analysis_sha256": "df0d56e1c17a4ce37ffd9b7d9ea766022be73302e70c53449073f64ea342e3c7",
+      "residual_global_sigma_dph": 38.31393912039126,
+      "residual_axis_sigma_range_dph": [
+        [
+          34.13285463962449,
+          65.53119585383135
+        ],
+        [
+          26.193832727109505,
+          39.51979907743231
+        ],
+        [
+          25.281702650442654,
+          35.85611700033961
+        ]
+      ],
+      "planning_gyro_sigma_dph": 6.0,
+      "planning_worst_pair_information": 27.7109112089406,
+      "free_fit_weighted_pair_information": 1.2497715520239123,
+      "free_fit_pair_retention": 0.54903505328902,
+      "profile_sd": 0.6285111681257934,
+      "profile_statistics": {
+        "sphere_still": 0.11666157349457977,
+        "flat_still": 3.73534572473751
+      }
+    },
+    {
+      "task_index": 3,
+      "truth": "sphere_still",
+      "crab_model": "wind_tas",
+      "analysis_sha256": "3b26bc33dd56298eb09244587d3e2c68955283e4aac71150b49917d09f305ce2",
+      "residual_global_sigma_dph": 38.28724267438426,
+      "residual_axis_sigma_range_dph": [
+        [
+          34.11920205151301,
+          65.5117016587927
+        ],
+        [
+          26.184800677138163,
+          39.49795073237747
+        ],
+        [
+          25.207685099827266,
+          35.815824060419075
+        ]
+      ],
+      "planning_gyro_sigma_dph": [
+        3.0,
+        6.0
+      ],
+      "planning_worst_pair_information": 40.831181754756905,
+      "free_fit_weighted_pair_information": 1.3579751268356688,
+      "free_fit_pair_retention": 0.5659476928658491,
+      "profile_sd": 0.6241461781041687,
+      "profile_statistics": {
+        "sphere_still": 0.1002663205246111,
+        "flat_still": 3.68200080204369
+      }
+    },
+    {
+      "task_index": 4,
+      "truth": "flat_still",
+      "crab_model": "wind",
+      "analysis_sha256": "2e32772375497360f3a1500230ab78249f8efb8e39810ba2122c8f1e1c4a8401",
+      "residual_global_sigma_dph": 38.36497848360066,
+      "residual_axis_sigma_range_dph": [
+        [
+          34.18888536537621,
+          65.55439186693157
+        ],
+        [
+          26.24563617139313,
+          39.59179956070412
+        ],
+        [
+          25.382707756522482,
+          35.91837515015649
+        ]
+      ],
+      "planning_gyro_sigma_dph": 6.0,
+      "planning_worst_pair_information": 27.469769855318106,
+      "free_fit_weighted_pair_information": 1.2330046514475415,
+      "free_fit_pair_retention": 0.546413689800126,
+      "profile_sd": 0.6304768594185562,
+      "profile_statistics": {
+        "sphere_still": 1.4566956516737977,
+        "flat_still": 0.14373328138164648
+      }
+    },
+    {
+      "task_index": 5,
+      "truth": "flat_still",
+      "crab_model": "wind_tas",
+      "analysis_sha256": "372813d70018209db9a8be1eb18ae38d07330df981479eab2835deca7b9bb896",
+      "residual_global_sigma_dph": 38.34085046915685,
+      "residual_axis_sigma_range_dph": [
+        [
+          34.17887294646328,
+          65.53889998903314
+        ],
+        [
+          26.238483462360993,
+          39.567440852753386
+        ],
+        [
+          25.319077518963166,
+          35.87923134966374
+        ]
+      ],
+      "planning_gyro_sigma_dph": [
+        3.0,
+        6.0
+      ],
+      "planning_worst_pair_information": 40.70978731823562,
+      "free_fit_weighted_pair_information": 1.3239698014197596,
+      "free_fit_pair_retention": 0.5599936076474944,
+      "profile_sd": 0.6258565790802634,
+      "profile_statistics": {
+        "sphere_still": 1.4929913257906802,
+        "flat_still": 0.14128825574030204
+      }
+    }
+  ],
+  "campaign_sha256": "8fc7940b38c1c689aa0fd3e21ac2794925f99f468ff984f02f01850bff44acfb",
+  "implementation_hash": "1bf8f7c0120fa84504d98c377db61807cacf9f2db6fdcec20f814b9f4a4d8500",
+  "helper_sha256": "3c6f9e12dc11b167a818e0804145a27d26cdb6441a495d23a8b3fdc38b1c1e8c",
+  "additional_flight_attempts": 0,
+  "limitations": [
+    "Residual-based scales include simulated sensor processes and processing/model discrepancy, not real-device noise.",
+    "Fixed-noise envelope information and free-fit information use different states/weights; their ratio is diagnostic.",
+    "Profile uncertainty includes nonlinear fitting and nuisance priors; it is not simply inverse design information.",
+    "One shared generating seed; no power, coverage, threshold estimation or decision claim.",
+    "No original record, scientific source, eligibility threshold or noise assumption changed."
+  ]
+}

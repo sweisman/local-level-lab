@@ -113,13 +113,102 @@ Segments also break at GNSS gaps, Bluetooth drops, bumps and deliberate IMU turn
 | quantity | source | uses the gyro? |
 |---|---|---|
 | model prediction `ω_in` (NED) | GNSS: latitude, height, north and east velocity | no |
-| up axis | accelerometer | no |
+| apparent up axis | accelerometer specific force (gravity plus aircraft acceleration) | no |
 | azimuth | GNSS course, plus a fitted crab offset per course leg | no |
 | forward axis | gyro roll rate during banked turns, correlated with the bank GNSS implies | only the large roll transients (°/s), never the slow signal (°/h) |
 | aircraft rotation `ω_nb` | accelerometer tilt rate and GNSS course rate | no |
 | turns of the IMU itself | gyro, integrated over the few seconds of the turn | only the turn itself (tens of °/s) |
 
 Each deliberate turn of the IMU starts a new **mount epoch**. The gyro integrates the rotation during the turn to within about 0.1° (EVIDENCE §10). Later epochs are mapped back into the first epoch's frame, so banked turns anywhere in the flight give one forward axis.
+
+**Acceleration limitation and research correction.** The accelerometer direction equals
+gravity direction only when translational acceleration is negligible. With the specific-force
+convention used here, `f_b = C_bn (a_n − g_n)`. Consequently true up is proportional to
+`f_b − C_bn a_n`. Treating `unit(f_b)` as up while differentiating it can introduce a false
+tilt rate. Saved replay data show this is a material processing error even in retained cruise.
+
+The research prototype in [the acceleration study](acceleration-motion-20261007/README.md)
+uses frequent observed GPS velocity/altitude and actual IMU force magnitude, with common
+filter support, to estimate acceleration and solve the orientation relation iteratively.
+It differentiates recovered orientation before averaging rates into minutes. Mount mappings,
+forward direction and provisional crab states constrain azimuth. Unsupported gaps and force/
+acceleration states are excluded locally. The approximation differentiates local velocity
+components without model-specific Coriolis or curvature acceleration; their bounded systematic
+effects remain necessary. It is not enabled in the production fit. Finite wind/forward/filter
+sensitivity and independent-observation error propagation are diagnostics, not validated
+coverage or replacements for jointly fitting motion and nuisance parameters.
+
+The [joint research prototype](joint-acceleration-motion-20261007/README.md) now recomputes
+`C_bn`, aircraft angular rate and science prediction at each wind/forward state. Six coherent
+acceleration/force error modes enter the same prediction with provisional unit Gaussian
+priors, so the Jacobian and local joint covariance include their cross-couplings. Fixed
+support is determined from observed data before fitting; trial parameters cannot select
+different rows. Twenty-four saved-data fits converge and nest correctly, with no boundary
+flags. This remains outside production: local penalized curvature is not validated coverage,
+six coherent modes do not span all measurement errors, and the inherited conditional GPS/TAS
+likelihood and original gyro weights are not a fully joint measurement likelihood.
+
+The [saved-data bandwidth check](matched-measurement-motion-20261007/README.md) applies
+an identical additional linear operator to the gyro and complete reconstructed prediction.
+With one-second observations in a reference frame, its minute operator is `L = A H`,
+where `H` is the supported Hann filter and `A` is trapezoidal minute integration.
+Under independent one-second error blocks `S`, the propagated covariance is
+`V = Q L S Lᵀ Qᵀ`, with axis identities implicit and `Q` rotating each minute back
+to its sensor frame. Off-diagonal time/axis blocks are retained. This gyro-only
+calculation omits shared GPS/force errors and the response of fitted parameters.
+The slower science/bias terms are interpolated for this diagnostic; a continuous
+measurement equation is required before using this operator in refits.
+
+The [continuous sampled research equation](continuous-measurement-motion-20261007/README.md)
+now evaluates science terms and sensor-frame bias splines at GPS timestamps. Point-local
+attitude derivatives are chained through sparse filter/gradient operators to obtain
+residual input Jacobian `B`. The physical wind constraint has input Jacobian `E` from
+the same GPS velocities. Joint propagation is `[B; E] S [B; E]ᵀ`, retaining their
+cross covariance. `S` includes north/east GPS velocity covariance and time-matched
+force/gyro blocks under independent-second assumptions; references and scales stay fixed.
+
+For prediction Jacobian `J`, old weights `W`, auxiliary parameter Jacobian `T` and
+deterministic penalty `P`, let `N = Jᵀ W J + Tᵀ T + Pᵀ P`. Local parameter response is
+`δz = N⁺ (Jᵀ W B - Tᵀ E) δx`, and residual response is `B δx - J δz`. This is local
+Gauss–Newton sampling propagation at saved parameters, not a refit or posterior covariance.
+Independent direct least-squares checks reproduce it. Unknown input correlations and
+calibration/mount/systematic uncertainty remain omitted.
+
+The [temporal sensitivity calculation](temporal-measurement-covariance-20261007/README.md)
+factors each input block as `S_i = Q_i Q_iᵀ`, standardizing channels before taking
+the principal symmetric correlation root. IMU factors are constructed in sensor axes
+and mapped into the recovered reference frame. For latent response `D_i = [B_i; E_i] Q_i`,
+propagation sums `D_i exp(-|t_i-t_j|/τ) D_jᵀ` over times, separately for GPS/IMU blocks;
+`τ=0` recovers independent seconds. Forward/backward recurrences apply the exact kernel
+without a dense timestamp covariance. Elapsed gaps carry covariance, not observations.
+The finite persistence grid is conditional sensitivity, not a calibrated error envelope.
+
+The [frozen-covariance objective](covariance-measurement-objective-20261007/README.md)
+uses `r=[measured-minus-predicted gyro; positive wind auxiliary]` and `G=[-J; T]`,
+matching the signs used in propagated covariance. For fixed positive-definite `C`,
+`F(z)=rᵀ C⁻¹ r+||Pz||²`; Gaussian deviance also includes `log det C`. Unit-standardized
+Cholesky whitening preserves all cross blocks. No covariance modes are clipped or dropped.
+The physical wind candidate adds independent normalized auxiliary variance1, retaining
+its existing2m/s discrepancy allowance in addition to propagated measurement covariance.
+This changes only the auxiliary block; shared GPS cross covariance remains intact.
+Local GLS sampling covariance and inverse penalized curvature are reported separately.
+This working objective is conditional on frozen provisional matrices, not a promoted
+likelihood, calibrated model decision or outcome-independent acceptance gate.
+
+The [saved-data GLS comparison](covariance-refits-20261007/README.md) now fits this
+continuous equation under four separately frozen persistence assumptions. Each
+comparison minimizes the same `F` freely and at the three model anchors. It uses
+exact science/bias derivatives and bounded finite derivatives for the nonlinear
+motion parameters. All 96 optimizations converge; all 24 constrained comparisons
+nest correctly. This numerical result does not choose a persistence assumption.
+
+Its local pair diagnostic whitens `G`, projects the science columns orthogonally
+away from the span of the nuisance columns, and evaluates each model difference
+in that projected space. Penalties are excluded from this diagnostic; a normalized
+least-squares cutoff of `1e-10` controls numerical projection. Retention is the ratio
+of projected to unprojected squared contrast norm. This is a fitted-state description
+of the remaining information, with no acceptance or decision threshold. It does not
+replace the conservative geometry-based design gate.
 
 ### The fit
 

@@ -1,0 +1,24 @@
+{
+  "success": true,
+  "status": 2,
+  "message": "`ftol` termination condition is satisfied.",
+  "nfev": 4,
+  "njev": 4,
+  "optimality": 3.871254999109754e-06,
+  "scores": {
+    "data_quadratic": 45.035737515257054,
+    "penalty_quadratic": 4.607538765433065,
+    "penalized_least_squares": 49.64327628069012,
+    "covariance_logdet": -4371.6128649648535,
+    "gaussian_deviance": -4326.577127449596,
+    "gaussian_nll": -1945.5001313552907,
+    "penalized_gaussian_deviance": -4321.969588684164
+  },
+  "boundary_parameter_indices": [],
+  "minimum_relative_bound_margin": 0.3972800744970698,
+  "residual_rms_dph": 8.254685966180926,
+  "archive": "sphere_still-75.npz",
+  "archive_sha256": "f5cb4eb840afd7a0f592f12fba24b685680172dcbf5ff5f1b23565c2431b4676",
+  "elapsed_s": 14.042555709951557,
+  "attempt": 75
+}

@@ -1,0 +1,773 @@
+{
+  "scope": "Joint wind/forward/force prediction and local curvature at frozen saved states; no new observations or fitting",
+  "scientific_implementation_hash": "1bf8f7c0120fa84504d98c377db61807cacf9f2db6fdcec20f814b9f4a4d8500",
+  "input_sha256": {
+    "docs/observed-pair-replay-20261007/run/campaign.json": "8fc7940b38c1c689aa0fd3e21ac2794925f99f468ff984f02f01850bff44acfb",
+    "docs/observed-pair-replay-20261007/run/diagnostics/bed4aa85790e4d01e95115b8cf19b386a8d2c07c1ad3f7bac00b825813c939a4/session.zip": "b00bd77b2fde79f66638e15fc55a6e95abc592fbfabee2188f64cd7a22590139",
+    "docs/observed-pair-replay-20261007/run/diagnostics/bed4aa85790e4d01e95115b8cf19b386a8d2c07c1ad3f7bac00b825813c939a4/fit-input.npz": "9ffbb2259113c8eeded37b1373143d88691582cdffdafcb3ae1de9cb90d1f058",
+    "docs/observed-pair-replay-20261007/run/diagnostics/bed4aa85790e4d01e95115b8cf19b386a8d2c07c1ad3f7bac00b825813c939a4/fit-rows.npz": "f955dfd0c84469fdb97a2982f4994347b94246c7c58db37ea7d9bf6b61dd5ba4",
+    "docs/observed-pair-replay-20261007/run/diagnostics/bed4aa85790e4d01e95115b8cf19b386a8d2c07c1ad3f7bac00b825813c939a4/analysis.json": "2e9f6e2565525ae1179816fdc5d6eff7a0769e21d4324ba18cee1ed879d8bb16",
+    "docs/observed-pair-replay-20261007/run/diagnostics/dc5bb68180f11fc6ba59dedc0cd23b05e1aaf13870bff06c8549bb73506b03a2/session.zip": "b00bd77b2fde79f66638e15fc55a6e95abc592fbfabee2188f64cd7a22590139",
+    "docs/observed-pair-replay-20261007/run/diagnostics/dc5bb68180f11fc6ba59dedc0cd23b05e1aaf13870bff06c8549bb73506b03a2/fit-input.npz": "9ffbb2259113c8eeded37b1373143d88691582cdffdafcb3ae1de9cb90d1f058",
+    "docs/observed-pair-replay-20261007/run/diagnostics/dc5bb68180f11fc6ba59dedc0cd23b05e1aaf13870bff06c8549bb73506b03a2/fit-rows.npz": "3b39a0627336fb6819bc0cc6f245c505b0e8a4d20f885c826ff072b24eabdf37",
+    "docs/observed-pair-replay-20261007/run/diagnostics/dc5bb68180f11fc6ba59dedc0cd23b05e1aaf13870bff06c8549bb73506b03a2/analysis.json": "c39c67eb0cedf43d33c18ef513123f7aeb8727d9121090d613abcb79f723e6db",
+    "docs/observed-pair-replay-20261007/run/diagnostics/f94593ee49b996b4de1ef7ae7fcebd7299384ce89bff672d82f4debc755a2425/session.zip": "4ea26c350714b963ec845264fcedd8f0ca57564b73c99d5d2a7193c32e24e1b3",
+    "docs/observed-pair-replay-20261007/run/diagnostics/f94593ee49b996b4de1ef7ae7fcebd7299384ce89bff672d82f4debc755a2425/fit-input.npz": "450d990d8f85bea674be83a2e524268c63021a2b99604cf34226baadfaeb6546",
+    "docs/observed-pair-replay-20261007/run/diagnostics/f94593ee49b996b4de1ef7ae7fcebd7299384ce89bff672d82f4debc755a2425/fit-rows.npz": "c347bf36a5d226553d4dcd60be98fd2f8f84a0b973f64cd62719bbb6f60f056c",
+    "docs/observed-pair-replay-20261007/run/diagnostics/f94593ee49b996b4de1ef7ae7fcebd7299384ce89bff672d82f4debc755a2425/analysis.json": "df0d56e1c17a4ce37ffd9b7d9ea766022be73302e70c53449073f64ea342e3c7",
+    "docs/observed-pair-replay-20261007/run/diagnostics/119d674e186dfaee3ec65d36ca6d02568cea20e8bb58bc8d059d72fab7576ab0/session.zip": "ee45e3efcb25b7eb87155f97dab9762b61dd716fcc54da979e72f61cf6058d9c",
+    "docs/observed-pair-replay-20261007/run/diagnostics/119d674e186dfaee3ec65d36ca6d02568cea20e8bb58bc8d059d72fab7576ab0/fit-input.npz": "450d990d8f85bea674be83a2e524268c63021a2b99604cf34226baadfaeb6546",
+    "docs/observed-pair-replay-20261007/run/diagnostics/119d674e186dfaee3ec65d36ca6d02568cea20e8bb58bc8d059d72fab7576ab0/fit-rows.npz": "ec23507da2cbb59f11501303f9e54b8a0b194395c7c322c8247c33a08b3ac036",
+    "docs/observed-pair-replay-20261007/run/diagnostics/119d674e186dfaee3ec65d36ca6d02568cea20e8bb58bc8d059d72fab7576ab0/analysis.json": "3b26bc33dd56298eb09244587d3e2c68955283e4aac71150b49917d09f305ce2",
+    "docs/observed-pair-replay-20261007/run/diagnostics/b545f5f3aec5efaaa0a8cc1da285bcce8b50f66952e8b0977f176b944c0b145b/session.zip": "643cbc991b785d6f102fe5703313bf54a861df0eb3714820cc376af8b2b21bdf",
+    "docs/observed-pair-replay-20261007/run/diagnostics/b545f5f3aec5efaaa0a8cc1da285bcce8b50f66952e8b0977f176b944c0b145b/fit-input.npz": "192e72d2e2fb41dbf9b63a45640c2cce6e186bfde11cb958cdc3394ef6745faf",
+    "docs/observed-pair-replay-20261007/run/diagnostics/b545f5f3aec5efaaa0a8cc1da285bcce8b50f66952e8b0977f176b944c0b145b/fit-rows.npz": "750374fb518499339d045472034415059fb9ae7204e998e3d2c9e9254ef96ece",
+    "docs/observed-pair-replay-20261007/run/diagnostics/b545f5f3aec5efaaa0a8cc1da285bcce8b50f66952e8b0977f176b944c0b145b/analysis.json": "2e32772375497360f3a1500230ab78249f8efb8e39810ba2122c8f1e1c4a8401",
+    "docs/observed-pair-replay-20261007/run/diagnostics/e71b3a92ed6b8216f7b4767ad03d33773fec77bc3d9f8efb6ce01536ffb1b84f/session.zip": "145e1c16555084f8fa4bd754c5fe8cda606007134d353aed7b0790be01867b37",
+    "docs/observed-pair-replay-20261007/run/diagnostics/e71b3a92ed6b8216f7b4767ad03d33773fec77bc3d9f8efb6ce01536ffb1b84f/fit-input.npz": "192e72d2e2fb41dbf9b63a45640c2cce6e186bfde11cb958cdc3394ef6745faf",
+    "docs/observed-pair-replay-20261007/run/diagnostics/e71b3a92ed6b8216f7b4767ad03d33773fec77bc3d9f8efb6ce01536ffb1b84f/fit-rows.npz": "9476f4c9bcc7089dffe0e1d02fd42257ce2579045a572562e4aba590ef2fb81f",
+    "docs/observed-pair-replay-20261007/run/diagnostics/e71b3a92ed6b8216f7b4767ad03d33773fec77bc3d9f8efb6ce01536ffb1b84f/analysis.json": "372813d70018209db9a8be1eb18ae38d07330df981479eab2835deca7b9bb896"
+  },
+  "helper_sha256": {
+    "analysis/tests/review_joint_acceleration_motion.py": "102d15c7ea2f61be7666703e0583b97639310c2841a610a9e4b1d00069963224",
+    "analysis/tests/joint_acceleration_motion.py": "fa5596ae00d32abb2b1ddbf629a80d21e519961ca4d7933dd03b1087a7f34b3c",
+    "analysis/tests/review_acceleration_motion.py": "ed57159a9584aa1908c60771874a40064aabfe57713facb1762792740839076a",
+    "analysis/tests/acceleration_motion.py": "ba0d9b580d5975a506a12f5b7d2d4b45cee3e45150db4c1dd25222696f8dc6c3",
+    "analysis/tests/audit_replay_residuals.py": "d8140f4ac19494cf1caabbeeae25b0e41d67eb45bb1d884c3ee934fe0c38f8d0"
+  },
+  "additional_flight_attempts": 0,
+  "optimizer_calls": 0,
+  "production_enabled": false,
+  "decisions_enabled": false,
+  "cases": [
+    {
+      "task_id": "bed4aa85790e4d01e95115b8cf19b386a8d2c07c1ad3f7bac00b825813c939a4",
+      "truth": "sphere_rotating",
+      "crab_model": "wind",
+      "mode": "saved reference evaluation; no refit",
+      "provenance": {
+        "policy": {
+          "version": "joint-observed-motion-development-1",
+          "window_seconds": 30.0,
+          "error_modes": [
+            "acceleration_n",
+            "acceleration_e",
+            "acceleration_down",
+            "force_x",
+            "force_y",
+            "force_z"
+          ],
+          "error_sigma_bound": 3.0,
+          "error_prior": "Six fully coherent marginal-error patterns with independent unit Gaussian priors",
+          "gyro_weight_source": "Frozen original preliminary weights; no new residual-weight estimate",
+          "forward_bound_sigmas": 3.0,
+          "angular_step_rad": 2e-06,
+          "wind_step_mps": 0.002,
+          "error_step": 0.002,
+          "support": "Fixed observable support including simultaneous three-sigma acceleration-mode norm bound; no state-dependent row selection",
+          "uncertainty_status": "Local joint curvature and six error modes only; unvalidated coverage",
+          "production_enabled": false,
+          "decisions_enabled": false
+        },
+        "policy_hash": "14b92f2119d6a075051277f8e0bbedc75368933abb4df6276c89b6eba7b082eb",
+        "base_motion_policy_hash": "f9d2bfb4d479b02961cf60bf4116530e28b20fd3ee4ab2ef7af7a6accc81f149",
+        "fixed_bins": 83,
+        "original_bins": 99,
+        "production_enabled": false,
+        "decisions_enabled": false
+      },
+      "fixed_supported_minutes": 83,
+      "original_minutes": 99,
+      "parameters": 55,
+      "saved_reference_parameters": 49,
+      "coherent_error_modes": 6,
+      "baseline_residual_same_bins_dph": 33.96322778879497,
+      "joint_prediction_residual_dph": 10.915594044884417,
+      "local_science_sd": [
+        0.8064830195982304,
+        1.2315629216779507,
+        1.3123516853024209
+      ],
+      "local_science_sd_errors_fixed": [
+        0.8064725130420018,
+        1.2315513669508373,
+        1.3123470036472933
+      ],
+      "science_error_covariance_norm": 0.007519502078565007,
+      "objective_directional_derivative_relative_error": 1.7828017025409122e-13,
+      "nuisance_projection_diagnostic": {
+        "estimable_rank": 1,
+        "singular_values": [
+          1.9218415757464382,
+          1.0499349655614861e-16,
+          6.284510071943114e-18
+        ],
+        "nuisance_projection": {
+          "column_scaling": "unit weighted column norm",
+          "rank": 52,
+          "columns": 52
+        },
+        "rank_boundary_margin": 0.1917205806938736,
+        "normalized_singular_values": [
+          0.6242432914852458,
+          0.12052931922604639,
+          0.031117786912049358
+        ],
+        "condition_number": 1.0,
+        "estimable_combinations": [
+          [
+            -0.8211986442339938,
+            0.5699648979788656,
+            0.027799312584878732
+          ]
+        ],
+        "model_contrast_information": {
+          "sphere_rotating_vs_sphere_still": {
+            "information": 2.490758471616597,
+            "estimable": true,
+            "retained_fraction": 0.4143712704413496,
+            "pre_cutoff_information": 2.587116442605596,
+            "pre_cutoff_retained_fraction": 0.42231043911615523,
+            "coefficient_contrast_estimable": false,
+            "contrast_sd": null
+          },
+          "sphere_rotating_vs_flat_still": {
+            "information": 0.28757192771797335,
+            "estimable": false,
+            "retained_fraction": 0.1281671445951543,
+            "pre_cutoff_information": 0.40831675371369025,
+            "pre_cutoff_retained_fraction": 0.15272216235111438,
+            "coefficient_contrast_estimable": false,
+            "contrast_sd": null
+          },
+          "sphere_still_vs_flat_still": {
+            "information": 1.0856730622900541,
+            "estimable": true,
+            "retained_fraction": 0.558485514996921,
+            "pre_cutoff_information": 1.0954784490933298,
+            "pre_cutoff_retained_fraction": 0.561001860638891,
+            "coefficient_contrast_estimable": false,
+            "contrast_sd": null
+          }
+        },
+        "expected_k_sd_without_priors": {
+          "k_rot_sphere": null,
+          "k_curv": null,
+          "k_disc": null
+        },
+        "rank_threshold": 0.31224989991991997
+      },
+      "archive": "docs/joint-acceleration-motion-20261007/bed4aa85790e4d01e95115b8cf19b386a8d2c07c1ad3f7bac00b825813c939a4.npz",
+      "archive_sha256": "a5cff1cc77f8afef1fe27378597d2d26cd03e8a4173d2c24e770778cd3fb6ef1"
+    },
+    {
+      "task_id": "dc5bb68180f11fc6ba59dedc0cd23b05e1aaf13870bff06c8549bb73506b03a2",
+      "truth": "sphere_rotating",
+      "crab_model": "wind_tas",
+      "mode": "saved reference evaluation; no refit",
+      "provenance": {
+        "policy": {
+          "version": "joint-observed-motion-development-1",
+          "window_seconds": 30.0,
+          "error_modes": [
+            "acceleration_n",
+            "acceleration_e",
+            "acceleration_down",
+            "force_x",
+            "force_y",
+            "force_z"
+          ],
+          "error_sigma_bound": 3.0,
+          "error_prior": "Six fully coherent marginal-error patterns with independent unit Gaussian priors",
+          "gyro_weight_source": "Frozen original preliminary weights; no new residual-weight estimate",
+          "forward_bound_sigmas": 3.0,
+          "angular_step_rad": 2e-06,
+          "wind_step_mps": 0.002,
+          "error_step": 0.002,
+          "support": "Fixed observable support including simultaneous three-sigma acceleration-mode norm bound; no state-dependent row selection",
+          "uncertainty_status": "Local joint curvature and six error modes only; unvalidated coverage",
+          "production_enabled": false,
+          "decisions_enabled": false
+        },
+        "policy_hash": "14b92f2119d6a075051277f8e0bbedc75368933abb4df6276c89b6eba7b082eb",
+        "base_motion_policy_hash": "f9d2bfb4d479b02961cf60bf4116530e28b20fd3ee4ab2ef7af7a6accc81f149",
+        "fixed_bins": 83,
+        "original_bins": 99,
+        "production_enabled": false,
+        "decisions_enabled": false
+      },
+      "fixed_supported_minutes": 83,
+      "original_minutes": 99,
+      "parameters": 64,
+      "saved_reference_parameters": 58,
+      "coherent_error_modes": 6,
+      "baseline_residual_same_bins_dph": 33.99400492524878,
+      "joint_prediction_residual_dph": 15.10652556655851,
+      "local_science_sd": [
+        0.8136675149556056,
+        1.2296367873961636,
+        1.3178934063076377
+      ],
+      "local_science_sd_errors_fixed": [
+        0.8136577553820216,
+        1.2296261593782327,
+        1.3178887929613092
+      ],
+      "science_error_covariance_norm": 0.007285800366629817,
+      "objective_directional_derivative_relative_error": 2.5161002288994266e-12,
+      "nuisance_projection_diagnostic": {
+        "estimable_rank": 1,
+        "singular_values": [
+          1.9394683413810414,
+          1.9225291027445613e-16,
+          5.036711774209722e-18
+        ],
+        "nuisance_projection": {
+          "column_scaling": "unit weighted column norm",
+          "rank": 61,
+          "columns": 61
+        },
+        "rank_boundary_margin": 0.192425652245594,
+        "normalized_singular_values": [
+          0.6280379873035332,
+          0.11982424767432599,
+          0.030810235837771115
+        ],
+        "condition_number": 1.0,
+        "estimable_combinations": [
+          [
+            -0.8201382651854896,
+            0.57130221803342,
+            0.03141658238303271
+          ]
+        ],
+        "model_contrast_information": {
+          "sphere_rotating_vs_sphere_still": {
+            "information": 2.5301107984840723,
+            "estimable": true,
+            "retained_fraction": 0.41757695995543964,
+            "pre_cutoff_information": 2.625777469778418,
+            "pre_cutoff_retained_fraction": 0.4253982675676011,
+            "coefficient_contrast_estimable": false,
+            "contrast_sd": null
+          },
+          "sphere_rotating_vs_flat_still": {
+            "information": 0.2954369301853168,
+            "estimable": false,
+            "retained_fraction": 0.12990629691722394,
+            "pre_cutoff_information": 0.41656588253854177,
+            "pre_cutoff_retained_fraction": 0.15425514588780312,
+            "coefficient_contrast_estimable": false,
+            "contrast_sd": null
+          },
+          "sphere_still_vs_flat_still": {
+            "information": 1.0963997681606823,
+            "estimable": true,
+            "retained_fraction": 0.555147945995116,
+            "pre_cutoff_information": 1.1061691256689912,
+            "pre_cutoff_retained_fraction": 0.5576157552694202,
+            "coefficient_contrast_estimable": false,
+            "contrast_sd": null
+          }
+        },
+        "expected_k_sd_without_priors": {
+          "k_rot_sphere": null,
+          "k_curv": null,
+          "k_disc": null
+        },
+        "rank_threshold": 0.31224989991991997
+      },
+      "archive": "docs/joint-acceleration-motion-20261007/dc5bb68180f11fc6ba59dedc0cd23b05e1aaf13870bff06c8549bb73506b03a2.npz",
+      "archive_sha256": "20786f7944980ac8b79651ae82eb9f55e9aaded7a4008220c78660f231b82f4c"
+    },
+    {
+      "task_id": "f94593ee49b996b4de1ef7ae7fcebd7299384ce89bff672d82f4debc755a2425",
+      "truth": "sphere_still",
+      "crab_model": "wind",
+      "mode": "saved reference evaluation; no refit",
+      "provenance": {
+        "policy": {
+          "version": "joint-observed-motion-development-1",
+          "window_seconds": 30.0,
+          "error_modes": [
+            "acceleration_n",
+            "acceleration_e",
+            "acceleration_down",
+            "force_x",
+            "force_y",
+            "force_z"
+          ],
+          "error_sigma_bound": 3.0,
+          "error_prior": "Six fully coherent marginal-error patterns with independent unit Gaussian priors",
+          "gyro_weight_source": "Frozen original preliminary weights; no new residual-weight estimate",
+          "forward_bound_sigmas": 3.0,
+          "angular_step_rad": 2e-06,
+          "wind_step_mps": 0.002,
+          "error_step": 0.002,
+          "support": "Fixed observable support including simultaneous three-sigma acceleration-mode norm bound; no state-dependent row selection",
+          "uncertainty_status": "Local joint curvature and six error modes only; unvalidated coverage",
+          "production_enabled": false,
+          "decisions_enabled": false
+        },
+        "policy_hash": "14b92f2119d6a075051277f8e0bbedc75368933abb4df6276c89b6eba7b082eb",
+        "base_motion_policy_hash": "f9d2bfb4d479b02961cf60bf4116530e28b20fd3ee4ab2ef7af7a6accc81f149",
+        "fixed_bins": 83,
+        "original_bins": 99,
+        "production_enabled": false,
+        "decisions_enabled": false
+      },
+      "fixed_supported_minutes": 83,
+      "original_minutes": 99,
+      "parameters": 55,
+      "saved_reference_parameters": 49,
+      "coherent_error_modes": 6,
+      "baseline_residual_same_bins_dph": 33.86373189450698,
+      "joint_prediction_residual_dph": 10.969298512595897,
+      "local_science_sd": [
+        0.8077499547419216,
+        1.23360258406829,
+        1.3250804226339405
+      ],
+      "local_science_sd_errors_fixed": [
+        0.8077386116018112,
+        1.2335908580155375,
+        1.325053955947504
+      ],
+      "science_error_covariance_norm": 0.010713389642411428,
+      "objective_directional_derivative_relative_error": 1.615159620255563e-13,
+      "nuisance_projection_diagnostic": {
+        "estimable_rank": 1,
+        "singular_values": [
+          1.9229139376198299,
+          5.305288964454407e-16,
+          3.746474361372441e-18
+        ],
+        "nuisance_projection": {
+          "column_scaling": "unit weighted column norm",
+          "rank": 52,
+          "columns": 52
+        },
+        "rank_boundary_margin": 0.1923353453538879,
+        "normalized_singular_values": [
+          0.6241980033905538,
+          0.11991455456603206,
+          0.030689514757608324
+        ],
+        "condition_number": 1.0,
+        "estimable_combinations": [
+          [
+            -0.820895509225662,
+            0.5703865403443575,
+            0.028102624915394864
+          ]
+        ],
+        "model_contrast_information": {
+          "sphere_rotating_vs_sphere_still": {
+            "information": 2.491698290504055,
+            "estimable": true,
+            "retained_fraction": 0.4140536337404196,
+            "pre_cutoff_information": 2.5875789451227615,
+            "pre_cutoff_retained_fraction": 0.42194483743227734,
+            "coefficient_contrast_estimable": false,
+            "contrast_sd": null
+          },
+          "sphere_rotating_vs_flat_still": {
+            "information": 0.2870239017671579,
+            "estimable": false,
+            "retained_fraction": 0.1279197445971694,
+            "pre_cutoff_information": 0.4072708961161217,
+            "pre_cutoff_retained_fraction": 0.15237728800597877,
+            "coefficient_contrast_estimable": false,
+            "contrast_sd": null
+          },
+          "sphere_still_vs_flat_still": {
+            "information": 1.087359469060097,
+            "estimable": true,
+            "retained_fraction": 0.5583594630549193,
+            "pre_cutoff_information": 1.0969338901389887,
+            "pre_cutoff_retained_fraction": 0.5608123097014414,
+            "coefficient_contrast_estimable": false,
+            "contrast_sd": null
+          }
+        },
+        "expected_k_sd_without_priors": {
+          "k_rot_sphere": null,
+          "k_curv": null,
+          "k_disc": null
+        },
+        "rank_threshold": 0.31224989991991997
+      },
+      "archive": "docs/joint-acceleration-motion-20261007/f94593ee49b996b4de1ef7ae7fcebd7299384ce89bff672d82f4debc755a2425.npz",
+      "archive_sha256": "be81b67ca7bca862597910e95b15651ffc17eef23a4615b722d6afec3cbd85bb"
+    },
+    {
+      "task_id": "119d674e186dfaee3ec65d36ca6d02568cea20e8bb58bc8d059d72fab7576ab0",
+      "truth": "sphere_still",
+      "crab_model": "wind_tas",
+      "mode": "saved reference evaluation; no refit",
+      "provenance": {
+        "policy": {
+          "version": "joint-observed-motion-development-1",
+          "window_seconds": 30.0,
+          "error_modes": [
+            "acceleration_n",
+            "acceleration_e",
+            "acceleration_down",
+            "force_x",
+            "force_y",
+            "force_z"
+          ],
+          "error_sigma_bound": 3.0,
+          "error_prior": "Six fully coherent marginal-error patterns with independent unit Gaussian priors",
+          "gyro_weight_source": "Frozen original preliminary weights; no new residual-weight estimate",
+          "forward_bound_sigmas": 3.0,
+          "angular_step_rad": 2e-06,
+          "wind_step_mps": 0.002,
+          "error_step": 0.002,
+          "support": "Fixed observable support including simultaneous three-sigma acceleration-mode norm bound; no state-dependent row selection",
+          "uncertainty_status": "Local joint curvature and six error modes only; unvalidated coverage",
+          "production_enabled": false,
+          "decisions_enabled": false
+        },
+        "policy_hash": "14b92f2119d6a075051277f8e0bbedc75368933abb4df6276c89b6eba7b082eb",
+        "base_motion_policy_hash": "f9d2bfb4d479b02961cf60bf4116530e28b20fd3ee4ab2ef7af7a6accc81f149",
+        "fixed_bins": 83,
+        "original_bins": 99,
+        "production_enabled": false,
+        "decisions_enabled": false
+      },
+      "fixed_supported_minutes": 83,
+      "original_minutes": 99,
+      "parameters": 64,
+      "saved_reference_parameters": 58,
+      "coherent_error_modes": 6,
+      "baseline_residual_same_bins_dph": 33.88662687074298,
+      "joint_prediction_residual_dph": 15.184010335963881,
+      "local_science_sd": [
+        0.8143833090757779,
+        1.230916491689608,
+        1.3305242947118276
+      ],
+      "local_science_sd_errors_fixed": [
+        0.8143712323267751,
+        1.2309045149749895,
+        1.3304982194171362
+      ],
+      "science_error_covariance_norm": 0.010769316880560301,
+      "objective_directional_derivative_relative_error": 2.5141284303057604e-12,
+      "nuisance_projection_diagnostic": {
+        "estimable_rank": 1,
+        "singular_values": [
+          1.9419859307008949,
+          2.4162420356812985e-16,
+          8.30438831858252e-18
+        ],
+        "nuisance_projection": {
+          "column_scaling": "unit weighted column norm",
+          "rank": 61,
+          "columns": 61
+        },
+        "rank_boundary_margin": 0.19326225552989879,
+        "normalized_singular_values": [
+          0.6282849174201182,
+          0.11898764439002117,
+          0.030500170062800668
+        ],
+        "condition_number": 1.0,
+        "estimable_combinations": [
+          [
+            -0.8199197555067843,
+            0.5715999943078237,
+            0.03170238219740835
+          ]
+        ],
+        "model_contrast_information": {
+          "sphere_rotating_vs_sphere_still": {
+            "information": 2.535332126648134,
+            "estimable": true,
+            "retained_fraction": 0.4175064497832525,
+            "pre_cutoff_information": 2.630159928583969,
+            "pre_cutoff_retained_fraction": 0.4252426712524301,
+            "coefficient_contrast_estimable": false,
+            "contrast_sd": null
+          },
+          "sphere_rotating_vs_flat_still": {
+            "information": 0.2957174206591515,
+            "estimable": false,
+            "retained_fraction": 0.12979774417178808,
+            "pre_cutoff_information": 0.4159701826957285,
+            "pre_cutoff_retained_fraction": 0.1539429449443184,
+            "coefficient_contrast_estimable": false,
+            "contrast_sd": null
+          },
+          "sphere_still_vs_flat_still": {
+            "information": 1.0992968201471203,
+            "estimable": true,
+            "retained_fraction": 0.5552687777487506,
+            "pre_cutoff_information": 1.1089104747285063,
+            "pre_cutoff_retained_fraction": 0.5576914819542435,
+            "coefficient_contrast_estimable": false,
+            "contrast_sd": null
+          }
+        },
+        "expected_k_sd_without_priors": {
+          "k_rot_sphere": null,
+          "k_curv": null,
+          "k_disc": null
+        },
+        "rank_threshold": 0.31224989991991997
+      },
+      "archive": "docs/joint-acceleration-motion-20261007/119d674e186dfaee3ec65d36ca6d02568cea20e8bb58bc8d059d72fab7576ab0.npz",
+      "archive_sha256": "c3bc4a84b9db55342ab475924d597b0bd6236cf364bc6c0e52eb73ebff8415f6"
+    },
+    {
+      "task_id": "b545f5f3aec5efaaa0a8cc1da285bcce8b50f66952e8b0977f176b944c0b145b",
+      "truth": "flat_still",
+      "crab_model": "wind",
+      "mode": "saved reference evaluation; no refit",
+      "provenance": {
+        "policy": {
+          "version": "joint-observed-motion-development-1",
+          "window_seconds": 30.0,
+          "error_modes": [
+            "acceleration_n",
+            "acceleration_e",
+            "acceleration_down",
+            "force_x",
+            "force_y",
+            "force_z"
+          ],
+          "error_sigma_bound": 3.0,
+          "error_prior": "Six fully coherent marginal-error patterns with independent unit Gaussian priors",
+          "gyro_weight_source": "Frozen original preliminary weights; no new residual-weight estimate",
+          "forward_bound_sigmas": 3.0,
+          "angular_step_rad": 2e-06,
+          "wind_step_mps": 0.002,
+          "error_step": 0.002,
+          "support": "Fixed observable support including simultaneous three-sigma acceleration-mode norm bound; no state-dependent row selection",
+          "uncertainty_status": "Local joint curvature and six error modes only; unvalidated coverage",
+          "production_enabled": false,
+          "decisions_enabled": false
+        },
+        "policy_hash": "14b92f2119d6a075051277f8e0bbedc75368933abb4df6276c89b6eba7b082eb",
+        "base_motion_policy_hash": "f9d2bfb4d479b02961cf60bf4116530e28b20fd3ee4ab2ef7af7a6accc81f149",
+        "fixed_bins": 83,
+        "original_bins": 99,
+        "production_enabled": false,
+        "decisions_enabled": false
+      },
+      "fixed_supported_minutes": 83,
+      "original_minutes": 99,
+      "parameters": 55,
+      "saved_reference_parameters": 49,
+      "coherent_error_modes": 6,
+      "baseline_residual_same_bins_dph": 33.926388293423706,
+      "joint_prediction_residual_dph": 10.974435044374935,
+      "local_science_sd": [
+        0.8082499991371784,
+        1.2344852783002078,
+        1.3255567887523654
+      ],
+      "local_science_sd_errors_fixed": [
+        0.8082310942232879,
+        1.2344660425134344,
+        1.325543315638939
+      ],
+      "science_error_covariance_norm": 0.01058873461451221,
+      "objective_directional_derivative_relative_error": 2.0033008677247445e-13,
+      "nuisance_projection_diagnostic": {
+        "estimable_rank": 1,
+        "singular_values": [
+          1.9212151219375595,
+          4.333259381909505e-16,
+          3.594645336803514e-18
+        ],
+        "nuisance_projection": {
+          "column_scaling": "unit weighted column norm",
+          "rank": 52,
+          "columns": 52
+        },
+        "rank_boundary_margin": 0.1920139873560695,
+        "normalized_singular_values": [
+          0.6249621613309075,
+          0.12023591256385047,
+          0.03097737544056218
+        ],
+        "condition_number": 1.0,
+        "estimable_combinations": [
+          [
+            -0.8209415601277776,
+            0.5703193730872946,
+            0.028120589188096533
+          ]
+        ],
+        "model_contrast_information": {
+          "sphere_rotating_vs_sphere_still": {
+            "information": 2.4875766830876773,
+            "estimable": true,
+            "retained_fraction": 0.4146042852089499,
+            "pre_cutoff_information": 2.583449432403864,
+            "pre_cutoff_retained_fraction": 0.422518306508583,
+            "coefficient_contrast_estimable": false,
+            "contrast_sd": null
+          },
+          "sphere_rotating_vs_flat_still": {
+            "information": 0.28678685085237726,
+            "estimable": false,
+            "retained_fraction": 0.1281900944150385,
+            "pre_cutoff_information": 0.4070188459465068,
+            "pre_cutoff_retained_fraction": 0.1527151450998978,
+            "coefficient_contrast_estimable": false,
+            "contrast_sd": null
+          },
+          "sphere_still_vs_flat_still": {
+            "information": 1.0850982697538565,
+            "estimable": true,
+            "retained_fraction": 0.55891393450853,
+            "pre_cutoff_information": 1.0947945090857367,
+            "pre_cutoff_retained_fraction": 0.5614055569759683,
+            "coefficient_contrast_estimable": false,
+            "contrast_sd": null
+          }
+        },
+        "expected_k_sd_without_priors": {
+          "k_rot_sphere": null,
+          "k_curv": null,
+          "k_disc": null
+        },
+        "rank_threshold": 0.31224989991991997
+      },
+      "archive": "docs/joint-acceleration-motion-20261007/b545f5f3aec5efaaa0a8cc1da285bcce8b50f66952e8b0977f176b944c0b145b.npz",
+      "archive_sha256": "c916f315e621b6304f62ac1bebdd7ee405825c73620dd05f55b91f3d3a2499b0"
+    },
+    {
+      "task_id": "e71b3a92ed6b8216f7b4767ad03d33773fec77bc3d9f8efb6ce01536ffb1b84f",
+      "truth": "flat_still",
+      "crab_model": "wind_tas",
+      "mode": "saved reference evaluation; no refit",
+      "provenance": {
+        "policy": {
+          "version": "joint-observed-motion-development-1",
+          "window_seconds": 30.0,
+          "error_modes": [
+            "acceleration_n",
+            "acceleration_e",
+            "acceleration_down",
+            "force_x",
+            "force_y",
+            "force_z"
+          ],
+          "error_sigma_bound": 3.0,
+          "error_prior": "Six fully coherent marginal-error patterns with independent unit Gaussian priors",
+          "gyro_weight_source": "Frozen original preliminary weights; no new residual-weight estimate",
+          "forward_bound_sigmas": 3.0,
+          "angular_step_rad": 2e-06,
+          "wind_step_mps": 0.002,
+          "error_step": 0.002,
+          "support": "Fixed observable support including simultaneous three-sigma acceleration-mode norm bound; no state-dependent row selection",
+          "uncertainty_status": "Local joint curvature and six error modes only; unvalidated coverage",
+          "production_enabled": false,
+          "decisions_enabled": false
+        },
+        "policy_hash": "14b92f2119d6a075051277f8e0bbedc75368933abb4df6276c89b6eba7b082eb",
+        "base_motion_policy_hash": "f9d2bfb4d479b02961cf60bf4116530e28b20fd3ee4ab2ef7af7a6accc81f149",
+        "fixed_bins": 83,
+        "original_bins": 99,
+        "production_enabled": false,
+        "decisions_enabled": false
+      },
+      "fixed_supported_minutes": 83,
+      "original_minutes": 99,
+      "parameters": 64,
+      "saved_reference_parameters": 58,
+      "coherent_error_modes": 6,
+      "baseline_residual_same_bins_dph": 33.952301398641055,
+      "joint_prediction_residual_dph": 15.165325461369772,
+      "local_science_sd": [
+        0.8152823069340157,
+        1.2324044680240391,
+        1.3310827397453642
+      ],
+      "local_science_sd_errors_fixed": [
+        0.8152622835189267,
+        1.2323845350926377,
+        1.33106956265968
+      ],
+      "science_error_covariance_norm": 0.010735385985043703,
+      "objective_directional_derivative_relative_error": 2.5166444855528207e-12,
+      "nuisance_projection_diagnostic": {
+        "estimable_rank": 1,
+        "singular_values": [
+          1.9397417392330742,
+          9.376326846663666e-17,
+          4.372833144007254e-18
+        ],
+        "nuisance_projection": {
+          "column_scaling": "unit weighted column norm",
+          "rank": 61,
+          "columns": 61
+        },
+        "rank_boundary_margin": 0.19281482131129032,
+        "normalized_singular_values": [
+          0.6289911836688801,
+          0.11943507860862965,
+          0.030721130215005766
+        ],
+        "condition_number": 1.0,
+        "estimable_combinations": [
+          [
+            -0.8199587516400364,
+            0.5715437143709873,
+            0.031708487380010496
+          ]
+        ],
+        "model_contrast_information": {
+          "sphere_rotating_vs_sphere_still": {
+            "information": 2.5297163820003785,
+            "estimable": true,
+            "retained_fraction": 0.41802204091244966,
+            "pre_cutoff_information": 2.624708395999947,
+            "pre_cutoff_retained_fraction": 0.4257981742623209,
+            "coefficient_contrast_estimable": false,
+            "contrast_sd": null
+          },
+          "sphere_rotating_vs_flat_still": {
+            "information": 0.2952480149965893,
+            "estimable": false,
+            "retained_fraction": 0.1300556169335387,
+            "pre_cutoff_information": 0.41563672110356825,
+            "pre_cutoff_retained_fraction": 0.15430946849037747,
+            "coefficient_contrast_estimable": false,
+            "contrast_sd": null
+          },
+          "sphere_still_vs_flat_still": {
+            "information": 1.0965041107422144,
+            "estimable": true,
+            "retained_fraction": 0.5557649773594664,
+            "pre_cutoff_information": 1.106195335993003,
+            "pre_cutoff_retained_fraction": 0.5582155814993599,
+            "coefficient_contrast_estimable": false,
+            "contrast_sd": null
+          }
+        },
+        "expected_k_sd_without_priors": {
+          "k_rot_sphere": null,
+          "k_curv": null,
+          "k_disc": null
+        },
+        "rank_threshold": 0.31224989991991997
+      },
+      "archive": "docs/joint-acceleration-motion-20261007/e71b3a92ed6b8216f7b4767ad03d33773fec77bc3d9f8efb6ce01536ffb1b84f.npz",
+      "archive_sha256": "b7a4c0e6cf5dd8c4e12ddbd554aba272d28bd82c43bbde0942a7a8f9ba5ba31b"
+    }
+  ],
+  "limitations": [
+    "Reference coefficients came from the earlier approximate pipeline; they are not optima of this new objective.",
+    "Frozen earlier preliminary gyro weights are reused, not re-estimated or validated for corrected motion.",
+    "Local penalized curvature is not coverage; six coherent measurement-error modes do not span all correlated or instrumental errors.",
+    "Diagnostic nuisance projection is evaluated at saved data-dependent reference states, not an outcome-independent design envelope.",
+    "Ground/TAS speed observation retains the existing conditional bin model; a fully joint GPS likelihood remains open.",
+    "Scientific terms use the retained bin-average geometry; Coriolis/curvature acceleration systematics and filter bandwidth remain unresolved.",
+    "No pair profile, selection gate, model winner, power, bootstrap or calibration output is produced."
+  ]
+}

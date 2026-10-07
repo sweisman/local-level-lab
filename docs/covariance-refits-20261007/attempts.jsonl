@@ -1,0 +1,192 @@
+{"event": "started", "attempt": 1, "case_id": "288e78cfa3fa17c027371967e7ac28406ee412046273932bfd09f3913ff6b146", "fit": "free", "utc": 1791353960.9964976}
+{"event": "complete", "attempt": 1, "case_id": "288e78cfa3fa17c027371967e7ac28406ee412046273932bfd09f3913ff6b146", "fit": "free", "success": true, "elapsed_s": 23.773473620065488}
+{"event": "started", "attempt": 2, "case_id": "288e78cfa3fa17c027371967e7ac28406ee412046273932bfd09f3913ff6b146", "fit": "sphere_rotating", "utc": 1791353984.9235857}
+{"event": "complete", "attempt": 2, "case_id": "288e78cfa3fa17c027371967e7ac28406ee412046273932bfd09f3913ff6b146", "fit": "sphere_rotating", "success": true, "elapsed_s": 20.23714163596742}
+{"event": "started", "attempt": 3, "case_id": "288e78cfa3fa17c027371967e7ac28406ee412046273932bfd09f3913ff6b146", "fit": "sphere_still", "utc": 1791354005.308806}
+{"event": "complete", "attempt": 3, "case_id": "288e78cfa3fa17c027371967e7ac28406ee412046273932bfd09f3913ff6b146", "fit": "sphere_still", "success": true, "elapsed_s": 24.70214205502998}
+{"event": "started", "attempt": 4, "case_id": "288e78cfa3fa17c027371967e7ac28406ee412046273932bfd09f3913ff6b146", "fit": "flat_still", "utc": 1791354030.1366503}
+{"event": "complete", "attempt": 4, "case_id": "288e78cfa3fa17c027371967e7ac28406ee412046273932bfd09f3913ff6b146", "fit": "flat_still", "success": true, "elapsed_s": 20.557706461986527}
+{"event": "started", "attempt": 5, "case_id": "0d57dec7f99efe8ab395c676a18cc860baac0eb36f20defce26027c571b4633c", "fit": "free", "utc": 1791354052.4132447}
+{"event": "complete", "attempt": 5, "case_id": "0d57dec7f99efe8ab395c676a18cc860baac0eb36f20defce26027c571b4633c", "fit": "free", "success": true, "elapsed_s": 16.75534496898763}
+{"event": "started", "attempt": 6, "case_id": "0d57dec7f99efe8ab395c676a18cc860baac0eb36f20defce26027c571b4633c", "fit": "sphere_rotating", "utc": 1791354069.2992337}
+{"event": "complete", "attempt": 6, "case_id": "0d57dec7f99efe8ab395c676a18cc860baac0eb36f20defce26027c571b4633c", "fit": "sphere_rotating", "success": true, "elapsed_s": 16.178069655084983}
+{"event": "started", "attempt": 7, "case_id": "0d57dec7f99efe8ab395c676a18cc860baac0eb36f20defce26027c571b4633c", "fit": "sphere_still", "utc": 1791354085.6201334}
+{"event": "complete", "attempt": 7, "case_id": "0d57dec7f99efe8ab395c676a18cc860baac0eb36f20defce26027c571b4633c", "fit": "sphere_still", "success": true, "elapsed_s": 20.48574555304367}
+{"event": "started", "attempt": 8, "case_id": "0d57dec7f99efe8ab395c676a18cc860baac0eb36f20defce26027c571b4633c", "fit": "flat_still", "utc": 1791354106.2398345}
+{"event": "complete", "attempt": 8, "case_id": "0d57dec7f99efe8ab395c676a18cc860baac0eb36f20defce26027c571b4633c", "fit": "flat_still", "success": true, "elapsed_s": 18.23227593093179}
+{"event": "started", "attempt": 9, "case_id": "b460e01f3bfdf4fba8d122dbbb1ede484e3bd642ff9ea0972a3cdc2a37f2396b", "fit": "free", "utc": 1791354126.450407}
+{"event": "complete", "attempt": 9, "case_id": "b460e01f3bfdf4fba8d122dbbb1ede484e3bd642ff9ea0972a3cdc2a37f2396b", "fit": "free", "success": true, "elapsed_s": 19.84691712097265}
+{"event": "started", "attempt": 10, "case_id": "b460e01f3bfdf4fba8d122dbbb1ede484e3bd642ff9ea0972a3cdc2a37f2396b", "fit": "sphere_rotating", "utc": 1791354146.4339004}
+{"event": "complete", "attempt": 10, "case_id": "b460e01f3bfdf4fba8d122dbbb1ede484e3bd642ff9ea0972a3cdc2a37f2396b", "fit": "sphere_rotating", "success": true, "elapsed_s": 12.204027332016267}
+{"event": "started", "attempt": 11, "case_id": "b460e01f3bfdf4fba8d122dbbb1ede484e3bd642ff9ea0972a3cdc2a37f2396b", "fit": "sphere_still", "utc": 1791354158.8173342}
+{"event": "complete", "attempt": 11, "case_id": "b460e01f3bfdf4fba8d122dbbb1ede484e3bd642ff9ea0972a3cdc2a37f2396b", "fit": "sphere_still", "success": true, "elapsed_s": 15.265897562960163}
+{"event": "started", "attempt": 12, "case_id": "b460e01f3bfdf4fba8d122dbbb1ede484e3bd642ff9ea0972a3cdc2a37f2396b", "fit": "flat_still", "utc": 1791354174.3057458}
+{"event": "complete", "attempt": 12, "case_id": "b460e01f3bfdf4fba8d122dbbb1ede484e3bd642ff9ea0972a3cdc2a37f2396b", "fit": "flat_still", "success": true, "elapsed_s": 18.80486731696874}
+{"event": "started", "attempt": 13, "case_id": "34373870c5f34e13a30a76527c0ae629045bc1f5e355bb4019dcde7902d1760f", "fit": "free", "utc": 1791354194.9108057}
+{"event": "complete", "attempt": 13, "case_id": "34373870c5f34e13a30a76527c0ae629045bc1f5e355bb4019dcde7902d1760f", "fit": "free", "success": true, "elapsed_s": 23.897414852981456}
+{"event": "started", "attempt": 14, "case_id": "34373870c5f34e13a30a76527c0ae629045bc1f5e355bb4019dcde7902d1760f", "fit": "sphere_rotating", "utc": 1791354219.0424461}
+{"event": "complete", "attempt": 14, "case_id": "34373870c5f34e13a30a76527c0ae629045bc1f5e355bb4019dcde7902d1760f", "fit": "sphere_rotating", "success": true, "elapsed_s": 15.034821656998247}
+{"event": "started", "attempt": 15, "case_id": "34373870c5f34e13a30a76527c0ae629045bc1f5e355bb4019dcde7902d1760f", "fit": "sphere_still", "utc": 1791354234.1990132}
+{"event": "complete", "attempt": 15, "case_id": "34373870c5f34e13a30a76527c0ae629045bc1f5e355bb4019dcde7902d1760f", "fit": "sphere_still", "success": true, "elapsed_s": 14.294352242024615}
+{"event": "started", "attempt": 16, "case_id": "34373870c5f34e13a30a76527c0ae629045bc1f5e355bb4019dcde7902d1760f", "fit": "flat_still", "utc": 1791354248.6151345}
+{"event": "complete", "attempt": 16, "case_id": "34373870c5f34e13a30a76527c0ae629045bc1f5e355bb4019dcde7902d1760f", "fit": "flat_still", "success": true, "elapsed_s": 14.687557258992456}
+{"event": "started", "attempt": 17, "case_id": "e4fa6b54dee76fbc34503c92b022789da9243bffa87a34b4cd2c14906fbdf007", "fit": "free", "utc": 1791354272.3613884}
+{"event": "complete", "attempt": 17, "case_id": "e4fa6b54dee76fbc34503c92b022789da9243bffa87a34b4cd2c14906fbdf007", "fit": "free", "success": true, "elapsed_s": 29.374847766943276}
+{"event": "started", "attempt": 18, "case_id": "e4fa6b54dee76fbc34503c92b022789da9243bffa87a34b4cd2c14906fbdf007", "fit": "sphere_rotating", "utc": 1791354301.90998}
+{"event": "complete", "attempt": 18, "case_id": "e4fa6b54dee76fbc34503c92b022789da9243bffa87a34b4cd2c14906fbdf007", "fit": "sphere_rotating", "success": true, "elapsed_s": 21.31733469304163}
+{"event": "started", "attempt": 19, "case_id": "e4fa6b54dee76fbc34503c92b022789da9243bffa87a34b4cd2c14906fbdf007", "fit": "sphere_still", "utc": 1791354323.4504397}
+{"event": "complete", "attempt": 19, "case_id": "e4fa6b54dee76fbc34503c92b022789da9243bffa87a34b4cd2c14906fbdf007", "fit": "sphere_still", "success": true, "elapsed_s": 31.451484984951094}
+{"event": "started", "attempt": 20, "case_id": "e4fa6b54dee76fbc34503c92b022789da9243bffa87a34b4cd2c14906fbdf007", "fit": "flat_still", "utc": 1791354355.04543}
+{"event": "complete", "attempt": 20, "case_id": "e4fa6b54dee76fbc34503c92b022789da9243bffa87a34b4cd2c14906fbdf007", "fit": "flat_still", "success": true, "elapsed_s": 27.52639682299923}
+{"event": "started", "attempt": 21, "case_id": "831ec4c5e182be3a0421708e07bdba545623a8ae298d763f4fe32088ddedf84e", "fit": "free", "utc": 1791354385.3114614}
+{"event": "complete", "attempt": 21, "case_id": "831ec4c5e182be3a0421708e07bdba545623a8ae298d763f4fe32088ddedf84e", "fit": "free", "success": true, "elapsed_s": 37.532771777012385}
+{"event": "started", "attempt": 22, "case_id": "831ec4c5e182be3a0421708e07bdba545623a8ae298d763f4fe32088ddedf84e", "fit": "sphere_rotating", "utc": 1791354423.1917431}
+{"event": "complete", "attempt": 22, "case_id": "831ec4c5e182be3a0421708e07bdba545623a8ae298d763f4fe32088ddedf84e", "fit": "sphere_rotating", "success": true, "elapsed_s": 21.30817415297497}
+{"event": "started", "attempt": 23, "case_id": "831ec4c5e182be3a0421708e07bdba545623a8ae298d763f4fe32088ddedf84e", "fit": "sphere_still", "utc": 1791354444.6478534}
+{"event": "complete", "attempt": 23, "case_id": "831ec4c5e182be3a0421708e07bdba545623a8ae298d763f4fe32088ddedf84e", "fit": "sphere_still", "success": true, "elapsed_s": 18.39915265305899}
+{"event": "started", "attempt": 24, "case_id": "831ec4c5e182be3a0421708e07bdba545623a8ae298d763f4fe32088ddedf84e", "fit": "flat_still", "utc": 1791354463.1824558}
+{"event": "complete", "attempt": 24, "case_id": "831ec4c5e182be3a0421708e07bdba545623a8ae298d763f4fe32088ddedf84e", "fit": "flat_still", "success": true, "elapsed_s": 16.93963229795918}
+{"event": "started", "attempt": 25, "case_id": "c2a1f4a49faf836befb56b4b01263c97164c8d66f93186c8997bad0059cae6df", "fit": "free", "utc": 1791354481.7524114}
+{"event": "complete", "attempt": 25, "case_id": "c2a1f4a49faf836befb56b4b01263c97164c8d66f93186c8997bad0059cae6df", "fit": "free", "success": true, "elapsed_s": 21.902598379994743}
+{"event": "started", "attempt": 26, "case_id": "c2a1f4a49faf836befb56b4b01263c97164c8d66f93186c8997bad0059cae6df", "fit": "sphere_rotating", "utc": 1791354503.7914503}
+{"event": "complete", "attempt": 26, "case_id": "c2a1f4a49faf836befb56b4b01263c97164c8d66f93186c8997bad0059cae6df", "fit": "sphere_rotating", "success": true, "elapsed_s": 14.520373402978294}
+{"event": "started", "attempt": 27, "case_id": "c2a1f4a49faf836befb56b4b01263c97164c8d66f93186c8997bad0059cae6df", "fit": "sphere_still", "utc": 1791354518.4450378}
+{"event": "complete", "attempt": 27, "case_id": "c2a1f4a49faf836befb56b4b01263c97164c8d66f93186c8997bad0059cae6df", "fit": "sphere_still", "success": true, "elapsed_s": 13.903205350972712}
+{"event": "started", "attempt": 28, "case_id": "c2a1f4a49faf836befb56b4b01263c97164c8d66f93186c8997bad0059cae6df", "fit": "flat_still", "utc": 1791354532.4828613}
+{"event": "complete", "attempt": 28, "case_id": "c2a1f4a49faf836befb56b4b01263c97164c8d66f93186c8997bad0059cae6df", "fit": "flat_still", "success": true, "elapsed_s": 13.810122412978671}
+{"event": "started", "attempt": 29, "case_id": "75061715988ff6141f8cd5cac36b0e7fb19b461f867d29b83951702fb1627307", "fit": "free", "utc": 1791354547.9559357}
+{"event": "complete", "attempt": 29, "case_id": "75061715988ff6141f8cd5cac36b0e7fb19b461f867d29b83951702fb1627307", "fit": "free", "success": true, "elapsed_s": 22.324120606994256}
+{"event": "started", "attempt": 30, "case_id": "75061715988ff6141f8cd5cac36b0e7fb19b461f867d29b83951702fb1627307", "fit": "sphere_rotating", "utc": 1791354570.4152956}
+{"event": "complete", "attempt": 30, "case_id": "75061715988ff6141f8cd5cac36b0e7fb19b461f867d29b83951702fb1627307", "fit": "sphere_rotating", "success": true, "elapsed_s": 12.306294098962098}
+{"event": "started", "attempt": 31, "case_id": "75061715988ff6141f8cd5cac36b0e7fb19b461f867d29b83951702fb1627307", "fit": "sphere_still", "utc": 1791354582.8521852}
+{"event": "complete", "attempt": 31, "case_id": "75061715988ff6141f8cd5cac36b0e7fb19b461f867d29b83951702fb1627307", "fit": "sphere_still", "success": true, "elapsed_s": 13.744893684983253}
+{"event": "started", "attempt": 32, "case_id": "75061715988ff6141f8cd5cac36b0e7fb19b461f867d29b83951702fb1627307", "fit": "flat_still", "utc": 1791354596.7452152}
+{"event": "complete", "attempt": 32, "case_id": "75061715988ff6141f8cd5cac36b0e7fb19b461f867d29b83951702fb1627307", "fit": "flat_still", "success": true, "elapsed_s": 14.073588057071902}
+{"event": "started", "attempt": 33, "case_id": "f067da39b0cf882d03918c8f341ec35617b6b4f5e9884821aace99ff01fbe262", "fit": "free", "utc": 1791354617.7990565}
+{"event": "complete", "attempt": 33, "case_id": "f067da39b0cf882d03918c8f341ec35617b6b4f5e9884821aace99ff01fbe262", "fit": "free", "success": true, "elapsed_s": 19.35711555299349}
+{"event": "started", "attempt": 34, "case_id": "f067da39b0cf882d03918c8f341ec35617b6b4f5e9884821aace99ff01fbe262", "fit": "sphere_rotating", "utc": 1791354637.2957203}
+{"event": "complete", "attempt": 34, "case_id": "f067da39b0cf882d03918c8f341ec35617b6b4f5e9884821aace99ff01fbe262", "fit": "sphere_rotating", "success": true, "elapsed_s": 19.32681616197806}
+{"event": "started", "attempt": 35, "case_id": "f067da39b0cf882d03918c8f341ec35617b6b4f5e9884821aace99ff01fbe262", "fit": "sphere_still", "utc": 1791354656.7613847}
+{"event": "complete", "attempt": 35, "case_id": "f067da39b0cf882d03918c8f341ec35617b6b4f5e9884821aace99ff01fbe262", "fit": "sphere_still", "success": true, "elapsed_s": 17.427708924980834}
+{"event": "started", "attempt": 36, "case_id": "f067da39b0cf882d03918c8f341ec35617b6b4f5e9884821aace99ff01fbe262", "fit": "flat_still", "utc": 1791354674.315325}
+{"event": "complete", "attempt": 36, "case_id": "f067da39b0cf882d03918c8f341ec35617b6b4f5e9884821aace99ff01fbe262", "fit": "flat_still", "success": true, "elapsed_s": 23.032147579011507}
+{"event": "started", "attempt": 37, "case_id": "2f5019fa84530e78e61c40b41b04da610d11db16288f93076cae913212db339b", "fit": "free", "utc": 1791354699.3762102}
+{"event": "complete", "attempt": 37, "case_id": "2f5019fa84530e78e61c40b41b04da610d11db16288f93076cae913212db339b", "fit": "free", "success": true, "elapsed_s": 17.67196160601452}
+{"event": "started", "attempt": 38, "case_id": "2f5019fa84530e78e61c40b41b04da610d11db16288f93076cae913212db339b", "fit": "sphere_rotating", "utc": 1791354717.1931581}
+{"event": "complete", "attempt": 38, "case_id": "2f5019fa84530e78e61c40b41b04da610d11db16288f93076cae913212db339b", "fit": "sphere_rotating", "success": true, "elapsed_s": 18.676003379980102}
+{"event": "started", "attempt": 39, "case_id": "2f5019fa84530e78e61c40b41b04da610d11db16288f93076cae913212db339b", "fit": "sphere_still", "utc": 1791354736.004475}
+{"event": "complete", "attempt": 39, "case_id": "2f5019fa84530e78e61c40b41b04da610d11db16288f93076cae913212db339b", "fit": "sphere_still", "success": true, "elapsed_s": 14.64202769799158}
+{"event": "started", "attempt": 40, "case_id": "2f5019fa84530e78e61c40b41b04da610d11db16288f93076cae913212db339b", "fit": "flat_still", "utc": 1791354750.835383}
+{"event": "complete", "attempt": 40, "case_id": "2f5019fa84530e78e61c40b41b04da610d11db16288f93076cae913212db339b", "fit": "flat_still", "success": true, "elapsed_s": 16.982548984931782}
+{"event": "started", "attempt": 41, "case_id": "37fac7c8881cfe7ede7d9a7a4cde9c53ef3d138d88a89b842f19ee3ea0464980", "fit": "free", "utc": 1791354769.7217069}
+{"event": "complete", "attempt": 41, "case_id": "37fac7c8881cfe7ede7d9a7a4cde9c53ef3d138d88a89b842f19ee3ea0464980", "fit": "free", "success": true, "elapsed_s": 21.57794638199266}
+{"event": "started", "attempt": 42, "case_id": "37fac7c8881cfe7ede7d9a7a4cde9c53ef3d138d88a89b842f19ee3ea0464980", "fit": "sphere_rotating", "utc": 1791354791.461594}
+{"event": "complete", "attempt": 42, "case_id": "37fac7c8881cfe7ede7d9a7a4cde9c53ef3d138d88a89b842f19ee3ea0464980", "fit": "sphere_rotating", "success": true, "elapsed_s": 15.753677960950881}
+{"event": "started", "attempt": 43, "case_id": "37fac7c8881cfe7ede7d9a7a4cde9c53ef3d138d88a89b842f19ee3ea0464980", "fit": "sphere_still", "utc": 1791354807.3456724}
+{"event": "complete", "attempt": 43, "case_id": "37fac7c8881cfe7ede7d9a7a4cde9c53ef3d138d88a89b842f19ee3ea0464980", "fit": "sphere_still", "success": true, "elapsed_s": 18.429860441945493}
+{"event": "started", "attempt": 44, "case_id": "37fac7c8881cfe7ede7d9a7a4cde9c53ef3d138d88a89b842f19ee3ea0464980", "fit": "flat_still", "utc": 1791354825.9111407}
+{"event": "complete", "attempt": 44, "case_id": "37fac7c8881cfe7ede7d9a7a4cde9c53ef3d138d88a89b842f19ee3ea0464980", "fit": "flat_still", "success": true, "elapsed_s": 14.446288305101916}
+{"event": "started", "attempt": 45, "case_id": "fcafa90c596244cb33f682ff6f95a4eafe708f6d671e29673dff246d43625632", "fit": "free", "utc": 1791354842.0388894}
+{"event": "complete", "attempt": 45, "case_id": "fcafa90c596244cb33f682ff6f95a4eafe708f6d671e29673dff246d43625632", "fit": "free", "success": true, "elapsed_s": 19.45074585895054}
+{"event": "started", "attempt": 46, "case_id": "fcafa90c596244cb33f682ff6f95a4eafe708f6d671e29673dff246d43625632", "fit": "sphere_rotating", "utc": 1791354861.644616}
+{"event": "complete", "attempt": 46, "case_id": "fcafa90c596244cb33f682ff6f95a4eafe708f6d671e29673dff246d43625632", "fit": "sphere_rotating", "success": true, "elapsed_s": 15.616201533004642}
+{"event": "started", "attempt": 47, "case_id": "fcafa90c596244cb33f682ff6f95a4eafe708f6d671e29673dff246d43625632", "fit": "sphere_still", "utc": 1791354877.4617648}
+{"event": "complete", "attempt": 47, "case_id": "fcafa90c596244cb33f682ff6f95a4eafe708f6d671e29673dff246d43625632", "fit": "sphere_still", "success": true, "elapsed_s": 15.494454729021527}
+{"event": "started", "attempt": 48, "case_id": "fcafa90c596244cb33f682ff6f95a4eafe708f6d671e29673dff246d43625632", "fit": "flat_still", "utc": 1791354893.092381}
+{"event": "complete", "attempt": 48, "case_id": "fcafa90c596244cb33f682ff6f95a4eafe708f6d671e29673dff246d43625632", "fit": "flat_still", "success": true, "elapsed_s": 15.55326283397153}
+{"event": "started", "attempt": 49, "case_id": "6c54eda2683e88bba2369919a1995d66cff970e6de960e6fba288f87a013b0df", "fit": "free", "utc": 1791354915.9263036}
+{"event": "complete", "attempt": 49, "case_id": "6c54eda2683e88bba2369919a1995d66cff970e6de960e6fba288f87a013b0df", "fit": "free", "success": true, "elapsed_s": 26.073893378023058}
+{"event": "started", "attempt": 50, "case_id": "6c54eda2683e88bba2369919a1995d66cff970e6de960e6fba288f87a013b0df", "fit": "sphere_rotating", "utc": 1791354942.170532}
+{"event": "complete", "attempt": 50, "case_id": "6c54eda2683e88bba2369919a1995d66cff970e6de960e6fba288f87a013b0df", "fit": "sphere_rotating", "success": true, "elapsed_s": 25.70069833204616}
+{"event": "started", "attempt": 51, "case_id": "6c54eda2683e88bba2369919a1995d66cff970e6de960e6fba288f87a013b0df", "fit": "sphere_still", "utc": 1791354968.0055418}
+{"event": "complete", "attempt": 51, "case_id": "6c54eda2683e88bba2369919a1995d66cff970e6de960e6fba288f87a013b0df", "fit": "sphere_still", "success": true, "elapsed_s": 21.319486393011175}
+{"event": "started", "attempt": 52, "case_id": "6c54eda2683e88bba2369919a1995d66cff970e6de960e6fba288f87a013b0df", "fit": "flat_still", "utc": 1791354989.4554462}
+{"event": "complete", "attempt": 52, "case_id": "6c54eda2683e88bba2369919a1995d66cff970e6de960e6fba288f87a013b0df", "fit": "flat_still", "success": true, "elapsed_s": 21.084237272036262}
+{"event": "started", "attempt": 53, "case_id": "1b79c615d716ab6f65dac654346b7aac88d604824bf41e6bc0cf1f5d037b1fbd", "fit": "free", "utc": 1791355012.6342711}
+{"event": "complete", "attempt": 53, "case_id": "1b79c615d716ab6f65dac654346b7aac88d604824bf41e6bc0cf1f5d037b1fbd", "fit": "free", "success": true, "elapsed_s": 28.21086574497167}
+{"event": "started", "attempt": 54, "case_id": "1b79c615d716ab6f65dac654346b7aac88d604824bf41e6bc0cf1f5d037b1fbd", "fit": "sphere_rotating", "utc": 1791355041.0017493}
+{"event": "complete", "attempt": 54, "case_id": "1b79c615d716ab6f65dac654346b7aac88d604824bf41e6bc0cf1f5d037b1fbd", "fit": "sphere_rotating", "success": true, "elapsed_s": 18.899124335031956}
+{"event": "started", "attempt": 55, "case_id": "1b79c615d716ab6f65dac654346b7aac88d604824bf41e6bc0cf1f5d037b1fbd", "fit": "sphere_still", "utc": 1791355060.0269756}
+{"event": "complete", "attempt": 55, "case_id": "1b79c615d716ab6f65dac654346b7aac88d604824bf41e6bc0cf1f5d037b1fbd", "fit": "sphere_still", "success": true, "elapsed_s": 14.401760654058307}
+{"event": "started", "attempt": 56, "case_id": "1b79c615d716ab6f65dac654346b7aac88d604824bf41e6bc0cf1f5d037b1fbd", "fit": "flat_still", "utc": 1791355074.5885847}
+{"event": "complete", "attempt": 56, "case_id": "1b79c615d716ab6f65dac654346b7aac88d604824bf41e6bc0cf1f5d037b1fbd", "fit": "flat_still", "success": true, "elapsed_s": 17.718735603033565}
+{"event": "started", "attempt": 57, "case_id": "cb4e6e795262ab7d71e2aafbeeee318f33ba65e8ef1fe8da8eac76085a32c47b", "fit": "free", "utc": 1791355094.005586}
+{"event": "complete", "attempt": 57, "case_id": "cb4e6e795262ab7d71e2aafbeeee318f33ba65e8ef1fe8da8eac76085a32c47b", "fit": "free", "success": true, "elapsed_s": 23.07870151498355}
+{"event": "started", "attempt": 58, "case_id": "cb4e6e795262ab7d71e2aafbeeee318f33ba65e8ef1fe8da8eac76085a32c47b", "fit": "sphere_rotating", "utc": 1791355117.21791}
+{"event": "complete", "attempt": 58, "case_id": "cb4e6e795262ab7d71e2aafbeeee318f33ba65e8ef1fe8da8eac76085a32c47b", "fit": "sphere_rotating", "success": true, "elapsed_s": 13.371093888068572}
+{"event": "started", "attempt": 59, "case_id": "cb4e6e795262ab7d71e2aafbeeee318f33ba65e8ef1fe8da8eac76085a32c47b", "fit": "sphere_still", "utc": 1791355130.7110136}
+{"event": "complete", "attempt": 59, "case_id": "cb4e6e795262ab7d71e2aafbeeee318f33ba65e8ef1fe8da8eac76085a32c47b", "fit": "sphere_still", "success": true, "elapsed_s": 15.922115643043071}
+{"event": "started", "attempt": 60, "case_id": "cb4e6e795262ab7d71e2aafbeeee318f33ba65e8ef1fe8da8eac76085a32c47b", "fit": "flat_still", "utc": 1791355146.7708948}
+{"event": "complete", "attempt": 60, "case_id": "cb4e6e795262ab7d71e2aafbeeee318f33ba65e8ef1fe8da8eac76085a32c47b", "fit": "flat_still", "success": true, "elapsed_s": 14.502566192066297}
+{"event": "started", "attempt": 61, "case_id": "f70cd88fe9c38e7277646be0c12a05dad6c54636250a7da017038f7866bdeab9", "fit": "free", "utc": 1791355162.9213512}
+{"event": "complete", "attempt": 61, "case_id": "f70cd88fe9c38e7277646be0c12a05dad6c54636250a7da017038f7866bdeab9", "fit": "free", "success": true, "elapsed_s": 25.69793824199587}
+{"event": "started", "attempt": 62, "case_id": "f70cd88fe9c38e7277646be0c12a05dad6c54636250a7da017038f7866bdeab9", "fit": "sphere_rotating", "utc": 1791355188.7802396}
+{"event": "complete", "attempt": 62, "case_id": "f70cd88fe9c38e7277646be0c12a05dad6c54636250a7da017038f7866bdeab9", "fit": "sphere_rotating", "success": true, "elapsed_s": 13.411377873970196}
+{"event": "started", "attempt": 63, "case_id": "f70cd88fe9c38e7277646be0c12a05dad6c54636250a7da017038f7866bdeab9", "fit": "sphere_still", "utc": 1791355202.3340125}
+{"event": "complete", "attempt": 63, "case_id": "f70cd88fe9c38e7277646be0c12a05dad6c54636250a7da017038f7866bdeab9", "fit": "sphere_still", "success": true, "elapsed_s": 10.103827397921123}
+{"event": "started", "attempt": 64, "case_id": "f70cd88fe9c38e7277646be0c12a05dad6c54636250a7da017038f7866bdeab9", "fit": "flat_still", "utc": 1791355212.5695927}
+{"event": "complete", "attempt": 64, "case_id": "f70cd88fe9c38e7277646be0c12a05dad6c54636250a7da017038f7866bdeab9", "fit": "flat_still", "success": true, "elapsed_s": 14.497105206013657}
+{"event": "started", "attempt": 65, "case_id": "6eced67871040931baa96e9464f1853237d6514a3226b19096f6c9696261ab98", "fit": "free", "utc": 1791355234.272038}
+{"event": "complete", "attempt": 65, "case_id": "6eced67871040931baa96e9464f1853237d6514a3226b19096f6c9696261ab98", "fit": "free", "success": true, "elapsed_s": 20.85063624905888}
+{"event": "started", "attempt": 66, "case_id": "6eced67871040931baa96e9464f1853237d6514a3226b19096f6c9696261ab98", "fit": "sphere_rotating", "utc": 1791355255.2702317}
+{"event": "complete", "attempt": 66, "case_id": "6eced67871040931baa96e9464f1853237d6514a3226b19096f6c9696261ab98", "fit": "sphere_rotating", "success": true, "elapsed_s": 17.83390051801689}
+{"event": "started", "attempt": 67, "case_id": "6eced67871040931baa96e9464f1853237d6514a3226b19096f6c9696261ab98", "fit": "sphere_still", "utc": 1791355273.229326}
+{"event": "complete", "attempt": 67, "case_id": "6eced67871040931baa96e9464f1853237d6514a3226b19096f6c9696261ab98", "fit": "sphere_still", "success": true, "elapsed_s": 16.972886984003708}
+{"event": "started", "attempt": 68, "case_id": "6eced67871040931baa96e9464f1853237d6514a3226b19096f6c9696261ab98", "fit": "flat_still", "utc": 1791355290.324508}
+{"event": "complete", "attempt": 68, "case_id": "6eced67871040931baa96e9464f1853237d6514a3226b19096f6c9696261ab98", "fit": "flat_still", "success": true, "elapsed_s": 13.213827340048738}
+{"event": "started", "attempt": 69, "case_id": "b8806fc662a01e87c9cfd07632ccadb49fab32317507bee108de371077e48092", "fit": "free", "utc": 1791355305.0228834}
+{"event": "complete", "attempt": 69, "case_id": "b8806fc662a01e87c9cfd07632ccadb49fab32317507bee108de371077e48092", "fit": "free", "success": true, "elapsed_s": 14.321045721997507}
+{"event": "started", "attempt": 70, "case_id": "b8806fc662a01e87c9cfd07632ccadb49fab32317507bee108de371077e48092", "fit": "sphere_rotating", "utc": 1791355319.4663398}
+{"event": "complete", "attempt": 70, "case_id": "b8806fc662a01e87c9cfd07632ccadb49fab32317507bee108de371077e48092", "fit": "sphere_rotating", "success": true, "elapsed_s": 15.38339911797084}
+{"event": "started", "attempt": 71, "case_id": "b8806fc662a01e87c9cfd07632ccadb49fab32317507bee108de371077e48092", "fit": "sphere_still", "utc": 1791355335.023065}
+{"event": "complete", "attempt": 71, "case_id": "b8806fc662a01e87c9cfd07632ccadb49fab32317507bee108de371077e48092", "fit": "sphere_still", "success": true, "elapsed_s": 13.986335537047125}
+{"event": "started", "attempt": 72, "case_id": "b8806fc662a01e87c9cfd07632ccadb49fab32317507bee108de371077e48092", "fit": "flat_still", "utc": 1791355349.1306958}
+{"event": "complete", "attempt": 72, "case_id": "b8806fc662a01e87c9cfd07632ccadb49fab32317507bee108de371077e48092", "fit": "flat_still", "success": true, "elapsed_s": 15.477611568989232}
+{"event": "started", "attempt": 73, "case_id": "2204496d339e5cbcd4975e8ed063b8ab2271e6626195613bb6bcbac1ab32cf5a", "fit": "free", "utc": 1791355366.1636887}
+{"event": "complete", "attempt": 73, "case_id": "2204496d339e5cbcd4975e8ed063b8ab2271e6626195613bb6bcbac1ab32cf5a", "fit": "free", "success": true, "elapsed_s": 15.967507496010512}
+{"event": "started", "attempt": 74, "case_id": "2204496d339e5cbcd4975e8ed063b8ab2271e6626195613bb6bcbac1ab32cf5a", "fit": "sphere_rotating", "utc": 1791355382.2560134}
+{"event": "complete", "attempt": 74, "case_id": "2204496d339e5cbcd4975e8ed063b8ab2271e6626195613bb6bcbac1ab32cf5a", "fit": "sphere_rotating", "success": true, "elapsed_s": 13.284843481029384}
+{"event": "started", "attempt": 75, "case_id": "2204496d339e5cbcd4975e8ed063b8ab2271e6626195613bb6bcbac1ab32cf5a", "fit": "sphere_still", "utc": 1791355395.664027}
+{"event": "complete", "attempt": 75, "case_id": "2204496d339e5cbcd4975e8ed063b8ab2271e6626195613bb6bcbac1ab32cf5a", "fit": "sphere_still", "success": true, "elapsed_s": 14.042555709951557}
+{"event": "started", "attempt": 76, "case_id": "2204496d339e5cbcd4975e8ed063b8ab2271e6626195613bb6bcbac1ab32cf5a", "fit": "flat_still", "utc": 1791355409.860624}
+{"event": "complete", "attempt": 76, "case_id": "2204496d339e5cbcd4975e8ed063b8ab2271e6626195613bb6bcbac1ab32cf5a", "fit": "flat_still", "success": true, "elapsed_s": 14.071164536988363}
+{"event": "started", "attempt": 77, "case_id": "791ca8b8f8ac335bc46d89c9c4e7347b132fecdd32f9865dd11a930ae0c981cd", "fit": "free", "utc": 1791355426.0329254}
+{"event": "complete", "attempt": 77, "case_id": "791ca8b8f8ac335bc46d89c9c4e7347b132fecdd32f9865dd11a930ae0c981cd", "fit": "free", "success": true, "elapsed_s": 16.442613256978802}
+{"event": "started", "attempt": 78, "case_id": "791ca8b8f8ac335bc46d89c9c4e7347b132fecdd32f9865dd11a930ae0c981cd", "fit": "sphere_rotating", "utc": 1791355442.5903249}
+{"event": "complete", "attempt": 78, "case_id": "791ca8b8f8ac335bc46d89c9c4e7347b132fecdd32f9865dd11a930ae0c981cd", "fit": "sphere_rotating", "success": true, "elapsed_s": 12.95044602593407}
+{"event": "started", "attempt": 79, "case_id": "791ca8b8f8ac335bc46d89c9c4e7347b132fecdd32f9865dd11a930ae0c981cd", "fit": "sphere_still", "utc": 1791355455.6915956}
+{"event": "complete", "attempt": 79, "case_id": "791ca8b8f8ac335bc46d89c9c4e7347b132fecdd32f9865dd11a930ae0c981cd", "fit": "sphere_still", "success": true, "elapsed_s": 14.291856369003654}
+{"event": "started", "attempt": 80, "case_id": "791ca8b8f8ac335bc46d89c9c4e7347b132fecdd32f9865dd11a930ae0c981cd", "fit": "flat_still", "utc": 1791355470.1095726}
+{"event": "complete", "attempt": 80, "case_id": "791ca8b8f8ac335bc46d89c9c4e7347b132fecdd32f9865dd11a930ae0c981cd", "fit": "flat_still", "success": true, "elapsed_s": 15.761027822969481}
+{"event": "started", "attempt": 81, "case_id": "56fe0fc1d86aa13a5ada8af0b6aa7de21f1e2bc4c43d67aa5ad37e82983bf893", "fit": "free", "utc": 1791355494.525895}
+{"event": "complete", "attempt": 81, "case_id": "56fe0fc1d86aa13a5ada8af0b6aa7de21f1e2bc4c43d67aa5ad37e82983bf893", "fit": "free", "success": true, "elapsed_s": 27.250563828041777}
+{"event": "started", "attempt": 82, "case_id": "56fe0fc1d86aa13a5ada8af0b6aa7de21f1e2bc4c43d67aa5ad37e82983bf893", "fit": "sphere_rotating", "utc": 1791355521.921676}
+{"event": "complete", "attempt": 82, "case_id": "56fe0fc1d86aa13a5ada8af0b6aa7de21f1e2bc4c43d67aa5ad37e82983bf893", "fit": "sphere_rotating", "success": true, "elapsed_s": 23.76896344299894}
+{"event": "started", "attempt": 83, "case_id": "56fe0fc1d86aa13a5ada8af0b6aa7de21f1e2bc4c43d67aa5ad37e82983bf893", "fit": "sphere_still", "utc": 1791355545.811487}
+{"event": "complete", "attempt": 83, "case_id": "56fe0fc1d86aa13a5ada8af0b6aa7de21f1e2bc4c43d67aa5ad37e82983bf893", "fit": "sphere_still", "success": true, "elapsed_s": 19.815867776982486}
+{"event": "started", "attempt": 84, "case_id": "56fe0fc1d86aa13a5ada8af0b6aa7de21f1e2bc4c43d67aa5ad37e82983bf893", "fit": "flat_still", "utc": 1791355565.7475023}
+{"event": "complete", "attempt": 84, "case_id": "56fe0fc1d86aa13a5ada8af0b6aa7de21f1e2bc4c43d67aa5ad37e82983bf893", "fit": "flat_still", "success": true, "elapsed_s": 14.814479307970032}
+{"event": "started", "attempt": 85, "case_id": "3ffe7633945c13fb78eebff1663d64134e33c7d9c8afd1441cfe719aa8649ee3", "fit": "free", "utc": 1791355582.197445}
+{"event": "complete", "attempt": 85, "case_id": "3ffe7633945c13fb78eebff1663d64134e33c7d9c8afd1441cfe719aa8649ee3", "fit": "free", "success": true, "elapsed_s": 19.908316542976536}
+{"event": "started", "attempt": 86, "case_id": "3ffe7633945c13fb78eebff1663d64134e33c7d9c8afd1441cfe719aa8649ee3", "fit": "sphere_rotating", "utc": 1791355602.2358527}
+{"event": "complete", "attempt": 86, "case_id": "3ffe7633945c13fb78eebff1663d64134e33c7d9c8afd1441cfe719aa8649ee3", "fit": "sphere_rotating", "success": true, "elapsed_s": 15.029309622012079}
+{"event": "started", "attempt": 87, "case_id": "3ffe7633945c13fb78eebff1663d64134e33c7d9c8afd1441cfe719aa8649ee3", "fit": "sphere_still", "utc": 1791355617.3923619}
+{"event": "complete", "attempt": 87, "case_id": "3ffe7633945c13fb78eebff1663d64134e33c7d9c8afd1441cfe719aa8649ee3", "fit": "sphere_still", "success": true, "elapsed_s": 15.725852338015102}
+{"event": "started", "attempt": 88, "case_id": "3ffe7633945c13fb78eebff1663d64134e33c7d9c8afd1441cfe719aa8649ee3", "fit": "flat_still", "utc": 1791355633.238833}
+{"event": "complete", "attempt": 88, "case_id": "3ffe7633945c13fb78eebff1663d64134e33c7d9c8afd1441cfe719aa8649ee3", "fit": "flat_still", "success": true, "elapsed_s": 11.36054515792057}
+{"event": "started", "attempt": 89, "case_id": "96e20ae57268042a7dd6421c578368a8162c21829d974d8d7898508b057ee7d9", "fit": "free", "utc": 1791355647.4392068}
+{"event": "complete", "attempt": 89, "case_id": "96e20ae57268042a7dd6421c578368a8162c21829d974d8d7898508b057ee7d9", "fit": "free", "success": true, "elapsed_s": 26.173254836001433}
+{"event": "started", "attempt": 90, "case_id": "96e20ae57268042a7dd6421c578368a8162c21829d974d8d7898508b057ee7d9", "fit": "sphere_rotating", "utc": 1791355673.7469316}
+{"event": "complete", "attempt": 90, "case_id": "96e20ae57268042a7dd6421c578368a8162c21829d974d8d7898508b057ee7d9", "fit": "sphere_rotating", "success": true, "elapsed_s": 14.744752397062257}
+{"event": "started", "attempt": 91, "case_id": "96e20ae57268042a7dd6421c578368a8162c21829d974d8d7898508b057ee7d9", "fit": "sphere_still", "utc": 1791355688.617317}
+{"event": "complete", "attempt": 91, "case_id": "96e20ae57268042a7dd6421c578368a8162c21829d974d8d7898508b057ee7d9", "fit": "sphere_still", "success": true, "elapsed_s": 16.132943750941195}
+{"event": "started", "attempt": 92, "case_id": "96e20ae57268042a7dd6421c578368a8162c21829d974d8d7898508b057ee7d9", "fit": "flat_still", "utc": 1791355704.9028506}
+{"event": "complete", "attempt": 92, "case_id": "96e20ae57268042a7dd6421c578368a8162c21829d974d8d7898508b057ee7d9", "fit": "flat_still", "success": true, "elapsed_s": 14.522176192956977}
+{"event": "started", "attempt": 93, "case_id": "e5a0ac0a423600fc12a75227b9fb6a5f3f8018d4d627ba8242436ca9f9e1677e", "fit": "free", "utc": 1791355721.5936491}
+{"event": "complete", "attempt": 93, "case_id": "e5a0ac0a423600fc12a75227b9fb6a5f3f8018d4d627ba8242436ca9f9e1677e", "fit": "free", "success": true, "elapsed_s": 22.12034077802673}
+{"event": "started", "attempt": 94, "case_id": "e5a0ac0a423600fc12a75227b9fb6a5f3f8018d4d627ba8242436ca9f9e1677e", "fit": "sphere_rotating", "utc": 1791355743.8414817}
+{"event": "complete", "attempt": 94, "case_id": "e5a0ac0a423600fc12a75227b9fb6a5f3f8018d4d627ba8242436ca9f9e1677e", "fit": "sphere_rotating", "success": true, "elapsed_s": 12.908560211071745}
+{"event": "started", "attempt": 95, "case_id": "e5a0ac0a423600fc12a75227b9fb6a5f3f8018d4d627ba8242436ca9f9e1677e", "fit": "sphere_still", "utc": 1791355756.9001923}
+{"event": "complete", "attempt": 95, "case_id": "e5a0ac0a423600fc12a75227b9fb6a5f3f8018d4d627ba8242436ca9f9e1677e", "fit": "sphere_still", "success": true, "elapsed_s": 10.387769851018675}
+{"event": "started", "attempt": 96, "case_id": "e5a0ac0a423600fc12a75227b9fb6a5f3f8018d4d627ba8242436ca9f9e1677e", "fit": "flat_still", "utc": 1791355767.4078634}
+{"event": "complete", "attempt": 96, "case_id": "e5a0ac0a423600fc12a75227b9fb6a5f3f8018d4d627ba8242436ca9f9e1677e", "fit": "flat_still", "success": true, "elapsed_s": 10.254783199983649}

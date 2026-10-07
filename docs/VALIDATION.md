@@ -34,6 +34,120 @@ one wind description while leaving rotation unresolved. It still fails under the
 wind description. The control is a reversed assumed path, not an observed return flight,
 and does not establish an accepted protocol. See the [direction review](research-next-stage-20261006/DIRECTION_REVIEW.md).
 
+A subsequent coarse search checked 176 overlapping two-hour windows across all seven
+recorded tracks, without requiring an earlier 75-minute window to pass. Seven combinations
+of window and fixed IMU-turn pattern passed the preliminary motion, duration and heading
+checks. None passed any model contrast under the nominal wind calculations. On this grid,
+no eastbound window passed the heading requirement. This narrows the observed-route search;
+it does not rule out other timings, durations or routes, and adds no simulated flights or
+validated decisions.
+
+The following three-/four-hour check added 277 windows and ten preliminary passing
+window/turn combinations, again with no nominal model-contrast pass. Of these, 250 windows
+failed supported position coverage. No four-hour combination passed preliminary geometry.
+The [longer-route review](research-next-stage-20261006/EXTENDED_ROUTE_REVIEW.md) explains
+the fixed timings and search limits. Longer duration alone has not established a useful
+protocol in these recorded-route controls.
+
+Varying safe turn timing subsequently produced candidate-specific partial design passes:
+88 schedules across 11 windows gave 16 nominal schedule/pair passes under the physical
+wind/airspeed candidate alone. None passed any pair across both wind candidates. Bounded
+registered-state sensitivity checks disproved five nominal passes; eleven remain unresolved
+after the small check. These are design clues, not calibrated pairwise decisions. See the
+[turn-timing review](research-next-stage-20261006/TURN_TIMING_REVIEW.md).
+
+The strongest stationary-globe/disc control has since passed the complete registered
+physical-wind envelope: 15,210 states checked in 29.70 seconds, with worst direct-pair
+retention0.365100 against0.312250. Its rotation comparison passes narrowly in the direct-pair
+calculation, but fails after the global rank cutoff; rotating globe versus disc still fails.
+All states have global rank1. This is finite-grid design evidence under one wind model,
+with assumed interpolated motion and supplied axes. Full simulated-IMU preprocessing,
+recovered axes, justified wind assumptions and independent calibration/validation remain
+necessary. No new simulated flight or empirical decision was produced.
+
+The separately authorized six-case full-pipeline replay has now completed: three truths,
+two wind candidates and combined wind/IMU drift on the fixed Chicago–Los Angeles control.
+All six fits converged and retained 99 cruise minutes with adequate headings. Both wind
+candidates passed the stationary-globe/disc and rotation pairwise gates in every case;
+rotating globe versus disc failed throughout. All decisions abstained because this pilot
+used zero bootstrap and no calibrated thresholds. Residual-based gyro variation was about
+38.3°/hour, substantially above the planning grid's3–6°/hour. Profile uncertainty remains
+large, so this is processing/partial-geometry evidence, not a validated separation or power
+claim. The [replay summary](observed-pair-replay-20261007/SUMMARY.md) records the outcomes.
+
+A subsequent saved-data audit traced the large variation mainly to motion correction.
+Changing aircraft acceleration changes the accelerometer's apparent vertical direction;
+the current analysis treats that change as IMU tilt. The resulting false correction is about
+38°/hour in this replay, while the simulated sensor/calibration remainder is about4°/hour.
+Substituting the simulator's true gravity direction lowers the residual to about12°/hour,
+but that direction is unavailable on an actual flight. This diagnoses a processing limitation;
+it does not repair the pipeline or establish power. A correction using observed position and
+IMU data, with acceleration and orientation uncertainty carried through, is needed.
+
+An observed-data research prototype has now been checked on those saved observations.
+On the same85supported minutes, replacing motion correction lowers variation from about
+34to11°/hour with the saved model parameters held fixed. It preserves83minutes under all
+93registered sensitivity states, with no failed states. Wind/orientation sensitivity can
+still raise variation toward37°/hour. Eleven focused physical, gap and uncertainty checks
+pass. This is a processing prototype with provisional uncertainty propagation; production
+and calibrated decisions remain unchanged. The
+[acceleration-correction study](acceleration-motion-20261007/README.md) records the scope.
+
+The subsequent joint research fit recomputes motion correction and model orientation together
+as wind, forward direction and six explicit measurement-error parameters change. All24fits
+across the six saved cases converged, with correctly nested free/fixed objectives and no
+parameter-boundary flags. Each uses the same83minutes; residual variation is7.92–8.57°/hour.
+Sixteen focused checks and checkpoint/resume verification pass. These are development refits
+with the original weights and a provisional error model, without bootstrap or calibrated
+decisions. The [joint-fit study](joint-acceleration-motion-20261007/README.md) records the
+results. A saved-data bandwidth check now applies identical additional filtering to
+observations and complete reconstructed predictions. On the same79minutes, residual
+variation falls about9–10%, from7.85–8.32to7.08–7.48°/hour. This is a diagnostic with
+fixed fitted parameters, not another fit. The propagated gyro-only covariance includes
+filter overlap and cross-axis correlations, but assumes independent one-second errors.
+Fitted residuals show appreciable time correlation; full GPS/accelerometer/gyro error
+propagation and the effect of nuisance fitting remain open. Twenty-one focused checks
+pass. The [filtering study](matched-measurement-motion-20261007/README.md) records the
+scope and limitations; no scientific decision or production change follows.
+
+The subsequent [shared-error study](continuous-measurement-motion-20261007/README.md)
+evaluates every prediction term at GPS timestamps. All six saved cases retain79minutes
+and7.08–7.48°/hour of residual variation. Shared GPS/IMU propagation predicts about11.3°/hour
+under provisional independent-second assumptions, with about90% of variance from GPS.
+Local fit response includes shared GPS errors in the wind constraint. This is not a new
+fit or validated uncertainty. Twenty-nine focused tests and independent derivative,
+covariance and least-squares checks pass. Time correlations and mount/calibration/
+instrument uncertainty remain open; no decision or production change follows.
+
+The [time-correlation sensitivity study](temporal-measurement-covariance-20261007/README.md)
+now evaluates36fixed combinations of GPS/IMU persistence per saved case,216scenarios total.
+Marginal scales and79-minute support stay fixed. Predicted variation spans11.25–42.31°/hour;
+local fit-response variation spans11.13–40.65°/hour. These assumed input-error processes
+are not measurements of device behavior or calibrated bounds. All combinations remain
+recorded;34focused tests and independent covariance/response checks pass. Next verify a
+research objective using full shared-input covariance before separately scoping refits.
+
+That [research objective](covariance-measurement-objective-20261007/README.md) is now
+implemented and checked across all216saved-state scenarios. Joint whitening retains
+gyro/wind cross covariance; matrices stay fixed during coefficient changes. Gaussian
+normalization is reported separately; singular covariances fail explicitly. A second
+216-scenario comparison retains the physical wind candidate's existing2m/s model
+discrepancy as explicit covariance, alongside measurement errors. Broad wind is unchanged.
+All44focused tests and independent objective/response checks pass. No new fit, calibrated
+decision or production change ran in that study. The next
+[saved-recording comparison](covariance-refits-20261007/README.md) is now authorized
+and complete: six saved cases from three simulated recordings, four fixed assumptions
+about how long GPS and IMU errors persist, and four fits per comparison. All 96 fits
+converged and all 24 comparisons nested correctly, with no repairs, failures or
+parameters near their bounds. Residual variation ranges from 4.47 to 9.88°/hour.
+The injected model remains the best fixed fit across the assumptions, but comparison
+strength changes sharply. Local rotating-globe/disc information retains only 4–14%
+after nuisance projection. Other pairs retain more, including the stationary-globe/disc
+comparison. These fitted-state diagnostics do not replace the design gate or establish
+significance. No new flights, bootstrap or calibrated decisions were produced.
+Actual GPS and IMU error persistence, reference and calibration uncertainty still
+need measurement before choosing a defensible covariance domain and validating decisions.
+
 Later work asked whether the flight route and IMU-turn schedule actually leave enough
 separating information. A 300-case study found no geometry that passed every required comparison
 under both ways of allowing for wind. The subsequent audit found a numerical dependence on

@@ -1,0 +1,2354 @@
+{
+  "state": "extended_observed_route_controls_complete",
+  "cases": [
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 180,
+      "start_s": 0,
+      "end_s": 10800,
+      "observed_coverage_fraction": 1.0,
+      "failure": "turn schedule must contain at most six finite, sorted times"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 180,
+      "start_s": 900,
+      "end_s": 11700,
+      "observed_coverage_fraction": 1.0,
+      "failure": "turn schedule must contain at most six finite, sorted times"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 180,
+      "start_s": 1800,
+      "end_s": 12600,
+      "observed_coverage_fraction": 0.9998148148148148,
+      "failure": "turn schedule must contain at most six finite, sorted times"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 180,
+      "start_s": 2700,
+      "end_s": 13500,
+      "observed_coverage_fraction": 0.9164814814814815,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 180,
+      "start_s": 3600,
+      "end_s": 14400,
+      "observed_coverage_fraction": 0.8331481481481482,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 180,
+      "start_s": 4500,
+      "end_s": 15300,
+      "observed_coverage_fraction": 0.7498148148148148,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 180,
+      "start_s": 5400,
+      "end_s": 16200,
+      "observed_coverage_fraction": 0.6664814814814815,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 180,
+      "start_s": 6300,
+      "end_s": 17100,
+      "observed_coverage_fraction": 0.5831481481481482,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 180,
+      "start_s": 7200,
+      "end_s": 18000,
+      "observed_coverage_fraction": 0.4998148148148148,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 180,
+      "start_s": 8100,
+      "end_s": 18900,
+      "observed_coverage_fraction": 0.4164814814814815,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 180,
+      "start_s": 9000,
+      "end_s": 19800,
+      "observed_coverage_fraction": 0.33314814814814814,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 180,
+      "start_s": 9900,
+      "end_s": 20700,
+      "observed_coverage_fraction": 0.24981481481481482,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 180,
+      "start_s": 10800,
+      "end_s": 21600,
+      "observed_coverage_fraction": 0.17222222222222222,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 180,
+      "start_s": 11700,
+      "end_s": 22500,
+      "observed_coverage_fraction": 0.17222222222222222,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 180,
+      "start_s": 12600,
+      "end_s": 23400,
+      "observed_coverage_fraction": 0.1724074074074074,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 180,
+      "start_s": 13500,
+      "end_s": 24300,
+      "observed_coverage_fraction": 0.25574074074074077,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 180,
+      "start_s": 14400,
+      "end_s": 25200,
+      "observed_coverage_fraction": 0.3390740740740741,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 180,
+      "start_s": 15300,
+      "end_s": 26100,
+      "observed_coverage_fraction": 0.4224074074074074,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 180,
+      "start_s": 16200,
+      "end_s": 27000,
+      "observed_coverage_fraction": 0.5057407407407407,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 180,
+      "start_s": 17100,
+      "end_s": 27900,
+      "observed_coverage_fraction": 0.5890740740740741,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 180,
+      "start_s": 18000,
+      "end_s": 28800,
+      "observed_coverage_fraction": 0.6724074074074075,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 180,
+      "start_s": 18900,
+      "end_s": 29700,
+      "observed_coverage_fraction": 0.7557407407407407,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 180,
+      "start_s": 19800,
+      "end_s": 30600,
+      "observed_coverage_fraction": 0.8390740740740741,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 180,
+      "start_s": 20700,
+      "end_s": 31500,
+      "observed_coverage_fraction": 0.9224074074074075,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 180,
+      "start_s": 21600,
+      "end_s": 32400,
+      "observed_coverage_fraction": 1.0,
+      "failure": "turn schedule must contain at most six finite, sorted times"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 180,
+      "start_s": 22500,
+      "end_s": 33300,
+      "observed_coverage_fraction": 1.0,
+      "failure": "turn schedule must contain at most six finite, sorted times"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 180,
+      "start_s": 23400,
+      "end_s": 34200,
+      "observed_coverage_fraction": 1.0,
+      "failure": "turn schedule must contain at most six finite, sorted times"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 180,
+      "start_s": 24300,
+      "end_s": 35100,
+      "observed_coverage_fraction": 1.0,
+      "failure": "turn schedule must contain at most six finite, sorted times"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 180,
+      "start_s": 25200,
+      "end_s": 36000,
+      "observed_coverage_fraction": 1.0,
+      "failure": "turn schedule must contain at most six finite, sorted times"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 180,
+      "start_s": 26100,
+      "end_s": 36900,
+      "observed_coverage_fraction": 0.9478703703703704,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 180,
+      "start_s": 27000,
+      "end_s": 37800,
+      "observed_coverage_fraction": 0.9225,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 180,
+      "start_s": 27900,
+      "end_s": 38700,
+      "observed_coverage_fraction": 0.8774074074074074,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 180,
+      "start_s": 28800,
+      "end_s": 39600,
+      "observed_coverage_fraction": 0.8195370370370371,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 180,
+      "start_s": 29700,
+      "end_s": 40500,
+      "observed_coverage_fraction": 0.7362037037037037,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 180,
+      "start_s": 30600,
+      "end_s": 41400,
+      "observed_coverage_fraction": 0.6971296296296297,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 180,
+      "start_s": 31500,
+      "end_s": 42300,
+      "observed_coverage_fraction": 0.6971296296296297,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 180,
+      "start_s": 32400,
+      "end_s": 43200,
+      "observed_coverage_fraction": 0.6971296296296297,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 180,
+      "start_s": 33300,
+      "end_s": 44100,
+      "observed_coverage_fraction": 0.6971296296296297,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 180,
+      "start_s": 34200,
+      "end_s": 45000,
+      "observed_coverage_fraction": 0.6971296296296297,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 180,
+      "start_s": 35100,
+      "end_s": 45900,
+      "observed_coverage_fraction": 0.6971296296296297,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 240,
+      "start_s": 0,
+      "end_s": 14400,
+      "observed_coverage_fraction": 0.8748611111111111,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 240,
+      "start_s": 900,
+      "end_s": 15300,
+      "observed_coverage_fraction": 0.8123611111111111,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 240,
+      "start_s": 1800,
+      "end_s": 16200,
+      "observed_coverage_fraction": 0.7498611111111111,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 240,
+      "start_s": 2700,
+      "end_s": 17100,
+      "observed_coverage_fraction": 0.6873611111111111,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 240,
+      "start_s": 3600,
+      "end_s": 18000,
+      "observed_coverage_fraction": 0.6248611111111111,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 240,
+      "start_s": 4500,
+      "end_s": 18900,
+      "observed_coverage_fraction": 0.5623611111111111,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 240,
+      "start_s": 5400,
+      "end_s": 19800,
+      "observed_coverage_fraction": 0.4998611111111111,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 240,
+      "start_s": 6300,
+      "end_s": 20700,
+      "observed_coverage_fraction": 0.4373611111111111,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 240,
+      "start_s": 7200,
+      "end_s": 21600,
+      "observed_coverage_fraction": 0.37916666666666665,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 240,
+      "start_s": 8100,
+      "end_s": 22500,
+      "observed_coverage_fraction": 0.37916666666666665,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 240,
+      "start_s": 9000,
+      "end_s": 23400,
+      "observed_coverage_fraction": 0.37916666666666665,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 240,
+      "start_s": 9900,
+      "end_s": 24300,
+      "observed_coverage_fraction": 0.37916666666666665,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 240,
+      "start_s": 10800,
+      "end_s": 25200,
+      "observed_coverage_fraction": 0.37916666666666665,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 240,
+      "start_s": 11700,
+      "end_s": 26100,
+      "observed_coverage_fraction": 0.37916666666666665,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 240,
+      "start_s": 12600,
+      "end_s": 27000,
+      "observed_coverage_fraction": 0.37930555555555556,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 240,
+      "start_s": 13500,
+      "end_s": 27900,
+      "observed_coverage_fraction": 0.44180555555555556,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 240,
+      "start_s": 14400,
+      "end_s": 28800,
+      "observed_coverage_fraction": 0.5043055555555556,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 240,
+      "start_s": 15300,
+      "end_s": 29700,
+      "observed_coverage_fraction": 0.5668055555555556,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 240,
+      "start_s": 16200,
+      "end_s": 30600,
+      "observed_coverage_fraction": 0.6293055555555556,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 240,
+      "start_s": 17100,
+      "end_s": 31500,
+      "observed_coverage_fraction": 0.6918055555555556,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 240,
+      "start_s": 18000,
+      "end_s": 32400,
+      "observed_coverage_fraction": 0.7543055555555556,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 240,
+      "start_s": 18900,
+      "end_s": 33300,
+      "observed_coverage_fraction": 0.8168055555555556,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 240,
+      "start_s": 19800,
+      "end_s": 34200,
+      "observed_coverage_fraction": 0.8793055555555556,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 240,
+      "start_s": 20700,
+      "end_s": 35100,
+      "observed_coverage_fraction": 0.9418055555555556,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 240,
+      "start_s": 21600,
+      "end_s": 36000,
+      "observed_coverage_fraction": 1.0,
+      "failure": "turn schedule must contain at most six finite, sorted times"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 240,
+      "start_s": 22500,
+      "end_s": 36900,
+      "observed_coverage_fraction": 0.9609027777777778,
+      "failure": "turn schedule must contain at most six finite, sorted times"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 240,
+      "start_s": 23400,
+      "end_s": 37800,
+      "observed_coverage_fraction": 0.941875,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 240,
+      "start_s": 24300,
+      "end_s": 38700,
+      "observed_coverage_fraction": 0.9080555555555555,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 240,
+      "start_s": 25200,
+      "end_s": 39600,
+      "observed_coverage_fraction": 0.8646527777777778,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 240,
+      "start_s": 26100,
+      "end_s": 40500,
+      "observed_coverage_fraction": 0.8021527777777778,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 240,
+      "start_s": 27000,
+      "end_s": 41400,
+      "observed_coverage_fraction": 0.7728472222222222,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 240,
+      "start_s": 27900,
+      "end_s": 42300,
+      "observed_coverage_fraction": 0.7728472222222222,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 240,
+      "start_s": 28800,
+      "end_s": 43200,
+      "observed_coverage_fraction": 0.7728472222222222,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 240,
+      "start_s": 29700,
+      "end_s": 44100,
+      "observed_coverage_fraction": 0.7728472222222222,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 240,
+      "start_s": 30600,
+      "end_s": 45000,
+      "observed_coverage_fraction": 0.7728472222222222,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-09-01-etihad-10-ord-auh",
+      "minutes": 240,
+      "start_s": 31500,
+      "end_s": 45900,
+      "observed_coverage_fraction": 0.7728472222222222,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 180,
+      "start_s": 0,
+      "end_s": 10800,
+      "observed_coverage_fraction": 0.6462037037037037,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 180,
+      "start_s": 900,
+      "end_s": 11700,
+      "observed_coverage_fraction": 0.6462037037037037,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 180,
+      "start_s": 1800,
+      "end_s": 12600,
+      "observed_coverage_fraction": 0.6462037037037037,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 180,
+      "start_s": 2700,
+      "end_s": 13500,
+      "observed_coverage_fraction": 0.6462037037037037,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 180,
+      "start_s": 3600,
+      "end_s": 14400,
+      "observed_coverage_fraction": 0.6462037037037037,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 180,
+      "start_s": 4500,
+      "end_s": 15300,
+      "observed_coverage_fraction": 0.6462037037037037,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 180,
+      "start_s": 5400,
+      "end_s": 16200,
+      "observed_coverage_fraction": 0.6510185185185186,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 180,
+      "start_s": 6300,
+      "end_s": 17100,
+      "observed_coverage_fraction": 0.7343518518518518,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 180,
+      "start_s": 7200,
+      "end_s": 18000,
+      "observed_coverage_fraction": 0.8176851851851852,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 180,
+      "start_s": 8100,
+      "end_s": 18900,
+      "observed_coverage_fraction": 0.8882407407407408,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 180,
+      "start_s": 9000,
+      "end_s": 19800,
+      "observed_coverage_fraction": 0.9143518518518519,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 180,
+      "start_s": 9900,
+      "end_s": 20700,
+      "observed_coverage_fraction": 0.9936111111111111,
+      "failure": "turn schedule must contain at most six finite, sorted times"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 180,
+      "start_s": 10800,
+      "end_s": 21600,
+      "observed_coverage_fraction": 1.0,
+      "failure": "turn schedule must contain at most six finite, sorted times"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 180,
+      "start_s": 11700,
+      "end_s": 22500,
+      "observed_coverage_fraction": 1.0,
+      "failure": "turn schedule must contain at most six finite, sorted times"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 180,
+      "start_s": 12600,
+      "end_s": 23400,
+      "observed_coverage_fraction": 1.0,
+      "failure": "turn schedule must contain at most six finite, sorted times"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 180,
+      "start_s": 13500,
+      "end_s": 24300,
+      "observed_coverage_fraction": 1.0,
+      "failure": "turn schedule must contain at most six finite, sorted times"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 180,
+      "start_s": 14400,
+      "end_s": 25200,
+      "observed_coverage_fraction": 1.0,
+      "failure": "turn schedule must contain at most six finite, sorted times"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 180,
+      "start_s": 15300,
+      "end_s": 26100,
+      "observed_coverage_fraction": 1.0,
+      "failure": "turn schedule must contain at most six finite, sorted times"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 180,
+      "start_s": 16200,
+      "end_s": 27000,
+      "observed_coverage_fraction": 0.9362962962962963,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 180,
+      "start_s": 17100,
+      "end_s": 27900,
+      "observed_coverage_fraction": 0.8529629629629629,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 180,
+      "start_s": 18000,
+      "end_s": 28800,
+      "observed_coverage_fraction": 0.7885185185185185,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 180,
+      "start_s": 18900,
+      "end_s": 29700,
+      "observed_coverage_fraction": 0.7251851851851852,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 180,
+      "start_s": 19800,
+      "end_s": 30600,
+      "observed_coverage_fraction": 0.6632407407407407,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 180,
+      "start_s": 20700,
+      "end_s": 31500,
+      "observed_coverage_fraction": 0.5862962962962963,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 180,
+      "start_s": 21600,
+      "end_s": 32400,
+      "observed_coverage_fraction": 0.5207407407407407,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 180,
+      "start_s": 22500,
+      "end_s": 33300,
+      "observed_coverage_fraction": 0.44342592592592595,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 180,
+      "start_s": 23400,
+      "end_s": 34200,
+      "observed_coverage_fraction": 0.3600925925925926,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 180,
+      "start_s": 24300,
+      "end_s": 35100,
+      "observed_coverage_fraction": 0.27675925925925926,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 180,
+      "start_s": 25200,
+      "end_s": 36000,
+      "observed_coverage_fraction": 0.19342592592592592,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 180,
+      "start_s": 26100,
+      "end_s": 36900,
+      "observed_coverage_fraction": 0.1360185185185185,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 180,
+      "start_s": 27000,
+      "end_s": 37800,
+      "observed_coverage_fraction": 0.19972222222222222,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 180,
+      "start_s": 27900,
+      "end_s": 38700,
+      "observed_coverage_fraction": 0.28305555555555556,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 180,
+      "start_s": 28800,
+      "end_s": 39600,
+      "observed_coverage_fraction": 0.3475,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 180,
+      "start_s": 29700,
+      "end_s": 40500,
+      "observed_coverage_fraction": 0.41083333333333333,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 180,
+      "start_s": 30600,
+      "end_s": 41400,
+      "observed_coverage_fraction": 0.4727777777777778,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 180,
+      "start_s": 31500,
+      "end_s": 42300,
+      "observed_coverage_fraction": 0.5497222222222222,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 180,
+      "start_s": 32400,
+      "end_s": 43200,
+      "observed_coverage_fraction": 0.6152777777777778,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 180,
+      "start_s": 33300,
+      "end_s": 44100,
+      "observed_coverage_fraction": 0.6925925925925925,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 180,
+      "start_s": 34200,
+      "end_s": 45000,
+      "observed_coverage_fraction": 0.7759259259259259,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 180,
+      "start_s": 35100,
+      "end_s": 45900,
+      "observed_coverage_fraction": 0.8592592592592593,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 180,
+      "start_s": 36000,
+      "end_s": 46800,
+      "observed_coverage_fraction": 0.9425925925925925,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 180,
+      "start_s": 36900,
+      "end_s": 47700,
+      "observed_coverage_fraction": 1.0,
+      "failure": "turn schedule must contain at most six finite, sorted times"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 180,
+      "start_s": 37800,
+      "end_s": 48600,
+      "observed_coverage_fraction": 1.0,
+      "failure": "turn schedule must contain at most six finite, sorted times"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 180,
+      "start_s": 38700,
+      "end_s": 49500,
+      "observed_coverage_fraction": 1.0,
+      "failure": "turn schedule must contain at most six finite, sorted times"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 240,
+      "start_s": 0,
+      "end_s": 14400,
+      "observed_coverage_fraction": 0.7346527777777778,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 240,
+      "start_s": 900,
+      "end_s": 15300,
+      "observed_coverage_fraction": 0.7346527777777778,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 240,
+      "start_s": 1800,
+      "end_s": 16200,
+      "observed_coverage_fraction": 0.7346527777777778,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 240,
+      "start_s": 2700,
+      "end_s": 17100,
+      "observed_coverage_fraction": 0.7346527777777778,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 240,
+      "start_s": 3600,
+      "end_s": 18000,
+      "observed_coverage_fraction": 0.7346527777777778,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 240,
+      "start_s": 4500,
+      "end_s": 18900,
+      "observed_coverage_fraction": 0.7346527777777778,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 240,
+      "start_s": 5400,
+      "end_s": 19800,
+      "observed_coverage_fraction": 0.7382638888888889,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 240,
+      "start_s": 6300,
+      "end_s": 20700,
+      "observed_coverage_fraction": 0.8007638888888889,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 240,
+      "start_s": 7200,
+      "end_s": 21600,
+      "observed_coverage_fraction": 0.8632638888888889,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 240,
+      "start_s": 8100,
+      "end_s": 22500,
+      "observed_coverage_fraction": 0.9161805555555556,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 240,
+      "start_s": 9000,
+      "end_s": 23400,
+      "observed_coverage_fraction": 0.9357638888888888,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 240,
+      "start_s": 9900,
+      "end_s": 24300,
+      "observed_coverage_fraction": 0.9952083333333334,
+      "failure": "turn schedule must contain at most six finite, sorted times"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 240,
+      "start_s": 10800,
+      "end_s": 25200,
+      "observed_coverage_fraction": 1.0,
+      "failure": "turn schedule must contain at most six finite, sorted times"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 240,
+      "start_s": 11700,
+      "end_s": 26100,
+      "observed_coverage_fraction": 1.0,
+      "failure": "turn schedule must contain at most six finite, sorted times"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 240,
+      "start_s": 12600,
+      "end_s": 27000,
+      "observed_coverage_fraction": 0.9522222222222222,
+      "failure": "turn schedule must contain at most six finite, sorted times"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 240,
+      "start_s": 13500,
+      "end_s": 27900,
+      "observed_coverage_fraction": 0.8897222222222222,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 240,
+      "start_s": 14400,
+      "end_s": 28800,
+      "observed_coverage_fraction": 0.8413888888888889,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 240,
+      "start_s": 15300,
+      "end_s": 29700,
+      "observed_coverage_fraction": 0.7938888888888889,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 240,
+      "start_s": 16200,
+      "end_s": 30600,
+      "observed_coverage_fraction": 0.7474305555555556,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 240,
+      "start_s": 17100,
+      "end_s": 31500,
+      "observed_coverage_fraction": 0.6897222222222222,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 240,
+      "start_s": 18000,
+      "end_s": 32400,
+      "observed_coverage_fraction": 0.6405555555555555,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 240,
+      "start_s": 18900,
+      "end_s": 33300,
+      "observed_coverage_fraction": 0.5825694444444445,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 240,
+      "start_s": 19800,
+      "end_s": 34200,
+      "observed_coverage_fraction": 0.5200694444444445,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 240,
+      "start_s": 20700,
+      "end_s": 35100,
+      "observed_coverage_fraction": 0.4575694444444444,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 240,
+      "start_s": 21600,
+      "end_s": 36000,
+      "observed_coverage_fraction": 0.3950694444444444,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 240,
+      "start_s": 22500,
+      "end_s": 36900,
+      "observed_coverage_fraction": 0.3520138888888889,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 240,
+      "start_s": 23400,
+      "end_s": 37800,
+      "observed_coverage_fraction": 0.3520138888888889,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 240,
+      "start_s": 24300,
+      "end_s": 38700,
+      "observed_coverage_fraction": 0.3520138888888889,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 240,
+      "start_s": 25200,
+      "end_s": 39600,
+      "observed_coverage_fraction": 0.3520138888888889,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 240,
+      "start_s": 26100,
+      "end_s": 40500,
+      "observed_coverage_fraction": 0.3520138888888889,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 240,
+      "start_s": 27000,
+      "end_s": 41400,
+      "observed_coverage_fraction": 0.39979166666666666,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 240,
+      "start_s": 27900,
+      "end_s": 42300,
+      "observed_coverage_fraction": 0.46229166666666666,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 240,
+      "start_s": 28800,
+      "end_s": 43200,
+      "observed_coverage_fraction": 0.510625,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 240,
+      "start_s": 29700,
+      "end_s": 44100,
+      "observed_coverage_fraction": 0.558125,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 240,
+      "start_s": 30600,
+      "end_s": 45000,
+      "observed_coverage_fraction": 0.6045833333333334,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 240,
+      "start_s": 31500,
+      "end_s": 45900,
+      "observed_coverage_fraction": 0.6622916666666666,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 240,
+      "start_s": 32400,
+      "end_s": 46800,
+      "observed_coverage_fraction": 0.7114583333333333,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 240,
+      "start_s": 33300,
+      "end_s": 47700,
+      "observed_coverage_fraction": 0.7694444444444445,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 240,
+      "start_s": 34200,
+      "end_s": 48600,
+      "observed_coverage_fraction": 0.8319444444444445,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-etihad-9-auh-ord",
+      "minutes": 240,
+      "start_s": 35100,
+      "end_s": 49500,
+      "observed_coverage_fraction": 0.8944444444444445,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2025-08-19-aa-1433-ord-lax",
+      "minutes": 180,
+      "start_s": 0,
+      "end_s": 10800,
+      "observed_coverage_fraction": 1.0,
+      "failure": "turn schedule must contain at most six finite, sorted times"
+    },
+    {
+      "track_id": "2025-08-19-aa-1433-ord-lax",
+      "minutes": 180,
+      "start_s": 900,
+      "end_s": 11700,
+      "observed_coverage_fraction": 1.0,
+      "failure": "turn schedule must contain at most six finite, sorted times"
+    },
+    {
+      "track_id": "2025-08-19-aa-1433-ord-lax",
+      "minutes": 180,
+      "start_s": 1800,
+      "end_s": 12600,
+      "observed_coverage_fraction": 1.0,
+      "failure": "turn schedule must contain at most six finite, sorted times"
+    },
+    {
+      "track_id": "2026-10-02-icelandair-680-sea-kef",
+      "minutes": 180,
+      "start_s": 0,
+      "end_s": 10800,
+      "observed_coverage_fraction": 0.9102777777777777,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-icelandair-680-sea-kef",
+      "minutes": 180,
+      "start_s": 900,
+      "end_s": 11700,
+      "observed_coverage_fraction": 0.9102777777777777,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-icelandair-680-sea-kef",
+      "minutes": 180,
+      "start_s": 1800,
+      "end_s": 12600,
+      "observed_coverage_fraction": 0.8813888888888889,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-icelandair-680-sea-kef",
+      "minutes": 180,
+      "start_s": 2700,
+      "end_s": 13500,
+      "observed_coverage_fraction": 0.7980555555555555,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-icelandair-680-sea-kef",
+      "minutes": 180,
+      "start_s": 3600,
+      "end_s": 14400,
+      "observed_coverage_fraction": 0.7587037037037037,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-icelandair-680-sea-kef",
+      "minutes": 180,
+      "start_s": 4500,
+      "end_s": 15300,
+      "observed_coverage_fraction": 0.7587037037037037,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-icelandair-680-sea-kef",
+      "minutes": 180,
+      "start_s": 5400,
+      "end_s": 16200,
+      "observed_coverage_fraction": 0.7587037037037037,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-icelandair-680-sea-kef",
+      "minutes": 180,
+      "start_s": 6300,
+      "end_s": 17100,
+      "observed_coverage_fraction": 0.7587037037037037,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-icelandair-680-sea-kef",
+      "minutes": 180,
+      "start_s": 7200,
+      "end_s": 18000,
+      "observed_coverage_fraction": 0.7724074074074074,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-icelandair-680-sea-kef",
+      "minutes": 180,
+      "start_s": 8100,
+      "end_s": 18900,
+      "observed_coverage_fraction": 0.7174074074074074,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-icelandair-680-sea-kef",
+      "minutes": 180,
+      "start_s": 9000,
+      "end_s": 19800,
+      "observed_coverage_fraction": 0.6340740740740741,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-icelandair-680-sea-kef",
+      "minutes": 180,
+      "start_s": 9900,
+      "end_s": 20700,
+      "observed_coverage_fraction": 0.5990740740740741,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-icelandair-680-sea-kef",
+      "minutes": 180,
+      "start_s": 10800,
+      "end_s": 21600,
+      "observed_coverage_fraction": 0.5323148148148148,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-icelandair-680-sea-kef",
+      "minutes": 180,
+      "start_s": 11700,
+      "end_s": 22500,
+      "observed_coverage_fraction": 0.4489814814814815,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-icelandair-680-sea-kef",
+      "minutes": 180,
+      "start_s": 12600,
+      "end_s": 23400,
+      "observed_coverage_fraction": 0.42787037037037035,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-icelandair-680-sea-kef",
+      "minutes": 180,
+      "start_s": 13500,
+      "end_s": 24300,
+      "observed_coverage_fraction": 0.5112037037037037,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-icelandair-680-sea-kef",
+      "minutes": 180,
+      "start_s": 14400,
+      "end_s": 25200,
+      "observed_coverage_fraction": 0.5505555555555556,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-icelandair-680-sea-kef",
+      "minutes": 240,
+      "start_s": 0,
+      "end_s": 14400,
+      "observed_coverage_fraction": 0.8190277777777778,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-icelandair-680-sea-kef",
+      "minutes": 240,
+      "start_s": 900,
+      "end_s": 15300,
+      "observed_coverage_fraction": 0.8190277777777778,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-icelandair-680-sea-kef",
+      "minutes": 240,
+      "start_s": 1800,
+      "end_s": 16200,
+      "observed_coverage_fraction": 0.8190277777777778,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-icelandair-680-sea-kef",
+      "minutes": 240,
+      "start_s": 2700,
+      "end_s": 17100,
+      "observed_coverage_fraction": 0.8190277777777778,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-icelandair-680-sea-kef",
+      "minutes": 240,
+      "start_s": 3600,
+      "end_s": 18000,
+      "observed_coverage_fraction": 0.8190277777777778,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-icelandair-680-sea-kef",
+      "minutes": 240,
+      "start_s": 4500,
+      "end_s": 18900,
+      "observed_coverage_fraction": 0.7694444444444445,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-icelandair-680-sea-kef",
+      "minutes": 240,
+      "start_s": 5400,
+      "end_s": 19800,
+      "observed_coverage_fraction": 0.7069444444444445,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-icelandair-680-sea-kef",
+      "minutes": 240,
+      "start_s": 6300,
+      "end_s": 20700,
+      "observed_coverage_fraction": 0.6444444444444445,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-icelandair-680-sea-kef",
+      "minutes": 240,
+      "start_s": 7200,
+      "end_s": 21600,
+      "observed_coverage_fraction": 0.5922222222222222,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-icelandair-680-sea-kef",
+      "minutes": 240,
+      "start_s": 8100,
+      "end_s": 22500,
+      "observed_coverage_fraction": 0.5380555555555555,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-icelandair-680-sea-kef",
+      "minutes": 240,
+      "start_s": 9000,
+      "end_s": 23400,
+      "observed_coverage_fraction": 0.5005555555555555,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-icelandair-680-sea-kef",
+      "minutes": 240,
+      "start_s": 9900,
+      "end_s": 24300,
+      "observed_coverage_fraction": 0.5368055555555555,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-icelandair-680-sea-kef",
+      "minutes": 240,
+      "start_s": 10800,
+      "end_s": 25200,
+      "observed_coverage_fraction": 0.5492361111111111,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 180,
+      "start_s": 0,
+      "end_s": 10800,
+      "observed_coverage_fraction": 0.7241666666666666,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 180,
+      "start_s": 900,
+      "end_s": 11700,
+      "observed_coverage_fraction": 0.6408333333333334,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 180,
+      "start_s": 1800,
+      "end_s": 12600,
+      "observed_coverage_fraction": 0.5575,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 180,
+      "start_s": 2700,
+      "end_s": 13500,
+      "observed_coverage_fraction": 0.4741666666666667,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 180,
+      "start_s": 3600,
+      "end_s": 14400,
+      "observed_coverage_fraction": 0.3908333333333333,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 180,
+      "start_s": 4500,
+      "end_s": 15300,
+      "observed_coverage_fraction": 0.3075,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 180,
+      "start_s": 5400,
+      "end_s": 16200,
+      "observed_coverage_fraction": 0.22416666666666665,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 180,
+      "start_s": 6300,
+      "end_s": 17100,
+      "observed_coverage_fraction": 0.14083333333333334,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 180,
+      "start_s": 7200,
+      "end_s": 18000,
+      "observed_coverage_fraction": 0.06777777777777778,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 180,
+      "start_s": 8100,
+      "end_s": 18900,
+      "observed_coverage_fraction": 0.0,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 180,
+      "start_s": 9000,
+      "end_s": 19800,
+      "observed_coverage_fraction": 0.0,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 180,
+      "start_s": 9900,
+      "end_s": 20700,
+      "observed_coverage_fraction": 0.0,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 180,
+      "start_s": 10800,
+      "end_s": 21600,
+      "observed_coverage_fraction": 0.0,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 180,
+      "start_s": 11700,
+      "end_s": 22500,
+      "observed_coverage_fraction": 0.0,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 180,
+      "start_s": 12600,
+      "end_s": 23400,
+      "observed_coverage_fraction": 0.0,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 180,
+      "start_s": 13500,
+      "end_s": 24300,
+      "observed_coverage_fraction": 0.0,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 180,
+      "start_s": 14400,
+      "end_s": 25200,
+      "observed_coverage_fraction": 0.0,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 180,
+      "start_s": 15300,
+      "end_s": 26100,
+      "observed_coverage_fraction": 0.0,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 180,
+      "start_s": 16200,
+      "end_s": 27000,
+      "observed_coverage_fraction": 0.0,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 180,
+      "start_s": 17100,
+      "end_s": 27900,
+      "observed_coverage_fraction": 0.0,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 180,
+      "start_s": 18000,
+      "end_s": 28800,
+      "observed_coverage_fraction": 0.0,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 180,
+      "start_s": 18900,
+      "end_s": 29700,
+      "observed_coverage_fraction": 0.0,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 180,
+      "start_s": 19800,
+      "end_s": 30600,
+      "observed_coverage_fraction": 0.0,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 180,
+      "start_s": 20700,
+      "end_s": 31500,
+      "observed_coverage_fraction": 0.0,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 180,
+      "start_s": 21600,
+      "end_s": 32400,
+      "observed_coverage_fraction": 0.017314814814814814,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 180,
+      "start_s": 22500,
+      "end_s": 33300,
+      "observed_coverage_fraction": 0.10064814814814815,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 180,
+      "start_s": 23400,
+      "end_s": 34200,
+      "observed_coverage_fraction": 0.18398148148148147,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 240,
+      "start_s": 0,
+      "end_s": 14400,
+      "observed_coverage_fraction": 0.543125,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 240,
+      "start_s": 900,
+      "end_s": 15300,
+      "observed_coverage_fraction": 0.480625,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 240,
+      "start_s": 1800,
+      "end_s": 16200,
+      "observed_coverage_fraction": 0.418125,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 240,
+      "start_s": 2700,
+      "end_s": 17100,
+      "observed_coverage_fraction": 0.355625,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 240,
+      "start_s": 3600,
+      "end_s": 18000,
+      "observed_coverage_fraction": 0.293125,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 240,
+      "start_s": 4500,
+      "end_s": 18900,
+      "observed_coverage_fraction": 0.230625,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 240,
+      "start_s": 5400,
+      "end_s": 19800,
+      "observed_coverage_fraction": 0.168125,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 240,
+      "start_s": 6300,
+      "end_s": 20700,
+      "observed_coverage_fraction": 0.105625,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 240,
+      "start_s": 7200,
+      "end_s": 21600,
+      "observed_coverage_fraction": 0.050833333333333335,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 240,
+      "start_s": 8100,
+      "end_s": 22500,
+      "observed_coverage_fraction": 0.0,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 240,
+      "start_s": 9000,
+      "end_s": 23400,
+      "observed_coverage_fraction": 0.0,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 240,
+      "start_s": 9900,
+      "end_s": 24300,
+      "observed_coverage_fraction": 0.0,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 240,
+      "start_s": 10800,
+      "end_s": 25200,
+      "observed_coverage_fraction": 0.0,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 240,
+      "start_s": 11700,
+      "end_s": 26100,
+      "observed_coverage_fraction": 0.0,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 240,
+      "start_s": 12600,
+      "end_s": 27000,
+      "observed_coverage_fraction": 0.0,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 240,
+      "start_s": 13500,
+      "end_s": 27900,
+      "observed_coverage_fraction": 0.0,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 240,
+      "start_s": 14400,
+      "end_s": 28800,
+      "observed_coverage_fraction": 0.0,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 240,
+      "start_s": 15300,
+      "end_s": 29700,
+      "observed_coverage_fraction": 0.0,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 240,
+      "start_s": 16200,
+      "end_s": 30600,
+      "observed_coverage_fraction": 0.0,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 240,
+      "start_s": 17100,
+      "end_s": 31500,
+      "observed_coverage_fraction": 0.0,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 240,
+      "start_s": 18000,
+      "end_s": 32400,
+      "observed_coverage_fraction": 0.012986111111111111,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 240,
+      "start_s": 18900,
+      "end_s": 33300,
+      "observed_coverage_fraction": 0.07548611111111111,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-lufthansa-572-fra-jnb",
+      "minutes": 240,
+      "start_s": 19800,
+      "end_s": 34200,
+      "observed_coverage_fraction": 0.13798611111111111,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-emirates-761-dxb-jnb",
+      "minutes": 180,
+      "start_s": 0,
+      "end_s": 10800,
+      "observed_coverage_fraction": 0.23148148148148148,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-emirates-761-dxb-jnb",
+      "minutes": 180,
+      "start_s": 900,
+      "end_s": 11700,
+      "observed_coverage_fraction": 0.23148148148148148,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-emirates-761-dxb-jnb",
+      "minutes": 180,
+      "start_s": 1800,
+      "end_s": 12600,
+      "observed_coverage_fraction": 0.18861111111111112,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-emirates-761-dxb-jnb",
+      "minutes": 180,
+      "start_s": 2700,
+      "end_s": 13500,
+      "observed_coverage_fraction": 0.17888888888888888,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-emirates-761-dxb-jnb",
+      "minutes": 180,
+      "start_s": 3600,
+      "end_s": 14400,
+      "observed_coverage_fraction": 0.1837037037037037,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-emirates-761-dxb-jnb",
+      "minutes": 180,
+      "start_s": 4500,
+      "end_s": 15300,
+      "observed_coverage_fraction": 0.24601851851851853,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-emirates-761-dxb-jnb",
+      "minutes": 180,
+      "start_s": 5400,
+      "end_s": 16200,
+      "observed_coverage_fraction": 0.32935185185185184,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-emirates-761-dxb-jnb",
+      "minutes": 180,
+      "start_s": 6300,
+      "end_s": 17100,
+      "observed_coverage_fraction": 0.3451851851851852,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-emirates-761-dxb-jnb",
+      "minutes": 180,
+      "start_s": 7200,
+      "end_s": 18000,
+      "observed_coverage_fraction": 0.3451851851851852,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-emirates-761-dxb-jnb",
+      "minutes": 180,
+      "start_s": 8100,
+      "end_s": 18900,
+      "observed_coverage_fraction": 0.3451851851851852,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-emirates-761-dxb-jnb",
+      "minutes": 180,
+      "start_s": 9000,
+      "end_s": 19800,
+      "observed_coverage_fraction": 0.3523148148148148,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-emirates-761-dxb-jnb",
+      "minutes": 180,
+      "start_s": 9900,
+      "end_s": 20700,
+      "observed_coverage_fraction": 0.43462962962962964,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-emirates-761-dxb-jnb",
+      "minutes": 180,
+      "start_s": 10800,
+      "end_s": 21600,
+      "observed_coverage_fraction": 0.4628703703703704,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-emirates-761-dxb-jnb",
+      "minutes": 180,
+      "start_s": 11700,
+      "end_s": 22500,
+      "observed_coverage_fraction": 0.3990740740740741,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-emirates-761-dxb-jnb",
+      "minutes": 180,
+      "start_s": 12600,
+      "end_s": 23400,
+      "observed_coverage_fraction": 0.3586111111111111,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-emirates-761-dxb-jnb",
+      "minutes": 180,
+      "start_s": 13500,
+      "end_s": 24300,
+      "observed_coverage_fraction": 0.36574074074074076,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-emirates-761-dxb-jnb",
+      "minutes": 180,
+      "start_s": 14400,
+      "end_s": 25200,
+      "observed_coverage_fraction": 0.44425925925925924,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-emirates-761-dxb-jnb",
+      "minutes": 180,
+      "start_s": 15300,
+      "end_s": 26100,
+      "observed_coverage_fraction": 0.4652777777777778,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-emirates-761-dxb-jnb",
+      "minutes": 180,
+      "start_s": 16200,
+      "end_s": 27000,
+      "observed_coverage_fraction": 0.4652777777777778,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-emirates-761-dxb-jnb",
+      "minutes": 240,
+      "start_s": 0,
+      "end_s": 14400,
+      "observed_coverage_fraction": 0.2700694444444444,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-emirates-761-dxb-jnb",
+      "minutes": 240,
+      "start_s": 900,
+      "end_s": 15300,
+      "observed_coverage_fraction": 0.25430555555555556,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-emirates-761-dxb-jnb",
+      "minutes": 240,
+      "start_s": 1800,
+      "end_s": 16200,
+      "observed_coverage_fraction": 0.25430555555555556,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-emirates-761-dxb-jnb",
+      "minutes": 240,
+      "start_s": 2700,
+      "end_s": 17100,
+      "observed_coverage_fraction": 0.2588888888888889,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-emirates-761-dxb-jnb",
+      "minutes": 240,
+      "start_s": 3600,
+      "end_s": 18000,
+      "observed_coverage_fraction": 0.2588888888888889,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-emirates-761-dxb-jnb",
+      "minutes": 240,
+      "start_s": 4500,
+      "end_s": 18900,
+      "observed_coverage_fraction": 0.2588888888888889,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-emirates-761-dxb-jnb",
+      "minutes": 240,
+      "start_s": 5400,
+      "end_s": 19800,
+      "observed_coverage_fraction": 0.2642361111111111,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-emirates-761-dxb-jnb",
+      "minutes": 240,
+      "start_s": 6300,
+      "end_s": 20700,
+      "observed_coverage_fraction": 0.3259722222222222,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-emirates-761-dxb-jnb",
+      "minutes": 240,
+      "start_s": 7200,
+      "end_s": 21600,
+      "observed_coverage_fraction": 0.3884722222222222,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-emirates-761-dxb-jnb",
+      "minutes": 240,
+      "start_s": 8100,
+      "end_s": 22500,
+      "observed_coverage_fraction": 0.403125,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-emirates-761-dxb-jnb",
+      "minutes": 240,
+      "start_s": 9000,
+      "end_s": 23400,
+      "observed_coverage_fraction": 0.403125,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-emirates-761-dxb-jnb",
+      "minutes": 240,
+      "start_s": 9900,
+      "end_s": 24300,
+      "observed_coverage_fraction": 0.40847222222222224,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-emirates-761-dxb-jnb",
+      "minutes": 240,
+      "start_s": 10800,
+      "end_s": 25200,
+      "observed_coverage_fraction": 0.4296527777777778,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-emirates-761-dxb-jnb",
+      "minutes": 240,
+      "start_s": 11700,
+      "end_s": 26100,
+      "observed_coverage_fraction": 0.4296527777777778,
+      "failure": "insufficient observed coverage"
+    },
+    {
+      "track_id": "2026-10-02-emirates-761-dxb-jnb",
+      "minutes": 240,
+      "start_s": 12600,
+      "end_s": 27000,
+      "observed_coverage_fraction": 0.4618055555555556,
+      "failure": "insufficient observed coverage"
+    }
+  ],
+  "window_minutes": [
+    180,
+    240
+  ],
+  "start_stride_seconds": 900,
+  "pattern_definitions": {
+    "180": {
+      "no-turn": [],
+      "three-distributed": [
+        37.5,
+        75.0,
+        127.5
+      ],
+      "six-distributed": [
+        10.0,
+        42.0,
+        74.0,
+        106.0,
+        138.0,
+        170.0
+      ],
+      "twenty-minute-spacing-offset-5": [
+        5.0,
+        25.0,
+        45.0,
+        65.0,
+        85.0,
+        105.0,
+        125.0,
+        145.0,
+        165.0
+      ],
+      "twenty-minute-spacing-offset-10": [
+        10.0,
+        30.0,
+        50.0,
+        70.0,
+        90.0,
+        110.0,
+        130.0,
+        150.0,
+        170.0
+      ],
+      "twenty-minute-spacing-offset-15": [
+        15.0,
+        35.0,
+        55.0,
+        75.0,
+        95.0,
+        115.0,
+        135.0,
+        155.0
+      ]
+    },
+    "240": {
+      "no-turn": [],
+      "three-distributed": [
+        50.0,
+        100.0,
+        170.0
+      ],
+      "six-distributed": [
+        10.0,
+        54.0,
+        98.0,
+        142.0,
+        186.0,
+        230.0
+      ],
+      "twenty-minute-spacing-offset-5": [
+        5.0,
+        25.0,
+        45.0,
+        65.0,
+        85.0,
+        105.0,
+        125.0,
+        145.0,
+        165.0,
+        185.0,
+        205.0,
+        225.0
+      ],
+      "twenty-minute-spacing-offset-10": [
+        10.0,
+        30.0,
+        50.0,
+        70.0,
+        90.0,
+        110.0,
+        130.0,
+        150.0,
+        170.0,
+        190.0,
+        210.0,
+        230.0
+      ],
+      "twenty-minute-spacing-offset-15": [
+        15.0,
+        35.0,
+        55.0,
+        75.0,
+        95.0,
+        115.0,
+        135.0,
+        155.0,
+        175.0,
+        195.0,
+        215.0
+      ]
+    }
+  },
+  "input_sha256": {
+    "docs/flight-geometry-20261006/normalized-tracks.json.gz": "76daa57528bf64384b9d95c96bf2ea49e9bdedafcda1d9f50b7f57650122f6cf",
+    "docs/scraped-flight-geometry-20261006/normalized-tracks.json.gz": "610792b8949bad85611c8ede93d335494ab504d121f1084602454a2fcef413e9"
+  },
+  "implementation_hash": "1bf8f7c0120fa84504d98c377db61807cacf9f2db6fdcec20f814b9f4a4d8500",
+  "helper_sha256": {
+    "analysis/tests/screen_extended_route_controls.py": "d085bdbfaf8c22fff4d6e45efd2e144b3b217626d630c16cf45200756a21e230",
+    "analysis/tests/screen_long_route_windows.py": "5eb2ad11313b12945708d48e269aedef95183c1e1eea563f175a4f619e5a976a",
+    "analysis/tests/preflight_route_turns.py": "35c5c944c07a60acb15c467b85aef2a91ad4cce6cdc4e089e1f42649c94fb396"
+  },
+  "elapsed_s": 5.550172119052149,
+  "additional_flight_attempts": 0,
+  "error_rate_validated": false,
+  "limitations": [
+    "Overlapping windows and timing variants are exploratory, not independent trials.",
+    "Only three/four-hour windows on a 15-minute start grid and six fixed timing patterns.",
+    "Course/bank between coarse position fixes is assumed by C2 interpolation.",
+    "Coverage, heading, duration, maneuver buffer and nuisance assumptions are unchanged.",
+    "Nominal SVD at three anchors only for screening passes; no full nuisance envelope.",
+    "No IMU synthesis, recovered-axis check, nonlinear fit, bootstrap, power or calibration."
+  ]
+}

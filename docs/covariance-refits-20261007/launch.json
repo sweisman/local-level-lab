@@ -1,0 +1,10 @@
+{
+  "pid": 3708386,
+  "command": [
+    "/home/sweisman/venv/bin/python",
+    "/site/repo/local-level-lab/analysis/tests/refit_covariance_measurement.py",
+    "--output",
+    "/site/repo/local-level-lab/docs/covariance-refits-20261007"
+  ],
+  "utc": 1791353949.3936722
+}

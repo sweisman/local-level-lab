@@ -1,0 +1,871 @@
+{
+  "scope": "saved-data decomposition against prescribed replay attitude; no synthesis, optimizer, bootstrap or new flights",
+  "implementation_hash": "1bf8f7c0120fa84504d98c377db61807cacf9f2db6fdcec20f814b9f4a4d8500",
+  "input_sha256": {
+    "docs/observed-pair-replay-20261007/run/campaign.json": "8fc7940b38c1c689aa0fd3e21ac2794925f99f468ff984f02f01850bff44acfb",
+    "docs/observed-pair-replay-20261007/run/diagnostics/bed4aa85790e4d01e95115b8cf19b386a8d2c07c1ad3f7bac00b825813c939a4/session.zip": "b00bd77b2fde79f66638e15fc55a6e95abc592fbfabee2188f64cd7a22590139",
+    "docs/observed-pair-replay-20261007/run/diagnostics/bed4aa85790e4d01e95115b8cf19b386a8d2c07c1ad3f7bac00b825813c939a4/turn-input.npz": "cd47387a174bc0541b7a0fddd8435e995f5bd5f3066994f10eebcfa2b9297fa7",
+    "docs/observed-pair-replay-20261007/run/diagnostics/bed4aa85790e4d01e95115b8cf19b386a8d2c07c1ad3f7bac00b825813c939a4/fit-input.npz": "9ffbb2259113c8eeded37b1373143d88691582cdffdafcb3ae1de9cb90d1f058",
+    "docs/observed-pair-replay-20261007/run/diagnostics/bed4aa85790e4d01e95115b8cf19b386a8d2c07c1ad3f7bac00b825813c939a4/fit-rows.npz": "f955dfd0c84469fdb97a2982f4994347b94246c7c58db37ea7d9bf6b61dd5ba4",
+    "docs/observed-pair-replay-20261007/run/diagnostics/bed4aa85790e4d01e95115b8cf19b386a8d2c07c1ad3f7bac00b825813c939a4/analysis.json": "2e9f6e2565525ae1179816fdc5d6eff7a0769e21d4324ba18cee1ed879d8bb16",
+    "docs/observed-pair-replay-20261007/run/diagnostics/dc5bb68180f11fc6ba59dedc0cd23b05e1aaf13870bff06c8549bb73506b03a2/session.zip": "b00bd77b2fde79f66638e15fc55a6e95abc592fbfabee2188f64cd7a22590139",
+    "docs/observed-pair-replay-20261007/run/diagnostics/dc5bb68180f11fc6ba59dedc0cd23b05e1aaf13870bff06c8549bb73506b03a2/turn-input.npz": "cd47387a174bc0541b7a0fddd8435e995f5bd5f3066994f10eebcfa2b9297fa7",
+    "docs/observed-pair-replay-20261007/run/diagnostics/dc5bb68180f11fc6ba59dedc0cd23b05e1aaf13870bff06c8549bb73506b03a2/fit-input.npz": "9ffbb2259113c8eeded37b1373143d88691582cdffdafcb3ae1de9cb90d1f058",
+    "docs/observed-pair-replay-20261007/run/diagnostics/dc5bb68180f11fc6ba59dedc0cd23b05e1aaf13870bff06c8549bb73506b03a2/fit-rows.npz": "3b39a0627336fb6819bc0cc6f245c505b0e8a4d20f885c826ff072b24eabdf37",
+    "docs/observed-pair-replay-20261007/run/diagnostics/dc5bb68180f11fc6ba59dedc0cd23b05e1aaf13870bff06c8549bb73506b03a2/analysis.json": "c39c67eb0cedf43d33c18ef513123f7aeb8727d9121090d613abcb79f723e6db",
+    "docs/observed-pair-replay-20261007/run/diagnostics/f94593ee49b996b4de1ef7ae7fcebd7299384ce89bff672d82f4debc755a2425/session.zip": "4ea26c350714b963ec845264fcedd8f0ca57564b73c99d5d2a7193c32e24e1b3",
+    "docs/observed-pair-replay-20261007/run/diagnostics/f94593ee49b996b4de1ef7ae7fcebd7299384ce89bff672d82f4debc755a2425/turn-input.npz": "604d3b65b97e42e1472f7196675f2011a976955cbabccaa6e4de1fc2090457f5",
+    "docs/observed-pair-replay-20261007/run/diagnostics/f94593ee49b996b4de1ef7ae7fcebd7299384ce89bff672d82f4debc755a2425/fit-input.npz": "450d990d8f85bea674be83a2e524268c63021a2b99604cf34226baadfaeb6546",
+    "docs/observed-pair-replay-20261007/run/diagnostics/f94593ee49b996b4de1ef7ae7fcebd7299384ce89bff672d82f4debc755a2425/fit-rows.npz": "c347bf36a5d226553d4dcd60be98fd2f8f84a0b973f64cd62719bbb6f60f056c",
+    "docs/observed-pair-replay-20261007/run/diagnostics/f94593ee49b996b4de1ef7ae7fcebd7299384ce89bff672d82f4debc755a2425/analysis.json": "df0d56e1c17a4ce37ffd9b7d9ea766022be73302e70c53449073f64ea342e3c7",
+    "docs/observed-pair-replay-20261007/run/diagnostics/119d674e186dfaee3ec65d36ca6d02568cea20e8bb58bc8d059d72fab7576ab0/session.zip": "ee45e3efcb25b7eb87155f97dab9762b61dd716fcc54da979e72f61cf6058d9c",
+    "docs/observed-pair-replay-20261007/run/diagnostics/119d674e186dfaee3ec65d36ca6d02568cea20e8bb58bc8d059d72fab7576ab0/turn-input.npz": "604d3b65b97e42e1472f7196675f2011a976955cbabccaa6e4de1fc2090457f5",
+    "docs/observed-pair-replay-20261007/run/diagnostics/119d674e186dfaee3ec65d36ca6d02568cea20e8bb58bc8d059d72fab7576ab0/fit-input.npz": "450d990d8f85bea674be83a2e524268c63021a2b99604cf34226baadfaeb6546",
+    "docs/observed-pair-replay-20261007/run/diagnostics/119d674e186dfaee3ec65d36ca6d02568cea20e8bb58bc8d059d72fab7576ab0/fit-rows.npz": "ec23507da2cbb59f11501303f9e54b8a0b194395c7c322c8247c33a08b3ac036",
+    "docs/observed-pair-replay-20261007/run/diagnostics/119d674e186dfaee3ec65d36ca6d02568cea20e8bb58bc8d059d72fab7576ab0/analysis.json": "3b26bc33dd56298eb09244587d3e2c68955283e4aac71150b49917d09f305ce2",
+    "docs/observed-pair-replay-20261007/run/diagnostics/b545f5f3aec5efaaa0a8cc1da285bcce8b50f66952e8b0977f176b944c0b145b/session.zip": "643cbc991b785d6f102fe5703313bf54a861df0eb3714820cc376af8b2b21bdf",
+    "docs/observed-pair-replay-20261007/run/diagnostics/b545f5f3aec5efaaa0a8cc1da285bcce8b50f66952e8b0977f176b944c0b145b/turn-input.npz": "e5cf000045851fec190077d5d308465f9fcdb53a832f033c8d6b2aca48d577ab",
+    "docs/observed-pair-replay-20261007/run/diagnostics/b545f5f3aec5efaaa0a8cc1da285bcce8b50f66952e8b0977f176b944c0b145b/fit-input.npz": "192e72d2e2fb41dbf9b63a45640c2cce6e186bfde11cb958cdc3394ef6745faf",
+    "docs/observed-pair-replay-20261007/run/diagnostics/b545f5f3aec5efaaa0a8cc1da285bcce8b50f66952e8b0977f176b944c0b145b/fit-rows.npz": "750374fb518499339d045472034415059fb9ae7204e998e3d2c9e9254ef96ece",
+    "docs/observed-pair-replay-20261007/run/diagnostics/b545f5f3aec5efaaa0a8cc1da285bcce8b50f66952e8b0977f176b944c0b145b/analysis.json": "2e32772375497360f3a1500230ab78249f8efb8e39810ba2122c8f1e1c4a8401",
+    "docs/observed-pair-replay-20261007/run/diagnostics/e71b3a92ed6b8216f7b4767ad03d33773fec77bc3d9f8efb6ce01536ffb1b84f/session.zip": "145e1c16555084f8fa4bd754c5fe8cda606007134d353aed7b0790be01867b37",
+    "docs/observed-pair-replay-20261007/run/diagnostics/e71b3a92ed6b8216f7b4767ad03d33773fec77bc3d9f8efb6ce01536ffb1b84f/turn-input.npz": "e5cf000045851fec190077d5d308465f9fcdb53a832f033c8d6b2aca48d577ab",
+    "docs/observed-pair-replay-20261007/run/diagnostics/e71b3a92ed6b8216f7b4767ad03d33773fec77bc3d9f8efb6ce01536ffb1b84f/fit-input.npz": "192e72d2e2fb41dbf9b63a45640c2cce6e186bfde11cb958cdc3394ef6745faf",
+    "docs/observed-pair-replay-20261007/run/diagnostics/e71b3a92ed6b8216f7b4767ad03d33773fec77bc3d9f8efb6ce01536ffb1b84f/fit-rows.npz": "9476f4c9bcc7089dffe0e1d02fd42257ce2579045a572562e4aba590ef2fb81f",
+    "docs/observed-pair-replay-20261007/run/diagnostics/e71b3a92ed6b8216f7b4767ad03d33773fec77bc3d9f8efb6ce01536ffb1b84f/analysis.json": "372813d70018209db9a8be1eb18ae38d07330df981479eab2835deca7b9bb896"
+  },
+  "helper_sha256": "d8140f4ac19494cf1caabbeeae25b0e41d67eb45bb1d884c3ee934fe0c38f8d0",
+  "additional_flight_attempts": 0,
+  "cases": [
+    {
+      "task_index": 0,
+      "truth": "sphere_rotating",
+      "crab_model": "wind",
+      "frozen_preliminary_sigma_dph": 38.30662383401766,
+      "final_free_residual": {
+        "total_dph": 39.234370739807964,
+        "axes_dph": [
+          63.47110735715316,
+          20.732312927153174,
+          12.633181451773472
+        ]
+      },
+      "final_horizontal_residual": {
+        "total_dph": 38.55440606785412,
+        "axes_dph": [
+          63.48677924284857,
+          20.63353399423515,
+          1.7357471052873454
+        ]
+      },
+      "final_vertical_residual_rms_dph": 12.596859144689109,
+      "expected_white_bin_sigma_range_dph": [
+        3.2533060108142298,
+        3.2533060108142298
+      ],
+      "independent_rounding_sigma_range_dph": [
+        1.8310546875,
+        1.8310546875
+      ],
+      "observed_bin_sem_rms_dph": [
+        3.7574371279464076,
+        4.146974759287988,
+        3.9362772734163265
+      ],
+      "sensor_and_calibration_error": {
+        "total_dph": 3.864311632490494,
+        "axes_dph": [
+          4.035484859688153,
+          3.9420522819717965,
+          3.6019160085200053
+        ]
+      },
+      "sensor_after_fitted_bias": {
+        "total_dph": 4.5492985396520575,
+        "axes_dph": [
+          5.539378212246902,
+          4.281476516153826,
+          3.6156049939047077
+        ]
+      },
+      "aircraft_motion_mismatch": {
+        "total_dph": 39.630204727099546,
+        "axes_dph": [
+          64.12376661400191,
+          21.2115852981939,
+          12.242164208420363
+        ]
+      },
+      "assumed_roll_contribution": {
+        "total_dph": 8.408150448629913,
+        "axes_dph": [
+          4.980956925127324,
+          13.651730544442284,
+          0.9546219944846925
+        ]
+      },
+      "aircraft_motion_mismatch_after_removing_assumed_roll": {
+        "total_dph": 38.6611199141041,
+        "axes_dph": [
+          63.358651823798176,
+          17.914128273401435,
+          12.198845286052517
+        ]
+      },
+      "apparent_tilt_artifact": {
+        "total_dph": 38.12397885057265,
+        "axes_dph": [
+          63.52051226547199,
+          18.008590364119257,
+          1.0716738431548898
+        ]
+      },
+      "assumed_specific_force_tilt_artifact": {
+        "total_dph": 38.11697300111402,
+        "axes_dph": [
+          63.51130496414794,
+          17.996621795029853,
+          1.0708118511753968
+        ]
+      },
+      "observed_vs_assumed_specific_force_direction_max_deg": 0.003459945695720772,
+      "apparent_vs_true_up_angle_max_deg": 2.5193545575261362,
+      "aircraft_motion_mismatch_using_true_plumb": {
+        "total_dph": 11.331346691531046,
+        "axes_dph": [
+          5.3529152653815535,
+          14.41794534423424,
+          12.192924331075544
+        ]
+      },
+      "diagnostic_residual_using_true_plumb": {
+        "total_dph": 11.95882648506981,
+        "axes_dph": [
+          7.81063881109701,
+          14.43440001426613,
+          12.63655848286078
+        ]
+      },
+      "science_orientation_mismatch": {
+        "total_dph": 1.1147140553247081,
+        "axes_dph": [
+          1.8922710443819355,
+          0.2930807183440508,
+          0.24733835639464255
+        ]
+      },
+      "component_second_moment_dph2": [
+        [
+          1570.5531267118238,
+          0.6682059510178242,
+          -26.484214838253372
+        ],
+        [
+          0.6682059510178242,
+          1.2425874251384572,
+          -0.7619831083359971
+        ],
+        [
+          -26.484214838253372,
+          -0.7619831083359971,
+          20.69611720288035
+        ]
+      ],
+      "decomposition_max_error_dph": 4.4726550208080705e-14,
+      "fitted_forward_angle_deg": -0.002929198389227528
+    },
+    {
+      "task_index": 1,
+      "truth": "sphere_rotating",
+      "crab_model": "wind_tas",
+      "frozen_preliminary_sigma_dph": 38.284404725534145,
+      "final_free_residual": {
+        "total_dph": 39.23837814112597,
+        "axes_dph": [
+          63.47331630683016,
+          20.74127754064581,
+          12.64470167433637
+        ]
+      },
+      "final_horizontal_residual": {
+        "total_dph": 38.55571607795856,
+        "axes_dph": [
+          63.48871134550618,
+          20.634908835072903,
+          1.7360287750164904
+        ]
+      },
+      "final_vertical_residual_rms_dph": 12.622251407158664,
+      "expected_white_bin_sigma_range_dph": [
+        3.2533060108142298,
+        3.2533060108142298
+      ],
+      "independent_rounding_sigma_range_dph": [
+        1.8310546875,
+        1.8310546875
+      ],
+      "observed_bin_sem_rms_dph": [
+        3.7574371279464076,
+        4.146974759287988,
+        3.9362772734163265
+      ],
+      "sensor_and_calibration_error": {
+        "total_dph": 3.864311632490494,
+        "axes_dph": [
+          4.035484859688153,
+          3.9420522819717965,
+          3.6019160085200053
+        ]
+      },
+      "sensor_after_fitted_bias": {
+        "total_dph": 4.554403692632458,
+        "axes_dph": [
+          5.543830561293024,
+          4.276347498100695,
+          3.6340849975686997
+        ]
+      },
+      "aircraft_motion_mismatch": {
+        "total_dph": 39.62644622073938,
+        "axes_dph": [
+          64.12409909365749,
+          21.21531767834795,
+          12.19737395872665
+        ]
+      },
+      "assumed_roll_contribution": {
+        "total_dph": 8.408150448629913,
+        "axes_dph": [
+          4.980956925127324,
+          13.651730544442284,
+          0.9546219944846925
+        ]
+      },
+      "aircraft_motion_mismatch_after_removing_assumed_roll": {
+        "total_dph": 38.6572674396742,
+        "axes_dph": [
+          63.358969192154035,
+          17.913924794527087,
+          12.160809967727797
+        ]
+      },
+      "apparent_tilt_artifact": {
+        "total_dph": 38.12397885057265,
+        "axes_dph": [
+          63.52051226547199,
+          18.008590364119257,
+          1.0716738431548898
+        ]
+      },
+      "assumed_specific_force_tilt_artifact": {
+        "total_dph": 38.11697300111402,
+        "axes_dph": [
+          63.51130496414794,
+          17.996621795029853,
+          1.0708118511753968
+        ]
+      },
+      "observed_vs_assumed_specific_force_direction_max_deg": 0.003459945695720772,
+      "apparent_vs_true_up_angle_max_deg": 2.5193545575261362,
+      "aircraft_motion_mismatch_using_true_plumb": {
+        "total_dph": 11.318053743276188,
+        "axes_dph": [
+          5.354099141304531,
+          14.423211109055032,
+          12.14905861767808
+        ]
+      },
+      "diagnostic_residual_using_true_plumb": {
+        "total_dph": 11.969468424876156,
+        "axes_dph": [
+          7.81937109597006,
+          14.444778107611258,
+          12.649519524776593
+        ]
+      },
+      "science_orientation_mismatch": {
+        "total_dph": 1.131189774250723,
+        "axes_dph": [
+          1.9354022391669756,
+          0.29754630253206804,
+          0.06674793319015611
+        ]
+      },
+      "component_second_moment_dph2": [
+        [
+          1570.255240085151,
+          0.7550502011486426,
+          -26.245286454731787
+        ],
+        [
+          0.7550502011486426,
+          1.2795903053694024,
+          -0.823315866413059
+        ],
+        [
+          -26.245286454731787,
+          -0.823315866413059,
+          20.742592995464168
+        ]
+      ],
+      "decomposition_max_error_dph": 2.2363275104040352e-14,
+      "fitted_forward_angle_deg": -0.0029198624484326604
+    },
+    {
+      "task_index": 2,
+      "truth": "sphere_still",
+      "crab_model": "wind",
+      "frozen_preliminary_sigma_dph": 38.31393912039126,
+      "final_free_residual": {
+        "total_dph": 39.240246292467155,
+        "axes_dph": [
+          63.495894972505475,
+          20.75341480495816,
+          12.528283316334418
+        ]
+      },
+      "final_horizontal_residual": {
+        "total_dph": 38.572846014566785,
+        "axes_dph": [
+          63.51086470693837,
+          20.662626041916987,
+          1.7376127932617325
+        ]
+      },
+      "final_vertical_residual_rms_dph": 12.481884404608353,
+      "expected_white_bin_sigma_range_dph": [
+        3.2533060108142298,
+        3.2533060108142298
+      ],
+      "independent_rounding_sigma_range_dph": [
+        1.8310546875,
+        1.8310546875
+      ],
+      "observed_bin_sem_rms_dph": [
+        3.7590163098599527,
+        4.147280277269859,
+        3.940553392848673
+      ],
+      "sensor_and_calibration_error": {
+        "total_dph": 3.927208212323518,
+        "axes_dph": [
+          4.128094407342287,
+          4.010782497741633,
+          3.6251004604979666
+        ]
+      },
+      "sensor_after_fitted_bias": {
+        "total_dph": 4.556694521869797,
+        "axes_dph": [
+          5.484374082227801,
+          4.354414282986905,
+          3.6402076967148798
+        ]
+      },
+      "aircraft_motion_mismatch": {
+        "total_dph": 39.63022942968161,
+        "axes_dph": [
+          64.12375534847335,
+          21.211649637019914,
+          12.242351638188353
+        ]
+      },
+      "assumed_roll_contribution": {
+        "total_dph": 8.408150448629913,
+        "axes_dph": [
+          4.980956925127324,
+          13.651730544442284,
+          0.9546219944846925
+        ]
+      },
+      "aircraft_motion_mismatch_after_removing_assumed_roll": {
+        "total_dph": 38.66114524726536,
+        "axes_dph": [
+          63.35864043591376,
+          17.914206629314045,
+          12.199030225607288
+        ]
+      },
+      "apparent_tilt_artifact": {
+        "total_dph": 38.12397885057265,
+        "axes_dph": [
+          63.52051226547199,
+          18.008590364119257,
+          1.0716738431548898
+        ]
+      },
+      "assumed_specific_force_tilt_artifact": {
+        "total_dph": 38.11697300111402,
+        "axes_dph": [
+          63.51130496414794,
+          17.996621795029853,
+          1.0708118511753968
+        ]
+      },
+      "observed_vs_assumed_specific_force_direction_max_deg": 0.003459945695720772,
+      "apparent_vs_true_up_angle_max_deg": 2.5193545575261362,
+      "aircraft_motion_mismatch_using_true_plumb": {
+        "total_dph": 11.331433691875445,
+        "axes_dph": [
+          5.352914959737936,
+          14.417941053635417,
+          12.19317209539085
+        ]
+      },
+      "diagnostic_residual_using_true_plumb": {
+        "total_dph": 11.902600392422482,
+        "axes_dph": [
+          7.7209105948687276,
+          14.441031135813844,
+          12.524370148857244
+        ]
+      },
+      "science_orientation_mismatch": {
+        "total_dph": 1.0782456619462566,
+        "axes_dph": [
+          1.791453979664049,
+          0.4351133007594213,
+          0.2986807271416153
+        ]
+      },
+      "component_second_moment_dph2": [
+        [
+          1570.5550846492029,
+          -0.0015349796898698274,
+          -25.725645787305815
+        ],
+        [
+          -0.0015349796898698274,
+          1.1626137075059209,
+          -0.6149363474365842
+        ],
+        [
+          -25.725645787305815,
+          -0.6149363474365842,
+          20.763464965638217
+        ]
+      ],
+      "decomposition_max_error_dph": 2.2363275104040352e-14,
+      "fitted_forward_angle_deg": 0.0008199161006881138
+    },
+    {
+      "task_index": 3,
+      "truth": "sphere_still",
+      "crab_model": "wind_tas",
+      "frozen_preliminary_sigma_dph": 38.28724267438426,
+      "final_free_residual": {
+        "total_dph": 39.24176703815353,
+        "axes_dph": [
+          63.494568741586455,
+          20.760061702484627,
+          12.538278161658543
+        ]
+      },
+      "final_horizontal_residual": {
+        "total_dph": 38.57183531832075,
+        "axes_dph": [
+          63.50931193540429,
+          20.661735020246685,
+          1.737654429279688
+        ]
+      },
+      "final_vertical_residual_rms_dph": 12.505574811226014,
+      "expected_white_bin_sigma_range_dph": [
+        3.2533060108142298,
+        3.2533060108142298
+      ],
+      "independent_rounding_sigma_range_dph": [
+        1.8310546875,
+        1.8310546875
+      ],
+      "observed_bin_sem_rms_dph": [
+        3.7590163098599527,
+        4.147280277269859,
+        3.940553392848673
+      ],
+      "sensor_and_calibration_error": {
+        "total_dph": 3.927208212323518,
+        "axes_dph": [
+          4.128094407342287,
+          4.010782497741633,
+          3.6251004604979666
+        ]
+      },
+      "sensor_after_fitted_bias": {
+        "total_dph": 4.564410602370219,
+        "axes_dph": [
+          5.485713335682593,
+          4.361941314794329,
+          3.65813471677759
+        ]
+      },
+      "aircraft_motion_mismatch": {
+        "total_dph": 39.62644055751785,
+        "axes_dph": [
+          64.12402625928203,
+          21.215734410528423,
+          12.196976817897095
+        ]
+      },
+      "assumed_roll_contribution": {
+        "total_dph": 8.408150448629913,
+        "axes_dph": [
+          4.980956925127324,
+          13.651730544442284,
+          0.9546219944846925
+        ]
+      },
+      "aircraft_motion_mismatch_after_removing_assumed_roll": {
+        "total_dph": 38.65726354957565,
+        "axes_dph": [
+          63.35889575200334,
+          17.914420064989578,
+          12.160425907258459
+        ]
+      },
+      "apparent_tilt_artifact": {
+        "total_dph": 38.12397885057265,
+        "axes_dph": [
+          63.52051226547199,
+          18.008590364119257,
+          1.0716738431548898
+        ]
+      },
+      "assumed_specific_force_tilt_artifact": {
+        "total_dph": 38.11697300111402,
+        "axes_dph": [
+          63.51130496414794,
+          17.996621795029853,
+          1.0708118511753968
+        ]
+      },
+      "observed_vs_assumed_specific_force_direction_max_deg": 0.003459945695720772,
+      "apparent_vs_true_up_angle_max_deg": 2.5193545575261362,
+      "aircraft_motion_mismatch_using_true_plumb": {
+        "total_dph": 11.318036949914811,
+        "axes_dph": [
+          5.354100930683237,
+          14.423192460188744,
+          12.14903303474488
+        ]
+      },
+      "diagnostic_residual_using_true_plumb": {
+        "total_dph": 11.9094818449298,
+        "axes_dph": [
+          7.722818393135903,
+          14.447121454603694,
+          12.535790010474365
+        ]
+      },
+      "science_orientation_mismatch": {
+        "total_dph": 1.090002532723502,
+        "axes_dph": [
+          1.7807597212605144,
+          0.5804910365901886,
+          0.23715297933099985
+        ]
+      },
+      "component_second_moment_dph2": [
+        [
+          1570.2547912584962,
+          -0.04799144957007661,
+          -25.510381855501734
+        ],
+        [
+          -0.04799144957007661,
+          1.1881055213436489,
+          -0.6218570200062569
+        ],
+        [
+          -25.510381855501734,
+          -0.6218570200062569,
+          20.833844147029662
+        ]
+      ],
+      "decomposition_max_error_dph": 3.354491265606053e-14,
+      "fitted_forward_angle_deg": 0.0008045597800571467
+    },
+    {
+      "task_index": 4,
+      "truth": "flat_still",
+      "crab_model": "wind",
+      "frozen_preliminary_sigma_dph": 38.36497848360066,
+      "final_free_residual": {
+        "total_dph": 39.29273248352695,
+        "axes_dph": [
+          63.56375533660439,
+          20.753564982876625,
+          12.676554187785248
+        ]
+      },
+      "final_horizontal_residual": {
+        "total_dph": 38.61191004553002,
+        "axes_dph": [
+          63.578145855556606,
+          20.674681505592027,
+          1.7365789081426513
+        ]
+      },
+      "final_vertical_residual_rms_dph": 12.614185902139578,
+      "expected_white_bin_sigma_range_dph": [
+        3.2533060108142298,
+        3.2533060108142298
+      ],
+      "independent_rounding_sigma_range_dph": [
+        1.8310546875,
+        1.8310546875
+      ],
+      "observed_bin_sem_rms_dph": [
+        3.7557353261906674,
+        4.150324394255218,
+        3.941531839204893
+      ],
+      "sensor_and_calibration_error": {
+        "total_dph": 3.8804651701269384,
+        "axes_dph": [
+          4.106113611029454,
+          3.9546583456581024,
+          3.5601317661204988
+        ]
+      },
+      "sensor_after_fitted_bias": {
+        "total_dph": 4.542617032249117,
+        "axes_dph": [
+          5.562323425786065,
+          4.28108225447122,
+          3.5551373169601344
+        ]
+      },
+      "aircraft_motion_mismatch": {
+        "total_dph": 39.63019289288978,
+        "axes_dph": [
+          64.12376136652036,
+          21.21163174765889,
+          12.241996283050245
+        ]
+      },
+      "assumed_roll_contribution": {
+        "total_dph": 8.408150448629913,
+        "axes_dph": [
+          4.980956925127324,
+          13.651730544442284,
+          0.9546219944846925
+        ]
+      },
+      "aircraft_motion_mismatch_after_removing_assumed_roll": {
+        "total_dph": 38.661106881072335,
+        "axes_dph": [
+          63.35864631685767,
+          17.91416881542707,
+          12.198690436141675
+        ]
+      },
+      "apparent_tilt_artifact": {
+        "total_dph": 38.12397885057265,
+        "axes_dph": [
+          63.52051226547199,
+          18.008590364119257,
+          1.0716738431548898
+        ]
+      },
+      "assumed_specific_force_tilt_artifact": {
+        "total_dph": 38.11697300111402,
+        "axes_dph": [
+          63.51130496414794,
+          17.996621795029853,
+          1.0708118511753968
+        ]
+      },
+      "observed_vs_assumed_specific_force_direction_max_deg": 0.003459945695720772,
+      "apparent_vs_true_up_angle_max_deg": 2.5193545575261362,
+      "aircraft_motion_mismatch_using_true_plumb": {
+        "total_dph": 11.331305304917967,
+        "axes_dph": [
+          5.35291752359273,
+          14.417955992742462,
+          12.192795361062268
+        ]
+      },
+      "diagnostic_residual_using_true_plumb": {
+        "total_dph": 11.975483622258626,
+        "axes_dph": [
+          7.857331721694399,
+          14.42674738173712,
+          12.663645689916855
+        ]
+      },
+      "science_orientation_mismatch": {
+        "total_dph": 1.1156539749517536,
+        "axes_dph": [
+          1.8647844356663195,
+          0.3237419847276949,
+          0.38964279962314613
+        ]
+      },
+      "component_second_moment_dph2": [
+        [
+          1570.5521887276523,
+          0.0799465536595852,
+          -23.686239765142997
+        ],
+        [
+          0.0799465536595852,
+          1.2446837918256486,
+          -0.6504147880881664
+        ],
+        [
+          -23.686239765142997,
+          -0.6504147880881664,
+          20.63536950167978
+        ]
+      ],
+      "decomposition_max_error_dph": 2.2363275104040352e-14,
+      "fitted_forward_angle_deg": 0.0004233210452195252
+    },
+    {
+      "task_index": 5,
+      "truth": "flat_still",
+      "crab_model": "wind_tas",
+      "frozen_preliminary_sigma_dph": 38.34085046915685,
+      "final_free_residual": {
+        "total_dph": 39.294971985200476,
+        "axes_dph": [
+          63.56399252628155,
+          20.760903563186073,
+          12.6841715264332
+        ]
+      },
+      "final_horizontal_residual": {
+        "total_dph": 38.61177812129642,
+        "axes_dph": [
+          63.578043908898735,
+          20.674253219217007,
+          1.7366103795947117
+        ]
+      },
+      "final_vertical_residual_rms_dph": 12.636306457521366,
+      "expected_white_bin_sigma_range_dph": [
+        3.2533060108142298,
+        3.2533060108142298
+      ],
+      "independent_rounding_sigma_range_dph": [
+        1.8310546875,
+        1.8310546875
+      ],
+      "observed_bin_sem_rms_dph": [
+        3.7557353261906674,
+        4.150324394255218,
+        3.941531839204893
+      ],
+      "sensor_and_calibration_error": {
+        "total_dph": 3.8804651701269384,
+        "axes_dph": [
+          4.106113611029454,
+          3.9546583456581024,
+          3.5601317661204988
+        ]
+      },
+      "sensor_after_fitted_bias": {
+        "total_dph": 4.546935367463891,
+        "axes_dph": [
+          5.564860328984039,
+          4.280015141700995,
+          3.5689863565712683
+        ]
+      },
+      "aircraft_motion_mismatch": {
+        "total_dph": 39.626291288130375,
+        "axes_dph": [
+          64.12407251450918,
+          21.215558585706304,
+          12.195584520870806
+        ]
+      },
+      "assumed_roll_contribution": {
+        "total_dph": 8.408150448629913,
+        "axes_dph": [
+          4.980956925127324,
+          13.651730544442284,
+          0.9546219944846925
+        ]
+      },
+      "aircraft_motion_mismatch_after_removing_assumed_roll": {
+        "total_dph": 38.65710528033355,
+        "axes_dph": [
+          63.358941422864966,
+          17.91412810873229,
+          12.159108595710068
+        ]
+      },
+      "apparent_tilt_artifact": {
+        "total_dph": 38.12397885057265,
+        "axes_dph": [
+          63.52051226547199,
+          18.008590364119257,
+          1.0716738431548898
+        ]
+      },
+      "assumed_specific_force_tilt_artifact": {
+        "total_dph": 38.11697300111402,
+        "axes_dph": [
+          63.51130496414794,
+          17.996621795029853,
+          1.0708118511753968
+        ]
+      },
+      "observed_vs_assumed_specific_force_direction_max_deg": 0.003459945695720772,
+      "apparent_vs_true_up_angle_max_deg": 2.5193545575261362,
+      "aircraft_motion_mismatch_using_true_plumb": {
+        "total_dph": 11.317510400496307,
+        "axes_dph": [
+          5.354112744572687,
+          14.423273466322009,
+          12.14745999088377
+        ]
+      },
+      "diagnostic_residual_using_true_plumb": {
+        "total_dph": 11.983503160339852,
+        "axes_dph": [
+          7.863731565426173,
+          14.435232396112463,
+          12.672759585771805
+        ]
+      },
+      "science_orientation_mismatch": {
+        "total_dph": 1.1140186864059147,
+        "axes_dph": [
+          1.8898706997376935,
+          0.3583544499819702,
+          0.15193329929861019
+        ]
+      },
+      "component_second_moment_dph2": [
+        [
+          1570.2429612517574,
+          0.09857274367743789,
+          -23.465206395195512
+        ],
+        [
+          0.09857274367743789,
+          1.2410376336615594,
+          -0.6652647502935117
+        ],
+        [
+          -23.465206395195512,
+          -0.6652647502935117,
+          20.674621235893998
+        ]
+      ],
+      "decomposition_max_error_dph": 4.4726550208080705e-14,
+      "fitted_forward_angle_deg": 0.00047137723830047775
+    }
+  ],
+  "limitations": [
+    "Assumed trajectory, coordinated bank, pitch and wind are simulator states, unavailable as real measurement truth.",
+    "Residual weights are frozen from the preliminary fit; final residual RMS may differ.",
+    "Components are correlated: their squared RMS values must not be added as independent variances.",
+    "Sensor remainder includes quantization, white noise, drift and calibration error; these are not separately identified.",
+    "Independent uniform quantization estimate is descriptive, not guaranteed under correlated rounding.",
+    "One shared seed; no power, coverage, eligibility revision or calibrated decision claim."
+  ]
+}

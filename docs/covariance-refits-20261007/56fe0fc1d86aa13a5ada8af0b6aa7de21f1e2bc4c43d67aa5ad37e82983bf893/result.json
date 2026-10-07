@@ -1,0 +1,120 @@
+{
+  "case_id": "56fe0fc1d86aa13a5ada8af0b6aa7de21f1e2bc4c43d67aa5ad37e82983bf893",
+  "task_id": "e71b3a92ed6b8216f7b4767ad03d33773fec77bc3d9f8efb6ce01536ffb1b84f",
+  "truth": "flat_still",
+  "crab_model": "wind_tas",
+  "correlation_seconds": [
+    0,
+    0
+  ],
+  "common_minutes": 79,
+  "covariance_sha256": "8ecf9f708d3ce89cb8d2c619c5fc88142ae84f06188479ceea5146ed84b24e46",
+  "selected_free_fit": "free",
+  "all_primary_converged": true,
+  "selected_comparison_converged": true,
+  "nested": true,
+  "diagnostic_delta_objectives": {
+    "sphere_rotating": 59.94728068073067,
+    "sphere_still": 187.75096236925845,
+    "flat_still": 0.8691809599992553
+  },
+  "fits": {
+    "free": {
+      "success": true,
+      "status": 2,
+      "message": "`ftol` termination condition is satisfied.",
+      "nfev": 8,
+      "njev": 8,
+      "optimality": 1.070914518855392e-05,
+      "scores": {
+        "data_quadratic": 278.14767246886527,
+        "penalty_quadratic": 17.075878615816947,
+        "penalized_least_squares": 295.2235510846822,
+        "covariance_logdet": -4821.56962210122,
+        "gaussian_deviance": -4543.421949632355,
+        "gaussian_nll": -1981.3263983235008,
+        "penalized_gaussian_deviance": -4526.346071016538
+      },
+      "boundary_parameter_indices": [],
+      "minimum_relative_bound_margin": 0.37137125061897114,
+      "residual_rms_dph": 4.540892782066576,
+      "archive": "free-81.npz",
+      "archive_sha256": "315fdcb2151a0a23a01216ecc6278213b775ac450589f2c244d7f9e14d10b003",
+      "elapsed_s": 27.250563828041777,
+      "attempt": 81
+    },
+    "sphere_rotating": {
+      "success": true,
+      "status": 2,
+      "message": "`ftol` termination condition is satisfied.",
+      "nfev": 8,
+      "njev": 8,
+      "optimality": 4.830296300477632e-06,
+      "scores": {
+        "data_quadratic": 326.0357378479151,
+        "penalty_quadratic": 29.135093917497777,
+        "penalized_least_squares": 355.17083176541286,
+        "covariance_logdet": -4821.56962210122,
+        "gaussian_deviance": -4495.533884253306,
+        "gaussian_nll": -1957.3823656339762,
+        "penalized_gaussian_deviance": -4466.3987903358075
+      },
+      "boundary_parameter_indices": [],
+      "minimum_relative_bound_margin": 0.3668539746829536,
+      "residual_rms_dph": 4.7977619928933235,
+      "archive": "sphere_rotating-82.npz",
+      "archive_sha256": "c2450627fa4634c3fb6be8f67671821f60d678dd83b65eaed8bbda70c7d4819c",
+      "elapsed_s": 23.76896344299894,
+      "attempt": 82
+    },
+    "sphere_still": {
+      "success": true,
+      "status": 2,
+      "message": "`ftol` termination condition is satisfied.",
+      "nfev": 7,
+      "njev": 7,
+      "optimality": 0.0001228726272369096,
+      "scores": {
+        "data_quadratic": 427.9529080163404,
+        "penalty_quadratic": 55.021605437600186,
+        "penalized_least_squares": 482.97451345394063,
+        "covariance_logdet": -4821.56962210122,
+        "gaussian_deviance": -4393.61671408488,
+        "gaussian_nll": -1906.4237805497635,
+        "penalized_gaussian_deviance": -4338.59510864728
+      },
+      "boundary_parameter_indices": [],
+      "minimum_relative_bound_margin": 0.3735215562581585,
+      "residual_rms_dph": 5.501239115459846,
+      "archive": "sphere_still-83.npz",
+      "archive_sha256": "16ab3bc98e0a3f3606961409d725574e4a3b0283db0bb7fd6aa32c80bccfd731",
+      "elapsed_s": 19.815867776982486,
+      "attempt": 83
+    },
+    "flat_still": {
+      "success": true,
+      "status": 2,
+      "message": "`ftol` termination condition is satisfied.",
+      "nfev": 5,
+      "njev": 5,
+      "optimality": 3.7944108368267025e-05,
+      "scores": {
+        "data_quadratic": 278.98372058161556,
+        "penalty_quadratic": 17.10901146306588,
+        "penalized_least_squares": 296.09273204468144,
+        "covariance_logdet": -4821.56962210122,
+        "gaussian_deviance": -4542.585901519605,
+        "gaussian_nll": -1980.9083742671257,
+        "penalized_gaussian_deviance": -4525.476890056539
+      },
+      "boundary_parameter_indices": [],
+      "minimum_relative_bound_margin": 0.3724381957073107,
+      "residual_rms_dph": 4.564571672846201,
+      "archive": "flat_still-84.npz",
+      "archive_sha256": "bdea7fccdd1b20a44fbc0e30a24cda867d29d2d7ffb347089b3dd7be0f6d8bd1",
+      "elapsed_s": 14.814479307970032,
+      "attempt": 84
+    }
+  },
+  "decisions_enabled": false
+}

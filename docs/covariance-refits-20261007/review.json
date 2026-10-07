@@ -1,0 +1,2891 @@
+{
+  "complete": true,
+  "cases": [
+    {
+      "case_id": "288e78cfa3fa17c027371967e7ac28406ee412046273932bfd09f3913ff6b146",
+      "task_id": "bed4aa85790e4d01e95115b8cf19b386a8d2c07c1ad3f7bac00b825813c939a4",
+      "truth": "sphere_rotating",
+      "crab_model": "wind",
+      "correlation_seconds": [
+        0,
+        0
+      ],
+      "common_minutes": 79,
+      "covariance_sha256": "006479e35a21875fa72bb95c1696cda698f2b6af946c9d87c376066c6b968e69",
+      "selected_free_fit": "free",
+      "all_primary_converged": true,
+      "selected_comparison_converged": true,
+      "nested": true,
+      "diagnostic_delta_objectives": {
+        "sphere_rotating": 1.2682062330225676,
+        "sphere_still": 432.01332894145565,
+        "flat_still": 69.55772371626114
+      },
+      "fits": {
+        "free": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 6,
+          "njev": 6,
+          "optimality": 9.445510535042549e-07,
+          "scores": {
+            "data_quadratic": 177.98105146714164,
+            "penalty_quadratic": 9.88792922355402,
+            "penalized_least_squares": 187.86898069069565,
+            "covariance_logdet": -4820.782893785372,
+            "gaussian_deviance": -4642.80184231823,
+            "gaussian_nll": -2103.6124887896076,
+            "penalized_gaussian_deviance": -4632.913913094676
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.38049424741417825,
+          "residual_rms_dph": 6.85348748463351,
+          "archive": "free-1.npz",
+          "archive_sha256": "c216d63444c442bef2b862c55a35c02c21750bfe8be0da0e6ce77c0b9dee8f77",
+          "elapsed_s": 23.773473620065488,
+          "attempt": 1
+        },
+        "sphere_rotating": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 5,
+          "njev": 5,
+          "optimality": 2.7661833002657514e-06,
+          "scores": {
+            "data_quadratic": 179.19597386626748,
+            "penalty_quadratic": 9.941213057450753,
+            "penalized_least_squares": 189.13718692371822,
+            "covariance_logdet": -4820.782893785372,
+            "gaussian_deviance": -4641.586919919105,
+            "gaussian_nll": -2103.005027590045,
+            "penalized_gaussian_deviance": -4631.645706861654
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.37940466165647213,
+          "residual_rms_dph": 6.86771897284233,
+          "archive": "sphere_rotating-2.npz",
+          "archive_sha256": "772df7b925c37ac286700e377c1826deaf2ab5d402ab4d0d42908b7a68019dca",
+          "elapsed_s": 20.23714163596742,
+          "attempt": 2
+        },
+        "sphere_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 7,
+          "njev": 7,
+          "optimality": 3.954723959381285e-05,
+          "scores": {
+            "data_quadratic": 524.7037340622081,
+            "penalty_quadratic": 95.17857556994313,
+            "penalized_least_squares": 619.8823096321513,
+            "covariance_logdet": -4820.782893785372,
+            "gaussian_deviance": -4296.079159723164,
+            "gaussian_nll": -1930.2511474920743,
+            "penalized_gaussian_deviance": -4200.900584153221
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.33196326198618814,
+          "residual_rms_dph": 8.54419181080918,
+          "archive": "sphere_still-3.npz",
+          "archive_sha256": "3d4fd75eaaf26e43366334bc9eccc2355dd7356c7fee1dcc63ff2f980ad3a4b4",
+          "elapsed_s": 24.70214205502998,
+          "attempt": 3
+        },
+        "flat_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 6,
+          "njev": 6,
+          "optimality": 5.051221234369444e-05,
+          "scores": {
+            "data_quadratic": 229.23543268144638,
+            "penalty_quadratic": 28.19127172551038,
+            "penalized_least_squares": 257.4267044069568,
+            "covariance_logdet": -4820.782893785372,
+            "gaussian_deviance": -4591.547461103925,
+            "gaussian_nll": -2077.985298182455,
+            "penalized_gaussian_deviance": -4563.356189378415
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.38378666417540774,
+          "residual_rms_dph": 7.275861987432923,
+          "archive": "flat_still-4.npz",
+          "archive_sha256": "e579cf4fbda16eba328525c90800c9a103ac7739db00261cf93824d6c70a3810",
+          "elapsed_s": 20.557706461986527,
+          "attempt": 4
+        }
+      },
+      "decisions_enabled": false
+    },
+    {
+      "case_id": "0d57dec7f99efe8ab395c676a18cc860baac0eb36f20defce26027c571b4633c",
+      "task_id": "bed4aa85790e4d01e95115b8cf19b386a8d2c07c1ad3f7bac00b825813c939a4",
+      "truth": "sphere_rotating",
+      "crab_model": "wind",
+      "correlation_seconds": [
+        15,
+        15
+      ],
+      "common_minutes": 79,
+      "covariance_sha256": "2869f02329e59684f45fec4ec8b3fbb9ea76f859e5b70ce68d6b281dc85ded16",
+      "selected_free_fit": "free",
+      "all_primary_converged": true,
+      "selected_comparison_converged": true,
+      "nested": true,
+      "diagnostic_delta_objectives": {
+        "sphere_rotating": 0.12684552056238374,
+        "sphere_still": 26.06715299888599,
+        "flat_still": 6.21949198679885
+      },
+      "fits": {
+        "free": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 5,
+          "njev": 5,
+          "optimality": 1.7674945615911948e-07,
+          "scores": {
+            "data_quadratic": 12.780673611517198,
+            "penalty_quadratic": 1.1185808332125613,
+            "penalized_least_squares": 13.89925444472976,
+            "covariance_logdet": -4188.678863801286,
+            "gaussian_deviance": -4175.898190189769,
+            "gaussian_nll": -1870.1606627253768,
+            "penalized_gaussian_deviance": -4174.779609356556
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.4454856366964186,
+          "residual_rms_dph": 8.047555176083753,
+          "archive": "free-5.npz",
+          "archive_sha256": "2e8d1ae302235dc29087be3a96cb25f5b5195d386a252c973d398c0257da8b21",
+          "elapsed_s": 16.75534496898763,
+          "attempt": 5
+        },
+        "sphere_rotating": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 4,
+          "njev": 4,
+          "optimality": 1.3072046523585936e-07,
+          "scores": {
+            "data_quadratic": 12.88537913001963,
+            "penalty_quadratic": 1.1407208352725133,
+            "penalized_least_squares": 14.026099965292143,
+            "covariance_logdet": -4188.678863801286,
+            "gaussian_deviance": -4175.793484671266,
+            "gaussian_nll": -1870.1083099661255,
+            "penalized_gaussian_deviance": -4174.652763835994
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.44503025589884054,
+          "residual_rms_dph": 8.057380612524915,
+          "archive": "sphere_rotating-6.npz",
+          "archive_sha256": "824f18aa5d7c9f83d348e0731eff413b475f3fdd13c00532cf0a2199c163fb0a",
+          "elapsed_s": 16.178069655084983,
+          "attempt": 6
+        },
+        "sphere_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 5,
+          "njev": 5,
+          "optimality": 5.759105203142507e-06,
+          "scores": {
+            "data_quadratic": 37.35840395966487,
+            "penalty_quadratic": 2.6080034839508803,
+            "penalized_least_squares": 39.96640744361575,
+            "covariance_logdet": -4188.678863801286,
+            "gaussian_deviance": -4151.320459841621,
+            "gaussian_nll": -1857.8717975513032,
+            "penalized_gaussian_deviance": -4148.712456357671
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.450446099853425,
+          "residual_rms_dph": 10.320587448589906,
+          "archive": "sphere_still-7.npz",
+          "archive_sha256": "f8e4aaf0858aac195db7f12c7dfd9f4be7769f95c2b33476a443ba7044b37851",
+          "elapsed_s": 20.48574555304367,
+          "attempt": 7
+        },
+        "flat_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 5,
+          "njev": 5,
+          "optimality": 4.396917735469775e-07,
+          "scores": {
+            "data_quadratic": 17.421259879175373,
+            "penalty_quadratic": 2.697486552353235,
+            "penalized_least_squares": 20.11874643152861,
+            "covariance_logdet": -4188.678863801286,
+            "gaussian_deviance": -4171.25760392211,
+            "gaussian_nll": -1867.8403695915476,
+            "penalized_gaussian_deviance": -4168.560117369757
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.4461819703101192,
+          "residual_rms_dph": 8.627275082477766,
+          "archive": "flat_still-8.npz",
+          "archive_sha256": "230ed78d5c13365a55e12f6ed126283ec184ef426a67fd6b5f896f548bf55967",
+          "elapsed_s": 18.23227593093179,
+          "attempt": 8
+        }
+      },
+      "decisions_enabled": false
+    },
+    {
+      "case_id": "b460e01f3bfdf4fba8d122dbbb1ede484e3bd642ff9ea0972a3cdc2a37f2396b",
+      "task_id": "bed4aa85790e4d01e95115b8cf19b386a8d2c07c1ad3f7bac00b825813c939a4",
+      "truth": "sphere_rotating",
+      "crab_model": "wind",
+      "correlation_seconds": [
+        300,
+        300
+      ],
+      "common_minutes": 79,
+      "covariance_sha256": "499936d76228acdae9e53faa5284bb9b0494280cae49c1161104b92fe11bdbd2",
+      "selected_free_fit": "free",
+      "all_primary_converged": true,
+      "selected_comparison_converged": true,
+      "nested": true,
+      "diagnostic_delta_objectives": {
+        "sphere_rotating": 0.2258592317113255,
+        "sphere_still": 4.784466692044859,
+        "flat_still": 2.204179797940192
+      },
+      "fits": {
+        "free": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 5,
+          "njev": 5,
+          "optimality": 9.747320631503353e-06,
+          "scores": {
+            "data_quadratic": 42.854008273030864,
+            "penalty_quadratic": 4.572530967647065,
+            "penalized_least_squares": 47.426539240677926,
+            "covariance_logdet": -4371.773701019098,
+            "gaussian_deviance": -4328.919692746067,
+            "gaussian_nll": -1946.671414003526,
+            "penalized_gaussian_deviance": -4324.34716177842
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.3842541994637538,
+          "residual_rms_dph": 7.114129189268894,
+          "archive": "free-9.npz",
+          "archive_sha256": "ed26386ebbe8db1b0dd375d09155732ee939eec0473ae4a98f3befc3b8d5bf81",
+          "elapsed_s": 19.84691712097265,
+          "attempt": 9
+        },
+        "sphere_rotating": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 3,
+          "njev": 3,
+          "optimality": 1.21355171097853e-05,
+          "scores": {
+            "data_quadratic": 43.09151933050454,
+            "penalty_quadratic": 4.560879141884708,
+            "penalized_least_squares": 47.65239847238925,
+            "covariance_logdet": -4371.773701019098,
+            "gaussian_deviance": -4328.682181688593,
+            "gaussian_nll": -1946.552658474789,
+            "penalized_gaussian_deviance": -4324.121302546709
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.38421725149132147,
+          "residual_rms_dph": 7.0551389424075355,
+          "archive": "sphere_rotating-10.npz",
+          "archive_sha256": "2f9d9b50d7bf1ed51fdf587be8fc6474daff4f836f6837ca718eb00a9a1664c2",
+          "elapsed_s": 12.204027332016267,
+          "attempt": 10
+        },
+        "sphere_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 4,
+          "njev": 4,
+          "optimality": 7.604134528650602e-06,
+          "scores": {
+            "data_quadratic": 47.21035639454562,
+            "penalty_quadratic": 5.000649538177161,
+            "penalized_least_squares": 52.211005932722784,
+            "covariance_logdet": -4371.773701019098,
+            "gaussian_deviance": -4324.563344624552,
+            "gaussian_nll": -1944.4932399427685,
+            "penalized_gaussian_deviance": -4319.562695086375
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.38447563781479493,
+          "residual_rms_dph": 9.815798342576796,
+          "archive": "sphere_still-11.npz",
+          "archive_sha256": "b4039689fccda4618ad58e955d293f432db87939708f701bb508f850c66fa8bd",
+          "elapsed_s": 15.265897562960163,
+          "attempt": 11
+        },
+        "flat_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 4,
+          "njev": 4,
+          "optimality": 3.5334417132666997e-06,
+          "scores": {
+            "data_quadratic": 44.388091830928275,
+            "penalty_quadratic": 5.242627207689844,
+            "penalized_least_squares": 49.63071903861812,
+            "covariance_logdet": -4371.773701019098,
+            "gaussian_deviance": -4327.385609188169,
+            "gaussian_nll": -1945.904372224577,
+            "penalized_gaussian_deviance": -4322.142981980479
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.38417507346141533,
+          "residual_rms_dph": 8.162717715638772,
+          "archive": "flat_still-12.npz",
+          "archive_sha256": "6d268259fa9fa9af1eb144290c5974834f5035731c441f928ba5e5eae9c1908c",
+          "elapsed_s": 18.80486731696874,
+          "attempt": 12
+        }
+      },
+      "decisions_enabled": false
+    },
+    {
+      "case_id": "34373870c5f34e13a30a76527c0ae629045bc1f5e355bb4019dcde7902d1760f",
+      "task_id": "bed4aa85790e4d01e95115b8cf19b386a8d2c07c1ad3f7bac00b825813c939a4",
+      "truth": "sphere_rotating",
+      "crab_model": "wind",
+      "correlation_seconds": [
+        15,
+        300
+      ],
+      "common_minutes": 79,
+      "covariance_sha256": "7cea3aeb9ff5dccb06336280594d059d1521dffe1a40fbbb1a40b9efa95c1578",
+      "selected_free_fit": "free",
+      "all_primary_converged": true,
+      "selected_comparison_converged": true,
+      "nested": true,
+      "diagnostic_delta_objectives": {
+        "sphere_rotating": 0.04739313445312732,
+        "sphere_still": 4.395968057762627,
+        "flat_still": 1.6809869920362637
+      },
+      "fits": {
+        "free": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 5,
+          "njev": 5,
+          "optimality": 3.82766220142269e-06,
+          "scores": {
+            "data_quadratic": 15.140216040605683,
+            "penalty_quadratic": 1.035834443979687,
+            "penalized_least_squares": 16.17605048458537,
+            "covariance_logdet": -4146.860317168151,
+            "gaussian_deviance": -4131.720101127545,
+            "gaussian_nll": -1848.0716181942648,
+            "penalized_gaussian_deviance": -4130.684266683565
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.4447449848969371,
+          "residual_rms_dph": 8.05865610076662,
+          "archive": "free-13.npz",
+          "archive_sha256": "9531521cb5435c92f5768b748186b7e306f300504c53e134c8cc27145904c3a9",
+          "elapsed_s": 23.897414852981456,
+          "attempt": 13
+        },
+        "sphere_rotating": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 3,
+          "njev": 3,
+          "optimality": 7.677784127863512e-06,
+          "scores": {
+            "data_quadratic": 15.193308575142215,
+            "penalty_quadratic": 1.0301350438962829,
+            "penalized_least_squares": 16.2234436190385,
+            "covariance_logdet": -4146.860317168151,
+            "gaussian_deviance": -4131.667008593008,
+            "gaussian_nll": -1848.0450719269966,
+            "penalized_gaussian_deviance": -4130.636873549111
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.44481106410308013,
+          "residual_rms_dph": 8.078275763608442,
+          "archive": "sphere_rotating-14.npz",
+          "archive_sha256": "649ba27206f2e8ef6e03a9c7a7bb4efac29be9a2dc5ddfc5308aa02e76c401db",
+          "elapsed_s": 15.034821656998247,
+          "attempt": 14
+        },
+        "sphere_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 4,
+          "njev": 4,
+          "optimality": 4.780719465597128e-06,
+          "scores": {
+            "data_quadratic": 19.147456238074966,
+            "penalty_quadratic": 1.42456230427303,
+            "penalized_least_squares": 20.572018542347998,
+            "covariance_logdet": -4146.860317168151,
+            "gaussian_deviance": -4127.712860930075,
+            "gaussian_nll": -1846.0679980955301,
+            "penalized_gaussian_deviance": -4126.288298625802
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.44531945169517956,
+          "residual_rms_dph": 10.587343690896681,
+          "archive": "sphere_still-15.npz",
+          "archive_sha256": "b39ba046d328f636bd04cba2d9185ff9ec758c679c9ad153bcccd0f3f5d7a7e2",
+          "elapsed_s": 14.294352242024615,
+          "attempt": 15
+        },
+        "flat_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 4,
+          "njev": 4,
+          "optimality": 3.6087318694803165e-06,
+          "scores": {
+            "data_quadratic": 16.211783981911015,
+            "penalty_quadratic": 1.6452534947106177,
+            "penalized_least_squares": 17.857037476621635,
+            "covariance_logdet": -4146.860317168151,
+            "gaussian_deviance": -4130.64853318624,
+            "gaussian_nll": -1847.5358342236123,
+            "penalized_gaussian_deviance": -4129.003279691529
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.44510241776313014,
+          "residual_rms_dph": 9.122616130509105,
+          "archive": "flat_still-16.npz",
+          "archive_sha256": "8d5750c3c0d0642e0917d7dcb93c2a9ceca9ca9e8917e7108348483517721b87",
+          "elapsed_s": 14.687557258992456,
+          "attempt": 16
+        }
+      },
+      "decisions_enabled": false
+    },
+    {
+      "case_id": "e4fa6b54dee76fbc34503c92b022789da9243bffa87a34b4cd2c14906fbdf007",
+      "task_id": "dc5bb68180f11fc6ba59dedc0cd23b05e1aaf13870bff06c8549bb73506b03a2",
+      "truth": "sphere_rotating",
+      "crab_model": "wind_tas",
+      "correlation_seconds": [
+        0,
+        0
+      ],
+      "common_minutes": 79,
+      "covariance_sha256": "b7b5037d34f7f8128bb40044e348b8ac6579b3ce62a430f9b5a1409308efe889",
+      "selected_free_fit": "free",
+      "all_primary_converged": true,
+      "selected_comparison_converged": true,
+      "nested": true,
+      "diagnostic_delta_objectives": {
+        "sphere_rotating": 1.158068615323657,
+        "sphere_still": 431.20989705090506,
+        "flat_still": 68.4870762875612
+      },
+      "fits": {
+        "free": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 8,
+          "njev": 8,
+          "optimality": 8.605614665978182e-06,
+          "scores": {
+            "data_quadratic": 277.08091688686017,
+            "penalty_quadratic": 17.01355740627397,
+            "penalized_least_squares": 294.0944742931341,
+            "covariance_logdet": -4821.624135915321,
+            "gaussian_deviance": -4544.543219028461,
+            "gaussian_nll": -1981.8870330215539,
+            "penalized_gaussian_deviance": -4527.529661622187
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.37090063001185886,
+          "residual_rms_dph": 4.471058283547054,
+          "archive": "free-17.npz",
+          "archive_sha256": "9ba53b8b68933ae9e602bf930b3572e620b0562d926cb1629ab50b21f0087da4",
+          "elapsed_s": 29.374847766943276,
+          "attempt": 17
+        },
+        "sphere_rotating": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 5,
+          "njev": 5,
+          "optimality": 3.078423977128089e-05,
+          "scores": {
+            "data_quadratic": 278.185148930908,
+            "penalty_quadratic": 17.0673939775498,
+            "penalized_least_squares": 295.25254290845777,
+            "covariance_logdet": -4821.624135915321,
+            "gaussian_deviance": -4543.438986984413,
+            "gaussian_nll": -1981.3349169995297,
+            "penalized_gaussian_deviance": -4526.371593006863
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.3713798108861648,
+          "residual_rms_dph": 4.4867548126506165,
+          "archive": "sphere_rotating-18.npz",
+          "archive_sha256": "2299531015d1998ada963241870fab6e008b673ecd558cd025e29d761bc77233",
+          "elapsed_s": 21.31733469304163,
+          "attempt": 18
+        },
+        "sphere_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 8,
+          "njev": 8,
+          "optimality": 0.0001380185064856542,
+          "scores": {
+            "data_quadratic": 622.2889922190193,
+            "penalty_quadratic": 103.01537912501986,
+            "penalized_least_squares": 725.3043713440392,
+            "covariance_logdet": -4821.624135915321,
+            "gaussian_deviance": -4199.335143696302,
+            "gaussian_nll": -1809.2829953554744,
+            "penalized_gaussian_deviance": -4096.319764571283
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.33628944675140393,
+          "residual_rms_dph": 6.735476944506521,
+          "archive": "sphere_still-19.npz",
+          "archive_sha256": "1298d43c30f8713e48d811eba975d9cd7e5e053ed624434bc709627b16a09ff1",
+          "elapsed_s": 31.451484984951094,
+          "attempt": 19
+        },
+        "flat_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 7,
+          "njev": 7,
+          "optimality": 0.0001017023214748695,
+          "scores": {
+            "data_quadratic": 327.3004547966201,
+            "penalty_quadratic": 35.28109578407519,
+            "penalized_least_squares": 362.5815505806953,
+            "covariance_logdet": -4821.624135915321,
+            "gaussian_deviance": -4494.323681118701,
+            "gaussian_nll": -1956.7772640666738,
+            "penalized_gaussian_deviance": -4459.042585334626
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.3747643725952465,
+          "residual_rms_dph": 5.0819611385932655,
+          "archive": "flat_still-20.npz",
+          "archive_sha256": "96477125ee6712a83f697f923588d0607f71e0eb2013ee37c94a6f308be7180f",
+          "elapsed_s": 27.52639682299923,
+          "attempt": 20
+        }
+      },
+      "decisions_enabled": false
+    },
+    {
+      "case_id": "831ec4c5e182be3a0421708e07bdba545623a8ae298d763f4fe32088ddedf84e",
+      "task_id": "dc5bb68180f11fc6ba59dedc0cd23b05e1aaf13870bff06c8549bb73506b03a2",
+      "truth": "sphere_rotating",
+      "crab_model": "wind_tas",
+      "correlation_seconds": [
+        15,
+        15
+      ],
+      "common_minutes": 79,
+      "covariance_sha256": "c2e559b39bfee3f6698d10f63234541c2fbf17baae7fab6331981ede6109199b",
+      "selected_free_fit": "free",
+      "all_primary_converged": true,
+      "selected_comparison_converged": true,
+      "nested": true,
+      "diagnostic_delta_objectives": {
+        "sphere_rotating": 0.14523294040549217,
+        "sphere_still": 25.615639451026595,
+        "flat_still": 6.00641659723135
+      },
+      "fits": {
+        "free": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 7,
+          "njev": 7,
+          "optimality": 7.861688443469368e-06,
+          "scores": {
+            "data_quadratic": 166.98690560679853,
+            "penalty_quadratic": 5.678627741656407,
+            "penalized_least_squares": 172.66553334845494,
+            "covariance_logdet": -4188.884161098569,
+            "gaussian_deviance": -4021.8972554917705,
+            "gaussian_nll": -1720.5640512532086,
+            "penalized_gaussian_deviance": -4016.218627750114
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.37141522447674236,
+          "residual_rms_dph": 9.756950098807499,
+          "archive": "free-21.npz",
+          "archive_sha256": "a1bd9e2cbf329c095647ef541a6127e24bf1c3f925ec5b681944b68cb775d275",
+          "elapsed_s": 37.532771777012385,
+          "attempt": 21
+        },
+        "sphere_rotating": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 4,
+          "njev": 4,
+          "optimality": 1.4403564803661305e-05,
+          "scores": {
+            "data_quadratic": 167.11916237015598,
+            "penalty_quadratic": 5.691603918704464,
+            "penalized_least_squares": 172.81076628886044,
+            "covariance_logdet": -4188.884161098569,
+            "gaussian_deviance": -4021.764998728413,
+            "gaussian_nll": -1720.49792287153,
+            "penalized_gaussian_deviance": -4016.0733948097086
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.37146257935140675,
+          "residual_rms_dph": 9.75771368033443,
+          "archive": "sphere_rotating-22.npz",
+          "archive_sha256": "76957e611b0406046aab60de332206518505e096f6dd3eb79396ecc4232dd7dc",
+          "elapsed_s": 21.30817415297497,
+          "attempt": 22
+        },
+        "sphere_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 5,
+          "njev": 5,
+          "optimality": 5.713855588776759e-05,
+          "scores": {
+            "data_quadratic": 190.97804410473844,
+            "penalty_quadratic": 7.303128694743081,
+            "penalized_least_squares": 198.28117279948154,
+            "covariance_logdet": -4188.884161098569,
+            "gaussian_deviance": -3997.906116993831,
+            "gaussian_nll": -1708.5684820042388,
+            "penalized_gaussian_deviance": -3990.602988299088
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.3719239427819095,
+          "residual_rms_dph": 11.746554192714296,
+          "archive": "sphere_still-23.npz",
+          "archive_sha256": "fbff32a5bc48b0298d5ee51f169511f1a2bb5aaaa76784a22a182102f4e6cd0c",
+          "elapsed_s": 18.39915265305899,
+          "attempt": 23
+        },
+        "flat_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 5,
+          "njev": 5,
+          "optimality": 1.931955627349068e-05,
+          "scores": {
+            "data_quadratic": 171.38543980720453,
+            "penalty_quadratic": 7.2865101384817565,
+            "penalized_least_squares": 178.6719499456863,
+            "covariance_logdet": -4188.884161098569,
+            "gaussian_deviance": -4017.4987212913647,
+            "gaussian_nll": -1718.3647841530058,
+            "penalized_gaussian_deviance": -4010.212211152883
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.3718014359038012,
+          "residual_rms_dph": 10.24848561721227,
+          "archive": "flat_still-24.npz",
+          "archive_sha256": "4e8c50be3fff36ffb25f2d8adb626f402edbb01d1589c89baa73c9483370dc22",
+          "elapsed_s": 16.93963229795918,
+          "attempt": 24
+        }
+      },
+      "decisions_enabled": false
+    },
+    {
+      "case_id": "c2a1f4a49faf836befb56b4b01263c97164c8d66f93186c8997bad0059cae6df",
+      "task_id": "dc5bb68180f11fc6ba59dedc0cd23b05e1aaf13870bff06c8549bb73506b03a2",
+      "truth": "sphere_rotating",
+      "crab_model": "wind_tas",
+      "correlation_seconds": [
+        300,
+        300
+      ],
+      "common_minutes": 79,
+      "covariance_sha256": "aa0e5edfe4dad31f31d36b95b1b106b82f6a69c3bb8edd727be63b2fd3914b4d",
+      "selected_free_fit": "free",
+      "all_primary_converged": true,
+      "selected_comparison_converged": true,
+      "nested": true,
+      "diagnostic_delta_objectives": {
+        "sphere_rotating": 0.20178708272240442,
+        "sphere_still": 4.713241300260393,
+        "flat_still": 2.094129330773484
+      },
+      "fits": {
+        "free": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 7,
+          "njev": 7,
+          "optimality": 6.307640550672412e-06,
+          "scores": {
+            "data_quadratic": 191.0545435982432,
+            "penalty_quadratic": 10.80289787914103,
+            "penalized_least_squares": 201.85744147738424,
+            "covariance_logdet": -4370.8461489897745,
+            "gaussian_deviance": -4179.791605391531,
+            "gaussian_nll": -1799.511226203089,
+            "penalized_gaussian_deviance": -4168.988707512391
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.31775020546486965,
+          "residual_rms_dph": 5.575739293096938,
+          "archive": "free-25.npz",
+          "archive_sha256": "cbe16ff071eaf3e05cfd48c2d7ecb0e83a88ab703bb907ea938de2394ea1e0dd",
+          "elapsed_s": 21.902598379994743,
+          "attempt": 25
+        },
+        "sphere_rotating": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 4,
+          "njev": 4,
+          "optimality": 1.2890708856995517e-05,
+          "scores": {
+            "data_quadratic": 191.26457517093692,
+            "penalty_quadratic": 10.794653389169723,
+            "penalized_least_squares": 202.05922856010665,
+            "covariance_logdet": -4370.8461489897745,
+            "gaussian_deviance": -4179.581573818838,
+            "gaussian_nll": -1799.4062104167422,
+            "penalized_gaussian_deviance": -4168.786920429668
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.3177043535458274,
+          "residual_rms_dph": 5.521600638185048,
+          "archive": "sphere_rotating-26.npz",
+          "archive_sha256": "684f7a5c8056db7d583bb9675923851cd71b70316292ddda9123a64c141b1bf8",
+          "elapsed_s": 14.520373402978294,
+          "attempt": 26
+        },
+        "sphere_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 4,
+          "njev": 4,
+          "optimality": 0.00011568220642247287,
+          "scores": {
+            "data_quadratic": 195.31439515066793,
+            "penalty_quadratic": 11.256287626976713,
+            "penalized_least_squares": 206.57068277764463,
+            "covariance_logdet": -4370.8461489897745,
+            "gaussian_deviance": -4175.531753839106,
+            "gaussian_nll": -1797.3813004268766,
+            "penalized_gaussian_deviance": -4164.27546621213
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.31807088845683845,
+          "residual_rms_dph": 8.761787379467311,
+          "archive": "sphere_still-27.npz",
+          "archive_sha256": "b9ecd5da6a2b260cf98bbe0df3b80cc0f6560061710f213b57211d323dd7d3c0",
+          "elapsed_s": 13.903205350972712,
+          "attempt": 27
+        },
+        "flat_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 4,
+          "njev": 4,
+          "optimality": 8.767691715802446e-05,
+          "scores": {
+            "data_quadratic": 192.4694143226576,
+            "penalty_quadratic": 11.482156485500127,
+            "penalized_least_squares": 203.95157080815773,
+            "covariance_logdet": -4370.8461489897745,
+            "gaussian_deviance": -4178.376734667117,
+            "gaussian_nll": -1798.8037908408817,
+            "penalized_gaussian_deviance": -4166.894578181616
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.3176260701001078,
+          "residual_rms_dph": 6.863720583035576,
+          "archive": "flat_still-28.npz",
+          "archive_sha256": "53f5bb6bdf503805e2f5a76539cb63dd199702320a894fd651e53197b9764b00",
+          "elapsed_s": 13.810122412978671,
+          "attempt": 28
+        }
+      },
+      "decisions_enabled": false
+    },
+    {
+      "case_id": "75061715988ff6141f8cd5cac36b0e7fb19b461f867d29b83951702fb1627307",
+      "task_id": "dc5bb68180f11fc6ba59dedc0cd23b05e1aaf13870bff06c8549bb73506b03a2",
+      "truth": "sphere_rotating",
+      "crab_model": "wind_tas",
+      "correlation_seconds": [
+        15,
+        300
+      ],
+      "common_minutes": 79,
+      "covariance_sha256": "f1010f14f009a58e0c3c6e1c4d2f4419015c937455cadf6fc2b383289653be32",
+      "selected_free_fit": "free",
+      "all_primary_converged": true,
+      "selected_comparison_converged": true,
+      "nested": true,
+      "diagnostic_delta_objectives": {
+        "sphere_rotating": 0.02496827914026767,
+        "sphere_still": 4.303881191767147,
+        "flat_still": 1.5305348577332722
+      },
+      "fits": {
+        "free": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 7,
+          "njev": 7,
+          "optimality": 6.5891023920651296e-06,
+          "scores": {
+            "data_quadratic": 169.2658371143949,
+            "penalty_quadratic": 5.672623192458856,
+            "penalized_least_squares": 174.93846030685376,
+            "covariance_logdet": -4147.112203141399,
+            "gaussian_deviance": -3977.846366027004,
+            "gaussian_nll": -1698.5386065208254,
+            "penalized_gaussian_deviance": -3972.173742834545
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.3716522452171615,
+          "residual_rms_dph": 9.70027098041447,
+          "archive": "free-29.npz",
+          "archive_sha256": "22343bc49c0becfd5bfb49cca80c6488b192b9f6353420046c3897d50d8c51eb",
+          "elapsed_s": 22.324120606994256,
+          "attempt": 29
+        },
+        "sphere_rotating": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 3,
+          "njev": 3,
+          "optimality": 1.837878905258428e-05,
+          "scores": {
+            "data_quadratic": 169.2942776808914,
+            "penalty_quadratic": 5.669150905102624,
+            "penalized_least_squares": 174.96342858599402,
+            "covariance_logdet": -4147.112203141399,
+            "gaussian_deviance": -3977.8179254605075,
+            "gaussian_nll": -1698.5243862375771,
+            "penalized_gaussian_deviance": -3972.148774555405
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.37165372645626416,
+          "residual_rms_dph": 9.713994145632721,
+          "archive": "sphere_rotating-30.npz",
+          "archive_sha256": "82b89964720f5cafeb86c693605aa9a5e06bb328aa0bb903c6389aee61b44068",
+          "elapsed_s": 12.306294098962098,
+          "attempt": 30
+        },
+        "sphere_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 4,
+          "njev": 4,
+          "optimality": 0.00010126154500228827,
+          "scores": {
+            "data_quadratic": 173.15745302972476,
+            "penalty_quadratic": 6.084888468896133,
+            "penalized_least_squares": 179.2423414986209,
+            "covariance_logdet": -4147.112203141399,
+            "gaussian_deviance": -3973.954750111674,
+            "gaussian_nll": -1696.5927985631604,
+            "penalized_gaussian_deviance": -3967.869861642778
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.371816553285417,
+          "residual_rms_dph": 11.852605603866257,
+          "archive": "sphere_still-31.npz",
+          "archive_sha256": "208b09bdc23bf0e42f9861da2124b99ad0f1f8b9f8dc8f1d1e3394aab059c795",
+          "elapsed_s": 13.744893684983253,
+          "attempt": 31
+        },
+        "flat_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 4,
+          "njev": 4,
+          "optimality": 9.135915056416855e-05,
+          "scores": {
+            "data_quadratic": 170.178298741872,
+            "penalty_quadratic": 6.2906964227150395,
+            "penalized_least_squares": 176.46899516458703,
+            "covariance_logdet": -4147.112203141399,
+            "gaussian_deviance": -3976.933904399527,
+            "gaussian_nll": -1698.0823757070868,
+            "penalized_gaussian_deviance": -3970.643207976812
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.3717811134105438,
+          "residual_rms_dph": 10.580232729078004,
+          "archive": "flat_still-32.npz",
+          "archive_sha256": "db090145e12847acb181c702d9fcc5f10e4fd20adce8bbc4c0f2967237f34d94",
+          "elapsed_s": 14.073588057071902,
+          "attempt": 32
+        }
+      },
+      "decisions_enabled": false
+    },
+    {
+      "case_id": "f067da39b0cf882d03918c8f341ec35617b6b4f5e9884821aace99ff01fbe262",
+      "task_id": "f94593ee49b996b4de1ef7ae7fcebd7299384ce89bff672d82f4debc755a2425",
+      "truth": "sphere_still",
+      "crab_model": "wind",
+      "correlation_seconds": [
+        0,
+        0
+      ],
+      "common_minutes": 79,
+      "covariance_sha256": "2fa7d300656d2003251a0739d70186d8f12986501ebd78cc50ef8553a0d7871d",
+      "selected_free_fit": "free",
+      "all_primary_converged": true,
+      "selected_comparison_converged": true,
+      "nested": true,
+      "diagnostic_delta_objectives": {
+        "sphere_rotating": 441.9457010007769,
+        "sphere_still": 0.6862243144773004,
+        "flat_still": 193.87534060356015
+      },
+      "fits": {
+        "free": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 6,
+          "njev": 6,
+          "optimality": 2.9049516644120952e-06,
+          "scores": {
+            "data_quadratic": 172.85114407088884,
+            "penalty_quadratic": 10.610286236589348,
+            "penalized_least_squares": 183.4614303074782,
+            "covariance_logdet": -4820.559051740581,
+            "gaussian_deviance": -4647.707907669692,
+            "gaussian_nll": -2106.0655214653384,
+            "penalized_gaussian_deviance": -4637.097621433102
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.3824219039873655,
+          "residual_rms_dph": 6.860678554703951,
+          "archive": "free-33.npz",
+          "archive_sha256": "d790245cc13f1d76c1b8352b76bc31e88b29e971ca87d15a25325b8331d22001",
+          "elapsed_s": 19.35711555299349,
+          "attempt": 33
+        },
+        "sphere_rotating": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 6,
+          "njev": 6,
+          "optimality": 6.419451277430196e-05,
+          "scores": {
+            "data_quadratic": 540.9912092278897,
+            "penalty_quadratic": 84.41592208036536,
+            "penalized_least_squares": 625.4071313082551,
+            "covariance_logdet": -4820.559051740581,
+            "gaussian_deviance": -4279.567842512691,
+            "gaussian_nll": -1921.9954888868378,
+            "penalized_gaussian_deviance": -4195.151920432325
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.2902808808571338,
+          "residual_rms_dph": 8.358902767324434,
+          "archive": "sphere_rotating-34.npz",
+          "archive_sha256": "58953d5592e0edbfec61dfb6c0a8fe7d3e737efb1dd8facc57e5835a61cf2c07",
+          "elapsed_s": 19.32681616197806,
+          "attempt": 34
+        },
+        "sphere_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 5,
+          "njev": 5,
+          "optimality": 3.7092663776100214e-06,
+          "scores": {
+            "data_quadratic": 173.84739596212077,
+            "penalty_quadratic": 10.30025865983471,
+            "penalized_least_squares": 184.1476546219555,
+            "covariance_logdet": -4820.559051740581,
+            "gaussian_deviance": -4646.71165577846,
+            "gaussian_nll": -2105.5673955197226,
+            "penalized_gaussian_deviance": -4636.411397118625
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.3842582931952347,
+          "residual_rms_dph": 6.89028304524155,
+          "archive": "sphere_still-35.npz",
+          "archive_sha256": "af0c1f6c1e4978a6726e6cf60e41303fb30e0885a9276ee8c23fb89ce0735fac",
+          "elapsed_s": 17.427708924980834,
+          "attempt": 35
+        },
+        "flat_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 6,
+          "njev": 6,
+          "optimality": 1.7123992086750721e-06,
+          "scores": {
+            "data_quadratic": 336.74935054322856,
+            "penalty_quadratic": 40.58742036780978,
+            "penalized_least_squares": 377.33677091103834,
+            "covariance_logdet": -4820.559051740581,
+            "gaussian_deviance": -4483.809701197352,
+            "gaussian_nll": -2024.1164182291686,
+            "penalized_gaussian_deviance": -4443.222280829543
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.28656416750318764,
+          "residual_rms_dph": 7.591551849065682,
+          "archive": "flat_still-36.npz",
+          "archive_sha256": "1a7f581fd11694958d490d17c4ff56e78e57d327299f13546f5b420d1731c87a",
+          "elapsed_s": 23.032147579011507,
+          "attempt": 36
+        }
+      },
+      "decisions_enabled": false
+    },
+    {
+      "case_id": "2f5019fa84530e78e61c40b41b04da610d11db16288f93076cae913212db339b",
+      "task_id": "f94593ee49b996b4de1ef7ae7fcebd7299384ce89bff672d82f4debc755a2425",
+      "truth": "sphere_still",
+      "crab_model": "wind",
+      "correlation_seconds": [
+        15,
+        15
+      ],
+      "common_minutes": 79,
+      "covariance_sha256": "9ae8dadaea54eaa2a5e2a525d03691816b7efad98375b44f72c5350fb0595f07",
+      "selected_free_fit": "free",
+      "all_primary_converged": true,
+      "selected_comparison_converged": true,
+      "nested": true,
+      "diagnostic_delta_objectives": {
+        "sphere_rotating": 26.70279764960455,
+        "sphere_still": 0.023736006973964052,
+        "flat_still": 11.242833670106684
+      },
+      "fits": {
+        "free": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 5,
+          "njev": 5,
+          "optimality": 3.0840714808695674e-07,
+          "scores": {
+            "data_quadratic": 12.645638158994547,
+            "penalty_quadratic": 1.1347919420964736,
+            "penalized_least_squares": 13.78043010109102,
+            "covariance_logdet": -4188.41964858043,
+            "gaussian_deviance": -4175.774010421435,
+            "gaussian_nll": -1870.0985728412102,
+            "penalized_gaussian_deviance": -4174.6392184793385
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.4483879330326599,
+          "residual_rms_dph": 8.089993632167946,
+          "archive": "free-37.npz",
+          "archive_sha256": "e3dc9035508e969f86bf17c4eec9fa0425eafe5857eabdbae467d7b80c939848",
+          "elapsed_s": 17.67196160601452,
+          "attempt": 37
+        },
+        "sphere_rotating": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 5,
+          "njev": 5,
+          "optimality": 2.8207624865534767e-08,
+          "scores": {
+            "data_quadratic": 37.482286435552155,
+            "penalty_quadratic": 3.0009413151434114,
+            "penalized_least_squares": 40.48322775069557,
+            "covariance_logdet": -4188.41964858043,
+            "gaussian_deviance": -4150.937362144878,
+            "gaussian_nll": -1857.6802487029313,
+            "penalized_gaussian_deviance": -4147.936420829734
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.43972981848824233,
+          "residual_rms_dph": 10.032482730088566,
+          "archive": "sphere_rotating-38.npz",
+          "archive_sha256": "99efbcc2114a04902ee3a30416384c304cdd741479c1da6ad595a9e50f9749fe",
+          "elapsed_s": 18.676003379980102,
+          "attempt": 38
+        },
+        "sphere_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 4,
+          "njev": 4,
+          "optimality": 1.202650934929763e-07,
+          "scores": {
+            "data_quadratic": 12.673842820306113,
+            "penalty_quadratic": 1.1303232877588716,
+            "penalized_least_squares": 13.804166108064985,
+            "covariance_logdet": -4188.41964858043,
+            "gaussian_deviance": -4175.745805760123,
+            "gaussian_nll": -1870.0844705105542,
+            "penalized_gaussian_deviance": -4174.615482472364
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.4485875532697944,
+          "residual_rms_dph": 8.099428386004348,
+          "archive": "sphere_still-39.npz",
+          "archive_sha256": "f58cf57ce1d9512b21e03bb3a57c212481e00a13374f7400f01b3c6c9f73aead",
+          "elapsed_s": 14.64202769799158,
+          "attempt": 39
+        },
+        "flat_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 4,
+          "njev": 4,
+          "optimality": 1.758264929724032e-07,
+          "scores": {
+            "data_quadratic": 23.345591354820016,
+            "penalty_quadratic": 1.6776724163776875,
+            "penalized_least_squares": 25.023263771197705,
+            "covariance_logdet": -4188.41964858043,
+            "gaussian_deviance": -4165.07405722561,
+            "gaussian_nll": -1864.7485962432975,
+            "penalized_gaussian_deviance": -4163.396384809233
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.4478089644536012,
+          "residual_rms_dph": 9.03390690187353,
+          "archive": "flat_still-40.npz",
+          "archive_sha256": "b714bd0c7e9237fbd8f0b55caa6094810a6fd1ce5c28dad6545f8c2818fc343b",
+          "elapsed_s": 16.982548984931782,
+          "attempt": 40
+        }
+      },
+      "decisions_enabled": false
+    },
+    {
+      "case_id": "37fac7c8881cfe7ede7d9a7a4cde9c53ef3d138d88a89b842f19ee3ea0464980",
+      "task_id": "f94593ee49b996b4de1ef7ae7fcebd7299384ce89bff672d82f4debc755a2425",
+      "truth": "sphere_still",
+      "crab_model": "wind",
+      "correlation_seconds": [
+        300,
+        300
+      ],
+      "common_minutes": 79,
+      "covariance_sha256": "35e753b00756e9dd61d01c0f7a614980982a7b2c4b67b921f4b4f105b465b801",
+      "selected_free_fit": "free",
+      "all_primary_converged": true,
+      "selected_comparison_converged": true,
+      "nested": true,
+      "diagnostic_delta_objectives": {
+        "sphere_rotating": 5.844181321489607,
+        "sphere_still": 0.2473860578344187,
+        "flat_still": 3.0732832214551777
+      },
+      "fits": {
+        "free": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 6,
+          "njev": 6,
+          "optimality": 5.109149729923819e-07,
+          "scores": {
+            "data_quadratic": 42.42649792704201,
+            "penalty_quadratic": 4.840611661373942,
+            "penalized_least_squares": 47.26710958841595,
+            "covariance_logdet": -4371.527371854257,
+            "gaussian_deviance": -4329.100873927215,
+            "gaussian_nll": -1946.7620045940998,
+            "penalized_gaussian_deviance": -4324.2602622658405
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.3918734538306192,
+          "residual_rms_dph": 7.181407712210778,
+          "archive": "free-41.npz",
+          "archive_sha256": "0da8c165c2f6eefeb19048e38f8155295b85f2887d6c2ab76adcfaec3b93392a",
+          "elapsed_s": 21.57794638199266,
+          "attempt": 41
+        },
+        "sphere_rotating": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 4,
+          "njev": 4,
+          "optimality": 4.459571067223138e-06,
+          "scores": {
+            "data_quadratic": 48.00322058214704,
+            "penalty_quadratic": 5.108070327758517,
+            "penalized_least_squares": 53.111290909905556,
+            "covariance_logdet": -4371.527371854257,
+            "gaussian_deviance": -4323.5241512721095,
+            "gaussian_nll": -1943.9736432665472,
+            "penalized_gaussian_deviance": -4318.416080944351
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.39133691859789105,
+          "residual_rms_dph": 9.73402706497948,
+          "archive": "sphere_rotating-42.npz",
+          "archive_sha256": "4bb307c37f15ffea4eb2440949394c6437b82688e1b3553025acfae6d11515af",
+          "elapsed_s": 15.753677960950881,
+          "attempt": 42
+        },
+        "sphere_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 4,
+          "njev": 4,
+          "optimality": 2.993769149018745e-06,
+          "scores": {
+            "data_quadratic": 42.70351438792751,
+            "penalty_quadratic": 4.810981258322851,
+            "penalized_least_squares": 47.51449564625037,
+            "covariance_logdet": -4371.527371854257,
+            "gaussian_deviance": -4328.823857466329,
+            "gaussian_nll": -1946.623496363657,
+            "penalized_gaussian_deviance": -4324.012876208007
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.3921072202701451,
+          "residual_rms_dph": 7.065366156722827,
+          "archive": "sphere_still-43.npz",
+          "archive_sha256": "79574f33e88572530378c5e1ecfdca7d9c2c5baa7adca7f51b41114a87f06fa7",
+          "elapsed_s": 18.429860441945493,
+          "attempt": 43
+        },
+        "flat_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 4,
+          "njev": 4,
+          "optimality": 2.840220414983012e-07,
+          "scores": {
+            "data_quadratic": 45.46080753793776,
+            "penalty_quadratic": 4.8795852719333626,
+            "penalized_least_squares": 50.340392809871126,
+            "covariance_logdet": -4371.527371854257,
+            "gaussian_deviance": -4326.066564316319,
+            "gaussian_nll": -1945.2448497886521,
+            "penalized_gaussian_deviance": -4321.186979044386
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.39179264312852896,
+          "residual_rms_dph": 8.212104902847809,
+          "archive": "flat_still-44.npz",
+          "archive_sha256": "2ec551a9abbba31715e831569a578de4e4f10d823d51a3a8c68827a8e3c810d8",
+          "elapsed_s": 14.446288305101916,
+          "attempt": 44
+        }
+      },
+      "decisions_enabled": false
+    },
+    {
+      "case_id": "fcafa90c596244cb33f682ff6f95a4eafe708f6d671e29673dff246d43625632",
+      "task_id": "f94593ee49b996b4de1ef7ae7fcebd7299384ce89bff672d82f4debc755a2425",
+      "truth": "sphere_still",
+      "crab_model": "wind",
+      "correlation_seconds": [
+        15,
+        300
+      ],
+      "common_minutes": 79,
+      "covariance_sha256": "7937bac7373b4adef63dca5cb3e1d4f078f790e438125b9b5869faad0c70bcfd",
+      "selected_free_fit": "free",
+      "all_primary_converged": true,
+      "selected_comparison_converged": true,
+      "nested": true,
+      "diagnostic_delta_objectives": {
+        "sphere_rotating": 5.181348210325162,
+        "sphere_still": 0.03220315667726226,
+        "flat_still": 2.2743619599847875
+      },
+      "fits": {
+        "free": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 5,
+          "njev": 5,
+          "optimality": 6.879387151066725e-06,
+          "scores": {
+            "data_quadratic": 14.952184650380875,
+            "penalty_quadratic": 1.0934012219507314,
+            "penalized_least_squares": 16.045585872331607,
+            "covariance_logdet": -4146.623475816382,
+            "gaussian_deviance": -4131.671291166001,
+            "gaussian_nll": -1848.0472132134928,
+            "penalized_gaussian_deviance": -4130.57788994405
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.44708798686691875,
+          "residual_rms_dph": 8.086496019973287,
+          "archive": "free-45.npz",
+          "archive_sha256": "a1151aeab21e1d40fb0e5b74a6d6d97712c745e9658ea89d225ccf649a1050be",
+          "elapsed_s": 19.45074585895054,
+          "attempt": 45
+        },
+        "sphere_rotating": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 4,
+          "njev": 4,
+          "optimality": 1.957596434518622e-06,
+          "scores": {
+            "data_quadratic": 19.815701852004832,
+            "penalty_quadratic": 1.4112322306519365,
+            "penalized_least_squares": 21.22693408265677,
+            "covariance_logdet": -4146.623475816382,
+            "gaussian_deviance": -4126.807773964377,
+            "gaussian_nll": -1845.6154546126809,
+            "penalized_gaussian_deviance": -4125.396541733725
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.44573463540891367,
+          "residual_rms_dph": 10.483470888039571,
+          "archive": "sphere_rotating-46.npz",
+          "archive_sha256": "af2bb8ec5af32a393c5aea5c495bffb63b02b0446cb4a75c5a890d9ebf327b0e",
+          "elapsed_s": 15.616201533004642,
+          "attempt": 46
+        },
+        "sphere_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 4,
+          "njev": 4,
+          "optimality": 3.9430922028442786e-07,
+          "scores": {
+            "data_quadratic": 14.994316550701924,
+            "penalty_quadratic": 1.0834724783069447,
+            "penalized_least_squares": 16.07778902900887,
+            "covariance_logdet": -4146.623475816382,
+            "gaussian_deviance": -4131.62915926568,
+            "gaussian_nll": -1848.0261472633324,
+            "penalized_gaussian_deviance": -4130.545686787373
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.44727738147821455,
+          "residual_rms_dph": 8.083143674034439,
+          "archive": "sphere_still-47.npz",
+          "archive_sha256": "ab5b16244b78bb1d6016c60a8d09891d456f982d4e22cbc91ff5d5bc44848428",
+          "elapsed_s": 15.494454729021527,
+          "attempt": 47
+        },
+        "flat_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 4,
+          "njev": 4,
+          "optimality": 8.510117590672891e-07,
+          "scores": {
+            "data_quadratic": 17.204053870315654,
+            "penalty_quadratic": 1.1158939620007418,
+            "penalized_least_squares": 18.319947832316394,
+            "covariance_logdet": -4146.623475816382,
+            "gaussian_deviance": -4129.419421946066,
+            "gaussian_nll": -1846.9212786035255,
+            "penalized_gaussian_deviance": -4128.303527984065
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.4474298971632898,
+          "residual_rms_dph": 9.126455458750838,
+          "archive": "flat_still-48.npz",
+          "archive_sha256": "0d61be1b290deb332a05fdbf898e0f22f23e5ff98426504e458acb7a023c1344",
+          "elapsed_s": 15.55326283397153,
+          "attempt": 48
+        }
+      },
+      "decisions_enabled": false
+    },
+    {
+      "case_id": "6c54eda2683e88bba2369919a1995d66cff970e6de960e6fba288f87a013b0df",
+      "task_id": "119d674e186dfaee3ec65d36ca6d02568cea20e8bb58bc8d059d72fab7576ab0",
+      "truth": "sphere_still",
+      "crab_model": "wind_tas",
+      "correlation_seconds": [
+        0,
+        0
+      ],
+      "common_minutes": 79,
+      "covariance_sha256": "24f89bcf4597ec61c9db6c5556cd955ffa3913f4398716a811bfa217d8c21a23",
+      "selected_free_fit": "free",
+      "all_primary_converged": true,
+      "selected_comparison_converged": true,
+      "nested": true,
+      "diagnostic_delta_objectives": {
+        "sphere_rotating": 440.73947054800755,
+        "sphere_still": 0.6987178721316241,
+        "flat_still": 192.64239787324675
+      },
+      "fits": {
+        "free": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 7,
+          "njev": 7,
+          "optimality": 0.00014973231115040744,
+          "scores": {
+            "data_quadratic": 273.620319336506,
+            "penalty_quadratic": 17.07621243605928,
+            "penalized_least_squares": 290.69653177256527,
+            "covariance_logdet": -4821.407544941942,
+            "gaussian_deviance": -4547.787225605436,
+            "gaussian_nll": -1983.5090363100414,
+            "penalized_gaussian_deviance": -4530.711013169377
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.3695467034400916,
+          "residual_rms_dph": 4.533842748450436,
+          "archive": "free-49.npz",
+          "archive_sha256": "535023d028d5eb15de4dfb906bed11aacb85e1fc09596c6074759726b4beee3e",
+          "elapsed_s": 26.073893378023058,
+          "attempt": 49
+        },
+        "sphere_rotating": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 7,
+          "njev": 7,
+          "optimality": 0.00022313951541985945,
+          "scores": {
+            "data_quadratic": 642.0408233694943,
+            "penalty_quadratic": 89.39517895107852,
+            "penalized_least_squares": 731.4360023205728,
+            "covariance_logdet": -4821.407544941942,
+            "gaussian_deviance": -4179.366721572448,
+            "gaussian_nll": -1799.2987842935474,
+            "penalized_gaussian_deviance": -4089.9715426213697
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.2906107340833009,
+          "residual_rms_dph": 6.5051056295178915,
+          "archive": "sphere_rotating-50.npz",
+          "archive_sha256": "05454077e08e070662da88b583b19a4083c16ccbdc97f65c15951cdba223ff35",
+          "elapsed_s": 25.70069833204616,
+          "attempt": 50
+        },
+        "sphere_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 5,
+          "njev": 5,
+          "optimality": 1.6212327194081958e-05,
+          "scores": {
+            "data_quadratic": 274.50485295869885,
+            "penalty_quadratic": 16.890396685998052,
+            "penalized_least_squares": 291.3952496446969,
+            "covariance_logdet": -4821.407544941942,
+            "gaussian_deviance": -4546.902691983243,
+            "gaussian_nll": -1983.066769498945,
+            "penalized_gaussian_deviance": -4530.012295297245
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.37124538569794396,
+          "residual_rms_dph": 4.5688894353692096,
+          "archive": "sphere_still-51.npz",
+          "archive_sha256": "93237227a2b9c40225eb04aa10d646fa3dc62ac33f229d18ce638a46f0e7c9dc",
+          "elapsed_s": 21.319486393011175,
+          "attempt": 51
+        },
+        "flat_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 6,
+          "njev": 6,
+          "optimality": 3.402704959559052e-05,
+          "scores": {
+            "data_quadratic": 436.75758580591696,
+            "penalty_quadratic": 46.581343839895055,
+            "penalized_least_squares": 483.338929645812,
+            "covariance_logdet": -4821.407544941942,
+            "gaussian_deviance": -4384.649959136025,
+            "gaussian_nll": -1901.940403075336,
+            "penalized_gaussian_deviance": -4338.06861529613
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.2852400574430407,
+          "residual_rms_dph": 5.577821486789282,
+          "archive": "flat_still-52.npz",
+          "archive_sha256": "d988782611b03cdd92805d3e09e8197923e88a4cadf4d92a238ca571dbc65dc9",
+          "elapsed_s": 21.084237272036262,
+          "attempt": 52
+        }
+      },
+      "decisions_enabled": false
+    },
+    {
+      "case_id": "1b79c615d716ab6f65dac654346b7aac88d604824bf41e6bc0cf1f5d037b1fbd",
+      "task_id": "119d674e186dfaee3ec65d36ca6d02568cea20e8bb58bc8d059d72fab7576ab0",
+      "truth": "sphere_still",
+      "crab_model": "wind_tas",
+      "correlation_seconds": [
+        15,
+        15
+      ],
+      "common_minutes": 79,
+      "covariance_sha256": "46b4112beaa1b599861d7454f8c51bca1e2bc67735363d0d9e86782dec4c08ce",
+      "selected_free_fit": "free",
+      "all_primary_converged": true,
+      "selected_comparison_converged": true,
+      "nested": true,
+      "diagnostic_delta_objectives": {
+        "sphere_rotating": 27.223934518598043,
+        "sphere_still": 0.007831485438146046,
+        "flat_still": 11.199810743657991
+      },
+      "fits": {
+        "free": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 7,
+          "njev": 7,
+          "optimality": 6.857933550715161e-06,
+          "scores": {
+            "data_quadratic": 167.18880105670084,
+            "penalty_quadratic": 5.518471153108575,
+            "penalized_least_squares": 172.70727220980942,
+            "covariance_logdet": -4188.627519172725,
+            "gaussian_deviance": -4021.4387181160246,
+            "gaussian_nll": -1720.3347825653357,
+            "penalized_gaussian_deviance": -4015.920246962916
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.3711901872859124,
+          "residual_rms_dph": 9.877758267139674,
+          "archive": "free-53.npz",
+          "archive_sha256": "96cdb1758a52f2a5119c8edb1d327cd718c47b3b3a0c004cc70af2d4d52931df",
+          "elapsed_s": 28.21086574497167,
+          "attempt": 53
+        },
+        "sphere_rotating": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 5,
+          "njev": 5,
+          "optimality": 1.6692663495296782e-05,
+          "scores": {
+            "data_quadratic": 192.81357631918303,
+            "penalty_quadratic": 7.117630409224426,
+            "penalized_least_squares": 199.93120672840746,
+            "covariance_logdet": -4188.627519172725,
+            "gaussian_deviance": -3995.8139428535424,
+            "gaussian_nll": -1707.5223949340946,
+            "penalized_gaussian_deviance": -3988.6963124443178
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.3709209106115259,
+          "residual_rms_dph": 11.466877249209986,
+          "archive": "sphere_rotating-54.npz",
+          "archive_sha256": "423252aa69043e2fec1d1407b02fd0ff5da7e7f7fe70b2e8068913f08df9ffd7",
+          "elapsed_s": 18.899124335031956,
+          "attempt": 54
+        },
+        "sphere_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 4,
+          "njev": 4,
+          "optimality": 3.874090886677198e-06,
+          "scores": {
+            "data_quadratic": 167.19021156426933,
+            "penalty_quadratic": 5.524892130978228,
+            "penalized_least_squares": 172.71510369524756,
+            "covariance_logdet": -4188.627519172725,
+            "gaussian_deviance": -4021.437307608456,
+            "gaussian_nll": -1720.3340773115515,
+            "penalized_gaussian_deviance": -4015.912415477478
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.371186962186841,
+          "residual_rms_dph": 9.877257307553611,
+          "archive": "sphere_still-55.npz",
+          "archive_sha256": "c0f70ea35241dc108007e078fcdb14c0f72b0a1b11d73cf0e1c04bf46bd0c7b8",
+          "elapsed_s": 14.401760654058307,
+          "attempt": 55
+        },
+        "flat_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 4,
+          "njev": 4,
+          "optimality": 5.9761424422170585e-05,
+          "scores": {
+            "data_quadratic": 177.88061928308653,
+            "penalty_quadratic": 6.026463670380886,
+            "penalized_least_squares": 183.9070829534674,
+            "covariance_logdet": -4188.627519172725,
+            "gaussian_deviance": -4010.746899889639,
+            "gaussian_nll": -1714.9888734521428,
+            "penalized_gaussian_deviance": -4004.720436219258
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.370754476050673,
+          "residual_rms_dph": 10.633242694881204,
+          "archive": "flat_still-56.npz",
+          "archive_sha256": "f2a487f4520c4f97b608ef8807efcfc97f732670cb1cfb4a650c6af3078e0948",
+          "elapsed_s": 17.718735603033565,
+          "attempt": 56
+        }
+      },
+      "decisions_enabled": false
+    },
+    {
+      "case_id": "cb4e6e795262ab7d71e2aafbeeee318f33ba65e8ef1fe8da8eac76085a32c47b",
+      "task_id": "119d674e186dfaee3ec65d36ca6d02568cea20e8bb58bc8d059d72fab7576ab0",
+      "truth": "sphere_still",
+      "crab_model": "wind_tas",
+      "correlation_seconds": [
+        300,
+        300
+      ],
+      "common_minutes": 79,
+      "covariance_sha256": "9c72ccf60cfa26d36f755982db9edb9ba9d0d09bba1c2d8c21d09fa2eae09434",
+      "selected_free_fit": "free",
+      "all_primary_converged": true,
+      "selected_comparison_converged": true,
+      "nested": true,
+      "diagnostic_delta_objectives": {
+        "sphere_rotating": 5.850974088894191,
+        "sphere_still": 0.207181641362439,
+        "flat_still": 2.990164136768442
+      },
+      "fits": {
+        "free": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 7,
+          "njev": 7,
+          "optimality": 4.963716189000528e-06,
+          "scores": {
+            "data_quadratic": 191.80079043925463,
+            "penalty_quadratic": 10.631476544300416,
+            "penalized_least_squares": 202.43226698355505,
+            "covariance_logdet": -4370.59902771207,
+            "gaussian_deviance": -4178.798237272816,
+            "gaussian_nll": -1799.0145421437312,
+            "penalized_gaussian_deviance": -4168.166760728515
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.3579299019870095,
+          "residual_rms_dph": 5.708013346141775,
+          "archive": "free-57.npz",
+          "archive_sha256": "8a5fc04cb752b0fa2cd5277db482f8be1eaefefad64668fc9a5daca5a69aa2cd",
+          "elapsed_s": 23.07870151498355,
+          "attempt": 57
+        },
+        "sphere_rotating": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 4,
+          "njev": 4,
+          "optimality": 6.390773680711335e-05,
+          "scores": {
+            "data_quadratic": 197.41124700607853,
+            "penalty_quadratic": 10.871994066370727,
+            "penalized_least_squares": 208.28324107244924,
+            "covariance_logdet": -4370.59902771207,
+            "gaussian_deviance": -4173.187780705992,
+            "gaussian_nll": -1796.2093138603193,
+            "penalized_gaussian_deviance": -4162.315786639621
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.3574422579992822,
+          "residual_rms_dph": 8.74056982002756,
+          "archive": "sphere_rotating-58.npz",
+          "archive_sha256": "d2f5e52da29ff5257893b1ac01caf8e7deea15d1614b4d3f3650ad8998ccf8c2",
+          "elapsed_s": 13.371093888068572,
+          "attempt": 58
+        },
+        "sphere_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 4,
+          "njev": 4,
+          "optimality": 8.870288766733108e-06,
+          "scores": {
+            "data_quadratic": 192.0295219686795,
+            "penalty_quadratic": 10.609926656238006,
+            "penalized_least_squares": 202.6394486249175,
+            "covariance_logdet": -4370.59902771207,
+            "gaussian_deviance": -4178.56950574339,
+            "gaussian_nll": -1798.9001763790186,
+            "penalized_gaussian_deviance": -4167.959579087153
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.35827682139420586,
+          "residual_rms_dph": 5.584116333077575,
+          "archive": "sphere_still-59.npz",
+          "archive_sha256": "ff62239150e680b72dae4594903c322a2f316665293485493ffb9f252e9a6bfc",
+          "elapsed_s": 15.922115643043071,
+          "attempt": 59
+        },
+        "flat_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 4,
+          "njev": 4,
+          "optimality": 1.6747270577140613e-05,
+          "scores": {
+            "data_quadratic": 194.76054420597785,
+            "penalty_quadratic": 10.661886914345631,
+            "penalized_least_squares": 205.4224311203235,
+            "covariance_logdet": -4370.59902771207,
+            "gaussian_deviance": -4175.838483506092,
+            "gaussian_nll": -1797.5346652603696,
+            "penalized_gaussian_deviance": -4165.176596591747
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.35810201229622,
+          "residual_rms_dph": 6.973852415255053,
+          "archive": "flat_still-60.npz",
+          "archive_sha256": "b82a996232036373457738a0a1456df38181d28ea51ed74a1823e8f3a05e7dbb",
+          "elapsed_s": 14.502566192066297,
+          "attempt": 60
+        }
+      },
+      "decisions_enabled": false
+    },
+    {
+      "case_id": "f70cd88fe9c38e7277646be0c12a05dad6c54636250a7da017038f7866bdeab9",
+      "task_id": "119d674e186dfaee3ec65d36ca6d02568cea20e8bb58bc8d059d72fab7576ab0",
+      "truth": "sphere_still",
+      "crab_model": "wind_tas",
+      "correlation_seconds": [
+        15,
+        300
+      ],
+      "common_minutes": 79,
+      "covariance_sha256": "05ffe1feab6638d9260ea7b45252f6fb1182bba16cda16ef556f0e4b6635216e",
+      "selected_free_fit": "free",
+      "all_primary_converged": true,
+      "selected_comparison_converged": true,
+      "nested": true,
+      "diagnostic_delta_objectives": {
+        "sphere_rotating": 5.267274697458191,
+        "sphere_still": 0.018408460313480646,
+        "flat_still": 2.1783194318795154
+      },
+      "fits": {
+        "free": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 7,
+          "njev": 7,
+          "optimality": 5.23195393356819e-06,
+          "scores": {
+            "data_quadratic": 169.44506634880017,
+            "penalty_quadratic": 5.529467107903433,
+            "penalized_least_squares": 174.9745334567036,
+            "covariance_logdet": -4146.878941873172,
+            "gaussian_deviance": -3977.433875524372,
+            "gaussian_nll": -1698.3323612695094,
+            "penalized_gaussian_deviance": -3971.9044084164684
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.3715369013692743,
+          "residual_rms_dph": 9.817438764370351,
+          "archive": "free-61.npz",
+          "archive_sha256": "26a72893cad0e1aa0494025584504c765233151b0e30ee9423fe5ab2f102d7c1",
+          "elapsed_s": 25.69793824199587,
+          "attempt": 61
+        },
+        "sphere_rotating": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 4,
+          "njev": 4,
+          "optimality": 8.284053976652848e-05,
+          "scores": {
+            "data_quadratic": 174.42986269558756,
+            "penalty_quadratic": 5.811945458574226,
+            "penalized_least_squares": 180.2418081541618,
+            "covariance_logdet": -4146.878941873172,
+            "gaussian_deviance": -3972.4490791775847,
+            "gaussian_nll": -1695.8399630961158,
+            "penalized_gaussian_deviance": -3966.6371337190103
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.37137632043650426,
+          "residual_rms_dph": 11.887576906362737,
+          "archive": "sphere_rotating-62.npz",
+          "archive_sha256": "f4d70c2b5b6839ab0ce875f985906d54c304090eb8864d313514b15acad2c9b2",
+          "elapsed_s": 13.411377873970196,
+          "attempt": 62
+        },
+        "sphere_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 3,
+          "njev": 3,
+          "optimality": 5.112770575438347e-05,
+          "scores": {
+            "data_quadratic": 169.46426679488656,
+            "penalty_quadratic": 5.528675122130523,
+            "penalized_least_squares": 174.99294191701708,
+            "covariance_logdet": -4146.878941873172,
+            "gaussian_deviance": -3977.4146750782857,
+            "gaussian_nll": -1698.3227610464662,
+            "penalized_gaussian_deviance": -3971.885999956155
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.3715299056287384,
+          "residual_rms_dph": 9.804123960669008,
+          "archive": "sphere_still-63.npz",
+          "archive_sha256": "2c163c3dbcc601059d40e603ee1c6c86bf7089fc7ac1d3fb241b863c1064898c",
+          "elapsed_s": 10.103827397921123,
+          "attempt": 63
+        },
+        "flat_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 4,
+          "njev": 4,
+          "optimality": 1.0133432645370042e-05,
+          "scores": {
+            "data_quadratic": 171.60022344101122,
+            "penalty_quadratic": 5.552629447571881,
+            "penalized_least_squares": 177.1528528885831,
+            "covariance_logdet": -4146.878941873172,
+            "gaussian_deviance": -3975.278718432161,
+            "gaussian_nll": -1697.2547827234039,
+            "penalized_gaussian_deviance": -3969.7260889845893
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.37144553611017606,
+          "residual_rms_dph": 10.677907890777618,
+          "archive": "flat_still-64.npz",
+          "archive_sha256": "02aca59e966cc16601084b0cf469140677f3edd8fa951817c34dc0a0060b553e",
+          "elapsed_s": 14.497105206013657,
+          "attempt": 64
+        }
+      },
+      "decisions_enabled": false
+    },
+    {
+      "case_id": "6eced67871040931baa96e9464f1853237d6514a3226b19096f6c9696261ab98",
+      "task_id": "b545f5f3aec5efaaa0a8cc1da285bcce8b50f66952e8b0977f176b944c0b145b",
+      "truth": "flat_still",
+      "crab_model": "wind",
+      "correlation_seconds": [
+        0,
+        0
+      ],
+      "common_minutes": 79,
+      "covariance_sha256": "f04f76f2503cc9e07e9196405a817d1058da939d8ed47c76c6d110238e55c829",
+      "selected_free_fit": "free",
+      "all_primary_converged": true,
+      "selected_comparison_converged": true,
+      "nested": true,
+      "diagnostic_delta_objectives": {
+        "sphere_rotating": 59.937500694530655,
+        "sphere_still": 187.34612970641285,
+        "flat_still": 0.8815552423480142
+      },
+      "fits": {
+        "free": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 6,
+          "njev": 6,
+          "optimality": 2.5411749392198696e-06,
+          "scores": {
+            "data_quadratic": 180.06881000283082,
+            "penalty_quadratic": 10.125299259042356,
+            "penalized_least_squares": 190.19410926187317,
+            "covariance_logdet": -4820.719918062848,
+            "gaussian_deviance": -4640.651108060017,
+            "gaussian_nll": -2102.537121660501,
+            "penalized_gaussian_deviance": -4630.525808800974
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.38801050499019557,
+          "residual_rms_dph": 6.930948981992081,
+          "archive": "free-65.npz",
+          "archive_sha256": "4830c215d90b1f4badd13c52b667ab73f0c4a7e21531b673832e2dda2629fb11",
+          "elapsed_s": 20.85063624905888,
+          "attempt": 65
+        },
+        "sphere_rotating": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 6,
+          "njev": 6,
+          "optimality": 1.940247548543246e-05,
+          "scores": {
+            "data_quadratic": 227.54544321683989,
+            "penalty_quadratic": 22.58616673956393,
+            "penalized_least_squares": 250.13160995640382,
+            "covariance_logdet": -4820.719918062848,
+            "gaussian_deviance": -4593.174474846008,
+            "gaussian_nll": -2078.7988050534964,
+            "penalized_gaussian_deviance": -4570.588308106444
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.37722076639490115,
+          "residual_rms_dph": 7.100255914471804,
+          "archive": "sphere_rotating-66.npz",
+          "archive_sha256": "86cf003af73b81ffe1709dd2172065ead8417621f6d779ae524edda701e0ee0e",
+          "elapsed_s": 17.83390051801689,
+          "attempt": 66
+        },
+        "sphere_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 6,
+          "njev": 6,
+          "optimality": 0.00017744737122412572,
+          "scores": {
+            "data_quadratic": 330.06958842007225,
+            "penalty_quadratic": 47.470650548213754,
+            "penalized_least_squares": 377.540238968286,
+            "covariance_logdet": -4820.719918062848,
+            "gaussian_deviance": -4490.650329642775,
+            "gaussian_nll": -2027.5367324518802,
+            "penalized_gaussian_deviance": -4443.179679094562
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.3970205339509207,
+          "residual_rms_dph": 7.606947368524292,
+          "archive": "sphere_still-67.npz",
+          "archive_sha256": "9ba541f0be9d0b400755a8ee9ad0ac53859b74be1db2d53c288db6b22bebfd1d",
+          "elapsed_s": 16.972886984003708,
+          "attempt": 67
+        },
+        "flat_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 4,
+          "njev": 4,
+          "optimality": 4.1817477186803245e-05,
+          "scores": {
+            "data_quadratic": 180.97791097120074,
+            "penalty_quadratic": 10.097753533020441,
+            "penalized_least_squares": 191.07566450422118,
+            "covariance_logdet": -4820.719918062848,
+            "gaussian_deviance": -4639.742007091647,
+            "gaussian_nll": -2102.082571176316,
+            "penalized_gaussian_deviance": -4629.644253558627
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.3888483100227769,
+          "residual_rms_dph": 6.951849062528393,
+          "archive": "flat_still-68.npz",
+          "archive_sha256": "cb2cc59583f9e76e2b4750d317329f6c77fa7cc68e714a5ed9302b92912e4823",
+          "elapsed_s": 13.213827340048738,
+          "attempt": 68
+        }
+      },
+      "decisions_enabled": false
+    },
+    {
+      "case_id": "b8806fc662a01e87c9cfd07632ccadb49fab32317507bee108de371077e48092",
+      "task_id": "b545f5f3aec5efaaa0a8cc1da285bcce8b50f66952e8b0977f176b944c0b145b",
+      "truth": "flat_still",
+      "crab_model": "wind",
+      "correlation_seconds": [
+        15,
+        15
+      ],
+      "common_minutes": 79,
+      "covariance_sha256": "b3c76181714780b0b24eed5e2671c4cab427098b9070a92567caf470171098a4",
+      "selected_free_fit": "free",
+      "all_primary_converged": true,
+      "selected_comparison_converged": true,
+      "nested": true,
+      "diagnostic_delta_objectives": {
+        "sphere_rotating": 5.012995611231284,
+        "sphere_still": 10.672092464026425,
+        "flat_still": 0.0638245973321947
+      },
+      "fits": {
+        "free": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 5,
+          "njev": 5,
+          "optimality": 2.2381844441906182e-07,
+          "scores": {
+            "data_quadratic": 12.947139246256565,
+            "penalty_quadratic": 1.097635047229312,
+            "penalized_least_squares": 14.044774293485878,
+            "covariance_logdet": -4188.6017849215905,
+            "gaussian_deviance": -4175.654645675334,
+            "gaussian_nll": -1870.0388904681595,
+            "penalized_gaussian_deviance": -4174.557010628105
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.4500273483718525,
+          "residual_rms_dph": 8.113482752843703,
+          "archive": "free-69.npz",
+          "archive_sha256": "f90aa33c3de24c9c521269e0026a654bf87545492d615f169eaaccf6f2ee09f8",
+          "elapsed_s": 14.321045721997507,
+          "attempt": 69
+        },
+        "sphere_rotating": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 5,
+          "njev": 5,
+          "optimality": 1.2725249719085712e-08,
+          "scores": {
+            "data_quadratic": 16.61566924201921,
+            "penalty_quadratic": 2.4421006626979525,
+            "penalized_least_squares": 19.057769904717162,
+            "covariance_logdet": -4188.6017849215905,
+            "gaussian_deviance": -4171.986115679571,
+            "gaussian_nll": -1868.2046254702782,
+            "penalized_gaussian_deviance": -4169.544015016873
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.44710870104392936,
+          "residual_rms_dph": 8.41454159524081,
+          "archive": "sphere_rotating-70.npz",
+          "archive_sha256": "e79c376ace7ff8273350eb23e8ec6923b4ad1b6bd5f88563354488f0564fd743",
+          "elapsed_s": 15.38339911797084,
+          "attempt": 70
+        },
+        "sphere_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 4,
+          "njev": 4,
+          "optimality": 5.877466114337142e-06,
+          "scores": {
+            "data_quadratic": 23.28015819758743,
+            "penalty_quadratic": 1.4367085599248737,
+            "penalized_least_squares": 24.716866757512303,
+            "covariance_logdet": -4188.6017849215905,
+            "gaussian_deviance": -4165.321626724003,
+            "gaussian_nll": -1864.872380992494,
+            "penalized_gaussian_deviance": -4163.884918164078
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.45165541782482727,
+          "residual_rms_dph": 9.067898351168665,
+          "archive": "sphere_still-71.npz",
+          "archive_sha256": "2ffe9e36032f94d257bb7eafe91e6f2618a3474ecbf05e157f184ea6f47cd944",
+          "elapsed_s": 13.986335537047125,
+          "attempt": 71
+        },
+        "flat_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 4,
+          "njev": 4,
+          "optimality": 1.0263738489767182e-07,
+          "scores": {
+            "data_quadratic": 13.01200503470027,
+            "penalty_quadratic": 1.0965938561178024,
+            "penalized_least_squares": 14.108598890818072,
+            "covariance_logdet": -4188.6017849215905,
+            "gaussian_deviance": -4175.58977988689,
+            "gaussian_nll": -1870.0064575739375,
+            "penalized_gaussian_deviance": -4174.493186030772
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.45020353082716724,
+          "residual_rms_dph": 8.129245806529122,
+          "archive": "flat_still-72.npz",
+          "archive_sha256": "d54b08b787c14244e202edb4f9428a39290fdf826f08dd90730f244eb43dfc8c",
+          "elapsed_s": 15.477611568989232,
+          "attempt": 72
+        }
+      },
+      "decisions_enabled": false
+    },
+    {
+      "case_id": "2204496d339e5cbcd4975e8ed063b8ab2271e6626195613bb6bcbac1ab32cf5a",
+      "task_id": "b545f5f3aec5efaaa0a8cc1da285bcce8b50f66952e8b0977f176b944c0b145b",
+      "truth": "flat_still",
+      "crab_model": "wind",
+      "correlation_seconds": [
+        300,
+        300
+      ],
+      "common_minutes": 79,
+      "covariance_sha256": "4bc8a2c563a1ab48409095b4546d740f680c978e560ab1372c7dc9ae98dbf6a4",
+      "selected_free_fit": "free",
+      "all_primary_converged": true,
+      "selected_comparison_converged": true,
+      "nested": true,
+      "diagnostic_delta_objectives": {
+        "sphere_rotating": 1.5041021815006275,
+        "sphere_still": 1.460680299335536,
+        "flat_still": 0.22098057380390657
+      },
+      "fits": {
+        "free": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 5,
+          "njev": 5,
+          "optimality": 1.2950577883105932e-05,
+          "scores": {
+            "data_quadratic": 43.593962831346445,
+            "penalty_quadratic": 4.5886331500081345,
+            "penalized_least_squares": 48.18259598135458,
+            "covariance_logdet": -4371.6128649648535,
+            "gaussian_deviance": -4328.018902133507,
+            "gaussian_nll": -1946.221018697246,
+            "penalized_gaussian_deviance": -4323.430268983499
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.39685230017419965,
+          "residual_rms_dph": 7.204706100518718,
+          "archive": "free-73.npz",
+          "archive_sha256": "cc8d620cfbe2169df9c602259c03990e7e0e8343426518917bb92a1014858e04",
+          "elapsed_s": 15.967507496010512,
+          "attempt": 73
+        },
+        "sphere_rotating": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 4,
+          "njev": 4,
+          "optimality": 1.2098852763761656e-06,
+          "scores": {
+            "data_quadratic": 44.622622513017504,
+            "penalty_quadratic": 5.064075649837707,
+            "penalized_least_squares": 49.68669816285521,
+            "covariance_logdet": -4371.6128649648535,
+            "gaussian_deviance": -4326.990242451836,
+            "gaussian_nll": -1945.7066888564104,
+            "penalized_gaussian_deviance": -4321.926166801998
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.3968339887360604,
+          "residual_rms_dph": 8.008313894470405,
+          "archive": "sphere_rotating-74.npz",
+          "archive_sha256": "b0a6da51d0990ad71004a54d71edb8e079424ca20b2e62de18611654c1f6b3d0",
+          "elapsed_s": 13.284843481029384,
+          "attempt": 74
+        },
+        "sphere_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 4,
+          "njev": 4,
+          "optimality": 3.871254999109754e-06,
+          "scores": {
+            "data_quadratic": 45.035737515257054,
+            "penalty_quadratic": 4.607538765433065,
+            "penalized_least_squares": 49.64327628069012,
+            "covariance_logdet": -4371.6128649648535,
+            "gaussian_deviance": -4326.577127449596,
+            "gaussian_nll": -1945.5001313552907,
+            "penalized_gaussian_deviance": -4321.969588684164
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.3972800744970698,
+          "residual_rms_dph": 8.254685966180926,
+          "archive": "sphere_still-75.npz",
+          "archive_sha256": "f5cb4eb840afd7a0f592f12fba24b685680172dcbf5ff5f1b23565c2431b4676",
+          "elapsed_s": 14.042555709951557,
+          "attempt": 75
+        },
+        "flat_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 4,
+          "njev": 4,
+          "optimality": 1.4191048310368546e-06,
+          "scores": {
+            "data_quadratic": 43.83133881526324,
+            "penalty_quadratic": 4.5722377398952485,
+            "penalized_least_squares": 48.40357655515849,
+            "covariance_logdet": -4371.6128649648535,
+            "gaussian_deviance": -4327.781526149591,
+            "gaussian_nll": -1946.1023307052878,
+            "penalized_gaussian_deviance": -4323.209288409696
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.396994654470318,
+          "residual_rms_dph": 7.1245907446942525,
+          "archive": "flat_still-76.npz",
+          "archive_sha256": "f43cf91402c54c2cae58a41c5d6bcb82da2eb432d088256c98da61383431f73c",
+          "elapsed_s": 14.071164536988363,
+          "attempt": 76
+        }
+      },
+      "decisions_enabled": false
+    },
+    {
+      "case_id": "791ca8b8f8ac335bc46d89c9c4e7347b132fecdd32f9865dd11a930ae0c981cd",
+      "task_id": "b545f5f3aec5efaaa0a8cc1da285bcce8b50f66952e8b0977f176b944c0b145b",
+      "truth": "flat_still",
+      "crab_model": "wind",
+      "correlation_seconds": [
+        15,
+        300
+      ],
+      "common_minutes": 79,
+      "covariance_sha256": "81afc5373ccd8744d9eedf1e10d7270a14c48d9094251e806634b8cd94a89659",
+      "selected_free_fit": "free",
+      "all_primary_converged": true,
+      "selected_comparison_converged": true,
+      "nested": true,
+      "diagnostic_delta_objectives": {
+        "sphere_rotating": 1.5109397613407438,
+        "sphere_still": 1.513256750521208,
+        "flat_still": 0.03342086107465292
+      },
+      "fits": {
+        "free": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 5,
+          "njev": 5,
+          "optimality": 5.0774245541596714e-06,
+          "scores": {
+            "data_quadratic": 15.314467292594118,
+            "penalty_quadratic": 1.0369906630749004,
+            "penalized_least_squares": 16.35145795566902,
+            "covariance_logdet": -4146.73792119117,
+            "gaussian_deviance": -4131.423453898577,
+            "gaussian_nll": -1847.9232945797808,
+            "penalized_gaussian_deviance": -4130.386463235502
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.44933162782132124,
+          "residual_rms_dph": 8.118000597923004,
+          "archive": "free-77.npz",
+          "archive_sha256": "192e2bb66fcd6bdb37988d58b231e1e19f29902063c7c926174f2ba4be62c8aa",
+          "elapsed_s": 16.442613256978802,
+          "attempt": 77
+        },
+        "sphere_rotating": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 4,
+          "njev": 4,
+          "optimality": 1.1926730868773642e-06,
+          "scores": {
+            "data_quadratic": 16.300535874300508,
+            "penalty_quadratic": 1.5618618427092548,
+            "penalized_least_squares": 17.862397717009763,
+            "covariance_logdet": -4146.73792119117,
+            "gaussian_deviance": -4130.43738531687,
+            "gaussian_nll": -1847.4302602889275,
+            "penalized_gaussian_deviance": -4128.875523474161
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.4485840545661627,
+          "residual_rms_dph": 8.87990986652904,
+          "archive": "sphere_rotating-78.npz",
+          "archive_sha256": "5749aa59758200418413292bd73da73d1bfee74794016be362c7e432f4684223",
+          "elapsed_s": 12.95044602593407,
+          "attempt": 78
+        },
+        "sphere_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 4,
+          "njev": 4,
+          "optimality": 2.014261457748045e-07,
+          "scores": {
+            "data_quadratic": 16.773975897254495,
+            "penalty_quadratic": 1.0907388089357344,
+            "penalized_least_squares": 17.864714706190227,
+            "covariance_logdet": -4146.73792119117,
+            "gaussian_deviance": -4129.9639452939155,
+            "gaussian_nll": -1847.1935402774502,
+            "penalized_gaussian_deviance": -4128.87320648498
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.44942273933533794,
+          "residual_rms_dph": 9.11508252900165,
+          "archive": "sphere_still-79.npz",
+          "archive_sha256": "95f2ce3533ffb9472d59c1e62952aff56dc1fa9de07b235aa14c18572d01a712",
+          "elapsed_s": 14.291856369003654,
+          "attempt": 79
+        },
+        "flat_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 4,
+          "njev": 4,
+          "optimality": 3.1707911029365407e-07,
+          "scores": {
+            "data_quadratic": 15.356483291167798,
+            "penalty_quadratic": 1.0283955255758743,
+            "penalized_least_squares": 16.384878816743672,
+            "covariance_logdet": -4146.73792119117,
+            "gaussian_deviance": -4131.381437900002,
+            "gaussian_nll": -1847.9022865804936,
+            "penalized_gaussian_deviance": -4130.353042374427
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.4495223667961266,
+          "residual_rms_dph": 8.128580021472654,
+          "archive": "flat_still-80.npz",
+          "archive_sha256": "b5d7d6c1d6c314954c49865fc201ca8596cf4d38dee6dd3f11b6fd9d040550d8",
+          "elapsed_s": 15.761027822969481,
+          "attempt": 80
+        }
+      },
+      "decisions_enabled": false
+    },
+    {
+      "case_id": "56fe0fc1d86aa13a5ada8af0b6aa7de21f1e2bc4c43d67aa5ad37e82983bf893",
+      "task_id": "e71b3a92ed6b8216f7b4767ad03d33773fec77bc3d9f8efb6ce01536ffb1b84f",
+      "truth": "flat_still",
+      "crab_model": "wind_tas",
+      "correlation_seconds": [
+        0,
+        0
+      ],
+      "common_minutes": 79,
+      "covariance_sha256": "8ecf9f708d3ce89cb8d2c619c5fc88142ae84f06188479ceea5146ed84b24e46",
+      "selected_free_fit": "free",
+      "all_primary_converged": true,
+      "selected_comparison_converged": true,
+      "nested": true,
+      "diagnostic_delta_objectives": {
+        "sphere_rotating": 59.94728068073067,
+        "sphere_still": 187.75096236925845,
+        "flat_still": 0.8691809599992553
+      },
+      "fits": {
+        "free": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 8,
+          "njev": 8,
+          "optimality": 1.070914518855392e-05,
+          "scores": {
+            "data_quadratic": 278.14767246886527,
+            "penalty_quadratic": 17.075878615816947,
+            "penalized_least_squares": 295.2235510846822,
+            "covariance_logdet": -4821.56962210122,
+            "gaussian_deviance": -4543.421949632355,
+            "gaussian_nll": -1981.3263983235008,
+            "penalized_gaussian_deviance": -4526.346071016538
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.37137125061897114,
+          "residual_rms_dph": 4.540892782066576,
+          "archive": "free-81.npz",
+          "archive_sha256": "315fdcb2151a0a23a01216ecc6278213b775ac450589f2c244d7f9e14d10b003",
+          "elapsed_s": 27.250563828041777,
+          "attempt": 81
+        },
+        "sphere_rotating": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 8,
+          "njev": 8,
+          "optimality": 4.830296300477632e-06,
+          "scores": {
+            "data_quadratic": 326.0357378479151,
+            "penalty_quadratic": 29.135093917497777,
+            "penalized_least_squares": 355.17083176541286,
+            "covariance_logdet": -4821.56962210122,
+            "gaussian_deviance": -4495.533884253306,
+            "gaussian_nll": -1957.3823656339762,
+            "penalized_gaussian_deviance": -4466.3987903358075
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.3668539746829536,
+          "residual_rms_dph": 4.7977619928933235,
+          "archive": "sphere_rotating-82.npz",
+          "archive_sha256": "c2450627fa4634c3fb6be8f67671821f60d678dd83b65eaed8bbda70c7d4819c",
+          "elapsed_s": 23.76896344299894,
+          "attempt": 82
+        },
+        "sphere_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 7,
+          "njev": 7,
+          "optimality": 0.0001228726272369096,
+          "scores": {
+            "data_quadratic": 427.9529080163404,
+            "penalty_quadratic": 55.021605437600186,
+            "penalized_least_squares": 482.97451345394063,
+            "covariance_logdet": -4821.56962210122,
+            "gaussian_deviance": -4393.61671408488,
+            "gaussian_nll": -1906.4237805497635,
+            "penalized_gaussian_deviance": -4338.59510864728
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.3735215562581585,
+          "residual_rms_dph": 5.501239115459846,
+          "archive": "sphere_still-83.npz",
+          "archive_sha256": "16ab3bc98e0a3f3606961409d725574e4a3b0283db0bb7fd6aa32c80bccfd731",
+          "elapsed_s": 19.815867776982486,
+          "attempt": 83
+        },
+        "flat_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 5,
+          "njev": 5,
+          "optimality": 3.7944108368267025e-05,
+          "scores": {
+            "data_quadratic": 278.98372058161556,
+            "penalty_quadratic": 17.10901146306588,
+            "penalized_least_squares": 296.09273204468144,
+            "covariance_logdet": -4821.56962210122,
+            "gaussian_deviance": -4542.585901519605,
+            "gaussian_nll": -1980.9083742671257,
+            "penalized_gaussian_deviance": -4525.476890056539
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.3724381957073107,
+          "residual_rms_dph": 4.564571672846201,
+          "archive": "flat_still-84.npz",
+          "archive_sha256": "bdea7fccdd1b20a44fbc0e30a24cda867d29d2d7ffb347089b3dd7be0f6d8bd1",
+          "elapsed_s": 14.814479307970032,
+          "attempt": 84
+        }
+      },
+      "decisions_enabled": false
+    },
+    {
+      "case_id": "3ffe7633945c13fb78eebff1663d64134e33c7d9c8afd1441cfe719aa8649ee3",
+      "task_id": "e71b3a92ed6b8216f7b4767ad03d33773fec77bc3d9f8efb6ce01536ffb1b84f",
+      "truth": "flat_still",
+      "crab_model": "wind_tas",
+      "correlation_seconds": [
+        15,
+        15
+      ],
+      "common_minutes": 79,
+      "covariance_sha256": "c115afba333c25744f927988d26fa4803f3226be8b69093cb316003b48ca5421",
+      "selected_free_fit": "free",
+      "all_primary_converged": true,
+      "selected_comparison_converged": true,
+      "nested": true,
+      "diagnostic_delta_objectives": {
+        "sphere_rotating": 5.25930323797138,
+        "sphere_still": 10.610599167230049,
+        "flat_still": 0.046618120060713863
+      },
+      "fits": {
+        "free": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 7,
+          "njev": 7,
+          "optimality": 7.5178263599716356e-06,
+          "scores": {
+            "data_quadratic": 167.26274370589937,
+            "penalty_quadratic": 5.599417895970657,
+            "penalized_least_squares": 172.86216160187,
+            "covariance_logdet": -4188.813956318381,
+            "gaussian_deviance": -4021.551212612482,
+            "gaussian_nll": -1720.3910298135643,
+            "penalized_gaussian_deviance": -4015.951794716511
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.37142423854938456,
+          "residual_rms_dph": 9.81665940140129,
+          "archive": "free-85.npz",
+          "archive_sha256": "d8c551884413dd49f9422c449241c05d5788a384988bfdea7364c33ab24d1d1d",
+          "elapsed_s": 19.908316542976536,
+          "attempt": 85
+        },
+        "sphere_rotating": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 5,
+          "njev": 5,
+          "optimality": 1.470653198841069e-05,
+          "scores": {
+            "data_quadratic": 171.25722761257833,
+            "penalty_quadratic": 6.8642372272630645,
+            "penalized_least_squares": 178.1214648398414,
+            "covariance_logdet": -4188.813956318381,
+            "gaussian_deviance": -4017.556728705803,
+            "gaussian_nll": -1718.3937878602248,
+            "penalized_gaussian_deviance": -4010.69249147854
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.3711784417925018,
+          "residual_rms_dph": 10.046320072854495,
+          "archive": "sphere_rotating-86.npz",
+          "archive_sha256": "d48cb578d08b86b3eba85c546ed54f1a1188250e3786ec8ef06d019fecd9a1ec",
+          "elapsed_s": 15.029309622012079,
+          "attempt": 86
+        },
+        "sphere_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 5,
+          "njev": 5,
+          "optimality": 7.13126430666515e-06,
+          "scores": {
+            "data_quadratic": 177.46663887699535,
+            "penalty_quadratic": 6.006121892104724,
+            "penalized_least_squares": 183.47276076910006,
+            "covariance_logdet": -4188.813956318381,
+            "gaussian_deviance": -4011.347317441386,
+            "gaussian_nll": -1715.2890822280165,
+            "penalized_gaussian_deviance": -4005.3411955492816
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.3718237466382922,
+          "residual_rms_dph": 10.648109381392077,
+          "archive": "sphere_still-87.npz",
+          "archive_sha256": "35b2447dd7f35d70cde7caedabb5df95eb6f6c968211c53dd54bbd5fe5c0c5a1",
+          "elapsed_s": 15.725852338015102,
+          "attempt": 87
+        },
+        "flat_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 3,
+          "njev": 3,
+          "optimality": 7.844243042857549e-05,
+          "scores": {
+            "data_quadratic": 167.30720551954204,
+            "penalty_quadratic": 5.601574202388678,
+            "penalized_least_squares": 172.90877972193073,
+            "covariance_logdet": -4188.813956318381,
+            "gaussian_deviance": -4021.506750798839,
+            "gaussian_nll": -1720.368798906743,
+            "penalized_gaussian_deviance": -4015.9051765964505
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.3714360264845788,
+          "residual_rms_dph": 9.828013178127051,
+          "archive": "flat_still-88.npz",
+          "archive_sha256": "86e981766441ec24300d28e4ac234078174359cfc537f437eee95c691a53ff79",
+          "elapsed_s": 11.36054515792057,
+          "attempt": 88
+        }
+      },
+      "decisions_enabled": false
+    },
+    {
+      "case_id": "96e20ae57268042a7dd6421c578368a8162c21829d974d8d7898508b057ee7d9",
+      "task_id": "e71b3a92ed6b8216f7b4767ad03d33773fec77bc3d9f8efb6ce01536ffb1b84f",
+      "truth": "flat_still",
+      "crab_model": "wind_tas",
+      "correlation_seconds": [
+        300,
+        300
+      ],
+      "common_minutes": 79,
+      "covariance_sha256": "086ff81b99beaaba22b5da1bc4af669c3295bed8e7d2defe6a440b12153091ee",
+      "selected_free_fit": "free",
+      "all_primary_converged": true,
+      "selected_comparison_converged": true,
+      "nested": true,
+      "diagnostic_delta_objectives": {
+        "sphere_rotating": 1.556044454303077,
+        "sphere_still": 1.4661532887973578,
+        "flat_still": 0.1878130154287021
+      },
+      "fits": {
+        "free": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 7,
+          "njev": 7,
+          "optimality": 5.944342307532517e-06,
+          "scores": {
+            "data_quadratic": 191.9616404046176,
+            "penalty_quadratic": 10.713785182036665,
+            "penalized_least_squares": 202.67542558665428,
+            "covariance_logdet": -4370.690169660502,
+            "gaussian_deviance": -4178.7285292558845,
+            "gaussian_nll": -1798.9796881352656,
+            "penalized_gaussian_deviance": -4168.014744073847
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.3355447718686851,
+          "residual_rms_dph": 5.671962690540247,
+          "archive": "free-89.npz",
+          "archive_sha256": "4dcc456347f9e185a8db696c3eccec8cdb39c894d33e5a5773bb05e001a862c3",
+          "elapsed_s": 26.173254836001433,
+          "attempt": 89
+        },
+        "sphere_rotating": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 4,
+          "njev": 4,
+          "optimality": 4.062823518682975e-05,
+          "scores": {
+            "data_quadratic": 193.0478927898216,
+            "penalty_quadratic": 11.183577251135773,
+            "penalized_least_squares": 204.23147004095736,
+            "covariance_logdet": -4370.690169660502,
+            "gaussian_deviance": -4177.642276870681,
+            "gaussian_nll": -1798.4365619426637,
+            "penalized_gaussian_deviance": -4166.458699619545
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.33556015227883673,
+          "residual_rms_dph": 6.701688515340693,
+          "archive": "sphere_rotating-90.npz",
+          "archive_sha256": "a688b4613cf8990cf4b658a2c8077e26e480a8df3d520be5f0c81a4e1fdb2a50",
+          "elapsed_s": 14.744752397062257,
+          "attempt": 90
+        },
+        "sphere_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 4,
+          "njev": 4,
+          "optimality": 3.7134288284453e-05,
+          "scores": {
+            "data_quadratic": 193.38876303288535,
+            "penalty_quadratic": 10.75281584256628,
+            "penalized_least_squares": 204.14157887545164,
+            "covariance_logdet": -4370.690169660502,
+            "gaussian_deviance": -4177.301406627616,
+            "gaussian_nll": -1798.2661268211316,
+            "penalized_gaussian_deviance": -4166.54859078505
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.336001177965078,
+          "residual_rms_dph": 6.980935535962604,
+          "archive": "sphere_still-91.npz",
+          "archive_sha256": "648a1841e1227f1a9e45a8abea17a9634770e840059d4d99716e99e3c9c4d05c",
+          "elapsed_s": 16.132943750941195,
+          "attempt": 91
+        },
+        "flat_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 4,
+          "njev": 4,
+          "optimality": 1.0989244482202786e-05,
+          "scores": {
+            "data_quadratic": 192.1604894313175,
+            "penalty_quadratic": 10.702749170765484,
+            "penalized_least_squares": 202.863238602083,
+            "covariance_logdet": -4370.690169660502,
+            "gaussian_deviance": -4178.529680229184,
+            "gaussian_nll": -1798.8802636219154,
+            "penalized_gaussian_deviance": -4167.826931058418
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.3357408003750643,
+          "residual_rms_dph": 5.59464265557694,
+          "archive": "flat_still-92.npz",
+          "archive_sha256": "7a244e172893fa0d49973b2ae16f4cc09780677a1756b4fd11da8e3ffa87745a",
+          "elapsed_s": 14.522176192956977,
+          "attempt": 92
+        }
+      },
+      "decisions_enabled": false
+    },
+    {
+      "case_id": "e5a0ac0a423600fc12a75227b9fb6a5f3f8018d4d627ba8242436ca9f9e1677e",
+      "task_id": "e71b3a92ed6b8216f7b4767ad03d33773fec77bc3d9f8efb6ce01536ffb1b84f",
+      "truth": "flat_still",
+      "crab_model": "wind_tas",
+      "correlation_seconds": [
+        15,
+        300
+      ],
+      "common_minutes": 79,
+      "covariance_sha256": "6c8dc600e78aa160464f4030088505a51a56b888692c0eb2e0ae7296ca945005",
+      "selected_free_fit": "free",
+      "all_primary_converged": true,
+      "selected_comparison_converged": true,
+      "nested": true,
+      "diagnostic_delta_objectives": {
+        "sphere_rotating": 1.6213309519648362,
+        "sphere_still": 1.5680727926827842,
+        "flat_still": 0.010558943640120333
+      },
+      "fits": {
+        "free": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 7,
+          "njev": 7,
+          "optimality": 6.048370695971571e-06,
+          "scores": {
+            "data_quadratic": 169.5494523124386,
+            "penalty_quadratic": 5.614233644083677,
+            "penalized_least_squares": 175.16368595652227,
+            "covariance_logdet": -4146.997278412046,
+            "gaussian_deviance": -3977.447826099608,
+            "gaussian_nll": -1698.3393365571274,
+            "penalized_gaussian_deviance": -3971.8335924555245
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.3717097139067289,
+          "residual_rms_dph": 9.759550640103202,
+          "archive": "free-93.npz",
+          "archive_sha256": "1dfac82977e78718daeeab8b65b67ffc5fbc6b378494bfe165a755804403ba56",
+          "elapsed_s": 22.12034077802673,
+          "attempt": 93
+        },
+        "sphere_rotating": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 4,
+          "njev": 4,
+          "optimality": 7.864837807093632e-05,
+          "scores": {
+            "data_quadratic": 170.65537420606634,
+            "penalty_quadratic": 6.129642702420766,
+            "penalized_least_squares": 176.7850169084871,
+            "covariance_logdet": -4146.997278412046,
+            "gaussian_deviance": -3976.34190420598,
+            "gaussian_nll": -1697.7863756103134,
+            "penalized_gaussian_deviance": -3970.212261503559
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.3715924793838693,
+          "residual_rms_dph": 10.411939785439282,
+          "archive": "sphere_rotating-94.npz",
+          "archive_sha256": "6e65191794cb32852ed5a89f5b7cf70faeb5c2e781dd12066a2e062510133e5e",
+          "elapsed_s": 12.908560211071745,
+          "attempt": 94
+        },
+        "sphere_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 3,
+          "njev": 3,
+          "optimality": 3.470414867733415e-05,
+          "scores": {
+            "data_quadratic": 171.04655871914497,
+            "penalty_quadratic": 5.685200030060076,
+            "penalized_least_squares": 176.73175874920506,
+            "covariance_logdet": -4146.997278412046,
+            "gaussian_deviance": -3975.9507196929017,
+            "gaussian_nll": -1697.5907833537742,
+            "penalized_gaussian_deviance": -3970.2655196628416
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.37177790215903933,
+          "residual_rms_dph": 10.5971878971575,
+          "archive": "sphere_still-95.npz",
+          "archive_sha256": "b9675220ec63e323dc47c57ebc9a994e2986b4d71c7bec4d93ccfd8e00eba0ae",
+          "elapsed_s": 10.387769851018675,
+          "attempt": 95
+        },
+        "flat_still": {
+          "success": true,
+          "status": 2,
+          "message": "`ftol` termination condition is satisfied.",
+          "nfev": 3,
+          "njev": 3,
+          "optimality": 3.4926638954232044e-05,
+          "scores": {
+            "data_quadratic": 169.56235674818504,
+            "penalty_quadratic": 5.611888151977352,
+            "penalized_least_squares": 175.1742449001624,
+            "covariance_logdet": -4146.997278412046,
+            "gaussian_deviance": -3977.434921663861,
+            "gaussian_nll": -1698.332884339254,
+            "penalized_gaussian_deviance": -3971.8230335118838
+          },
+          "boundary_parameter_indices": [],
+          "minimum_relative_bound_margin": 0.3717072809283882,
+          "residual_rms_dph": 9.76264031279417,
+          "archive": "flat_still-96.npz",
+          "archive_sha256": "b4875108f38ac516563543fe575b95f13fa622000461f8a8b2c62717cf2da7ea",
+          "elapsed_s": 10.254783199983649,
+          "attempt": 96
+        }
+      },
+      "decisions_enabled": false
+    }
+  ],
+  "plan_sha256": "2dee64bd7e0bd3b04f6894de61cce81beee41e6c45e8c80ccdf88335a1f6e2d8",
+  "optimizer_starts": 96,
+  "additional_flight_attempts": 0,
+  "bootstrap": 0,
+  "decisions_enabled": false,
+  "production_enabled": false
+}

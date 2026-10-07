@@ -1,0 +1,11 @@
+{
+  "objective": 213.03782030732367,
+  "success": true,
+  "elapsed_s": 13.143113816040568,
+  "convergence": {
+    "converged": true,
+    "evaluations": 5,
+    "status": 2
+  },
+  "archive_sha256": "38d09d68b8a7cf94a14387649aef4de831841e805f2c928e9f81dc75927fec56"
+}

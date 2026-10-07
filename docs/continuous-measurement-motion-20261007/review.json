@@ -1,0 +1,347 @@
+{
+  "complete": true,
+  "cases": [
+    {
+      "task_id": "bed4aa85790e4d01e95115b8cf19b386a8d2c07c1ad3f7bac00b825813c939a4",
+      "truth": "sphere_rotating",
+      "crab_model": "wind",
+      "common_minutes": 79,
+      "residual_rms_dph": 7.400771529060759,
+      "propagated_fixed_parameter_sigma_dph": 11.267573824311707,
+      "propagated_local_fit_residual_sigma_dph": 11.154738303782132,
+      "propagated_local_k_sampling_sd": [
+        0.16833937556334536,
+        0.252242172602439,
+        0.09616059878219024
+      ],
+      "independent_input_direction_relative_error": 1.522921801691413e-09,
+      "variance_contributions_dph2": {
+        "gps": 114.47148759118063,
+        "force": 0.03200170709948011,
+        "gyro": 12.453536518797513,
+        "force_gyro_cross": 0.0011940692367315205
+      },
+      "residual_correlation": {
+        "reference_axis_correlation": [
+          [
+            1.0000000000000002,
+            -0.21820596728280653,
+            0.04521592260126129
+          ],
+          [
+            -0.2182059672828065,
+            1.0000000000000002,
+            0.07997831458433716
+          ],
+          [
+            0.04521592260126129,
+            0.07997831458433716,
+            0.9999999999999999
+          ]
+        ],
+        "adjacent_minute_pairs": 66,
+        "adjacent_minute_axis_correlation": [
+          0.1093240928921879,
+          -0.5339161984681213,
+          -0.41952486827675856
+        ],
+        "interpretation": "Descriptive fitted-residual correlations; no independent-flight or significance claim"
+      },
+      "limits": [
+        "Conditional on fixed mount/forward references, old weights, and independent input seconds.",
+        "GPS accuracy fields are provisional sigma scales; horizontal marginals and missing GPS channel correlations are assumed.",
+        "Empirical paired IMU covariance includes motion, not just device noise.",
+        "Local fit response is evaluated at saved parameters without a new fit; penalties are deterministic and prior/calibration uncertainty is omitted.",
+        "Filtering nonlinear attitude can have systematic error; no coverage, model significance, power or decisions."
+      ],
+      "archive_sha256": "8aa3a07d2ffe40c51bbc6ec449c226297fd9aa614b9f024e697193dc922271c8",
+      "elapsed_s": 13.119670168031007
+    },
+    {
+      "task_id": "dc5bb68180f11fc6ba59dedc0cd23b05e1aaf13870bff06c8549bb73506b03a2",
+      "truth": "sphere_rotating",
+      "crab_model": "wind_tas",
+      "common_minutes": 79,
+      "residual_rms_dph": 7.076312848969962,
+      "propagated_fixed_parameter_sigma_dph": 11.253268694113581,
+      "propagated_local_fit_residual_sigma_dph": 11.134275527876218,
+      "propagated_local_k_sampling_sd": [
+        0.1682928209198237,
+        0.25219756508344493,
+        0.09704812030623906
+      ],
+      "independent_input_direction_relative_error": 6.169294059013127e-10,
+      "variance_contributions_dph2": {
+        "gps": 114.14932400634218,
+        "force": 0.03200190658975013,
+        "gyro": 12.453536518797513,
+        "force_gyro_cross": 0.001193870187358856
+      },
+      "residual_correlation": {
+        "reference_axis_correlation": [
+          [
+            1.0,
+            -0.3454231408626856,
+            0.09912497493026548
+          ],
+          [
+            -0.34542314086268555,
+            1.0000000000000002,
+            -0.030679566887063026
+          ],
+          [
+            0.09912497493026548,
+            -0.030679566887063026,
+            1.0
+          ]
+        ],
+        "adjacent_minute_pairs": 66,
+        "adjacent_minute_axis_correlation": [
+          0.09714560108358435,
+          -0.5980512016182136,
+          -0.325210573415378
+        ],
+        "interpretation": "Descriptive fitted-residual correlations; no independent-flight or significance claim"
+      },
+      "limits": [
+        "Conditional on fixed mount/forward references, old weights, and independent input seconds.",
+        "GPS accuracy fields are provisional sigma scales; horizontal marginals and missing GPS channel correlations are assumed.",
+        "Empirical paired IMU covariance includes motion, not just device noise.",
+        "Local fit response is evaluated at saved parameters without a new fit; penalties are deterministic and prior/calibration uncertainty is omitted.",
+        "Filtering nonlinear attitude can have systematic error; no coverage, model significance, power or decisions."
+      ],
+      "archive_sha256": "62ef7f5d52e75933a47e20c95e032b3974c5373ad48cc5b5b9453e5fcdc7a9fb",
+      "elapsed_s": 21.926821782020852
+    },
+    {
+      "task_id": "f94593ee49b996b4de1ef7ae7fcebd7299384ce89bff672d82f4debc755a2425",
+      "truth": "sphere_still",
+      "crab_model": "wind",
+      "common_minutes": 79,
+      "residual_rms_dph": 7.436923599996983,
+      "propagated_fixed_parameter_sigma_dph": 11.272197471958854,
+      "propagated_local_fit_residual_sigma_dph": 11.16025109790722,
+      "propagated_local_k_sampling_sd": [
+        0.16899547672164603,
+        0.25309866784620116,
+        0.09684447449788385
+      ],
+      "independent_input_direction_relative_error": 1.5222065641168796e-09,
+      "variance_contributions_dph2": {
+        "gps": 114.5678054550254,
+        "force": 0.03200168268126195,
+        "gyro": 12.461678571676659,
+        "force_gyro_cross": 0.0009501374523150877
+      },
+      "residual_correlation": {
+        "reference_axis_correlation": [
+          [
+            1.0,
+            -0.25614577604007793,
+            0.06849927560359653
+          ],
+          [
+            -0.25614577604007793,
+            1.0,
+            0.10124572368733085
+          ],
+          [
+            0.06849927560359653,
+            0.10124572368733084,
+            0.9999999999999999
+          ]
+        ],
+        "adjacent_minute_pairs": 66,
+        "adjacent_minute_axis_correlation": [
+          0.08524305090775346,
+          -0.5346651325324763,
+          -0.43463144370236256
+        ],
+        "interpretation": "Descriptive fitted-residual correlations; no independent-flight or significance claim"
+      },
+      "limits": [
+        "Conditional on fixed mount/forward references, old weights, and independent input seconds.",
+        "GPS accuracy fields are provisional sigma scales; horizontal marginals and missing GPS channel correlations are assumed.",
+        "Empirical paired IMU covariance includes motion, not just device noise.",
+        "Local fit response is evaluated at saved parameters without a new fit; penalties are deterministic and prior/calibration uncertainty is omitted.",
+        "Filtering nonlinear attitude can have systematic error; no coverage, model significance, power or decisions."
+      ],
+      "archive_sha256": "716203f55c0f3f500b21ae38854c40b021dfe7dc3a085acd7d3f0076090232e9",
+      "elapsed_s": 15.64635841397103
+    },
+    {
+      "task_id": "119d674e186dfaee3ec65d36ca6d02568cea20e8bb58bc8d059d72fab7576ab0",
+      "truth": "sphere_still",
+      "crab_model": "wind_tas",
+      "common_minutes": 79,
+      "residual_rms_dph": 7.205929024523968,
+      "propagated_fixed_parameter_sigma_dph": 11.2577459716468,
+      "propagated_local_fit_residual_sigma_dph": 11.14293075335478,
+      "propagated_local_k_sampling_sd": [
+        0.16847824894987998,
+        0.25242504663164944,
+        0.097750112228076
+      ],
+      "independent_input_direction_relative_error": 5.995973070169791e-10,
+      "variance_contributions_dph2": {
+        "gps": 114.24221668378587,
+        "force": 0.03200190505610188,
+        "gyro": 12.461678571676659,
+        "force_gyro_cross": 0.0009472016111217653
+      },
+      "residual_correlation": {
+        "reference_axis_correlation": [
+          [
+            1.0000000000000002,
+            -0.391031843816032,
+            0.12022098980513288
+          ],
+          [
+            -0.391031843816032,
+            1.0,
+            -0.014035566577658481
+          ],
+          [
+            0.12022098980513286,
+            -0.014035566577658481,
+            1.0000000000000002
+          ]
+        ],
+        "adjacent_minute_pairs": 66,
+        "adjacent_minute_axis_correlation": [
+          0.07056544600891532,
+          -0.6026599558503716,
+          -0.33610735571263906
+        ],
+        "interpretation": "Descriptive fitted-residual correlations; no independent-flight or significance claim"
+      },
+      "limits": [
+        "Conditional on fixed mount/forward references, old weights, and independent input seconds.",
+        "GPS accuracy fields are provisional sigma scales; horizontal marginals and missing GPS channel correlations are assumed.",
+        "Empirical paired IMU covariance includes motion, not just device noise.",
+        "Local fit response is evaluated at saved parameters without a new fit; penalties are deterministic and prior/calibration uncertainty is omitted.",
+        "Filtering nonlinear attitude can have systematic error; no coverage, model significance, power or decisions."
+      ],
+      "archive_sha256": "f4c799e1116dd2aa1d6722f266772ba730045bc9bebe0944c96c71534b538e6b",
+      "elapsed_s": 13.75842314795591
+    },
+    {
+      "task_id": "b545f5f3aec5efaaa0a8cc1da285bcce8b50f66952e8b0977f176b944c0b145b",
+      "truth": "flat_still",
+      "crab_model": "wind",
+      "common_minutes": 79,
+      "residual_rms_dph": 7.478241915665958,
+      "propagated_fixed_parameter_sigma_dph": 11.27106332254693,
+      "propagated_local_fit_residual_sigma_dph": 11.158627893181563,
+      "propagated_local_k_sampling_sd": [
+        0.1684196646172019,
+        0.25218529064195344,
+        0.09670718082617959
+      ],
+      "independent_input_direction_relative_error": 1.5223956338059118e-09,
+      "variance_contributions_dph2": {
+        "gps": 114.53779909852565,
+        "force": 0.03200166079992618,
+        "gyro": 12.465927907406604,
+        "force_gyro_cross": 0.001139754130459916
+      },
+      "residual_correlation": {
+        "reference_axis_correlation": [
+          [
+            1.0,
+            -0.23581057377330983,
+            0.04632072919419257
+          ],
+          [
+            -0.2358105737733098,
+            1.0,
+            0.11093135485070453
+          ],
+          [
+            0.04632072919419257,
+            0.11093135485070454,
+            0.9999999999999999
+          ]
+        ],
+        "adjacent_minute_pairs": 66,
+        "adjacent_minute_axis_correlation": [
+          0.08044882389106178,
+          -0.5458398956127851,
+          -0.4242742535538238
+        ],
+        "interpretation": "Descriptive fitted-residual correlations; no independent-flight or significance claim"
+      },
+      "limits": [
+        "Conditional on fixed mount/forward references, old weights, and independent input seconds.",
+        "GPS accuracy fields are provisional sigma scales; horizontal marginals and missing GPS channel correlations are assumed.",
+        "Empirical paired IMU covariance includes motion, not just device noise.",
+        "Local fit response is evaluated at saved parameters without a new fit; penalties are deterministic and prior/calibration uncertainty is omitted.",
+        "Filtering nonlinear attitude can have systematic error; no coverage, model significance, power or decisions."
+      ],
+      "archive_sha256": "0e1eb2aeead56614fb7a333a9182c00f26ea17879acd9add83e9d7f6d5ca2037",
+      "elapsed_s": 14.669274680083618
+    },
+    {
+      "task_id": "e71b3a92ed6b8216f7b4767ad03d33773fec77bc3d9f8efb6ce01536ffb1b84f",
+      "truth": "flat_still",
+      "crab_model": "wind_tas",
+      "common_minutes": 79,
+      "residual_rms_dph": 7.159520012970761,
+      "propagated_fixed_parameter_sigma_dph": 11.256616697187809,
+      "propagated_local_fit_residual_sigma_dph": 11.139542509797302,
+      "propagated_local_k_sampling_sd": [
+        0.16833498928145843,
+        0.25213003646138854,
+        0.09761790854674941
+      ],
+      "independent_input_direction_relative_error": 5.755448716889523e-10,
+      "variance_contributions_dph2": {
+        "gps": 114.21235102007986,
+        "force": 0.032001859254877384,
+        "gyro": 12.465927907406604,
+        "force_gyro_cross": 0.00113868066603723
+      },
+      "residual_correlation": {
+        "reference_axis_correlation": [
+          [
+            1.0,
+            -0.36166685947493077,
+            0.0881343869153505
+          ],
+          [
+            -0.36166685947493077,
+            1.0,
+            0.003906610012682804
+          ],
+          [
+            0.0881343869153505,
+            0.003906610012682804,
+            1.0000000000000002
+          ]
+        ],
+        "adjacent_minute_pairs": 66,
+        "adjacent_minute_axis_correlation": [
+          0.07323941084523751,
+          -0.605113393031968,
+          -0.32757643900244254
+        ],
+        "interpretation": "Descriptive fitted-residual correlations; no independent-flight or significance claim"
+      },
+      "limits": [
+        "Conditional on fixed mount/forward references, old weights, and independent input seconds.",
+        "GPS accuracy fields are provisional sigma scales; horizontal marginals and missing GPS channel correlations are assumed.",
+        "Empirical paired IMU covariance includes motion, not just device noise.",
+        "Local fit response is evaluated at saved parameters without a new fit; penalties are deterministic and prior/calibration uncertainty is omitted.",
+        "Filtering nonlinear attitude can have systematic error; no coverage, model significance, power or decisions."
+      ],
+      "archive_sha256": "cd8def7f88c52cb3f4d5fd15242f19378306cc23639b201e3c3eb8979501b511",
+      "elapsed_s": 14.082359767984599
+    }
+  ],
+  "plan_sha256": "73061f7a7eb0592395712877e09355d0256e1df4f74a96a94eea03c412b2c770",
+  "optimizer_calls": 0,
+  "additional_flight_attempts": 0,
+  "bootstrap": 0,
+  "production_enabled": false,
+  "decisions_enabled": false
+}

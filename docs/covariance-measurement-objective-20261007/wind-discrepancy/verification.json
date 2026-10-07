@@ -1,0 +1,42 @@
+{
+  "complete": true,
+  "cases": [
+    {
+      "task_id": "bed4aa85790e4d01e95115b8cf19b386a8d2c07c1ad3f7bac00b825813c939a4",
+      "scenarios_verified": 36,
+      "shared_covariance_and_model_discrepancy_verified": true
+    },
+    {
+      "task_id": "dc5bb68180f11fc6ba59dedc0cd23b05e1aaf13870bff06c8549bb73506b03a2",
+      "scenarios_verified": 36,
+      "shared_covariance_and_model_discrepancy_verified": true
+    },
+    {
+      "task_id": "f94593ee49b996b4de1ef7ae7fcebd7299384ce89bff672d82f4debc755a2425",
+      "scenarios_verified": 36,
+      "shared_covariance_and_model_discrepancy_verified": true
+    },
+    {
+      "task_id": "119d674e186dfaee3ec65d36ca6d02568cea20e8bb58bc8d059d72fab7576ab0",
+      "scenarios_verified": 36,
+      "shared_covariance_and_model_discrepancy_verified": true
+    },
+    {
+      "task_id": "b545f5f3aec5efaaa0a8cc1da285bcce8b50f66952e8b0977f176b944c0b145b",
+      "scenarios_verified": 36,
+      "shared_covariance_and_model_discrepancy_verified": true
+    },
+    {
+      "task_id": "e71b3a92ed6b8216f7b4767ad03d33773fec77bc3d9f8efb6ce01536ffb1b84f",
+      "scenarios_verified": 36,
+      "shared_covariance_and_model_discrepancy_verified": true
+    }
+  ],
+  "scenarios_verified": 216,
+  "review_sha256": "ddb754727fa3be65bb575e79f9502b00bf67b1f45095a577d598517b8fab29d6",
+  "helper_sha256": "09239d87fb9915a3e514668fbd4cfdd5bd76653fc315562688646b60ea2934aa",
+  "optimizer_calls": 0,
+  "additional_flight_attempts": 0,
+  "production_enabled": false,
+  "decisions_enabled": false
+}

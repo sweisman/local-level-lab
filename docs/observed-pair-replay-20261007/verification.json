@@ -1,0 +1,24 @@
+{
+  "state": "verified",
+  "frozen_plan_and_inputs_match": true,
+  "matched_fit_inputs": [
+    {
+      "truth": "sphere_rotating",
+      "fit_input_fields": 23,
+      "inputs_identical": true
+    },
+    {
+      "truth": "sphere_still",
+      "fit_input_fields": 23,
+      "inputs_identical": true
+    },
+    {
+      "truth": "flat_still",
+      "fit_input_fields": 23,
+      "inputs_identical": true
+    }
+  ],
+  "unique_tasks": 6,
+  "all_pairwise_decisions_abstain": true,
+  "additional_flight_attempts": 0
+}

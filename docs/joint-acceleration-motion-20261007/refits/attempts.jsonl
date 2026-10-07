@@ -1,0 +1,48 @@
+{"event": "started", "task_id": "bed4aa85790e4d01e95115b8cf19b386a8d2c07c1ad3f7bac00b825813c939a4", "fit": "free", "attempt": 1, "started_utc": 1791348570.8945231}
+{"event": "complete", "task_id": "bed4aa85790e4d01e95115b8cf19b386a8d2c07c1ad3f7bac00b825813c939a4", "fit": "free", "attempt": 1, "elapsed_s": 10.679178948979825, "success": true}
+{"event": "started", "task_id": "bed4aa85790e4d01e95115b8cf19b386a8d2c07c1ad3f7bac00b825813c939a4", "fit": "sphere_rotating", "attempt": 2, "started_utc": 1791348581.65507}
+{"event": "complete", "task_id": "bed4aa85790e4d01e95115b8cf19b386a8d2c07c1ad3f7bac00b825813c939a4", "fit": "sphere_rotating", "attempt": 2, "elapsed_s": 11.800441763945855, "success": true}
+{"event": "started", "task_id": "bed4aa85790e4d01e95115b8cf19b386a8d2c07c1ad3f7bac00b825813c939a4", "fit": "sphere_still", "attempt": 3, "started_utc": 1791348593.5334322}
+{"event": "complete", "task_id": "bed4aa85790e4d01e95115b8cf19b386a8d2c07c1ad3f7bac00b825813c939a4", "fit": "sphere_still", "attempt": 3, "elapsed_s": 10.763247666996904, "success": true}
+{"event": "started", "task_id": "bed4aa85790e4d01e95115b8cf19b386a8d2c07c1ad3f7bac00b825813c939a4", "fit": "flat_still", "attempt": 4, "started_utc": 1791348604.372471}
+{"event": "complete", "task_id": "bed4aa85790e4d01e95115b8cf19b386a8d2c07c1ad3f7bac00b825813c939a4", "fit": "flat_still", "attempt": 4, "elapsed_s": 11.165278577944264, "success": true}
+{"event": "started", "task_id": "dc5bb68180f11fc6ba59dedc0cd23b05e1aaf13870bff06c8549bb73506b03a2", "fit": "free", "attempt": 5, "started_utc": 1791348616.7140799}
+{"event": "complete", "task_id": "dc5bb68180f11fc6ba59dedc0cd23b05e1aaf13870bff06c8549bb73506b03a2", "fit": "free", "attempt": 5, "elapsed_s": 18.000337575911544, "success": true}
+{"event": "started", "task_id": "dc5bb68180f11fc6ba59dedc0cd23b05e1aaf13870bff06c8549bb73506b03a2", "fit": "sphere_rotating", "attempt": 6, "started_utc": 1791348634.792487}
+{"event": "complete", "task_id": "dc5bb68180f11fc6ba59dedc0cd23b05e1aaf13870bff06c8549bb73506b03a2", "fit": "sphere_rotating", "attempt": 6, "elapsed_s": 11.771606232970953, "success": true}
+{"event": "started", "task_id": "dc5bb68180f11fc6ba59dedc0cd23b05e1aaf13870bff06c8549bb73506b03a2", "fit": "sphere_still", "attempt": 7, "started_utc": 1791348646.644266}
+{"event": "complete", "task_id": "dc5bb68180f11fc6ba59dedc0cd23b05e1aaf13870bff06c8549bb73506b03a2", "fit": "sphere_still", "attempt": 7, "elapsed_s": 12.036660208017565, "success": true}
+{"event": "started", "task_id": "dc5bb68180f11fc6ba59dedc0cd23b05e1aaf13870bff06c8549bb73506b03a2", "fit": "flat_still", "attempt": 8, "started_utc": 1791348658.769201}
+{"event": "complete", "task_id": "dc5bb68180f11fc6ba59dedc0cd23b05e1aaf13870bff06c8549bb73506b03a2", "fit": "flat_still", "attempt": 8, "elapsed_s": 13.143113816040568, "success": true}
+{"event": "started", "task_id": "f94593ee49b996b4de1ef7ae7fcebd7299384ce89bff672d82f4debc755a2425", "fit": "free", "attempt": 9, "started_utc": 1791348673.0028965}
+{"event": "complete", "task_id": "f94593ee49b996b4de1ef7ae7fcebd7299384ce89bff672d82f4debc755a2425", "fit": "free", "attempt": 9, "elapsed_s": 15.998529833042994, "success": true}
+{"event": "started", "task_id": "f94593ee49b996b4de1ef7ae7fcebd7299384ce89bff672d82f4debc755a2425", "fit": "sphere_rotating", "attempt": 10, "started_utc": 1791348689.072079}
+{"event": "complete", "task_id": "f94593ee49b996b4de1ef7ae7fcebd7299384ce89bff672d82f4debc755a2425", "fit": "sphere_rotating", "attempt": 10, "elapsed_s": 11.395539224031381, "success": true}
+{"event": "started", "task_id": "f94593ee49b996b4de1ef7ae7fcebd7299384ce89bff672d82f4debc755a2425", "fit": "sphere_still", "attempt": 11, "started_utc": 1791348700.5345724}
+{"event": "complete", "task_id": "f94593ee49b996b4de1ef7ae7fcebd7299384ce89bff672d82f4debc755a2425", "fit": "sphere_still", "attempt": 11, "elapsed_s": 11.409093959024176, "success": true}
+{"event": "started", "task_id": "f94593ee49b996b4de1ef7ae7fcebd7299384ce89bff672d82f4debc755a2425", "fit": "flat_still", "attempt": 12, "started_utc": 1791348712.0299938}
+{"event": "complete", "task_id": "f94593ee49b996b4de1ef7ae7fcebd7299384ce89bff672d82f4debc755a2425", "fit": "flat_still", "attempt": 12, "elapsed_s": 11.6619859340135, "success": true}
+{"event": "started", "task_id": "119d674e186dfaee3ec65d36ca6d02568cea20e8bb58bc8d059d72fab7576ab0", "fit": "free", "attempt": 13, "started_utc": 1791348724.8244708}
+{"event": "complete", "task_id": "119d674e186dfaee3ec65d36ca6d02568cea20e8bb58bc8d059d72fab7576ab0", "fit": "free", "attempt": 13, "elapsed_s": 19.085226580966264, "success": true}
+{"event": "started", "task_id": "119d674e186dfaee3ec65d36ca6d02568cea20e8bb58bc8d059d72fab7576ab0", "fit": "sphere_rotating", "attempt": 14, "started_utc": 1791348744.0029428}
+{"event": "complete", "task_id": "119d674e186dfaee3ec65d36ca6d02568cea20e8bb58bc8d059d72fab7576ab0", "fit": "sphere_rotating", "attempt": 14, "elapsed_s": 11.811482053948566, "success": true}
+{"event": "started", "task_id": "119d674e186dfaee3ec65d36ca6d02568cea20e8bb58bc8d059d72fab7576ab0", "fit": "sphere_still", "attempt": 15, "started_utc": 1791348755.9138973}
+{"event": "complete", "task_id": "119d674e186dfaee3ec65d36ca6d02568cea20e8bb58bc8d059d72fab7576ab0", "fit": "sphere_still", "attempt": 15, "elapsed_s": 10.987813093001023, "success": true}
+{"event": "started", "task_id": "119d674e186dfaee3ec65d36ca6d02568cea20e8bb58bc8d059d72fab7576ab0", "fit": "flat_still", "attempt": 16, "started_utc": 1791348766.9807026}
+{"event": "complete", "task_id": "119d674e186dfaee3ec65d36ca6d02568cea20e8bb58bc8d059d72fab7576ab0", "fit": "flat_still", "attempt": 16, "elapsed_s": 11.212472854997031, "success": true}
+{"event": "started", "task_id": "b545f5f3aec5efaaa0a8cc1da285bcce8b50f66952e8b0977f176b944c0b145b", "fit": "free", "attempt": 17, "started_utc": 1791348779.3285098}
+{"event": "complete", "task_id": "b545f5f3aec5efaaa0a8cc1da285bcce8b50f66952e8b0977f176b944c0b145b", "fit": "free", "attempt": 17, "elapsed_s": 14.879430733039044, "success": true}
+{"event": "started", "task_id": "b545f5f3aec5efaaa0a8cc1da285bcce8b50f66952e8b0977f176b944c0b145b", "fit": "sphere_rotating", "attempt": 18, "started_utc": 1791348794.2846658}
+{"event": "complete", "task_id": "b545f5f3aec5efaaa0a8cc1da285bcce8b50f66952e8b0977f176b944c0b145b", "fit": "sphere_rotating", "attempt": 18, "elapsed_s": 11.639902606024407, "success": true}
+{"event": "started", "task_id": "b545f5f3aec5efaaa0a8cc1da285bcce8b50f66952e8b0977f176b944c0b145b", "fit": "sphere_still", "attempt": 19, "started_utc": 1791348806.0069737}
+{"event": "complete", "task_id": "b545f5f3aec5efaaa0a8cc1da285bcce8b50f66952e8b0977f176b944c0b145b", "fit": "sphere_still", "attempt": 19, "elapsed_s": 12.805711079970933, "success": true}
+{"event": "started", "task_id": "b545f5f3aec5efaaa0a8cc1da285bcce8b50f66952e8b0977f176b944c0b145b", "fit": "flat_still", "attempt": 20, "started_utc": 1791348818.8913112}
+{"event": "complete", "task_id": "b545f5f3aec5efaaa0a8cc1da285bcce8b50f66952e8b0977f176b944c0b145b", "fit": "flat_still", "attempt": 20, "elapsed_s": 11.220575465005822, "success": true}
+{"event": "started", "task_id": "e71b3a92ed6b8216f7b4767ad03d33773fec77bc3d9f8efb6ce01536ffb1b84f", "fit": "free", "attempt": 21, "started_utc": 1791348831.2972434}
+{"event": "complete", "task_id": "e71b3a92ed6b8216f7b4767ad03d33773fec77bc3d9f8efb6ce01536ffb1b84f", "fit": "free", "attempt": 21, "elapsed_s": 19.095007487921976, "success": true}
+{"event": "started", "task_id": "e71b3a92ed6b8216f7b4767ad03d33773fec77bc3d9f8efb6ce01536ffb1b84f", "fit": "sphere_rotating", "attempt": 22, "started_utc": 1791348850.4727573}
+{"event": "complete", "task_id": "e71b3a92ed6b8216f7b4767ad03d33773fec77bc3d9f8efb6ce01536ffb1b84f", "fit": "sphere_rotating", "attempt": 22, "elapsed_s": 13.615655970061198, "success": true}
+{"event": "started", "task_id": "e71b3a92ed6b8216f7b4767ad03d33773fec77bc3d9f8efb6ce01536ffb1b84f", "fit": "sphere_still", "attempt": 23, "started_utc": 1791348864.175493}
+{"event": "complete", "task_id": "e71b3a92ed6b8216f7b4767ad03d33773fec77bc3d9f8efb6ce01536ffb1b84f", "fit": "sphere_still", "attempt": 23, "elapsed_s": 12.2085522870766, "success": true}
+{"event": "started", "task_id": "e71b3a92ed6b8216f7b4767ad03d33773fec77bc3d9f8efb6ce01536ffb1b84f", "fit": "flat_still", "attempt": 24, "started_utc": 1791348876.4853282}
+{"event": "complete", "task_id": "e71b3a92ed6b8216f7b4767ad03d33773fec77bc3d9f8efb6ce01536ffb1b84f", "fit": "flat_still", "attempt": 24, "elapsed_s": 11.477406329941005, "success": true}

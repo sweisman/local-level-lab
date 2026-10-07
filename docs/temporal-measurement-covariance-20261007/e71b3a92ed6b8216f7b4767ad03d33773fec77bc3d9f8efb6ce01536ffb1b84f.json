@@ -1,0 +1,409 @@
+{
+  "task_id": "e71b3a92ed6b8216f7b4767ad03d33773fec77bc3d9f8efb6ce01536ffb1b84f",
+  "truth": "flat_still",
+  "crab_model": "wind_tas",
+  "common_minutes": 79,
+  "scenarios": [
+    {
+      "gps_correlation_seconds": 0.0,
+      "imu_correlation_seconds": 0.0,
+      "fixed_parameter_sigma_dph": 11.256616697187807,
+      "local_fit_residual_sigma_dph": 11.1395425097973,
+      "local_k_sampling_sd": [
+        0.16833498928145826,
+        0.2521300364613882,
+        0.09761790854674936
+      ]
+    },
+    {
+      "gps_correlation_seconds": 0.0,
+      "imu_correlation_seconds": 1.0,
+      "fixed_parameter_sigma_dph": 11.825617400241825,
+      "local_fit_residual_sigma_dph": 11.694646203502348,
+      "local_k_sampling_sd": [
+        0.19262432297709467,
+        0.2920429073468505,
+        0.12181004416186605
+      ]
+    },
+    {
+      "gps_correlation_seconds": 0.0,
+      "imu_correlation_seconds": 5.0,
+      "fixed_parameter_sigma_dph": 14.99171585191876,
+      "local_fit_residual_sigma_dph": 14.78588131209854,
+      "local_k_sampling_sd": [
+        0.3099216353537883,
+        0.4809930114155139,
+        0.22454282566276382
+      ]
+    },
+    {
+      "gps_correlation_seconds": 0.0,
+      "imu_correlation_seconds": 15.0,
+      "fixed_parameter_sigma_dph": 19.788809373843808,
+      "local_fit_residual_sigma_dph": 19.451449920206585,
+      "local_k_sampling_sd": [
+        0.4916986245255327,
+        0.7696833300014747,
+        0.37026593141361325
+      ]
+    },
+    {
+      "gps_correlation_seconds": 0.0,
+      "imu_correlation_seconds": 60.0,
+      "fixed_parameter_sigma_dph": 25.787666061919435,
+      "local_fit_residual_sigma_dph": 25.02587131577392,
+      "local_k_sampling_sd": [
+        0.9138385164841861,
+        1.4352657203560015,
+        0.6847634416804766
+      ]
+    },
+    {
+      "gps_correlation_seconds": 0.0,
+      "imu_correlation_seconds": 300.0,
+      "fixed_parameter_sigma_dph": 28.663636663849474,
+      "local_fit_residual_sigma_dph": 26.267743910328235,
+      "local_k_sampling_sd": [
+        1.6661666112626667,
+        2.6129778163216932,
+        1.2699304669252238
+      ]
+    },
+    {
+      "gps_correlation_seconds": 1.0,
+      "imu_correlation_seconds": 0.0,
+      "fixed_parameter_sigma_dph": 15.979773832137552,
+      "local_fit_residual_sigma_dph": 15.819959746541215,
+      "local_k_sampling_sd": [
+        0.225356811997429,
+        0.3342867209746655,
+        0.1211593522058292
+      ]
+    },
+    {
+      "gps_correlation_seconds": 1.0,
+      "imu_correlation_seconds": 1.0,
+      "fixed_parameter_sigma_dph": 16.385572286489197,
+      "local_fit_residual_sigma_dph": 16.215624221092916,
+      "local_k_sampling_sd": [
+        0.24403514890203828,
+        0.36533151556575855,
+        0.1413789921332388
+      ]
+    },
+    {
+      "gps_correlation_seconds": 1.0,
+      "imu_correlation_seconds": 5.0,
+      "fixed_parameter_sigma_dph": 18.79875784310051,
+      "local_fit_residual_sigma_dph": 18.568898869617122,
+      "local_k_sampling_sd": [
+        0.3442389346916214,
+        0.5287081742932839,
+        0.23573250330515105
+      ]
+    },
+    {
+      "gps_correlation_seconds": 1.0,
+      "imu_correlation_seconds": 15.0,
+      "fixed_parameter_sigma_dph": 22.808742374212336,
+      "local_fit_residual_sigma_dph": 22.46198172586088,
+      "local_k_sampling_sd": [
+        0.5140200010287121,
+        0.8003689680491936,
+        0.3771567214348503
+      ]
+    },
+    {
+      "gps_correlation_seconds": 1.0,
+      "imu_correlation_seconds": 60.0,
+      "fixed_parameter_sigma_dph": 28.171714061801993,
+      "local_fit_residual_sigma_dph": 27.43129516024133,
+      "local_k_sampling_sd": [
+        0.9260398794367731,
+        1.4519523905979164,
+        0.6885138369125096
+      ]
+    },
+    {
+      "gps_correlation_seconds": 1.0,
+      "imu_correlation_seconds": 300.0,
+      "fixed_parameter_sigma_dph": 30.826057468577396,
+      "local_fit_residual_sigma_dph": 28.56879572528722,
+      "local_k_sampling_sd": [
+        1.6728897753838343,
+        2.6221806049780887,
+        1.2719566515344818
+      ]
+    },
+    {
+      "gps_correlation_seconds": 5.0,
+      "imu_correlation_seconds": 0.0,
+      "fixed_parameter_sigma_dph": 28.938449288750903,
+      "local_fit_residual_sigma_dph": 28.66004079058055,
+      "local_k_sampling_sd": [
+        0.3824696139739898,
+        0.5626968424617756,
+        0.2046474837373052
+      ]
+    },
+    {
+      "gps_correlation_seconds": 5.0,
+      "imu_correlation_seconds": 1.0,
+      "fixed_parameter_sigma_dph": 29.164493046632963,
+      "local_fit_residual_sigma_dph": 28.880326878608066,
+      "local_k_sampling_sd": [
+        0.393764481383743,
+        0.5816762337950836,
+        0.21723034638301547
+      ]
+    },
+    {
+      "gps_correlation_seconds": 5.0,
+      "imu_correlation_seconds": 5.0,
+      "fixed_parameter_sigma_dph": 30.585518991098915,
+      "local_fit_residual_sigma_dph": 30.264348943362783,
+      "local_k_sampling_sd": [
+        0.4625989159708336,
+        0.6959974556426168,
+        0.2876991781142024
+      ]
+    },
+    {
+      "gps_correlation_seconds": 5.0,
+      "imu_correlation_seconds": 15.0,
+      "fixed_parameter_sigma_dph": 33.20119582491765,
+      "local_fit_residual_sigma_dph": 32.79736932725648,
+      "local_k_sampling_sd": [
+        0.5997615145683534,
+        0.9194947578494342,
+        0.4116408586335419
+      ]
+    },
+    {
+      "gps_correlation_seconds": 5.0,
+      "imu_correlation_seconds": 60.0,
+      "fixed_parameter_sigma_dph": 37.090782530047434,
+      "local_fit_residual_sigma_dph": 36.381351897693904,
+      "local_k_sampling_sd": [
+        0.9762413488513186,
+        1.520870102691043,
+        0.7079917426023133
+      ]
+    },
+    {
+      "gps_correlation_seconds": 5.0,
+      "imu_correlation_seconds": 300.0,
+      "fixed_parameter_sigma_dph": 39.14494213263542,
+      "local_fit_residual_sigma_dph": 37.246515285711574,
+      "local_k_sampling_sd": [
+        1.7011929677386826,
+        2.6609605877990217,
+        1.2826046652635759
+      ]
+    },
+    {
+      "gps_correlation_seconds": 15.0,
+      "imu_correlation_seconds": 0.0,
+      "fixed_parameter_sigma_dph": 33.00739846502242,
+      "local_fit_residual_sigma_dph": 32.70235081908536,
+      "local_k_sampling_sd": [
+        0.39977542418382844,
+        0.5876667548919892,
+        0.26064390991707864
+      ]
+    },
+    {
+      "gps_correlation_seconds": 15.0,
+      "imu_correlation_seconds": 1.0,
+      "fixed_parameter_sigma_dph": 33.20575493582791,
+      "local_fit_residual_sigma_dph": 32.89557860248157,
+      "local_k_sampling_sd": [
+        0.4105945091782834,
+        0.6058644396652288,
+        0.27063569344514876
+      ]
+    },
+    {
+      "gps_correlation_seconds": 15.0,
+      "imu_correlation_seconds": 5.0,
+      "fixed_parameter_sigma_dph": 34.46053508212009,
+      "local_fit_residual_sigma_dph": 34.1171016931746,
+      "local_k_sampling_sd": [
+        0.4770064372996845,
+        0.7163357708154918,
+        0.3298870598620671
+      ]
+    },
+    {
+      "gps_correlation_seconds": 15.0,
+      "imu_correlation_seconds": 15.0,
+      "fixed_parameter_sigma_dph": 36.80181938974874,
+      "local_fit_residual_sigma_dph": 36.382870224396214,
+      "local_k_sampling_sd": [
+        0.6109429257510656,
+        0.9349840041420057,
+        0.4421570441295844
+      ]
+    },
+    {
+      "gps_correlation_seconds": 15.0,
+      "imu_correlation_seconds": 60.0,
+      "fixed_parameter_sigma_dph": 40.34576377864755,
+      "local_fit_residual_sigma_dph": 39.64402321763809,
+      "local_k_sampling_sd": [
+        0.9831503218607973,
+        1.530284400870731,
+        0.7261590478468971
+      ]
+    },
+    {
+      "gps_correlation_seconds": 15.0,
+      "imu_correlation_seconds": 300.0,
+      "fixed_parameter_sigma_dph": 42.241934150302974,
+      "local_fit_residual_sigma_dph": 40.43944499996925,
+      "local_k_sampling_sd": [
+        1.7051671172209162,
+        2.666352513848936,
+        1.2927216956997118
+      ]
+    },
+    {
+      "gps_correlation_seconds": 60.0,
+      "imu_correlation_seconds": 0.0,
+      "fixed_parameter_sigma_dph": 25.647863907782696,
+      "local_fit_residual_sigma_dph": 25.424841725972442,
+      "local_k_sampling_sd": [
+        0.28193439603053533,
+        0.41579191108879265,
+        0.2665126929298096
+      ]
+    },
+    {
+      "gps_correlation_seconds": 60.0,
+      "imu_correlation_seconds": 1.0,
+      "fixed_parameter_sigma_dph": 25.902639449709316,
+      "local_fit_residual_sigma_dph": 25.672902432102614,
+      "local_k_sampling_sd": [
+        0.29707653029328673,
+        0.44113764039407305,
+        0.2762923203463557
+      ]
+    },
+    {
+      "gps_correlation_seconds": 60.0,
+      "imu_correlation_seconds": 5.0,
+      "fixed_parameter_sigma_dph": 27.492781739020288,
+      "local_fit_residual_sigma_dph": 27.220496976334456,
+      "local_k_sampling_sd": [
+        0.3836688091428343,
+        0.5836674010696629,
+        0.334543330497375
+      ]
+    },
+    {
+      "gps_correlation_seconds": 60.0,
+      "imu_correlation_seconds": 15.0,
+      "fixed_parameter_sigma_dph": 30.375952330734652,
+      "local_fit_residual_sigma_dph": 30.011532341109696,
+      "local_k_sampling_sd": [
+        0.5412188766192614,
+        0.837690746351545,
+        0.4456418061506887
+      ]
+    },
+    {
+      "gps_correlation_seconds": 60.0,
+      "imu_correlation_seconds": 60.0,
+      "fixed_parameter_sigma_dph": 34.58475422040478,
+      "local_fit_residual_sigma_dph": 33.891406057831894,
+      "local_k_sampling_sd": [
+        0.9414091402035204,
+        1.4728547267364422,
+        0.7282861597516108
+      ]
+    },
+    {
+      "gps_correlation_seconds": 60.0,
+      "imu_correlation_seconds": 300.0,
+      "fixed_parameter_sigma_dph": 36.779145862321364,
+      "local_fit_residual_sigma_dph": 34.818494217897396,
+      "local_k_sampling_sd": [
+        1.6814462559163863,
+        2.6338121471794707,
+        1.2939177525053813
+      ]
+    },
+    {
+      "gps_correlation_seconds": 300.0,
+      "imu_correlation_seconds": 0.0,
+      "fixed_parameter_sigma_dph": 13.475562617271178,
+      "local_fit_residual_sigma_dph": 13.343312393265935,
+      "local_k_sampling_sd": [
+        0.15868230864128702,
+        0.23778239229180936,
+        0.18346178875905714
+      ]
+    },
+    {
+      "gps_correlation_seconds": 300.0,
+      "imu_correlation_seconds": 1.0,
+      "fixed_parameter_sigma_dph": 13.954375488766646,
+      "local_fit_residual_sigma_dph": 13.810116875747108,
+      "local_k_sampling_sd": [
+        0.18424857193944297,
+        0.2797498356203199,
+        0.19739974347588998
+      ]
+    },
+    {
+      "gps_correlation_seconds": 300.0,
+      "imu_correlation_seconds": 5.0,
+      "fixed_parameter_sigma_dph": 16.722168297480486,
+      "local_fit_residual_sigma_dph": 16.50990201279729,
+      "local_k_sampling_sd": [
+        0.3047865261452784,
+        0.4736298004017059,
+        0.27303562482256727
+      ]
+    },
+    {
+      "gps_correlation_seconds": 300.0,
+      "imu_correlation_seconds": 15.0,
+      "fixed_parameter_sigma_dph": 21.12998686272469,
+      "local_fit_residual_sigma_dph": 20.79214953522141,
+      "local_k_sampling_sd": [
+        0.4884781917543926,
+        0.7651034827264563,
+        0.4015293660882377
+      ]
+    },
+    {
+      "gps_correlation_seconds": 300.0,
+      "imu_correlation_seconds": 60.0,
+      "fixed_parameter_sigma_dph": 26.830637139390866,
+      "local_fit_residual_sigma_dph": 26.081579963843815,
+      "local_k_sampling_sd": [
+        0.9121097744621299,
+        1.432814921344354,
+        0.702160909569682
+      ]
+    },
+    {
+      "gps_correlation_seconds": 300.0,
+      "imu_correlation_seconds": 300.0,
+      "fixed_parameter_sigma_dph": 29.605462928009842,
+      "local_fit_residual_sigma_dph": 27.275427557332424,
+      "local_k_sampling_sd": [
+        1.665219079564566,
+        2.6116324357357943,
+        1.2793953113446015
+      ]
+    }
+  ],
+  "independent_baseline_relative_error": 4.66772607056392e-15,
+  "dense_temporal_check_relative_error": 1.83335558237404e-12,
+  "root_covariance_max_absolute_error": 3.552713678800501e-15,
+  "archive_sha256": "4e1c0e38271f11bbc380e5092cf28f2e00832703cf127237044230e32e35e054",
+  "elapsed_s": 12.113119174959138
+}

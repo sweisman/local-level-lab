@@ -1,0 +1,12 @@
+{
+  "report_sha256": "d149fffdf96b21258f9eeaab19fe42ae3b3b017d111018518dcf1f13ea0d5160",
+  "helper_sha256": "d8140f4ac19494cf1caabbeeae25b0e41d67eb45bb1d884c3ee934fe0c38f8d0",
+  "input_files_checked": 31,
+  "all_inputs_match": true,
+  "case_count": 6,
+  "component_second_moment_identity_max_error_dph2": 6.821210263296962e-13,
+  "decomposition_max_error_dph": 4.4726550208080705e-14,
+  "focused_tests": "3 passed",
+  "additional_flight_attempts": 0,
+  "scientific_source_changed": false
+}

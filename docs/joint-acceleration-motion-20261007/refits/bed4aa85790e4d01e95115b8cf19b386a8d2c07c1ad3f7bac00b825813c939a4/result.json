@@ -1,0 +1,106 @@
+{
+  "task_id": "bed4aa85790e4d01e95115b8cf19b386a8d2c07c1ad3f7bac00b825813c939a4",
+  "truth": "sphere_rotating",
+  "crab_model": "wind",
+  "fixed_supported_minutes": 83,
+  "converged": true,
+  "nested": true,
+  "k": [
+    1.2585853508300333,
+    1.4240708150265502,
+    -0.14639590831187693
+  ],
+  "local_k_sd": [
+    0.7985524239332769,
+    1.2354209469685316,
+    1.308234247028961
+  ],
+  "residual_rms_dph": 8.492116983006659,
+  "free_objective": 21.957737755213703,
+  "fixed_objectives": {
+    "sphere_rotating": 22.0796317455709,
+    "sphere_still": 28.587573167298185,
+    "flat_still": 25.38267589296766
+  },
+  "diagnostic_delta_objectives": {
+    "sphere_rotating": 0.12189399035719717,
+    "sphere_still": 6.629835412084482,
+    "flat_still": 3.4249381377539585
+  },
+  "fits": {
+    "free": {
+      "objective": 21.957737755213703,
+      "success": true,
+      "elapsed_s": 10.679178948979825,
+      "convergence": {
+        "converged": true,
+        "evaluations": 6,
+        "status": 2
+      }
+    },
+    "sphere_rotating": {
+      "objective": 22.0796317455709,
+      "success": true,
+      "elapsed_s": 11.800441763945855,
+      "convergence": {
+        "converged": true,
+        "evaluations": 5,
+        "status": 2
+      }
+    },
+    "sphere_still": {
+      "objective": 28.587573167298185,
+      "success": true,
+      "elapsed_s": 10.763247666996904,
+      "convergence": {
+        "converged": true,
+        "evaluations": 4,
+        "status": 2
+      }
+    },
+    "flat_still": {
+      "objective": 25.38267589296766,
+      "success": true,
+      "elapsed_s": 11.165278577944264,
+      "convergence": {
+        "converged": true,
+        "evaluations": 4,
+        "status": 2
+      }
+    }
+  },
+  "elapsed_this_resume_s": 44.7210115439957,
+  "provenance": {
+    "policy": {
+      "version": "joint-observed-motion-development-1",
+      "window_seconds": 30.0,
+      "error_modes": [
+        "acceleration_n",
+        "acceleration_e",
+        "acceleration_down",
+        "force_x",
+        "force_y",
+        "force_z"
+      ],
+      "error_sigma_bound": 3.0,
+      "error_prior": "Six fully coherent marginal-error patterns with independent unit Gaussian priors",
+      "gyro_weight_source": "Frozen original preliminary weights; no new residual-weight estimate",
+      "forward_bound_sigmas": 3.0,
+      "angular_step_rad": 2e-06,
+      "wind_step_mps": 0.002,
+      "error_step": 0.002,
+      "support": "Fixed observable support including simultaneous three-sigma acceleration-mode norm bound; no state-dependent row selection",
+      "uncertainty_status": "Local joint curvature and six error modes only; unvalidated coverage",
+      "production_enabled": false,
+      "decisions_enabled": false
+    },
+    "policy_hash": "14b92f2119d6a075051277f8e0bbedc75368933abb4df6276c89b6eba7b082eb",
+    "base_motion_policy_hash": "f9d2bfb4d479b02961cf60bf4116530e28b20fd3ee4ab2ef7af7a6accc81f149",
+    "fixed_bins": 83,
+    "original_bins": 99,
+    "production_enabled": false,
+    "decisions_enabled": false
+  },
+  "decisions": "disabled",
+  "bootstrap": 0
+}

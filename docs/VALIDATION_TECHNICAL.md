@@ -1585,6 +1585,368 @@ valid nested objectives and compare free/fixed MAP fits with an independent opti
 power must be reassessed using the harness; no noise floor or significance threshold was tuned to
 restore those historical assertions.
 
+## Observed-route partial envelope — 2026-10-07
+
+The authorized single-control design check in
+`research-next-stage-20261006/observed-pair-envelope-result.json` completed in29.7007s:
+15,210unique registered states, one numerical thread, within the120-second cap. Frozen plan:
+`observed-pair-envelope-plan.json` in that directory. Input is the actual ORD–LAX track,
+elapsed3600–10800s, C2-interpolated assumed motion, IMU turns5/15/30/40/90min, physical
+wind/TAS candidate and dynamic bias/forward uncertainty. The grid crosses65wind/TAS states,
+3model anchors,3forward offsets,13nominal/individual-epoch mappings and2noise levels.
+
+The target `sphere_still_vs_flat_still` passes the untruncated direct-pair design criterion:
+retention0.3650996659622584, threshold0.31224989991991997, margin0.05284976604233843,
+minimuminformation20.484201633970038. Worst-retention state is
+`epoch-1-1/wind--1-0/tas-250.0/forward-0.261799388/sphere_still/noise-3/none`.
+An independent rotation implementation reproduced that retention to1e-10. The global-cut
+target retention0.3621652194879138 also passes. Global rank is1 in all15,210states.
+
+The direct rotation contrast retains0.31461461894776643, narrowly passing; its global-cut
+retention0.3120686256034943 fails. Rotating-globe/disc retains0.14419675836858453 directly
+and0.12864914359234356 after the global cutoff, failing both. Thus this is partial design
+evidence, not full three-model eligibility. Broad wind already fails this control nominally.
+The finite physical-wind assumptions remain provisional; known design axes and assumed
+interpolation do not establish recovered-axis or complete-pipeline performance.
+
+Result/source/input/environment hashes were verified, all state IDs checked unique, and the
+frozen plan is preserved. No noisy replay, fit, bootstrap, power, calibration or validated
+Earth-model decision was performed. Next is separately budgeted matched full-pipeline replay
+of this fixed control before any new calibration. The one-envelope allowance is complete.
+
+## Observed-route replay and specific-force audit — 2026-10-07
+
+The separately authorized six attempts (three truths × wind/wind_tas, shared seed600910,
+wind+bias_mixed) completed with no processing failures and all fits converged. Corpus:
+`observed-pair-replay-20261007/`. Wall335.204s; summed attempt time376.529s. All retained99
+cruise minutes, six mount epochs and adequate headings. Paired fitter inputs match across
+all23saved fields. Rank1 throughout; no watchdog exclusions. Rotation and stationary-globe/
+disc pairs pass eligibility6/6; rotating-globe/disc0/6. No primary acceptance, bootstrap or
+calibrated decision: every pair abstains. Target profileSD0.624–0.644, endpoints one unit apart.
+
+`noise-review.json` reports preliminary residual-based weightingσ38.28–38.36dph against
+planningσ3/6dph. `residual-decomposition.json` independently reconstructs the prescribed
+C2 path, wind triangle, pitch/bank and tray turns with SciPy rotations; it evaluates saved
+free parameters without invoking synthesis, SVD, fitting or bootstrap. Saved observation
+rows and Jacobians are reproduced before attribution. Exact saved-bin half-open membership
+and corrected clock timestamps determine the averages; nominal sample times are recovered
+by rounding to the frozen20Hz grid. This assumes the replay's known clock origin and motion,
+not real-flight truth access. Every input, scientific source and helper is hash-bound.
+
+Let M be the prescribed body angular rate averaged over a retained minute, S the prescribed
+inertial science rate in the IMU frame, Bcal the saved ground calibration, and Mfit the
+pipeline motion correction including fitted crab rate. Decompose the saved final residual as
+
+```text
+motion error  = M − Mfit
+science error = S − fitted science
+sensor error  = (gyro − Bcal − M − S) − fitted residual bias/drift
+final residual = motion error + science error + sensor error
+```
+
+Closure is below1e-7dph (observed near machine precision). The report preserves the complete
+component second-moment matrix; correlated components cannot be added as independent
+variances. Final residualRMS39.23–39.29dph differs from frozen preliminary weightingσ.
+Motion mismatch is39.63dph; sensor/calibration remainder about3.9dph before fitted drift,
+4.54–4.56dph after it; science/orientation mismatch1.08–1.13dph. Configured white-noise
+averaging predicts about3.25dph/minute, with independent uniform quantization adding about
+1.83dph descriptively; saved SEMs are about3.8–4.1dph. Correlated rounding is not guaranteed
+to follow that estimate. These quantities characterize this simulated seed, not hardware.
+
+The dominant issue is treating specific force as gravity. The simulator generates
+`f_b = C_bn (a_n − g_n)`; processing uses `unit(f_b)` as up and subtracts
+`cross(dup_dt, up)`. Changing translational acceleration can therefore create an apparent
+tilt correction without the corresponding body rotation. The assumed specific-force
+direction reproduces saved up within0.0035deg. Its difference from true gravity reaches
+2.52deg, yielding false tilt correction38.12dph RMS. Actual prescribed roll contributes
+8.41dph RMS, insufficient to explain the discrepancy. An independent fixed-orientation,
+changing-acceleration fixture reproduces the false rate, with segment and bin tests (3pass).
+
+Substituting prescribed true up in motion correction, while retaining saved fit parameters,
+lowers residualRMS to about12dph; remaining motion mismatch is11.33dph. This is a diagnostic,
+not a refit, acceptance change or deployable correction. Correct acceleration-aware gravity
+and motion recovery must use observable position/IMU data with position derivative, wind,
+orientation and gap uncertainty. It also needs to address averaging/differentiation of
+remaining motion. No scientific source or frozen record changed, no flight attempts were
+added, and no empirical threshold or power claim follows. This processing issue precedes
+further noise-policy tuning or a calibration campaign.
+
+## Observable acceleration-correction prototype — 2026-10-07
+
+`analysis/tests/acceleration_motion.py` implements a versioned research-only specific-force
+correction, outside the production analysis package. `review_acceleration_motion.py` first
+constructs corrections from saved GPS, measured accelerometer magnitudes, recovered epoch
+maps and forward direction. Only a separate posthoc block accesses prescribed motion/truth
+for scoring. No synthesis, optimizer, bootstrap or decision is invoked. Scientific source
+and the completed six-task replay remain unchanged. Corpus: `acceleration-motion-20261007/`.
+
+Force and horizontal velocity/altitude use common Hann support, with acceleration from
+local derivatives and vertical acceleration from the second altitude derivative. Frequent
+GPS (nominal intervals≤2s) and complete IMU support are required. The iterative frame solve
+uses `unit(f_b−C_bn a_n)` with the supplied forward/heading reference. The correction then
+uses the antisymmetric part of `−dC_bn/dt C_bnᵀ` and integrates it over fully supported
+minute intervals. Derivatives and filters never cross GPS gaps or unsupported mount turns.
+The prototype does not add model-specific Coriolis/curvature accelerations.
+
+Each case evaluates81states crossing15/30/60-second filters, crab offset−15/0/+15deg,
+crab rate−3/0/+3dph and forward offset−3/0/+3reportedσ, plus12nominal30-second axial
+±3marginal-σ acceleration/force controls. GPS speed/bearing/height accuracy and measured
+force SEMs propagate through the linear Hann/derivative kernels under independent-error
+assumptions. These marginal scales are not a temporal covariance, validated interval or
+weight usable in a calibrated model test. Correlation, instrument systematics and a coupled
+physical wind/forward model remain open.
+
+All six saved cases complete all93states. Nominal support85minutes; common support83minutes.
+On the identical85minutes, baseline final residualRMS33.75–33.89dph falls to11.12–11.20dph
+when replacing motion while holding science/bias/crab parameters fixed. Prescribed-motion
+error becomes10.05–10.12dph. On common83minutes, state residuals span9.64–37.28dph;
+no favorable state is selected or promoted. Eleven focused checks pass, including an
+independent combined Euler-rate fixture, no-body-rotation acceleration, real roll, filter
+uncertainty propagation and gaps/out-of-envelope support. Report, inputs, arrays and source
+dependencies are hash-checked in `support-corrected/verification.json`.
+
+The initial preserved run rejected six uncertainty states globally when a few samples
+crossed the existing1.5m/s² acceleration limit. Local support handling now excludes those
+samples and every minute touching their invalid derivative support. The limit is unchanged.
+That initial report and its exact prototype source snapshot are retained; the current report
+is in `support-corrected/`. The next step is a research prediction that couples acceleration-
+aware orientation/motion with wind/forward nuisance parameters and propagates their joint
+uncertainty. These fixed-parameter diagnostics establish no refitted power or calibrated result.
+
+## Joint motion/wind prediction and bounded saved-data refits — 2026-10-07
+
+`analysis/tests/joint_acceleration_motion.py` provides a research problem with the existing
+wind/wind_tas and sensor-bias parameterization. At every nuisance state it recomputes
+high-rate heading, specific-force-corrected gravity/frame, frame derivative/angular rate
+and averaged science prediction. Trial wind and forward parameters therefore affect both
+motion subtraction and science orientation. Physical TAS still enters the inherited
+conditional speed observation. Six added coherent GPS-acceleration/force error modes have
+unit Gaussian priors and±3bounds; forward angle is bounded at±3reportedσ. The broad wind
+coefficients have±15deg bounds, while physical wind/TAS keeps its existing bounds.
+
+Support is fixed from observable force/GPS and a sufficient norm bound for simultaneous
+three-sigma acceleration-mode perturbations. All six cases use83minutes. Sparse trapezoidal
+integration maps high-rate frame/rate into those same intervals. Linear science/bias
+derivatives are exact; nonlinear state derivatives include both motion and science paths.
+Independent directional and physical-column checks pass for both candidates. Sixteen focused
+tests pass across the accumulated acceleration, support and joint-prediction fixtures.
+
+Corpus `joint-acceleration-motion-20261007/`: six saved-reference evaluations first report
+local joint/conditional covariance, Jacobians and nuisance projection. These are explicitly
+data-dependent reference diagnostics, not a design-acceptance envelope. Original preliminary
+gyro weights are frozen. Local scienceSD is about0.81/1.23/1.31–1.33 at those reference
+states; conditioning the six coherent error modes changes it only slightly. This does not
+validate a complete measurement-error covariance or imply those omitted errors are small.
+
+The later "go" covers a bounded existing-recording refit scope: free+three fixed models
+per case, at most one predefined free nesting repair per case,≤30optimizer starts including
+interruptions, max_nfev200, no bootstrap/new recordings. All24calls completed and converged,
+all six objective comparisons nested, no repairs and no all-fit bound flags. All retain the
+same83minutes. Free residualRMS: wind8.4921/8.5078/8.5653dph and wind_tas7.9233/8.0283/8.0013dph
+for rotating globe/still globe/disc truths, respectively. Completed optimizer time sums
+309.864s; wall time was not measured separately. No derived threshold, rejection or winner
+is produced. Raw objective differences remain uncalibrated diagnostics.
+
+`refits/plan.json` freezes policy, helper/scientific/input hashes and exact numerical environment,
+using one numerical thread. Append-only fsynced optimizer starts/completions, atomic fit
+checkpoints and process locking preserve finite scope. Hash/boundary/nesting checks are in
+`refit-assessment.json`; resuming after completion skips all fits and retains24starts/24ends.
+The six-case authorization is complete; unused call reserve is not a new optimization scope.
+No production source, original campaign or eligibility policy changed.
+
+Remaining limitations include original rather than corrected residual weights, incomplete
+correlated/instrument error modes, bin-conditioned GPS/TAS likelihood, filter-bandwidth
+mismatch and model-dependent acceleration systematics. The next check is matched gyro,
+GPS and force filtering and covariance on saved observations before more refits or fresh
+calibration. Full production promotion remains premature.
+
+### Saved-data matched output filtering and covariance, 2026-10-07
+
+`analysis/tests/matched_measurement_motion.py` and its readonly review reconstruct the
+joint motion at saved free-fit parameters, calibrate and epoch-map raw gyro samples to
+disjoint one-second means, and apply identical additional30sHann output filters to gyro
+and complete prediction. The joint GPS/force inputs already use30sHann filtering. A
+sparse trapezoidal minute operator follows; gaps/turns sever support. This tests bandwidth
+sensitivity, not exact equivalence of filtering a nonlinear frame and filtering angular
+velocity. Slow science/bias components are lifted linearly within uninterrupted mounting
+intervals. No optimizer, synthesis or truth-dependent state selection is involved.
+
+All six checks complete on the same79of83minutes. The regridded unfiltered→matched RMS
+is8.2591→7.4033,8.2679→7.4382,8.3178→7.4794dph for wind and7.8545→7.0779,
+7.9624→7.2075,7.9290→7.1609dph for wind_tas, in rotating/still/disc truth order.
+Legacy residuals on those same minutes are7.8223–8.2810dph. Independent joint-motion
+reconstruction closes exactly at saved precision; slow-lift approximation changes minute
+prediction0.0255–0.0399dph; gyro regridding changes0.3366–0.3409dph. Additional filtering
+reduces variation about9–10%, rather than resolving the remaining gap.
+
+Within-second empirical gyro mean3×3covariances are propagated through `L=A H`,
+then back to each bin's sensor frame. `L S Lᵀ` retains shared-sample and cross-axis
+blocks; each archived237×237matrix is symmetric positive definite. MarginalRMSsigma
+3.5290–3.5307dph assumes independent disjoint seconds and includes within-second motion.
+It is not characterized device white noise or a complete likelihood. Reference-frame
+fitted residuals have adjacent-minute correlations up to−0.6055, over66contiguous pairs;
+nuisance fitting itself can induce correlations. No significance or source attribution
+follows. Shared GPS/force errors, calibration/mount errors and fit-induced covariance
+remain outside this propagation.
+
+Corpus `matched-measurement-motion-20261007/` contains immutable review, six arrays and
+independent verification. Source/input/checkpoint/environment hashes bind the comparison;
+verification checks residual arithmetic/common support/prediction closure/PSD and induced
+adjacent-minute correlations. Five new tests plus16earlier focused checks pass. Production
+source, decisions and eligibility remain unchanged. Next construct a continuous filtered
+measurement equation and propagate joint GPS/force/gyro errors, including nuisance fitting,
+before any further separately scoped refits or empirical calibration.
+
+### Continuous sampled equation and shared-input propagation, 2026-10-07
+
+`analysis/tests/continuous_measurement_motion.py` replaces the slow-term lift with science
+terms and sensor-frame gravity-group offsets/dynamic bias splines evaluated at every GPS
+timestamp. Both input/output Hann durations remain30s; filtered longitude derivatives
+supply disc transport. Fixed support79minutes. This discrete equation does not establish
+exact commutation of nonlinear attitude reconstruction and measurement filtering.
+
+Point-local numerical derivatives are chained through sparse filter/gradient operators,
+including `δomega=vee(-D(δC) Cᵀ - D(C) δCᵀ)`. Eleven input channels cover GPS velocity,
+height/latitude/longitude and force/gyro axes. Independent-second covariance preserves
+speed/bearing-derived north/east covariance, provisional position marginals and empirical
+6×6force/gyro covariance. IMU matches are nearest, unique, same-second/epoch, within
+0.1sampleperiod; marginals scale1/n_stream, cross blocks matched_count/(n_force*n_gyro).
+The strict equal-timestamp preflight failed before evaluation; its plan/status are preserved.
+
+Fixed-parameter propagated sigma11.2533–11.2722dph exceeds residualRMS7.0763–7.4782dph.
+Variance contributions: GPS114.15–114.57dph², gyro12.4535–12.4659dph², force~0.0320dph²,
+force/gyro cross~0.0010–0.0012dph². GPS dominates this conditional prediction, not a validated
+estimate of physical uncertainty. Accuracy fields are provisional sigma scales; equal
+independent horizontal marginals, missing GPS correlations and independent seconds are
+assumptions. Empirical IMU covariance includes motion. Mount/forward/calibration and
+instrument/acceleration/filter systematic uncertainty remain omitted.
+
+The physical wind auxiliary uses the same filtered GPS vector. Its measurement Jacobian
+is propagated jointly with gyro residuals. Local penalized Gauss–Newton response at saved
+states includes shared-input covariance and deterministic penalties with original weights;
+residualsigma11.1343–11.1603dph, science samplingSD~0.168/0.252/0.097. These are not posterior
+intervals or identifiability/power evidence; no new optimum was fitted.
+
+Corpus `continuous-measurement-motion-20261007/` freezes six saved tasks, source/input/
+checkpoint/environment hashes. Six evaluations complete in93.203summed evaluation-seconds,
+one numerical thread,0optimizer/flights/bootstrap. Checkpoints/lock support interruptions;
+completed resume skips all cases. Independent full-equation direction checks≤1.523e-9
+relative error; direct least-squares response≤1.687e-14. Covariance component closure/PSD
+and29focused tests pass. Production source/eligibility/decisions unchanged. Next test
+time-correlated GPS/IMU error sensitivity before choosing weights or scoping matched refits.
+
+### Temporal shared-input covariance sensitivity, 2026-10-07
+
+`analysis/tests/temporal_measurement_covariance.py` standardizes each input block, takes
+the principal symmetric dimensionless correlation root, and scales back to marginal units.
+IMU factors are formed in physical sensor axes and mapped through recovered mount matrices;
+shared GPS and force/gyro/auxiliary paths stay intact. Exponential elapsed-time covariance
+is propagated by forward/backward recurrences, with no dense full timestamp matrix, lag
+truncation, missing-data interpolation or added filter/derivative support. Latent covariance
+may persist through gaps/turns. Different GPS/IMU blocks remain independent as assumed earlier.
+
+Six saved states, fixed79minutes and marginal scales, durations0/1/5/15/60/300s independently
+for GPS/IMU give36scenarios each,216total. Fixed-state sigma11.2533–42.3085dph; local
+old-weight deterministic-penalty response residualsigma11.1343–40.6480dph. The largest
+residual scale uses GPS15s/IMU300s in all cases. Science samplingSD across the full grid
+spans0.1582–1.7052(rotation),0.2373–2.6670(globe transport),0.0962–1.3006(disc transport).
+These conditional saved-state sensitivities are not posterior intervals, new optima,
+identifiability gates, calibrated significance or characterized device correlations.
+The grid does not bound every credible error process or resolve unknown marginal scales,
+GPS channel correlations and mount/calibration/systematic uncertainty.
+
+Corpus `temporal-measurement-covariance-20261007/` freezes source/input/checkpoint/parent/
+environment hashes. Baseline covariance recovery≤5.240e-15relative; independent dense
+240-timestamp kernel checks≤3.444e-12. Component PSD and all216response summaries pass.
+Five new tests,34focused total. Six evaluations67.803summedseconds, one numerical thread;
+no optimizer/flights/bootstrap. Resume skips completed cases; no active worker. Production
+source/eligibility/decisions unchanged. Next verify a covariance-aware research objective
+including shared GPS auxiliary covariance before separately scoping refits/calibration.
+
+### Frozen full-covariance objective and explicit wind discrepancy, 2026-10-07
+
+`analysis/tests/covariance_measurement_objective.py` supplies joint residual/Jacobian,
+unit-standardized Cholesky whitening, deterministic penalties and separate quadratic,
+log determinant, Gaussian deviance/NLL. Residual signs `[+gyro measured-minus-predicted,
++auxiliary]` match propagated covariance; Jacobian `[-J;T]`. Matrices stay frozen across
+coefficient changes. Relative correlation eigenvalue cutoff1e-12 rejects singular/unstable
+matrices without clipping/jitter. All216supplied matrices pass (minimum margin0.0019545).
+Local sampling response and penalized curvature remain separate; no optimizer is invoked.
+
+Six saved states,36matrices each, fixed79minutes: full-matrix quadratic agreement≤4.424e-15,
+whitened full-equation direction agreement≤5.806e-10. Independent direct least-squares
+sampling covariance checks≤8.786e-15. Evaluation54.164summedseconds. Physical-wind
+measurement-only quadratics27,717.55–598,005.30 reveal that GPS input propagation alone
+omits the existing conditional speed-constraint discrepancy allowance.
+
+`wind_constraint_discrepancy.py` therefore versions that existing2m/s allowance as independent
+auxiliary model covariance, normalized variance1, added to full measurement covariance.
+Shared gyro/GPS/auxiliary cross blocks are unchanged. The second216evaluation comparison
+gives physical-wind quadratics166.921–335.859 at the same old states; broad-wind controls
+unchanged. These are uncalibrated values with different row dimensions across candidates;
+no evidence ranking, model winner or covariance selection follows. Direct response
+agreement≤2.666e-14; evaluation7.093summedseconds. Forty-four focused tests pass.
+
+Corpus `covariance-measurement-objective-20261007/` and its `wind-discrepancy/` child freeze
+source/input/parent/checkpoint/environment hashes, preserve all cases and verify objectives,
+response arithmetic/PSD and controls. Resumes skip completed cases; no active worker.
+Covariances remain free-state-linearized, not unconditional design quantities; missing
+correlations, reference/calibration/systematic uncertainty and physical discrepancy
+coverage remain open. Production source/eligibility/decisions unchanged.
+
+Separately authorized and launched on October7:6saved cases, correlation pairs(0,0),(15,15),(300,300),(15,300)s,
+free+three fixed-model fits for each,96primaryfits and at most24nesting repairs,120starts
+including interruptions; max_nfev200. Retain explicit model discrepancy and freeze each
+covariance for model comparisons. No bootstrap/newflight/calibrated decisions. This
+comparison has its own frozen plan in `covariance-refits-20261007/`. Worker
+`analysis/tests/refit_covariance_measurement.py` preserves completed failures and
+nonconvergence, counts interrupted starts and never repeats an interrupted single repair.
+Exact linear science/bias Jacobian columns agree with the complete equation's finite
+derivatives for both wind candidates. Correlated GLS agrees with an independent closed-form
+ridge solution, including fixed science coefficients; truncated journal recovery preserves
+the original bytes and rejects malformed complete records. Five new focused tests pass,
+15with existing objective/discrepancy controls; two independent projection tests bring
+the focused total to17. Execution is complete:96primarystarts/completions,0repair/
+interruption/failure, all96converged and all24comparisons nested. No fit is within1%
+of a finite bound. Fixed support79minutes throughout; no active worker/newflights/bootstrap.
+Optimizer1732.595s, primary launch-to-completion about30.5minutes, one numerical thread.
+Six analysis cases share three recordings (one per injected truth) under two nuisance
+candidates; correlation assumptions do not supply independent observations.
+
+Free residualRMS ranges6.8535–8.1180dph for broad wind and4.4711–9.8778dph for physical
+wind/TAS. Conditional sampling science SD ranges0.1625–1.5032(rotation),0.2480–2.3205
+(globe transport),0.4434–1.0958(disc transport), pooling sensitivity assumptions/candidates.
+These are conditional linearized sampling diagnostics, distinct from penalized curvature
+and unvalidated as intervals. Covariance stays frozen at the previous joint free states.
+
+The injected model has the lowest fixed penalized objective in every comparison. Raw
+differences decline sharply with persistence: rotating-truth rotation/still differences
+are about430at independent seconds versus4.3–4.6at long/asymmetric persistence; rotation/
+disc about67–68versus1.5–2.0. These are repeated checks of the same recordings, not an
+accuracy/power/false-rejection experiment. The ordering of the two incorrect globe
+alternatives on disc truth can flip, emphasizing partial rather than invented full evidence.
+
+Independent data-only pair projection uses the full whitened residual Jacobian at
+each selected free fit, normalized nuisance columns and least-squares cutoff1e-10;
+no penalty rows or estimability/decision threshold. Across24comparisons:
+
+| Pair | Retained fraction | Local information |
+|---|---:|---:|
+| Rotating/still globe | 0.23540–0.52392 | 2.84234–270.83645 |
+| Rotating globe/disc | 0.04014–0.14304 | 0.40356–33.97334 |
+| Still globe/disc | 0.31746–0.64274 | 1.19915–117.14354 |
+
+This is a fitted-state diagnostic, not the anchor/envelope design acceptance gate.
+Rotation/disc remains the weakest geometry direction. Independent checks reproduce
+all residuals exactly, direct full-matrix penalized objectives≤6.270e-16relative and
+saved full-equation Jacobian directions≤2.358e-10relative. All covariance/support,
+fixed coefficients, finite bounds, evaluation limits and journal/checkpoint identities
+are verified in `covariance-refits-20261007/verification.json` by
+`analysis/tests/assess_covariance_refits.py`. A completed-scope resume skips all24cases
+and starts no optimizer. Hardware covariance persistence and systematic/reference/
+calibration coverage remain open; no threshold selection, rejection, winner or promoted
+eligibility follows. Further campaigns need a separately defined scope.
+
 ## Publication sequence
 
 1. Characterize two physical units across axes, signs, slow rates, temperature, orientation and

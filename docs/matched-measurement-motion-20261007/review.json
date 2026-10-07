@@ -1,0 +1,335 @@
+{
+  "complete": true,
+  "cases": [
+    {
+      "task_id": "bed4aa85790e4d01e95115b8cf19b386a8d2c07c1ad3f7bac00b825813c939a4",
+      "truth": "sphere_rotating",
+      "crab_model": "wind",
+      "original_joint_minutes": 83,
+      "common_minutes": 79,
+      "legacy_residual_dph": 8.236419097268637,
+      "regridded_residual_dph": 8.25911154856815,
+      "matched_residual_dph": 7.403275957458828,
+      "slow_prediction_lift_change_dph": 0.03922336009720648,
+      "gyro_regridding_change_dph": 0.34085104580762915,
+      "motion_reconstruction_max_error_dph": 0.0,
+      "induced_covariance": {
+        "minimum_eigenvalue": 10.06622907526206,
+        "maximum_absolute_off_diagonal_correlation": 0.0966658098383207,
+        "rms_marginal_sigma": 3.528956859866314
+      },
+      "residual_correlation": {
+        "reference_axis_correlation": [
+          [
+            1.0,
+            -0.21630644747142916,
+            0.04467559687620482
+          ],
+          [
+            -0.21630644747142913,
+            1.0,
+            0.08013458703658465
+          ],
+          [
+            0.044675596876204815,
+            0.08013458703658466,
+            0.9999999999999999
+          ]
+        ],
+        "adjacent_minute_pairs": 66,
+        "adjacent_minute_axis_correlation": [
+          0.11040265644081791,
+          -0.5347880857119245,
+          -0.4194135966740548
+        ],
+        "interpretation": "Descriptive fitted-residual correlations; no independent-flight or significance claim"
+      },
+      "archive_sha256": "f5906b478c2a8f0f56b48dd88f8c0eabdee1beebd2ec1df4563b5e170b591d99"
+    },
+    {
+      "task_id": "dc5bb68180f11fc6ba59dedc0cd23b05e1aaf13870bff06c8549bb73506b03a2",
+      "truth": "sphere_rotating",
+      "crab_model": "wind_tas",
+      "original_joint_minutes": 83,
+      "common_minutes": 79,
+      "legacy_residual_dph": 7.822253855006041,
+      "regridded_residual_dph": 7.854526304678921,
+      "matched_residual_dph": 7.077944614897894,
+      "slow_prediction_lift_change_dph": 0.03988093948644979,
+      "gyro_regridding_change_dph": 0.34085104580762915,
+      "motion_reconstruction_max_error_dph": 0.0,
+      "induced_covariance": {
+        "minimum_eigenvalue": 10.06622907526206,
+        "maximum_absolute_off_diagonal_correlation": 0.0966658098383207,
+        "rms_marginal_sigma": 3.528956859866314
+      },
+      "residual_correlation": {
+        "reference_axis_correlation": [
+          [
+            1.0000000000000002,
+            -0.3428148534368489,
+            0.09823157877167553
+          ],
+          [
+            -0.34281485343684887,
+            0.9999999999999999,
+            -0.02914348864522053
+          ],
+          [
+            0.09823157877167553,
+            -0.029143488645220525,
+            0.9999999999999998
+          ]
+        ],
+        "adjacent_minute_pairs": 66,
+        "adjacent_minute_axis_correlation": [
+          0.10006744107572468,
+          -0.5987856791160271,
+          -0.32502307384603984
+        ],
+        "interpretation": "Descriptive fitted-residual correlations; no independent-flight or significance claim"
+      },
+      "archive_sha256": "946e7cd692ceabd32a4972c984d60556640a6bc488f5e6adae3a4125842d685e"
+    },
+    {
+      "task_id": "f94593ee49b996b4de1ef7ae7fcebd7299384ce89bff672d82f4debc755a2425",
+      "truth": "sphere_still",
+      "crab_model": "wind",
+      "original_joint_minutes": 83,
+      "common_minutes": 79,
+      "legacy_residual_dph": 8.240698831238646,
+      "regridded_residual_dph": 8.267908762723728,
+      "matched_residual_dph": 7.438200584457581,
+      "slow_prediction_lift_change_dph": 0.029462338540656014,
+      "gyro_regridding_change_dph": 0.33656989891654254,
+      "motion_reconstruction_max_error_dph": 0.0,
+      "induced_covariance": {
+        "minimum_eigenvalue": 10.091349446532984,
+        "maximum_absolute_off_diagonal_correlation": 0.0813095976984831,
+        "rms_marginal_sigma": 3.5301102775517736
+      },
+      "residual_correlation": {
+        "reference_axis_correlation": [
+          [
+            1.0000000000000002,
+            -0.25289428814573645,
+            0.06847318500993574
+          ],
+          [
+            -0.25289428814573645,
+            0.9999999999999998,
+            0.10188028245124803
+          ],
+          [
+            0.06847318500993574,
+            0.10188028245124803,
+            0.9999999999999999
+          ]
+        ],
+        "adjacent_minute_pairs": 66,
+        "adjacent_minute_axis_correlation": [
+          0.08629383439572988,
+          -0.5354805797994947,
+          -0.43444035990531293
+        ],
+        "interpretation": "Descriptive fitted-residual correlations; no independent-flight or significance claim"
+      },
+      "archive_sha256": "adbb8808eaa7418c4fed45ae969af8a5018b608fabadce2b32ade445b0c30b46"
+    },
+    {
+      "task_id": "119d674e186dfaee3ec65d36ca6d02568cea20e8bb58bc8d059d72fab7576ab0",
+      "truth": "sphere_still",
+      "crab_model": "wind_tas",
+      "original_joint_minutes": 83,
+      "common_minutes": 79,
+      "legacy_residual_dph": 7.926517096872077,
+      "regridded_residual_dph": 7.962422184500621,
+      "matched_residual_dph": 7.2074541233119875,
+      "slow_prediction_lift_change_dph": 0.02929483125323278,
+      "gyro_regridding_change_dph": 0.33656989891654254,
+      "motion_reconstruction_max_error_dph": 0.0,
+      "induced_covariance": {
+        "minimum_eigenvalue": 10.091349446532984,
+        "maximum_absolute_off_diagonal_correlation": 0.0813095976984831,
+        "rms_marginal_sigma": 3.5301102775517736
+      },
+      "residual_correlation": {
+        "reference_axis_correlation": [
+          [
+            0.9999999999999999,
+            -0.38767812753643294,
+            0.11994129559395235
+          ],
+          [
+            -0.38767812753643294,
+            1.0000000000000002,
+            -0.012382862166129972
+          ],
+          [
+            0.11994129559395236,
+            -0.012382862166129972,
+            1.0000000000000002
+          ]
+        ],
+        "adjacent_minute_pairs": 66,
+        "adjacent_minute_axis_correlation": [
+          0.07321060274723984,
+          -0.6034065785793685,
+          -0.3357732817859118
+        ],
+        "interpretation": "Descriptive fitted-residual correlations; no independent-flight or significance claim"
+      },
+      "archive_sha256": "e554016c5e9cffde2f0b7fdc7a1c66ff60b2f2d4ab07eb928e325d372c44d4e7"
+    },
+    {
+      "task_id": "b545f5f3aec5efaaa0a8cc1da285bcce8b50f66952e8b0977f176b944c0b145b",
+      "truth": "flat_still",
+      "crab_model": "wind",
+      "original_joint_minutes": 83,
+      "common_minutes": 79,
+      "legacy_residual_dph": 8.280981114692219,
+      "regridded_residual_dph": 8.317808247819755,
+      "matched_residual_dph": 7.47938855484863,
+      "slow_prediction_lift_change_dph": 0.02553243103908861,
+      "gyro_regridding_change_dph": 0.33835155314094123,
+      "motion_reconstruction_max_error_dph": 0.0,
+      "induced_covariance": {
+        "minimum_eigenvalue": 10.11049477725034,
+        "maximum_absolute_off_diagonal_correlation": 0.08580059789509996,
+        "rms_marginal_sigma": 3.5307120963633674
+      },
+      "residual_correlation": {
+        "reference_axis_correlation": [
+          [
+            0.9999999999999999,
+            -0.23516859969070056,
+            0.04640161739756465
+          ],
+          [
+            -0.23516859969070059,
+            0.9999999999999998,
+            0.1127027050225753
+          ],
+          [
+            0.046401617397564654,
+            0.11270270502257529,
+            1.0000000000000002
+          ]
+        ],
+        "adjacent_minute_pairs": 66,
+        "adjacent_minute_axis_correlation": [
+          0.08073556242118285,
+          -0.5462847089210313,
+          -0.42412135807395673
+        ],
+        "interpretation": "Descriptive fitted-residual correlations; no independent-flight or significance claim"
+      },
+      "archive_sha256": "33eebd3b86d3a7e2c6f2034c878c7cbbf5eb5e86deec793cf6705f67439279dd"
+    },
+    {
+      "task_id": "e71b3a92ed6b8216f7b4767ad03d33773fec77bc3d9f8efb6ce01536ffb1b84f",
+      "truth": "flat_still",
+      "crab_model": "wind_tas",
+      "original_joint_minutes": 83,
+      "common_minutes": 79,
+      "legacy_residual_dph": 7.883140863265902,
+      "regridded_residual_dph": 7.929017042478843,
+      "matched_residual_dph": 7.160898949257097,
+      "slow_prediction_lift_change_dph": 0.026628476572648857,
+      "gyro_regridding_change_dph": 0.33835155314094123,
+      "motion_reconstruction_max_error_dph": 0.0,
+      "induced_covariance": {
+        "minimum_eigenvalue": 10.11049477725034,
+        "maximum_absolute_off_diagonal_correlation": 0.08580059789509996,
+        "rms_marginal_sigma": 3.5307120963633674
+      },
+      "residual_correlation": {
+        "reference_axis_correlation": [
+          [
+            1.0000000000000002,
+            -0.3609473642030701,
+            0.08747760248107112
+          ],
+          [
+            -0.3609473642030701,
+            1.0,
+            0.007577985309729775
+          ],
+          [
+            0.08747760248107112,
+            0.007577985309729775,
+            1.0000000000000002
+          ]
+        ],
+        "adjacent_minute_pairs": 66,
+        "adjacent_minute_axis_correlation": [
+          0.07392919433297097,
+          -0.6055004132657467,
+          -0.32731775488336184
+        ],
+        "interpretation": "Descriptive fitted-residual correlations; no independent-flight or significance claim"
+      },
+      "archive_sha256": "049526a887ae9f2502e4c63717ebb7d1418302df02585aa174354ba0e707a414"
+    }
+  ],
+  "policy": {
+    "version": "matched-output-measurement-diagnostic-1",
+    "window_seconds": 30.0,
+    "scope": "Six saved recordings and their frozen free fits; no optimization or synthesis",
+    "prediction": "Reconstructed joint motion plus within-epoch linear lift of saved science/bias minute predictions",
+    "filter": "Identical additional centered Hann on observation and complete prediction before minute integration",
+    "covariance": "Within-second empirical gyro mean covariance propagated assuming independent disjoint seconds",
+    "production_enabled": false,
+    "decisions_enabled": false
+  },
+  "input_sha256": {
+    "docs/joint-acceleration-motion-20261007/refits/plan.json": "83f0dad3d894f8a18da8744d3c5432bfe4b59a848b8e95cb36aceae6a1289179",
+    "docs/joint-acceleration-motion-20261007/refits/bed4aa85790e4d01e95115b8cf19b386a8d2c07c1ad3f7bac00b825813c939a4/free.npz": "cb12d7a4e24167ab2946e5654ddc3fc99d676c608c30c03414dd4c3a422018ff",
+    "docs/joint-acceleration-motion-20261007/refits/bed4aa85790e4d01e95115b8cf19b386a8d2c07c1ad3f7bac00b825813c939a4/free.json": "13b8fba4082faeb785d6e21c4bb1799f89a512826ae07d0029b1d924fb4bfbcb",
+    "docs/observed-pair-replay-20261007/run/diagnostics/bed4aa85790e4d01e95115b8cf19b386a8d2c07c1ad3f7bac00b825813c939a4/session.zip": "b00bd77b2fde79f66638e15fc55a6e95abc592fbfabee2188f64cd7a22590139",
+    "docs/observed-pair-replay-20261007/run/diagnostics/bed4aa85790e4d01e95115b8cf19b386a8d2c07c1ad3f7bac00b825813c939a4/analysis.json": "2e9f6e2565525ae1179816fdc5d6eff7a0769e21d4324ba18cee1ed879d8bb16",
+    "docs/observed-pair-replay-20261007/run/diagnostics/bed4aa85790e4d01e95115b8cf19b386a8d2c07c1ad3f7bac00b825813c939a4/fit-input.npz": "9ffbb2259113c8eeded37b1373143d88691582cdffdafcb3ae1de9cb90d1f058",
+    "docs/joint-acceleration-motion-20261007/refits/dc5bb68180f11fc6ba59dedc0cd23b05e1aaf13870bff06c8549bb73506b03a2/free.npz": "eaa00889eae7287d7217404c7e16bf1d42e43e9be16ebbc0c62fd26b3b68c97b",
+    "docs/joint-acceleration-motion-20261007/refits/dc5bb68180f11fc6ba59dedc0cd23b05e1aaf13870bff06c8549bb73506b03a2/free.json": "ae762add6eb7aad6285f4b5ba8017731d055ebc6e8cdb3605bc1f0ecaf9aa5c5",
+    "docs/observed-pair-replay-20261007/run/diagnostics/dc5bb68180f11fc6ba59dedc0cd23b05e1aaf13870bff06c8549bb73506b03a2/session.zip": "b00bd77b2fde79f66638e15fc55a6e95abc592fbfabee2188f64cd7a22590139",
+    "docs/observed-pair-replay-20261007/run/diagnostics/dc5bb68180f11fc6ba59dedc0cd23b05e1aaf13870bff06c8549bb73506b03a2/analysis.json": "c39c67eb0cedf43d33c18ef513123f7aeb8727d9121090d613abcb79f723e6db",
+    "docs/observed-pair-replay-20261007/run/diagnostics/dc5bb68180f11fc6ba59dedc0cd23b05e1aaf13870bff06c8549bb73506b03a2/fit-input.npz": "9ffbb2259113c8eeded37b1373143d88691582cdffdafcb3ae1de9cb90d1f058",
+    "docs/joint-acceleration-motion-20261007/refits/f94593ee49b996b4de1ef7ae7fcebd7299384ce89bff672d82f4debc755a2425/free.npz": "e216541ce684e7025ada3cce9f786ac1a918f8dfd739718dd4134f3c34c5ce53",
+    "docs/joint-acceleration-motion-20261007/refits/f94593ee49b996b4de1ef7ae7fcebd7299384ce89bff672d82f4debc755a2425/free.json": "d5f704648d4c651112c4f6ef54f5c16563c58976c880945e01ad57ed27ce3f56",
+    "docs/observed-pair-replay-20261007/run/diagnostics/f94593ee49b996b4de1ef7ae7fcebd7299384ce89bff672d82f4debc755a2425/session.zip": "4ea26c350714b963ec845264fcedd8f0ca57564b73c99d5d2a7193c32e24e1b3",
+    "docs/observed-pair-replay-20261007/run/diagnostics/f94593ee49b996b4de1ef7ae7fcebd7299384ce89bff672d82f4debc755a2425/analysis.json": "df0d56e1c17a4ce37ffd9b7d9ea766022be73302e70c53449073f64ea342e3c7",
+    "docs/observed-pair-replay-20261007/run/diagnostics/f94593ee49b996b4de1ef7ae7fcebd7299384ce89bff672d82f4debc755a2425/fit-input.npz": "450d990d8f85bea674be83a2e524268c63021a2b99604cf34226baadfaeb6546",
+    "docs/joint-acceleration-motion-20261007/refits/119d674e186dfaee3ec65d36ca6d02568cea20e8bb58bc8d059d72fab7576ab0/free.npz": "d316a69a11fb9902e52abf428ddc73df942ba0f960a92ac17835ebb6a78716e1",
+    "docs/joint-acceleration-motion-20261007/refits/119d674e186dfaee3ec65d36ca6d02568cea20e8bb58bc8d059d72fab7576ab0/free.json": "ea2215342b0e2a1bce6cf95f1f352ebd2338fb5617aa6e093025d9c1d71b05f4",
+    "docs/observed-pair-replay-20261007/run/diagnostics/119d674e186dfaee3ec65d36ca6d02568cea20e8bb58bc8d059d72fab7576ab0/session.zip": "ee45e3efcb25b7eb87155f97dab9762b61dd716fcc54da979e72f61cf6058d9c",
+    "docs/observed-pair-replay-20261007/run/diagnostics/119d674e186dfaee3ec65d36ca6d02568cea20e8bb58bc8d059d72fab7576ab0/analysis.json": "3b26bc33dd56298eb09244587d3e2c68955283e4aac71150b49917d09f305ce2",
+    "docs/observed-pair-replay-20261007/run/diagnostics/119d674e186dfaee3ec65d36ca6d02568cea20e8bb58bc8d059d72fab7576ab0/fit-input.npz": "450d990d8f85bea674be83a2e524268c63021a2b99604cf34226baadfaeb6546",
+    "docs/joint-acceleration-motion-20261007/refits/b545f5f3aec5efaaa0a8cc1da285bcce8b50f66952e8b0977f176b944c0b145b/free.npz": "40bec156f254366e7b3c8204f349ed2b2a9bc376c08c66e9d08be612f418e34e",
+    "docs/joint-acceleration-motion-20261007/refits/b545f5f3aec5efaaa0a8cc1da285bcce8b50f66952e8b0977f176b944c0b145b/free.json": "b0731ee923ce68d907020d20a5099afa686ef6830a6f03eeb517381859c5d346",
+    "docs/observed-pair-replay-20261007/run/diagnostics/b545f5f3aec5efaaa0a8cc1da285bcce8b50f66952e8b0977f176b944c0b145b/session.zip": "643cbc991b785d6f102fe5703313bf54a861df0eb3714820cc376af8b2b21bdf",
+    "docs/observed-pair-replay-20261007/run/diagnostics/b545f5f3aec5efaaa0a8cc1da285bcce8b50f66952e8b0977f176b944c0b145b/analysis.json": "2e32772375497360f3a1500230ab78249f8efb8e39810ba2122c8f1e1c4a8401",
+    "docs/observed-pair-replay-20261007/run/diagnostics/b545f5f3aec5efaaa0a8cc1da285bcce8b50f66952e8b0977f176b944c0b145b/fit-input.npz": "192e72d2e2fb41dbf9b63a45640c2cce6e186bfde11cb958cdc3394ef6745faf",
+    "docs/joint-acceleration-motion-20261007/refits/e71b3a92ed6b8216f7b4767ad03d33773fec77bc3d9f8efb6ce01536ffb1b84f/free.npz": "254b9d91a25d86c052703af130f522b786e10308629eedc4c836c049c7899060",
+    "docs/joint-acceleration-motion-20261007/refits/e71b3a92ed6b8216f7b4767ad03d33773fec77bc3d9f8efb6ce01536ffb1b84f/free.json": "09f5395c384bef44a84c473d2df329b1732560706a84f78b8b760756b519db93",
+    "docs/observed-pair-replay-20261007/run/diagnostics/e71b3a92ed6b8216f7b4767ad03d33773fec77bc3d9f8efb6ce01536ffb1b84f/session.zip": "145e1c16555084f8fa4bd754c5fe8cda606007134d353aed7b0790be01867b37",
+    "docs/observed-pair-replay-20261007/run/diagnostics/e71b3a92ed6b8216f7b4767ad03d33773fec77bc3d9f8efb6ce01536ffb1b84f/analysis.json": "372813d70018209db9a8be1eb18ae38d07330df981479eab2835deca7b9bb896",
+    "docs/observed-pair-replay-20261007/run/diagnostics/e71b3a92ed6b8216f7b4767ad03d33773fec77bc3d9f8efb6ce01536ffb1b84f/fit-input.npz": "192e72d2e2fb41dbf9b63a45640c2cce6e186bfde11cb958cdc3394ef6745faf"
+  },
+  "helper_sha256": {
+    "analysis/tests/review_matched_measurement_motion.py": "26f1834b32af5e6ae8a704437eeaf48e9006159a3a0ee53c8597a6befb18b554",
+    "analysis/tests/matched_measurement_motion.py": "843947a0e82b4b69aae0fcac1e40a45cb6e8c9c7cc880ff126f848578c2c4306"
+  },
+  "numerical_environment_hash": "20ef393862e7723ba90e825b625826081cde501e4d9c944f2dbff29526ebdd69",
+  "scientific_implementation_hash": "1bf8f7c0120fa84504d98c377db61807cacf9f2db6fdcec20f814b9f4a4d8500",
+  "optimizer_calls": 0,
+  "additional_flight_attempts": 0,
+  "bootstrap": 0,
+  "production_enabled": false,
+  "decisions_enabled": false,
+  "limitations": [
+    "Additional output filtering is applied to both sides; smoothing gyro alone against an unchanged prediction would be inconsistent.",
+    "Slow science/bias terms are interpolated within epochs; this is not a refit-ready continuous observation equation.",
+    "Within-second gyro variation includes motion. Propagated covariance assumes independent seconds and omits GPS/force/mount/calibration error and shared-error correlations.",
+    "Residual correlations are descriptive and conditional on saved fitted parameters; no calibrated significance or power claim."
+  ]
+}

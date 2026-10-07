@@ -149,6 +149,62 @@ a model difference that can look like a nearly constant sensor bias. More freque
 help in a preliminary calculation but still do not meet the gate. The next design comparison
 must account for route direction and turn timing together while keeping realistic sensor drift.
 
+A further check covered 453 overlapping two-, three- and four-hour windows across the saved
+routes, using several fixed IMU-turn patterns. Seventeen window-and-pattern combinations
+passed the preliminary motion, duration and heading checks, but none preserved enough model
+separation even under nominal wind assumptions. Longer recordings alone have not solved the
+problem in these tests. Other windows and safe turn timings remain possible; the
+[longer-route review](docs/research-next-stage-20261006/EXTENDED_ROUTE_REVIEW.md) records the limits.
+
+A subsequent search tested 88 safe turn schedules on the promising recorded windows.
+Changing timing helped some individual comparisons under the more restrictive description
+of wind, particularly on Chicago–Los Angeles. Small uncertainty checks broke some of those
+apparent passes; the others remain planning clues that need fuller checks. None passed across
+both wind descriptions. The [turn-timing review](docs/research-next-stage-20261006/TURN_TIMING_REVIEW.md)
+explains what these partial results mean.
+
+One promising stationary-globe-versus-disc comparison on the recorded Chicago–Los Angeles
+route has now passed the complete registered grid of planning uncertainties under the
+physical wind model. A six-case replay has since completed simulated IMU preprocessing and
+fitting under both wind models. All fits converged and preserved two partial comparisons,
+but uncertainty remained large and every decision abstained. The simulated residual variation
+was about six times the planning noise assumption. Saved-data checks traced most of this
+gap to motion correction: an accelerometer responds to aircraft acceleration as well as
+gravity. The current analysis can mistake changing acceleration for IMU tilt and subtract
+a rotation that did not happen. A research prototype now corrects this using GPS and IMU
+observations. On the same supported minutes, variation falls from about34 to11°/hour without
+rerunning the model comparison. Changes in wind and orientation assumptions still have a
+large effect. A joint research fit now allows wind, orientation and acceleration correction
+to change together. All six saved cases converged, leaving about8°/hour of residual variation.
+Applying identical additional filtering to the measured and predicted rotation reduced
+variation only modestly, to about7–7.5°/hour on the same supported minutes. Neighboring
+residuals remain correlated. A research equation now carries GPS and IMU errors together
+through the correction and a local fit-response check. Under provisional assumptions,
+GPS errors dominate the calculated variation. A sensitivity study now shows that errors
+persisting over time can raise predicted variation from about11 to42°/hour with the same
+marginal error scales. Those are assumed error scenarios; the recorded residuals stay
+about7–7.5°/hour. A research fitting objective now uses the full covariance and explicitly
+retains the wind model's allowance for imperfect approximation. Its numerical checks pass;
+the next comparison has now completed 96 fits of the saved data under four fixed error
+assumptions. All fits converged, and the constrained model comparisons were numerically
+consistent. These are three simulated recordings, each analyzed with two wind models,
+not independent flights. The injected model remained the best fit, but the strength of
+the comparisons fell sharply when errors were assumed to persist longer. Rotating
+globe versus disc still loses most of its information to the allowed uncertainties.
+Other model pairs retain more information, keeping partial shape evidence worth pursuing.
+Real-device characterization and fresh calibration and validation are still needed
+before scientific decisions. See the
+[saved-recording comparison](docs/covariance-refits-20261007/README.md), the
+[joint fitting objective](docs/covariance-measurement-objective-20261007/README.md), the
+[persistence study](docs/temporal-measurement-covariance-20261007/README.md), the
+[shared-error study](docs/continuous-measurement-motion-20261007/README.md), the
+[filtering study](docs/matched-measurement-motion-20261007/README.md) and the
+[joint-fit study](docs/joint-acceleration-motion-20261007/README.md).
+The [acceleration-correction study](docs/acceleration-motion-20261007/README.md) explains
+the improvement and what remains open.
+See the [replay results](docs/observed-pair-replay-20261007/SUMMARY.md).
+There is still no validated three-model protocol or result from an actual IMU recording.
+
 NASA's IceBridge archive offers a possible separate real-data test: its airborne recordings
 include raw IMU and GPS files. Their formats and applied corrections must be checked before
 using them for model discrimination. The first supplied sample covers about 25½ minutes

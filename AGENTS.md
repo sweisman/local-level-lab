@@ -11,11 +11,22 @@ correspondence, and anything else user-facing.
 
 Scott works against tight token / plan-session budgets. Wasted tokens cost real work.
 
-- Verify the cheapest sufficient way; don't run a heavy variant when a lightweight check proves the point.
+- The concern is model-token consumption, not local CPU time. Prefer sufficient automated
+  computation to repeated small probes, lengthy explanations or frequent model-driven polling.
+- Use focused verification when it answers the question; run longer local checks when needed.
 - Don't re-read a file just edited; trust successful edits.
 - Keep replies tight and lead with the result.
-- Before expensive actions (large builds/renders, full re-derivations, multi-agent fan-out), name the cost and ask.
+- Ask before unusually token-intensive investigations or multi-agent fan-out, naming the
+  expected token cost. Do not ask solely because a local build, test suite, numerical sweep
+  or other authorized computation takes CPU time. A full numerical evaluation is not itself
+  a token-intensive re-derivation.
+- Use bounded output and durable results so a local job can finish without consuming model
+  tokens throughout its runtime. Avoid arbitrary tiny compute caps that force extra turns.
 - One careful pass beats iterative polishing that wasn't requested.
+
+Clarified on 2026-10-07: these rules supersede earlier CPU-time-based approval requirements.
+The two-thread ceiling, explicit campaign attempt limits, frozen scientific scopes, paid or
+external resource approvals, git consent and production-promotion requirements remain intact.
 
 ## Workspace privacy
 
@@ -61,6 +72,284 @@ Use tool output limits or scripts that print less.
   Existing frozen campaigns retain their original thread settings on resume. The completed
   `geometry-development-20261006` batch used one numerical thread; switching a future
   campaign to two requires a new environment freeze and refreshed runtime/cost measurement.
+
+## Latest continuation — 2026-10-07
+
+**Completed authorized replay (supersedes earlier progress statements below):** Scott said
+"go" after the proposal to replay the partial ORD–LAX control under three truths, both wind
+models and combined wind/IMU drift. Exactly six development analysis attempts are now frozen
+in `docs/observed-pair-replay-20261007/plan.json`, prepared by
+`analysis/tests/prepare_observed_pair_replay.py`. Fresh shared seed600910; scenario
+wind+bias_mixed; window3600–10800s; turns5/15/30/40/90min; matched forward reference;
+dynamic bias; complete nonlinear fits/direct pair profiles; zero bootstrap. Two workers,
+one numerical thread each. Planhash ec543811c717ad0948a0ec89815099cd2c0589ddf04464d45730c13f8564802a;
+science hash unchanged1bf8f7c0120fa84504d98c377db61807cacf9f2db6fdcec20f814b9f4a4d8500.
+Corpus and resume instructions are in that directory's README. Worker state is in
+`run/status.json` and `run/shard-000.status.json` / `run/shard-001.status.json`; inspect
+before any launch/resume. No scientific source edits while active. Started attempts,
+including failures/interruption, are spent; resume missing tasks under the same total6.
+Launch/resume detached workers outside the sandbox to survive tool/chat disconnection.
+It is now complete: all6attempts,0failures,6converged,335.204wallseconds,
+376.529summed attempt-seconds. No active workers; do not resume or rerun. Each retained99cruise
+minutes, adequate headings and6epochs; globalrank1; reported forwardσ0.392–0.572deg;
+no watchdog-excluded segments. Rotation and stationary-globe/disc pairwise gates pass6/6
+under both candidates; rotating-globe/disc passes0/6, so primary3-model eligibility fails.
+Allpairwise decisions abstain: zero bootstrap/no empirical thresholds. No calibrated winner.
+`review.json`, `noise-review.json`, `verification.json`, `SUMMARY.md` in the new corpus
+preserve the assessment. New readonly helpers: `analysis/tests/review_observed_pair_replay.py`
+and `analysis/tests/audit_replay_noise.py`. Matching fitter inputs were independently checked
+identical across23fields within each truth; plan/source/input/environment/task identities match.
+Residual-based gyroσ is38.28–38.36dph versus planning3/6dph. Target planninginformation27–41
+versus actual free-weighted0.52–1.36; profileSD0.62–0.64 for endpoints one unit apart.
+These residual scales include sensor/process/model error and are not real-device measurements.
+Saved-data diagnosis is complete: `analysis/tests/audit_replay_residuals.py` independently
+reconstructs the assumed attitude/motion with SciPy and evaluates saved parameters without
+synthesis or solving. Report: `docs/observed-pair-replay-20261007/residual-decomposition.json`.
+Final residualRMS39.23–39.29dph; motion mismatch39.63dph; sensor/calibration remainder about3.9dph;
+science/orientation mismatch about1.1dph. The dominant false correction is38.12dph: changing
+specific force is treated as changing gravity/IMU tilt. Reconstructed apparent-up matches
+saved up within0.0035deg; apparent/true-up can differ2.52deg. True-plumb diagnostic substitution
+leaves about12dph without refitting; simulator truth is never an operational correction.
+Components are correlated; preserve their second-moment matrix and do not add independent
+variances. Three independent physical/bin/gap tests pass. No scientific source changed.
+That research-only observed-data prototype is now implemented and tested:
+`analysis/tests/acceleration_motion.py`, `review_acceleration_motion.py` and
+`test_acceleration_motion.py`. Corpus `docs/acceleration-motion-20261007/`; current results
+in `support-corrected/review.json`, arrays and `verification.json`; initial run/source preserved.
+Correction uses saved GPS/raw acceleration/recovered epochs/forward, never prescribed truth;
+truth enters a separate posthoc scorer only. Policy observed-acceleration-motion-development-1;
+production/decisions disabled. FrequentGPS≤2s, common Hann force/velocity filtering, iterative
+gravity solve, high-rate frame differentiation then bin integration. Never bridge gaps/turns.
+Exactly93states/case:81filter/crab-angle/crab-rate/forward states plus12marginal-σ controls.
+All6cases complete,0failedstates; nominal85minutes, common83. Same85-minute residualRMS
+33.75–33.89to11.12–11.20dph with saved model parameters fixed; motionerror10.05–10.12dph.
+Sensitivity residuals9.6–37.3dph on common83minutes; do not select a favorable truth-scored
+state or claim power/coverage. GPS/force marginal propagation assumes independent errors;
+full correlations/instrument systematics/Coriolis-curvature acceleration bounds remain open.
+Initial six global state failures were corrected to local out-of-envelope support exclusions,
+without changing1.5m/s² limit. Eleven focused tests pass. No scientific production source,
+frozen campaign, eligibility or decision changed;0newflights and0optimizer calls.
+That joint research prediction is now implemented in `analysis/tests/joint_acceleration_motion.py`,
+with `test_joint_acceleration_motion.py` and `review_joint_acceleration_motion.py`. It inherits
+the existing wind/TAS and bias parameterization but recomputes gravity/motion/science at each
+wind/forward/error state. Six coherent marginal-error modes have unit Gaussian priors; full
+measurement-error coverage remains unvalidated. Fixed observable support83minutes; state
+changes cannot select rows. All six reference checks pass; reference residuals~11dph (wind)
+and~15dph (wind_tas), local-curvature diagnostics only. Sixteen focused checks pass.
+
+Latest "go" authorizes the bounded saved-recording joint nuisance refits: exactly the six
+existing cases, free + three fixed-model fits, at most one predefined free restart per case
+for nesting. Maximum30optimizer calls includes interruptions; max_nfev200; no bootstrap,
+new flights, calibration or decisions. Corpus `docs/joint-acceleration-motion-20261007/`,
+with frozen scope in `refits/plan.json`; current progress in `refits/status.json`; append-only
+fsynced starts/completions in `refits/attempts.jsonl`; atomic per-fit checkpoints/hashes;
+`run.lock` prevents duplicates. One numerical thread; up to one other test worker fits the
+two-CPU ceiling. **Read status before any resume and do not edit its frozen scientific/helper
+sources while active.** README documents the command and corpus. Resume missing fits only,
+preserve interrupted starts and the30-call limit, reject source/environment changes.
+No duplicate worker or re-authorization is needed for this already authorized finite scope.
+When complete, assess convergence/nesting/residuals/boundaries separately from raw objective
+differences; those are not calibrated rejections. Update docs/status before any consented git.
+**This scope is now complete:**6cases,24started/completed optimizer calls, all converged and
+nested,0repairs,0boundaryflags; no active worker or missing work. Do not resume or use the
+unused6-call reserve for additional fits. ResidualRMS7.92–8.57dph on fixed83minutes;
+sumcompletedoptimizer309.864s (not measured wall time). `refits/review.json` and
+`refit-assessment.json` preserve results/checkpoint hashes/fit boundaries. A completed-scope
+resume check skipped all fits with no extra optimizer call. Sixteen focused checks pass.
+The next saved-data bandwidth/covariance scope is also complete:
+`analysis/tests/matched_measurement_motion.py`, `review_matched_measurement_motion.py`,
+`assess_matched_measurement_motion.py`, `test_matched_measurement_motion.py`;
+corpus `docs/matched-measurement-motion-20261007/` (README,review,sixNPZ,verification).
+Exactly6readonly saved-free-fit comparisons,0optimizercalls/newflights/bootstrap. One numerical
+thread; no active worker. Joint GPS/force retain30sHann; additional identical30sHann filters
+the gyro and complete reconstructed prediction before minute integration. Common support79
+of83minutes; regridded residual7.85–8.32→7.08–7.48dph (~9–10% reduction). Motion reconstruction
+closes exactly; slow science/bias lift within uninterrupted epochs changes0.026–0.040dph.
+This is a diagnostic interpolation, not a continuous refit-ready observation equation.
+Full gyro-only time/axis covariance propagates independent one-second empirical mean errors,
+filter overlap and rotations; marginalRMSsigma~3.53dph includes within-second aircraft motion.
+Residual adjacent-minute correlations reach−0.61; nuisance fitting can induce correlations,
+so these do not identify an error source or establish significance. Hash-bound artifacts,
+independent residual/PSD checks and21focused tests pass. Completed corpus and bound helper
+sources are immutable; do not rerun/overwrite. Next develop a continuous consistently filtered
+measurement equation and propagate shared GPS/force/gyro errors plus fit-induced covariance.
+**That scope is now complete:** `analysis/tests/continuous_measurement_motion.py`,
+`review_continuous_measurement_motion.py`, `assess_continuous_measurement_motion.py`,
+`test_continuous_measurement_motion.py`; corpus `docs/continuous-measurement-motion-20261007/`
+(README,plan,status,run.lock,6caseJSON/NPZ,review,verification,failedpreflightplan/status).
+Exactly6saved-free-state evaluations,0optimizer/newflight/bootstrap; no active worker.
+All prediction terms evaluated at GPS times, fixed79minutes,30sinput/additionaloutputHann.
+ResidualRMS7.0763–7.4782dph. Eleven-channel shared covariance preserves GPSvelocity cross
+terms and time-matched6×6IMU blocks plus physical wind constraint cross covariance. IMU
+matches unique/same-second/epoch≤0.1sampleperiod; unmatched samples retain mean scaling.
+Initial strict equal-timestamp preflight failed before evaluation; historical plan/status
+are not an active/resumable campaign. Independent-second sigma11.2533–11.2722dph (~90%
+varianceGPS); local old-weight deterministic-penalty response residualsigma11.1343–11.1603.
+This is saved-state sampling propagation, not a refit/posterior/validatedcoverage.
+Accuracy scales/missing correlations, mount/forward/calibration/instrument/acceleration/
+filter uncertainty remain open. Six hashed checkpointed cases complete,93.203summedseconds;
+resume skipsall6. Independent full-input direction≤1.523e-9relative; directleast-squares
+response≤1.687e-14; PSD/component checks and29focused tests pass. Completed corpus and
+bound helper sources are immutable. Next test time-correlated GPS/IMU error sensitivity
+before choosing weights or defining further finite matched refits. Production unchanged.
+**Temporal sensitivity is now complete:** helpers `analysis/tests/temporal_measurement_covariance.py`,
+`review_temporal_measurement_covariance.py`, `assess_temporal_measurement_covariance.py`,
+`test_temporal_measurement_covariance.py`; corpus `docs/temporal-measurement-covariance-20261007/`
+(README,plan,status,run.lock,6caseJSON/NPZ,review,verification). Six saved states×36combinations
+of GPS/IMU correlation durations0/1/5/15/60/300s,216scenarios, fixed79minutes and marginalscales.
+Standardized principal correlation roots preserve same-second covariance; IMU latent errors
+follow physical sensor axes across recovered mounting rotations. Exact elapsed-time exponential
+recurrences carry covariance across gaps without adding observations/filter/derivative support.
+Fixed-state sigma11.2533–42.3085dph; local old-weight deterministic-penalty residualsigma
+11.1343–40.6480dph; largest residual scale GPS15s/IMU300s in all6. Conditional scienceSD
+can exceed1; these are assumed sensitivity scenarios, not characterized hardware, calibrated
+bounds, posterior intervals or new fits. No scenario is selected as a decision assumption.
+Six checkpointed evaluations67.803summedseconds, one numerical thread,0optimizer/flights/
+bootstrap/activeworkers. Completed resume skipsall6. Baseline recovery≤5.240e-15relative,
+dense240-time kernel≤3.444e-12; PSD/all216summary checks and34focused tests pass. Corpus/bound
+sources immutable. Next implement and verify a covariance-aware research objective including
+shared GPS auxiliary errors before separately scoping further finite matched refits.
+**The full-covariance objective scope is now complete:** helpers
+`analysis/tests/covariance_measurement_objective.py`, `review_covariance_measurement_objective.py`,
+`assess_covariance_measurement_objective.py`, `test_covariance_measurement_objective.py`, plus
+`wind_constraint_discrepancy.py`, `review_wind_constraint_discrepancy.py`,
+`assess_wind_constraint_discrepancy.py`, `test_wind_constraint_discrepancy.py`.
+Corpus `docs/covariance-measurement-objective-20261007/` and `wind-discrepancy/` child;
+Each hasplan/status/run.lock/6caseJSON/NPZ/review/verification; parentREADME explains both stages.
+216measurement-only saved-state checks plus216explicit registered-discrepancy checks,
+fixed79minutes,0optimizer/newflight/bootstrap/activeworkers. Frozen joint whitening retains
+cross blocks and residual signs; logdet separate, singular covariances fail without
+jitter/clipping. Existing2m/s physical wind allowance retained as normalized auxiliary
+variance1 in addition to propagated measurement covariance; no truth/data tuning.
+Physical-wind quadratics~27,718–598,005measurement-only vs167–336with allowance; broad-wind
+controls unchanged. No significance/winner/covariance choice follows.44focused tests;
+independent objective/direction/local-response checks pass,54.164+7.093summedseconds.
+Completed resumes skip allcases. Completed corpus/bound sources immutable; no production
+science/eligibility/decision changed. Covariance remains provisional/free-state-linearized.
+Next finite scope authorized by Scott's 2026-10-07 "how much is left? go":6saved cases×correlation
+pairs(0,0),(15,15),(300,300),(15,300)s×free+3fixed=96primaryfits, at most24predefined nesting
+repairs,120starts including interruptions; max_nfev200. Freeze covariance per comparison,
+retain registered discrepancy, no bootstrap/newflight/calibrated decisions.
+Worker `analysis/tests/refit_covariance_measurement.py`; corpus `docs/covariance-refits-20261007/`.
+Five focused solver/derivative/recovery checks passed before launch. The scope includes
+checkpoint/resume and convergence/nesting/boundary assessment. Source/environment freezes,
+fsynced journal and archives, and a process lock protect continuation. One numerical thread.
+Read status.json before resuming; use the command in the corpus README. Detached launch
+must survive command/chat disconnection (outside the command sandbox when required).
+Do not edit frozen helpers or original scientific source while this worker runs.
+Completed optimizer failures/nonconvergence are retained; never rerun them. Interrupted
+starts count against120; interrupted single nesting repairs are not repeated. No new
+compute-budget question is needed for the unfinished portion of this authorized scope.
+**This covariance-refit scope is now COMPLETE and its authorization spent.** Launch
+succeeded outside the command sandbox; actual historical PID/command are in launch.json.
+The six cases are three underlying simulated recordings, each fitted with two wind
+candidates, not six independent flights. All96primaryfits converge;24comparisons nest;
+0repair/interruption/failure;0boundary or1%-near-bound fits. Optimizer1732.595s,
+launch-to-completion30.473minutes, including independent audit31.301minutes. No active
+worker, newflight/bootstrap/calibration/decision/production change. Free residualRMS
+4.4711–9.8778dph. Injected model has lowest fixed objective throughout; these shared
+recordings are not24independent successes or calibrated winners. Longer error persistence
+weakens differences strongly. Local unpenalized pair retention23.5–52.4%rotation/still,
+4.0–14.3%rotation/disc,31.7–64.3%still/disc; no gate threshold applied. Rotation/disc
+remains the weakest contrast. Independent residual/objective/direction and covariance/
+support/bounds/journal checks pass. Complete resume skipsall24cases,0additionalstarts.
+The unused24repair starts do not authorize more fits. Final results/verification are
+in the corpus; completed helpers/checkpoints are immutable. Resume an interrupted
+scope only, never reanalyze these completed fits to improve evidence.
+Independent audit helper `analysis/tests/assess_covariance_refits.py` waits for completion,
+checks full-equation residual/objective/direction arithmetic, fixed support/covariance,
+start limits, convergence, nesting and boundaries, and records uncalibrated local pair
+projections. Its two closed-form projection tests pass (17focused checks including the
+solver/objective/discrepancy controls). Audit never performs additional optimizations.
+Its foreground waiting process may stop on chat loss; restart it with the README's
+environment and `analysis/tests/assess_covariance_refits.py --wait`, or run without
+`--wait` after the worker completes. Do not resume a complete worker just to assess it.
+If interrupted between durable fit metadata and journal completion, retain the fit:
+the audit identifies a completed checkpoint without a completion event separately
+from an interrupted optimizer. Do not rerun it to fill the journal.
+Next characterize actual hardware/GPS persistence and verify the motion correction,
+then define a defensible research-candidate covariance domain and informative protocol.
+Partial pair/shape evidence remains useful; no three-model protocol has been established.
+Fresh calibration/independent validation remain separate, expensive and unauthorized.
+Further refit/bootstrap/replay campaigns require a new finite scope. Scott authorized
+one bundled commit/push of the completed continuation on2026-10-07. Precommit verification
+passes54focused checks across11new test files. That consent covers this logical unit only;
+subsequent continuation changes need fresh git consent. Confirmation of the pushed
+commit will be recorded during the next continuation.
+The old gyro weights, six coherent error modes and conditional GPS/TAS likelihood remain
+provisional. No power, calibrated rejection, winner or promoted gate follows from these checks.
+Further refit/bootstrap/replay campaigns need separately defined scope; no new flights are authorized.
+Six-flight authorization is spent. All continuation work remains uncommitted; git consent
+is required for the next commit/push. Token consumption, not routine local CPU time, is the constraint.
+No bootstrap campaign, empirical calibration, validation, promotion or git operation is
+authorized. CPU time alone is not a reason to ask for approval again. This replay authorization
+persists through interruptions; do not request it again for its unfinished tasks.
+
+The requested bundled commit/push is complete: `583a2b0`, pushed to `origin/main`.
+It contains the accumulated safeguards, diagnostics, NASA sample inspections and plan status.
+Precommit focused verification finished at 115 passing checks after a test-only subprocess
+import-path repair; no full suite was rerun. Commit/push consent is spent for that operation.
+
+The subsequent uncommitted continuation adds `analysis/tests/screen_long_route_windows.py`
+and `docs/research-next-stage-20261006/long-route-window-screen.json`, with prose updates in
+README, VALIDATION and PLAN_STATUS plus readiness metadata. It independently screens
+120-minute windows every15minutes across the two documented normalized-track archives;
+it does not require a passing75-minute anchor. All176windows are retained:130coverage failures,
+one height failure,45motion-screened windows. Seven fixed-pattern controls passed observable
+screening (sixAUHORD,oneORDLAX), none passed any contrast under either nominal wind candidate.
+No eastbound control passed the heading screen. Runtime1.80s, zero new flight attempts.
+Six existing motion/direction fixtures passed in0.45s. Scientific implementation is unchanged.
+Fixed patterns and coarse starts are not exhaustive; no usable protocol is established.
+
+The latest continuation adds `analysis/tests/screen_extended_route_controls.py`,
+`docs/research-next-stage-20261006/extended-route-controls.json` and the human-readable
+`EXTENDED_ROUTE_REVIEW.md` in that directory. It checks180/240-minute windows independently
+of earlier anchors, with six fixed timing patterns per duration. The corrected run covers
+277windows:250coverage failures,27screened,10preliminary passing controls (sixAUHORD,
+fourORDLAX), allwestbound. No individual nominal contrast passes under either wind model;
+no240-minute control passes preliminary geometry. Runtime2.6541s, zero flight attempts.
+Six existing motion/direction fixtures passed in0.44s; all12pattern definitions satisfy
+six-turn/spacing/edge rules. An invalid initial run is preserved in
+`extended-route-controls-first-pass.json`:27covered windows hit schedule validation because
+three initial patterns exceeded six turns;250coverage failures. It is not a science result.
+The helper now validates all timing patterns before reading inputs. Changes remain uncommitted.
+
+Latest timing continuation: `analysis/tests/screen_safe_turn_timings.py` scored88safe schedules
+on11previously screen-passing windows (8perwindow), with up to512draws/window and caps96scores/
+20seconds; neither global cap was reached. Runtime6.4081s. All rejected timings are preserved.
+No pair passes across bothwind candidates. Physical wind alone gives10nominal partial schedules
+(9ORDLAX,1AUHORD),16schedule/pair passes. `check_partial_timing_counterexamples.py` checked248exact
+registered reference-TAS states in0.8625s:5passes disproved,11unresolved, never certified.
+Corpus: `safe-turn-timing-screen.json`, `partial-timing-counterexamples.json`,
+`TURN_TIMING_REVIEW.md` under `docs/research-next-stage-20261006/`.
+52existing motion/direction/eligibility checks passed in1.43s;3new execution guards in0.38s.
+
+`analysis/tests/check_observed_pair_envelope.py` and `observed-pair-envelope-plan.json` prepare
+one full registered physical-wind envelope for actualORDLAX3600–10800s, turns5/15/30/40/90min,
+comparison`sphere_still_vs_flat_still`. It has15,210SVDstates, estimate52.90s, cap120s,1thread,
+science/input/helper/environment freezes and deadline checks. Default CLI only prepares;
+`--run` requires separately approved compute. Scott authorized this one envelope on2026-10-07.
+It completed all15,210states in29.7007s, under120s,1thread. Completed artifact:
+`docs/research-next-stage-20261006/observed-pair-envelope-result.json`. Keep the frozen plan
+unchanged because the result binds its hash. Target direct-pair retention0.3650996659622584,
+threshold0.31224989991991997, margin0.05284976604233843, minimuminformation20.484201633970038.
+Target passes both direct and global-cut calculations (cutretention0.3621652194879138).
+Allstates have globalrank1. Direct rotationretention0.31461461894776643 passes narrowly,
+but global-cut rotation0.3120686256034943 fails. Rotating-globe/disc direct0.14419675836858453
+fails. Broad wind still fails nominally; physical wind assumptions need justification.
+Independent reconstruction of the limiting epoch rotation reproduced target retention to1e-10;
+all15,210state IDs are unique and plan/source/input/environment hashes match. No science source
+changed; no extra tests were rerun for this data/docs-only continuation. Zero new flight attempts.
+This envelope allowance is spent; no rerun or additional envelope/replay is authorized.
+Next prepare a separately budgeted matched full-pipeline replay of this exact control under
+three truths, combined wind/bias drift and both wind candidates, with axes actually recovered.
+All continuation edits and the new result remain uncommitted; no fresh git consent.
+
+Next: improve actual-route/control evidence under unchanged nuisance assumptions or obtain
+a bounded budget for remaining full-envelope/full-pipeline work. NASA gyro decoding still
+needs the exact physical payload schema; do not infer scale from fused navigation. No worker,
+additional flight budget, empirical calibration, promotion or further git operation is authorized.
+This section supersedes stale progress/authorization statements below.
 
 ## Analysis campaign handoff — 2026-10-05
 

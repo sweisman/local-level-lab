@@ -1,0 +1,3166 @@
+{
+  "state": "six_task_replay_review_complete",
+  "cases": [
+    {
+      "task_index": 0,
+      "task_id": "bed4aa85790e4d01e95115b8cf19b386a8d2c07c1ad3f7bac00b825813c939a4",
+      "truth": "sphere_rotating",
+      "crab_model": "wind",
+      "failure": null,
+      "elapsed_s": 11.480111111071892,
+      "converged": true,
+      "model_test_rank": 1,
+      "design_rank": 1,
+      "forward_sigma_deg": 0.5723785425144493,
+      "forward_method": "matched",
+      "forward_gain": 0.8821522975337615,
+      "forward_r2": 0.8661313422350041,
+      "domain_observables": {
+        "version": "observable-flight-domain-1",
+        "source": "replay_simulated_high_rate",
+        "latitude_min_deg": 36.714536275259,
+        "latitude_max_deg": 41.32323287705267,
+        "speed_min_mps": 218.60078704256912,
+        "speed_max_mps": 239.02970840354087,
+        "usable_minutes": 99.0,
+        "elapsed_minutes": 109.06666666703335,
+        "heading_span_deg": 34.04604637408431,
+        "max_gap_seconds": 169.00000000199907,
+        "max_bin_seconds": 60.0,
+        "n_bins": 99,
+        "n_epochs": 6,
+        "epoch_start_minutes": [
+          0.0,
+          4.866666666683341,
+          14.866666666716673,
+          29.86666666678334,
+          39.86666666681667,
+          89.86666666699999
+        ]
+      },
+      "heading_diversity": {
+        "adequate": true,
+        "provisional": true,
+        "min_separation_deg": 30,
+        "min_seconds_per_heading": 600,
+        "groups": [
+          {
+            "heading_deg": 233.14810098926864,
+            "seconds": 660.0
+          },
+          {
+            "heading_deg": 243.33315064971472,
+            "seconds": 4140.0
+          },
+          {
+            "heading_deg": 265.4691051402156,
+            "seconds": 1140.0
+          }
+        ]
+      },
+      "exclusions": [
+        "model contrast not identified"
+      ],
+      "bootstrap_requested": 0,
+      "design_untruncated_contrasts": {
+        "sphere_rotating_vs_sphere_still": {
+          "retained_fraction": 0.342328382621374,
+          "information": 72.90810237388936,
+          "estimable": true,
+          "limiting_state": "epoch-1--1/wind-constant-1-1/forward--0.0299696704/sphere_rotating/noise-6/none"
+        },
+        "sphere_rotating_vs_flat_still": {
+          "retained_fraction": 0.1531269922537448,
+          "information": 12.551218842373677,
+          "estimable": false,
+          "limiting_state": "epoch-1--1/wind-constant-1-1/forward--0.0299696704/sphere_rotating/noise-6/none"
+        },
+        "sphere_still_vs_flat_still": {
+          "retained_fraction": 0.3915640117114747,
+          "information": 27.24137315791305,
+          "estimable": true,
+          "limiting_state": "epoch-2-1/wind-constant--1--1/forward-0.0299696704/sphere_still/noise-6/none"
+        }
+      },
+      "pairwise": {
+        "sphere_rotating_vs_sphere_still": {
+          "eligible": true,
+          "status": "abstain",
+          "preferred_model": null,
+          "calibrated": false,
+          "exclusions": [],
+          "estimate": 0.837194562414345,
+          "sd": 0.39744403536754314,
+          "statistics": {
+            "sphere_rotating": 0.16809335902631886,
+            "sphere_still": 4.446657925484598
+          },
+          "converged": true,
+          "design_information": {
+            "retained_fraction": 0.342328382621374,
+            "information": 72.90810237388936,
+            "estimable": true,
+            "limiting_state": "epoch-1--1/wind-constant-1-1/forward--0.0299696704/sphere_rotating/noise-6/none"
+          },
+          "bootstrap": {
+            "requested": 0,
+            "attempted": 0,
+            "replicates": 0,
+            "null_replicates": {
+              "sphere_rotating": 0,
+              "sphere_still": 0
+            },
+            "failures": [],
+            "bootstrap_valid": false
+          }
+        },
+        "sphere_rotating_vs_flat_still": {
+          "eligible": false,
+          "status": "abstain",
+          "preferred_model": null,
+          "calibrated": false,
+          "exclusions": [
+            "pair contrast not identified"
+          ],
+          "estimate": 0.8755799211155924,
+          "sd": 0.6409782970903496,
+          "statistics": {
+            "sphere_rotating": 0.0376775663938999,
+            "flat_still": 1.865794325375854
+          },
+          "converged": true,
+          "design_information": {
+            "retained_fraction": 0.1531269922537448,
+            "information": 12.551218842373677,
+            "estimable": false,
+            "limiting_state": "epoch-1--1/wind-constant-1-1/forward--0.0299696704/sphere_rotating/noise-6/none"
+          },
+          "bootstrap": {
+            "requested": 0,
+            "attempted": 0,
+            "replicates": 0,
+            "null_replicates": {
+              "sphere_rotating": 0,
+              "flat_still": 0
+            },
+            "failures": [],
+            "bootstrap_valid": false
+          }
+        },
+        "sphere_still_vs_flat_still": {
+          "eligible": true,
+          "status": "abstain",
+          "preferred_model": null,
+          "calibrated": false,
+          "exclusions": [],
+          "estimate": 0.012228438388773443,
+          "sd": 0.6436598404935099,
+          "statistics": {
+            "sphere_still": 2.353523353492434,
+            "flat_still": 0.0003604891221757274
+          },
+          "converged": true,
+          "design_information": {
+            "retained_fraction": 0.3915640117114747,
+            "information": 27.24137315791305,
+            "estimable": true,
+            "limiting_state": "epoch-2-1/wind-constant--1--1/forward-0.0299696704/sphere_still/noise-6/none"
+          },
+          "bootstrap": {
+            "requested": 0,
+            "attempted": 0,
+            "replicates": 0,
+            "null_replicates": {
+              "sphere_still": 0,
+              "flat_still": 0
+            },
+            "failures": [],
+            "bootstrap_valid": false
+          }
+        }
+      },
+      "watchdog_excluded_segments": [],
+      "wind_tas": null,
+      "wind_tas_test_near_boundary": null
+    },
+    {
+      "task_index": 1,
+      "task_id": "dc5bb68180f11fc6ba59dedc0cd23b05e1aaf13870bff06c8549bb73506b03a2",
+      "truth": "sphere_rotating",
+      "crab_model": "wind_tas",
+      "failure": null,
+      "elapsed_s": 104.95585896202829,
+      "converged": true,
+      "model_test_rank": 1,
+      "design_rank": 1,
+      "forward_sigma_deg": 0.5723785425144493,
+      "forward_method": "matched",
+      "forward_gain": 0.8821522975337615,
+      "forward_r2": 0.8661313422350041,
+      "domain_observables": {
+        "version": "observable-flight-domain-1",
+        "source": "replay_simulated_high_rate",
+        "latitude_min_deg": 36.714536275259,
+        "latitude_max_deg": 41.32323287705267,
+        "speed_min_mps": 218.60078704256912,
+        "speed_max_mps": 239.02970840354087,
+        "usable_minutes": 99.0,
+        "elapsed_minutes": 109.06666666703335,
+        "heading_span_deg": 34.04604637408431,
+        "max_gap_seconds": 169.00000000199907,
+        "max_bin_seconds": 60.0,
+        "n_bins": 99,
+        "n_epochs": 6,
+        "epoch_start_minutes": [
+          0.0,
+          4.866666666683341,
+          14.866666666716673,
+          29.86666666678334,
+          39.86666666681667,
+          89.86666666699999
+        ]
+      },
+      "heading_diversity": {
+        "adequate": true,
+        "provisional": true,
+        "min_separation_deg": 30,
+        "min_seconds_per_heading": 600,
+        "groups": [
+          {
+            "heading_deg": 233.14810098926864,
+            "seconds": 660.0
+          },
+          {
+            "heading_deg": 243.33315064971472,
+            "seconds": 4140.0
+          },
+          {
+            "heading_deg": 265.4691051402156,
+            "seconds": 1140.0
+          }
+        ]
+      },
+      "exclusions": [
+        "model contrast not identified"
+      ],
+      "bootstrap_requested": 0,
+      "design_untruncated_contrasts": {
+        "sphere_rotating_vs_sphere_still": {
+          "retained_fraction": 0.4111353998276327,
+          "information": 107.57936715301602,
+          "estimable": true,
+          "limiting_state": "epoch-1--1/wind-1--1/tas-350.0/forward--0.0299696704/sphere_rotating/noise-3/none"
+        },
+        "sphere_rotating_vs_flat_still": {
+          "retained_fraction": 0.17761203833637762,
+          "information": 17.108130903312112,
+          "estimable": false,
+          "limiting_state": "epoch-2--1/wind-1--1/tas-120.0/forward--0.0299696704/sphere_still/noise-3/none"
+        },
+        "sphere_still_vs_flat_still": {
+          "retained_fraction": 0.4716601453621088,
+          "information": 40.65441156310421,
+          "estimable": true,
+          "limiting_state": "epoch-1--1/wind-1--1/tas-350.0/forward--0.0299696704/sphere_rotating/noise-3/none"
+        }
+      },
+      "pairwise": {
+        "sphere_rotating_vs_sphere_still": {
+          "eligible": true,
+          "status": "abstain",
+          "preferred_model": null,
+          "calibrated": false,
+          "exclusions": [],
+          "estimate": 0.8197789149929854,
+          "sd": 0.39630800373749475,
+          "statistics": {
+            "sphere_rotating": 0.20725880776651132,
+            "sphere_still": 4.289676153712683
+          },
+          "converged": true,
+          "design_information": {
+            "retained_fraction": 0.4111353998276327,
+            "information": 107.57936715301602,
+            "estimable": true,
+            "limiting_state": "epoch-1--1/wind-1--1/tas-350.0/forward--0.0299696704/sphere_rotating/noise-3/none"
+          },
+          "bootstrap": {
+            "requested": 0,
+            "attempted": 0,
+            "replicates": 0,
+            "null_replicates": {
+              "sphere_rotating": 0,
+              "sphere_still": 0
+            },
+            "failures": [],
+            "bootstrap_valid": false
+          }
+        },
+        "sphere_rotating_vs_flat_still": {
+          "eligible": false,
+          "status": "abstain",
+          "preferred_model": null,
+          "calibrated": false,
+          "exclusions": [
+            "pair contrast not identified"
+          ],
+          "estimate": 0.8550880134254358,
+          "sd": 0.6437543768859387,
+          "statistics": {
+            "sphere_rotating": 0.05069964911025327,
+            "flat_still": 1.765423399619964
+          },
+          "converged": true,
+          "design_information": {
+            "retained_fraction": 0.17761203833637762,
+            "information": 17.108130903312112,
+            "estimable": false,
+            "limiting_state": "epoch-2--1/wind-1--1/tas-120.0/forward--0.0299696704/sphere_still/noise-3/none"
+          },
+          "bootstrap": {
+            "requested": 0,
+            "attempted": 0,
+            "replicates": 0,
+            "null_replicates": {
+              "sphere_rotating": 0,
+              "flat_still": 0
+            },
+            "failures": [],
+            "bootstrap_valid": false
+          }
+        },
+        "sphere_still_vs_flat_still": {
+          "eligible": true,
+          "status": "abstain",
+          "preferred_model": null,
+          "calibrated": false,
+          "exclusions": [],
+          "estimate": 0.03552301749757629,
+          "sd": 0.6386443186216296,
+          "statistics": {
+            "sphere_still": 2.2797401578340684,
+            "flat_still": 0.0030915854304859286
+          },
+          "converged": true,
+          "design_information": {
+            "retained_fraction": 0.4716601453621088,
+            "information": 40.65441156310421,
+            "estimable": true,
+            "limiting_state": "epoch-1--1/wind-1--1/tas-350.0/forward--0.0299696704/sphere_rotating/noise-3/none"
+          },
+          "bootstrap": {
+            "requested": 0,
+            "attempted": 0,
+            "replicates": 0,
+            "null_replicates": {
+              "sphere_still": 0,
+              "flat_still": 0
+            },
+            "failures": [],
+            "bootstrap_valid": false
+          }
+        }
+      },
+      "watchdog_excluded_segments": [],
+      "wind_tas": {
+        "policy": {
+          "version": "wind-tas-1",
+          "knot_seconds": 900.0,
+          "wind_sigma_mps": 20.0,
+          "wind_rate_sigma_mps_per_h": 10.0,
+          "wind_component_bound_mps": 60.0,
+          "tas_reference_mps": 250.0,
+          "tas_log_sigma": 0.2,
+          "tas_log_rate_sigma_per_h": 0.08,
+          "tas_min_mps": 120.0,
+          "tas_max_mps": 350.0,
+          "ground_constraint_sigma_mps": 2.0,
+          "boundary_fraction": 0.01,
+          "minimum_ground_speed_mps": 100.0,
+          "evidence": "Conditional GNSS speed constraint with latent smooth TAS; no independent heading or airspeed observation",
+          "provenance": "Provisional development assumptions; independent wind truth, calibration and hardware checks required"
+        },
+        "knot_times_s": [
+          6238.0,
+          7138.0,
+          8038.0,
+          8938.0,
+          9838.0,
+          10738.0,
+          11638.0,
+          12538.0,
+          13438.0
+        ],
+        "knot_wind_ne_mps": [
+          [
+            -8.778160762863628,
+            4.728287928627291
+          ],
+          [
+            -8.63030820895111,
+            5.442470670048435
+          ],
+          [
+            -8.739545606554943,
+            4.690844381184736
+          ],
+          [
+            -7.984978123095114,
+            5.141967944063158
+          ],
+          [
+            -7.374582681255223,
+            5.41015865300698
+          ],
+          [
+            -6.667127707799998,
+            6.334511636720618
+          ],
+          [
+            -6.1647853862104,
+            6.733992177902274
+          ],
+          [
+            -5.989100753619024,
+            7.1814360315262595
+          ],
+          [
+            -5.764971159428393,
+            7.260681729906477
+          ]
+        ],
+        "per_bin_wind_ne_mps": [
+          [
+            -8.778160762863628,
+            4.728287928627291
+          ],
+          [
+            -8.768303925936127,
+            4.775900111388701
+          ],
+          [
+            -8.758447089008627,
+            4.8235122941501105
+          ],
+          [
+            -8.748590252081124,
+            4.87112447691152
+          ],
+          [
+            -8.730190823149623,
+            4.960000551400278
+          ],
+          [
+            -8.720333986222125,
+            5.007612734161688
+          ],
+          [
+            -8.710477149294622,
+            5.055224916923097
+          ],
+          [
+            -8.700620312367121,
+            5.102837099684507
+          ],
+          [
+            -8.69076347543962,
+            5.1504492824459165
+          ],
+          [
+            -8.680906638512118,
+            5.198061465207326
+          ],
+          [
+            -8.671049801584617,
+            5.245673647968736
+          ],
+          [
+            -8.661192964657117,
+            5.293285830730145
+          ],
+          [
+            -8.651336127729614,
+            5.340898013491555
+          ],
+          [
+            -8.631622453874284,
+            5.436122379015961
+          ],
+          [
+            -8.636619703035251,
+            5.399043373356026
+          ],
+          [
+            -8.64390219620884,
+            5.348934954098446
+          ],
+          [
+            -8.65118468938243,
+            5.298826534840867
+          ],
+          [
+            -8.658467182556018,
+            5.248718115583286
+          ],
+          [
+            -8.665749675729606,
+            5.198609696325707
+          ],
+          [
+            -8.684198658436275,
+            5.071668367538167
+          ],
+          [
+            -8.691481151609864,
+            5.021559948280587
+          ],
+          [
+            -8.698763644783453,
+            4.971451529023007
+          ],
+          [
+            -8.70604613795704,
+            4.921343109765427
+          ],
+          [
+            -8.71332863113063,
+            4.871234690507848
+          ],
+          [
+            -8.720611124304218,
+            4.821126271250267
+          ],
+          [
+            -8.727893617477807,
+            4.771017851992688
+          ],
+          [
+            -8.738574607465981,
+            4.697525503746567
+          ],
+          [
+            -8.695948374171394,
+            4.716909298154553
+          ],
+          [
+            -8.645643875274073,
+            4.746984202346448
+          ],
+          [
+            -8.575217576817822,
+            4.7890890682151
+          ],
+          [
+            -8.524913077920502,
+            4.819163972406995
+          ],
+          [
+            -8.47460857902318,
+            4.84923887659889
+          ],
+          [
+            -8.424304080125857,
+            4.879313780790786
+          ],
+          [
+            -8.373999581228535,
+            4.90938868498268
+          ],
+          [
+            -8.323695082331213,
+            4.939463589174575
+          ],
+          [
+            -8.24320788409382,
+            4.987583435882609
+          ],
+          [
+            -8.192903385196498,
+            5.017658340074504
+          ],
+          [
+            -8.142598886299176,
+            5.047733244266398
+          ],
+          [
+            -8.092294387401854,
+            5.077808148458294
+          ],
+          [
+            -8.041989888504533,
+            5.107883052650188
+          ],
+          [
+            -7.991685389607211,
+            5.137957956842083
+          ],
+          [
+            -7.9497108308938165,
+            5.157463407249261
+          ],
+          [
+            -7.909017801437823,
+            5.175342787845516
+          ],
+          [
+            -7.868324771981831,
+            5.19322216844177
+          ],
+          [
+            -7.713013042890102,
+            5.261461804384738
+          ],
+          [
+            -7.67232001343411,
+            5.279341184980993
+          ],
+          [
+            -7.631626983978117,
+            5.297220565577248
+          ],
+          [
+            -7.590933954522124,
+            5.315099946173503
+          ],
+          [
+            -7.550240925066132,
+            5.332979326769758
+          ],
+          [
+            -7.5095478956101385,
+            5.3508587073660125
+          ],
+          [
+            -7.468854866154146,
+            5.368738087962267
+          ],
+          [
+            -7.428161836698154,
+            5.386617468558522
+          ],
+          [
+            -7.38746880724216,
+            5.404496849154777
+          ],
+          [
+            -7.342354176900284,
+            5.452268066720787
+          ],
+          [
+            -7.295190512003269,
+            5.513891598968364
+          ],
+          [
+            -7.248026847106253,
+            5.575515131215939
+          ],
+          [
+            -7.200863182209239,
+            5.6371386634635146
+          ],
+          [
+            -7.153699517312224,
+            5.698762195711091
+          ],
+          [
+            -7.106535852415208,
+            5.760385727958666
+          ],
+          [
+            -7.059372187518194,
+            5.822009260206243
+          ],
+          [
+            -7.0122085226211786,
+            5.883632792453818
+          ],
+          [
+            -6.9650448577241635,
+            5.945256324701394
+          ],
+          [
+            -6.917881192827148,
+            6.00687985694897
+          ],
+          [
+            -6.870717527930133,
+            6.068503389196546
+          ],
+          [
+            -6.823553863033118,
+            6.130126921444122
+          ],
+          [
+            -6.776390198136103,
+            6.191750453691697
+          ],
+          [
+            -6.729226533239088,
+            6.253373985939273
+          ],
+          [
+            -6.682062868342073,
+            6.314997518186849
+          ],
+          [
+            -6.644243224254778,
+            6.352710194712665
+          ],
+          [
+            -6.610753736148803,
+            6.379342230791442
+          ],
+          [
+            -6.57726424804283,
+            6.405974266870219
+          ],
+          [
+            -6.543774759936857,
+            6.4326063029489955
+          ],
+          [
+            -6.510285271830885,
+            6.459238339027773
+          ],
+          [
+            -6.476795783724911,
+            6.48587037510655
+          ],
+          [
+            -6.443306295618938,
+            6.512502411185327
+          ],
+          [
+            -6.409816807512964,
+            6.539134447264104
+          ],
+          [
+            -6.376327319406991,
+            6.56576648334288
+          ],
+          [
+            -6.342837831301018,
+            6.592398519421658
+          ],
+          [
+            -6.309348343195045,
+            6.619030555500435
+          ],
+          [
+            -6.275858855089072,
+            6.645662591579212
+          ],
+          [
+            -6.242369366983098,
+            6.6722946276579895
+          ],
+          [
+            -6.169250651280033,
+            6.730441239767314
+          ],
+          [
+            -6.154634718545661,
+            6.759844489454937
+          ],
+          [
+            -6.142922409706236,
+            6.789674079696535
+          ],
+          [
+            -6.13121010086681,
+            6.8195036699381335
+          ],
+          [
+            -6.119497792027385,
+            6.8493332601797325
+          ],
+          [
+            -6.1077854831879606,
+            6.8791628504213325
+          ],
+          [
+            -6.096073174348535,
+            6.9089924406629315
+          ],
+          [
+            -6.07030609490141,
+            6.974617539195444
+          ],
+          [
+            -6.0585937860619845,
+            7.004447129437043
+          ],
+          [
+            -6.046881477222559,
+            7.034276719678642
+          ],
+          [
+            -6.035169168383135,
+            7.064106309920241
+          ],
+          [
+            -6.0234568595437095,
+            7.09393590016184
+          ],
+          [
+            -6.011744550704284,
+            7.123765490403439
+          ],
+          [
+            -6.000032241864859,
+            7.153595080645038
+          ],
+          [
+            -5.988104622083809,
+            7.1817882346321085
+          ],
+          [
+            -5.973162649137766,
+            7.18707128119079
+          ],
+          [
+            -5.958220676191725,
+            7.192354327749471
+          ],
+          [
+            -5.943278703245683,
+            7.197637374308152
+          ]
+        ],
+        "per_bin_tas_mps": [
+          235.5909332482975,
+          235.43191850759817,
+          235.2730110956802,
+          235.1142109401008,
+          234.81807070369584,
+          234.65957761523256,
+          234.50119150345563,
+          234.3429122961599,
+          234.184739921189,
+          234.02667430643524,
+          233.8687153798396,
+          233.71086306939176,
+          233.55311730312994,
+          233.23794511555482,
+          233.37367356356376,
+          233.55464074641407,
+          233.7357482583802,
+          233.9169962082789,
+          234.09838470501134,
+          234.5585319925306,
+          234.74041796150058,
+          234.9224449720495,
+          235.10461313354662,
+          235.2869225554459,
+          235.4693733472863,
+          235.65196561869166,
+          235.92002376691406,
+          235.82111188645916,
+          235.67892742463255,
+          235.48001318917207,
+          235.33803438719636,
+          235.19614118900472,
+          235.0543335429838,
+          234.91261139755136,
+          234.77097470115612,
+          234.54453359233403,
+          234.40311882239922,
+          234.26178931617463,
+          234.120545022252,
+          233.97938588925388,
+          233.83831186583396,
+          233.73619055741312,
+          233.6400914487211,
+          233.54403185055023,
+          233.1777672677985,
+          233.08189775119607,
+          232.98606765071946,
+          232.89027695016304,
+          232.7945256333277,
+          232.69881368402116,
+          232.60314108605763,
+          232.50750782325812,
+          232.41191387945022,
+          232.2162528208261,
+          231.97441937564878,
+          231.73283777940324,
+          231.4915077698102,
+          231.2504290848636,
+          231.00960146283035,
+          230.76902464224966,
+          230.52869836193327,
+          230.28862236096478,
+          230.04879637869962,
+          229.8092201547646,
+          229.56989342905771,
+          229.33081594174774,
+          229.0919874332742,
+          228.85340764434682,
+          228.69909442788816,
+          228.58380469434329,
+          228.46857307962347,
+          228.35339955443038,
+          228.2382840894804,
+          228.12322665550482,
+          228.00822722324952,
+          227.89328576347518,
+          227.77840224695728,
+          227.66357664448594,
+          227.54880892686612,
+          227.43409906491732,
+          227.31944702947396,
+          227.06932423263515,
+          226.96909249602797,
+          226.87109433281142,
+          226.77313848214007,
+          226.67522492574474,
+          226.57735364536404,
+          226.47952462274458,
+          226.26444943039525,
+          226.1667555100401,
+          226.0691037708676,
+          225.97149419466527,
+          225.87392676322847,
+          225.77640145836037,
+          225.67891826187204,
+          225.58562804329486,
+          225.55047281120287,
+          225.51532305769726,
+          225.48017878192417
+        ],
+        "per_bin_derived_airspeed_mps": [
+          235.34465444117725,
+          235.0959290417147,
+          237.0622295410893,
+          231.57449882857452,
+          235.63368937937628,
+          231.34026874777766,
+          240.47602807669404,
+          236.73268929718833,
+          232.08954235166294,
+          235.31336201118495,
+          232.97099724869884,
+          237.18249332369905,
+          228.56033899477708,
+          232.65504124356812,
+          237.069451663641,
+          228.4386604183373,
+          232.64429182507948,
+          227.45818485867053,
+          241.47677452263926,
+          231.89208532487626,
+          238.25031635339684,
+          237.73904435070787,
+          236.29690217499666,
+          230.72854068893488,
+          240.76809939191895,
+          235.20969472692948,
+          237.66800303769847,
+          232.98587618049348,
+          238.8463114033374,
+          228.7590394018121,
+          233.6404279084155,
+          235.64237046875527,
+          237.51334234668275,
+          231.04767050730032,
+          237.85822432336644,
+          233.12832356481238,
+          239.6013213156294,
+          230.26746790246077,
+          239.4340489453775,
+          228.99425102982855,
+          237.10811441547125,
+          234.12618208293674,
+          233.020060800499,
+          231.62447573784848,
+          234.93685337700083,
+          232.42583594534474,
+          232.8938819195039,
+          232.6295769726858,
+          229.4987406963747,
+          233.85862667574253,
+          230.3709849064651,
+          231.3999823197735,
+          233.489457955607,
+          232.7095071628017,
+          233.88401091846558,
+          231.6540209205614,
+          234.47841130324676,
+          232.61460230083088,
+          232.94620326240283,
+          229.08578260263414,
+          226.0232078199252,
+          233.13951795420388,
+          229.2741359702538,
+          227.38381621126484,
+          228.0700318269731,
+          231.07085511951033,
+          233.49797806374525,
+          226.5461536405669,
+          229.85810661699773,
+          226.21033123687917,
+          227.89663910948596,
+          227.71614860169203,
+          230.8007189000488,
+          226.27562378577508,
+          226.97773189323073,
+          228.31511061420488,
+          228.120132502615,
+          228.04640078605127,
+          226.36000097427308,
+          231.78342630619025,
+          226.65147502369504,
+          223.36604535343756,
+          231.194287373668,
+          223.6377357189898,
+          226.55741204375286,
+          227.2116181506118,
+          225.69536951695906,
+          226.58418615689442,
+          228.74215604854476,
+          225.55544236203514,
+          227.05164160100688,
+          226.7919102597783,
+          221.95829096988857,
+          227.9073701752203,
+          225.40050344202922,
+          227.70852537777722,
+          220.9641350743467,
+          228.2802583080541,
+          224.4310388488158
+        ],
+        "speed_constraint_chi2": 198.9808754137659,
+        "gnss_conditioning": "Ground vectors held fixed during gyro bootstrap; joint replay calibration required",
+        "relative_margin": 0.36838722142770436,
+        "near_boundary": false
+      },
+      "wind_tas_test_near_boundary": false
+    },
+    {
+      "task_index": 2,
+      "task_id": "f94593ee49b996b4de1ef7ae7fcebd7299384ce89bff672d82f4debc755a2425",
+      "truth": "sphere_still",
+      "crab_model": "wind",
+      "failure": null,
+      "elapsed_s": 11.972597280982882,
+      "converged": true,
+      "model_test_rank": 1,
+      "design_rank": 1,
+      "forward_sigma_deg": 0.39201320087327174,
+      "forward_method": "matched",
+      "forward_gain": 0.8825628490119309,
+      "forward_r2": 0.8672454585353624,
+      "domain_observables": {
+        "version": "observable-flight-domain-1",
+        "source": "replay_simulated_high_rate",
+        "latitude_min_deg": 36.714536275259,
+        "latitude_max_deg": 41.32323287705267,
+        "speed_min_mps": 218.60078704256912,
+        "speed_max_mps": 239.02970840354087,
+        "usable_minutes": 99.0,
+        "elapsed_minutes": 109.06666666703335,
+        "heading_span_deg": 34.04604637408431,
+        "max_gap_seconds": 169.00000000199907,
+        "max_bin_seconds": 60.0,
+        "n_bins": 99,
+        "n_epochs": 6,
+        "epoch_start_minutes": [
+          0.0,
+          4.866666666683341,
+          14.866666666716673,
+          29.86666666678334,
+          39.86666666681667,
+          89.86666666699999
+        ]
+      },
+      "heading_diversity": {
+        "adequate": true,
+        "provisional": true,
+        "min_separation_deg": 30,
+        "min_seconds_per_heading": 600,
+        "groups": [
+          {
+            "heading_deg": 233.14810098926864,
+            "seconds": 660.0
+          },
+          {
+            "heading_deg": 243.33315064971472,
+            "seconds": 4140.0
+          },
+          {
+            "heading_deg": 265.4691051402156,
+            "seconds": 1140.0
+          }
+        ]
+      },
+      "exclusions": [
+        "model contrast not identified"
+      ],
+      "bootstrap_requested": 0,
+      "design_untruncated_contrasts": {
+        "sphere_rotating_vs_sphere_still": {
+          "retained_fraction": 0.3439143092669965,
+          "information": 73.5851992446227,
+          "estimable": true,
+          "limiting_state": "epoch-1--1/wind-constant-1-1/forward--0.0205257632/sphere_rotating/noise-6/none"
+        },
+        "sphere_rotating_vs_flat_still": {
+          "retained_fraction": 0.15374103447721035,
+          "information": 12.652081933565668,
+          "estimable": false,
+          "limiting_state": "epoch-1--1/wind-constant-1-1/forward--0.0205257632/sphere_rotating/noise-6/none"
+        },
+        "sphere_still_vs_flat_still": {
+          "retained_fraction": 0.39492413455312464,
+          "information": 27.7109112089406,
+          "estimable": true,
+          "limiting_state": "epoch-2-1/wind-constant--1--1/forward-0.0205257632/sphere_still/noise-6/none"
+        }
+      },
+      "pairwise": {
+        "sphere_rotating_vs_sphere_still": {
+          "eligible": true,
+          "status": "abstain",
+          "preferred_model": null,
+          "calibrated": false,
+          "exclusions": [],
+          "estimate": -0.15242887690803625,
+          "sd": 0.3960445325214616,
+          "statistics": {
+            "sphere_rotating": 8.486021653063387,
+            "sphere_still": 0.14849597644457596
+          },
+          "converged": true,
+          "design_information": {
+            "retained_fraction": 0.3439143092669965,
+            "information": 73.5851992446227,
+            "estimable": true,
+            "limiting_state": "epoch-1--1/wind-constant-1-1/forward--0.0205257632/sphere_rotating/noise-6/none"
+          },
+          "bootstrap": {
+            "requested": 0,
+            "attempted": 0,
+            "replicates": 0,
+            "null_replicates": {
+              "sphere_rotating": 0,
+              "sphere_still": 0
+            },
+            "failures": [],
+            "bootstrap_valid": false
+          }
+        },
+        "sphere_rotating_vs_flat_still": {
+          "eligible": false,
+          "status": "abstain",
+          "preferred_model": null,
+          "calibrated": false,
+          "exclusions": [
+            "pair contrast not identified"
+          ],
+          "estimate": -0.47198152013585837,
+          "sd": 0.6537516111460173,
+          "statistics": {
+            "sphere_rotating": 5.062376856829729,
+            "flat_still": 0.5203687357913526
+          },
+          "converged": true,
+          "design_information": {
+            "retained_fraction": 0.15374103447721035,
+            "information": 12.652081933565668,
+            "estimable": false,
+            "limiting_state": "epoch-1--1/wind-constant-1-1/forward--0.0205257632/sphere_rotating/noise-6/none"
+          },
+          "bootstrap": {
+            "requested": 0,
+            "attempted": 0,
+            "replicates": 0,
+            "null_replicates": {
+              "sphere_rotating": 0,
+              "flat_still": 0
+            },
+            "failures": [],
+            "bootstrap_valid": false
+          }
+        },
+        "sphere_still_vs_flat_still": {
+          "eligible": true,
+          "status": "abstain",
+          "preferred_model": null,
+          "calibrated": false,
+          "exclusions": [],
+          "estimate": 1.214684385846901,
+          "sd": 0.6285111681257934,
+          "statistics": {
+            "sphere_still": 0.11666157349457977,
+            "flat_still": 3.73534572473751
+          },
+          "converged": true,
+          "design_information": {
+            "retained_fraction": 0.39492413455312464,
+            "information": 27.7109112089406,
+            "estimable": true,
+            "limiting_state": "epoch-2-1/wind-constant--1--1/forward-0.0205257632/sphere_still/noise-6/none"
+          },
+          "bootstrap": {
+            "requested": 0,
+            "attempted": 0,
+            "replicates": 0,
+            "null_replicates": {
+              "sphere_still": 0,
+              "flat_still": 0
+            },
+            "failures": [],
+            "bootstrap_valid": false
+          }
+        }
+      },
+      "watchdog_excluded_segments": [],
+      "wind_tas": null,
+      "wind_tas_test_near_boundary": null
+    },
+    {
+      "task_index": 3,
+      "task_id": "119d674e186dfaee3ec65d36ca6d02568cea20e8bb58bc8d059d72fab7576ab0",
+      "truth": "sphere_still",
+      "crab_model": "wind_tas",
+      "failure": null,
+      "elapsed_s": 114.73353783297352,
+      "converged": true,
+      "model_test_rank": 1,
+      "design_rank": 1,
+      "forward_sigma_deg": 0.39201320087327174,
+      "forward_method": "matched",
+      "forward_gain": 0.8825628490119309,
+      "forward_r2": 0.8672454585353624,
+      "domain_observables": {
+        "version": "observable-flight-domain-1",
+        "source": "replay_simulated_high_rate",
+        "latitude_min_deg": 36.714536275259,
+        "latitude_max_deg": 41.32323287705267,
+        "speed_min_mps": 218.60078704256912,
+        "speed_max_mps": 239.02970840354087,
+        "usable_minutes": 99.0,
+        "elapsed_minutes": 109.06666666703335,
+        "heading_span_deg": 34.04604637408431,
+        "max_gap_seconds": 169.00000000199907,
+        "max_bin_seconds": 60.0,
+        "n_bins": 99,
+        "n_epochs": 6,
+        "epoch_start_minutes": [
+          0.0,
+          4.866666666683341,
+          14.866666666716673,
+          29.86666666678334,
+          39.86666666681667,
+          89.86666666699999
+        ]
+      },
+      "heading_diversity": {
+        "adequate": true,
+        "provisional": true,
+        "min_separation_deg": 30,
+        "min_seconds_per_heading": 600,
+        "groups": [
+          {
+            "heading_deg": 233.14810098926864,
+            "seconds": 660.0
+          },
+          {
+            "heading_deg": 243.33315064971472,
+            "seconds": 4140.0
+          },
+          {
+            "heading_deg": 265.4691051402156,
+            "seconds": 1140.0
+          }
+        ]
+      },
+      "exclusions": [
+        "model contrast not identified"
+      ],
+      "bootstrap_requested": 0,
+      "design_untruncated_contrasts": {
+        "sphere_rotating_vs_sphere_still": {
+          "retained_fraction": 0.41226097989907257,
+          "information": 108.12234068204842,
+          "estimable": true,
+          "limiting_state": "epoch-1--1/wind-1--1/tas-250.0/forward--0.0205257632/sphere_rotating/noise-3/none"
+        },
+        "sphere_rotating_vs_flat_still": {
+          "retained_fraction": 0.17809894399218004,
+          "information": 17.19880880021994,
+          "estimable": false,
+          "limiting_state": "epoch-2--1/wind-1--1/tas-120.0/forward--0.0205257632/sphere_still/noise-3/none"
+        },
+        "sphere_still_vs_flat_still": {
+          "retained_fraction": 0.47281898829802155,
+          "information": 40.831181754756905,
+          "estimable": true,
+          "limiting_state": "epoch-1--1/wind-1--1/tas-250.0/forward--0.0205257632/sphere_rotating/noise-3/none"
+        }
+      },
+      "pairwise": {
+        "sphere_rotating_vs_sphere_still": {
+          "eligible": true,
+          "status": "abstain",
+          "preferred_model": null,
+          "calibrated": false,
+          "exclusions": [],
+          "estimate": -0.15946192744143164,
+          "sd": 0.394726094009102,
+          "statistics": {
+            "sphere_rotating": 8.650084260966842,
+            "sphere_still": 0.1636365645373903
+          },
+          "converged": true,
+          "design_information": {
+            "retained_fraction": 0.41226097989907257,
+            "information": 108.12234068204842,
+            "estimable": true,
+            "limiting_state": "epoch-1--1/wind-1--1/tas-250.0/forward--0.0205257632/sphere_rotating/noise-3/none"
+          },
+          "bootstrap": {
+            "requested": 0,
+            "attempted": 0,
+            "replicates": 0,
+            "null_replicates": {
+              "sphere_rotating": 0,
+              "sphere_still": 0
+            },
+            "failures": [],
+            "bootstrap_valid": false
+          }
+        },
+        "sphere_rotating_vs_flat_still": {
+          "eligible": false,
+          "status": "abstain",
+          "preferred_model": null,
+          "calibrated": false,
+          "exclusions": [
+            "pair contrast not identified"
+          ],
+          "estimate": -0.5144188084339624,
+          "sd": 0.65568689959952,
+          "statistics": {
+            "sphere_rotating": 5.334546109230252,
+            "flat_still": 0.6155205007839459
+          },
+          "converged": true,
+          "design_information": {
+            "retained_fraction": 0.17809894399218004,
+            "information": 17.19880880021994,
+            "estimable": false,
+            "limiting_state": "epoch-2--1/wind-1--1/tas-120.0/forward--0.0205257632/sphere_still/noise-3/none"
+          },
+          "bootstrap": {
+            "requested": 0,
+            "attempted": 0,
+            "replicates": 0,
+            "null_replicates": {
+              "sphere_rotating": 0,
+              "flat_still": 0
+            },
+            "failures": [],
+            "bootstrap_valid": false
+          }
+        },
+        "sphere_still_vs_flat_still": {
+          "eligible": true,
+          "status": "abstain",
+          "preferred_model": null,
+          "calibrated": false,
+          "exclusions": [],
+          "estimate": 1.1976501856028379,
+          "sd": 0.6241461781041687,
+          "statistics": {
+            "sphere_still": 0.1002663205246111,
+            "flat_still": 3.68200080204369
+          },
+          "converged": true,
+          "design_information": {
+            "retained_fraction": 0.47281898829802155,
+            "information": 40.831181754756905,
+            "estimable": true,
+            "limiting_state": "epoch-1--1/wind-1--1/tas-250.0/forward--0.0205257632/sphere_rotating/noise-3/none"
+          },
+          "bootstrap": {
+            "requested": 0,
+            "attempted": 0,
+            "replicates": 0,
+            "null_replicates": {
+              "sphere_still": 0,
+              "flat_still": 0
+            },
+            "failures": [],
+            "bootstrap_valid": false
+          }
+        }
+      },
+      "watchdog_excluded_segments": [],
+      "wind_tas": {
+        "policy": {
+          "version": "wind-tas-1",
+          "knot_seconds": 900.0,
+          "wind_sigma_mps": 20.0,
+          "wind_rate_sigma_mps_per_h": 10.0,
+          "wind_component_bound_mps": 60.0,
+          "tas_reference_mps": 250.0,
+          "tas_log_sigma": 0.2,
+          "tas_log_rate_sigma_per_h": 0.08,
+          "tas_min_mps": 120.0,
+          "tas_max_mps": 350.0,
+          "ground_constraint_sigma_mps": 2.0,
+          "boundary_fraction": 0.01,
+          "minimum_ground_speed_mps": 100.0,
+          "evidence": "Conditional GNSS speed constraint with latent smooth TAS; no independent heading or airspeed observation",
+          "provenance": "Provisional development assumptions; independent wind truth, calibration and hardware checks required"
+        },
+        "knot_times_s": [
+          6238.0,
+          7138.0,
+          8038.0,
+          8938.0,
+          9838.0,
+          10738.0,
+          11638.0,
+          12538.0,
+          13438.0
+        ],
+        "knot_wind_ne_mps": [
+          [
+            -8.813416384099153,
+            4.762649806185544
+          ],
+          [
+            -8.677734352803604,
+            5.476787309033917
+          ],
+          [
+            -8.798920587469746,
+            4.735432613743833
+          ],
+          [
+            -8.062910755900907,
+            5.192770678134408
+          ],
+          [
+            -7.500659699483544,
+            5.481405590289882
+          ],
+          [
+            -6.810724355998193,
+            6.413705843723872
+          ],
+          [
+            -6.306636366748064,
+            6.8133165373649565
+          ],
+          [
+            -6.111933687222589,
+            7.258084370592419
+          ],
+          [
+            -5.862087858739145,
+            7.318398391099868
+          ]
+        ],
+        "per_bin_wind_ne_mps": [
+          [
+            -8.813416384099153,
+            4.762649806185544
+          ],
+          [
+            -8.804370915346118,
+            4.810258973042102
+          ],
+          [
+            -8.79532544659308,
+            4.8578681398986605
+          ],
+          [
+            -8.786279977840044,
+            4.905477306755219
+          ],
+          [
+            -8.769395102834224,
+            4.994347751554921
+          ],
+          [
+            -8.760349634081187,
+            5.041956918411479
+          ],
+          [
+            -8.75130416532815,
+            5.0895660852680376
+          ],
+          [
+            -8.742258696575114,
+            5.137175252124596
+          ],
+          [
+            -8.733213227822077,
+            5.184784418981154
+          ],
+          [
+            -8.724167759069042,
+            5.232393585837713
+          ],
+          [
+            -8.715122290316005,
+            5.28000275269427
+          ],
+          [
+            -8.706076821562968,
+            5.3276119195508285
+          ],
+          [
+            -8.697031352809931,
+            5.375221086407387
+          ],
+          [
+            -8.678940415303556,
+            5.470439420122091
+          ],
+          [
+            -8.684736224140273,
+            5.4339534821924635
+          ],
+          [
+            -8.692815306451351,
+            5.384529835839791
+          ],
+          [
+            -8.700894388762427,
+            5.335106189487119
+          ],
+          [
+            -8.708973471073502,
+            5.285682543134446
+          ],
+          [
+            -8.717052553384578,
+            5.236258896781774
+          ],
+          [
+            -8.737519561906241,
+            5.111052326020023
+          ],
+          [
+            -8.745598644217317,
+            5.0616286796673515
+          ],
+          [
+            -8.753677726528393,
+            5.012205033314679
+          ],
+          [
+            -8.76175680883947,
+            4.962781386962006
+          ],
+          [
+            -8.769835891150546,
+            4.913357740609334
+          ],
+          [
+            -8.777914973461622,
+            4.863934094256662
+          ],
+          [
+            -8.785994055772697,
+            4.81451044790399
+          ],
+          [
+            -8.797843376495878,
+            4.742022433251757
+          ],
+          [
+            -8.756395574973377,
+            4.7618565908010675
+          ],
+          [
+            -8.707328252868788,
+            4.792345795093773
+          ],
+          [
+            -8.638634001922364,
+            4.83503068110356
+          ],
+          [
+            -8.589566679817775,
+            4.865519885396265
+          ],
+          [
+            -8.540499357713186,
+            4.896009089688969
+          ],
+          [
+            -8.491432035608597,
+            4.926498293981674
+          ],
+          [
+            -8.442364713504007,
+            4.95698749827438
+          ],
+          [
+            -8.393297391399418,
+            4.9874767025670845
+          ],
+          [
+            -8.314789676030438,
+            5.036259429436429
+          ],
+          [
+            -8.265722353925849,
+            5.066748633729134
+          ],
+          [
+            -8.21665503182126,
+            5.097237838021839
+          ],
+          [
+            -8.16758770971667,
+            5.127727042314544
+          ],
+          [
+            -8.118520387612081,
+            5.158216246607249
+          ],
+          [
+            -8.069453065507492,
+            5.1887054508999535
+          ],
+          [
+            -8.030425139302281,
+            5.209447361950722
+          ],
+          [
+            -7.992941735541123,
+            5.228689689427754
+          ],
+          [
+            -7.955458331779966,
+            5.247932016904785
+          ],
+          [
+            -7.812396674090299,
+            5.321373566776097
+          ],
+          [
+            -7.774913270329141,
+            5.340615894253128
+          ],
+          [
+            -7.737429866567984,
+            5.3598582217301605
+          ],
+          [
+            -7.699946462806826,
+            5.379100549207192
+          ],
+          [
+            -7.662463059045669,
+            5.398342876684223
+          ],
+          [
+            -7.624979655284512,
+            5.417585204161255
+          ],
+          [
+            -7.587496251523354,
+            5.436827531638286
+          ],
+          [
+            -7.550012847762196,
+            5.456069859115318
+          ],
+          [
+            -7.512529444001038,
+            5.47531218659235
+          ],
+          [
+            -7.469229311605223,
+            5.523877046291048
+          ],
+          [
+            -7.423233622039534,
+            5.58603039651998
+          ],
+          [
+            -7.377237932473844,
+            5.648183746748913
+          ],
+          [
+            -7.331242242908154,
+            5.710337096977845
+          ],
+          [
+            -7.285246553342464,
+            5.772490447206778
+          ],
+          [
+            -7.239250863776773,
+            5.834643797435711
+          ],
+          [
+            -7.1932551742110835,
+            5.8967971476646435
+          ],
+          [
+            -7.147259484645393,
+            5.958950497893576
+          ],
+          [
+            -7.101263795079703,
+            6.021103848122508
+          ],
+          [
+            -7.055268105514013,
+            6.083257198351442
+          ],
+          [
+            -7.009272415948323,
+            6.145410548580374
+          ],
+          [
+            -6.963276726382633,
+            6.2075638988093065
+          ],
+          [
+            -6.917281036816943,
+            6.269717249038239
+          ],
+          [
+            -6.871285347251253,
+            6.331870599267172
+          ],
+          [
+            -6.825289657685563,
+            6.394023949496105
+          ],
+          [
+            -6.78776034759286,
+            6.431910330883516
+          ],
+          [
+            -6.754154481642852,
+            6.458551043792923
+          ],
+          [
+            -6.720548615692843,
+            6.485191756702328
+          ],
+          [
+            -6.686942749742834,
+            6.5118324696117345
+          ],
+          [
+            -6.653336883792826,
+            6.538473182521139
+          ],
+          [
+            -6.619731017842817,
+            6.565113895430545
+          ],
+          [
+            -6.586125151892809,
+            6.591754608339951
+          ],
+          [
+            -6.552519285942799,
+            6.618395321249356
+          ],
+          [
+            -6.518913419992791,
+            6.645036034158761
+          ],
+          [
+            -6.485307554042782,
+            6.671676747068167
+          ],
+          [
+            -6.451701688092774,
+            6.698317459977573
+          ],
+          [
+            -6.4180958221427655,
+            6.7249581728869785
+          ],
+          [
+            -6.384489956192756,
+            6.751598885796384
+          ],
+          [
+            -6.31111714886353,
+            6.809764442319249
+          ],
+          [
+            -6.295386878593377,
+            6.83901423440576
+          ],
+          [
+            -6.2824066999583446,
+            6.868665423287591
+          ],
+          [
+            -6.269426521323314,
+            6.898316612169421
+          ],
+          [
+            -6.256446342688282,
+            6.927967801051253
+          ],
+          [
+            -6.24346616405325,
+            6.957618989933083
+          ],
+          [
+            -6.230485985418218,
+            6.9872701788149145
+          ],
+          [
+            -6.201929592420715,
+            7.052502794355931
+          ],
+          [
+            -6.188949413785684,
+            7.082153983237762
+          ],
+          [
+            -6.175969235150652,
+            7.111805172119593
+          ],
+          [
+            -6.16298905651562,
+            7.141456361001424
+          ],
+          [
+            -6.150008877880589,
+            7.171107549883255
+          ],
+          [
+            -6.137028699245557,
+            7.200758738765085
+          ],
+          [
+            -6.1240485206105255,
+            7.2304099276469165
+          ],
+          [
+            -6.1108232613121105,
+            7.258352432907261
+          ],
+          [
+            -6.0941668727465474,
+            7.262373367607756
+          ],
+          [
+            -6.077510484180984,
+            7.266394302308253
+          ],
+          [
+            -6.060854095615422,
+            7.270415237008749
+          ]
+        ],
+        "per_bin_tas_mps": [
+          235.62472884087055,
+          235.46566328622706,
+          235.30670511356678,
+          235.14785425039827,
+          234.8516195018736,
+          234.69307585792436,
+          234.5346392436268,
+          234.37630958672736,
+          234.21808681502122,
+          234.05997085635238,
+          233.90196163861341,
+          233.74405908974566,
+          233.5862631377391,
+          233.2709907365073,
+          233.40615167281197,
+          233.58647078115285,
+          233.766929195937,
+          233.94752702478635,
+          234.12826437540596,
+          234.5867574969434,
+          234.767988688312,
+          234.94935989075825,
+          235.13087121244843,
+          235.3125227616324,
+          235.49431464664363,
+          235.67624697589926,
+          235.9433353336636,
+          235.84443039969713,
+          235.70235567557194,
+          235.5035948364776,
+          235.36172543464275,
+          235.21994149616228,
+          235.0782429695523,
+          234.93662980335995,
+          234.79510194616338,
+          234.56883468909535,
+          234.4275283948558,
+          234.28630722474972,
+          234.14517112749758,
+          234.00412005185078,
+          233.86315394659158,
+          233.76076824554644,
+          233.66434772110293,
+          233.56796696773648,
+          233.20047903478294,
+          233.10428961575522,
+          233.00813987247935,
+          232.91202978859,
+          232.81595934772872,
+          232.71992853354374,
+          232.62393732969,
+          232.52798571982927,
+          232.43207368762998,
+          232.23618965208811,
+          231.99417752270216,
+          231.75241759290168,
+          231.51090959987087,
+          231.26965328106763,
+          231.02864837422365,
+          230.78789461734377,
+          230.54739174870593,
+          230.3071395068608,
+          230.0671376306315,
+          229.8273858591133,
+          229.5878839316734,
+          229.34863158795054,
+          229.10962856785488,
+          228.87087461156756,
+          228.71641968819972,
+          228.60100328939146,
+          228.48564513277296,
+          228.3703451889536,
+          228.25510342855773,
+          228.13991982222439,
+          228.0247943406075,
+          227.90972695437583,
+          227.79471763421284,
+          227.67976635081692,
+          227.56487307490107,
+          227.45003777719322,
+          227.33526042843602,
+          227.08486445593246,
+          226.98319389763532,
+          226.8835561136171,
+          226.7839620671454,
+          226.68441173902096,
+          226.58490511005294,
+          226.48544216105887,
+          226.26677733230008,
+          226.167454030415,
+          226.06817432802964,
+          225.96893820600533,
+          225.86974564521182,
+          225.7705966265272,
+          225.671491130838,
+          225.57670510652108,
+          225.54180580261598,
+          225.5069118980335,
+          225.47202339193836
+        ],
+        "per_bin_derived_airspeed_mps": [
+          235.37863887123365,
+          235.12986478003108,
+          237.09602168121583,
+          231.6082431975715,
+          235.66723018792015,
+          231.37376529160682,
+          240.50932596086898,
+          236.76595708856598,
+          232.12266225426114,
+          235.34639558711496,
+          233.0039229096828,
+          237.2155749946086,
+          228.593423983881,
+          232.68778437660848,
+          237.102663885771,
+          228.47254101295005,
+          232.67863743084428,
+          227.49317207316773,
+          241.5122625268171,
+          231.91411466266453,
+          238.27257072220658,
+          237.7616297594666,
+          236.31977239271103,
+          230.75177659587075,
+          240.7914456209966,
+          235.2334592007899,
+          237.6921260110909,
+          233.01003558268715,
+          238.8701650269771,
+          228.7850741959666,
+          233.66602877782617,
+          235.66784650157396,
+          237.5386544301968,
+          231.0729702189508,
+          237.88335959746414,
+          233.15331816635378,
+          239.62597860981472,
+          230.2921719845476,
+          239.4584233189736,
+          229.01870584658465,
+          237.1322687444704,
+          234.15045637982502,
+          233.04441689647095,
+          231.64911247733787,
+          234.9580395071406,
+          232.44691489572608,
+          232.91515009110432,
+          232.65058756622656,
+          229.51956962971047,
+          233.879503115403,
+          230.39167696462366,
+          231.4204711018662,
+          233.50988453000807,
+          232.72970101737477,
+          233.90412445182432,
+          231.67396891040246,
+          234.49810965425735,
+          232.63404897042003,
+          232.9655221747048,
+          229.10511532601865,
+          226.04229380013177,
+          233.1583089119138,
+          229.2927725187437,
+          227.40210212002336,
+          228.0883029460069,
+          231.0890005807691,
+          233.51559901370692,
+          226.56380075263812,
+          229.87554083946267,
+          226.2275295444518,
+          227.9136002345581,
+          227.73289341269407,
+          230.8172482653996,
+          226.2921068257813,
+          226.99390033644207,
+          228.33100925550087,
+          228.13580881098727,
+          228.06193246671648,
+          226.37538527320226,
+          231.79866249472556,
+          226.6665549476724,
+          223.38098992733586,
+          231.20873407686878,
+          223.6526790926362,
+          226.57239770913108,
+          227.22670110692295,
+          225.71065291202055,
+          226.59971891725576,
+          228.73323662969557,
+          225.54700241782638,
+          227.04364531073014,
+          226.7842956519462,
+          221.95111683542655,
+          227.90045865377493,
+          225.394203841038,
+          227.70255144442962,
+          220.9578365562791,
+          228.273644324303,
+          224.42437906042454
+        ],
+        "speed_constraint_chi2": 198.94526365898471,
+        "gnss_conditioning": "Ground vectors held fixed during gyro bootstrap; joint replay calibration required",
+        "relative_margin": 0.36829527606209256,
+        "near_boundary": false
+      },
+      "wind_tas_test_near_boundary": false
+    },
+    {
+      "task_index": 4,
+      "task_id": "b545f5f3aec5efaaa0a8cc1da285bcce8b50f66952e8b0977f176b944c0b145b",
+      "truth": "flat_still",
+      "crab_model": "wind",
+      "failure": null,
+      "elapsed_s": 19.604426115984097,
+      "converged": true,
+      "model_test_rank": 1,
+      "design_rank": 1,
+      "forward_sigma_deg": 0.4972487755842161,
+      "forward_method": "matched",
+      "forward_gain": 0.8826203891534162,
+      "forward_r2": 0.8690015961678305,
+      "domain_observables": {
+        "version": "observable-flight-domain-1",
+        "source": "replay_simulated_high_rate",
+        "latitude_min_deg": 36.714536275259,
+        "latitude_max_deg": 41.32323287705267,
+        "speed_min_mps": 218.60078704256912,
+        "speed_max_mps": 239.02970840354087,
+        "usable_minutes": 99.0,
+        "elapsed_minutes": 109.06666666703335,
+        "heading_span_deg": 34.04604637408431,
+        "max_gap_seconds": 169.00000000199907,
+        "max_bin_seconds": 60.0,
+        "n_bins": 99,
+        "n_epochs": 6,
+        "epoch_start_minutes": [
+          0.0,
+          4.866666666683341,
+          14.866666666716673,
+          29.86666666678334,
+          39.86666666681667,
+          89.86666666699999
+        ]
+      },
+      "heading_diversity": {
+        "adequate": true,
+        "provisional": true,
+        "min_separation_deg": 30,
+        "min_seconds_per_heading": 600,
+        "groups": [
+          {
+            "heading_deg": 233.14810098926864,
+            "seconds": 660.0
+          },
+          {
+            "heading_deg": 243.33315064971472,
+            "seconds": 4140.0
+          },
+          {
+            "heading_deg": 265.4691051402156,
+            "seconds": 1140.0
+          }
+        ]
+      },
+      "exclusions": [
+        "model contrast not identified"
+      ],
+      "bootstrap_requested": 0,
+      "design_untruncated_contrasts": {
+        "sphere_rotating_vs_sphere_still": {
+          "retained_fraction": 0.3428092401287804,
+          "information": 73.11306949235998,
+          "estimable": true,
+          "limiting_state": "epoch-1--1/wind-constant-1-1/forward--0.026035885/sphere_rotating/noise-6/none"
+        },
+        "sphere_rotating_vs_flat_still": {
+          "retained_fraction": 0.15331221647688742,
+          "information": 12.581601412708878,
+          "estimable": false,
+          "limiting_state": "epoch-1--1/wind-constant-1-1/forward--0.026035885/sphere_rotating/noise-6/none"
+        },
+        "sphere_still_vs_flat_still": {
+          "retained_fraction": 0.3932020579080688,
+          "information": 27.469769855318106,
+          "estimable": true,
+          "limiting_state": "epoch-2-1/wind-constant--1--1/forward-0.026035885/sphere_still/noise-6/none"
+        }
+      },
+      "pairwise": {
+        "sphere_rotating_vs_sphere_still": {
+          "eligible": true,
+          "status": "abstain",
+          "preferred_model": null,
+          "calibrated": false,
+          "exclusions": [],
+          "estimate": 0.3651436586434494,
+          "sd": 0.39804816877679,
+          "statistics": {
+            "sphere_rotating": 2.550541739818156,
+            "sphere_still": 0.8437889082528315
+          },
+          "converged": true,
+          "design_information": {
+            "retained_fraction": 0.3428092401287804,
+            "information": 73.11306949235998,
+            "estimable": true,
+            "limiting_state": "epoch-1--1/wind-constant-1-1/forward--0.026035885/sphere_rotating/noise-6/none"
+          },
+          "bootstrap": {
+            "requested": 0,
+            "attempted": 0,
+            "replicates": 0,
+            "null_replicates": {
+              "sphere_rotating": 0,
+              "sphere_still": 0
+            },
+            "failures": [],
+            "bootstrap_valid": false
+          }
+        },
+        "sphere_rotating_vs_flat_still": {
+          "eligible": false,
+          "status": "abstain",
+          "preferred_model": null,
+          "calibrated": false,
+          "exclusions": [
+            "pair contrast not identified"
+          ],
+          "estimate": -0.1251742902420044,
+          "sd": 0.6440154714717327,
+          "statistics": {
+            "sphere_rotating": 3.052503648688073,
+            "flat_still": 0.037776919871947416
+          },
+          "converged": true,
+          "design_information": {
+            "retained_fraction": 0.15331221647688742,
+            "information": 12.581601412708878,
+            "estimable": false,
+            "limiting_state": "epoch-1--1/wind-constant-1-1/forward--0.026035885/sphere_rotating/noise-6/none"
+          },
+          "bootstrap": {
+            "requested": 0,
+            "attempted": 0,
+            "replicates": 0,
+            "null_replicates": {
+              "sphere_rotating": 0,
+              "flat_still": 0
+            },
+            "failures": [],
+            "bootstrap_valid": false
+          }
+        },
+        "sphere_still_vs_flat_still": {
+          "eligible": true,
+          "status": "abstain",
+          "preferred_model": null,
+          "calibrated": false,
+          "exclusions": [],
+          "estimate": 0.23902757112698264,
+          "sd": 0.6304768594185562,
+          "statistics": {
+            "sphere_still": 1.4566956516737977,
+            "flat_still": 0.14373328138164648
+          },
+          "converged": true,
+          "design_information": {
+            "retained_fraction": 0.3932020579080688,
+            "information": 27.469769855318106,
+            "estimable": true,
+            "limiting_state": "epoch-2-1/wind-constant--1--1/forward-0.026035885/sphere_still/noise-6/none"
+          },
+          "bootstrap": {
+            "requested": 0,
+            "attempted": 0,
+            "replicates": 0,
+            "null_replicates": {
+              "sphere_still": 0,
+              "flat_still": 0
+            },
+            "failures": [],
+            "bootstrap_valid": false
+          }
+        }
+      },
+      "watchdog_excluded_segments": [],
+      "wind_tas": null,
+      "wind_tas_test_near_boundary": null
+    },
+    {
+      "task_index": 5,
+      "task_id": "e71b3a92ed6b8216f7b4767ad03d33773fec77bc3d9f8efb6ce01536ffb1b84f",
+      "truth": "flat_still",
+      "crab_model": "wind_tas",
+      "failure": null,
+      "elapsed_s": 113.78203112003393,
+      "converged": true,
+      "model_test_rank": 1,
+      "design_rank": 1,
+      "forward_sigma_deg": 0.4972487755842161,
+      "forward_method": "matched",
+      "forward_gain": 0.8826203891534162,
+      "forward_r2": 0.8690015961678305,
+      "domain_observables": {
+        "version": "observable-flight-domain-1",
+        "source": "replay_simulated_high_rate",
+        "latitude_min_deg": 36.714536275259,
+        "latitude_max_deg": 41.32323287705267,
+        "speed_min_mps": 218.60078704256912,
+        "speed_max_mps": 239.02970840354087,
+        "usable_minutes": 99.0,
+        "elapsed_minutes": 109.06666666703335,
+        "heading_span_deg": 34.04604637408431,
+        "max_gap_seconds": 169.00000000199907,
+        "max_bin_seconds": 60.0,
+        "n_bins": 99,
+        "n_epochs": 6,
+        "epoch_start_minutes": [
+          0.0,
+          4.866666666683341,
+          14.866666666716673,
+          29.86666666678334,
+          39.86666666681667,
+          89.86666666699999
+        ]
+      },
+      "heading_diversity": {
+        "adequate": true,
+        "provisional": true,
+        "min_separation_deg": 30,
+        "min_seconds_per_heading": 600,
+        "groups": [
+          {
+            "heading_deg": 233.14810098926864,
+            "seconds": 660.0
+          },
+          {
+            "heading_deg": 243.33315064971472,
+            "seconds": 4140.0
+          },
+          {
+            "heading_deg": 265.4691051402156,
+            "seconds": 1140.0
+          }
+        ]
+      },
+      "exclusions": [
+        "model contrast not identified"
+      ],
+      "bootstrap_requested": 0,
+      "design_untruncated_contrasts": {
+        "sphere_rotating_vs_sphere_still": {
+          "retained_fraction": 0.4114929428615296,
+          "information": 107.75199860656741,
+          "estimable": true,
+          "limiting_state": "epoch-1--1/wind-1--1/tas-120.0/forward--0.026035885/sphere_rotating/noise-3/none"
+        },
+        "sphere_rotating_vs_flat_still": {
+          "retained_fraction": 0.17777863194572122,
+          "information": 17.139055035650845,
+          "estimable": false,
+          "limiting_state": "epoch-2--1/wind-1--1/tas-250.0/forward--0.026035885/sphere_still/noise-3/none"
+        },
+        "sphere_still_vs_flat_still": {
+          "retained_fraction": 0.47202359540588285,
+          "information": 40.70978731823562,
+          "estimable": true,
+          "limiting_state": "epoch-1--1/wind-1--1/tas-350.0/forward--0.026035885/sphere_rotating/noise-3/none"
+        }
+      },
+      "pairwise": {
+        "sphere_rotating_vs_sphere_still": {
+          "eligible": true,
+          "status": "abstain",
+          "preferred_model": null,
+          "calibrated": false,
+          "exclusions": [],
+          "estimate": 0.3633165588055722,
+          "sd": 0.3968818081396899,
+          "statistics": {
+            "sphere_rotating": 2.5800689651995725,
+            "sphere_still": 0.8401778290704212
+          },
+          "converged": true,
+          "design_information": {
+            "retained_fraction": 0.4114929428615296,
+            "information": 107.75199860656741,
+            "estimable": true,
+            "limiting_state": "epoch-1--1/wind-1--1/tas-120.0/forward--0.026035885/sphere_rotating/noise-3/none"
+          },
+          "bootstrap": {
+            "requested": 0,
+            "attempted": 0,
+            "replicates": 0,
+            "null_replicates": {
+              "sphere_rotating": 0,
+              "sphere_still": 0
+            },
+            "failures": [],
+            "bootstrap_valid": false
+          }
+        },
+        "sphere_rotating_vs_flat_still": {
+          "eligible": false,
+          "status": "abstain",
+          "preferred_model": null,
+          "calibrated": false,
+          "exclusions": [
+            "pair contrast not identified"
+          ],
+          "estimate": -0.14400844121879117,
+          "sd": 0.6460209645088995,
+          "statistics": {
+            "sphere_rotating": 3.1371609080250864,
+            "flat_still": 0.049716170011891436
+          },
+          "converged": true,
+          "design_information": {
+            "retained_fraction": 0.17777863194572122,
+            "information": 17.139055035650845,
+            "estimable": false,
+            "limiting_state": "epoch-2--1/wind-1--1/tas-250.0/forward--0.026035885/sphere_still/noise-3/none"
+          },
+          "bootstrap": {
+            "requested": 0,
+            "attempted": 0,
+            "replicates": 0,
+            "null_replicates": {
+              "sphere_rotating": 0,
+              "flat_still": 0
+            },
+            "failures": [],
+            "bootstrap_valid": false
+          }
+        },
+        "sphere_still_vs_flat_still": {
+          "eligible": true,
+          "status": "abstain",
+          "preferred_model": null,
+          "calibrated": false,
+          "exclusions": [],
+          "estimate": 0.23525147068217472,
+          "sd": 0.6258565790802634,
+          "statistics": {
+            "sphere_still": 1.4929913257906802,
+            "flat_still": 0.14128825574030204
+          },
+          "converged": true,
+          "design_information": {
+            "retained_fraction": 0.47202359540588285,
+            "information": 40.70978731823562,
+            "estimable": true,
+            "limiting_state": "epoch-1--1/wind-1--1/tas-350.0/forward--0.026035885/sphere_rotating/noise-3/none"
+          },
+          "bootstrap": {
+            "requested": 0,
+            "attempted": 0,
+            "replicates": 0,
+            "null_replicates": {
+              "sphere_still": 0,
+              "flat_still": 0
+            },
+            "failures": [],
+            "bootstrap_valid": false
+          }
+        }
+      },
+      "watchdog_excluded_segments": [],
+      "wind_tas": {
+        "policy": {
+          "version": "wind-tas-1",
+          "knot_seconds": 900.0,
+          "wind_sigma_mps": 20.0,
+          "wind_rate_sigma_mps_per_h": 10.0,
+          "wind_component_bound_mps": 60.0,
+          "tas_reference_mps": 250.0,
+          "tas_log_sigma": 0.2,
+          "tas_log_rate_sigma_per_h": 0.08,
+          "tas_min_mps": 120.0,
+          "tas_max_mps": 350.0,
+          "ground_constraint_sigma_mps": 2.0,
+          "boundary_fraction": 0.01,
+          "minimum_ground_speed_mps": 100.0,
+          "evidence": "Conditional GNSS speed constraint with latent smooth TAS; no independent heading or airspeed observation",
+          "provenance": "Provisional development assumptions; independent wind truth, calibration and hardware checks required"
+        },
+        "knot_times_s": [
+          6238.0,
+          7138.0,
+          8038.0,
+          8938.0,
+          9838.0,
+          10738.0,
+          11638.0,
+          12538.0,
+          13438.0
+        ],
+        "knot_wind_ne_mps": [
+          [
+            -8.814343320388755,
+            4.754098356357761
+          ],
+          [
+            -8.658909860448123,
+            5.467963207060052
+          ],
+          [
+            -8.778692782507363,
+            4.724464791357264
+          ],
+          [
+            -8.01857989832266,
+            5.174422818056299
+          ],
+          [
+            -7.435999034625624,
+            5.45513774752496
+          ],
+          [
+            -6.761967918445464,
+            6.394902192981637
+          ],
+          [
+            -6.251486381471634,
+            6.792453265780849
+          ],
+          [
+            -6.077548345398556,
+            7.246824558028122
+          ],
+          [
+            -5.834895956948656,
+            7.3124702856774775
+          ]
+        ],
+        "per_bin_wind_ne_mps": [
+          [
+            -8.814343320388755,
+            4.754098356357761
+          ],
+          [
+            -8.803981089726046,
+            4.80168934640458
+          ],
+          [
+            -8.793618859063336,
+            4.849280336451399
+          ],
+          [
+            -8.783256628400629,
+            4.8968713264982195
+          ],
+          [
+            -8.763913797830066,
+            4.985707841253075
+          ],
+          [
+            -8.753551567167356,
+            5.033298831299895
+          ],
+          [
+            -8.74318933650465,
+            5.080889821346714
+          ],
+          [
+            -8.73282710584194,
+            5.128480811393534
+          ],
+          [
+            -8.72246487517923,
+            5.1760718014403535
+          ],
+          [
+            -8.712102644516522,
+            5.223662791487173
+          ],
+          [
+            -8.701740413853813,
+            5.271253781533992
+          ],
+          [
+            -8.691378183191105,
+            5.318844771580811
+          ],
+          [
+            -8.681015952528396,
+            5.36643576162763
+          ],
+          [
+            -8.660291491202633,
+            5.461617741722856
+          ],
+          [
+            -8.665830651500833,
+            5.425005520816968
+          ],
+          [
+            -8.673816179638116,
+            5.375438959770115
+          ],
+          [
+            -8.6818017077754,
+            5.325872398723263
+          ],
+          [
+            -8.68978723591268,
+            5.276305837676411
+          ],
+          [
+            -8.697772764049965,
+            5.226739276629558
+          ],
+          [
+            -8.718002768664679,
+            5.101170655309212
+          ],
+          [
+            -8.725988296801964,
+            5.05160409426236
+          ],
+          [
+            -8.733973824939246,
+            5.002037533215507
+          ],
+          [
+            -8.74195935307653,
+            4.952470972168655
+          ],
+          [
+            -8.74994488121381,
+            4.902904411121803
+          ],
+          [
+            -8.757930409351093,
+            4.85333785007495
+          ],
+          [
+            -8.765915937488376,
+            4.803771289028098
+          ],
+          [
+            -8.777628045423324,
+            4.731073666157728
+          ],
+          [
+            -8.734775149193002,
+            4.750462366236708
+          ],
+          [
+            -8.68410095691402,
+            4.780459568016644
+          ],
+          [
+            -8.61315708772345,
+            4.822455650508553
+          ],
+          [
+            -8.56248289544447,
+            4.852452852288489
+          ],
+          [
+            -8.51180870316549,
+            4.882450054068425
+          ],
+          [
+            -8.46113451088651,
+            4.9124472558483605
+          ],
+          [
+            -8.410460318607528,
+            4.942444457628296
+          ],
+          [
+            -8.35978612632855,
+            4.972441659408232
+          ],
+          [
+            -8.27870741868049,
+            5.020437182257129
+          ],
+          [
+            -8.228033226401509,
+            5.0504343840370645
+          ],
+          [
+            -8.17735903412253,
+            5.080431585817
+          ],
+          [
+            -8.126684841843549,
+            5.110428787596936
+          ],
+          [
+            -8.07601064956457,
+            5.140425989376872
+          ],
+          [
+            -8.025336457285588,
+            5.170423191156807
+          ],
+          [
+            -7.984919670636561,
+            5.1906419028728505
+          ],
+          [
+            -7.946080946390092,
+            5.2093562315040955
+          ],
+          [
+            -7.907242222143623,
+            5.22807056013534
+          ],
+          [
+            -7.759007757934972,
+            5.299496914411877
+          ],
+          [
+            -7.720169033688502,
+            5.318211243043121
+          ],
+          [
+            -7.681330309442034,
+            5.3369255716743655
+          ],
+          [
+            -7.642491585195565,
+            5.35563990030561
+          ],
+          [
+            -7.603652860949095,
+            5.374354228936854
+          ],
+          [
+            -7.564814136702626,
+            5.393068557568098
+          ],
+          [
+            -7.525975412456157,
+            5.411782886199342
+          ],
+          [
+            -7.487136688209688,
+            5.430497214830586
+          ],
+          [
+            -7.448297963963219,
+            5.44921154346183
+          ],
+          [
+            -7.405293172658068,
+            5.497949238940583
+          ],
+          [
+            -7.360357764912725,
+            5.560600201971028
+          ],
+          [
+            -7.31542235716738,
+            5.623251165001474
+          ],
+          [
+            -7.270486949422036,
+            5.685902128031919
+          ],
+          [
+            -7.225551541676692,
+            5.748553091062363
+          ],
+          [
+            -7.1806161339313475,
+            5.8112040540928085
+          ],
+          [
+            -7.135680726186004,
+            5.873855017123254
+          ],
+          [
+            -7.09074531844066,
+            5.936505980153699
+          ],
+          [
+            -7.045809910695316,
+            5.999156943184144
+          ],
+          [
+            -7.000874502949972,
+            6.061807906214589
+          ],
+          [
+            -6.955939095204628,
+            6.124458869245034
+          ],
+          [
+            -6.911003687459284,
+            6.187109832275479
+          ],
+          [
+            -6.866068279713939,
+            6.249760795305924
+          ],
+          [
+            -6.8211328719685955,
+            6.31241175833637
+          ],
+          [
+            -6.776197464223252,
+            6.375062721366815
+          ],
+          [
+            -6.7387126484215285,
+            6.413012852969572
+          ],
+          [
+            -6.704680545956607,
+            6.439516257822851
+          ],
+          [
+            -6.670648443491684,
+            6.466019662676133
+          ],
+          [
+            -6.636616341026763,
+            6.492523067529413
+          ],
+          [
+            -6.602584238561841,
+            6.519026472382694
+          ],
+          [
+            -6.568552136096919,
+            6.545529877235975
+          ],
+          [
+            -6.534520033631996,
+            6.572033282089255
+          ],
+          [
+            -6.500487931167075,
+            6.598536686942536
+          ],
+          [
+            -6.466455828702152,
+            6.625040091795817
+          ],
+          [
+            -6.43242372623723,
+            6.651543496649098
+          ],
+          [
+            -6.398391623772308,
+            6.678046901502379
+          ],
+          [
+            -6.364359521307386,
+            6.704550306355659
+          ],
+          [
+            -6.330327418842464,
+            6.731053711208941
+          ],
+          [
+            -6.25602399512228,
+            6.788919478475912
+          ],
+          [
+            -6.241436628272435,
+            6.818705829343011
+          ],
+          [
+            -6.229840759200896,
+            6.848997248826162
+          ],
+          [
+            -6.218244890129358,
+            6.8792886683093135
+          ],
+          [
+            -6.20664902105782,
+            6.909580087792465
+          ],
+          [
+            -6.195053151986281,
+            6.939871507275616
+          ],
+          [
+            -6.183457282914742,
+            6.970162926758769
+          ],
+          [
+            -6.157946370956971,
+            7.036804049622711
+          ],
+          [
+            -6.146350501885433,
+            7.067095469105863
+          ],
+          [
+            -6.134754632813894,
+            7.097386888589015
+          ],
+          [
+            -6.123158763742356,
+            7.127678308072166
+          ],
+          [
+            -6.111562894670818,
+            7.157969727555318
+          ],
+          [
+            -6.099967025599279,
+            7.188261147038469
+          ],
+          [
+            -6.0883711565277405,
+            7.218552566521621
+          ],
+          [
+            -6.076469890332848,
+            7.247116316819279
+          ],
+          [
+            -6.060293064436187,
+            7.251492698662569
+          ],
+          [
+            -6.0441162385395275,
+            7.255869080505859
+          ],
+          [
+            -6.027939412642867,
+            7.2602454623491495
+          ]
+        ],
+        "per_bin_tas_mps": [
+          235.61611869856347,
+          235.45707788046386,
+          235.2981444148746,
+          235.13931822933276,
+          234.84312946702957,
+          234.6846104164578,
+          234.52619836620337,
+          234.3678932440412,
+          234.2096949777948,
+          234.05160349533648,
+          233.8936187245872,
+          233.73574059351662,
+          233.57796903014295,
+          233.26274531879693,
+          233.39815998973657,
+          233.5787685499606,
+          233.75951686900726,
+          233.94040505502483,
+          234.1214332162455,
+          234.5806650909056,
+          234.7621886992337,
+          234.94385277446838,
+          235.1256574253061,
+          235.3076027605272,
+          235.48968888899634,
+          235.6719159196624,
+          235.93943733566002,
+          235.84056307935728,
+          235.69847828299964,
+          235.49970336552303,
+          235.35782392392875,
+          235.21602995919778,
+          235.07432141983358,
+          234.9326982543707,
+          234.79116041137465,
+          234.56487720501585,
+          234.42356095994262,
+          234.2823298524286,
+          234.14118383118173,
+          234.00012284494082,
+          233.85914684247552,
+          233.75695642030118,
+          233.66076256529237,
+          233.5646082952349,
+          233.19798306479217,
+          233.10201923417597,
+          233.0060948938532,
+          232.9102100275732,
+          232.81436461909186,
+          232.71855865217182,
+          232.62279211058237,
+          232.52706497809956,
+          232.431377238506,
+          232.23566163053704,
+          231.99379184689894,
+          231.75217396683078,
+          231.51080772797903,
+          231.26969286826323,
+          231.02882912587603,
+          230.78821623928266,
+          230.5478539472208,
+          230.30774198870017,
+          230.06788010300232,
+          229.82826802968034,
+          229.5889055085586,
+          229.34979227973244,
+          229.11092808356779,
+          228.87231266070108,
+          228.71798661270125,
+          228.6026945960931,
+          228.48746069581108,
+          228.37228488255988,
+          228.2571671270591,
+          228.14210740004296,
+          228.02710567226052,
+          227.91216191447558,
+          227.79727609746664,
+          227.68244819202695,
+          227.5676781689645,
+          227.45296599910196,
+          227.33831165327678,
+          227.08818380354228,
+          226.98698988862247,
+          226.88788277235662,
+          226.78881892826462,
+          226.68979833745297,
+          226.59082098103647,
+          226.49188684013805,
+          226.27438375580883,
+          226.1755877778108,
+          226.07683493613737,
+          225.97812521195436,
+          225.8794585864358,
+          225.78083504076395,
+          225.68225455612927,
+          225.587950432838,
+          225.55293575630344,
+          225.5179265145786,
+          225.4829227068198
+        ],
+        "per_bin_derived_airspeed_mps": [
+          235.37007809864642,
+          235.12130024718954,
+          237.08746063229847,
+          231.59968653817558,
+          235.65870340911076,
+          231.36525131938515,
+          240.500857075394,
+          236.7575047245534,
+          232.11425657628024,
+          235.3380257369645,
+          232.99559831987696,
+          237.20721346733072,
+          228.58507034040332,
+          232.6795792646267,
+          237.0943789297964,
+          228.46411187188988,
+          232.670141694114,
+          227.48454160101767,
+          241.50354975475486,
+          231.91038427010378,
+          238.26879812377086,
+          237.75777780877308,
+          236.31585605377177,
+          230.74776818284408,
+          240.78742909682472,
+          235.2293321964493,
+          237.68791938306174,
+          233.0058468937015,
+          238.86611583937122,
+          228.78025143709843,
+          233.66137997386656,
+          235.6632594948695,
+          237.5341505538063,
+          231.0684885684867,
+          237.8789702598378,
+          233.14902907605676,
+          239.62187703225183,
+          230.28807555499347,
+          239.45452322990647,
+          229.0147964342818,
+          237.12855119427724,
+          234.14674675139636,
+          233.040739414097,
+          231.6453619786408,
+          234.95630255591792,
+          232.44528779171836,
+          232.91348336997882,
+          232.64910384204353,
+          229.51822933913542,
+          233.878192171682,
+          230.39050864448555,
+          231.41945364551168,
+          233.50894808244806,
+          232.72896657109206,
+          233.9035327618844,
+          231.673554977509,
+          234.4979054460479,
+          232.63404786933262,
+          232.9656652964842,
+          229.1053406451794,
+          226.0427037025047,
+          233.1589159901754,
+          229.293516087359,
+          227.4030494296759,
+          228.08932713461704,
+          231.09013865891836,
+          233.51698051981268,
+          226.56523587153532,
+          229.87710193800788,
+          226.2292228752329,
+          227.9154281940845,
+          227.73485068040634,
+          230.81933630755103,
+          226.29426983987952,
+          226.99623032029152,
+          228.33349304812694,
+          228.13843182151217,
+          228.06466926183663,
+          226.3782378969714,
+          231.80163280191385,
+          226.66964643905828,
+          223.38427598856768,
+          231.2123373144759,
+          223.65624924550525,
+          226.57609359677426,
+          227.2304996330621,
+          225.71451621185392,
+          226.6036290157256,
+          228.7447725624781,
+          225.55831963722554,
+          227.05475283269539,
+          226.7952084445334,
+          221.96181623327053,
+          227.91098871842786,
+          225.40447252723376,
+          227.7126363704661,
+          220.96800425635885,
+          228.28389279552147,
+          224.43464337271976
+        ],
+        "speed_constraint_chi2": 198.95800974911606,
+        "gnss_conditioning": "Ground vectors held fixed during gyro bootstrap; joint replay calibration required",
+        "relative_margin": 0.36831055227622517,
+        "near_boundary": false
+      },
+      "wind_tas_test_near_boundary": false
+    }
+  ],
+  "paired_generating_conditions": [
+    {
+      "truth": "sphere_rotating",
+      "seed": 600910,
+      "generating_design_matches": true
+    },
+    {
+      "truth": "sphere_still",
+      "seed": 600910,
+      "generating_design_matches": true
+    },
+    {
+      "truth": "flat_still",
+      "seed": 600910,
+      "generating_design_matches": true
+    }
+  ],
+  "execution": {
+    "version": "sharded-flight-campaign-1",
+    "task_count": 6,
+    "completed": 6,
+    "missing": 0,
+    "complete": true,
+    "analysis_failures": 0,
+    "contiguous_prefix": true,
+    "runtime_unknown_attempts": 0
+  },
+  "plan_hash": "ec543811c717ad0948a0ec89815099cd2c0589ddf04464d45730c13f8564802a",
+  "implementation_hash": "1bf8f7c0120fa84504d98c377db61807cacf9f2db6fdcec20f814b9f4a4d8500",
+  "campaign_sha256": "8fc7940b38c1c689aa0fd3e21ac2794925f99f468ff984f02f01850bff44acfb",
+  "helper_sha256": "64fffc36be6f0debac02ad02cf08c2af981bad7d6d921c23909dd23dd7214045",
+  "processing_failures": 0,
+  "converged": 6,
+  "pairwise_eligible_counts": {
+    "sphere_rotating_vs_flat_still": 0,
+    "sphere_rotating_vs_sphere_still": 6,
+    "sphere_still_vs_flat_still": 6
+  },
+  "pairwise_abstention_counts": {
+    "sphere_rotating_vs_flat_still": 6,
+    "sphere_rotating_vs_sphere_still": 6,
+    "sphere_still_vs_flat_still": 6
+  },
+  "known_attempt_seconds": 376.5285624230746,
+  "observed_wall_seconds": 335.204013,
+  "wall_time_basis": "original-host launch UTC to captured final status file mtime",
+  "captured_finish_mtime_utc": "2026-10-07T03:13:54.151780+00:00",
+  "remaining_authorized_attempts": 0,
+  "limitations": [
+    "One development generating seed per truth; matched candidates are not independent null draws.",
+    "Coarse real positions, assumed interpolated motion, simulated high-rate GPS/IMU; no hardware evidence.",
+    "Eligible pairwise geometry is not a calibrated decision or a power estimate.",
+    "Zero bootstrap and no empirical thresholds; profile endpoint diagnostics are uncalibrated.",
+    "Do not interpret a pair coordinate as a three-model winner, especially when truth is outside that pair.",
+    "All six attempts are spent; no retry, calibration, validation, promotion or extra attempt follows."
+  ]
+}

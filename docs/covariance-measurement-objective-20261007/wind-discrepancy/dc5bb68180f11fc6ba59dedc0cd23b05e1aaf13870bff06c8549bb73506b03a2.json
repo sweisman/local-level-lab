@@ -1,0 +1,803 @@
+{
+  "task_id": "dc5bb68180f11fc6ba59dedc0cd23b05e1aaf13870bff06c8549bb73506b03a2",
+  "truth": "sphere_rotating",
+  "crab_model": "wind_tas",
+  "common_minutes": 79,
+  "scenarios": [
+    {
+      "gps_correlation_seconds": 0.0,
+      "imu_correlation_seconds": 0.0,
+      "data_quadratic": 334.36896249414855,
+      "penalty_quadratic": 7.613364536694633,
+      "penalized_least_squares": 341.9823270308432,
+      "covariance_logdet": -4821.624135915321,
+      "gaussian_deviance": -4487.255173421172,
+      "gaussian_nll": -1953.2430102179094,
+      "penalized_gaussian_deviance": -4479.6418088844775,
+      "local_gls_sampling_k_sd": [
+        0.16252285002190928,
+        0.2497855729568478,
+        0.45780199816801226
+      ],
+      "local_penalized_curvature_k_sd": [
+        0.24274566114592896,
+        0.37808550055354356,
+        0.8884766646724598
+      ],
+      "local_gls_residual_sigma_dph": 11.068724230053482
+    },
+    {
+      "gps_correlation_seconds": 0.0,
+      "imu_correlation_seconds": 1.0,
+      "data_quadratic": 279.40608939675633,
+      "penalty_quadratic": 7.613364536694633,
+      "penalized_least_squares": 287.01945393345096,
+      "covariance_logdet": -4752.696639762005,
+      "gaussian_deviance": -4473.290550365249,
+      "gaussian_nll": -1946.260698689948,
+      "penalized_gaussian_deviance": -4465.677185828555,
+      "local_gls_sampling_k_sd": [
+        0.19338510222195943,
+        0.2980533528517326,
+        0.4587988177291857
+      ],
+      "local_penalized_curvature_k_sd": [
+        0.27153842346466095,
+        0.4230411160292391,
+        0.9344350127226665
+      ],
+      "local_gls_residual_sigma_dph": 11.600025446610218
+    },
+    {
+      "gps_correlation_seconds": 0.0,
+      "imu_correlation_seconds": 5.0,
+      "data_quadratic": 211.14398698941642,
+      "penalty_quadratic": 7.613364536694633,
+      "penalized_least_squares": 218.75735152611105,
+      "covariance_logdet": -4557.790800274612,
+      "gaussian_deviance": -4346.646813285195,
+      "gaussian_nll": -1882.938830149921,
+      "penalized_gaussian_deviance": -4339.033448748501,
+      "local_gls_sampling_k_sd": [
+        0.3166062690490441,
+        0.49322250396320905,
+        0.46821102525351777
+      ],
+      "local_penalized_curvature_k_sd": [
+        0.3863935364966188,
+        0.6037221814025511,
+        1.0554332902728147
+      ],
+      "local_gls_residual_sigma_dph": 14.646899877835098
+    },
+    {
+      "gps_correlation_seconds": 0.0,
+      "imu_correlation_seconds": 15.0,
+      "data_quadratic": 188.5683069046,
+      "penalty_quadratic": 7.613364536694633,
+      "penalized_least_squares": 196.18167144129464,
+      "covariance_logdet": -4399.59539056192,
+      "gaussian_deviance": -4211.02708365732,
+      "gaussian_nll": -1815.1289653359834,
+      "penalized_gaussian_deviance": -4203.4137191206255,
+      "local_gls_sampling_k_sd": [
+        0.4906293453179974,
+        0.7690044908361552,
+        0.4983686825485789
+      ],
+      "local_penalized_curvature_k_sd": [
+        0.5514644336434398,
+        0.8644848250666215,
+        1.1567580267145847
+      ],
+      "local_gls_residual_sigma_dph": 19.328268840361226
+    },
+    {
+      "gps_correlation_seconds": 0.0,
+      "imu_correlation_seconds": 60.0,
+      "data_quadratic": 185.3541892558183,
+      "penalty_quadratic": 7.613364536694633,
+      "penalized_least_squares": 192.96755379251294,
+      "covariance_logdet": -4306.310506767426,
+      "gaussian_deviance": -4120.956317511607,
+      "gaussian_nll": -1770.093582263127,
+      "penalized_gaussian_deviance": -4113.342952974913,
+      "local_gls_sampling_k_sd": [
+        0.8802527709256793,
+        1.3813808139454533,
+        0.6506764615646358
+      ],
+      "local_penalized_curvature_k_sd": [
+        0.9257539950991983,
+        1.4526503628337752,
+        1.3050280540329586
+      ],
+      "local_gls_residual_sigma_dph": 25.027317454391167
+    },
+    {
+      "gps_correlation_seconds": 0.0,
+      "imu_correlation_seconds": 300.0,
+      "data_quadratic": 209.39473109355035,
+      "penalty_quadratic": 7.613364536694633,
+      "penalized_least_squares": 217.00809563024498,
+      "covariance_logdet": -4405.807335449519,
+      "gaussian_deviance": -4196.412604355969,
+      "gaussian_nll": -1807.821725685308,
+      "penalized_gaussian_deviance": -4188.799239819275,
+      "local_gls_sampling_k_sd": [
+        1.3511653622089255,
+        2.0931050189689113,
+        1.054889318949288
+      ],
+      "local_penalized_curvature_k_sd": [
+        1.3806610261894532,
+        2.1399954029213837,
+        1.563114744521614
+      ],
+      "local_gls_residual_sigma_dph": 27.075263870428284
+    },
+    {
+      "gps_correlation_seconds": 1.0,
+      "imu_correlation_seconds": 0.0,
+      "data_quadratic": 278.61107857742866,
+      "penalty_quadratic": 7.613364536694633,
+      "penalized_least_squares": 286.2244431141233,
+      "covariance_logdet": -4697.190421350628,
+      "gaussian_deviance": -4418.579342773199,
+      "gaussian_nll": -1918.9050948939228,
+      "penalized_gaussian_deviance": -4410.965978236504,
+      "local_gls_sampling_k_sd": [
+        0.1813644422143598,
+        0.2755177430667907,
+        0.4306519641956176
+      ],
+      "local_penalized_curvature_k_sd": [
+        0.26316378838525895,
+        0.4076244398971666,
+        0.933837252140793
+      ],
+      "local_gls_residual_sigma_dph": 15.799993718407784
+    },
+    {
+      "gps_correlation_seconds": 1.0,
+      "imu_correlation_seconds": 1.0,
+      "data_quadratic": 243.23908850410845,
+      "penalty_quadratic": 7.613364536694633,
+      "penalized_least_squares": 250.85245304080308,
+      "covariance_logdet": -4645.485946220625,
+      "gaussian_deviance": -4402.246857716516,
+      "gaussian_nll": -1910.7388523655816,
+      "penalized_gaussian_deviance": -4394.633493179822,
+      "local_gls_sampling_k_sd": [
+        0.2114423850747818,
+        0.3226680518840095,
+        0.43529198824063375
+      ],
+      "local_penalized_curvature_k_sd": [
+        0.2900772829790177,
+        0.4494342231812401,
+        0.9674148955146562
+      ],
+      "local_gls_residual_sigma_dph": 16.177313283056556
+    },
+    {
+      "gps_correlation_seconds": 1.0,
+      "imu_correlation_seconds": 5.0,
+      "data_quadratic": 197.4666821826836,
+      "penalty_quadratic": 7.613364536694633,
+      "penalized_least_squares": 205.08004671937823,
+      "covariance_logdet": -4488.082054839554,
+      "gaussian_deviance": -4290.61537265687,
+      "gaussian_nll": -1854.9231098357584,
+      "penalized_gaussian_deviance": -4283.002008120176,
+      "local_gls_sampling_k_sd": [
+        0.33362652228157397,
+        0.5162759529721019,
+        0.4598339705136442
+      ],
+      "local_penalized_curvature_k_sd": [
+        0.4024159599817188,
+        0.625778042783496,
+        1.0675620867855231
+      ],
+      "local_gls_residual_sigma_dph": 18.487057239881967
+    },
+    {
+      "gps_correlation_seconds": 1.0,
+      "imu_correlation_seconds": 15.0,
+      "data_quadratic": 181.73316365128827,
+      "penalty_quadratic": 7.613364536694633,
+      "penalized_least_squares": 189.3465281879829,
+      "covariance_logdet": -4351.167877567425,
+      "gaussian_deviance": -4169.434713916137,
+      "gaussian_nll": -1794.332780465392,
+      "penalized_gaussian_deviance": -4161.821349379443,
+      "local_gls_sampling_k_sd": [
+        0.5065400027638769,
+        0.7904736076903596,
+        0.49672623657702997
+      ],
+      "local_penalized_curvature_k_sd": [
+        0.5665604332298974,
+        0.884996444636996,
+        1.1619516637048364
+      ],
+      "local_gls_residual_sigma_dph": 22.38043358283624
+    },
+    {
+      "gps_correlation_seconds": 1.0,
+      "imu_correlation_seconds": 60.0,
+      "data_quadratic": 178.48660207676724,
+      "penalty_quadratic": 7.613364536694633,
+      "penalized_least_squares": 186.09996661346187,
+      "covariance_logdet": -4261.134316260433,
+      "gaussian_deviance": -4082.6477141836654,
+      "gaussian_nll": -1750.939280599156,
+      "penalized_gaussian_deviance": -4075.034349646971,
+      "local_gls_sampling_k_sd": [
+        0.8970545901696599,
+        1.4042571861348163,
+        0.6530838326320101
+      ],
+      "local_penalized_curvature_k_sd": [
+        0.9421015157364471,
+        1.4749418999465003,
+        1.3086636581207447
+      ],
+      "local_gls_residual_sigma_dph": 27.44755688900374
+    },
+    {
+      "gps_correlation_seconds": 1.0,
+      "imu_correlation_seconds": 300.0,
+      "data_quadratic": 192.69064880964277,
+      "penalty_quadratic": 7.613364536694633,
+      "penalized_least_squares": 200.3040133463374,
+      "covariance_logdet": -4337.649368746177,
+      "gaussian_deviance": -4144.958719936534,
+      "gaussian_nll": -1782.0947834755905,
+      "penalized_gaussian_deviance": -4137.34535539984,
+      "local_gls_sampling_k_sd": [
+        1.3988304547312627,
+        2.1617128234373832,
+        1.0626477990983867
+      ],
+      "local_penalized_curvature_k_sd": [
+        1.427649808566126,
+        2.2076429443405714,
+        1.5728347094501787
+      ],
+      "local_gls_residual_sigma_dph": 29.303317713387443
+    },
+    {
+      "gps_correlation_seconds": 5.0,
+      "imu_correlation_seconds": 0.0,
+      "data_quadratic": 218.57423172298422,
+      "penalty_quadratic": 7.613364536694633,
+      "penalized_least_squares": 226.18759625967886,
+      "covariance_logdet": -4456.807314129313,
+      "gaussian_deviance": -4238.233082406329,
+      "gaussian_nll": -1828.731964710488,
+      "penalized_gaussian_deviance": -4230.619717869635,
+      "local_gls_sampling_k_sd": [
+        0.24762981732649764,
+        0.3688238083775597,
+        0.4066651377361152
+      ],
+      "local_penalized_curvature_k_sd": [
+        0.32159704893918006,
+        0.49113630226688876,
+        1.0080988084277938
+      ],
+      "local_gls_residual_sigma_dph": 28.762648508551333
+    },
+    {
+      "gps_correlation_seconds": 5.0,
+      "imu_correlation_seconds": 1.0,
+      "data_quadratic": 202.6893479501058,
+      "penalty_quadratic": 7.613364536694633,
+      "penalized_least_squares": 210.30271248680043,
+      "covariance_logdet": -4428.128662773468,
+      "gaussian_deviance": -4225.439314823362,
+      "gaussian_nll": -1822.3350809190044,
+      "penalized_gaussian_deviance": -4217.825950286668,
+      "local_gls_sampling_k_sd": [
+        0.2722451244978252,
+        0.40779042298960083,
+        0.416002735012614
+      ],
+      "local_penalized_curvature_k_sd": [
+        0.3444279458669661,
+        0.5264917225464523,
+        1.0274906346154427
+      ],
+      "local_gls_residual_sigma_dph": 28.97361243394401
+    },
+    {
+      "gps_correlation_seconds": 5.0,
+      "imu_correlation_seconds": 5.0,
+      "data_quadratic": 180.24491734565132,
+      "penalty_quadratic": 7.613364536694633,
+      "penalized_least_squares": 187.85828188234595,
+      "covariance_logdet": -4328.288139493336,
+      "gaussian_deviance": -4148.043222147684,
+      "gaussian_nll": -1783.6370345811654,
+      "penalized_gaussian_deviance": -4140.4298576109895,
+      "local_gls_sampling_k_sd": [
+        0.3837417472529394,
+        0.5850711202654375,
+        0.4537956088199343
+      ],
+      "local_penalized_curvature_k_sd": [
+        0.4488342904508731,
+        0.6900658722903019,
+        1.0984666129534302
+      ],
+      "local_gls_residual_sigma_dph": 30.329562876147165
+    },
+    {
+      "gps_correlation_seconds": 5.0,
+      "imu_correlation_seconds": 15.0,
+      "data_quadratic": 171.91738925348972,
+      "penalty_quadratic": 7.613364536694633,
+      "penalized_least_squares": 179.53075379018435,
+      "covariance_logdet": -4229.370241403843,
+      "gaussian_deviance": -4057.452852150353,
+      "gaussian_nll": -1738.3418495825,
+      "penalized_gaussian_deviance": -4049.8394876136585,
+      "local_gls_sampling_k_sd": [
+        0.5522140305466876,
+        0.8525255872324129,
+        0.49848867353375803
+      ],
+      "local_penalized_curvature_k_sd": [
+        0.6098879635588806,
+        0.9441554158598886,
+        1.178749307455276
+      ],
+      "local_gls_residual_sigma_dph": 32.8507009578682
+    },
+    {
+      "gps_correlation_seconds": 5.0,
+      "imu_correlation_seconds": 60.0,
+      "data_quadratic": 169.33989536631887,
+      "penalty_quadratic": 7.613364536694633,
+      "penalized_least_squares": 176.9532599030135,
+      "covariance_logdet": -4150.239801096758,
+      "gaussian_deviance": -3980.899905730439,
+      "gaussian_nll": -1700.065376372543,
+      "penalized_gaussian_deviance": -3973.2865411937446,
+      "local_gls_sampling_k_sd": [
+        0.9439216588345104,
+        1.4684195060164649,
+        0.6644722531540249
+      ],
+      "local_penalized_curvature_k_sd": [
+        0.9876916387004341,
+        1.5374136932587612,
+        1.320694266073773
+      ],
+      "local_gls_residual_sigma_dph": 36.48266301324139
+    },
+    {
+      "gps_correlation_seconds": 5.0,
+      "imu_correlation_seconds": 300.0,
+      "data_quadratic": 174.71214957148925,
+      "penalty_quadratic": 7.613364536694633,
+      "penalized_least_squares": 182.32551410818388,
+      "covariance_logdet": -4190.759693349597,
+      "gaussian_deviance": -4016.047543778108,
+      "gaussian_nll": -1717.6391953963773,
+      "penalized_gaussian_deviance": -4008.4341792414134,
+      "local_gls_sampling_k_sd": [
+        1.4930785359963243,
+        2.299040444897811,
+        1.0830159478341637
+      ],
+      "local_penalized_curvature_k_sd": [
+        1.5211766895379653,
+        2.343946628933378,
+        1.5934397873181108
+      ],
+      "local_gls_residual_sigma_dph": 37.865160216889414
+    },
+    {
+      "gps_correlation_seconds": 15.0,
+      "imu_correlation_seconds": 0.0,
+      "data_quadratic": 211.0140591044988,
+      "penalty_quadratic": 7.613364536694633,
+      "penalized_least_squares": 218.62742364119345,
+      "covariance_logdet": -4394.341867072024,
+      "gaussian_deviance": -4183.327807967525,
+      "gaussian_nll": -1801.2793274910857,
+      "penalized_gaussian_deviance": -4175.71444343083,
+      "local_gls_sampling_k_sd": [
+        0.24833334239960236,
+        0.3698456609563174,
+        0.43687562916697914
+      ],
+      "local_penalized_curvature_k_sd": [
+        0.3239033654542558,
+        0.4948675718413518,
+        1.0378173067215084
+      ],
+      "local_gls_residual_sigma_dph": 32.82398477922281
+    },
+    {
+      "gps_correlation_seconds": 15.0,
+      "imu_correlation_seconds": 1.0,
+      "data_quadratic": 196.60102888098055,
+      "penalty_quadratic": 7.613364536694633,
+      "penalized_least_squares": 204.21439341767518,
+      "covariance_logdet": -4368.593105582031,
+      "gaussian_deviance": -4171.992076701051,
+      "gaussian_nll": -1795.6114618578488,
+      "penalized_gaussian_deviance": -4164.378712164356,
+      "local_gls_sampling_k_sd": [
+        0.27284073916402707,
+        0.408599353285013,
+        0.44162977594924213
+      ],
+      "local_penalized_curvature_k_sd": [
+        0.34643789594836705,
+        0.5296935324445328,
+        1.053612017202333
+      ],
+      "local_gls_residual_sigma_dph": 33.009930359153444
+    },
+    {
+      "gps_correlation_seconds": 15.0,
+      "imu_correlation_seconds": 5.0,
+      "data_quadratic": 176.55790758223972,
+      "penalty_quadratic": 7.613364536694633,
+      "penalized_least_squares": 184.17127211893435,
+      "covariance_logdet": -4278.839654632491,
+      "gaussian_deviance": -4102.281747050251,
+      "gaussian_nll": -1760.756297032449,
+      "penalized_gaussian_deviance": -4094.668382513557,
+      "local_gls_sampling_k_sd": [
+        0.3847207930455169,
+        0.5863141565444796,
+        0.4663296523985763
+      ],
+      "local_penalized_curvature_k_sd": [
+        0.45040874738298675,
+        0.6923640034117886,
+        1.1150918152086866
+      ],
+      "local_gls_residual_sigma_dph": 34.209644194195356
+    },
+    {
+      "gps_correlation_seconds": 15.0,
+      "imu_correlation_seconds": 15.0,
+      "data_quadratic": 169.2808957210474,
+      "penalty_quadratic": 7.613364536694633,
+      "penalized_least_squares": 176.89426025774202,
+      "covariance_logdet": -4188.884161098569,
+      "gaussian_deviance": -4019.603265377522,
+      "gaussian_nll": -1719.4170561960843,
+      "penalized_gaussian_deviance": -4011.9899008408274,
+      "local_gls_sampling_k_sd": [
+        0.5543617410887012,
+        0.8554404879439379,
+        0.5060290894247382
+      ],
+      "local_penalized_curvature_k_sd": [
+        0.6118772041244225,
+        0.9469036130643763,
+        1.1895804512692005
+      ],
+      "local_gls_residual_sigma_dph": 36.4656555947615
+    },
+    {
+      "gps_correlation_seconds": 15.0,
+      "imu_correlation_seconds": 60.0,
+      "data_quadratic": 166.92129585673024,
+      "penalty_quadratic": 7.613364536694633,
+      "penalized_least_squares": 174.53466039342487,
+      "covariance_logdet": -4113.69184464649,
+      "gaussian_deviance": -3946.7705487897592,
+      "gaussian_nll": -1683.000697902203,
+      "penalized_gaussian_deviance": -3939.1571842530648,
+      "local_gls_sampling_k_sd": [
+        0.9480048016590817,
+        1.474177668891716,
+        0.6741946427802031
+      ],
+      "local_penalized_curvature_k_sd": [
+        0.9913342633351183,
+        1.5425297058237095,
+        1.3290334898607297
+      ],
+      "local_gls_residual_sigma_dph": 39.76731081111139
+    },
+    {
+      "gps_correlation_seconds": 15.0,
+      "imu_correlation_seconds": 300.0,
+      "data_quadratic": 171.34062305289996,
+      "penalty_quadratic": 7.613364536694633,
+      "penalized_least_squares": 178.9539875895946,
+      "covariance_logdet": -4147.112203141399,
+      "gaussian_deviance": -3975.771580088499,
+      "gaussian_nll": -1697.5012135515728,
+      "penalized_gaussian_deviance": -3968.1582155518045,
+      "local_gls_sampling_k_sd": [
+        1.5012023293569823,
+        2.311403002400273,
+        1.0937269393721312
+      ],
+      "local_penalized_curvature_k_sd": [
+        1.529029205338016,
+        2.355910755915772,
+        1.6026507378419976
+      ],
+      "local_gls_residual_sigma_dph": 41.033652140373206
+    },
+    {
+      "gps_correlation_seconds": 60.0,
+      "imu_correlation_seconds": 0.0,
+      "data_quadratic": 232.26248351791708,
+      "penalty_quadratic": 7.613364536694633,
+      "penalized_least_squares": 239.8758480546117,
+      "covariance_logdet": -4492.963673375563,
+      "gaussian_deviance": -4260.701189857647,
+      "gaussian_nll": -1839.9660184361467,
+      "penalized_gaussian_deviance": -4253.087825320952,
+      "local_gls_sampling_k_sd": [
+        0.18935798317416883,
+        0.2872561779511965,
+        0.5062897745353352
+      ],
+      "local_penalized_curvature_k_sd": [
+        0.2768984598396025,
+        0.42907609082650827,
+        1.0383963028308765
+      ],
+      "local_gls_residual_sigma_dph": 25.44106826046241
+    },
+    {
+      "gps_correlation_seconds": 60.0,
+      "imu_correlation_seconds": 1.0,
+      "data_quadratic": 209.8543641241011,
+      "penalty_quadratic": 7.613364536694633,
+      "penalized_least_squares": 217.46772866079573,
+      "covariance_logdet": -4458.0099845443,
+      "gaussian_deviance": -4248.155620420199,
+      "gaussian_nll": -1833.6932337174228,
+      "penalized_gaussian_deviance": -4240.542255883504,
+      "local_gls_sampling_k_sd": [
+        0.21826210104140784,
+        0.33233951365598413,
+        0.5005820947999492
+      ],
+      "local_penalized_curvature_k_sd": [
+        0.3019959395831361,
+        0.46773209609465205,
+        1.057624365224857
+      ],
+      "local_gls_residual_sigma_dph": 25.681353529192823
+    },
+    {
+      "gps_correlation_seconds": 60.0,
+      "imu_correlation_seconds": 5.0,
+      "data_quadratic": 181.26177394592133,
+      "penalty_quadratic": 7.613364536694633,
+      "penalized_least_squares": 188.87513848261597,
+      "covariance_logdet": -4347.3366911304065,
+      "gaussian_deviance": -4166.0749171844855,
+      "gaussian_nll": -1792.652882099566,
+      "penalized_gaussian_deviance": -4158.461552647791,
+      "local_gls_sampling_k_sd": [
+        0.3405983553756274,
+        0.5254600220756377,
+        0.4929932767339122
+      ],
+      "local_penalized_curvature_k_sd": [
+        0.41144605234014087,
+        0.6386598212315642,
+        1.1221514518486964
+      ],
+      "local_gls_residual_sigma_dph": 27.209837245586275
+    },
+    {
+      "gps_correlation_seconds": 60.0,
+      "imu_correlation_seconds": 15.0,
+      "data_quadratic": 171.83402153856483,
+      "penalty_quadratic": 7.613364536694633,
+      "penalized_least_squares": 179.44738607525946,
+      "covariance_logdet": -4245.308659046957,
+      "gaussian_deviance": -4073.474637508392,
+      "gaussian_nll": -1746.3527422615193,
+      "penalized_gaussian_deviance": -4065.8612729716974,
+      "local_gls_sampling_k_sd": [
+        0.5166417542555254,
+        0.8040691131981385,
+        0.5160827442463873
+      ],
+      "local_penalized_curvature_k_sd": [
+        0.5762032290319722,
+        0.8981917047721862,
+        1.1940599049813778
+      ],
+      "local_gls_residual_sigma_dph": 29.999977214051274
+    },
+    {
+      "gps_correlation_seconds": 60.0,
+      "imu_correlation_seconds": 60.0,
+      "data_quadratic": 169.15343066815015,
+      "penalty_quadratic": 7.613364536694633,
+      "penalized_least_squares": 176.76679520484478,
+      "covariance_logdet": -4167.900926108103,
+      "gaussian_deviance": -3998.7474954399527,
+      "gaussian_nll": -1708.9891712272997,
+      "penalized_gaussian_deviance": -3991.134130903258,
+      "local_gls_sampling_k_sd": [
+        0.911769062075161,
+        1.4246771321260956,
+        0.6761970230793156
+      ],
+      "local_penalized_curvature_k_sd": [
+        0.9556609927404471,
+        1.4937123999901873,
+        1.3298131684426238
+      ],
+      "local_gls_residual_sigma_dph": 33.94397027232449
+    },
+    {
+      "gps_correlation_seconds": 60.0,
+      "imu_correlation_seconds": 300.0,
+      "data_quadratic": 176.3020454495702,
+      "penalty_quadratic": 7.613364536694633,
+      "penalized_least_squares": 183.91540998626482,
+      "covariance_logdet": -4215.174112616221,
+      "gaussian_deviance": -4038.8720671666506,
+      "gaussian_nll": -1729.0514570906487,
+      "penalized_gaussian_deviance": -4031.258702629956,
+      "local_gls_sampling_k_sd": [
+        1.4362433813692799,
+        2.2170222908468213,
+        1.0904055031317967
+      ],
+      "local_penalized_curvature_k_sd": [
+        1.4639948892746775,
+        2.2614096783285293,
+        1.598623096725915
+      ],
+      "local_gls_residual_sigma_dph": 35.43841207497381
+    },
+    {
+      "gps_correlation_seconds": 300.0,
+      "imu_correlation_seconds": 0.0,
+      "data_quadratic": 303.87707958708114,
+      "penalty_quadratic": 7.613364536694633,
+      "penalized_least_squares": 311.4904441237758,
+      "covariance_logdet": -4732.032332454968,
+      "gaussian_deviance": -4428.155252867887,
+      "gaussian_nll": -1923.6930499412667,
+      "penalized_gaussian_deviance": -4420.541888331192,
+      "local_gls_sampling_k_sd": [
+        0.1587103141011426,
+        0.2460655360074958,
+        0.5390505803388331
+      ],
+      "local_penalized_curvature_k_sd": [
+        0.24065367427982878,
+        0.37658435428005604,
+        0.9388416346831986
+      ],
+      "local_gls_residual_sigma_dph": 13.23028100050284
+    },
+    {
+      "gps_correlation_seconds": 300.0,
+      "imu_correlation_seconds": 1.0,
+      "data_quadratic": 256.45214455067503,
+      "penalty_quadratic": 7.613364536694633,
+      "penalized_least_squares": 264.06550908736966,
+      "covariance_logdet": -4672.868584410869,
+      "gaussian_deviance": -4416.416439860193,
+      "gaussian_nll": -1917.82364343742,
+      "penalized_gaussian_deviance": -4408.803075323499,
+      "local_gls_sampling_k_sd": [
+        0.18747760777487438,
+        0.29076497310989635,
+        0.5266675252402938
+      ],
+      "local_penalized_curvature_k_sd": [
+        0.26903982701675805,
+        0.42079609264861456,
+        0.9837882494562535
+      ],
+      "local_gls_residual_sigma_dph": 13.686521899999471
+    },
+    {
+      "gps_correlation_seconds": 300.0,
+      "imu_correlation_seconds": 5.0,
+      "data_quadratic": 202.17419681493283,
+      "penalty_quadratic": 7.613364536694633,
+      "penalized_least_squares": 209.78756135162746,
+      "covariance_logdet": -4507.770460639418,
+      "gaussian_deviance": -4305.5962638244855,
+      "gaussian_nll": -1862.4135554195661,
+      "penalized_gaussian_deviance": -4297.982899287791,
+      "local_gls_sampling_k_sd": [
+        0.30951138192183875,
+        0.48340583590976133,
+        0.4936631673306692
+      ],
+      "local_penalized_curvature_k_sd": [
+        0.3821195696334249,
+        0.598281494608141,
+        1.088590388012096
+      ],
+      "local_gls_residual_sigma_dph": 16.373269151374217
+    },
+    {
+      "gps_correlation_seconds": 300.0,
+      "imu_correlation_seconds": 15.0,
+      "data_quadratic": 184.29329057179098,
+      "penalty_quadratic": 7.613364536694633,
+      "penalized_least_squares": 191.9066551084856,
+      "covariance_logdet": -4369.421956079024,
+      "gaussian_deviance": -4185.128665507234,
+      "gaussian_nll": -1802.1797562609402,
+      "penalized_gaussian_deviance": -4177.515300970539,
+      "local_gls_sampling_k_sd": [
+        0.4861480904572012,
+        0.7628881583013135,
+        0.5072315973472501
+      ],
+      "local_penalized_curvature_k_sd": [
+        0.5473713231861234,
+        0.8589925372664265,
+        1.173913769706011
+      ],
+      "local_gls_residual_sigma_dph": 20.67948859606535
+    },
+    {
+      "gps_correlation_seconds": 300.0,
+      "imu_correlation_seconds": 60.0,
+      "data_quadratic": 181.25732937078476,
+      "penalty_quadratic": 7.613364536694633,
+      "penalized_least_squares": 188.8706939074794,
+      "covariance_logdet": -4283.813124888484,
+      "gaussian_deviance": -4102.555795517699,
+      "gaussian_nll": -1760.893321266173,
+      "penalized_gaussian_deviance": -4094.9424309810047,
+      "local_gls_sampling_k_sd": [
+        0.8776532933449803,
+        1.3780348848821384,
+        0.6592452226009352
+      ],
+      "local_penalized_curvature_k_sd": [
+        0.9226743697176465,
+        1.4485880688580373,
+        1.3136591752655289
+      ],
+      "local_gls_residual_sigma_dph": 26.088159742504413
+    },
+    {
+      "gps_correlation_seconds": 300.0,
+      "imu_correlation_seconds": 300.0,
+      "data_quadratic": 199.92520155591538,
+      "penalty_quadratic": 7.613364536694633,
+      "penalized_least_squares": 207.53856609261,
+      "covariance_logdet": -4370.8461489897745,
+      "gaussian_deviance": -4170.9209474338595,
+      "gaussian_nll": -1795.0758972242531,
+      "penalized_gaussian_deviance": -4163.307582897165,
+      "local_gls_sampling_k_sd": [
+        1.3460481414112324,
+        2.0860807653535036,
+        1.0651425732720277
+      ],
+      "local_penalized_curvature_k_sd": [
+        1.3743694463399683,
+        2.1313056085524797,
+        1.5741647421819345
+      ],
+      "local_gls_residual_sigma_dph": 28.053589303002187
+    }
+  ],
+  "maximum_independent_response_relative_error": 2.1745591065892296e-14,
+  "archive_sha256": "6d2524f68b21341731d894f4d6e675af3d2d5d5392e7becbe69913f0a25ebf4e",
+  "elapsed_s": 1.5745915699517354
+}

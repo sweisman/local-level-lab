@@ -1,0 +1,83 @@
+{
+  "complete": true,
+  "cases": [
+    {
+      "task_id": "bed4aa85790e4d01e95115b8cf19b386a8d2c07c1ad3f7bac00b825813c939a4",
+      "normalized_covariance_minimum_eigenvalues": {
+        "covariance_augmented": 0.06711959841835889,
+        "covariance_after_fit": 1.8256940496809258e-16,
+        "parameter_covariance": 1.205669294763206e-11,
+        "gps_covariance": 0.001592775155311452,
+        "force_covariance": 0.00013569934580497033,
+        "gyro_covariance": 0.8437906983929159
+      },
+      "independent_least_squares_response_relative_error": 7.336726561143242e-15
+    },
+    {
+      "task_id": "dc5bb68180f11fc6ba59dedc0cd23b05e1aaf13870bff06c8549bb73506b03a2",
+      "normalized_covariance_minimum_eigenvalues": {
+        "covariance_augmented": 0.06734504780996298,
+        "covariance_after_fit": 5.21332720978405e-16,
+        "parameter_covariance": 1.4777346602464432e-11,
+        "gps_covariance": 0.001527916929962351,
+        "force_covariance": 0.0,
+        "gyro_covariance": 0.0
+      },
+      "independent_least_squares_response_relative_error": 1.5440625860634938e-14
+    },
+    {
+      "task_id": "f94593ee49b996b4de1ef7ae7fcebd7299384ce89bff672d82f4debc755a2425",
+      "normalized_covariance_minimum_eigenvalues": {
+        "covariance_augmented": 0.06706335751712142,
+        "covariance_after_fit": -9.142473521974609e-16,
+        "parameter_covariance": 1.144682096895296e-11,
+        "gps_covariance": 0.0015844846531527428,
+        "force_covariance": 0.00022646108801675438,
+        "gyro_covariance": 0.8424764231686984
+      },
+      "independent_least_squares_response_relative_error": 4.870349103378249e-15
+    },
+    {
+      "task_id": "119d674e186dfaee3ec65d36ca6d02568cea20e8bb58bc8d059d72fab7576ab0",
+      "normalized_covariance_minimum_eigenvalues": {
+        "covariance_augmented": 0.06734887326721402,
+        "covariance_after_fit": -1.2003823038759891e-15,
+        "parameter_covariance": 7.80395396778986e-12,
+        "gps_covariance": 0.0015051918501606562,
+        "force_covariance": 0.0,
+        "gyro_covariance": 0.0
+      },
+      "independent_least_squares_response_relative_error": 1.6868021143134127e-14
+    },
+    {
+      "task_id": "b545f5f3aec5efaaa0a8cc1da285bcce8b50f66952e8b0977f176b944c0b145b",
+      "normalized_covariance_minimum_eigenvalues": {
+        "covariance_augmented": 0.06708232305393635,
+        "covariance_after_fit": -9.719833282717543e-16,
+        "parameter_covariance": 1.1747063008227852e-11,
+        "gps_covariance": 0.001588331195443823,
+        "force_covariance": 0.00015226415338211313,
+        "gyro_covariance": 0.841402222916181
+      },
+      "independent_least_squares_response_relative_error": 5.998634352948622e-15
+    },
+    {
+      "task_id": "e71b3a92ed6b8216f7b4767ad03d33773fec77bc3d9f8efb6ce01536ffb1b84f",
+      "normalized_covariance_minimum_eigenvalues": {
+        "covariance_augmented": 0.06732379336579172,
+        "covariance_after_fit": -2.1226410370936312e-15,
+        "parameter_covariance": 1.2747814342261274e-11,
+        "gps_covariance": 0.0015184056771151452,
+        "force_covariance": 0.0,
+        "gyro_covariance": 0.0
+      },
+      "independent_least_squares_response_relative_error": 1.4797157452302568e-14
+    }
+  ],
+  "review_sha256": "3bb82e79a2995be4dd93b836f91d6a3f6a0a6009c231989ef5204c58d39193e9",
+  "helper_sha256": "b250a7514724bd148229262d99925987861c03aca6a1e2dbafcfdbb61d955999",
+  "optimizer_calls": 0,
+  "additional_flight_attempts": 0,
+  "production_enabled": false,
+  "decisions_enabled": false
+}

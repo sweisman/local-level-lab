@@ -1,0 +1,19 @@
+{
+  "review_sha256": "5a00dc8878a7e9faf54c8bc4077a94c80c115fc732266c476c13fb0b38222543",
+  "checked_files": 38,
+  "all_hashes_match": true,
+  "scoring_dependency_sha256": {
+    "analysis/tests/audit_replay_residuals.py": "d8140f4ac19494cf1caabbeeae25b0e41d67eb45bb1d884c3ee934fe0c38f8d0"
+  },
+  "preserved_initial_source_sha256": {
+    "docs/acceleration-motion-20261007/initial-acceleration-motion.py": "8b027be71bbc3131a2cb34e1c29f44f586a9db5c00e0348907e22ac4a03b7080"
+  },
+  "cases": 6,
+  "states_per_case": 93,
+  "common_supported_minutes": 83,
+  "tests": "11 passed",
+  "additional_flight_attempts": 0,
+  "optimizer_calls": 0,
+  "production_enabled": false,
+  "decisions_enabled": false
+}

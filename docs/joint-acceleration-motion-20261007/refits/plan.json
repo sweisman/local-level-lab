@@ -1,0 +1,91 @@
+{
+  "version": "saved-joint-motion-refits-1",
+  "cases": [
+    "bed4aa85790e4d01e95115b8cf19b386a8d2c07c1ad3f7bac00b825813c939a4",
+    "dc5bb68180f11fc6ba59dedc0cd23b05e1aaf13870bff06c8549bb73506b03a2",
+    "f94593ee49b996b4de1ef7ae7fcebd7299384ce89bff672d82f4debc755a2425",
+    "119d674e186dfaee3ec65d36ca6d02568cea20e8bb58bc8d059d72fab7576ab0",
+    "b545f5f3aec5efaaa0a8cc1da285bcce8b50f66952e8b0977f176b944c0b145b",
+    "e71b3a92ed6b8216f7b4767ad03d33773fec77bc3d9f8efb6ce01536ffb1b84f"
+  ],
+  "fits_per_case": [
+    "free",
+    "sphere_rotating",
+    "sphere_still",
+    "flat_still"
+  ],
+  "nesting_repair": "One predefined free restart at the best fixed-model fit if nesting fails",
+  "maximum_optimizer_calls": 30,
+  "max_nfev_per_fit": 200,
+  "additional_flight_attempts": 0,
+  "bootstrap": 0,
+  "numerical_threads": 1,
+  "source_sha256": {
+    "analysis/tests/refit_joint_acceleration_motion.py": "f22529def813f95ef39fd0c9773dca742e9ab68b3fef80ee37bbd2e450d2ceb7",
+    "analysis/tests/joint_acceleration_motion.py": "fa5596ae00d32abb2b1ddbf629a80d21e519961ca4d7933dd03b1087a7f34b3c",
+    "analysis/tests/review_acceleration_motion.py": "ed57159a9584aa1908c60771874a40064aabfe57713facb1762792740839076a",
+    "analysis/tests/acceleration_motion.py": "ba0d9b580d5975a506a12f5b7d2d4b45cee3e45150db4c1dd25222696f8dc6c3",
+    "docs/observed-pair-replay-20261007/run/campaign.json": "8fc7940b38c1c689aa0fd3e21ac2794925f99f468ff984f02f01850bff44acfb",
+    "docs/observed-pair-replay-20261007/run/diagnostics/bed4aa85790e4d01e95115b8cf19b386a8d2c07c1ad3f7bac00b825813c939a4/session.zip": "b00bd77b2fde79f66638e15fc55a6e95abc592fbfabee2188f64cd7a22590139",
+    "docs/observed-pair-replay-20261007/run/diagnostics/bed4aa85790e4d01e95115b8cf19b386a8d2c07c1ad3f7bac00b825813c939a4/analysis.json": "2e9f6e2565525ae1179816fdc5d6eff7a0769e21d4324ba18cee1ed879d8bb16",
+    "docs/observed-pair-replay-20261007/run/diagnostics/bed4aa85790e4d01e95115b8cf19b386a8d2c07c1ad3f7bac00b825813c939a4/fit-input.npz": "9ffbb2259113c8eeded37b1373143d88691582cdffdafcb3ae1de9cb90d1f058",
+    "docs/observed-pair-replay-20261007/run/diagnostics/bed4aa85790e4d01e95115b8cf19b386a8d2c07c1ad3f7bac00b825813c939a4/fit-rows.npz": "f955dfd0c84469fdb97a2982f4994347b94246c7c58db37ea7d9bf6b61dd5ba4",
+    "docs/observed-pair-replay-20261007/run/diagnostics/dc5bb68180f11fc6ba59dedc0cd23b05e1aaf13870bff06c8549bb73506b03a2/session.zip": "b00bd77b2fde79f66638e15fc55a6e95abc592fbfabee2188f64cd7a22590139",
+    "docs/observed-pair-replay-20261007/run/diagnostics/dc5bb68180f11fc6ba59dedc0cd23b05e1aaf13870bff06c8549bb73506b03a2/analysis.json": "c39c67eb0cedf43d33c18ef513123f7aeb8727d9121090d613abcb79f723e6db",
+    "docs/observed-pair-replay-20261007/run/diagnostics/dc5bb68180f11fc6ba59dedc0cd23b05e1aaf13870bff06c8549bb73506b03a2/fit-input.npz": "9ffbb2259113c8eeded37b1373143d88691582cdffdafcb3ae1de9cb90d1f058",
+    "docs/observed-pair-replay-20261007/run/diagnostics/dc5bb68180f11fc6ba59dedc0cd23b05e1aaf13870bff06c8549bb73506b03a2/fit-rows.npz": "3b39a0627336fb6819bc0cc6f245c505b0e8a4d20f885c826ff072b24eabdf37",
+    "docs/observed-pair-replay-20261007/run/diagnostics/f94593ee49b996b4de1ef7ae7fcebd7299384ce89bff672d82f4debc755a2425/session.zip": "4ea26c350714b963ec845264fcedd8f0ca57564b73c99d5d2a7193c32e24e1b3",
+    "docs/observed-pair-replay-20261007/run/diagnostics/f94593ee49b996b4de1ef7ae7fcebd7299384ce89bff672d82f4debc755a2425/analysis.json": "df0d56e1c17a4ce37ffd9b7d9ea766022be73302e70c53449073f64ea342e3c7",
+    "docs/observed-pair-replay-20261007/run/diagnostics/f94593ee49b996b4de1ef7ae7fcebd7299384ce89bff672d82f4debc755a2425/fit-input.npz": "450d990d8f85bea674be83a2e524268c63021a2b99604cf34226baadfaeb6546",
+    "docs/observed-pair-replay-20261007/run/diagnostics/f94593ee49b996b4de1ef7ae7fcebd7299384ce89bff672d82f4debc755a2425/fit-rows.npz": "c347bf36a5d226553d4dcd60be98fd2f8f84a0b973f64cd62719bbb6f60f056c",
+    "docs/observed-pair-replay-20261007/run/diagnostics/119d674e186dfaee3ec65d36ca6d02568cea20e8bb58bc8d059d72fab7576ab0/session.zip": "ee45e3efcb25b7eb87155f97dab9762b61dd716fcc54da979e72f61cf6058d9c",
+    "docs/observed-pair-replay-20261007/run/diagnostics/119d674e186dfaee3ec65d36ca6d02568cea20e8bb58bc8d059d72fab7576ab0/analysis.json": "3b26bc33dd56298eb09244587d3e2c68955283e4aac71150b49917d09f305ce2",
+    "docs/observed-pair-replay-20261007/run/diagnostics/119d674e186dfaee3ec65d36ca6d02568cea20e8bb58bc8d059d72fab7576ab0/fit-input.npz": "450d990d8f85bea674be83a2e524268c63021a2b99604cf34226baadfaeb6546",
+    "docs/observed-pair-replay-20261007/run/diagnostics/119d674e186dfaee3ec65d36ca6d02568cea20e8bb58bc8d059d72fab7576ab0/fit-rows.npz": "ec23507da2cbb59f11501303f9e54b8a0b194395c7c322c8247c33a08b3ac036",
+    "docs/observed-pair-replay-20261007/run/diagnostics/b545f5f3aec5efaaa0a8cc1da285bcce8b50f66952e8b0977f176b944c0b145b/session.zip": "643cbc991b785d6f102fe5703313bf54a861df0eb3714820cc376af8b2b21bdf",
+    "docs/observed-pair-replay-20261007/run/diagnostics/b545f5f3aec5efaaa0a8cc1da285bcce8b50f66952e8b0977f176b944c0b145b/analysis.json": "2e32772375497360f3a1500230ab78249f8efb8e39810ba2122c8f1e1c4a8401",
+    "docs/observed-pair-replay-20261007/run/diagnostics/b545f5f3aec5efaaa0a8cc1da285bcce8b50f66952e8b0977f176b944c0b145b/fit-input.npz": "192e72d2e2fb41dbf9b63a45640c2cce6e186bfde11cb958cdc3394ef6745faf",
+    "docs/observed-pair-replay-20261007/run/diagnostics/b545f5f3aec5efaaa0a8cc1da285bcce8b50f66952e8b0977f176b944c0b145b/fit-rows.npz": "750374fb518499339d045472034415059fb9ae7204e998e3d2c9e9254ef96ece",
+    "docs/observed-pair-replay-20261007/run/diagnostics/e71b3a92ed6b8216f7b4767ad03d33773fec77bc3d9f8efb6ce01536ffb1b84f/session.zip": "145e1c16555084f8fa4bd754c5fe8cda606007134d353aed7b0790be01867b37",
+    "docs/observed-pair-replay-20261007/run/diagnostics/e71b3a92ed6b8216f7b4767ad03d33773fec77bc3d9f8efb6ce01536ffb1b84f/analysis.json": "372813d70018209db9a8be1eb18ae38d07330df981479eab2835deca7b9bb896",
+    "docs/observed-pair-replay-20261007/run/diagnostics/e71b3a92ed6b8216f7b4767ad03d33773fec77bc3d9f8efb6ce01536ffb1b84f/fit-input.npz": "192e72d2e2fb41dbf9b63a45640c2cce6e186bfde11cb958cdc3394ef6745faf",
+    "docs/observed-pair-replay-20261007/run/diagnostics/e71b3a92ed6b8216f7b4767ad03d33773fec77bc3d9f8efb6ce01536ffb1b84f/fit-rows.npz": "9476f4c9bcc7089dffe0e1d02fd42257ce2579045a572562e4aba590ef2fb81f"
+  },
+  "numerical_environment_hash": "20ef393862e7723ba90e825b625826081cde501e4d9c944f2dbff29526ebdd69",
+  "numerical_environment": {
+    "python": "3.14.7",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "thread_settings": {
+      "OPENBLAS_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1"
+    }
+  },
+  "scientific_implementation_hash": "1bf8f7c0120fa84504d98c377db61807cacf9f2db6fdcec20f814b9f4a4d8500",
+  "policy": {
+    "version": "joint-observed-motion-development-1",
+    "window_seconds": 30.0,
+    "error_modes": [
+      "acceleration_n",
+      "acceleration_e",
+      "acceleration_down",
+      "force_x",
+      "force_y",
+      "force_z"
+    ],
+    "error_sigma_bound": 3.0,
+    "error_prior": "Six fully coherent marginal-error patterns with independent unit Gaussian priors",
+    "gyro_weight_source": "Frozen original preliminary weights; no new residual-weight estimate",
+    "forward_bound_sigmas": 3.0,
+    "angular_step_rad": 2e-06,
+    "wind_step_mps": 0.002,
+    "error_step": 0.002,
+    "support": "Fixed observable support including simultaneous three-sigma acceleration-mode norm bound; no state-dependent row selection",
+    "uncertainty_status": "Local joint curvature and six error modes only; unvalidated coverage",
+    "production_enabled": false,
+    "decisions_enabled": false
+  },
+  "production_enabled": false,
+  "decisions_enabled": false
+}

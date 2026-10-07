@@ -1,0 +1,56 @@
+{
+  "task_id": "e71b3a92ed6b8216f7b4767ad03d33773fec77bc3d9f8efb6ce01536ffb1b84f",
+  "truth": "flat_still",
+  "crab_model": "wind_tas",
+  "common_minutes": 79,
+  "residual_rms_dph": 7.159520012970761,
+  "propagated_fixed_parameter_sigma_dph": 11.256616697187809,
+  "propagated_local_fit_residual_sigma_dph": 11.139542509797302,
+  "propagated_local_k_sampling_sd": [
+    0.16833498928145843,
+    0.25213003646138854,
+    0.09761790854674941
+  ],
+  "independent_input_direction_relative_error": 5.755448716889523e-10,
+  "variance_contributions_dph2": {
+    "gps": 114.21235102007986,
+    "force": 0.032001859254877384,
+    "gyro": 12.465927907406604,
+    "force_gyro_cross": 0.00113868066603723
+  },
+  "residual_correlation": {
+    "reference_axis_correlation": [
+      [
+        1.0,
+        -0.36166685947493077,
+        0.0881343869153505
+      ],
+      [
+        -0.36166685947493077,
+        1.0,
+        0.003906610012682804
+      ],
+      [
+        0.0881343869153505,
+        0.003906610012682804,
+        1.0000000000000002
+      ]
+    ],
+    "adjacent_minute_pairs": 66,
+    "adjacent_minute_axis_correlation": [
+      0.07323941084523751,
+      -0.605113393031968,
+      -0.32757643900244254
+    ],
+    "interpretation": "Descriptive fitted-residual correlations; no independent-flight or significance claim"
+  },
+  "limits": [
+    "Conditional on fixed mount/forward references, old weights, and independent input seconds.",
+    "GPS accuracy fields are provisional sigma scales; horizontal marginals and missing GPS channel correlations are assumed.",
+    "Empirical paired IMU covariance includes motion, not just device noise.",
+    "Local fit response is evaluated at saved parameters without a new fit; penalties are deterministic and prior/calibration uncertainty is omitted.",
+    "Filtering nonlinear attitude can have systematic error; no coverage, model significance, power or decisions."
+  ],
+  "archive_sha256": "cd8def7f88c52cb3f4d5fd15242f19378306cc23639b201e3c3eb8979501b511",
+  "elapsed_s": 14.082359767984599
+}

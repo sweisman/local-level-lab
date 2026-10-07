@@ -1,0 +1,19 @@
+{
+  "pid": 3681832,
+  "command": [
+    "/home/sweisman/venv/bin/python",
+    "/site/repo/local-level-lab/analysis/tests/sharded_campaign.py",
+    "run",
+    "docs/observed-pair-replay-20261007/run/plan.json",
+    "--output",
+    "docs/observed-pair-replay-20261007/run",
+    "--attempt-limit",
+    "6",
+    "--workers",
+    "2"
+  ],
+  "plan_hash": "ec543811c717ad0948a0ec89815099cd2c0589ddf04464d45730c13f8564802a",
+  "attempt_limit": 6,
+  "workers": 2,
+  "started_utc": "2026-10-07T03:08:18.947767+00:00"
+}

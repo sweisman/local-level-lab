@@ -1,0 +1,220 @@
+{
+  "state": "frozen_authorized_not_launched",
+  "plan_hash": "ec543811c717ad0948a0ec89815099cd2c0589ddf04464d45730c13f8564802a",
+  "implementation_hash": "1bf8f7c0120fa84504d98c377db61807cacf9f2db6fdcec20f814b9f4a4d8500",
+  "numerical_environment_hash": "20ef393862e7723ba90e825b625826081cde501e4d9c944f2dbff29526ebdd69",
+  "authorized_evaluations": 6,
+  "completed_evaluations": 0,
+  "seed": 600910,
+  "track_id": "2025-08-19-aa-1433-ord-lax",
+  "trajectory_hash": "fe12e0e6b73033a51ff40f79619dfa3418b54098461dbce7a3d94d2a64bb0526",
+  "window_seconds": [
+    3600,
+    10800
+  ],
+  "turn_schedule": [
+    5.0,
+    15.0,
+    30.0,
+    40.0,
+    90.0
+  ],
+  "turn_checks": [
+    {
+      "minute": 5.0,
+      "safe": true,
+      "reason": null,
+      "evidence": []
+    },
+    {
+      "minute": 15.0,
+      "safe": true,
+      "reason": null,
+      "evidence": []
+    },
+    {
+      "minute": 30.0,
+      "safe": true,
+      "reason": null,
+      "evidence": []
+    },
+    {
+      "minute": 40.0,
+      "safe": true,
+      "reason": null,
+      "evidence": []
+    },
+    {
+      "minute": 90.0,
+      "safe": true,
+      "reason": null,
+      "evidence": []
+    }
+  ],
+  "tasks": [
+    {
+      "index": 0,
+      "task_id": "bed4aa85790e4d01e95115b8cf19b386a8d2c07c1ad3f7bac00b825813c939a4",
+      "truth": "sphere_rotating",
+      "scenario": "wind+bias_mixed",
+      "seed": 600910,
+      "fit_options": {
+        "n_boot": 0,
+        "bootstrap_sampling": "moving",
+        "block_length": 15,
+        "noise_model": "axis_segment",
+        "bootstrap_refit": "nonlinear",
+        "forward_uncertainty": true,
+        "crab_rate_sigma_dph": 1.0,
+        "crab_knot_seconds": null,
+        "research_candidate": true,
+        "bias_model": "dynamic",
+        "bias_knot_seconds": 900.0,
+        "bias_rw_sigma_dph_sqrth": 3.0,
+        "rank_min_relative_margin": 0.0,
+        "design_mode": "envelope",
+        "pairwise_method": "profile",
+        "crab_model": "wind",
+        "forward_reference": "matched"
+      }
+    },
+    {
+      "index": 1,
+      "task_id": "dc5bb68180f11fc6ba59dedc0cd23b05e1aaf13870bff06c8549bb73506b03a2",
+      "truth": "sphere_rotating",
+      "scenario": "wind+bias_mixed",
+      "seed": 600910,
+      "fit_options": {
+        "n_boot": 0,
+        "bootstrap_sampling": "moving",
+        "block_length": 15,
+        "noise_model": "axis_segment",
+        "bootstrap_refit": "nonlinear",
+        "forward_uncertainty": true,
+        "crab_rate_sigma_dph": 1.0,
+        "crab_knot_seconds": null,
+        "research_candidate": true,
+        "bias_model": "dynamic",
+        "bias_knot_seconds": 900.0,
+        "bias_rw_sigma_dph_sqrth": 3.0,
+        "rank_min_relative_margin": 0.0,
+        "design_mode": "envelope",
+        "pairwise_method": "profile",
+        "crab_model": "wind_tas",
+        "forward_reference": "matched"
+      }
+    },
+    {
+      "index": 2,
+      "task_id": "f94593ee49b996b4de1ef7ae7fcebd7299384ce89bff672d82f4debc755a2425",
+      "truth": "sphere_still",
+      "scenario": "wind+bias_mixed",
+      "seed": 600910,
+      "fit_options": {
+        "n_boot": 0,
+        "bootstrap_sampling": "moving",
+        "block_length": 15,
+        "noise_model": "axis_segment",
+        "bootstrap_refit": "nonlinear",
+        "forward_uncertainty": true,
+        "crab_rate_sigma_dph": 1.0,
+        "crab_knot_seconds": null,
+        "research_candidate": true,
+        "bias_model": "dynamic",
+        "bias_knot_seconds": 900.0,
+        "bias_rw_sigma_dph_sqrth": 3.0,
+        "rank_min_relative_margin": 0.0,
+        "design_mode": "envelope",
+        "pairwise_method": "profile",
+        "crab_model": "wind",
+        "forward_reference": "matched"
+      }
+    },
+    {
+      "index": 3,
+      "task_id": "119d674e186dfaee3ec65d36ca6d02568cea20e8bb58bc8d059d72fab7576ab0",
+      "truth": "sphere_still",
+      "scenario": "wind+bias_mixed",
+      "seed": 600910,
+      "fit_options": {
+        "n_boot": 0,
+        "bootstrap_sampling": "moving",
+        "block_length": 15,
+        "noise_model": "axis_segment",
+        "bootstrap_refit": "nonlinear",
+        "forward_uncertainty": true,
+        "crab_rate_sigma_dph": 1.0,
+        "crab_knot_seconds": null,
+        "research_candidate": true,
+        "bias_model": "dynamic",
+        "bias_knot_seconds": 900.0,
+        "bias_rw_sigma_dph_sqrth": 3.0,
+        "rank_min_relative_margin": 0.0,
+        "design_mode": "envelope",
+        "pairwise_method": "profile",
+        "crab_model": "wind_tas",
+        "forward_reference": "matched"
+      }
+    },
+    {
+      "index": 4,
+      "task_id": "b545f5f3aec5efaaa0a8cc1da285bcce8b50f66952e8b0977f176b944c0b145b",
+      "truth": "flat_still",
+      "scenario": "wind+bias_mixed",
+      "seed": 600910,
+      "fit_options": {
+        "n_boot": 0,
+        "bootstrap_sampling": "moving",
+        "block_length": 15,
+        "noise_model": "axis_segment",
+        "bootstrap_refit": "nonlinear",
+        "forward_uncertainty": true,
+        "crab_rate_sigma_dph": 1.0,
+        "crab_knot_seconds": null,
+        "research_candidate": true,
+        "bias_model": "dynamic",
+        "bias_knot_seconds": 900.0,
+        "bias_rw_sigma_dph_sqrth": 3.0,
+        "rank_min_relative_margin": 0.0,
+        "design_mode": "envelope",
+        "pairwise_method": "profile",
+        "crab_model": "wind",
+        "forward_reference": "matched"
+      }
+    },
+    {
+      "index": 5,
+      "task_id": "e71b3a92ed6b8216f7b4767ad03d33773fec77bc3d9f8efb6ce01536ffb1b84f",
+      "truth": "flat_still",
+      "scenario": "wind+bias_mixed",
+      "seed": 600910,
+      "fit_options": {
+        "n_boot": 0,
+        "bootstrap_sampling": "moving",
+        "block_length": 15,
+        "noise_model": "axis_segment",
+        "bootstrap_refit": "nonlinear",
+        "forward_uncertainty": true,
+        "crab_rate_sigma_dph": 1.0,
+        "crab_knot_seconds": null,
+        "research_candidate": true,
+        "bias_model": "dynamic",
+        "bias_knot_seconds": 900.0,
+        "bias_rw_sigma_dph_sqrth": 3.0,
+        "rank_min_relative_margin": 0.0,
+        "design_mode": "envelope",
+        "pairwise_method": "profile",
+        "crab_model": "wind_tas",
+        "forward_reference": "matched"
+      }
+    }
+  ],
+  "limitations": [
+    "One shared development seed across three truths and two candidates; not independent trials.",
+    "Observed positions with assumed C2 between-fix motion and simulated high-rate GNSS/IMU.",
+    "Matched forward reference recovers axes from generated measurements; does not substitute known design axes.",
+    "Complete nonlinear analysis and pairwise profiles, zero bootstrap for geometry/preprocessing diagnosis.",
+    "No empirical thresholds, validated decisions, calibration, production promotion or additional flights.",
+    "Each started task, including failures or interruption, spends one attempt and must never be retried."
+  ]
+}
