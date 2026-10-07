@@ -1,0 +1,342 @@
+{
+  "configurations": [
+    {
+      "configuration": "[[\"AV-610,VER5,S/N3456,HW4-7,SW04.70-Mar25/09,ICD16.00,OS425B14,IMU21,PGPS16,SGPS0,YDC-0,FMS-0\"], [\"21\"], [\"2\"]]",
+      "mapping": {
+        "permutation": [
+          0,
+          1,
+          2
+        ],
+        "signs": [
+          1,
+          1,
+          1
+        ]
+      },
+      "members": [
+        "d0e3a956ede05ba381c3",
+        "4c1edd9ff3709c652827",
+        "26677dfea3fbb0fb60fe",
+        "6d4377977ca2fbed9e2b",
+        "ad2d5717b2c1c2ed3589",
+        "b78faf2349870ed2ddb8",
+        "60b015c2680f835a1882",
+        "28efd95656987f7d215a",
+        "6d07c5ae81f6c1fada88",
+        "1ef925fbecacc780e73a",
+        "b97d0866606fd64f4e2e",
+        "c2e72777d4aa69a7f197",
+        "d6963226d080d2cc57f1",
+        "c113ebd6a699d315df57",
+        "e8ef81c896d08e296383",
+        "6470d449b74df01c7ef3",
+        "56914803301d5dd3d9bc",
+        "397f6c3a7f6f34592195",
+        "6f62e0aa90d1bfb12c24",
+        "3361b4f9d23e55cd4841",
+        "739867a871b2c6dc77f4",
+        "81b7dc5d8a941315f623",
+        "713bb9ca5c6d03766fb3",
+        "8c953c34ba28140feafd",
+        "803fc652962ade07d350"
+      ],
+      "representatives": [
+        "d0e3a956ede05ba381c3",
+        "803fc652962ade07d350"
+      ],
+      "reproduced_on_two_dates": false,
+      "tests": [
+        {
+          "accepted": false,
+          "dates": [
+            "2009-10-13"
+          ],
+          "task_id": "d0e3a956ede05ba381c3"
+        },
+        {
+          "accepted": true,
+          "dates": [
+            "2010-04-22"
+          ],
+          "task_id": "803fc652962ade07d350"
+        }
+      ]
+    },
+    {
+      "configuration": "[[\"AV-610,VER5,S/N3861,HW4.0-7,SW05.00-Dec16/09,ICD17.00,OS425B142,IMU21,PGPS16,SGPS0\"], [\"21\"], [\"2\"]]",
+      "mapping": {
+        "permutation": [
+          0,
+          1,
+          2
+        ],
+        "signs": [
+          1,
+          1,
+          1
+        ]
+      },
+      "members": [
+        "30b98b4d421c7e9d0292",
+        "187a21019bce7b34a04c",
+        "12fbcbce3c7f52a3eae7",
+        "eecc97da7cb309a622c8",
+        "24718d57807748271bfc",
+        "a71cf7c9a4222715c01d",
+        "2b82c787ca0e04503791",
+        "c5edcede76fd27a44982",
+        "504c68189ef4c48aa369",
+        "ea3716a039f0aefc02d4",
+        "864e9c094f3d36d24466",
+        "9d54224065d7782b2923",
+        "f8a6b1bf65b6345e0a13",
+        "61b1057089e4b0de4311",
+        "b02e718ddd5bb27a8876",
+        "d0de79e7926d5cac2e8f",
+        "ab59e1b7d4030087d98b",
+        "59e4996b9bada79eba50",
+        "ceac61de9c1dd86f4632",
+        "8607437e732847526634",
+        "cc0f19bded8f62a87c11",
+        "108d196761a839a24f07",
+        "4876a722de50db44fd7a",
+        "3223697e5fe287b1d443",
+        "fbcccc67cfc0f8c58798",
+        "adfd80e2038861ee52fa",
+        "a0534d9c30195543709c",
+        "448e008466fda5ad79ea",
+        "41cf7c4dcca04dce0678",
+        "e53cc76ff2a5fe3046f9",
+        "b670190d46cfc8d4bbad",
+        "b2e4d9044f4718247f16",
+        "a869222776a6ad61940f",
+        "64e033ebd4066f692c7d",
+        "cd8e05202eb41b83eb26",
+        "b8a39f615741686e805a",
+        "2cde8478531840037384"
+      ],
+      "representatives": [
+        "30b98b4d421c7e9d0292",
+        "2cde8478531840037384"
+      ],
+      "reproduced_on_two_dates": true,
+      "tests": [
+        {
+          "accepted": true,
+          "dates": [
+            "2011-10-08"
+          ],
+          "task_id": "30b98b4d421c7e9d0292"
+        },
+        {
+          "accepted": true,
+          "dates": [
+            "2015-10-29"
+          ],
+          "task_id": "2cde8478531840037384"
+        }
+      ]
+    },
+    {
+      "configuration": "[[\"AV-610,VER5,S/N3894,HW4.0-7,SW05.00-Dec16/09,ICD17.00,OS425B142,IMU21,PGPS16,SGPS0\"], [\"21\"], [\"2\"]]",
+      "mapping": {
+        "permutation": [
+          0,
+          1,
+          2
+        ],
+        "signs": [
+          1,
+          -1,
+          -1
+        ]
+      },
+      "members": [
+        "ca64833f6ebbd5fcd35e",
+        "fd9eb28de38e611f1a53",
+        "9a6a312f2c7248723644",
+        "3f7e99f556666c5e28c2"
+      ],
+      "representatives": [
+        "ca64833f6ebbd5fcd35e",
+        "3f7e99f556666c5e28c2"
+      ],
+      "reproduced_on_two_dates": true,
+      "tests": [
+        {
+          "accepted": true,
+          "dates": [
+            "2013-10-31"
+          ],
+          "task_id": "ca64833f6ebbd5fcd35e"
+        },
+        {
+          "accepted": true,
+          "dates": [
+            "2013-11-09"
+          ],
+          "task_id": "3f7e99f556666c5e28c2"
+        }
+      ]
+    },
+    {
+      "configuration": "[[\"AV-610,VER6,S/N5680,HW1.2-11,SW08.32-Jun12/15,ICD07.28,OS6.4.1,IMU21,PGPS17,SGPS0,DMI0,GIM1,ZVI0,TRP\"], [\"21\"], [\"2\"]]",
+      "mapping": {
+        "permutation": [
+          0,
+          1,
+          2
+        ],
+        "signs": [
+          1,
+          1,
+          1
+        ]
+      },
+      "members": [
+        "25e8081705aa69d3cd6f",
+        "8fb44931da423fbde3ef",
+        "67027d0caf3ed8e14c5f",
+        "439cd3a0feb0625b60ac",
+        "4fbe64ccb69a7ffc0257",
+        "b763a84552420e8c1d8d",
+        "aa95315f0205d7f900d9",
+        "ed4db68c327edbb1e892",
+        "7ecb2ee97677e3a1e45c",
+        "a39b228a8a59800afdfd",
+        "1c071fb7315904ebaad9",
+        "cc3e726ffb0436c0f9d8",
+        "ea628c825891d2237361",
+        "e107412e6b64dace9bc0",
+        "f50467521369a9e0579e"
+      ],
+      "representatives": [
+        "25e8081705aa69d3cd6f",
+        "f50467521369a9e0579e"
+      ],
+      "reproduced_on_two_dates": false,
+      "tests": [
+        {
+          "accepted": false,
+          "dates": [
+            "2015-09-24"
+          ],
+          "task_id": "25e8081705aa69d3cd6f"
+        },
+        {
+          "accepted": true,
+          "dates": [
+            "2015-10-29"
+          ],
+          "task_id": "f50467521369a9e0579e"
+        }
+      ]
+    },
+    {
+      "configuration": "[[\"AV-610,VER6,S/N6448,HW1.6-12,SW08.32-Jun12/15,ICD07.28,OS6.4.1,IMU21,PGPS17,SGPS0,DMI0,GIM1,ZVI0,TRP\"], [\"21\"], [\"2\"]]",
+      "mapping": {
+        "permutation": [
+          0,
+          1,
+          2
+        ],
+        "signs": [
+          1,
+          1,
+          1
+        ]
+      },
+      "members": [
+        "9b7d1be2c57168d942d1",
+        "95a01583566d1a9e080b",
+        "c1ef32dccf7f02f2fba6",
+        "a4d367c39b7334fa38b8",
+        "81c18746e768f992c6e7",
+        "b5b356504236479c028d",
+        "05b6350e07c1b6ff24ad",
+        "a5c9a343b38c34d42251",
+        "5489ee1ee49676ceb94b",
+        "d2a076353a8123f2d047",
+        "151ef3a56cffa6acc330",
+        "2aa23d331be35e2dc501",
+        "65bd45977b48b7d8272a",
+        "9641dfee9ad7cc1aa89e",
+        "4849e6ea97a36558b5ac"
+      ],
+      "representatives": [
+        "9b7d1be2c57168d942d1",
+        "4849e6ea97a36558b5ac"
+      ],
+      "reproduced_on_two_dates": true,
+      "tests": [
+        {
+          "accepted": true,
+          "dates": [
+            "2015-09-24"
+          ],
+          "task_id": "9b7d1be2c57168d942d1"
+        },
+        {
+          "accepted": true,
+          "dates": [
+            "2015-10-29"
+          ],
+          "task_id": "4849e6ea97a36558b5ac"
+        }
+      ]
+    },
+    {
+      "configuration": "[[\"AV-610,VER6,S/N7763,HW1.6-12,SW08.53-Apr20/16,ICD07.41,OS6.4.1,IMU21,PGPS17,SGPS0,DMI0,GIM1,ZVI0\"], [\"21\"], [\"2\"]]",
+      "mapping": {
+        "permutation": [
+          0,
+          1,
+          2
+        ],
+        "signs": [
+          1,
+          1,
+          1
+        ]
+      },
+      "members": [
+        "06de5ef13d80efbe9b7e",
+        "9af866a9addfc2e419b7"
+      ],
+      "representatives": [
+        "06de5ef13d80efbe9b7e",
+        "9af866a9addfc2e419b7"
+      ],
+      "reproduced_on_two_dates": false,
+      "tests": [
+        {
+          "accepted": true,
+          "dates": [
+            "2017-09-02"
+          ],
+          "task_id": "06de5ef13d80efbe9b7e"
+        },
+        {
+          "accepted": false,
+          "dates": [
+            "2017-09-19"
+          ],
+          "task_id": "9af866a9addfc2e419b7"
+        }
+      ]
+    }
+  ],
+  "deleted_sources": 0,
+  "earth_model_fit_attempts": 0,
+  "exported_candidate_files": 24,
+  "exported_window_seconds": 10068.853029356316,
+  "imu21_files": 98,
+  "imu21_physical_passes": 71,
+  "kept_sources": 233,
+  "scientific_eligibility_changes": 0,
+  "state": "complete",
+  "unresolved_files": 153,
+  "unresolved_with_potential_GPS_windows": 84,
+  "version": "ilvis0-imu21-assessment-v1"
+}

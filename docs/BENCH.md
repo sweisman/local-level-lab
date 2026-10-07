@@ -41,6 +41,12 @@ Make a still recording of at least two hours, ideally at steady room temperature
 how much the readings wander when the IMU is untouched, including changes that short
 recordings hide.
 
+The research diagnostic in [measuring how long errors last](INPUT_PERSISTENCE.md)
+is now ready to examine these still recordings. It reports whether variation persists
+over time and how much longer averaging helps, with gaps preserved. GPS can be examined
+alongside the IMU when available. These measurements help choose defensible uncertainty
+assumptions; the diagnostic itself does not certify an instrument or an Earth-model result.
+
 Next, repeat the same-side-up reversal test: keep the IMU level and turn it to face the
 opposite way between still placements. Repeat on at least three days. The question is whether
 it gives repeatable measurements with honest uncertainty, not whether it produces a preferred

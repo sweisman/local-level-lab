@@ -9,8 +9,17 @@ The instrument identifies AV-510 VER5, firmware04.60, ICD15.00 and IMU8. The pub
 [2014 interface document](https://asapdata.arc.nasa.gov/share/ASF_Applanix/POSv6_User_ICD.pdf)
 matches observed outer packet layouts but describes the IMU payload as 24 bytes without
 physical scaling and axis definitions. It is a later version than this instrument.
-The payload is therefore preserved exactly. No physical gyro rates, angular increments
-or Earth-model results have been produced.
+The initial inspector therefore preserved the payload exactly. A subsequent independent
+validation on 7 October 2026 reproduced six signed int32 increments, with delta-V scale
+`2^-14 m/s/count` and delta-angle scale `2^-18 rad/count`, and tested the axis order/signs
+against Group-1 fused navigation. See the separate [validation record](../../ilvis0-physical-validation-20261007/README.md).
+The original inspector and artifacts below retain their historical opaque interpretation.
+No Earth-model result has been produced.
+
+The instrument belongs to professional airborne survey hardware, likely the LN200ROM
+fiber-optic IMU family used in POS AV 510 systems. Exact identification and this unit's
+raw-gyro performance remain unverified. The concise [instrument summary](../../ILVIS0.md#instrument-quality)
+distinguishes published system specifications from measurements of the recording.
 
 Reassembling the primary GPS stream across packet boundaries recovers 660 checksum-valid
 GGA position messages, 660 VTG motion messages and 660 ZDA date/time messages. All GGA
@@ -42,9 +51,11 @@ The inspector fails on malformed outer framing/checksums and never repairs or in
 Two focused checks pass: whole-frame checksum convention/truncation, and receiver sentence
 reconstruction/checksum/signed coordinate conversion. No full suite, campaign or model fit ran.
 
-Next obtain an instrument-specific IMU8 payload definition or an export preserving independent
-physical angular increments/rates, units, axes, timing and known corrections. More log files
-are unnecessary until that is resolved. A documentation-request draft is in the
+Next check additional `.013` logs for compatibility and useful level-flight windows, and
+investigate onboard corrections, mounting and latency. The geometry-only one-minute screen
+finds no qualifying interval in this reference sample. Its new bulk derivative files were
+discarded, while this historical corpus and the user's original remain intact.
+A documentation-request draft is in the
 [airborne inspection notes](../AIRBORNE_DATA.md); no message has been sent.
 
 Data citation: Hofton, M. & Blair, J. B. (2011).

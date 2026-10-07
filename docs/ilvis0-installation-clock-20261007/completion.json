@@ -1,0 +1,33 @@
+{
+  "accelerometer_fixed_period_hypothesis_passes": 6,
+  "accelerometer_measured_header_interval_passes": 0,
+  "angle_increment_scale_hypothesis_rad_per_count": 1.9392547244381438e-06,
+  "automatic_decoder_enabled": false,
+  "earth_model_fit_attempts": 0,
+  "errors": 0,
+  "files": 6,
+  "gyro_fixed_period_hypothesis_passes": 5,
+  "header_interval_std_us_range": [
+    12.388547192701978,
+    13.635319688567455
+  ],
+  "legacy_setting_layout": "empirically_inferred_MSG1_prefix; not authoritative manufacturer offsets",
+  "limitations": "Fixed-period normalization is an explicit empirical hypothesis; header timestamps and prior failures remain unchanged. No automatic decoder or scientific eligibility promotion.",
+  "mean_header_period_relative_error_max_abs": 9.699196518830888e-06,
+  "new_tests_passed": 7,
+  "originals_deleted": 0,
+  "physical_integration_clock_independently_established": false,
+  "recorded_setting_mappings_reproduced": 6,
+  "scientific_eligibility_changes": 0,
+  "source_corpus_path": "data/ilvis0-installation-clock-20261007",
+  "state": "complete",
+  "tests_passed": 30,
+  "total_stored_originals": 232,
+  "velocity_increment_scale_hypothesis_mps_per_count": 3.38e-05,
+  "version": "ilvis0-installation-clock-v1",
+  "vertical_residual_improvement_range": [
+    75.9243785207313,
+    595.0929608057357
+  ],
+  "worker_pid": 4002794
+}

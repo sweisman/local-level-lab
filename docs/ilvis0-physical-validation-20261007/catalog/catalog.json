@@ -1,0 +1,3719 @@
+{
+  "acquisition_sha256": "f880f1801d85d390ac3db6bc0dbda3ad90868b0230cc52f842d888e44bafeffa",
+  "collection_id": "C3162704221-NSIDC_CPRD",
+  "count": 326,
+  "dataset": "ILVIS0.001",
+  "downloadable_link_extensions_in_query": {
+    "": 1304,
+    ".013": 326
+  },
+  "files": [
+    {
+      "date": "2009-04-14",
+      "filename": "ILVIS0_gyro_54935_atm_applanix_14Apr09.013",
+      "filename_instrument_tokens": [
+        "atm"
+      ],
+      "granule_id": "G3437021331-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_gyro_54935_atm_applanix_14Apr09.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4805,
+      "task_id": "781eb79865fac5ca7aee",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/04/14/ILVIS0_gyro_54935_atm_applanix_14Apr09.013"
+    },
+    {
+      "date": "2009-04-14",
+      "filename": "ILVIS0_gyro_54935_lvis_applanix_POSAV.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3437026878-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_gyro_54935_lvis_applanix_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4794,
+      "task_id": "594999d9bb7345ad87d3",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/04/14/ILVIS0_gyro_54935_lvis_applanix_POSAV.013"
+    },
+    {
+      "date": "2009-04-15",
+      "filename": "ILVIS0_gyro_54936_atm_applanix_15Apr09.013",
+      "filename_instrument_tokens": [
+        "atm"
+      ],
+      "granule_id": "G3437044154-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_gyro_54936_atm_applanix_15Apr09.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4752,
+      "task_id": "e2eab4a5165f2b84a703",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/04/15/ILVIS0_gyro_54936_atm_applanix_15Apr09.013"
+    },
+    {
+      "date": "2009-04-15",
+      "filename": "ILVIS0_gyro_54936_lvis_applanix_POSAV.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3437035849-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_gyro_54936_lvis_applanix_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 7.30152,
+      "task_id": "46f0a9ed26f8de10bb18",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/04/15/ILVIS0_gyro_54936_lvis_applanix_POSAV.013"
+    },
+    {
+      "date": "2009-04-16",
+      "filename": "ILVIS0_gyro_54937_atm_applanix_16Apr09.013",
+      "filename_instrument_tokens": [
+        "atm"
+      ],
+      "granule_id": "G3437054154-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_gyro_54937_atm_applanix_16Apr09.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4743,
+      "task_id": "0428cb9b1d87fedfb19e",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/04/16/ILVIS0_gyro_54937_atm_applanix_16Apr09.013"
+    },
+    {
+      "date": "2009-04-16",
+      "filename": "ILVIS0_gyro_54937_lvis_applanix_POSAV.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3437055264-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_gyro_54937_lvis_applanix_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4816,
+      "task_id": "b48221b3e76e93a5d27d",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/04/16/ILVIS0_gyro_54937_lvis_applanix_POSAV.013"
+    },
+    {
+      "date": "2009-10-13",
+      "filename": "ILVIS0_applanix_55117_Ames_610-13Oct09_13Oct09.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3502781914-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55117_Ames_610-13Oct09_13Oct09.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4762,
+      "task_id": "d0e3a956ede05ba381c3",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/10/13/ILVIS0_applanix_55117_Ames_610-13Oct09_13Oct09.013"
+    },
+    {
+      "date": "2009-10-13",
+      "filename": "ILVIS0_applanix_55117_LVIS_GSFC_510_POSAV.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3162727503-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55117_LVIS_GSFC_510_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4793,
+      "task_id": "f9e6103611499862cdd5",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/10/13/ILVIS0_applanix_55117_LVIS_GSFC_510_POSAV.013"
+    },
+    {
+      "date": "2009-10-16",
+      "filename": "ILVIS0_applanix_55120_Ames_610-16Oct09_16Oct09.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3165517204-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55120_Ames_610-16Oct09_16Oct09.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4669,
+      "task_id": "4c1edd9ff3709c652827",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/10/16/ILVIS0_applanix_55120_Ames_610-16Oct09_16Oct09.013"
+    },
+    {
+      "date": "2009-10-16",
+      "filename": "ILVIS0_applanix_55120_LVIS_GSFC_510_POSAV.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3165527479-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55120_LVIS_GSFC_510_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4801,
+      "task_id": "55459ded925fbb5b286f",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/10/16/ILVIS0_applanix_55120_LVIS_GSFC_510_POSAV.013"
+    },
+    {
+      "date": "2009-10-20",
+      "filename": "ILVIS0_applanix_55124_Ames_510-20oct09_20Oct09.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3165543550-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55124_Ames_510-20oct09_20Oct09.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4784,
+      "task_id": "ff36ab86ea03f8c2c49b",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/10/20/ILVIS0_applanix_55124_Ames_510-20oct09_20Oct09.013"
+    },
+    {
+      "date": "2009-10-20",
+      "filename": "ILVIS0_applanix_55124_Ames_610-20Oct09_20Oct09.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3165542697-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55124_Ames_610-20Oct09_20Oct09.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4816,
+      "task_id": "26677dfea3fbb0fb60fe",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/10/20/ILVIS0_applanix_55124_Ames_610-20Oct09_20Oct09.013"
+    },
+    {
+      "date": "2009-10-20",
+      "filename": "ILVIS0_applanix_55124_LVIS_GSFC_510_POSAV.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3165555309-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55124_LVIS_GSFC_510_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4845,
+      "task_id": "b007185bd3fe112c44c3",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/10/20/ILVIS0_applanix_55124_LVIS_GSFC_510_POSAV.013"
+    },
+    {
+      "date": "2009-10-21",
+      "filename": "ILVIS0_applanix_55125_Ames_510-21Oct09_21Oct09.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3166075778-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55125_Ames_510-21Oct09_21Oct09.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.484,
+      "task_id": "a19f1e9e96315b20a4a2",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/10/21/ILVIS0_applanix_55125_Ames_510-21Oct09_21Oct09.013"
+    },
+    {
+      "date": "2009-10-21",
+      "filename": "ILVIS0_applanix_55125_Ames_610-21Oct09_21Oct09.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3166075854-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55125_Ames_610-21Oct09_21Oct09.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.485,
+      "task_id": "6d4377977ca2fbed9e2b",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/10/21/ILVIS0_applanix_55125_Ames_610-21Oct09_21Oct09.013"
+    },
+    {
+      "date": "2009-10-21",
+      "filename": "ILVIS0_applanix_55125_LVIS_GSFC_510_POSAV.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3166075740-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55125_LVIS_GSFC_510_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4837,
+      "task_id": "4e045339dc4bf2ba0589",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/10/21/ILVIS0_applanix_55125_LVIS_GSFC_510_POSAV.013"
+    },
+    {
+      "date": "2009-10-24",
+      "filename": "ILVIS0_applanix_55128_Ames_510-24Oct09_24Oct09.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3166036842-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55128_Ames_510-24Oct09_24Oct09.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4826,
+      "task_id": "683ac516120685564714",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/10/24/ILVIS0_applanix_55128_Ames_510-24Oct09_24Oct09.013"
+    },
+    {
+      "date": "2009-10-24",
+      "filename": "ILVIS0_applanix_55128_Ames_610-24Oct09_24Oct09.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3166047370-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55128_Ames_610-24Oct09_24Oct09.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4811,
+      "task_id": "ad2d5717b2c1c2ed3589",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/10/24/ILVIS0_applanix_55128_Ames_610-24Oct09_24Oct09.013"
+    },
+    {
+      "date": "2009-10-24",
+      "filename": "ILVIS0_applanix_55128_LVIS_GSFC_510_POSAV.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3166046380-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55128_LVIS_GSFC_510_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4818,
+      "task_id": "dd4066b4761ccf5f031d",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/10/24/ILVIS0_applanix_55128_LVIS_GSFC_510_POSAV.013"
+    },
+    {
+      "date": "2009-10-25",
+      "filename": "ILVIS0_applanix_55129_610-25Oct09_25Oct09.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3435920497-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55129_610-25Oct09_25Oct09.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4754,
+      "task_id": "b78faf2349870ed2ddb8",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/10/25/ILVIS0_applanix_55129_610-25Oct09_25Oct09.013"
+    },
+    {
+      "date": "2009-10-25",
+      "filename": "ILVIS0_applanix_55129_LVIS_GSFC_510_POSAV.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3167056671-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55129_LVIS_GSFC_510_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4825,
+      "task_id": "065a958de975f32924e5",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/10/25/ILVIS0_applanix_55129_LVIS_GSFC_510_POSAV.013"
+    },
+    {
+      "date": "2009-10-27",
+      "filename": "ILVIS0_applanix_55131_610-27Oct09_27Oct09.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3436109288-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55131_610-27Oct09_27Oct09.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.474,
+      "task_id": "60b015c2680f835a1882",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/10/27/ILVIS0_applanix_55131_610-27Oct09_27Oct09.013"
+    },
+    {
+      "date": "2009-10-27",
+      "filename": "ILVIS0_applanix_55131_LVIS_GSFC_510_POSAV.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3436110828-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55131_LVIS_GSFC_510_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.482,
+      "task_id": "798c004bb4435dcf2723",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/10/27/ILVIS0_applanix_55131_LVIS_GSFC_510_POSAV.013"
+    },
+    {
+      "date": "2009-10-29",
+      "filename": "ILVIS0_applanix_55133_610-29Oct09_29Oct09.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3436114633-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55133_610-29Oct09_29Oct09.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4842,
+      "task_id": "28efd95656987f7d215a",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/10/29/ILVIS0_applanix_55133_610-29Oct09_29Oct09.013"
+    },
+    {
+      "date": "2009-10-29",
+      "filename": "ILVIS0_applanix_55133_LVIS_GSFC_510_POSAV.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3436430865-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55133_LVIS_GSFC_510_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4804,
+      "task_id": "80ec450f8cedbc70215e",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/10/29/ILVIS0_applanix_55133_LVIS_GSFC_510_POSAV.013"
+    },
+    {
+      "date": "2009-10-31",
+      "filename": "ILVIS0_applanix_55135_610-31Oct09_31Oct09.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3436445513-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55135_610-31Oct09_31Oct09.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.476,
+      "task_id": "6d07c5ae81f6c1fada88",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/10/31/ILVIS0_applanix_55135_610-31Oct09_31Oct09.013"
+    },
+    {
+      "date": "2009-10-31",
+      "filename": "ILVIS0_applanix_55135_LVIS_GSFC_510_POSAV.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3436550289-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55135_LVIS_GSFC_510_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4793,
+      "task_id": "4ad8d8525fc91ac7243d",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/10/31/ILVIS0_applanix_55135_LVIS_GSFC_510_POSAV.013"
+    },
+    {
+      "date": "2009-11-04",
+      "filename": "ILVIS0_applanix_55139_610-04Nov09_04Nov09.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3436699799-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55139_610-04Nov09_04Nov09.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4841,
+      "task_id": "1ef925fbecacc780e73a",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/11/04/ILVIS0_applanix_55139_610-04Nov09_04Nov09.013"
+    },
+    {
+      "date": "2009-11-04",
+      "filename": "ILVIS0_applanix_55139_LVIS_GSFC_510_POSAV.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3436699421-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55139_LVIS_GSFC_510_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4772,
+      "task_id": "c98891d2a38c480fe3e6",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/11/04/ILVIS0_applanix_55139_LVIS_GSFC_510_POSAV.013"
+    },
+    {
+      "date": "2009-11-05",
+      "filename": "ILVIS0_applanix_55140_610-05Nov09_05Nov09.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3437022057-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55140_610-05Nov09_05Nov09.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4837,
+      "task_id": "b97d0866606fd64f4e2e",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/11/05/ILVIS0_applanix_55140_610-05Nov09_05Nov09.013"
+    },
+    {
+      "date": "2009-11-05",
+      "filename": "ILVIS0_applanix_55140_LVIS_GSFC_510_POSAV.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3436925401-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55140_LVIS_GSFC_510_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4831,
+      "task_id": "29a285ee434f73726bb5",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2009/11/05/ILVIS0_applanix_55140_LVIS_GSFC_510_POSAV.013"
+    },
+    {
+      "date": "2010-03-22",
+      "filename": "ILVIS0_applanix_55277_20100322_610_AMES_08Dec09.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3438959297-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55277_20100322_610_AMES_08Dec09.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4841,
+      "task_id": "c2e72777d4aa69a7f197",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/03/22/ILVIS0_applanix_55277_20100322_610_AMES_08Dec09.013"
+    },
+    {
+      "date": "2010-03-23",
+      "filename": "ILVIS0_applanix_55278_20100323_510_LVIS_POSAV.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3438961704-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55278_20100323_510_LVIS_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4823,
+      "task_id": "0d906637c82059f4b956",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/03/23/ILVIS0_applanix_55278_20100323_510_LVIS_POSAV.013"
+    },
+    {
+      "date": "2010-03-23",
+      "filename": "ILVIS0_applanix_55278_20100323_610_AMES_23Mar10.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3439027790-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55278_20100323_610_AMES_23Mar10.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4846,
+      "task_id": "d6963226d080d2cc57f1",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/03/23/ILVIS0_applanix_55278_20100323_610_AMES_23Mar10.013"
+    },
+    {
+      "date": "2010-03-24",
+      "filename": "ILVIS0_applanix_55279_20100324_510_LVIS_POSAV.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3439237038-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55279_20100324_510_LVIS_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4801,
+      "task_id": "d148e0852763f01663d4",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/03/24/ILVIS0_applanix_55279_20100324_510_LVIS_POSAV.013"
+    },
+    {
+      "date": "2010-03-24",
+      "filename": "ILVIS0_applanix_55279_20100324_610_LVIS_24Mar10.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3439252421-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55279_20100324_610_LVIS_24Mar10.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4768,
+      "task_id": "ec2d276cbd8420456913",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/03/24/ILVIS0_applanix_55279_20100324_610_LVIS_24Mar10.013"
+    },
+    {
+      "date": "2010-03-26",
+      "filename": "ILVIS0_applanix_55281_20100326_510_LVIS_POSAV.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3439253537-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55281_20100326_510_LVIS_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4837,
+      "task_id": "e3ab04fb98d3e143dde9",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/03/26/ILVIS0_applanix_55281_20100326_510_LVIS_POSAV.013"
+    },
+    {
+      "date": "2010-03-26",
+      "filename": "ILVIS0_applanix_55281_20100326_610_AMES_KERNEL_MISS_NAMED_24Mar10.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3439521204-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55281_20100326_610_AMES_KERNEL_MISS_NAMED_24Mar10.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4726,
+      "task_id": "c113ebd6a699d315df57",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/03/26/ILVIS0_applanix_55281_20100326_610_AMES_KERNEL_MISS_NAMED_24Mar10.013"
+    },
+    {
+      "date": "2010-03-29",
+      "filename": "ILVIS0_applanix_55284_20100329_510_LVIS_POSAV.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3439529567-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55284_20100329_510_LVIS_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4821,
+      "task_id": "98dbabbd7b93401715cb",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/03/29/ILVIS0_applanix_55284_20100329_510_LVIS_POSAV.013"
+    },
+    {
+      "date": "2010-03-29",
+      "filename": "ILVIS0_applanix_55284_20100329_610_AMES_29Mar100329_103936.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3439550476-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55284_20100329_610_AMES_29Mar100329_103936.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4727,
+      "task_id": "e8ef81c896d08e296383",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/03/29/ILVIS0_applanix_55284_20100329_610_AMES_29Mar100329_103936.013"
+    },
+    {
+      "date": "2010-04-02",
+      "filename": "ILVIS0_applanix_55288_20100402_510_LVIS_POSAV.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3440371637-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55288_20100402_510_LVIS_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4817,
+      "task_id": "7fe534a78767ef149e22",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/04/02/ILVIS0_applanix_55288_20100402_510_LVIS_POSAV.013"
+    },
+    {
+      "date": "2010-04-02",
+      "filename": "ILVIS0_applanix_55288_20100402_610_LVIS_02Apr10.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3439899160-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55288_20100402_610_LVIS_02Apr10.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4876,
+      "task_id": "6470d449b74df01c7ef3",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/04/02/ILVIS0_applanix_55288_20100402_610_LVIS_02Apr10.013"
+    },
+    {
+      "date": "2010-04-05",
+      "filename": "ILVIS0_applanix_55291_20100405_510_LVIS_POSAV.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3440513483-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55291_20100405_510_LVIS_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4824,
+      "task_id": "d2ec4f1e1707c0d93dc2",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/04/05/ILVIS0_applanix_55291_20100405_510_LVIS_POSAV.013"
+    },
+    {
+      "date": "2010-04-05",
+      "filename": "ILVIS0_applanix_55291_20100405_610_LVIS_05Apr10.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3440513425-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55291_20100405_610_LVIS_05Apr10.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4853,
+      "task_id": "56914803301d5dd3d9bc",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/04/05/ILVIS0_applanix_55291_20100405_610_LVIS_05Apr10.013"
+    },
+    {
+      "date": "2010-04-09",
+      "filename": "ILVIS0_applanix_55295_20100409_510_LVIS_POSAV.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3440839477-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55295_20100409_510_LVIS_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4774,
+      "task_id": "cd66a80e294af3d53697",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/04/09/ILVIS0_applanix_55295_20100409_510_LVIS_POSAV.013"
+    },
+    {
+      "date": "2010-04-09",
+      "filename": "ILVIS0_applanix_55295_20100409_610_LVIS_09Apr10.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3440839446-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55295_20100409_610_LVIS_09Apr10.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4782,
+      "task_id": "397f6c3a7f6f34592195",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/04/09/ILVIS0_applanix_55295_20100409_610_LVIS_09Apr10.013"
+    },
+    {
+      "date": "2010-04-12",
+      "filename": "ILVIS0_applanix_55298_20100412_610_AMES_12Apr10.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3440941484-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55298_20100412_610_AMES_12Apr10.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4832,
+      "task_id": "6f62e0aa90d1bfb12c24",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/04/12/ILVIS0_applanix_55298_20100412_610_AMES_12Apr10.013"
+    },
+    {
+      "date": "2010-04-13",
+      "filename": "ILVIS0_applanix_55299_20100413_AMES_610_13Apr10.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3440946924-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55299_20100413_AMES_610_13Apr10.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4821,
+      "task_id": "3361b4f9d23e55cd4841",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/04/13/ILVIS0_applanix_55299_20100413_AMES_610_13Apr10.013"
+    },
+    {
+      "date": "2010-04-13",
+      "filename": "ILVIS0_applanix_55299_20100413_LVIS_510_POSAV.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3440947040-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55299_20100413_LVIS_510_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4826,
+      "task_id": "024088f20237d75d91ce",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/04/13/ILVIS0_applanix_55299_20100413_LVIS_510_POSAV.013"
+    },
+    {
+      "date": "2010-04-14",
+      "filename": "ILVIS0_applanix_55300_20100414_Ames610_14Apr10.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3441549946-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55300_20100414_Ames610_14Apr10.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4694,
+      "task_id": "739867a871b2c6dc77f4",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/04/14/ILVIS0_applanix_55300_20100414_Ames610_14Apr10.013"
+    },
+    {
+      "date": "2010-04-14",
+      "filename": "ILVIS0_applanix_55300_20100414_LVIS510_POSAV.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3441603963-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55300_20100414_LVIS510_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4799,
+      "task_id": "9144c20384fb71e4b1e3",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/04/14/ILVIS0_applanix_55300_20100414_LVIS510_POSAV.013"
+    },
+    {
+      "date": "2010-04-19",
+      "filename": "ILVIS0_applanix_55305_20100419_Ames610_19Apr10.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3441549224-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55305_20100419_Ames610_19Apr10.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4764,
+      "task_id": "81b7dc5d8a941315f623",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/04/19/ILVIS0_applanix_55305_20100419_Ames610_19Apr10.013"
+    },
+    {
+      "date": "2010-04-19",
+      "filename": "ILVIS0_applanix_55305_20100419_LVIS510_POSAV.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3441603921-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55305_20100419_LVIS510_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4836,
+      "task_id": "abe6956666c05eecbbf9",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/04/19/ILVIS0_applanix_55305_20100419_LVIS510_POSAV.013"
+    },
+    {
+      "date": "2010-04-20",
+      "filename": "ILVIS0_applanix_55306_20100420_Ames610_20Apr10.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3441617830-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55306_20100420_Ames610_20Apr10.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4797,
+      "task_id": "713bb9ca5c6d03766fb3",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/04/20/ILVIS0_applanix_55306_20100420_Ames610_20Apr10.013"
+    },
+    {
+      "date": "2010-04-20",
+      "filename": "ILVIS0_applanix_55306_20100420_LVIS510_POSAV.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3441796007-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55306_20100420_LVIS510_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4825,
+      "task_id": "4daae299476a856df920",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/04/20/ILVIS0_applanix_55306_20100420_LVIS510_POSAV.013"
+    },
+    {
+      "date": "2010-04-21",
+      "filename": "ILVIS0_applanix_55307_20100421_Ames610_21Apr10.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3441821621-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55307_20100421_Ames610_21Apr10.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4774,
+      "task_id": "8c953c34ba28140feafd",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/04/21/ILVIS0_applanix_55307_20100421_Ames610_21Apr10.013"
+    },
+    {
+      "date": "2010-04-21",
+      "filename": "ILVIS0_applanix_55307_20100421_LVIS510_POSAV.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3442014461-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55307_20100421_LVIS510_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4803,
+      "task_id": "1fec3d39099d0e619100",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/04/21/ILVIS0_applanix_55307_20100421_LVIS510_POSAV.013"
+    },
+    {
+      "date": "2010-04-22",
+      "filename": "ILVIS0_applanix_55308_20100422_Ames610_22Apr10.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3442050962-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55308_20100422_Ames610_22Apr10.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4725,
+      "task_id": "803fc652962ade07d350",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/04/22/ILVIS0_applanix_55308_20100422_Ames610_22Apr10.013"
+    },
+    {
+      "date": "2010-04-22",
+      "filename": "ILVIS0_applanix_55308_20100422_LVIS510_POSAV.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3442099350-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55308_20100422_LVIS510_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4803,
+      "task_id": "70d727f23a7df6b2e47f",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/04/22/ILVIS0_applanix_55308_20100422_LVIS510_POSAV.013"
+    },
+    {
+      "date": "2010-10-16",
+      "filename": "ILVIS0_applanix_55485_20101016_510_LVIS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3437056947-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55485_20101016_510_LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4779,
+      "task_id": "abe8ee7ce576153eeb6f",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/10/16/ILVIS0_applanix_55485_20101016_510_LVIS.013"
+    },
+    {
+      "date": "2010-10-16",
+      "filename": "ILVIS0_applanix_55485_20101016_610_20101016.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3437066600-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55485_20101016_610_20101016.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4718,
+      "task_id": "d8e767e24d3a03caf2ba",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/10/16/ILVIS0_applanix_55485_20101016_610_20101016.013"
+    },
+    {
+      "date": "2010-10-19",
+      "filename": "ILVIS0_applanix_55488_20101019_510_LVIS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3437154726-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55488_20101019_510_LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4824,
+      "task_id": "d8e612b62a9f0192a39d",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/10/19/ILVIS0_applanix_55488_20101019_510_LVIS.013"
+    },
+    {
+      "date": "2010-10-19",
+      "filename": "ILVIS0_applanix_55488_20101019_610_9Aug10.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3437180610-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55488_20101019_610_9Aug10.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4792,
+      "task_id": "e08725dbc565af24964b",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/10/19/ILVIS0_applanix_55488_20101019_610_9Aug10.013"
+    },
+    {
+      "date": "2010-10-26",
+      "filename": "ILVIS0_applanix_55495_20101026_510_lvis_LVIS.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3438825762-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55495_20101026_510_lvis_LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4791,
+      "task_id": "f166954fecd1d93111ee",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/10/26/ILVIS0_applanix_55495_20101026_510_lvis_LVIS.013"
+    },
+    {
+      "date": "2010-10-26",
+      "filename": "ILVIS0_applanix_55495_20101026_610_ames_AMES.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3438824775-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55495_20101026_610_ames_AMES.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4808,
+      "task_id": "a3c2fbfa3e4efbb24ae3",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/10/26/ILVIS0_applanix_55495_20101026_610_ames_AMES.013"
+    },
+    {
+      "date": "2010-10-28",
+      "filename": "ILVIS0_applanix_55497_20101028_510_LVIS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3437236483-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55497_20101028_510_LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.477,
+      "task_id": "953bf000f10421faad04",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/10/28/ILVIS0_applanix_55497_20101028_510_LVIS.013"
+    },
+    {
+      "date": "2010-10-28",
+      "filename": "ILVIS0_applanix_55497_20101028_610_AMES.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3437252491-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55497_20101028_610_AMES.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4762,
+      "task_id": "be523127711fde452873",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/10/28/ILVIS0_applanix_55497_20101028_610_AMES.013"
+    },
+    {
+      "date": "2010-10-30",
+      "filename": "ILVIS0_applanix_55499_20101030_510_LVIS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3437340786-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55499_20101030_510_LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4776,
+      "task_id": "de0755286667fab3c707",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/10/30/ILVIS0_applanix_55499_20101030_510_LVIS.013"
+    },
+    {
+      "date": "2010-10-30",
+      "filename": "ILVIS0_applanix_55499_20101030_610_AMES.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3437350178-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55499_20101030_610_AMES.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4804,
+      "task_id": "2c7f9b349e466d84e040",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/10/30/ILVIS0_applanix_55499_20101030_610_AMES.013"
+    },
+    {
+      "date": "2010-11-04",
+      "filename": "ILVIS0_applanix_55504_20101104_510_lvis_LVIS.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3437384393-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55504_20101104_510_lvis_LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4756,
+      "task_id": "45d2c3d47421eb1af468",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/11/04/ILVIS0_applanix_55504_20101104_510_lvis_LVIS.013"
+    },
+    {
+      "date": "2010-11-04",
+      "filename": "ILVIS0_applanix_55504_20101104_610_ames_AMES.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3437390636-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55504_20101104_610_ames_AMES.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4785,
+      "task_id": "af9005ecd535ddff5dc3",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/11/04/ILVIS0_applanix_55504_20101104_610_ames_AMES.013"
+    },
+    {
+      "date": "2010-11-05",
+      "filename": "ILVIS0_applanix_55505_20101105_510_lvis_LVIS.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3437401625-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55505_20101105_510_lvis_LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.481,
+      "task_id": "f2a610caa1c8af459d3f",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/11/05/ILVIS0_applanix_55505_20101105_510_lvis_LVIS.013"
+    },
+    {
+      "date": "2010-11-05",
+      "filename": "ILVIS0_applanix_55505_20101105_610_ames_AMES.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3437414545-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55505_20101105_610_ames_AMES.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4784,
+      "task_id": "f879c6ab01d2def1fa4a",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/11/05/ILVIS0_applanix_55505_20101105_610_ames_AMES.013"
+    },
+    {
+      "date": "2010-11-06",
+      "filename": "ILVIS0_applanix_55506_20101106_510_lvis_LVIS.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3437763634-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55506_20101106_510_lvis_LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4817,
+      "task_id": "010c70375fc8e3a31be0",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/11/06/ILVIS0_applanix_55506_20101106_510_lvis_LVIS.013"
+    },
+    {
+      "date": "2010-11-06",
+      "filename": "ILVIS0_applanix_55506_20101106_610_ames_AMES.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3437764979-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55506_20101106_610_ames_AMES.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4782,
+      "task_id": "1dba697c8f132df95f1c",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/11/06/ILVIS0_applanix_55506_20101106_610_ames_AMES.013"
+    },
+    {
+      "date": "2010-11-13",
+      "filename": "ILVIS0_applanix_55513_20101113_510_lvis_LVIS.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3438059121-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55513_20101113_510_lvis_LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.479,
+      "task_id": "54ce1ae47ed03618d558",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/11/13/ILVIS0_applanix_55513_20101113_510_lvis_LVIS.013"
+    },
+    {
+      "date": "2010-11-13",
+      "filename": "ILVIS0_applanix_55513_20101113_610_ames_AMES.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3438058981-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55513_20101113_610_ames_AMES.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.48,
+      "task_id": "73ac0e4b836906d82967",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/11/13/ILVIS0_applanix_55513_20101113_610_ames_AMES.013"
+    },
+    {
+      "date": "2010-11-19",
+      "filename": "ILVIS0_applanix_55519_20101119_510_lvis_LVIS.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3438106252-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55519_20101119_510_lvis_LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.478,
+      "task_id": "2ed4b764824f93ef7b89",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/11/19/ILVIS0_applanix_55519_20101119_510_lvis_LVIS.013"
+    },
+    {
+      "date": "2010-11-19",
+      "filename": "ILVIS0_applanix_55519_20101119_610_ames_AMES.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3438111859-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55519_20101119_610_ames_AMES.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4801,
+      "task_id": "44c56e17b68de7eeafd3",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/11/19/ILVIS0_applanix_55519_20101119_610_ames_AMES.013"
+    },
+    {
+      "date": "2010-11-20",
+      "filename": "ILVIS0_applanix_55520_20101120_510_lvis_LVIS.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3438150079-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55520_20101120_510_lvis_LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4782,
+      "task_id": "46f49500c8df79c821b2",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/11/20/ILVIS0_applanix_55520_20101120_510_lvis_LVIS.013"
+    },
+    {
+      "date": "2010-11-20",
+      "filename": "ILVIS0_applanix_55520_20101120_610_ames_AMES.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3438164795-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55520_20101120_610_ames_AMES.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4835,
+      "task_id": "2a8b7dcef9d53a5b73a4",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2010/11/20/ILVIS0_applanix_55520_20101120_610_ames_AMES.013"
+    },
+    {
+      "date": "2011-04-06",
+      "filename": "ILVIS0_applanix_55657_510_posav.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3442116758-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55657_510_posav.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.489,
+      "task_id": "f0c9b04b7607dfa6e6b8",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/04/06/ILVIS0_applanix_55657_510_posav.013"
+    },
+    {
+      "date": "2011-04-15",
+      "filename": "ILVIS0_applanix_55666_510_POSAV.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3442295423-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55666_510_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4833,
+      "task_id": "a80a0998487b4fc283e1",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/04/15/ILVIS0_applanix_55666_510_POSAV.013"
+    },
+    {
+      "date": "2011-04-15",
+      "filename": "ILVIS0_applanix_55666_610_AMES.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3442306438-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55666_610_AMES.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4749,
+      "task_id": "94dd65bb7cb68b193990",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/04/15/ILVIS0_applanix_55666_610_AMES.013"
+    },
+    {
+      "date": "2011-04-16",
+      "filename": "ILVIS0_applanix_55667_20110416_510_POSAV.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3442931087-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55667_20110416_510_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.481,
+      "task_id": "9e8d6fa9271922043b11",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/04/16/ILVIS0_applanix_55667_20110416_510_POSAV.013"
+    },
+    {
+      "date": "2011-04-16",
+      "filename": "ILVIS0_applanix_55667_20110416_610_AMES.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3442855995-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55667_20110416_610_AMES.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.474,
+      "task_id": "8e44a6190cba8ae5f656",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/04/16/ILVIS0_applanix_55667_20110416_610_AMES.013"
+    },
+    {
+      "date": "2011-04-18",
+      "filename": "ILVIS0_applanix_55669_510_20110418_POSAV.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3443606128-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55669_510_20110418_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4812,
+      "task_id": "c8fb72ed074def26d0be",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/04/18/ILVIS0_applanix_55669_510_20110418_POSAV.013"
+    },
+    {
+      "date": "2011-04-18",
+      "filename": "ILVIS0_applanix_55669_610_20110418_AMES.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3443679231-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55669_610_20110418_AMES.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4761,
+      "task_id": "d0b315c1413edb4b4b79",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/04/18/ILVIS0_applanix_55669_610_20110418_AMES.013"
+    },
+    {
+      "date": "2011-04-19",
+      "filename": "ILVIS0_applanix_55670_510_20110419_POSAV.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3444221748-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55670_510_20110419_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4785,
+      "task_id": "a7d5130d4c74ca994aa0",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/04/19/ILVIS0_applanix_55670_510_20110419_POSAV.013"
+    },
+    {
+      "date": "2011-04-19",
+      "filename": "ILVIS0_applanix_55670_610_20110419_AMES.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3444203903-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55670_610_20110419_AMES.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4721,
+      "task_id": "22b44fe3d3000079a584",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/04/19/ILVIS0_applanix_55670_610_20110419_AMES.013"
+    },
+    {
+      "date": "2011-04-20",
+      "filename": "ILVIS0_applanix_55671_20110420_510_POSAV.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3444684506-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55671_20110420_510_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4793,
+      "task_id": "160462321f06e92834e9",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/04/20/ILVIS0_applanix_55671_20110420_510_POSAV.013"
+    },
+    {
+      "date": "2011-04-20",
+      "filename": "ILVIS0_applanix_55671_20110420_610_AMES.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3444676484-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55671_20110420_610_AMES.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4633,
+      "task_id": "6a96e958eba4ffa77fc9",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/04/20/ILVIS0_applanix_55671_20110420_610_AMES.013"
+    },
+    {
+      "date": "2011-04-21",
+      "filename": "ILVIS0_applanix_55672_510_20110421_POSAV.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3445009463-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55672_510_20110421_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4823,
+      "task_id": "1e5669afc7752491d1a7",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/04/21/ILVIS0_applanix_55672_510_20110421_POSAV.013"
+    },
+    {
+      "date": "2011-04-21",
+      "filename": "ILVIS0_applanix_55672_610_20110421_AMES.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3444993581-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55672_610_20110421_AMES.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4687,
+      "task_id": "9429bb660f67e08b363e",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/04/21/ILVIS0_applanix_55672_610_20110421_AMES.013"
+    },
+    {
+      "date": "2011-04-22",
+      "filename": "ILVIS0_applanix_55673_510_20110422_POSAV.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3445034788-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55673_510_20110422_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4798,
+      "task_id": "ffecb3c185262a6e1e41",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/04/22/ILVIS0_applanix_55673_510_20110422_POSAV.013"
+    },
+    {
+      "date": "2011-04-22",
+      "filename": "ILVIS0_applanix_55673_610_20110422_AMES.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3445030497-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55673_610_20110422_AMES.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4743,
+      "task_id": "2850474cdb1d3af9bb6e",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/04/22/ILVIS0_applanix_55673_610_20110422_AMES.013"
+    },
+    {
+      "date": "2011-04-25",
+      "filename": "ILVIS0_applanix_55676_510_20110425_POSAV.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3445413898-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55676_510_20110425_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4789,
+      "task_id": "863b4cbc77c4b0ff07f3",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/04/25/ILVIS0_applanix_55676_510_20110425_POSAV.013"
+    },
+    {
+      "date": "2011-04-25",
+      "filename": "ILVIS0_applanix_55676_610_20110425_AMES.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3445343302-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55676_610_20110425_AMES.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4748,
+      "task_id": "474d7cebef9294b0dbf0",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/04/25/ILVIS0_applanix_55676_610_20110425_AMES.013"
+    },
+    {
+      "date": "2011-05-02",
+      "filename": "ILVIS0_applanix_55683_20110502_510_POSAV.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3445593978-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55683_20110502_510_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4782,
+      "task_id": "3a4cabe9ba8dc34d25fc",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/05/02/ILVIS0_applanix_55683_20110502_510_POSAV.013"
+    },
+    {
+      "date": "2011-05-02",
+      "filename": "ILVIS0_applanix_55683_20110502_610_AMES.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3445588033-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55683_20110502_610_AMES.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4767,
+      "task_id": "3bf1b072c39146f4e260",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/05/02/ILVIS0_applanix_55683_20110502_610_AMES.013"
+    },
+    {
+      "date": "2011-05-05",
+      "filename": "ILVIS0_applanix_55686_20110505_510_POSAV.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3445876766-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55686_20110505_510_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4826,
+      "task_id": "30995bd9f248cd9025d9",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/05/05/ILVIS0_applanix_55686_20110505_510_POSAV.013"
+    },
+    {
+      "date": "2011-05-05",
+      "filename": "ILVIS0_applanix_55686_20110505_610_AMES.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3445842747-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55686_20110505_610_AMES.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4685,
+      "task_id": "62da49765708c2488991",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/05/05/ILVIS0_applanix_55686_20110505_610_AMES.013"
+    },
+    {
+      "date": "2011-05-06",
+      "filename": "ILVIS0_applanix_55687_20110506_510_POSAV.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3446619037-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55687_20110506_510_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4826,
+      "task_id": "248b7603dc17be34377c",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/05/06/ILVIS0_applanix_55687_20110506_510_POSAV.013"
+    },
+    {
+      "date": "2011-05-06",
+      "filename": "ILVIS0_applanix_55687_20110506_610_AMES.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3446618989-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55687_20110506_610_AMES.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4654,
+      "task_id": "e62e0a7d9680659bffd3",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/05/06/ILVIS0_applanix_55687_20110506_610_AMES.013"
+    },
+    {
+      "date": "2011-05-07",
+      "filename": "ILVIS0_applanix_55688_20110507_510_POSAV.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3447248845-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55688_20110507_510_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4795,
+      "task_id": "800e4742e1878bf9d063",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/05/07/ILVIS0_applanix_55688_20110507_510_POSAV.013"
+    },
+    {
+      "date": "2011-05-07",
+      "filename": "ILVIS0_applanix_55688_20110507_610_AMES.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3447262553-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55688_20110507_610_AMES.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4772,
+      "task_id": "e042d602526f6aae331a",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/05/07/ILVIS0_applanix_55688_20110507_610_AMES.013"
+    },
+    {
+      "date": "2011-10-08",
+      "filename": "ILVIS0_applanix_55842_510_POSAV.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3448687169-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55842_510_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4798,
+      "task_id": "ed56c39b83785073e14b",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/10/08/ILVIS0_applanix_55842_510_POSAV.013"
+    },
+    {
+      "date": "2011-10-08",
+      "filename": "ILVIS0_applanix_55842_610_LVIS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3448301537-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55842_610_LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4666,
+      "task_id": "30b98b4d421c7e9d0292",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/10/08/ILVIS0_applanix_55842_610_LVIS.013"
+    },
+    {
+      "date": "2011-10-10",
+      "filename": "ILVIS0_applanix_55844_510_POSAV.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3447872957-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55844_510_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4826,
+      "task_id": "5513dbcc876ba4cde791",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/10/10/ILVIS0_applanix_55844_510_POSAV.013"
+    },
+    {
+      "date": "2011-10-10",
+      "filename": "ILVIS0_applanix_55844_610_LVIS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3447546478-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55844_610_LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4698,
+      "task_id": "187a21019bce7b34a04c",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/10/10/ILVIS0_applanix_55844_610_LVIS.013"
+    },
+    {
+      "date": "2011-10-12",
+      "filename": "ILVIS0_applanix_55846_510_POSAV.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3449096294-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55846_510_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4845,
+      "task_id": "0bfc763c049677c01c38",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/10/12/ILVIS0_applanix_55846_510_POSAV.013"
+    },
+    {
+      "date": "2011-10-12",
+      "filename": "ILVIS0_applanix_55846_610_LVIS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3448898291-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55846_610_LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4844,
+      "task_id": "12fbcbce3c7f52a3eae7",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/10/12/ILVIS0_applanix_55846_610_LVIS.013"
+    },
+    {
+      "date": "2011-10-15",
+      "filename": "ILVIS0_applanix_55849_510_POSAV.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3449598901-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55849_510_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4792,
+      "task_id": "322e26afab23cf655935",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/10/15/ILVIS0_applanix_55849_510_POSAV.013"
+    },
+    {
+      "date": "2011-10-15",
+      "filename": "ILVIS0_applanix_55849_610_LVIS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3449674737-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55849_610_LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4786,
+      "task_id": "4a888550956566a4ddb5",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/10/15/ILVIS0_applanix_55849_610_LVIS.013"
+    },
+    {
+      "date": "2011-10-17",
+      "filename": "ILVIS0_applanix_55851_510_POSAV.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3450347315-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55851_510_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4842,
+      "task_id": "7215f035d9781895f627",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/10/17/ILVIS0_applanix_55851_510_POSAV.013"
+    },
+    {
+      "date": "2011-10-17",
+      "filename": "ILVIS0_applanix_55851_610_LVIS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3450358700-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55851_610_LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4733,
+      "task_id": "f8711d39277a08feeee6",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/10/17/ILVIS0_applanix_55851_610_LVIS.013"
+    },
+    {
+      "date": "2011-10-19",
+      "filename": "ILVIS0_applanix_55853_510_POSAV.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3450687600-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55853_510_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4782,
+      "task_id": "b1d03e303312dc2de8f6",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/10/19/ILVIS0_applanix_55853_510_POSAV.013"
+    },
+    {
+      "date": "2011-10-19",
+      "filename": "ILVIS0_applanix_55853_610_LVIS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3450711731-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55853_610_LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4726,
+      "task_id": "eecc97da7cb309a622c8",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/10/19/ILVIS0_applanix_55853_610_LVIS.013"
+    },
+    {
+      "date": "2011-10-22",
+      "filename": "ILVIS0_applanix_55856_510_POSAV.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3450998819-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55856_510_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.487,
+      "task_id": "a30fae518b7544818d4a",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/10/22/ILVIS0_applanix_55856_510_POSAV.013"
+    },
+    {
+      "date": "2011-10-22",
+      "filename": "ILVIS0_applanix_55856_610_LVIS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3451005837-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55856_610_LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4818,
+      "task_id": "24718d57807748271bfc",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/10/22/ILVIS0_applanix_55856_610_LVIS.013"
+    },
+    {
+      "date": "2011-10-23",
+      "filename": "ILVIS0_applanix_55857_510_POSAV.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3451430107-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55857_510_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4814,
+      "task_id": "9069182c9a51272fd86e",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/10/23/ILVIS0_applanix_55857_510_POSAV.013"
+    },
+    {
+      "date": "2011-10-23",
+      "filename": "ILVIS0_applanix_55857_610_LVIS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3451430045-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55857_610_LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4652,
+      "task_id": "a71cf7c9a4222715c01d",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/10/23/ILVIS0_applanix_55857_610_LVIS.013"
+    },
+    {
+      "date": "2011-10-26",
+      "filename": "ILVIS0_applanix_55860_510_POSAV.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3451974482-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55860_510_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4846,
+      "task_id": "f8d1c197afe3e1bcd6c3",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/10/26/ILVIS0_applanix_55860_510_POSAV.013"
+    },
+    {
+      "date": "2011-10-26",
+      "filename": "ILVIS0_applanix_55860_610_LVIS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3451979731-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55860_610_LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4724,
+      "task_id": "2b82c787ca0e04503791",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/10/26/ILVIS0_applanix_55860_610_LVIS.013"
+    },
+    {
+      "date": "2011-10-27",
+      "filename": "ILVIS0_applanix_55861_510_POSAV.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3452695773-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55861_510_POSAV.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4835,
+      "task_id": "115a4c63907abb4ed282",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/10/27/ILVIS0_applanix_55861_510_POSAV.013"
+    },
+    {
+      "date": "2011-10-27",
+      "filename": "ILVIS0_applanix_55861_610_LVIS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3452722520-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_55861_610_LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4712,
+      "task_id": "c5edcede76fd27a44982",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2011/10/27/ILVIS0_applanix_55861_610_LVIS.013"
+    },
+    {
+      "date": "2012-04-28",
+      "filename": "ILVIS0_applanix_56045_510_POS510.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3453721117-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56045_510_POS510.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4825,
+      "task_id": "05de4ba41105b06f8547",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2012/04/28/ILVIS0_applanix_56045_510_POS510.013"
+    },
+    {
+      "date": "2012-04-28",
+      "filename": "ILVIS0_applanix_56045_610_LVIS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3453689302-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56045_610_LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4731,
+      "task_id": "f7873b914628e73fcfed",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2012/04/28/ILVIS0_applanix_56045_610_LVIS.013"
+    },
+    {
+      "date": "2012-04-30",
+      "filename": "ILVIS0_applanix_56047_510_POS510.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3454163884-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56047_510_POS510.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4765,
+      "task_id": "2f840f444f9444088f92",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2012/04/30/ILVIS0_applanix_56047_510_POS510.013"
+    },
+    {
+      "date": "2012-04-30",
+      "filename": "ILVIS0_applanix_56047_610_LVIS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3454272738-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56047_610_LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4748,
+      "task_id": "e8f291264d98c418acf0",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2012/04/30/ILVIS0_applanix_56047_610_LVIS.013"
+    },
+    {
+      "date": "2012-05-01",
+      "filename": "ILVIS0_applanix_56048_510_POS510.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3455070272-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56048_510_POS510.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4818,
+      "task_id": "dc29b80394d9632b65b7",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2012/05/01/ILVIS0_applanix_56048_510_POS510.013"
+    },
+    {
+      "date": "2012-05-01",
+      "filename": "ILVIS0_applanix_56048_610_LVIS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3455079885-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56048_610_LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4741,
+      "task_id": "853395f886116d4b2e6f",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2012/05/01/ILVIS0_applanix_56048_610_LVIS.013"
+    },
+    {
+      "date": "2012-05-02",
+      "filename": "ILVIS0_applanix_56049_510_POS510.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3455209797-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56049_510_POS510.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4831,
+      "task_id": "fd613b53fa761ddb0963",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2012/05/02/ILVIS0_applanix_56049_510_POS510.013"
+    },
+    {
+      "date": "2012-05-02",
+      "filename": "ILVIS0_applanix_56049_610_LVIS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3455264577-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56049_610_LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4709,
+      "task_id": "9ffa9f8fe8eaf610b315",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2012/05/02/ILVIS0_applanix_56049_610_LVIS.013"
+    },
+    {
+      "date": "2012-05-03",
+      "filename": "ILVIS0_applanix_56050_510_POS510.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3455922120-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56050_510_POS510.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4811,
+      "task_id": "f55542e91b8e2f6ecc2c",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2012/05/03/ILVIS0_applanix_56050_510_POS510.013"
+    },
+    {
+      "date": "2012-05-03",
+      "filename": "ILVIS0_applanix_56050_610_LVIS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3456015158-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56050_610_LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.478,
+      "task_id": "a2ecb54c82825e8be4dc",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2012/05/03/ILVIS0_applanix_56050_610_LVIS.013"
+    },
+    {
+      "date": "2012-05-04",
+      "filename": "ILVIS0_applanix_56051_510_POS510.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3456650899-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56051_510_POS510.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4812,
+      "task_id": "f0491d25959f595366bd",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2012/05/04/ILVIS0_applanix_56051_510_POS510.013"
+    },
+    {
+      "date": "2012-05-04",
+      "filename": "ILVIS0_applanix_56051_610_LVIS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3456650422-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56051_610_LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4416,
+      "task_id": "0063e1716aa2bf3056de",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2012/05/04/ILVIS0_applanix_56051_610_LVIS.013"
+    },
+    {
+      "date": "2012-05-05",
+      "filename": "ILVIS0_applanix_56052_510_POS510.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3457002184-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56052_510_POS510.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4783,
+      "task_id": "1d9d9af2aee1b6b26218",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2012/05/05/ILVIS0_applanix_56052_510_POS510.013"
+    },
+    {
+      "date": "2012-05-05",
+      "filename": "ILVIS0_applanix_56052_610_LVIS0505_094012.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3457029621-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56052_610_LVIS0505_094012.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4739,
+      "task_id": "3bba18f299d99e0edf8e",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2012/05/05/ILVIS0_applanix_56052_610_LVIS0505_094012.013"
+    },
+    {
+      "date": "2012-05-07",
+      "filename": "ILVIS0_applanix_56054_510_POS510.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3457754269-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56054_510_POS510.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4773,
+      "task_id": "3767559017b196642291",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2012/05/07/ILVIS0_applanix_56054_510_POS510.013"
+    },
+    {
+      "date": "2012-05-07",
+      "filename": "ILVIS0_applanix_56054_610_LVIS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3457655239-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56054_610_LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4671,
+      "task_id": "4e2c5fd9ef3b7c1dbd82",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2012/05/07/ILVIS0_applanix_56054_610_LVIS.013"
+    },
+    {
+      "date": "2012-05-08",
+      "filename": "ILVIS0_applanix_56055_510_POS510.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3458369142-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56055_510_POS510.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4818,
+      "task_id": "f9468a2dd07f9ee54df0",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2012/05/08/ILVIS0_applanix_56055_510_POS510.013"
+    },
+    {
+      "date": "2012-05-08",
+      "filename": "ILVIS0_applanix_56055_610_LVIS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3458377467-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56055_610_LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4675,
+      "task_id": "18e98b280cc069521345",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2012/05/08/ILVIS0_applanix_56055_610_LVIS.013"
+    },
+    {
+      "date": "2012-05-09",
+      "filename": "ILVIS0_applanix_56056_510_POS510.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3458886335-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56056_510_POS510.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4797,
+      "task_id": "54220c7e2b389fd69064",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2012/05/09/ILVIS0_applanix_56056_510_POS510.013"
+    },
+    {
+      "date": "2012-05-09",
+      "filename": "ILVIS0_applanix_56056_610_LVIS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3458910757-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56056_610_LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4647,
+      "task_id": "8953e012fd9467dbcecc",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2012/05/09/ILVIS0_applanix_56056_610_LVIS.013"
+    },
+    {
+      "date": "2012-05-10",
+      "filename": "ILVIS0_applanix_56057_510_POS510.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3459386491-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56057_510_POS510.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4784,
+      "task_id": "c4af455d888117b1fb91",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2012/05/10/ILVIS0_applanix_56057_510_POS510.013"
+    },
+    {
+      "date": "2012-05-10",
+      "filename": "ILVIS0_applanix_56057_610_LVIS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3459400236-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56057_610_LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4733,
+      "task_id": "acd236c07f7aa7a9c2d2",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2012/05/10/ILVIS0_applanix_56057_610_LVIS.013"
+    },
+    {
+      "date": "2013-10-31",
+      "filename": "ILVIS0_applanix_56596_230_610_WFF_25Feb12.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3460253153-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56596_230_610_WFF_25Feb12.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4619,
+      "task_id": "ca64833f6ebbd5fcd35e",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2013/10/31/ILVIS0_applanix_56596_230_610_WFF_25Feb12.013"
+    },
+    {
+      "date": "2013-10-31",
+      "filename": "ILVIS0_applanix_56596_231_610_GH_lvisgh1031_100815.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3460255690-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56596_231_610_GH_lvisgh1031_100815.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.482,
+      "task_id": "1dd1729573dc419f95f0",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2013/10/31/ILVIS0_applanix_56596_231_610_GH_lvisgh1031_100815.013"
+    },
+    {
+      "date": "2013-10-31",
+      "filename": "ILVIS0_applanix_56596_232_510_POS510.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3460253395-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56596_232_510_POS510.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4829,
+      "task_id": "6db1404cb5afe9f69919",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2013/10/31/ILVIS0_applanix_56596_232_510_POS510.013"
+    },
+    {
+      "date": "2013-11-01",
+      "filename": "ILVIS0_applanix_56597_230_610_WFF_25Feb12.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3460662371-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56597_230_610_WFF_25Feb12.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4624,
+      "task_id": "482d2d5e1b7996a0687d",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2013/11/01/ILVIS0_applanix_56597_230_610_WFF_25Feb12.013"
+    },
+    {
+      "date": "2013-11-01",
+      "filename": "ILVIS0_applanix_56597_231_610_GH_lvisgh1101_100947.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3460687970-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56597_231_610_GH_lvisgh1101_100947.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4787,
+      "task_id": "4e54da6e991b71cf5768",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2013/11/01/ILVIS0_applanix_56597_231_610_GH_lvisgh1101_100947.013"
+    },
+    {
+      "date": "2013-11-01",
+      "filename": "ILVIS0_applanix_56597_232_510_POS510.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3460667755-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56597_232_510_POS510.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4805,
+      "task_id": "862e7de8ac3309dececf",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2013/11/01/ILVIS0_applanix_56597_232_510_POS510.013"
+    },
+    {
+      "date": "2013-11-04",
+      "filename": "ILVIS0_applanix_56600_230_610_WFF_25Feb12.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3461242376-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56600_230_610_WFF_25Feb12.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4752,
+      "task_id": "de7f6cc9cf1d222a0c8d",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2013/11/04/ILVIS0_applanix_56600_230_610_WFF_25Feb12.013"
+    },
+    {
+      "date": "2013-11-04",
+      "filename": "ILVIS0_applanix_56600_231_610_GH_lvisgh1104_123607.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3461267490-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56600_231_610_GH_lvisgh1104_123607.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4844,
+      "task_id": "7160da9568b0d5be2f3c",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2013/11/04/ILVIS0_applanix_56600_231_610_GH_lvisgh1104_123607.013"
+    },
+    {
+      "date": "2013-11-04",
+      "filename": "ILVIS0_applanix_56600_232_510_POS510.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3461235852-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56600_232_510_POS510.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4819,
+      "task_id": "b20226780e68108f29f8",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2013/11/04/ILVIS0_applanix_56600_232_510_POS510.013"
+    },
+    {
+      "date": "2013-11-05",
+      "filename": "ILVIS0_applanix_56601_230_610_WFF_25Feb12.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3461600935-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56601_230_610_WFF_25Feb12.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4749,
+      "task_id": "fd9eb28de38e611f1a53",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2013/11/05/ILVIS0_applanix_56601_230_610_WFF_25Feb12.013"
+    },
+    {
+      "date": "2013-11-05",
+      "filename": "ILVIS0_applanix_56601_231_610_GH_lvisgh1105_111346.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3461617759-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56601_231_610_GH_lvisgh1105_111346.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4834,
+      "task_id": "2db3583945487ce1064a",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2013/11/05/ILVIS0_applanix_56601_231_610_GH_lvisgh1105_111346.013"
+    },
+    {
+      "date": "2013-11-05",
+      "filename": "ILVIS0_applanix_56601_232_510_POS510.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3461586717-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56601_232_510_POS510.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4814,
+      "task_id": "382d5a870132d66472f0",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2013/11/05/ILVIS0_applanix_56601_232_510_POS510.013"
+    },
+    {
+      "date": "2013-11-06",
+      "filename": "ILVIS0_applanix_56602_230_610_WFF_25Feb12.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3462327963-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56602_230_610_WFF_25Feb12.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4725,
+      "task_id": "024cd4962b2453b1b38f",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2013/11/06/ILVIS0_applanix_56602_230_610_WFF_25Feb12.013"
+    },
+    {
+      "date": "2013-11-06",
+      "filename": "ILVIS0_applanix_56602_231_610_GH_lvisgh1106_122114.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3462325530-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56602_231_610_GH_lvisgh1106_122114.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4807,
+      "task_id": "be1610605094b3ff906e",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2013/11/06/ILVIS0_applanix_56602_231_610_GH_lvisgh1106_122114.013"
+    },
+    {
+      "date": "2013-11-06",
+      "filename": "ILVIS0_applanix_56602_232_510_POS510.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3462331354-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56602_232_510_POS510.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4838,
+      "task_id": "71db413296b9184db816",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2013/11/06/ILVIS0_applanix_56602_232_510_POS510.013"
+    },
+    {
+      "date": "2013-11-08",
+      "filename": "ILVIS0_applanix_56604_230_610_WFF_25Feb12.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3462910123-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56604_230_610_WFF_25Feb12.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4765,
+      "task_id": "9a6a312f2c7248723644",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2013/11/08/ILVIS0_applanix_56604_230_610_WFF_25Feb12.013"
+    },
+    {
+      "date": "2013-11-08",
+      "filename": "ILVIS0_applanix_56604_231_610_GH_lvisgh1108_111736.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3462875379-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56604_231_610_GH_lvisgh1108_111736.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4801,
+      "task_id": "77b2e45a26b8ecca38c4",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2013/11/08/ILVIS0_applanix_56604_231_610_GH_lvisgh1108_111736.013"
+    },
+    {
+      "date": "2013-11-08",
+      "filename": "ILVIS0_applanix_56604_232_510_POS510.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3462899204-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56604_232_510_POS510.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.481,
+      "task_id": "4aac2e3a6694be31401e",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2013/11/08/ILVIS0_applanix_56604_232_510_POS510.013"
+    },
+    {
+      "date": "2013-11-09",
+      "filename": "ILVIS0_applanix_56605_230_610_WFF_25Feb12.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3463563944-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56605_230_610_WFF_25Feb12.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4752,
+      "task_id": "3f7e99f556666c5e28c2",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2013/11/09/ILVIS0_applanix_56605_230_610_WFF_25Feb12.013"
+    },
+    {
+      "date": "2013-11-09",
+      "filename": "ILVIS0_applanix_56605_231_610_GH_lvisgh1109_110316.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3463579088-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56605_231_610_GH_lvisgh1109_110316.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4793,
+      "task_id": "f1ff9647c2ba7472a610",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2013/11/09/ILVIS0_applanix_56605_231_610_GH_lvisgh1109_110316.013"
+    },
+    {
+      "date": "2013-11-09",
+      "filename": "ILVIS0_applanix_56605_232_510_POS510.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3463549148-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56605_232_510_POS510.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.483,
+      "task_id": "98a8a7b15f0c2801fc4f",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2013/11/09/ILVIS0_applanix_56605_232_510_POS510.013"
+    },
+    {
+      "date": "2013-11-12",
+      "filename": "ILVIS0_applanix_56608_230_610_WFF_25Feb12.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3464196876-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56608_230_610_WFF_25Feb12.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4693,
+      "task_id": "029704a6601ae1dbbbb9",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2013/11/12/ILVIS0_applanix_56608_230_610_WFF_25Feb12.013"
+    },
+    {
+      "date": "2013-11-12",
+      "filename": "ILVIS0_applanix_56608_231_610_GH_lvisgh1112_135715.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3464223846-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56608_231_610_GH_lvisgh1112_135715.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.482,
+      "task_id": "f6e6b6e81f998ce176e3",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2013/11/12/ILVIS0_applanix_56608_231_610_GH_lvisgh1112_135715.013"
+    },
+    {
+      "date": "2013-11-12",
+      "filename": "ILVIS0_applanix_56608_232_510_POS510.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3464196721-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56608_232_510_POS510.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4788,
+      "task_id": "a62bc3b07a6ad3f6043c",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2013/11/12/ILVIS0_applanix_56608_232_510_POS510.013"
+    },
+    {
+      "date": "2013-11-14",
+      "filename": "ILVIS0_applanix_56610_230_610_WFF_25Feb12.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3464841576-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56610_230_610_WFF_25Feb12.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4735,
+      "task_id": "bdf515081b9e2e210288",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2013/11/14/ILVIS0_applanix_56610_230_610_WFF_25Feb12.013"
+    },
+    {
+      "date": "2013-11-14",
+      "filename": "ILVIS0_applanix_56610_231_610_GH_lvisgh1114_105341.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3464930994-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56610_231_610_GH_lvisgh1114_105341.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4795,
+      "task_id": "059613d786136f0b1bc4",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2013/11/14/ILVIS0_applanix_56610_231_610_GH_lvisgh1114_105341.013"
+    },
+    {
+      "date": "2013-11-14",
+      "filename": "ILVIS0_applanix_56610_232_510_POS510.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3464841417-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56610_232_510_POS510.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4821,
+      "task_id": "99e0a9227326ef359498",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2013/11/14/ILVIS0_applanix_56610_232_510_POS510.013"
+    },
+    {
+      "date": "2014-09-02",
+      "filename": "ILVIS0_applanix_56902_510_fromdrive_partial_POS510.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3465603280-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56902_510_fromdrive_partial_POS510.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4831,
+      "task_id": "cb673ea00ba48a0413bf",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2014/09/02/ILVIS0_applanix_56902_510_fromdrive_partial_POS510.013"
+    },
+    {
+      "date": "2014-09-02",
+      "filename": "ILVIS0_applanix_56902_510_ftp_POS5100902_151321.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3465606942-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56902_510_ftp_POS5100902_151321.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4831,
+      "task_id": "d017b3eba0bc3095c2f1",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2014/09/02/ILVIS0_applanix_56902_510_ftp_POS5100902_151321.013"
+    },
+    {
+      "date": "2014-09-04",
+      "filename": "ILVIS0_applanix_56904_510_POS510.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3466309461-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56904_510_POS510.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4812,
+      "task_id": "92646e0789082b49ffa2",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2014/09/04/ILVIS0_applanix_56904_510_POS510.013"
+    },
+    {
+      "date": "2014-09-04",
+      "filename": "ILVIS0_applanix_56904_610_LVIS610.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3466279363-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56904_610_LVIS610.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4675,
+      "task_id": "504c68189ef4c48aa369",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2014/09/04/ILVIS0_applanix_56904_610_LVIS610.013"
+    },
+    {
+      "date": "2014-09-04",
+      "filename": "ILVIS0_applanix_56904_WFF_WFF.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3466293381-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56904_WFF_WFF.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4752,
+      "task_id": "3f0c05e51fffa0ba7684",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2014/09/04/ILVIS0_applanix_56904_WFF_WFF.013"
+    },
+    {
+      "date": "2014-09-05",
+      "filename": "ILVIS0_applanix_56905_510_POS510.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3466961282-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56905_510_POS510.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4794,
+      "task_id": "935ab712574b790273f5",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2014/09/05/ILVIS0_applanix_56905_510_POS510.013"
+    },
+    {
+      "date": "2014-09-06",
+      "filename": "ILVIS0_applanix_56906_510_POS510.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3468005339-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56906_510_POS510.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4818,
+      "task_id": "b393cdc2d63ba2723750",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2014/09/06/ILVIS0_applanix_56906_510_POS510.013"
+    },
+    {
+      "date": "2014-09-07",
+      "filename": "ILVIS0_applanix_56907_510_POS510.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3468383453-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56907_510_POS510.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4853,
+      "task_id": "a151123459abc39d2a54",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2014/09/07/ILVIS0_applanix_56907_510_POS510.013"
+    },
+    {
+      "date": "2014-09-09",
+      "filename": "ILVIS0_applanix_56909_510_POS510.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3468988878-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56909_510_POS510.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4826,
+      "task_id": "9dcc0bf45000011e53d5",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2014/09/09/ILVIS0_applanix_56909_510_POS510.013"
+    },
+    {
+      "date": "2014-09-09",
+      "filename": "ILVIS0_applanix_56909_610_LVIS610.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3469092459-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56909_610_LVIS610.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.463,
+      "task_id": "ea3716a039f0aefc02d4",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2014/09/09/ILVIS0_applanix_56909_610_LVIS610.013"
+    },
+    {
+      "date": "2014-09-09",
+      "filename": "ILVIS0_applanix_56909_WFF_WFF.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3468979908-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56909_WFF_WFF.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4577,
+      "task_id": "6e80be74760f4b982eb8",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2014/09/09/ILVIS0_applanix_56909_WFF_WFF.013"
+    },
+    {
+      "date": "2014-09-10",
+      "filename": "ILVIS0_applanix_56910_510_POS510.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3469459407-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56910_510_POS510.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4814,
+      "task_id": "1641f18ff730f1b3cd03",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2014/09/10/ILVIS0_applanix_56910_510_POS510.013"
+    },
+    {
+      "date": "2014-09-10",
+      "filename": "ILVIS0_applanix_56910_610_LVIS610.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3469427313-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56910_610_LVIS610.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4725,
+      "task_id": "864e9c094f3d36d24466",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2014/09/10/ILVIS0_applanix_56910_610_LVIS610.013"
+    },
+    {
+      "date": "2014-09-10",
+      "filename": "ILVIS0_applanix_56910_WFF_WFF.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3469459530-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56910_WFF_WFF.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4667,
+      "task_id": "f928c4b3d25a7ae805b6",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2014/09/10/ILVIS0_applanix_56910_WFF_WFF.013"
+    },
+    {
+      "date": "2014-09-11",
+      "filename": "ILVIS0_applanix_56911_510_POS510.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3469908230-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56911_510_POS510.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4787,
+      "task_id": "f11e387a674ca46976ed",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2014/09/11/ILVIS0_applanix_56911_510_POS510.013"
+    },
+    {
+      "date": "2014-09-11",
+      "filename": "ILVIS0_applanix_56911_610_LVIS610.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3469904443-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56911_610_LVIS610.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4632,
+      "task_id": "9d54224065d7782b2923",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2014/09/11/ILVIS0_applanix_56911_610_LVIS610.013"
+    },
+    {
+      "date": "2014-09-11",
+      "filename": "ILVIS0_applanix_56911_WFF_WFF.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3469823309-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56911_WFF_WFF.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.464,
+      "task_id": "02a199171650d8ce2559",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2014/09/11/ILVIS0_applanix_56911_WFF_WFF.013"
+    },
+    {
+      "date": "2014-09-13",
+      "filename": "ILVIS0_applanix_56913_510_POS510.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3470478583-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56913_510_POS510.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4783,
+      "task_id": "c945deb0602ef5dff68c",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2014/09/13/ILVIS0_applanix_56913_510_POS510.013"
+    },
+    {
+      "date": "2014-09-13",
+      "filename": "ILVIS0_applanix_56913_610_LVIS610.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3470465479-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56913_610_LVIS610.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4683,
+      "task_id": "f8a6b1bf65b6345e0a13",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2014/09/13/ILVIS0_applanix_56913_610_LVIS610.013"
+    },
+    {
+      "date": "2014-09-13",
+      "filename": "ILVIS0_applanix_56913_WFF_WFF.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3470463750-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56913_WFF_WFF.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4657,
+      "task_id": "af2a202537d62468d897",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2014/09/13/ILVIS0_applanix_56913_WFF_WFF.013"
+    },
+    {
+      "date": "2014-09-15",
+      "filename": "ILVIS0_applanix_56915_510_POS510.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3470935932-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56915_510_POS510.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4819,
+      "task_id": "d4aafa5c6d644bc528f8",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2014/09/15/ILVIS0_applanix_56915_510_POS510.013"
+    },
+    {
+      "date": "2014-09-15",
+      "filename": "ILVIS0_applanix_56915_610_LVIS610.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3470926266-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56915_610_LVIS610.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4616,
+      "task_id": "61b1057089e4b0de4311",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2014/09/15/ILVIS0_applanix_56915_610_LVIS610.013"
+    },
+    {
+      "date": "2014-09-15",
+      "filename": "ILVIS0_applanix_56915_WFF_WFF.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3470926267-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56915_WFF_WFF.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4664,
+      "task_id": "135cfb8395ab46e762f3",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2014/09/15/ILVIS0_applanix_56915_WFF_WFF.013"
+    },
+    {
+      "date": "2014-09-16",
+      "filename": "ILVIS0_applanix_56916_510_POS510.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3471503239-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56916_510_POS510.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4847,
+      "task_id": "f5cae9d0d107ecad9d45",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2014/09/16/ILVIS0_applanix_56916_510_POS510.013"
+    },
+    {
+      "date": "2014-09-16",
+      "filename": "ILVIS0_applanix_56916_610_LVIS610.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3471480659-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56916_610_LVIS610.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4582,
+      "task_id": "b02e718ddd5bb27a8876",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2014/09/16/ILVIS0_applanix_56916_610_LVIS610.013"
+    },
+    {
+      "date": "2014-09-16",
+      "filename": "ILVIS0_applanix_56916_WFF_WFF.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3471501171-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56916_WFF_WFF.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4697,
+      "task_id": "6e2db5dc24abc9de4ced",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2014/09/16/ILVIS0_applanix_56916_WFF_WFF.013"
+    },
+    {
+      "date": "2014-09-17",
+      "filename": "ILVIS0_applanix_56917_510_POS510.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3472185215-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56917_510_POS510.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4725,
+      "task_id": "805f0408039d16de8ca3",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2014/09/17/ILVIS0_applanix_56917_510_POS510.013"
+    },
+    {
+      "date": "2014-09-17",
+      "filename": "ILVIS0_applanix_56917_610_LVIS610.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3472202766-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56917_610_LVIS610.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4745,
+      "task_id": "d0de79e7926d5cac2e8f",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2014/09/17/ILVIS0_applanix_56917_610_LVIS610.013"
+    },
+    {
+      "date": "2014-09-17",
+      "filename": "ILVIS0_applanix_56917_WFF_WFF.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3472226188-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56917_WFF_WFF.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.479,
+      "task_id": "a49f530d55dd773ecdb8",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2014/09/17/ILVIS0_applanix_56917_WFF_WFF.013"
+    },
+    {
+      "date": "2014-09-18",
+      "filename": "ILVIS0_applanix_56918_510_POS510.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3473004526-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56918_510_POS510.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4769,
+      "task_id": "fff1faeab010d9efd872",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2014/09/18/ILVIS0_applanix_56918_510_POS510.013"
+    },
+    {
+      "date": "2014-09-18",
+      "filename": "ILVIS0_applanix_56918_610_LVIS610.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3473012110-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56918_610_LVIS610.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4706,
+      "task_id": "ab59e1b7d4030087d98b",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2014/09/18/ILVIS0_applanix_56918_610_LVIS610.013"
+    },
+    {
+      "date": "2014-09-18",
+      "filename": "ILVIS0_applanix_56918_WFF_WFF.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3473042915-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56918_WFF_WFF.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4383,
+      "task_id": "b3867b7ec45b760e8bf5",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2014/09/18/ILVIS0_applanix_56918_WFF_WFF.013"
+    },
+    {
+      "date": "2014-09-19",
+      "filename": "ILVIS0_applanix_56919_510_POS510.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3474359119-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56919_510_POS510.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4817,
+      "task_id": "0ab3b49695c8c0f5b3a4",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2014/09/19/ILVIS0_applanix_56919_510_POS510.013"
+    },
+    {
+      "date": "2014-09-19",
+      "filename": "ILVIS0_applanix_56919_610_LVIS610.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3474374214-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56919_610_LVIS610.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4704,
+      "task_id": "59e4996b9bada79eba50",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2014/09/19/ILVIS0_applanix_56919_610_LVIS610.013"
+    },
+    {
+      "date": "2014-09-19",
+      "filename": "ILVIS0_applanix_56919_WFF_WFF.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3474410474-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56919_WFF_WFF.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4547,
+      "task_id": "f55ce328a5587476b8c8",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2014/09/19/ILVIS0_applanix_56919_WFF_WFF.013"
+    },
+    {
+      "date": "2014-09-21",
+      "filename": "ILVIS0_applanix_56921_510_POS510.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3480919091-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56921_510_POS510.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4832,
+      "task_id": "a3783b6b28e68b06c91d",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2014/09/21/ILVIS0_applanix_56921_510_POS510.013"
+    },
+    {
+      "date": "2014-09-21",
+      "filename": "ILVIS0_applanix_56921_610_LVIS610.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3480947855-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56921_610_LVIS610.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4601,
+      "task_id": "ceac61de9c1dd86f4632",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2014/09/21/ILVIS0_applanix_56921_610_LVIS610.013"
+    },
+    {
+      "date": "2014-09-21",
+      "filename": "ILVIS0_applanix_56921_WFF_WFF.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3481016184-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56921_WFF_WFF.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4389,
+      "task_id": "8c342f3ff66b22f70571",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2014/09/21/ILVIS0_applanix_56921_WFF_WFF.013"
+    },
+    {
+      "date": "2014-09-24",
+      "filename": "ILVIS0_applanix_56924_510_POS510.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3472103881-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56924_510_POS510.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4803,
+      "task_id": "64628deb92756dbaf2a8",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2014/09/24/ILVIS0_applanix_56924_510_POS510.013"
+    },
+    {
+      "date": "2014-09-24",
+      "filename": "ILVIS0_applanix_56924_510_incomplete_POS510.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3472094528-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56924_510_incomplete_POS510.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4803,
+      "task_id": "c29b4ba9977bf344c672",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2014/09/24/ILVIS0_applanix_56924_510_incomplete_POS510.013"
+    },
+    {
+      "date": "2014-09-24",
+      "filename": "ILVIS0_applanix_56924_610_LVIS610.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3472103708-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56924_610_LVIS610.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4774,
+      "task_id": "8607437e732847526634",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2014/09/24/ILVIS0_applanix_56924_610_LVIS610.013"
+    },
+    {
+      "date": "2014-09-24",
+      "filename": "ILVIS0_applanix_56924_WFF_WFF.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3472103768-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56924_WFF_WFF.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4795,
+      "task_id": "c6ba8fc10428a037f34c",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2014/09/24/ILVIS0_applanix_56924_WFF_WFF.013"
+    },
+    {
+      "date": "2014-10-02",
+      "filename": "ILVIS0_applanix_56932_510_POS510.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3472077673-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56932_510_POS510.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4814,
+      "task_id": "38410df8816d9ebe0c99",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2014/10/02/ILVIS0_applanix_56932_510_POS510.013"
+    },
+    {
+      "date": "2014-10-02",
+      "filename": "ILVIS0_applanix_56932_610_LVIS610.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3472081156-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_56932_610_LVIS610.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4677,
+      "task_id": "cc0f19bded8f62a87c11",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2014/10/02/ILVIS0_applanix_56932_610_LVIS610.013"
+    },
+    {
+      "date": "2015-09-22",
+      "filename": "ILVIS0_applanix_57287_610_DMS_22Sept15DMS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3484223357-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57287_610_DMS_22Sept15DMS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.467,
+      "task_id": "30dc29ed4be6de899092",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/09/22/ILVIS0_applanix_57287_610_DMS_22Sept15DMS.013"
+    },
+    {
+      "date": "2015-09-22",
+      "filename": "ILVIS0_applanix_57287_610_LVIS_38614965.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3484289339-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57287_610_LVIS_38614965.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4704,
+      "task_id": "108d196761a839a24f07",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/09/22/ILVIS0_applanix_57287_610_LVIS_38614965.013"
+    },
+    {
+      "date": "2015-09-22",
+      "filename": "ILVIS0_applanix_57287_610_loaner_22Sept15LVIS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3484248653-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57287_610_loaner_22Sept15LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4589,
+      "task_id": "40d53ffff4fc59ca2a0d",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/09/22/ILVIS0_applanix_57287_610_loaner_22Sept15LVIS.013"
+    },
+    {
+      "date": "2015-09-24",
+      "filename": "ILVIS0_applanix_57289_510_LVISGH.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3484668726-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57289_510_LVISGH.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4772,
+      "task_id": "ae7127a8b48f61b051a8",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/09/24/ILVIS0_applanix_57289_510_LVISGH.013"
+    },
+    {
+      "date": "2015-09-24",
+      "filename": "ILVIS0_applanix_57289_610_DMS_24Sept15DMS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3484675648-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57289_610_DMS_24Sept15DMS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4702,
+      "task_id": "25e8081705aa69d3cd6f",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/09/24/ILVIS0_applanix_57289_610_DMS_24Sept15DMS.013"
+    },
+    {
+      "date": "2015-09-24",
+      "filename": "ILVIS0_applanix_57289_610_LVIS_38614965.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3484675774-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57289_610_LVIS_38614965.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4772,
+      "task_id": "4876a722de50db44fd7a",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/09/24/ILVIS0_applanix_57289_610_LVIS_38614965.013"
+    },
+    {
+      "date": "2015-09-24",
+      "filename": "ILVIS0_applanix_57289_610_loaner_24Sept15LVIS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3484692993-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57289_610_loaner_24Sept15LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4643,
+      "task_id": "9b7d1be2c57168d942d1",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/09/24/ILVIS0_applanix_57289_610_loaner_24Sept15LVIS.013"
+    },
+    {
+      "date": "2015-09-26",
+      "filename": "ILVIS0_applanix_57291_510_LVISGH.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3484985570-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57291_510_LVISGH.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4746,
+      "task_id": "2f24bea2d76d164704b1",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/09/26/ILVIS0_applanix_57291_510_LVISGH.013"
+    },
+    {
+      "date": "2015-09-26",
+      "filename": "ILVIS0_applanix_57291_610_DMS_26Sept15DMS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3485005801-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57291_610_DMS_26Sept15DMS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4627,
+      "task_id": "8fb44931da423fbde3ef",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/09/26/ILVIS0_applanix_57291_610_DMS_26Sept15DMS.013"
+    },
+    {
+      "date": "2015-09-26",
+      "filename": "ILVIS0_applanix_57291_610_LVIS_38614965.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3485013405-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57291_610_LVIS_38614965.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4687,
+      "task_id": "3223697e5fe287b1d443",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/09/26/ILVIS0_applanix_57291_610_LVIS_38614965.013"
+    },
+    {
+      "date": "2015-09-26",
+      "filename": "ILVIS0_applanix_57291_610_loaner_26Sept15LVIS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3485013382-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57291_610_loaner_26Sept15LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4676,
+      "task_id": "95a01583566d1a9e080b",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/09/26/ILVIS0_applanix_57291_610_loaner_26Sept15LVIS.013"
+    },
+    {
+      "date": "2015-09-29",
+      "filename": "ILVIS0_applanix_57294_510_LVISGH.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3485150348-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57294_510_LVISGH.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4776,
+      "task_id": "c2c15448922475c632b6",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/09/29/ILVIS0_applanix_57294_510_LVISGH.013"
+    },
+    {
+      "date": "2015-09-29",
+      "filename": "ILVIS0_applanix_57294_610_DMS_29Sept15DMS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3485169394-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57294_610_DMS_29Sept15DMS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4675,
+      "task_id": "67027d0caf3ed8e14c5f",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/09/29/ILVIS0_applanix_57294_610_DMS_29Sept15DMS.013"
+    },
+    {
+      "date": "2015-09-29",
+      "filename": "ILVIS0_applanix_57294_610_LVIS_38614965.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3485181770-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57294_610_LVIS_38614965.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4712,
+      "task_id": "fbcccc67cfc0f8c58798",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/09/29/ILVIS0_applanix_57294_610_LVIS_38614965.013"
+    },
+    {
+      "date": "2015-09-29",
+      "filename": "ILVIS0_applanix_57294_610_loaner_29Sept15LVIS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3485169384-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57294_610_loaner_29Sept15LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.463,
+      "task_id": "c1ef32dccf7f02f2fba6",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/09/29/ILVIS0_applanix_57294_610_loaner_29Sept15LVIS.013"
+    },
+    {
+      "date": "2015-10-03",
+      "filename": "ILVIS0_applanix_57298_510_LVISGH.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3485551219-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57298_510_LVISGH.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4736,
+      "task_id": "58b0848c35eeaf93a9f6",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/03/ILVIS0_applanix_57298_510_LVISGH.013"
+    },
+    {
+      "date": "2015-10-03",
+      "filename": "ILVIS0_applanix_57298_610_DMS_03Oct15DMS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3485614805-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57298_610_DMS_03Oct15DMS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4671,
+      "task_id": "439cd3a0feb0625b60ac",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/03/ILVIS0_applanix_57298_610_DMS_03Oct15DMS.013"
+    },
+    {
+      "date": "2015-10-03",
+      "filename": "ILVIS0_applanix_57298_610_LVIS_38614965.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3485562680-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57298_610_LVIS_38614965.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4694,
+      "task_id": "adfd80e2038861ee52fa",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/03/ILVIS0_applanix_57298_610_LVIS_38614965.013"
+    },
+    {
+      "date": "2015-10-03",
+      "filename": "ILVIS0_applanix_57298_610_loaner_03Oct15LVIS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3485613962-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57298_610_loaner_03Oct15LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4511,
+      "task_id": "a4d367c39b7334fa38b8",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/03/ILVIS0_applanix_57298_610_loaner_03Oct15LVIS.013"
+    },
+    {
+      "date": "2015-10-05",
+      "filename": "ILVIS0_applanix_57300_510_LVISGH.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3486269976-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57300_510_LVISGH.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4697,
+      "task_id": "e63d19ad53722e5fe0f7",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/05/ILVIS0_applanix_57300_510_LVISGH.013"
+    },
+    {
+      "date": "2015-10-05",
+      "filename": "ILVIS0_applanix_57300_610_DMS_05Oct15DMS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3486309573-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57300_610_DMS_05Oct15DMS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4579,
+      "task_id": "4fbe64ccb69a7ffc0257",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/05/ILVIS0_applanix_57300_610_DMS_05Oct15DMS.013"
+    },
+    {
+      "date": "2015-10-05",
+      "filename": "ILVIS0_applanix_57300_610_LVIS_38614965.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3486309841-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57300_610_LVIS_38614965.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4654,
+      "task_id": "a0534d9c30195543709c",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/05/ILVIS0_applanix_57300_610_LVIS_38614965.013"
+    },
+    {
+      "date": "2015-10-05",
+      "filename": "ILVIS0_applanix_57300_610_loaner_05Oct15LVIS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3486276627-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57300_610_loaner_05Oct15LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4572,
+      "task_id": "81c18746e768f992c6e7",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/05/ILVIS0_applanix_57300_610_loaner_05Oct15LVIS.013"
+    },
+    {
+      "date": "2015-10-07",
+      "filename": "ILVIS0_applanix_57302_510_LVISGH.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3487082500-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57302_510_LVISGH.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4643,
+      "task_id": "d7a8897f8b216724c891",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/07/ILVIS0_applanix_57302_510_LVISGH.013"
+    },
+    {
+      "date": "2015-10-07",
+      "filename": "ILVIS0_applanix_57302_610_DMS_07Oct15DMS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3487174607-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57302_610_DMS_07Oct15DMS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4607,
+      "task_id": "b763a84552420e8c1d8d",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/07/ILVIS0_applanix_57302_610_DMS_07Oct15DMS.013"
+    },
+    {
+      "date": "2015-10-07",
+      "filename": "ILVIS0_applanix_57302_610_LVIS_38614965.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3487158247-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57302_610_LVIS_38614965.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.474,
+      "task_id": "448e008466fda5ad79ea",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/07/ILVIS0_applanix_57302_610_LVIS_38614965.013"
+    },
+    {
+      "date": "2015-10-07",
+      "filename": "ILVIS0_applanix_57302_610_loaner_07Oct15LVIS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3487097808-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57302_610_loaner_07Oct15LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4549,
+      "task_id": "b5b356504236479c028d",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/07/ILVIS0_applanix_57302_610_loaner_07Oct15LVIS.013"
+    },
+    {
+      "date": "2015-10-10",
+      "filename": "ILVIS0_applanix_57305_510_LVISGH.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3487643720-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57305_510_LVISGH.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4697,
+      "task_id": "df2ea8cdcaa4ac01615b",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/10/ILVIS0_applanix_57305_510_LVISGH.013"
+    },
+    {
+      "date": "2015-10-10",
+      "filename": "ILVIS0_applanix_57305_610_DMS_10Oct15DMS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3487828225-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57305_610_DMS_10Oct15DMS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4684,
+      "task_id": "aa95315f0205d7f900d9",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/10/ILVIS0_applanix_57305_610_DMS_10Oct15DMS.013"
+    },
+    {
+      "date": "2015-10-10",
+      "filename": "ILVIS0_applanix_57305_610_LVIS_38614965.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3487788140-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57305_610_LVIS_38614965.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4706,
+      "task_id": "41cf7c4dcca04dce0678",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/10/ILVIS0_applanix_57305_610_LVIS_38614965.013"
+    },
+    {
+      "date": "2015-10-10",
+      "filename": "ILVIS0_applanix_57305_610_loaner_10Oct15LVIS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3487686592-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57305_610_loaner_10Oct15LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4611,
+      "task_id": "05b6350e07c1b6ff24ad",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/10/ILVIS0_applanix_57305_610_loaner_10Oct15LVIS.013"
+    },
+    {
+      "date": "2015-10-12",
+      "filename": "ILVIS0_applanix_57307_510_LVISGH.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3488270238-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57307_510_LVISGH.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4687,
+      "task_id": "6d398e7c4d2bc47a4b64",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/12/ILVIS0_applanix_57307_510_LVISGH.013"
+    },
+    {
+      "date": "2015-10-12",
+      "filename": "ILVIS0_applanix_57307_610_DMS_12Oct15DMS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3488303067-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57307_610_DMS_12Oct15DMS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4572,
+      "task_id": "ed4db68c327edbb1e892",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/12/ILVIS0_applanix_57307_610_DMS_12Oct15DMS.013"
+    },
+    {
+      "date": "2015-10-12",
+      "filename": "ILVIS0_applanix_57307_610_LVIS_38614965.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3488293731-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57307_610_LVIS_38614965.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.469,
+      "task_id": "e53cc76ff2a5fe3046f9",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/12/ILVIS0_applanix_57307_610_LVIS_38614965.013"
+    },
+    {
+      "date": "2015-10-12",
+      "filename": "ILVIS0_applanix_57307_610_loaner_12Oct15LVIS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3488270066-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57307_610_loaner_12Oct15LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4558,
+      "task_id": "a5c9a343b38c34d42251",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/12/ILVIS0_applanix_57307_610_loaner_12Oct15LVIS.013"
+    },
+    {
+      "date": "2015-10-14",
+      "filename": "ILVIS0_applanix_57309_510_LVISGH.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3488738455-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57309_510_LVISGH.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4693,
+      "task_id": "d044e5f04d28ef4134ae",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/14/ILVIS0_applanix_57309_510_LVISGH.013"
+    },
+    {
+      "date": "2015-10-14",
+      "filename": "ILVIS0_applanix_57309_610_DMS_14Oct15DMS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3488635448-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57309_610_DMS_14Oct15DMS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4571,
+      "task_id": "7ecb2ee97677e3a1e45c",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/14/ILVIS0_applanix_57309_610_DMS_14Oct15DMS.013"
+    },
+    {
+      "date": "2015-10-14",
+      "filename": "ILVIS0_applanix_57309_610_LVIS_38614965.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3488738602-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57309_610_LVIS_38614965.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4671,
+      "task_id": "b670190d46cfc8d4bbad",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/14/ILVIS0_applanix_57309_610_LVIS_38614965.013"
+    },
+    {
+      "date": "2015-10-14",
+      "filename": "ILVIS0_applanix_57309_610_loaner_14Oct15LVIS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3488616715-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57309_610_loaner_14Oct15LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.461,
+      "task_id": "5489ee1ee49676ceb94b",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/14/ILVIS0_applanix_57309_610_loaner_14Oct15LVIS.013"
+    },
+    {
+      "date": "2015-10-17",
+      "filename": "ILVIS0_applanix_57312_510_LVISGH.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3489023512-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57312_510_LVISGH.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4775,
+      "task_id": "70c5fd67560175526f43",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/17/ILVIS0_applanix_57312_510_LVISGH.013"
+    },
+    {
+      "date": "2015-10-17",
+      "filename": "ILVIS0_applanix_57312_610_DMS_17Oct15DMS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3489063355-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57312_610_DMS_17Oct15DMS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4497,
+      "task_id": "a39b228a8a59800afdfd",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/17/ILVIS0_applanix_57312_610_DMS_17Oct15DMS.013"
+    },
+    {
+      "date": "2015-10-17",
+      "filename": "ILVIS0_applanix_57312_610_LVIS_38614965.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3489049385-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57312_610_LVIS_38614965.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4729,
+      "task_id": "b2e4d9044f4718247f16",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/17/ILVIS0_applanix_57312_610_LVIS_38614965.013"
+    },
+    {
+      "date": "2015-10-17",
+      "filename": "ILVIS0_applanix_57312_610_loaner_17Oct15LVIS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3489050051-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57312_610_loaner_17Oct15LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4545,
+      "task_id": "d2a076353a8123f2d047",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/17/ILVIS0_applanix_57312_610_loaner_17Oct15LVIS.013"
+    },
+    {
+      "date": "2015-10-20",
+      "filename": "ILVIS0_applanix_57315_510_LVISGH.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3489336848-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57315_510_LVISGH.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4834,
+      "task_id": "be639c4d0fa22c858f05",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/20/ILVIS0_applanix_57315_510_LVISGH.013"
+    },
+    {
+      "date": "2015-10-20",
+      "filename": "ILVIS0_applanix_57315_610_DMS_20Oct15DMS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3489368568-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57315_610_DMS_20Oct15DMS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4636,
+      "task_id": "1c071fb7315904ebaad9",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/20/ILVIS0_applanix_57315_610_DMS_20Oct15DMS.013"
+    },
+    {
+      "date": "2015-10-20",
+      "filename": "ILVIS0_applanix_57315_610_LVIS_38614965.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3489343188-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57315_610_LVIS_38614965.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4785,
+      "task_id": "a869222776a6ad61940f",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/20/ILVIS0_applanix_57315_610_LVIS_38614965.013"
+    },
+    {
+      "date": "2015-10-20",
+      "filename": "ILVIS0_applanix_57315_610_loaner_20Oct15LVIS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3489342077-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57315_610_loaner_20Oct15LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4498,
+      "task_id": "151ef3a56cffa6acc330",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/20/ILVIS0_applanix_57315_610_loaner_20Oct15LVIS.013"
+    },
+    {
+      "date": "2015-10-22",
+      "filename": "ILVIS0_applanix_57317_510_LVISGH.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3489657390-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57317_510_LVISGH.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4712,
+      "task_id": "1fd5f1663143051897f4",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/22/ILVIS0_applanix_57317_510_LVISGH.013"
+    },
+    {
+      "date": "2015-10-22",
+      "filename": "ILVIS0_applanix_57317_610_DMS_21Oct15DMS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3489725726-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57317_610_DMS_21Oct15DMS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4657,
+      "task_id": "cc3e726ffb0436c0f9d8",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/22/ILVIS0_applanix_57317_610_DMS_21Oct15DMS.013"
+    },
+    {
+      "date": "2015-10-22",
+      "filename": "ILVIS0_applanix_57317_610_LVIS_38614965.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3489711000-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57317_610_LVIS_38614965.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.472,
+      "task_id": "64e033ebd4066f692c7d",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/22/ILVIS0_applanix_57317_610_LVIS_38614965.013"
+    },
+    {
+      "date": "2015-10-22",
+      "filename": "ILVIS0_applanix_57317_610_loaner_21Oct15LVIS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3489673689-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57317_610_loaner_21Oct15LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4589,
+      "task_id": "2aa23d331be35e2dc501",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/22/ILVIS0_applanix_57317_610_loaner_21Oct15LVIS.013"
+    },
+    {
+      "date": "2015-10-25",
+      "filename": "ILVIS0_applanix_57320_510_LVISGH.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3490235676-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57320_510_LVISGH.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4756,
+      "task_id": "fafe29d18a4b124a2bd5",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/25/ILVIS0_applanix_57320_510_LVISGH.013"
+    },
+    {
+      "date": "2015-10-25",
+      "filename": "ILVIS0_applanix_57320_610_DMS_25Oct15DMS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3490243225-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57320_610_DMS_25Oct15DMS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4693,
+      "task_id": "ea628c825891d2237361",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/25/ILVIS0_applanix_57320_610_DMS_25Oct15DMS.013"
+    },
+    {
+      "date": "2015-10-25",
+      "filename": "ILVIS0_applanix_57320_610_LVIS_38614965.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3490254691-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57320_610_LVIS_38614965.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4704,
+      "task_id": "cd8e05202eb41b83eb26",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/25/ILVIS0_applanix_57320_610_LVIS_38614965.013"
+    },
+    {
+      "date": "2015-10-25",
+      "filename": "ILVIS0_applanix_57320_610_loaner_25Oct15LVIS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3490243068-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57320_610_loaner_25Oct15LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4611,
+      "task_id": "65bd45977b48b7d8272a",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/25/ILVIS0_applanix_57320_610_loaner_25Oct15LVIS.013"
+    },
+    {
+      "date": "2015-10-27",
+      "filename": "ILVIS0_applanix_57322_510_LVISGH.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3490676587-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57322_510_LVISGH.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.47,
+      "task_id": "e5c2db884449f0abf742",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/27/ILVIS0_applanix_57322_510_LVISGH.013"
+    },
+    {
+      "date": "2015-10-27",
+      "filename": "ILVIS0_applanix_57322_610_DMS_27Oct15bDMS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3490779004-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57322_610_DMS_27Oct15bDMS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4606,
+      "task_id": "e107412e6b64dace9bc0",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/27/ILVIS0_applanix_57322_610_DMS_27Oct15bDMS.013"
+    },
+    {
+      "date": "2015-10-27",
+      "filename": "ILVIS0_applanix_57322_610_LVIS_38614965.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3490762295-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57322_610_LVIS_38614965.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4707,
+      "task_id": "b8a39f615741686e805a",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/27/ILVIS0_applanix_57322_610_LVIS_38614965.013"
+    },
+    {
+      "date": "2015-10-27",
+      "filename": "ILVIS0_applanix_57322_610_loaner_27Oct15bLVIS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3490743433-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57322_610_loaner_27Oct15bLVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4614,
+      "task_id": "9641dfee9ad7cc1aa89e",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/27/ILVIS0_applanix_57322_610_loaner_27Oct15bLVIS.013"
+    },
+    {
+      "date": "2015-10-29",
+      "filename": "ILVIS0_applanix_57324_510_LVISGH.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3491121784-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57324_510_LVISGH.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4778,
+      "task_id": "7d48cdbc113c308beaa9",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/29/ILVIS0_applanix_57324_510_LVISGH.013"
+    },
+    {
+      "date": "2015-10-29",
+      "filename": "ILVIS0_applanix_57324_610_DMS_29Oct15DMS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3491167733-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57324_610_DMS_29Oct15DMS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4667,
+      "task_id": "f50467521369a9e0579e",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/29/ILVIS0_applanix_57324_610_DMS_29Oct15DMS.013"
+    },
+    {
+      "date": "2015-10-29",
+      "filename": "ILVIS0_applanix_57324_610_LVIS_38614965.013",
+      "filename_instrument_tokens": [
+        "lvis"
+      ],
+      "granule_id": "G3491160800-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57324_610_LVIS_38614965.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4719,
+      "task_id": "2cde8478531840037384",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/29/ILVIS0_applanix_57324_610_LVIS_38614965.013"
+    },
+    {
+      "date": "2015-10-29",
+      "filename": "ILVIS0_applanix_57324_610_loaner_29Oct15LVIS.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3491122092-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_applanix_57324_610_loaner_29Oct15LVIS.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4643,
+      "task_id": "4849e6ea97a36558b5ac",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2015/10/29/ILVIS0_applanix_57324_610_loaner_29Oct15LVIS.013"
+    },
+    {
+      "date": "2017-08-25",
+      "filename": "ILVIS0_57990_B200T_N44U_imu_510i_0539_41265390825_113248.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3493504082-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_57990_B200T_N44U_imu_510i_0539_41265390825_113248.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.467,
+      "task_id": "b58bab67e02affe467c6",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2017/08/25/ILVIS0_57990_B200T_N44U_imu_510i_0539_41265390825_113248.013"
+    },
+    {
+      "date": "2017-08-25",
+      "filename": "ILVIS0_57990_B200T_N44U_imu_610i_0341_610_644803410825_113329.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3493682274-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_57990_B200T_N44U_imu_610i_0341_610_644803410825_113329.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4547,
+      "task_id": "f86f498c0334d0c8ecb3",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2017/08/25/ILVIS0_57990_B200T_N44U_imu_610i_0341_610_644803410825_113329.013"
+    },
+    {
+      "date": "2017-08-25",
+      "filename": "ILVIS0_57990_B200T_N44U_imu_610p_4965_610_776349650825_113426.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3493630869-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_57990_B200T_N44U_imu_610p_4965_610_776349650825_113426.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4709,
+      "task_id": "228b90f53b9520a6e69a",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2017/08/25/ILVIS0_57990_B200T_N44U_imu_610p_4965_610_776349650825_113426.013"
+    },
+    {
+      "date": "2017-08-29",
+      "filename": "ILVIS0_57994_B200T_N44U_imu_510i_0539_41265390829_103723.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3495602028-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_57994_B200T_N44U_imu_510i_0539_41265390829_103723.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4778,
+      "task_id": "0fb743634f248a06ed6d",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2017/08/29/ILVIS0_57994_B200T_N44U_imu_510i_0539_41265390829_103723.013"
+    },
+    {
+      "date": "2017-08-29",
+      "filename": "ILVIS0_57994_B200T_N44U_imu_510i_pc_card_4126539.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3495601877-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_57994_B200T_N44U_imu_510i_pc_card_4126539.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4576,
+      "task_id": "4a752a0d69a9ffcf26f6",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2017/08/29/ILVIS0_57994_B200T_N44U_imu_510i_pc_card_4126539.013"
+    },
+    {
+      "date": "2017-08-29",
+      "filename": "ILVIS0_57994_B200T_N44U_imu_610i_0341_610_644803410829_104703.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3495614176-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_57994_B200T_N44U_imu_610i_0341_610_644803410829_104703.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4568,
+      "task_id": "e9b3221ff9b2dc42dad8",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2017/08/29/ILVIS0_57994_B200T_N44U_imu_610i_0341_610_644803410829_104703.013"
+    },
+    {
+      "date": "2017-08-29",
+      "filename": "ILVIS0_57994_B200T_N44U_imu_610p_4965_610_776349650829_110457.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3495601868-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_57994_B200T_N44U_imu_610p_4965_610_776349650829_110457.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4686,
+      "task_id": "7ab984fd569b1cdc76f1",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2017/08/29/ILVIS0_57994_B200T_N44U_imu_610p_4965_610_776349650829_110457.013"
+    },
+    {
+      "date": "2017-08-29",
+      "filename": "ILVIS0_57994_B200T_N44U_imu_610p_stick_610_77634965.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3495614680-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_57994_B200T_N44U_imu_610p_stick_610_77634965.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4686,
+      "task_id": "448d69959e7213979087",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2017/08/29/ILVIS0_57994_B200T_N44U_imu_610p_stick_610_77634965.013"
+    },
+    {
+      "date": "2017-08-30",
+      "filename": "ILVIS0_57995_B200T_N44U_imu_510i_0539_41265390830_110907.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3495797958-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_57995_B200T_N44U_imu_510i_0539_41265390830_110907.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4744,
+      "task_id": "445d05eaf1e26173e4dc",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2017/08/30/ILVIS0_57995_B200T_N44U_imu_510i_0539_41265390830_110907.013"
+    },
+    {
+      "date": "2017-08-30",
+      "filename": "ILVIS0_57995_B200T_N44U_imu_610i_0341_610_644803410830_111156.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3495794343-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_57995_B200T_N44U_imu_610i_0341_610_644803410830_111156.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4596,
+      "task_id": "e7a5f7765b7ed9fb02d0",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2017/08/30/ILVIS0_57995_B200T_N44U_imu_610i_0341_610_644803410830_111156.013"
+    },
+    {
+      "date": "2017-08-30",
+      "filename": "ILVIS0_57995_B200T_N44U_imu_610p_4965_610_776349650830_112946.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3495795048-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_57995_B200T_N44U_imu_610p_4965_610_776349650830_112946.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.477,
+      "task_id": "0597c2fc801302762711",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2017/08/30/ILVIS0_57995_B200T_N44U_imu_610p_4965_610_776349650830_112946.013"
+    },
+    {
+      "date": "2017-09-01",
+      "filename": "ILVIS0_57997_B200T_N44U_imu_510i_0539_41265390901_103423.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3495870695-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_57997_B200T_N44U_imu_510i_0539_41265390901_103423.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4673,
+      "task_id": "1dc217386bf3c9116d3d",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2017/09/01/ILVIS0_57997_B200T_N44U_imu_510i_0539_41265390901_103423.013"
+    },
+    {
+      "date": "2017-09-01",
+      "filename": "ILVIS0_57997_B200T_N44U_imu_610i_0341_610_644803410901_103721.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3495871373-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_57997_B200T_N44U_imu_610i_0341_610_644803410901_103721.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.451,
+      "task_id": "7b0f6b2b642048c3282f",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2017/09/01/ILVIS0_57997_B200T_N44U_imu_610i_0341_610_644803410901_103721.013"
+    },
+    {
+      "date": "2017-09-01",
+      "filename": "ILVIS0_57997_B200T_N44U_imu_610p_4965_610_776349650901_103530.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3495870724-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_57997_B200T_N44U_imu_610p_4965_610_776349650901_103530.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4727,
+      "task_id": "881b830eadf33880bde4",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2017/09/01/ILVIS0_57997_B200T_N44U_imu_610p_4965_610_776349650901_103530.013"
+    },
+    {
+      "date": "2017-09-02",
+      "filename": "ILVIS0_57998_B200T_N44U_imu_510i_0539_41265390902_100713.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3496021737-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_57998_B200T_N44U_imu_510i_0539_41265390902_100713.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4712,
+      "task_id": "decede3f4beb6112e9f8",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2017/09/02/ILVIS0_57998_B200T_N44U_imu_510i_0539_41265390902_100713.013"
+    },
+    {
+      "date": "2017-09-02",
+      "filename": "ILVIS0_57998_B200T_N44U_imu_610i_0341_610_644803410902_101002.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3498036431-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_57998_B200T_N44U_imu_610i_0341_610_644803410902_101002.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4607,
+      "task_id": "ef21b88eb8a8633d9fb6",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2017/09/02/ILVIS0_57998_B200T_N44U_imu_610i_0341_610_644803410902_101002.013"
+    },
+    {
+      "date": "2017-09-02",
+      "filename": "ILVIS0_57998_B200T_N44U_imu_610p_4965_610_776349650902_100856.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3496032819-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_57998_B200T_N44U_imu_610p_4965_610_776349650902_100856.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4777,
+      "task_id": "06de5ef13d80efbe9b7e",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2017/09/02/ILVIS0_57998_B200T_N44U_imu_610p_4965_610_776349650902_100856.013"
+    },
+    {
+      "date": "2017-09-04",
+      "filename": "ILVIS0_58000_B200T_N44U_imu_510i_0539_41265390904_094008.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3496203864-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_58000_B200T_N44U_imu_510i_0539_41265390904_094008.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4719,
+      "task_id": "7494ec5589e5a10da69b",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2017/09/04/ILVIS0_58000_B200T_N44U_imu_510i_0539_41265390904_094008.013"
+    },
+    {
+      "date": "2017-09-04",
+      "filename": "ILVIS0_58000_B200T_N44U_imu_610i_0341_610_644803410904_094112.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3496211780-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_58000_B200T_N44U_imu_610i_0341_610_644803410904_094112.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4607,
+      "task_id": "8b87288c25a5b2a8f5cb",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2017/09/04/ILVIS0_58000_B200T_N44U_imu_610i_0341_610_644803410904_094112.013"
+    },
+    {
+      "date": "2017-09-04",
+      "filename": "ILVIS0_58000_B200T_N44U_imu_610p_4965_610_776349650904_094116.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3496214832-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_58000_B200T_N44U_imu_610p_4965_610_776349650904_094116.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4583,
+      "task_id": "cc490cc13a85c5133b42",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2017/09/04/ILVIS0_58000_B200T_N44U_imu_610p_4965_610_776349650904_094116.013"
+    },
+    {
+      "date": "2017-09-05",
+      "filename": "ILVIS0_58001_B200T_N44U_imu_510i_0539_41265390905_100312.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3496394835-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_58001_B200T_N44U_imu_510i_0539_41265390905_100312.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4685,
+      "task_id": "fdaf42fa255797a1ea6b",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2017/09/05/ILVIS0_58001_B200T_N44U_imu_510i_0539_41265390905_100312.013"
+    },
+    {
+      "date": "2017-09-05",
+      "filename": "ILVIS0_58001_B200T_N44U_imu_610i_0341_610_644803410905_100357.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3496410887-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_58001_B200T_N44U_imu_610i_0341_610_644803410905_100357.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4506,
+      "task_id": "3acfc6fab698df949038",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2017/09/05/ILVIS0_58001_B200T_N44U_imu_610i_0341_610_644803410905_100357.013"
+    },
+    {
+      "date": "2017-09-05",
+      "filename": "ILVIS0_58001_B200T_N44U_imu_610p_4965_610_776349650905_101347.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3496394183-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_58001_B200T_N44U_imu_610p_4965_610_776349650905_101347.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4804,
+      "task_id": "7e054578690edb82348f",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2017/09/05/ILVIS0_58001_B200T_N44U_imu_610p_4965_610_776349650905_101347.013"
+    },
+    {
+      "date": "2017-09-06",
+      "filename": "ILVIS0_58002_B200T_N44U_imu_510i_0539_41265390906_093841.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3496428975-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_58002_B200T_N44U_imu_510i_0539_41265390906_093841.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4606,
+      "task_id": "7d698c7062b85866cce9",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2017/09/06/ILVIS0_58002_B200T_N44U_imu_510i_0539_41265390906_093841.013"
+    },
+    {
+      "date": "2017-09-06",
+      "filename": "ILVIS0_58002_B200T_N44U_imu_610i_0341_610_644803410906_094033.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3496422318-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_58002_B200T_N44U_imu_610i_0341_610_644803410906_094033.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4523,
+      "task_id": "4596484e2e18d08c7921",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2017/09/06/ILVIS0_58002_B200T_N44U_imu_610i_0341_610_644803410906_094033.013"
+    },
+    {
+      "date": "2017-09-06",
+      "filename": "ILVIS0_58002_B200T_N44U_imu_610p_4965_610_776349650906_094026.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3496505738-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_58002_B200T_N44U_imu_610p_4965_610_776349650906_094026.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.471,
+      "task_id": "6c8a305ea8abd05ea1b1",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2017/09/06/ILVIS0_58002_B200T_N44U_imu_610p_4965_610_776349650906_094026.013"
+    },
+    {
+      "date": "2017-09-09",
+      "filename": "ILVIS0_58005_B200T_N44U_imu_510i_0539_41265390909_090800.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3496656752-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_58005_B200T_N44U_imu_510i_0539_41265390909_090800.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4669,
+      "task_id": "7642acb6946d0a2585c9",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2017/09/09/ILVIS0_58005_B200T_N44U_imu_510i_0539_41265390909_090800.013"
+    },
+    {
+      "date": "2017-09-09",
+      "filename": "ILVIS0_58005_B200T_N44U_imu_610i_0341_610_644803410909_090842.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3496519065-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_58005_B200T_N44U_imu_610i_0341_610_644803410909_090842.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4499,
+      "task_id": "81338ac73b36e937e3cf",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2017/09/09/ILVIS0_58005_B200T_N44U_imu_610i_0341_610_644803410909_090842.013"
+    },
+    {
+      "date": "2017-09-09",
+      "filename": "ILVIS0_58005_B200T_N44U_imu_610p_4965_610_776349650909_091059.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3496668587-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_58005_B200T_N44U_imu_610p_4965_610_776349650909_091059.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4836,
+      "task_id": "bb865341cf5ae2af24b4",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2017/09/09/ILVIS0_58005_B200T_N44U_imu_610p_4965_610_776349650909_091059.013"
+    },
+    {
+      "date": "2017-09-12",
+      "filename": "ILVIS0_58008_B200T_N44U_imu_510i_0539_41265390912_093556.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3496677985-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_58008_B200T_N44U_imu_510i_0539_41265390912_093556.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4707,
+      "task_id": "b3eb702e6383e314c1b8",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2017/09/12/ILVIS0_58008_B200T_N44U_imu_510i_0539_41265390912_093556.013"
+    },
+    {
+      "date": "2017-09-12",
+      "filename": "ILVIS0_58008_B200T_N44U_imu_610i_0341_partial_610_644803410912_093756.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3496686092-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_58008_B200T_N44U_imu_610i_0341_partial_610_644803410912_093756.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4568,
+      "task_id": "709dacd7f37a3001aceb",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2017/09/12/ILVIS0_58008_B200T_N44U_imu_610i_0341_partial_610_644803410912_093756.013"
+    },
+    {
+      "date": "2017-09-12",
+      "filename": "ILVIS0_58008_B200T_N44U_imu_610p_4965_610_776349650912_093752.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3496681995-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_58008_B200T_N44U_imu_610p_4965_610_776349650912_093752.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4792,
+      "task_id": "dd76b44a06870062e4a0",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2017/09/12/ILVIS0_58008_B200T_N44U_imu_610p_4965_610_776349650912_093752.013"
+    },
+    {
+      "date": "2017-09-13",
+      "filename": "ILVIS0_58009_B200T_N44U_imu_510i_0539_41265390913_110821.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3497090151-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_58009_B200T_N44U_imu_510i_0539_41265390913_110821.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4701,
+      "task_id": "d3b1a8339e1f672b8a99",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2017/09/13/ILVIS0_58009_B200T_N44U_imu_510i_0539_41265390913_110821.013"
+    },
+    {
+      "date": "2017-09-13",
+      "filename": "ILVIS0_58009_B200T_N44U_imu_610i_0341_610_644803410913_111003.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3497080628-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_58009_B200T_N44U_imu_610i_0341_610_644803410913_111003.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4563,
+      "task_id": "87642c08c9f956449ed4",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2017/09/13/ILVIS0_58009_B200T_N44U_imu_610i_0341_610_644803410913_111003.013"
+    },
+    {
+      "date": "2017-09-13",
+      "filename": "ILVIS0_58009_B200T_N44U_imu_610p_4965_610_776349650913_110906.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3497084058-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_58009_B200T_N44U_imu_610p_4965_610_776349650913_110906.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4718,
+      "task_id": "a947d596a43ff52185d6",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2017/09/13/ILVIS0_58009_B200T_N44U_imu_610p_4965_610_776349650913_110906.013"
+    },
+    {
+      "date": "2017-09-18",
+      "filename": "ILVIS0_58014_B200T_N44U_imu_510i_0539_41265390918_094015.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3497122803-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_58014_B200T_N44U_imu_510i_0539_41265390918_094015.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4611,
+      "task_id": "2c65ac547240550ad838",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2017/09/18/ILVIS0_58014_B200T_N44U_imu_510i_0539_41265390918_094015.013"
+    },
+    {
+      "date": "2017-09-18",
+      "filename": "ILVIS0_58014_B200T_N44U_imu_610i_0341_610_644803410918_092749.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3497206724-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_58014_B200T_N44U_imu_610i_0341_610_644803410918_092749.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4585,
+      "task_id": "8d54bfc671a1ba412822",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2017/09/18/ILVIS0_58014_B200T_N44U_imu_610i_0341_610_644803410918_092749.013"
+    },
+    {
+      "date": "2017-09-18",
+      "filename": "ILVIS0_58014_B200T_N44U_imu_610p_4965_610_776349650918_093922.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3497125483-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_58014_B200T_N44U_imu_610p_4965_610_776349650918_093922.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4848,
+      "task_id": "16d07a17291896184cc9",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2017/09/18/ILVIS0_58014_B200T_N44U_imu_610p_4965_610_776349650918_093922.013"
+    },
+    {
+      "date": "2017-09-19",
+      "filename": "ILVIS0_58015_B200T_N44U_imu_510i_0539_41265390919_095816.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3497342367-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_58015_B200T_N44U_imu_510i_0539_41265390919_095816.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4758,
+      "task_id": "04a47a69102568ffe42f",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2017/09/19/ILVIS0_58015_B200T_N44U_imu_510i_0539_41265390919_095816.013"
+    },
+    {
+      "date": "2017-09-19",
+      "filename": "ILVIS0_58015_B200T_N44U_imu_610i_0341_610_644803410919_095927.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3497210897-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_58015_B200T_N44U_imu_610i_0341_610_644803410919_095927.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4527,
+      "task_id": "3463b5e4186eaf8bd249",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2017/09/19/ILVIS0_58015_B200T_N44U_imu_610i_0341_610_644803410919_095927.013"
+    },
+    {
+      "date": "2017-09-19",
+      "filename": "ILVIS0_58015_B200T_N44U_imu_610p_4965_610_776349650919_095921.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3497353286-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_58015_B200T_N44U_imu_610p_4965_610_776349650919_095921.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4728,
+      "task_id": "9af866a9addfc2e419b7",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2017/09/19/ILVIS0_58015_B200T_N44U_imu_610p_4965_610_776349650919_095921.013"
+    },
+    {
+      "date": "2017-09-20",
+      "filename": "ILVIS0_58016_B200T_N44U_imu_510i_0539_41265390920_104746.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3497363006-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_58016_B200T_N44U_imu_510i_0539_41265390920_104746.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4638,
+      "task_id": "93f52157cbd20bdf8c1b",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2017/09/20/ILVIS0_58016_B200T_N44U_imu_510i_0539_41265390920_104746.013"
+    },
+    {
+      "date": "2017-09-20",
+      "filename": "ILVIS0_58016_B200T_N44U_imu_610i_0341_610_644803410920_104841.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3497363004-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_58016_B200T_N44U_imu_610i_0341_610_644803410920_104841.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.456,
+      "task_id": "b0c44fcc269110c6fcfa",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2017/09/20/ILVIS0_58016_B200T_N44U_imu_610i_0341_610_644803410920_104841.013"
+    },
+    {
+      "date": "2017-09-20",
+      "filename": "ILVIS0_58016_B200T_N44U_imu_610p_4965_610_776349650920_104832.013",
+      "filename_instrument_tokens": [],
+      "granule_id": "G3497359436-NSIDC_CPRD",
+      "producer_granule_id": "ILVIS0_58016_B200T_N44U_imu_610p_4965_610_776349650920_104832.013",
+      "size_bytes_exact": null,
+      "size_mib_reported": 12.4765,
+      "task_id": "49104233131a7d15a958",
+      "url": "https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-protected/LVIS/ILVIS0/1/2017/09/20/ILVIS0_58016_B200T_N44U_imu_610p_4965_610_776349650920_104832.013"
+    }
+  ],
+  "known_reported_mib": 4061.18612,
+  "observed_at_utc": "2026-10-07T07:58:54.722952+00:00",
+  "pages": 2,
+  "provider": "NSIDC_CPRD",
+  "query": {
+    "collection_concept_id": "C3162704221-NSIDC_CPRD",
+    "options[producer_granule_id][pattern]": "true",
+    "page_size": 2000,
+    "producer_granule_id[]": "*.013",
+    "sort_key[]": [
+      "start_date",
+      "producer_granule_id"
+    ],
+    "temporal": "2009-04-14T00:00:00Z,2017-09-20T23:59:59Z"
+  },
+  "size_warning": "CMR granule_size is rounded MiB, not an exact byte length",
+  "version": "local-level-lab-ilvis0-v1"
+}

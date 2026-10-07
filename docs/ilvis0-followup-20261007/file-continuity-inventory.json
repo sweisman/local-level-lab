@@ -1,0 +1,157 @@
+{
+  "files_inventoried": 326,
+  "missing_metadata": [],
+  "configurations": 13,
+  "candidate_pairs": [
+    {
+      "configuration": "[[\"AV-510,VER5,S/N2720,HW3.1-7,SW04.50-Feb05/08,ICD14.00,OS425B14,IMU6,PGPS13,SGPS0\"], [\"6\"], [\"2\"]]",
+      "left": {
+        "task_id": "1fec3d39099d0e619100",
+        "filename": "ILVIS0_applanix_55307_20100421_LVIS510_POSAV.013",
+        "date": "2010-04-21",
+        "state": "unresolved",
+        "start_epoch_s": 1271851772.7549725,
+        "end_epoch_s": 1271852262.0800478,
+        "source_sha256": "c2e58674c46974395abe5735949fd32ebcf076f1c7e6fb130078128673b96afb"
+      },
+      "right": {
+        "task_id": "70d727f23a7df6b2e47f",
+        "filename": "ILVIS0_applanix_55308_20100422_LVIS510_POSAV.013",
+        "date": "2010-04-22",
+        "state": "unresolved",
+        "start_epoch_s": 1271851772.7549725,
+        "end_epoch_s": 1271852262.0800478,
+        "source_sha256": "c2e58674c46974395abe5735949fd32ebcf076f1c7e6fb130078128673b96afb"
+      },
+      "gap_s": -489.3250753879547
+    },
+    {
+      "configuration": "[[\"AV-510,VER5,S/N2720,HW3.1-7,SW04.50-Feb05/08,ICD14.00,OS425B14,IMU6,PGPS13,SGPS0\"], [\"6\"], [\"2\"]]",
+      "left": {
+        "task_id": "cb673ea00ba48a0413bf",
+        "filename": "ILVIS0_applanix_56902_510_fromdrive_partial_POS510.013",
+        "date": "2014-09-02",
+        "state": "unresolved",
+        "start_epoch_s": 1409677129.7299209,
+        "end_epoch_s": 1409677613.9347036,
+        "source_sha256": "e3dc062684ef25d0b21c3e7a627bc37901d6b89c97dee3df4c3b5d062cd2ad10"
+      },
+      "right": {
+        "task_id": "d017b3eba0bc3095c2f1",
+        "filename": "ILVIS0_applanix_56902_510_ftp_POS5100902_151321.013",
+        "date": "2014-09-02",
+        "state": "unresolved",
+        "start_epoch_s": 1409677129.7299209,
+        "end_epoch_s": 1409677613.9347036,
+        "source_sha256": "e3dc062684ef25d0b21c3e7a627bc37901d6b89c97dee3df4c3b5d062cd2ad10"
+      },
+      "gap_s": -484.2047827243805
+    },
+    {
+      "configuration": "[[\"AV-510,VER5,S/N2720,HW3.1-7,SW04.50-Feb05/08,ICD14.00,OS425B14,IMU6,PGPS13,SGPS0\"], [\"6\"], [\"2\"]]",
+      "left": {
+        "task_id": "64628deb92756dbaf2a8",
+        "filename": "ILVIS0_applanix_56924_510_POS510.013",
+        "date": "2014-09-24",
+        "state": "unresolved",
+        "start_epoch_s": 1411580535.7091315,
+        "end_epoch_s": 1411581040.3537114,
+        "source_sha256": "32ff6812bcc1075846da8061b647891b32ba9b85466eb908b5dddbbfca66e4d0"
+      },
+      "right": {
+        "task_id": "c29b4ba9977bf344c672",
+        "filename": "ILVIS0_applanix_56924_510_incomplete_POS510.013",
+        "date": "2014-09-24",
+        "state": "unresolved",
+        "start_epoch_s": 1411580535.7091315,
+        "end_epoch_s": 1411581040.3537114,
+        "source_sha256": "32ff6812bcc1075846da8061b647891b32ba9b85466eb908b5dddbbfca66e4d0"
+      },
+      "gap_s": -504.64457988739014
+    },
+    {
+      "configuration": "[[\"AV-610,VER6,S/N7763,HW1.6-12,SW08.53-Apr20/16,ICD07.41,OS6.4.1,IMU21,PGPS17,SGPS0,DMI0,GIM1,ZVI0\"], [\"21\"], [\"2\"]]",
+      "left": {
+        "task_id": "448d69959e7213979087",
+        "filename": "ILVIS0_57994_B200T_N44U_imu_610p_stick_610_77634965.013",
+        "date": "2017-08-29",
+        "state": "unresolved",
+        "start_epoch_s": 1504013393.8671114,
+        "end_epoch_s": 1504014061.6636786,
+        "source_sha256": "ce73156ec49e1f4e64d318672ef8f44503268f76f5385b324818d28dcbd3bda5"
+      },
+      "right": {
+        "task_id": "7ab984fd569b1cdc76f1",
+        "filename": "ILVIS0_57994_B200T_N44U_imu_610p_4965_610_776349650829_110457.013",
+        "date": "2017-08-29",
+        "state": "unresolved",
+        "start_epoch_s": 1504013410.5523987,
+        "end_epoch_s": 1504014078.3939717,
+        "source_sha256": "510de922e7a60c80a28dd30d7b57182eea5522bd3401cdcd067eeee1de5edb66"
+      },
+      "gap_s": -651.111279964447
+    }
+  ],
+  "closest_separated_pairs": [
+    {
+      "configuration": "[[\"AV-510,VER5,S/N4126,HW4.0-7,SW05.20-Nov04/11,ICD18.00,OS425B142,IMU6,PGPS16,SGPS0\"], [\"6\"], [\"2\"]]",
+      "left": "ILVIS0_57994_B200T_N44U_imu_510i_0539_41265390829_103723.013",
+      "right": "ILVIS0_57994_B200T_N44U_imu_510i_pc_card_4126539.013",
+      "gap_s": 1111.3399527072906
+    },
+    {
+      "configuration": "[[\"AV-610,VER5,S/N3861,HW4.0-7,SW05.00-Dec16/09,ICD17.00,OS425B142,IMU21,PGPS16,SGPS0\"], [\"21\"], [\"2\"]]",
+      "left": "ILVIS0_applanix_55851_610_LVIS.013",
+      "right": "ILVIS0_applanix_55849_610_LVIS.013",
+      "gap_s": 66650.23466730118
+    },
+    {
+      "configuration": "[[\"AV-510,VER5,S/N3861,HW4.0-7,SW05.00-Dec16/09,ICD17.00,OS425B142,IMU6,PGPS16,SGPS0\"], [\"6\"], [\"2\"]]",
+      "left": "ILVIS0_applanix_55519_20101119_510_lvis_LVIS.013",
+      "right": "ILVIS0_applanix_55520_20101120_510_lvis_LVIS.013",
+      "gap_s": 76970.06903147697
+    },
+    {
+      "configuration": "[[\"AV-610,VER5,S/N3456,HW4-7,SW04.70-Mar25/09,ICD16.00,OS425B14,IMU21,PGPS16,SGPS0,YDC-0,FMS-0\"], [\"21\"], [\"2\"]]",
+      "left": "ILVIS0_applanix_55519_20101119_610_ames_AMES.013",
+      "right": "ILVIS0_applanix_55520_20101120_610_ames_AMES.013",
+      "gap_s": 77013.81724834442
+    },
+    {
+      "configuration": "[[\"AV-610,VER5,S/N3894,HW4.0-7,SW05.00-Dec16/09,ICD17.00,OS425B142,IMU21,PGPS16,SGPS0\"], [\"21\"], [\"2\"]]",
+      "left": "ILVIS0_applanix_56600_230_610_WFF_25Feb12.013",
+      "right": "ILVIS0_applanix_56601_230_610_WFF_25Feb12.013",
+      "gap_s": 80342.43091654778
+    },
+    {
+      "configuration": "[[\"AV-510,VER5,S/N2720,HW3.1-7,SW04.50-Feb05/08,ICD14.00,OS425B14,IMU6,PGPS13,SGPS0\"], [\"6\"], [\"2\"]]",
+      "left": "ILVIS0_applanix_56600_232_510_POS510.013",
+      "right": "ILVIS0_applanix_56601_232_510_POS510.013",
+      "gap_s": 80448.52691054344
+    },
+    {
+      "configuration": "[[\"AV-610,VER5,S/N3861,HW4.0-7,SW05.00-Dec16/09,ICD17.00,OS425B142,IMU21,PGPS16,SGPS0\"], [\"21\"], [\"2\"]]",
+      "left": "ILVIS0_applanix_56048_610_LVIS.013",
+      "right": "ILVIS0_applanix_56049_610_LVIS.013",
+      "gap_s": 80531.07995653152
+    },
+    {
+      "configuration": "[[\"AV-610,VER5,S/N4126,HW4.0-7,SW05.00-Dec16/09,ICD17.00,OS425B142,IMU21,PGPS16,SGPS0\"], [\"21\"], [\"2\"]]",
+      "left": "ILVIS0_applanix_56600_231_610_GH_lvisgh1104_123607.013",
+      "right": "ILVIS0_applanix_56601_231_610_GH_lvisgh1105_111346.013",
+      "gap_s": 80750.57926893234
+    },
+    {
+      "configuration": "[[\"AV-510,VER5,S/N2720,HW3.1-7,SW04.50-Feb05/08,ICD14.00,OS425B14,IMU6,PGPS13,SGPS0\"], [\"6\"], [\"2\"]]",
+      "left": "ILVIS0_applanix_56048_510_POS510.013",
+      "right": "ILVIS0_applanix_56049_510_POS510.013",
+      "gap_s": 80870.20469808578
+    },
+    {
+      "configuration": "[[\"AV-610,VER5,S/N3861,HW4.0-7,SW05.00-Dec16/09,ICD17.00,OS425B142,IMU21,PGPS16,SGPS0\"], [\"21\"], [\"2\"]]",
+      "left": "ILVIS0_applanix_56049_610_LVIS.013",
+      "right": "ILVIS0_applanix_56050_610_LVIS.013",
+      "gap_s": 81554.38823461533
+    }
+  ]
+}

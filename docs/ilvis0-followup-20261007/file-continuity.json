@@ -1,0 +1,135 @@
+{
+  "closest_separated_pairs": [
+    {
+      "gap_s": 1111.3399527072906,
+      "left": "ILVIS0_57994_B200T_N44U_imu_510i_0539_41265390829_103723.013",
+      "right": "ILVIS0_57994_B200T_N44U_imu_510i_pc_card_4126539.013"
+    },
+    {
+      "gap_s": 66650.23466730118,
+      "left": "ILVIS0_applanix_55851_610_LVIS.013",
+      "right": "ILVIS0_applanix_55849_610_LVIS.013"
+    },
+    {
+      "gap_s": 76970.06903147697,
+      "left": "ILVIS0_applanix_55519_20101119_510_lvis_LVIS.013",
+      "right": "ILVIS0_applanix_55520_20101120_510_lvis_LVIS.013"
+    },
+    {
+      "gap_s": 77013.81724834442,
+      "left": "ILVIS0_applanix_55519_20101119_610_ames_AMES.013",
+      "right": "ILVIS0_applanix_55520_20101120_610_ames_AMES.013"
+    },
+    {
+      "gap_s": 80342.43091654778,
+      "left": "ILVIS0_applanix_56600_230_610_WFF_25Feb12.013",
+      "right": "ILVIS0_applanix_56601_230_610_WFF_25Feb12.013"
+    },
+    {
+      "gap_s": 80448.52691054344,
+      "left": "ILVIS0_applanix_56600_232_510_POS510.013",
+      "right": "ILVIS0_applanix_56601_232_510_POS510.013"
+    },
+    {
+      "gap_s": 80531.07995653152,
+      "left": "ILVIS0_applanix_56048_610_LVIS.013",
+      "right": "ILVIS0_applanix_56049_610_LVIS.013"
+    },
+    {
+      "gap_s": 80750.57926893234,
+      "left": "ILVIS0_applanix_56600_231_610_GH_lvisgh1104_123607.013",
+      "right": "ILVIS0_applanix_56601_231_610_GH_lvisgh1105_111346.013"
+    },
+    {
+      "gap_s": 80870.20469808578,
+      "left": "ILVIS0_applanix_56048_510_POS510.013",
+      "right": "ILVIS0_applanix_56049_510_POS510.013"
+    },
+    {
+      "gap_s": 81554.38823461533,
+      "left": "ILVIS0_applanix_56049_610_LVIS.013",
+      "right": "ILVIS0_applanix_56050_610_LVIS.013"
+    }
+  ],
+  "configurations": 13,
+  "files": 326,
+  "interpolation_or_gap_repair": false,
+  "original_corpus_modified": false,
+  "pair_checks": [
+    {
+      "extends_observed_interval": false,
+      "left": "ILVIS0_applanix_55307_20100421_LVIS510_POSAV.013",
+      "right": "ILVIS0_applanix_55308_20100422_LVIS510_POSAV.013",
+      "state": "byte_identical_duplicate"
+    },
+    {
+      "extends_observed_interval": false,
+      "left": "ILVIS0_applanix_56902_510_fromdrive_partial_POS510.013",
+      "right": "ILVIS0_applanix_56902_510_ftp_POS5100902_151321.013",
+      "state": "byte_identical_duplicate"
+    },
+    {
+      "extends_observed_interval": false,
+      "left": "ILVIS0_applanix_56924_510_POS510.013",
+      "right": "ILVIS0_applanix_56924_510_incomplete_POS510.013",
+      "state": "byte_identical_duplicate"
+    },
+    {
+      "extends_observed_interval": true,
+      "gained_observed_tail_seconds": 16.730293035507202,
+      "gyro_samples_not_exported": true,
+      "left": "ILVIS0_57994_B200T_N44U_imu_610p_stick_610_77634965.013",
+      "overlap": {
+        "continuous_adjacent_boundary_verified": false,
+        "exact_overlap_verified": true,
+        "exact_timestamp_matches": 130221,
+        "invalid_intervals": [
+          0,
+          0
+        ],
+        "native_boundary_gap_s": -651.1112799297262,
+        "packet_disagreements": 0,
+        "unmatched_in_overlap": 0
+      },
+      "right": "ILVIS0_57994_B200T_N44U_imu_610p_4965_610_776349650829_110457.013",
+      "state": "verified_union",
+      "union_screen": {
+        "alignment_counts": {
+          "0": 6846
+        },
+        "context_coverage_fraction": 1.0,
+        "context_failures": {},
+        "context_samples": 6844,
+        "earth_model_eligible": false,
+        "original_time_type_counts": {
+          "1": 6846
+        },
+        "policy": {
+          "maneuver_buffer_s": 10,
+          "maximum_context_gap_s": 2,
+          "maximum_course_rate_deg_s": 0.05,
+          "maximum_roll_deg": 5,
+          "maximum_vertical_speed_mps": 1.5,
+          "minimum_context_coverage_for_discard": 0.95,
+          "minimum_speed_mps": 50,
+          "minimum_window_s": 60,
+          "time_support": "ilvis0-context-followup-v1",
+          "version": "ilvis0-level-v2"
+        },
+        "qualifying_context_samples": 4859,
+        "selection_basis": "GPS synchronization and fused motion context; no gyro fit",
+        "state": "no_level_window",
+        "valid_context_samples": 6844,
+        "windows": []
+      },
+      "unique_gps_fixes": 685,
+      "unique_navigation_samples": 6846
+    }
+  ],
+  "pairs_with_overlap_or_near_adjacency": 4,
+  "source_sha256": {
+    "/site/repo/local-level-lab/analysis/lll/applanix.py": "466866ea3d93600f698a76665b0269b1a5e2d35f067043edaf656d7c55a6dad4",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0.py": "692b7c41c6e7b0fb0a7fb7fa3c2671cac754b4eae87681092a6448df3324f76d",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_continuity.py": "197207746cbe2d570a4403839b738796d3fedabb403625d2e63b92d231484fcf"
+  }
+}

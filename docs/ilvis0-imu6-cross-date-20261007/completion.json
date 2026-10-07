@@ -1,0 +1,250 @@
+{
+  "accelerometer_configurations_reproduced_on_two_dates": 0,
+  "accelerometer_file_passes": 0,
+  "angle_rad_per_count": 1.9392547244381438e-06,
+  "complete_physical_decoder_validated": false,
+  "configuration_count": 3,
+  "configurations": [
+    {
+      "accelerometer_empirical_reproduced_on_two_dates": false,
+      "configuration": {
+        "imu_types": [
+          "6"
+        ],
+        "rate_codes": [
+          "2"
+        ],
+        "versions": [
+          "AV-510,VER5,S/N2720,HW3.1-7,SW04.50-Feb05/08,ICD14.00,OS425B14,IMU6,PGPS13,SGPS0"
+        ]
+      },
+      "frozen_empirical_velocity_scale_mps_per_count": 3.379920531592814e-05,
+      "gyro_reproduced_on_two_dates": true,
+      "mapping": {
+        "permutation": [
+          1,
+          0,
+          2
+        ],
+        "signs": [
+          -1,
+          1,
+          1
+        ]
+      },
+      "members": [
+        "594999d9bb7345ad87d3",
+        "55459ded925fbb5b286f",
+        "b007185bd3fe112c44c3",
+        "4e045339dc4bf2ba0589",
+        "dd4066b4761ccf5f031d",
+        "798c004bb4435dcf2723",
+        "80ec450f8cedbc70215e",
+        "4ad8d8525fc91ac7243d",
+        "c98891d2a38c480fe3e6",
+        "29a285ee434f73726bb5",
+        "0d906637c82059f4b956",
+        "d148e0852763f01663d4",
+        "e3ab04fb98d3e143dde9",
+        "7fe534a78767ef149e22",
+        "d2ec4f1e1707c0d93dc2",
+        "cd66a80e294af3d53697",
+        "024088f20237d75d91ce",
+        "9144c20384fb71e4b1e3",
+        "abe6956666c05eecbbf9",
+        "4daae299476a856df920",
+        "1fec3d39099d0e619100",
+        "a80a0998487b4fc283e1",
+        "9e8d6fa9271922043b11",
+        "c8fb72ed074def26d0be",
+        "160462321f06e92834e9",
+        "863b4cbc77c4b0ff07f3",
+        "3a4cabe9ba8dc34d25fc",
+        "30995bd9f248cd9025d9",
+        "248b7603dc17be34377c",
+        "800e4742e1878bf9d063",
+        "ed56c39b83785073e14b",
+        "5513dbcc876ba4cde791",
+        "0bfc763c049677c01c38",
+        "322e26afab23cf655935",
+        "7215f035d9781895f627",
+        "2f840f444f9444088f92",
+        "dc29b80394d9632b65b7",
+        "fd613b53fa761ddb0963",
+        "f55542e91b8e2f6ecc2c",
+        "3767559017b196642291",
+        "f9468a2dd07f9ee54df0",
+        "54220c7e2b389fd69064",
+        "c4af455d888117b1fb91",
+        "6db1404cb5afe9f69919",
+        "b20226780e68108f29f8",
+        "382d5a870132d66472f0",
+        "4aac2e3a6694be31401e",
+        "a62bc3b07a6ad3f6043c",
+        "9dcc0bf45000011e53d5",
+        "f11e387a674ca46976ed",
+        "d4aafa5c6d644bc528f8",
+        "f5cae9d0d107ecad9d45"
+      ],
+      "representatives": [
+        "594999d9bb7345ad87d3",
+        "f5cae9d0d107ecad9d45"
+      ],
+      "tests": [
+        {
+          "accelerometer_empirical_pass": false,
+          "gyro_pass": true,
+          "task_id": "594999d9bb7345ad87d3"
+        },
+        {
+          "accelerometer_empirical_pass": false,
+          "gyro_pass": true,
+          "task_id": "f5cae9d0d107ecad9d45"
+        }
+      ]
+    },
+    {
+      "accelerometer_empirical_reproduced_on_two_dates": false,
+      "configuration": {
+        "imu_types": [
+          "6"
+        ],
+        "rate_codes": [
+          "2"
+        ],
+        "versions": [
+          "AV-510,VER5,S/N3861,HW4.0-7,SW05.00-Dec16/09,ICD17.00,OS425B142,IMU6,PGPS16,SGPS0"
+        ]
+      },
+      "frozen_empirical_velocity_scale_mps_per_count": 3.3804879752184666e-05,
+      "gyro_reproduced_on_two_dates": true,
+      "mapping": {
+        "permutation": [
+          1,
+          0,
+          2
+        ],
+        "signs": [
+          -1,
+          1,
+          1
+        ]
+      },
+      "members": [
+        "f166954fecd1d93111ee",
+        "953bf000f10421faad04",
+        "de0755286667fab3c707",
+        "45d2c3d47421eb1af468",
+        "f2a610caa1c8af459d3f",
+        "010c70375fc8e3a31be0",
+        "54ce1ae47ed03618d558",
+        "2ed4b764824f93ef7b89",
+        "46f49500c8df79c821b2"
+      ],
+      "representatives": [
+        "f166954fecd1d93111ee",
+        "46f49500c8df79c821b2"
+      ],
+      "tests": [
+        {
+          "accelerometer_empirical_pass": false,
+          "gyro_pass": true,
+          "task_id": "f166954fecd1d93111ee"
+        },
+        {
+          "accelerometer_empirical_pass": false,
+          "gyro_pass": true,
+          "task_id": "46f49500c8df79c821b2"
+        }
+      ]
+    },
+    {
+      "accelerometer_empirical_reproduced_on_two_dates": false,
+      "configuration": {
+        "imu_types": [
+          "6"
+        ],
+        "rate_codes": [
+          "2"
+        ],
+        "versions": [
+          "AV-510,VER5,S/N4126,HW4.0-7,SW05.20-Nov04/11,ICD18.00,OS425B142,IMU6,PGPS16,SGPS0"
+        ]
+      },
+      "frozen_empirical_velocity_scale_mps_per_count": 3.3799064490897045e-05,
+      "gyro_reproduced_on_two_dates": false,
+      "mapping": {
+        "permutation": [
+          1,
+          0,
+          2
+        ],
+        "signs": [
+          1,
+          -1,
+          1
+        ]
+      },
+      "members": [
+        "ae7127a8b48f61b051a8",
+        "2f24bea2d76d164704b1",
+        "58b0848c35eeaf93a9f6",
+        "e63d19ad53722e5fe0f7",
+        "d7a8897f8b216724c891",
+        "df2ea8cdcaa4ac01615b",
+        "6d398e7c4d2bc47a4b64",
+        "70c5fd67560175526f43",
+        "be639c4d0fa22c858f05",
+        "1fd5f1663143051897f4",
+        "fafe29d18a4b124a2bd5",
+        "e5c2db884449f0abf742",
+        "7d48cdbc113c308beaa9",
+        "0fb743634f248a06ed6d",
+        "4a752a0d69a9ffcf26f6",
+        "1dc217386bf3c9116d3d",
+        "7494ec5589e5a10da69b",
+        "fdaf42fa255797a1ea6b",
+        "d3b1a8339e1f672b8a99",
+        "93f52157cbd20bdf8c1b"
+      ],
+      "representatives": [
+        "ae7127a8b48f61b051a8",
+        "93f52157cbd20bdf8c1b"
+      ],
+      "tests": [
+        {
+          "accelerometer_empirical_pass": false,
+          "gyro_pass": true,
+          "task_id": "ae7127a8b48f61b051a8"
+        },
+        {
+          "accelerometer_empirical_pass": false,
+          "gyro_pass": false,
+          "task_id": "93f52157cbd20bdf8c1b"
+        }
+      ]
+    }
+  ],
+  "diagnostic_only": true,
+  "earth_model_fit_attempts": 0,
+  "errors": 0,
+  "files": 6,
+  "gyro_configurations_reproduced_on_two_dates": 2,
+  "gyro_passes": 5,
+  "matched_artifacts": {
+    "46f49500c8df79c821b2.matched-samples.json.gz": "7c08062d36689262b8495efb384f32a7fb4a8ddd6c55f8b334b1e2749af13654",
+    "594999d9bb7345ad87d3.matched-samples.json.gz": "e4578b84d124aadedde73f18ecd7638bd1a42477ac3a595054b2c6ac58242c3d",
+    "93f52157cbd20bdf8c1b.matched-samples.json.gz": "085370eb7073cbde953d15cb5700500b43973340ce90aaef54646fa87a6beacf",
+    "ae7127a8b48f61b051a8.matched-samples.json.gz": "50204964682decb8a8659d80df357ea8c26c3f0d2fe08ad850da050a84b65708",
+    "f166954fecd1d93111ee.matched-samples.json.gz": "38c7571315c887fa403c4190fbb2c9b9dfd4edf555e384656d9364e90e78cb09",
+    "f5cae9d0d107ecad9d45.matched-samples.json.gz": "e977568d87818e0910983c9be69357812d6a5dc87e98546d24595602bc549180"
+  },
+  "originals_deleted": 0,
+  "scientific_eligibility_changes": 0,
+  "state": "complete",
+  "tests_passed": 23,
+  "total_stored_originals": 232,
+  "version": "ilvis0-imu6-cross-date-v1",
+  "within_file_gyro_mapping_holdout_passes": 6,
+  "worker_pid": 3943580
+}

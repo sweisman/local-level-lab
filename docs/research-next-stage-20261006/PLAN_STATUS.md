@@ -226,3 +226,15 @@ geometry remains; covariance persistence/reference/calibration coverage remains 
 Next characterize hardware/GPS persistence and validate the motion correction, then
 define a defensible research-candidate covariance domain and informative protocol.
 Fresh calibration and independent validation follow; no further campaign is authorized.
+
+## Preparing the next measurements
+
+The [input-persistence diagnostic](../INPUT_PERSISTENCE.md) is implemented in
+`analysis/tests/characterize_input_persistence.py`, with nine controlled tests.
+It processes explicit still phases separately, retaining incomplete seconds/gaps,
+IMU/GPS/shared-channel covariance, finite-lag moments, averaging variation and two
+detrending views. No automatic covariance/threshold selection or qualification.
+No real-device recording has been characterized; stationary GPS does not establish
+airborne error behavior. This is software preparation for the next measurements,
+not a new flight/refit/bootstrap/calibration campaign. The completed source/corpora
+remain frozen and production science is unchanged.

@@ -205,16 +205,61 @@ the improvement and what remains open.
 See the [replay results](docs/observed-pair-replay-20261007/SUMMARY.md).
 There is still no validated three-model protocol or result from an actual IMU recording.
 
-NASA's IceBridge archive offers a possible separate real-data test: its airborne recordings
-include raw IMU and GPS files. Their formats and applied corrections must be checked before
+The next measurement tool is now ready: it can examine still IMU recordings for
+errors that persist over time, with GPS alongside them when available. It preserves
+gaps and reports how longer averaging changes the observed variation. No real device
+has been measured with it yet. The [input-persistence guide](docs/INPUT_PERSISTENCE.md)
+explains what to record and how these measurements inform the remaining uncertainty.
+
+NASA's IceBridge archive offers a possible separate real-data test using professional airborne
+survey IMUs. The reference is a 200 Hz Applanix POS AV 510, likely using an LN200ROM-family
+fiber-optic IMU; that exact sensor identity remains an inference. Its recordings include raw
+IMU and GPS files. Their formats and applied corrections must be checked before
 using them for model discrimination. The first supplied sample covers about 25½ minutes
 of airborne navigation readings, including speed and orientation. It contains no independent
 raw gyro channels, so it can inform aircraft-motion studies but has not tested the Earth models.
 The subsequent Applanix sample contains about 11 minutes of time-tagged IMU data at 200 readings
-per second, with GPS in the same log. Its gyro scaling and axes need instrument documentation
-before those readings can be used. The
-[inspection notes](docs/research-next-stage-20261006/AIRBORNE_DATA.md) describe both samples
-and the remaining format question. No Earth-model result has been obtained from them.
+per second, with GPS in the same log. Its measurements have now been decoded as small changes
+in velocity and angle. An independent numerical check against the instrument's navigation
+output supports the units, scales, axis order and signs. That navigation output combines IMU
+and GPS information; agreement with it verifies the decoder, rather than testing Earth's shape.
+This sample climbs and maneuvers and has no qualifying one-minute level-flight window under
+the current screening rule. All 326 available `.013` logs have now been screened. A completed
+timestamp follow-up recovered 62 more candidate files, bringing the total to 80. Navigation
+alignment still blocks 152 preserved files after removing one byte-identical duplicate.
+Useful and unresolved originals are kept; rejected files
+retain a record of why they were discarded. Physical units now pass the checks in 28
+candidate files, providing about 200 minutes across potentially overlapping instrument streams.
+Some other configurations still need decoding work. The [follow-up results](docs/ilvis0-followup-20261007/README.md) explain
+how speed, flight geometry and observed gyro variability affect the available signal.
+A separate [IMU21 and alignment assessment](docs/ilvis0-imu21-assessment-20261007/README.md)
+has completed: it added 24 files with supported physical units and found promising GPS-only
+stretches in 84 alignment-blocked files. Their orientation remains unresolved; decoded units
+and promising flight geometry alone do not establish independent scientific evidence.
+The [keep/discard review](docs/ilvis0-retention-84-20261007/README.md) keeps 83 of those files,
+each with complete raw IMU data in a GPS-selected stretch, and removes only the redundant copy.
+Twenty-two also show a minute compatible with the stricter navigation motion limits; the
+remaining 61 have now had a [separate motion examination](docs/ilvis0-motion-61-20261007/README.md).
+In 53, the result depends strongly on how many seconds are used to measure course change:
+longer measurements allow a minute that the instantaneous check rejects. Most original
+course-limit excursions last less than a second. They may include real aircraft corrections,
+measurement noise, or both, so these comparisons do not yet establish usable scientific
+windows. The other eight have additional motion interruptions or unresolved course checks.
+A [six-file IMU6 check](docs/ilvis0-imu6-cross-date-20261007/README.md) now supports the gyro
+units, but also found that matching hardware can have different axis mappings. A
+[settings and timing investigation](docs/ilvis0-installation-clock-20261007/README.md) explains
+the mapping change and finds that tiny timestamp fluctuations caused much of the apparent
+acceleration disagreement. Using a fixed 200 Hz interval passes all six acceleration checks;
+the sensor-clock convention still needs confirmation, and one gyro check remains marginal.
+[Motion controls](docs/ilvis0-course-controls-20261007/README.md)
+show that longer course measurements retain the tested larger turns but can hide real
+short corrections, so the screening rule has not been relaxed.
+Slower flight produces a smaller curvature-related signal;
+a high-quality IMU alone does not guarantee that a flight separates the models.
+Instrument corrections and mounting details still need investigation. The
+[inspection notes](docs/research-next-stage-20261006/AIRBORNE_DATA.md) and
+[acquisition guide](docs/ILVIS0.md) explain both samples, what is established and how to resume.
+No Earth-model result has been obtained from them.
 The [remaining development plan](docs/research-next-stage-20261006/PLAN_STATUS.md) explains
 which review features are implemented and which experimental checks are still unfinished.
 Separately, [fixed route-direction checks](docs/research-next-stage-20261006/DIRECTION_REVIEW.md)

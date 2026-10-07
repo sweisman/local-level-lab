@@ -63,6 +63,22 @@ Use the finest range that passes. Before trusting it, turn the IMU by hand at yo
 
 **Provisional pass:** at 300 s, ≤ 3 °/h on every axis for "qualified", or ≤ 6 °/h for "usable". The analysis's tiers use the same numbers.
 
+**Research persistence diagnostic.** See [input persistence](INPUT_PERSISTENCE.md) for
+`analysis/tests/characterize_input_persistence.py`. It processes every explicit `bench`,
+`drift_pre` and `drift_post` phase separately. IMU second means require at least80%
+sample coverage, endpoint coverage and no internal gap exceeding3sample periods;
+nonfinite/saturated seconds are rejected. GPS is optional and never interpolated.
+Separate IMU, GPS and simultaneous11-channel summaries retain cross covariance,
+within-contiguous-run lag moments at0/1/5/15/60/300s and nonoverlapping block-mean SD
+at1/15/60/300s. Mean-only and linear-detrended views are both retained, with temperature
+range and reported GPS accuracy scales. Raw units and valid pair/block counts are explicit.
+Zero-variance correlations are null; fewer than3complete seconds is insufficient.
+Finite-sample normalized lag moments can exceed1 and are not a positive-definite kernel.
+No exponential-time fit, measured-error bound, qualification threshold or policy promotion
+is inferred. Stationary covariance includes environmental/drift effects and cannot
+substitute for airborne GPS or motion-correction controls. Nine controlled software
+tests pass; no actual hardware measurement has been run.
+
 ## 5. The measurement that matters: repeated reversals
 
 1. **Reversal test.** Run it: twelve placements, label up, turning 180° between each.

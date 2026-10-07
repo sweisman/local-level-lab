@@ -1,0 +1,57 @@
+{
+  "diagnostic_only": true,
+  "earth_model_fit_attempts": 0,
+  "errors": 0,
+  "files": 6,
+  "files_with_recorded_controls": 2,
+  "known_course_control_count": 36,
+  "missed_course_controls": {
+    "12": 16,
+    "2": 6,
+    "6": 12
+  },
+  "missed_sustained_course_controls": {
+    "12": 0,
+    "2": 0,
+    "6": 0
+  },
+  "originals_deleted": 0,
+  "recorded_ground_track_maneuvers": 5,
+  "recorded_maneuver_detections": {
+    "12": {
+      "navigation": {
+        "detected": 5,
+        "supported": 5
+      },
+      "receiver": {
+        "detected": 5,
+        "supported": 5
+      }
+    },
+    "2": {
+      "navigation": {
+        "detected": 5,
+        "supported": 5
+      },
+      "receiver": {
+        "detected": 5,
+        "supported": 5
+      }
+    },
+    "6": {
+      "navigation": {
+        "detected": 5,
+        "supported": 5
+      },
+      "receiver": {
+        "detected": 5,
+        "supported": 5
+      }
+    }
+  },
+  "scientific_eligibility_changes": 0,
+  "state": "complete",
+  "total_stored_originals": 232,
+  "version": "ilvis0-course-controls-v1",
+  "worker_pid": 3947554
+}

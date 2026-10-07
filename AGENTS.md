@@ -1,5 +1,429 @@
 # Codex preferences for Scott Weisman
 
+## Next archival analysis direction — 2026-10-07
+
+Scott requested one bundled commit/push of the completed work and a path toward analyzing
+ILVIS0 on the passenger experiment's physical principle. The staged roadmap is in
+`docs/ILVIS0.md`, section "The route from decoded measurements to the proposed experiment's
+principle". Start with an archival raw-increment observation adapter and processing/frame
+independence checks on geometry-selected files; then test pairwise identifiability before
+measured Earth-model fits. Fused navigation is a decoder/context reference, not independent
+Earth evidence. Treat GPS geometry, body heading, acceleration, clock and bias assumptions
+explicitly. Do not demand a proprietary manual as the sole path to empirical unit validation,
+or treat an expected Earth-rate residual as proof of processing independence. Existing
+conditional six-file/24-start/200-evaluation limits remain; no new campaign, scientific
+promotion or later git operation is authorized by this roadmap. Completed audits stay frozen.
+
+## Completed installation and clock investigation — 2026-10-07
+
+Scott authorized this continuation with "go": inspect logged installation settings and
+diagnose the vertical acceleration mismatch in the same six IMU6 representatives. Complete;
+PID 4002794 released its lock. No older audit was rerun or resumed, no original deleted,
+no scientific gate changed, no Earth fit or git operation performed. All 232 originals remain.
+
+Module `analysis/lll/ilvis0_installation.py`, launcher
+`analysis/tests/ilvis0_installation_worker.py`; output `data/ilvis0-installation-clock-20261007/`;
+log `data/ilvis0-ready/installation-worker.log`; matching evidence/docs directory. It contains
+the manifest, source snapshots, compressed complete report, completion and CSV inventory.
+At most two numerical threads. Sources, prior reports and cached matched-sample artifacts
+are hashed. Completed studies must not be resumed or mixed with a revised implementation.
+
+All six raw legacy Message 1 setup packets contain candidate angles reproducing the earlier
+gyro mappings to roundoff. Serials 2720/3861 use roll/pitch/yaw 0/0/90 degrees; 4126 earlier
+0/0/-90, later 90/90/0. The candidate reference-to-IMU offset is .14/.035/-.12 metres in the
+five older files and -.194/.240/-.274 in the later one. Legacy 80-byte MSG1 offsets are
+EMPIRICALLY INFERRED; the public V6 ICD documents 92-byte MSG20, not these legacy offsets.
+The separate structural decoder preserves complete packets, unsupported sizes and tails,
+and labels the authority distinction. Samples before the first logged setup are excluded;
+later configuration is not assigned retroactively. Recorded setup is not a mount survey.
+
+Full Group-4 header intervals have standard deviations 12.4–13.6 microseconds about 5 ms,
+adjacent correlations -.45 to -.56, mean period error <10 ppm and no gaps >7.5 ms. This
+supports timestamp jitter around a steady clock but is not independent integration-clock
+measurement. Using measured adjacent dt inflated the gravity-related vertical rate noise.
+The explicit fixed-200-Hz period hypothesis reduces vertical residual RMS 76–595 times.
+At an empirical 3.38e-5 m/s/count velocity-increment scale, 6/6 complete acceleration checks
+pass, including unchanged 0.1% scales/correlations/chronological checks. At 0.4 arcsecond/count,
+5/6 fixed-period gyro checks pass. The 26 October 2010 file narrowly fails one gyro half:
+ratio .99898580935 (outside the unchanged .999 lower limit). KEEP THIS FAILURE. Do not choose
+normalization separately by which produces a pass, weaken the threshold, or relabel this
+exploratory decoder work as fresh scientific calibration.
+
+Both period normalizations and raw/header values are preserved; no automatic physical
+conversion or scientific promotion is enabled. Scale/clock hypotheses are empirical, not a
+manufacturer table. The prior failure reports remain unchanged. Simple rigid-body lever-arm
+correction worsens all supported comparisons at .2/1/2-second derivative scales for either
+sign. The sparse 2017 navigation stream is unsupported for that high-rate correction. Do not
+infer that Applanix applies no lever-arm correction from this negative diagnostic.
+
+Thirty focused tests passed (seven new installation/timing tests plus 23 preceding tests),
+including corrupt frames, authority/layout distinctions, mounting epochs, clock jitter,
+sparse derivatives and interruption-safe resume. No post-restart scans/tests were repeated;
+the completed artifacts were checked and documented. Current scientific implementation hash
+remains `1bf8f7c0120fa84504d98c377db61807cacf9f2db6fdcec20f814b9f4a4d8500`.
+Next: independently establish integration-clock conventions and the remaining gyro scale
+discrepancy, then consider a separately frozen broader per-file decoder audit. Processing
+corrections and independent orientation still block Earth-model use. Earlier section counts
+and failed diagnostics below are historical, not the current interpretation of acceleration.
+
+## Completed IMU6 units and course controls — 2026-10-07
+
+Scott authorized this continuation with "go": a bounded six-file IMU6 cross-date check
+and course-timescale controls. Both are complete, with zero framing/hash/timing audit errors.
+No older audit was resumed, no original deleted, no scientific gate changed and no Earth fit
+attempted. All 232 originals remain. No git operations are authorized by this continuation.
+
+Units: `analysis/lll/ilvis0_imu6.py`, launcher `analysis/tests/ilvis0_imu6_worker.py`, output
+`data/ilvis0-imu6-cross-date-20261007/`, log `data/ilvis0-ready/imu6-worker.log`, matching docs
+directory. PID 3943580 completed and released its lock. The initial launcher failed before
+creating an audit manifest because legacy inspection metadata lacked `group4_sizes`; this
+was corrected and tested against the actual metadata before the successful launch. Do not
+resume the completed audit or mix source revisions with its manifest.
+
+Three configurations cover 81 kept IMU6 files. Earliest/latest distinct embedded dates and
+source hashes selected six representatives before gyro checks. The empirical gyro hypothesis
+is pi/(180*9000) radians/count (0.4 arcsecond/count). Five of six pass with the first date's
+mapping frozen; serials 2720 and 3861 reproduce both dates. Serial 4126 changes its relationship
+to the fused reference between the 2015 and 2017 recordings. The failed cross-date result is
+preserved. The separate cached-sample supplement discovers each mapping on its first half
+and tests it on the second: 6/6 gyro checks pass. This supports units and relative mappings,
+not an independently established aircraft mount or processing/Earth-rate retention.
+Mappings to Group 1: 2720/3861 X=-rawY,Y=rawX,Z=rawZ; 4126 earlier X=rawY,Y=-rawX,Z=rawZ;
+4126 later X=rawY,Y=-rawZ,Z=-rawX. Hardware identity alone cannot freeze mounting epochs.
+The supplement generator and results are preserved in the units evidence directory; it
+checks source/matched-artifact hashes and can be rerun cheaply without rescanning originals.
+
+None of six complete accelerometer checks passes. Horizontal empirical velocity scales are
+near 3.38e-5 m/s/count, but no exact velocity conversion or manufacturer scale table is known;
+vertical-channel agreement and chronological scale reproduction remain inadequate. Keep
+all failures. No complete IMU6 decoder or corpus-wide physical export has been enabled.
+IMU6 sensor identity/performance must not be inherited from the different IMU8 reference.
+Fitted offsets and Group-1 agreement cannot establish independent Earth-model evidence.
+
+Controls: `analysis/lll/ilvis0_motion_controls.py`, launcher
+`analysis/tests/ilvis0_motion_controls_worker.py`, output `data/ilvis0-course-controls-20261007/`,
+log `data/ilvis0-ready/course-controls-worker.log`, matching docs directory. PID 3947554 completed
+and released its lock. It ran only after the unit worker finished; at most two total CPU
+threads. Six strict source scans found five non-overlapping >=3-degree/30-second receiver
+ground-track changes in two files, all detected by 2/6/12-second course measurements. These
+are recorded route maneuvers, not independent body-yaw truth or broad flight-domain validation.
+Thirty-six deterministic, noiseless course pulses (not Earth-model campaigns) show 6/12/16
+missed controls at 2/6/12 seconds. All tested corrections lasting >=12 seconds are detected.
+A real 0.1-degree, one-second correction is detected at 2 seconds but hidden at 12 seconds.
+Do not adopt a longer interval just to recover windows, or call short excursions artifacts.
+
+Both evidence directories preserve manifests/source snapshots/completions/compressed reports.
+Twenty-three focused tests passed: eight new units/control tests plus existing motion and
+assessment checks, including frozen cross-date mappings/scales and corrupted resume data.
+The temporary preflight matched-sample cache created during this continuation was removed
+only after comparison with its identical durable compressed artifact; originals were untouched.
+Core scientific implementation hash remains
+`1bf8f7c0120fa84504d98c377db61807cacf9f2db6fdcec20f814b9f4a4d8500`.
+Next useful work: decode recorded installation/frame settings and investigate the vertical
+acceleration discrepancy, then define motion handling that retains sensitivity to short
+corrections. No Earth fit or scientific eligibility promotion is justified yet.
+
+## Completed examination of the remaining 61 files — 2026-10-07
+
+Scott asked to examine the 61 kept files without a 60-second fused-motion-compatible span.
+The separate local diagnosis is complete; worker PID 3919310 released its lock. Do not resume
+the completed audit. No source checksum/framing errors occurred, and all previous native-motion
+spans reproduced exactly. No downloads, deletions, Earth-model fits, scientific gate changes
+or git operations occurred. All 232 remaining originals stay preserved. Frozen prior studies
+remain unchanged and must not be resumed.
+
+Module `analysis/lll/ilvis0_motion_diagnosis.py`; launcher
+`analysis/tests/ilvis0_motion_worker.py`; output `data/ilvis0-motion-61-20261007/`;
+log `data/ilvis0-ready/motion-worker.log`; evidence `docs/ilvis0-motion-61-20261007/`.
+The evidence contains source snapshots, the input/source/environment manifest, completion,
+compressed complete report and per-file CSV inventory. At most two CPU threads were used.
+Atomic per-file reports and frozen inputs/environment support interruption recovery only
+for unfinished runs; a changed implementation requires a new separately identified diagnosis.
+
+Results: 53 files are course-rate resolution sensitive (a diagnostic minute at one or more
+of 2, 6 and 12 seconds); 3 also have roll/climb fragmentation; 1 has navigation/receiver
+disagreement; 4 yield no minute at any tested resolution. At 2/6/12 seconds, navigation
+recovers diagnostic minutes in 39/46/53 files; receiver course alone in 45/49/57. These are
+same-file sensitivity comparisons, not independent trials or accepted scientific windows.
+Of 43,721 original course excursions, 43,055 lasted under one second (98.5%). All excursions
+were under one second in 43 files. Omitting course entirely allows a minute in 58 files.
+All 61 exceed instantaneous course somewhere; 54 exceed neither roll nor climb, 3 exceed
+climb and 4 exceed roll. The subset comprises 59 IMU6 and 2 IMU21 files. Keep all of them.
+
+The unchanged primary gate is not replaced by these regressions. Averaging suppresses real
+small corrections as well as estimator noise; do not label the excursions artifacts merely
+because averaging recovers a stretch. No gyro residuals/model-dependent outcomes entered
+selection. Missing epochs/gaps remain unsupported. Receiver VTG is ground track, not aircraft
+heading or independent orientation evidence. It lacks UTC: use only a unique nearest dated
+GGA within 0.5 seconds, retain uncertainty and reject duplicate assignments/invalid/estimated/
+manual/simulated modes. Legacy missing mode is explicitly recorded. All 61 files supplied
+associated track observations, totaling 29,994 sentences. Native and receiver comparisons
+do not resolve IMU units, mounting or instrument corrections.
+
+Tests: eight new motion tests plus seven retention tests passed (15 total), including sustained
+turns, north crossing, missing epochs, VTG provenance/timing ambiguity and interrupted resume.
+Next useful work: independently validate IMU6 units and mounting, and test a defensible motion
+measurement timescale against known real aircraft motion before revising scientific screening.
+This examination does not itself authorize a new campaign or Earth-model fit.
+
+## Current 84-file retention resolution — 2026-10-07
+
+Scott subsequently asked to resolve keep/discard for the84GPS-promising, alignment-blocked
+files. This authorizes a separate local storage-usefulness audit and discarding proven
+redundant copies, superseding the earlier no-deletion instruction only within these84files.
+It does not authorize Earth-model fits, synthetic studies, downloads, a relaxed scientific
+gate, or git operations. Most of this subset (82files) is IMU6, not IMU21.
+
+Module `analysis/lll/ilvis0_retention.py`; launcher `analysis/tests/ilvis0_retention_worker.py`;
+output `data/ilvis0-retention-84-20261007/`; log `data/ilvis0-ready/retention-worker.log`.
+The audit checks strict frames/source hashes, raw IMU completeness in independently chosen
+GPS windows, and fused motion/uncertainty as labeled context. Unknown scales, fine alignment
+and failed reference fits alone are never grounds for deletion. Storage retention does not
+establish independent Earth-science usability. Two CPU threads maximum; no duplicate workers.
+The source/input/environment manifest and per-file atomic results support safe resumption.
+Completed; PID3885532 has released its lock. Do not resume the completed audit. Decision:
+keep83files and discard1byte-identical duplicate. All83keepers have at least60seconds of
+complete raw IMU inside GPS-selected stretches. Of them,22have a60second motion-compatible
+span in fused context (diagnostic, without a new bank-boundary buffer or scientific promotion).
+The other61remain useful raw/route recordings for investigation; steady level attitude is not
+established. The83keepers comprise81IMU6 and2IMU21 files. Unknown orientation/corrections
+remain scientific blockers. All84strict hash/framing audits passed; no Earth fit or gate change.
+The redundant22April2010original was removed after verifying both current uncompressed
+hashes and journaling prepared/removed dispositions. Reclaimed6984885bytes (~6.66MiB).
+Current stored originals:232 (80previous candidates+152alignment-blocked). Historical catalog
+dispositions are93no-level rejections plus1later duplicate removal; old ledgers are unchanged.
+Source snapshots, manifest, completion, full report and human-readable CSV inventory live in
+`docs/ilvis0-retention-84-20261007/`; durable cleanup journal is in its matching data directory.
+Future source selection MUST honor that journal and map the removed task to its canonical
+copy. Older frozen assessment/follow-up workers must not be restarted with233expected files.
+
+The removed pair was byte-identical: task1fec3d39099d0e619100(2010-04-21catalog) and
+task70d727f23a7df6b2e47f(2010-04-22catalog). Both embedded dates are2010-04-21. Keep the
+correctly dated canonical original. The duplicate removal verified both current
+uncompressed hashes. Durable prepared/removed records and fsync preserve interruption recovery.
+Never delete unowned paths, supplied originals, or nonidentical/unresolved evidence.
+Completed prior workers remain frozen and must not be resumed, especially after deduplication;
+future source selection must honor this audit's cleanup journal/canonical task mapping.
+
+Focused tests:7new retention tests, including corruption protection and interrupted deletion
+recovery, plus7assessment tests passed (14total). An initial IMU6 diagnostic shows a90degree
+horizontal axis remapping improves gyro correlations above0.999998 in one sample. This
+explains some failed same-axis comparisons; it is not yet a validated IMU6 physical decoder.
+
+## Current IMU21 / alignment assessment — 2026-10-07
+
+Scott authorized this separate local assessment with "yes proceed": independently test IMU21
+scales/axes, inspect internal navigation uncertainties, and screen unresolved originals using
+GPS-only geometry. No new downloads, deletions, synthetic campaigns, Earth-model fits or git
+operations are authorized by this assessment. Keep all233 remaining originals. The completed
+acquisition/follow-up/continuity evidence below remains frozen; do not resume those workers.
+
+Module: `analysis/lll/ilvis0_assessment.py`; launcher:
+`analysis/tests/ilvis0_assessment_worker.py`. Output:
+`data/ilvis0-imu21-assessment-20261007/`; evidence/documentation:
+`docs/ilvis0-imu21-assessment-20261007/`. A separate source/environment/input manifest,
+process lock, atomic per-file results and status permit interruption-safe resumption. At most
+two total CPU threads. Check `status.json` and the worker lock before launching/resuming;
+an active local worker needs no model calls or network. Its log is
+`data/ilvis0-ready/assessment-worker.log`. Launch outside the per-command sandbox if needed
+for the authorized worker to survive command/chat disconnection.
+Completed; PID3782131 has released the process lock. Do not resume this completed assessment
+or mix revised source into its manifest. All233 context checks passed. Of98IMU21 files,71pass
+physical checks;3of6exact configurations reproduce both preselected dates. Serials3861,3894
+and6448pass;3456,5680and7763each fail one selected date. Serial3894reproduces Y/Z sign
+reversals. Keeping both configuration and per-file gates yields24native-axis physical-window
+exports totaling10068.853s (167.8minutes) across possibly overlapping streams. Combined with
+the earlier4IMU8 candidates,28files have supported physical units and12013.949s (~200minutes).
+All27per-file failures remain recorded; failed representative dates were never replaced.
+GPS-only potential windows occur in84of153unresolved files, totaling25718s across streams.
+All153remain scientifically unresolved and all233originals remain. There were0eligibility
+changes, deletions or Earth-model fits. Group2counts:102926inferred legacy76-byte packets,
+18253documented V6 packets. These are fused internal estimates, not independent accuracy.
+Final evidence: assessment `completion.json`, `summary.json.gz`, manifest/source snapshots;
+guide/README/readiness updated. Next: diagnose failed physical checks and independently
+establish processing/orientation; no Earth fit is justified by decoder agreement alone.
+
+Frozen IMU21 candidate scales are2^-28rad/count and0.3048*2^-21m/s/count (binary feet/second
+increments converted using the exact metre/foot relation). These are empirical hypotheses,
+not a discovered manufacturer scale table. Choose representative files by existing geometry,
+actual embedded dates and distinct uncompressed hashes. Freeze the first file's gyro-derived
+axis/sign mapping; require it on the other date and use the same mapping for acceleration.
+Preserve the existing correlation,0.1%scale and chronological stability requirements, report
+failures, and never reselect a configuration's representatives because its gyro check failed.
+Only export native-axis raw/physical windows after two-date configuration and per-file checks.
+Fine-alignment dynamics can support decoder diagnostics but never scientific eligibility.
+
+Group2 has76-byte legacy and88-byte V6 layouts. The legacy nine-float uncertainty prefix is
+explicitly inferred; the modern layout is documented. Preserve payloads and unsupported
+sizes. Internal fused RMS estimates do not independently prove attitude accuracy. GPS-only
+windows use checksummed positions/heights and documented local regressions; they cannot
+establish roll, mounting axes, alignment, or short maneuvers. They are potential geometry,
+not accepted level-flight scientific data. Scientific gate changes and Earth-model fits remain0.
+
+Verification before launch:25 focused parser/follow-up/continuity/assessment tests passed.
+The first real IMU21 file closely matches the candidate scales but fails one gyro-half scale
+stability check; that failure must remain in the results. Do not call all IMU21 decoding solved.
+
+## Current ILVIS0 acquisition/decoder handoff — 2026-10-07
+
+Scott authorized implementation of the `.013` parsing/acquisition plan, independent physical
+validation, a six-file cross-date compatibility trial, and later corpus screening/retention.
+This supersedes older statements below that physical units must remain opaque until a
+manufacturer table arrives. It does not authorize rerunning frozen synthetic studies.
+At most two total CPU threads. No new git operation is authorized.
+
+Reusable modules: `analysis/lll/applanix.py`, `ilvis0.py`, `ilvis0_acquisition.py`.
+Legacy `analysis/tests/inspect_ilvis0_sample.py` and its original data artifacts are preserved.
+The reference independently supports six signed int32 increments, scales2^-14m/s/count
+and2^-18rad/count, expected axes/signs, and chronological holdout scale checks. Group1 is
+fused navigation and is only a decoder/motion reference. Processing/correction independence
+remains unresolved; no ILVIS0 Earth-model fit or synthetic decision threshold has been applied.
+
+Evidence: `docs/ilvis0-physical-validation-20261007/`; guide `docs/ILVIS0.md`.
+Catalog:326 .013 files,4061.18612 roundedMiB,2009-04-14 through2017-09-20. Catalog filenames
+are a documented corpus; do not enumerate unrelated Downloads or credential paths.
+Reference:13,086,748bytes,143,471frames,132,444Group4,662Group1,5934Group10001,
+660validGGA/VTG/ZDA each, zero outer checksum failures. It has no qualifying60s level window
+under the frozen geometry screen. Only newly generated owned bulk derivatives were discarded;
+the user's original and historical corpus remain. A1000-row excerpt is regression evidence.
+
+Current owned resumable corpus: `data/ilvis0-ready/`. The initial `data/ilvis0/`,
+`data/ilvis0-v2/`, and `data/ilvis0-current/` contain development ledgers from parser refinement/authentication checks;
+they are stopped, not campaigns to restart. Their sources differ from current code.
+The latest source/environment/catalog freeze lives in the current corpus manifest.
+`records.jsonl` is append-only/fsynced and includes every catalog task; `inventory.json`
+and `status.json` summarize it. Never mix source revisions under an old manifest.
+If source changes, start a separately named owned corpus and preserve historical provenance.
+
+The six-file trial consists of the supplied ATM2009-04-14 reference plus:
+ATM2009-04-16; LVIS5102010-10-28; POS5102012-05-10; LVIS6102015-10-29;
+the2017-09-20 filename containing610p4965. Actual filenames/URLs are in the catalog.
+The six-file trial completed: two retained, three unresolved, one confirmed no-level rejection;
+physical decoding passed for the two ATM dates. Retained geometry totals626.31seconds, but
+only the2009-04-16 ATM file currently has both retained geometry and accepted physical units.
+Other IMU types/configurations remain unresolved and are not assigned IMU8 scales.
+No standard `.netrc` existed when checked. User first chose browser downloads,
+then cancelled manual downloading and asked for automated HTTPS/S3 acquisition. Current
+one-time setup can use `configure-auth` locally with a hidden Earthdata token prompt.
+The user instead supplied an Earthdata session cookie and explicitly authorized its use;
+it is passed through hidden stdin to a worker and held only in memory. No credential has
+been placed in code, command-line arguments, reports or evidence. Never reproduce it in
+documentation or inspect browser/unrelated credentials. Standard `.netrc` still did not exist
+at the last check. Do not assume the "Configured" response meant a credential file was created.
+NSIDC S3 is restricted to authorized AWSus-west-2 environments; use authenticated HTTPS here.
+Do not launch cloud infrastructure or incur paid compute.
+
+Full326-file acquisition/screening completed in `data/ilvis0-ready/`; PID3725303 has released
+the worker lock. Final counts:18retained,58confirmed no-level rejections,250unresolved originals
+kept. There are22retained windows totaling7329.62seconds across files, which may include
+simultaneous instrument streams rather than independent flights. Two retained ATM files have
+accepted physical decoding, totaling692.01seconds of qualifying geometry. Three files overall
+passed physical validation, including the no-level reference. No Earth-model fit has run.
+Completion evidence: `docs/ilvis0-physical-validation-20261007/corpus-screening.json`.
+Read-only unresolved diagnosis:114files have GPS-time-tagged IMU logs (unsupported by the
+UTC-only screen),136have UTC tags but insufficient valid navigation/GPS context;16of the
+latter have some valid context. See `unresolved-diagnosis.json` in the same evidence folder.
+Next: verified GPS-to-UTC mapping, full navigation alignment/context audit, and independent
+physical checks for each configuration. Preserve the completed corpus manifest/ledger;
+revised decoding belongs in a separately frozen follow-up, without new downloads or synthetic
+campaigns. Do not relax alignment/physical checks merely to increase accepted counts.
+
+Scott authorized that follow-up with "go" and additionally requested performance
+characterization against flight speed. It completed in `data/ilvis0-followup-20261007/`;
+PID3743058 has released its lock. Launcher: `analysis/tests/ilvis0_followup_worker.py`. This is a local audit of268
+preserved originals (250unresolved+18retained), not new flight attempts or Earth-model fits.
+Module: `analysis/lll/ilvis0_followup.py`; it verifies original uncompressed hashes, strict
+frames/checksums, dated GPS/UTC leap offsets against embedded ZDA and available dual tags,
+and retains the original geometry/alignment thresholds. It selects at most two different dates
+per exact observed firmware/IMU/rate configuration for physical channel diagnostics. Fine-
+alignment dynamics can support labeled decoder diagnostics, never scientific eligibility.
+For qualifying windows with independently passing units, it reports observed gyro variability
+and quantization at1/10/60second averaging. Aircraft motion remains included in those statistics.
+The modeled horizontal transport scale uses measured speed/latitude/altitude; it is a prediction,
+not a measured Earth signal. Current core default IMU8 validation remains conservative.
+Follow-up status/manifest and per-task JSONs live in that separate corpus; recovery skips finished
+steps and rejects source/environment/old-ledger changes. Do not resume the completed study
+or mix revised source under its manifest; any next decoding work needs a new follow-up freeze.
+Final counts:80candidate files (62newly recovered),35new no-level classifications,153still
+unresolved due to alignment (133fine throughout,2earlier stage,18mixed full/fine;1also GPS).
+All268 timing checks passed. There are108candidate windows,33387.17seconds across possibly
+overlapping instrument streams. Eleven exact configurations were tested; two IMU8 configurations
+reproduced scales on two dates each. Four usable files passed physical checks,1945.10seconds
+(32.4minutes). Other IMU types failed the IMU8 scales and were not converted. IMU21 correlations
+often remain high at different freely fitted scales; one configuration has Y/Z sign reversals.
+Those findings support a separate layout/scale/axis investigation, not automatic conversion.
+After the completed audit and continuity check, Scott asked about deletion. Under the standing
+instruction to discard confirmed rejections,35new no-level owned compressed originals were
+removed after verifying uncompressed hashes and fsyncing prepare/remove dispositions. This
+reclaimed208952434bytes;93confirmed rejected files total. Keep all80candidate files and153
+unresolved originals. The original screening ledger/reports remain immutable; later storage
+dispositions are in `data/ilvis0-followup-20261007/cleanup.jsonl`, with completion evidence in
+both that corpus and `docs/ilvis0-followup-20261007/cleanup-completion.json`.
+Future work must honor that cleanup journal rather than expect the35old-ledger unresolved
+originals still to exist. Do not rerun completed follow-up/continuity studies unchanged: the
+verified partial-overlap pair was among the35later discarded no-level files, and its complete
+reports remain as evidence. Completion evidence: `docs/ilvis0-followup-20261007/`.
+Current speeds140–256m/s predict horizontal transport4.5–8.3deg/hour. One-minute observed
+body-axis standard deviations5.7–21.7deg/hour include aircraft motion and few blocks, not an
+intrinsic gyro noise spec. Processing independence/orientation still block Earth-model fits.
+Original parser/acquisition/decoder source snapshots matching the initial manifest are in
+`docs/ilvis0-physical-validation-20261007/source-freeze/`; follow-up source copies are in the
+new evidence folder's `source-freeze/`. No new git operation was authorized.
+
+Scott also requested checking whether level-flight stretches cross file boundaries. Completed
+via `analysis/lll/ilvis0_continuity.py`, with4focused tests. All326file spans were grouped by exact
+instrument configuration and dated using embedded ZDA, not catalog filenames alone. Four pairs
+overlap:3are byte-identical duplicates (one has different catalog dates),1is a verified partial
+overlap with130221exactly matching IMU packets. Its deduplicated navigation/GPS union adds16.73s
+but still has no qualifying window. No qualifying stretch was lengthened; the nearest separated
+same-instrument pair has1111.34s missing data. No interpolation, fabricated series or original
+file deletion occurred. Evidence: `docs/ilvis0-followup-20261007/file-continuity.json`.
+Next empirical configuration studies must select distinct original hashes and actual embedded
+dates, rather than treating different catalog dates or filenames as independent repeats.
+Focused verification:30ILVIS0 tests passed, then7follow-up tests (including new persistence)
+passed. This is31distinct tests, not37. No synthetic studies or Earth-model fits were run.
+The frozen corpus is complete; do not restart it or mix a revised decoder into its manifest.
+The former daemon used an in-memory session; the finished process no longer holds that credential.
+Future recovery helper: `analysis/tests/ilvis0_worker.py --full --detach`, with optional
+`--session-cookie` hidden input when renewed session authentication is needed. It checks the
+process lock. Launch outside the per-command sandbox so it survives disconnection.
+The helper was added after launch; the completed worker used the original in-memory driver.
+Completion compacted18redundant full physical CSVs after checking compressed originals and
+qualifying physical/raw IMU windows exist, with durable `storage.jsonl` disposition records.
+Focused verification before launch:24ILVIS0 tests plus9persistence tests passed; no synthetic
+campaigns or Earth-model fits were run. The new recovery helper has not had an end-to-end test.
+
+Resume after local authentication is configured:
+
+```sh
+env PYTHONPATH=analysis OPENBLAS_NUM_THREADS=2 OMP_NUM_THREADS=2 MKL_NUM_THREADS=2 /home/sweisman/venv/bin/python -m lll.ilvis0_acquisition batch --catalog docs/ilvis0-physical-validation-20261007/catalog/catalog.json --output data/ilvis0-ready --reference /home/sweisman/Downloads/ILVIS0_gyro_54935_atm_applanix_14Apr09.013
+```
+
+Network execution requires sandbox escalation if blocked. No need to re-request scientific
+authorization for this same trial. `--local-only` can process the supplied reference without
+network/auth, leaving the other five pending. `--input-dir` reads only exact catalog filenames.
+Full acquisition required independently accepted physical checks on at least two dates, now
+achieved by the ATM trial. Each new configuration is still tested per file. Trial evidence is
+`docs/ilvis0-physical-validation-20261007/six-file-trial.json`.
+
+Latest user retention rule: discard confirmed no-level files after durable hash/reason records;
+keep ALL useful and unresolved originals. This supersedes the earlier six-exemplar quarantine
+cap. Missing/ambiguous GPS or unknown layouts are unresolved, never evidence of no level flight.
+The current tool deletes only owned copies/derivatives, never supplied Downloads or historical
+sources. At least60contiguous seconds after10s maneuver buffers are retained; speed>=50m/s,
+|vertical speed|<=1.5m/s, |course rate|<=0.05deg/s, |roll|<=5deg, GPS/nav gaps<=2s.
+Screen policyilvis0-level-v2 also requires95% valid GPS/motion context before a no-level
+rejection; missing/ambiguous time mappings remain unresolved. UTC time1 mapping must be
+documented by the packet header; POS time is not silently rounded into a receiver UTC fix.
+Flight selection must precede Earth-dependent gyro residual inspection.
+
+Any later empirical Earth-shape comparison remains separate and conditional on independent
+processing/orientation and useful geometry: at most six geometry-selected files,24optimizer
+starts including interrupted starts,200evaluations/start. No bootstrap/calibration or winner
+claim. If independence/identifiability is unresolved, document the blocker rather than fit
+fused navigation as science. Expanding Earth-model analysis beyond that allowance needs a
+fresh finite scope; corpus inventory/download/parser screening are not synthetic campaigns.
+
 ## Who you're working with
 
 The user is **Scott Weisman** — not Stephen, not Steven. GitHub `sweisman`,
@@ -276,6 +700,21 @@ one bundled commit/push of the completed continuation on2026-10-07. Precommit ve
 passes54focused checks across11new test files. That consent covers this logical unit only;
 subsequent continuation changes need fresh git consent. Confirmation of the pushed
 commit will be recorded during the next continuation.
+
+**Bundled commit/push confirmed:** `ed47605`, pushed to `origin/main` on2026-10-07.
+It contains the completed observed-route/motion/covariance studies and96refits with
+their frozen evidence. Precommit54checks pass; that commit/push consent is spent.
+The post-push continuation prepares hardware input-persistence diagnostics:
+`analysis/tests/characterize_input_persistence.py`, `test_characterize_input_persistence.py`,
+and `docs/INPUT_PERSISTENCE.md`, with bench/README/validation/plan documentation.
+Nine focused controlled tests pass using at most2numericalthreads. No real-device
+input, newflight/refit/bootstrap/calibration/validation or production science changed.
+It reports still-phase second means, IMU/GPS/shared covariance, lag and averaging
+diagnostics under two detrending views, preserving gaps and saturation exclusions.
+No noise model, covariance domain, qualification or threshold is selected. Still
+GPS behavior is not airborne GPS characterization. Keep original recordings; output
+refuses overwrite. These new continuation changes are uncommitted and need fresh
+git consent. Next obtain the actual still/motion controls described in the guide.
 The old gyro weights, six coherent error modes and conditional GPS/TAS likelihood remain
 provisional. No power, calibrated rejection, winner or promoted gate follows from these checks.
 Further refit/bootstrap/replay campaigns need separately defined scope; no new flights are authorized.

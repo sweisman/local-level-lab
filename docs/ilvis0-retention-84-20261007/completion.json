@@ -1,0 +1,32 @@
+{
+  "alignment_blocked_originals": 152,
+  "audit_errors": 0,
+  "candidate_originals": 80,
+  "decisions": {
+    "discard_duplicate": 1,
+    "keep": 83
+  },
+  "earth_model_fit_attempts": 0,
+  "files": 84,
+  "historical_no_level_rejections": 93,
+  "reclaimed_bytes": 6984885,
+  "removals": [
+    {
+      "canonical_path": "data/ilvis0-ready/1fec3d39099d0e619100/decoded/ILVIS0_applanix_55307_20100421_LVIS510_POSAV.013.gz",
+      "canonical_task_id": "1fec3d39099d0e619100",
+      "compressed_bytes": 6984885,
+      "reason": "byte-identical duplicate; no additional measurements",
+      "removed_path": "data/ilvis0-ready/70d727f23a7df6b2e47f/decoded/ILVIS0_applanix_55308_20100422_LVIS510_POSAV.013.gz",
+      "source_sha256": "c2e58674c46974395abe5735949fd32ebcf076f1c7e6fb130078128673b96afb",
+      "task_id": "70d727f23a7df6b2e47f"
+    }
+  ],
+  "removed_duplicates": 1,
+  "scientific_eligibility_changes": 0,
+  "state": "complete",
+  "total_stored_originals": 232,
+  "unique_fused_motion_compatible_60s": 22,
+  "unique_kept_with_complete_IMU": 83,
+  "unique_potential_GPS_seconds": 25280.0,
+  "version": "ilvis0-storage-retention-v1"
+}

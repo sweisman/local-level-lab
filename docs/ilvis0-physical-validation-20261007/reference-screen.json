@@ -1,0 +1,26 @@
+{
+  "context_coverage_fraction": 1.0,
+  "context_samples": 660,
+  "earth_model_blockers": [
+    "Group-4 onboard Earth-rate/bias corrections and mounting/latency unresolved",
+    "Independent attitude/motion reconstruction and nuisance-projected shape information not established",
+    "Permanent aircraft mount has no participant reversal controls"
+  ],
+  "earth_model_eligible": false,
+  "policy": {
+    "maneuver_buffer_s": 10,
+    "maximum_context_gap_s": 2,
+    "maximum_course_rate_deg_s": 0.05,
+    "maximum_roll_deg": 5,
+    "maximum_vertical_speed_mps": 1.5,
+    "minimum_context_coverage_for_discard": 0.95,
+    "minimum_speed_mps": 50,
+    "minimum_window_s": 60,
+    "version": "ilvis0-level-v2"
+  },
+  "qualifying_context_samples": 395,
+  "selection_basis": "GPS synchronization and fused navigation motion only; no gyro/model residual selection",
+  "state": "no_level_window",
+  "valid_context_samples": 660,
+  "windows": []
+}

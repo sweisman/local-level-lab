@@ -1,0 +1,41 @@
+{
+  "angle_scale": 1.9392547244381438e-06,
+  "empirical_velocity_scale": 3.38e-05,
+  "inputs": {
+    "data/ilvis0-imu6-cross-date-20261007/46f49500c8df79c821b2.matched-samples.json.gz": "7c08062d36689262b8495efb384f32a7fb4a8ddd6c55f8b334b1e2749af13654",
+    "data/ilvis0-imu6-cross-date-20261007/594999d9bb7345ad87d3.matched-samples.json.gz": "e4578b84d124aadedde73f18ecd7638bd1a42477ac3a595054b2c6ac58242c3d",
+    "data/ilvis0-imu6-cross-date-20261007/93f52157cbd20bdf8c1b.matched-samples.json.gz": "085370eb7073cbde953d15cb5700500b43973340ce90aaef54646fa87a6beacf",
+    "data/ilvis0-imu6-cross-date-20261007/ae7127a8b48f61b051a8.matched-samples.json.gz": "50204964682decb8a8659d80df357ea8c26c3f0d2fe08ad850da050a84b65708",
+    "data/ilvis0-imu6-cross-date-20261007/axis-change-supplement.json": "0cbcc01d7ee039ddc70b238facfa2ca8ba49cfa1808d0d21dd41dcc456d1d002",
+    "data/ilvis0-imu6-cross-date-20261007/f166954fecd1d93111ee.matched-samples.json.gz": "38c7571315c887fa403c4190fbb2c9b9dfd4edf555e384656d9364e90e78cb09",
+    "data/ilvis0-imu6-cross-date-20261007/f5cae9d0d107ecad9d45.matched-samples.json.gz": "e977568d87818e0910983c9be69357812d6a5dc87e98546d24595602bc549180",
+    "data/ilvis0-imu6-cross-date-20261007/manifest.json": "96d38bc5dcc564ec62fa37e1250746cc1cda876fb54825ae9acbf136178c392d",
+    "data/ilvis0-imu6-cross-date-20261007/summary.json": "bf754fb2020e2fe1b96f61b05c65dd2f412431ba2411f662bf8591f1a6baa22c",
+    "data/ilvis0-ready/records.jsonl": "9b9fb403c942bb0af5cf83121a157b68c6e0aaec430ca11ab8c2d60121c2a8bc"
+  },
+  "nominal_period_s": 0.005,
+  "numpy": "2.5.3",
+  "python": "3.14.7",
+  "sources": {
+    "/site/repo/local-level-lab/analysis/lll/applanix.py": "466866ea3d93600f698a76665b0269b1a5e2d35f067043edaf656d7c55a6dad4",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0.py": "692b7c41c6e7b0fb0a7fb7fa3c2671cac754b4eae87681092a6448df3324f76d",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_followup.py": "d3e238cab5dff807c23a51d0d189e19a21d81eef482711700f9f0a5c0dc9fb8e",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_installation.py": "aa813292e7781ca808d9da9971188233621c022586a2a89797c49d36a59a0bae",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_motion_diagnosis.py": "42cdc5321cd0db59b68111228318cb0e1c7cbca89f7c019fbecb6d06f43dae6b",
+    "/site/repo/local-level-lab/analysis/tests/ilvis0_installation_worker.py": "1aa00d205b5ef868fe80cbdcfb4868a9631c87554d81f81f553b6717703cb8c2"
+  },
+  "tasks": [
+    "594999d9bb7345ad87d3",
+    "f5cae9d0d107ecad9d45",
+    "f166954fecd1d93111ee",
+    "46f49500c8df79c821b2",
+    "ae7127a8b48f61b051a8",
+    "93f52157cbd20bdf8c1b"
+  ],
+  "threads": {
+    "MKL_NUM_THREADS": "2",
+    "OMP_NUM_THREADS": "2",
+    "OPENBLAS_NUM_THREADS": "2"
+  },
+  "version": "ilvis0-installation-clock-v1"
+}

@@ -1,0 +1,2096 @@
+{
+  "compatible_dates": [
+    "2009-04-14",
+    "2009-04-16"
+  ],
+  "cross_configuration_physical_acceptance": false,
+  "earth_model_fit_attempts": 0,
+  "files": [
+    {
+      "date": "2009-04-14",
+      "filename": "ILVIS0_gyro_54935_atm_applanix_14Apr09.013",
+      "frame_count": 143471,
+      "frame_counts": {
+        "$GRP:1": 662,
+        "$GRP:10001": 5934,
+        "$GRP:101": 662,
+        "$GRP:2": 662,
+        "$GRP:20101": 662,
+        "$GRP:20102": 662,
+        "$GRP:4": 132444,
+        "$GRP:99": 133,
+        "$MSG:1": 66,
+        "$MSG:101": 66,
+        "$MSG:102": 66,
+        "$MSG:103": 66,
+        "$MSG:104": 132,
+        "$MSG:106": 66,
+        "$MSG:107": 66,
+        "$MSG:11": 66,
+        "$MSG:110": 66,
+        "$MSG:13": 66,
+        "$MSG:16": 66,
+        "$MSG:17": 66,
+        "$MSG:2": 66,
+        "$MSG:20001": 66,
+        "$MSG:20101": 66,
+        "$MSG:20102": 66,
+        "$MSG:20203": 66,
+        "$MSG:20205": 66,
+        "$MSG:20216": 66,
+        "$MSG:3": 66,
+        "$MSG:4": 66,
+        "$MSG:5": 66,
+        "$MSG:6": 66,
+        "$MSG:7": 66
+      },
+      "geometry": {
+        "context_coverage_fraction": 1.0,
+        "context_samples": 660,
+        "earth_model_blockers": [
+          "Group-4 onboard Earth-rate/bias corrections and mounting/latency unresolved",
+          "Independent attitude/motion reconstruction and nuisance-projected shape information not established",
+          "Permanent aircraft mount has no participant reversal controls"
+        ],
+        "earth_model_eligible": false,
+        "policy": {
+          "maneuver_buffer_s": 10,
+          "maximum_context_gap_s": 2,
+          "maximum_course_rate_deg_s": 0.05,
+          "maximum_roll_deg": 5,
+          "maximum_vertical_speed_mps": 1.5,
+          "minimum_context_coverage_for_discard": 0.95,
+          "minimum_speed_mps": 50,
+          "minimum_window_s": 60,
+          "version": "ilvis0-level-v2"
+        },
+        "qualifying_context_samples": 395,
+        "selection_basis": "GPS synchronization and fused navigation motion only; no gyro/model residual selection",
+        "state": "no_level_window",
+        "valid_context_samples": 660,
+        "windows": []
+      },
+      "gps": {
+        "bytes": 2815349,
+        "dates": {
+          "2009-04-14": 660
+        },
+        "discarded_fragment_bytes": 2710409,
+        "invalid_checksums": 0,
+        "sentence_counts": {
+          "GPGGA": 660,
+          "GPVTG": 660,
+          "GPZDA": 660
+        },
+        "trailing_fragment_hex": ""
+      },
+      "imu": {
+        "count": 132444,
+        "dt_max_s": 0.005016994109610096,
+        "dt_median_s": 0.0050002,
+        "dt_min_s": 0.0049982593627646565,
+        "duration_s": 662.2256497321068,
+        "effective_rate_hz": 199.9920003199872,
+        "first_time_s": 217770.42382466956,
+        "flags": {
+          "first_sample": 1
+        },
+        "last_time_s": 218432.64947440167,
+        "rate_codes": {
+          "2": 132444
+        },
+        "status": {
+          "0:0": 132444
+        },
+        "types": {
+          "8": 132444
+        }
+      },
+      "source_bytes": 13086748,
+      "source_sha256": "18c48772bcd7e83566f2301ae3689d691c1675dfc2e60c0650b6e0017b764096",
+      "state": "discarded_no_level",
+      "task_id": "781eb79865fac5ca7aee",
+      "validation": {
+        "accelerometer": {
+          "accepted": true,
+          "axes": [
+            {
+              "axis": "x",
+              "correlation": 0.9999995219743083,
+              "expected_scale": 6.103515625e-05,
+              "fitted_scale": 6.104522104213393e-05,
+              "fixed_expected_scale_intercept": -0.0029504121258398224,
+              "fixed_expected_scale_rms": 0.0002517553663496346,
+              "intercept": -0.003022521427769192,
+              "max_abs_residual": 0.0048664623285746,
+              "p99_abs_residual": 0.0006928143829042168,
+              "rms_residual": 0.0002482508284616433,
+              "samples": 662,
+              "scale_ratio": 1.0001649015543224,
+              "sign": 1,
+              "source_axis": "x"
+            },
+            {
+              "axis": "y",
+              "correlation": 0.9999999381920068,
+              "expected_scale": 6.103515625e-05,
+              "fitted_scale": 6.1039577819888e-05,
+              "fixed_expected_scale_intercept": -0.0022411957869317386,
+              "fixed_expected_scale_rms": 0.0003451324621043097,
+              "intercept": -0.0022580345293508894,
+              "max_abs_residual": 0.0045359301798890694,
+              "p99_abs_residual": 0.0009080129075587302,
+              "rms_residual": 0.0003380326492030285,
+              "samples": 662,
+              "scale_ratio": 1.000072443001045,
+              "sign": 1,
+              "source_axis": "y"
+            },
+            {
+              "axis": "z",
+              "correlation": 0.999997792220644,
+              "expected_scale": 6.103515625e-05,
+              "fitted_scale": 6.1035106381894485e-05,
+              "fixed_expected_scale_intercept": 0.0061152950040725355,
+              "fixed_expected_scale_rms": 0.00142588092573527,
+              "intercept": 0.006107319803716013,
+              "max_abs_residual": 0.018307335016608306,
+              "p99_abs_residual": 0.003965205756594265,
+              "rms_residual": 0.0014258808179517244,
+              "samples": 662,
+              "scale_ratio": 0.9999991829609592,
+              "sign": 1,
+              "source_axis": "z"
+            }
+          ],
+          "chronological_holdouts": [
+            {
+              "gravity_mps2": 9.805783260965141,
+              "rms": [
+                0.00015823993982953967,
+                0.00018673007829287107,
+                0.0012304150430155337
+              ],
+              "scale_ratios": [
+                1.0003803714522592,
+                1.0000884815208337,
+                0.9998790358694158
+              ]
+            },
+            {
+              "gravity_mps2": 9.806282390472973,
+              "rms": [
+                0.0003510096238224042,
+                0.000443323084959564,
+                0.0020282894909121113
+              ],
+              "scale_ratios": [
+                1.0000262686240247,
+                1.0000454568598798,
+                1.0000625961002851
+              ]
+            }
+          ],
+          "engineering_checks_pass": true,
+          "holdout_scale_checks_pass": true,
+          "mappings_tested": 48,
+          "plausible_mapping_scores": [
+            {
+              "permutation": [
+                0,
+                1,
+                2
+              ],
+              "rms": 0.0008581046270243484,
+              "signs": [
+                1,
+                1,
+                1
+              ]
+            }
+          ],
+          "shared_gravity_mps2": 9.805527267518043
+        },
+        "accepted": true,
+        "decoder_sha256": "1440b76d4785cfecbf3ecff3cae0c83457ccd938fd9dde1e7eee3325dc105798",
+        "engineering_limits": {
+          "maximum_scale_relative_error": 0.001,
+          "min_correlation": 0.9999
+        },
+        "gyro": {
+          "accepted": true,
+          "axes": [
+            {
+              "axis": "x",
+              "correlation": 0.9999999912012109,
+              "expected_scale": 3.814697265625e-06,
+              "fitted_scale": 3.8146383237950947e-06,
+              "fixed_expected_scale_intercept": 7.799283485864311e-06,
+              "fixed_expected_scale_rms": 1.9539247303090003e-06,
+              "intercept": 7.775137893423038e-06,
+              "max_abs_residual": 1.4986606411707126e-05,
+              "p99_abs_residual": 4.964556243937725e-06,
+              "rms_residual": 1.940803530259514e-06,
+              "samples": 662,
+              "scale_ratio": 0.9999845487529413,
+              "sign": 1,
+              "source_axis": "x"
+            },
+            {
+              "axis": "y",
+              "correlation": 0.9999995699502903,
+              "expected_scale": 3.814697265625e-06,
+              "fitted_scale": 3.8142780646342995e-06,
+              "fixed_expected_scale_intercept": 2.9726858646787857e-05,
+              "fixed_expected_scale_rms": 3.605021906004641e-06,
+              "intercept": 2.968620540126061e-05,
+              "max_abs_residual": 2.2125954066542358e-05,
+              "p99_abs_residual": 1.7079553809040677e-05,
+              "rms_residual": 3.579972130092379e-06,
+              "samples": 662,
+              "scale_ratio": 0.9998901089754938,
+              "sign": 1,
+              "source_axis": "y"
+            },
+            {
+              "axis": "z",
+              "correlation": 0.9999999781901293,
+              "expected_scale": 3.814697265625e-06,
+              "fitted_scale": 3.8137841507492965e-06,
+              "fixed_expected_scale_intercept": 7.148096922921194e-05,
+              "fixed_expected_scale_rms": 1.2067698603861312e-06,
+              "intercept": 7.151131039078531e-05,
+              "max_abs_residual": 4.367255266863115e-06,
+              "p99_abs_residual": 2.7508850546253077e-06,
+              "rms_residual": 7.93278528085845e-07,
+              "samples": 662,
+              "scale_ratio": 0.9997606324140236,
+              "sign": 1,
+              "source_axis": "z"
+            }
+          ],
+          "chronological_holdouts": [
+            {
+              "gravity_mps2": null,
+              "rms": [
+                2.485736268615761e-06,
+                1.8578032424736309e-06,
+                7.37654939142047e-07
+              ],
+              "scale_ratios": [
+                0.9999755629375465,
+                0.99976770248299,
+                0.9997135767588821
+              ]
+            },
+            {
+              "gravity_mps2": null,
+              "rms": [
+                3.128123348934081e-06,
+                5.0626024780142135e-06,
+                1.4871221083413876e-06
+              ],
+              "scale_ratios": [
+                1.0000062981872935,
+                1.0000117521383112,
+                0.9999524800787171
+              ]
+            }
+          ],
+          "engineering_checks_pass": true,
+          "holdout_scale_checks_pass": true,
+          "mappings_tested": 48,
+          "plausible_mapping_scores": [
+            {
+              "permutation": [
+                0,
+                1,
+                2
+              ],
+              "rms": 2.3952877084272502e-06,
+              "signs": [
+                1,
+                1,
+                1
+              ]
+            }
+          ],
+          "shared_gravity_mps2": null
+        },
+        "interpretation": "six little-endian signed int32: dv XYZ, dtheta XYZ",
+        "inventory": {
+          "checksum_failures": 0,
+          "frame_count": 143471,
+          "frame_counts": {
+            "$GRP:1": 662,
+            "$GRP:10001": 5934,
+            "$GRP:101": 662,
+            "$GRP:2": 662,
+            "$GRP:20101": 662,
+            "$GRP:20102": 662,
+            "$GRP:4": 132444,
+            "$GRP:99": 133,
+            "$MSG:1": 66,
+            "$MSG:101": 66,
+            "$MSG:102": 66,
+            "$MSG:103": 66,
+            "$MSG:104": 132,
+            "$MSG:106": 66,
+            "$MSG:107": 66,
+            "$MSG:11": 66,
+            "$MSG:110": 66,
+            "$MSG:13": 66,
+            "$MSG:16": 66,
+            "$MSG:17": 66,
+            "$MSG:2": 66,
+            "$MSG:20001": 66,
+            "$MSG:20101": 66,
+            "$MSG:20102": 66,
+            "$MSG:20203": 66,
+            "$MSG:20205": 66,
+            "$MSG:20216": 66,
+            "$MSG:3": 66,
+            "$MSG:4": 66,
+            "$MSG:5": 66,
+            "$MSG:6": 66,
+            "$MSG:7": 66
+          },
+          "group4_sizes": {
+            "68": 132444
+          },
+          "imu_types": {
+            "8": 132444
+          },
+          "rate_codes": {
+            "2": 132444
+          },
+          "time_types": {
+            "2": 132444
+          },
+          "unframed_bytes": 0,
+          "versions": {
+            "AV-510,VER5,S/N2036,HW3.5-7,SW04.60-Oct21/08,ICD15.00,OS425B14,IMU8,PGPS16,SGPS0": 133
+          }
+        },
+        "known_layout_version": true,
+        "limitations": [
+          "Shared-reference internal agreement does not establish sensor accuracy or independent Earth evidence.",
+          "Per-axis offsets are fitted for decoder validation only; never subtracted from exported increments.",
+          "Chronological holdouts test stability, not statistical coverage; gravity and Z offset can be confounded.",
+          "Only the independently tested configuration is eligible for physical conversion."
+        ],
+        "manufacturer_scale_table_found": false,
+        "matched_total": 662,
+        "numpy": "2.5.3",
+        "parser_sha256": "466866ea3d93600f698a76665b0269b1a5e2d35f067043edaf656d7c55a6dad4",
+        "processing": {
+          "automatic_zeroing": "unknown",
+          "bias_correction": "unknown; nonzero fused-reference offsets observed",
+          "coning_correction": "unknown",
+          "earth_rate_compensation": "unknown; must resolve before independent Earth inference",
+          "filtering": "unknown",
+          "latency": "time-tag matching measured; physical latency unknown",
+          "lever_arm_compensation": "Group-1 reference lever arm documented; Group-4 unknown",
+          "mounting_axes": "empirical agreement with Group-1 aircraft axes, exact mounting unknown",
+          "scale_factor_correction": "unknown",
+          "sculling_correction": "unknown",
+          "sensor_calibration": "unknown"
+        },
+        "python": "3.14.7",
+        "retained_validation_samples": 662,
+        "source_bytes": 13086748,
+        "source_file": "ILVIS0_gyro_54935_atm_applanix_14Apr09.013",
+        "source_sha256": "18c48772bcd7e83566f2301ae3689d691c1675dfc2e60c0650b6e0017b764096",
+        "state": "empirically_supported_increments",
+        "time_matching": "nearest Group-4 time1 within 2.6 ms; no interpolation",
+        "time_matching_max_abs_s": 0.0,
+        "timing_sensitivity": {
+          "accelerometer": {
+            "accepted": false,
+            "axes": [
+              {
+                "axis": "x",
+                "correlation": 0.3757027852832463,
+                "expected_scale": 6.103515625e-05,
+                "fitted_scale": 5.676052230651853e-05,
+                "fixed_expected_scale_intercept": 0.030710385275369685,
+                "fixed_expected_scale_rms": 0.23501265373844235,
+                "intercept": 0.058521204390722545,
+                "max_abs_residual": 0.7556451637551242,
+                "p99_abs_residual": 0.5648453608499887,
+                "rms_residual": 0.23490319872097318,
+                "samples": 661,
+                "scale_ratio": 0.9299643974699996,
+                "sign": 1,
+                "source_axis": "x"
+              },
+              {
+                "axis": "y",
+                "correlation": -0.014732953985061319,
+                "expected_scale": 6.103515625e-05,
+                "fitted_scale": -1.933707217732783e-05,
+                "fixed_expected_scale_intercept": 0.2443766483394812,
+                "fixed_expected_scale_rms": 0.9633129246446305,
+                "intercept": 0.2227298750916956,
+                "max_abs_residual": 3.6290180283616875,
+                "p99_abs_residual": 2.266879310702811,
+                "rms_residual": 0.9615114740597699,
+                "samples": 661,
+                "scale_ratio": -0.31681859055333916,
+                "sign": 1,
+                "source_axis": "y"
+              },
+              {
+                "axis": "z",
+                "correlation": 0.22571026719230583,
+                "expected_scale": 6.103515625e-05,
+                "fitted_scale": 3.8282794306940646e-05,
+                "fixed_expected_scale_intercept": 0.2201190957465971,
+                "fixed_expected_scale_rms": 0.6670255750622143,
+                "intercept": -3.4370280364702417,
+                "max_abs_residual": 2.1265396451894176,
+                "p99_abs_residual": 1.6073028351302794,
+                "rms_residual": 0.6607904293033601,
+                "samples": 661,
+                "scale_ratio": 0.6272253019249155,
+                "sign": 1,
+                "source_axis": "z"
+              }
+            ],
+            "chronological_holdouts": [
+              {
+                "gravity_mps2": 10.0209035369011,
+                "rms": [
+                  0.2472859761017902,
+                  0.8760147218771275,
+                  0.7078665758801067
+                ],
+                "scale_ratios": [
+                  0.8803602059899159,
+                  -0.7263530742557123,
+                  0.6636879920952987
+                ]
+              },
+              {
+                "gravity_mps2": 3.0919036859126763,
+                "rms": [
+                  0.2995419356661474,
+                  1.1571152360832833,
+                  0.6196221695503616
+                ],
+                "scale_ratios": [
+                  1.2927626517656905,
+                  1.5153210254493388,
+                  0.4826698740814608
+                ]
+              }
+            ],
+            "engineering_checks_pass": false,
+            "holdout_scale_checks_pass": false,
+            "mappings_tested": 48,
+            "plausible_mapping_scores": [
+              {
+                "permutation": [
+                  0,
+                  2,
+                  1
+                ],
+                "rms": 0.6883459978625038,
+                "signs": [
+                  1,
+                  -1,
+                  -1
+                ]
+              }
+            ],
+            "shared_gravity_mps2": 9.63935109409003
+          },
+          "gyro": {
+            "accepted": false,
+            "axes": [
+              {
+                "axis": "x",
+                "correlation": 0.6814292777471721,
+                "expected_scale": 3.814697265625e-06,
+                "fitted_scale": 3.5094302438318888e-06,
+                "fixed_expected_scale_intercept": -0.001580911836352865,
+                "fixed_expected_scale_rms": 0.010742105635443675,
+                "intercept": -0.0015769873084236522,
+                "max_abs_residual": 0.037597376646933155,
+                "p99_abs_residual": 0.02494516389077996,
+                "rms_residual": 0.010707048772579131,
+                "samples": 661,
+                "scale_ratio": 0.9199760818390667,
+                "sign": 1,
+                "source_axis": "x"
+              },
+              {
+                "axis": "y",
+                "correlation": 0.3860945038871888,
+                "expected_scale": 3.814697265625e-06,
+                "fitted_scale": 2.226569609923806e-06,
+                "fixed_expected_scale_intercept": -0.000497944722889731,
+                "fixed_expected_scale_rms": 0.003718916315186453,
+                "intercept": -0.0004325082495219547,
+                "max_abs_residual": 0.03364799000907276,
+                "p99_abs_residual": 0.008375227669510397,
+                "rms_residual": 0.0035635092142846173,
+                "samples": 661,
+                "scale_ratio": 0.5836818638238662,
+                "sign": 1,
+                "source_axis": "y"
+              },
+              {
+                "axis": "z",
+                "correlation": 0.8269756330181368,
+                "expected_scale": 3.814697265625e-06,
+                "fitted_scale": 3.760951010298861e-06,
+                "fixed_expected_scale_intercept": 0.000542868785871713,
+                "fixed_expected_scale_rms": 0.0021369561218902698,
+                "intercept": 0.0005380646292019892,
+                "max_abs_residual": 0.00858581709259441,
+                "p99_abs_residual": 0.005741439590141761,
+                "rms_residual": 0.0021364842020899564,
+                "samples": 661,
+                "scale_ratio": 0.9859107416437847,
+                "sign": 1,
+                "source_axis": "z"
+              }
+            ],
+            "chronological_holdouts": [
+              {
+                "gravity_mps2": null,
+                "rms": [
+                  0.009524599541808742,
+                  0.003636827821205144,
+                  0.00214307315555539
+                ],
+                "scale_ratios": [
+                  0.9037756914878022,
+                  0.5742696257409461,
+                  1.010432592221713
+                ]
+              },
+              {
+                "gravity_mps2": null,
+                "rms": [
+                  0.01188950060117831,
+                  0.0034971098456117464,
+                  0.0022887850724398126
+                ],
+                "scale_ratios": [
+                  1.0136188728801876,
+                  0.6056177877826358,
+                  0.8214667772774865
+                ]
+              }
+            ],
+            "engineering_checks_pass": false,
+            "holdout_scale_checks_pass": false,
+            "mappings_tested": 48,
+            "plausible_mapping_scores": [
+              {
+                "permutation": [
+                  0,
+                  1,
+                  2
+                ],
+                "rms": 0.006630838460920298,
+                "signs": [
+                  1,
+                  1,
+                  1
+                ]
+              }
+            ],
+            "shared_gravity_mps2": null
+          },
+          "interpretation": "Preceding navigation-interval means compared with endpoint Group-1; diagnostic only, no interpolation",
+          "samples": 661
+        },
+        "validation_reference": "Group-1 fused navigation, not independent science",
+        "validation_version": "ilvis0-increments-v1",
+        "versions": {
+          "AV-510,VER5,S/N2036,HW3.5-7,SW04.60-Oct21/08,ICD15.00,OS425B14,IMU8,PGPS16,SGPS0": 133
+        }
+      },
+      "versions": {
+        "AV-510,VER5,S/N2036,HW3.5-7,SW04.60-Oct21/08,ICD15.00,OS425B14,IMU8,PGPS16,SGPS0": 133
+      }
+    },
+    {
+      "date": "2009-04-16",
+      "filename": "ILVIS0_gyro_54937_atm_applanix_16Apr09.013",
+      "frame_count": 140789,
+      "frame_counts": {
+        "$GRP:1": 656,
+        "$GRP:10001": 4509,
+        "$GRP:101": 656,
+        "$GRP:2": 656,
+        "$GRP:20101": 657,
+        "$GRP:20102": 657,
+        "$GRP:4": 131241,
+        "$GRP:99": 132,
+        "$MSG:1": 65,
+        "$MSG:101": 65,
+        "$MSG:102": 65,
+        "$MSG:103": 65,
+        "$MSG:104": 130,
+        "$MSG:106": 65,
+        "$MSG:107": 65,
+        "$MSG:11": 65,
+        "$MSG:110": 65,
+        "$MSG:13": 65,
+        "$MSG:16": 65,
+        "$MSG:17": 65,
+        "$MSG:2": 65,
+        "$MSG:20001": 65,
+        "$MSG:20101": 65,
+        "$MSG:20102": 65,
+        "$MSG:20203": 65,
+        "$MSG:20205": 65,
+        "$MSG:20216": 65,
+        "$MSG:3": 65,
+        "$MSG:4": 65,
+        "$MSG:5": 65,
+        "$MSG:6": 65,
+        "$MSG:7": 65
+      },
+      "geometry": {
+        "context_coverage_fraction": 1.0,
+        "context_samples": 654,
+        "earth_model_blockers": [
+          "Group-4 onboard Earth-rate/bias corrections and mounting/latency unresolved",
+          "Independent attitude/motion reconstruction and nuisance-projected shape information not established",
+          "Permanent aircraft mount has no participant reversal controls"
+        ],
+        "earth_model_eligible": false,
+        "policy": {
+          "maneuver_buffer_s": 10,
+          "maximum_context_gap_s": 2,
+          "maximum_course_rate_deg_s": 0.05,
+          "maximum_roll_deg": 5,
+          "maximum_vertical_speed_mps": 1.5,
+          "minimum_context_coverage_for_discard": 0.95,
+          "minimum_speed_mps": 50,
+          "minimum_window_s": 60,
+          "version": "ilvis0-level-v2"
+        },
+        "qualifying_context_samples": 457,
+        "selection_basis": "GPS synchronization and fused navigation motion only; no gyro/model residual selection",
+        "state": "retain",
+        "valid_context_samples": 654,
+        "windows": [
+          {
+            "duration_s": 272.004545327276,
+            "end_s": 391479.5876524527,
+            "start_s": 391207.5831071254
+          }
+        ]
+      },
+      "gps": {
+        "bytes": 2970206,
+        "dates": {
+          "2009-04-16": 652
+        },
+        "discarded_fragment_bytes": 2866755,
+        "invalid_checksums": 0,
+        "sentence_counts": {
+          "GPGGA": 652,
+          "GPVTG": 652,
+          "GPZDA": 652
+        },
+        "trailing_fragment_hex": ""
+      },
+      "imu": {
+        "count": 131241,
+        "dt_max_s": 0.00500639108940959,
+        "dt_median_s": 0.0050002,
+        "dt_min_s": 0.004997470823582262,
+        "duration_s": 656.2102263533161,
+        "effective_rate_hz": 199.9920003199872,
+        "first_time_s": 390917.01372837625,
+        "flags": {
+          "first_sample": 1
+        },
+        "last_time_s": 391573.22395472956,
+        "rate_codes": {
+          "2": 131241
+        },
+        "status": {
+          "0:0": 131241
+        },
+        "types": {
+          "8": 131241
+        }
+      },
+      "source_bytes": 13080228,
+      "source_sha256": "61e813eb65e1bd9f9a6dbe9de884e96e9b542ce305304bd145441ac173533068",
+      "state": "retained",
+      "task_id": "0428cb9b1d87fedfb19e",
+      "validation": {
+        "accelerometer": {
+          "accepted": true,
+          "axes": [
+            {
+              "axis": "x",
+              "correlation": 0.9999960627574321,
+              "expected_scale": 6.103515625e-05,
+              "fitted_scale": 6.103205837074375e-05,
+              "fixed_expected_scale_intercept": -0.0020397959503226054,
+              "fixed_expected_scale_rms": 0.0006140889269139011,
+              "intercept": -0.002032716243625135,
+              "max_abs_residual": 0.0018344645644683133,
+              "p99_abs_residual": 0.0016953407561665264,
+              "rms_residual": 0.000613988492413319,
+              "samples": 656,
+              "scale_ratio": 0.9999492443462656,
+              "sign": 1,
+              "source_axis": "x"
+            },
+            {
+              "axis": "y",
+              "correlation": 0.9999993760516216,
+              "expected_scale": 6.103515625e-05,
+              "fitted_scale": 6.102879544730988e-05,
+              "fixed_expected_scale_intercept": -0.0022661467776238734,
+              "fixed_expected_scale_rms": 0.00041297920565913567,
+              "intercept": -0.0022674170478999335,
+              "max_abs_residual": 0.004757544613058995,
+              "p99_abs_residual": 0.0009459288320789215,
+              "rms_residual": 0.00041119333830022715,
+              "samples": 656,
+              "scale_ratio": 0.9998957846087251,
+              "sign": 1,
+              "source_axis": "y"
+            },
+            {
+              "axis": "z",
+              "correlation": 0.9999985629753678,
+              "expected_scale": 6.103515625e-05,
+              "fitted_scale": 6.104416334431857e-05,
+              "fixed_expected_scale_intercept": 0.004899540411691002,
+              "fixed_expected_scale_rms": 0.0013725813716742815,
+              "intercept": 0.00635371313920778,
+              "max_abs_residual": 0.021774743079737036,
+              "p99_abs_residual": 0.0033055530163631423,
+              "rms_residual": 0.0013674120297325963,
+              "samples": 656,
+              "scale_ratio": 1.0001475722333155,
+              "sign": 1,
+              "source_axis": "z"
+            }
+          ],
+          "chronological_holdouts": [
+            {
+              "gravity_mps2": 9.807648764681852,
+              "rms": [
+                0.0008473567264313617,
+                0.0006163796456771899,
+                0.0009828238987257625
+              ],
+              "scale_ratios": [
+                1.0000514272323324,
+                0.9999117647948879,
+                1.0001320289647642
+              ]
+            },
+            {
+              "gravity_mps2": 9.807261126355673,
+              "rms": [
+                0.0010493536630698363,
+                0.0006934490002400138,
+                0.0016699764739219615
+              ],
+              "scale_ratios": [
+                1.0000184011964302,
+                0.9999948386139295,
+                1.000179812905785
+              ]
+            }
+          ],
+          "engineering_checks_pass": true,
+          "holdout_scale_checks_pass": true,
+          "mappings_tested": 48,
+          "plausible_mapping_scores": [
+            {
+              "permutation": [
+                0,
+                1,
+                2
+              ],
+              "rms": 0.0008973809093385566,
+              "signs": [
+                1,
+                1,
+                1
+              ]
+            }
+          ],
+          "shared_gravity_mps2": 9.806810390733048
+        },
+        "accepted": true,
+        "decoder_sha256": "1440b76d4785cfecbf3ecff3cae0c83457ccd938fd9dde1e7eee3325dc105798",
+        "engineering_limits": {
+          "maximum_scale_relative_error": 0.001,
+          "min_correlation": 0.9999
+        },
+        "gyro": {
+          "accepted": true,
+          "axes": [
+            {
+              "axis": "x",
+              "correlation": 0.999999997748126,
+              "expected_scale": 3.814697265625e-06,
+              "fitted_scale": 3.814744803231427e-06,
+              "fixed_expected_scale_intercept": -1.3855903529317377e-05,
+              "fixed_expected_scale_rms": 8.382217623942258e-07,
+              "intercept": -1.3858134758616111e-05,
+              "max_abs_residual": 5.00672303343358e-06,
+              "p99_abs_residual": 3.300069874122812e-06,
+              "rms_residual": 8.241340240557303e-07,
+              "samples": 656,
+              "scale_ratio": 1.0000124616982993,
+              "sign": 1,
+              "source_axis": "x"
+            },
+            {
+              "axis": "y",
+              "correlation": 0.9999982950751812,
+              "expected_scale": 3.814697265625e-06,
+              "fitted_scale": 3.8128442202867148e-06,
+              "fixed_expected_scale_intercept": 2.6762069564674736e-05,
+              "fixed_expected_scale_rms": 6.5292879587536595e-06,
+              "intercept": 2.7030978750050218e-05,
+              "max_abs_residual": 2.0771025807407106e-05,
+              "p99_abs_residual": 1.8788557699626545e-05,
+              "rms_residual": 6.31425877315535e-06,
+              "samples": 656,
+              "scale_ratio": 0.9995142352828406,
+              "sign": 1,
+              "source_axis": "y"
+            },
+            {
+              "axis": "z",
+              "correlation": 0.9999999855655064,
+              "expected_scale": 3.814697265625e-06,
+              "fitted_scale": 3.8136660608925285e-06,
+              "fixed_expected_scale_intercept": 7.380487969010148e-05,
+              "fixed_expected_scale_rms": 1.667427995094182e-06,
+              "intercept": 7.347320036465227e-05,
+              "max_abs_residual": 4.2070672413279525e-06,
+              "p99_abs_residual": 3.1751671232168815e-06,
+              "rms_residual": 8.871511134792549e-07,
+              "samples": 656,
+              "scale_ratio": 0.999729675866611,
+              "sign": 1,
+              "source_axis": "z"
+            }
+          ],
+          "chronological_holdouts": [
+            {
+              "gravity_mps2": null,
+              "rms": [
+                6.462910142690045e-07,
+                3.196083925615162e-06,
+                7.93579685432823e-07
+              ],
+              "scale_ratios": [
+                1.0000138613900222,
+                0.999225961739807,
+                0.9996976366376064
+              ]
+            },
+            {
+              "gravity_mps2": null,
+              "rms": [
+                9.913178725721112e-07,
+                9.009452115429269e-06,
+                1.5528647050632445e-06
+              ],
+              "scale_ratios": [
+                1.000008459728054,
+                0.9999763784432525,
+                0.9998745129027234
+              ]
+            }
+          ],
+          "engineering_checks_pass": true,
+          "holdout_scale_checks_pass": true,
+          "mappings_tested": 48,
+          "plausible_mapping_scores": [
+            {
+              "permutation": [
+                0,
+                1,
+                2
+              ],
+              "rms": 3.711967036586895e-06,
+              "signs": [
+                1,
+                1,
+                1
+              ]
+            }
+          ],
+          "shared_gravity_mps2": null
+        },
+        "interpretation": "six little-endian signed int32: dv XYZ, dtheta XYZ",
+        "inventory": {
+          "checksum_failures": 0,
+          "frame_count": 140789,
+          "frame_counts": {
+            "$GRP:1": 656,
+            "$GRP:10001": 4509,
+            "$GRP:101": 656,
+            "$GRP:2": 656,
+            "$GRP:20101": 657,
+            "$GRP:20102": 657,
+            "$GRP:4": 131241,
+            "$GRP:99": 132,
+            "$MSG:1": 65,
+            "$MSG:101": 65,
+            "$MSG:102": 65,
+            "$MSG:103": 65,
+            "$MSG:104": 130,
+            "$MSG:106": 65,
+            "$MSG:107": 65,
+            "$MSG:11": 65,
+            "$MSG:110": 65,
+            "$MSG:13": 65,
+            "$MSG:16": 65,
+            "$MSG:17": 65,
+            "$MSG:2": 65,
+            "$MSG:20001": 65,
+            "$MSG:20101": 65,
+            "$MSG:20102": 65,
+            "$MSG:20203": 65,
+            "$MSG:20205": 65,
+            "$MSG:20216": 65,
+            "$MSG:3": 65,
+            "$MSG:4": 65,
+            "$MSG:5": 65,
+            "$MSG:6": 65,
+            "$MSG:7": 65
+          },
+          "group4_sizes": {
+            "68": 131241
+          },
+          "imu_types": {
+            "8": 131241
+          },
+          "rate_codes": {
+            "2": 131241
+          },
+          "time_types": {
+            "2": 131241
+          },
+          "unframed_bytes": 0,
+          "versions": {
+            "AV-510,VER5,S/N2036,HW3.5-7,SW04.60-Oct21/08,ICD15.00,OS425B14,IMU8,PGPS16,SGPS0": 132
+          }
+        },
+        "known_layout_version": true,
+        "limitations": [
+          "Shared-reference internal agreement does not establish sensor accuracy or independent Earth evidence.",
+          "Per-axis offsets are fitted for decoder validation only; never subtracted from exported increments.",
+          "Chronological holdouts test stability, not statistical coverage; gravity and Z offset can be confounded.",
+          "Only the independently tested configuration is eligible for physical conversion."
+        ],
+        "manufacturer_scale_table_found": false,
+        "matched_total": 656,
+        "numpy": "2.5.3",
+        "parser_sha256": "466866ea3d93600f698a76665b0269b1a5e2d35f067043edaf656d7c55a6dad4",
+        "processing": {
+          "automatic_zeroing": "unknown",
+          "bias_correction": "unknown; nonzero fused-reference offsets observed",
+          "coning_correction": "unknown",
+          "earth_rate_compensation": "unknown; must resolve before independent Earth inference",
+          "filtering": "unknown",
+          "latency": "time-tag matching measured; physical latency unknown",
+          "lever_arm_compensation": "Group-1 reference lever arm documented; Group-4 unknown",
+          "mounting_axes": "empirical agreement with Group-1 aircraft axes, exact mounting unknown",
+          "scale_factor_correction": "unknown",
+          "sculling_correction": "unknown",
+          "sensor_calibration": "unknown"
+        },
+        "python": "3.14.7",
+        "retained_validation_samples": 656,
+        "source_bytes": 13080228,
+        "source_file": "ILVIS0_gyro_54937_atm_applanix_16Apr09.013",
+        "source_sha256": "61e813eb65e1bd9f9a6dbe9de884e96e9b542ce305304bd145441ac173533068",
+        "state": "empirically_supported_increments",
+        "time_matching": "nearest Group-4 time1 within 2.6 ms; no interpolation",
+        "time_matching_max_abs_s": 0.0,
+        "timing_sensitivity": {
+          "accelerometer": {
+            "accepted": false,
+            "axes": [
+              {
+                "axis": "x",
+                "correlation": 0.010153568499378544,
+                "expected_scale": 6.103515625e-05,
+                "fitted_scale": 1.1762670487339837e-05,
+                "fixed_expected_scale_intercept": -0.0067349038793898365,
+                "fixed_expected_scale_rms": 0.21903782897975727,
+                "intercept": 0.10608612164136301,
+                "max_abs_residual": 0.7018119860939197,
+                "p99_abs_residual": 0.5579541357161101,
+                "rms_residual": 0.21883995914115287,
+                "samples": 655,
+                "scale_ratio": 0.19271959326457588,
+                "sign": 1,
+                "source_axis": "x"
+              },
+              {
+                "axis": "y",
+                "correlation": 0.1112512747472463,
+                "expected_scale": 6.103515625e-05,
+                "fitted_scale": 6.322555024079052e-05,
+                "fixed_expected_scale_intercept": -0.0318336952295838,
+                "fixed_expected_scale_rms": 0.3644094708207265,
+                "intercept": -0.032194151495766786,
+                "max_abs_residual": 1.1021064259766717,
+                "p99_abs_residual": 0.9270467650227101,
+                "rms_residual": 0.3644067303022606,
+                "samples": 655,
+                "scale_ratio": 1.0358874151451118,
+                "sign": 1,
+                "source_axis": "y"
+              },
+              {
+                "axis": "z",
+                "correlation": 0.35597162953005174,
+                "expected_scale": 6.103515625e-05,
+                "fitted_scale": 6.402837616776955e-05,
+                "fixed_expected_scale_intercept": 0.3284863211346229,
+                "fixed_expected_scale_rms": 0.7544129643492864,
+                "intercept": 0.8111185205972181,
+                "max_abs_residual": 2.3869042838406997,
+                "p99_abs_residual": 1.9121090427343472,
+                "rms_residual": 0.7542933775279956,
+                "samples": 655,
+                "scale_ratio": 1.0490409151327362,
+                "sign": 1,
+                "source_axis": "z"
+              }
+            ],
+            "chronological_holdouts": [
+              {
+                "gravity_mps2": 9.407296434618706,
+                "rms": [
+                  0.2247172057769086,
+                  0.37482714270373535,
+                  0.7334116626929182
+                ],
+                "scale_ratios": [
+                  -1.4498341518042723,
+                  1.0100747078072345,
+                  1.0052820387324763
+                ]
+              },
+              {
+                "gravity_mps2": 8.546521570850151,
+                "rms": [
+                  0.2253235117726771,
+                  0.378086727980219,
+                  0.79047423687752
+                ],
+                "scale_ratios": [
+                  3.335305743563262,
+                  0.8438466520037764,
+                  1.078728158649871
+                ]
+              }
+            ],
+            "engineering_checks_pass": false,
+            "holdout_scale_checks_pass": false,
+            "mappings_tested": 48,
+            "plausible_mapping_scores": [],
+            "shared_gravity_mps2": 9.468453238711147
+          },
+          "gyro": {
+            "accepted": false,
+            "axes": [
+              {
+                "axis": "x",
+                "correlation": 0.7921899134070877,
+                "expected_scale": 3.814697265625e-06,
+                "fitted_scale": 3.617437483435935e-06,
+                "fixed_expected_scale_intercept": 0.00012570430506656308,
+                "fixed_expected_scale_rms": 0.0075143824153238,
+                "intercept": 0.0001286035368807592,
+                "max_abs_residual": 0.030229531028264308,
+                "p99_abs_residual": 0.021022595431156064,
+                "rms_residual": 0.007495627375256236,
+                "samples": 655,
+                "scale_ratio": 0.9482895316578297,
+                "sign": 1,
+                "source_axis": "x"
+              },
+              {
+                "axis": "y",
+                "correlation": 0.5726942510513476,
+                "expected_scale": 3.814697265625e-06,
+                "fitted_scale": 3.0931333872309153e-06,
+                "fixed_expected_scale_intercept": 0.0002105589877899406,
+                "fixed_expected_scale_rms": 0.002840318727616854,
+                "intercept": 0.0002795614498379824,
+                "max_abs_residual": 0.008031833989491156,
+                "p99_abs_residual": 0.0071418299537446064,
+                "rms_residual": 0.002803335514351962,
+                "samples": 655,
+                "scale_ratio": 0.8108463586622611,
+                "sign": 1,
+                "source_axis": "y"
+              },
+              {
+                "axis": "z",
+                "correlation": 0.8897405357804637,
+                "expected_scale": 3.814697265625e-06,
+                "fitted_scale": 3.8085807447179624e-06,
+                "fixed_expected_scale_intercept": -5.396989273842458e-05,
+                "fixed_expected_scale_rms": 0.0023851825623285514,
+                "intercept": -5.5733486932283865e-05,
+                "max_abs_residual": 0.006620593208221637,
+                "p99_abs_residual": 0.005387546697554666,
+                "rms_residual": 0.0023851708759559257,
+                "samples": 655,
+                "scale_ratio": 0.9983965907433455,
+                "sign": 1,
+                "source_axis": "z"
+              }
+            ],
+            "chronological_holdouts": [
+              {
+                "gravity_mps2": null,
+                "rms": [
+                  0.007321199234331968,
+                  0.0027682941271640928,
+                  0.002399694145546266
+                ],
+                "scale_ratios": [
+                  0.9806153785568034,
+                  0.8912782943060639,
+                  1.002618605535681
+                ]
+              },
+              {
+                "gravity_mps2": null,
+                "rms": [
+                  0.007938075752524868,
+                  0.003017215084185966,
+                  0.0023879955606484296
+                ],
+                "scale_ratios": [
+                  0.8629031720389997,
+                  0.5720830097285107,
+                  1.0135697926811493
+                ]
+              }
+            ],
+            "engineering_checks_pass": false,
+            "holdout_scale_checks_pass": false,
+            "mappings_tested": 48,
+            "plausible_mapping_scores": [
+              {
+                "permutation": [
+                  0,
+                  1,
+                  2
+                ],
+                "rms": 0.004821208695691225,
+                "signs": [
+                  1,
+                  1,
+                  1
+                ]
+              }
+            ],
+            "shared_gravity_mps2": null
+          },
+          "interpretation": "Preceding navigation-interval means compared with endpoint Group-1; diagnostic only, no interpolation",
+          "samples": 655
+        },
+        "validation_reference": "Group-1 fused navigation, not independent science",
+        "validation_version": "ilvis0-increments-v1",
+        "versions": {
+          "AV-510,VER5,S/N2036,HW3.5-7,SW04.60-Oct21/08,ICD15.00,OS425B14,IMU8,PGPS16,SGPS0": 132
+        }
+      },
+      "versions": {
+        "AV-510,VER5,S/N2036,HW3.5-7,SW04.60-Oct21/08,ICD15.00,OS425B14,IMU8,PGPS16,SGPS0": 132
+      }
+    },
+    {
+      "date": "2010-10-28",
+      "filename": "ILVIS0_applanix_55497_20101028_510_LVIS.013",
+      "frame_count": 126251,
+      "frame_counts": {
+        "$GRP:1": 23657,
+        "$GRP:10001": 4729,
+        "$GRP:101": 473,
+        "$GRP:2": 471,
+        "$GRP:20101": 474,
+        "$GRP:20102": 474,
+        "$GRP:4": 94630,
+        "$GRP:99": 95,
+        "$MSG:1": 48,
+        "$MSG:101": 48,
+        "$MSG:102": 48,
+        "$MSG:103": 48,
+        "$MSG:104": 96,
+        "$MSG:106": 48,
+        "$MSG:107": 48,
+        "$MSG:11": 48,
+        "$MSG:110": 48,
+        "$MSG:13": 48,
+        "$MSG:16": 48,
+        "$MSG:17": 48,
+        "$MSG:18": 48,
+        "$MSG:2": 48,
+        "$MSG:20001": 48,
+        "$MSG:20101": 48,
+        "$MSG:20102": 48,
+        "$MSG:20203": 48,
+        "$MSG:20205": 48,
+        "$MSG:20216": 48,
+        "$MSG:3": 48,
+        "$MSG:4": 48,
+        "$MSG:5": 48,
+        "$MSG:6": 48,
+        "$MSG:7": 48
+      },
+      "geometry": {
+        "context_coverage_fraction": 0.0,
+        "context_samples": 23655,
+        "earth_model_blockers": [
+          "Group-4 onboard Earth-rate/bias corrections and mounting/latency unresolved",
+          "Independent attitude/motion reconstruction and nuisance-projected shape information not established",
+          "Permanent aircraft mount has no participant reversal controls"
+        ],
+        "earth_model_eligible": false,
+        "policy": {
+          "maneuver_buffer_s": 10,
+          "maximum_context_gap_s": 2,
+          "maximum_course_rate_deg_s": 0.05,
+          "maximum_roll_deg": 5,
+          "maximum_vertical_speed_mps": 1.5,
+          "minimum_context_coverage_for_discard": 0.95,
+          "minimum_speed_mps": 50,
+          "minimum_window_s": 60,
+          "version": "ilvis0-level-v2"
+        },
+        "qualifying_context_samples": 0,
+        "selection_basis": "GPS synchronization and fused navigation motion only; no gyro/model residual selection",
+        "state": "unresolved",
+        "valid_context_samples": 0,
+        "windows": []
+      },
+      "gps": {
+        "bytes": 2472275,
+        "dates": {
+          "2010-10-28": 474
+        },
+        "discarded_fragment_bytes": 2354589,
+        "invalid_checksums": 0,
+        "sentence_counts": {
+          "GPGGA": 474,
+          "GPRMC": 474,
+          "GPVTG": 474,
+          "GPZDA": 474
+        },
+        "trailing_fragment_hex": ""
+      },
+      "imu": {
+        "count": 94630,
+        "dt_max_s": 0.0052233628230169415,
+        "dt_median_s": 0.0050001,
+        "dt_min_s": 0.004772936692461371,
+        "duration_s": 473.1450787168578,
+        "effective_rate_hz": 199.9960000799984,
+        "first_time_s": 400297.07367232325,
+        "flags": {
+          "first_sample": 1,
+          "physical_interpretation_not_validated": 94630
+        },
+        "last_time_s": 400770.2187510401,
+        "rate_codes": {
+          "2": 94630
+        },
+        "status": {
+          "0:0": 94630
+        },
+        "types": {
+          "6": 94630
+        }
+      },
+      "source_bytes": 13083068,
+      "source_sha256": "e3d28f00cb3fd1acde8ac38a307110b331fc4775058b012bdf74a850920c0492",
+      "state": "unresolved",
+      "task_id": "953bf000f10421faad04",
+      "validation": {
+        "accepted": false,
+        "decoder_sha256": "1440b76d4785cfecbf3ecff3cae0c83457ccd938fd9dde1e7eee3325dc105798",
+        "engineering_limits": {
+          "maximum_scale_relative_error": 0.001,
+          "min_correlation": 0.9999
+        },
+        "interpretation": "six little-endian signed int32: dv XYZ, dtheta XYZ",
+        "inventory": {
+          "checksum_failures": 0,
+          "frame_count": 126251,
+          "frame_counts": {
+            "$GRP:1": 23657,
+            "$GRP:10001": 4729,
+            "$GRP:101": 473,
+            "$GRP:2": 471,
+            "$GRP:20101": 474,
+            "$GRP:20102": 474,
+            "$GRP:4": 94630,
+            "$GRP:99": 95,
+            "$MSG:1": 48,
+            "$MSG:101": 48,
+            "$MSG:102": 48,
+            "$MSG:103": 48,
+            "$MSG:104": 96,
+            "$MSG:106": 48,
+            "$MSG:107": 48,
+            "$MSG:11": 48,
+            "$MSG:110": 48,
+            "$MSG:13": 48,
+            "$MSG:16": 48,
+            "$MSG:17": 48,
+            "$MSG:18": 48,
+            "$MSG:2": 48,
+            "$MSG:20001": 48,
+            "$MSG:20101": 48,
+            "$MSG:20102": 48,
+            "$MSG:20203": 48,
+            "$MSG:20205": 48,
+            "$MSG:20216": 48,
+            "$MSG:3": 48,
+            "$MSG:4": 48,
+            "$MSG:5": 48,
+            "$MSG:6": 48,
+            "$MSG:7": 48
+          },
+          "group4_sizes": {
+            "68": 94630
+          },
+          "imu_types": {
+            "6": 94630
+          },
+          "rate_codes": {
+            "2": 94630
+          },
+          "time_types": {
+            "2": 94630
+          },
+          "unframed_bytes": 0,
+          "versions": {
+            "AV-510,VER5,S/N3861,HW4.0-7,SW05.00-Dec16/09,ICD17.00,OS425B142,IMU6,PGPS16,SGPS0": 95
+          }
+        },
+        "manufacturer_scale_table_found": false,
+        "matched_total": 0,
+        "numpy": "2.5.3",
+        "parser_sha256": "466866ea3d93600f698a76665b0269b1a5e2d35f067043edaf656d7c55a6dad4",
+        "processing": {
+          "automatic_zeroing": "unknown",
+          "bias_correction": "unknown; nonzero fused-reference offsets observed",
+          "coning_correction": "unknown",
+          "earth_rate_compensation": "unknown; must resolve before independent Earth inference",
+          "filtering": "unknown",
+          "latency": "time-tag matching measured; physical latency unknown",
+          "lever_arm_compensation": "Group-1 reference lever arm documented; Group-4 unknown",
+          "mounting_axes": "empirical agreement with Group-1 aircraft axes, exact mounting unknown",
+          "scale_factor_correction": "unknown",
+          "sculling_correction": "unknown",
+          "sensor_calibration": "unknown"
+        },
+        "python": "3.14.7",
+        "reason": "fewer than 60 matched usable samples",
+        "retained_validation_samples": 0,
+        "source_bytes": 13083068,
+        "source_file": "ILVIS0_applanix_55497_20101028_510_LVIS.013",
+        "source_sha256": "e3d28f00cb3fd1acde8ac38a307110b331fc4775058b012bdf74a850920c0492",
+        "time_matching": "nearest Group-4 time1 within 2.6 ms; no interpolation",
+        "validation_reference": "Group-1 fused navigation, not independent science",
+        "validation_version": "ilvis0-increments-v1",
+        "versions": {
+          "AV-510,VER5,S/N3861,HW4.0-7,SW05.00-Dec16/09,ICD17.00,OS425B142,IMU6,PGPS16,SGPS0": 95
+        }
+      },
+      "versions": {
+        "AV-510,VER5,S/N3861,HW4.0-7,SW05.00-Dec16/09,ICD17.00,OS425B142,IMU6,PGPS16,SGPS0": 95
+      }
+    },
+    {
+      "date": "2012-05-10",
+      "filename": "ILVIS0_applanix_56057_510_POS510.013",
+      "frame_count": 128359,
+      "frame_counts": {
+        "$GRP:1": 23996,
+        "$GRP:10001": 4799,
+        "$GRP:101": 480,
+        "$GRP:2": 479,
+        "$GRP:20101": 480,
+        "$GRP:20102": 480,
+        "$GRP:4": 95981,
+        "$GRP:5": 160,
+        "$GRP:6": 160,
+        "$GRP:99": 96,
+        "$MSG:1": 48,
+        "$MSG:101": 48,
+        "$MSG:102": 48,
+        "$MSG:103": 48,
+        "$MSG:104": 96,
+        "$MSG:105": 48,
+        "$MSG:106": 48,
+        "$MSG:107": 48,
+        "$MSG:11": 48,
+        "$MSG:110": 48,
+        "$MSG:13": 48,
+        "$MSG:16": 48,
+        "$MSG:2": 48,
+        "$MSG:20001": 48,
+        "$MSG:20101": 48,
+        "$MSG:20102": 48,
+        "$MSG:20103": 48,
+        "$MSG:20203": 48,
+        "$MSG:20205": 48,
+        "$MSG:20216": 48,
+        "$MSG:3": 48,
+        "$MSG:4": 48,
+        "$MSG:5": 48,
+        "$MSG:6": 48,
+        "$MSG:7": 48
+      },
+      "geometry": {
+        "context_coverage_fraction": 0.0,
+        "context_samples": 23994,
+        "earth_model_blockers": [
+          "Group-4 onboard Earth-rate/bias corrections and mounting/latency unresolved",
+          "Independent attitude/motion reconstruction and nuisance-projected shape information not established",
+          "Permanent aircraft mount has no participant reversal controls"
+        ],
+        "earth_model_eligible": false,
+        "policy": {
+          "maneuver_buffer_s": 10,
+          "maximum_context_gap_s": 2,
+          "maximum_course_rate_deg_s": 0.05,
+          "maximum_roll_deg": 5,
+          "maximum_vertical_speed_mps": 1.5,
+          "minimum_context_coverage_for_discard": 0.95,
+          "minimum_speed_mps": 50,
+          "minimum_window_s": 60,
+          "version": "ilvis0-level-v2"
+        },
+        "qualifying_context_samples": 0,
+        "selection_basis": "GPS synchronization and fused navigation motion only; no gyro/model residual selection",
+        "state": "unresolved",
+        "valid_context_samples": 0,
+        "windows": []
+      },
+      "gps": {
+        "bytes": 2310624,
+        "dates": {
+          "2012-05-10": 480
+        },
+        "discarded_fragment_bytes": 2234923,
+        "invalid_checksums": 0,
+        "sentence_counts": {
+          "GPGGA": 480,
+          "GPVTG": 480,
+          "GPZDA": 480
+        },
+        "trailing_fragment_hex": ""
+      },
+      "imu": {
+        "count": 95981,
+        "dt_max_s": 0.005224372318480164,
+        "dt_median_s": 0.0049992,
+        "dt_min_s": 0.004776907677296549,
+        "duration_s": 479.90005633665714,
+        "effective_rate_hz": 200.03200512081935,
+        "first_time_s": 386284.79301112174,
+        "flags": {
+          "first_sample": 1,
+          "physical_interpretation_not_validated": 95981
+        },
+        "last_time_s": 386764.6930674584,
+        "rate_codes": {
+          "2": 95981
+        },
+        "status": {
+          "0:0": 95981
+        },
+        "types": {
+          "6": 95981
+        }
+      },
+      "source_bytes": 13084540,
+      "source_sha256": "087c11e2c469ba5adb53da0c33b58ced346df3d93b100023bfbbb4b7e768b0f9",
+      "state": "unresolved",
+      "task_id": "c4af455d888117b1fb91",
+      "validation": {
+        "accepted": false,
+        "decoder_sha256": "1440b76d4785cfecbf3ecff3cae0c83457ccd938fd9dde1e7eee3325dc105798",
+        "engineering_limits": {
+          "maximum_scale_relative_error": 0.001,
+          "min_correlation": 0.9999
+        },
+        "interpretation": "six little-endian signed int32: dv XYZ, dtheta XYZ",
+        "inventory": {
+          "checksum_failures": 0,
+          "frame_count": 128359,
+          "frame_counts": {
+            "$GRP:1": 23996,
+            "$GRP:10001": 4799,
+            "$GRP:101": 480,
+            "$GRP:2": 479,
+            "$GRP:20101": 480,
+            "$GRP:20102": 480,
+            "$GRP:4": 95981,
+            "$GRP:5": 160,
+            "$GRP:6": 160,
+            "$GRP:99": 96,
+            "$MSG:1": 48,
+            "$MSG:101": 48,
+            "$MSG:102": 48,
+            "$MSG:103": 48,
+            "$MSG:104": 96,
+            "$MSG:105": 48,
+            "$MSG:106": 48,
+            "$MSG:107": 48,
+            "$MSG:11": 48,
+            "$MSG:110": 48,
+            "$MSG:13": 48,
+            "$MSG:16": 48,
+            "$MSG:2": 48,
+            "$MSG:20001": 48,
+            "$MSG:20101": 48,
+            "$MSG:20102": 48,
+            "$MSG:20103": 48,
+            "$MSG:20203": 48,
+            "$MSG:20205": 48,
+            "$MSG:20216": 48,
+            "$MSG:3": 48,
+            "$MSG:4": 48,
+            "$MSG:5": 48,
+            "$MSG:6": 48,
+            "$MSG:7": 48
+          },
+          "group4_sizes": {
+            "68": 95981
+          },
+          "imu_types": {
+            "6": 95981
+          },
+          "rate_codes": {
+            "2": 95981
+          },
+          "time_types": {
+            "2": 95981
+          },
+          "unframed_bytes": 0,
+          "versions": {
+            "AV-510,VER5,S/N2720,HW3.1-7,SW04.50-Feb05/08,ICD14.00,OS425B14,IMU6,PGPS13,SGPS0": 96
+          }
+        },
+        "manufacturer_scale_table_found": false,
+        "matched_total": 0,
+        "numpy": "2.5.3",
+        "parser_sha256": "466866ea3d93600f698a76665b0269b1a5e2d35f067043edaf656d7c55a6dad4",
+        "processing": {
+          "automatic_zeroing": "unknown",
+          "bias_correction": "unknown; nonzero fused-reference offsets observed",
+          "coning_correction": "unknown",
+          "earth_rate_compensation": "unknown; must resolve before independent Earth inference",
+          "filtering": "unknown",
+          "latency": "time-tag matching measured; physical latency unknown",
+          "lever_arm_compensation": "Group-1 reference lever arm documented; Group-4 unknown",
+          "mounting_axes": "empirical agreement with Group-1 aircraft axes, exact mounting unknown",
+          "scale_factor_correction": "unknown",
+          "sculling_correction": "unknown",
+          "sensor_calibration": "unknown"
+        },
+        "python": "3.14.7",
+        "reason": "fewer than 60 matched usable samples",
+        "retained_validation_samples": 0,
+        "source_bytes": 13084540,
+        "source_file": "ILVIS0_applanix_56057_510_POS510.013",
+        "source_sha256": "087c11e2c469ba5adb53da0c33b58ced346df3d93b100023bfbbb4b7e768b0f9",
+        "time_matching": "nearest Group-4 time1 within 2.6 ms; no interpolation",
+        "validation_reference": "Group-1 fused navigation, not independent science",
+        "validation_version": "ilvis0-increments-v1",
+        "versions": {
+          "AV-510,VER5,S/N2720,HW3.1-7,SW04.50-Feb05/08,ICD14.00,OS425B14,IMU6,PGPS13,SGPS0": 96
+        }
+      },
+      "versions": {
+        "AV-510,VER5,S/N2720,HW3.1-7,SW04.50-Feb05/08,ICD14.00,OS425B14,IMU6,PGPS13,SGPS0": 96
+      }
+    },
+    {
+      "date": "2015-10-29",
+      "filename": "ILVIS0_applanix_57324_610_LVIS_38614965.013",
+      "frame_count": 126019,
+      "frame_counts": {
+        "$GRP:1": 23791,
+        "$GRP:10001": 3701,
+        "$GRP:101": 475,
+        "$GRP:2": 476,
+        "$GRP:20101": 476,
+        "$GRP:20102": 475,
+        "$GRP:4": 95163,
+        "$GRP:5": 119,
+        "$GRP:99": 95,
+        "$MSG:1": 48,
+        "$MSG:101": 48,
+        "$MSG:102": 48,
+        "$MSG:103": 48,
+        "$MSG:104": 96,
+        "$MSG:106": 48,
+        "$MSG:107": 48,
+        "$MSG:11": 48,
+        "$MSG:110": 48,
+        "$MSG:13": 48,
+        "$MSG:16": 48,
+        "$MSG:17": 48,
+        "$MSG:18": 48,
+        "$MSG:2": 48,
+        "$MSG:20001": 48,
+        "$MSG:20101": 48,
+        "$MSG:20102": 48,
+        "$MSG:20203": 48,
+        "$MSG:20205": 48,
+        "$MSG:20216": 48,
+        "$MSG:3": 48,
+        "$MSG:4": 48,
+        "$MSG:5": 48,
+        "$MSG:6": 48,
+        "$MSG:7": 48
+      },
+      "geometry": {
+        "context_coverage_fraction": 1.0,
+        "context_samples": 23789,
+        "earth_model_blockers": [
+          "Group-4 onboard Earth-rate/bias corrections and mounting/latency unresolved",
+          "Independent attitude/motion reconstruction and nuisance-projected shape information not established",
+          "Permanent aircraft mount has no participant reversal controls"
+        ],
+        "earth_model_eligible": false,
+        "policy": {
+          "maneuver_buffer_s": 10,
+          "maximum_context_gap_s": 2,
+          "maximum_course_rate_deg_s": 0.05,
+          "maximum_roll_deg": 5,
+          "maximum_vertical_speed_mps": 1.5,
+          "minimum_context_coverage_for_discard": 0.95,
+          "minimum_speed_mps": 50,
+          "minimum_window_s": 60,
+          "version": "ilvis0-level-v2"
+        },
+        "qualifying_context_samples": 23762,
+        "selection_basis": "GPS synchronization and fused navigation motion only; no gyro/model residual selection",
+        "state": "retain",
+        "valid_context_samples": 23789,
+        "windows": [
+          {
+            "duration_s": 354.3081243777415,
+            "end_s": 392619.5317282688,
+            "start_s": 392265.22360389103
+          }
+        ]
+      },
+      "gps": {
+        "bytes": 2451557,
+        "dates": {
+          "2015-10-29": 475
+        },
+        "discarded_fragment_bytes": 2332332,
+        "invalid_checksums": 0,
+        "sentence_counts": {
+          "GPGGA": 475,
+          "GPRMC": 475,
+          "GPVTG": 475,
+          "GPZDA": 475
+        },
+        "trailing_fragment_hex": ""
+      },
+      "imu": {
+        "count": 95163,
+        "dt_max_s": 0.005006056395359337,
+        "dt_median_s": 0.0050001,
+        "dt_min_s": 0.004994201939553022,
+        "duration_s": 475.8203361595515,
+        "effective_rate_hz": 199.9960000799984,
+        "first_time_s": 392255.2036033765,
+        "flags": {
+          "first_sample": 1,
+          "physical_interpretation_not_validated": 95163
+        },
+        "last_time_s": 392731.02393953607,
+        "rate_codes": {
+          "2": 95163
+        },
+        "status": {
+          "0:0": 95163
+        },
+        "types": {
+          "21": 95163
+        }
+      },
+      "source_bytes": 13077760,
+      "source_sha256": "6bb4767c8ba1d9ddb88e8248be3389fd44164c800af717de99df0e156d4d9fc1",
+      "state": "retained",
+      "task_id": "2cde8478531840037384",
+      "validation": {
+        "accepted": false,
+        "decoder_sha256": "1440b76d4785cfecbf3ecff3cae0c83457ccd938fd9dde1e7eee3325dc105798",
+        "engineering_limits": {
+          "maximum_scale_relative_error": 0.001,
+          "min_correlation": 0.9999
+        },
+        "interpretation": "six little-endian signed int32: dv XYZ, dtheta XYZ",
+        "inventory": {
+          "checksum_failures": 0,
+          "frame_count": 126019,
+          "frame_counts": {
+            "$GRP:1": 23791,
+            "$GRP:10001": 3701,
+            "$GRP:101": 475,
+            "$GRP:2": 476,
+            "$GRP:20101": 476,
+            "$GRP:20102": 475,
+            "$GRP:4": 95163,
+            "$GRP:5": 119,
+            "$GRP:99": 95,
+            "$MSG:1": 48,
+            "$MSG:101": 48,
+            "$MSG:102": 48,
+            "$MSG:103": 48,
+            "$MSG:104": 96,
+            "$MSG:106": 48,
+            "$MSG:107": 48,
+            "$MSG:11": 48,
+            "$MSG:110": 48,
+            "$MSG:13": 48,
+            "$MSG:16": 48,
+            "$MSG:17": 48,
+            "$MSG:18": 48,
+            "$MSG:2": 48,
+            "$MSG:20001": 48,
+            "$MSG:20101": 48,
+            "$MSG:20102": 48,
+            "$MSG:20203": 48,
+            "$MSG:20205": 48,
+            "$MSG:20216": 48,
+            "$MSG:3": 48,
+            "$MSG:4": 48,
+            "$MSG:5": 48,
+            "$MSG:6": 48,
+            "$MSG:7": 48
+          },
+          "group4_sizes": {
+            "68": 95163
+          },
+          "imu_types": {
+            "21": 95163
+          },
+          "rate_codes": {
+            "2": 95163
+          },
+          "time_types": {
+            "2": 95163
+          },
+          "unframed_bytes": 0,
+          "versions": {
+            "AV-610,VER5,S/N3861,HW4.0-7,SW05.00-Dec16/09,ICD17.00,OS425B142,IMU21,PGPS16,SGPS0": 95
+          }
+        },
+        "manufacturer_scale_table_found": false,
+        "matched_total": 0,
+        "numpy": "2.5.3",
+        "parser_sha256": "466866ea3d93600f698a76665b0269b1a5e2d35f067043edaf656d7c55a6dad4",
+        "processing": {
+          "automatic_zeroing": "unknown",
+          "bias_correction": "unknown; nonzero fused-reference offsets observed",
+          "coning_correction": "unknown",
+          "earth_rate_compensation": "unknown; must resolve before independent Earth inference",
+          "filtering": "unknown",
+          "latency": "time-tag matching measured; physical latency unknown",
+          "lever_arm_compensation": "Group-1 reference lever arm documented; Group-4 unknown",
+          "mounting_axes": "empirical agreement with Group-1 aircraft axes, exact mounting unknown",
+          "scale_factor_correction": "unknown",
+          "sculling_correction": "unknown",
+          "sensor_calibration": "unknown"
+        },
+        "python": "3.14.7",
+        "reason": "fewer than 60 matched usable samples",
+        "retained_validation_samples": 0,
+        "source_bytes": 13077760,
+        "source_file": "ILVIS0_applanix_57324_610_LVIS_38614965.013",
+        "source_sha256": "6bb4767c8ba1d9ddb88e8248be3389fd44164c800af717de99df0e156d4d9fc1",
+        "time_matching": "nearest Group-4 time1 within 2.6 ms; no interpolation",
+        "validation_reference": "Group-1 fused navigation, not independent science",
+        "validation_version": "ilvis0-increments-v1",
+        "versions": {
+          "AV-610,VER5,S/N3861,HW4.0-7,SW05.00-Dec16/09,ICD17.00,OS425B142,IMU21,PGPS16,SGPS0": 95
+        }
+      },
+      "versions": {
+        "AV-610,VER5,S/N3861,HW4.0-7,SW05.00-Dec16/09,ICD17.00,OS425B142,IMU21,PGPS16,SGPS0": 95
+      }
+    },
+    {
+      "date": "2017-09-20",
+      "filename": "ILVIS0_58016_B200T_N44U_imu_610p_4965_610_776349650920_104832.013",
+      "frame_count": 154514,
+      "frame_counts": {
+        "$GRP:1": 6729,
+        "$GRP:10": 673,
+        "$GRP:10001": 2262,
+        "$GRP:2": 673,
+        "$GRP:222": 6729,
+        "$GRP:4": 134564,
+        "$GRP:5": 134,
+        "$GRP:99": 673,
+        "$MSG:20": 67,
+        "$MSG:20200": 67,
+        "$MSG:205": 67,
+        "$MSG:21": 67,
+        "$MSG:210": 67,
+        "$MSG:211": 67,
+        "$MSG:219": 67,
+        "$MSG:22": 67,
+        "$MSG:223": 67,
+        "$MSG:23": 67,
+        "$MSG:24": 67,
+        "$MSG:30": 67,
+        "$MSG:32": 67,
+        "$MSG:33": 67,
+        "$MSG:34": 67,
+        "$MSG:35": 67,
+        "$MSG:36": 67,
+        "$MSG:37": 67,
+        "$MSG:38": 67,
+        "$MSG:39": 67,
+        "$MSG:41": 67,
+        "$MSG:50": 67,
+        "$MSG:51": 67,
+        "$MSG:52": 67,
+        "$MSG:53": 67,
+        "$MSG:56": 67,
+        "$MSG:61": 67,
+        "$MSG:62": 67,
+        "$MSG:91": 67,
+        "$MSG:92": 67,
+        "$MSG:93": 67
+      },
+      "geometry": {
+        "context_coverage_fraction": 0.0,
+        "context_samples": 6727,
+        "earth_model_blockers": [
+          "Group-4 onboard Earth-rate/bias corrections and mounting/latency unresolved",
+          "Independent attitude/motion reconstruction and nuisance-projected shape information not established",
+          "Permanent aircraft mount has no participant reversal controls"
+        ],
+        "earth_model_eligible": false,
+        "policy": {
+          "maneuver_buffer_s": 10,
+          "maximum_context_gap_s": 2,
+          "maximum_course_rate_deg_s": 0.05,
+          "maximum_roll_deg": 5,
+          "maximum_vertical_speed_mps": 1.5,
+          "minimum_context_coverage_for_discard": 0.95,
+          "minimum_speed_mps": 50,
+          "minimum_window_s": 60,
+          "version": "ilvis0-level-v2"
+        },
+        "qualifying_context_samples": 0,
+        "selection_basis": "GPS synchronization and fused navigation motion only; no gyro/model residual selection",
+        "state": "unresolved",
+        "valid_context_samples": 0,
+        "windows": []
+      },
+      "gps": {
+        "bytes": 1461416,
+        "dates": {
+          "2017-09-20": 673
+        },
+        "discarded_fragment_bytes": 1349437,
+        "invalid_checksums": 0,
+        "sentence_counts": {
+          "GPGGA": 673,
+          "GPVTG": 673,
+          "GPZDA": 673
+        },
+        "trailing_fragment_hex": ""
+      },
+      "imu": {
+        "count": 134564,
+        "dt_max_s": 0.005004997132346034,
+        "dt_median_s": 0.005,
+        "dt_min_s": 0.0049949970562011,
+        "duration_s": 672.8273761006421,
+        "effective_rate_hz": 200.0,
+        "first_time_s": 306889.2190038691,
+        "flags": {
+          "first_sample": 1,
+          "physical_interpretation_not_validated": 134564
+        },
+        "last_time_s": 307562.04637996975,
+        "rate_codes": {
+          "2": 134564
+        },
+        "status": {
+          "0:0": 134564
+        },
+        "types": {
+          "21": 134564
+        }
+      },
+      "source_bytes": 13082584,
+      "source_sha256": "212ef9d31ff4f3b6f51021bc328260b912fa8d81f26e85e89a13942f6fbccf97",
+      "state": "unresolved",
+      "task_id": "49104233131a7d15a958",
+      "validation": {
+        "accepted": false,
+        "decoder_sha256": "1440b76d4785cfecbf3ecff3cae0c83457ccd938fd9dde1e7eee3325dc105798",
+        "engineering_limits": {
+          "maximum_scale_relative_error": 0.001,
+          "min_correlation": 0.9999
+        },
+        "interpretation": "six little-endian signed int32: dv XYZ, dtheta XYZ",
+        "inventory": {
+          "checksum_failures": 0,
+          "frame_count": 154514,
+          "frame_counts": {
+            "$GRP:1": 6729,
+            "$GRP:10": 673,
+            "$GRP:10001": 2262,
+            "$GRP:2": 673,
+            "$GRP:222": 6729,
+            "$GRP:4": 134564,
+            "$GRP:5": 134,
+            "$GRP:99": 673,
+            "$MSG:20": 67,
+            "$MSG:20200": 67,
+            "$MSG:205": 67,
+            "$MSG:21": 67,
+            "$MSG:210": 67,
+            "$MSG:211": 67,
+            "$MSG:219": 67,
+            "$MSG:22": 67,
+            "$MSG:223": 67,
+            "$MSG:23": 67,
+            "$MSG:24": 67,
+            "$MSG:30": 67,
+            "$MSG:32": 67,
+            "$MSG:33": 67,
+            "$MSG:34": 67,
+            "$MSG:35": 67,
+            "$MSG:36": 67,
+            "$MSG:37": 67,
+            "$MSG:38": 67,
+            "$MSG:39": 67,
+            "$MSG:41": 67,
+            "$MSG:50": 67,
+            "$MSG:51": 67,
+            "$MSG:52": 67,
+            "$MSG:53": 67,
+            "$MSG:56": 67,
+            "$MSG:61": 67,
+            "$MSG:62": 67,
+            "$MSG:91": 67,
+            "$MSG:92": 67,
+            "$MSG:93": 67
+          },
+          "group4_sizes": {
+            "68": 134564
+          },
+          "imu_types": {
+            "21": 134564
+          },
+          "rate_codes": {
+            "2": 134564
+          },
+          "time_types": {
+            "1": 134564
+          },
+          "unframed_bytes": 0,
+          "versions": {
+            "AV-610,VER6,S/N7763,HW1.6-12,SW08.53-Apr20/16,ICD07.41,OS6.4.1,IMU21,PGPS17,SGPS0,DMI0,GIM1,ZVI0": 673
+          }
+        },
+        "manufacturer_scale_table_found": false,
+        "matched_total": 0,
+        "numpy": "2.5.3",
+        "parser_sha256": "466866ea3d93600f698a76665b0269b1a5e2d35f067043edaf656d7c55a6dad4",
+        "processing": {
+          "automatic_zeroing": "unknown",
+          "bias_correction": "unknown; nonzero fused-reference offsets observed",
+          "coning_correction": "unknown",
+          "earth_rate_compensation": "unknown; must resolve before independent Earth inference",
+          "filtering": "unknown",
+          "latency": "time-tag matching measured; physical latency unknown",
+          "lever_arm_compensation": "Group-1 reference lever arm documented; Group-4 unknown",
+          "mounting_axes": "empirical agreement with Group-1 aircraft axes, exact mounting unknown",
+          "scale_factor_correction": "unknown",
+          "sculling_correction": "unknown",
+          "sensor_calibration": "unknown"
+        },
+        "python": "3.14.7",
+        "reason": "fewer than 60 matched usable samples",
+        "retained_validation_samples": 0,
+        "source_bytes": 13082584,
+        "source_file": "ILVIS0_58016_B200T_N44U_imu_610p_4965_610_776349650920_104832.013",
+        "source_sha256": "212ef9d31ff4f3b6f51021bc328260b912fa8d81f26e85e89a13942f6fbccf97",
+        "time_matching": "nearest Group-4 time1 within 2.6 ms; no interpolation",
+        "validation_reference": "Group-1 fused navigation, not independent science",
+        "validation_version": "ilvis0-increments-v1",
+        "versions": {
+          "AV-610,VER6,S/N7763,HW1.6-12,SW08.53-Apr20/16,ICD07.41,OS6.4.1,IMU21,PGPS17,SGPS0,DMI0,GIM1,ZVI0": 673
+        }
+      },
+      "versions": {
+        "AV-610,VER6,S/N7763,HW1.6-12,SW08.53-Apr20/16,ICD07.41,OS6.4.1,IMU21,PGPS17,SGPS0,DMI0,GIM1,ZVI0": 673
+      }
+    }
+  ],
+  "known_imU8_scales_supported_on_two_dates": true,
+  "level_window_total_s": 626.3126697050175,
+  "source_manifest": {
+    "acquisition_sha256": "81a6876cf7ad9ea03993a5e1cd114ade3b66d28808fc46cbd0eae2d1cd4fb9bc",
+    "catalog_sha256": "eaa27bd11c27604d8cff511c036b965361044aca05829cb7ec7b70ce1fdfd709",
+    "decoder_sha256": "1440b76d4785cfecbf3ecff3cae0c83457ccd938fd9dde1e7eee3325dc105798",
+    "numerical_threads": {
+      "MKL_NUM_THREADS": "2",
+      "OMP_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    },
+    "numpy": "2.5.3",
+    "parser_sha256": "466866ea3d93600f698a76665b0269b1a5e2d35f067043edaf656d7c55a6dad4",
+    "python": "3.14.7",
+    "screen_policy": {
+      "maneuver_buffer_s": 10,
+      "maximum_context_gap_s": 2,
+      "maximum_course_rate_deg_s": 0.05,
+      "maximum_roll_deg": 5,
+      "maximum_vertical_speed_mps": 1.5,
+      "minimum_context_coverage_for_discard": 0.95,
+      "minimum_speed_mps": 50,
+      "minimum_window_s": 60,
+      "version": "ilvis0-level-v2"
+    },
+    "validation_version": "ilvis0-increments-v1"
+  },
+  "states": {
+    "discarded_no_level": 1,
+    "retained": 2,
+    "unresolved": 3
+  }
+}

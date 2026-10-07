@@ -148,6 +148,12 @@ significance. No new flights, bootstrap or calibrated decisions were produced.
 Actual GPS and IMU error persistence, reference and calibration uncertainty still
 need measurement before choosing a defensible covariance domain and validating decisions.
 
+The next [measurement diagnostic](INPUT_PERSISTENCE.md) is ready for explicit still
+recordings. Nine controlled tests verify second coverage, saturation/gap handling,
+cross-channel covariance, lag/block arithmetic and missing GPS/longitude-wrap behavior.
+It retains mean-only and detrended views; it selects no noise model or scientific
+threshold. No real measurement has run, and no new simulation campaign is included.
+
 Later work asked whether the flight route and IMU-turn schedule actually leave enough
 separating information. A 300-case study found no geometry that passed every required comparison
 under both ways of allowing for wind. The subsequent audit found a numerical dependence on

@@ -1,0 +1,39 @@
+{
+  "associated_receiver_track_sentences": 29994,
+  "classifications": {
+    "additional_roll_or_climb_fragmentation": 3,
+    "course_failure_persists_or_receiver_support_insufficient": 4,
+    "course_rate_resolution_sensitive": 53,
+    "navigation_receiver_disagreement": 1
+  },
+  "corpus_path": "data/ilvis0-motion-61-20261007",
+  "course_excursion_events": 43721,
+  "course_excursions_under_1s": 43055,
+  "diagnostic_only": true,
+  "earth_model_fit_attempts": 0,
+  "errors": 0,
+  "files": 61,
+  "files_reaching_60s_if_course_criterion_omitted": 58,
+  "files_with_all_course_excursions_under_1s": 43,
+  "files_with_associated_receiver_track": 61,
+  "interpretation": "Changing temporal resolution can suppress real corrections or noise; these comparisons do not create accepted science windows. Receiver ground track is not aircraft heading or independent orientation evidence.",
+  "native_span_difference_from_prior_max_abs_s": 0.0,
+  "navigation_recovery_counts": {
+    "12": 53,
+    "2": 39,
+    "6": 46
+  },
+  "new_tests_passed": 8,
+  "originals_deleted": 0,
+  "receiver_course_recovery_counts": {
+    "12": 57,
+    "2": 45,
+    "6": 49
+  },
+  "scientific_eligibility_changes": 0,
+  "state": "complete",
+  "tests_passed": 15,
+  "total_stored_originals": 232,
+  "version": "ilvis0-motion-diagnosis-v1",
+  "worker_pid": 3919310
+}

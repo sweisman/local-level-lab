@@ -1,0 +1,27 @@
+{
+  "earth_model_fit_attempts": 0,
+  "files": 268,
+  "files_with_any_full_navigation": 133,
+  "newly_retained": 62,
+  "original_corpus_modified": false,
+  "qualifying_seconds": 33387.17334532333,
+  "state": "complete",
+  "states": {
+    "no_level_window": 35,
+    "retain": 80,
+    "unresolved": 153
+  },
+  "timing_accepted": 268,
+  "version": "ilvis0-context-followup-v1",
+  "window_variability_files": 4,
+  "qualifying_windows": 108,
+  "physical_supported_usable_seconds": 1945.0954905364197,
+  "minimum_observed_window_speed_mps": 139.5208568376391,
+  "maximum_observed_window_speed_mps": 256.36562723864677,
+  "minimum_predicted_horizontal_transport_deg_h": 4.496653069056002,
+  "maximum_predicted_horizontal_transport_deg_h": 8.262113005175193,
+  "configurations_tested": 11,
+  "configurations_reproduced_on_two_dates": 2,
+  "new_no_level_originals_deleted": false,
+  "raw_observation_science_independence": "unresolved"
+}

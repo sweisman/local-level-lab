@@ -9,7 +9,8 @@ separate files. The documented coverage is April 2009 through September 2017.
 
 These are promising data for testing model discrimination with a real airborne IMU. That is a
 proposed use, not a result: the supplied IPUTI0 sample contains navigation outputs, and a
-subsequent ILVIS0 sample contains time-tagged IMU payloads whose physical decoding is pending.
+subsequent ILVIS0 sample contains time-tagged IMU increments whose physical decoding was
+independently cross-checked on 7 October 2026. Applied corrections remain unresolved.
 The instrument differs from the WT901, so a successful test would not establish WT901 accuracy,
 drift or automatic-zero behavior.
 
@@ -34,21 +35,29 @@ deliberate reversals. Useful geometry cannot be assumed from the archive's scien
 This would be a separate development study, with no reuse of synthetic calibration thresholds.
 
 The [data access page](https://nsidc.org/data/ilvis0/versions/1) says downloads require a free NASA
-Earthdata account. No credentials have been inspected or requested, and no bulk download is
-planned. Obtain a small documented sample and its format specification before budgeting
-processing or a larger empirical study. Cite the dataset DOI and the exact subset used.
+Earthdata account. The `.013` acquisition workflow now catalogs the archive and checks a
+small cross-date batch before full acquisition. Authentication is confined to Earthdata; no
+credentials are recorded in evidence. Cite the dataset DOI and the exact subset used.
 
 ## Catalog inspection and a second source
 
 ### Time-tagged ILVIS0 sample now available
+
+This is professional airborne survey hardware: the reference identifies a 200 Hz POS AV
+510/IMU8, likely an LN200ROM-family fiber-optic unit. Exact sensor identity is inferred, and
+published integrated-system performance must not be treated as measured raw-gyro accuracy.
+The [instrument summary](../ILVIS0.md#instrument-quality) gives the sources and qualifications.
 
 The supplied `ILVIS0_gyro_54935_atm_applanix_14Apr09.013` is a 13,086,748-byte Applanix log.
 It contains 132,444 time-tagged IMU packets at approximately 200 Hz over 662.226 seconds.
 All 143,471 outer packet checksums pass, with no unframed bytes or IMU gaps above 7.5 ms.
 The log identifies AV-510 VER5, firmware04.60, ICD15.00 and IMU8. The compatible public
 2014 V6 documentation confirms the container, but does not define the 24-byte IMU payload's
-physical scales and axes. Exact payload bytes remain opaque; no units or rate/increment
-interpretation have been invented.
+physical scales and axes. The initial inspection preserved the payload as opaque. Subsequent
+empirical validation identifies six little-endian signed int32 increments: velocity X/Y/Z
+followed by angle X/Y/Z, with scales `2^-14 m/s/count` and `2^-18 rad/count`. All axes/signs
+and independent scale fits pass the engineering checks, including chronological holdouts.
+This is empirical support, not an authoritative manufacturer scale table.
 
 The same log contains 662 fused navigation records and a primary receiver stream with 660
 valid GGA positions, 660 VTG sentences and 660 ZDA date/time sentences. Reassembly recovers
@@ -60,10 +69,15 @@ for initial inspection.
 
 The [preserved sample notes](airborne-sample-ilvis0/README.md) describe the compressed original,
 timed opaque IMU table, navigation table, receiver stream and provenance. Two focused checks
-pass. No physical gyro decoder, main-pipeline import or Earth-model decision exists.
+passed for the original inspector. The separate streaming decoder and validation workflow
+now produce physical increments while preserving the six original integers. The original
+artifacts and inspector remain historical evidence. No main scientific-pipeline import or
+Earth-model decision exists. The reference has no qualifying 60-second level-flight window
+under the geometry-only acquisition rule; its new bulk derivative files were discarded after
+recording the result. The supplied original and historical corpus were not deleted.
 
-The next task is obtaining an IMU8 definition or an independent physical export with
-documented units, axes and processing. A precise documentation request is:
+The remaining documentation task concerns processing, mounting and timing, rather than a
+prerequisite to recovering the increments. The earlier unsent request is retained below:
 
 > For ILVIS0 file ILVIS0_gyro_54935_atm_applanix_14Apr09.013, recorded by AV-510 VER5,
 > firmware 04.60/ICD15.00/IMU8, what is the 24-byte Group 4 payload layout? Please identify
@@ -73,8 +87,15 @@ documented units, axes and processing. A precise documentation request is:
 > corrections are already applied? Is a documented export of independent gyro measurements
 > available?
 
-This is a saved draft; no message has been sent. Additional measurements are unnecessary
-until the format question is resolved.
+This is a saved draft; no message has been sent. Additional `.013` files are now useful for
+cross-file scale/layout checks and flight-window discovery. See the [acquisition guide](../ILVIS0.md).
+
+Subsequent work on six IMU6 logs found [recorded installation angles and a clock-related
+rate-conversion discrepancy](../ilvis0-installation-clock-20261007/README.md). The angle
+candidates explain the relative axis changes. A fixed 200 Hz period makes all six acceleration
+checks pass, while one gyro holdout narrowly fails. Legacy setting fields remain inferred,
+and the physical integration clock and onboard corrections are not independently established.
+These results refine the decoder investigation; they do not supply an Earth-model result.
 
 ### First supplied measurement sample
 
@@ -120,7 +141,7 @@ identifies a different collection, rather than another entry for ILVIS0:
 
 | Collection | Airborne source | What is confirmed |
 |---|---|---|
-| [ILVIS0](https://nsidc.org/data/ilvis0/versions/1) | LVIS support instruments, including Applanix IMUs | Raw IMU/GPS files exist; binary payload interpretation still needs confirmation. |
+| [ILVIS0](https://nsidc.org/data/ilvis0/versions/1) | LVIS support instruments, including Applanix IMUs | Two IMU8 configurations reproduced on two dates each; four candidate files provide about 32 minutes with supported units. Other configurations and onboard corrections remain unresolved. |
 | [IPUTI0](https://nsidc.org/data/iputi0/versions/1) | Systron Donner MMQ-G on a Basler BT-67 over Antarctica | Text readings include position, velocity, pitch, roll and true heading; raw gyro channels remain unconfirmed. |
 
 IPUTI0 covers 2009–2010. Its published download directory also redirected to Earthdata login;
@@ -166,4 +187,5 @@ inspected: these are binary status/navigation packets, with no raw gyro channels
 documentation for a separate raw-sensor stream if one exists; additional files with these
 same message layouts would supply more aircraft-motion data rather than the missing gyro
 measurement. The supplied ILVIS0 sample now establishes a timed IMU stream; its physical
-payload definition remains the next requirement.
+processing and cross-configuration interpretation remain open, while the tested IMU8 physical
+increment definition is now empirically supported.
