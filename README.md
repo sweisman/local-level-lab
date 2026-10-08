@@ -38,6 +38,17 @@ possible description of a flat Earth.
 
 ## Primary work: NASA airborne data
 
+These recordings supported NASA's Operation IceBridge lidar surveys of ice sheets,
+glaciers and sea ice. LVIS, the Land, Vegetation, and Ice Sensor, measures laser returns
+from the surface. GPS locates the aircraft and the IMU tracks its orientation so those
+returns can become accurately positioned elevation maps. See [NASA's LVIS description](https://lvis.gsfc.nasa.gov/Home/index.html).
+
+The raw recordings are source material underlying those finished survey products.
+Independent checks showing that the finished maps are reliable also support confidence
+in the source measurements together with their calibration and processing. Using the
+same material to test Earth models still requires understanding its gyro corrections,
+timing and uncertainty for this different purpose.
+
 The ILVIS0 archive contains Applanix IMU recordings with embedded GPS. The reference
 instrument is an airborne survey-grade POS AV 510, far more capable than a phone IMU.
 Other configurations in the archive are decoded and assessed separately. Published
