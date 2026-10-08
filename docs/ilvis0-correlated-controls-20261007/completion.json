@@ -1,0 +1,17 @@
+{
+  "control_cases": 5,
+  "controls": 65,
+  "covariance_assumptions": 13,
+  "covariance_calibrated": false,
+  "empirical_earth_fit_attempts": 0,
+  "fit_residual_evaluations": 1309,
+  "manifest_sha256": "d131a3e8780695692cf458b837ec621312bc86427fb90431a86a5ee915bd42ba",
+  "noiseless_recovery_failures": 0,
+  "originals_deleted": 0,
+  "precision_prediction_evaluations": 247,
+  "scientific_eligibility_changes": 0,
+  "state": "complete",
+  "structural_failures": 0,
+  "summary_sha256": "dc68e545a9a874b39996b606c7cf8c2d0045fe392169a388cf312bb0cfa22931",
+  "version": "ilvis0-correlated-motion-controls-v1"
+}

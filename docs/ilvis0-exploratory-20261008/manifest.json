@@ -1,0 +1,117 @@
+{
+  "authorization": "Proceed despite waiting for records; assumptions/constraints documented; six files first",
+  "build": {
+    "binary_sha256": "f56bb8b398ac71f4e520ae249bfe2606988eb3ff850ca00fc2322b2b9dc00595",
+    "compiler": "cc (GCC) 16.2.1 20260810",
+    "flags": [
+      "-O2",
+      "-std=c99",
+      "-D_DEFAULT_SOURCE",
+      "-fPIC",
+      "-shared"
+    ],
+    "source_sha256": "5efb8c04a9a72822374a23df9b3e8d43c5bfa0e37c7a39a1326195e815aae49e"
+  },
+  "clock": "nominal_200Hz; header-clock fixed-parameter sensitivity, not reprofiled",
+  "disc_radius_m": 6371000.0,
+  "environment": {
+    "numpy": "2.5.3",
+    "python": "3.14.7",
+    "scipy": "1.18.1",
+    "thread_settings": {
+      "MKL_NUM_THREADS": "2",
+      "OMP_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    }
+  },
+  "fits_per_file": [
+    "three models, common Earth-removal fraction profiled in [0,1]",
+    "rotating globe, Earth-removal fraction fixed zero"
+  ],
+  "gps_covariance_assumptions": [
+    "h1_v3_tau60",
+    "h10_v30_tau300"
+  ],
+  "gravity_mps2": 9.81,
+  "group1_observations_used": false,
+  "inputs": {
+    "/site/repo/local-level-lab/data/ilvis0-forward-20261007/46f49500c8df79c821b2-factors.json.gz": "32b3186b1be349b7df5ad6b68d4c46c40a2bbd1589f7d69e588ef575ebea19f2",
+    "/site/repo/local-level-lab/data/ilvis0-forward-20261007/46f49500c8df79c821b2.json": "61817fa385cbada7d853afb0aa3857d8b7b40bd9cda82601ef0d444cc1482947",
+    "/site/repo/local-level-lab/data/ilvis0-forward-20261007/594999d9bb7345ad87d3-factors.json.gz": "f354a02c26eaaf0ff2acb74352b4bf6b7e8e131737886565247426aefacf06dc",
+    "/site/repo/local-level-lab/data/ilvis0-forward-20261007/594999d9bb7345ad87d3.json": "003c63654b85ca792f16a1f63f68999b73fdf3b8aa3b93fa21c58c6155c38cc3",
+    "/site/repo/local-level-lab/data/ilvis0-forward-20261007/93f52157cbd20bdf8c1b-factors.json.gz": "203dd8f3c79a9193c7ade4203898e6db361a8a85d470bea5f79556104bd27f82",
+    "/site/repo/local-level-lab/data/ilvis0-forward-20261007/93f52157cbd20bdf8c1b.json": "d0da22b7918271f0d2ce441a03404a5cda6050bcb4bd1e28194dd79ce4090788",
+    "/site/repo/local-level-lab/data/ilvis0-forward-20261007/ae7127a8b48f61b051a8-factors.json.gz": "ec89311c770f1e88d8d9e2e6538184a311483187b95e999d95c2ad79bd46fc89",
+    "/site/repo/local-level-lab/data/ilvis0-forward-20261007/ae7127a8b48f61b051a8.json": "0bde4b21a082d82418a0f758147c118f9b4c04753d41965ae266743fdba1da7e",
+    "/site/repo/local-level-lab/data/ilvis0-forward-20261007/f166954fecd1d93111ee-factors.json.gz": "d8e3bfb6bb777c13cbcebe97dc65d18088eb4dd6365bc1c6f8af44e185d60f86",
+    "/site/repo/local-level-lab/data/ilvis0-forward-20261007/f166954fecd1d93111ee.json": "5b4b65f9c4eed4b75aa1441932ed9aa2be2024baf76835f735eef36f44713007",
+    "/site/repo/local-level-lab/data/ilvis0-forward-20261007/f5cae9d0d107ecad9d45-factors.json.gz": "399570f52f2c77745fae6b40f0dec2fcf2435f875d913276557e24ba01f4f1eb",
+    "/site/repo/local-level-lab/data/ilvis0-forward-20261007/f5cae9d0d107ecad9d45.json": "96e9f89efe9d90e7a759081f3338abf17205ead7cceae0712304cfcc70f68a91",
+    "/site/repo/local-level-lab/data/ilvis0-forward-20261007/manifest.json": "28384402d75339aca4000a92fe71aacc049e978de462c8d9184f4139f29b93ba",
+    "/site/repo/local-level-lab/data/ilvis0-forward-20261007/summary.json": "66104f4e55b51911ffdb0b12a00fcc2036ec20d0df87ce887653c7f78dd32116",
+    "/site/repo/local-level-lab/data/ilvis0-observation-20261007/46f49500c8df79c821b2.json": "6514eabacb9c7b391fe56f75f1ac37beeee5f2dccd04efcfd3cb93520eff8edc",
+    "/site/repo/local-level-lab/data/ilvis0-observation-20261007/594999d9bb7345ad87d3.json": "45aa1629646581b76ace29d925fd7d7c956f7bc332bcb81394f9926acd0dd8a3",
+    "/site/repo/local-level-lab/data/ilvis0-observation-20261007/93f52157cbd20bdf8c1b.json": "70f15a4e8f2b4edc1fd773cb0e5b0e7c05ffa4895abe12121c0de27171762a5d",
+    "/site/repo/local-level-lab/data/ilvis0-observation-20261007/ae7127a8b48f61b051a8.json": "08bbd6ac3c2a11f631cd4cbee514cb420277d4d5e44dc7f73497a641b50dc568",
+    "/site/repo/local-level-lab/data/ilvis0-observation-20261007/f166954fecd1d93111ee.json": "146d4e74a8054a105898c13312896ccd45b8b328899fff732c1984aeda5568d0",
+    "/site/repo/local-level-lab/data/ilvis0-observation-20261007/f5cae9d0d107ecad9d45.json": "27971a25c97132bcad008e93e24b720b7da92c4159dfc3d695567cda44b753bc",
+    "/site/repo/local-level-lab/data/ilvis0-ready/records.jsonl": "9b9fb403c942bb0af5cf83121a157b68c6e0aaec430ca11ab8c2d60121c2a8bc"
+  },
+  "limits": {
+    "accel_bias_x": 0.25,
+    "accel_bias_y": 0.25,
+    "accel_bias_z": 0.25,
+    "accel_gain_x": 0.15,
+    "accel_gain_y": 0.15,
+    "accel_gain_z": 0.15,
+    "attitude_x": 0.17453292519943295,
+    "attitude_y": 0.17453292519943295,
+    "attitude_z": 3.141592653589793,
+    "gravity_delta": 0.05,
+    "gyro_bias_x": 9.69627362219072e-05,
+    "gyro_bias_y": 9.69627362219072e-05,
+    "gyro_bias_z": 9.69627362219072e-05,
+    "gyro_gain_x": 0.02,
+    "gyro_gain_y": 0.02,
+    "gyro_gain_z": 0.02,
+    "lever_x": 10.0,
+    "lever_y": 10.0,
+    "lever_z": 10.0,
+    "position_x": 100.0,
+    "position_y": 100.0,
+    "position_z": 100.0,
+    "time_offset": 0.15,
+    "velocity_x": 20.0,
+    "velocity_y": 20.0,
+    "velocity_z": 20.0
+  },
+  "maximum_evaluations_per_start": 200,
+  "maximum_starts": 24,
+  "onboard_transport_subtraction": "not modeled in this finite first pass",
+  "scientific_eligible": false,
+  "sources": {
+    "/site/repo/local-level-lab/analysis/lll/applanix.py": "466866ea3d93600f698a76665b0269b1a5e2d35f067043edaf656d7c55a6dad4",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0.py": "692b7c41c6e7b0fb0a7fb7fa3c2671cac754b4eae87681092a6448df3324f76d",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_estimator.py": "6393015ed2d15ef5ebf1cba10f823addda2b2821e9dd46f279c50ebb874cdcdd",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_exploratory.py": "3f7499f888e02b59fbb694078353d5e241434b25ac527bf41861fc2f93bbf3b8",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_followup.py": "d3e238cab5dff807c23a51d0d189e19a21d81eef482711700f9f0a5c0dc9fb8e",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_forward.py": "37e91a623aafd7a7951be995d1b42d8f9144b8a63466a90088d2adcf8a842fad",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_gps_sensitivity.py": "fd6779d92c8e4e995974f38fc44b1c915cd10820e89757439c29592a62ee734e",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_installation.py": "aa813292e7781ca808d9da9971188233621c022586a2a89797c49d36a59a0bae",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_native.c": "5efb8c04a9a72822374a23df9b3e8d43c5bfa0e37c7a39a1326195e815aae49e",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_observation.py": "bae3757c24314d04866a4941eac03eaa3badebade83855b988e545b7b65abcab",
+    "/site/repo/local-level-lab/analysis/lll/models.py": "119e91e3f852551d3fd25272c0c376b0199d0762d3b06d01fe4367113fc15dc3",
+    "/site/repo/local-level-lab/analysis/lll/runtime.py": "062ee020ad13f8264bcb72c21a9a73e4fc6247bc755c80472f3781f0929edd73",
+    "/site/repo/local-level-lab/analysis/tests/ilvis0_exploratory_worker.py": "32aabdf5b3da5ca9030de5e18f6e4dfaab18a3a6b9be0d4bcbae630fde905add",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_exploratory.py": "8d5b3b4b9cb1043693cb075c278fefe03e27703f48e16962dd1ef90fa0078d07"
+  },
+  "tasks": [
+    "594999d9bb7345ad87d3",
+    "f5cae9d0d107ecad9d45",
+    "f166954fecd1d93111ee",
+    "46f49500c8df79c821b2",
+    "ae7127a8b48f61b051a8",
+    "93f52157cbd20bdf8c1b"
+  ],
+  "version": "ilvis0-conditional-recorded-fit-v1"
+}

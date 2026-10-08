@@ -1,0 +1,19 @@
+{
+  "analytic_trajectory_failures": 0,
+  "controls": 18,
+  "covariance_calibrated": false,
+  "covariance_monotonic_parameter_comparisons": 384,
+  "covariance_monotonicity_failures": 0,
+  "derivative_step_cases": 72,
+  "empirical_earth_fit_attempts": 0,
+  "information_step_instabilities": 0,
+  "manifest_sha256": "43865ec3310d8acd4bfbf07f4c0f3acb3aacfba76cdc91b1f00b176f4d304440",
+  "maximum_resolution_operator_change": 0.0005096358779663679,
+  "originals_deleted": 0,
+  "prediction_evaluations": 1170,
+  "scientific_eligibility_changes": 0,
+  "smallest_covariance_resolution_difference": -1.0741763779754187e-33,
+  "state": "complete",
+  "summary_sha256": "44eb796aed9bce858c291c05f59fc1af1879059e04824d95649c074311ac8c19",
+  "version": "ilvis0-information-stability-v1"
+}

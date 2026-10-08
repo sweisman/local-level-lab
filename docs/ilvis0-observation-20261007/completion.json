@@ -1,0 +1,31 @@
+{
+  "artifacts_sha256": {
+    "increments/46f49500c8df79c821b2-blocks.json.gz": "9c4b09c9bed2a2107ca8bf4227916e1a0f5aaac5b3e88b5c2b18dff0304f9124",
+    "increments/594999d9bb7345ad87d3-blocks.json.gz": "816082e945ef38a25789403f1a7c738f8a2d72b846b586bfb24d9661bc4165c9",
+    "increments/93f52157cbd20bdf8c1b-blocks.json.gz": "f2c45603ca5473f3d86fc516878f0aa05b1f7cae97646c925638805e8135b9ca",
+    "increments/ae7127a8b48f61b051a8-blocks.json.gz": "a169eb3b34bc9f4fd6c622d873f2e69b3c9c4fe653a87bac567e14dfba7c8bfa",
+    "increments/f166954fecd1d93111ee-blocks.json.gz": "ed04f12e52e677802c5df0d0de2f5337bcf58e8966aee3a9a022f1063b6efd91",
+    "increments/f5cae9d0d107ecad9d45-blocks.json.gz": "f96a67e0fff00e01ac3ebb9529ba895e9630f703497cce986d0855129030bfe7",
+    "inventory.csv": "5fb7bbcdfc843752d738a151d77859c43bd577ccb529febb8c0733234d17aee5",
+    "manifest.json": "b383fbbe933ae9adf70884472806f29af83650ddfd6a0b19633940c723fe1a6b",
+    "summary.json.gz": "71174499d9d892ae343643bd3a7d97731f99d41c62f33447924e5e15651ee824"
+  },
+  "complete_diagnostic_seconds": 2930,
+  "coordinate_supported_seconds": 2923,
+  "direct_imu_group10002": 0,
+  "documentation_reference": "https://asapdata.arc.nasa.gov/share/ASF_Applanix/POSv6_User_ICD.pdf",
+  "documentation_scope": "V6 Group4 time-tagged data suitable for POSPac; Group10002 explicitly direct IMU. No inference that absent direct-output packets prove correction state.",
+  "earth_model_fit_attempts": 0,
+  "errors": 0,
+  "files": 6,
+  "independent_processing_established": false,
+  "new_tests_passed": 9,
+  "originals_deleted": 0,
+  "originals_preserved": 232,
+  "receiver_stationary_like_seconds": 0,
+  "scientific_eligibility_changes": 0,
+  "state": "complete",
+  "tests_passed": 24,
+  "version": "ilvis0-archival-observation-v1",
+  "worker_pid": 4018436
+}

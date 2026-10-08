@@ -1,0 +1,12 @@
+{
+  "control_failures": 0,
+  "controls": 5,
+  "files": 6,
+  "manifest_sha256": "d26f38555f7fd10977eff0ebaecf8edd425f654d042658c781cf763352695187",
+  "observed_earth_fit_attempts": 0,
+  "originals_deleted": 0,
+  "scientific_eligibility_changes": 0,
+  "state": "complete",
+  "summary_sha256": "4f1b1ea9845e672301f5de0d6b1cf12afc7f749ea390888ff81dd3bf75096c3a",
+  "version": "ilvis0-bounded-motion-estimator-v1"
+}

@@ -1,0 +1,316 @@
+{
+  "additional_model_predictions": 0,
+  "additional_optimizer_starts": 0,
+  "focused_tests_passed": 5,
+  "inputs": {
+    "/site/repo/local-level-lab/data/ilvis0-corpus-modeling-v2-20261008/46f49500c8df79c821b2.json": "b6072f2ea7efcb6dadd995649eb6663c8462ba431dd57ed770b377b4b1659337",
+    "/site/repo/local-level-lab/data/ilvis0-corpus-modeling-v2-20261008/594999d9bb7345ad87d3.json": "31c17ea7bba27b9ee192fa3a48022042f0d529c1ad475796a7b9c689a6867c73",
+    "/site/repo/local-level-lab/data/ilvis0-corpus-modeling-v2-20261008/93f52157cbd20bdf8c1b.json": "c05cc402610165157edab9c52c8a05a46f6ff1473c56443723e834f1c2572efc",
+    "/site/repo/local-level-lab/data/ilvis0-corpus-modeling-v2-20261008/ae7127a8b48f61b051a8.json": "d9896fbda985a6d6c6fb249557d7488955a00bfdc1df07ba42aaba2bd4c19bd4",
+    "/site/repo/local-level-lab/data/ilvis0-corpus-modeling-v2-20261008/f166954fecd1d93111ee.json": "0ad5a99fbd7c573f97a79e2de4038901e2e3debd845aa0f62b8d80f7f2ae818e",
+    "/site/repo/local-level-lab/data/ilvis0-corpus-modeling-v2-20261008/f5cae9d0d107ecad9d45.json": "7cbaa95fdbedd8c577fc800623ba31e6a321f9b475d98036b244be5f87466ab1",
+    "/site/repo/local-level-lab/data/ilvis0-corpus-modeling-v2-20261008/manifest.json": "65c2567e53f3d3b25084704567798c8ac6ae97ecf2020b07618e5d4b2b18d7d2"
+  },
+  "predicted_scales": [
+    {
+      "accel_bound_to_centripetal_ratio": 81.26275510204081,
+      "centripetal_acceleration_mps2": 0.003076440119290535,
+      "gyro_bound_to_curvature_ratio": 4.412497089069791,
+      "horizontal_curvature_dph": 4.532580893830402,
+      "interpretation": "conditional spherical scale comparison, not a measured signal or complete globe/disc contrast",
+      "speed_mps": 140
+    },
+    {
+      "accel_bound_to_centripetal_ratio": 24.303436279296875,
+      "centripetal_acceleration_mps2": 0.010286611207031863,
+      "gyro_bound_to_curvature_ratio": 2.413084345585042,
+      "horizontal_curvature_dph": 8.28814792014702,
+      "interpretation": "conditional spherical scale comparison, not a measured signal or complete globe/disc contrast",
+      "speed_mps": 256
+    }
+  ],
+  "results": [
+    {
+      "conditional_globe_disc": {
+        "calibrated": false,
+        "conditional_disc_minus_globe_cost": null,
+        "globes": [
+          "sphere_rotating",
+          "sphere_still"
+        ],
+        "scientific_decision": "abstain",
+        "scope": "local conditional profile costs, not a global optimum or hypothesis test",
+        "unresolved_optimizations": [
+          "sphere_rotating",
+          "sphere_still",
+          "flat_still"
+        ],
+        "version": "ilvis0-globe-disc-refinement-v1"
+      },
+      "convergence": [
+        {
+          "converged": false,
+          "evaluations": 198,
+          "message": "bounded corpus evaluation limit",
+          "model": "sphere_rotating",
+          "solver_reported_success": false,
+          "stationarity": 0.02792419374821288
+        },
+        {
+          "converged": false,
+          "evaluations": 198,
+          "message": "bounded corpus evaluation limit",
+          "model": "sphere_still",
+          "solver_reported_success": false,
+          "stationarity": 0.08321652533559196
+        },
+        {
+          "converged": false,
+          "evaluations": 198,
+          "message": "bounded corpus evaluation limit",
+          "model": "flat_still",
+          "solver_reported_success": false,
+          "stationarity": 0.14477693526496893
+        }
+      ],
+      "filename": "ILVIS0_gyro_54935_lvis_applanix_POSAV.013",
+      "task": "594999d9bb7345ad87d3"
+    },
+    {
+      "conditional_globe_disc": {
+        "calibrated": false,
+        "conditional_disc_minus_globe_cost": null,
+        "globes": [
+          "sphere_rotating",
+          "sphere_still"
+        ],
+        "scientific_decision": "abstain",
+        "scope": "local conditional profile costs, not a global optimum or hypothesis test",
+        "unresolved_optimizations": [
+          "sphere_rotating",
+          "sphere_still",
+          "flat_still"
+        ],
+        "version": "ilvis0-globe-disc-refinement-v1"
+      },
+      "convergence": [
+        {
+          "converged": false,
+          "evaluations": 198,
+          "message": "bounded corpus evaluation limit",
+          "model": "sphere_rotating",
+          "solver_reported_success": false,
+          "stationarity": 0.17362920511696514
+        },
+        {
+          "converged": false,
+          "evaluations": 198,
+          "message": "bounded corpus evaluation limit",
+          "model": "sphere_still",
+          "solver_reported_success": false,
+          "stationarity": 0.011163661107672031
+        },
+        {
+          "converged": false,
+          "evaluations": 198,
+          "message": "bounded corpus evaluation limit",
+          "model": "flat_still",
+          "solver_reported_success": false,
+          "stationarity": 0.017011484905569647
+        }
+      ],
+      "filename": "ILVIS0_applanix_56916_510_POS510.013",
+      "task": "f5cae9d0d107ecad9d45"
+    },
+    {
+      "conditional_globe_disc": {
+        "calibrated": false,
+        "conditional_disc_minus_globe_cost": null,
+        "globes": [
+          "sphere_rotating",
+          "sphere_still"
+        ],
+        "scientific_decision": "abstain",
+        "scope": "local conditional profile costs, not a global optimum or hypothesis test",
+        "unresolved_optimizations": [
+          "sphere_rotating",
+          "sphere_still",
+          "flat_still"
+        ],
+        "version": "ilvis0-globe-disc-refinement-v1"
+      },
+      "convergence": [
+        {
+          "converged": false,
+          "evaluations": 198,
+          "message": "bounded corpus evaluation limit",
+          "model": "sphere_rotating",
+          "solver_reported_success": false,
+          "stationarity": 0.04281652436716452
+        },
+        {
+          "converged": false,
+          "evaluations": 198,
+          "message": "bounded corpus evaluation limit",
+          "model": "sphere_still",
+          "solver_reported_success": false,
+          "stationarity": 0.18530250925613292
+        },
+        {
+          "converged": false,
+          "evaluations": 198,
+          "message": "bounded corpus evaluation limit",
+          "model": "flat_still",
+          "solver_reported_success": false,
+          "stationarity": 0.3834203083110262
+        }
+      ],
+      "filename": "ILVIS0_applanix_55495_20101026_510_lvis_LVIS.013",
+      "task": "f166954fecd1d93111ee"
+    },
+    {
+      "conditional_globe_disc": {
+        "calibrated": false,
+        "conditional_disc_minus_globe_cost": null,
+        "globes": [
+          "sphere_rotating",
+          "sphere_still"
+        ],
+        "scientific_decision": "abstain",
+        "scope": "local conditional profile costs, not a global optimum or hypothesis test",
+        "unresolved_optimizations": [
+          "sphere_rotating",
+          "sphere_still",
+          "flat_still"
+        ],
+        "version": "ilvis0-globe-disc-refinement-v1"
+      },
+      "convergence": [
+        {
+          "converged": false,
+          "evaluations": 198,
+          "message": "bounded corpus evaluation limit",
+          "model": "sphere_rotating",
+          "solver_reported_success": false,
+          "stationarity": 0.027230750809112133
+        },
+        {
+          "converged": false,
+          "evaluations": 198,
+          "message": "bounded corpus evaluation limit",
+          "model": "sphere_still",
+          "solver_reported_success": false,
+          "stationarity": 0.02741969035227505
+        },
+        {
+          "converged": false,
+          "evaluations": 198,
+          "message": "bounded corpus evaluation limit",
+          "model": "flat_still",
+          "solver_reported_success": false,
+          "stationarity": 0.09808980376771144
+        }
+      ],
+      "filename": "ILVIS0_applanix_55520_20101120_510_lvis_LVIS.013",
+      "task": "46f49500c8df79c821b2"
+    },
+    {
+      "conditional_globe_disc": {
+        "calibrated": false,
+        "conditional_disc_minus_globe_cost": null,
+        "globes": [
+          "sphere_rotating",
+          "sphere_still"
+        ],
+        "scientific_decision": "abstain",
+        "scope": "local conditional profile costs, not a global optimum or hypothesis test",
+        "unresolved_optimizations": [
+          "sphere_rotating",
+          "sphere_still",
+          "flat_still"
+        ],
+        "version": "ilvis0-globe-disc-refinement-v1"
+      },
+      "convergence": [
+        {
+          "converged": false,
+          "evaluations": 184,
+          "message": "`xtol` termination condition is satisfied.",
+          "model": "sphere_rotating",
+          "solver_reported_success": true,
+          "stationarity": 0.013956066010478657
+        },
+        {
+          "converged": false,
+          "evaluations": 198,
+          "message": "bounded corpus evaluation limit",
+          "model": "sphere_still",
+          "solver_reported_success": false,
+          "stationarity": 0.020436679369720486
+        },
+        {
+          "converged": false,
+          "evaluations": 198,
+          "message": "bounded corpus evaluation limit",
+          "model": "flat_still",
+          "solver_reported_success": false,
+          "stationarity": 0.01464101102273356
+        }
+      ],
+      "filename": "ILVIS0_applanix_57289_510_LVISGH.013",
+      "task": "ae7127a8b48f61b051a8"
+    },
+    {
+      "conditional_globe_disc": {
+        "calibrated": false,
+        "conditional_disc_minus_globe_cost": null,
+        "globes": [
+          "sphere_rotating",
+          "sphere_still"
+        ],
+        "scientific_decision": "abstain",
+        "scope": "local conditional profile costs, not a global optimum or hypothesis test",
+        "unresolved_optimizations": [
+          "sphere_rotating",
+          "sphere_still",
+          "flat_still"
+        ],
+        "version": "ilvis0-globe-disc-refinement-v1"
+      },
+      "convergence": [
+        {
+          "converged": false,
+          "evaluations": 198,
+          "message": "bounded corpus evaluation limit",
+          "model": "sphere_rotating",
+          "solver_reported_success": false,
+          "stationarity": 0.017649826389858344
+        },
+        {
+          "converged": false,
+          "evaluations": 198,
+          "message": "bounded corpus evaluation limit",
+          "model": "sphere_still",
+          "solver_reported_success": false,
+          "stationarity": 0.030630191416427147
+        },
+        {
+          "converged": false,
+          "evaluations": 198,
+          "message": "bounded corpus evaluation limit",
+          "model": "flat_still",
+          "solver_reported_success": false,
+          "stationarity": 0.09488182707592865
+        }
+      ],
+      "filename": "ILVIS0_58016_B200T_N44U_imu_510i_0539_41265390920_104746.013",
+      "task": "93f52157cbd20bdf8c1b"
+    }
+  ],
+  "scientific_decision": "abstain",
+  "sources": {
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_refinement.py": "53faac1bbf4f6f069251e6ac39d19077a42adab3e4d3ba31e204139102ef8798",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_refinement.py": "97e2ec6a29e0e377cd5b2dfb0001a797971b2c0285ead7931acdb40c34531ad7"
+  },
+  "state": "diagnosis_complete_no_new_fits"
+}

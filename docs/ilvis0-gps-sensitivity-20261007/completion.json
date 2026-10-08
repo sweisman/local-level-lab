@@ -1,0 +1,22 @@
+{
+  "assumptions": 13,
+  "covariance_calibrated": false,
+  "empirical_earth_fit_attempts": 0,
+  "epochs": 2968,
+  "files": 6,
+  "gnss_position_fits": 0,
+  "manifest_sha256": "2d9ebd8529c7e987f1eeea78bbd2bb3c30e002a011dec92337113a56a619ab58",
+  "originals_deleted": 0,
+  "scientific_eligibility_changes": 0,
+  "source_audit_errors": 0,
+  "state": "complete",
+  "summary_sha256": "ce8b639889ce9a3f8064f3802e3b2462e0bf35dc1705ad25465b19f30e67968d",
+  "version": "ilvis0-gps-error-sensitivity-v1",
+  "window_seconds": [
+    2.0,
+    6.0,
+    12.0,
+    30.0,
+    60.0
+  ]
+}

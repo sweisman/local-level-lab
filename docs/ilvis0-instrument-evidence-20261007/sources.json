@@ -1,0 +1,58 @@
+{
+  "review_date": "2026-10-07",
+  "remote_document_bytes_archived": false,
+  "remote_document_sha256_available": false,
+  "sources": [
+    {
+      "id": "noaa_imu6_association",
+      "url": "https://www.ion.org/publications/abstract.cfm?articleID=12249",
+      "title": "Quantifying the Impact of Adding High-Grade Inertial Measurements to Long-Baseline Aircraft GPS Positioning: Application to Airborne Gravimetry",
+      "authors": "Theresa M. Damiani and Gerald Mader",
+      "publication_year": 2014,
+      "locator": "Publisher-hosted abstract, GRAV-D 2008–2011 instrument description",
+      "access": "publisher abstract reviewed; paid full paper not accessed",
+      "supports": "POS AV510/IMU-6 used by these researchers was a tactical-grade Litton-200 unit",
+      "does_not_establish": "Exact ILVIS0 installed variants, serials, corrections or calibration bounds"
+    },
+    {
+      "id": "applanix_faq",
+      "url": "https://www.applanix.com/downloads/products/FAQs/faq_pos_av_rev_2a.pdf",
+      "alternative_url": "https://www.applanix.com/pdf/faq_pos_av_rev_2a.pdf",
+      "title": "FAQ POS AV and POSTrack, Rev 2a",
+      "publication_year": 2009,
+      "locator": "Printed page 2, closed-loop error controller; printed page 6, questions 11–12",
+      "access": "indexed text from manufacturer-hosted document reviewed; direct PDF opens failed",
+      "supports": "Sensor corrections before navigation integration; selected LN200ROM variants in 510 products; multiple possible IMUs per product",
+      "does_not_establish": "Legacy Group4 logging tap point or exact variants for the six recorded configurations"
+    },
+    {
+      "id": "northrop_family",
+      "url": "https://www.northropgrumman.com/wp-content/uploads/LN-200-FOG-Family-datasheet.pdf",
+      "title": "LN-200 FOG Family: Advanced Airborne IMU/AHRS",
+      "publication_year": 2023,
+      "locator": "Family description and digital incremental output description",
+      "access": "indexed manufacturer document text reviewed; direct PDF open failed",
+      "supports": "LN-200 family uses three fiber-optic gyros and three silicon accelerometers and outputs digital angle/velocity increments",
+      "does_not_establish": "Legacy ILVIS0 part number, processing, encoding or per-unit quantitative performance"
+    },
+    {
+      "id": "applanix_v6_manual",
+      "url": "https://asapdata.arc.nasa.gov/share/ASF_Applanix/POSv6_USER_MANUAL.pdf",
+      "title": "POS AV V6 Installation and Operation Manual, PUBS-MAN-004809 Revision 3",
+      "publication_year": 2014,
+      "locator": "Printed pages 1-11 to 1-13; PDF pages 42–44, counted from zero",
+      "access": "NASA-hosted manufacturer PDF reviewed",
+      "supports": "Distinct raw-sensor/navigation logging; standby acquisition; V6 output time-tag specification",
+      "does_not_establish": "V5 firmware-specific Group4 corrections, integration interval or physical sensor latency"
+    },
+    {
+      "id": "novatel_encoding_comparison",
+      "url": "https://docs.novatel.com/OEM7/Content/SPAN_Logs/RAWIMUSX.htm",
+      "title": "RAWIMUSX: IMU data extended",
+      "locator": "Raw IMU scale factors, LN-200 row",
+      "access": "manufacturer documentation reviewed",
+      "supports": "NovAtel RAWIMUSX LN-200 output scales are 2^-19 rad/count and 2^-14 m/s/count",
+      "does_not_establish": "Applanix IMU6 Group4 scales or absence of instrument corrections"
+    }
+  ]
+}

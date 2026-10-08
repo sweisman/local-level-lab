@@ -8,6 +8,52 @@ specific Earth models along a flight path: a rotating globe, a stationary globe,
 flat disc. The position record describes where the aircraft went. The gyroscope measures turning.
 Each model is compared with the same recording.
 
+## A common method for two kinds of recording
+
+The project develops this method with NASA's professional airborne IMU recordings as well
+as the proposed passenger experiment. Both follow the same order: characterize the saved
+measurements, select complete intervals from recording quality and flight motion, then
+compare Earth models under stated error assumptions. Selection happens before examining
+which Earth model fits better. High-quality hardware alone does not establish identifiability.
+
+The archive extension requires **four continuous minutes at 700 km/h ground speed or faster**,
+after exclusions. Every associated receiver speed observation must meet the limit. Additional
+rules require supported timing, complete raw packets, steady sampled motion and a constant
+recorded installation. These are development criteria, not a detection guarantee. The
+[archive selection guide](ilvis0-highspeed-segments-20261008/README.md) explains the exact
+limits and permanent public catalog. It records original files, UTC times, duration, speed
+and source fingerprints, as well as exclusions and unresolved context. Later analysis reuses
+that frozen inventory; different selection rules require a new version.
+
+The **complete eligible stretch is the primary joint fit**, preserving all native IMU
+increments and supported receiver positions. Arbitrary short cuts would give each piece a
+fresh calibration and could discard changing geometry that separates the models. Fixed
+four-to-ten-minute sections instead check the full fit's residuals with the same parameters.
+They are not independent flights, extra votes or separate calibration fits. Gaps and known
+configuration changes split intervals before fitting. Joining adjacent files requires
+demonstrated timing, sample and installation continuity; a shared date is insufficient.
+
+A whole-stretch fit is appropriate only if its error model remains credible over that duration.
+The present archival study assumes constant calibration offsets; it does not establish that
+actual offsets stayed constant. Section checks may expose problems, but cannot prove that
+assumption. A later time-varying error model must be specified and applied equally to every
+Earth candidate, rather than chosen to rescue a favored result. Correlated position errors
+also prevent counting every sample as an independent observation.
+
+Compare **globe versus the specified flat disc first**. Both globe fits participate internally;
+rotation is reported separately only after shape consistently favors the globe and the necessary
+fits converge. Numerical preferences under explicit assumptions remain conditional. Calibrated
+scientific decisions require independently validated uncertainty and decision rules.
+
+NASA's IMU was mounted to the aircraft; there are no passenger reversals to reconstruct.
+Raw IMU increments and embedded receiver positions supply the archival fit. Fused navigation
+supplies decoder checks and motion selection only, never independent Earth-model evidence.
+Some onboard corrections, integration timing and installation details remain unresolved.
+The passenger experiment has deliberate reversals, still measurements and temperature controls,
+but each consumer IMU's actual noise, bias and filtering must be established. Specifications,
+calibration and thresholds do not transfer between datasets. The archive's speed/duration
+screen does not redefine the passenger collection protocol.
+
 The difficult part is separating the small signal from the instrument and aircraft. An IMU
 can drift, its mount can move, and wind can make the aircraft point away from its direction of
 travel. Allowing for these effects is essential, but a correction flexible enough to explain

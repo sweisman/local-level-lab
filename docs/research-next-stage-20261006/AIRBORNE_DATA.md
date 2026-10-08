@@ -1,5 +1,8 @@
 # A possible real airborne test
 
+Current continuation: the broad corpus run is complete and the [shape-first refinement](../ilvis0-refinement-20261008/README.md) is running. It uses exact native-packet derivatives and constant gyro-offset sensitivities of ±0.1/±1 degree/hour, crossed with fixed-zero/profiled common Earth-rate removal. The old ±20 allowance was a fitted-offset stress test, not measured IMU drift. The [all-stretch extension](../ilvis0-highspeed-segments-20261008/README.md) will save and publicly catalog every qualifying four-minute/700-km/h interval before whole-stretch fitting. Rotation diagnostics remain withheld unless shape consistently favors the globe across converged cases. These are conditional comparisons; no calibrated detection is claimed.
+
+
 NASA's [IceBridge LVIS archive](https://nsidc.org/data/ilvis0/versions/1) contains measurements
 taken aboard aircraft over Greenland, Antarctica and Alaska. The
 [Level-0 user guide](https://nsidc.org/sites/default/files/ilvis0-v001-userguide_1.pdf)
@@ -13,6 +16,84 @@ subsequent ILVIS0 sample contains time-tagged IMU increments whose physical deco
 independently cross-checked on 7 October 2026. Applied corrections remain unresolved.
 The instrument differs from the WT901, so a successful test would not establish WT901 accuracy,
 drift or automatic-zero behavior.
+
+The completed [archival observation check](../ilvis0-observation-20261007/README.md) now
+prepares raw increment summaries and tests route separation without using fused attitude
+or gyro rates as observations. One of the six routes retains predicted globe-versus-disc
+separation after constant/linear bias removal under idealized independent motion correction.
+This is a design diagnostic; independent processing, aircraft-motion constraints and bounded
+calibration uncertainty still need a joint raw-IMU/GPS measurement model. No Earth fit has run.
+
+The [joint forward model](../ilvis0-forward-20261007/README.md) is now implemented and
+controlled motion checks pass. Its six-file preparation retains full-rate finite rotations,
+rotated acceleration and actual GPS endpoint timing. The
+[bounded estimator controls](../ilvis0-estimator-20261007/README.md) now recover known nuisance
+quantities and detect orientation/bias ambiguity. Actual processing, clock, calibration and
+validated receiver covariance remain unsupported; no observed Earth fit has run. Six GPS summaries
+show heights of roughly 6–12 km and ground speeds of 480–940 km/h in the prepared stretches.
+High-altitude fast flight is common here; do not assume every lidar recording is low and slow.
+The [receiver audit](../ilvis0-processing-v2-20261007/README.md) now decodes nearly3,000
+receiver positions with reported error estimates, and reassembles raw satellite-survey
+record envelopes. This advances trajectory uncertainty without using fused IMU/navigation
+outputs. It does not yet calibrate temporal covariance or establish Group4 processing.
+
+The [satellite-measurement audit](../ilvis0-gnss-v2-20261007/README.md) now decodes
+19,699 epochs and 603,603 signal measurements, plus 326 GPS ephemeris packets. All six
+source/record checks reproduce; 31 focused tests pass. GPS orbit geometry exposes 29
+zero-angle reports for one satellite; those measurements remain preserved. The existing
+files supply 5–10Hz receiver observations. No position/Earth fit or independently calibrated
+covariance claim followed from that decoding stage.
+
+The subsequent [GPS-only reconstruction](../ilvis0-position-20261007/README.md) now solves
+all 2,968 preselected epochs under two fixed methods; all 5,936 primary solves and 24
+displaced-start checks converge. It uses recorded GPS ranges and broadcast orbits under
+conventional GPS geometry, with explicit satellite-clock, signal-time and atmospheric
+corrections. It uses no fused navigation. Differences from the same receiver's position
+reports are on the scale of metres and are correlated across time; they do not establish
+independent accuracy. Formal covariance is not calibrated. Twenty-eight focused tests pass.
+All232originals remain and no Earth fit ran.
+
+A [correlated GPS-error sensitivity check](../ilvis0-gps-sensitivity-20261007/README.md)
+now evaluates fixed assumptions over the same recordings. Persistent offsets and drift
+survive position averaging; long-window acceleration precision can conceal real brief
+corrections. No smoothing interval or scientific acceptance rule was chosen. Twenty-three
+focused tests pass. The assumed error grid is not calibrated accuracy.
+The [joint IMU/GPS controls](../ilvis0-correlated-controls-20261007/README.md) now carry
+full covariance into five analytic calibration/timing fixtures. They report precision
+separately from noiseless recovery and preserve offset/drift ambiguities. Thirty-three
+distinct focused tests pass. These translation controls do not characterize gyro hardware,
+resolve Group4 processing or establish real instrument bounds. Supported IMU processing,
+calibration, mounting and timing constraints remain necessary before measured Earth fitting.
+
+The [longer rotational controls](../ilvis0-excitation-20261007/README.md) now compare
+2/20/60-second analytic records, including a one-second0.1deg pitch correction. All18
+trajectory checks and4gyro-bias/timing recovery checks pass;11focused tests pass. Duration
+helps local precision but does not make the tiny correction a reliable joint calibration.
+The [instrument evidence matrix](../ilvis0-excitation-20261007/INSTRUMENT_EVIDENCE.md)
+records supported units/settings and the remaining legacy IMU6processing/calibration/clock
+questions. These remain hypotheses, not resolved by public modern packet documentation
+or good noiseless recovery. No observed Earth fit has run.
+The [information stability diagnostics](../ilvis0-information-20261007/README.md)
+compare four central derivative steps on the same18fixtures. They report smooth
+information relative to declared fixture bounds and preserve weak/null directions;
+an artificial reference penalty is explicitly distinguished from measured calibration
+or a confidence interval. Covariance sensitivity and numerical step stability are
+reported separately. The archival fitting gate is unchanged.
+The [instrument documentation review](../ilvis0-instrument-evidence-20261007/README.md)
+now finds a primary published association between POS AV510/IMU-6 and tactical-grade
+Litton-200 hardware. That supports the family inference; exact installed variants
+and independent calibration/correction bounds remain unknown. It preserves six
+cached source/configuration identities and prepares unsent questions for the exact
+firmware/ICD revisions. Manufacturer descriptions identify a navigation correction
+stage but not the legacy Group4 logging tap. No generic scale table or performance
+number has been assigned to these bytes.
+The [legacy-record search](../ilvis0-legacy-records-20261008/README.md) obtained no
+manual/calibration record matching the three V5 revisions. NSIDC's current guide
+supports raw, unprocessed Level-0 archive provenance, without specifying onboard
+Group4 corrections. A verified support route and concise unsent request are ready;
+An inquiry has been sent. The next numerical stage is
+[conditional modeling of the six recordings](../ilvis0-exploratory-20261008/README.md)
+under explicit processing/calibration hypotheses while waiting for records.
 
 Start with one small IMU sample and its matching GPS data, selected by date and flight geometry
 before looking at the gyro result. Confirm that it contains physical gyro rates or angular
@@ -99,7 +180,7 @@ These results refine the decoder investigation; they do not supply an Earth-mode
 
 ### First supplied measurement sample
 
-The user supplied five IPUTI0 files: `ASB_JKB0a_GL0017a_AVNcp1.bxds`, its `.ct` clock file,
+The available IPUTI0 sample consists of five files: `ASB_JKB0a_GL0017a_AVNcp1.bxds`, its `.ct` clock file,
 and the AVNcp1, AVNcp2 and clock format descriptions. The binary contains both message 3500
 (system status) and message 3501 (navigation solution), despite its AVNcp1 filename. The
 descriptions specify position, three velocity components, pitch, roll and heading; they
@@ -165,11 +246,11 @@ explicit files and records their query URLs and hashes in `airborne-catalog-revi
 That review preserves the observed access failures; reproducing it does not retry downloads.
 Authentication response bodies, redirect parameters and credentials are not stored in the repo.
 
-## Resume after Earthdata registration
+## Earthdata access
 
-The user has created an Earthdata account. Complete any email verification and sign in through
-NASA in a browser. Browser authentication is not shared with the project's download tools.
-No credentials have been requested or inspected.
+Earthdata downloads require an account and any applicable email verification. Browser
+authentication is separate from the project's download tools. Use the
+[acquisition guide](../ILVIS0.md) for local authentication; do not publish credentials.
 
 For ILVIS0, use [Earthdata Search](https://search.earthdata.nasa.gov/search/granules?p=C3162704221-NSIDC_CPRD)
 to find `ILVIS0_gyro_54935_atm_applanix_14Apr09.013`, dated 14 April 2009, as a modest format

@@ -1,0 +1,13 @@
+{
+  "artifacts_sha256": {
+    "inventory.csv": "346b46cf5334adf311b58977f79915c4616953ebd3ac7bb8389f38be637186dd",
+    "sky-angle-outliers.csv": "8ba71b01f9c54fdd93491bc97306800cdab4a3203c92bad83e8a2c800ecac7bc"
+  },
+  "empirical_earth_fit_attempts": 0,
+  "files": 6,
+  "generator_sha256": "449ad7a64136a044affbc7fa80cd06fa10f9c913fcbba1d86de628eca02538fe",
+  "outlier_rows": 29,
+  "scientific_eligibility_changes": 0,
+  "source_manifest_sha256": "c72a5d80f5b51064e87052f0d324a10a9832c7ad310bd9bb2f03f166780df833",
+  "source_summary_sha256": "7da168b366887b2654d0cc2213f92ae6ed342904a330c9b1fb109a4c38034857"
+}

@@ -1,0 +1,17 @@
+{
+  "decoded_epochs": 19699,
+  "decoded_signal_epochs": 603603,
+  "empirical_earth_fit_attempts": 0,
+  "files": 6,
+  "gnss_position_fits": 0,
+  "gps_ephemeris_packets": 326,
+  "manifest_sha256": "fe5da62b5737abf3739e72265956dd63f28f81199401c7d9979965ee101ebc22",
+  "matched_sky_angle_pairs": 29567,
+  "originals_deleted": 0,
+  "same_epoch_receiver_positions": 2968,
+  "scientific_eligibility_changes": 0,
+  "source_audit_errors": 0,
+  "state": "complete",
+  "summary_sha256": "655e0d161f3b4653eab2c8af3fba7d2ae50011ebd0b87454a7054d3440fcf275",
+  "version": "ilvis0-receiver-observations-v1"
+}

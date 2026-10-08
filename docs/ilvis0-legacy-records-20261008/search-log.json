@@ -1,0 +1,69 @@
+{
+  "version": "ilvis0-legacy-record-search-v1",
+  "completed_on": "2026-10-08",
+  "scope": "Public manual/acquisition-record discovery; no external messages or empirical fitting",
+  "target": {
+    "model": "POS AV510 VER5 IMU6",
+    "firmware_icd": [
+      "04.50-Feb05/08 / 14.00",
+      "05.00-Dec16/09 / 17.00",
+      "05.20-Nov04/11 / 18.00"
+    ]
+  },
+  "queries": [
+    "\"Applanix\" \"ICD14.00\"",
+    "\"POS AV\" \"PUBS-MAN-001409\"",
+    "\"POS AV\" \"Group 4\" \"raw\" calibration",
+    "\"POS AV\" \"V5\" \"Interface Control\"",
+    "\"Applanix\" \"POS AV\" \"User Control\" \"V5\"",
+    "\"ILVIS0\" \"Applanix\" \"processing\" documentation",
+    "\"Applanix\" \"ICD\" \"IMU6\" \"200\"",
+    "\"Applanix\" \"POS AV\" \"Ethernet\" \"2008\" ICD",
+    "\"POS AV\" \"Message 1\" \"setup\"",
+    "\"POS AV\" \"V4\" \"ICD\"",
+    "\"ILVIS0\" \"Applanix\" \"calibration\"",
+    "\"Applanix\" \"POS AV\" \"Ethernet\" \"PUBS-ICD\" -site:patentimages.storage.googleapis.com -site:patents.google.com -site:justia.com",
+    "site:lvis.gsfc.nasa.gov \"Applanix\" calibration",
+    "\"POS AV\" \"V5\" \"manual\" -\"POS MV\" -site:scribd.com",
+    "\"POS/AV\" \"PUBS-ICD-000\" logging",
+    "\"POS AV V5\" \"ICD\" -\"POS MV\" -site:patents.google.com -site:scribd.com",
+    "site:lvis.gsfc.nasa.gov \"Applanix\"",
+    "\"POS/AV V4 Ethernet\" \"PUBS-ICD\"",
+    "\"POS/AV V4\" \"Group 4\""
+  ],
+  "routes": [
+    {
+      "url": "https://asapdata.arc.nasa.gov/share/ASF_Applanix/",
+      "disposition": "Read directory; only V6 manual/ICD listed, no target-matched V5 record obtained"
+    },
+    {
+      "url": "https://www.foi.se/rest-api/report/FOI-R--1660--SE",
+      "disposition": "Indexed older V4 bibliographic reference; direct read failed, not used for decoding/corrections"
+    },
+    {
+      "url": "https://lvis.gsfc.nasa.gov/",
+      "disposition": "Web reader returned no usable text; not evidence that site/records are absent"
+    },
+    {
+      "url": "https://nsidc.org/sites/default/files/ilvis0-v001-userguide_1.pdf",
+      "disposition": "Current guide read; raw/unprocessed archive-level description, not onboard correction definitions",
+      "document_updated": "August2025",
+      "locator": "Printed pages1,4,6–7"
+    },
+    {
+      "url": "https://nsidc.org/about/contact-us",
+      "disposition": "Verified user-services address nsidc@nsidc.org; no message sent"
+    }
+  ],
+  "matched_legacy_manuals_obtained": 0,
+  "matched_calibration_records_obtained": 0,
+  "archive_level_raw_description_supported": true,
+  "onboard_processing_independence_established": false,
+  "scientific_eligibility_changes": 0,
+  "empirical_earth_fit_attempts": 0,
+  "messages_sent": 0,
+  "remote_document_bytes_archived": false,
+  "remote_byte_hash_claimed": false,
+  "email_sending_tool_available": false,
+  "next_step": "Request matched records via NSIDC User Services; ready-to-send draft prepared"
+}

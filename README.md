@@ -256,10 +256,90 @@ show that longer course measurements retain the tested larger turns but can hide
 short corrections, so the screening rule has not been relaxed.
 Slower flight produces a smaller curvature-related signal;
 a high-quality IMU alone does not guarantee that a flight separates the models.
-Instrument corrections and mounting details still need investigation. The
+The next [raw-measurement check](docs/ilvis0-observation-20261007/README.md) prepared about
+49 minutes across six recordings without using fused navigation as the Earth observation.
+One route retains promising predicted separation, including globe versus disc, after allowing
+for bias and drift. Aircraft motion and calibration still need independent constraints;
+these are design calculations, not measured Earth-model results.
+The [joint IMU/GPS motion model](docs/ilvis0-forward-20261007/README.md) now follows individual
+IMU readings while rotating acceleration with the aircraft. Controlled checks preserve a
+one-second, 0.1-degree correction that returns to its starting orientation. Six real recordings
+have been prepared for that model, with GPS timing offsets retained. A
+[bounded motion estimator](docs/ilvis0-estimator-20261007/README.md) now recovers known
+orientation, sensor error and timing in controlled checks. It also detects when orientation
+and sensor bias cannot be separated. Applying it scientifically to these recordings still
+requires supported uncertainty limits and an understanding of recorded corrections.
+These flights are not all low and slow: the six prepared stretches range from roughly
+6 to 12 km altitude and 480 to 940 km/h ground speed. Faster travel strengthens the
+predicted curvature signal; it does not resolve aircraft-motion or sensor uncertainties.
+The latest [receiver audit](docs/ilvis0-processing-v2-20261007/README.md) recovered nearly
+3,000 GPS positions with the receiver's own error estimates, plus binary satellite-data
+records alongside the GPS sentences. That supplies a firmer basis for checking trajectory
+uncertainty. A [satellite-measurement follow-up](docs/ilvis0-gnss-v2-20261007/README.md)
+has now decoded the underlying ranges and carrier-phase measurements at five or ten
+times per second, along with GPS satellite orbit records. A
+[GPS-only reconstruction](docs/ilvis0-position-20261007/README.md) now calculates positions
+from those measurements separately from the combined GPS/IMU answer. Both tested methods
+converge at all nearly 3,000 selected times. Their differences from the receiver's reported
+positions are generally on the scale of metres, but that comparison is not an independent
+accuracy test. Errors across successive times can be correlated, and the methods show
+persistent offsets. A [trajectory-error sensitivity check](docs/ilvis0-gps-sensitivity-20261007/README.md)
+now carries correlated errors and persistent offsets through the calculations. It shows
+why averaging many positions can overstate precision, and why long smoothing windows can
+hide brief aircraft corrections. The [joint IMU/GPS covariance controls](docs/ilvis0-correlated-controls-20261007/README.md)
+now carry those assumed errors into the estimator. They distinguish an accurate noiseless
+fit from useful measurement precision, and demonstrate how GPS offsets and drift can
+imitate initial position and velocity errors. These are controlled software checks. The
+IMU's actual corrections, calibration and timing still need support before a measured
+Earth-model comparison. [Longer motion controls](docs/ilvis0-excitation-20261007/README.md)
+now include a brief 0.1-degree pitch correction. They show that duration helps but a tiny
+correction alone does not guarantee useful calibration. The
+[instrument evidence review](docs/ilvis0-excitation-20261007/INSTRUMENT_EVIDENCE.md)
+states which units and settings are supported, and exactly which corrections and timing
+details remain unknown for these IMUs.
+The [information stability check](docs/ilvis0-information-20261007/README.md)
+now measures how useful the calibration information is, and whether changing the
+numerical calculation changes that answer. It keeps the assumed measurement errors
+and instrument limits visible; a successful software check still needs independent
+support for those assumptions before a measured Earth-model comparison.
+The [instrument documentation review](docs/ilvis0-instrument-evidence-20261007/README.md)
+now connects this recorded IMU type to the tactical-grade Litton/LN-200 family in
+published airborne work. Its quality is promising. The exact installed variant and
+corrections applied before recording still need confirmation; professional hardware
+alone does not answer those questions.
+The archive describes these as raw, unprocessed recordings. The
+[legacy-record search](docs/ilvis0-legacy-records-20261008/README.md) still found no
+firmware-matched description of corrections inside the instrument before recording.
+An inquiry has been sent to the archive's support team. We are continuing with
+[conditional modeling of six real recordings](docs/ilvis0-exploratory-20261008/README.md)
+while waiting. Each model must explain recorded IMU motion and the GPS path under
+stated assumptions about bias, orientation, timing and onboard corrections. Failed
+fits and assumption sensitivity remain visible; this does not establish a winner.
+The
 [inspection notes](docs/research-next-stage-20261006/AIRBORNE_DATA.md) and
 [acquisition guide](docs/ILVIS0.md) explain both samples, what is established and how to resume.
-No Earth-model result has been obtained from them.
+The first six-file modeling pass is complete: 24 fits produced finite results, but
+none converged within its numerical allowance. Some models reproduce a recording's
+GPS path within about a metre; that agreement alone cannot choose a winner. The
+[corpus continuation](docs/ilvis0-corpus-modeling-20261008/README.md) has completed the
+conditional analysis to the 232 kept files with an improved solver and explicit
+instrument assumptions. No scientifically validated Earth-model conclusion has
+been obtained from these recordings.
+The next refinement asks **globe or flat first**. Only a consistently resolved globe
+comparison opens the separate question of rotation. It uses more accurate numerical
+derivatives and smaller assumed gyro offsets appropriate for investigating professional
+hardware. The earlier allowance of 20 degrees/hour was a broad fitted-offset stress
+test, not measured IMU drift. The [refinement notes](docs/ilvis0-refinement-20261008/README.md)
+explain the assumptions and the six-recording check now running.
+
+The next [archive analysis](docs/ilvis0-highspeed-segments-20261008/README.md) covers every
+qualifying stretch of at least four minutes at 700 km/h ground speed or faster, with additional
+checks for steady motion, recording gaps and instrument configuration. A permanent public
+catalog will list each original file, UTC interval, duration, speed and selection criteria.
+Selection is saved before fitting and reused thereafter. The primary fit uses the whole
+stretch; shorter sections check consistency without counting as extra flights. Globe versus
+flat comes first, then rotation if supported. Results remain conditional on the instrument
+and position-error assumptions. This extension waits for the six-recording check.
 The [remaining development plan](docs/research-next-stage-20261006/PLAN_STATUS.md) explains
 which review features are implemented and which experimental checks are still unfinished.
 Separately, [fixed route-direction checks](docs/research-next-stage-20261006/DIRECTION_REVIEW.md)

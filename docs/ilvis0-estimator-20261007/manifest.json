@@ -1,0 +1,103 @@
+{
+  "cases": {
+    "bias": {
+      "bounds": {
+        "accel_bias_x": 0.1
+      },
+      "tolerance": 2e-07,
+      "truth": {
+        "accel_bias_x": 0.04
+      }
+    },
+    "effective_orientation": {
+      "acceleration": 0.0,
+      "bias": 0.0,
+      "bounds": {
+        "attitude_y": 0.01
+      },
+      "pitch": 0.002,
+      "tolerance": 2e-07,
+      "truth": {
+        "attitude_y": 0.002
+      }
+    },
+    "gain": {
+      "bias": 0.0,
+      "bounds": {
+        "accel_gain_x": 0.01
+      },
+      "gain": 0.003,
+      "jerk": 0.7,
+      "tolerance": 2e-05,
+      "truth": {
+        "accel_gain_x": 0.003
+      }
+    },
+    "orientation_acceleration_ambiguity": {
+      "acceleration": 0.0,
+      "bias": 0.0,
+      "bounds": {
+        "accel_bias_x": 0.1,
+        "accel_bias_z": 0.1,
+        "attitude_y": 0.01
+      },
+      "pitch": 0.002,
+      "tolerance": null,
+      "truth": {}
+    },
+    "timing": {
+      "bias": 0.0,
+      "bounds": {
+        "time_offset": 0.08
+      },
+      "jerk": 0.7,
+      "offset": 0.035,
+      "tolerance": 2e-05,
+      "truth": {
+        "time_offset": 0.035
+      }
+    }
+  },
+  "environment": {
+    "numpy": "2.5.3",
+    "python": "3.14.7",
+    "scipy": "1.18.1",
+    "thread_settings": {
+      "MKL_NUM_THREADS": "2",
+      "OMP_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    }
+  },
+  "inputs": {
+    "/site/repo/local-level-lab/docs/ilvis0-followup-20261007/summary.json.gz": "71b72b7067773a5d2d8b8edaa7945548dd3d4d6f0bb6dc759f03fafd286ceeec",
+    "/site/repo/local-level-lab/docs/ilvis0-forward-20261007/factors/46f49500c8df79c821b2-factors.json.gz": "32b3186b1be349b7df5ad6b68d4c46c40a2bbd1589f7d69e588ef575ebea19f2",
+    "/site/repo/local-level-lab/docs/ilvis0-forward-20261007/factors/594999d9bb7345ad87d3-factors.json.gz": "f354a02c26eaaf0ff2acb74352b4bf6b7e8e131737886565247426aefacf06dc",
+    "/site/repo/local-level-lab/docs/ilvis0-forward-20261007/factors/93f52157cbd20bdf8c1b-factors.json.gz": "203dd8f3c79a9193c7ade4203898e6db361a8a85d470bea5f79556104bd27f82",
+    "/site/repo/local-level-lab/docs/ilvis0-forward-20261007/factors/ae7127a8b48f61b051a8-factors.json.gz": "ec89311c770f1e88d8d9e2e6538184a311483187b95e999d95c2ad79bd46fc89",
+    "/site/repo/local-level-lab/docs/ilvis0-forward-20261007/factors/f166954fecd1d93111ee-factors.json.gz": "d8e3bfb6bb777c13cbcebe97dc65d18088eb4dd6365bc1c6f8af44e185d60f86",
+    "/site/repo/local-level-lab/docs/ilvis0-forward-20261007/factors/f5cae9d0d107ecad9d45-factors.json.gz": "399570f52f2c77745fae6b40f0dec2fcf2435f875d913276557e24ba01f4f1eb",
+    "/site/repo/local-level-lab/docs/ilvis0-forward-20261007/manifest.json": "28384402d75339aca4000a92fe71aacc049e978de462c8d9184f4139f29b93ba",
+    "/site/repo/local-level-lab/docs/ilvis0-forward-20261007/summary.json.gz": "2d6d4e31b21bdeb6360f59682ab39e775c48508539eb105009b1695158de0e97"
+  },
+  "maximum_control_starts": 10,
+  "maximum_evaluations_per_control": 160,
+  "observed_earth_fit_attempts": 0,
+  "scientific_eligibility_changes": 0,
+  "scope": "five short analytic software controls, pairwise software design and cached route summaries",
+  "sources": {
+    "/site/repo/local-level-lab/analysis/lll/applanix.py": "466866ea3d93600f698a76665b0269b1a5e2d35f067043edaf656d7c55a6dad4",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0.py": "692b7c41c6e7b0fb0a7fb7fa3c2671cac754b4eae87681092a6448df3324f76d",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_estimator.py": "6393015ed2d15ef5ebf1cba10f823addda2b2821e9dd46f279c50ebb874cdcdd",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_estimator_controls.py": "b1f086b5fec7a0b5fef60721839802291df40523f364c3d2fd5a02738f11c82e",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_followup.py": "d3e238cab5dff807c23a51d0d189e19a21d81eef482711700f9f0a5c0dc9fb8e",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_forward.py": "37e91a623aafd7a7951be995d1b42d8f9144b8a63466a90088d2adcf8a842fad",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_installation.py": "aa813292e7781ca808d9da9971188233621c022586a2a89797c49d36a59a0bae",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_observation.py": "bae3757c24314d04866a4941eac03eaa3badebade83855b988e545b7b65abcab",
+    "/site/repo/local-level-lab/analysis/lll/models.py": "119e91e3f852551d3fd25272c0c376b0199d0762d3b06d01fe4367113fc15dc3",
+    "/site/repo/local-level-lab/analysis/lll/runtime.py": "062ee020ad13f8264bcb72c21a9a73e4fc6247bc755c80472f3781f0929edd73",
+    "/site/repo/local-level-lab/analysis/tests/ilvis0_estimator_worker.py": "32d00026dffbafff4662a29adbfe07805f44278c57dc86f9434e467f85d55805",
+    "/site/repo/local-level-lab/analysis/tests/ilvis0_forward_worker.py": "4947c8cb2d39ac2b7c40fcca8feb4dedc0cc00ad1f67da496b47f92e3d72d760",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_estimator.py": "652dfac6a9f67adaecb11418146b13a669ce23ef6bf5ef5a1ee8db71b8d8fe25"
+  },
+  "version": "ilvis0-bounded-motion-estimator-v1"
+}

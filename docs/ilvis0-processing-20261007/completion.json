@@ -1,0 +1,16 @@
+{
+  "complete_survey_records": 10331,
+  "empirical_earth_fit_attempts": 0,
+  "files": 6,
+  "files_with_GST": 0,
+  "files_with_raw_satellite_record_envelopes": 6,
+  "manifest_sha256": "3c026d794ac461e2866c4733c801f2f912bcbc887878a83d605c5439ce2b71ba",
+  "originals_deleted": 0,
+  "receiver_page_errors": 0,
+  "receiver_stream_errors": 4,
+  "scientific_eligibility_changes": 0,
+  "source_audit_errors": 0,
+  "state": "complete",
+  "summary_sha256": "b3f5e4f48011dc9f164b9a84def012e0d97dade9b6d37eaa045bf7b9b601c80d",
+  "version": "ilvis0-processing-evidence-v1"
+}

@@ -1,0 +1,16 @@
+{
+  "analytic_trajectory_failures": 0,
+  "covariance_calibrated": false,
+  "empirical_earth_fit_attempts": 0,
+  "manifest_sha256": "a98c6d4b34ce1c36b7d8be791518c4687bcd350c1f9d3fb7494e786273a40306",
+  "originals_deleted": 0,
+  "recovery_controls": 4,
+  "recovery_failures": 0,
+  "recovery_residual_evaluations": 59,
+  "scientific_eligibility_changes": 0,
+  "state": "complete",
+  "summary_sha256": "742e9625fd8fbda374df82f3454c7a6dad79dbbe159db1a441fa1d31bbe11bb3",
+  "tangent_controls": 18,
+  "tangent_prediction_evaluations": 324,
+  "version": "ilvis0-duration-excitation-controls-v1"
+}

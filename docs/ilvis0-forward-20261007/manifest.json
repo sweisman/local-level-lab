@@ -1,0 +1,50 @@
+{
+  "inputs": {
+    "data/ilvis0-observation-20261007/46f49500c8df79c821b2-blocks.json.gz": "9c4b09c9bed2a2107ca8bf4227916e1a0f5aaac5b3e88b5c2b18dff0304f9124",
+    "data/ilvis0-observation-20261007/594999d9bb7345ad87d3-blocks.json.gz": "816082e945ef38a25789403f1a7c738f8a2d72b846b586bfb24d9661bc4165c9",
+    "data/ilvis0-observation-20261007/93f52157cbd20bdf8c1b-blocks.json.gz": "f2c45603ca5473f3d86fc516878f0aa05b1f7cae97646c925638805e8135b9ca",
+    "data/ilvis0-observation-20261007/ae7127a8b48f61b051a8-blocks.json.gz": "a169eb3b34bc9f4fd6c622d873f2e69b3c9c4fe653a87bac567e14dfba7c8bfa",
+    "data/ilvis0-observation-20261007/f166954fecd1d93111ee-blocks.json.gz": "ed04f12e52e677802c5df0d0de2f5337bcf58e8966aee3a9a022f1063b6efd91",
+    "data/ilvis0-observation-20261007/f5cae9d0d107ecad9d45-blocks.json.gz": "f96a67e0fff00e01ac3ebb9529ba895e9630f703497cce986d0855129030bfe7",
+    "data/ilvis0-observation-20261007/manifest.json": "b383fbbe933ae9adf70884472806f29af83650ddfd6a0b19633940c723fe1a6b",
+    "data/ilvis0-observation-20261007/summary.json": "b66fc1811216d47df336115986ee5a235b08e1e739eb814857e65703ac234e30",
+    "data/ilvis0-ready/records.jsonl": "9b9fb403c942bb0af5cf83121a157b68c6e0aaec430ca11ab8c2d60121c2a8bc"
+  },
+  "numpy": "2.5.3",
+  "policy": {
+    "empirical_earth_fitting_enabled": false,
+    "maximum_files": 6,
+    "no_fused_navigation_observations": true,
+    "nominal_period_s": 0.005,
+    "original_increments_preserved": true,
+    "scientific_eligible": false,
+    "selection": "Previously frozen complete diagnostic seconds; no Earth residual selection",
+    "version": "ilvis0-joint-motion-forward-v1",
+    "within_packet_model": "constant body angular rate and specific force; exact interval integrals"
+  },
+  "python": "3.14.7",
+  "sources": {
+    "/site/repo/local-level-lab/analysis/lll/applanix.py": "466866ea3d93600f698a76665b0269b1a5e2d35f067043edaf656d7c55a6dad4",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0.py": "692b7c41c6e7b0fb0a7fb7fa3c2671cac754b4eae87681092a6448df3324f76d",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_followup.py": "d3e238cab5dff807c23a51d0d189e19a21d81eef482711700f9f0a5c0dc9fb8e",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_forward.py": "37e91a623aafd7a7951be995d1b42d8f9144b8a63466a90088d2adcf8a842fad",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_installation.py": "aa813292e7781ca808d9da9971188233621c022586a2a89797c49d36a59a0bae",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_observation.py": "bae3757c24314d04866a4941eac03eaa3badebade83855b988e545b7b65abcab",
+    "/site/repo/local-level-lab/analysis/lll/models.py": "119e91e3f852551d3fd25272c0c376b0199d0762d3b06d01fe4367113fc15dc3",
+    "/site/repo/local-level-lab/analysis/tests/ilvis0_forward_worker.py": "4947c8cb2d39ac2b7c40fcca8feb4dedc0cc00ad1f67da496b47f92e3d72d760"
+  },
+  "tasks": [
+    "594999d9bb7345ad87d3",
+    "f5cae9d0d107ecad9d45",
+    "f166954fecd1d93111ee",
+    "46f49500c8df79c821b2",
+    "ae7127a8b48f61b051a8",
+    "93f52157cbd20bdf8c1b"
+  ],
+  "threads": {
+    "MKL_NUM_THREADS": "2",
+    "OMP_NUM_THREADS": "2",
+    "OPENBLAS_NUM_THREADS": "2"
+  },
+  "version": "ilvis0-joint-motion-forward-v1"
+}

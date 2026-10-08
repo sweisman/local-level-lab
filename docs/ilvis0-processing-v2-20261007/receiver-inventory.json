@@ -1,0 +1,11 @@
+{
+  "artifact": "gps-uncertainty.csv.gz",
+  "artifact_sha256": "001859268a444308f2e2a21425040510ace9368496ce69e11dad5807e7cb7aaa",
+  "empirical_earth_fit_attempts": 0,
+  "generator_sha256": "ad1e40f962158f69eba49b21b5a0707828d6cd861fdc121e685b9a3d9eb0837b",
+  "receiver_reported_uncertainties_independently_calibrated": false,
+  "rows": 2968,
+  "scope": "all complete GSOF receiver epochs, not accepted Earth-science windows",
+  "source_manifest_sha256": "3ab8a345b35d056603443e9db7f6c33290d493e34935bd1ccc371084cbf42873",
+  "source_summary_sha256": "57b9f1ad0ae21665fd079d443ca91f7a83143e6c2349251cdcf4b79fa3a3d98b"
+}

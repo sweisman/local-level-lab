@@ -1,0 +1,12 @@
+{
+  "active_corpus_manifest_sha256": "65c2567e53f3d3b25084704567798c8ac6ae97ecf2020b07618e5d4b2b18d7d2",
+  "active_corpus_sources_inputs_unchanged": true,
+  "asof_utc": "2026-10-08T04:49:18.933584+00:00",
+  "existing_refinement_tests": 5,
+  "new_focused_tests": 14,
+  "new_manifest_sha256": "f4af535d4c49e321db527d8b04c9f182e2feea5668d1a800d39069a5c3de1f77",
+  "observed_refinement_starts": 0,
+  "source_input_hashes_verified": 45,
+  "state": "verified_queued",
+  "status_path": "data/ilvis0-shape-refinement-20261008/status.json"
+}

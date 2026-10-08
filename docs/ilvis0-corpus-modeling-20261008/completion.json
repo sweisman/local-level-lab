@@ -1,0 +1,16 @@
+{
+  "carried_forward_starts": 1,
+  "converged_fits": 1,
+  "failed_fits": 0,
+  "files": 232,
+  "fitted_files": 232,
+  "manifest_sha256": "65c2567e53f3d3b25084704567798c8ac6ae97ecf2020b07618e5d4b2b18d7d2",
+  "originals_deleted": 0,
+  "scientific_decision": "abstain",
+  "scientific_eligibility_changes": 0,
+  "starts": 697,
+  "state": "complete",
+  "summary_sha256": "a266196fbe4247c9f81ff238aeaba744829d2f9e1711d41755af86b467bfd44e",
+  "unsupported_files": 0,
+  "version": "ilvis0-conditional-corpus-v1"
+}

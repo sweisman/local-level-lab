@@ -1,0 +1,32 @@
+{
+  "all_native_packets_checked": 593682,
+  "artifacts_sha256": {
+    "factors/46f49500c8df79c821b2-factors.json.gz": "32b3186b1be349b7df5ad6b68d4c46c40a2bbd1589f7d69e588ef575ebea19f2",
+    "factors/594999d9bb7345ad87d3-factors.json.gz": "f354a02c26eaaf0ff2acb74352b4bf6b7e8e131737886565247426aefacf06dc",
+    "factors/93f52157cbd20bdf8c1b-factors.json.gz": "203dd8f3c79a9193c7ade4203898e6db361a8a85d470bea5f79556104bd27f82",
+    "factors/ae7127a8b48f61b051a8-factors.json.gz": "ec89311c770f1e88d8d9e2e6538184a311483187b95e999d95c2ad79bd46fc89",
+    "factors/f166954fecd1d93111ee-factors.json.gz": "d8e3bfb6bb777c13cbcebe97dc65d18088eb4dd6365bc1c6f8af44e185d60f86",
+    "factors/f5cae9d0d107ecad9d45-factors.json.gz": "399570f52f2c77745fae6b40f0dec2fcf2435f875d913276557e24ba01f4f1eb",
+    "inventory.csv": "dda809d18c08525e1ae205404a900947abc8040c42fece8027db73b9d084caaa",
+    "manifest.json": "28384402d75339aca4000a92fe71aacc049e978de462c8d9184f4139f29b93ba",
+    "summary.json.gz": "2d6d4e31b21bdeb6360f59682ab39e775c48508539eb105009b1695158de0e97"
+  },
+  "complete_diagnostic_seconds": 2930,
+  "earth_model_fit_attempts": 0,
+  "empirical_joint_parameter_estimation_performed": false,
+  "errors": 0,
+  "files": 6,
+  "new_tests_passed": 16,
+  "numerical_controls_are_not_flight_campaigns": true,
+  "originals_deleted": 0,
+  "processing_independence_established": false,
+  "receiver_endpoint_pairs": 2928,
+  "scientific_eligibility_changes": 0,
+  "selected_native_increments": 585990,
+  "state": "complete",
+  "test_source_sha256": "fc83df8be69e2c24420c526fdfdce4a275a301fc1ea479c86ec39da549c7c8a1",
+  "tests_passed": 32,
+  "total_stored_originals": 232,
+  "version": "ilvis0-joint-motion-forward-v1",
+  "worker_pid": 4029548
+}

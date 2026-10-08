@@ -1,0 +1,658 @@
+{
+  "assumptions": [
+    {
+      "calibrated": false,
+      "correlation_s": 0.0,
+      "drift_neu_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "name": "formal_only",
+      "noise_neu_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "offset_neu_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "semantics": "assumed standard deviations, not supported bounds or confidence coverage"
+    },
+    {
+      "calibrated": false,
+      "correlation_s": 0.0,
+      "drift_neu_m": [
+        1.0,
+        1.0,
+        3.0
+      ],
+      "name": "h1_v3_tau0",
+      "noise_neu_m": [
+        1.0,
+        1.0,
+        3.0
+      ],
+      "offset_neu_m": [
+        1.0,
+        1.0,
+        3.0
+      ],
+      "semantics": "assumed standard deviations, not supported bounds or confidence coverage"
+    },
+    {
+      "calibrated": false,
+      "correlation_s": 10.0,
+      "drift_neu_m": [
+        1.0,
+        1.0,
+        3.0
+      ],
+      "name": "h1_v3_tau10",
+      "noise_neu_m": [
+        1.0,
+        1.0,
+        3.0
+      ],
+      "offset_neu_m": [
+        1.0,
+        1.0,
+        3.0
+      ],
+      "semantics": "assumed standard deviations, not supported bounds or confidence coverage"
+    },
+    {
+      "calibrated": false,
+      "correlation_s": 60.0,
+      "drift_neu_m": [
+        1.0,
+        1.0,
+        3.0
+      ],
+      "name": "h1_v3_tau60",
+      "noise_neu_m": [
+        1.0,
+        1.0,
+        3.0
+      ],
+      "offset_neu_m": [
+        1.0,
+        1.0,
+        3.0
+      ],
+      "semantics": "assumed standard deviations, not supported bounds or confidence coverage"
+    },
+    {
+      "calibrated": false,
+      "correlation_s": 300.0,
+      "drift_neu_m": [
+        1.0,
+        1.0,
+        3.0
+      ],
+      "name": "h1_v3_tau300",
+      "noise_neu_m": [
+        1.0,
+        1.0,
+        3.0
+      ],
+      "offset_neu_m": [
+        1.0,
+        1.0,
+        3.0
+      ],
+      "semantics": "assumed standard deviations, not supported bounds or confidence coverage"
+    },
+    {
+      "calibrated": false,
+      "correlation_s": 0.0,
+      "drift_neu_m": [
+        3.0,
+        3.0,
+        10.0
+      ],
+      "name": "h3_v10_tau0",
+      "noise_neu_m": [
+        3.0,
+        3.0,
+        10.0
+      ],
+      "offset_neu_m": [
+        3.0,
+        3.0,
+        10.0
+      ],
+      "semantics": "assumed standard deviations, not supported bounds or confidence coverage"
+    },
+    {
+      "calibrated": false,
+      "correlation_s": 10.0,
+      "drift_neu_m": [
+        3.0,
+        3.0,
+        10.0
+      ],
+      "name": "h3_v10_tau10",
+      "noise_neu_m": [
+        3.0,
+        3.0,
+        10.0
+      ],
+      "offset_neu_m": [
+        3.0,
+        3.0,
+        10.0
+      ],
+      "semantics": "assumed standard deviations, not supported bounds or confidence coverage"
+    },
+    {
+      "calibrated": false,
+      "correlation_s": 60.0,
+      "drift_neu_m": [
+        3.0,
+        3.0,
+        10.0
+      ],
+      "name": "h3_v10_tau60",
+      "noise_neu_m": [
+        3.0,
+        3.0,
+        10.0
+      ],
+      "offset_neu_m": [
+        3.0,
+        3.0,
+        10.0
+      ],
+      "semantics": "assumed standard deviations, not supported bounds or confidence coverage"
+    },
+    {
+      "calibrated": false,
+      "correlation_s": 300.0,
+      "drift_neu_m": [
+        3.0,
+        3.0,
+        10.0
+      ],
+      "name": "h3_v10_tau300",
+      "noise_neu_m": [
+        3.0,
+        3.0,
+        10.0
+      ],
+      "offset_neu_m": [
+        3.0,
+        3.0,
+        10.0
+      ],
+      "semantics": "assumed standard deviations, not supported bounds or confidence coverage"
+    },
+    {
+      "calibrated": false,
+      "correlation_s": 0.0,
+      "drift_neu_m": [
+        10.0,
+        10.0,
+        30.0
+      ],
+      "name": "h10_v30_tau0",
+      "noise_neu_m": [
+        10.0,
+        10.0,
+        30.0
+      ],
+      "offset_neu_m": [
+        10.0,
+        10.0,
+        30.0
+      ],
+      "semantics": "assumed standard deviations, not supported bounds or confidence coverage"
+    },
+    {
+      "calibrated": false,
+      "correlation_s": 10.0,
+      "drift_neu_m": [
+        10.0,
+        10.0,
+        30.0
+      ],
+      "name": "h10_v30_tau10",
+      "noise_neu_m": [
+        10.0,
+        10.0,
+        30.0
+      ],
+      "offset_neu_m": [
+        10.0,
+        10.0,
+        30.0
+      ],
+      "semantics": "assumed standard deviations, not supported bounds or confidence coverage"
+    },
+    {
+      "calibrated": false,
+      "correlation_s": 60.0,
+      "drift_neu_m": [
+        10.0,
+        10.0,
+        30.0
+      ],
+      "name": "h10_v30_tau60",
+      "noise_neu_m": [
+        10.0,
+        10.0,
+        30.0
+      ],
+      "offset_neu_m": [
+        10.0,
+        10.0,
+        30.0
+      ],
+      "semantics": "assumed standard deviations, not supported bounds or confidence coverage"
+    },
+    {
+      "calibrated": false,
+      "correlation_s": 300.0,
+      "drift_neu_m": [
+        10.0,
+        10.0,
+        30.0
+      ],
+      "name": "h10_v30_tau300",
+      "noise_neu_m": [
+        10.0,
+        10.0,
+        30.0
+      ],
+      "offset_neu_m": [
+        10.0,
+        10.0,
+        30.0
+      ],
+      "semantics": "assumed standard deviations, not supported bounds or confidence coverage"
+    }
+  ],
+  "cases": {
+    "bias": {
+      "bounds": {
+        "accel_bias_x": 0.1
+      },
+      "tolerance": 2e-07,
+      "truth": {
+        "accel_bias_x": 0.04
+      }
+    },
+    "effective_orientation": {
+      "acceleration": 0.0,
+      "bias": 0.0,
+      "bounds": {
+        "attitude_y": 0.01
+      },
+      "pitch": 0.002,
+      "tolerance": 2e-07,
+      "truth": {
+        "attitude_y": 0.002
+      }
+    },
+    "gain": {
+      "bias": 0.0,
+      "bounds": {
+        "accel_gain_x": 0.01
+      },
+      "gain": 0.003,
+      "jerk": 0.7,
+      "tolerance": 2e-05,
+      "truth": {
+        "accel_gain_x": 0.003
+      }
+    },
+    "orientation_acceleration_ambiguity": {
+      "acceleration": 0.0,
+      "bias": 0.0,
+      "bounds": {
+        "accel_bias_x": 0.1,
+        "accel_bias_z": 0.1,
+        "attitude_y": 0.01
+      },
+      "pitch": 0.002,
+      "tolerance": null,
+      "truth": {}
+    },
+    "timing": {
+      "bias": 0.0,
+      "bounds": {
+        "time_offset": 0.08
+      },
+      "jerk": 0.7,
+      "offset": 0.035,
+      "tolerance": 2e-05,
+      "truth": {
+        "time_offset": 0.035
+      }
+    }
+  },
+  "covariance_calibrated": false,
+  "empirical_earth_fit_attempts": 0,
+  "environment": {
+    "numpy": "2.5.3",
+    "python": "3.14.7",
+    "scipy": "1.18.1",
+    "thread_settings": {
+      "MKL_NUM_THREADS": "2",
+      "OMP_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    }
+  },
+  "fixture_duration_s": 2.0,
+  "inputs": {
+    "/site/repo/local-level-lab/docs/ilvis0-estimator-20261007/manifest.json": "d26f38555f7fd10977eff0ebaecf8edd425f654d042658c781cf763352695187",
+    "/site/repo/local-level-lab/docs/ilvis0-gps-sensitivity-20261007/completion.json": "af29a99d2a01e34e71f7c7e8e451411c74f42e096d4ad7bcadfe4c0e38ce74db",
+    "/site/repo/local-level-lab/docs/ilvis0-gps-sensitivity-20261007/manifest.json": "2d9ebd8529c7e987f1eeea78bbd2bb3c30e002a011dec92337113a56a619ab58",
+    "/site/repo/local-level-lab/docs/ilvis0-gps-sensitivity-20261007/summary.json.gz": "ce8b639889ce9a3f8064f3802e3b2462e0bf35dc1705ad25465b19f30e67968d"
+  },
+  "maximum_control_starts": 130,
+  "maximum_fit_evaluations": 160,
+  "maximum_precision_predictions_per_task": 7,
+  "maximum_starts_per_task": 2,
+  "scientific_eligibility_changes": 0,
+  "scope": "65 deterministic analytic covariance/recovery controls and two structural ambiguities; not flight simulations",
+  "sources": {
+    "/site/repo/local-level-lab/analysis/lll/applanix.py": "466866ea3d93600f698a76665b0269b1a5e2d35f067043edaf656d7c55a6dad4",
+    "/site/repo/local-level-lab/analysis/lll/gnss_position.py": "d23178312cc65607d495912766805792df78033c489ddc83a3812275f39ff259",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0.py": "692b7c41c6e7b0fb0a7fb7fa3c2671cac754b4eae87681092a6448df3324f76d",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_assessment.py": "bcd635d63770e04154c1b81417990f33ac0764bdd6e556ed58ded547f6cf5d41",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_correlated_controls.py": "7e682e7b8b830c939065b1275cf607e63cc973c297f6acbb6219dbe369cb5ebf",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_estimator.py": "6393015ed2d15ef5ebf1cba10f823addda2b2821e9dd46f279c50ebb874cdcdd",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_estimator_controls.py": "b1f086b5fec7a0b5fef60721839802291df40523f364c3d2fd5a02738f11c82e",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_followup.py": "d3e238cab5dff807c23a51d0d189e19a21d81eef482711700f9f0a5c0dc9fb8e",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_forward.py": "37e91a623aafd7a7951be995d1b42d8f9144b8a63466a90088d2adcf8a842fad",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_gnss.py": "878d7248d84cded41a134fe60ea8311fe195891903bac7525b185ca1af24c2b8",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_gps_sensitivity.py": "fd6779d92c8e4e995974f38fc44b1c915cd10820e89757439c29592a62ee734e",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_installation.py": "aa813292e7781ca808d9da9971188233621c022586a2a89797c49d36a59a0bae",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_observation.py": "bae3757c24314d04866a4941eac03eaa3badebade83855b988e545b7b65abcab",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_position.py": "8d1269f0e8174d14dd6b525859182e2f6e26ae9cc8cdb9155b17b4d2ac118e7b",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_processing.py": "bac5ef484137dff9eb52ab3da53987aa92c135d034ec07b96f749c495afbd8f0",
+    "/site/repo/local-level-lab/analysis/lll/models.py": "119e91e3f852551d3fd25272c0c376b0199d0762d3b06d01fe4367113fc15dc3",
+    "/site/repo/local-level-lab/analysis/lll/runtime.py": "062ee020ad13f8264bcb72c21a9a73e4fc6247bc755c80472f3781f0929edd73",
+    "/site/repo/local-level-lab/analysis/lll/trimble_observations.py": "241a5aa32c68e85b4c970a268e7021da912a125cc9087f58b4f8365711856dc5",
+    "/site/repo/local-level-lab/analysis/lll/trimble_receiver.py": "6ffd9aa2771c47060d07c7b5570526d29211f255460211b0125c0c57b95d273e",
+    "/site/repo/local-level-lab/analysis/tests/ilvis0_correlated_controls_worker.py": "9e4181928612d19178eba1b79c21c43c95af46011a26065377bf594fe3f5e24c",
+    "/site/repo/local-level-lab/analysis/tests/ilvis0_forward_worker.py": "4947c8cb2d39ac2b7c40fcca8feb4dedc0cc00ad1f67da496b47f92e3d72d760",
+    "/site/repo/local-level-lab/analysis/tests/ilvis0_gnss_worker.py": "4a792974cd566d843b85de590434e40dcca01b695c27aa72a9cca2306d9bf29b",
+    "/site/repo/local-level-lab/analysis/tests/ilvis0_gps_sensitivity_worker.py": "c3ce3cbc3a25aa56eec2b694aa84895e7640f585c91e547a7c76a4c07049fea3",
+    "/site/repo/local-level-lab/analysis/tests/ilvis0_position_worker.py": "62192c17865b18986cf139127c55b87f96e29def1d9d97b6e566eddaaa7985fd",
+    "/site/repo/local-level-lab/analysis/tests/ilvis0_processing_worker.py": "35b03c8428f9daaca89c73f81347fb7028088c70acc88e9168840ef68f7cf745",
+    "/site/repo/local-level-lab/analysis/tests/test_gnss_position.py": "921a235154ed1a72c9f9ee9c405866ce1b1a30eaa053fe93c7021a4dc864c1b7",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_correlated_controls.py": "72c850651a9c3575e449d4b0680806f6243aa091e3005faa5364b8f09011d379",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_gnss.py": "94df6ae61db363070190f6011709e6795f96678a776526bb8c2de53af0af9b0b",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_gps_sensitivity.py": "ceeba58837dcad75e00c3a30f76e2dd437f39be03ef1938054793ca2cec7e479",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_position.py": "13c21ef4fd5d47241e967af1a7f18169625b54ba5166c4a8bff0a3bbd5d821a2",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_processing.py": "2a036c1e8f99166785c76e41712ff6ee7c18e53d5172f91b26cd7b8cf7bb44c7",
+    "/site/repo/local-level-lab/analysis/tests/test_trimble_observations.py": "7b78ac501791a894ea1d7ca8f09e88c7b8c7902492da6bf284208a28b25cc498"
+  },
+  "tasks": {
+    "bias__formal_only": {
+      "assumption": "formal_only",
+      "case": "bias"
+    },
+    "bias__h10_v30_tau0": {
+      "assumption": "h10_v30_tau0",
+      "case": "bias"
+    },
+    "bias__h10_v30_tau10": {
+      "assumption": "h10_v30_tau10",
+      "case": "bias"
+    },
+    "bias__h10_v30_tau300": {
+      "assumption": "h10_v30_tau300",
+      "case": "bias"
+    },
+    "bias__h10_v30_tau60": {
+      "assumption": "h10_v30_tau60",
+      "case": "bias"
+    },
+    "bias__h1_v3_tau0": {
+      "assumption": "h1_v3_tau0",
+      "case": "bias"
+    },
+    "bias__h1_v3_tau10": {
+      "assumption": "h1_v3_tau10",
+      "case": "bias"
+    },
+    "bias__h1_v3_tau300": {
+      "assumption": "h1_v3_tau300",
+      "case": "bias"
+    },
+    "bias__h1_v3_tau60": {
+      "assumption": "h1_v3_tau60",
+      "case": "bias"
+    },
+    "bias__h3_v10_tau0": {
+      "assumption": "h3_v10_tau0",
+      "case": "bias"
+    },
+    "bias__h3_v10_tau10": {
+      "assumption": "h3_v10_tau10",
+      "case": "bias"
+    },
+    "bias__h3_v10_tau300": {
+      "assumption": "h3_v10_tau300",
+      "case": "bias"
+    },
+    "bias__h3_v10_tau60": {
+      "assumption": "h3_v10_tau60",
+      "case": "bias"
+    },
+    "effective_orientation__formal_only": {
+      "assumption": "formal_only",
+      "case": "effective_orientation"
+    },
+    "effective_orientation__h10_v30_tau0": {
+      "assumption": "h10_v30_tau0",
+      "case": "effective_orientation"
+    },
+    "effective_orientation__h10_v30_tau10": {
+      "assumption": "h10_v30_tau10",
+      "case": "effective_orientation"
+    },
+    "effective_orientation__h10_v30_tau300": {
+      "assumption": "h10_v30_tau300",
+      "case": "effective_orientation"
+    },
+    "effective_orientation__h10_v30_tau60": {
+      "assumption": "h10_v30_tau60",
+      "case": "effective_orientation"
+    },
+    "effective_orientation__h1_v3_tau0": {
+      "assumption": "h1_v3_tau0",
+      "case": "effective_orientation"
+    },
+    "effective_orientation__h1_v3_tau10": {
+      "assumption": "h1_v3_tau10",
+      "case": "effective_orientation"
+    },
+    "effective_orientation__h1_v3_tau300": {
+      "assumption": "h1_v3_tau300",
+      "case": "effective_orientation"
+    },
+    "effective_orientation__h1_v3_tau60": {
+      "assumption": "h1_v3_tau60",
+      "case": "effective_orientation"
+    },
+    "effective_orientation__h3_v10_tau0": {
+      "assumption": "h3_v10_tau0",
+      "case": "effective_orientation"
+    },
+    "effective_orientation__h3_v10_tau10": {
+      "assumption": "h3_v10_tau10",
+      "case": "effective_orientation"
+    },
+    "effective_orientation__h3_v10_tau300": {
+      "assumption": "h3_v10_tau300",
+      "case": "effective_orientation"
+    },
+    "effective_orientation__h3_v10_tau60": {
+      "assumption": "h3_v10_tau60",
+      "case": "effective_orientation"
+    },
+    "gain__formal_only": {
+      "assumption": "formal_only",
+      "case": "gain"
+    },
+    "gain__h10_v30_tau0": {
+      "assumption": "h10_v30_tau0",
+      "case": "gain"
+    },
+    "gain__h10_v30_tau10": {
+      "assumption": "h10_v30_tau10",
+      "case": "gain"
+    },
+    "gain__h10_v30_tau300": {
+      "assumption": "h10_v30_tau300",
+      "case": "gain"
+    },
+    "gain__h10_v30_tau60": {
+      "assumption": "h10_v30_tau60",
+      "case": "gain"
+    },
+    "gain__h1_v3_tau0": {
+      "assumption": "h1_v3_tau0",
+      "case": "gain"
+    },
+    "gain__h1_v3_tau10": {
+      "assumption": "h1_v3_tau10",
+      "case": "gain"
+    },
+    "gain__h1_v3_tau300": {
+      "assumption": "h1_v3_tau300",
+      "case": "gain"
+    },
+    "gain__h1_v3_tau60": {
+      "assumption": "h1_v3_tau60",
+      "case": "gain"
+    },
+    "gain__h3_v10_tau0": {
+      "assumption": "h3_v10_tau0",
+      "case": "gain"
+    },
+    "gain__h3_v10_tau10": {
+      "assumption": "h3_v10_tau10",
+      "case": "gain"
+    },
+    "gain__h3_v10_tau300": {
+      "assumption": "h3_v10_tau300",
+      "case": "gain"
+    },
+    "gain__h3_v10_tau60": {
+      "assumption": "h3_v10_tau60",
+      "case": "gain"
+    },
+    "orientation_acceleration_ambiguity__formal_only": {
+      "assumption": "formal_only",
+      "case": "orientation_acceleration_ambiguity"
+    },
+    "orientation_acceleration_ambiguity__h10_v30_tau0": {
+      "assumption": "h10_v30_tau0",
+      "case": "orientation_acceleration_ambiguity"
+    },
+    "orientation_acceleration_ambiguity__h10_v30_tau10": {
+      "assumption": "h10_v30_tau10",
+      "case": "orientation_acceleration_ambiguity"
+    },
+    "orientation_acceleration_ambiguity__h10_v30_tau300": {
+      "assumption": "h10_v30_tau300",
+      "case": "orientation_acceleration_ambiguity"
+    },
+    "orientation_acceleration_ambiguity__h10_v30_tau60": {
+      "assumption": "h10_v30_tau60",
+      "case": "orientation_acceleration_ambiguity"
+    },
+    "orientation_acceleration_ambiguity__h1_v3_tau0": {
+      "assumption": "h1_v3_tau0",
+      "case": "orientation_acceleration_ambiguity"
+    },
+    "orientation_acceleration_ambiguity__h1_v3_tau10": {
+      "assumption": "h1_v3_tau10",
+      "case": "orientation_acceleration_ambiguity"
+    },
+    "orientation_acceleration_ambiguity__h1_v3_tau300": {
+      "assumption": "h1_v3_tau300",
+      "case": "orientation_acceleration_ambiguity"
+    },
+    "orientation_acceleration_ambiguity__h1_v3_tau60": {
+      "assumption": "h1_v3_tau60",
+      "case": "orientation_acceleration_ambiguity"
+    },
+    "orientation_acceleration_ambiguity__h3_v10_tau0": {
+      "assumption": "h3_v10_tau0",
+      "case": "orientation_acceleration_ambiguity"
+    },
+    "orientation_acceleration_ambiguity__h3_v10_tau10": {
+      "assumption": "h3_v10_tau10",
+      "case": "orientation_acceleration_ambiguity"
+    },
+    "orientation_acceleration_ambiguity__h3_v10_tau300": {
+      "assumption": "h3_v10_tau300",
+      "case": "orientation_acceleration_ambiguity"
+    },
+    "orientation_acceleration_ambiguity__h3_v10_tau60": {
+      "assumption": "h3_v10_tau60",
+      "case": "orientation_acceleration_ambiguity"
+    },
+    "timing__formal_only": {
+      "assumption": "formal_only",
+      "case": "timing"
+    },
+    "timing__h10_v30_tau0": {
+      "assumption": "h10_v30_tau0",
+      "case": "timing"
+    },
+    "timing__h10_v30_tau10": {
+      "assumption": "h10_v30_tau10",
+      "case": "timing"
+    },
+    "timing__h10_v30_tau300": {
+      "assumption": "h10_v30_tau300",
+      "case": "timing"
+    },
+    "timing__h10_v30_tau60": {
+      "assumption": "h10_v30_tau60",
+      "case": "timing"
+    },
+    "timing__h1_v3_tau0": {
+      "assumption": "h1_v3_tau0",
+      "case": "timing"
+    },
+    "timing__h1_v3_tau10": {
+      "assumption": "h1_v3_tau10",
+      "case": "timing"
+    },
+    "timing__h1_v3_tau300": {
+      "assumption": "h1_v3_tau300",
+      "case": "timing"
+    },
+    "timing__h1_v3_tau60": {
+      "assumption": "h1_v3_tau60",
+      "case": "timing"
+    },
+    "timing__h3_v10_tau0": {
+      "assumption": "h3_v10_tau0",
+      "case": "timing"
+    },
+    "timing__h3_v10_tau10": {
+      "assumption": "h3_v10_tau10",
+      "case": "timing"
+    },
+    "timing__h3_v10_tau300": {
+      "assumption": "h3_v10_tau300",
+      "case": "timing"
+    },
+    "timing__h3_v10_tau60": {
+      "assumption": "h3_v10_tau60",
+      "case": "timing"
+    }
+  },
+  "version": "ilvis0-correlated-motion-controls-v1"
+}

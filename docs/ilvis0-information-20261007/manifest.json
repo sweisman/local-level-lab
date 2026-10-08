@@ -1,0 +1,250 @@
+{
+  "assumptions": [
+    {
+      "calibrated": false,
+      "correlation_s": 0.0,
+      "drift_neu_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "name": "formal_only",
+      "noise_neu_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "offset_neu_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "semantics": "assumed standard deviations, not supported bounds or confidence coverage"
+    },
+    {
+      "calibrated": false,
+      "correlation_s": 60.0,
+      "drift_neu_m": [
+        1.0,
+        1.0,
+        3.0
+      ],
+      "name": "h1_v3_tau60",
+      "noise_neu_m": [
+        1.0,
+        1.0,
+        3.0
+      ],
+      "offset_neu_m": [
+        1.0,
+        1.0,
+        3.0
+      ],
+      "semantics": "assumed standard deviations, not supported bounds or confidence coverage"
+    },
+    {
+      "calibrated": false,
+      "correlation_s": 300.0,
+      "drift_neu_m": [
+        10.0,
+        10.0,
+        30.0
+      ],
+      "name": "h10_v30_tau300",
+      "noise_neu_m": [
+        10.0,
+        10.0,
+        30.0
+      ],
+      "offset_neu_m": [
+        10.0,
+        10.0,
+        30.0
+      ],
+      "semantics": "assumed standard deviations, not supported bounds or confidence coverage"
+    }
+  ],
+  "derivative_noise_multiplier": 3.0,
+  "derivative_noise_proxy_is_bound": false,
+  "empirical_earth_fit_attempts": 0,
+  "environment": {
+    "numpy": "2.5.3",
+    "python": "3.14.7",
+    "scipy": "1.18.1",
+    "thread_settings": {
+      "MKL_NUM_THREADS": "2",
+      "OMP_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    }
+  },
+  "inputs": {
+    "/site/repo/local-level-lab/docs/ilvis0-excitation-20261007/completion.json": "e497b31803fed2b7522b9b199d4c905ba9269e252a8d4925387112b9772655d0",
+    "/site/repo/local-level-lab/docs/ilvis0-excitation-20261007/manifest.json": "a98c6d4b34ce1c36b7d8be791518c4687bcd350c1f9d3fb7494e786273a40306",
+    "/site/repo/local-level-lab/docs/ilvis0-excitation-20261007/summary.json.gz": "742e9625fd8fbda374df82f3454c7a6dad79dbbe159db1a441fa1d31bbe11bb3"
+  },
+  "limits": {
+    "accel_bias_x": 0.05,
+    "accel_gain_x": 0.01,
+    "attitude_y": 0.01,
+    "gyro_bias_y": 1e-05,
+    "gyro_gain_y": 0.01,
+    "position_x": 5.0,
+    "time_offset": 0.08,
+    "velocity_x": 0.5
+  },
+  "maximum_predictions_per_task": 65,
+  "maximum_starts_per_task": 2,
+  "maximum_tasks": 18,
+  "maximum_total_starts": 36,
+  "originals_deleted": 0,
+  "resolution_tolerance": 0.02,
+  "scientific_eligibility_changes": 0,
+  "scope": "18 fixed analytic fixtures, four central derivative steps; no optimization or archival observations",
+  "sources": {
+    "/site/repo/local-level-lab/analysis/lll/applanix.py": "466866ea3d93600f698a76665b0269b1a5e2d35f067043edaf656d7c55a6dad4",
+    "/site/repo/local-level-lab/analysis/lll/gnss_position.py": "d23178312cc65607d495912766805792df78033c489ddc83a3812275f39ff259",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0.py": "692b7c41c6e7b0fb0a7fb7fa3c2671cac754b4eae87681092a6448df3324f76d",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_assessment.py": "bcd635d63770e04154c1b81417990f33ac0764bdd6e556ed58ded547f6cf5d41",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_correlated_controls.py": "7e682e7b8b830c939065b1275cf607e63cc973c297f6acbb6219dbe369cb5ebf",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_estimator.py": "6393015ed2d15ef5ebf1cba10f823addda2b2821e9dd46f279c50ebb874cdcdd",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_estimator_controls.py": "b1f086b5fec7a0b5fef60721839802291df40523f364c3d2fd5a02738f11c82e",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_excitation_controls.py": "71b91408d6cb96e4ffa3b4b64e7147634bc5f7081c126585c4a391a37d9d7d62",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_followup.py": "d3e238cab5dff807c23a51d0d189e19a21d81eef482711700f9f0a5c0dc9fb8e",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_forward.py": "37e91a623aafd7a7951be995d1b42d8f9144b8a63466a90088d2adcf8a842fad",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_gnss.py": "878d7248d84cded41a134fe60ea8311fe195891903bac7525b185ca1af24c2b8",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_gps_sensitivity.py": "fd6779d92c8e4e995974f38fc44b1c915cd10820e89757439c29592a62ee734e",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_information.py": "d8dcf9719dbd7c4a543f9dda7a4fd72b334385ab7e228a347bfaa4b29cb3d265",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_installation.py": "aa813292e7781ca808d9da9971188233621c022586a2a89797c49d36a59a0bae",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_observation.py": "bae3757c24314d04866a4941eac03eaa3badebade83855b988e545b7b65abcab",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_position.py": "8d1269f0e8174d14dd6b525859182e2f6e26ae9cc8cdb9155b17b4d2ac118e7b",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_processing.py": "bac5ef484137dff9eb52ab3da53987aa92c135d034ec07b96f749c495afbd8f0",
+    "/site/repo/local-level-lab/analysis/lll/models.py": "119e91e3f852551d3fd25272c0c376b0199d0762d3b06d01fe4367113fc15dc3",
+    "/site/repo/local-level-lab/analysis/lll/runtime.py": "062ee020ad13f8264bcb72c21a9a73e4fc6247bc755c80472f3781f0929edd73",
+    "/site/repo/local-level-lab/analysis/lll/trimble_observations.py": "241a5aa32c68e85b4c970a268e7021da912a125cc9087f58b4f8365711856dc5",
+    "/site/repo/local-level-lab/analysis/lll/trimble_receiver.py": "6ffd9aa2771c47060d07c7b5570526d29211f255460211b0125c0c57b95d273e",
+    "/site/repo/local-level-lab/analysis/tests/ilvis0_correlated_controls_worker.py": "9e4181928612d19178eba1b79c21c43c95af46011a26065377bf594fe3f5e24c",
+    "/site/repo/local-level-lab/analysis/tests/ilvis0_excitation_worker.py": "9f7415d30c3fe31653c065613302ac8b496978e1c4cdcf95e8d07183560cc7f0",
+    "/site/repo/local-level-lab/analysis/tests/ilvis0_forward_worker.py": "4947c8cb2d39ac2b7c40fcca8feb4dedc0cc00ad1f67da496b47f92e3d72d760",
+    "/site/repo/local-level-lab/analysis/tests/ilvis0_gnss_worker.py": "4a792974cd566d843b85de590434e40dcca01b695c27aa72a9cca2306d9bf29b",
+    "/site/repo/local-level-lab/analysis/tests/ilvis0_gps_sensitivity_worker.py": "c3ce3cbc3a25aa56eec2b694aa84895e7640f585c91e547a7c76a4c07049fea3",
+    "/site/repo/local-level-lab/analysis/tests/ilvis0_information_worker.py": "5bc58d6b59b4d13bc3eecbfe87cb9876c234c706fe5c981cb024ade4ebaaefa7",
+    "/site/repo/local-level-lab/analysis/tests/ilvis0_position_worker.py": "62192c17865b18986cf139127c55b87f96e29def1d9d97b6e566eddaaa7985fd",
+    "/site/repo/local-level-lab/analysis/tests/ilvis0_processing_worker.py": "35b03c8428f9daaca89c73f81347fb7028088c70acc88e9168840ef68f7cf745",
+    "/site/repo/local-level-lab/analysis/tests/test_gnss_position.py": "921a235154ed1a72c9f9ee9c405866ce1b1a30eaa053fe93c7021a4dc864c1b7",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_correlated_controls.py": "72c850651a9c3575e449d4b0680806f6243aa091e3005faa5364b8f09011d379",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_excitation_controls.py": "f478223652ce6609a971ba01793655cfe45b0053fdc7752d302d0ba76bbdac0f",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_gnss.py": "94df6ae61db363070190f6011709e6795f96678a776526bb8c2de53af0af9b0b",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_gps_sensitivity.py": "ceeba58837dcad75e00c3a30f76e2dd437f39be03ef1938054793ca2cec7e479",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_information.py": "053a59208d0d94c78cf8d257e5bd8e6e3b9d2c5bf4946e9906fedc25f8b29570",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_position.py": "13c21ef4fd5d47241e967af1a7f18169625b54ba5166c4a8bff0a3bbd5d821a2",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_processing.py": "2a036c1e8f99166785c76e41712ff6ee7c18e53d5172f91b26cd7b8cf7bb44c7",
+    "/site/repo/local-level-lab/analysis/tests/test_trimble_observations.py": "7b78ac501791a894ea1d7ca8f09e88c7b8c7902492da6bf284208a28b25cc498"
+  },
+  "steps": [
+    0.0005,
+    0.001,
+    0.002,
+    0.004
+  ],
+  "tasks": {
+    "information_20_brief_pitch_formal_only": {
+      "assumption": "formal_only",
+      "duration": 20.0,
+      "motion": "brief_pitch"
+    },
+    "information_20_brief_pitch_h10_v30_tau300": {
+      "assumption": "h10_v30_tau300",
+      "duration": 20.0,
+      "motion": "brief_pitch"
+    },
+    "information_20_brief_pitch_h1_v3_tau60": {
+      "assumption": "h1_v3_tau60",
+      "duration": 20.0,
+      "motion": "brief_pitch"
+    },
+    "information_20_steady_orientation_formal_only": {
+      "assumption": "formal_only",
+      "duration": 20.0,
+      "motion": "steady_orientation"
+    },
+    "information_20_steady_orientation_h10_v30_tau300": {
+      "assumption": "h10_v30_tau300",
+      "duration": 20.0,
+      "motion": "steady_orientation"
+    },
+    "information_20_steady_orientation_h1_v3_tau60": {
+      "assumption": "h1_v3_tau60",
+      "duration": 20.0,
+      "motion": "steady_orientation"
+    },
+    "information_2_brief_pitch_formal_only": {
+      "assumption": "formal_only",
+      "duration": 2.0,
+      "motion": "brief_pitch"
+    },
+    "information_2_brief_pitch_h10_v30_tau300": {
+      "assumption": "h10_v30_tau300",
+      "duration": 2.0,
+      "motion": "brief_pitch"
+    },
+    "information_2_brief_pitch_h1_v3_tau60": {
+      "assumption": "h1_v3_tau60",
+      "duration": 2.0,
+      "motion": "brief_pitch"
+    },
+    "information_2_steady_orientation_formal_only": {
+      "assumption": "formal_only",
+      "duration": 2.0,
+      "motion": "steady_orientation"
+    },
+    "information_2_steady_orientation_h10_v30_tau300": {
+      "assumption": "h10_v30_tau300",
+      "duration": 2.0,
+      "motion": "steady_orientation"
+    },
+    "information_2_steady_orientation_h1_v3_tau60": {
+      "assumption": "h1_v3_tau60",
+      "duration": 2.0,
+      "motion": "steady_orientation"
+    },
+    "information_60_brief_pitch_formal_only": {
+      "assumption": "formal_only",
+      "duration": 60.0,
+      "motion": "brief_pitch"
+    },
+    "information_60_brief_pitch_h10_v30_tau300": {
+      "assumption": "h10_v30_tau300",
+      "duration": 60.0,
+      "motion": "brief_pitch"
+    },
+    "information_60_brief_pitch_h1_v3_tau60": {
+      "assumption": "h1_v3_tau60",
+      "duration": 60.0,
+      "motion": "brief_pitch"
+    },
+    "information_60_steady_orientation_formal_only": {
+      "assumption": "formal_only",
+      "duration": 60.0,
+      "motion": "steady_orientation"
+    },
+    "information_60_steady_orientation_h10_v30_tau300": {
+      "assumption": "h10_v30_tau300",
+      "duration": 60.0,
+      "motion": "steady_orientation"
+    },
+    "information_60_steady_orientation_h1_v3_tau60": {
+      "assumption": "h1_v3_tau60",
+      "duration": 60.0,
+      "motion": "steady_orientation"
+    }
+  },
+  "truth": {
+    "accel_bias_x": 0.01,
+    "accel_gain_x": 0.003,
+    "gyro_bias_y": 2e-06,
+    "gyro_gain_y": 0.002,
+    "time_offset": 0.035
+  },
+  "unit_information_scale": 1.0,
+  "version": "ilvis0-information-stability-v1"
+}

@@ -1,5 +1,12 @@
 # Acquiring and decoding the airborne IMU archive
 
+The [complete-stretch scope](ilvis0-highspeed-segments-20261008/README.md) selects every
+supported interval lasting at least four minutes with receiver ground speed at least 700 km/h
+throughout. A versioned inventory records files, exact UTC times, speed and exclusions before
+fitting. Whole stretches are primary joint fits; shorter sections check consistency with the
+same parameters. These criteria do not establish model separation. See the
+[shared methodology](METHODOLOGY.md).
+
 NASA's [ILVIS0 archive](https://nsidc.org/data/ilvis0/versions/1) contains Applanix recordings
 from survey aircraft. An inertial measurement unit (IMU) measures motion using gyroscopes
 and accelerometers. These `.013` files record small **changes in angle and velocity**;
@@ -23,6 +30,15 @@ recording. Published post-processed attitude accuracy is likewise fused navigati
 The hardware is promising for resolving small persistent signals; understanding its recorded
 corrections and coordinate frame remains essential. The archive also contains other IMU types
 and POS AV 610 configurations, so this characterization does not apply uniformly to every file.
+
+**Current modeling order:** compare the globe family with the flat-disc candidate first;
+report rotating-versus-still diagnostics only if that shape comparison consistently favors
+the globe under every tested assumption. The new six-file sensitivity check uses constant
+gyro-offset allowances of ±0.1 and ±1 degree/hour. These are calibration hypotheses,
+not measured drift or guaranteed limits. The historical ±20 degree/hour allowance was a
+broad stress test. Constant offset, random noise and time-varying drift are different errors.
+The [refinement record](ilvis0-refinement-20261008/README.md) explains the numerical checks,
+public performance context and queued run. Scientific decisions still require calibration.
 
 The supplied 14 April 2009 ATM sample now passes an empirical physical-decoder check.
 Its six signed integers represent velocity X/Y/Z followed by angle X/Y/Z. The recovered
@@ -289,3 +305,121 @@ Only informative, independently supported measurements advance to the bounded ex
 comparison above. If motion or processing remains inseparable from the predicted signal,
 report that specific limitation and the additional observation needed. A later scientific
 decision requires its own frozen assumptions, calibration and independent validation.
+
+The first [archival observation check](ilvis0-observation-20261007/README.md) has now completed
+on the six existing IMU6 representatives. It prepared 2,930 complete diagnostic seconds and
+tested geometry using primary-receiver coordinates, without fused attitude or gyro rates.
+The 26 October 2010 route retains predicted pairwise separation after constant/linear bias
+removal, including 2.50 degrees/hour RMS for still globe versus disc, under an idealized
+independent aircraft-motion correction. Freely varying gain/mount tangents remove nearly
+all separation, but that unbounded local projection is not a fit with realistic calibration
+bounds. No Earth fit has been attempted. The next constructive work is a joint raw-IMU/GPS
+motion model and defensible nuisance bounds, with explicit processing-independence checks.
+
+That [joint motion model](ilvis0-forward-20261007/README.md) is now implemented and its
+deterministic controls pass. It integrates full-rate finite rotations and rotated specific
+force, predicts navigation under explicit candidate geometries, and requires calibration
+bounds/processing assumptions as inputs. Six strict source scans prepared all 2,930 previous
+complete seconds; 2,928 have real GPS observations near both endpoints, with their timing
+offsets preserved. No fused attitude/gyro entered the observations and no Earth fit ran.
+**Current continuation:** [conditional recorded-data modeling](ilvis0-exploratory-20261008/README.md)
+now uses the six real IMU/GPS recordings while the instrument inquiry is pending.
+It states assumed correction/calibration/timing bounds and preserves convergence
+failures. This separate exploratory path does not satisfy or replace the independent
+evidence gate. Earlier statements below describe completed historical stages.
+
+The [bounded estimator](ilvis0-estimator-20261007/README.md) is now implemented. Five analytic
+software controls recover bias, effective orientation, gain and timing under known conditions,
+and expose orientation/bias ambiguity when both are free. Fifteen focused tests pass.
+Pair-specific bounded tangent profiles and the empirical prerequisite/start ledger are
+implemented; no observed Earth fit ran. Local tangents are not a guarantee of separation
+between two independently fitted nonlinear models. Archive calibration, processing, clock
+and validated receiver covariance remain prerequisites before the bounded empirical fit.
+The subsequent [receiver/processing audit](ilvis0-processing-v2-20261007/README.md) recovers
+2,968 dated primary-receiver positions with reported north/east/vertical uncertainty. Their
+units and epochs reproduce the receiver's GPS sentences. It also reassembles 29,681 binary
+RT17/RT27 survey envelopes, whose measurement payloads remain unconverted. Four receiver
+streams are complete; two have incomplete final packet/record tails, retained without repair.
+All six outer source/hash audits pass. Sixteen focused tests pass. Reported sigmas are not
+independently validated full covariance, and no Earth fit or scientific promotion occurred.
+
+The [satellite-measurement audit](ilvis0-gnss-v2-20261007/README.md) then decodes
+19,699 epochs and 603,603 signal measurements at 10Hz in the two RT17 streams and 5Hz
+in the four RT27 streams, plus 326 GPS ephemeris packets. All six source/frame/record
+sequence checks pass; 31 focused tests pass. Of 29,567 GPS sky-angle comparisons, 29
+flagged cases are one satellite reporting zero angles for 29 seconds. All measurements
+and prior tail failures remain preserved. RT17 filtering flags do not establish code
+smoothing; RT27's explicit smoothing flags are clear. No positioning or Earth fit ran at
+that decoder stage.
+
+The separately frozen [GPS-only reconstruction](ilvis0-position-20261007/README.md) now
+solves all 2,968 previously selected epochs with two fixed code-range methods: 5,936 primary
+solutions and 24 displaced-start checks all converge. Recorded broadcast orbits, satellite
+clocks, signal travel time, ionospheric coefficients and an altitude-supported atmospheric
+approximation supply the corrections. No fused navigation enters the reconstruction. The
+first receiver position only initializes the solver; reported positions are comparison
+products, not constraints. Twenty-eight focused tests pass (13 new, 15 preceding).
+
+L1 RMS differences from the same receiver reports range from 0.17–0.85m per horizontal
+axis and 0.46–1.79m vertically. Those are consistency differences, not measured errors.
+Dual-frequency differences are larger; unknown signal biases and shared processing prevent
+an accuracy ranking. Lag-one difference correlations span 0.20–0.89, and mean vertical
+method offsets span about -1.61 to +2.97m. Formal covariance remains uncalibrated.
+All232originals remain, with zero Earth fits or scientific eligibility changes.
+
+The subsequent [correlated-error sensitivity analysis](ilvis0-gps-sensitivity-20261007/README.md)
+evaluates 13 fixed assumptions over both methods and the same 2,968 epochs. Formal cross-axis
+terms, exponential temporal correlation, common offsets and linear drift propagate through
+mean positions and fixed 2/6/12/30/60-second kinematic windows. There is no residual-based
+selection or automatic smoothing choice. The assumed scales are not calibrated bounds.
+Twenty-three focused tests pass (ten new, thirteen preceding). Persistent errors can prevent
+mean-position uncertainty from averaging away; a short-motion control loses over 100 times
+its acceleration response in a 60-second window. No observed Earth fit or gate change ran.
+The [joint IMU/GPS controls](ilvis0-correlated-controls-20261007/README.md) now propagate
+that full assumed covariance through five analytic calibration/timing fixtures. Numerical
+recovery is reported separately from local precision; unresolved directions have no finite
+marginal precision assigned. GPS offset/drift controls reproduce initial position/velocity
+shifts. Thirty-three distinct focused tests pass (eight new, ten preceding sensitivity,
+fifteen estimator). This uses two-second toy translation data, not archived IMU fits or
+measured IMU6 performance. Supported processing, calibration, mounting and physical
+integration/latency bounds remain necessary before observed Earth fitting.
+
+The [duration/rotation controls](ilvis0-excitation-20261007/README.md) now compare2/20/60s
+analytic trajectories with/without a one-second0.1deg pitch correction under three fixed
+GPS-error assumptions. All18trajectory checks and4single-parameter gyro-bias/timing fits
+pass;11focused tests pass. Joint eight-parameter precision improves with duration but
+gyro-gain information remains weak. Covariance-dependent rank changes are preserved and
+are not interpreted as improved data. No archived IMU was fitted or downsampled. The
+[IMU6 evidence matrix](ilvis0-excitation-20261007/INSTRUMENT_EVIDENCE.md) distinguishes
+empirical units/mappings from unsupported processing, noise/drift bounds and physical
+clock/latency conventions. The subsequent
+[information stability diagnostics](ilvis0-information-20261007/README.md) compare four
+central derivative steps on those same18fixtures and retain every result. Smooth
+reference information separates numerical rank from useful local sensitivity relative
+to the declared bounds. The reference penalty and GPS covariances are explicitly
+assumed, not measured calibration or confidence intervals. Independent
+instrument-specific support remains necessary; the empirical Earth-fit evidence gate
+is unchanged.
+
+The [instrument documentation review](ilvis0-instrument-evidence-20261007/README.md)
+now finds a published POS AV510/IMU-6 association with tactical-grade Litton-200
+hardware. This supports an LN-200-family inference for the six files; it does not
+identify their exact installed variants. The review associates existing source
+hashes/dates with logged POS system identifiers and firmware/ICD revisions, and
+prepares an unsent technical question packet. Public descriptions establish a
+sensor-correction stage before navigation integration but not the legacy Group4
+logging tap point. Generic NovAtel LN-200 output scales differ from our empirical
+Applanix encoding; they are not substituted into the decoder. Recorded correction,
+calibration, integration-clock/latency and mounting support remain unresolved.
+
+The [legacy-record search](ilvis0-legacy-records-20261008/README.md) obtained no
+manual/calibration record matching those V5 revisions. NSIDC's current guide
+supports raw/unprocessed Level-0 archive provenance but does not define onboard
+Group4 corrections. A verified support route and concise unsent request are ready.
+No external message or empirical fit ran; obtaining matched records is the next step.
+
+The same evidence characterizes the six prepared stretches from embedded GPS: median heights
+6.35–11.93 km above mean sea level and median ground speeds 482–937 km/h. These are not
+whole-flight or above-terrain summaries. Earlier candidate windows cover both low and high
+altitudes. Slower flight reduces the predicted curvature rate, while Earth rotation itself
+does not depend on aircraft speed. Instrument streams and uncertainty must remain distinct.

@@ -1,0 +1,37 @@
+{
+  "artifact_sha256": {
+    "QUESTIONS.md": "7004b82db948071aca232880b39181e4dd6cfeb59f936975903481a3eab24a2f",
+    "README.md": "4ec2894e06d9d908cc62de6b96d30c45d5d6d519d58738879ea083dce49f98af",
+    "build_evidence.py": "d211f3b3ab650cdc17b5da0dcd0a0757514a6441ca4883edffe4819545a8f345",
+    "inventory.csv": "1800be364ecd5156a30af0dae108f2572f1f39512b30c65ccf518a653ceae7d6",
+    "sources.json": "c4ec10a624ce449de85641fcb3e67559a3fb18e096e3c420f58f51a1f46515be"
+  },
+  "empirical_earth_fit_attempts": 0,
+  "exact_installed_variants_verified": 0,
+  "independent_hardware_family_support": "published POS AV510/IMU-6 Litton-200 association",
+  "inputs_sha256": {
+    "docs/ilvis0-processing-v2-20261007/completion.json": "9f3a6fc69696006d5340da00f87630f44dbe54d59c25378754a31a29bdff9b5b",
+    "docs/ilvis0-processing-v2-20261007/manifest.json": "3ab8a345b35d056603443e9db7f6c33290d493e34935bd1ccc371084cbf42873",
+    "docs/ilvis0-processing-v2-20261007/summary.json.gz": "57b9f1ad0ae21665fd079d443ca91f7a83143e6c2349251cdcf4b79fa3a3d98b"
+  },
+  "messages_sent": 0,
+  "new_independent_calibration_bounds": 0,
+  "numerical_scale_comparison": {
+    "angle_relative_difference": 0.01672798096622552,
+    "applanix_empirical_angle_rad_per_count": 1.9392547244381438e-06,
+    "applanix_empirical_velocity_mps_per_count": 3.38e-05,
+    "hardware_identity_disproved": false,
+    "identical_output_encoding": false,
+    "manufacturer_scale_applied_to_legacy_decoder": false,
+    "novatel_RAWIMUSX_LN200_angle_rad_per_count": 1.9073486328125e-06,
+    "novatel_RAWIMUSX_LN200_velocity_mps_per_count": 6.103515625e-05,
+    "velocity_relative_difference": -0.4462208
+  },
+  "originals_deleted": 0,
+  "originals_scanned": 0,
+  "reviewed_on": "2026-10-07",
+  "scientific_eligibility_changes": 0,
+  "state": "complete",
+  "verified_cached_files": 6,
+  "version": "ilvis0-instrument-evidence-review-v1"
+}

@@ -1,0 +1,19 @@
+{
+  "alternate_seed_converged": 24,
+  "alternate_seed_fit_calls": 24,
+  "covariance_calibrated": false,
+  "empirical_earth_fit_attempts": 0,
+  "files": 6,
+  "manifest_sha256": "f01d45b1d379433d06a79ba103e54d713c50ff4544b4563a080f819cc571331f",
+  "originals_deleted": 0,
+  "position_fit_calls": 5960,
+  "preselected_epochs": 2968,
+  "primary_abstained": 0,
+  "primary_converged": 5936,
+  "primary_position_fit_calls": 5936,
+  "scientific_eligibility_changes": 0,
+  "source_audit_errors": 0,
+  "state": "complete",
+  "summary_sha256": "a67237aa0c7bf021992c917879113a684aaf24dc1c1c7ef85d4ef81e59643034",
+  "version": "ilvis0-receiver-position-v1"
+}

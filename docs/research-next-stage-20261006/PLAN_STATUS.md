@@ -5,6 +5,57 @@ that useful flight geometry survives realistic instrument and aircraft uncertain
 calibrating and independently validating the resulting decisions. Implemented software and
 successful numerical fits do not establish that the physical models can be distinguished.
 
+The current development priority is the archival airborne analysis, with the passenger
+experiment to become secondary once the archival analysis is ready. Six prepared IMU6
+recordings now have [GPS-only reconstructed trajectories](../ilvis0-position-20261007/README.md)
+and [correlated-error sensitivity checks](../ilvis0-gps-sensitivity-20261007/README.md).
+Neither is an Earth-model result. [Joint IMU/GPS covariance controls](../ilvis0-correlated-controls-20261007/README.md)
+now distinguish noiseless calibration/timing recovery from useful precision and preserve
+GPS-offset/drift ambiguities. [Longer rotation controls](../ilvis0-excitation-20261007/README.md)
+now test duration and brief pitch motion; all22checks pass, while joint information remains
+weak or rank-sensitive. The [instrument evidence matrix](../ilvis0-excitation-20261007/INSTRUMENT_EVIDENCE.md)
+specifies the missing legacy processing, calibration, mounting and integration-clock
+support. [Information stability diagnostics](../ilvis0-information-20261007/README.md)
+now compare four central derivative steps and smooth information relative to the
+declared fixture bounds. This separates numerical rank from useful calibration;
+the bounds and reference penalty remain assumptions. The
+[instrument documentation review](../ilvis0-instrument-evidence-20261007/README.md)
+now supports the LN-200-family inference and packages firmware-specific unresolved
+questions. It does not establish the recorded corrections or calibration bounds.
+The [legacy-record search](../ilvis0-legacy-records-20261008/README.md) records the
+public routes checked and an unsent NSIDC request. The guide confirms raw archive
+provenance; matched onboard-processing/calibration records were not obtained.
+The inquiry has been sent. [Conditional recorded-data modeling](../ilvis0-exploratory-20261008/README.md)
+now proceeds on six files with explicit assumptions while a response is pending.
+It uses the existing24-start/200-evaluation ceiling; the scientific evidence gate
+remains unchanged. Preserve the six outcomes, then extend to supported recordings
+in the kept corpus with a finite, separately frozen scope. Existing
+synthetic studies stay frozen; they are not rerun as part of this archival work.
+
+The six-file pass is now complete:24finite fits,0converged within that allowance.
+The [232-file continuation](../ilvis0-corpus-modeling-20261008/README.md) is launched
+under a separate764-start aggregate/200-evaluation scope. It preserves unsupported
+configuration and convergence outcomes, and verifies fresh derivative stationarity.
+One interrupted writer attempt stays charged in the repaired v2 freeze. No winner
+or calibrated scientific gate is promoted.
+
+The next refinement uses instrument-informed offsets and compares shape before rotation.
+The [six-file refinement](../ilvis0-refinement-20261008/README.md) now implements exact forward
+derivatives, column scaling and staged initialization with all final nuisance parameters
+released. Four cases per recording combine ±0.1/±1 degree/hour constant gyro-offset
+hypotheses with fixed-zero/profiled common Earth-rate removal. Shape must be consistently
+resolved before rotation diagnostics appear. It queues after the current corpus and uses a
+separate72-primary/84-total-start freeze,200evaluations per start; no synthetic rerun or
+scientific promotion. The old ±20 degree/hour allowance was never measured instrument drift.
+
+The broad 232-file run is complete; the six-file refinement is running. The next
+[all-stretch extension](../ilvis0-highspeed-segments-20261008/README.md) saves every supported
+interval of at least 240 seconds with receiver ground speed at least 700 km/h. A public
+catalog records exact intervals, criteria and exclusions before fitting, with fingerprints
+for reuse. Whole stretches are primary joint fits; smaller sections check consistency at
+the same parameters. The extension waits for the six-file completion and uses a separate
+inventory-derived finite freeze. Scientific eligibility/calibration remains unchanged.
+
 | Review item | Present in the software | What still needs evidence |
 |---|---|---|
 | Nuisance envelope | Design checks vary crab, wind, forward angle and mount epochs across model anchors. | Show that a selected geometry survives the declared envelope and complete preprocessing. The finite grid is not a guarantee over every nuisance trajectory. |
@@ -21,7 +72,7 @@ Recent processing work also addresses nuisance-rank scaling, forward-reference n
 handling and finite-run course unwrapping across gaps. Actual forward-reference uncertainty
 and its statistical coverage still need evidence; software fixtures do not establish it.
 
-The immediate order is:
+For the passenger experiment, the remaining order is:
 
 1. Continue inexpensive route/window/turn screening under the unchanged nuisance space.
    Evaluate rotation and globe/disc questions separately. Seek an actual observed route,
@@ -127,7 +178,7 @@ also complete. Do not rerun it or start another envelope/replay without the requ
 
 ## Completed matched full-pipeline replay — 2026-10-07
 
-The later user authorization covered six development attempts: three truths × two wind
+The matched replay covered six development attempts: three truths × two wind
 candidates, shared fresh seed600910 and combined wind/bias_mixed. The frozen control is
 unchanged. All six analyses completed and converged in335.20wallseconds, with 99cruise
 minutes and adequate headings. Orientation was actually recovered from simulated readings.

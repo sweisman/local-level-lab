@@ -1,0 +1,25 @@
+{
+  "artifacts": {
+    "build_report.py": "71312c67adb5194e303ffc72bdb9d917c18a1149457a3894714c1e8cabd48fa1",
+    "comparison.csv": "bf16d8c5410d26a2796abb8ba55c6c27d02b3b35f0df88f231cd0da77a3fbd41",
+    "completion.json": "1452cae21675a527e82334fff7fdc2fdccb42f3ab9c3a7eba6445553c6ba8b95",
+    "corpus-inventory.csv": "425be00220c4b73515fa1939c2369920ebb7286c2f7d0062016233230130897a",
+    "empirical-starts.jsonl": "7c5149041649ba5150c44b1a8a13fb74973dedc982f437a436d38fa6a4117392",
+    "manifest.json": "b8894021908c0b6d5287a4ad883645c0bf3a8ba797a49dc2cfcadebbab85616b",
+    "summary.json.gz": "cfc05edb66564011dbbc6538b947d5ffdb2c5e84ae2cdec3ec272305bf062e81"
+  },
+  "converged_fits": 0,
+  "corpus_imu_types": {
+    "21": 98,
+    "6": 129,
+    "8": 5
+  },
+  "failed_fits": 0,
+  "files": 6,
+  "fits": 24,
+  "optimizer_starts": 24,
+  "originals_preserved": 232,
+  "prior_context_sha256": "d488530b392584f2300817ff9bb52003f140f64a90e4270b1e49d92a75daf89c",
+  "scientific_decision": "abstain",
+  "state": "complete"
+}

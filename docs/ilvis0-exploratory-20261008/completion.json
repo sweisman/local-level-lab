@@ -1,0 +1,14 @@
+{
+  "converged_fits": 0,
+  "failed_fits": 0,
+  "files": 6,
+  "fits": 24,
+  "manifest_sha256": "b8894021908c0b6d5287a4ad883645c0bf3a8ba797a49dc2cfcadebbab85616b",
+  "optimizer_starts": 24,
+  "originals_deleted": 0,
+  "scientific_decision": "abstain",
+  "scientific_eligibility_changes": 0,
+  "state": "complete",
+  "summary_sha256": "cfc05edb66564011dbbc6538b947d5ffdb2c5e84ae2cdec3ec272305bf062e81",
+  "version": "ilvis0-conditional-recorded-fit-v1"
+}

@@ -1,0 +1,19 @@
+{
+  "archive_level_raw_description_supported": true,
+  "artifact_sha256": {
+    "EMAIL.md": "a65cd601a6591acaa6e114b8c83ebe8b3162cc62852aeb68b89e9438e88e2029",
+    "README.md": "c3a88729c9ed99bbc101fc1360ab5d0e56f69593936d54d6638f08442ea2fbb4",
+    "search-log.json": "560255ef8d0db180a219ce4a6d032c26ce780590f641e002f71e7f3731f343bf"
+  },
+  "empirical_earth_fit_attempts": 0,
+  "matched_calibration_records": 0,
+  "matched_manuals": 0,
+  "messages_sent": 0,
+  "onboard_processing_independence_established": false,
+  "prior_evidence_sha256": "43a17231b54f260d52c38e7410d2dee251bdceba1603d176c8db13892996dff0",
+  "query_count": 19,
+  "reviewed_on": "2026-10-08",
+  "scientific_eligibility_changes": 0,
+  "state": "complete",
+  "version": "ilvis0-legacy-record-search-v1"
+}

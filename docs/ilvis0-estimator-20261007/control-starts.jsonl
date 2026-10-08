@@ -1,0 +1,5 @@
+{"case": "bias", "manifest_sha256": "d26f38555f7fd10977eff0ebaecf8edd425f654d042658c781cf763352695187", "start": 1}
+{"case": "effective_orientation", "manifest_sha256": "d26f38555f7fd10977eff0ebaecf8edd425f654d042658c781cf763352695187", "start": 2}
+{"case": "gain", "manifest_sha256": "d26f38555f7fd10977eff0ebaecf8edd425f654d042658c781cf763352695187", "start": 3}
+{"case": "timing", "manifest_sha256": "d26f38555f7fd10977eff0ebaecf8edd425f654d042658c781cf763352695187", "start": 4}
+{"case": "orientation_acceleration_ambiguity", "manifest_sha256": "d26f38555f7fd10977eff0ebaecf8edd425f654d042658c781cf763352695187", "start": 5}
