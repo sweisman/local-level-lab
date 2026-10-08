@@ -63,7 +63,12 @@ incident histories, personal commentary or historical process IDs.
 |---|---|---|
 | Broad corpus | data/ilvis0-corpus-modeling-v2-20261008/; docs/ilvis0-corpus-modeling-20261008/ | Completed and frozen; do not resume. |
 | Six-recording refinement | data/ilvis0-shape-refinement-20261008/; docs/ilvis0-refinement-20261008/ | 72 primary / 84 maximum starts; two per identity; 200 evaluations/start. |
-| All qualifying stretches | data/ilvis0-highspeed-segments-20261008/; docs/ilvis0-highspeed-segments-20261008/ | Wait for refinement; N stretches permit 12N primary / 14N maximum starts; two per identity; 200 evaluations/start. |
+| All qualifying stretches | data/ilvis0-highspeed-segments-v2-20261008/; docs/ilvis0-highspeed-segments-20261008/ | Wait for refinement; N stretches permit 6N primary / 8N maximum starts; two per identity; 200 evaluations/start. |
+
+The six-recording refinement retains four cases. The all-stretch extension uses only ±1°/hour
+constant gyro offsets under fixed-zero/profiled Earth-rate removal; ±0.1°/hour is deferred.
+Fit all three candidates together, then interpret shape before rotation. Preserve the superseded
+zero-start extension freeze at data/ilvis0-highspeed-segments-20261008/; do not resume it.
 
 The all-stretch selector requires at least 240 continuous seconds and every supported receiver
 ground-speed sample at least 700 km/h, plus the frozen level-motion/completeness rules.
@@ -83,3 +88,7 @@ Restore the refinement report watcher, if absent, with
 For completed refinement evidence use that script without --detach. For completed stretch
 evidence use analysis/tests/ilvis0_segment_worker.py --package-only with PYTHONPATH=analysis.
 Do not rerun numerical studies merely to regenerate documentation.
+
+The metadata-only final summary watcher is docs/ilvis0-highspeed-segments-20261008/summarize_results.py.
+Check data/ilvis0-highspeed-segments-v2-20261008/public-summary.lock before launching with --detach.
+It waits for audited publication; regenerate with no flags after completion. It performs no fits.

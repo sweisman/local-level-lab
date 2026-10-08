@@ -11,9 +11,31 @@ def worker():
 
 
 def test_finite_allowance_is_derived_from_all_selected_segments():
-    w=worker();assert w.allowance(53)==dict(primary_starts=636,maximum_starts=742,
+    w=worker();assert w.allowance(53)==dict(primary_starts=318,maximum_starts=424,
         maximum_starts_per_identity=2,maximum_evaluations_per_start=200)
     assert w.allowance(0)['maximum_starts']==0
+
+
+def test_primary_grid_keeps_both_processing_hypotheses_and_all_models():
+    w=worker();cases=w.primary_cases()
+    identities=[c['case_id']+'::'+m for c in cases for m in w.explore.MODELS]
+    assert set(identities)=={
+        'bias1_unsubtracted::sphere_rotating','bias1_unsubtracted::sphere_still',
+        'bias1_unsubtracted::flat_still','bias1_profiled_removal::sphere_rotating',
+        'bias1_profiled_removal::sphere_still','bias1_profiled_removal::flat_still'}
+    assert [c['profile'] for c in cases]==[False,True]
+    for c in cases:
+        assert c['bias_dph']==1.
+        assert c['limits']==w.shape.instrument_limits(1.)
+    assert len(identities)==w.allowance(1)['primary_starts']
+
+
+def test_superseded_queued_freeze_cannot_resume(tmp_path):
+    w=worker();out=tmp_path/'old';out.mkdir()
+    w.follow.atomic_json(out/'supersession.json',dict(charged_starts=0))
+    with pytest.raises(ValueError,match='superseded'):
+        w.run(tmp_path,out,tmp_path/'predecessor')
+    assert not (out/'starts.jsonl').exists()
 
 
 def test_interrupted_starts_and_frozen_identity_set(tmp_path):

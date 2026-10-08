@@ -40,9 +40,15 @@ assumption. A later time-varying error model must be specified and applied equal
 Earth candidate, rather than chosen to rescue a favored result. Correlated position errors
 also prevent counting every sample as an independent observation.
 
-Compare **globe versus the specified flat disc first**. Both globe fits participate internally;
-rotation is reported separately only after shape consistently favors the globe and the necessary
-fits converge. Numerical preferences under explicit assumptions remain conditional. Calibrated
+Compare **globe versus the specified flat disc first**, reporting globe, flat or unknown.
+All three candidates are fitted together; the better of the still and rotating globe fits
+represents the globe family. Rotation is reported separately only after shape consistently
+favors the globe and the necessary fits converge. The existing globe fits then provide the
+rotation comparison without another optimization. The all-stretch archive extension uses
+two primary cases: ±1°/hour constant gyro offsets, with Earth-rate removal either absent or
+unknown and fitted. These are sensitivity assumptions, not verified instrument limits.
+The six-recording pilot additionally tests the tighter ±0.1°/hour allowance.
+Numerical preferences under explicit assumptions remain conditional. Calibrated
 scientific decisions require independently validated uncertainty and decision rules.
 
 NASA's IMU was mounted to the aircraft; there are no passenger reversals to reconstruct.

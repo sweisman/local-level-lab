@@ -1,0 +1,23 @@
+{
+  "artifacts": {
+    "RESULTS.md": "409d80c93ec9b79c8916b0216c79c7420665fbd7077caba200a69b8c2cb54152",
+    "completion.json": "43e228d2ad966a91e57495c1d6b28f0c9c86560f1e7187680aa027b5d8c89795",
+    "fits.csv": "b6dde2a781e3983a8db6128305f24bb87ea27c47c9c131a249b8e4fc7bd10886",
+    "manifest.json": "f4af535d4c49e321db527d8b04c9f182e2feea5668d1a800d39069a5c3de1f77",
+    "package_results.py": "cdfcc107ce5de736ad803a18a1f452c146724db1e54de63c82efbb90b2ff79f4",
+    "rotation.csv": "cc17f0f1e205496ff5fb673ac2632146dc52d4cb9fe47a85ef726f4e0b2595fe",
+    "shape.csv": "ad17fda060d3bc2be2738b46d669e406c7235de97a595aa18e9e5f5411b3cc20",
+    "starts.jsonl": "964c34780bbfdb17333277be0724566c23399d99b38b5cd192b493bfdc5a642f",
+    "summary.json.gz": "24cea456515ae09e12c108a0b63105a45d4d525081f5ecd48b6a76cb81931bdf"
+  },
+  "audit": {
+    "charged_starts": 73,
+    "converged_fits": 40,
+    "failed_fits": 0,
+    "fits": 72,
+    "unreferenced_interrupted_starts": 1
+  },
+  "scientific_rotation_decision": "abstain",
+  "scientific_shape_decision": "abstain",
+  "state": "complete"
+}

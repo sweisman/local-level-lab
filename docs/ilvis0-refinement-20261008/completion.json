@@ -1,0 +1,13 @@
+{
+  "converged_fits": 40,
+  "failed_fits": 0,
+  "files": 6,
+  "manifest_sha256": "f4af535d4c49e321db527d8b04c9f182e2feea5668d1a800d39069a5c3de1f77",
+  "originals_deleted": 0,
+  "scientific_rotation_decision": "abstain",
+  "scientific_shape_decision": "abstain",
+  "starts": 73,
+  "state": "complete",
+  "summary_sha256": "24cea456515ae09e12c108a0b63105a45d4d525081f5ecd48b6a76cb81931bdf",
+  "version": "ilvis0-shape-first-tangent-v1"
+}

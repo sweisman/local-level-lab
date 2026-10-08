@@ -24,6 +24,15 @@ from lll import ilvis0_shape as shape, ilvis0_refinement as refinement, ilvis0_s
 from lll import ilvis0_motion_diagnosis as motion, ilvis0_corpus_modeling as corpus
 from lll import ilvis0_gps_sensitivity as sensitivity, ilvis0_observation as observation, runtime
 
+FIT_VERSION = 'ilvis0-highspeed-two-case-profiles-v2'
+DEFAULT_OUTPUT = Path('data/ilvis0-highspeed-segments-v2-20261008')
+
+
+def primary_cases():
+    """Wider offset sensitivity under both unresolved logging hypotheses."""
+    return [dict(case_id='bias1_'+('profiled_removal' if p else 'unsubtracted'),
+        bias_dph=1.,profile=p,limits=shape.instrument_limits(1.)) for p in (False,True)]
+
 
 def load(path):
     if str(path).endswith('.gz'):
@@ -33,7 +42,7 @@ def load(path):
 
 def allowance(n):
     if not isinstance(n,int) or n<0:raise ValueError('finite nonnegative selected count required')
-    return dict(primary_starts=12*n,maximum_starts=14*n,
+    return dict(primary_starts=6*n,maximum_starts=8*n,
         maximum_starts_per_identity=2,maximum_evaluations_per_start=200)
 
 
@@ -208,6 +217,7 @@ def diagnostics(problem,conservative,header,point,model,metric,sections,initial_
 
 
 def run(root,output,predecessor):
+    if (output/'supersession.json').exists():raise ValueError('superseded extension freeze must not resume')
     if output.exists() and not (output/'manifest.json').exists():raise ValueError('unmarked extension output')
     output.mkdir(parents=True,exist_ok=True)
     with (output/'worker.lock').open('a') as lock:
@@ -227,11 +237,13 @@ def run(root,output,predecessor):
             root/'analysis/tests/test_ilvis0_corpus_modeling.py']
         inputs=[inventory_path,contexts_path,predecessor/'manifest.json']
         kernel,build=explore.load_kernel(output/'kernel');tangent,tangent_build=shape.load_tangent(output/'kernel')
-        manifest=dict(version=segments.VERSION,authorization='All qualifying >=4minute >=700km/h stretches, full joint primary profiles',
+        manifest=dict(version=segments.VERSION,fit_version=FIT_VERSION,
+            cases=primary_cases(),deferred_bias_dph=[.1],
+            authorization='All qualifying >=4minute >=700km/h stretches, two-case full joint primary profiles',
             sources={str(p):il.sha256(p) for p in sources},inputs={str(p):il.sha256(p) for p in inputs},
             environment=runtime.numerical_environment(),value_kernel=build,tangent_kernel=tangent_build,
             predecessor_manifest_sha256=il.sha256(predecessor/'manifest.json'),inventory=inventory,
-            policy=segments.POLICY,fit_scope_formula='12N primary +2N interrupted retries;2maximum per identity;200evaluations per start',
+            policy=segments.POLICY,fit_scope_formula='6N primary +2N interrupted retries;2maximum per identity;200evaluations per start',
             whole_stretch_primary=True,diagnostic_sections_are_refits=False,
             covariance='h1_v3_tau60 fit; h10_v30_tau300 fixed-parameter sensitivity',
             synthetic_campaigns_allowed=False,original_deletion_allowed=False,scientific_eligible=False)
@@ -289,10 +301,9 @@ def run(root,output,predecessor):
         public=root/'docs/ilvis0-highspeed-segments-20261008'
         catalog(public,selection,il.sha256(selection_path))
         shutil.copyfile(selection_path,public/'selection.json.gz')
-        cases=[dict(case_id=f'bias{b:g}_'+('profiled_removal' if p else 'unsubtracted'),bias_dph=b,
-            profile=p,limits=shape.instrument_limits(b)) for b in shape.BIAS_CASES_DPH for p in (False,True)]
+        cases=manifest['cases']
         identities=[r['segment']['segment_id']+'::'+c['case_id']+'::'+m for r in chosen for c in cases for m in explore.MODELS]
-        fit_manifest=dict(selection_manifest_sha256=digest,selection_sha256=il.sha256(selection_path),
+        fit_manifest=dict(fit_version=FIT_VERSION,selection_manifest_sha256=digest,selection_sha256=il.sha256(selection_path),
             cases=cases,identities=identities,segments=len(chosen),**allowance(len(chosen)),scientific_eligible=False)
         fit_path=output/'fit-manifest.json'
         if fit_path.exists():
@@ -359,7 +370,7 @@ def run(root,output,predecessor):
             print(json.dumps(dict(completed=len(results),total=len(chosen),segment_id=sid,
                 shape_preference=result['profile']['conditional_shape_preference'])),flush=True)
         starts=[json.loads(line) for line in (output/'starts.jsonl').read_text().splitlines()] if (output/'starts.jsonl').exists() else []
-        summary=dict(version=segments.VERSION,state='complete',selection_files=232,selected_segments=len(chosen),results=results,
+        summary=dict(version=segments.VERSION,fit_version=FIT_VERSION,state='complete',selection_files=232,selected_segments=len(chosen),results=results,
             fitted_segments=sum(r['state']=='fitted' for r in results),unsupported_segments=sum(r['state']=='unsupported' for r in results),
             starts=len(starts),qualifying_seconds=selection['qualifying_seconds'],scientific_shape_decision='abstain',
             scientific_rotation_decision='abstain',originals_deleted=0)
@@ -389,6 +400,9 @@ def publish(root,output,selection,summary,completion,fit_manifest):
         'Each complete stretch is profiled jointly. Smaller sections are fixed-parameter residual diagnostics; '
         'they are neither independent trials nor separately fitted scientific decisions. Shape is evaluated '
         'first, with rotation withheld for mixed, flat or unresolved shape.','',
+        'Each stretch uses six primary fits: all three models under a ±1°/hour constant gyro-offset '
+        'hypothesis, with Earth-rate removal either fixed at zero or profiled. The tighter ±0.1°/hour '
+        'sensitivity is deferred. These are assumed calibration limits, not measured drift.','',
         'Conditional shape preferences: '+json.dumps(dict(counts),sort_keys=True)+'.','',
         'These are conditional local profiles, not calibrated detections. Constant calibration, processing '
         'and receiver uncertainty assumptions still need support; section diagnostics do not validate them. '
@@ -415,7 +429,7 @@ def publish(root,output,selection,summary,completion,fit_manifest):
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--output',type=Path,default=Path('data/ilvis0-highspeed-segments-20261008'))
+    parser.add_argument('--output',type=Path,default=DEFAULT_OUTPUT)
     parser.add_argument('--predecessor',type=Path,default=Path('data/ilvis0-shape-refinement-20261008'))
     parser.add_argument('--detach',action='store_true')
     parser.add_argument('--package-only',action='store_true',help='audit/publish completed evidence without scans or fits')

@@ -38,7 +38,10 @@ gyro-offset allowances of ±0.1 and ±1 degree/hour. These are calibration hypot
 not measured drift or guaranteed limits. The historical ±20 degree/hour allowance was a
 broad stress test. Constant offset, random noise and time-varying drift are different errors.
 The [refinement record](ilvis0-refinement-20261008/README.md) explains the numerical checks,
-public performance context and queued run. Scientific decisions still require calibration.
+public performance context and running pilot. The all-stretch extension uses two primary
+cases at ±1 degree/hour, with Earth-rate removal fixed at zero or fitted; its ±0.1 sensitivity
+is deferred. All three models are fitted together, with shape interpreted first and rotation
+reported only after a resolved globe result. Scientific decisions still require calibration.
 
 The supplied 14 April 2009 ATM sample now passes an empirical physical-decoder check.
 Its six signed integers represent velocity X/Y/Z followed by angle X/Y/Z. The recovered

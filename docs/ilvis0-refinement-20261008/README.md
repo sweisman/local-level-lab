@@ -61,7 +61,7 @@ and their hashes. It starts no new model predictions, fits or campaigns, changes
 no active source freeze and deletes no data. Further optimization and calibration
 sweeps were proposed development work at that snapshot's date, not completed results.
 
-## Implemented refinement and queued numerical work
+## Numerical method and run scope
 
 `analysis/lll/ilvis0_shape.py` and `ilvis0_tangent.cpp` now implement forward automatic
 derivatives through every measured IMU packet. Derivatives cover the effective initial
@@ -93,9 +93,9 @@ shape contrast favors the globe. Mixed, tied or unfinished shape results abstain
 This conditional numerical preference is not a calibrated detection; scientific
 shape and rotation decisions still abstain.
 
-The queued worker is `analysis/tests/ilvis0_shape_worker.py`; output:
-`data/ilvis0-shape-refinement-20261008/`. It waits for the existing v2 corpus completion,
-then verifies that completion and runs deterministic tests before fitting. At most two
+The worker is `analysis/tests/ilvis0_shape_worker.py`; output:
+`data/ilvis0-shape-refinement-20261008/`. It verifies completion of the preceding v2 corpus
+and runs deterministic tests before fitting. At most two
 total numerical threads. Scope: 72 primary starts plus 12 interruption retries, at most
 two starts per file/case/model identity, and 200 total native evaluations per start,
 including fresh derivatives and diagnostics. Journals are fsynced; results are hashed
@@ -106,7 +106,26 @@ The worker produces a compact `RESULTS.md` on completion.
 Fourteen new focused tests pass, including all candidate derivative/value comparisons,
 known position/velocity recovery, shape-before-rotation withholding, budget enforcement,
 interrupted-start accounting, corrupt saved results and actual six-file handoff metadata.
-Five prior refinement tests also pass. No new observed optimizer start has run yet.
+Five prior refinement tests also pass. Numerical outcomes are reported separately on completion;
+the worker's saved status and attempt journal provide progress while it runs.
+
+## Why the calculation takes hours
+
+An eight-minute recording contains about 96,000 IMU measurement intervals at 200 Hz.
+Every fit repeatedly integrates the complete measured stream to predict the GPS path.
+It also calculates how that prediction changes with calibration, orientation, timing and
+other uncertain quantities, then adjusts them together. The GPS comparison accounts for
+errors that are correlated over time, rather than treating every position as independent.
+
+There are 12 fits per recording: three Earth models under four matched assumption cases,
+or 72 fits for the six-recording pilot. Each permits up to 200 complete numerical evaluations,
+including final convergence checks and diagnostics. This repeated native-packet processing
+and joint optimization make an individual fit substantially more work than plotting or
+averaging a gyro channel. Compiled kernels perform the integration and derivatives; the
+worker uses at most two numerical threads and continues without interactive model calls.
+
+The [all-stretch extension](../ilvis0-highspeed-segments-20261008/README.md) applies the same
+12-fit comparison to each eligible stretch. Its total work depends on the frozen inventory.
 
 ## Automatic completion report
 
