@@ -5,18 +5,28 @@ four remained unresolved.** In the two resolved recordings, the rotating globe a
 fit better than the still globe under every tested assumption. These are conditional
 numerical preferences, not calibrated scientific detections.
 
+**The available pilot comparisons point toward globe, rather than equal support for
+globe and flat.** Two further recordings have globe-favoring partial comparisons,
+and the remaining two have no completed shape comparison. None has a resolved preference
+for flat. The full selected-stretch study is still running and must be reported on its
+own results.
+
 The pilot used the same saved IMU and receiver observations for all three models. Each
 recording had four matched cases: constant gyro-offset allowances of ±0.1 or ±1 degree/hour,
 with Earth-rate removal either absent or fitted. There were 72 model fits in total.
 
-## What converged?
+## Model comparisons and unfinished calculations
 
 **40 fits converged; 32 did not.** No fit returned a numerical or framing error.
 There were 73 charged starts, including one interrupted attempt; every completed fit
-was retained. Convergence means the solver met its stopping and final stationarity checks.
-It does not establish a global optimum or show that the error assumptions are correct.
+was retained. A fit adjusts the permitted instrument and motion parameters to match the
+recording. Convergence means those adjustments passed the numerical stopping checks.
+**It does not mean the model describes the recording well.** A converged flat-disc fit
+can still have much larger errors than a converged globe fit. The model comparison uses
+the quality of the matched fits, rather than counting how many calculations finished.
+Convergence also does not establish a global optimum or validate the error assumptions.
 
-| Recording | Converged fits | Conditional shape result | Conditional rotation result |
+| Recording | Calculations passing stopping checks | Conditional shape result | Conditional rotation result |
 |---|---:|---|---|
 | 14 April 2009, LVIS POS AV | 1/12 | Unknown | Withheld |
 | 16 September 2014, POS 510 | 9/12 | Unknown | Withheld |
@@ -44,7 +54,9 @@ The other two cannot supply a defensible lean. These partial comparisons retain 
 diagnostic information, but do not override the requirement for all necessary fits or
 turn an unfinished optimization into evidence against a model. Rotation remains withheld.
 
-## How did the assumptions compare?
+## Numerical completion under different assumptions
+
+The counts below describe solver completion, **not support for an Earth model**.
 
 | Constant gyro-offset allowance | Assumed Earth-rate removal | Converged fits |
 |---|---|---:|
@@ -53,8 +65,10 @@ turn an unfinished optimization into evidence against a model. Rotation remains 
 | ±1°/hour | None | 10/18 |
 | ±1°/hour | Unknown amount fitted | 9/18 |
 
-Across all cases, 12/24 rotating-globe fits, 14/24 still-globe fits and 14/24 flat-disc
-fits converged. The two fully converged recordings retained the same shape and rotation
+Each model had 24 attempted calculations. Twelve rotating-globe calculations, 14 still-globe
+calculations and 14 flat-disc calculations passed the stopping checks. Those similar counts
+do not mean the models fit equally well: both recordings with complete comparisons favored
+globe, and then rotating globe, in every case. They retained the same shape and rotation
 preferences when the assumed gyro-offset allowance changed or possible Earth-rate removal
 was introduced. Neither smaller bounds nor additional processing freedom solved the
 other recordings' convergence problems.

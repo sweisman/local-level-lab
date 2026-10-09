@@ -54,3 +54,34 @@ def test_public_summary_rejects_missing_or_duplicate_stretch_results():
 def test_unpublished_run_cannot_generate_a_final_summary(tmp_path):
     with pytest.raises(ValueError,match='audited publication'):
         reporter().load_evidence(tmp_path)
+
+
+def test_partial_shape_leans_use_only_converged_matched_pairs():
+    r=reporter()
+    a=fit('sphere_rotating',False,residual_sum_squares=0.)
+    b=fit('sphere_still',residual_sum_squares=10.)
+    c=fit('flat_still',residual_sum_squares=30.)
+    out=r.partial_shape([a,b,c])
+    assert out['sphere_still_disc_minus_globe_cost']==20.
+    assert out['sphere_rotating_disc_minus_globe_cost'] is None
+    assert out['available_lean']=='Still globe fits better than flat'
+    b['residual_sum_squares']=40.
+    assert r.partial_shape([a,b,c])['available_lean']=='Flat fits better than still globe'
+    c['converged']=False
+    assert r.partial_shape([a,b,c])['available_lean']=='No converged shape pair'
+
+
+def test_track_context_preserves_source_identity_time_speed_and_record_type():
+    r=reporter();chosen=dict(filename='sample.013',task='t',segment=dict(imu_type=8,
+        time_types=2,start_s=172810.,end_s=173050.,duration_s=240.,
+        minimum_receiver_ground_speed_kmh=700.,median_receiver_ground_speed_kmh=710.,
+        receiver_fixes=[dict(time_s=172810.,latitude_rad=0.,longitude_rad=0.,height_m=10.),
+                        dict(time_s=173050.,latitude_rad=0.,longitude_rad=0.017453292519943295,height_m=10.)]))
+    record=dict(source_sha256='a'*64,source_bytes=1234,timing=dict(dates=['2009-04-14']))
+    out=r.track_context(chosen,record)
+    assert out['source_sha256']=='a'*64 and out['filename']=='sample.013'
+    assert out['start_utc']=='2009-04-14T00:00:10Z' and out['end_utc']=='2009-04-14T00:04:10Z'
+    assert out['record_type']=='Applanix Group 4' and out['imu_type']==8
+    assert out['minimum_speed_kmh']==700. and out['median_speed_kmh']==710.
+    assert out['duration_min']==4.
+    assert out['gps_track_km']==pytest.approx(111.19492664455873)

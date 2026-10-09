@@ -86,10 +86,10 @@ No calibrated Earth-model conclusion has been established.**
 
 - All **232 retained files** have been screened: **53 qualifying stretches, totaling
   424.3 minutes**. Some instrument streams overlap; these are not 53 independent flights.
-- The six-recording refinement is complete: **40 of 72 model fits converged**.
-  The other 32 did not establish convergence within the computational allowance.
-  **Two recordings favored globe over flat, then rotating over still globe, under all
-  four tested cases.** Four remained unresolved. All fits in the two resolved recordings
+- **The pilot's resolved comparisons favor globe.** Two recordings favored globe over
+  flat, then rotating over still globe, under all four tested cases. Two other recordings
+  have globe-favoring partial shape comparisons; two have no completed shape comparison.
+  **None of the six has a resolved preference for flat.** All fits in the two resolved recordings
   touched assumed parameter limits, so those preferences need further checking.
   [Provisional pilot findings](docs/ilvis0-refinement-20261008/PROVISIONAL.md) explain the results.
 - The larger analysis tests two processing assumptions: Earth's rotation was retained
@@ -98,7 +98,9 @@ No calibrated Earth-model conclusion has been established.**
   not measured drift or verified limits for every instrument.
 
 **Converged** means the solver satisfied numerical stopping and stationarity checks.
-It does not mean an Earth model has been demonstrated. An unresolved fit is not evidence
+It measures whether a calculation finished, not whether its model matched the data well.
+A flat-disc calculation can converge while fitting the flight much worse than a globe.
+An unresolved fit is not evidence
 against its model. Shape remains unknown when required fits are unresolved or assumptions
 give conflicting answers.
 

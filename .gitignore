@@ -6,6 +6,11 @@ __pycache__/
 /server/data/
 /collated/
 
+# Local process coordination for published airline-pilot runs.
+/docs/airline-pilot-preparation-20261006/run/*.lock
+/docs/extended-airline-pilot-20261006/run/*.lock
+/docs/matched-airline-pilot-20261006/run/*.lock
+
 android/.gradle/
 android/build/
 android/app/build/
