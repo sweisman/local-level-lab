@@ -30,6 +30,20 @@ No recording had a resolved preference for the flat disc. The four unknown resul
 are not votes for either shape: at least one required optimization remained unfinished.
 Rotation is withheld for them rather than interpreted from incomplete comparisons.
 
+### What do the partial results lean toward?
+
+| Indeterminate recording | Available comparisons between converged fits |
+|---|---|
+| 16 September 2014 | Still globe fits better than flat in all four cases. The rotating-globe comparison also favors globe in the one case where that fit converged. |
+| 20 November 2010 | Rotating globe fits better than flat in the ±0.1°/hour, no-removal case. The other cases have no converged shape pair. |
+| 14 April 2009 | Only one flat fit converged; no matched shape comparison is available. |
+| 20 September 2017 | Each case has only one converged globe fit; no matched shape comparison is available. |
+
+Thus the available shape pairs in two indeterminate recordings lean toward globe.
+The other two cannot supply a defensible lean. These partial comparisons retain useful
+diagnostic information, but do not override the requirement for all necessary fits or
+turn an unfinished optimization into evidence against a model. Rotation remains withheld.
+
 ## How did the assumptions compare?
 
 | Constant gyro-offset allowance | Assumed Earth-rate removal | Converged fits |

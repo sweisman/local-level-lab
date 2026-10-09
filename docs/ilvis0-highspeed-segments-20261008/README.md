@@ -94,3 +94,33 @@ fully converged versus unresolved stretches, residuals, parameter limits and con
 shape/rotation outcomes. The separate `summarize_results.py --watch` waits for audited
 publication and reads only saved results; it does not scan original recordings or run fits.
 To regenerate that summary after completion, run the script without `--watch`.
+
+The detailed stretch ledger will include original filename/hash, Group-4 record type and
+logged IMU type, UTC bounds, duration, minimum/median receiver ground speed, approximate
+horizontal track distance, mounting epoch and conversion information. A separate track CSV
+will retain every selected receiver position without interpolation. The distance uses a
+declared spherical coordinate convention for description, never as evidence about Earth shape.
+For indeterminate results, matched globe/disc pairs are described only when both fits converged;
+unfinished costs remain diagnostics. Partial leans do not promote the primary shape decision
+or expose rotation when the complete shape comparison remains unresolved.
+
+## Review after the frozen run
+
+First compare convergence with duration, receiver ground speed, IMU type, installation
+and route geometry. Use the number of converged fits per stretch as well as whether all
+six converged. Describe correlations without treating overlapping stretches or repeated
+instrument recordings as independent trials. The completed subset during execution is
+ordered by source date, so its relationships need not describe the final selection.
+
+Then separate numerical difficulty from scientific separation. Review stopping messages,
+stationarity, parameter-limit hits, residual patterns and poorly constrained parameter
+combinations. Check whether solver scaling, initialization or parameterization can improve
+convergence while preserving the same physical model. Review calibration and processing
+assumptions against available instrument evidence, and test their effects equally across
+all Earth models. Faster travel strengthens the curvature scale, but neither speed nor
+duration guarantees convergence or useful separation from instrument errors.
+
+This completed study remains preserved. Any revised fits require a new identified
+development configuration and finite approved compute scope. Reuse the saved intervals;
+do not tune selection boundaries or assumptions to favor an Earth model. Improvements
+chosen using these results are development findings and require separate validation.
