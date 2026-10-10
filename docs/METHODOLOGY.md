@@ -1,5 +1,10 @@
 # How the experiment works
 
+The current archive study compares Earth models. A separate
+[proposed follow-on](ROTATION_FIELD.md) will estimate the retained background rotation
+field first and compare its latitude, altitude and trajectory dependence before
+interpreting its cause. It does not change the current study or its results.
+
 An **IMU (inertial measurement unit)** measures turning and acceleration. Its gyroscope measures
 turning, while its accelerometer helps determine orientation.
 
