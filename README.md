@@ -44,20 +44,27 @@ from the surface. GPS locates the aircraft and the IMU tracks its orientation so
 returns can become accurately positioned elevation maps. See [NASA's LVIS description](https://lvis.gsfc.nasa.gov/Home/index.html).
 
 The raw recordings are source material underlying those finished survey products.
-Independent checks showing that the finished maps are reliable also support confidence
-in the source measurements together with their calibration and processing. Using the
-same material to test Earth models still requires understanding its gyro corrections,
-timing and uncertainty for this different purpose.
+Reliable survey maps depend on reliable measurements, calibration and processing. This
+project uses the archived IMU measurements themselves to compare Earth models, rather
+than using the survey's finished navigation answer as evidence.
 
-The ILVIS0 archive contains Applanix IMU recordings with embedded GPS. The reference
-instrument is an airborne survey-grade POS AV 510, far more capable than a phone IMU.
-Other configurations in the archive are decoded and assessed separately. Published
-specifications do not establish every recording's remaining calibration error or processing.
+The ILVIS0 archive contains **survey-grade Applanix IMU recordings with embedded GPS**.
+These instruments were built for precision airborne mapping and are far more capable
+than phone IMUs. Their published capabilities make slow turning at degrees per hour a
+credible measurement target. The reference instrument is a POS AV 510; other recorded
+configurations are decoded and assessed separately.
 
 The analysis preserves original measurements and timestamps, checks packet integrity,
 and verifies units against the instrument's combined GPS/IMU navigation output. That
 combined output supplies decoder checks and motion context, rather than independent
 evidence about Earth's shape. The model fits use IMU increments and receiver positions.
+
+Here, **raw** means the recorded angle and velocity increments, before the finished
+navigation solution. It does not mean that the electronics applied no calibration or
+filtering. Ordinary noise filtering can preserve slow turning. Automatic zeroing or
+subtracting Earth's rotation can remove it, so the analysis also tests possible
+Earth-rate removal. Passing a numerical fit does not identify which onboard processing
+was used.
 
 ```mermaid
 flowchart TD
@@ -81,40 +88,43 @@ See the [methodology](docs/METHODOLOGY.md) for the reasoning and the
 
 ## Current status
 
-**As of 10 October 2026, all 53 selected stretches have been analyzed.
-The resolved comparisons favor globe; these are provisional findings under stated assumptions.**
+**The completed comparisons favor a rotating globe. None has a completed preference
+for the specified flat disc.** As of 10 October 2026, all 53 selected stretches have been analyzed.
 
 - All **232 retained files** have been screened: **53 qualifying stretches, totaling
   424.3 minutes**. Some instrument streams overlap; these are not 53 independent flights.
 - **12 stretches favor globe over flat under both processing assumptions.** All 12 also
   favor rotating over still globe. None has a resolved flat preference; 41 remain unknown
   because required calculations did not pass the numerical stopping checks.
-  [Full analysis summary](docs/ilvis0-highspeed-segments-20261008/FINAL_SUMMARY.md) includes
-  source recordings, tracks, partial comparisons and limitations. No calibrated scientific
-  decision is claimed.
+  [Findings and source data](docs/ilvis0-highspeed-segments-20261008/FINDINGS.md) explain
+  the complete and partial comparisons and link to every source recording and track.
 - **The pilot's resolved comparisons favor globe.** Two recordings favored globe over
   flat, then rotating over still globe, under all four tested cases. Two other recordings
   have globe-favoring partial shape comparisons; two have no completed shape comparison.
-  **None of the six has a resolved preference for flat.** All fits in the two resolved recordings
-  touched assumed parameter limits, so those preferences need further checking.
+  **None of the six has a resolved preference for flat.**
   [Provisional pilot findings](docs/ilvis0-refinement-20261008/PROVISIONAL.md) explain the results.
 - The larger analysis tests two processing assumptions: Earth's rotation was retained
   in the logged measurements, or a shared amount may have been removed onboard.
-  Both allow a constant gyro offset of ±1 degree/hour. These are sensitivity assumptions,
-  not measured drift or verified limits for every instrument.
+  Both allow a constant gyro offset of ±1 degree/hour. This is the analysis's offset
+  allowance; it is not a claim that these instruments drift by that amount.
 
 **Converged** means the solver satisfied numerical stopping and stationarity checks.
 It measures whether a calculation finished, not whether its model matched the data well.
 A flat-disc calculation can converge while fitting the flight much worse than a globe.
-An unresolved fit is not evidence
-against its model. Shape remains unknown when required fits are unresolved or assumptions
-give conflicting answers.
+The 41 unknown results mean **the comparison could not be completed**, not that globe
+and flat received equal support. Missing calculations are not evidence for either shape.
 
-The next step is to diagnose the unresolved calculations and review whether numerical
-methods and evidence-supported instrument assumptions can improve discrimination.
-The completed results and preselected intervals remain preserved.
-Calibration, onboard processing and GPS uncertainty still need adequate support, followed
-by independent validation of any scientific decision rule.
+The [saved-result diagnosis](docs/ilvis0-highspeed-segments-20261008/POST_RUN_REVIEW.md)
+found that most unresolved calculations exhausted their numerical allowance. A
+[small matched refinement](docs/ilvis0-solver-trial-20261010/README.md)
+is running to test whether more comparisons can finish under the same physical assumptions.
+
+The remaining checks concern numerical completion, fits reaching allowed calibration
+limits, and the exact timing and corrections used in the logs. Published hardware
+specifications provide useful performance context; these checks determine how confidently
+we can quantify the model differences. The current study reports which model fits better,
+without assigning a validated statistical significance level. The completed results and
+preselected intervals remain preserved.
 
 ## Secondary work: a crowdsourced experiment
 

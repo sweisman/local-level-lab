@@ -1,0 +1,13 @@
+{
+  "artifacts": {
+    "POST_RUN_REVIEW.md": "80bbb53a6a255ef753daebafc97b577ee82f05f275b76add98c73b9a2ee450a8",
+    "fit-diagnostics.csv": "1db534e4bf967cc386e889ea2e758898d562e4e963cbde015e63b3c591128c2b",
+    "stretch-diagnostics.csv": "ecc6e267fc35fac10a86a0f65f85f76adce07c899e9af26dc06353fa1d3883a1"
+  },
+  "model_evaluations_performed": 0,
+  "reporting_source_sha256": "ade5ff50824bb5a7f528a87f2525d5326de315849dac2ad59741919579fc2573",
+  "selection_sha256": "934dea342a64b716533732d7ab0e961d23709cf37499faf7cee8e4c386778809",
+  "source_sha256": "3b2d0356164739fcd640403601f816d099491db09fba4eccdaaebfb47fbc46db",
+  "summary_sha256": "41654f27764dc8af26e83c42ba291c76ebc1eb77ed579523baab6d80190642fa",
+  "version": "ilvis0-saved-fit-diagnosis-v1"
+}

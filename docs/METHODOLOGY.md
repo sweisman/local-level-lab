@@ -14,7 +14,9 @@ The project develops this method with NASA's professional airborne IMU recording
 as the proposed passenger experiment. Both follow the same order: characterize the saved
 measurements, select complete intervals from recording quality and flight motion, then
 compare Earth models under stated error assumptions. Selection happens before examining
-which Earth model fits better. High-quality hardware alone does not establish identifiability.
+which Earth model fits better. The survey-grade archive provides a strong measurement
+foundation; route geometry and instrument corrections determine which model differences
+the recording can separate.
 
 The archive extension requires **four continuous minutes at 700 km/h ground speed or faster**,
 after exclusions. Every associated receiver speed observation must meet the limit. Additional
@@ -48,13 +50,22 @@ rotation comparison without another optimization. The all-stretch archive extens
 two primary cases: ±1°/hour constant gyro offsets, with Earth-rate removal either absent or
 unknown and fitted. These are sensitivity assumptions, not verified instrument limits.
 The six-recording pilot additionally tests the tighter ±0.1°/hour allowance.
-Numerical preferences under explicit assumptions remain conditional. Calibrated
-scientific decisions require independently validated uncertainty and decision rules.
+The completed archive comparisons favor globe in 12 stretches, flat in none; 41 lack
+finished calculations. All 12 also favor rotating over still globe. Those unfinished
+calculations are not support for flat Earth. See the [findings](ilvis0-highspeed-segments-20261008/FINDINGS.md).
+The study reports relative fit quality. It has not established a statistical significance
+level for those differences; that requires checking the error model and validating the
+decision rule independently.
 
 NASA's IMU was mounted to the aircraft; there are no passenger reversals to reconstruct.
 Raw IMU increments and embedded receiver positions supply the archival fit. Fused navigation
 supplies decoder checks and motion selection only, never independent Earth-model evidence.
-Some onboard corrections, integration timing and installation details remain unresolved.
+Raw increments are distinct from the fused navigation solution. They can still include
+factory calibration or sensor filtering. Ordinary low-pass filtering suppresses rapid
+noise and can preserve the slow turning of interest; automatic zeroing or Earth-rate
+subtraction can remove that turning. Neither archive labeling nor optimizer convergence
+identifies the exact processing. This is why matched processing cases are tested. Integration
+timing and installation details also receive explicit checks.
 The passenger experiment has deliberate reversals, still measurements and temperature controls,
 but each consumer IMU's actual noise, bias and filtering must be established. Specifications,
 calibration and thresholds do not transfer between datasets. The archive's speed/duration

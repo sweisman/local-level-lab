@@ -3,12 +3,13 @@
 This extension checks all 232 retained ILVIS0 recordings and preserves every qualifying
 stretch. Both the six-recording refinement and this extension are complete. Screening
 found 53 eligible stretches totaling 424.3 minutes; these can overlap across instrument streams.
-Earlier evidence and originals remain intact. No calibrated detection is claimed.
+Earlier evidence and originals remain intact.
 
 The completed comparisons favor globe in 12 stretches and flat in none; 41 remain
 numerically unresolved. All 12 resolved stretches favor rotating over still globe in both
-processing cases. These are conditional findings, with instrument and uncertainty assumptions
-still needing support. The [final summary](FINAL_SUMMARY.md) reports every stretch and fit.
+processing cases. **The unfinished comparisons are not support for flat Earth.** The
+[findings](FINDINGS.md) explain these results, the partial comparisons and specific remaining
+checks. The [original audited summary](FINAL_SUMMARY.md) reports every stretch and fit.
 
 An interval must last **240 continuous seconds** after exclusions, with **every associated
 receiver ground-speed observation at least 700 km/h**. It must also satisfy:
@@ -38,7 +39,7 @@ Before extension fitting, the worker saves the complete technical selection and 
   and nonexclusive rejection counts. Byte-identical aliases reference their canonical file.
 - `ELIGIBILITY.md`: plain-language criteria and selected totals.
 
-These are now published, before fitting finishes. They are generated from
+These were published before fitting finished. They are generated from
 the frozen selection, so publication and later analyses need not recalculate intervals.
 Changing the rules requires a new version. Different instruments on the same flight may
 overlap; recording counts and minutes are not counts of independent flights.
@@ -56,9 +57,10 @@ Two primary sensitivity cases use the same **±1 degree/hour constant gyro-offse
 | No Earth-rate removal | Removal is fixed at zero. |
 | Possible Earth-rate removal | A shared removal fraction is fitted between zero and one. |
 
-Published noise and system drift figures do not establish the remaining calibration offset
-or processing of each archived recording. These cases are hypotheses, not measured drift or
-verified per-unit bounds. The tighter ±0.1 degree/hour sensitivity is deferred for the extension;
+The survey-grade systems' published capabilities support testing slow turning. The offset
+allowance and possible Earth-rate removal specify what this comparison permits; neither is
+a measurement of actual unit drift or proof of its onboard corrections. The tighter
+±0.1 degree/hour sensitivity is deferred for the extension;
 the completed six-recording refinement retained all four cases. Other error limits and assumed
 correlated receiver covariance match that refinement. Time-varying calibration errors are not
 added in this pass.
@@ -66,8 +68,9 @@ added in this pass.
 All three models are fitted together under each case: flat disc, still globe and rotating globe.
 The first reported question is **globe, flat or unknown**, comparing the flat fit with the better
 globe fit. Rotation results are exposed only when all required fits converge and both cases
-favor the globe. This reuses the globe fits; a separate rotation fit is unnecessary. Results
-remain conditional on these assumptions. Calibrated scientific decisions remain abstain.
+favor the globe. This reuses the globe fits; a separate rotation fit is unnecessary.
+The report states which model fits better. A validated statistical significance level
+has not been assigned; the software's separate significance gate still abstains.
 
 At launch, source/input/environment hashes are frozen. After inventory, a second manifest
 freezes identities and the finite allowance: N stretches permit 6N primary starts plus 2N
@@ -94,9 +97,10 @@ See the [general methodology](../METHODOLOGY.md) and
 ## Public results summary
 
 The [pilot findings](../ilvis0-refinement-20261008/PROVISIONAL.md) are available now.
-The [final summary](FINAL_SUMMARY.md) compares convergence by model and processing case,
-fully converged versus unresolved stretches, residuals, parameter limits and conditional
-shape/rotation outcomes. The separate `summarize_results.py --watch` waits for audited
+The [findings](FINDINGS.md) explain shape and rotation outcomes in plain language. The
+[original audited summary](FINAL_SUMMARY.md) compares convergence by model and processing case,
+fully converged versus unresolved stretches, residuals and parameter limits.
+The separate `summarize_results.py --watch` waits for audited
 publication and reads only saved results; it does not scan original recordings or run fits.
 To regenerate that summary after completion, run the script without `--watch`.
 
@@ -110,6 +114,12 @@ unfinished costs remain diagnostics. Partial leans do not promote the primary sh
 or expose rotation when the complete shape comparison remains unresolved.
 
 ## Review after the frozen run
+
+The [completed saved-result diagnosis](POST_RUN_REVIEW.md) reports stopping reasons,
+speed/duration associations, parameter limits and clock sensitivity. The
+[bounded refinement plan](REFINEMENT_PROPOSAL.md) specifies the now-running
+[matched solver trial](../ilvis0-solver-trial-20261010/README.md). Its 12-start allowance
+is separate from this completed study; it does not change the frozen results.
 
 First compare convergence with duration, receiver ground speed, IMU type, installation
 and route geometry. Use the number of converged fits per stretch as well as whether all

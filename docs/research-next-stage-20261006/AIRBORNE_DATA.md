@@ -1,6 +1,14 @@
-# A possible real airborne test
+# Real airborne IMU data: inspection and follow-up
 
-Current continuation: the broad corpus run is complete and the [shape-first refinement](../ilvis0-refinement-20261008/README.md) is running. It uses exact native-packet derivatives and constant gyro-offset sensitivities of ±0.1/±1 degree/hour, crossed with fixed-zero/profiled common Earth-rate removal. The old ±20 allowance was a fitted-offset stress test, not measured IMU drift. The [all-stretch extension](../ilvis0-highspeed-segments-20261008/README.md) will save and publicly catalog every qualifying four-minute/700-km/h interval before whole-stretch fitting. Rotation diagnostics remain withheld unless shape consistently favors the globe across converged cases. These are conditional comparisons; no calibrated detection is claimed.
+**Current findings:** the completed 53-stretch study favors globe in 12 stretches and
+flat in none; all 12 also favor rotation. The other 41 lack finished calculations, rather
+than showing equal support for flat. See the [findings](../ilvis0-highspeed-segments-20261008/FINDINGS.md).
+The six-recording pilot is also complete. A separately frozen
+[12-fit solver trial](../ilvis0-solver-trial-20261010/README.md) is running to improve
+numerical completion without changing the physical assumptions.
+
+This guide preserves the initial inspection and later development sequence. Statements
+about stages with no Earth-model fit describe their status at the time, not the current analysis.
 
 
 NASA's [IceBridge LVIS archive](https://nsidc.org/data/ilvis0/versions/1) contains measurements
@@ -10,8 +18,8 @@ lists raw IMU files labeled `applanix` or `gyro`, GPS files, camera images, and 
 attitude and motion files. IMU data can be binary or text, and different instruments can have
 separate files. The documented coverage is April 2009 through September 2017.
 
-These are promising data for testing model discrimination with a real airborne IMU. That is a
-proposed use, not a result: the supplied IPUTI0 sample contains navigation outputs, and a
+These survey-grade data now supply real airborne model comparisons. The initial
+supplied IPUTI0 sample contains navigation outputs, and a
 subsequent ILVIS0 sample contains time-tagged IMU increments whose physical decoding was
 independently cross-checked on 7 October 2026. Applied corrections remain unresolved.
 The instrument differs from the WT901, so a successful test would not establish WT901 accuracy,
@@ -22,7 +30,8 @@ prepares raw increment summaries and tests route separation without using fused 
 or gyro rates as observations. One of the six routes retains predicted globe-versus-disc
 separation after constant/linear bias removal under idealized independent motion correction.
 This is a design diagnostic; independent processing, aircraft-motion constraints and bounded
-calibration uncertainty still need a joint raw-IMU/GPS measurement model. No Earth fit has run.
+calibration uncertainty still needed a joint raw-IMU/GPS measurement model at that stage.
+No Earth fit had run then; the joint model and completed studies followed.
 
 The [joint forward model](../ilvis0-forward-20261007/README.md) is now implemented and
 controlled motion checks pass. Its six-file preparation retains full-rate finite rotations,
@@ -90,10 +99,10 @@ number has been assigned to these bytes.
 The [legacy-record search](../ilvis0-legacy-records-20261008/README.md) obtained no
 manual/calibration record matching the three V5 revisions. NSIDC's current guide
 supports raw, unprocessed Level-0 archive provenance, without specifying onboard
-Group4 corrections. A verified support route and concise unsent request are ready;
-An inquiry has been sent. The next numerical stage is
-[conditional modeling of the six recordings](../ilvis0-exploratory-20261008/README.md)
-under explicit processing/calibration hypotheses while waiting for records.
+Group4 corrections. An inquiry has since been sent and NSIDC is contacting the producers.
+[Modeling of the six recordings](../ilvis0-exploratory-20261008/README.md) proceeded
+with stated processing and calibration allowances; the completed pilot and larger study
+followed. Analysis does not pause while those additional records are sought.
 
 Start with one small IMU sample and its matching GPS data, selected by date and flight geometry
 before looking at the gyro result. Confirm that it contains physical gyro rates or angular
@@ -105,8 +114,10 @@ The overview guide does not provide enough detail to establish a decoder or meas
 Raw gyro observations are the desired input. Corrected position or attitude can help inspect
 motion, but navigation software may already incorporate Earth rotation or curvature. That
 processing must be traced before treating its output as independent evidence for those effects.
-Any subtraction of Earth rate, drift filtering or automatic zeroing in the recorded gyro must
-also be understood. Unverified corrections can erase or manufacture the distinction being tested.
+Ordinary noise filtering can preserve slow turning. Earth-rate subtraction or automatic
+zeroing can remove it; these are different operations. Neither a "raw" archive label nor
+a successful fit proves the absence of onboard corrections. The logged stream and matched
+processing cases, rather than the word "filtered" alone, determine what can be tested.
 
 Once the measurements are understood, use the route and independently reconstructed orientation
 to predict all three models. Check globe/disc and rotation separation separately under plausible

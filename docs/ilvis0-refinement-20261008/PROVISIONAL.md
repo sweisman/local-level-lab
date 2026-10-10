@@ -2,14 +2,14 @@
 
 **Two recordings consistently favored the globe models over the specified flat disc;
 four remained unresolved.** In the two resolved recordings, the rotating globe also
-fit better than the still globe under every tested assumption. These are conditional
-numerical preferences, not calibrated scientific detections.
+fit better than the still globe under every tested assumption.
 
 **The available pilot comparisons point toward globe, rather than equal support for
 globe and flat.** Two further recordings have globe-favoring partial comparisons,
 and the remaining two have no completed shape comparison. None has a resolved preference
-for flat. The full selected-stretch study is still running and must be reported on its
-own results.
+for flat. The [completed selected-stretch study](../ilvis0-highspeed-segments-20261008/FINDINGS.md)
+subsequently found 12 complete globe comparisons, zero complete flat comparisons and
+41 unfinished comparisons. All 12 globe results also favor rotation.
 
 The pilot used the same saved IMU and receiver observations for all three models. Each
 recording had four matched cases: constant gyro-offset allowances of ±0.1 or ±1 degree/hour,
@@ -26,7 +26,7 @@ can still have much larger errors than a converged globe fit. The model comparis
 the quality of the matched fits, rather than counting how many calculations finished.
 Convergence also does not establish a global optimum or validate the error assumptions.
 
-| Recording | Calculations passing stopping checks | Conditional shape result | Conditional rotation result |
+| Recording | Calculations passing stopping checks | Shape comparison | Rotation comparison |
 |---|---:|---|---|
 | 14 April 2009, LVIS POS AV | 1/12 | Unknown | Withheld |
 | 16 September 2014, POS 510 | 9/12 | Unknown | Withheld |
@@ -87,16 +87,18 @@ roughly 0.2–4.9 metres horizontally on 26 October 2010, versus 6.7–19.8 metr
 24 September 2015, across the tested cases and horizontal axes. A relative winner can still fit
 the observations inadequately.
 
-Calibration, onboard corrections, the integration clock and receiver uncertainty remain
-partly assumed. Published hardware specifications do not verify every installed unit's
-remaining offset. Cost differences have not been converted into validated significance
-levels. These are six development recordings, with repeated fits of the same observations,
-not 72 independent trials or an independent validation campaign.
+The IMUs are professional survey instruments with published performance information.
+The outstanding checks concern the remaining calibration offset, exact onboard corrections,
+integration clock and receiver errors. A raw increment stream can include ordinary sensor
+filtering without losing slow turning; passing the fit does not prove an absence of onboard
+corrections. Fit differences have not been converted into validated significance levels.
+These are six recordings with repeated fits of the same observations, not 72 independent trials.
 
 The larger analysis uses permanently selected high-speed stretches and two wider-offset
-processing cases. Its final summary will compare fully converged and unresolved stretches,
-including duration, speed, IMU type, residuals and parameter limits. The pilot supports
-continuing that investigation; it does not settle the scientific question.
+processing cases. Its [findings](../ilvis0-highspeed-segments-20261008/FINDINGS.md) compare
+fully completed and unfinished stretches, including duration, speed and IMU record type.
+Both studies' complete comparisons favor globe and rotation. Their unfinished calculations
+do not supply equal support for flat Earth.
 
 Full numerical evidence is preserved in [fit diagnostics](fits.csv),
 [shape comparisons](shape.csv) and [rotation comparisons](rotation.csv).

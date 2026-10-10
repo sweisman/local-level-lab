@@ -1,6 +1,10 @@
 # Resolving the airborne gyro format
 
-Current continuation: the broad corpus run is complete and the [shape-first refinement](../ilvis0-refinement-20261008/README.md) is running. It uses exact native-packet derivatives and constant gyro-offset sensitivities of ±0.1/±1 degree/hour, crossed with fixed-zero/profiled common Earth-rate removal. The old ±20 allowance was a fitted-offset stress test, not measured IMU drift. The [all-stretch extension](../ilvis0-highspeed-segments-20261008/README.md) will save and publicly catalog every qualifying four-minute/700-km/h interval before whole-stretch fitting. Rotation diagnostics remain withheld unless shape consistently favors the globe across converged cases. These are conditional comparisons; no calibrated detection is claimed.
+**Current findings:** the completed 53-stretch study favors globe in 12 stretches and
+flat in none; all 12 also favor rotation. Another 41 comparisons lack finished calculations.
+See the [findings](../ilvis0-highspeed-segments-20261008/FINDINGS.md). The six-recording
+pilot is complete, and a [matched solver trial](../ilvis0-solver-trial-20261010/README.md)
+is running. The format investigation below preserves the development history.
 
 
 The initial inspection preserved the supplied Applanix log with timing, GPS and an opaque
@@ -33,7 +37,7 @@ step is a joint raw-increment/GPS motion model with defensible calibration and b
 not substituting the fused navigation result for the independent observation.
 
 The [forward-model preparation](../ilvis0-forward-20261007/README.md) now implements those
-conditional equations and preserves finite-rotation/specific-force effects from the native
+declared model equations and preserves finite-rotation/specific-force effects from the native
 packets. It keeps both clock hypotheses, real receiver endpoint offsets, and prior failures.
 The [bounded estimator](../ilvis0-estimator-20261007/README.md) subsequently passes analytic
 recovery controls and exposes orientation/acceleration-bias ambiguity. It requires explicit
@@ -101,9 +105,10 @@ The [legacy-document search](../ilvis0-legacy-records-20261008/README.md) did no
 obtain a manual matching those V5 revisions. Raw/unprocessed Level-0 describes
 archive provenance, not the Group4 tap inside the instrument. A support request is
 now sent; no modern or marine layout has replaced the legacy definitions. Separately,
-[conditional modeling](../ilvis0-exploratory-20261008/README.md) proceeds on the six
-recordings with stated assumptions while a reply is pending. This does not promote
-the decoder or independently establish the processing hypothesis.
+[recorded-data modeling](../ilvis0-exploratory-20261008/README.md) proceeded on the six
+recordings with stated processing cases while a reply was pending. Later completed
+comparisons are linked above. Successful fitting does not, by itself, identify which
+onboard corrections were applied; ordinary sensor filtering need not erase slow turning.
 
 The [public Applanix interface document](https://asapdata.arc.nasa.gov/share/ASF_Applanix/POSv6_User_ICD.pdf)
 establishes the packet container and directs IMU data to POSPac processing. It does not

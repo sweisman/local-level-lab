@@ -14,12 +14,16 @@ validation on 7 October 2026 reproduced six signed int32 increments, with delta-
 `2^-14 m/s/count` and delta-angle scale `2^-18 rad/count`, and tested the axis order/signs
 against Group-1 fused navigation. See the separate [validation record](../../ilvis0-physical-validation-20261007/README.md).
 The original inspector and artifacts below retain their historical opaque interpretation.
-No Earth-model result has been produced.
+This particular sample includes climb and maneuvers and is not a qualifying cruise
+stretch. The later [archive analysis](../../ilvis0-highspeed-segments-20261008/FINDINGS.md)
+uses separately selected recordings.
 
 The instrument belongs to professional airborne survey hardware, likely the LN200ROM
-fiber-optic IMU family used in POS AV 510 systems. Exact identification and this unit's
-raw-gyro performance remain unverified. The concise [instrument summary](../../ILVIS0.md#instrument-quality)
-distinguishes published system specifications from measurements of the recording.
+fiber-optic IMU family used in POS AV 510 systems. This is an appropriate instrument
+class for investigating slow turning. Published system performance is available;
+the exact hardware variant and remaining unit-specific calibration are not identified
+by the type byte. The [instrument summary](../../ILVIS0.md#instrument-quality)
+explains the published capabilities and the measurements verified here.
 
 Reassembling the primary GPS stream across packet boundaries recovers 660 checksum-valid
 GGA position messages, 660 VTG motion messages and 660 ZDA date/time messages. All GGA

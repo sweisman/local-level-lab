@@ -1,5 +1,11 @@
 # Refining the globe-versus-disc comparison
 
+**The pilot is complete: two recordings favor globe and then rotation across all four
+cases; none has a complete flat-favoring result.** Four recordings lack complete comparisons.
+See the [pilot findings](PROVISIONAL.md) and the subsequent
+[53-stretch findings](../ilvis0-highspeed-segments-20261008/FINDINGS.md).
+The sections below preserve the method and development sequence.
+
 The initial calculation needed refinement before its fit differences could be used
 scientifically. The main issues are unfinished optimization and calibration freedom
 large enough to absorb the predicted signal. Sensor quality alone does not establish
@@ -46,8 +52,8 @@ Changing speed/direction, independent calibration and controls can break that tr
 
 The existing six date/configuration representatives remain the initial development
 set; no replacement is chosen because of a gyro outcome. New empirical runs need a
-separate finite source/environment/attempt freeze. The active corpus worker and
-its 764-start aggregate limit remain unchanged.
+separate finite source/environment/attempt freeze. The preceding corpus study and its
+original 764-start aggregate limit remain preserved; that completed study must not be resumed.
 
 ## What is implemented now
 
@@ -90,8 +96,8 @@ Earth-rate removal fixed at zero or profiled over [0,1]. Both globe members are 
 internally to compare the globe family with the disc without presuming rotation.
 Rotation diagnostics are withheld unless every case has converged and its signed
 shape contrast favors the globe. Mixed, tied or unfinished shape results abstain.
-This conditional numerical preference is not a calibrated detection; scientific
-shape and rotation decisions still abstain.
+The result reports which model fits the measurements better. A validated statistical
+significance level has not been assigned; the separate scientific significance gate abstains.
 
 The worker is `analysis/tests/ilvis0_shape_worker.py`; output:
 `data/ilvis0-shape-refinement-20261008/`. It verifies completion of the preceding v2 corpus
@@ -124,8 +130,9 @@ and joint optimization make an individual fit substantially more work than plott
 averaging a gyro channel. Compiled kernels perform the integration and derivatives; the
 worker uses at most two numerical threads and continues without interactive model calls.
 
-The [all-stretch extension](../ilvis0-highspeed-segments-20261008/README.md) applies the same
-12-fit comparison to each eligible stretch. Its total work depends on the frozen inventory.
+The completed [all-stretch extension](../ilvis0-highspeed-segments-20261008/README.md) uses
+six fits per stretch: three models under two processing cases, with the ±1°/hour offset
+allowance. The pilot's tighter ±0.1°/hour cases were deferred for that extension.
 
 ## Automatic completion report
 
