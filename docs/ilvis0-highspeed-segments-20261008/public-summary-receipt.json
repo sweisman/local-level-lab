@@ -1,0 +1,12 @@
+{
+  "artifacts": {
+    "FINAL_SUMMARY.md": "bebf11ecf546e8d753ebf3935cde7f8a0131ac37fc5423898ea62b254a4e03fd",
+    "case-summary.csv": "9436c3c0633a5656cb50742920b9c9df49575a314f71d450dfb1b2db285d47c5",
+    "evidence-receipt.json": "b082549083356dbdc48fe4421daf6f9cb36086c6f4f851475bef75e130b8f187",
+    "fit-summary.csv": "52f8d2f283735f29944b2d5801a4f5ed0a878831e78d4f8bab8df60386a08a5e",
+    "stretch-summary.csv": "5482ab52de6251450e3a982af6cf76f0d01e83bc153d17bbf0134c99032c96d9",
+    "summarize_results.py": "ade5ff50824bb5a7f528a87f2525d5326de315849dac2ad59741919579fc2573",
+    "tracks.csv": "9c1fbd3ab51346fd6037a78039b084640e1ab404e742e403a8d0b5e176ad84f1"
+  },
+  "state": "complete"
+}

@@ -1,9 +1,14 @@
 # All qualifying high-speed airborne stretches
 
 This extension checks all 232 retained ILVIS0 recordings and preserves every qualifying
-stretch. The six-recording refinement is complete, and this extension is running. Screening
+stretch. Both the six-recording refinement and this extension are complete. Screening
 found 53 eligible stretches totaling 424.3 minutes; these can overlap across instrument streams.
 Earlier evidence and originals remain intact. No calibrated detection is claimed.
+
+The completed comparisons favor globe in 12 stretches and flat in none; 41 remain
+numerically unresolved. All 12 resolved stretches favor rotating over still globe in both
+processing cases. These are conditional findings, with instrument and uncertainty assumptions
+still needing support. The [final summary](FINAL_SUMMARY.md) reports every stretch and fit.
 
 An interval must last **240 continuous seconds** after exclusions, with **every associated
 receiver ground-speed observation at least 700 km/h**. It must also satisfy:
@@ -89,16 +94,16 @@ See the [general methodology](../METHODOLOGY.md) and
 ## Public results summary
 
 The [pilot findings](../ilvis0-refinement-20261008/PROVISIONAL.md) are available now.
-The [final summary](FINAL_SUMMARY.md) will compare convergence by model and processing case,
+The [final summary](FINAL_SUMMARY.md) compares convergence by model and processing case,
 fully converged versus unresolved stretches, residuals, parameter limits and conditional
 shape/rotation outcomes. The separate `summarize_results.py --watch` waits for audited
 publication and reads only saved results; it does not scan original recordings or run fits.
 To regenerate that summary after completion, run the script without `--watch`.
 
-The detailed stretch ledger will include original filename/hash, Group-4 record type and
+The detailed stretch ledger includes original filename/hash, Group-4 record type and
 logged IMU type, UTC bounds, duration, minimum/median receiver ground speed, approximate
 horizontal track distance, mounting epoch and conversion information. A separate track CSV
-will retain every selected receiver position without interpolation. The distance uses a
+retains every selected receiver position without interpolation. The distance uses a
 declared spherical coordinate convention for description, never as evidence about Earth shape.
 For indeterminate results, matched globe/disc pairs are described only when both fits converged;
 unfinished costs remain diagnostics. Partial leans do not promote the primary shape decision

@@ -62,8 +62,8 @@ incident histories, personal commentary or historical process IDs.
 | Study | Output and guide | Limits / continuation |
 |---|---|---|
 | Broad corpus | data/ilvis0-corpus-modeling-v2-20261008/; docs/ilvis0-corpus-modeling-20261008/ | Completed and frozen; do not resume. |
-| Six-recording refinement | data/ilvis0-shape-refinement-20261008/; docs/ilvis0-refinement-20261008/ | 72 primary / 84 maximum starts; two per identity; 200 evaluations/start. |
-| All qualifying stretches | data/ilvis0-highspeed-segments-v2-20261008/; docs/ilvis0-highspeed-segments-20261008/ | Wait for refinement; N stretches permit 6N primary / 8N maximum starts; two per identity; 200 evaluations/start. |
+| Six-recording refinement | data/ilvis0-shape-refinement-20261008/; docs/ilvis0-refinement-20261008/ | Completed and frozen; packaging only, no resume. Original allowance: 72 primary / 84 maximum starts. |
+| All qualifying stretches | data/ilvis0-highspeed-segments-v2-20261008/; docs/ilvis0-highspeed-segments-20261008/ | Completed and frozen; packaging only, no resume. 53 stretches / 318 charged starts; original maximum 424. |
 
 The six-recording refinement retains four cases. The all-stretch extension uses only ±1°/hour
 constant gyro offsets under fixed-zero/profiled Earth-rate removal; ±0.1°/hour is deferred.
@@ -90,5 +90,7 @@ evidence use analysis/tests/ilvis0_segment_worker.py --package-only with PYTHONP
 Do not rerun numerical studies merely to regenerate documentation.
 
 The metadata-only final summary watcher is docs/ilvis0-highspeed-segments-20261008/summarize_results.py.
-Check data/ilvis0-highspeed-segments-v2-20261008/public-summary.lock before launching with --detach.
-It waits for audited publication; regenerate with no flags after completion. It performs no fits.
+Its summary is complete; regenerate with no flags only when needed. It performs no fits.
+Post-run diagnosis may read saved fits and selected receiver geometry without new observed starts.
+Revised fits need a separately identified development freeze and explicit finite compute allowance;
+never spend the unused allowance of a completed study or tune assumptions to favor a model.

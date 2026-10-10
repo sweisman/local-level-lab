@@ -81,11 +81,17 @@ See the [methodology](docs/METHODOLOGY.md) for the reasoning and the
 
 ## Current status
 
-**As of 9 October 2026, the selected-stretch analysis is running.
-No calibrated Earth-model conclusion has been established.**
+**As of 10 October 2026, all 53 selected stretches have been analyzed.
+The resolved comparisons favor globe; these are provisional findings under stated assumptions.**
 
 - All **232 retained files** have been screened: **53 qualifying stretches, totaling
   424.3 minutes**. Some instrument streams overlap; these are not 53 independent flights.
+- **12 stretches favor globe over flat under both processing assumptions.** All 12 also
+  favor rotating over still globe. None has a resolved flat preference; 41 remain unknown
+  because required calculations did not pass the numerical stopping checks.
+  [Full analysis summary](docs/ilvis0-highspeed-segments-20261008/FINAL_SUMMARY.md) includes
+  source recordings, tracks, partial comparisons and limitations. No calibrated scientific
+  decision is claimed.
 - **The pilot's resolved comparisons favor globe.** Two recordings favored globe over
   flat, then rotating over still globe, under all four tested cases. Two other recordings
   have globe-favoring partial shape comparisons; two have no completed shape comparison.
@@ -104,9 +110,9 @@ An unresolved fit is not evidence
 against its model. Shape remains unknown when required fits are unresolved or assumptions
 give conflicting answers.
 
-The [final summary](docs/ilvis0-highspeed-segments-20261008/FINAL_SUMMARY.md) will compare
-convergence by model and processing assumption, characterize
-fully converged versus unresolved stretches, and report shape and rotation separately.
+The next step is to diagnose the unresolved calculations and review whether numerical
+methods and evidence-supported instrument assumptions can improve discrimination.
+The completed results and preselected intervals remain preserved.
 Calibration, onboard processing and GPS uncertainty still need adequate support, followed
 by independent validation of any scientific decision rule.
 
