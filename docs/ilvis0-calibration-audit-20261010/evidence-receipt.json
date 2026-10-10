@@ -1,0 +1,30 @@
+{
+  "artifacts": {
+    "README.md": "32e527f2a4e51660af2d7b8b0ee3427700ea2d9f8eed219766b3ae01453204f9",
+    "boundary-summary.csv": "8e4a466c50db3c44ea0e1f02a45590a43e63d630a2fee83ae9f39d6ba7e4437c",
+    "fit-adequacy.csv": "0a805e6668a1f9aa4ea095b2818bb0700d7b80e32d91a5b06c50d7b06b564a8b",
+    "parameter-correlations.csv": "60ea6e0adc57688ee0fd0dd6f39596ead09340dd32865de358a6544a9b720927",
+    "parameter-estimates.csv": "c948489fc2c7113e905b9c942511f73919a7726efed11abb9818de4b1fb7f8e3",
+    "weak-directions.csv": "f81944c34cf8d4f7abbd5c557e69a32fee4f933bae18faff64dca17a1c17af16",
+    "z-axis-pairs.csv": "9e32b923b209b6a90abf893029d19241c5aa6eb574089b9817f3ad06819b07da"
+  },
+  "input_sha256": {
+    "/site/repo/local-level-lab/docs/ilvis0-highspeed-segments-20261008/evidence-receipt.json": "b082549083356dbdc48fe4421daf6f9cb36086c6f4f851475bef75e130b8f187",
+    "/site/repo/local-level-lab/docs/ilvis0-highspeed-segments-20261008/fit-manifest.json": "9751fecb341d1626f0ad08e9aa4c99603293ee9a5b4c881bb74423b8c0eb4650",
+    "/site/repo/local-level-lab/docs/ilvis0-highspeed-segments-20261008/public-summary-receipt.json": "ce20662665255dc6cfe82bf7bddfece9b9baecec8993a53dd168b8d0b27c75fc",
+    "/site/repo/local-level-lab/docs/ilvis0-highspeed-segments-20261008/selection.json.gz": "934dea342a64b716533732d7ab0e961d23709cf37499faf7cee8e4c386778809",
+    "/site/repo/local-level-lab/docs/ilvis0-highspeed-segments-20261008/summary.json.gz": "41654f27764dc8af26e83c42ba291c76ebc1eb77ed579523baab6d80190642fa",
+    "/site/repo/local-level-lab/docs/ilvis0-solver-trial-20261010/evidence-receipt.json": "7c20ed58ee65aacbf6839462fe6ab2b5d1f05f4eb8dbdc70067a02511d21948a",
+    "/site/repo/local-level-lab/docs/ilvis0-solver-trial-20261010/summary.json.gz": "6e0fa346b7e2de6c6f0bd938a9b327fe1000fd286917a573d7c9a474aa5a13e0"
+  },
+  "model_evaluations_performed": 0,
+  "optimizer_starts": 0,
+  "python": "3.14.7",
+  "scientific_decision": "abstain",
+  "source_sha256": {
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_saved_audit.py": "de3160a1533abd7bb0c181bb332e745d84f2ab24c12e49d0116d118f479350fb",
+    "/site/repo/local-level-lab/docs/ilvis0-calibration-audit-20261010/build_report.py": "1c1fff257fffabeb6d5ae159908d2507e7537dd262c23367f453a7f918be2ca3"
+  },
+  "state": "complete",
+  "version": "ilvis0-saved-calibration-adequacy-audit-v1"
+}

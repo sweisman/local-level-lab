@@ -123,9 +123,12 @@ checks support continued analysis without waiting for a producer reply.
 
 The [completed saved-result diagnosis](POST_RUN_REVIEW.md) reports stopping reasons,
 speed/duration associations, parameter limits and clock sensitivity. The
-[bounded refinement plan](REFINEMENT_PROPOSAL.md) specifies the now-running
-[matched solver trial](../ilvis0-solver-trial-20261010/README.md). Its 12-start allowance
+[bounded refinement plan](REFINEMENT_PROPOSAL.md) specified the separate
+[matched solver trial](../ilvis0-solver-trial-20261010/README.md), now complete with
+10/12 converged fits versus 11/12 before. It did not improve completion. Its allowance
 is separate from this completed study; it does not change the frozen results.
+The [calibration and adequacy audit](../ilvis0-calibration-audit-20261010/README.md)
+reports signed limits, local weak directions and residual quality from all saved fits.
 
 First compare convergence with duration, receiver ground speed, IMU type, installation
 and route geometry. Use the number of converged fits per stretch as well as whether all

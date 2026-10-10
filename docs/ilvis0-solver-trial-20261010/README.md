@@ -1,5 +1,11 @@
 # Can more of the airborne comparisons finish?
 
+**Completed: 10/12 fits converged, compared with 11/12 in the baseline.** The control
+still favors globe and then rotation; the diagnostic stretch remains unresolved. This
+trial did not improve completion. See the [audited results](RESULTS.md) and the
+[saved-fit calibration/adequacy audit](../ilvis0-calibration-audit-20261010/README.md).
+The original numerical method and finite scope below are preserved; no further starts are allowed.
+
 This is a small numerical refinement of the completed NASA airborne analysis. An
 inertial measurement unit (IMU) records acceleration and angular motion. The analysis
 integrates its original increments and compares the predicted track with the embedded

@@ -10,7 +10,7 @@ position and motion over the ground. Survey-grade hardware makes slow rotation a
 measurement target; this study will test the vector pattern rather than assume its rate.
 
 This page records the scope and sequence. It introduces no code, fits or new campaign
-allowance. The completed globe/flat comparisons and the running solver trial stay intact.
+allowance. The completed globe/flat comparisons and solver trial stay intact.
 The [analysis roadmap](ANALYSIS_ROADMAP.md) adds the numerical, calibration-boundary,
 absolute-fit and recording-dependence checks this estimator will also need. Exact device
 characterization remains parallel work; it does not hold up development of the field estimator.

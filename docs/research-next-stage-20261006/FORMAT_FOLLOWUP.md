@@ -4,7 +4,9 @@
 flat in none; all 12 also favor rotation. Another 41 comparisons lack finished calculations.
 See the [findings](../ilvis0-highspeed-segments-20261008/FINDINGS.md). The six-recording
 pilot is complete, and a [matched solver trial](../ilvis0-solver-trial-20261010/README.md)
-is running. The format investigation below preserves the development history.
+is complete. The [saved-fit audit](../ilvis0-calibration-audit-20261010/README.md) now
+examines calibration limits and residual errors. The format investigation below
+preserves the development history.
 
 
 The initial inspection preserved the supplied Applanix log with timing, GPS and an opaque

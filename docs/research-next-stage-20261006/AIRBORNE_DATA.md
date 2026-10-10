@@ -4,8 +4,10 @@
 flat in none; all 12 also favor rotation. The other 41 lack finished calculations, rather
 than showing equal support for flat. See the [findings](../ilvis0-highspeed-segments-20261008/FINDINGS.md).
 The six-recording pilot is also complete. A separately frozen
-[12-fit solver trial](../ilvis0-solver-trial-20261010/README.md) is running to improve
-numerical completion without changing the physical assumptions.
+[12-fit solver trial](../ilvis0-solver-trial-20261010/README.md) is complete, with 10
+finished fits versus 11 originally. It did not improve completion. A separate
+[saved-fit audit](../ilvis0-calibration-audit-20261010/README.md) examines calibration
+limits and residual errors without rerunning the models.
 
 This guide preserves the initial inspection and later development sequence. Statements
 about stages with no Earth-model fit describe their status at the time, not the current analysis.

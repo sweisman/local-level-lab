@@ -1,0 +1,13 @@
+{
+  "artifacts": {
+    "README.md": "54b803a1e51ac5e039403032cdfc098bec4af6ab2330997e1f334794607db9ce",
+    "residuals.svg": "a3b639a29304db90c8f9bb7f92f16b7533976fd11c7f6a5397f897d049e052be"
+  },
+  "input_receipt_sha256": "06d59dbef6269c71b8ea8508f5986823b58da42df8ac0b5d372ab6904be63e8f",
+  "native_predictions": 0,
+  "optimizer_starts": 0,
+  "reporting_matplotlib": "3.11.2",
+  "reporting_numpy": "2.5.3",
+  "reporting_source_sha256": "6bd4b3bb67393c031e583ddd157fdbbad42f9b65c31b863aefb71c82a110dee1",
+  "version": "ilvis0-residual-report-v1"
+}

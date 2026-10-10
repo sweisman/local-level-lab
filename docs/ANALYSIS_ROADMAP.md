@@ -26,9 +26,20 @@ generality. Numerical completion, fit adequacy and statistical support are separ
 
 ## Priority and scope
 
+The [matched trial](ilvis0-solver-trial-20261010/RESULTS.md) is now complete: 10/12 fits
+converged versus 11/12 in its baseline. The control kept its globe/rotation preference;
+the other stretch remains unresolved. The
+[saved-fit calibration/adequacy audit](ilvis0-calibration-audit-20261010/README.md) now
+reports signed limits, parameter associations, local weak directions and residual RMS
+for all 318 first-pass and 12 trial fits. The
+[two-recording residual diagnostic](ilvis0-residual-diagnostic-20261010/README.md) has
+completed 24 saved-parameter predictions with no refits. It reproduces baseline errors,
+finds temporal correlation after whitening, and exposes a large vertical clock effect.
+Independent solver qualification and matched reoptimized timing/calibration tests remain planned.
+
 | Order | Work | What can happen without new observed fits? | Deliverable |
 |---|---|---|---|
-| 1 | Review the running matched solver trial | Audit saved results as they become final; preserve failed starts. | Solver qualification and matched baseline comparison. |
+| 1 | Qualify the solver after the completed matched trial | Review preserved successes and failures; no rollout based on this trial. | Independent numerical controls and matched baseline comparison. |
 | 2 | Diagnose calibration-boundary saturation | Recover signed parameter values, limit frequencies and associations from saved fits. | Calibration-model adequacy audit, beginning with Z-axis gyro gain and offset. |
 | 3 | Assess absolute fit quality | Inventory saved residual diagnostics and missing channels. New predictions or refits require a separate scope. | Per-fit adequacy report and a tested path toward an absolute-fit criterion. |
 | 4 | Test clock and receiver-coordinate sensitivity | Specify matched alternatives and choose intervals from saved geometry/numerical diagnostics. | Small frozen comparison matrix, with all three models treated equally. |
@@ -96,6 +107,14 @@ available maneuver indicators. Use measured temperature only if a documented cha
 exists. Elapsed time or aircraft movement must not be relabeled sensor temperature.
 Store epoch-level residuals and weights in a new diagnostic artifact if the old outputs
 lack them; generating predictions still has a numerical cost even without optimization.
+
+The completed two-recording diagnostic now stores per-epoch errors under both clocks and
+both covariance assumptions. Its nominal rotating-globe residuals are small but retain
+lag-one correlations of roughly 0.42–0.76. Packet-header timing raises vertical RMS
+to approximately 9.2–9.4 m without changing fitted parameters. These findings prioritize
+the clock comparison; they neither establish a calibrated adequacy failure nor replace
+held-out prediction checks. Speed/course covariates in this diagnostic are coordinate-derived
+proxies under a reference globe metric, not recorded VTG measurements or independent evidence.
 
 Retain the whole-stretch fit as the primary analysis. Existing fixed-parameter 4–10-minute
 section checks remain useful, but **are not held-out validation**: the parameters saw

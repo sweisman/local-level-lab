@@ -1,0 +1,38 @@
+{
+  "comparisons": [
+    {
+      "baseline_shape": "globe",
+      "new_shape": "globe",
+      "rotation_comparison": {
+        "baseline": [
+          {
+            "case_id": "bias1_unsubtracted",
+            "conditional_still_minus_rotating_cost": 10744.705206264025
+          },
+          {
+            "case_id": "bias1_profiled_removal",
+            "conditional_still_minus_rotating_cost": 10744.705206350936
+          }
+        ],
+        "refined": [
+          {
+            "case_id": "bias1_unsubtracted",
+            "conditional_still_minus_rotating_cost": 10744.705206257138
+          },
+          {
+            "case_id": "bias1_profiled_removal",
+            "conditional_still_minus_rotating_cost": 10744.705206368928
+          }
+        ]
+      },
+      "segment_id": "570b37d23af5e245dd461051"
+    },
+    {
+      "baseline_shape": "unresolved",
+      "new_shape": "unresolved",
+      "rotation_comparison": null,
+      "segment_id": "b4e44ddc0f130ecd45674c78"
+    }
+  ],
+  "scientific_decision": "abstain"
+}

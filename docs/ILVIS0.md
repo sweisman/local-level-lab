@@ -348,9 +348,14 @@ used the six real IMU/GPS recordings with stated correction, calibration and tim
 allowances, preserving unfinished calculations. The completed
 [pilot](ilvis0-refinement-20261008/PROVISIONAL.md) and
 [53-stretch study](ilvis0-highspeed-segments-20261008/FINDINGS.md) followed.
-Current numerical work is the separately frozen
-[matched solver trial](ilvis0-solver-trial-20261010/README.md). The earlier records below
-remain a history of completed stages, not the current work queue.
+The separately frozen [matched solver trial](ilvis0-solver-trial-20261010/README.md)
+is complete and did not improve numerical completion. The
+[saved-fit audit](ilvis0-calibration-audit-20261010/README.md) examines calibration limits
+and residual errors without new fits. The completed
+[epoch residual diagnostic](ilvis0-residual-diagnostic-20261010/README.md) reproduces
+saved predictions under both clocks, preserving individual errors and their temporal
+structure. No refits ran. The earlier records below remain a history of
+completed stages, not the current work queue.
 
 The [bounded estimator](ilvis0-estimator-20261007/README.md) is now implemented. Five analytic
 software controls recover bias, effective orientation, gain and timing under known conditions,

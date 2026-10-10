@@ -1,0 +1,14 @@
+{
+  "artifacts": {
+    "RESULTS.md": "eff0d0c84615c4f22ee41c53a15fb1287196b07da8910bd8cb44f1e08fc05fd8",
+    "comparison.json": "8f34419f2ae7770f049fe40f692b516113f6855134902ce52196e1c064a398a8",
+    "completion.json": "67d64d8a76d74b225cd55ddd26a3b3fd3e06a141d39fb98912c12795144b3616",
+    "manifest.json": "b0e4fcf463f4df213b837e231f9bf9cc01d20ecc2a9dbc7b7f8c9f0200c86c4f",
+    "matched-fits.csv": "93ddb7dcb6f67e11f9afb1b07c4c6ceb51a7a1f9cfade4eaad83d6d8d21cb2d1",
+    "selection.json.gz": "709576550b3aebb4a0db222cf2ec5525d21661b16829f27b74e0489ac58b9fc9",
+    "starts.jsonl": "94c25d96b800f504e43a914ff3acbac7e08cb9f9a4e6eac5e7612b10a2aaeb53",
+    "summary.json.gz": "6e0fa346b7e2de6c6f0bd938a9b327fe1000fd286917a573d7c9a474aa5a13e0"
+  },
+  "scientific_decision": "abstain",
+  "state": "complete"
+}

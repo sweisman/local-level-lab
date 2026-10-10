@@ -115,9 +115,22 @@ The 41 unknown results mean **the comparison could not be completed**, not that 
 and flat received equal support. Missing calculations are not evidence for either shape.
 
 The [saved-result diagnosis](docs/ilvis0-highspeed-segments-20261008/POST_RUN_REVIEW.md)
-found that most unresolved calculations exhausted their numerical allowance. A
-[small matched refinement](docs/ilvis0-solver-trial-20261010/README.md)
-is running to test whether more comparisons can finish under the same physical assumptions.
+found that most unresolved calculations exhausted their numerical allowance. The
+[small matched solver trial](docs/ilvis0-solver-trial-20261010/README.md) is complete:
+10 of its 12 fits finished, compared with 11 previously. It preserved the control's
+globe and rotation preference but did not improve completion.
+
+The [calibration and fit-quality audit](docs/ilvis0-calibration-audit-20261010/README.md)
+compares the same 12 resolved stretches under both processing cases. Median horizontal
+track mismatch is **0.068 m for rotating globe, 29.5 m for still globe and 47.1 m for
+flat disc**, using each model's declared coordinate metric. The audit also identifies
+weak Z-axis calibration directions and the residual checks still needed.
+
+A [two-recording residual diagnostic](docs/ilvis0-residual-diagnostic-20261010/README.md)
+now reproduces the saved errors without refitting. Rotating-globe errors remain much
+smaller, but show temporal correlation. Changing the integration clock at the same
+parameters raises vertical error from about 0.6–0.7 m to about 9.2–9.4 m. The report
+plots those errors and explains why timing needs a matched test next.
 
 The remaining checks concern numerical completion, fits reaching allowed calibration
 limits, and the exact timing and corrections used in the logs. Published hardware

@@ -67,7 +67,8 @@ incident histories, personal commentary or historical process IDs.
 | Broad corpus | data/ilvis0-corpus-modeling-v2-20261008/; docs/ilvis0-corpus-modeling-20261008/ | Completed and frozen; do not resume. |
 | Six-recording refinement | data/ilvis0-shape-refinement-20261008/; docs/ilvis0-refinement-20261008/ | Completed and frozen; packaging only, no resume. Original allowance: 72 primary / 84 maximum starts. |
 | All qualifying stretches | data/ilvis0-highspeed-segments-v2-20261008/; docs/ilvis0-highspeed-segments-20261008/ | Completed and frozen; packaging only, no resume. 53 stretches / 318 charged starts; original maximum 424. |
-| Matched solver trial | data/ilvis0-solver-trial-20261010/; docs/ilvis0-solver-trial-20261010/ | Approved: two fixed stretches, 12 starts maximum, one per identity, 200 evaluations/start. No retries or expansion. |
+| Matched solver trial | data/ilvis0-solver-trial-20261010/; docs/ilvis0-solver-trial-20261010/ | Completed and frozen; 12 starts, 10 converged fits versus baseline 11. Publication only; no resume or expansion. |
+| Saved-parameter residual diagnostic | data/ilvis0-residual-diagnostic-20261010/; docs/ilvis0-residual-diagnostic-20261010/ | Completed and frozen; 24 predictions, zero optimizer starts. Package/render only; no relaunch. |
 
 The six-recording refinement retains four cases. The all-stretch extension uses only ±1°/hour
 constant gyro offsets under fixed-zero/profiled Earth-rate removal; ±0.1°/hour is deferred.
@@ -99,10 +100,15 @@ Post-run diagnosis may read saved fits and selected receiver geometry without ne
 Revised fits need a separately identified development freeze and explicit finite compute allowance;
 never spend the unused allowance of a completed study or tune assumptions to favor a model.
 
-For the matched solver trial, check its completion, worker lock, journal and frozen hashes
-before `analysis/tests/ilvis0_solver_trial.py --detach`, using the two-thread environment above.
-Interrupted identities remain charged and unresolved; they cannot be retried. Completed
-trial publication uses `--package-only`, without observed fits. See its guide for the method.
+The matched solver trial is complete; do not launch it again. Publication uses
+`analysis/tests/ilvis0_solver_trial.py --package-only`, without observed fits.
+The [saved-fit calibration/adequacy audit](docs/ilvis0-calibration-audit-20261010/README.md)
+reads published metadata only. Its builder performs no native integration or optimization;
+do not mistake saved RMS and fixed-parameter sections for epoch-level or held-out validation.
+The [epoch residual diagnostic](docs/ilvis0-residual-diagnostic-20261010/README.md) preserves
+individual errors under both clocks. Packaging with `ilvis0_residual_diagnostic.py --package-only`
+and rendering with its guide's `build_report.py` perform no predictions. Original convergence
+labels remain unchanged; clock checks at fixed parameters are not reoptimized fits.
 
 After current numerical work is complete and reviewed, the proposed next scientific stage
 follows the [analysis roadmap](docs/ANALYSIS_ROADMAP.md): qualify the solver, audit calibration

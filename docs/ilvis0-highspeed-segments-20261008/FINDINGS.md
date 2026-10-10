@@ -95,10 +95,20 @@ complete comparisons for two recordings. Both favored globe and then rotation un
 all four tested cases. Two other recordings supplied globe-favoring partial pairs;
 two had no finished shape pair. None had a resolved flat preference.
 
-A [12-fit matched solver trial](../ilvis0-solver-trial-20261010/README.md) is running on
-one completed control stretch and one unfinished stretch. It tests better numerical
-stopping checks with the same measurements, models and physical assumptions. It does
-not replace the preserved first-pass evidence or count incomplete fits as completed.
+A [12-fit matched solver trial](../ilvis0-solver-trial-20261010/README.md) is complete.
+It finished 10 fits compared with 11 in the original calculation, so it does not justify
+expanding the revised solver. The completed control still favors globe and rotation;
+the diagnostic stretch remains unfinished. Original results remain unchanged.
+
+The [saved-fit audit](../ilvis0-calibration-audit-20261010/README.md) now compares calibration
+limits and residual errors. On the same 12 resolved stretches, median horizontal error
+is 0.068 m for rotating globe, 29.5 m for still globe and 47.1 m for flat disc.
+Calibration trade-offs and checks of residual behavior remain the next priorities.
+
+The [two-recording residual diagnostic](../ilvis0-residual-diagnostic-20261010/README.md)
+now saves individual errors and reproduces the original calculations without refitting.
+It confirms the large error separation while exposing residual correlation and vertical
+sensitivity to timing. It leaves every original convergence label and model preference intact.
 
 This page explains the results in plain language. The [original audited report](FINAL_SUMMARY.md)
 and its numerical records remain unchanged for reproducibility.

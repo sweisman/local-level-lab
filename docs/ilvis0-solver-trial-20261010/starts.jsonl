@@ -1,0 +1,12 @@
+{"identity": "570b37d23af5e245dd461051::bias1_unsubtracted::sphere_rotating", "manifest_sha256": "b0e4fcf463f4df213b837e231f9bf9cc01d20ecc2a9dbc7b7f8c9f0200c86c4f", "maximum_evaluations": 200, "start": 1}
+{"identity": "570b37d23af5e245dd461051::bias1_unsubtracted::sphere_still", "manifest_sha256": "b0e4fcf463f4df213b837e231f9bf9cc01d20ecc2a9dbc7b7f8c9f0200c86c4f", "maximum_evaluations": 200, "start": 2}
+{"identity": "570b37d23af5e245dd461051::bias1_unsubtracted::flat_still", "manifest_sha256": "b0e4fcf463f4df213b837e231f9bf9cc01d20ecc2a9dbc7b7f8c9f0200c86c4f", "maximum_evaluations": 200, "start": 3}
+{"identity": "570b37d23af5e245dd461051::bias1_profiled_removal::sphere_rotating", "manifest_sha256": "b0e4fcf463f4df213b837e231f9bf9cc01d20ecc2a9dbc7b7f8c9f0200c86c4f", "maximum_evaluations": 200, "start": 4}
+{"identity": "570b37d23af5e245dd461051::bias1_profiled_removal::sphere_still", "manifest_sha256": "b0e4fcf463f4df213b837e231f9bf9cc01d20ecc2a9dbc7b7f8c9f0200c86c4f", "maximum_evaluations": 200, "start": 5}
+{"identity": "570b37d23af5e245dd461051::bias1_profiled_removal::flat_still", "manifest_sha256": "b0e4fcf463f4df213b837e231f9bf9cc01d20ecc2a9dbc7b7f8c9f0200c86c4f", "maximum_evaluations": 200, "start": 6}
+{"identity": "b4e44ddc0f130ecd45674c78::bias1_unsubtracted::sphere_rotating", "manifest_sha256": "b0e4fcf463f4df213b837e231f9bf9cc01d20ecc2a9dbc7b7f8c9f0200c86c4f", "maximum_evaluations": 200, "start": 7}
+{"identity": "b4e44ddc0f130ecd45674c78::bias1_unsubtracted::sphere_still", "manifest_sha256": "b0e4fcf463f4df213b837e231f9bf9cc01d20ecc2a9dbc7b7f8c9f0200c86c4f", "maximum_evaluations": 200, "start": 8}
+{"identity": "b4e44ddc0f130ecd45674c78::bias1_unsubtracted::flat_still", "manifest_sha256": "b0e4fcf463f4df213b837e231f9bf9cc01d20ecc2a9dbc7b7f8c9f0200c86c4f", "maximum_evaluations": 200, "start": 9}
+{"identity": "b4e44ddc0f130ecd45674c78::bias1_profiled_removal::sphere_rotating", "manifest_sha256": "b0e4fcf463f4df213b837e231f9bf9cc01d20ecc2a9dbc7b7f8c9f0200c86c4f", "maximum_evaluations": 200, "start": 10}
+{"identity": "b4e44ddc0f130ecd45674c78::bias1_profiled_removal::sphere_still", "manifest_sha256": "b0e4fcf463f4df213b837e231f9bf9cc01d20ecc2a9dbc7b7f8c9f0200c86c4f", "maximum_evaluations": 200, "start": 11}
+{"identity": "b4e44ddc0f130ecd45674c78::bias1_profiled_removal::flat_still", "manifest_sha256": "b0e4fcf463f4df213b837e231f9bf9cc01d20ecc2a9dbc7b7f8c9f0200c86c4f", "maximum_evaluations": 200, "start": 12}
