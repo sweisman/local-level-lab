@@ -126,6 +126,12 @@ we can quantify the model differences. The current study reports which model fit
 without assigning a validated statistical significance level. The completed results and
 preselected intervals remain preserved.
 
+The [analysis roadmap](docs/ANALYSIS_ROADMAP.md) puts calibration-boundary diagnosis,
+absolute fit quality and timing/GPS sensitivity next. Exact device characterization
+continues in parallel at lower priority; modeling does not wait for it. A separate
+[rotation-field study](docs/ROTATION_FIELD.md) is planned to estimate the background
+vector before interpreting its cause.
+
 ## Secondary work: a crowdsourced experiment
 
 An Android app records an external WitMotion WT901-family IMU over Bluetooth, phone GPS

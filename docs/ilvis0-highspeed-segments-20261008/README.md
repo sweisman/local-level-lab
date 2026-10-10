@@ -115,6 +115,12 @@ or expose rotation when the complete shape comparison remains unresolved.
 
 ## Review after the frozen run
 
+The [analysis roadmap](../ANALYSIS_ROADMAP.md) sets the next priorities: numerical
+qualification, calibration-boundary diagnosis, absolute fit adequacy, matched clock and
+receiver-coordinate checks, and recording dependence. Exact device characterization
+is lower-priority parallel work; available survey-grade specifications and empirical
+checks support continued analysis without waiting for a producer reply.
+
 The [completed saved-result diagnosis](POST_RUN_REVIEW.md) reports stopping reasons,
 speed/duration associations, parameter limits and clock sensitivity. The
 [bounded refinement plan](REFINEMENT_PROPOSAL.md) specifies the now-running

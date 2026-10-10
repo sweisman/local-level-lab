@@ -11,6 +11,9 @@ measurement target; this study will test the vector pattern rather than assume i
 
 This page records the scope and sequence. It introduces no code, fits or new campaign
 allowance. The completed globe/flat comparisons and the running solver trial stay intact.
+The [analysis roadmap](ANALYSIS_ROADMAP.md) adds the numerical, calibration-boundary,
+absolute-fit and recording-dependence checks this estimator will also need. Exact device
+characterization remains parallel work; it does not hold up development of the field estimator.
 
 ## What to measure
 

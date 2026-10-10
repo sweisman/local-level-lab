@@ -1,6 +1,10 @@
 # How the experiment works
 
-The current archive study compares Earth models. A separate
+The current archive study compares Earth models. The [analysis roadmap](ANALYSIS_ROADMAP.md)
+prioritizes numerical qualification, calibration-boundary diagnosis, absolute fit quality
+and matched timing/coordinate checks. Exact device characterization proceeds in parallel
+at lower priority; available survey-grade performance information supports continued modeling.
+A separate
 [proposed follow-on](ROTATION_FIELD.md) will estimate the retained background rotation
 field first and compare its latitude, altitude and trajectory dependence before
 interpreting its cause. It does not change the current study or its results.

@@ -105,7 +105,10 @@ Interrupted identities remain charged and unresolved; they cannot be retried. Co
 trial publication uses `--package-only`, without observed fits. See its guide for the method.
 
 After current numerical work is complete and reviewed, the proposed next scientific stage
-is [rotation-field measurement](docs/ROTATION_FIELD.md): infer the retained background vector
+follows the [analysis roadmap](docs/ANALYSIS_ROADMAP.md): qualify the solver, audit calibration
+boundaries and absolute adequacy, then test timing/coordinate sensitivity and recording dependence.
+Exact device characterization is lower-priority parallel work, not a prerequisite for modeling.
+The separate [rotation-field measurement](docs/ROTATION_FIELD.md) will infer the retained background vector
 before interpreting its cause, with aircraft motion, transport and calibration fitted jointly.
 The proposal authorizes no new fits or campaign budget. Do not fix or subtract the standard
 Earth rate to create the estimated field, or fit an original field and unconstrained onboard
