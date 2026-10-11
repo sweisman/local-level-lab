@@ -171,6 +171,12 @@ rotation preference under both processing cases. Fixing Z offset to zero left on
 still-globe fit unfinished; that comparison remains unresolved. Rotating-globe
 track errors stayed close to the original values in both tests.
 
+The [integration follow-up](docs/ilvis0-integration-audit-20261011/README.md) tested
+a calculation that accounts for motion within each recorded interval. It completed
+four of six fits and left the Z-axis calibration corrections at the same limits.
+It has not improved the original method enough to replace it. The next diagnostic
+will examine how the gyro's scale and constant offset trade off in those fits.
+
 The remaining checks concern numerical completion, fits reaching allowed calibration
 limits, and the exact timing and corrections used in the logs. Published hardware
 specifications provide useful performance context; these checks determine how confidently

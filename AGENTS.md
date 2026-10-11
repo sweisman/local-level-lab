@@ -120,13 +120,15 @@ Post-run diagnosis may read saved fits and selected receiver geometry without ne
 Revised fits need a separately identified development freeze and explicit finite compute allowance;
 never spend the unused allowance of a completed study or tune assumptions to favor a model.
 
-The approved [integration comparison](docs/ilvis0-integration-trial-20261011/PLAN.md)
+The completed [integration comparison](docs/ilvis0-integration-trial-20261011/README.md)
 uses analysis/tests/ilvis0_integration_trial.py and data/ilvis0-integration-trial-20261011/.
-Preparation/package modes perform no fits. Its allowance is six starts,
-200 native sweeps each including diagnostics, no retries, two numerical threads;
-estimate 90–120 minutes. Check its lock, journal and completion before any recovery.
-Preserve its header clock, bounds and original initialization. Apply corrections only under
-the stated ordinary-increment hypothesis; never assume onboard compensation is absent.
+Its six starts used 974 native sweeps; four fits converged. No retries, resume or
+archive rollout. Package mode performs no fits. Preserve its header clock, bounds,
+initialization and ordinary-increment hypothesis; onboard compensation is not established.
+The [integration audit](docs/ilvis0-integration-audit-20261011/README.md) reads saved
+metadata only. Its PROFILE_PLAN.md proposes 27 joint Z gain/offset profiles;
+the worker still needs implementation/testing and a separate finite allowance.
+No profile starts are authorized by preparation or routine continuation.
 
 The matched solver trial is complete; do not launch it again. Publication uses
 `analysis/tests/ilvis0_solver_trial.py --package-only`, without observed fits.

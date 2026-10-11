@@ -255,13 +255,18 @@ The [latitude/convention extension](ilvis0-latitude-controls-20261011/FINDINGS.m
 has also completed: all 24 fits at ±45° pass, with offset errors below 0.00079°/hour
 and no calibration limits reached. Opposed starts and roll/unequal timing retain
 the improvement. Correcting already-compensated inputs instead introduces error.
-A [six-fit NASA comparison launcher](ilvis0-integration-trial-20261011/PLAN.md) is
-implemented with unchanged header timing, bounds and solver; its separate freeze
-requires an explicit six-start finite allowance before launch. The
+A [six-fit NASA integration comparison](ilvis0-integration-trial-20261011/README.md)
+has completed with unchanged header timing, bounds and solver: four fits converged
+and both zero-field globe fits exhausted their budgets. The
 [27-column derivative check](ilvis0-latitude-controls-20261011/DERIVATIVES.md) has
 passed for all three candidates; global optimizer qualification remains distinct.
-Do not upsample observed packets or double-correct the archive. No observed fits
-were added and the frozen NASA findings are unchanged.
+Do not upsample observed packets or double-correct the archive. The
+[saved integration audit](ilvis0-integration-audit-20261011/README.md) preserves the
+original findings and identifies no improvement in Z boundary saturation. Its
+[staged profile plan](ilvis0-integration-audit-20261011/PROFILE_PLAN.md) proposes
+27 fixed gain/offset comparisons, roughly 6–7 hours, under original integration
+and one processing case first. Implement/test its worker and obtain a separate
+finite allowance before execution; this alternative is not ready for corpus rollout.
 
 The control's matched reoptimized clock comparison is complete: all six fits converged,
 the close rotating-globe fit returned, and globe/rotation preference survived. It shows

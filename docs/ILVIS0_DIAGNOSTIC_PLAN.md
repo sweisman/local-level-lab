@@ -72,12 +72,14 @@ remains weak. The [latitude/convention controls](ilvis0-latitude-controls-202610
 now pass all 24 fits at ±45°, including opposed starts and roll/unequal timing.
 Offset errors stay below 0.00079°/hour and no fit reaches a calibration limit.
 Already-compensated controls demonstrate the error from applying corrections twice.
-The [six-fit observed comparison launcher](ilvis0-integration-trial-20261011/PLAN.md)
-is implemented; the [full-column derivative check](ilvis0-latitude-controls-20261011/DERIVATIVES.md)
-has passed for all three candidates. It does not qualify global optimization.
-Verify its separate freeze, then obtain the six-start finite allowance before launch.
-Do not apply corrections to the archive before testing whether they would duplicate
-upstream processing. Good predictions do not qualify unique
+The [six-fit observed integration comparison](ilvis0-integration-trial-20261011/README.md)
+is complete: four fits converged, while both zero-field globe fits exhausted their
+budgets. The [saved-result audit](ilvis0-integration-audit-20261011/README.md) finds
+their stationarity errors remain 53–56 times the limit. Z gain and offset remain
+at exactly the original limits in all six fits. The alternative does not qualify
+for archive rollout. The [full-column derivative check](ilvis0-latitude-controls-20261011/DERIVATIVES.md)
+passed; it does not qualify global optimization. Do not assume the archive lacks
+upstream compensation. Good predictions do not qualify unique
 calibration. These short-record tests do not qualify all 27 archival nuisance parameters
 or authorize observed profiles.
 
@@ -95,10 +97,14 @@ for decoder validation. Investigate the vertical effect through accumulated velo
 gravity correction and timing/calibration sensitivity. A smaller rotating-globe cost
 alone cannot identify the clock convention.
 
-Then prepare a matched Z gain–offset profile study. At each fixed gain/offset pair,
+The [staged joint-profile plan](ilvis0-integration-audit-20261011/PROFILE_PLAN.md)
+now specifies the first grid: 27 fits under original integration, packet-header timing
+and no upstream field removal, with no starts authorized. Implement/test its worker
+before requesting its 5,400-sweep allowance. Other variants remain separately scoped.
+At each fixed gain/offset pair,
 reoptimize all remaining parameters with their existing physical bounds. Use identical
-grid coordinates, initialization policy and finite allowances for rotating globe,
-stationary globe and stationary disc, under both clocks and processing assumptions.
+grid coordinates, initialization policy and finite allowances for specified-field globe,
+zero-field globe and stationary disc. Later stages compare clocks and processing assumptions.
 Reuse only compatible completed reference points with verified provenance. Save the
 absolute cost and within-model cost increase, stationarity, completion, remaining
 boundary values and prediction errors.

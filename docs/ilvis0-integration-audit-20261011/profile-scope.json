@@ -1,0 +1,53 @@
+{
+  "authorized_starts": 0,
+  "bias_dph": [
+    -1,
+    0,
+    1
+  ],
+  "case_id": "bias1_unsubtracted",
+  "clock": "header_elapsed",
+  "gain_percent": [
+    -2,
+    0,
+    2
+  ],
+  "identities": [
+    "570b37d23af5e245dd461051::bias1_unsubtracted::sphere_rotating::gain-2::bias-1",
+    "570b37d23af5e245dd461051::bias1_unsubtracted::sphere_still::gain-2::bias-1",
+    "570b37d23af5e245dd461051::bias1_unsubtracted::flat_still::gain-2::bias-1",
+    "570b37d23af5e245dd461051::bias1_unsubtracted::sphere_rotating::gain-2::bias+0",
+    "570b37d23af5e245dd461051::bias1_unsubtracted::sphere_still::gain-2::bias+0",
+    "570b37d23af5e245dd461051::bias1_unsubtracted::flat_still::gain-2::bias+0",
+    "570b37d23af5e245dd461051::bias1_unsubtracted::sphere_rotating::gain-2::bias+1",
+    "570b37d23af5e245dd461051::bias1_unsubtracted::sphere_still::gain-2::bias+1",
+    "570b37d23af5e245dd461051::bias1_unsubtracted::flat_still::gain-2::bias+1",
+    "570b37d23af5e245dd461051::bias1_unsubtracted::sphere_rotating::gain+0::bias-1",
+    "570b37d23af5e245dd461051::bias1_unsubtracted::sphere_still::gain+0::bias-1",
+    "570b37d23af5e245dd461051::bias1_unsubtracted::flat_still::gain+0::bias-1",
+    "570b37d23af5e245dd461051::bias1_unsubtracted::sphere_rotating::gain+0::bias+0",
+    "570b37d23af5e245dd461051::bias1_unsubtracted::sphere_still::gain+0::bias+0",
+    "570b37d23af5e245dd461051::bias1_unsubtracted::flat_still::gain+0::bias+0",
+    "570b37d23af5e245dd461051::bias1_unsubtracted::sphere_rotating::gain+0::bias+1",
+    "570b37d23af5e245dd461051::bias1_unsubtracted::sphere_still::gain+0::bias+1",
+    "570b37d23af5e245dd461051::bias1_unsubtracted::flat_still::gain+0::bias+1",
+    "570b37d23af5e245dd461051::bias1_unsubtracted::sphere_rotating::gain+2::bias-1",
+    "570b37d23af5e245dd461051::bias1_unsubtracted::sphere_still::gain+2::bias-1",
+    "570b37d23af5e245dd461051::bias1_unsubtracted::flat_still::gain+2::bias-1",
+    "570b37d23af5e245dd461051::bias1_unsubtracted::sphere_rotating::gain+2::bias+0",
+    "570b37d23af5e245dd461051::bias1_unsubtracted::sphere_still::gain+2::bias+0",
+    "570b37d23af5e245dd461051::bias1_unsubtracted::flat_still::gain+2::bias+0",
+    "570b37d23af5e245dd461051::bias1_unsubtracted::sphere_rotating::gain+2::bias+1",
+    "570b37d23af5e245dd461051::bias1_unsubtracted::sphere_still::gain+2::bias+1",
+    "570b37d23af5e245dd461051::bias1_unsubtracted::flat_still::gain+2::bias+1"
+  ],
+  "integration": "original",
+  "maximum_native_sweeps": 5400,
+  "maximum_native_sweeps_per_start": 200,
+  "maximum_per_identity": 1,
+  "numerical_threads": 2,
+  "requested_starts": 27,
+  "retries": 0,
+  "scientific_decision": "abstain",
+  "version": "ilvis0-joint-z-profile-proposal-v1"
+}
