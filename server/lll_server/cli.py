@@ -43,7 +43,7 @@ def export(store: Store, out: Path) -> Path:
         if digest != r["sha256"]:
             raise RuntimeError(f"checksum mismatch for {r['id']}: stored file was modified")
         sums.append(f"{digest}  raw/{src.name}")
-        index.append({k: r[k] for k in PUBLIC_COLS})
+        index.append({**{k: r[k] for k in PUBLIC_COLS},'kind':json.loads(r['manifest']).get('kind','flight')})
     (out / "index.json").write_text(json.dumps(index, indent=1))
     from .registry import approvals
     (out / "provenance.json").write_text(json.dumps(approvals(store), indent=1))

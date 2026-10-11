@@ -1,74 +1,35 @@
 # Evidence so far
 
-An **IMU (inertial measurement unit)** measures turning and acceleration. The experiment seeks
-a small, model-dependent turning signal during level flight. These results describe progress
-in testing the software and experimental design. They are not measurements proving that a
-real consumer-grade IMU already distinguishes the three Earth models reliably.
+An **IMU (inertial measurement unit)** measures turning and acceleration.
+The project's empirical evidence comes primarily from NASA survey-grade airborne IMUs.
+Stationary consumer crowdsourcing is a separate developing experiment.
 
-## Software checks
+## NASA archive
 
-The model calculations are checked against an independent geometric calculation. This helps
-catch errors that would go unnoticed if the same formulas generated and analyzed the test data.
-Other automated checks cover decoding, timing, calibration, changing IMU errors, model
-comparisons and data loss. They establish specific software behavior, not hardware performance.
+All 53 selected high-speed stretches have been analyzed. Twelve have complete comparisons
+favoring globe over the specified flat disc under both processing assumptions; all twelve
+then favor rotating over still globe. None has a complete flat preference. Forty-one
+remain unresolved because required numerical fits did not finish. These are model-fit
+preferences, without independently calibrated statistical significance.
 
-## The two large development pilots
+The [source-aware findings](ilvis0-highspeed-segments-20261008/FINDINGS.md) give durations,
+speeds, instrument record types and partial results. The [analysis roadmap](ANALYSIS_ROADMAP.md)
+tracks smaller numerical, timing, calibration and prediction checks. Overlapping streams
+and repeated flights are not counted as independent instruments.
 
-Two campaigns of 1,000 simulated flight attempts each exercised the analysis with wind and
-changing IMU errors. Most cases passed the software acceptance checks, and all returned fits.
-The first campaign contained one accepted case that wrongly rejected the model used to generate
-it under the provisional decision rule. The second contained none among accepted cases.
+## Stationary consumer experiment
 
-Those campaigns used different settings and shared simulation inputs within comparisons.
-They are development evidence, not thousands of interchangeable independent tests of one final
-rule. Their main value was finding failure modes and showing which checks need further work.
+The Android app now guides still A/B reversals on a solid surface. Its preliminary analyzer
+estimates a signed horizontal reversal signal without latitude or an expected rotation
+amplitude. No real consumer unit has yet completed the required slow-rate validation here.
+Software tests establish specific behavior; they are not detections of a geographic field.
 
-## The geometry study
+See the [stationary method](STATIONARY.md), [instrument checks](BENCH.md) and
+[validation plan](VALIDATION.md). Geographic pooling and calibrated uncertainty remain future work.
 
-A later study completed 300 analyses over 24 selected route patterns and the existing reference
-procedure. It varied latitude, heading patterns, duration, speed and IMU turns, and allowed for
-wind in two different ways. Six analyses had no usable fit after protective data exclusions.
-None of the 25 geometries passed every required comparison across both wind descriptions.
+## Historical passenger-flight work
 
-The audit explained several separate problems. Some ten-minute legs were too close to the
-minimum steady-cruise requirement. Long legs allowed changing IMU error to imitate slow signals.
-Wind could resemble mount movement in the magnetic checks. A numerical defect also made the
-information calculation depend on parameter units; that defect is now fixed. It has not been
-shown to account for all the failures in the saved study.
-
-## The latest comparison
-
-A 72-case study compared the original procedure with a longer one that revisited opposing
-headings. It used fresh paired simulation inputs and the corrected calculation, and finished
-in about nine minutes without fit failures.
-
-The original procedure passed all 18 separation checks under one description of wind-related
-uncertainty. Under the other, nine of 18 retained enough model separation and six also passed
-the remaining scientific screens. The revised procedure passed none of its required separation
-checks under either description. Neither procedure therefore passed the complete study.
-
-The longer procedure had looked promising with known IMU orientation in a simplified calculation.
-Its failure in the complete simulator shows why route calculations alone are insufficient.
-A planned IMU turn also coincided with an aircraft turn. Independent motion examples now show
-that the turn reconstruction can mistake aircraft motion for a change in IMU orientation.
-Saved diagnostics also distinguish information lost to wind/IMU uncertainty from information
-discarded by the numerical cutoff. Neither effect alone has been shown to explain every failure.
-The [processing review](protocol-development-20261006/PROCESSING_REVIEW.md) describes the findings
-and an untested timing correction.
-
-The follow-up software now checks aircraft motion during IMU turns, can replay observed routes
-with simulated IMU behavior, and tests model separation over several wind and mounting
-conditions. It also supports direct comparisons of individual model pairs and simultaneous
-wind and changing IMU errors. Controlled software checks cover these additions. No new
-flight campaign has run, so the results above remain the latest campaign evidence.
-
-## What the evidence does not establish
-
-There are no completed real-IMU bench measurements in the current project work. Public flight
-tracks supply positions, not IMU readings. The final decision thresholds have not been calibrated
-and independently validated. No final wrong-rejection rate, broad usable-flight domain or
-real-flight three-model conclusion has been established.
-
-[Validation](VALIDATION.md) explains what comes next. The [technical validation record](VALIDATION_TECHNICAL.md)
-contains the full campaign details. [Historical simulation tables](EVIDENCE_TECHNICAL.md) preserve
-older results, with their original limitations; they are not current-release validation.
+Two 1,000-attempt synthetic pilots and later route/turn studies remain recorded in the
+[technical evidence](EVIDENCE_TECHNICAL.md) and [technical validation history](VALIDATION_TECHNICAL.md).
+They explored aircraft collection and exposed motion, wind and sensor limitations.
+They do not validate the new ground protocol. No simulation campaign was rerun for this change.

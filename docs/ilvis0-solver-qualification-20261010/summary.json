@@ -1,0 +1,3226 @@
+{
+  "actual_evaluations": 826,
+  "kernel": {
+    "binary_sha256": "f56bb8b398ac71f4e520ae249bfe2606988eb3ff850ca00fc2322b2b9dc00595",
+    "compiler": "cc (GCC) 16.2.1 20260810",
+    "flags": [
+      "-O2",
+      "-std=c99",
+      "-D_DEFAULT_SOURCE",
+      "-fPIC",
+      "-shared"
+    ],
+    "source_sha256": "5efb8c04a9a72822374a23df9b3e8d43c5bfa0e37c7a39a1326195e815aae49e"
+  },
+  "observed_fit_starts": 0,
+  "passed": 34,
+  "results": [
+    {
+      "actual_evaluations": 9,
+      "control": "interior",
+      "fit": {
+        "active_bound_signs": {},
+        "active_bounds": [],
+        "active_parameters": [
+          "control_0",
+          "control_1"
+        ],
+        "calibration_bounds_supported": false,
+        "clock_independently_established": false,
+        "constant_bias_is_measured_drift": false,
+        "converged": true,
+        "derivative_method": "exact derivative of independent analytic function",
+        "evaluations": 9,
+        "exact_projected_gradient_relative": 1.1068923555512811e-13,
+        "gps_epochs_at_packet_boundaries": 0,
+        "gradient": [
+          0.0,
+          1.1068923555512811e-13
+        ],
+        "initialization_evaluations": 0,
+        "initialization_message": "no staged parameters",
+        "latency_derivative_convention": "left interval at a packet boundary; adjacent measured rates may differ",
+        "maximum_evaluations": 200,
+        "message": "`xtol` termination condition is satisfied.",
+        "model": "control",
+        "normalized_parameters": [
+          0.2,
+          -0.39999999999988933
+        ],
+        "parameters": {
+          "control_0": 0.2,
+          "control_1": -0.39999999999988933
+        },
+        "processing_independence_established": false,
+        "projected_gradient": [
+          0.0,
+          1.1068923555512811e-13
+        ],
+        "receiver_covariance_calibrated": false,
+        "relative_cost_change": 0.0,
+        "relative_residual_step": 0.0,
+        "residual_sum_squares": 1.0,
+        "right_singular_vectors": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0
+          ]
+        ],
+        "scaled_projected_gradient": [
+          0.0,
+          1.1068923555512811e-13
+        ],
+        "scientific_decision": "abstain",
+        "scientific_eligible": false,
+        "singular_values": [
+          1.0,
+          1.0
+        ],
+        "solver_reported_success": true,
+        "stability_probe": null,
+        "stability_verified": true,
+        "stable_accepted_iterations": 2,
+        "stationarity_tolerance": 0.0001,
+        "stopping_rule_verified": true,
+        "termination": "scipy_stop",
+        "version": "ilvis0-scaled-stable-stop-v1"
+      },
+      "identifiable_parameter_error": 1.1068923555512811e-13,
+      "identity": "interior::0",
+      "independent_archive_confirmation": false,
+      "maximum_actual_evaluations": 200,
+      "observed_fit_starts": 0,
+      "passed": true,
+      "prediction_error": 1.1068923555512811e-13,
+      "prediction_tolerance": 0.0001,
+      "reference_objective": 1.0,
+      "scientific_decision": "abstain",
+      "start": 0
+    },
+    {
+      "actual_evaluations": 11,
+      "control": "interior",
+      "fit": {
+        "active_bound_signs": {},
+        "active_bounds": [],
+        "active_parameters": [
+          "control_0",
+          "control_1"
+        ],
+        "calibration_bounds_supported": false,
+        "clock_independently_established": false,
+        "constant_bias_is_measured_drift": false,
+        "converged": true,
+        "derivative_method": "exact derivative of independent analytic function",
+        "evaluations": 11,
+        "exact_projected_gradient_relative": 2.438819424188665e-10,
+        "gps_epochs_at_packet_boundaries": 0,
+        "gradient": [
+          2.438819424188665e-10,
+          -9.43733979852368e-12
+        ],
+        "initialization_evaluations": 0,
+        "initialization_message": "no staged parameters",
+        "latency_derivative_convention": "left interval at a packet boundary; adjacent measured rates may differ",
+        "maximum_evaluations": 200,
+        "message": "`xtol` termination condition is satisfied.",
+        "model": "control",
+        "normalized_parameters": [
+          0.20000000024388195,
+          -0.40000000000943736
+        ],
+        "parameters": {
+          "control_0": 0.20000000024388195,
+          "control_1": -0.40000000000943736
+        },
+        "processing_independence_established": false,
+        "projected_gradient": [
+          2.438819424188665e-10,
+          -9.43733979852368e-12
+        ],
+        "receiver_covariance_calibrated": false,
+        "relative_cost_change": 0.0,
+        "relative_residual_step": 0.0,
+        "residual_sum_squares": 1.0,
+        "right_singular_vectors": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0
+          ]
+        ],
+        "scaled_projected_gradient": [
+          2.438819424188665e-10,
+          -9.43733979852368e-12
+        ],
+        "scientific_decision": "abstain",
+        "scientific_eligible": false,
+        "singular_values": [
+          1.0,
+          1.0
+        ],
+        "solver_reported_success": true,
+        "stability_probe": null,
+        "stability_verified": true,
+        "stable_accepted_iterations": 1,
+        "stationarity_tolerance": 0.0001,
+        "stopping_rule_verified": true,
+        "termination": "scipy_stop",
+        "version": "ilvis0-scaled-stable-stop-v1"
+      },
+      "identifiable_parameter_error": 2.438819424188665e-10,
+      "identity": "interior::1",
+      "independent_archive_confirmation": false,
+      "maximum_actual_evaluations": 200,
+      "observed_fit_starts": 0,
+      "passed": true,
+      "prediction_error": 2.440644693937897e-10,
+      "prediction_tolerance": 0.0001,
+      "reference_objective": 1.0,
+      "scientific_decision": "abstain",
+      "start": 1
+    },
+    {
+      "actual_evaluations": 14,
+      "control": "interior",
+      "fit": {
+        "active_bound_signs": {},
+        "active_bounds": [],
+        "active_parameters": [
+          "control_0",
+          "control_1"
+        ],
+        "calibration_bounds_supported": false,
+        "clock_independently_established": false,
+        "constant_bias_is_measured_drift": false,
+        "converged": true,
+        "derivative_method": "exact derivative of independent analytic function",
+        "evaluations": 14,
+        "exact_projected_gradient_relative": 2.6950958686988713e-09,
+        "gps_epochs_at_packet_boundaries": 0,
+        "gradient": [
+          -2.6950958686988713e-09,
+          0.0
+        ],
+        "initialization_evaluations": 0,
+        "initialization_message": "no staged parameters",
+        "latency_derivative_convention": "left interval at a packet boundary; adjacent measured rates may differ",
+        "maximum_evaluations": 200,
+        "message": "`xtol` termination condition is satisfied.",
+        "model": "control",
+        "normalized_parameters": [
+          0.19999999730490414,
+          -0.4
+        ],
+        "parameters": {
+          "control_0": 0.19999999730490414,
+          "control_1": -0.4
+        },
+        "processing_independence_established": false,
+        "projected_gradient": [
+          -2.6950958686988713e-09,
+          0.0
+        ],
+        "receiver_covariance_calibrated": false,
+        "relative_cost_change": 0.0,
+        "relative_residual_step": 0.0,
+        "residual_sum_squares": 1.0,
+        "right_singular_vectors": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0
+          ]
+        ],
+        "scaled_projected_gradient": [
+          -2.6950958686988713e-09,
+          0.0
+        ],
+        "scientific_decision": "abstain",
+        "scientific_eligible": false,
+        "singular_values": [
+          1.0,
+          1.0
+        ],
+        "solver_reported_success": true,
+        "stability_probe": null,
+        "stability_verified": true,
+        "stable_accepted_iterations": 1,
+        "stationarity_tolerance": 0.0001,
+        "stopping_rule_verified": true,
+        "termination": "scipy_stop",
+        "version": "ilvis0-scaled-stable-stop-v1"
+      },
+      "identifiable_parameter_error": 2.6950958686988713e-09,
+      "identity": "interior::2",
+      "independent_archive_confirmation": false,
+      "maximum_actual_evaluations": 200,
+      "observed_fit_starts": 0,
+      "passed": true,
+      "prediction_error": 2.6950958686988713e-09,
+      "prediction_tolerance": 0.0001,
+      "reference_objective": 1.0,
+      "scientific_decision": "abstain",
+      "start": 2
+    },
+    {
+      "actual_evaluations": 9,
+      "control": "boundary",
+      "fit": {
+        "active_bound_signs": {
+          "control_0": "upper"
+        },
+        "active_bounds": [
+          "control_0"
+        ],
+        "active_parameters": [
+          "control_0",
+          "control_1"
+        ],
+        "calibration_bounds_supported": false,
+        "clock_independently_established": false,
+        "constant_bias_is_measured_drift": false,
+        "converged": true,
+        "derivative_method": "exact derivative of independent analytic function",
+        "evaluations": 9,
+        "exact_projected_gradient_relative": 0.0,
+        "gps_epochs_at_packet_boundaries": 0,
+        "gradient": [
+          -0.5000000000000001,
+          0.0
+        ],
+        "initialization_evaluations": 0,
+        "initialization_message": "no staged parameters",
+        "latency_derivative_convention": "left interval at a packet boundary; adjacent measured rates may differ",
+        "maximum_evaluations": 200,
+        "message": "`gtol` termination condition is satisfied.",
+        "model": "control",
+        "normalized_parameters": [
+          0.9999999999999999,
+          -0.4
+        ],
+        "parameters": {
+          "control_0": 0.9999999999999999,
+          "control_1": -0.4
+        },
+        "processing_independence_established": false,
+        "projected_gradient": [
+          0.0,
+          0.0
+        ],
+        "receiver_covariance_calibrated": false,
+        "relative_cost_change": 2.1490365043018048e-12,
+        "relative_residual_step": 2.402497252146581e-12,
+        "residual_sum_squares": 1.25,
+        "right_singular_vectors": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0
+          ]
+        ],
+        "scaled_projected_gradient": [
+          0.0,
+          0.0
+        ],
+        "scientific_decision": "abstain",
+        "scientific_eligible": false,
+        "singular_values": [
+          1.0,
+          1.0
+        ],
+        "solver_reported_success": true,
+        "stability_probe": null,
+        "stability_verified": true,
+        "stable_accepted_iterations": 1,
+        "stationarity_tolerance": 0.0001,
+        "stopping_rule_verified": true,
+        "termination": "scipy_stop",
+        "version": "ilvis0-scaled-stable-stop-v1"
+      },
+      "identifiable_parameter_error": 1.1102230246251565e-16,
+      "identity": "boundary::0",
+      "independent_archive_confirmation": false,
+      "maximum_actual_evaluations": 200,
+      "observed_fit_starts": 0,
+      "passed": true,
+      "prediction_error": 1.1102230246251565e-16,
+      "prediction_tolerance": 0.0001,
+      "reference_objective": 1.25,
+      "scientific_decision": "abstain",
+      "start": 0
+    },
+    {
+      "actual_evaluations": 8,
+      "control": "boundary",
+      "fit": {
+        "active_bound_signs": {
+          "control_0": "upper"
+        },
+        "active_bounds": [
+          "control_0"
+        ],
+        "active_parameters": [
+          "control_0",
+          "control_1"
+        ],
+        "calibration_bounds_supported": false,
+        "clock_independently_established": false,
+        "constant_bias_is_measured_drift": false,
+        "converged": true,
+        "derivative_method": "exact derivative of independent analytic function",
+        "evaluations": 8,
+        "exact_projected_gradient_relative": 0.0,
+        "gps_epochs_at_packet_boundaries": 0,
+        "gradient": [
+          -0.5000000000000001,
+          0.0
+        ],
+        "initialization_evaluations": 0,
+        "initialization_message": "no staged parameters",
+        "latency_derivative_convention": "left interval at a packet boundary; adjacent measured rates may differ",
+        "maximum_evaluations": 200,
+        "message": "`gtol` termination condition is satisfied.",
+        "model": "control",
+        "normalized_parameters": [
+          0.9999999999999999,
+          -0.4
+        ],
+        "parameters": {
+          "control_0": 0.9999999999999999,
+          "control_1": -0.4
+        },
+        "processing_independence_established": false,
+        "projected_gradient": [
+          0.0,
+          0.0
+        ],
+        "receiver_covariance_calibrated": false,
+        "relative_cost_change": 2.6204816094763825e-12,
+        "relative_residual_step": 2.9295889035640418e-12,
+        "residual_sum_squares": 1.25,
+        "right_singular_vectors": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0
+          ]
+        ],
+        "scaled_projected_gradient": [
+          0.0,
+          0.0
+        ],
+        "scientific_decision": "abstain",
+        "scientific_eligible": false,
+        "singular_values": [
+          1.0,
+          1.0
+        ],
+        "solver_reported_success": true,
+        "stability_probe": null,
+        "stability_verified": true,
+        "stable_accepted_iterations": 1,
+        "stationarity_tolerance": 0.0001,
+        "stopping_rule_verified": true,
+        "termination": "scipy_stop",
+        "version": "ilvis0-scaled-stable-stop-v1"
+      },
+      "identifiable_parameter_error": 1.1102230246251565e-16,
+      "identity": "boundary::1",
+      "independent_archive_confirmation": false,
+      "maximum_actual_evaluations": 200,
+      "observed_fit_starts": 0,
+      "passed": true,
+      "prediction_error": 1.1102230246251565e-16,
+      "prediction_tolerance": 0.0001,
+      "reference_objective": 1.25,
+      "scientific_decision": "abstain",
+      "start": 1
+    },
+    {
+      "actual_evaluations": 10,
+      "control": "boundary",
+      "fit": {
+        "active_bound_signs": {
+          "control_0": "upper"
+        },
+        "active_bounds": [
+          "control_0"
+        ],
+        "active_parameters": [
+          "control_0",
+          "control_1"
+        ],
+        "calibration_bounds_supported": false,
+        "clock_independently_established": false,
+        "constant_bias_is_measured_drift": false,
+        "converged": true,
+        "derivative_method": "exact derivative of independent analytic function",
+        "evaluations": 10,
+        "exact_projected_gradient_relative": 0.0,
+        "gps_epochs_at_packet_boundaries": 0,
+        "gradient": [
+          -0.5000000000000001,
+          0.0
+        ],
+        "initialization_evaluations": 0,
+        "initialization_message": "no staged parameters",
+        "latency_derivative_convention": "left interval at a packet boundary; adjacent measured rates may differ",
+        "maximum_evaluations": 200,
+        "message": "`gtol` termination condition is satisfied.",
+        "model": "control",
+        "normalized_parameters": [
+          0.9999999999999999,
+          -0.4
+        ],
+        "parameters": {
+          "control_0": 0.9999999999999999,
+          "control_1": -0.4
+        },
+        "processing_independence_established": false,
+        "projected_gradient": [
+          0.0,
+          0.0
+        ],
+        "receiver_covariance_calibrated": false,
+        "relative_cost_change": 2.984279490192332e-14,
+        "relative_residual_step": 3.316665628738356e-14,
+        "residual_sum_squares": 1.25,
+        "right_singular_vectors": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0
+          ]
+        ],
+        "scaled_projected_gradient": [
+          0.0,
+          0.0
+        ],
+        "scientific_decision": "abstain",
+        "scientific_eligible": false,
+        "singular_values": [
+          1.0,
+          1.0
+        ],
+        "solver_reported_success": true,
+        "stability_probe": null,
+        "stability_verified": true,
+        "stable_accepted_iterations": 1,
+        "stationarity_tolerance": 0.0001,
+        "stopping_rule_verified": true,
+        "termination": "scipy_stop",
+        "version": "ilvis0-scaled-stable-stop-v1"
+      },
+      "identifiable_parameter_error": 1.1102230246251565e-16,
+      "identity": "boundary::2",
+      "independent_archive_confirmation": false,
+      "maximum_actual_evaluations": 200,
+      "observed_fit_starts": 0,
+      "passed": true,
+      "prediction_error": 1.1102230246251565e-16,
+      "prediction_tolerance": 0.0001,
+      "reference_objective": 1.25,
+      "scientific_decision": "abstain",
+      "start": 2
+    },
+    {
+      "actual_evaluations": 7,
+      "control": "redundant",
+      "fit": {
+        "active_bound_signs": {},
+        "active_bounds": [],
+        "active_parameters": [
+          "control_0",
+          "control_1"
+        ],
+        "calibration_bounds_supported": false,
+        "clock_independently_established": false,
+        "constant_bias_is_measured_drift": false,
+        "converged": true,
+        "derivative_method": "exact derivative of independent analytic function",
+        "evaluations": 7,
+        "exact_projected_gradient_relative": 0.0,
+        "gps_epochs_at_packet_boundaries": 0,
+        "gradient": [
+          0.0,
+          0.0
+        ],
+        "initialization_evaluations": 0,
+        "initialization_message": "no staged parameters",
+        "latency_derivative_convention": "left interval at a packet boundary; adjacent measured rates may differ",
+        "maximum_evaluations": 200,
+        "message": "`gtol` termination condition is satisfied.",
+        "model": "control",
+        "normalized_parameters": [
+          0.29999999999999993,
+          0.30000000000000004
+        ],
+        "parameters": {
+          "control_0": 0.29999999999999993,
+          "control_1": 0.30000000000000004
+        },
+        "processing_independence_established": false,
+        "projected_gradient": [
+          0.0,
+          0.0
+        ],
+        "receiver_covariance_calibrated": false,
+        "relative_cost_change": 2.2204460492503126e-16,
+        "relative_residual_step": 1.3475755195277754e-08,
+        "residual_sum_squares": 1.0,
+        "right_singular_vectors": [
+          [
+            -0.7071067811865475,
+            -0.7071067811865475
+          ],
+          [
+            -0.7071067811865475,
+            0.7071067811865475
+          ]
+        ],
+        "scaled_projected_gradient": [
+          0.0,
+          0.0
+        ],
+        "scientific_decision": "abstain",
+        "scientific_eligible": false,
+        "singular_values": [
+          3.1622776601683795,
+          8.226773080236186e-17
+        ],
+        "solver_reported_success": true,
+        "stability_probe": null,
+        "stability_verified": true,
+        "stable_accepted_iterations": 1,
+        "stationarity_tolerance": 0.0001,
+        "stopping_rule_verified": true,
+        "termination": "scipy_stop",
+        "version": "ilvis0-scaled-stable-stop-v1"
+      },
+      "identifiable_parameter_error": null,
+      "identity": "redundant::0",
+      "independent_archive_confirmation": false,
+      "maximum_actual_evaluations": 200,
+      "observed_fit_starts": 0,
+      "passed": true,
+      "prediction_error": 0.0,
+      "prediction_tolerance": 0.0001,
+      "reference_objective": 1.0,
+      "scientific_decision": "abstain",
+      "start": 0
+    },
+    {
+      "actual_evaluations": 9,
+      "control": "redundant",
+      "fit": {
+        "active_bound_signs": {},
+        "active_bounds": [],
+        "active_parameters": [
+          "control_0",
+          "control_1"
+        ],
+        "calibration_bounds_supported": false,
+        "clock_independently_established": false,
+        "constant_bias_is_measured_drift": false,
+        "converged": true,
+        "derivative_method": "exact derivative of independent analytic function",
+        "evaluations": 9,
+        "exact_projected_gradient_relative": 8.440616121040728e-15,
+        "gps_epochs_at_packet_boundaries": 0,
+        "gradient": [
+          -1.887379141862766e-14,
+          -1.887379141862766e-14
+        ],
+        "initialization_evaluations": 0,
+        "initialization_message": "no staged parameters",
+        "latency_derivative_convention": "left interval at a packet boundary; adjacent measured rates may differ",
+        "maximum_evaluations": 200,
+        "message": "`xtol` termination condition is satisfied.",
+        "model": "control",
+        "normalized_parameters": [
+          0.7372490555964949,
+          -0.13724905559649866
+        ],
+        "parameters": {
+          "control_0": 0.7372490555964949,
+          "control_1": -0.13724905559649866
+        },
+        "processing_independence_established": false,
+        "projected_gradient": [
+          -1.887379141862766e-14,
+          -1.887379141862766e-14
+        ],
+        "receiver_covariance_calibrated": false,
+        "relative_cost_change": 0.0,
+        "relative_residual_step": 0.0,
+        "residual_sum_squares": 1.0,
+        "right_singular_vectors": [
+          [
+            -0.7071067811865475,
+            -0.7071067811865475
+          ],
+          [
+            -0.7071067811865475,
+            0.7071067811865475
+          ]
+        ],
+        "scaled_projected_gradient": [
+          -8.440616121040728e-15,
+          -8.440616121040728e-15
+        ],
+        "scientific_decision": "abstain",
+        "scientific_eligible": false,
+        "singular_values": [
+          3.1622776601683795,
+          8.226773080236186e-17
+        ],
+        "solver_reported_success": true,
+        "stability_probe": null,
+        "stability_verified": true,
+        "stable_accepted_iterations": 2,
+        "stationarity_tolerance": 0.0001,
+        "stopping_rule_verified": true,
+        "termination": "scipy_stop",
+        "version": "ilvis0-scaled-stable-stop-v1"
+      },
+      "identifiable_parameter_error": null,
+      "identity": "redundant::1",
+      "independent_archive_confirmation": false,
+      "maximum_actual_evaluations": 200,
+      "observed_fit_starts": 0,
+      "passed": true,
+      "prediction_error": 8.440616121040728e-15,
+      "prediction_tolerance": 0.0001,
+      "reference_objective": 1.0,
+      "scientific_decision": "abstain",
+      "start": 1
+    },
+    {
+      "actual_evaluations": 8,
+      "control": "redundant",
+      "fit": {
+        "active_bound_signs": {},
+        "active_bounds": [],
+        "active_parameters": [
+          "control_0",
+          "control_1"
+        ],
+        "calibration_bounds_supported": false,
+        "clock_independently_established": false,
+        "constant_bias_is_measured_drift": false,
+        "converged": true,
+        "derivative_method": "exact derivative of independent analytic function",
+        "evaluations": 8,
+        "exact_projected_gradient_relative": 0.0,
+        "gps_epochs_at_packet_boundaries": 0,
+        "gradient": [
+          0.0,
+          0.0
+        ],
+        "initialization_evaluations": 0,
+        "initialization_message": "no staged parameters",
+        "latency_derivative_convention": "left interval at a packet boundary; adjacent measured rates may differ",
+        "maximum_evaluations": 200,
+        "message": "`gtol` termination condition is satisfied.",
+        "model": "control",
+        "normalized_parameters": [
+          0.20502565683100957,
+          0.3949743431689904
+        ],
+        "parameters": {
+          "control_0": 0.20502565683100957,
+          "control_1": 0.3949743431689904
+        },
+        "processing_independence_established": false,
+        "projected_gradient": [
+          0.0,
+          0.0
+        ],
+        "receiver_covariance_calibrated": false,
+        "relative_cost_change": 2.2204460492503126e-16,
+        "relative_residual_step": 1.2480192716163707e-08,
+        "residual_sum_squares": 1.0,
+        "right_singular_vectors": [
+          [
+            -0.7071067811865475,
+            -0.7071067811865475
+          ],
+          [
+            -0.7071067811865475,
+            0.7071067811865475
+          ]
+        ],
+        "scaled_projected_gradient": [
+          0.0,
+          0.0
+        ],
+        "scientific_decision": "abstain",
+        "scientific_eligible": false,
+        "singular_values": [
+          3.1622776601683795,
+          8.226773080236186e-17
+        ],
+        "solver_reported_success": true,
+        "stability_probe": null,
+        "stability_verified": true,
+        "stable_accepted_iterations": 1,
+        "stationarity_tolerance": 0.0001,
+        "stopping_rule_verified": true,
+        "termination": "scipy_stop",
+        "version": "ilvis0-scaled-stable-stop-v1"
+      },
+      "identifiable_parameter_error": null,
+      "identity": "redundant::2",
+      "independent_archive_confirmation": false,
+      "maximum_actual_evaluations": 200,
+      "observed_fit_starts": 0,
+      "passed": true,
+      "prediction_error": 0.0,
+      "prediction_tolerance": 0.0001,
+      "reference_objective": 1.0,
+      "scientific_decision": "abstain",
+      "start": 2
+    },
+    {
+      "actual_evaluations": 11,
+      "control": "scaled",
+      "fit": {
+        "active_bound_signs": {},
+        "active_bounds": [],
+        "active_parameters": [
+          "control_0",
+          "control_1"
+        ],
+        "calibration_bounds_supported": false,
+        "clock_independently_established": false,
+        "constant_bias_is_measured_drift": false,
+        "converged": true,
+        "derivative_method": "exact derivative of independent analytic function",
+        "evaluations": 11,
+        "exact_projected_gradient_relative": 2.576980879934795e-15,
+        "gps_epochs_at_packet_boundaries": 0,
+        "gradient": [
+          0.0,
+          2.576980879934795e-15
+        ],
+        "initialization_evaluations": 0,
+        "initialization_message": "no staged parameters",
+        "latency_derivative_convention": "left interval at a packet boundary; adjacent measured rates may differ",
+        "maximum_evaluations": 200,
+        "message": "`gtol` termination condition is satisfied.",
+        "model": "control",
+        "normalized_parameters": [
+          0.2,
+          -0.39999974230191204
+        ],
+        "parameters": {
+          "control_0": 0.2,
+          "control_1": -0.39999974230191204
+        },
+        "processing_independence_established": false,
+        "projected_gradient": [
+          0.0,
+          2.576980879934795e-15
+        ],
+        "receiver_covariance_calibrated": false,
+        "relative_cost_change": 3.6621816690151296e-12,
+        "relative_residual_step": 1.9136859734752277e-06,
+        "residual_sum_squares": 1.0,
+        "right_singular_vectors": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0
+          ]
+        ],
+        "scaled_projected_gradient": [
+          0.0,
+          2.576980879934795e-15
+        ],
+        "scientific_decision": "abstain",
+        "scientific_eligible": false,
+        "singular_values": [
+          10000.0,
+          0.0001
+        ],
+        "solver_reported_success": true,
+        "stability_probe": {
+          "normalized_parameter_step": [
+            0.0,
+            -2.5769808799347947e-07
+          ],
+          "relative_cost_change": 0.0,
+          "relative_residual_step": 2.5769808799347947e-11,
+          "successful": true
+        },
+        "stability_verified": true,
+        "stable_accepted_iterations": 0,
+        "stationarity_tolerance": 0.0001,
+        "stopping_rule_verified": true,
+        "termination": "scipy_stop",
+        "version": "ilvis0-scaled-stable-stop-v1"
+      },
+      "identifiable_parameter_error": null,
+      "identity": "scaled::0",
+      "independent_archive_confirmation": false,
+      "maximum_actual_evaluations": 200,
+      "observed_fit_starts": 0,
+      "passed": true,
+      "prediction_error": 2.5769808799347947e-11,
+      "prediction_tolerance": 0.0001,
+      "reference_objective": 1.0,
+      "scientific_decision": "abstain",
+      "start": 0
+    },
+    {
+      "actual_evaluations": 9,
+      "control": "scaled",
+      "fit": {
+        "active_bound_signs": {},
+        "active_bounds": [],
+        "active_parameters": [
+          "control_0",
+          "control_1"
+        ],
+        "calibration_bounds_supported": false,
+        "clock_independently_established": false,
+        "constant_bias_is_measured_drift": false,
+        "converged": true,
+        "derivative_method": "exact derivative of independent analytic function",
+        "evaluations": 9,
+        "exact_projected_gradient_relative": 2.2737367544323206e-13,
+        "gps_epochs_at_packet_boundaries": 0,
+        "gradient": [
+          -2.2737367544323206e-09,
+          6.776263578034403e-25
+        ],
+        "initialization_evaluations": 0,
+        "initialization_message": "no staged parameters",
+        "latency_derivative_convention": "left interval at a packet boundary; adjacent measured rates may differ",
+        "maximum_evaluations": 200,
+        "message": "`xtol` termination condition is satisfied.",
+        "model": "control",
+        "normalized_parameters": [
+          0.19999999999999998,
+          -0.39999999999999997
+        ],
+        "parameters": {
+          "control_0": 0.19999999999999998,
+          "control_1": -0.39999999999999997
+        },
+        "processing_independence_established": false,
+        "projected_gradient": [
+          -2.2737367544323206e-09,
+          6.776263578034403e-25
+        ],
+        "receiver_covariance_calibrated": false,
+        "relative_cost_change": 0.0,
+        "relative_residual_step": 0.0,
+        "residual_sum_squares": 1.0,
+        "right_singular_vectors": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0
+          ]
+        ],
+        "scaled_projected_gradient": [
+          -2.2737367544323206e-13,
+          6.776263578034403e-25
+        ],
+        "scientific_decision": "abstain",
+        "scientific_eligible": false,
+        "singular_values": [
+          10000.0,
+          0.0001
+        ],
+        "solver_reported_success": true,
+        "stability_probe": null,
+        "stability_verified": true,
+        "stable_accepted_iterations": 1,
+        "stationarity_tolerance": 0.0001,
+        "stopping_rule_verified": true,
+        "termination": "scipy_stop",
+        "version": "ilvis0-scaled-stable-stop-v1"
+      },
+      "identifiable_parameter_error": null,
+      "identity": "scaled::1",
+      "independent_archive_confirmation": false,
+      "maximum_actual_evaluations": 200,
+      "observed_fit_starts": 0,
+      "passed": true,
+      "prediction_error": 2.2737367544323216e-13,
+      "prediction_tolerance": 0.0001,
+      "reference_objective": 1.0,
+      "scientific_decision": "abstain",
+      "start": 1
+    },
+    {
+      "actual_evaluations": 9,
+      "control": "scaled",
+      "fit": {
+        "active_bound_signs": {},
+        "active_bounds": [],
+        "active_parameters": [
+          "control_0",
+          "control_1"
+        ],
+        "calibration_bounds_supported": false,
+        "clock_independently_established": false,
+        "constant_bias_is_measured_drift": false,
+        "converged": true,
+        "derivative_method": "exact derivative of independent analytic function",
+        "evaluations": 9,
+        "exact_projected_gradient_relative": 0.0,
+        "gps_epochs_at_packet_boundaries": 0,
+        "gradient": [
+          0.0,
+          0.0
+        ],
+        "initialization_evaluations": 0,
+        "initialization_message": "no staged parameters",
+        "latency_derivative_convention": "left interval at a packet boundary; adjacent measured rates may differ",
+        "maximum_evaluations": 200,
+        "message": "`gtol` termination condition is satisfied.",
+        "model": "control",
+        "normalized_parameters": [
+          0.2,
+          -0.4
+        ],
+        "parameters": {
+          "control_0": 0.2,
+          "control_1": -0.4
+        },
+        "processing_independence_established": false,
+        "projected_gradient": [
+          0.0,
+          0.0
+        ],
+        "receiver_covariance_calibrated": false,
+        "relative_cost_change": 7.263540874600115e-10,
+        "relative_residual_step": 2.6950958954330417e-05,
+        "residual_sum_squares": 1.0,
+        "right_singular_vectors": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0
+          ]
+        ],
+        "scaled_projected_gradient": [
+          0.0,
+          0.0
+        ],
+        "scientific_decision": "abstain",
+        "scientific_eligible": false,
+        "singular_values": [
+          10000.0,
+          0.0001
+        ],
+        "solver_reported_success": true,
+        "stability_probe": {
+          "normalized_parameter_step": [
+            0.0,
+            0.0
+          ],
+          "relative_cost_change": 0.0,
+          "relative_residual_step": 0.0,
+          "successful": true
+        },
+        "stability_verified": true,
+        "stable_accepted_iterations": 0,
+        "stationarity_tolerance": 0.0001,
+        "stopping_rule_verified": true,
+        "termination": "scipy_stop",
+        "version": "ilvis0-scaled-stable-stop-v1"
+      },
+      "identifiable_parameter_error": null,
+      "identity": "scaled::2",
+      "independent_archive_confirmation": false,
+      "maximum_actual_evaluations": 200,
+      "observed_fit_starts": 0,
+      "passed": true,
+      "prediction_error": 0.0,
+      "prediction_tolerance": 0.0001,
+      "reference_objective": 1.0,
+      "scientific_decision": "abstain",
+      "start": 2
+    },
+    {
+      "actual_evaluations": 9,
+      "control": "nonlinear",
+      "fit": {
+        "active_bound_signs": {},
+        "active_bounds": [],
+        "active_parameters": [
+          "control_0",
+          "control_1"
+        ],
+        "calibration_bounds_supported": false,
+        "clock_independently_established": false,
+        "constant_bias_is_measured_drift": false,
+        "converged": true,
+        "derivative_method": "exact derivative of independent analytic function",
+        "evaluations": 9,
+        "exact_projected_gradient_relative": 1.1068923555512811e-13,
+        "gps_epochs_at_packet_boundaries": 0,
+        "gradient": [
+          0.0,
+          1.1068923555512811e-13
+        ],
+        "initialization_evaluations": 0,
+        "initialization_message": "no staged parameters",
+        "latency_derivative_convention": "left interval at a packet boundary; adjacent measured rates may differ",
+        "maximum_evaluations": 200,
+        "message": "`xtol` termination condition is satisfied.",
+        "model": "control",
+        "normalized_parameters": [
+          0.2,
+          -0.39999999999988933
+        ],
+        "parameters": {
+          "control_0": 0.2,
+          "control_1": -0.39999999999988933
+        },
+        "processing_independence_established": false,
+        "projected_gradient": [
+          0.0,
+          1.1068923555512811e-13
+        ],
+        "receiver_covariance_calibrated": false,
+        "relative_cost_change": 0.0,
+        "relative_residual_step": 0.0,
+        "residual_sum_squares": 1.0,
+        "right_singular_vectors": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0
+          ]
+        ],
+        "scaled_projected_gradient": [
+          0.0,
+          1.1068923555512811e-13
+        ],
+        "scientific_decision": "abstain",
+        "scientific_eligible": false,
+        "singular_values": [
+          1.12,
+          1.0
+        ],
+        "solver_reported_success": true,
+        "stability_probe": null,
+        "stability_verified": true,
+        "stable_accepted_iterations": 2,
+        "stationarity_tolerance": 0.0001,
+        "stopping_rule_verified": true,
+        "termination": "scipy_stop",
+        "version": "ilvis0-scaled-stable-stop-v1"
+      },
+      "identifiable_parameter_error": 1.1068923555512811e-13,
+      "identity": "nonlinear::0",
+      "independent_archive_confirmation": false,
+      "maximum_actual_evaluations": 200,
+      "observed_fit_starts": 0,
+      "passed": true,
+      "prediction_error": 1.1068923555512811e-13,
+      "prediction_tolerance": 0.0001,
+      "reference_objective": 1.0,
+      "scientific_decision": "abstain",
+      "start": 0
+    },
+    {
+      "actual_evaluations": 9,
+      "control": "nonlinear",
+      "fit": {
+        "active_bound_signs": {},
+        "active_bounds": [],
+        "active_parameters": [
+          "control_0",
+          "control_1"
+        ],
+        "calibration_bounds_supported": false,
+        "clock_independently_established": false,
+        "constant_bias_is_measured_drift": false,
+        "converged": true,
+        "derivative_method": "exact derivative of independent analytic function",
+        "evaluations": 9,
+        "exact_projected_gradient_relative": 2.714189983876736e-12,
+        "gps_epochs_at_packet_boundaries": 0,
+        "gradient": [
+          3.039892781949837e-12,
+          0.0
+        ],
+        "initialization_evaluations": 0,
+        "initialization_message": "no staged parameters",
+        "latency_derivative_convention": "left interval at a packet boundary; adjacent measured rates may differ",
+        "maximum_evaluations": 200,
+        "message": "`xtol` termination condition is satisfied.",
+        "model": "control",
+        "normalized_parameters": [
+          0.2000000000024234,
+          -0.4
+        ],
+        "parameters": {
+          "control_0": 0.2000000000024234,
+          "control_1": -0.4
+        },
+        "processing_independence_established": false,
+        "projected_gradient": [
+          3.039892781949837e-12,
+          0.0
+        ],
+        "receiver_covariance_calibrated": false,
+        "relative_cost_change": 0.0,
+        "relative_residual_step": 0.0,
+        "residual_sum_squares": 1.0,
+        "right_singular_vectors": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0
+          ]
+        ],
+        "scaled_projected_gradient": [
+          2.714189983876736e-12,
+          0.0
+        ],
+        "scientific_decision": "abstain",
+        "scientific_eligible": false,
+        "singular_values": [
+          1.120000000002908,
+          1.0
+        ],
+        "solver_reported_success": true,
+        "stability_probe": null,
+        "stability_verified": true,
+        "stable_accepted_iterations": 1,
+        "stationarity_tolerance": 0.0001,
+        "stopping_rule_verified": true,
+        "termination": "scipy_stop",
+        "version": "ilvis0-scaled-stable-stop-v1"
+      },
+      "identifiable_parameter_error": 2.4233948181517917e-12,
+      "identity": "nonlinear::1",
+      "independent_archive_confirmation": false,
+      "maximum_actual_evaluations": 200,
+      "observed_fit_starts": 0,
+      "passed": true,
+      "prediction_error": 2.714189983876736e-12,
+      "prediction_tolerance": 0.0001,
+      "reference_objective": 1.0,
+      "scientific_decision": "abstain",
+      "start": 1
+    },
+    {
+      "actual_evaluations": 10,
+      "control": "nonlinear",
+      "fit": {
+        "active_bound_signs": {},
+        "active_bounds": [],
+        "active_parameters": [
+          "control_0",
+          "control_1"
+        ],
+        "calibration_bounds_supported": false,
+        "clock_independently_established": false,
+        "constant_bias_is_measured_drift": false,
+        "converged": true,
+        "derivative_method": "exact derivative of independent analytic function",
+        "evaluations": 10,
+        "exact_projected_gradient_relative": 2.0075607842784393e-13,
+        "gps_epochs_at_packet_boundaries": 0,
+        "gradient": [
+          -2.2484680783914204e-13,
+          0.0
+        ],
+        "initialization_evaluations": 0,
+        "initialization_message": "no staged parameters",
+        "latency_derivative_convention": "left interval at a packet boundary; adjacent measured rates may differ",
+        "maximum_evaluations": 200,
+        "message": "`xtol` termination condition is satisfied.",
+        "model": "control",
+        "normalized_parameters": [
+          0.19999999999982077,
+          -0.4
+        ],
+        "parameters": {
+          "control_0": 0.19999999999982077,
+          "control_1": -0.4
+        },
+        "processing_independence_established": false,
+        "projected_gradient": [
+          -2.2484680783914204e-13,
+          0.0
+        ],
+        "receiver_covariance_calibrated": false,
+        "relative_cost_change": 0.0,
+        "relative_residual_step": 0.0,
+        "residual_sum_squares": 1.0,
+        "right_singular_vectors": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0
+          ]
+        ],
+        "scaled_projected_gradient": [
+          -2.0075607842784393e-13,
+          0.0
+        ],
+        "scientific_decision": "abstain",
+        "scientific_eligible": false,
+        "singular_values": [
+          1.119999999999785,
+          1.0
+        ],
+        "solver_reported_success": true,
+        "stability_probe": null,
+        "stability_verified": true,
+        "stable_accepted_iterations": 2,
+        "stationarity_tolerance": 0.0001,
+        "stopping_rule_verified": true,
+        "termination": "scipy_stop",
+        "version": "ilvis0-scaled-stable-stop-v1"
+      },
+      "identifiable_parameter_error": 1.7924550732573152e-13,
+      "identity": "nonlinear::2",
+      "independent_archive_confirmation": false,
+      "maximum_actual_evaluations": 200,
+      "observed_fit_starts": 0,
+      "passed": true,
+      "prediction_error": 2.0075607842784393e-13,
+      "prediction_tolerance": 0.0001,
+      "reference_objective": 1.0,
+      "scientific_decision": "abstain",
+      "start": 2
+    },
+    {
+      "actual_evaluations": 19,
+      "control": "gain_offset",
+      "fit": {
+        "active_bound_signs": {},
+        "active_bounds": [],
+        "active_parameters": [
+          "control_0",
+          "control_1"
+        ],
+        "calibration_bounds_supported": false,
+        "clock_independently_established": false,
+        "constant_bias_is_measured_drift": false,
+        "converged": true,
+        "derivative_method": "exact derivative of independent analytic function",
+        "evaluations": 19,
+        "exact_projected_gradient_relative": 3.5500526530923886e-12,
+        "gps_epochs_at_packet_boundaries": 0,
+        "gradient": [
+          -1.988330172297523e-09,
+          -4.55377762899379e-09
+        ],
+        "initialization_evaluations": 0,
+        "initialization_message": "no staged parameters",
+        "latency_derivative_convention": "left interval at a packet boundary; adjacent measured rates may differ",
+        "maximum_evaluations": 200,
+        "message": "`xtol` termination condition is satisfied.",
+        "model": "control",
+        "normalized_parameters": [
+          0.49999999918424637,
+          -0.3999999996634756
+        ],
+        "parameters": {
+          "control_0": 0.49999999918424637,
+          "control_1": -0.3999999996634756
+        },
+        "processing_independence_established": false,
+        "projected_gradient": [
+          -1.988330172297523e-09,
+          -4.55377762899379e-09
+        ],
+        "receiver_covariance_calibrated": false,
+        "relative_cost_change": 0.0,
+        "relative_residual_step": 0.0,
+        "residual_sum_squares": 1.0,
+        "right_singular_vectors": [
+          [
+            0.3813543371528955,
+            0.9244289423934516
+          ],
+          [
+            -0.9244289423934516,
+            0.3813543371528955
+          ]
+        ],
+        "scaled_projected_gradient": [
+          -3.5500526530923886e-12,
+          -3.354079348994855e-12
+        ],
+        "scientific_decision": "abstain",
+        "scientific_eligible": false,
+        "singular_values": [
+          1468.6724575325538,
+          0.3389524354794612
+        ],
+        "solver_reported_success": true,
+        "stability_probe": null,
+        "stability_verified": true,
+        "stable_accepted_iterations": 1,
+        "stationarity_tolerance": 0.0001,
+        "stopping_rule_verified": true,
+        "termination": "scipy_stop",
+        "version": "ilvis0-scaled-stable-stop-v1"
+      },
+      "identifiable_parameter_error": null,
+      "identity": "gain_offset::0",
+      "independent_archive_confirmation": false,
+      "maximum_actual_evaluations": 200,
+      "observed_fit_starts": 0,
+      "passed": true,
+      "prediction_error": 2.993759077154171e-10,
+      "prediction_tolerance": 0.0001,
+      "reference_objective": 1.0,
+      "scientific_decision": "abstain",
+      "start": 0
+    },
+    {
+      "actual_evaluations": 16,
+      "control": "gain_offset",
+      "fit": {
+        "active_bound_signs": {},
+        "active_bounds": [],
+        "active_parameters": [
+          "control_0",
+          "control_1"
+        ],
+        "calibration_bounds_supported": false,
+        "clock_independently_established": false,
+        "constant_bias_is_measured_drift": false,
+        "converged": true,
+        "derivative_method": "exact derivative of independent analytic function",
+        "evaluations": 16,
+        "exact_projected_gradient_relative": 4.312387734421913e-12,
+        "gps_epochs_at_packet_boundaries": 0,
+        "gradient": [
+          -1.7856748438764746e-09,
+          -5.85485695092604e-09
+        ],
+        "initialization_evaluations": 0,
+        "initialization_message": "no staged parameters",
+        "latency_derivative_convention": "left interval at a packet boundary; adjacent measured rates may differ",
+        "maximum_evaluations": 200,
+        "message": "`xtol` termination condition is satisfied.",
+        "model": "control",
+        "normalized_parameters": [
+          0.5000000046815467,
+          -0.40000000193127677
+        ],
+        "parameters": {
+          "control_0": 0.5000000046815467,
+          "control_1": -0.40000000193127677
+        },
+        "processing_independence_established": false,
+        "projected_gradient": [
+          -1.7856748438764746e-09,
+          -5.85485695092604e-09
+        ],
+        "receiver_covariance_calibrated": false,
+        "relative_cost_change": 0.0,
+        "relative_residual_step": 0.0,
+        "residual_sum_squares": 1.0,
+        "right_singular_vectors": [
+          [
+            0.3813543371528954,
+            0.9244289423934517
+          ],
+          [
+            -0.9244289423934517,
+            0.3813543371528954
+          ]
+        ],
+        "scaled_projected_gradient": [
+          -3.1882228646307142e-12,
+          -4.312387734421913e-12
+        ],
+        "scientific_decision": "abstain",
+        "scientific_eligible": false,
+        "singular_values": [
+          1468.672457372678,
+          0.3389524354056846
+        ],
+        "solver_reported_success": true,
+        "stability_probe": null,
+        "stability_verified": true,
+        "stable_accepted_iterations": 1,
+        "stationarity_tolerance": 0.0001,
+        "stopping_rule_verified": true,
+        "termination": "scipy_stop",
+        "version": "ilvis0-scaled-stable-stop-v1"
+      },
+      "identifiable_parameter_error": null,
+      "identity": "gain_offset::1",
+      "independent_archive_confirmation": false,
+      "maximum_actual_evaluations": 200,
+      "observed_fit_starts": 0,
+      "passed": true,
+      "prediction_error": 1.7171950393319922e-09,
+      "prediction_tolerance": 0.0001,
+      "reference_objective": 1.0,
+      "scientific_decision": "abstain",
+      "start": 1
+    },
+    {
+      "actual_evaluations": 14,
+      "control": "gain_offset",
+      "fit": {
+        "active_bound_signs": {},
+        "active_bounds": [],
+        "active_parameters": [
+          "control_0",
+          "control_1"
+        ],
+        "calibration_bounds_supported": false,
+        "clock_independently_established": false,
+        "constant_bias_is_measured_drift": false,
+        "converged": true,
+        "derivative_method": "exact derivative of independent analytic function",
+        "evaluations": 14,
+        "exact_projected_gradient_relative": 9.58308385427109e-13,
+        "gps_epochs_at_packet_boundaries": 0,
+        "gradient": [
+          5.36733748755196e-10,
+          1.3010793225486372e-09
+        ],
+        "initialization_evaluations": 0,
+        "initialization_message": "no staged parameters",
+        "latency_derivative_convention": "left interval at a packet boundary; adjacent measured rates may differ",
+        "maximum_evaluations": 200,
+        "message": "`xtol` termination condition is satisfied.",
+        "model": "control",
+        "normalized_parameters": [
+          0.5000000000003871,
+          -0.4000000000001584
+        ],
+        "parameters": {
+          "control_0": 0.5000000000003871,
+          "control_1": -0.4000000000001584
+        },
+        "processing_independence_established": false,
+        "projected_gradient": [
+          5.36733748755196e-10,
+          1.3010793225486372e-09
+        ],
+        "receiver_covariance_calibrated": false,
+        "relative_cost_change": 0.0,
+        "relative_residual_step": 0.0,
+        "residual_sum_squares": 1.0,
+        "right_singular_vectors": [
+          [
+            0.38135433715289524,
+            0.9244289423934517
+          ],
+          [
+            -0.9244289423934517,
+            0.38135433715289524
+          ]
+        ],
+        "scaled_projected_gradient": [
+          9.583081800753778e-13,
+          9.58308385427109e-13
+        ],
+        "scientific_decision": "abstain",
+        "scientific_eligible": false,
+        "singular_values": [
+          1468.6724575088183,
+          0.33895243546861054
+        ],
+        "solver_reported_success": true,
+        "stability_probe": null,
+        "stability_verified": true,
+        "stable_accepted_iterations": 2,
+        "stationarity_tolerance": 0.0001,
+        "stopping_rule_verified": true,
+        "termination": "scipy_stop",
+        "version": "ilvis0-scaled-stable-stop-v1"
+      },
+      "identifiable_parameter_error": null,
+      "identity": "gain_offset::2",
+      "independent_archive_confirmation": false,
+      "maximum_actual_evaluations": 200,
+      "observed_fit_starts": 0,
+      "passed": true,
+      "prediction_error": 1.9166167708542177e-12,
+      "prediction_tolerance": 0.0001,
+      "reference_objective": 1.0,
+      "scientific_decision": "abstain",
+      "start": 2
+    },
+    {
+      "actual_evaluations": 56,
+      "control": "bias",
+      "fit": {
+        "active_bound_signs": {},
+        "active_bounds": [],
+        "active_parameters": [
+          "accel_bias_x"
+        ],
+        "calibration_bounds_supported": false,
+        "clock_independently_established": false,
+        "constant_bias_is_measured_drift": false,
+        "converged": true,
+        "derivative_method": "independent second-order finite difference of native value predictions",
+        "evaluations": 18,
+        "exact_projected_gradient_relative": 2.48252790858185e-07,
+        "gps_epochs_at_packet_boundaries": 0,
+        "gradient": [
+          5.3049691490300295e-05
+        ],
+        "initialization_evaluations": 0,
+        "initialization_message": "no staged parameters",
+        "latency_derivative_convention": "left interval at a packet boundary; adjacent measured rates may differ",
+        "maximum_evaluations": 66,
+        "message": "`xtol` termination condition is satisfied.",
+        "model": "flat_still",
+        "normalized_parameters": [
+          0.39999999972601524
+        ],
+        "parameters": {
+          "accel_bias_x": 0.03999999997260153,
+          "accel_bias_y": 0.0,
+          "accel_bias_z": 0.0,
+          "accel_gain_x": 0.0,
+          "accel_gain_y": 0.0,
+          "accel_gain_z": 0.0,
+          "attitude_x": 0.0,
+          "attitude_y": 0.0,
+          "attitude_z": 0.0,
+          "earth_removal": 0.0,
+          "gravity_delta": 0.0,
+          "gyro_bias_x": 0.0,
+          "gyro_bias_y": 0.0,
+          "gyro_bias_z": 0.0,
+          "gyro_gain_x": 0.0,
+          "gyro_gain_y": 0.0,
+          "gyro_gain_z": 0.0,
+          "lever_x": 0.0,
+          "lever_y": 0.0,
+          "lever_z": 0.0,
+          "position_x": 0.0,
+          "position_y": 0.0,
+          "position_z": 0.0,
+          "time_offset": 0.0,
+          "velocity_x": 0.0,
+          "velocity_y": 0.0,
+          "velocity_z": 0.0
+        },
+        "processing_independence_established": false,
+        "projected_gradient": [
+          5.3049691490300295e-05
+        ],
+        "receiver_covariance_calibrated": false,
+        "relative_cost_change": 0.0,
+        "relative_residual_step": 0.0,
+        "residual_sum_squares": 1.500917856649495e-12,
+        "right_singular_vectors": [
+          [
+            1.0
+          ]
+        ],
+        "scaled_projected_gradient": [
+          2.48252790858185e-07
+        ],
+        "scientific_decision": "abstain",
+        "scientific_eligible": false,
+        "singular_values": [
+          213.69222600444022
+        ],
+        "solver_reported_success": true,
+        "stability_probe": null,
+        "stability_verified": true,
+        "stable_accepted_iterations": 1,
+        "stationarity_tolerance": 0.0001,
+        "stopping_rule_verified": true,
+        "termination": "scipy_stop",
+        "version": "ilvis0-scaled-stable-stop-v1"
+      },
+      "identifiable_parameter_error": 2.7398472379758232e-11,
+      "identity": "bias::0",
+      "independent_archive_confirmation": false,
+      "maximum_actual_evaluations": 200,
+      "observed_fit_starts": 0,
+      "passed": true,
+      "prediction_error": 7.073230889886872e-10,
+      "prediction_tolerance": 5e-05,
+      "reference_objective": 1.500917856649495e-12,
+      "scientific_decision": "abstain",
+      "start": 0
+    },
+    {
+      "actual_evaluations": 47,
+      "control": "bias",
+      "fit": {
+        "active_bound_signs": {},
+        "active_bounds": [],
+        "active_parameters": [
+          "accel_bias_x"
+        ],
+        "calibration_bounds_supported": false,
+        "clock_independently_established": false,
+        "constant_bias_is_measured_drift": false,
+        "converged": true,
+        "derivative_method": "independent second-order finite difference of native value predictions",
+        "evaluations": 15,
+        "exact_projected_gradient_relative": 1.6446672889826423e-06,
+        "gps_epochs_at_packet_boundaries": 0,
+        "gradient": [
+          0.00035145142317138023
+        ],
+        "initialization_evaluations": 0,
+        "initialization_message": "no staged parameters",
+        "latency_derivative_convention": "left interval at a packet boundary; adjacent measured rates may differ",
+        "maximum_evaluations": 66,
+        "message": "`xtol` termination condition is satisfied.",
+        "model": "flat_still",
+        "normalized_parameters": [
+          0.4000000044260626
+        ],
+        "parameters": {
+          "accel_bias_x": 0.040000000442606265,
+          "accel_bias_y": 0.0,
+          "accel_bias_z": 0.0,
+          "accel_gain_x": 0.0,
+          "accel_gain_y": 0.0,
+          "accel_gain_z": 0.0,
+          "attitude_x": 0.0,
+          "attitude_y": 0.0,
+          "attitude_z": 0.0,
+          "earth_removal": 0.0,
+          "gravity_delta": 0.0,
+          "gyro_bias_x": 0.0,
+          "gyro_bias_y": 0.0,
+          "gyro_bias_z": 0.0,
+          "gyro_gain_x": 0.0,
+          "gyro_gain_y": 0.0,
+          "gyro_gain_z": 0.0,
+          "lever_x": 0.0,
+          "lever_y": 0.0,
+          "lever_z": 0.0,
+          "position_x": 0.0,
+          "position_y": 0.0,
+          "position_z": 0.0,
+          "time_offset": 0.0,
+          "velocity_x": 0.0,
+          "velocity_y": 0.0,
+          "velocity_z": 0.0
+        },
+        "processing_independence_established": false,
+        "projected_gradient": [
+          0.00035145142317138023
+        ],
+        "receiver_covariance_calibrated": false,
+        "relative_cost_change": 0.0,
+        "relative_residual_step": 0.0,
+        "residual_sum_squares": 3.00183571329899e-12,
+        "right_singular_vectors": [
+          [
+            1.0
+          ]
+        ],
+        "scaled_projected_gradient": [
+          1.6446672889826423e-06
+        ],
+        "scientific_decision": "abstain",
+        "scientific_eligible": false,
+        "singular_values": [
+          213.69150193823154
+        ],
+        "solver_reported_success": true,
+        "stability_probe": null,
+        "stability_verified": true,
+        "stable_accepted_iterations": 1,
+        "stationarity_tolerance": 0.0001,
+        "stopping_rule_verified": true,
+        "termination": "scipy_stop",
+        "version": "ilvis0-scaled-stable-stop-v1"
+      },
+      "identifiable_parameter_error": 4.426062641393891e-10,
+      "identity": "bias::1",
+      "independent_archive_confirmation": false,
+      "maximum_actual_evaluations": 200,
+      "observed_fit_starts": 0,
+      "passed": true,
+      "prediction_error": 1.4146461779773745e-09,
+      "prediction_tolerance": 5e-05,
+      "reference_objective": 1.500917856649495e-12,
+      "scientific_decision": "abstain",
+      "start": 1
+    },
+    {
+      "actual_evaluations": 59,
+      "control": "effective_orientation",
+      "fit": {
+        "active_bound_signs": {},
+        "active_bounds": [],
+        "active_parameters": [
+          "attitude_y"
+        ],
+        "calibration_bounds_supported": false,
+        "clock_independently_established": false,
+        "constant_bias_is_measured_drift": false,
+        "converged": true,
+        "derivative_method": "independent second-order finite difference of native value predictions",
+        "evaluations": 19,
+        "exact_projected_gradient_relative": 3.9926594693924695e-06,
+        "gps_epochs_at_packet_boundaries": 0,
+        "gradient": [
+          -0.0008369908452082086
+        ],
+        "initialization_evaluations": 0,
+        "initialization_message": "no staged parameters",
+        "latency_derivative_convention": "left interval at a packet boundary; adjacent measured rates may differ",
+        "maximum_evaluations": 66,
+        "message": "`xtol` termination condition is satisfied.",
+        "model": "flat_still",
+        "normalized_parameters": [
+          0.19999991003345785
+        ],
+        "parameters": {
+          "accel_bias_x": 0.0,
+          "accel_bias_y": 0.0,
+          "accel_bias_z": 0.0,
+          "accel_gain_x": 0.0,
+          "accel_gain_y": 0.0,
+          "accel_gain_z": 0.0,
+          "attitude_x": 0.0,
+          "attitude_y": 0.0019999991003345785,
+          "attitude_z": 0.0,
+          "earth_removal": 0.0,
+          "gravity_delta": 0.0,
+          "gyro_bias_x": 0.0,
+          "gyro_bias_y": 0.0,
+          "gyro_bias_z": 0.0,
+          "gyro_gain_x": 0.0,
+          "gyro_gain_y": 0.0,
+          "gyro_gain_z": 0.0,
+          "lever_x": 0.0,
+          "lever_y": 0.0,
+          "lever_z": 0.0,
+          "position_x": 0.0,
+          "position_y": 0.0,
+          "position_z": 0.0,
+          "time_offset": 0.0,
+          "velocity_x": 0.0,
+          "velocity_y": 0.0,
+          "velocity_z": 0.0
+        },
+        "processing_independence_established": false,
+        "projected_gradient": [
+          -0.0008369908452082086
+        ],
+        "receiver_covariance_calibrated": false,
+        "relative_cost_change": 0.0,
+        "relative_residual_step": 0.0,
+        "residual_sum_squares": 1.2872872150530503e-09,
+        "right_singular_vectors": [
+          [
+            1.0
+          ]
+        ],
+        "scaled_projected_gradient": [
+          -3.9926594693924695e-06
+        ],
+        "scientific_decision": "abstain",
+        "scientific_eligible": false,
+        "singular_values": [
+          209.63241459096102
+        ],
+        "solver_reported_success": true,
+        "stability_probe": null,
+        "stability_verified": true,
+        "stable_accepted_iterations": 1,
+        "stationarity_tolerance": 0.0001,
+        "stopping_rule_verified": true,
+        "termination": "scipy_stop",
+        "version": "ilvis0-scaled-stable-stop-v1"
+      },
+      "identifiable_parameter_error": 8.996654215880084e-10,
+      "identity": "effective_orientation::0",
+      "independent_archive_confirmation": false,
+      "maximum_actual_evaluations": 200,
+      "observed_fit_starts": 0,
+      "passed": true,
+      "prediction_error": 2.1219692669660617e-08,
+      "prediction_tolerance": 5e-05,
+      "reference_objective": 6.825674106089687e-09,
+      "scientific_decision": "abstain",
+      "start": 0
+    },
+    {
+      "actual_evaluations": 68,
+      "control": "effective_orientation",
+      "fit": {
+        "active_bound_signs": {},
+        "active_bounds": [],
+        "active_parameters": [
+          "attitude_y"
+        ],
+        "calibration_bounds_supported": false,
+        "clock_independently_established": false,
+        "constant_bias_is_measured_drift": false,
+        "converged": true,
+        "derivative_method": "independent second-order finite difference of native value predictions",
+        "evaluations": 22,
+        "exact_projected_gradient_relative": 5.295980483957032e-06,
+        "gps_epochs_at_packet_boundaries": 0,
+        "gradient": [
+          -0.0011102091764785189
+        ],
+        "initialization_evaluations": 0,
+        "initialization_message": "no staged parameters",
+        "latency_derivative_convention": "left interval at a packet boundary; adjacent measured rates may differ",
+        "maximum_evaluations": 66,
+        "message": "`xtol` termination condition is satisfied.",
+        "model": "flat_still",
+        "normalized_parameters": [
+          0.19999990915249186
+        ],
+        "parameters": {
+          "accel_bias_x": 0.0,
+          "accel_bias_y": 0.0,
+          "accel_bias_z": 0.0,
+          "accel_gain_x": 0.0,
+          "accel_gain_y": 0.0,
+          "accel_gain_z": 0.0,
+          "attitude_x": 0.0,
+          "attitude_y": 0.0019999990915249184,
+          "attitude_z": 0.0,
+          "earth_removal": 0.0,
+          "gravity_delta": 0.0,
+          "gyro_bias_x": 0.0,
+          "gyro_bias_y": 0.0,
+          "gyro_bias_z": 0.0,
+          "gyro_gain_x": 0.0,
+          "gyro_gain_y": 0.0,
+          "gyro_gain_z": 0.0,
+          "lever_x": 0.0,
+          "lever_y": 0.0,
+          "lever_z": 0.0,
+          "position_x": 0.0,
+          "position_y": 0.0,
+          "position_z": 0.0,
+          "time_offset": 0.0,
+          "velocity_x": 0.0,
+          "velocity_y": 0.0,
+          "velocity_z": 0.0
+        },
+        "processing_independence_established": false,
+        "projected_gradient": [
+          -0.0011102091764785189
+        ],
+        "receiver_covariance_calibrated": false,
+        "relative_cost_change": 0.0,
+        "relative_residual_step": 0.0,
+        "residual_sum_squares": 1.2862866031486172e-09,
+        "right_singular_vectors": [
+          [
+            1.0
+          ]
+        ],
+        "scaled_projected_gradient": [
+          -5.295980483957032e-06
+        ],
+        "scientific_decision": "abstain",
+        "scientific_eligible": false,
+        "singular_values": [
+          209.63241459096102
+        ],
+        "solver_reported_success": true,
+        "stability_probe": null,
+        "stability_verified": true,
+        "stable_accepted_iterations": 1,
+        "stationarity_tolerance": 0.0001,
+        "stopping_rule_verified": true,
+        "termination": "scipy_stop",
+        "version": "ilvis0-scaled-stable-stop-v1"
+      },
+      "identifiable_parameter_error": 9.084750816207299e-10,
+      "identity": "effective_orientation::1",
+      "independent_archive_confirmation": false,
+      "maximum_actual_evaluations": 200,
+      "observed_fit_starts": 0,
+      "passed": true,
+      "prediction_error": 2.1219692669660617e-08,
+      "prediction_tolerance": 5e-05,
+      "reference_objective": 6.825674106089687e-09,
+      "scientific_decision": "abstain",
+      "start": 1
+    },
+    {
+      "actual_evaluations": 53,
+      "control": "gain",
+      "fit": {
+        "active_bound_signs": {},
+        "active_bounds": [],
+        "active_parameters": [
+          "accel_gain_x"
+        ],
+        "calibration_bounds_supported": false,
+        "clock_independently_established": false,
+        "constant_bias_is_measured_drift": false,
+        "converged": true,
+        "derivative_method": "independent second-order finite difference of native value predictions",
+        "evaluations": 17,
+        "exact_projected_gradient_relative": 5.801254895781178e-07,
+        "gps_epochs_at_packet_boundaries": 0,
+        "gradient": [
+          -6.986272316751828e-06
+        ],
+        "initialization_evaluations": 0,
+        "initialization_message": "no staged parameters",
+        "latency_derivative_convention": "left interval at a packet boundary; adjacent measured rates may differ",
+        "maximum_evaluations": 66,
+        "message": "`xtol` termination condition is satisfied.",
+        "model": "flat_still",
+        "normalized_parameters": [
+          0.3013464843577503
+        ],
+        "parameters": {
+          "accel_bias_x": 0.0,
+          "accel_bias_y": 0.0,
+          "accel_bias_z": 0.0,
+          "accel_gain_x": 0.003013464843577503,
+          "accel_gain_y": 0.0,
+          "accel_gain_z": 0.0,
+          "attitude_x": 0.0,
+          "attitude_y": 0.0,
+          "attitude_z": 0.0,
+          "earth_removal": 0.0,
+          "gravity_delta": 0.0,
+          "gyro_bias_x": 0.0,
+          "gyro_bias_y": 0.0,
+          "gyro_bias_z": 0.0,
+          "gyro_gain_x": 0.0,
+          "gyro_gain_y": 0.0,
+          "gyro_gain_z": 0.0,
+          "lever_x": 0.0,
+          "lever_y": 0.0,
+          "lever_z": 0.0,
+          "position_x": 0.0,
+          "position_y": 0.0,
+          "position_z": 0.0,
+          "time_offset": 0.0,
+          "velocity_x": 0.0,
+          "velocity_y": 0.0,
+          "velocity_z": 0.0
+        },
+        "processing_independence_established": false,
+        "projected_gradient": [
+          -6.986272316751828e-06
+        ],
+        "receiver_covariance_calibrated": false,
+        "relative_cost_change": 0.0,
+        "relative_residual_step": 0.0,
+        "residual_sum_squares": 3.48144590943491e-05,
+        "right_singular_vectors": [
+          [
+            1.0
+          ]
+        ],
+        "scaled_projected_gradient": [
+          -5.801254895781178e-07
+        ],
+        "scientific_decision": "abstain",
+        "scientific_eligible": false,
+        "singular_values": [
+          12.042691524953376
+        ],
+        "solver_reported_success": true,
+        "stability_probe": null,
+        "stability_verified": true,
+        "stable_accepted_iterations": 1,
+        "stationarity_tolerance": 0.0001,
+        "stopping_rule_verified": true,
+        "termination": "scipy_stop",
+        "version": "ilvis0-scaled-stable-stop-v1"
+      },
+      "identifiable_parameter_error": 1.3464843577502914e-05,
+      "identity": "gain::0",
+      "independent_archive_confirmation": false,
+      "maximum_actual_evaluations": 200,
+      "observed_fit_starts": 0,
+      "passed": true,
+      "prediction_error": 2.95802515815069e-06,
+      "prediction_tolerance": 5e-05,
+      "reference_objective": 0.0002978070775320885,
+      "scientific_decision": "abstain",
+      "start": 0
+    },
+    {
+      "actual_evaluations": 53,
+      "control": "gain",
+      "fit": {
+        "active_bound_signs": {},
+        "active_bounds": [],
+        "active_parameters": [
+          "accel_gain_x"
+        ],
+        "calibration_bounds_supported": false,
+        "clock_independently_established": false,
+        "constant_bias_is_measured_drift": false,
+        "converged": true,
+        "derivative_method": "independent second-order finite difference of native value predictions",
+        "evaluations": 17,
+        "exact_projected_gradient_relative": 2.489905138415115e-06,
+        "gps_epochs_at_packet_boundaries": 0,
+        "gradient": [
+          2.9983085563357656e-05
+        ],
+        "initialization_evaluations": 0,
+        "initialization_message": "no staged parameters",
+        "latency_derivative_convention": "left interval at a packet boundary; adjacent measured rates may differ",
+        "maximum_evaluations": 66,
+        "message": "`xtol` termination condition is satisfied.",
+        "model": "flat_still",
+        "normalized_parameters": [
+          0.3013469281493334
+        ],
+        "parameters": {
+          "accel_bias_x": 0.0,
+          "accel_bias_y": 0.0,
+          "accel_bias_z": 0.0,
+          "accel_gain_x": 0.003013469281493334,
+          "accel_gain_y": 0.0,
+          "accel_gain_z": 0.0,
+          "attitude_x": 0.0,
+          "attitude_y": 0.0,
+          "attitude_z": 0.0,
+          "earth_removal": 0.0,
+          "gravity_delta": 0.0,
+          "gyro_bias_x": 0.0,
+          "gyro_bias_y": 0.0,
+          "gyro_bias_z": 0.0,
+          "gyro_gain_x": 0.0,
+          "gyro_gain_y": 0.0,
+          "gyro_gain_z": 0.0,
+          "lever_x": 0.0,
+          "lever_y": 0.0,
+          "lever_z": 0.0,
+          "position_x": 0.0,
+          "position_y": 0.0,
+          "position_z": 0.0,
+          "time_offset": 0.0,
+          "velocity_x": 0.0,
+          "velocity_y": 0.0,
+          "velocity_z": 0.0
+        },
+        "processing_independence_established": false,
+        "projected_gradient": [
+          2.9983085563357656e-05
+        ],
+        "receiver_covariance_calibrated": false,
+        "relative_cost_change": 0.0,
+        "relative_residual_step": 0.0,
+        "residual_sum_squares": 3.48193455825844e-05,
+        "right_singular_vectors": [
+          [
+            1.0
+          ]
+        ],
+        "scaled_projected_gradient": [
+          2.489905138415115e-06
+        ],
+        "scientific_decision": "abstain",
+        "scientific_eligible": false,
+        "singular_values": [
+          12.041858583593516
+        ],
+        "solver_reported_success": true,
+        "stability_probe": null,
+        "stability_verified": true,
+        "stable_accepted_iterations": 1,
+        "stationarity_tolerance": 0.0001,
+        "stopping_rule_verified": true,
+        "termination": "scipy_stop",
+        "version": "ilvis0-scaled-stable-stop-v1"
+      },
+      "identifiable_parameter_error": 1.3469281493333745e-05,
+      "identity": "gain::1",
+      "independent_archive_confirmation": false,
+      "maximum_actual_evaluations": 200,
+      "observed_fit_starts": 0,
+      "passed": true,
+      "prediction_error": 2.95802515815069e-06,
+      "prediction_tolerance": 5e-05,
+      "reference_objective": 0.0002978070775320885,
+      "scientific_decision": "abstain",
+      "start": 1
+    },
+    {
+      "actual_evaluations": 53,
+      "control": "timing",
+      "fit": {
+        "active_bound_signs": {},
+        "active_bounds": [],
+        "active_parameters": [
+          "time_offset"
+        ],
+        "calibration_bounds_supported": false,
+        "clock_independently_established": false,
+        "constant_bias_is_measured_drift": false,
+        "converged": true,
+        "derivative_method": "independent second-order finite difference of native value predictions",
+        "evaluations": 17,
+        "exact_projected_gradient_relative": 5.094206021118553e-07,
+        "gps_epochs_at_packet_boundaries": 0,
+        "gradient": [
+          -0.0001358320654148781
+        ],
+        "initialization_evaluations": 0,
+        "initialization_message": "no staged parameters",
+        "latency_derivative_convention": "left interval at a packet boundary; adjacent measured rates may differ",
+        "maximum_evaluations": 66,
+        "message": "`xtol` termination condition is satisfied.",
+        "model": "flat_still",
+        "normalized_parameters": [
+          0.43743376072160106
+        ],
+        "parameters": {
+          "accel_bias_x": 0.0,
+          "accel_bias_y": 0.0,
+          "accel_bias_z": 0.0,
+          "accel_gain_x": 0.0,
+          "accel_gain_y": 0.0,
+          "accel_gain_z": 0.0,
+          "attitude_x": 0.0,
+          "attitude_y": 0.0,
+          "attitude_z": 0.0,
+          "earth_removal": 0.0,
+          "gravity_delta": 0.0,
+          "gyro_bias_x": 0.0,
+          "gyro_bias_y": 0.0,
+          "gyro_bias_z": 0.0,
+          "gyro_gain_x": 0.0,
+          "gyro_gain_y": 0.0,
+          "gyro_gain_z": 0.0,
+          "lever_x": 0.0,
+          "lever_y": 0.0,
+          "lever_z": 0.0,
+          "position_x": 0.0,
+          "position_y": 0.0,
+          "position_z": 0.0,
+          "time_offset": 0.03499470085772809,
+          "velocity_x": 0.0,
+          "velocity_y": 0.0,
+          "velocity_z": 0.0
+        },
+        "processing_independence_established": false,
+        "projected_gradient": [
+          -0.0001358320654148781
+        ],
+        "receiver_covariance_calibrated": false,
+        "relative_cost_change": 0.0,
+        "relative_residual_step": 0.0,
+        "residual_sum_squares": 2.8355980539441097e-06,
+        "right_singular_vectors": [
+          [
+            1.0
+          ]
+        ],
+        "scaled_projected_gradient": [
+          -5.094206021118553e-07
+        ],
+        "scientific_decision": "abstain",
+        "scientific_eligible": false,
+        "singular_values": [
+          266.6403063632926
+        ],
+        "solver_reported_success": true,
+        "stability_probe": null,
+        "stability_verified": true,
+        "stable_accepted_iterations": 2,
+        "stationarity_tolerance": 0.0001,
+        "stopping_rule_verified": true,
+        "termination": "scipy_stop",
+        "version": "ilvis0-scaled-stable-stop-v1"
+      },
+      "identifiable_parameter_error": 5.299142271916746e-06,
+      "identity": "timing::0",
+      "independent_archive_confirmation": false,
+      "maximum_actual_evaluations": 200,
+      "observed_fit_starts": 0,
+      "passed": true,
+      "prediction_error": 1.4394024860919785e-06,
+      "prediction_tolerance": 5e-05,
+      "reference_objective": 0.00031476104089328587,
+      "scientific_decision": "abstain",
+      "start": 0
+    },
+    {
+      "actual_evaluations": 44,
+      "control": "timing",
+      "fit": {
+        "active_bound_signs": {},
+        "active_bounds": [],
+        "active_parameters": [
+          "time_offset"
+        ],
+        "calibration_bounds_supported": false,
+        "clock_independently_established": false,
+        "constant_bias_is_measured_drift": false,
+        "converged": true,
+        "derivative_method": "independent second-order finite difference of native value predictions",
+        "evaluations": 14,
+        "exact_projected_gradient_relative": 4.856386578930175e-06,
+        "gps_epochs_at_packet_boundaries": 0,
+        "gradient": [
+          0.0012949086257761319
+        ],
+        "initialization_evaluations": 0,
+        "initialization_message": "no staged parameters",
+        "latency_derivative_convention": "left interval at a packet boundary; adjacent measured rates may differ",
+        "maximum_evaluations": 66,
+        "message": "`xtol` termination condition is satisfied.",
+        "model": "flat_still",
+        "normalized_parameters": [
+          0.4374337817325466
+        ],
+        "parameters": {
+          "accel_bias_x": 0.0,
+          "accel_bias_y": 0.0,
+          "accel_bias_z": 0.0,
+          "accel_gain_x": 0.0,
+          "accel_gain_y": 0.0,
+          "accel_gain_z": 0.0,
+          "attitude_x": 0.0,
+          "attitude_y": 0.0,
+          "attitude_z": 0.0,
+          "earth_removal": 0.0,
+          "gravity_delta": 0.0,
+          "gyro_bias_x": 0.0,
+          "gyro_bias_y": 0.0,
+          "gyro_bias_z": 0.0,
+          "gyro_gain_x": 0.0,
+          "gyro_gain_y": 0.0,
+          "gyro_gain_z": 0.0,
+          "lever_x": 0.0,
+          "lever_y": 0.0,
+          "lever_z": 0.0,
+          "position_x": 0.0,
+          "position_y": 0.0,
+          "position_z": 0.0,
+          "time_offset": 0.03499470253860373,
+          "velocity_x": 0.0,
+          "velocity_y": 0.0,
+          "velocity_z": 0.0
+        },
+        "processing_independence_established": false,
+        "projected_gradient": [
+          0.0012949086257761319
+        ],
+        "receiver_covariance_calibrated": false,
+        "relative_cost_change": 0.0,
+        "relative_residual_step": 0.0,
+        "residual_sum_squares": 2.835162287459729e-06,
+        "right_singular_vectors": [
+          [
+            1.0
+          ]
+        ],
+        "scaled_projected_gradient": [
+          4.856386578930175e-06
+        ],
+        "scientific_decision": "abstain",
+        "scientific_eligible": false,
+        "singular_values": [
+          266.64035177804783
+        ],
+        "solver_reported_success": true,
+        "stability_probe": null,
+        "stability_verified": true,
+        "stable_accepted_iterations": 1,
+        "stationarity_tolerance": 0.0001,
+        "stopping_rule_verified": true,
+        "termination": "scipy_stop",
+        "version": "ilvis0-scaled-stable-stop-v1"
+      },
+      "identifiable_parameter_error": 5.2974613962766814e-06,
+      "identity": "timing::1",
+      "independent_archive_confirmation": false,
+      "maximum_actual_evaluations": 200,
+      "observed_fit_starts": 0,
+      "passed": true,
+      "prediction_error": 1.4379878399140011e-06,
+      "prediction_tolerance": 5e-05,
+      "reference_objective": 0.00031476104089328587,
+      "scientific_decision": "abstain",
+      "start": 1
+    },
+    {
+      "actual_evaluations": 29,
+      "control": "stationary_rotating",
+      "fit": {
+        "active_bound_signs": {},
+        "active_bounds": [],
+        "active_parameters": [
+          "accel_bias_x"
+        ],
+        "calibration_bounds_supported": false,
+        "clock_independently_established": false,
+        "constant_bias_is_measured_drift": false,
+        "converged": true,
+        "derivative_method": "independent second-order finite difference of native value predictions",
+        "evaluations": 9,
+        "exact_projected_gradient_relative": 0.0,
+        "gps_epochs_at_packet_boundaries": 0,
+        "gradient": [
+          0.0
+        ],
+        "initialization_evaluations": 0,
+        "initialization_message": "no staged parameters",
+        "latency_derivative_convention": "left interval at a packet boundary; adjacent measured rates may differ",
+        "maximum_evaluations": 66,
+        "message": "`gtol` termination condition is satisfied.",
+        "model": "sphere_rotating",
+        "normalized_parameters": [
+          0.39999999571961414
+        ],
+        "parameters": {
+          "accel_bias_x": 0.03999999957196142,
+          "accel_bias_y": 0.0,
+          "accel_bias_z": 0.0,
+          "accel_gain_x": 0.0,
+          "accel_gain_y": 0.0,
+          "accel_gain_z": 0.0,
+          "attitude_x": 0.0,
+          "attitude_y": 0.0,
+          "attitude_z": 0.0,
+          "earth_removal": 0.0,
+          "gravity_delta": 0.0,
+          "gyro_bias_x": 0.0,
+          "gyro_bias_y": 0.0,
+          "gyro_bias_z": 0.0,
+          "gyro_gain_x": 0.0,
+          "gyro_gain_y": 0.0,
+          "gyro_gain_z": 0.0,
+          "lever_x": 0.0,
+          "lever_y": 0.0,
+          "lever_z": 0.0,
+          "position_x": 0.0,
+          "position_y": 0.0,
+          "position_z": 0.0,
+          "time_offset": 0.0,
+          "velocity_x": 0.0,
+          "velocity_y": 0.0,
+          "velocity_z": 0.0
+        },
+        "processing_independence_established": false,
+        "projected_gradient": [
+          0.0
+        ],
+        "receiver_covariance_calibrated": false,
+        "relative_cost_change": 3.7866863760167312e-06,
+        "relative_residual_step": 0.0019459410001376534,
+        "residual_sum_squares": 0.0,
+        "right_singular_vectors": [
+          [
+            1.0
+          ]
+        ],
+        "scaled_projected_gradient": [
+          0.0
+        ],
+        "scientific_decision": "abstain",
+        "scientific_eligible": false,
+        "singular_values": [
+          214.02277345464472
+        ],
+        "solver_reported_success": true,
+        "stability_probe": {
+          "normalized_parameter_step": [
+            -0.0
+          ],
+          "relative_cost_change": 0.0,
+          "relative_residual_step": 0.0,
+          "successful": true
+        },
+        "stability_verified": true,
+        "stable_accepted_iterations": 0,
+        "stationarity_tolerance": 0.0001,
+        "stopping_rule_verified": true,
+        "termination": "scipy_stop",
+        "version": "ilvis0-scaled-stable-stop-v1"
+      },
+      "identifiable_parameter_error": 4.2803858374407255e-10,
+      "identity": "stationary_rotating::0",
+      "independent_archive_confirmation": false,
+      "maximum_actual_evaluations": 200,
+      "observed_fit_starts": 0,
+      "passed": true,
+      "prediction_error": 0.0,
+      "prediction_tolerance": 5e-05,
+      "reference_objective": 0.0,
+      "scientific_decision": "abstain",
+      "start": 0
+    },
+    {
+      "actual_evaluations": 20,
+      "control": "stationary_rotating",
+      "fit": {
+        "active_bound_signs": {},
+        "active_bounds": [],
+        "active_parameters": [
+          "accel_bias_x"
+        ],
+        "calibration_bounds_supported": false,
+        "clock_independently_established": false,
+        "constant_bias_is_measured_drift": false,
+        "converged": true,
+        "derivative_method": "independent second-order finite difference of native value predictions",
+        "evaluations": 6,
+        "exact_projected_gradient_relative": 0.0,
+        "gps_epochs_at_packet_boundaries": 0,
+        "gradient": [
+          0.0
+        ],
+        "initialization_evaluations": 0,
+        "initialization_message": "no staged parameters",
+        "latency_derivative_convention": "left interval at a packet boundary; adjacent measured rates may differ",
+        "maximum_evaluations": 66,
+        "message": "`gtol` termination condition is satisfied.",
+        "model": "sphere_rotating",
+        "normalized_parameters": [
+          0.4000000974604048
+        ],
+        "parameters": {
+          "accel_bias_x": 0.04000000974604048,
+          "accel_bias_y": 0.0,
+          "accel_bias_z": 0.0,
+          "accel_gain_x": 0.0,
+          "accel_gain_y": 0.0,
+          "accel_gain_z": 0.0,
+          "attitude_x": 0.0,
+          "attitude_y": 0.0,
+          "attitude_z": 0.0,
+          "earth_removal": 0.0,
+          "gravity_delta": 0.0,
+          "gyro_bias_x": 0.0,
+          "gyro_bias_y": 0.0,
+          "gyro_bias_z": 0.0,
+          "gyro_gain_x": 0.0,
+          "gyro_gain_y": 0.0,
+          "gyro_gain_z": 0.0,
+          "lever_x": 0.0,
+          "lever_y": 0.0,
+          "lever_z": 0.0,
+          "position_x": 0.0,
+          "position_y": 0.0,
+          "position_z": 0.0,
+          "time_offset": 0.0,
+          "velocity_x": 0.0,
+          "velocity_y": 0.0,
+          "velocity_z": 0.0
+        },
+        "processing_independence_established": false,
+        "projected_gradient": [
+          0.0
+        ],
+        "receiver_covariance_calibrated": false,
+        "relative_cost_change": 0.004567376823656622,
+        "relative_residual_step": 0.06758237065726995,
+        "residual_sum_squares": 0.0,
+        "right_singular_vectors": [
+          [
+            1.0
+          ]
+        ],
+        "scaled_projected_gradient": [
+          0.0
+        ],
+        "scientific_decision": "abstain",
+        "scientific_eligible": false,
+        "singular_values": [
+          214.01782354223158
+        ],
+        "solver_reported_success": true,
+        "stability_probe": {
+          "normalized_parameter_step": [
+            -0.0
+          ],
+          "relative_cost_change": 0.0,
+          "relative_residual_step": 0.0,
+          "successful": true
+        },
+        "stability_verified": true,
+        "stable_accepted_iterations": 0,
+        "stationarity_tolerance": 0.0001,
+        "stopping_rule_verified": true,
+        "termination": "scipy_stop",
+        "version": "ilvis0-scaled-stable-stop-v1"
+      },
+      "identifiable_parameter_error": 9.74604048159522e-09,
+      "identity": "stationary_rotating::1",
+      "independent_archive_confirmation": false,
+      "maximum_actual_evaluations": 200,
+      "observed_fit_starts": 0,
+      "passed": true,
+      "prediction_error": 0.0,
+      "prediction_tolerance": 5e-05,
+      "reference_objective": 0.0,
+      "scientific_decision": "abstain",
+      "start": 1
+    },
+    {
+      "actual_evaluations": 29,
+      "control": "stationary_still",
+      "fit": {
+        "active_bound_signs": {},
+        "active_bounds": [],
+        "active_parameters": [
+          "accel_bias_x"
+        ],
+        "calibration_bounds_supported": false,
+        "clock_independently_established": false,
+        "constant_bias_is_measured_drift": false,
+        "converged": true,
+        "derivative_method": "independent second-order finite difference of native value predictions",
+        "evaluations": 9,
+        "exact_projected_gradient_relative": 0.0,
+        "gps_epochs_at_packet_boundaries": 0,
+        "gradient": [
+          0.0
+        ],
+        "initialization_evaluations": 0,
+        "initialization_message": "no staged parameters",
+        "latency_derivative_convention": "left interval at a packet boundary; adjacent measured rates may differ",
+        "maximum_evaluations": 66,
+        "message": "`gtol` termination condition is satisfied.",
+        "model": "sphere_still",
+        "normalized_parameters": [
+          0.3999999960564365
+        ],
+        "parameters": {
+          "accel_bias_x": 0.039999999605643655,
+          "accel_bias_y": 0.0,
+          "accel_bias_z": 0.0,
+          "accel_gain_x": 0.0,
+          "accel_gain_y": 0.0,
+          "accel_gain_z": 0.0,
+          "attitude_x": 0.0,
+          "attitude_y": 0.0,
+          "attitude_z": 0.0,
+          "earth_removal": 0.0,
+          "gravity_delta": 0.0,
+          "gyro_bias_x": 0.0,
+          "gyro_bias_y": 0.0,
+          "gyro_bias_z": 0.0,
+          "gyro_gain_x": 0.0,
+          "gyro_gain_y": 0.0,
+          "gyro_gain_z": 0.0,
+          "lever_x": 0.0,
+          "lever_y": 0.0,
+          "lever_z": 0.0,
+          "position_x": 0.0,
+          "position_y": 0.0,
+          "position_z": 0.0,
+          "time_offset": 0.0,
+          "velocity_x": 0.0,
+          "velocity_y": 0.0,
+          "velocity_z": 0.0
+        },
+        "processing_independence_established": false,
+        "projected_gradient": [
+          0.0
+        ],
+        "receiver_covariance_calibrated": false,
+        "relative_cost_change": 3.7866863760167312e-06,
+        "relative_residual_step": 0.0019459410001376534,
+        "residual_sum_squares": 0.0,
+        "right_singular_vectors": [
+          [
+            1.0
+          ]
+        ],
+        "scaled_projected_gradient": [
+          0.0
+        ],
+        "scientific_decision": "abstain",
+        "scientific_eligible": false,
+        "singular_values": [
+          214.02251901694194
+        ],
+        "solver_reported_success": true,
+        "stability_probe": {
+          "normalized_parameter_step": [
+            -0.0
+          ],
+          "relative_cost_change": 0.0,
+          "relative_residual_step": 0.0,
+          "successful": true
+        },
+        "stability_verified": true,
+        "stable_accepted_iterations": 0,
+        "stationarity_tolerance": 0.0001,
+        "stopping_rule_verified": true,
+        "termination": "scipy_stop",
+        "version": "ilvis0-scaled-stable-stop-v1"
+      },
+      "identifiable_parameter_error": 3.943563461894506e-10,
+      "identity": "stationary_still::0",
+      "independent_archive_confirmation": false,
+      "maximum_actual_evaluations": 200,
+      "observed_fit_starts": 0,
+      "passed": true,
+      "prediction_error": 0.0,
+      "prediction_tolerance": 5e-05,
+      "reference_objective": 0.0,
+      "scientific_decision": "abstain",
+      "start": 0
+    },
+    {
+      "actual_evaluations": 20,
+      "control": "stationary_still",
+      "fit": {
+        "active_bound_signs": {},
+        "active_bounds": [],
+        "active_parameters": [
+          "accel_bias_x"
+        ],
+        "calibration_bounds_supported": false,
+        "clock_independently_established": false,
+        "constant_bias_is_measured_drift": false,
+        "converged": true,
+        "derivative_method": "independent second-order finite difference of native value predictions",
+        "evaluations": 6,
+        "exact_projected_gradient_relative": 0.0,
+        "gps_epochs_at_packet_boundaries": 0,
+        "gradient": [
+          0.0
+        ],
+        "initialization_evaluations": 0,
+        "initialization_message": "no staged parameters",
+        "latency_derivative_convention": "left interval at a packet boundary; adjacent measured rates may differ",
+        "maximum_evaluations": 66,
+        "message": "`gtol` termination condition is satisfied.",
+        "model": "sphere_still",
+        "normalized_parameters": [
+          0.40000007137180965
+        ],
+        "parameters": {
+          "accel_bias_x": 0.040000007137180965,
+          "accel_bias_y": 0.0,
+          "accel_bias_z": 0.0,
+          "accel_gain_x": 0.0,
+          "accel_gain_y": 0.0,
+          "accel_gain_z": 0.0,
+          "attitude_x": 0.0,
+          "attitude_y": 0.0,
+          "attitude_z": 0.0,
+          "earth_removal": 0.0,
+          "gravity_delta": 0.0,
+          "gyro_bias_x": 0.0,
+          "gyro_bias_y": 0.0,
+          "gyro_bias_z": 0.0,
+          "gyro_gain_x": 0.0,
+          "gyro_gain_y": 0.0,
+          "gyro_gain_z": 0.0,
+          "lever_x": 0.0,
+          "lever_y": 0.0,
+          "lever_z": 0.0,
+          "position_x": 0.0,
+          "position_y": 0.0,
+          "position_z": 0.0,
+          "time_offset": 0.0,
+          "velocity_x": 0.0,
+          "velocity_y": 0.0,
+          "velocity_z": 0.0
+        },
+        "processing_independence_established": false,
+        "projected_gradient": [
+          0.0
+        ],
+        "receiver_covariance_calibrated": false,
+        "relative_cost_change": 0.004537246555342653,
+        "relative_residual_step": 0.06735908665757466,
+        "residual_sum_squares": 0.0,
+        "right_singular_vectors": [
+          [
+            1.0
+          ]
+        ],
+        "scaled_projected_gradient": [
+          0.0
+        ],
+        "scientific_decision": "abstain",
+        "scientific_eligible": false,
+        "singular_values": [
+          214.01510451237587
+        ],
+        "solver_reported_success": true,
+        "stability_probe": {
+          "normalized_parameter_step": [
+            -0.0
+          ],
+          "relative_cost_change": 0.0,
+          "relative_residual_step": 0.0,
+          "successful": true
+        },
+        "stability_verified": true,
+        "stable_accepted_iterations": 0,
+        "stationarity_tolerance": 0.0001,
+        "stopping_rule_verified": true,
+        "termination": "scipy_stop",
+        "version": "ilvis0-scaled-stable-stop-v1"
+      },
+      "identifiable_parameter_error": 7.137180964289502e-09,
+      "identity": "stationary_still::1",
+      "independent_archive_confirmation": false,
+      "maximum_actual_evaluations": 200,
+      "observed_fit_starts": 0,
+      "passed": true,
+      "prediction_error": 0.0,
+      "prediction_tolerance": 5e-05,
+      "reference_objective": 0.0,
+      "scientific_decision": "abstain",
+      "start": 1
+    },
+    {
+      "actual_evaluations": 29,
+      "control": "east_rotating",
+      "fit": {
+        "active_bound_signs": {},
+        "active_bounds": [],
+        "active_parameters": [
+          "accel_bias_x"
+        ],
+        "calibration_bounds_supported": false,
+        "clock_independently_established": false,
+        "constant_bias_is_measured_drift": false,
+        "converged": true,
+        "derivative_method": "independent second-order finite difference of native value predictions",
+        "evaluations": 9,
+        "exact_projected_gradient_relative": 0.0,
+        "gps_epochs_at_packet_boundaries": 0,
+        "gradient": [
+          0.0
+        ],
+        "initialization_evaluations": 0,
+        "initialization_message": "no staged parameters",
+        "latency_derivative_convention": "left interval at a packet boundary; adjacent measured rates may differ",
+        "maximum_evaluations": 66,
+        "message": "`gtol` termination condition is satisfied.",
+        "model": "sphere_rotating",
+        "normalized_parameters": [
+          0.39999999999999997
+        ],
+        "parameters": {
+          "accel_bias_x": 0.04,
+          "accel_bias_y": 0.0,
+          "accel_bias_z": 0.0,
+          "accel_gain_x": 0.0,
+          "accel_gain_y": 0.0,
+          "accel_gain_z": 0.0,
+          "attitude_x": 0.0,
+          "attitude_y": 0.0,
+          "attitude_z": 0.0,
+          "earth_removal": 0.0,
+          "gravity_delta": 0.0,
+          "gyro_bias_x": 0.0,
+          "gyro_bias_y": 0.0,
+          "gyro_bias_z": 0.0,
+          "gyro_gain_x": 0.0,
+          "gyro_gain_y": 0.0,
+          "gyro_gain_z": 0.0,
+          "lever_x": 0.0,
+          "lever_y": 0.0,
+          "lever_z": 0.0,
+          "position_x": 0.0,
+          "position_y": 0.0,
+          "position_z": 0.0,
+          "time_offset": 0.0,
+          "velocity_x": 0.0,
+          "velocity_y": 0.0,
+          "velocity_z": 0.0
+        },
+        "processing_independence_established": false,
+        "projected_gradient": [
+          0.0
+        ],
+        "receiver_covariance_calibrated": false,
+        "relative_cost_change": 9.245485216768511e-16,
+        "relative_residual_step": 3.0406389487685826e-08,
+        "residual_sum_squares": 0.0,
+        "right_singular_vectors": [
+          [
+            1.0
+          ]
+        ],
+        "scaled_projected_gradient": [
+          0.0
+        ],
+        "scientific_decision": "abstain",
+        "scientific_eligible": false,
+        "singular_values": [
+          215.13161259083202
+        ],
+        "solver_reported_success": true,
+        "stability_probe": null,
+        "stability_verified": true,
+        "stable_accepted_iterations": 1,
+        "stationarity_tolerance": 0.0001,
+        "stopping_rule_verified": true,
+        "termination": "scipy_stop",
+        "version": "ilvis0-scaled-stable-stop-v1"
+      },
+      "identifiable_parameter_error": 0.0,
+      "identity": "east_rotating::0",
+      "independent_archive_confirmation": false,
+      "maximum_actual_evaluations": 200,
+      "observed_fit_starts": 0,
+      "passed": true,
+      "prediction_error": 0.0,
+      "prediction_tolerance": 5e-05,
+      "reference_objective": 0.0,
+      "scientific_decision": "abstain",
+      "start": 0
+    },
+    {
+      "actual_evaluations": 23,
+      "control": "east_rotating",
+      "fit": {
+        "active_bound_signs": {},
+        "active_bounds": [],
+        "active_parameters": [
+          "accel_bias_x"
+        ],
+        "calibration_bounds_supported": false,
+        "clock_independently_established": false,
+        "constant_bias_is_measured_drift": false,
+        "converged": true,
+        "derivative_method": "independent second-order finite difference of native value predictions",
+        "evaluations": 7,
+        "exact_projected_gradient_relative": 0.0,
+        "gps_epochs_at_packet_boundaries": 0,
+        "gradient": [
+          0.0
+        ],
+        "initialization_evaluations": 0,
+        "initialization_message": "no staged parameters",
+        "latency_derivative_convention": "left interval at a packet boundary; adjacent measured rates may differ",
+        "maximum_evaluations": 66,
+        "message": "`gtol` termination condition is satisfied.",
+        "model": "sphere_rotating",
+        "normalized_parameters": [
+          0.39999999999999997
+        ],
+        "parameters": {
+          "accel_bias_x": 0.04,
+          "accel_bias_y": 0.0,
+          "accel_bias_z": 0.0,
+          "accel_gain_x": 0.0,
+          "accel_gain_y": 0.0,
+          "accel_gain_z": 0.0,
+          "attitude_x": 0.0,
+          "attitude_y": 0.0,
+          "attitude_z": 0.0,
+          "earth_removal": 0.0,
+          "gravity_delta": 0.0,
+          "gyro_bias_x": 0.0,
+          "gyro_bias_y": 0.0,
+          "gyro_bias_z": 0.0,
+          "gyro_gain_x": 0.0,
+          "gyro_gain_y": 0.0,
+          "gyro_gain_z": 0.0,
+          "lever_x": 0.0,
+          "lever_y": 0.0,
+          "lever_z": 0.0,
+          "position_x": 0.0,
+          "position_y": 0.0,
+          "position_z": 0.0,
+          "time_offset": 0.0,
+          "velocity_x": 0.0,
+          "velocity_y": 0.0,
+          "velocity_z": 0.0
+        },
+        "processing_independence_established": false,
+        "projected_gradient": [
+          0.0
+        ],
+        "receiver_covariance_calibrated": false,
+        "relative_cost_change": 6.289076039390342e-25,
+        "relative_residual_step": 7.930369499203894e-13,
+        "residual_sum_squares": 0.0,
+        "right_singular_vectors": [
+          [
+            1.0
+          ]
+        ],
+        "scaled_projected_gradient": [
+          0.0
+        ],
+        "scientific_decision": "abstain",
+        "scientific_eligible": false,
+        "singular_values": [
+          215.13161259083202
+        ],
+        "solver_reported_success": true,
+        "stability_probe": null,
+        "stability_verified": true,
+        "stable_accepted_iterations": 1,
+        "stationarity_tolerance": 0.0001,
+        "stopping_rule_verified": true,
+        "termination": "scipy_stop",
+        "version": "ilvis0-scaled-stable-stop-v1"
+      },
+      "identifiable_parameter_error": 0.0,
+      "identity": "east_rotating::1",
+      "independent_archive_confirmation": false,
+      "maximum_actual_evaluations": 200,
+      "observed_fit_starts": 0,
+      "passed": true,
+      "prediction_error": 0.0,
+      "prediction_tolerance": 5e-05,
+      "reference_objective": 0.0,
+      "scientific_decision": "abstain",
+      "start": 1
+    },
+    {
+      "actual_evaluations": 29,
+      "control": "east_still",
+      "fit": {
+        "active_bound_signs": {},
+        "active_bounds": [],
+        "active_parameters": [
+          "accel_bias_x"
+        ],
+        "calibration_bounds_supported": false,
+        "clock_independently_established": false,
+        "constant_bias_is_measured_drift": false,
+        "converged": true,
+        "derivative_method": "independent second-order finite difference of native value predictions",
+        "evaluations": 9,
+        "exact_projected_gradient_relative": 0.0,
+        "gps_epochs_at_packet_boundaries": 0,
+        "gradient": [
+          0.0
+        ],
+        "initialization_evaluations": 0,
+        "initialization_message": "no staged parameters",
+        "latency_derivative_convention": "left interval at a packet boundary; adjacent measured rates may differ",
+        "maximum_evaluations": 66,
+        "message": "`gtol` termination condition is satisfied.",
+        "model": "sphere_still",
+        "normalized_parameters": [
+          0.39999999999999997
+        ],
+        "parameters": {
+          "accel_bias_x": 0.04,
+          "accel_bias_y": 0.0,
+          "accel_bias_z": 0.0,
+          "accel_gain_x": 0.0,
+          "accel_gain_y": 0.0,
+          "accel_gain_z": 0.0,
+          "attitude_x": 0.0,
+          "attitude_y": 0.0,
+          "attitude_z": 0.0,
+          "earth_removal": 0.0,
+          "gravity_delta": 0.0,
+          "gyro_bias_x": 0.0,
+          "gyro_bias_y": 0.0,
+          "gyro_bias_z": 0.0,
+          "gyro_gain_x": 0.0,
+          "gyro_gain_y": 0.0,
+          "gyro_gain_z": 0.0,
+          "lever_x": 0.0,
+          "lever_y": 0.0,
+          "lever_z": 0.0,
+          "position_x": 0.0,
+          "position_y": 0.0,
+          "position_z": 0.0,
+          "time_offset": 0.0,
+          "velocity_x": 0.0,
+          "velocity_y": 0.0,
+          "velocity_z": 0.0
+        },
+        "processing_independence_established": false,
+        "projected_gradient": [
+          0.0
+        ],
+        "receiver_covariance_calibrated": false,
+        "relative_cost_change": 9.245485216766293e-16,
+        "relative_residual_step": 3.040638948768218e-08,
+        "residual_sum_squares": 0.0,
+        "right_singular_vectors": [
+          [
+            1.0
+          ]
+        ],
+        "scaled_projected_gradient": [
+          0.0
+        ],
+        "scientific_decision": "abstain",
+        "scientific_eligible": false,
+        "singular_values": [
+          215.1316125908064
+        ],
+        "solver_reported_success": true,
+        "stability_probe": null,
+        "stability_verified": true,
+        "stable_accepted_iterations": 1,
+        "stationarity_tolerance": 0.0001,
+        "stopping_rule_verified": true,
+        "termination": "scipy_stop",
+        "version": "ilvis0-scaled-stable-stop-v1"
+      },
+      "identifiable_parameter_error": 0.0,
+      "identity": "east_still::0",
+      "independent_archive_confirmation": false,
+      "maximum_actual_evaluations": 200,
+      "observed_fit_starts": 0,
+      "passed": true,
+      "prediction_error": 0.0,
+      "prediction_tolerance": 5e-05,
+      "reference_objective": 0.0,
+      "scientific_decision": "abstain",
+      "start": 0
+    },
+    {
+      "actual_evaluations": 23,
+      "control": "east_still",
+      "fit": {
+        "active_bound_signs": {},
+        "active_bounds": [],
+        "active_parameters": [
+          "accel_bias_x"
+        ],
+        "calibration_bounds_supported": false,
+        "clock_independently_established": false,
+        "constant_bias_is_measured_drift": false,
+        "converged": true,
+        "derivative_method": "independent second-order finite difference of native value predictions",
+        "evaluations": 7,
+        "exact_projected_gradient_relative": 0.0,
+        "gps_epochs_at_packet_boundaries": 0,
+        "gradient": [
+          0.0
+        ],
+        "initialization_evaluations": 0,
+        "initialization_message": "no staged parameters",
+        "latency_derivative_convention": "left interval at a packet boundary; adjacent measured rates may differ",
+        "maximum_evaluations": 66,
+        "message": "`gtol` termination condition is satisfied.",
+        "model": "sphere_still",
+        "normalized_parameters": [
+          0.39999999999999997
+        ],
+        "parameters": {
+          "accel_bias_x": 0.04,
+          "accel_bias_y": 0.0,
+          "accel_bias_z": 0.0,
+          "accel_gain_x": 0.0,
+          "accel_gain_y": 0.0,
+          "accel_gain_z": 0.0,
+          "attitude_x": 0.0,
+          "attitude_y": 0.0,
+          "attitude_z": 0.0,
+          "earth_removal": 0.0,
+          "gravity_delta": 0.0,
+          "gyro_bias_x": 0.0,
+          "gyro_bias_y": 0.0,
+          "gyro_bias_z": 0.0,
+          "gyro_gain_x": 0.0,
+          "gyro_gain_y": 0.0,
+          "gyro_gain_z": 0.0,
+          "lever_x": 0.0,
+          "lever_y": 0.0,
+          "lever_z": 0.0,
+          "position_x": 0.0,
+          "position_y": 0.0,
+          "position_z": 0.0,
+          "time_offset": 0.0,
+          "velocity_x": 0.0,
+          "velocity_y": 0.0,
+          "velocity_z": 0.0
+        },
+        "processing_independence_established": false,
+        "projected_gradient": [
+          0.0
+        ],
+        "receiver_covariance_calibrated": false,
+        "relative_cost_change": 6.289076039388819e-25,
+        "relative_residual_step": 7.930369499202934e-13,
+        "residual_sum_squares": 0.0,
+        "right_singular_vectors": [
+          [
+            1.0
+          ]
+        ],
+        "scaled_projected_gradient": [
+          0.0
+        ],
+        "scientific_decision": "abstain",
+        "scientific_eligible": false,
+        "singular_values": [
+          215.1316125908064
+        ],
+        "solver_reported_success": true,
+        "stability_probe": null,
+        "stability_verified": true,
+        "stable_accepted_iterations": 1,
+        "stationarity_tolerance": 0.0001,
+        "stopping_rule_verified": true,
+        "termination": "scipy_stop",
+        "version": "ilvis0-scaled-stable-stop-v1"
+      },
+      "identifiable_parameter_error": 0.0,
+      "identity": "east_still::1",
+      "independent_archive_confirmation": false,
+      "maximum_actual_evaluations": 200,
+      "observed_fit_starts": 0,
+      "passed": true,
+      "prediction_error": 0.0,
+      "prediction_tolerance": 5e-05,
+      "reference_objective": 0.0,
+      "scientific_decision": "abstain",
+      "start": 1
+    }
+  ],
+  "scientific_decision": "abstain",
+  "starts": 34,
+  "version": "ilvis0-independent-solver-controls-v1"
+}

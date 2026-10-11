@@ -1,0 +1,12 @@
+{
+  "eligible_inventory_sha256": "a5abfa6775b3f39025dad33165ae4c9e62ca6df4365fbaebfc9684f21de29044",
+  "observed_starts": 0,
+  "rule": "type21/time2/stream38614965/duration>=420; exclude control and diagnostic dates; earliest/latest remaining date, earliest interval per date",
+  "segment_ids": [
+    "d9d91c8edba5721931856fc9",
+    "c69d0a93113d86b5264f92eb"
+  ],
+  "selection_sha256": "07c7d3033d38311331d9f2cd8f5c7074ad4d992eff63fe9db73f4eef813b7f6f",
+  "selection_uses_model_fits": false,
+  "version": "ilvis0-retrospective-replication-selection-v1"
+}

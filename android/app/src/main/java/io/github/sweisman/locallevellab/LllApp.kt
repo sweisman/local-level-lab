@@ -63,6 +63,10 @@ class Prefs(ctx: Context) {
         get() = p.getInt("drift_min", 30)
         set(v) = p.edit().putInt("drift_min", v.coerceIn(10, 240)).apply()
 
+    var groundBlockMinutes: Int
+        get() = p.getInt("ground_block_min", 30)
+        set(v) = p.edit().putInt("ground_block_min", v.coerceIn(10, 120)).apply()
+
     // ---- the IMU ----
 
     /** Bluetooth address of the chosen IMU. Stays on the phone; never written to a session. */

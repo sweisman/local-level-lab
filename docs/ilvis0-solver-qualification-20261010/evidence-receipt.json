@@ -1,0 +1,11 @@
+{
+  "artifacts": {
+    "completion.json": "bc80454449642547cbfe0c68e76be78a8f6f3af6d621bb231f0e3e50e3faa970",
+    "manifest.json": "66324ed07e1e343c787ef81aaa2b4030a099b4aeaaf82add8b46e2afc6a5e9f9",
+    "starts.jsonl": "b7f158c166eed867597d54d83186558e1bdeb5941e1f6ccb3a36c2164c9c13ed",
+    "summary.json": "38a48baa6eacbfd0ae41283dde9fcb0e20b804071d2c4ba0af9c41c55b9442e8"
+  },
+  "observed_fit_starts": 0,
+  "scientific_decision": "abstain",
+  "version": "ilvis0-independent-solver-controls-v1"
+}

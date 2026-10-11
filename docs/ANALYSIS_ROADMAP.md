@@ -35,7 +35,42 @@ for all 318 first-pass and 12 trial fits. The
 [two-recording residual diagnostic](ilvis0-residual-diagnostic-20261010/README.md) has
 completed 24 saved-parameter predictions with no refits. It reproduces baseline errors,
 finds temporal correlation after whitening, and exposes a large vertical clock effect.
-Independent solver qualification and matched reoptimized timing/calibration tests remain planned.
+Full-flight solver qualification remains planned; the completed calibration comparisons
+below examine matched alternatives.
+The [software qualification matrix](ilvis0-solver-qualification-20261010/README.md) now
+passes 34/34 predefined starts, including short independently generated IMU/GPS controls.
+It qualifies those small cases, not full archival optimization. The
+[six-start clock comparison](ilvis0-clock-trial-20261010/README.md) has completed with
+all six fits converged. Reoptimization under packet-header timing restores the control's
+rotating-globe vertical error to about 0.70 m and preserves its globe/rotation preference.
+Z-axis gain and offset still reach their bounds. The completed control's nominal-clock
+references remain unchanged; calibration sensitivity is the next unresolved comparison.
+The [saved clock/calibration audit](ilvis0-clock-calibration-audit-20261011/README.md)
+shows that gravity correction leaves its limit while Z gain and offset remain pinned.
+Its [prepared sensitivity plan](ilvis0-clock-calibration-audit-20261011/CALIBRATION_PLAN.md)
+isolates each Z correction with matched zero-anchor ablations; those are diagnostic
+references, not asserted factory calibrations. The separately frozen
+[12-fit calibration comparison](ilvis0-calibration-trial-20261011/README.md) has
+completed: 11 fits converged. Gain-zero preserves globe/rotation preference under
+both processing cases; offset-zero remains incomplete because one still-globe fit
+exhausted its allowance. All four rotating-globe fits retain close track errors.
+No retries are authorized. The [retrospective prediction trial](ilvis0-prediction-trial-20261011/RESULTS.md)
+has completed with five of six fits converged. In its fully completed processing case,
+horizontal prediction RMS is 2.45 m for rotating globe, 142.9 m for still globe and
+166.0 m for flat disc. The second case's flat fit exhausted its allowance, leaving the
+combined comparison unresolved. This recording had already been examined in full;
+the split does not turn it into unseen-data confirmation.
+
+The [saved prediction audit](ilvis0-prediction-audit-20261011/README.md) now shows
+where prediction errors grow and how calibration changes with the fitting window.
+Z gain switches from −2% in whole-stretch fits to +2% in training-only fits under
+both processing cases; gravity correction returns to its limit. The next bounded
+experiment is the [approved, running solver-scaling comparison](ilvis0-unit-scale-trial-20261011/README.md),
+followed by predeclared prediction checks on two other recordings. The
+[solver and replication plan](ilvis0-prediction-audit-20261011/NEXT_PLAN.md) preserves
+those records and criteria. The current allowance is six fits, 200 evaluations each,
+with no retries. The two-recording replication still needs its own finite allowance,
+and calibration robustness remains a separate check.
 
 | Order | Work | What can happen without new observed fits? | Deliverable |
 |---|---|---|---|
@@ -197,9 +232,34 @@ its cause. It will reuse the numerical, adequacy and dependence checks above. It
 not wait for an exact hardware identification, but unknown upstream subtraction must
 not be fitted as though it were independent of an unknown original field strength.
 
+Its [precision stage](ROTATION_FIELD.md#precision-stage-sidereal-versus-solar-rate) will
+also ask whether the freely measured magnitude distinguishes **15.0000°/hour** from
+**15.0411°/hour**. First establish the field's direction and latitude pattern; then use a
+separately selected longer-record inventory, shared calibration only within supported
+installation epochs, and whole-flight held-out checks. Refit nuisance parameters when
+profiling both rates. Gain, clock scale and unknown upstream subtraction can remain
+indistinguishable from a change in magnitude, so longer recordings alone do not settle
+the question. Report unresolved cases explicitly. This tests the period, rather than
+absolute astronomical phase, and requires a separately approved bounded numerical trial.
+
 Publish methods and empirical conclusions at the level actually supported. A methodological
 paper can describe the inverse-navigation framework and verified controls even when many
 real fits remain unfinished. Stronger empirical claims require adequate, robust comparisons
 and genuinely independent replication. Continue preserving original increments, receiver
 observations, selection, failures, source/environment hashes and complete reporting receipts.
 Keep consumer-IMU development secondary; it does not resolve these archival questions.
+
+
+## Secondary branch: stationary consumer crowdsourcing
+
+The passenger-flight proposal is superseded by the [stationary A/B experiment](STATIONARY.md).
+Collection now uses a solid level support, a marked horizontal axis and repeated same-face
+180° reversals. Aircraft identity and flight dashboards are removed from the active app flow.
+Historical aircraft simulations and frozen research remain preserved.
+
+The signed-rate diagnostic is implemented and does not use latitude or an expected amplitude.
+Next priorities are independent slow-turn response tests, sub-count sensitivity,
+temperature/stability and reversal/alignment controls, then calibrated uncertainty.
+Only after sealing per-recording methods should a separate population estimator fit
+the latitude curve, preserving instrument/day/site dependence and all failures.
+The ground experiment neither replaces NASA analysis nor inherits its thresholds.

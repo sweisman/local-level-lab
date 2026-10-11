@@ -124,6 +124,21 @@ def session_report(res: dict) -> str:
     if flags:
         out.append("<p>Flags: " + ", ".join(f"<span class=flag>{html.escape(f)}</span>" for f in flags) + "</p>")
 
+    if res.get('kind')=='stationary':
+        ground=res.get('stationary',{})
+        out.append('<h2>Stationary reversal recording</h2><p>The marked horizontal axis '
+            'was measured in positions A and B, keeping the same face up. This diagnostic '
+            'fits a signed reversal signal and a constant plus linearly changing offset. '
+            'Latitude and the expected Earth rate were not supplied to that fit.</p>')
+        out.append(_table(['Quantity','Value'],[
+            ['Signed reversal rate (degrees/hour)',_f(ground.get('signed_rate_dph'))],
+            ['Settled blocks',str(len(ground.get('blocks',[])))],
+            ['Block residual RMS (degrees/hour)',_f(ground.get('block_residual_rms_dph'))]]))
+        out.append('<p>Positive and negative estimates are retained. Uncertainty and '
+            'instrument response remain uncalibrated; this is not a detection or '
+            'a globe/flat decision. Repeated blocks are not independent instruments.</p>')
+        return page('Stationary reversal recording',''.join(out))
+
     fit = res.get("fit")
     if fit:
         out.append(_shape_report(fit))

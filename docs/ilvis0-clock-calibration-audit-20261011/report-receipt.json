@@ -1,0 +1,25 @@
+{
+  "artifacts": {
+    "README.md": "0ae3ea7ed7b0a864b91ffe13a1d9db79dca57373decc4b0482f3de71a0a27855",
+    "fit-comparisons.csv": "af0e9ded23072188dc7c03558c109c414aef644ffe056e36243532e1f918bc2f",
+    "parameter-changes.csv": "cb85efbd8a71c776c9e20e0b3faba4042f50eb9bfc50148160b72e2bfa28dd2f",
+    "summary.json": "06b2c80afec4f3c406f8a44592b4fc10cfcd092ba8fe7fe29c195a8f4e067533",
+    "z-corrections.csv": "a65ed506bf5d49dbe97534a5e6eec9a0f28c67f6a769783bfa3cae7e83ff950f"
+  },
+  "inputs": {
+    "/site/repo/local-level-lab/docs/ilvis0-clock-trial-20261010/completion.json": "ec8f5fa6576783cdecff5990fcd0c55fc2df92bfe27e6ed80b7a51ec44cf8ead",
+    "/site/repo/local-level-lab/docs/ilvis0-clock-trial-20261010/evidence-receipt.json": "3bdca616bc1e2e74dba00d436ce591a802859cddc1437bde80adb44986f4a2ac",
+    "/site/repo/local-level-lab/docs/ilvis0-clock-trial-20261010/manifest.json": "655e6252cf82ced078da0e7ff74f77af04d542371e056e95343555893f2374fc",
+    "/site/repo/local-level-lab/docs/ilvis0-clock-trial-20261010/summary.json": "85cbaea5f5b77079bb0f29dfa15e2b207ecec244b9e6e8be00761d8aa7805660",
+    "/site/repo/local-level-lab/docs/ilvis0-highspeed-segments-20261008/evidence-receipt.json": "b082549083356dbdc48fe4421daf6f9cb36086c6f4f851475bef75e130b8f187",
+    "/site/repo/local-level-lab/docs/ilvis0-highspeed-segments-20261008/summary.json.gz": "41654f27764dc8af26e83c42ba291c76ebc1eb77ed579523baab6d80190642fa"
+  },
+  "native_predictions": 0,
+  "optimizer_starts": 0,
+  "sources": {
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_clock_calibration_audit.py": "15b7bc0b8e3678efc9a82f78d7de7e9255c2b4664c417f4e17b97cb7f63e4a48",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_saved_audit.py": "de3160a1533abd7bb0c181bb332e745d84f2ab24c12e49d0116d118f479350fb",
+    "/site/repo/local-level-lab/docs/ilvis0-clock-calibration-audit-20261011/build_report.py": "d65ecb65a71eb9ba3fc9f8d1054dadc3d62ab6f75cc6558f8ddde4dcc950b1f3"
+  },
+  "version": "ilvis0-clock-calibration-audit-v1"
+}

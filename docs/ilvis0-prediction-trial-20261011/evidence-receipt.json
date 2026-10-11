@@ -1,0 +1,18 @@
+{
+  "artifacts": {
+    "570b37d23af5e245dd461051-bias1_profiled_removal-flat_still.csv.gz": "bed15f4e33a227a680aceeeadfb6d41d67ae8be9ac3706e60372e16db1117461",
+    "570b37d23af5e245dd461051-bias1_profiled_removal-sphere_rotating.csv.gz": "16bb62b6d109f5a0a864e61f02896d28c4a4f5484908a9dd7e15b69e9b61fe59",
+    "570b37d23af5e245dd461051-bias1_profiled_removal-sphere_still.csv.gz": "3a4b628ff756a34385fa13a6ce812eb2eb5877445c094a07d6ee36eb0dd94c34",
+    "570b37d23af5e245dd461051-bias1_unsubtracted-flat_still.csv.gz": "c53411d00c99783a7691f2389603c141e6eb24846c161e10534d6206c661851f",
+    "570b37d23af5e245dd461051-bias1_unsubtracted-sphere_rotating.csv.gz": "9cc3d23be376cde11c52242d794848c63af808a08e9eb70441cdc6a86f0d7b6c",
+    "570b37d23af5e245dd461051-bias1_unsubtracted-sphere_still.csv.gz": "6d0b744baf73dffa1ea1fbb7d9964eb6bdbdaf64b1c53e57edaf4386d49733ab",
+    "completion.json": "0211b74045b1b24adc3a1290166cf14fccf0a6fa26cbefd4c5eede80c39918c7",
+    "manifest.json": "00a83a281a84a6fb244c90f91ed66e920d8a90267705d5b32616a230b64ff0bb",
+    "selection.json.gz": "610ec3b007bf0c11b377282ebc04e8de673427e106a2ed4f8cfc53fa8220303e",
+    "split.json": "6c6e99ac5fbd31da56aa4d610b70677065595429005156af1b6d0ebc9e21674e",
+    "starts.jsonl": "91b64740c64b8833a2881bc38112be8cfbc19765476121788bb19ebd9469d54f",
+    "summary.json": "74fccc5f928a1b87f342312334e66957de4d39bcfc683102ded30e1d24a66724"
+  },
+  "scientific_decision": "abstain",
+  "version": "ilvis0-training-prediction-trial-v1"
+}

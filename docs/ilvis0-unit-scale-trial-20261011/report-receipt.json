@@ -1,0 +1,26 @@
+{
+  "artifacts": {
+    "RESULTS.md": "a20ef57f6d807630d3e918b61a502e81e52a5bcfd67107e60379a8c59c1e0fef",
+    "fit-comparisons.csv": "94db294bb57f241137117c8c727a2fdec0cde6ee34200de93f9848187f4d349d",
+    "matched-baseline.csv": "61c7abb25ad7234cf00aaaf88939168baa680283cd31637d857a4c1149614f73"
+  },
+  "comparison_qualification_passed": false,
+  "inputs": {
+    "/site/repo/local-level-lab/docs/ilvis0-prediction-trial-20261011/completion.json": "0211b74045b1b24adc3a1290166cf14fccf0a6fa26cbefd4c5eede80c39918c7",
+    "/site/repo/local-level-lab/docs/ilvis0-prediction-trial-20261011/evidence-receipt.json": "7538b259b91c2916342e1e00419c461cbeff5dcd7f7e4b4760954cfb3a0d9d82",
+    "/site/repo/local-level-lab/docs/ilvis0-prediction-trial-20261011/manifest.json": "00a83a281a84a6fb244c90f91ed66e920d8a90267705d5b32616a230b64ff0bb",
+    "/site/repo/local-level-lab/docs/ilvis0-prediction-trial-20261011/summary.json": "74fccc5f928a1b87f342312334e66957de4d39bcfc683102ded30e1d24a66724",
+    "/site/repo/local-level-lab/docs/ilvis0-unit-scale-trial-20261011/completion.json": "61fbbcd82f5c65a522d0bb02969efda9a16834d4e4c7870d0edd77a1e2294307",
+    "/site/repo/local-level-lab/docs/ilvis0-unit-scale-trial-20261011/evidence-receipt.json": "1d5126f151d5459874c5859c2ed7fd7f44e2c74fb85bf23aaf4afd42c6e6655c",
+    "/site/repo/local-level-lab/docs/ilvis0-unit-scale-trial-20261011/manifest.json": "8c72fd32b95f619c5fd118117ea63870451245e6e8574aa6a89fd4378e4d5375",
+    "/site/repo/local-level-lab/docs/ilvis0-unit-scale-trial-20261011/summary.json": "4c39515caea711c87e4b252c39f49c5f044e99b4bebbc7287d3ac91a2ccc4d15"
+  },
+  "native_predictions": 0,
+  "optimizer_starts": 0,
+  "sources": {
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_saved_audit.py": "de3160a1533abd7bb0c181bb332e745d84f2ab24c12e49d0116d118f479350fb",
+    "/site/repo/local-level-lab/docs/ilvis0-prediction-trial-20261011/build_report.py": "6f86dc14d964dd8d393d9041ad9ef04408ad404318cb1fb5e1dc00b83d3096ff",
+    "/site/repo/local-level-lab/docs/ilvis0-unit-scale-trial-20261011/build_report.py": "32ee93440828793b05a515a456e6b14985ef87d4f33d4ffebfa9b54577a475a6"
+  },
+  "version": "ilvis0-unit-scale-prediction-trial-v2"
+}

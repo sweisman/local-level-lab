@@ -1,46 +1,47 @@
 # Privacy
 
-Local Level Lab is open source, so every claim below can be checked in the code.
+The app records an external **IMU (inertial measurement unit)** over Bluetooth.
+New participant recordings are stationary ground experiments, not flights.
 
-## What the app stores
+## Stored in a new stationary recording
 
-- **The IMU's data stream**, byte for byte as the IMU sends it over Bluetooth: gyroscope, accelerometer, magnetometer, chip temperature, battery voltage and the IMU's own clock.
-- **GPS fixes, only during the placement check and the flight recording.** Calibration, drift runs and bench recordings record no GPS. Calibrations can save your latitude rounded to 0.5° (about 55 km); you can turn that off in Settings.
-- **Session details:** the operating airline you select, its directory ID and IATA/ICAO codes, directory revision, operating flight number, scheduled departure date at the origin and airport codes. Aircraft type, seat position (window/middle/aisle; default unspecified) and notes are optional; mount and orientation note are also stored. These details are saved when you create the session, before recording starts. Historical flight verification remains pending; opening a history link does not verify the flight.
-- **Recording times and events:** monotonic timestamps, phone-clock anchors at session creation and flight start/resume, GNSS availability at flight start/resume, instrument configuration, link changes and mount-turn confirmations. Clock anchors are phone wall-clock readings, not certified UTC measurements. Missing GPS does not prevent IMU recording after acknowledgment.
-- **Phone manufacturer, model and Android version**, because the phone's GPS receiver is part of the measurement. Also the IMU variant and its settings.
-- **A random install ID**, made on first launch. It links your own sessions together. It isn't derived from any account or hardware ID.
-- **A random unit ID for each IMU you pair.** It links sessions made with the same IMU, so its quirks can be modelled across flights. The IMU's Bluetooth address stays on your phone and is never written to a session.
+- Original Bluetooth bytes, including the available gyro, acceleration, magnetic,
+  temperature, voltage and instrument-clock messages.
+- Recording times, still-block positions, setting readbacks, link changes, interruptions
+  and quality flags. Phone wall-clock time is not certified UTC.
+- The location, approximate altitude, axis, alignment method/uncertainty, device label,
+  support details and notes you enter. Coordinates can be rounded or omitted.
+- Phone model/software information and IMU model/settings.
+- Random install and unit IDs linking related recordings. The Bluetooth address remains
+  on the phone; the IDs are not derived from your identity.
 
-## What it never records
+The stationary flow does not request continuous GPS or airline, flight, airport,
+aircraft or seat information. Location is entered manually. Instrument tests may retain
+a coarse cached calibration latitude if that legacy setting and location permission
+are enabled. Old flight archives remain readable and retain their original exact GPS
+and flight metadata; they are not rewritten into ground recordings.
 
-No name, email, account, contacts, advertising ID, IP-based tracking, analytics, crash reporting, or location outside the phases above.
+## Permissions and network
 
-## Bluetooth
+Bluetooth is used to connect to the selected IMU. Notifications show progress and
+announce completed blocks. Background recording uses a foreground service and wake lock.
 
-The app uses Bluetooth only to talk to the IMU you choose in Settings. Scanning is only used to find that IMU, never to infer location.
+The app includes no analytics or advertising SDK. It does not collect contacts,
+account details or a hardware-derived participant ID. Uploads occur only when you
+request them, to the HTTPS server shown in Settings. New stationary collection does
+not open a flight-history website.
 
-## Network
+## Sharing and public upload
 
-The only network request the app ever makes is the upload you start, to the server address shown in Settings. The address must be `https://`; the app refuses unencrypted servers. No third-party SDKs are included. See `android/app/build.gradle.kts` for the full dependency list.
+Sharing exports the original archive to the destination you choose. Upload requires
+explicit consent to publish it under CC0. Entered location, dates, serial labels, notes
+and linked identifiers can identify people. **The data are not anonymous.** Avoid
+precise home coordinates and private notes if you do not want them published.
 
-Airline selection uses a bundled offline directory and does not contact a provider. **Open flight
-history** explicitly launches your external browser with a FlightAware URL containing the selected
-carrier/flight identifier. That website receives the browser request under its own privacy policy
-and browser settings, including cookies and the network address visible to it. The link does not
-send your IMU stream, phone GPS, session ID or complete manifest. This is separate from upload
-consent. There is no automatic flight-history lookup or external-track download in the app.
+The uploaded original remains unchanged. Contact the server operator with the session
+ID to request removal; copies already downloaded cannot be recalled.
+[Data licensing](DATA_LICENSE.md) explains third-party and historical data terms.
 
-## After upload
-
-Uploaded sessions are published unmodified, with the install ID and unit ID, as an open dataset under **CC0** (public domain). See [DATA_LICENSE.md](DATA_LICENSE.md). Don't put anything in the notes field that you wouldn't want public.
-
-To have a session removed from the server, contact the server's operator with the session ID shown in the app. Legacy archives may still contain exact seat numbers. Precise paths, flight metadata and linked identifiers can identify people; these data are not anonymous. The upload dialog requires explicit public-release consent.
-
-Copies already downloaded by others can't be recalled.
-
-An external track supplied for GPS checking or recovery is a separate artifact with its own
-source and terms. It does not replace the original recording or automatically qualify a flight
-for scientific use. See [the protocol](docs/PROTOCOL.md).
-
-The server stores hashed client IP keys for admission and rate limiting for approximately one hour (purged on subsequent uploads). Hashing is not anonymization. Curator operator identities stay in the private registry; public approvals identify instruments with opaque IDs.
+The server retains hashed client-IP keys for rate limiting for approximately an hour,
+purged on later uploads. Hashing is not anonymization. Operator identities in the
+curation registry remain private; public records use opaque instrument identifiers.

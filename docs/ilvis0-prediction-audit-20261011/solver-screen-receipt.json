@@ -1,0 +1,18 @@
+{
+  "environment": {
+    "numpy": "2.5.3",
+    "python": "3.14.7",
+    "scipy": "1.18.1"
+  },
+  "native_predictions": 0,
+  "observed_fit_starts": 0,
+  "result_sha256": "73d61dbd3ba6a1c242ecb08b1e75cbeb5b404385bddbad69320d8d3990ac3447",
+  "software_starts": 72,
+  "sources": {
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_solver_controls.py": "844d8c639e37295e73ca7bc31fefb58207e669470d3f5c345bc9760b26109ed4",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_solver_refinement.py": "442dd52979f4db0973a29c7553ab5b0f02ba90e847dbea2f7db99735ade1db0f",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_solver_screen.py": "d0fa448567b4736dce75fe53113233890beb0dd22cc925a62a6a20c32ef45038",
+    "/site/repo/local-level-lab/docs/ilvis0-prediction-audit-20261011/screen_solvers.py": "ffa59f63400d7efdcb56409f5a0efc863358d14129a75243fb2baff81004f127"
+  },
+  "version": "ilvis0-analytic-solver-screen-v1"
+}

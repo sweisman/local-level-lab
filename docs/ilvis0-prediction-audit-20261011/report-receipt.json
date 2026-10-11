@@ -1,0 +1,33 @@
+{
+  "artifacts": {
+    "README.md": "f52a0ffa564778b8c1c1d19e0d752d080e15dff2077f73ff2b16b8db2ff884e4",
+    "error-growth.csv": "5d93204107e60a63c291df775ae74d3184209f8223d94903eb0fe9b4fdbaed07",
+    "fit-diagnostics.csv": "e700fe3dbd0633bcf8bb37e3e753a9c4aad5026927834bb8831a100b40d5da8a",
+    "parameter-changes.csv": "474cb8461302432e67f080b76de4fa4b455f38a6520ff52247555f4b2c23be4d",
+    "summary.json": "fca158e959749b5b0794b8224a32fcb96ef0f6726e270c8b1c91a1cce3e06301"
+  },
+  "inputs": {
+    "/site/repo/local-level-lab/docs/ilvis0-clock-trial-20261010/completion.json": "ec8f5fa6576783cdecff5990fcd0c55fc2df92bfe27e6ed80b7a51ec44cf8ead",
+    "/site/repo/local-level-lab/docs/ilvis0-clock-trial-20261010/evidence-receipt.json": "3bdca616bc1e2e74dba00d436ce591a802859cddc1437bde80adb44986f4a2ac",
+    "/site/repo/local-level-lab/docs/ilvis0-clock-trial-20261010/manifest.json": "655e6252cf82ced078da0e7ff74f77af04d542371e056e95343555893f2374fc",
+    "/site/repo/local-level-lab/docs/ilvis0-clock-trial-20261010/summary.json": "85cbaea5f5b77079bb0f29dfa15e2b207ecec244b9e6e8be00761d8aa7805660",
+    "/site/repo/local-level-lab/docs/ilvis0-prediction-trial-20261011/570b37d23af5e245dd461051-bias1_profiled_removal-flat_still.csv.gz": "bed15f4e33a227a680aceeeadfb6d41d67ae8be9ac3706e60372e16db1117461",
+    "/site/repo/local-level-lab/docs/ilvis0-prediction-trial-20261011/570b37d23af5e245dd461051-bias1_profiled_removal-sphere_rotating.csv.gz": "16bb62b6d109f5a0a864e61f02896d28c4a4f5484908a9dd7e15b69e9b61fe59",
+    "/site/repo/local-level-lab/docs/ilvis0-prediction-trial-20261011/570b37d23af5e245dd461051-bias1_profiled_removal-sphere_still.csv.gz": "3a4b628ff756a34385fa13a6ce812eb2eb5877445c094a07d6ee36eb0dd94c34",
+    "/site/repo/local-level-lab/docs/ilvis0-prediction-trial-20261011/570b37d23af5e245dd461051-bias1_unsubtracted-flat_still.csv.gz": "c53411d00c99783a7691f2389603c141e6eb24846c161e10534d6206c661851f",
+    "/site/repo/local-level-lab/docs/ilvis0-prediction-trial-20261011/570b37d23af5e245dd461051-bias1_unsubtracted-sphere_rotating.csv.gz": "9cc3d23be376cde11c52242d794848c63af808a08e9eb70441cdc6a86f0d7b6c",
+    "/site/repo/local-level-lab/docs/ilvis0-prediction-trial-20261011/570b37d23af5e245dd461051-bias1_unsubtracted-sphere_still.csv.gz": "6d0b744baf73dffa1ea1fbb7d9964eb6bdbdaf64b1c53e57edaf4386d49733ab",
+    "/site/repo/local-level-lab/docs/ilvis0-prediction-trial-20261011/completion.json": "0211b74045b1b24adc3a1290166cf14fccf0a6fa26cbefd4c5eede80c39918c7",
+    "/site/repo/local-level-lab/docs/ilvis0-prediction-trial-20261011/evidence-receipt.json": "7538b259b91c2916342e1e00419c461cbeff5dcd7f7e4b4760954cfb3a0d9d82",
+    "/site/repo/local-level-lab/docs/ilvis0-prediction-trial-20261011/manifest.json": "00a83a281a84a6fb244c90f91ed66e920d8a90267705d5b32616a230b64ff0bb",
+    "/site/repo/local-level-lab/docs/ilvis0-prediction-trial-20261011/summary.json": "74fccc5f928a1b87f342312334e66957de4d39bcfc683102ded30e1d24a66724"
+  },
+  "native_predictions": 0,
+  "optimizer_starts": 0,
+  "sources": {
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_prediction_audit.py": "517cf1b5fe9fe5a79dd51d94597f4e67ffabbf0496334b429254f498172ad2cc",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_saved_audit.py": "de3160a1533abd7bb0c181bb332e745d84f2ab24c12e49d0116d118f479350fb",
+    "/site/repo/local-level-lab/docs/ilvis0-prediction-audit-20261011/build_report.py": "9752122a08d9b13c714f2ed70df1e612606c36e0a176758e52b58ed8e9d0944a"
+  },
+  "version": "ilvis0-saved-prediction-audit-v1"
+}

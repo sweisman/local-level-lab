@@ -106,10 +106,97 @@ a lower training residual alone does not establish a better description.
    Only then compare the measured pattern with proposed physical explanations.
 
 The first implementation should establish the common vector and latitude pattern. Add
-altitude, speed or date dependence only where coverage separates those effects. Sidereal
-versus solar rate is a later precision question: their difference is about **0.041°/hour**.
-Shared calibration and timing uncertainty must be small enough to resolve that difference;
-more samples alone cannot remove a common offset.
+altitude, speed or date dependence only where coverage separates those effects. The next
+precision stage will test a sidereal-compatible rate against a mean-solar-day rate, as
+specified below. These are separate milestones: finding a persistent field does not by
+itself resolve the much smaller difference between those rates.
+
+## Precision stage: sidereal versus solar rate
+
+**Fit the rate first, then compare it with both targets.** A mean solar day is 24 hours;
+a sidereal day is about 23 hours, 56 minutes and 4 seconds in ordinary clock time.
+[USNO explains the distinction](https://aa.usno.navy.mil/data/siderealtime).
+The comparison targets are approximately:
+
+| Reference | Angular rate |
+|---|---:|
+| One turn per 86,400 seconds: mean solar day | 15.0000°/hour |
+| Nominal terrestrial rotation: sidereal-compatible | 15.0411°/hour |
+| Difference | 0.0411°/hour, or about 0.273% |
+
+Freeze the exact constants and time conventions when implementing the trial. The
+[IAU nominal mean angular velocity](https://iau-a3.gitlab.io/NSFA/IAU2009_consts.html)
+is 7.292115 × 10⁻⁵ radians/second. Sidereal-time conventions also involve precession,
+nutation and the distinction between Earth-rotation time and uniform time; use the
+[USNO definitions](https://aa.usno.navy.mil/faq/GAST) rather than treating a rounded
+sidereal-day duration as an exact physical constant.
+
+The four-minute minimum used for the existing shape study accumulates only about
+**9.9 arcseconds** of separation between these targets. One continuous hour accumulates
+about **148 arcseconds**. Raw increment resolution is only one part of the error budget;
+fine quantization does not establish this level of measurement accuracy.
+
+### Selection and estimator
+
+1. Inventory longer continuous records using receiver coverage, timing, motion and
+   configuration stability, before looking at fitted rotation. Save a new selection version;
+   leave the existing 53-stretch selection and findings unchanged. Include heading and
+   latitude diversity as observable design properties. Model maneuvers explicitly where
+   the observation equations support them. Join files only after verifying sample, timing
+   and installation continuity.
+2. First test the freely fitted field's direction and latitude pattern. Where the geographic
+   axis description is supported, estimate one common **unknown magnitude Ω** jointly
+   with transport, orientation and instrument errors. Do not fix Ω to either target during
+   estimation, or insert the standard rate into initialization or correction. Keep the
+   unrestricted vector fit as an adequacy check on this reduced description.
+3. Profile Ω with nuisance parameters reoptimized at each value. Compare the two fixed-rate
+   targets under exactly the same error assumptions. Qualify this estimator with deterministic
+   known-rate controls, zero field and calibration/clock degeneracies before observed fitting.
+   Establish uncertainty coverage and a decision rule separately; a lower cost alone is a
+   numerical preference.
+4. Estimate supported installation-level calibration jointly across records, permitting
+   justified changes between epochs. Hold out whole flights or installations for prediction
+   and replication. Overlapping instrument streams, aliases and sections of one recording
+   do not increase the count of independent flights.
+
+### Required precision checks
+
+The existing ±1°/hour offset sensitivity case is about 24 times the target separation.
+Heading changes can help separate a sensor-fixed offset from a geographic vector, but
+they do not automatically identify gyro gain. An unconstrained common gain can trade
+directly against Ω. Integration-clock scale can create the same problem. Report joint
+profiles, estimable combinations and sensitivity to justified gain, offset, mounting and
+clock bounds; do not tighten bounds merely until the desired rate becomes distinguishable.
+
+Unknown upstream subtraction creates a separate ambiguity between the original rate
+and what was removed. Estimate the retained field for those streams. An original-rate
+comparison requires independently constrained subtraction, or a clearly stated retained-rate
+assumption whose influence is reported. Exact hardware identification can remain parallel
+work; quantitative calibration and processing uncertainty still belong in this precision test.
+
+Longer averaging reduces random noise, not shared gain errors or changing offsets. For
+illustration only, an angular random walk of 0.02°/√hour would give a one-hour angle error
+of 0.02°, versus a target separation of 0.0411°. This ideal white-noise calculation is
+**not a measured raw-sensor uncertainty** and excludes aircraft reconstruction errors,
+correlation and drift. Measure those effects from controls and held-out residuals rather
+than assigning the whole archive this illustrative specification.
+
+Report the free Ω estimate and uncertainty, both target profiles, boundary behavior,
+absolute adequacy and held-out results. If both targets remain plausible, report
+**solar versus sidereal unresolved**. If neither fits adequately, report that discrepancy.
+An interval excluding one target is useful only after its uncertainty and systematic-error
+sensitivity are validated. Freeze a bounded trial and obtain its compute allowance before
+launch; this roadmap adds no new numerical starts.
+
+### Rate is different from astronomical phase
+
+This stage asks whether the measured angular rate corresponds to a sidereal-compatible
+period. A constant geographic rotation vector does not reveal absolute sidereal phase
+or directly track stars. Testing astronomical phase would require an independently observed
+direction/time reference and a separate design. Also inspect residuals against local solar
+time and temperature where available, since daily instrument/environment cycles can imitate
+time dependence. A matching rate and vector pattern constrain explanations; they do not
+identify the field's ultimate cause by themselves.
 
 ## Interpretation
 
@@ -122,3 +209,14 @@ This experiment can distinguish explanations that predict different measurable f
 Two explanations predicting exactly the same gyro, acceleration and GPS observations
 cannot be distinguished by those observations alone. Measuring the field and identifying
 its ultimate cause are therefore separate tasks.
+
+
+## Independent stationary companion
+
+The [crowdsourced ground experiment](STATIONARY.md) estimates signed horizontal reversal
+rates before checking latitude. It uses stationary consumer IMUs and a distinct protocol,
+not archival aircraft mounts or transport fitting. Its immediate target is geographic
+coherence of the horizontal field, with amplitude fitted freely. Consumer sensitivity
+and calibrated uncertainty remain to be demonstrated. Do not combine its estimates
+with airborne fits under a shared calibration policy or claim its horizontal component
+alone decides Earth's shape or the field's ultimate cause.

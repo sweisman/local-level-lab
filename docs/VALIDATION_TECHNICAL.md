@@ -1,3 +1,8 @@
+> Participant collection now uses the [stationary ground protocol](PROTOCOL.md).
+> The aircraft/consumer sections below preserve the earlier method and its evidence;
+> they are not the current stationary decision policy. NASA archival analysis remains
+> primary. See [the stationary method and validation needs](STATIONARY.md).
+
 # Software 0.6.0 validation and publication boundary
 
 The correctness release preserves the physical model, provenance architecture, raw schemas 2/3

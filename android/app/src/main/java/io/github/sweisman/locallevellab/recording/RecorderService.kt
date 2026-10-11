@@ -508,6 +508,9 @@ class RecorderService : Service(), ImuLink.Listener {
         nextTurnAtMs = 0L
         cancelAlert(ALERT_TURN); cancelAlert(ALERT_LINK)
         val done = ph
+        if (ph.startsWith("ground.") && targetStillS > 0 && stillS >= targetStillS) {
+            alert(ALERT_TURN, "Still block complete", "Open the app for the next position. Keep the same face up.", false)
+        }
         session = null; phase = null
         wake?.let { if (it.isHeld) it.release() }
         wake = null

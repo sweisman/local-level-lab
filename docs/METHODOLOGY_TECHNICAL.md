@@ -1,3 +1,8 @@
+> Participant collection now uses the [stationary ground protocol](PROTOCOL.md).
+> The aircraft/consumer sections below preserve the earlier method and its evidence;
+> they are not the current stationary decision policy. NASA archival analysis remains
+> primary. See [the stationary method and validation needs](STATIONARY.md).
+
 # Methodology: decisions and how to check them
 
 This page is for anyone who wants to validate the method rather than take it on trust. Each section states a decision, why it was made, what was rejected, the simulation evidence, and the automated test that guards it.

@@ -1,3 +1,8 @@
+> Participant collection now uses the [stationary ground protocol](PROTOCOL.md).
+> The aircraft/consumer sections below preserve the earlier method and its evidence;
+> they are not the current stationary decision policy. NASA archival analysis remains
+> primary. See [the stationary method and validation needs](STATIONARY.md).
+
 # Bench validation
 
 Before a flight can enter the provisional primary corpus, a curator must approve the complete bench evidence using the [registry workflow](CURATION.md). A quality tier calculated from a flight is not a bench certificate; approval must precede the flight.

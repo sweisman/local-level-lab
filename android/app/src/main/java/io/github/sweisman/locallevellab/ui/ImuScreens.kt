@@ -83,8 +83,6 @@ fun ImuSettings(nav: androidx.navigation.NavController) {
     var range by remember { mutableIntStateOf(p.imuGyroRangeDps) }
     var accRange by remember { mutableIntStateOf(p.imuAccelRangeG) }
     var permOk by remember { mutableStateOf(hasBluetoothPermissions(ctx)) }
-    var turnMin by remember { mutableIntStateOf(p.indexAlertMinutes) }
-    var motions by remember { mutableStateOf(p.turnMotions) }
     val launcher = rememberLauncherForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permOk = hasBluetoothPermissions(ctx) }
     val adapter = remember { ctx.getSystemService(BluetoothManager::class.java)?.adapter }
 
@@ -151,23 +149,16 @@ fun ImuSettings(nav: androidx.navigation.NavController) {
     }
     Para("Finer counts measure slow rotation better, but a quick hand turn can then exceed the range and that turn can't be used. Check the setting with a bench capture: the analysis decodes with the range the IMU reports back, and flags any difference.", muted = true)
     Text("Accelerometer range", style = MaterialTheme.typography.titleSmall, modifier = Modifier.padding(top = 8.dp))
-    Choice(listOf("16" to "±16 g (default)", "8" to "±8 g", "4" to "±4 g (finer plumb line; enough for a cabin)", "2" to "±2 g"), "$accRange") {
+    Choice(listOf("16" to "±16 g (default)", "8" to "±8 g", "4" to "±4 g (finer level check)", "2" to "±2 g"), "$accRange") {
         accRange = it.toInt(); p.imuAccelRangeG = accRange
     }
     OutlinedButton({ RecorderService.configure(ctx) }, Modifier.fillMaxWidth(), enabled = chosen.isNotEmpty()) {
         Text("Write and verify IMU settings")
     }
-    Para("The app turns off the IMU's automatic gyro zeroing, which would otherwise erase the Earth's rotation, and turns off its own attitude outputs. It checks the settings again at every recording.", muted = true)
+    Para("The app turns off the IMU's automatic gyro zeroing, which can erase a slow steady signal, and turns off its own attitude outputs. It checks the settings again at every recording.", muted = true)
 
     HorizontalDivider(Modifier.padding(vertical = 12.dp))
-    Text("During long recordings", style = MaterialTheme.typography.titleMedium)
-    Stepper("Remind me to turn the IMU every (min, 0 = off)", turnMin, 0..240, step = 15) { turnMin = it; p.indexAlertMinutes = it }
-    Text("Turns my mount allows", style = MaterialTheme.typography.titleSmall, modifier = Modifier.padding(top = 4.dp))
-    Choice(listOf("plane180" to "Turn it to face the opposite way, same side up (best)",
-        "both" to "Either kind", "flip" to "Only turning it upside down (much less useful)"), motions) {
-        motions = it; p.turnMotions = it
-    }
-    Para("Turning the IMU to face the opposite way, keeping the same side up, moves the Earth's and the aircraft's rotation onto different sensor axes while the sensor's own bias stays put. On a straight route this is what makes the flight count. Turning it upside down helps much less, because gravity then sits on a different axis and the gyro's gravity-dependent error changes too. Each turn you confirm is logged and measured by the gyro.", muted = true)
+    Para("Stationary recordings use two marked, opposite positions with the same face up. The app prompts between timed still blocks. A firm level holder improves repeatability.", muted = true)
     val pm = ctx.getSystemService(PowerManager::class.java)
     if (!pm.isIgnoringBatteryOptimizations(ctx.packageName)) {
         OutlinedButton({
@@ -180,7 +171,7 @@ fun ImuSettings(nav: androidx.navigation.NavController) {
     TextButton({ nav.navigate("new?kind=bench") }) { Text("New bench session (stationary test of the IMU)") }
     var autoOn by remember { mutableStateOf(p.benchAutoZeroOn) }
     SwitchRow("Next bench session: auto-zero ON (polarity test)", autoOn) { autoOn = it; p.benchAutoZeroOn = it }
-    Para("Only for a bench session made while this is on. Compare it with one made with it off: with auto-zero on, the Earth's rotation should vanish. Flights always force it off.", muted = true)
+    Para("Only for a bench session made while this is on. Compare it with one made with it off: test with a known slow turn whether auto-zero removes steady motion. Stationary participant recordings always force it off.", muted = true)
     OutlinedButton({ RecorderService.dropLink(ctx) }, Modifier.fillMaxWidth()) { Text("Disconnect test: drop the link, reconnect in 5 s") }
 }
 
@@ -196,29 +187,6 @@ fun ImuStatusPanel(live: LiveState) {
             Stat("IMU temperature", live.imuTempC?.let { "%.1f °C".format(it) } ?: "–")
             Stat("Phone battery", live.phoneBatteryPct?.let { "$it %" + if (live.phoneCharging) " · charging" else "" } ?: "–")
             if (live.imuConfigOk == false) Text("⚠ IMU settings not verified", color = MaterialTheme.colorScheme.error)
-        }
-    }
-}
-
-@Composable
-fun TurnReminderCard(live: LiveState, ctx: Context) {
-    val due = live.nextTurnInS ?: return
-    val motions = remember { Prefs(ctx).turnMotions }
-    Card(Modifier.fillMaxWidth().padding(vertical = 4.dp)) {
-        Column(Modifier.padding(12.dp)) {
-            if (live.turnDue) {
-                Text("Time to turn the IMU", fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary, fontSize = 18.sp)
-                Para(when (motions) {
-                    "plane180" -> "Slowly, over about 5 seconds, turn it to face the opposite way, keeping the same side up. Fix it firmly again, then tap the button."
-                    "flip" -> "Slowly, over about 5 seconds, turn it upside down in its mount. Fix it firmly again, then tap the button."
-                    else -> "Slowly, over about 5 seconds, turn it to face the opposite way with the same side up (best), or turn it upside down. Fix it firmly again, then tap what you did."
-                })
-            } else Stat("Next turn reminder", fmtTime(maxOf(0.0, due)))
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth()) {
-                if (motions != "flip") OutlinedButton({ RecorderService.turnDone(ctx, "plane180") }, Modifier.weight(1f)) { Text("Turned 180°") }
-                if (motions != "plane180") OutlinedButton({ RecorderService.turnDone(ctx, "flip") }, Modifier.weight(1f)) { Text("Flipped") }
-            }
-            if (live.turnDue) TextButton({ RecorderService.turnDone(ctx, "skip") }) { Text("Skip this one") }
         }
     }
 }

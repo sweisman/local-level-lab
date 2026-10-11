@@ -7,7 +7,7 @@ favor a globe, show whether it rotates?**
 
 Local Level Lab analyzes NASA airborne survey recordings to investigate that question.
 The data come from professional inertial equipment and GPS receivers aboard research aircraft.
-A proposed crowdsourced experiment using smaller, less expensive instruments is secondary work.
+A simpler, stationary crowdsourced experiment using smaller, less expensive IMUs is secondary work.
 The code, selection criteria and analysis records are open for review.
 
 An **IMU (inertial measurement unit)** measures turning and acceleration. Its gyroscopes
@@ -86,6 +86,12 @@ links to every eligible interval and every file's screening outcome.
 See the [methodology](docs/METHODOLOGY.md) for the reasoning and the
 [archive guide](docs/ILVIS0.md) for instruments, decoding and remaining uncertainties.
 
+A planned [rotation-field follow-up](docs/ROTATION_FIELD.md) will measure the background
+rotation freely before interpreting its cause. With longer records and sufficient precision,
+it will also test whether the measured rate distinguishes a sidereal day from a 24-hour
+solar day: about **15.0411 versus 15.0000 degrees/hour**. That small difference needs
+separate calibration and timing checks; the current short-stretch results do not resolve it.
+
 ## Current status
 
 **The completed comparisons favor a rotating globe. None has a completed preference
@@ -132,6 +138,23 @@ smaller, but show temporal correlation. Changing the integration clock at the sa
 parameters raises vertical error from about 0.6–0.7 m to about 9.2–9.4 m. The report
 plots those errors and explains why timing needs a matched test next.
 
+The [software qualification checks](docs/ilvis0-solver-qualification-20261010/README.md)
+passed all 34 predefined starts, including short analytic IMU/GPS controls. These check
+known numerical answers; they add no real-flight evidence. A small comparison that
+refits the completed control under packet-header timing has finished: all six fits
+converged and preserved the globe and rotation preference. Calibration readjustment
+restored its rotating-globe vertical error to about 0.70 m. Z-axis calibration limits
+still need investigation.
+
+The [clock/calibration audit](docs/ilvis0-clock-calibration-audit-20261011/README.md)
+shows which estimates changed: gravity correction moved away from its limit, while
+Z-axis gyro gain and offset stayed at theirs. A
+[12-fit sensitivity comparison](docs/ilvis0-calibration-trial-20261011/README.md)
+has finished with 11 fits converged. Fixing Z gain to zero preserved the globe and
+rotation preference under both processing cases. Fixing Z offset to zero left one
+still-globe fit unfinished; that comparison remains unresolved. Rotating-globe
+track errors stayed close to the original values in both tests.
+
 The remaining checks concern numerical completion, fits reaching allowed calibration
 limits, and the exact timing and corrections used in the logs. Published hardware
 specifications provide useful performance context; these checks determine how confidently
@@ -145,21 +168,37 @@ continues in parallel at lower priority; modeling does not wait for it. A separa
 [rotation-field study](docs/ROTATION_FIELD.md) is planned to estimate the background
 vector before interpreting its cause.
 
-## Secondary work: a crowdsourced experiment
+## Secondary work: a stationary crowdsourced experiment
 
-An Android app records an external WitMotion WT901-family IMU over Bluetooth, phone GPS
-and flight details. The proposed protocol uses still measurements before and after flying,
-secure mounting, and deliberate IMU reversals during suitable cruise periods. Reversals
-help separate external rotation from instrument offsets.
+**Can people recover the same horizontal rotation field with independently owned IMUs
+at different latitudes?** This experiment keeps the IMU on a solid, level surface.
 
-The recording software and analysis tools are implemented. Real-device bench tests and
-a validated passenger-flight procedure are still needed. Simulations have exposed difficulties
-with wind, aircraft motion and changing instrument errors. NASA results cannot automatically
-establish what consumer IMUs can measure.
+Point a marked horizontal sensor axis approximately toward true north, record without
+touching it, then turn it 180° with the same face up and record again. An external
+horizontal rate changes sign; a constant sensor offset stays on the same axis.
+Repeated A–B–B–A blocks help separate a steadily changing offset.
 
-See the [participant protocol](docs/PROTOCOL.md), [instrument tests](docs/BENCH.md) and
-[validation guide](docs/VALIDATION.md). Follow airline rules and crew instructions.
-Uploading requires consent to public release; read the [privacy policy](PRIVACY.md).
+The Android app guides these still blocks and saves original IMU data, timing,
+device information and participant-entered location/alignment. It needs no aircraft,
+flight details or continuous GPS. The initial setting is 30 minutes per block,
+about four hours for eight blocks; this is a development setting, not a guaranteed
+minimum. A simple holder with two opposite stops can make reversals repeatable.
+
+The analyzer estimates a **signed reversal rate without using latitude or an expected
+rotation value**. A later geographic analysis would compare those estimates with
+cos(latitude), fitting the amplitude rather than assuming 15 degrees/hour. This
+tests the measured field before interpreting its cause. It does not establish Earth's
+shape on its own. [Why the horizontal component depends on latitude](https://www.vectornav.com/resources/inertial-navigation-primer/theory-of-operation/theory-gyros).
+
+The collection flow and preliminary diagnostic are implemented. Real consumer-device
+sensitivity, temperature behavior, alignment and uncertainty still need testing;
+geographic pooling and detection thresholds are not yet implemented. Longer averaging
+does not remove every systematic error or restore a signal erased by automatic zeroing.
+NASA results do not certify consumer IMUs.
+
+See the [stationary method](docs/STATIONARY.md), [simple participant protocol](docs/PROTOCOL.md),
+[instrument checks](docs/BENCH.md) and [validation plan](docs/VALIDATION.md).
+Public upload requires consent; read the [privacy policy](PRIVACY.md).
 
 ## Explore or contribute
 

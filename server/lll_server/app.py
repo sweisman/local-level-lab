@@ -179,7 +179,7 @@ def create_app(data_dir: str | Path | None = None) -> FastAPI:
     @app.get("/api/v1/sessions")
     def index():
         trusted = registry.approvals(store)
-        return [{**{k: r[k] for k in PUBLIC_COLS}, "provenance_status": "approved" if r["sha256"] in trusted else "unverified"} for r in store.all()]
+        return [{**{k: r[k] for k in PUBLIC_COLS}, "kind": json.loads(r['manifest']).get('kind','flight'), "provenance_status": "approved" if r["sha256"] in trusted else "unverified"} for r in store.all()]
 
     @app.get("/api/v1/sessions/{id_}")
     def status(id_: str):
@@ -187,12 +187,15 @@ def create_app(data_dir: str | Path | None = None) -> FastAPI:
         if r is None:
             raise HTTPException(404)
         out = {k: r[k] for k in PUBLIC_COLS}
+        manifest=json.loads(r['manifest'])
+        out['kind']=manifest.get('kind','flight')
+        if out['kind']=='stationary': out['stationary_metadata']=manifest.get('stationary',{})
         approval = registry.approvals(store).get(r["sha256"])
         out["provenance_status"] = "approved" if approval else "unverified"
         out["verified_unit_id"] = approval["unit_id"] if approval else None
         if r["result"]:
             res = json.loads(r["result"])
-            out["result"] = {k: res.get(k) for k in ("flags", "cruise_minutes", "fit", "calibration", "unit_quality", "slip")}
+            out["result"] = {k: res.get(k) for k in ("flags", "cruise_minutes", "fit", "calibration", "unit_quality", "slip", "stationary")}
         return out
 
     @app.get("/api/v1/sessions/{id_}/raw")

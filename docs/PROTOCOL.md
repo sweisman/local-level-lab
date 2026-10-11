@@ -1,81 +1,54 @@
-# Recording a flight
+# Stationary participant protocol
 
-An **IMU (inertial measurement unit)** is the external device that measures turning and acceleration.
-The phone records the IMU and supplies GPS positions.
+An **IMU (inertial measurement unit)** measures turning and acceleration.
+This experiment records it resting in two opposite orientations to estimate a very
+slow horizontal rotation component. You do not need an aircraft or a moving GPS track.
 
-This guide explains how to collect a complete, reviewable recording. It does not promise that
-the flight will distinguish the Earth models. That depends on the instrument, route, data
-quality and analysis. Read [How the experiment works](METHODOLOGY.md) and arrange the
-[instrument checks](BENCH.md) before planning to use a flight as scientific evidence.
+## Prepare
 
-## Before leaving
+1. Choose a solid, level surface away from vibration, moving furniture and direct sun.
+   Secure cables so they cannot pull the IMU. Let its temperature settle.
+2. Mark positions A and B exactly 180° apart in a holder or against repeatable stops.
+   Keep the same face up throughout. Mark the positive X or Y sensor axis.
+3. Align that axis approximately toward **true north** in A. A magnetic compass alone
+   gives magnetic north; record your alignment method and uncertainty.
+4. In Settings, choose the IMU and write and verify its settings. Automatic gyro zeroing
+   must be off. Keep the phone charged and allow background recording.
 
-Charge the phone and IMU. Pair them, select the instrument in Settings, and tap
-**Write and verify IMU settings**. Check that recording
-can continue with the screen off. Set the phone date and time automatically before going
-offline; the recorded clock information helps later checks but does not certify exact UTC time.
+Open **New stationary recording**. Enter the marked axis, location, approximate altitude,
+alignment, device label and support details. Coordinates may be rounded; record unknowns
+as unknown rather than inventing precision. Indoor GPS is unnecessary. Southern latitude
+and western longitude are negative. Everything entered will be public if you upload.
 
-Create a session with the operating airline, operating flight number, scheduled departure date
-at the origin, and departure and arrival airport codes. For a codeshare, use the airline actually
-flying the aircraft. Keep the scheduled origin date if a delay crosses midnight.
+## Record
 
-The searchable airline directory includes historical entries. Selecting a carrier and entering
-a valid number does not verify that a flight operated. **Open flight history** opens an external
-website where the date and route can be checked; opening it does not complete verification.
+The sequence is **A–B–B–A, then A–B–B–A again**. The initial development setting is
+30 still minutes per block: about four hours, plus settling and turns. Settings permit
+10–120 minutes per block; no duration is a validated guarantee of detection.
 
-## Calibrate before the flight
+Start each block when instructed, then leave the IMU and support untouched. The app
+saves raw data even when movement is detected. A notification announces a completed
+block. Open the app before the next block: turn slowly to the other mark only when
+the position changes. Consecutive B blocks or consecutive A blocks require no turn.
 
-Allow about 25 minutes on a solid, stationary table. Follow the seven placements shown by the
-app. They visit four positions and return through them in reverse order. Keep each placement
-still for about three minutes; the middle placement lasts twice as long. A straight edge helps
-you return to the same facing direction. Do not touch the IMU during a still recording.
+Do not turn the IMU upside down. The accelerometer checks the upward face; it cannot
+verify true north or the precise reversal angle. The analysis trims the first and last
+30 seconds from each block, preserving those measurements in the original.
 
-An optional still recording of 30 minutes or more can help characterize drift. It does not
-replace the full calibration or bench tests.
+Interrupted or short blocks remain saved. Repeat an incomplete block when prompted;
+do not discard attempts based on the gyro value. Keep link failures and unexpected
+movements. Long unattended still recordings are useful instrument controls, but the
+reversal experiment needs someone to perform the prompted turns.
 
-## Mount and record
+## Finish
 
-Fix the IMU firmly to a suitable surface, following airline and crew instructions. A locked
-tray is usable only during cruise. Do not hold the IMU or leave it loose. It must be possible
-to turn it deliberately and secure it again. The phone can be elsewhere if it receives GPS.
+Share the original archive for private analysis, or choose Upload and explicitly consent
+to permanent public release. Location, device details, notes and linked random identifiers
+can identify you; avoid private text and exact home coordinates if you do not want them
+published. Read the [privacy policy](../PRIVACY.md).
 
-Complete the 60-second placement check. Use airplane mode with Bluetooth and Location enabled
-where permitted. Record as much cruise as possible, including natural course changes; these
-help the analysis determine the aircraft direction relative to the IMU. Recording can
-continue with the screen off.
-
-When following a turn reminder, wait for steady cruise. Slowly turn the IMU to face the
-opposite way, keeping the same side up, over about five seconds. Secure it again and confirm
-the turn in the app. Choose a steady period before, during and after the movement; avoid doing
-this while the aircraft banks or turns. Aircraft motion during the movement can be mistaken
-for a change in IMU orientation. The analysis checks position data during the movement;
-if steady aircraft motion cannot be verified, later measurements may be unusable because
-the IMU orientation is uncertain. Turning upside down
-provides different, often less useful information; choose that option in Settings if it is the
-only movement the mount permits. Tap **I moved the IMU** if it is bumped unexpectedly.
-
-## If GPS is unavailable
-
-Acknowledge **Record without a fresh GPS fix** and keep the motion recording going. Precise
-location permission, verified instrument settings and the placement check are still required.
-The phone will continue looking for fixes and save them if reception returns.
-
-After landing, save the complete public flight track if possible. Keep its provider, exact
-history link, date, route, displayed timezone, position-and-time table, estimate labels and gaps.
-A map screenshot alone is insufficient. Do not assume the displayed times are UTC.
-
-Keep that track separately from the unchanged original recording. A position export can help
-cross-check GPS and may eventually recover the route; it contains no IMU data.
-Replacing missing phone GPS with an external track is not yet a validated part of the analysis.
-Provider terms still apply to the downloaded track. See [Validation](VALIDATION.md#external-flight-tracks-and-missing-gnss).
-
-## After landing
-
-Repeat the same seven-placement calibration as soon as practical. Keep the complete session,
-including both calibrations, recording interruptions and unexpected movements. Do not edit
-the raw recording to improve its appearance.
-
-You can share a session privately or upload it. Uploading requires explicit consent to
-permanently publish the original recording and identifying flight details. Read the
-[privacy policy](../PRIVACY.md) before consenting. Saving or uploading a recording does not
-by itself make it eligible for the main research result.
+The analysis estimates a signed reversal signal before checking latitude. A preliminary
+number is not a validated detection. Instrument tests, repeatability and uncertainty
+checks remain necessary. See [what the experiment measures](STATIONARY.md) and
+[bench tests](BENCH.md). Earlier passenger-flight protocols are historical development
+work, preserved in the technical records.

@@ -1,3 +1,8 @@
+> Participant collection now uses the [stationary ground protocol](PROTOCOL.md).
+> The aircraft/consumer sections below preserve the earlier method and its evidence;
+> they are not the current stationary decision policy. NASA archival analysis remains
+> primary. See [the stationary method and validation needs](STATIONARY.md).
+
 # The math
 
 This is the mathematical reference for readers checking the equations. Start with the

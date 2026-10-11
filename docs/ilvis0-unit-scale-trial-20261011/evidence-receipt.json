@@ -1,0 +1,18 @@
+{
+  "artifacts": {
+    "570b37d23af5e245dd461051-bias1_profiled_removal-flat_still.csv.gz": "2de6660a0e960134e9188555222475af99252f70ab18b79242171aa4d1575f9e",
+    "570b37d23af5e245dd461051-bias1_profiled_removal-sphere_rotating.csv.gz": "a7cfa7987a9b4340f7ccc48e7e19ba9f764ee394a4fe39a9afe06074b12b6425",
+    "570b37d23af5e245dd461051-bias1_profiled_removal-sphere_still.csv.gz": "0b80ed88a8231ad8822799c4393b70624a60e087e03ba4d332c5c03b9c895d5f",
+    "570b37d23af5e245dd461051-bias1_unsubtracted-flat_still.csv.gz": "a96322ec772281f0a998d1e29228e2b7e73cf810f5b750f3572799e4691b4906",
+    "570b37d23af5e245dd461051-bias1_unsubtracted-sphere_rotating.csv.gz": "812a78d63880ad6b51f6780bd317bbe8a147f17464a9fad2db356d57a4990847",
+    "570b37d23af5e245dd461051-bias1_unsubtracted-sphere_still.csv.gz": "2ec6d4f10ed1e28a684c78472f6ffc5170b2f34bcad883e5652dca6c90bd26e5",
+    "completion.json": "61fbbcd82f5c65a522d0bb02969efda9a16834d4e4c7870d0edd77a1e2294307",
+    "manifest.json": "8c72fd32b95f619c5fd118117ea63870451245e6e8574aa6a89fd4378e4d5375",
+    "selection.json.gz": "610ec3b007bf0c11b377282ebc04e8de673427e106a2ed4f8cfc53fa8220303e",
+    "split.json": "6c6e99ac5fbd31da56aa4d610b70677065595429005156af1b6d0ebc9e21674e",
+    "starts.jsonl": "fe612afab2d75812e05bb6f0b9a7f0cc5b69b3bca940849e62338e07f7262b75",
+    "summary.json": "4c39515caea711c87e4b252c39f49c5f044e99b4bebbc7287d3ac91a2ccc4d15"
+  },
+  "scientific_decision": "abstain",
+  "version": "ilvis0-unit-scale-prediction-trial-v2"
+}

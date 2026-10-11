@@ -48,6 +48,16 @@ incident histories, personal commentary or historical process IDs.
   fabricate controls or transfer calibration, performance bounds or thresholds between datasets.
   See [methodology](docs/METHODOLOGY.md) and [archive guide](docs/ILVIS0.md).
 
+## Stationary participant branch
+
+NASA archive analysis remains primary. New crowdsourced sessions follow
+docs/STATIONARY.md and docs/PROTOCOL.md: solid level support, same-face A/B reversals,
+signed rate estimated without latitude or an expected Earth rate.
+Do not restore aircraft identity/flight UX, transfer aircraft thresholds, use absolute
+magnitudes as signed rates, or claim consumer sensitivity from NASA results.
+Preserve old archives and frozen aircraft studies. New population pooling and calibrated
+uncertainty need separate validation; the implemented stationary report always abstains.
+
 ## Frozen studies and recovery
 
 - Preserve all 232 retained originals and frozen evidence. Routine continuation does not
@@ -69,6 +79,10 @@ incident histories, personal commentary or historical process IDs.
 | All qualifying stretches | data/ilvis0-highspeed-segments-v2-20261008/; docs/ilvis0-highspeed-segments-20261008/ | Completed and frozen; packaging only, no resume. 53 stretches / 318 charged starts; original maximum 424. |
 | Matched solver trial | data/ilvis0-solver-trial-20261010/; docs/ilvis0-solver-trial-20261010/ | Completed and frozen; 12 starts, 10 converged fits versus baseline 11. Publication only; no resume or expansion. |
 | Saved-parameter residual diagnostic | data/ilvis0-residual-diagnostic-20261010/; docs/ilvis0-residual-diagnostic-20261010/ | Completed and frozen; 24 predictions, zero optimizer starts. Package/render only; no relaunch. |
+| Solver qualification controls | data/ilvis0-solver-qualification-20261010/; docs/ilvis0-solver-qualification-20261010/ | Completed and frozen; 34/34 software starts passed, zero observed starts. Package/render only. |
+| Matched clock trial | data/ilvis0-clock-trial-20261010/; docs/ilvis0-clock-trial-20261010/ | Completed and frozen; all six fits converged. Globe/rotation preference preserved under header timing. Publication only; no resume or expansion. |
+| Z calibration ablation | data/ilvis0-calibration-trial-20261011/; docs/ilvis0-calibration-trial-20261011/ | Completed and frozen; 12 starts, 11 converged, 1,837 evaluations. Gain-zero comparison favors globe; offset-zero comparison incomplete. Publication only, no retries or expansion. |
+| Retrospective prediction trial | data/ilvis0-prediction-trial-20261011/; docs/ilvis0-prediction-trial-20261011/ | Completed and frozen; six starts, 887 evaluations, five converged fits. Profiled-removal flat fit exhausted its cap; no retries or expansion. Publication only. |
 
 The six-recording refinement retains four cases. The all-stretch extension uses only ±1°/hour
 constant gyro offsets under fixed-zero/profiled Earth-rate removal; ±0.1°/hour is deferred.
@@ -82,15 +96,16 @@ in eligible-stretches.csv, all file outcomes in files.csv, and criteria in ELIGI
 Reuse saved intervals; changed policies need a new inventory version. Byte-identical aliases
 and overlapping instrument streams must not inflate independent-flight counts.
 
-After checking locks and the unchanged unfinished freeze, run the appropriate launcher with
-PYTHONPATH=analysis and OPENBLAS_NUM_THREADS=2, OMP_NUM_THREADS=2, MKL_NUM_THREADS=2:
+All numerical studies above are complete; do not relaunch them. The ablation's
+one unfinished fit remains unresolved and has no retry allowance. Use
+analysis/tests/ilvis0_calibration_trial.py --package-only with its frozen environment
+for completed evidence; publication performs no fits.
+Use analysis/tests/ilvis0_clock_trial.py --package-only with PYTHONPATH=analysis for
+completed clock evidence; packaging performs no fits. Completion records take precedence
+over a worker's last in-progress status snapshot.
 
-- ~/venv/bin/python analysis/tests/ilvis0_shape_worker.py --detach
-- ~/venv/bin/python analysis/tests/ilvis0_segment_worker.py --detach
-
-Restore the refinement report watcher, if absent, with
-~/venv/bin/python docs/ilvis0-refinement-20261008/package_results.py --detach.
-For completed refinement evidence use that script without --detach. For completed stretch
+For completed refinement evidence use docs/ilvis0-refinement-20261008/package_results.py
+without --detach. For completed stretch
 evidence use analysis/tests/ilvis0_segment_worker.py --package-only with PYTHONPATH=analysis.
 Do not rerun numerical studies merely to regenerate documentation.
 
@@ -105,6 +120,14 @@ The matched solver trial is complete; do not launch it again. Publication uses
 The [saved-fit calibration/adequacy audit](docs/ilvis0-calibration-audit-20261010/README.md)
 reads published metadata only. Its builder performs no native integration or optimization;
 do not mistake saved RMS and fixed-parameter sections for epoch-level or held-out validation.
+The [clock/calibration audit](docs/ilvis0-clock-calibration-audit-20261011/README.md) also
+uses saved metadata only. Its calibration plan is implemented by the separately frozen,
+approved Z ablation above. Zero anchors are diagnostic cases, not measured calibration.
+The chronological prediction trial is complete; do not resume or retry its one unresolved
+fit. Use analysis/tests/ilvis0_prediction_trial.py --package-only for publication, then
+docs/ilvis0-prediction-trial-20261011/build_report.py; these publication steps perform no fits.
+Its split is retrospective development evidence, not independent confirmation. Complete
+publication only; this allowance authorizes no further numerical studies.
 The [epoch residual diagnostic](docs/ilvis0-residual-diagnostic-20261010/README.md) preserves
 individual errors under both clocks. Packaging with `ilvis0_residual_diagnostic.py --package-only`
 and rendering with its guide's `build_report.py` perform no predictions. Original convergence
@@ -119,3 +142,16 @@ before interpreting its cause, with aircraft motion, transport and calibration f
 The proposal authorizes no new fits or campaign budget. Do not fix or subtract the standard
 Earth rate to create the estimated field, or fit an original field and unconstrained onboard
 subtraction as independently identifiable quantities.
+
+The saved prediction audit and analytic solver screen are complete at
+docs/ilvis0-prediction-audit-20261011/. Regenerate its audit from metadata only;
+screen_solvers.py --render-only preserves the completed software screen. The unit-scale
+candidate has a prepared v2 freeze at data/ilvis0-unit-scale-trial-v2-20261011/ and
+guide docs/ilvis0-unit-scale-trial-20261011/. Its approved six-fit comparison is running:
+200 evaluations per fit, two numerical threads, no retries. Check its worker lock,
+start journal and completion before any action; never duplicate a running worker.
+The guide's watch_report.py performs metadata-only publication after completion;
+check report-watch.lock and report-watch.json before launching it with --detach.
+Preserve the
+superseded zero-start v1 preparation without running it. The two-recording replication
+selection and NEXT_PLAN.md authorize no observed starts or archive-wide rollout.

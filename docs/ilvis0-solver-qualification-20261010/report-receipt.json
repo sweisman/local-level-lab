@@ -1,0 +1,9 @@
+{
+  "artifacts": {
+    "README.md": "9976424cd0c3842aeb1d980d674d4e4c5c3d827621f065d8f1c67fab588e9be2",
+    "controls.csv": "2e356fd858b3f322fc00004555d2f1b0f99f1480e88081deb0e84871855f0c75"
+  },
+  "input_receipt_sha256": "e901e16054be719ba5f356e48b489ffd1ba9a8cc08ab51b5694b8fd042555b81",
+  "observed_fit_starts": 0,
+  "source_sha256": "80d6f5892a6eb9db6d584393ba28f9d8ebdc681bf04c76996a3eebc327a89831"
+}

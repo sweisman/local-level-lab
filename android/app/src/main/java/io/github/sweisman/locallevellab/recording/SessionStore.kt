@@ -37,8 +37,8 @@ class Session(val dir: File) {
     fun hasPhasePrefix(prefix: String) = phases.any { it.getString("name").startsWith(prefix) }
 
     val title: String
-        get() = manifest.getJSONObject("flight").let {
-            "${it.optString("airline")} ${it.optString("flight_number")}".trim().ifEmpty { "Untitled" } + " · " + it.optString("date")
+        get() = if (manifest.optString("kind") == "stationary") "Stationary reversals · " + manifest.optString("created_utc").take(10) else manifest.optJSONObject("flight").let {
+            "${it?.optString("airline") ?: ""} ${it?.optString("flight_number") ?: ""}".trim().ifEmpty { "Instrument test" } + " · " + (it?.optString("date") ?: "")
         }
 
     val zipFile: File get() = File(dir, "lll_${id.take(8)}.zip")
@@ -89,8 +89,9 @@ object SessionStore {
                 .put("packets", JSONArray(if (v == Variant.SPP) listOf("0x50", "0x51", "0x52", "0x54") else listOf("0x61", "0x71@0x3a"))))
     }
 
-    /** kind is "flight" for the normal protocol, or "bench" for a stationary bench capture. */
-    fun create(ctx: Context, flight: JSONObject, mount: JSONObject, kind: String = "flight"): Session {
+    /** Stationary is the participant protocol; old flight archives remain readable. */
+    fun create(ctx: Context, flight: JSONObject, mount: JSONObject, kind: String = "stationary", stationary: JSONObject? = null): Session {
+        if (kind == "stationary") require(stationary != null && io.github.sweisman.locallevellab.model.GroundProtocol.valid(stationary))
         val imu = imuManifest(ctx) ?: error("no IMU chosen")
         val id = UUID.randomUUID().toString()
         val dir = File(root(ctx), id).apply { mkdirs() }
@@ -98,6 +99,7 @@ object SessionStore {
         val m = JSONObject()
             .put("schema_version", 3)
             .put("kind", kind)
+            .apply { if (stationary != null) put("stationary", stationary) }
             .put("data_license", "CC0-1.0")
             .put("session_id", id)
             .put("install_id", Prefs(ctx).installId)

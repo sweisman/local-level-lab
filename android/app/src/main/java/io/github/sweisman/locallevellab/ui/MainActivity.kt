@@ -20,7 +20,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import io.github.sweisman.locallevellab.Prefs
 
-/** Pure-black dark theme: easy on OLED batteries and on fellow passengers at night. */
+/** Pure-black dark theme for long stationary recordings. */
 private val Scheme = darkColorScheme(
     primary = Color(0xFF7EC8FF), onPrimary = Color.Black,
     secondary = Color(0xFFB0BEC5), background = Color.Black, surface = Color.Black,
@@ -51,8 +51,8 @@ fun AppNav(start: String) {
             InstructionsScreen(it.arguments?.getString("section"), nav)
         }
         composable("settings") { SettingsScreen(nav) }
-        composable("new?kind={kind}", listOf(navArgument("kind") { defaultValue = "flight" })) {
-            NewSessionScreen(nav, it.arguments?.getString("kind") ?: "flight")
+        composable("new?kind={kind}", listOf(navArgument("kind") { defaultValue = "stationary" })) {
+            NewSessionScreen(nav, it.arguments?.getString("kind") ?: "stationary")
         }
         composable("session/{id}", idArg) { SessionScreen(it.arguments!!.getString("id")!!, nav) }
         composable("cal/{id}/{which}", idArg + navArgument("which") { type = NavType.StringType }) {
@@ -61,7 +61,6 @@ fun AppNav(start: String) {
         composable("still/{id}/{name}", idArg + navArgument("name") { type = NavType.StringType }) {
             DriftScreen(it.arguments!!.getString("id")!!, it.arguments!!.getString("name")!!, nav)
         }
-        composable("placement/{id}", idArg) { PlacementScreen(it.arguments!!.getString("id")!!, nav) }
-        composable("record/{id}", idArg) { RecordScreen(it.arguments!!.getString("id")!!, nav) }
+        composable("ground/{id}", idArg) { GroundRecordingScreen(it.arguments!!.getString("id")!!, nav) }
     }
 }

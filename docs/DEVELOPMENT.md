@@ -63,8 +63,15 @@ env JAVA_HOME="$HOME/.local/jdk21" ./android/gradlew --project-dir android --max
 
 The default upload destination can be set with `lll.serverUrl` in `android/gradle.properties`.
 Users can change it in Settings. Choose the Bluetooth variant and verify IMU settings before
-recording. The bundled airline directory is OpenFlights data under ODbL-1.0; its separate
-license accompanies the asset.
+recording. New participant sessions are stationary A/B recordings; aircraft identity,
+placement and flight dashboards are removed from the active flow. Session schema 3 adds
+a versioned stationary metadata object while retaining historical flight archives.
+The legacy airline asset and its ODbL license remain for historical reproducibility.
+
+Use `lll analyze stationary.zip` for the new preliminary signed-rate report. It skips
+airborne fitting and estimates no latitude curve or calibrated significance. The existing
+flight collator is not a stationary population estimator; do not apply its thresholds
+or unit certificates to ground recordings. See [the stationary method](STATIONARY.md).
 
 ## Documentation and reproducibility
 
@@ -74,7 +81,7 @@ Public guides explain the method and current evidence without requiring raw rese
 and [recording format](FORMAT.md) preserve equations, thresholds, commands and data contracts.
 [Contributing](../CONTRIBUTING.md) describes checks appropriate to a proposed change.
 
-## Experimental route replay and design
+## Historical aircraft route replay and design
 
 The [core-pipeline handoff](core-pipeline-20261006/README.md) documents the new optional research
 paths and frozen prospective inputs. Preparation writes specifications and cost bounds without

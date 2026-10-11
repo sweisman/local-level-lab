@@ -1,0 +1,73 @@
+accepted_iterations,control,evaluations,identity,known_optimum_objective,message,objective,parameter_error,passed,residual_error_to_known_optimum,solver_reported_success,start_index,stationarity,variant
+5,interior,7,dense_jac::interior::0,1.0,`gtol` termination condition is satisfied.,1.0,1.1068923555512811e-13,True,1.1068923555512811e-13,True,0,1.1068923555512811e-13,dense_jac
+4,interior,6,dense_jac::interior::1,1.0,`gtol` termination condition is satisfied.,1.0,2.438819424188665e-10,True,2.440644693937897e-10,True,1,2.438819424188665e-10,dense_jac
+5,interior,7,dense_jac::interior::2,1.0,`gtol` termination condition is satisfied.,1.0,2.6950958686988713e-09,True,2.6950958686988713e-09,True,2,2.6950958686988713e-09,dense_jac
+6,boundary,8,dense_jac::boundary::0,1.25,`gtol` termination condition is satisfied.,1.2500000000026863,2.6861846080805662e-12,True,2.6861846080805662e-12,True,0,0.0,dense_jac
+5,boundary,7,dense_jac::boundary::1,1.25,`gtol` termination condition is satisfied.,1.2500000000032756,3.2754909895515993e-12,True,3.2754909895515993e-12,True,1,0.0,dense_jac
+7,boundary,9,dense_jac::boundary::2,1.25,`gtol` termination condition is satisfied.,1.2500000000000373,3.7192471324942744e-14,True,3.7192471324942744e-14,True,2,0.0,dense_jac
+5,redundant,7,dense_jac::redundant::0,1.0,`gtol` termination condition is satisfied.,1.0,,True,0.0,True,0,0.0,dense_jac
+5,redundant,7,dense_jac::redundant::1,1.0,`gtol` termination condition is satisfied.,1.0,,True,8.440616121040728e-15,True,1,8.440616121040728e-15,dense_jac
+6,redundant,8,dense_jac::redundant::2,1.0,`gtol` termination condition is satisfied.,1.0,,True,0.0,True,2,0.0,dense_jac
+8,scaled,10,dense_jac::scaled::0,1.0,`gtol` termination condition is satisfied.,1.0,,True,2.5769808799347947e-11,True,0,2.576980879934795e-15,dense_jac
+5,scaled,7,dense_jac::scaled::1,1.0,`gtol` termination condition is satisfied.,1.0,,True,2.2737367544323216e-13,True,1,2.2737367544323206e-13,dense_jac
+6,scaled,8,dense_jac::scaled::2,1.0,`gtol` termination condition is satisfied.,1.0,,True,0.0,True,2,0.0,dense_jac
+5,nonlinear,7,dense_jac::nonlinear::0,1.0,`gtol` termination condition is satisfied.,1.0,1.1068923555512811e-13,True,1.1068923555512811e-13,True,0,1.1068923555512811e-13,dense_jac
+5,nonlinear,7,dense_jac::nonlinear::1,1.0,`gtol` termination condition is satisfied.,1.0,2.4233948181517917e-12,True,2.714189983876736e-12,True,1,2.714189983876736e-12,dense_jac
+6,nonlinear,8,dense_jac::nonlinear::2,1.0,`gtol` termination condition is satisfied.,1.0,1.7924550732573152e-13,True,2.0075607842784393e-13,True,2,2.0075607842784393e-13,dense_jac
+11,gain_offset,13,dense_jac::gain_offset::0,1.0,`gtol` termination condition is satisfied.,1.0,,True,2.993759077154171e-10,True,0,3.5500526530923886e-12,dense_jac
+7,gain_offset,9,dense_jac::gain_offset::1,1.0,`gtol` termination condition is satisfied.,1.0,,True,1.7171950393319922e-09,True,1,4.312387734421913e-12,dense_jac
+9,gain_offset,11,dense_jac::gain_offset::2,1.0,`gtol` termination condition is satisfied.,1.0000000000000002,,True,1.5320865932077863e-08,True,2,8.592396502608634e-12,dense_jac
+19,mixed_interior,31,dense_jac::mixed_interior::0,1.0,`xtol` termination condition is satisfied.,1.0,,True,3.8877720499691296e-09,True,0,9.364612638554667e-13,dense_jac
+17,mixed_interior,28,dense_jac::mixed_interior::1,1.0,`xtol` termination condition is satisfied.,1.0,,True,1.1420673531448683e-09,True,1,2.2284048398272646e-12,dense_jac
+16,mixed_interior,26,dense_jac::mixed_interior::2,1.0,`xtol` termination condition is satisfied.,1.0,,True,5.481953358403928e-10,True,2,2.0325666363533065e-12,dense_jac
+26,mixed_boundary,28,dense_jac::mixed_boundary::0,1.0,`gtol` termination condition is satisfied.,1.0000000000056142,,True,2.369414419023317e-06,True,0,1.3040113042803309e-12,dense_jac
+27,mixed_boundary,29,dense_jac::mixed_boundary::1,1.0,`gtol` termination condition is satisfied.,1.0000000000000135,,True,1.1676237447262202e-07,True,1,1.1932483803724509e-12,dense_jac
+29,mixed_boundary,43,dense_jac::mixed_boundary::2,1.0,`xtol` termination condition is satisfied.,1.0,,True,5.0265595382086234e-09,True,2,2.073048843642766e-12,dense_jac
+5,interior,7,dense_unit::interior::0,1.0,`gtol` termination condition is satisfied.,1.0,1.1068923555512811e-13,True,1.1068923555512811e-13,True,0,1.1068923555512811e-13,dense_unit
+4,interior,6,dense_unit::interior::1,1.0,`gtol` termination condition is satisfied.,1.0,2.438819424188665e-10,True,2.440644693937897e-10,True,1,2.438819424188665e-10,dense_unit
+5,interior,7,dense_unit::interior::2,1.0,`gtol` termination condition is satisfied.,1.0,2.6950958686988713e-09,True,2.6950958686988713e-09,True,2,2.6950958686988713e-09,dense_unit
+6,boundary,8,dense_unit::boundary::0,1.25,`gtol` termination condition is satisfied.,1.2500000000026863,2.6861846080805662e-12,True,2.6861846080805662e-12,True,0,0.0,dense_unit
+5,boundary,7,dense_unit::boundary::1,1.25,`gtol` termination condition is satisfied.,1.2500000000032756,3.2754909895515993e-12,True,3.2754909895515993e-12,True,1,0.0,dense_unit
+7,boundary,9,dense_unit::boundary::2,1.25,`gtol` termination condition is satisfied.,1.2500000000000373,3.7192471324942744e-14,True,3.7192471324942744e-14,True,2,0.0,dense_unit
+5,redundant,7,dense_unit::redundant::0,1.0,`gtol` termination condition is satisfied.,1.0,,True,2.482534153247273e-16,True,0,2.482534153247273e-16,dense_unit
+5,redundant,7,dense_unit::redundant::1,1.0,`gtol` termination condition is satisfied.,1.0,,True,8.440616121040728e-15,True,1,8.440616121040728e-15,dense_unit
+6,redundant,8,dense_unit::redundant::2,1.0,`gtol` termination condition is satisfied.,1.0,,True,0.0,True,2,0.0,dense_unit
+5,scaled,7,dense_unit::scaled::0,1.0,`gtol` termination condition is satisfied.,1.0,,True,2.2737367571249884e-13,True,0,2.2737367544323206e-13,dense_unit
+5,scaled,7,dense_unit::scaled::1,1.0,`gtol` termination condition is satisfied.,1.0,,True,2.2737367544323216e-13,True,1,2.2737367544323206e-13,dense_unit
+6,scaled,8,dense_unit::scaled::2,1.0,`gtol` termination condition is satisfied.,1.0,,True,0.0,True,2,0.0,dense_unit
+5,nonlinear,7,dense_unit::nonlinear::0,1.0,`gtol` termination condition is satisfied.,1.0,1.1068923555512811e-13,True,1.1068923555512811e-13,True,0,1.1068923555512811e-13,dense_unit
+5,nonlinear,7,dense_unit::nonlinear::1,1.0,`gtol` termination condition is satisfied.,1.0,2.4233948181517917e-12,True,2.714189983876736e-12,True,1,2.714189983876736e-12,dense_unit
+6,nonlinear,8,dense_unit::nonlinear::2,1.0,`gtol` termination condition is satisfied.,1.0,1.7924550732573152e-13,True,2.0075607842784393e-13,True,2,2.0075607842784393e-13,dense_unit
+8,gain_offset,10,dense_unit::gain_offset::0,1.0,`gtol` termination condition is satisfied.,1.0,,True,7.935105917048164e-10,True,0,2.9152419343958875e-12,dense_unit
+7,gain_offset,9,dense_unit::gain_offset::1,1.0,`gtol` termination condition is satisfied.,1.0,,True,1.7165638599822242e-09,True,1,3.5195236923911493e-12,dense_unit
+9,gain_offset,11,dense_unit::gain_offset::2,1.0,`gtol` termination condition is satisfied.,1.0000000000000002,,True,1.5320029246434115e-08,True,2,1.1466773438158908e-11,dense_unit
+15,mixed_interior,25,dense_unit::mixed_interior::0,1.0,`xtol` termination condition is satisfied.,1.0,,True,4.953404926202758e-10,True,0,2.128645805248654e-12,dense_unit
+17,mixed_interior,26,dense_unit::mixed_interior::1,1.0,`xtol` termination condition is satisfied.,1.0,,True,1.6963247924001905e-10,True,1,1.7262647302253874e-12,dense_unit
+16,mixed_interior,27,dense_unit::mixed_interior::2,1.0,`xtol` termination condition is satisfied.,1.0,,True,1.7076817692671975e-09,True,2,2.009665474127903e-12,dense_unit
+18,mixed_boundary,20,dense_unit::mixed_boundary::0,1.0,`gtol` termination condition is satisfied.,1.0000000006083904,,True,2.466557337725853e-05,True,0,1.1115692222287453e-11,dense_unit
+25,mixed_boundary,27,dense_unit::mixed_boundary::1,1.0,`gtol` termination condition is satisfied.,1.0,,True,1.0496360926944357e-08,True,1,3.7673154544843074e-13,dense_unit
+25,mixed_boundary,36,dense_unit::mixed_boundary::2,1.0,`xtol` termination condition is satisfied.,1.000000000000003,,True,5.573114887355273e-08,True,2,2.9034529009025277e-12,dense_unit
+5,interior,7,lsmr_jac::interior::0,1.0,`gtol` termination condition is satisfied.,1.0,1.1068923555512811e-13,True,1.1068923555512811e-13,True,0,1.1068923555512811e-13,lsmr_jac
+4,interior,6,lsmr_jac::interior::1,1.0,`gtol` termination condition is satisfied.,1.0,2.438819424188665e-10,True,2.440644693937897e-10,True,1,2.438819424188665e-10,lsmr_jac
+5,interior,7,lsmr_jac::interior::2,1.0,`gtol` termination condition is satisfied.,1.0,2.6950958686988713e-09,True,2.6950958686988713e-09,True,2,2.6950958686988713e-09,lsmr_jac
+6,boundary,8,lsmr_jac::boundary::0,1.25,`gtol` termination condition is satisfied.,1.2500000000026863,2.6861846080805662e-12,True,2.6861846080805662e-12,True,0,0.0,lsmr_jac
+5,boundary,7,lsmr_jac::boundary::1,1.25,`gtol` termination condition is satisfied.,1.2500000000032756,3.2754909895515993e-12,True,3.2754909895515993e-12,True,1,0.0,lsmr_jac
+7,boundary,9,lsmr_jac::boundary::2,1.25,`gtol` termination condition is satisfied.,1.2500000000000373,3.7192471324942744e-14,True,3.7192471324942744e-14,True,2,0.0,lsmr_jac
+5,redundant,7,lsmr_jac::redundant::0,1.0,`gtol` termination condition is satisfied.,1.0,,True,2.482534153247273e-16,True,0,2.482534153247273e-16,lsmr_jac
+5,redundant,7,lsmr_jac::redundant::1,1.0,`gtol` termination condition is satisfied.,1.0,,True,8.440616121040728e-15,True,1,8.440616121040728e-15,lsmr_jac
+6,redundant,8,lsmr_jac::redundant::2,1.0,`gtol` termination condition is satisfied.,1.0,,True,0.0,True,2,0.0,lsmr_jac
+8,scaled,10,lsmr_jac::scaled::0,1.0,`gtol` termination condition is satisfied.,1.0,,True,2.5769808792571684e-11,True,0,2.5769808792571685e-15,lsmr_jac
+5,scaled,7,lsmr_jac::scaled::1,1.0,`gtol` termination condition is satisfied.,1.0,,True,2.2737367544323216e-13,True,1,2.2737367544323206e-13,lsmr_jac
+6,scaled,8,lsmr_jac::scaled::2,1.0,`gtol` termination condition is satisfied.,1.0,,True,2.2737367544323206e-13,True,2,2.2737367544323206e-13,lsmr_jac
+5,nonlinear,7,lsmr_jac::nonlinear::0,1.0,`gtol` termination condition is satisfied.,1.0,1.1068923555512811e-13,True,1.1068923555512811e-13,True,0,1.1068923555512811e-13,lsmr_jac
+5,nonlinear,7,lsmr_jac::nonlinear::1,1.0,`gtol` termination condition is satisfied.,1.0,2.4233948181517917e-12,True,2.714189983876736e-12,True,1,2.714189983876736e-12,lsmr_jac
+6,nonlinear,8,lsmr_jac::nonlinear::2,1.0,`gtol` termination condition is satisfied.,1.0,1.7924550732573152e-13,True,2.0075607842784393e-13,True,2,2.0075607842784393e-13,lsmr_jac
+11,gain_offset,13,lsmr_jac::gain_offset::0,1.0,`gtol` termination condition is satisfied.,1.0,,True,3.013723704991108e-10,True,0,4.030507304231675e-12,lsmr_jac
+7,gain_offset,9,lsmr_jac::gain_offset::1,1.0,`gtol` termination condition is satisfied.,1.0,,True,1.71718969132917e-09,True,1,6.450098556707228e-13,lsmr_jac
+9,gain_offset,11,lsmr_jac::gain_offset::2,1.0,`gtol` termination condition is satisfied.,1.0000000000000002,,True,1.5318356577365622e-08,True,2,1.3382294588959877e-11,lsmr_jac
+198,mixed_interior,200,lsmr_jac::mixed_interior::0,1.0,The maximum number of function evaluations is exceeded.,1.0000000249926886,,False,0.00015809076059082128,False,0,1.8166365377407133e-10,lsmr_jac
+198,mixed_interior,200,lsmr_jac::mixed_interior::1,1.0,The maximum number of function evaluations is exceeded.,1.000000032031953,,False,0.00017897472750642238,False,1,1.2920191574950352e-10,lsmr_jac
+198,mixed_interior,200,lsmr_jac::mixed_interior::2,1.0,The maximum number of function evaluations is exceeded.,1.0000000107242366,,False,0.0001035578902295038,False,2,5.903216261609048e-10,lsmr_jac
+198,mixed_boundary,200,lsmr_jac::mixed_boundary::0,1.0,The maximum number of function evaluations is exceeded.,1.000000019535778,,False,0.0001397704476159632,False,0,4.73208706199855e-10,lsmr_jac
+198,mixed_boundary,200,lsmr_jac::mixed_boundary::1,1.0,The maximum number of function evaluations is exceeded.,1.0000000301004544,,False,0.00017349482495314435,False,1,1.8204974561160138e-10,lsmr_jac
+198,mixed_boundary,200,lsmr_jac::mixed_boundary::2,1.0,The maximum number of function evaluations is exceeded.,1.0000000546787229,,False,0.0002338348196563606,False,2,3.4535075424841905e-10,lsmr_jac

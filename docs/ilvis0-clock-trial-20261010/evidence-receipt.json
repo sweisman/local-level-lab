@@ -1,0 +1,17 @@
+{
+  "artifacts": {
+    "570b37d23af5e245dd461051-bias1_profiled_removal-flat_still.csv.gz": "b3ecddbdaf6e794a038c078a0bd2be91de5dd485e6fd5d299d8db8fa4d81ac3d",
+    "570b37d23af5e245dd461051-bias1_profiled_removal-sphere_rotating.csv.gz": "a781f2e52a47ff36241b638b21aab4f8a95750ec85005312cb7a2822bd102a24",
+    "570b37d23af5e245dd461051-bias1_profiled_removal-sphere_still.csv.gz": "70b42fa67cf5873c96046d4e5b335f14af3fd58613bbdccece40e8d91f3c7b26",
+    "570b37d23af5e245dd461051-bias1_unsubtracted-flat_still.csv.gz": "2e929e878651b9e6f91a46b4147343ea247b4da5c26c7f0f54f585489e0feae0",
+    "570b37d23af5e245dd461051-bias1_unsubtracted-sphere_rotating.csv.gz": "49218f966ac07d2e1d98c663ed95d3bb4f63821146d5b16cdfcaf7607c148322",
+    "570b37d23af5e245dd461051-bias1_unsubtracted-sphere_still.csv.gz": "88e9282c58efd98227c708f95cfe1c357efdb417c3866adedff67ffc45fcdbea",
+    "completion.json": "ec8f5fa6576783cdecff5990fcd0c55fc2df92bfe27e6ed80b7a51ec44cf8ead",
+    "manifest.json": "655e6252cf82ced078da0e7ff74f77af04d542371e056e95343555893f2374fc",
+    "selection.json.gz": "610ec3b007bf0c11b377282ebc04e8de673427e106a2ed4f8cfc53fa8220303e",
+    "starts.jsonl": "fb0d5920fc7324d26043762d82ff0cd39828d8c51e88ab991d4aa07d7a2710ab",
+    "summary.json": "85cbaea5f5b77079bb0f29dfa15e2b207ecec244b9e6e8be00761d8aa7805660"
+  },
+  "scientific_decision": "abstain",
+  "version": "ilvis0-matched-header-clock-trial-v1"
+}

@@ -64,9 +64,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import io.github.sweisman.locallevellab.Prefs
 import io.github.sweisman.locallevellab.model.Transport
-import io.github.sweisman.locallevellab.model.Airline
-import io.github.sweisman.locallevellab.model.AirlineDirectory
-import io.github.sweisman.locallevellab.model.FlightIdentity
 import io.github.sweisman.locallevellab.recording.Live
 import io.github.sweisman.locallevellab.recording.RecorderService
 import io.github.sweisman.locallevellab.recording.Session
@@ -128,7 +125,7 @@ fun rememberSession(id: String): Session? {
 fun ConsentScreen(onDone: () -> Unit, nav: NavController) {
     val ctx = LocalContext.current
     val perms = buildList {
-        add(Manifest.permission.ACCESS_FINE_LOCATION); add(Manifest.permission.ACCESS_COARSE_LOCATION)
+        // Stationary location is entered by the participant; no continuous GPS permission is requested.
         if (Build.VERSION.SDK_INT >= 33) add(Manifest.permission.POST_NOTIFICATIONS)
     }.toTypedArray()
     val launcher = rememberLauncherForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
@@ -136,9 +133,9 @@ fun ConsentScreen(onDone: () -> Unit, nav: NavController) {
         onDone()
     }
     Page("Local Level Lab", null) {
-        Para("A citizen-science instrument. A small motion sensor (IMU) records during a flight while your phone logs GPS, and open analysis tests whether the data fit a flat or spherical Earth, still or rotating.")
+        Para("An IMU (inertial measurement unit) measures turning and acceleration. Record it resting on a solid surface in two opposite orientations, then compare the signed reversal signal across locations.")
         INSTRUCTIONS.first { it.key == "privacy" }.body.forEach { Para("• $it") }
-        Para("Location permission is used to record GPS during the flight (and an optional rounded latitude at calibration). Notifications show that a recording is running and remind you when to turn the IMU. Bluetooth access is asked for in Settings, when you choose the IMU.", muted = true)
+        Para("Notifications show recording progress and announce when a still block finishes. Bluetooth access is requested in Settings. Stationary location is entered manually; no aircraft details or continuous GPS track are needed.", muted = true)
         Spacer(Modifier.height(12.dp))
         Button({ launcher.launch(perms) }, Modifier.fillMaxWidth()) { Text("I understand. Continue") }
         TextButton({ nav.navigate("instructions") }) { Text("Read the full instructions first") }
@@ -160,13 +157,13 @@ fun HomeScreen(nav: NavController) {
             }
             Spacer(Modifier.height(8.dp))
         }
-        Button({ nav.navigate("new") }, Modifier.fillMaxWidth()) { Text("New flight session") }
+        Button({ nav.navigate("new") }, Modifier.fillMaxWidth()) { Text("New stationary recording") }
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)) {
             OutlinedButton({ nav.navigate("instructions") }, Modifier.weight(1f)) { Text("Instructions") }
             OutlinedButton({ nav.navigate("settings") }, Modifier.weight(1f)) { Text("Settings") }
         }
         Text("Sessions", style = MaterialTheme.typography.titleMedium, modifier = Modifier.padding(top = 8.dp))
-        if (sessions.isEmpty()) Para("None yet. Start with “New flight session”, then follow the steps.", muted = true)
+        if (sessions.isEmpty()) Para("None yet. Start with “New stationary recording”, then follow the steps.", muted = true)
         sessions.forEach { s ->
             Card(Modifier.fillMaxWidth().padding(vertical = 4.dp).clickable { nav.navigate("session/${s.id}") }) {
                 Column(Modifier.padding(12.dp)) {
@@ -209,7 +206,7 @@ fun SettingsScreen(nav: NavController) {
         Para("Uploads go only to this address, and only when you tap Upload. It must start with https://.", muted = true)
         SwitchRow("Upload on Wi-Fi only", unmetered) { unmetered = it; p.unmeteredOnly = it }
         SwitchRow("Save calibration latitude (rounded to 0.5°)", calLat) { calLat = it; p.shareCalLatitude = it }
-        Para("The latitude lets calibrations test the Earth-rotation models at your location. Rounding keeps it to roughly 50 km.", muted = true)
+        Para("This optional legacy bench setting stores a coarse location. New stationary recordings use the location you enter; the rate diagnostic does not use latitude.", muted = true)
         Stepper("Calibration minutes per position", calMin, 2..15) { calMin = it; p.calPositionMinutes = it }
         Stepper("Drift run minutes", driftMin, 10..240, step = 10) { driftMin = it; p.driftMinutes = it }
         HorizontalDivider(Modifier.padding(vertical = 12.dp))
@@ -250,94 +247,6 @@ fun Choice(options: List<Pair<String, String>>, value: String, onChange: (String
 }
 
 @Composable
-fun NewSessionScreen(nav: NavController, kind: String = "flight") {
-    val ctx = LocalContext.current
-    val today = remember { SimpleDateFormat("yyyy-MM-dd", Locale.US).format(Date()) }
-    val f = remember { mutableStateOf(mapOf("date" to today, "seat_position" to "unspecified")) }
-    if (!imuChosen(ctx)) {
-        Page("New session", nav) {
-            Para("Choose your IMU in Settings first. The recording comes from the IMU; the phone logs GPS and runs the dashboard.")
-            Button({ nav.navigate("settings") }, Modifier.fillMaxWidth()) { Text("Open Settings") }
-        }
-        return
-    }
-    if (kind == "bench") {
-        Page("Bench capture", nav) {
-            Para("A stationary recording of the IMU on a solid table, for checking the link, the noise and the bias stability (lll bench). Nothing flight-related is recorded.")
-            Button({
-                val s = SessionStore.create(ctx, JSONObject().put("notes", "bench capture"), JSONObject().put("type", "bench"), kind = "bench")
-                nav.navigate("session/${s.id}") { popUpTo("home") }
-            }, Modifier.fillMaxWidth()) { Text("Create bench session") }
-        }
-        return
-    }
-    var mount by remember { mutableStateOf("window") }
-    var orientation by remember { mutableStateOf("") }
-    var rotated by remember { mutableStateOf(false) }
-    val directory = remember { runCatching {
-        ctx.assets.open("airlines.json").bufferedReader().use { AirlineDirectory.read(it.readText()) }
-    }.getOrNull() }
-    var airline by remember { mutableStateOf<Airline?>(null) }
-    val identityValid = FlightIdentity.valid(airline, f.value["flight_number"] ?: "", f.value["date"] ?: "",
-        f.value["origin"] ?: "", f.value["destination"] ?: "")
-    @Composable
-    fun field(key: String, label: String, kb: KeyboardType = KeyboardType.Text) =
-        OutlinedTextField(f.value[key] ?: "", { f.value = f.value + (key to it) }, label = { Text(label) }, singleLine = true,
-            modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp), keyboardOptions = KeyboardOptions(keyboardType = kb))
-    Page("New flight session", nav, help = "before") {
-        AirlinePicker(directory, airline) { airline = it }
-        field("flight_number", "Operating flight number (e.g. 123 or UA 123)")
-        field("date", "Departure date at origin (YYYY-MM-DD)")
-        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            Box(Modifier.weight(1f)) { field("origin", "From (IATA)") }
-            Box(Modifier.weight(1f)) { field("destination", "To (IATA)") }
-        }
-        Para("Use the operating flight on your booking, with its departure date and airport codes. These details let us check your GPS against a public track and investigate GPS gaps after landing.")
-        airline?.historyUrl(f.value["flight_number"] ?: "")?.let { url ->
-            OutlinedButton({
-                runCatching { ctx.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url))) }
-                    .onFailure { android.widget.Toast.makeText(ctx, "No browser is available", android.widget.Toast.LENGTH_SHORT).show() }
-            }, Modifier.fillMaxWidth()) { Text("Open flight history") }
-        }
-        Para("Check the date and route in the flight history. Offline entry does not verify that a flight flew; a future flight may have no track yet.")
-        field("aircraft_type", "Aircraft type, if known (e.g. A321)")
-        Choice(listOf("unspecified" to "Unspecified", "window" to "Window", "middle" to "Middle", "aisle" to "Aisle"), f.value["seat_position"] ?: "unspecified") {
-            f.value = f.value + ("seat_position" to it)
-        }
-        Text("How will the IMU be mounted?", style = MaterialTheme.typography.titleSmall, modifier = Modifier.padding(top = 8.dp))
-        Choice(listOf(
-            "window" to "Window frame mount (best)", "sidewall" to "Sidewall mount", "seat_frame" to "Clamped to seat structure",
-            "tray" to "Fixed to the tray table (cruise only)", "other" to "Other",
-        ), mount) { mount = it }
-        OutlinedTextField(orientation, { orientation = it }, label = { Text("Orientation note (e.g. label up, USB port forward)") },
-            modifier = Modifier.fillMaxWidth())
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Checkbox(rotated, { rotated = it }); Text("This is a 180°-rotated control run")
-        }
-        field("notes", "Notes (optional)")
-        Spacer(Modifier.height(12.dp))
-        Button({
-            val flight = JSONObject()
-            listOf("date", "origin", "destination", "aircraft_type", "seat_position", "notes")
-                .forEach { flight.put(it, (f.value[it] ?: "").trim()) }
-            val carrier = requireNotNull(airline)
-            flight.put("airline", carrier.name).put("flight_number", carrier.number(f.value["flight_number"] ?: ""))
-                .put("airline_id", carrier.id).put("airline_iata", carrier.iata).put("airline_icao", carrier.icao)
-                .put("airline_directory_revision", directory!!.revision).put("date_basis", "origin-local")
-                .put("track_verification", "pending")
-                .put("origin", flight.getString("origin").uppercase(Locale.ROOT))
-                .put("destination", flight.getString("destination").uppercase(Locale.ROOT))
-            val m = JSONObject().put("type", mount).put("orientation_note", orientation.trim()).put("rotated_180_control", rotated)
-            val s = SessionStore.create(ctx, flight, m)
-            nav.navigate("session/${s.id}") { popUpTo("home") }
-        }, Modifier.fillMaxWidth(), enabled = identityValid) { Text("Create session") }
-        if (!identityValid) Text("Choose an airline, enter its flight number, a valid departure date, and two different three-letter airport codes.")
-    }
-}
-
-// ---------- session checklist ----------
-
-@Composable
 fun SessionScreen(id: String, nav: NavController) {
     val ctx = LocalContext.current
     val live by Live.flow.collectAsStateWithLifecycle()
@@ -353,22 +262,19 @@ fun SessionScreen(id: String, nav: NavController) {
     val recordingHere = live.phase != null && live.sessionId == id
     Page(s.title, nav, help = "about") {
         if (recordingHere) {
-            Button({ nav.navigate(if (live.phase == "flight") "record/$id" else if (live.phase == "placement_check") "placement/$id"
-                else if (live.phase!!.startsWith("cal_")) "cal/$id/${live.phase!!.substringBefore('.').removePrefix("cal_")}"
-                else if (live.phase!!.startsWith("rev.")) "cal/$id/rev" else "still/$id/${live.phase}") },
-                Modifier.fillMaxWidth()) { Text("● Recording ${live.phase} — open") }
+            Button({ nav.navigate(if (live.phase!!.startsWith("ground.")) "ground/$id" else if (live.phase!!.startsWith("cal_")) "cal/$id/pre" else if (live.phase!!.startsWith("rev.")) "cal/$id/rev" else "still/$id/${live.phase}") }, Modifier.fillMaxWidth()) { Text("● Recording — open") }
         }
         if (s.manifest.optString("kind") == "bench") {
             Step("1. Calibration", s.manifest.getJSONObject("quality").optBoolean("cal_pre"), "About 25 min on a solid table") { nav.navigate("cal/$id/pre") }
             Step("2. Reversal test", s.manifest.getJSONObject("quality").optBoolean("reversal"), "Six 0°/180° pairs, label up, about 40 min") { nav.navigate("cal/$id/rev") }
             Step("3. Bench recording", s.hasPhase("bench"), "${Prefs(ctx).driftMinutes} min lying still (30+ for a quality tier)") { nav.navigate("still/$id/bench") }
+        } else if (s.manifest.optString("kind") == "stationary") {
+            val target = s.manifest.getJSONObject("stationary").getInt("block_minutes") * 60.0
+            val complete = io.github.sweisman.locallevellab.model.GroundProtocol.steps.all { name ->
+                (s.phases.lastOrNull { it.getString("name") == name }?.optDouble("still_s") ?: 0.0) >= target }
+            Step("Stationary reversals", complete, "A–B–B–A, then repeat; same face up") { nav.navigate("ground/$id") }
         } else {
-        Step("1. Pre-flight calibration", s.manifest.getJSONObject("quality").optBoolean("cal_pre"), "About 25 min on a solid table") { nav.navigate("cal/$id/pre") }
-        Step("2. Pre-flight drift run (optional)", s.hasPhase("drift_pre"), "${Prefs(ctx).driftMinutes} min lying still") { nav.navigate("still/$id/drift_pre") }
-        Step("3. Mount the IMU + check stability", s.hasPhase("placement_check"), "In the aircraft, once it's mounted") { nav.navigate("placement/$id") }
-        Step("4. Flight recording", s.hasPhase("flight"), "Starts after the placement check") { nav.navigate(if (s.hasPhase("placement_check")) "record/$id" else "placement/$id") }
-        Step("5. Post-flight calibration", s.manifest.getJSONObject("quality").optBoolean("cal_post"), "Same 7 placements, after landing") { nav.navigate("cal/$id/post") }
-        Step("6. Post-flight drift run (optional)", s.hasPhase("drift_post"), "${Prefs(ctx).driftMinutes} min lying still") { nav.navigate("still/$id/drift_post") }
+            Para("Historical recording. You can share or upload its unchanged original data.", true)
         }
         HorizontalDivider(Modifier.padding(vertical = 12.dp))
         Text("7. Finish", style = MaterialTheme.typography.titleMedium)
@@ -378,7 +284,7 @@ fun SessionScreen(id: String, nav: NavController) {
             err.isNotEmpty() -> Para("Upload problem: $err", muted = true)
         }
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth()) {
-            Button({ confirmUpload = true }, Modifier.weight(1f), enabled = !recordingHere && !preparingUpload && (s.hasPhase("flight") || s.hasPhase("bench"))) { Text(if (preparingUpload) "Preparing…" else "Upload") }
+            Button({ confirmUpload = true }, Modifier.weight(1f), enabled = !recordingHere && !preparingUpload && s.phases.isNotEmpty()) { Text(if (preparingUpload) "Preparing…" else "Upload") }
             OutlinedButton({ share(ctx, s); refresh++ }, Modifier.weight(1f), enabled = !recordingHere) { Text("Share file") }
         }
         Para("Uploading queues the session and sends it when the network allows (Settings: Wi-Fi only = ${Prefs(ctx).unmeteredOnly}).", muted = true)
@@ -390,7 +296,7 @@ fun SessionScreen(id: String, nav: NavController) {
         onDismissRequest = { confirmUpload = false },
         title = { Text("Publish this session permanently?") },
         text = { Column {
-            Text("This publishes precise flight paths, flight/date information, any legacy seat number, notes, and persistent identifiers linking your submissions. The original file becomes publicly downloadable under CC0.")
+            Text("This publishes the original IMU data, entered location and altitude, alignment and device details, notes, and persistent identifiers linking recordings. Historical recordings may also contain precise GPS tracks and flight details. Copies cannot be recalled. The original file becomes publicly downloadable under CC0.")
             SwitchRow("I consent to public release", publishConsent) { publishConsent = it }
         } },
         confirmButton = { TextButton({
@@ -459,9 +365,9 @@ fun CalibrationScreen(id: String, which: String, nav: NavController) {
     val activeStep = live.phase?.takeIf { it.startsWith("$prefix.") && live.sessionId == id }?.substringAfter('.')
     val next = steps.firstOrNull { !doneOk(it) }
     val g = rememberImuPreview().gravity
-    Page(when (which) { "pre" -> "Pre-flight calibration"; "post" -> "Post-flight calibration"; else -> "Reversal test" }, nav, help = "calibration") {
+    Page(when (which) { "pre" -> "Instrument calibration"; "post" -> "Instrument calibration"; else -> "Reversal test" }, nav, help = "calibration") {
         ImuStatusPanel(live)
-        Para(if (rev) "Twelve placements, label up throughout: turn the IMU 180° between each, keeping the same edge against the straight edge. Each pair measures the Earth's horizontal rotation free of the sensor's gravity-dependent error; their scatter shows how repeatable this unit is."
+        Para(if (rev) "Twelve placements, label up throughout: turn the IMU 180° between each, keeping the same edge against the straight edge. The differences diagnose reversal repeatability. Changing offsets, imperfect turns and tilt still require checks."
             else "Seven placements: each position twice, in mirror order, so the analysis can measure and remove any slow drift. The middle one is a single double-length stay.", muted = true)
         steps.forEachIndexed { i, step ->
             Stat("${i + 1}. ${pos(step).second}" + if (len(step) > 1) " (double)" else "",
@@ -522,112 +428,4 @@ fun DriftScreen(id: String, name: String, nav: NavController) {
             }
         }
     }
-}
-
-// ---------- placement & flight ----------
-
-@Composable
-fun PlacementScreen(id: String, nav: NavController) {
-    val ctx = LocalContext.current
-    val live by Live.flow.collectAsStateWithLifecycle()
-    var allowNoGps by remember { mutableStateOf(false) }
-    val active = live.phase == "placement_check" && live.sessionId == id
-    rememberImuPreview()
-    Page("Placement check", nav, help = "placement") {
-        ImuStatusPanel(live)
-        INSTRUCTIONS.first { it.key == "placement" }.body.take(4).forEach { Para("• $it") }
-        Spacer(Modifier.height(8.dp))
-        if (!active) {
-            Button({ RecorderService.start(ctx, id, "placement_check") }, Modifier.fillMaxWidth(), enabled = live.phase == null && (live.imuConnected && live.imuConfigOk == true)) {
-                Text(if ((live.imuConnected && live.imuConfigOk == true)) "IMU is mounted. Start the check" else "Waiting for the IMU…")
-            }
-        } else {
-            Stat("Stable for", "${live.stillStreakS.toInt()} / 60 s", big = true)
-            LinearProgressIndicator(progress = { (live.stillStreakS / 60.0).toFloat().coerceIn(0f, 1f) }, modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp))
-            Stat("Accel noise", "%.3f m/s²".format(live.accelSd))
-            Stat("Gyro noise", "%.3f °/s".format(live.gyroSdDps))
-            Stat("Gravity axis", live.gravityAxis)
-            Stat("GPS", if (live.hasFix) "fix, ${live.sats} sats" else "searching…")
-            Para("Light vibration is normal. If the counter keeps resetting, the IMU isn't held firmly enough.", muted = true)
-        if (!live.hasFix) SwitchRow("Record without a fresh GPS fix; a public track may help recover geometry after landing", allowNoGps) { allowNoGps = it }
-            Button({ RecorderService.start(ctx, id, "flight", allowNoGps = allowNoGps); nav.navigate("record/$id") { popUpTo("session/$id") } },
-                Modifier.fillMaxWidth(), enabled = live.stillStreakS >= 60 && (live.hasFix || allowNoGps) && live.imuConfigOk == true) { Text("Start flight recording") }
-            TextButton({ RecorderService.stop(ctx) }) { Text("Cancel check") }
-        }
-    }
-}
-
-@Composable
-fun RecordScreen(id: String, nav: NavController) {
-    val ctx = LocalContext.current
-    val live by Live.flow.collectAsStateWithLifecycle()
-    var saver by remember { mutableStateOf(false) }
-    var confirmStop by remember { mutableStateOf(false) }
-    val active = live.phase == "flight" && live.sessionId == id
-    val view = LocalView.current
-    val activity = ctx as? Activity
-    DisposableEffect(saver, active) {
-        view.keepScreenOn = active && !saver
-        activity?.window?.let { w ->
-            w.attributes = w.attributes.apply {
-                screenBrightness = if (saver) 0.01f else WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE
-            }
-        }
-        onDispose {
-            view.keepScreenOn = false
-            activity?.window?.let { w -> w.attributes = w.attributes.apply { screenBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE } }
-        }
-    }
-    LaunchedEffect(live.lastCompletedPhase) { if (live.lastCompletedPhase == "flight") nav.popBackStack() }
-
-    if (saver && active) {
-        Box(Modifier.fillMaxSize().background(Color.Black).clickable { saver = false }, contentAlignment = Alignment.Center) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Box(Modifier.size(8.dp).background(Color(0xFF5A1E1E), CircleShape))
-                Spacer(Modifier.size(8.dp))
-                Text(fmtTime(live.elapsedS), color = Color(0xFF3A3A3A), fontFamily = FontFamily.Monospace)
-            }
-        }
-        return
-    }
-    Page("Flight recording", nav, help = "flight") {
-        if (!active) {
-            Para("Not recording. Start from the placement check so stability is confirmed first.")
-            Button({ nav.navigate("placement/$id") }, Modifier.fillMaxWidth()) { Text("Go to placement check") }
-            return@Page
-        }
-        Stat("Elapsed", fmtTime(live.elapsedS), big = true)
-        live.activity.firstOrNull()?.let { Text(it, fontFamily = FontFamily.Monospace, fontSize = 13.sp) }
-        TurnReminderCard(live, ctx)
-        ImuStatusPanel(live)
-        if (live.shiftWarning) Para("⚠ A placement shift or turn was logged. The analysis splits the data there.", muted = false)
-        Stat("GPS", if (live.hasFix) "%d sats · ±%.0f m".format(live.sats, live.hAccM) else "searching… (window seat helps)")
-        Stat("Ground speed", "%.0f km/h".format(live.speedMps * 3.6))
-        Stat("Altitude", "%.0f m".format(live.altM))
-        Stat("Track", "%.0f°".format(live.bearingDeg))
-        HorizontalDivider(Modifier.padding(vertical = 8.dp))
-        Text("Predicted rotation of local level", style = MaterialTheme.typography.titleSmall)
-        Stat("Curvature only (transport)", "%.2f °/h · %.2f°".format(live.transportDph, live.transportAccumDeg))
-        Transport.Model.entries.forEach { m ->
-            Stat(m.label, "%.2f °/h · %.2f°".format(live.predictedDph[m] ?: 0.0, live.accumulatedDeg[m] ?: 0.0))
-        }
-        Stat("Measured (5-min mean, rough)", live.measuredDph?.let { "%.1f °/h".format(it) } ?: "needs pre-flight calibration")
-        Para("Rate · accumulated angle so far. The live 'measured' value includes aircraft manoeuvres and sensor drift. Only the full analysis is meaningful.", muted = true)
-        HorizontalDivider(Modifier.padding(vertical = 8.dp))
-        Stat("Stability", "accel %.2f m/s² · gyro %.2f °/s".format(live.accelSd, live.gyroSdDps))
-        ActivityFeed(live)
-        Spacer(Modifier.height(12.dp))
-        Button({ saver = true }, Modifier.fillMaxWidth()) { Text("Battery saver (black screen)") }
-        OutlinedButton({ RecorderService.event(ctx, "placement_shift", "user reported") }, Modifier.fillMaxWidth().padding(top = 8.dp)) {
-            Text("I moved / bumped the IMU")
-        }
-        TextButton({ confirmStop = true }, Modifier.padding(top = 8.dp)) { Text("Stop recording", color = MaterialTheme.colorScheme.error) }
-    }
-    if (confirmStop) AlertDialog(
-        onDismissRequest = { confirmStop = false },
-        confirmButton = { TextButton({ RecorderService.stop(ctx); confirmStop = false }) { Text("Stop") } },
-        dismissButton = { TextButton({ confirmStop = false }) { Text("Keep recording") } },
-        title = { Text("Stop the flight recording?") },
-        text = { Text("Afterwards, do the post-flight calibration as soon as you can.") },
-    )
 }

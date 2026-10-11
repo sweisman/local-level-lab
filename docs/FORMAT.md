@@ -1,6 +1,6 @@
 # Session file format (schema_version 3; schema 2 readable)
 
-This is the technical description of a saved recording. For collecting a flight, start with
+This is the technical description of a saved recording. For collecting a stationary recording, start with
 the [participant guide](PROTOCOL.md). For what the experiment measures and why, start with
 [the methodology](METHODOLOGY.md). An IMU (inertial measurement unit) measures turning and acceleration;
 its original messages and the phone's position record are preserved for later analysis.
@@ -9,13 +9,40 @@ A session is one `.zip` file. It's the contract between the Android app, the upl
 
 Schema 2 replaces the phone's own motion sensors with an external WitMotion WT901 IMU. No schema 1 data was ever collected, the analysis reads schemas 2 and 3. Schema 3 removes exact seat from new recordings and stores separate, fresh calibration locations. Historical archives remain unchanged.
 
+## Current stationary sessions
+
+New participant sessions have `kind="stationary"` and an optional-schema-3
+`stationary` object containing `protocol="stationary-reversal-v1"`, horizontal
+`axis="x"` or `"y"`, and `block_minutes` (10–120; default 30).
+Location fields `latitude_deg`, `longitude_deg`, `altitude_m` are optional,
+finite participant-entered values, labeled `location_source="participant_entered"`.
+Unknown fields stay absent. Alignment uses `heading_true_deg`,
+`heading_uncertainty_deg`, `alignment_method`; optional `device_serial`,
+`support_note` and `notes` are public after upload consent.
+The IMU model and random per-unit identifier remain in the existing `imu` object.
+
+The eight phases are `ground.A.1`, `ground.B.2`, `ground.B.3`, `ground.A.4`,
+`ground.A.5`, `ground.B.6`, `ground.B.7`, `ground.A.8`.
+A points the marked positive horizontal axis approximately north; B is reversed,
+same face up. Consecutive equal positions need no turn. Existing phase start/resume/stop
+events and monotonic timestamps preserve actual intervals and interruptions.
+A stopped block remains saved; subsequent visits to the same name append rather than
+overwrite earlier measurements. Analysis uses the last visit and withholds incomplete
+sequences or blocks. It excludes 30 seconds from each edge without editing raw data.
+
+Stationary sessions need no flight object or GNSS stream. The app leaves an empty
+legacy flight object for compatibility and collects no airline/flight details.
+The new rate diagnostic does not use location. Population latitude comparisons and
+calibrated uncertainty are future work. Old aircraft archives, units, streams and
+phase names remain readable and immutable; their documentation follows.
+
 ## What "raw" means here
 
 - **`imu.bin.gz` holds the IMU's byte stream exactly as Bluetooth delivered it.** Every read is stored verbatim with the phone's arrival time. Nothing is parsed, filtered, decimated, fused, resampled or bias-corrected on the phone. The analysis decodes it (`analysis/lll/witmotion.py`), so the decoding can be audited and rerun.
 - **The data is the least-processed the device exposes, not raw silicon output.** WitMotion's firmware sits between the sensor chip and Bluetooth. It applies the factory bias and scale calibration and a digital low-pass filter. It can also zero the gyro automatically when it thinks the IMU is still, and the app switches that off. The app reads every setting back at each connection and logs it as an `imu_config` event.
 - **The device's own attitude outputs are not used.** Its Kalman-filtered angles (0x53) and quaternions (0x59) are switched off.
 - **Magnetometer data is kept in full**, in the same byte stream.
-- **Display values are never stored.** The live screen's predictions and rough measurements exist only on screen.
+- **Display values are never stored.** Historical flight displays never supplied scientific input. The new stationary flow shows recording progress, without expected rate predictions.
 
 ## Clock
 
@@ -96,7 +123,7 @@ Decoded streams use the IMU's axes, in SI units: gyro rad/s, accel m/s², magnet
 
 `device` is the phone, which supplies GNSS. `bench` appears only in bench sessions: `auto_zero_on` is true when the session was recorded with the bench-only auto-zero polarity test, which never applies to flights. `privacy.cal_locations` stores each calibration latitude rounded to 0.5° and the fix age (at most 900 seconds). Missing, stale and legacy shared locations are unknown for model comparisons; departure latitude is never reused for arrival. Exact legacy `flight.seat` remains readable. New sessions use optional `seat_position`, default unspecified.
 
-### Flight identity and external tracks
+### Historical flight identity and external tracks
 
 New flight manifests additionally carry `airline_id` (OpenFlights record ID), `airline_iata`,
 `airline_icao`, `airline_directory_revision`, `date_basis="origin-local"`, and

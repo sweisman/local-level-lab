@@ -184,6 +184,19 @@ def validate_manifest(m: dict, names: list[str]) -> list[str]:
     for key in ("flight", "mount", "privacy", "quality"):
         if key in m and not isinstance(m[key], dict):
             errs.append(f"manifest {key} must be an object")
+    if m.get('kind') == 'stationary':
+        ground=m.get('stationary')
+        if (not isinstance(ground,dict) or ground.get('protocol')!='stationary-reversal-v1'
+                or ground.get('axis') not in ('x','y')):
+            errs.append('stationary requires its versioned protocol and horizontal x/y axis')
+        elif isinstance(ground,dict):
+            ranges={'latitude_deg':(-90,90),'longitude_deg':(-180,180),
+                    'altitude_m':(-500,10000),'heading_true_deg':(0,360),
+                    'heading_uncertainty_deg':(0,180),'block_minutes':(10,120)}
+            for key,(lo,hi) in ranges.items():
+                if key in ground and (type(ground[key]) not in (int,float)
+                    or not math.isfinite(ground[key]) or not lo<=ground[key]<=hi):
+                    errs.append('invalid stationary.'+key)
     clock = m.get("clock")
     if clock is not None and (not isinstance(clock, dict) or any(type(clock.get(k)) is not int
                             or not 0 <= clock[k] < limit for k, limit in (("elapsed_ns", 2**63), ("utc_ms", 253402300799000)))):

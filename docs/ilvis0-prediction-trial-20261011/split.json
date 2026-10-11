@@ -1,0 +1,13 @@
+{
+  "first_interval_start_utc_week_s": 132349.80372895222,
+  "first_prediction_time_s": 292.1962710477819,
+  "first_prediction_utc_week_s": 132642.0,
+  "first_training_time_s": 0.19627104778192006,
+  "last_prediction_time_s": 438.1962710477819,
+  "last_training_time_s": 291.1962710477819,
+  "last_training_utc_week_s": 132641.0,
+  "prediction_epochs": 147,
+  "segment_id": "570b37d23af5e245dd461051",
+  "selection": "first floor(2*N/3) epochs train; remaining epochs predict",
+  "training_epochs": 292
+}

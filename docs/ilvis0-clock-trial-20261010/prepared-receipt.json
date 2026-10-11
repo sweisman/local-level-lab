@@ -1,0 +1,10 @@
+{
+  "artifacts": {
+    "PLAN.md": "1f783e49685e821310a13613840276658aa8917892b2771f17e0bcb68352200a",
+    "manifest.json": "655e6252cf82ced078da0e7ff74f77af04d542371e056e95343555893f2374fc",
+    "selection.json.gz": "610ec3b007bf0c11b377282ebc04e8de673427e106a2ed4f8cfc53fa8220303e"
+  },
+  "charged_starts": 0,
+  "maximum_starts": 6,
+  "state": "prepared_not_launched"
+}

@@ -1,3 +1,8 @@
+> Participant collection now uses the [stationary ground protocol](PROTOCOL.md).
+> The aircraft/consumer sections below preserve the earlier method and its evidence;
+> they are not the current stationary decision policy. NASA archival analysis remains
+> primary. See [the stationary method and validation needs](STATIONARY.md).
+
 # Provisional primary corpus (policy pilot-2, software 0.6.0)
 
 All structurally valid uploads remain public, unmodified CC0 archives. Publication does not confer scientific eligibility. Only a curator's local CLI can approve provenance; uploaded install IDs, unit IDs, synthetic flags and purported certificates cannot establish it.

@@ -181,6 +181,15 @@ def _analyze(path, th: Thresholds | None = None, *, fit_options=None, diagnostic
     if gaps:
         flags.append("imu_link_gaps")
 
+    if m.get('kind')=='stationary':
+        from .stationary import summarize
+        res['stationary']=summarize(sess)
+        res['stationary_metadata']=m.get('stationary',{})
+        res['scientific_decision']='abstain'
+        res['validation_status']='stationary development diagnostic; no calibrated detection'
+        flags.extend(res['stationary']['flags'])
+        return _clean(res)
+
     # calibration, ground Earth-rate measurement, drift
     cal_pre, cal_post = calib.calibrate(sess, "cal_pre"), calib.calibrate(sess, "cal_post")
     res["calibration"] = {}

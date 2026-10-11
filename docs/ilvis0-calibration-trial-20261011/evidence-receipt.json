@@ -1,0 +1,23 @@
+{
+  "artifacts": {
+    "570b37d23af5e245dd461051-gain_zero__bias1_profiled_removal-flat_still.csv.gz": "6b75ad740cbf053c9b47df119ff215b62c5d72a9f6ab7236feb0bb908e570902",
+    "570b37d23af5e245dd461051-gain_zero__bias1_profiled_removal-sphere_rotating.csv.gz": "3bc6f95cef355b3cac63311bd80ec19ee58a9262db805ab99c2b30ec2d1ee782",
+    "570b37d23af5e245dd461051-gain_zero__bias1_profiled_removal-sphere_still.csv.gz": "316953f51620a387c3b0652d35245aa4fa6e6377ecc08fcec3f12f825adb3c1d",
+    "570b37d23af5e245dd461051-gain_zero__bias1_unsubtracted-flat_still.csv.gz": "de39cf3f15e8879913a7e073733f34b7f6499d6a340766decd84c2308cd52b90",
+    "570b37d23af5e245dd461051-gain_zero__bias1_unsubtracted-sphere_rotating.csv.gz": "c2fc0dac3b5b9a16cea50b4375dc5fa66fdac7ca7315cb869992230397a2255e",
+    "570b37d23af5e245dd461051-gain_zero__bias1_unsubtracted-sphere_still.csv.gz": "3cbde20d20cef3eaf8bf1fc69f79f22c13c093c7319c9bd2eb6eca4620ee4302",
+    "570b37d23af5e245dd461051-offset_zero__bias1_profiled_removal-flat_still.csv.gz": "c28bb40eb3005000eddf5670d979aa3b788ca97a968c331206102a143fbec0e1",
+    "570b37d23af5e245dd461051-offset_zero__bias1_profiled_removal-sphere_rotating.csv.gz": "5e6cdf1b43bbb49466806eab8de547dc55dc23ab72abedfbdcc419dbf1c04c4d",
+    "570b37d23af5e245dd461051-offset_zero__bias1_profiled_removal-sphere_still.csv.gz": "315932482ceff7edafa7c66b35541bed8c0905dcd51e36ccc4a32af5cfa2719d",
+    "570b37d23af5e245dd461051-offset_zero__bias1_unsubtracted-flat_still.csv.gz": "7af7871fdc711d5932e67f0c43177b7b39b66338817eaf3e0c38ccac8c5ea716",
+    "570b37d23af5e245dd461051-offset_zero__bias1_unsubtracted-sphere_rotating.csv.gz": "f17dc28b82d7198abc431c4d895a1fe66ae544a4fcb43f8087229625a5f3be8f",
+    "570b37d23af5e245dd461051-offset_zero__bias1_unsubtracted-sphere_still.csv.gz": "fb11aa0c039adac5479614c49f17bb621372e51f10a0f62ab8de440f09f55cb2",
+    "completion.json": "b9d760d6587dae98f51d35837fafe61df54ae6de0ca612f3e869fb07c40722a4",
+    "manifest.json": "d88b57203dcd67a28d806a4a4bca6d0fdd1449001117a3c1ca7f3510e2d2690f",
+    "selection.json.gz": "610ec3b007bf0c11b377282ebc04e8de673427e106a2ed4f8cfc53fa8220303e",
+    "starts.jsonl": "dee5816a571595fdef9b29735e4424ab23341f1a3d6ef37e79e7b0d095d4035c",
+    "summary.json": "902394917dc2e5da99d0b8f3eaf46f32ccd3b7e6293cf9d1ebbb236be028f477"
+  },
+  "scientific_decision": "abstain",
+  "version": "ilvis0-z-calibration-ablation-v1"
+}
