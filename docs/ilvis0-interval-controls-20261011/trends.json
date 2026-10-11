@@ -1,0 +1,24 @@
+{
+  "new_native_sweeps": 362,
+  "observed_fit_starts": 0,
+  "trends": [
+    {
+      "half_interval_error_ratio": 0.24920735718163753,
+      "model": "sphere_rotating",
+      "quarter_interval_error_ratio": 0.06106039102965995,
+      "roll_error_ratio_at_quarter_interval": 0.0238339660680605
+    },
+    {
+      "half_interval_error_ratio": 0.24984760594592575,
+      "model": "sphere_still",
+      "quarter_interval_error_ratio": 0.06068655826821673,
+      "roll_error_ratio_at_quarter_interval": 0.027384582321140594
+    },
+    {
+      "half_interval_error_ratio": 0.25125978654314635,
+      "model": "flat_still",
+      "quarter_interval_error_ratio": 0.06287062305702955,
+      "roll_error_ratio_at_quarter_interval": 0.029708175823961673
+    }
+  ]
+}

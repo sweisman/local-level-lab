@@ -1,0 +1,14 @@
+{
+  "condition_number": 12122572.8235247,
+  "construction": "interior",
+  "convention": "already_compensated",
+  "deliberate_mislabel_diagnostic": true,
+  "identity": "flat_still::45.0::interior::already_compensated::mislabelled_combined",
+  "latitude_deg": 45.0,
+  "maximum_position_error_m": 4.162371511561573e-05,
+  "mode": "mislabelled_combined",
+  "model": "flat_still",
+  "native_sweeps": 1,
+  "objective": 8.189390501644671e-05,
+  "receiver_epochs_at_boundaries": 24
+}

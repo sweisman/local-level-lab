@@ -1,0 +1,245 @@
+{
+  "controls": [
+    {
+      "calibration_recovery": {
+        "channels": [
+          {
+            "axis": "x",
+            "channel": "gyro",
+            "maximum_bias_error": 1.1838132470826102e-17,
+            "maximum_gain_error": 1.9761969838327786e-14,
+            "methods_max_difference": 2.2648549702353193e-14,
+            "normalized_condition_ratio": 1.1900044224380861,
+            "rank": 2
+          },
+          {
+            "axis": "y",
+            "channel": "gyro",
+            "maximum_bias_error": 1.9280799220112825e-17,
+            "maximum_gain_error": 2.7644553313166398e-14,
+            "methods_max_difference": 2.398081733190338e-14,
+            "normalized_condition_ratio": 1.0887148554144899,
+            "rank": 2
+          },
+          {
+            "axis": "z",
+            "channel": "gyro",
+            "maximum_bias_error": 4.324738470443644e-17,
+            "maximum_gain_error": 2.6201263381153694e-14,
+            "methods_max_difference": 3.175237850427948e-14,
+            "normalized_condition_ratio": 1.6450128141952398,
+            "rank": 2
+          },
+          {
+            "axis": "x",
+            "channel": "accel",
+            "maximum_bias_error": 2.255140518769849e-16,
+            "maximum_gain_error": 1.5543122344752192e-15,
+            "methods_max_difference": 1.5543122344752192e-15,
+            "normalized_condition_ratio": 4.536568387116282,
+            "rank": 2
+          },
+          {
+            "axis": "y",
+            "channel": "accel",
+            "maximum_bias_error": 8.222589276130066e-16,
+            "maximum_gain_error": 3.885780586188048e-15,
+            "methods_max_difference": 3.6637359812630166e-15,
+            "normalized_condition_ratio": 10.450112639120169,
+            "rank": 2
+          },
+          {
+            "axis": "z",
+            "channel": "accel",
+            "maximum_bias_error": 2.4395589715009436e-12,
+            "maximum_gain_error": 2.4780177909633494e-13,
+            "methods_max_difference": 2.421649686334959e-12,
+            "normalized_condition_ratio": 3105.660497380464,
+            "rank": 2
+          }
+        ],
+        "maximum_bias_error": 2.4395589715009436e-12,
+        "maximum_gain_error": 2.4780177909633494e-13,
+        "nonlinear_solver_qualified": false,
+        "reference_attitude_velocity_mount_clock_known": true
+      },
+      "clock_scale": 1.00005,
+      "control": "interior",
+      "correct_clock": {
+        "maximum_attitude_error_rad": 7.98179028263568e-18,
+        "maximum_horizontal_error_m": 1.5486764175207127e-08,
+        "maximum_position_error_m": 1.6385310566297577e-07,
+        "maximum_velocity_error_mps": 2.602395043906517e-08,
+        "maximum_vertical_error_m": 1.631195891693693e-07,
+        "primitive_max_difference": 0.0
+      },
+      "coupled_compensation": {
+        "maximum_attitude_error_rad": 7.98179028263568e-18,
+        "maximum_horizontal_error_m": 1.5406141788930363e-08,
+        "maximum_position_error_m": 1.6384556710118882e-07,
+        "maximum_velocity_error_mps": 0.011103952803296027,
+        "maximum_vertical_error_m": 1.6311965134185868e-07,
+        "primitive_max_difference": 0.0
+      },
+      "coupled_parameter_changes": {
+        "accel_gain_fraction": [
+          5.001499999998134e-05,
+          4.9990000000077304e-05,
+          5.0025000000120546e-05
+        ],
+        "gravity_down_mps2": -0.0009811264149078647,
+        "initial_velocity_mps": [
+          -0.010999450027529,
+          -0.0014999250037539547,
+          -4.999750012513183e-06
+        ]
+      },
+      "duration_s": 12.0,
+      "epoch_association": "Known packet index; no independently time-tagged receiver stream",
+      "external_time_max_position_error_m": 0.1332319976741968,
+      "full_archival_solver_qualified": false,
+      "independent_midpoint_steps": 7200,
+      "native_predictions": 0,
+      "observed_fit_starts": 0,
+      "packets": 2400,
+      "passed": true,
+      "production_primitive_max_difference": 0.0,
+      "python_primitive_steps": 2400,
+      "scientific_decision": "abstain",
+      "version": "ilvis0-coupled-cartesian-controls-v1",
+      "wrong_clock": {
+        "maximum_attitude_error_rad": 1.0893640324259452e-09,
+        "maximum_horizontal_error_m": 0.13318593634478562,
+        "maximum_position_error_m": 0.13778599976143147,
+        "maximum_velocity_error_mps": 0.005872631728567494,
+        "maximum_vertical_error_m": 0.03530563822139321,
+        "primitive_max_difference": 0.0
+      }
+    },
+    {
+      "calibration_recovery": {
+        "channels": [
+          {
+            "axis": "x",
+            "channel": "gyro",
+            "maximum_bias_error": 9.50370966819325e-18,
+            "maximum_gain_error": 6.661338147750939e-15,
+            "methods_max_difference": 9.325873406851315e-15,
+            "normalized_condition_ratio": 1.1900044224380861,
+            "rank": 2
+          },
+          {
+            "axis": "y",
+            "channel": "gyro",
+            "maximum_bias_error": 1.7088042677908255e-17,
+            "maximum_gain_error": 1.9206858326015208e-14,
+            "methods_max_difference": 1.176836406102666e-14,
+            "normalized_condition_ratio": 1.0887148554144899,
+            "rank": 2
+          },
+          {
+            "axis": "z",
+            "channel": "gyro",
+            "maximum_bias_error": 3.8037708562348865e-17,
+            "maximum_gain_error": 1.6653345369377348e-14,
+            "methods_max_difference": 1.4432899320127035e-14,
+            "normalized_condition_ratio": 1.6450128141952398,
+            "rank": 2
+          },
+          {
+            "axis": "x",
+            "channel": "accel",
+            "maximum_bias_error": 6.661338147750939e-16,
+            "maximum_gain_error": 1.9984014443252818e-15,
+            "methods_max_difference": 1.9984014443252818e-15,
+            "normalized_condition_ratio": 4.538865304123201,
+            "rank": 2
+          },
+          {
+            "axis": "y",
+            "channel": "accel",
+            "maximum_bias_error": 1.9984014443252818e-15,
+            "maximum_gain_error": 5.662137425588298e-15,
+            "methods_max_difference": 5.662137425588298e-15,
+            "normalized_condition_ratio": 10.455510201359267,
+            "rank": 2
+          },
+          {
+            "axis": "z",
+            "channel": "accel",
+            "maximum_bias_error": 1.3887502259279927e-12,
+            "maximum_gain_error": 1.4011014570769476e-13,
+            "methods_max_difference": 1.4484524690772105e-12,
+            "normalized_condition_ratio": 3115.022708868251,
+            "rank": 2
+          }
+        ],
+        "maximum_bias_error": 1.3887502259279927e-12,
+        "maximum_gain_error": 1.4011014570769476e-13,
+        "nonlinear_solver_qualified": false,
+        "reference_attitude_velocity_mount_clock_known": true
+      },
+      "clock_scale": 1.00005,
+      "control": "near_boundary",
+      "correct_clock": {
+        "maximum_attitude_error_rad": 7.98179028263568e-18,
+        "maximum_horizontal_error_m": 1.5469227603603494e-08,
+        "maximum_position_error_m": 1.64643474170831e-07,
+        "maximum_velocity_error_mps": 2.6146736199515098e-08,
+        "maximum_vertical_error_m": 1.6391515056390915e-07,
+        "primitive_max_difference": 0.0
+      },
+      "coupled_compensation": {
+        "maximum_attitude_error_rad": 7.98179028263568e-18,
+        "maximum_horizontal_error_m": 1.5370025243537265e-08,
+        "maximum_position_error_m": 1.6463417938841207e-07,
+        "maximum_velocity_error_mps": 0.011103952813399315,
+        "maximum_vertical_error_m": 1.6391514678915087e-07,
+        "primitive_max_difference": 0.0
+      },
+      "coupled_parameter_changes": {
+        "accel_gain_fraction": [
+          5.745000000015321e-05,
+          4.255000000005782e-05,
+          5.745000000015321e-05
+        ],
+        "gravity_down_mps2": -0.0009859160556818238,
+        "initial_velocity_mps": [
+          -0.010999450027529,
+          -0.0014999250037539547,
+          -4.999750012513183e-06
+        ]
+      },
+      "duration_s": 12.0,
+      "epoch_association": "Known packet index; no independently time-tagged receiver stream",
+      "external_time_max_position_error_m": 0.1332319976741968,
+      "full_archival_solver_qualified": false,
+      "independent_midpoint_steps": 7200,
+      "native_predictions": 0,
+      "observed_fit_starts": 0,
+      "packets": 2400,
+      "passed": true,
+      "production_primitive_max_difference": 0.0,
+      "python_primitive_steps": 2400,
+      "scientific_decision": "abstain",
+      "version": "ilvis0-coupled-cartesian-controls-v1",
+      "wrong_clock": {
+        "maximum_attitude_error_rad": 4.907374727868312e-09,
+        "maximum_horizontal_error_m": 0.1325706535826565,
+        "maximum_position_error_m": 0.13706604579388443,
+        "maximum_velocity_error_mps": 0.005795623166736192,
+        "maximum_vertical_error_m": 0.03481555282109583,
+        "primitive_max_difference": 0.0
+      }
+    }
+  ],
+  "environment": {
+    "matplotlib": "3.11.2",
+    "numpy": "2.5.3",
+    "python": "3.14.7"
+  },
+  "full_archival_solver_qualified": false,
+  "native_predictions": 0,
+  "observed_fit_starts": 0,
+  "version": "ilvis0-coupled-cartesian-controls-v1"
+}

@@ -1,9 +1,15 @@
 # Acquiring and decoding the airborne IMU archive
 
 **The completed high-speed analysis favors globe in 12 stretches and flat in none;
-all 12 globe results also favor rotation.** Another 41 comparisons lack finished
+all 12 also favor the globe candidate containing the standard background rotation field.** Another 41 comparisons lack finished
 calculations. See the [findings and source tracks](ilvis0-highspeed-segments-20261008/FINDINGS.md).
 Those unfinished calculations do not provide equal support for flat Earth.
+
+The historical fit labels “rotating globe” and “still globe” mean a globe with the
+specified background angular rate and a globe with zero background rate. They identify
+the predictions being compared, not the physical cause of a gyro signal. The archive
+does not compare every possible stationary-Earth explanation with a nonzero inertial
+field. See [measurement and interpretation](ROTATION_FIELD.md#observation-model-and-explanation).
 
 The [complete-stretch scope](ilvis0-highspeed-segments-20261008/README.md) selects every
 supported interval lasting at least four minutes with receiver ground speed at least 700 km/h
@@ -182,7 +188,7 @@ The signal caused by travelling over a curved surface grows approximately in pro
 ground speed. As an illustrative spherical calculation, speeds of 100, 150 and 200 metres per
 second produce local-level tilt rates of about 3.2, 4.9 and 6.5 degrees per hour. The actual
 calculation uses latitude, altitude and north/east velocity, and projection onto the mounted IMU
-axes matters. Earth's rotation has a separate latitude/orientation dependence.
+axes matters. The standard background rotation term has a separate latitude/orientation dependence.
 
 The local follow-up reports these predicted scales for every geometry-selected window alongside
 speed range, duration and heading coverage. It validates physical units separately for each
@@ -294,7 +300,7 @@ and [completed follow-up](ilvis0-followup-20261007/README.md) preserve that sequ
 ## The route from decoded measurements to the proposed experiment's principle
 
 The shared principle is to ask whether the IMU's measured rotation contains the small,
-predictable contributions from Earth's rotation and motion over its surface, after allowing
+predictable contributions from a background angular-rate field and motion over its surface, after allowing
 for aircraft motion and instrument error. These archival recordings can address that question,
 but do not inherit the passenger experiment's controls or calibration.
 
@@ -307,7 +313,7 @@ are documented and which remain hypotheses. Looking for an expected Earth-rate c
 a diagnostic, not by itself proof that no Earth-dependent processing occurred.
 
 Then build an archival observation model that separates aircraft rotation, sensor bias,
-mounting uncertainty and the predicted Earth contributions. Embedded GPS supplies trajectory
+mounting uncertainty, transport and the background field. Embedded GPS supplies trajectory
 context; ground track does not supply body heading, and acceleration during flight does not
 give gravity direction alone. Fused Group-1 attitude and gyro outputs can check the decoder
 and describe motion, but cannot supply the independent rotation being tested. Any unavoidable
@@ -453,5 +459,5 @@ using the independently decoded measurements with stated processing cases.
 The same evidence characterizes the six prepared stretches from embedded GPS: median heights
 6.35–11.93 km above mean sea level and median ground speeds 482–937 km/h. These are not
 whole-flight or above-terrain summaries. Earlier candidate windows cover both low and high
-altitudes. Slower flight reduces the predicted curvature rate, while Earth rotation itself
-does not depend on aircraft speed. Instrument streams and uncertainty must remain distinct.
+altitudes. Slower flight reduces the predicted curvature rate, while a geographically
+fixed background field is independent of aircraft speed. Instrument streams and uncertainty must remain distinct.

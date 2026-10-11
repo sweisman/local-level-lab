@@ -1,0 +1,14 @@
+{
+  "condition_number": 10862907.218543326,
+  "construction": "interior",
+  "convention": "ordinary_rate_integrals",
+  "deliberate_mislabel_diagnostic": false,
+  "identity": "sphere_rotating::45.0::interior::ordinary_rate_integrals::baseline",
+  "latitude_deg": 45.0,
+  "maximum_position_error_m": 4.109734698337468e-05,
+  "mode": "baseline",
+  "model": "sphere_rotating",
+  "native_sweeps": 1,
+  "objective": 8.028291029855247e-05,
+  "receiver_epochs_at_boundaries": 0
+}

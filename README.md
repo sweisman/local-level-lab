@@ -2,8 +2,8 @@
 
 # Local Level Lab
 
-**Can aircraft motion measurements distinguish a globe from a flat surface—and, if they
-favor a globe, show whether it rotates?**
+**What do aircraft motion measurements reveal about Earth's shape and a background
+rotation field?**
 
 Local Level Lab analyzes NASA airborne survey recordings to investigate that question.
 The data come from professional inertial equipment and GPS receivers aboard research aircraft.
@@ -14,22 +14,36 @@ An **IMU (inertial measurement unit)** measures turning and acceleration. Its gy
 measure how it turns; its accelerometers measure forces associated with gravity and motion.
 GPS records where the aircraft went and when.
 
+The project separates **surface geometry**, **measured rotation** and **its physical
+explanation**. A gyro measures the sensor's angular motion relative to an inertial
+reference—a reference that is not itself turning. Separating aircraft motion from a
+persistent background field is an analysis task. Identifying what produces that field
+is a further question, which these recordings alone do not settle. This project does
+not treat a gyro signal as proof of heliocentrism or any other cosmology.
+
 ## The idea
 
 An aircraft staying level over a globe must gradually turn as it follows the curved surface:
 the direction of local down changes along its route. At 900 km/h, that curvature corresponds
-to roughly eight degrees of turning per hour. Earth's rotation adds a different contribution.
-An IMU can measure both, alongside ordinary aircraft movements and instrument errors.
+to roughly eight degrees of turning per hour. A background rotation field would add
+a different contribution. The analysis separates these terms from ordinary aircraft
+movements and instrument errors.
 
 | Model | Predicted contributions |
 |---|---|
-| Rotating globe | Turning along the curved surface, Earth's rotation and aircraft maneuvers. |
-| Still globe | Turning along the curved surface and aircraft maneuvers, without Earth's rotation. |
-| Still flat disc | Aircraft maneuvers and changes of direction around the disc, without globe curvature or Earth's rotation. |
+| Rotating globe | Globe curvature, the standard background rotation field and aircraft maneuvers. |
+| Still globe | Globe curvature and aircraft maneuvers, with no background rotation field. |
+| Still flat disc | Aircraft maneuvers and changes of direction around the disc, with no globe curvature or background rotation field. |
+
+**“Rotating globe” and “still globe” are names for these mathematical candidates.**
+They compare a specified background angular-rate term with zero. They do not compare
+every proposed cause of rotation. A proposed stationary Earth with a nonzero inertial
+field is not represented by the zero-field “still globe” candidate. It would need
+explicit measurement predictions before it could be tested here.
 
 The first question is **globe, flat or unknown**. All three models are fitted together,
-comparing the flat model with whichever globe model fits better. Rotation is reported only
-after the shape comparison consistently favors a globe; that comparison reuses the globe fits.
+comparing the flat model with whichever globe model fits better. The background-field
+comparison is reported only after shape consistently favors a globe; it reuses the globe fits.
 
 A persistent gyro reading alone proves little. Instrument offsets, aircraft motion and
 uncertain onboard corrections can imitate parts of the signal. Those effects must be
@@ -62,8 +76,8 @@ evidence about Earth's shape. The model fits use IMU increments and receiver pos
 Here, **raw** means the recorded angle and velocity increments, before the finished
 navigation solution. It does not mean that the electronics applied no calibration or
 filtering. Ordinary noise filtering can preserve slow turning. Automatic zeroing or
-subtracting Earth's rotation can remove it, so the analysis also tests possible
-Earth-rate removal. Passing a numerical fit does not identify which onboard processing
+subtracting a presumed background rotation can remove it, so the analysis also tests
+possible upstream Earth-rate removal. Passing a numerical fit does not identify which onboard processing
 was used.
 
 ```mermaid
@@ -72,7 +86,7 @@ flowchart TD
     B --> C[Save selection before comparing models]
     C --> D[Fit each whole stretch under all three models]
     D --> E[Report globe, flat or unknown]
-    E -->|Resolved globe result| F[Compare rotating and still globe]
+    E -->|Resolved globe result| F[Compare background field with zero field]
 ```
 
 The current selection requires **four continuous minutes** with every supported GPS
@@ -94,22 +108,24 @@ separate calibration and timing checks; the current short-stretch results do not
 
 ## Current status
 
-**The completed comparisons favor a rotating globe. None has a completed preference
-for the specified flat disc.** As of 10 October 2026, all 53 selected stretches have been analyzed.
+**The completed comparisons favor globe geometry with the standard background rotation
+term. None has a completed preference for the specified flat disc.** All 53 selected
+stretches have been analyzed. These results compare observable predictions; they do
+not identify the physical cause of the background rotation.
 
 - All **232 retained files** have been screened: **53 qualifying stretches, totaling
   424.3 minutes**. Some instrument streams overlap; these are not 53 independent flights.
 - **12 stretches favor globe over flat under both processing assumptions.** All 12 also
-  favor rotating over still globe. None has a resolved flat preference; 41 remain unknown
+  favor the background-field globe over the zero-field globe. None has a resolved flat preference; 41 remain unknown
   because required calculations did not pass the numerical stopping checks.
   [Findings and source data](docs/ilvis0-highspeed-segments-20261008/FINDINGS.md) explain
   the complete and partial comparisons and link to every source recording and track.
 - **The pilot's resolved comparisons favor globe.** Two recordings favored globe over
-  flat, then rotating over still globe, under all four tested cases. Two other recordings
+  flat, then the background-field globe over the zero-field globe, under all four tested cases. Two other recordings
   have globe-favoring partial shape comparisons; two have no completed shape comparison.
   **None of the six has a resolved preference for flat.**
   [Provisional pilot findings](docs/ilvis0-refinement-20261008/PROVISIONAL.md) explain the results.
-- The larger analysis tests two processing assumptions: Earth's rotation was retained
+- The larger analysis tests two processing assumptions: the background rotation was retained
   in the logged measurements, or a shared amount may have been removed onboard.
   Both allow a constant gyro offset of ±1 degree/hour. This is the analysis's offset
   allowance; it is not a claim that these instruments drift by that amount.
@@ -167,6 +183,11 @@ absolute fit quality and timing/GPS sensitivity next. Exact device characterizat
 continues in parallel at lower priority; modeling does not wait for it. A separate
 [rotation-field study](docs/ROTATION_FIELD.md) is planned to estimate the background
 vector before interpreting its cause.
+
+A field's direction, magnitude and latitude pattern can constrain explanations.
+Explanations predicting identical measurements cannot be separated by those measurements
+alone. The present study has not freely measured the rotation magnitude or resolved
+solar versus sidereal rate; neither result should be inferred from the fixed-rate model label.
 
 ## Secondary work: a stationary crowdsourced experiment
 

@@ -1,0 +1,13 @@
+{
+  "artifacts": {
+    "FINDINGS.md": "9c5f1402ad26ef09efbc6051b0811bf55c2a945403d29cdcf45fc0e34b5c9fc9",
+    "NEXT_STEP.md": "915675fce1932af16d8ed5a9d15e13d66a38b754fa6e29d183e8240aaecb8055"
+  },
+  "inputs": {
+    "report-receipt.json": "1bb556f660529659a9c6ceb703c0619452792e8ee81def184ba3e6c668e488c0",
+    "summary.json": "c2265399fc323ed093e71d291753037be980489e27c2d50dee50cb2887797e9f",
+    "trends.json": "76529801b397827291dcb9d0bf25e45e764654fa4e7ebafa5e94c99151ba5aff"
+  },
+  "native_sweeps": 0,
+  "observed_fit_starts": 0
+}

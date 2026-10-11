@@ -1,0 +1,33 @@
+{
+  "artifacts": {
+    "PLAN.md": "4b8f39c9ea58307b3e2bea6747e5e4dafe56c642cc61ad74b045e4bd9163b754",
+    "PREPARATION.md": "02a1fbdbbae5bb617f06d76f2d3b55eee845178452fe72d3c5ccf122ca71b005",
+    "manifest.json": "21a18ef89ed33317eb9fd0bdf62a9db2ab5c69a6f2e1c38f1e970594288abb2c",
+    "selection.json.gz": "610ec3b007bf0c11b377282ebc04e8de673427e106a2ed4f8cfc53fa8220303e"
+  },
+  "environment": {
+    "numpy": "2.5.3",
+    "python": "3.14.7",
+    "scipy": "1.18.1",
+    "thread_settings": {
+      "MKL_NUM_THREADS": "2",
+      "OMP_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    }
+  },
+  "manifest_sha256": "21a18ef89ed33317eb9fd0bdf62a9db2ab5c69a6f2e1c38f1e970594288abb2c",
+  "state": "prepared_not_started",
+  "verification": {
+    "charged_observed_starts": 0,
+    "focused_tests_passed": 37,
+    "free_exclusive_lock": true,
+    "idempotent_preparation": true,
+    "inputs_verified": 25,
+    "maximum_native_sweeps": 1200,
+    "maximum_starts": 6,
+    "native_build_matches": true,
+    "observed_fit_allowance_authorized": false,
+    "source_snapshots_verified": 46
+  },
+  "version": "ilvis0-matched-integration-trial-v1"
+}

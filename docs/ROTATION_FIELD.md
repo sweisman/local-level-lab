@@ -15,6 +15,26 @@ The [analysis roadmap](ANALYSIS_ROADMAP.md) adds the numerical, calibration-boun
 absolute-fit and recording-dependence checks this estimator will also need. Exact device
 characterization remains parallel work; it does not hold up development of the field estimator.
 
+## Observation, model and explanation
+
+Gyroscopes measure the instrument's angular motion relative to an inertial reference.
+They do not directly observe the Earth's orbit, the motion of celestial matter or a
+mechanism that creates that reference. Aircraft motion, transport and instrument errors
+must be separated before estimating a persistent background field.
+
+The current archive comparison uses the historical labels “rotating globe” and “still
+globe” for curved-surface models with a specified background angular rate and with zero
+background rate, respectively. A preference for the former supports that observable
+prediction over the latter. It does not compare all physical explanations of the field.
+In particular, a stationary-Earth hypothesis that proposes a nonzero inertial field
+is not the zero-field candidate. It needs explicit equations and testable predictions.
+
+This project reports surface geometry and angular motion separately from causal
+interpretation. It does not claim that a gyro signal alone proves heliocentrism, or
+that an alternative mechanism has been established. Alternative explanations are tested
+where they predict distinguishable observations; agreement on one field does not show
+agreement with all other physical evidence.
+
 ## What to measure
 
 Represent the background field in local **north, east and down** directions. Begin with
@@ -116,6 +136,11 @@ itself resolve the much smaller difference between those rates.
 **Fit the rate first, then compare it with both targets.** A mean solar day is 24 hours;
 a sidereal day is about 23 hours, 56 minutes and 4 seconds in ordinary clock time.
 [USNO explains the distinction](https://aa.usno.navy.mil/data/siderealtime).
+These use different astronomical references: solar time follows the Sun, while sidereal
+time uses the equinox, approximately the stellar sky. Their difference is established
+astronomical timing; the gyro question is which rate the freely estimated field matches.
+The present short-stretch fits have not measured that difference. A candidate containing
+a fixed sidereal-compatible rate cannot establish it merely by fitting better than zero.
 The comparison targets are approximately:
 
 | Reference | Angular rate |
@@ -209,6 +234,13 @@ This experiment can distinguish explanations that predict different measurable f
 Two explanations predicting exactly the same gyro, acceleration and GPS observations
 cannot be distinguished by those observations alone. Measuring the field and identifying
 its ultimate cause are therefore separate tasks.
+
+Report **geometry**, **retained field and uncertainty**, and **interpretation limits**
+as separate results. Do not turn “rotation measured” into “its physical source identified,”
+or “source not identified by this analysis” into “no evidence exists elsewhere.”
+Matching a sidereal-compatible rate would constrain explanations, not select a cosmology
+on its own. Any proposed celestial influence must supply quantitative predictions before
+the project can compare it; this analysis has not established such a mechanism.
 
 
 ## Independent stationary companion

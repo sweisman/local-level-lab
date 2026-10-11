@@ -1,0 +1,6 @@
+{"identity": "570b37d23af5e245dd461051::bias1_unsubtracted::sphere_rotating", "manifest_sha256": "1de13ae24524fd8b6b2b38de3d2f528084ae724c4276d5a79017b530d53c01a5", "maximum_evaluations": 200, "number": 1}
+{"identity": "570b37d23af5e245dd461051::bias1_unsubtracted::sphere_still", "manifest_sha256": "1de13ae24524fd8b6b2b38de3d2f528084ae724c4276d5a79017b530d53c01a5", "maximum_evaluations": 200, "number": 2}
+{"identity": "570b37d23af5e245dd461051::bias1_unsubtracted::flat_still", "manifest_sha256": "1de13ae24524fd8b6b2b38de3d2f528084ae724c4276d5a79017b530d53c01a5", "maximum_evaluations": 200, "number": 3}
+{"identity": "570b37d23af5e245dd461051::bias1_profiled_removal::sphere_rotating", "manifest_sha256": "1de13ae24524fd8b6b2b38de3d2f528084ae724c4276d5a79017b530d53c01a5", "maximum_evaluations": 200, "number": 4}
+{"identity": "570b37d23af5e245dd461051::bias1_profiled_removal::sphere_still", "manifest_sha256": "1de13ae24524fd8b6b2b38de3d2f528084ae724c4276d5a79017b530d53c01a5", "maximum_evaluations": 200, "number": 5}
+{"identity": "570b37d23af5e245dd461051::bias1_profiled_removal::flat_still", "manifest_sha256": "1de13ae24524fd8b6b2b38de3d2f528084ae724c4276d5a79017b530d53c01a5", "maximum_evaluations": 200, "number": 6}

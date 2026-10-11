@@ -1,0 +1,9 @@
+{"identity": "sphere_rotating::coning", "manifest_sha256": "976732555c6a64537407268245d4ebe4dcc7832e1c58ae58ee8053198f942596", "maximum_sweeps": 200, "start": 1}
+{"identity": "sphere_rotating::sculling", "manifest_sha256": "976732555c6a64537407268245d4ebe4dcc7832e1c58ae58ee8053198f942596", "maximum_sweeps": 200, "start": 2}
+{"identity": "sphere_rotating::combined", "manifest_sha256": "976732555c6a64537407268245d4ebe4dcc7832e1c58ae58ee8053198f942596", "maximum_sweeps": 200, "start": 3}
+{"identity": "sphere_still::coning", "manifest_sha256": "976732555c6a64537407268245d4ebe4dcc7832e1c58ae58ee8053198f942596", "maximum_sweeps": 200, "start": 4}
+{"identity": "sphere_still::sculling", "manifest_sha256": "976732555c6a64537407268245d4ebe4dcc7832e1c58ae58ee8053198f942596", "maximum_sweeps": 200, "start": 5}
+{"identity": "sphere_still::combined", "manifest_sha256": "976732555c6a64537407268245d4ebe4dcc7832e1c58ae58ee8053198f942596", "maximum_sweeps": 200, "start": 6}
+{"identity": "flat_still::coning", "manifest_sha256": "976732555c6a64537407268245d4ebe4dcc7832e1c58ae58ee8053198f942596", "maximum_sweeps": 200, "start": 7}
+{"identity": "flat_still::sculling", "manifest_sha256": "976732555c6a64537407268245d4ebe4dcc7832e1c58ae58ee8053198f942596", "maximum_sweeps": 200, "start": 8}
+{"identity": "flat_still::combined", "manifest_sha256": "976732555c6a64537407268245d4ebe4dcc7832e1c58ae58ee8053198f942596", "maximum_sweeps": 200, "start": 9}

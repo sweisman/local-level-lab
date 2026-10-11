@@ -1,0 +1,29 @@
+{
+  "artifacts": {
+    "DERIVATIVES.md": "863b443d55d3bfb521e839a6c985bb2e6aeadd83a64c164764a203379a8590d3",
+    "FINDINGS.md": "12de3c0653fb0c9e1136e98c38ef161d872b9431f92b8d5d5f23c581d2b091fc",
+    "OBSERVED_PLAN.md": "24a097858454395de2a1acd167b803408fe8d3b883b37550b46ae20982295678"
+  },
+  "inputs": {
+    "fits.csv": "9d539c1ac20969f6bc3feca3029c524e499592e3e5218d5b425d450418c39753",
+    "known-calibration.csv": "4798a3c0137ed3c844248c59863165a22fdd24af4864dfc7d2251372e89b0ea9",
+    "report-receipt.json": "c6518cf0932d722f1c3971b4a898deb75d97c48596b079a73be44871f8a0b734",
+    "summary.json": "33e9b7af82f30d712ed2e8f13c99e8d5004dd5bf50d69210a6945c379c2b4826"
+  },
+  "sources": {
+    "analysis/tests/test_ilvis0_compensation_full_tangent.py": "e7b54f653fe8ab2c489218e8fcb77b12d3c76a3a52b6a6769ed3a052967ff7e4"
+  },
+  "verification": {
+    "charged_predictions": 36,
+    "charged_starts": 24,
+    "checked_links": 78,
+    "focused_tests_passed": 41,
+    "free_exclusive_lock": true,
+    "native_sweeps": 1042,
+    "observed_starts": 0,
+    "packaging_preserves_numerical_evidence": true,
+    "passed_fits": 24,
+    "protected_files": 65,
+    "verified_receipt_hashes": 34
+  }
+}

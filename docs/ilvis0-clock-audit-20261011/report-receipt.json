@@ -1,0 +1,29 @@
+{
+  "artifacts": {
+    "README.md": "05e172930ccbb623866f833b7819241bbf4d6867f1bfd67ce7eec84ffb964f30",
+    "clock-bins.csv": "1ab39b51448fb0cf077004a6ac1e0a83b049961d986745cc2f7ea2533f8a0955",
+    "summary.json": "2a10469a20a2d382fb9f5f82244ac2c06c3d3d5125748a3c23763256e7864366"
+  },
+  "inputs": {
+    "/site/repo/local-level-lab/data/ilvis0-followup-20261007/summary.json": "d488530b392584f2300817ff9bb52003f140f64a90e4270b1e49d92a75daf89c",
+    "/site/repo/local-level-lab/data/ilvis0-ready/a0534d9c30195543709c/decoded/ILVIS0_applanix_57300_610_LVIS_38614965.013.gz": "a7cc829f98c7f160a47c25450a5a62f171d79f3465b18abffac582a9fc041db9",
+    "/site/repo/local-level-lab/data/ilvis0-ready/cd8e05202eb41b83eb26/decoded/ILVIS0_applanix_57320_610_LVIS_38614965.013.gz": "f61db03d700c3c78c224747966e6241e5ab671c2b13b888a0b1034afe6f078ee",
+    "/site/repo/local-level-lab/docs/ilvis0-clock-calibration-audit-20261011/parameter-changes.csv": "cb85efbd8a71c776c9e20e0b3faba4042f50eb9bfc50148160b72e2bfa28dd2f",
+    "/site/repo/local-level-lab/docs/ilvis0-clock-calibration-audit-20261011/report-receipt.json": "3e58c22ef7204b0d57b3dba07354b93d53f0cfdc63d24db23f212d105824e9ba",
+    "/site/repo/local-level-lab/docs/ilvis0-highspeed-segments-20261008/evidence-receipt.json": "b082549083356dbdc48fe4421daf6f9cb36086c6f4f851475bef75e130b8f187",
+    "/site/repo/local-level-lab/docs/ilvis0-highspeed-segments-20261008/summary.json.gz": "41654f27764dc8af26e83c42ba291c76ebc1eb77ed579523baab6d80190642fa",
+    "/site/repo/local-level-lab/docs/ilvis0-solver-trial-20261010/evidence-receipt.json": "7c20ed58ee65aacbf6839462fe6ab2b5d1f05f4eb8dbdc70067a02511d21948a",
+    "/site/repo/local-level-lab/docs/ilvis0-solver-trial-20261010/selection.json.gz": "709576550b3aebb4a0db222cf2ec5525d21661b16829f27b74e0489ac58b9fc9"
+  },
+  "native_predictions": 0,
+  "observed_fit_starts": 0,
+  "sources": {
+    "/site/repo/local-level-lab/analysis/lll/applanix.py": "466866ea3d93600f698a76665b0269b1a5e2d35f067043edaf656d7c55a6dad4",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0.py": "692b7c41c6e7b0fb0a7fb7fa3c2671cac754b4eae87681092a6448df3324f76d",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_clock_audit.py": "0df5f07d82cf6c10e9f1c360ff64cae6f8862bbc56b279c0f9e3e2299494b9f4",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_followup.py": "d3e238cab5dff807c23a51d0d189e19a21d81eef482711700f9f0a5c0dc9fb8e",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_saved_audit.py": "de3160a1533abd7bb0c181bb332e745d84f2ab24c12e49d0116d118f479350fb",
+    "/site/repo/local-level-lab/docs/ilvis0-clock-audit-20261011/build_report.py": "e8321994faea4c73a1aecac3d07116df9808afd0a69dfca8ca6432d2489c1234"
+  },
+  "version": "ilvis0-selected-clock-audit-v1"
+}

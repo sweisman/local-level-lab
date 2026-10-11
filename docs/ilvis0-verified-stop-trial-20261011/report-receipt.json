@@ -1,0 +1,27 @@
+{
+  "artifacts": {
+    "RESULTS.md": "ac0069600418dd4eda6e428683075f56026d8954bb3936df50a7dc499f011725",
+    "fit-comparisons.csv": "637f1a33d7563e567a8bab30bbb0878b2e9bd43eb8ae92900faaae5a4579db7d",
+    "matched-baseline.csv": "c040404f8a3d42f1af22d3cd16597eb657d2025acc5254eeb4480f58c6b4965d"
+  },
+  "comparison_qualification_passed": false,
+  "inputs": {
+    "/site/repo/local-level-lab/docs/ilvis0-prediction-trial-20261011/completion.json": "0211b74045b1b24adc3a1290166cf14fccf0a6fa26cbefd4c5eede80c39918c7",
+    "/site/repo/local-level-lab/docs/ilvis0-prediction-trial-20261011/evidence-receipt.json": "7538b259b91c2916342e1e00419c461cbeff5dcd7f7e4b4760954cfb3a0d9d82",
+    "/site/repo/local-level-lab/docs/ilvis0-prediction-trial-20261011/manifest.json": "00a83a281a84a6fb244c90f91ed66e920d8a90267705d5b32616a230b64ff0bb",
+    "/site/repo/local-level-lab/docs/ilvis0-prediction-trial-20261011/summary.json": "74fccc5f928a1b87f342312334e66957de4d39bcfc683102ded30e1d24a66724",
+    "/site/repo/local-level-lab/docs/ilvis0-verified-stop-trial-20261011/completion.json": "d2e3a7274aa2f793fb8d38e3753f8d3a14ee53bcabc11daa4e4a472d0bc4674a",
+    "/site/repo/local-level-lab/docs/ilvis0-verified-stop-trial-20261011/evidence-receipt.json": "0eed95bca316508c2b9d6e522467eb4e8a189c85e797eaedd2a99e6d8f9566b9",
+    "/site/repo/local-level-lab/docs/ilvis0-verified-stop-trial-20261011/manifest.json": "1de13ae24524fd8b6b2b38de3d2f528084ae724c4276d5a79017b530d53c01a5",
+    "/site/repo/local-level-lab/docs/ilvis0-verified-stop-trial-20261011/summary.json": "188154f30b6b168d0fbd25ff060d99a09bbc8ef951b31c5dae05f21c6fd74223"
+  },
+  "native_predictions": 0,
+  "optimizer_starts": 0,
+  "sources": {
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_saved_audit.py": "de3160a1533abd7bb0c181bb332e745d84f2ab24c12e49d0116d118f479350fb",
+    "/site/repo/local-level-lab/docs/ilvis0-prediction-trial-20261011/build_report.py": "6f86dc14d964dd8d393d9041ad9ef04408ad404318cb1fb5e1dc00b83d3096ff",
+    "/site/repo/local-level-lab/docs/ilvis0-unit-scale-trial-20261011/build_report.py": "32ee93440828793b05a515a456e6b14985ef87d4f33d4ffebfa9b54577a475a6",
+    "/site/repo/local-level-lab/docs/ilvis0-verified-stop-trial-20261011/build_report.py": "2655e1a76f5cacc7cbe84c1c6d859ef883fce1305886349016032d6f023d51e9"
+  },
+  "version": "ilvis0-verified-stop-prediction-trial-v1"
+}

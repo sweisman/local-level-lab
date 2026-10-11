@@ -1,0 +1,19 @@
+{
+  "condition_number": 11904576.09376578,
+  "identity": "sphere_rotating::nominal",
+  "maximum_derivative_difference_m_per_bound_unit": 5.9047339714078075e-09,
+  "maximum_truth_position_error_m": 4.104265241032636e-05,
+  "maximum_value_tangent_difference_m": 0.0,
+  "native_sweeps": 15,
+  "passed": true,
+  "receiver_epochs_at_boundaries": 0,
+  "relative_1e_7_rank": 5,
+  "singular_values": [
+    12385.455885106505,
+    2950.890634990796,
+    1538.8740130172823,
+    786.5676136796166,
+    4.5553149568996165,
+    0.001040394532955487
+  ]
+}

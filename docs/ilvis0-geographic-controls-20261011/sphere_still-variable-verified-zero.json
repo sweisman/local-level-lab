@@ -1,0 +1,381 @@
+{
+  "actual_tangent_sweeps": 52,
+  "actual_value_sweeps": 2,
+  "fit": {
+    "accepted_step_history": [
+      {
+        "cost": 27769629.052949116,
+        "evaluations": 21,
+        "parameters_at_limits": 1,
+        "relative_cost_change": null,
+        "relative_residual_step": null,
+        "stationarity": 0.9972225987406707
+      },
+      {
+        "cost": 6705819.05259072,
+        "evaluations": 22,
+        "parameters_at_limits": 1,
+        "relative_cost_change": 0.7585196748647758,
+        "relative_residual_step": 1.035087406244197,
+        "stationarity": 0.9970553578586373
+      },
+      {
+        "cost": 1564424.1681105308,
+        "evaluations": 23,
+        "parameters_at_limits": 1,
+        "relative_cost_change": 0.766706474504985,
+        "relative_residual_step": 1.0708631040862762,
+        "stationarity": 0.9962883032864087
+      },
+      {
+        "cost": 341098.93630501756,
+        "evaluations": 24,
+        "parameters_at_limits": 1,
+        "relative_cost_change": 0.7819651835748691,
+        "relative_residual_step": 1.1439158240153517,
+        "stationarity": 0.9927856406033329
+      },
+      {
+        "cost": 65784.18241773843,
+        "evaluations": 25,
+        "parameters_at_limits": 1,
+        "relative_cost_change": 0.8071404644929385,
+        "relative_residual_step": 1.289925289791937,
+        "stationarity": 0.9742099674644074
+      },
+      {
+        "cost": 11306.712200796634,
+        "evaluations": 26,
+        "parameters_at_limits": 1,
+        "relative_cost_change": 0.8281241510459538,
+        "relative_residual_step": 1.497467022365076,
+        "stationarity": 0.8566432325368556
+      },
+      {
+        "cost": 3394.8365865010096,
+        "evaluations": 27,
+        "parameters_at_limits": 1,
+        "relative_cost_change": 0.6997503318195523,
+        "relative_residual_step": 1.1779621305242116,
+        "stationarity": 0.42251486669099264
+      },
+      {
+        "cost": 330.1175287772639,
+        "evaluations": 28,
+        "parameters_at_limits": 0,
+        "relative_cost_change": 0.9027589339381106,
+        "relative_residual_step": 2.245367698917328,
+        "stationarity": 0.45812877595660906
+      },
+      {
+        "cost": 28.13825984772132,
+        "evaluations": 29,
+        "parameters_at_limits": 0,
+        "relative_cost_change": 0.914762902921442,
+        "relative_residual_step": 2.6443515563365874,
+        "stationarity": 0.43834333047624374
+      },
+      {
+        "cost": 6.865549454597707,
+        "evaluations": 30,
+        "parameters_at_limits": 0,
+        "relative_cost_change": 0.7560066083776076,
+        "relative_residual_step": 1.3176753694754433,
+        "stationarity": 0.35117280259264827
+      },
+      {
+        "cost": 1.793538769024239,
+        "evaluations": 31,
+        "parameters_at_limits": 0,
+        "relative_cost_change": 0.7387625300953669,
+        "relative_residual_step": 0.9578073596962969,
+        "stationarity": 0.34333504321138575
+      },
+      {
+        "cost": 0.4507193059606657,
+        "evaluations": 32,
+        "parameters_at_limits": 0,
+        "relative_cost_change": 0.7486983199109344,
+        "relative_residual_step": 0.6679043528100108,
+        "stationarity": 0.226367454190781
+      },
+      {
+        "cost": 0.10746146637017644,
+        "evaluations": 33,
+        "parameters_at_limits": 0,
+        "relative_cost_change": 0.3432578395904892,
+        "relative_residual_step": 0.3435493870031457,
+        "stationarity": 0.10939050706748489
+      },
+      {
+        "cost": 0.023608371825229277,
+        "evaluations": 34,
+        "parameters_at_limits": 0,
+        "relative_cost_change": 0.08385309454494716,
+        "relative_residual_step": 0.17416767201084474,
+        "stationarity": 0.05098407591155071
+      },
+      {
+        "cost": 0.004440135426336031,
+        "evaluations": 35,
+        "parameters_at_limits": 0,
+        "relative_cost_change": 0.019168236398893247,
+        "relative_residual_step": 0.08702597869461262,
+        "stationarity": 0.022041553347009343
+      },
+      {
+        "cost": 0.0006019692294034037,
+        "evaluations": 36,
+        "parameters_at_limits": 0,
+        "relative_cost_change": 0.0038381661969326274,
+        "relative_residual_step": 0.042129917502390576,
+        "stationarity": 0.00809024848907472
+      },
+      {
+        "cost": 4.039261224597377e-05,
+        "evaluations": 37,
+        "parameters_at_limits": 0,
+        "relative_cost_change": 0.0005615766171574299,
+        "relative_residual_step": 0.018320805845171085,
+        "stationarity": 0.002035758993949751
+      },
+      {
+        "cost": 2.7676635771408473e-06,
+        "evaluations": 38,
+        "parameters_at_limits": 0,
+        "relative_cost_change": 3.762494866883292e-05,
+        "relative_residual_step": 0.005539548154464595,
+        "stationarity": 0.0002067075362517164
+      },
+      {
+        "cost": 2.374518391588598e-06,
+        "evaluations": 39,
+        "parameters_at_limits": 0,
+        "relative_cost_change": 3.931451855522494e-07,
+        "relative_residual_step": 0.0006182501169200587,
+        "stationarity": 2.508697131000856e-06
+      },
+      {
+        "cost": 2.3639099635582457e-06,
+        "evaluations": 40,
+        "parameters_at_limits": 0,
+        "relative_cost_change": 1.0608428030352184e-08,
+        "relative_residual_step": 1.419061921759663e-05,
+        "stationarity": 5.438414889155659e-07
+      },
+      {
+        "cost": 2.3620666472845176e-06,
+        "evaluations": 41,
+        "parameters_at_limits": 1,
+        "relative_cost_change": 1.8433162737281534e-09,
+        "relative_residual_step": 2.172132338028593e-06,
+        "stationarity": 5.355278113380087e-07
+      },
+      {
+        "cost": 2.3620455968699806e-06,
+        "evaluations": 42,
+        "parameters_at_limits": 1,
+        "relative_cost_change": 2.1050414536991373e-11,
+        "relative_residual_step": 5.666206528308365e-07,
+        "stationarity": 8.260323234906027e-09
+      },
+      {
+        "cost": 2.3620443915397707e-06,
+        "evaluations": 43,
+        "parameters_at_limits": 1,
+        "relative_cost_change": 1.2053302098953425e-12,
+        "relative_residual_step": 2.8329060187927266e-07,
+        "stationarity": 5.7828838099519584e-08
+      },
+      {
+        "cost": 2.3620443915397707e-06,
+        "evaluations": 51,
+        "parameters_at_limits": 1,
+        "relative_cost_change": 0.0,
+        "relative_residual_step": 0.0,
+        "stationarity": 5.7828838099519584e-08
+      }
+    ],
+    "active_bounds": [
+      "gyro_bias_z"
+    ],
+    "active_parameters": [
+      "attitude_y",
+      "velocity_y",
+      "gyro_bias_z",
+      "gyro_gain_z",
+      "gravity_delta",
+      "time_offset"
+    ],
+    "calibration_bounds_supported": false,
+    "clock_independently_established": false,
+    "constant_bias_is_measured_drift": false,
+    "converged": true,
+    "derivative_method": "forward automatic differentiation, 27 tangent lanes",
+    "evaluations": 52,
+    "exact_projected_gradient_relative": 5.7828838099519584e-08,
+    "full_stage_x_scale": 1.0,
+    "gps_epochs_at_packet_boundaries": 0,
+    "gradient": [
+      -2.6205938391532513e-09,
+      0.00013110837597763835,
+      -5.379990655736534e-07,
+      -7.16437741679057e-10,
+      2.8943337108287896e-08,
+      0.0006232650412276719
+    ],
+    "initialization_evaluations": 19,
+    "initialization_message": "`xtol` termination condition is satisfied.",
+    "initialization_x_scale": "jac",
+    "latency_derivative_convention": "left interval at a packet boundary; adjacent measured rates may differ",
+    "maximum_evaluations": 200,
+    "message": "Stopped because `callback` function raised `StopIteration` or returned `True`",
+    "model": "sphere_still",
+    "normalized_parameters": [
+      0.9800036604681822,
+      0.9899999392672888,
+      0.9999999999999999,
+      0.9894438893979528,
+      0.9899992586165188,
+      0.9900000055850713
+    ],
+    "parameters": {
+      "accel_bias_x": 0.0,
+      "accel_bias_y": 0.0,
+      "accel_bias_z": 0.0,
+      "accel_gain_x": 0.0,
+      "accel_gain_y": 0.0,
+      "accel_gain_z": 0.0,
+      "attitude_x": 0.0,
+      "attitude_y": 0.009800036604681822,
+      "attitude_z": 0.0,
+      "earth_removal": 0.0,
+      "gravity_delta": 0.049499962930825946,
+      "gyro_bias_x": 0.0,
+      "gyro_bias_y": 0.0,
+      "gyro_bias_z": 4.848136811095359e-06,
+      "gyro_gain_x": 0.0,
+      "gyro_gain_y": 0.0,
+      "gyro_gain_z": 0.019788877787959055,
+      "lever_x": 0.0,
+      "lever_y": 0.0,
+      "lever_z": 0.0,
+      "position_x": 0.0,
+      "position_y": 0.0,
+      "position_z": 0.0,
+      "time_offset": 0.09900000055850713,
+      "velocity_x": 0.0,
+      "velocity_y": 1.9799998785345776,
+      "velocity_z": 0.0
+    },
+    "processing_independence_established": false,
+    "projected_gradient": [
+      -2.6205938391532513e-09,
+      0.00013110837597763835,
+      0.0,
+      -7.16437741679057e-10,
+      2.8943337108287896e-08,
+      0.0006232650412276719
+    ],
+    "receiver_covariance_calibrated": false,
+    "residual_sum_squares": 2.3620443915397707e-06,
+    "right_singular_vectors": [
+      [
+        9.83867583196011e-10,
+        0.5118886717563151,
+        -2.9610794620355463e-06,
+        -0.0008261099763151573,
+        5.529111541367448e-06,
+        0.859051398480046
+      ],
+      [
+        3.3324299321609365e-08,
+        0.8590471409668132,
+        -8.968405629906159e-06,
+        -0.0027964710313811165,
+        -0.00014844239143988448,
+        -0.5118888231158565
+      ],
+      [
+        -0.9999999993442035,
+        1.3129857423307992e-07,
+        2.0753115069128596e-06,
+        3.6156158460493924e-05,
+        -8.770941812911352e-11,
+        -4.231560121661058e-08
+      ],
+      [
+        2.747213178084754e-10,
+        -0.0001246737271867145,
+        1.601120918664343e-08,
+        5.718648914718742e-06,
+        -0.9999999889530541,
+        8.0731961435419e-05
+      ],
+      [
+        3.6161238200644717e-05,
+        0.0028252034401073955,
+        0.0023775503569951244,
+        0.9999929215365634,
+        5.308144170573662e-06,
+        -0.000721817691046799
+      ],
+      [
+        1.9893422652572363e-06,
+        2.5029715987217454e-06,
+        0.9999971735764019,
+        -0.00237756784879641,
+        2.0759155330409084e-09,
+        -3.3095138153805975e-07
+      ]
+    ],
+    "scaled_projected_gradient": [
+      -1.6643867828341946e-12,
+      1.9159476333002178e-08,
+      0.0,
+      -5.1424804462332295e-11,
+      3.6219950054124847e-11,
+      5.7828838099519584e-08
+    ],
+    "scientific_decision": "abstain",
+    "scientific_eligible": false,
+    "singular_values": [
+      12423.033107562658,
+      2941.959771054426,
+      1574.510124629408,
+      799.0991968688573,
+      4.591368291200637,
+      0.001232298063999845
+    ],
+    "solver_reported_success": false,
+    "stability_probe": null,
+    "stationarity_tolerance": 0.0001,
+    "stopping_rule_verified": true,
+    "termination": "three_stable_callbacks",
+    "version": "ilvis0-unit-scale-verified-stop-v1"
+  },
+  "full_archival_solver_qualified": false,
+  "identity": "sphere_still::variable::verified::zero",
+  "maximum_normalized_parameter_error": 0.009999999999999898,
+  "maximum_position_error_m": 5.522125186090851e-06,
+  "observed_fit_starts": 0,
+  "passed": true,
+  "start": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "truth": {
+    "attitude_y": 0.0098,
+    "gravity_delta": 0.0495,
+    "gyro_bias_z": 4.799655442984406e-06,
+    "gyro_gain_z": 0.0198,
+    "time_offset": 0.099,
+    "velocity_y": 1.98
+  },
+  "truth_maximum_position_error_m": 4.207568302999061e-05,
+  "truth_objective": 8.424530245275108e-05
+}

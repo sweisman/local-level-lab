@@ -20,10 +20,54 @@ fit with upstream removal allowed again exhausted its 200-evaluation cap. Its
 [matched report](../ilvis0-unit-scale-trial-20261011/RESULTS.md) is published, and solver
 qualification did not pass. No retries or replication fits are authorized.
 
-Next, inspect the newly saved gradient components, weak directions and calibration
-boundaries against the original results without refitting. Use that evidence to select
-a specific numerical correction and qualify it on known-optimum controls before proposing
-another bounded observed-data comparison. Do not advance fixed scaling to replication.
+The [saved solver diagnosis](../ilvis0-solver-diagnosis-20261011/README.md) is now complete.
+The unfinished fit passes fresh scaled stationarity but lacks successful termination;
+its history records only one final stable callback. Calibration boundaries persist.
+The [verified-stopping candidate](../ilvis0-solver-diagnosis-20261011/STOPPING_PLAN.md)
+passed 24 known-optimum recovery controls and focused false-stop/budget checks. The
+[six-fit matched comparison](../ilvis0-verified-stop-trial-20261011/RESULTS.md)
+completed with five converged fits; qualification did not pass. The
+[saved failure diagnosis](../ilvis0-verified-stop-diagnosis-20261011/README.md) shows
+that the bounded linear correction exceeded the residual-step limit by a factor
+of 1.55 despite tiny gradient and cost change. The fresh nonlinear probe was not
+attempted. No threshold is loosened and no saved failure is relabeled.
+Do not advance either revision to replication. The next work follows the
+[clock/calibration and numerical-control plan](../ILVIS0_DIAGNOSTIC_PLAN.md),
+with fresh observed comparisons requiring a separately prepared finite allowance.
+
+The [clock audit and physical controls](../ilvis0-clock-audit-20261011/README.md)
+are complete with no observed fits. Both selected UTC series accumulate about 22 ppm
+relative to nominal timing. Scalar controls exhibit clock/gravity coupling and a
+gyro gain/offset/clock ambiguity. They do not qualify the full archival solver or
+identify its compensation path. The [coupled physical controls](../ilvis0-coupled-controls-20261011/README.md)
+now recover known three-dimensional motion and expose the importance of independent
+receiver time tags. The separate
+[geographic controls](../ilvis0-geographic-controls-20261011/README.md) exercise the
+native geographic fitter, off-packet receiver association and nonlinear optimization
+with six free parameters for all three true models. Full nuisance freedom and long
+record conditioning remain to be qualified. These controls do not authorize recording
+replication.
+
+All 24 geographic controls passed their numerical prediction checks, but the
+[saved calibration audit](../ilvis0-geographic-controls-20261011/CALIBRATION.md) finds
+poor Z gyro-offset recovery and a very weak tangent direction. The
+[interval comparison](../ilvis0-interval-controls-20261011/FINDINGS.md) is now complete:
+all nine new fits passed, with roughly fourfold error reduction when the interval is
+halved and substantially better recovery under added roll. The
+[original-rate correction comparison](../ilvis0-compensation-controls-20261011/FINDINGS.md)
+has now passed all nine new fits. Combined corrections recover the known offset
+within 0.000011°/hour for the globe controls and 0.000377°/hour for the disc control;
+the geometry's weak calibration direction remains. The
+[latitude/convention extension](../ilvis0-latitude-controls-20261011/FINDINGS.md)
+passes all 24 fits with offset error below 0.00079°/hour and no calibration limits
+reached. Already-compensated controls expose double-correction error. The
+[six-fit observed launcher](../ilvis0-integration-trial-20261011/PLAN.md)
+is implemented and requires a separate six-start finite allowance before launch. The
+[full-column derivative check](../ilvis0-latitude-controls-20261011/DERIVATIVES.md)
+has passed for all three candidates without new optimizer starts.
+The proposal authorizes no observed starts. Do not interpret
+prediction agreement as recovered calibration or advance the failed observed solver
+trial to replication.
 
 Review numerical completion, objective agreement and calibration behavior before
 any wider use. A solver that finishes more fits without a stable fit comparison is

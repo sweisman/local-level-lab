@@ -1,0 +1,79 @@
+{
+  "environment": {
+    "numpy": "2.5.3",
+    "python": "3.14.7",
+    "scipy": "1.18.1",
+    "threads": {
+      "MKL_NUM_THREADS": "2",
+      "OMP_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    }
+  },
+  "identities": [
+    "sphere_rotating::nominal::original::zero",
+    "sphere_rotating::nominal::original::opposed",
+    "sphere_rotating::nominal::verified::zero",
+    "sphere_rotating::nominal::verified::opposed",
+    "sphere_rotating::variable::original::zero",
+    "sphere_rotating::variable::original::opposed",
+    "sphere_rotating::variable::verified::zero",
+    "sphere_rotating::variable::verified::opposed",
+    "sphere_still::nominal::original::zero",
+    "sphere_still::nominal::original::opposed",
+    "sphere_still::nominal::verified::zero",
+    "sphere_still::nominal::verified::opposed",
+    "sphere_still::variable::original::zero",
+    "sphere_still::variable::original::opposed",
+    "sphere_still::variable::verified::zero",
+    "sphere_still::variable::verified::opposed",
+    "flat_still::nominal::original::zero",
+    "flat_still::nominal::original::opposed",
+    "flat_still::nominal::verified::zero",
+    "flat_still::nominal::verified::opposed",
+    "flat_still::variable::original::zero",
+    "flat_still::variable::original::opposed",
+    "flat_still::variable::verified::zero",
+    "flat_still::variable::verified::opposed"
+  ],
+  "maximum_fit_sweeps": 4800,
+  "maximum_fixture_sweeps": 90,
+  "observed_fit_starts": 0,
+  "sources": {
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_estimator.py": "6393015ed2d15ef5ebf1cba10f823addda2b2821e9dd46f279c50ebb874cdcdd",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_exploratory.py": "3f7499f888e02b59fbb694078353d5e241434b25ac527bf41861fc2f93bbf3b8",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_forward.py": "37e91a623aafd7a7951be995d1b42d8f9144b8a63466a90088d2adcf8a842fad",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_geographic_controls.py": "b6763311f77327e1c181df79520c989fa1b017ed6e86de51f7f0a63b429d4691",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_native.c": "5efb8c04a9a72822374a23df9b3e8d43c5bfa0e37c7a39a1326195e815aae49e",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_shape.py": "6e9e95dd1ec1b9d8b354994865be44bed89dec751d020cefdd9e834cf7b2850a",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_solver_refinement.py": "442dd52979f4db0973a29c7553ab5b0f02ba90e847dbea2f7db99735ade1db0f",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_solver_verified_stop.py": "037d5697b6a158160db9fbf1681b557a0f3bcc43bd888f48622965a219d91f28",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_tangent.cpp": "818c2932045f33f4adfc9321076e242313d5b99b62f69848876647b391c76938",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_geographic_controls.py": "9c5ce72666db70e2ed037b89ff76a7f21691cf9530f212ecb5e27a972bbaa8f5",
+    "/site/repo/local-level-lab/docs/ilvis0-geographic-controls-20261011/PLAN.md": "a651e7683e29b1cecbc9c037cbc4d0f595e518fca2aa62ef28030b4e05fefdb7",
+    "/site/repo/local-level-lab/docs/ilvis0-geographic-controls-20261011/build_report.py": "6c4679bfdd64f2ff4319c60d29e062be88a2502484ac33af2e157137d58b405b"
+  },
+  "tangent_kernel": {
+    "binary_sha256": "6acb6fbb4d854f82daf3b2c4c027f5d0da3fc068cae87e4c143a66103fae145d",
+    "compiler": "c++ (GCC) 16.2.1 20260810",
+    "flags": [
+      "-O2",
+      "-std=c++17",
+      "-fPIC",
+      "-shared"
+    ],
+    "source_sha256": "818c2932045f33f4adfc9321076e242313d5b99b62f69848876647b391c76938"
+  },
+  "value_kernel": {
+    "binary_sha256": "f56bb8b398ac71f4e520ae249bfe2606988eb3ff850ca00fc2322b2b9dc00595",
+    "compiler": "cc (GCC) 16.2.1 20260810",
+    "flags": [
+      "-O2",
+      "-std=c99",
+      "-D_DEFAULT_SOURCE",
+      "-fPIC",
+      "-shared"
+    ],
+    "source_sha256": "5efb8c04a9a72822374a23df9b3e8d43c5bfa0e37c7a39a1326195e815aae49e"
+  },
+  "version": "ilvis0-independent-geographic-controls-v1"
+}

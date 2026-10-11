@@ -1,0 +1,14 @@
+{
+  "condition_number": 12284837.364862638,
+  "construction": "interior",
+  "convention": "ordinary_rate_integrals",
+  "deliberate_mislabel_diagnostic": false,
+  "identity": "flat_still::45.0::interior::ordinary_rate_integrals::combined",
+  "latitude_deg": 45.0,
+  "maximum_position_error_m": 0.0,
+  "mode": "combined",
+  "model": "flat_still",
+  "native_sweeps": 1,
+  "objective": 0.0,
+  "receiver_epochs_at_boundaries": 0
+}

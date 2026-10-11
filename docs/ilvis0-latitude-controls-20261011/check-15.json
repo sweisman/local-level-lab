@@ -1,0 +1,14 @@
+{
+  "condition_number": 767328.3146079784,
+  "construction": "near_roll",
+  "convention": "ordinary_rate_integrals",
+  "deliberate_mislabel_diagnostic": false,
+  "identity": "sphere_still::45.0::near_roll::ordinary_rate_integrals::combined",
+  "latitude_deg": 45.0,
+  "maximum_position_error_m": 8.742517820792273e-10,
+  "mode": "combined",
+  "model": "sphere_still",
+  "native_sweeps": 1,
+  "objective": 4.082228644060371e-14,
+  "receiver_epochs_at_boundaries": 0
+}

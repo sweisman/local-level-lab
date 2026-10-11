@@ -1,0 +1,23 @@
+{
+  "artifacts": {
+    "README.md": "14c1bf03825db0ac4611e610dfd86d9a68980dc93d764e3badc900ddd9389720",
+    "display-traces.csv": "867895b9648ae8ebbebd8673ac0454fdafe97f023007dedef3f36212f477b27d",
+    "position-errors.svg": "e01cc0250dfd25fe8fabaf31ff902471f5196a531e6194a018acc4c76118f89e",
+    "summary.json": "de7796b6e514d1b7407a7b7597b41f4742fa2e7653a9a1b134aba6657ba4eb4e"
+  },
+  "environment": {
+    "matplotlib": "3.11.2",
+    "numpy": "2.5.3",
+    "python": "3.14.7"
+  },
+  "inputs": {},
+  "native_predictions": 0,
+  "observed_fit_starts": 0,
+  "sources": {
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_coupled_controls.py": "9606b187a1b8151e3deac2254e91f4a4b724f3f65a22905c89238a488c73f11f",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_forward.py": "37e91a623aafd7a7951be995d1b42d8f9144b8a63466a90088d2adcf8a842fad",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_coupled_controls.py": "9552a281b2de090bca89c0eafef900e44b30a0c74c8ee0dc39a49af0b9afc480",
+    "/site/repo/local-level-lab/docs/ilvis0-coupled-controls-20261011/build_report.py": "70e1746fe158c8a4d3159abb159cb1ebf5cff8f3e47289cd2080b5cbf89404ce"
+  },
+  "version": "ilvis0-coupled-cartesian-controls-v1"
+}

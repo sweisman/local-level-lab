@@ -4,10 +4,17 @@
 
 The completed study found **12 globe preferences, zero complete flat preferences and
 41 unfinished comparisons** among 53 eligible stretches. All 12 complete globe results
-also favor rotation. These are useful findings; unfinished calculations do not provide
+also favor the background-field globe over the zero-field globe. These are useful findings; unfinished calculations do not provide
 equal support for flat Earth. The [findings](ilvis0-highspeed-segments-20261008/FINDINGS.md)
 and [saved-result diagnosis](ilvis0-highspeed-segments-20261008/POST_RUN_REVIEW.md)
 preserve what the measurements and calculations currently show.
+
+“Rotating globe” and “still globe” below retain the exact names used in saved fits.
+They compare the standard background angular-rate term with zero on the same globe
+geometry. They are not verdicts on the field's physical cause or on heliocentric versus
+geocentric cosmology. A stationary-Earth theory proposing a nonzero inertial field is
+not represented by the zero-field candidate. Keep model preference, free measurement
+of the field, and interpretation separate; see [the interpretation policy](ROTATION_FIELD.md#interpretation).
 
 An **IMU (inertial measurement unit)** measures turning and acceleration. These are
 survey-grade IMUs used for precision airborne mapping. Their published capabilities
@@ -64,27 +71,40 @@ the split does not turn it into unseen-data confirmation.
 The [saved prediction audit](ilvis0-prediction-audit-20261011/README.md) now shows
 where prediction errors grow and how calibration changes with the fitting window.
 Z gain switches from −2% in whole-stretch fits to +2% in training-only fits under
-both processing cases; gravity correction returns to its limit. The next bounded
-experiment is the [approved, running solver-scaling comparison](ilvis0-unit-scale-trial-20261011/README.md),
-followed by predeclared prediction checks on two other recordings. The
+both processing cases; gravity correction returns to its limit. The
+[solver-scaling comparison](ilvis0-unit-scale-trial-20261011/README.md) completed
+five of six fits. The sixth reached a much smaller projected gradient but did not
+satisfy its stopping rule; it remains unfinished. The
+[verified-stopping comparison](ilvis0-verified-stop-trial-20261011/RESULTS.md)
+also completed only five of six fits and did not qualify. The
+[saved failure audit](ilvis0-verified-stop-diagnosis-20261011/README.md) identifies a
+bounded residual-step probe 1.55 times its stability limit. The next work is independent
+clock/calibration controls and review of numerical strategies.
+Predeclared prediction checks on two other recordings follow only if the numerical
+method qualifies and receive their own allowance. The
 [solver and replication plan](ilvis0-prediction-audit-20261011/NEXT_PLAN.md) preserves
-those records and criteria. The current allowance is six fits, 200 evaluations each,
-with no retries. The two-recording replication still needs its own finite allowance,
+those records and criteria. The six-fit allowance is spent and permits no retries.
+The two-recording replication still needs its own finite allowance,
 and calibration robustness remains a separate check.
 
 | Order | Work | What can happen without new observed fits? | Deliverable |
 |---|---|---|---|
-| 1 | Qualify the solver after the completed matched trial | Review preserved successes and failures; no rollout based on this trial. | Independent numerical controls and matched baseline comparison. |
-| 2 | Diagnose calibration-boundary saturation | Recover signed parameter values, limit frequencies and associations from saved fits. | Calibration-model adequacy audit, beginning with Z-axis gyro gain and offset. |
-| 3 | Assess absolute fit quality | Inventory saved residual diagnostics and missing channels. New predictions or refits require a separate scope. | Per-fit adequacy report and a tested path toward an absolute-fit criterion. |
-| 4 | Test clock and receiver-coordinate sensitivity | Specify matched alternatives and choose intervals from saved geometry/numerical diagnostics. | Small frozen comparison matrix, with all three models treated equally. |
-| 5 | Analyze completion selection and recording dependence | Use saved fits, receiver tracks and recorded provenance. | Completion analysis and a conservative flight/installation grouping ledger. |
+| P0 | Explain integration timing and joint Z-axis calibration | Audit preserved timestamps, calibration shifts and local weak directions; the completed stopping trial did not qualify. | Clock evidence and matched gain–bias profiles after separately budgeted solver qualification. |
+| P1 | Model residual dependence and assess prediction quality | Extend saved-residual diagnostics; specify a common correlated-error alternative. | Covariance diagnostics and blocked predictive adequacy checks. |
+| P1 | Isolate what the inertial measurements contribute | Specify gyro, acceleration, gravity and receiver-metric controls. | Measurement-contribution study with identifiable comparisons and common error assumptions. |
+| P1 | Qualify numerical optima | Review saved failures and existing known-optimum controls; define missing physical controls. | Objective and prediction recovery under two numerical strategies, both clocks and difficult calibration cases. |
+| P2 | Test independent-flight generality | Group saved intervals by supported flight and installation provenance. | Dependence ledger and predeclared prediction replication. |
 | Parallel, lower priority | Seek exact device and processing records | Continue the existing inquiry; record what each source actually establishes. | Better-supported assumptions where information becomes available. |
 | Follow-on | Measure the background rotation field | Prepare the estimator design and separation checks after current numerical work is reviewed. | Freely estimated field before interpretation of its cause. |
 
+The [focused diagnostic plan](ILVIS0_DIAGNOSTIC_PLAN.md) incorporates the October 11
+review, identifies tests already completed, and specifies the remaining clock,
+calibration, covariance and measurement-contribution work. The priorities above guide
+the next studies; they do not interrupt the approved numerical trial or expand the corpus.
+
 This roadmap authorizes no new observed starts, synthetic campaigns, deletion, resumption
-of completed studies or production promotion. The current solver trial retains its
-12-start/200-evaluation limit. Any new numerical work needs a separately identified
+of completed studies or production promotion. The verified-stopping trial is complete;
+its six-start allowance is spent, with no retries. Any new numerical work needs a separately identified
 configuration and finite approved allowance. At most two total numerical threads/workers.
 
 ## 1. Qualify numerical completion
@@ -104,6 +124,12 @@ require parameter recovery only for combinations the controls identify. Count ev
 start and evaluation. Multi-start agreement improves confidence but does not prove a
 global optimum. Distinguish a converged but poor flat fit from an unfinished flat fit.
 
+The completed software matrix already includes short independently generated IMU/GPS
+controls. Extend that evidence to realistic integration lengths, both clock conventions,
+coupled gain/offset errors, near-boundary optima and poor initial states. Compare two
+numerical strategies over the same feasible region. A larger evaluation-budget sensitivity
+is a separate future freeze, not permission to retry or relabel the original failures.
+
 ## 2. Explain calibration-boundary saturation
 
 The first pass reached the Z-axis gyro-gain limit in **304/318 fits** and its offset
@@ -116,6 +142,15 @@ speed and latitude. Examine Z-axis gain and offset together. Across-fit correlat
 estimates describe the archive; they are not within-fit parameter uncertainties. Use
 projected gradients and available Jacobian singular vectors to examine local trade-offs.
 The baseline saved singular values alone; do not pretend it contains those vectors.
+
+The completed zero-gain and zero-offset tests remove one correction at a time; they do
+not map their joint ambiguity. Next specify two-dimensional Z gain–offset profile costs,
+reoptimizing the remaining nuisance parameters under unchanged bounds for all three
+models. Compare the same grid under both clocks and processing cases. Plot feasible
+limits, fitted points, unfinished grid points and cost valleys. Check whether those
+valleys move with clock convention. Keep this separate from an absolute calibration
+estimate: a shallow valley can preserve a model preference while leaving its calibration
+poorly identified. Grid size and start allowances must be costed before approval.
 
 Specify a **small calibration sensitivity matrix before new fits**, justified by published
 survey-system performance and the physical meaning of each error. Separate constant
@@ -151,6 +186,16 @@ the clock comparison; they neither establish a calibrated adequacy failure nor r
 held-out prediction checks. Speed/course covariates in this diagnostic are coordinate-derived
 proxies under a reference globe metric, not recorded VTG measurements or independent evidence.
 
+The diagnostic already reports five time lags. Extend it with a fuller lag curve,
+cross-axis covariance and low-frequency power, retaining actual time separations and
+cadence limitations. These are fitted navigation errors containing receiver error,
+inertial error and model mismatch; they cannot alone identify receiver noise. Compare
+available fix-quality and precision channels without treating those indicators as measured
+error variance. Estimate and seal a shared covariance alternative on development or
+training observations before evaluating later predictions. Do not choose a different
+covariance for each physical model or calibrate a significance threshold on its own
+in-sample residuals.
+
 Retain the whole-stretch fit as the primary analysis. Existing fixed-parameter 4–10-minute
 section checks remain useful, but **are not held-out validation**: the parameters saw
 those observations. A genuine blocked prediction check fits calibration/initialization
@@ -176,13 +221,62 @@ production significance gate stays intact until the additional checks are valida
 
 ## 4. Compare timing and receiver-coordinate assumptions
 
-First fit nominal 200 Hz and packet-header elapsed timing on a small, fixed set with
-equal calibration freedoms for all three models. Include a representative control and
-high clock-sensitivity cases chosen from saved diagnostics, not from desired model
-preferences. The old fixed-parameter check showed median residual ratios near 1.01–1.02
-but 95th-percentile ratios near 17–22; refitting is necessary to distinguish calibration
-readjustment from a persistent timing problem. Report changes in costs, ranking,
-completion, boundary saturation and absolute fit quality.
+The [selected-packet clock audit](ilvis0-clock-audit-20261011/README.md) now reproduces
+both frozen recordings, including both time tags and native provenance. UTC elapsed
+time differs from nominal by about 22 ppm. Independent physical controls demonstrate
+how this can accumulate into substantial height error and trade off with gravity;
+they do not identify the NASA increment period or reproduce the full fitted calibration
+shift. No new observed fits or native predictions were made. The
+[coupled three-dimensional controls](ilvis0-coupled-controls-20261011/README.md) now
+recover known motion and demonstrate both packet-endpoint compensation and its loss
+under independent observation times. They check the Python integration primitive and
+known-reference linear calibration. The separate
+[geographic controls](ilvis0-geographic-controls-20261011/README.md) extend testing
+through both native kernels and nonlinear solvers, with independent receiver times and
+six free calibration/initialization/latency parameters under all three true models.
+Their report retains every outcome. Full nuisance freedom and long-record conditioning
+still need qualification before observed profiles.
+
+All 24 geographic fits passed the predefined convergence/prediction checks. Their
+[calibration audit](ilvis0-geographic-controls-20261011/CALIBRATION.md) shows why this
+is insufficient: micrometre track errors coexist with up to 0.647°/hour Z offset error
+in the short synthetic tracks, and all 12 near-boundary fits reach the offset limit.
+The completed [interval controls](ilvis0-interval-controls-20261011/FINDINGS.md)
+separate those effects: all nine new fits passed, offset errors shrink approximately
+with interval squared, and added roll reduces the remaining error by another factor
+of 34–42. This identifies a numerical/geometry mechanism in the synthetic controls,
+without establishing the NASA boundary mechanism. The
+[original-rate correction comparison](ilvis0-compensation-controls-20261011/FINDINGS.md)
+has now completed: all nine new fits passed, and combined coning/rotating-force
+corrections reduce offset error to at most 0.000377°/hour across the three supplied
+truths. Both globe controls recover within 0.000011°/hour. Conditioning remains weak;
+these noise-free, six-parameter controls do not qualify noisy or full archival fits.
+The [latitude/convention extension](ilvis0-latitude-controls-20261011/FINDINGS.md)
+has also completed: all 24 fits at ±45° pass, with offset errors below 0.00079°/hour
+and no calibration limits reached. Opposed starts and roll/unequal timing retain
+the improvement. Correcting already-compensated inputs instead introduces error.
+A [six-fit NASA comparison launcher](ilvis0-integration-trial-20261011/PLAN.md) is
+implemented with unchanged header timing, bounds and solver; its separate freeze
+requires an explicit six-start finite allowance before launch. The
+[27-column derivative check](ilvis0-latitude-controls-20261011/DERIVATIVES.md) has
+passed for all three candidates; global optimizer qualification remains distinct.
+Do not upsample observed packets or double-correct the archive. No observed fits
+were added and the frozen NASA findings are unchanged.
+
+The control's matched reoptimized clock comparison is complete: all six fits converged,
+the close rotating-globe fit returned, and globe/rotation preference survived. It shows
+that calibration can absorb much of the fixed-parameter clock effect; it does not establish
+the physically correct integration interval. Z gain and offset remain at their limits.
+
+First audit packet timestamp quantization, interval distributions, cumulative elapsed-time
+drift, rate changes and discontinuities, separately from the period represented by each
+increment. Compare nominal timing with header timing without selecting the convention
+that gives the preferred model its smallest cost. Use independent packet-jitter controls
+and available decoder-validation channels to investigate the distinction. Group1 remains
+fused navigation and supplies no independent Earth-model evidence. Then a separately
+frozen extension can test the other preselected recording and the joint calibration
+profiles under both clocks. Report costs, ranking, completion, calibration and prediction
+quality, including incompatible or inconclusive timing evidence.
 
 Then compare full three-dimensional receiver positions with horizontal-only observations,
 an altitude-only diagnostic and justified height/geoid perturbations. Preserve original
@@ -198,6 +292,15 @@ ablation, use its appropriate covariance rather than dropping components after j
 whitening. Receiver latitude/longitude remain outputs of a geodetic navigation system;
 these tests isolate their influence, not replace them with raw GNSS ranges. Raw ranges
 are a possible later extension, not a blocker for the present archive study.
+
+Add a measurement-contribution study separating gyro increments, acceleration increments,
+gravity and coordinate metric. Include a receiver-constrained gyro prediction where its
+frame and attitude assumptions can be stated explicitly. An ablation must define its
+replacement constraints and initialization, not silently supply missing gyros from fused
+attitude. Check whether non-gyro inputs can reproduce the distinction under comparable
+freedom. Report interacting channels and lost identifiability rather than an invented
+percentage of evidence attributable to one sensor. The original measurements and primary
+comparison remain unchanged.
 
 Stage these comparisons rather than immediately multiplying every timing, calibration
 and coordinate option into a large grid. Freeze each small matrix and its compute budget
@@ -226,11 +329,27 @@ Manufacturer replies can improve that support without holding up the other audit
 
 ## Rotation-field follow-on and publication
 
+The [saved solver diagnosis](ilvis0-solver-diagnosis-20261011/README.md) separates the
+remaining numerical stopping issue from calibration ambiguity. A verified-stopping
+candidate passed cheap known-optimum and false-stop controls, but its completed six-fit
+airborne comparison did not qualify. Recording replication and a versioned rerun
+of all 53 saved eligible stretches remain deferred. Preserve the original 12 resolved and 41 unresolved
+results; software controls alone do not change them.
+
 The [rotation-field proposal](ROTATION_FIELD.md) remains separate: fit a retained
-background vector freely, examine latitude/altitude/velocity dependence, then interpret
-its cause. It will reuse the numerical, adequacy and dependence checks above. It need
+background vector freely and examine latitude/altitude/velocity dependence. Report its
+measured properties without assigning a physical cause. Competing causal explanations
+need distinguishable quantitative predictions to be tested with this archive.
+It will reuse the numerical, adequacy and dependence checks above. It need
 not wait for an exact hardware identification, but unknown upstream subtraction must
 not be fitted as though it were independent of an unknown original field strength.
+
+Before field fitting, audit rank using the archive's actual latitude, heading and
+supported installation groups. Test the columns for north amplitude, east component
+and vertical amplitude against installation-specific gyro offsets and upstream removal.
+Report weak combinations and coverage; configuration similarity alone does not establish
+shared calibration. This geometry check precedes fitting a common magnitude or testing
+solar versus sidereal rate.
 
 Its [precision stage](ROTATION_FIELD.md#precision-stage-sidereal-versus-solar-rate) will
 also ask whether the freely measured magnitude distinguishes **15.0000°/hour** from

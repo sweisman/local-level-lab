@@ -1,0 +1,283 @@
+{
+  "actual_tangent_sweeps": 36,
+  "actual_value_sweeps": 2,
+  "fit": {
+    "accepted_step_history": [
+      {
+        "cost": 56335.964256100844,
+        "evaluations": 15,
+        "parameters_at_limits": 0,
+        "relative_cost_change": null,
+        "relative_residual_step": null,
+        "stationarity": 0.510725802927022
+      },
+      {
+        "cost": 171.23567033854334,
+        "evaluations": 16,
+        "parameters_at_limits": 0,
+        "relative_cost_change": 0.996960455499437,
+        "relative_residual_step": 17.13879155534015,
+        "stationarity": 0.48456789265535144
+      },
+      {
+        "cost": 0.00258050795754361,
+        "evaluations": 17,
+        "parameters_at_limits": 0,
+        "relative_cost_change": 0.9999849300793904,
+        "relative_residual_step": 13.044872173886807,
+        "stationarity": 0.02109994304303358
+      },
+      {
+        "cost": 2.5879952698362177e-06,
+        "evaluations": 18,
+        "parameters_at_limits": 0,
+        "relative_cost_change": 0.002577919962273774,
+        "relative_residual_step": 0.05045202329056449,
+        "stationarity": 0.00019237514151191395
+      },
+      {
+        "cost": 2.213762345823223e-06,
+        "evaluations": 19,
+        "parameters_at_limits": 0,
+        "relative_cost_change": 3.742329240129949e-07,
+        "relative_residual_step": 0.0005483919531318769,
+        "stationarity": 4.4807511374658435e-07
+      },
+      {
+        "cost": 2.046373388523843e-06,
+        "evaluations": 20,
+        "parameters_at_limits": 0,
+        "relative_cost_change": 1.6738895729937992e-07,
+        "relative_residual_step": 0.0002653158418887872,
+        "stationarity": 1.8104198319143374e-07
+      },
+      {
+        "cost": 2.0163513239739198e-06,
+        "evaluations": 21,
+        "parameters_at_limits": 0,
+        "relative_cost_change": 3.002206454992314e-08,
+        "relative_residual_step": 0.00012467516805890957,
+        "stationarity": 5.801934612309924e-08
+      },
+      {
+        "cost": 2.013139979795378e-06,
+        "evaluations": 22,
+        "parameters_at_limits": 0,
+        "relative_cost_change": 3.211344178541726e-09,
+        "relative_residual_step": 4.776963554129939e-05,
+        "stationarity": 2.8913026150008035e-07
+      },
+      {
+        "cost": 2.012986225614584e-06,
+        "evaluations": 23,
+        "parameters_at_limits": 0,
+        "relative_cost_change": 1.537541807938591e-10,
+        "relative_residual_step": 1.0254293722384436e-05,
+        "stationarity": 1.7348130915564977e-07
+      },
+      {
+        "cost": 2.012941054417364e-06,
+        "evaluations": 25,
+        "parameters_at_limits": 0,
+        "relative_cost_change": 4.5171197220249346e-11,
+        "relative_residual_step": 4.908912823022275e-07,
+        "stationarity": 4.889029396135296e-08
+      },
+      {
+        "cost": 2.0129361148312537e-06,
+        "evaluations": 26,
+        "parameters_at_limits": 0,
+        "relative_cost_change": 4.9395861101879455e-12,
+        "relative_residual_step": 4.0505539162152796e-07,
+        "stationarity": 1.1565485852497396e-07
+      },
+      {
+        "cost": 2.0129200704502e-06,
+        "evaluations": 35,
+        "parameters_at_limits": 0,
+        "relative_cost_change": 1.6044381053619184e-11,
+        "relative_residual_step": 4.0063339788819123e-07,
+        "stationarity": 2.0498030039582395e-08
+      }
+    ],
+    "active_bounds": [],
+    "active_parameters": [
+      "attitude_y",
+      "velocity_y",
+      "gyro_bias_z",
+      "gyro_gain_z",
+      "gravity_delta",
+      "time_offset"
+    ],
+    "calibration_bounds_supported": false,
+    "clock_independently_established": false,
+    "constant_bias_is_measured_drift": false,
+    "converged": true,
+    "derivative_method": "forward automatic differentiation, 27 tangent lanes",
+    "evaluations": 36,
+    "exact_projected_gradient_relative": 2.0498030039582395e-08,
+    "full_stage_x_scale": 1.0,
+    "gps_epochs_at_packet_boundaries": 0,
+    "gradient": [
+      1.3382869729072766e-08,
+      8.610530759114998e-05,
+      -5.63297483125989e-10,
+      -2.784335934413024e-07,
+      -5.0746474289958035e-08,
+      2.1114520798448666e-08
+    ],
+    "initialization_evaluations": 13,
+    "initialization_message": "`xtol` termination condition is satisfied.",
+    "initialization_x_scale": "jac",
+    "latency_derivative_convention": "left interval at a packet boundary; adjacent measured rates may differ",
+    "maximum_evaluations": 200,
+    "message": "Stopped because `callback` function raised `StopIteration` or returned `True`",
+    "model": "sphere_still",
+    "normalized_parameters": [
+      0.30000471577016236,
+      0.25000109713076796,
+      0.788062741992124,
+      0.2487878312045103,
+      0.23999926231839258,
+      0.22999986891737995
+    ],
+    "parameters": {
+      "accel_bias_x": 0.0,
+      "accel_bias_y": 0.0,
+      "accel_bias_z": 0.0,
+      "accel_gain_x": 0.0,
+      "accel_gain_y": 0.0,
+      "accel_gain_z": 0.0,
+      "attitude_x": 0.0,
+      "attitude_y": 0.0030000471577016235,
+      "attitude_z": 0.0,
+      "earth_removal": 0.0,
+      "gravity_delta": 0.01199996311591963,
+      "gyro_bias_x": 0.0,
+      "gyro_bias_y": 0.0,
+      "gyro_bias_z": 3.820635988904762e-06,
+      "gyro_gain_x": 0.0,
+      "gyro_gain_y": 0.0,
+      "gyro_gain_z": 0.004975756624090206,
+      "lever_x": 0.0,
+      "lever_y": 0.0,
+      "lever_z": 0.0,
+      "position_x": 0.0,
+      "position_y": 0.0,
+      "position_z": 0.0,
+      "time_offset": 0.022999986891737996,
+      "velocity_x": 0.0,
+      "velocity_y": 0.5000021942615359,
+      "velocity_z": 0.0
+    },
+    "processing_independence_established": false,
+    "projected_gradient": [
+      1.3382869729072766e-08,
+      8.610530759114998e-05,
+      -5.63297483125989e-10,
+      -2.784335934413024e-07,
+      -5.0746474289958035e-08,
+      2.1114520798448666e-08
+    ],
+    "receiver_covariance_calibrated": false,
+    "residual_sum_squares": 2.0129200704502e-06,
+    "right_singular_vectors": [
+      [
+        7.778054002233285e-10,
+        0.5073172765949563,
+        -1.9018814155666178e-06,
+        -0.0008014903125912571,
+        5.475520340147237e-06,
+        0.8617589793254007
+      ],
+      [
+        1.889430290106382e-08,
+        0.861754915804948,
+        -5.495481963550649e-06,
+        -0.002733838180207408,
+        -0.00014250839768957562,
+        -0.5073174261504995
+      ],
+      [
+        -0.9999999996934524,
+        8.487397648338954e-08,
+        1.966749735132078e-06,
+        2.468235771317148e-05,
+        -5.719684150656103e-11,
+        -2.6102214610176333e-08
+      ],
+      [
+        1.8347551011279321e-10,
+        -0.00012001505492483362,
+        9.097340624594341e-09,
+        5.609557870813436e-06,
+        -0.9999999898170404,
+        7.701193572104863e-05
+      ],
+      [
+        2.4685004554980066e-05,
+        0.0027625252867506255,
+        0.0012785260235564024,
+        0.99999512420983,
+        5.224379069360239e-06,
+        -0.0006962364323683102
+      ],
+      [
+        1.9351910008215505e-06,
+        2.1686581244590463e-06,
+        0.9999991826664266,
+        -0.001278537431416301,
+        1.6450987011173467e-09,
+        -2.588348412117237e-07
+      ]
+    ],
+    "scaled_projected_gradient": [
+      8.668102238694849e-12,
+      1.2702838580828198e-08,
+      -5.63297483125989e-10,
+      -2.0498030039582395e-08,
+      -6.451626354917231e-11,
+      1.959083409941339e-12
+    ],
+    "scientific_decision": "abstain",
+    "scientific_eligible": false,
+    "singular_values": [
+      12385.457117674101,
+      2950.887208405381,
+      1543.9215372233837,
+      786.5686041613064,
+      4.570123315513825,
+      0.0009890049778942596
+    ],
+    "solver_reported_success": false,
+    "stability_probe": null,
+    "stationarity_tolerance": 0.0001,
+    "stopping_rule_verified": true,
+    "termination": "three_stable_callbacks",
+    "version": "ilvis0-unit-scale-verified-stop-v1"
+  },
+  "full_archival_solver_qualified": false,
+  "identity": "sphere_still::nominal::verified::zero",
+  "maximum_normalized_parameter_error": 0.538062741992124,
+  "maximum_position_error_m": 5.019152620405727e-06,
+  "observed_fit_starts": 0,
+  "passed": true,
+  "start": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "truth": {
+    "attitude_y": 0.003,
+    "gravity_delta": 0.012,
+    "gyro_bias_z": 1.21203420277384e-06,
+    "gyro_gain_z": 0.005,
+    "time_offset": 0.023,
+    "velocity_y": 0.5
+  },
+  "truth_maximum_position_error_m": 4.117069351453471e-05,
+  "truth_objective": 8.065912359283741e-05
+}

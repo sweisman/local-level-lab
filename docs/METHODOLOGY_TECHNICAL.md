@@ -5,6 +5,12 @@
 
 # Methodology: decisions and how to check them
 
+**Interpretation of model names.** “Rotating globe” and “still globe” identify the
+standard-background-field and zero-background-field predictions in this historical
+method. They do not identify the physical source of measured angular motion. Current
+reporting separates geometry, retained rotation field and causal explanation; see the
+[measurement and interpretation policy](ROTATION_FIELD.md#interpretation).
+
 This page is for anyone who wants to validate the method rather than take it on trust. Each section states a decision, why it was made, what was rejected, the simulation evidence, and the automated test that guards it.
 
 - [MATH.md](MATH.md) has the equations.

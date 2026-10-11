@@ -13,6 +13,12 @@ The completed archive comparisons and current numerical checks are described in 
 calibration-boundary sensitivity, absolute model adequacy, timing/coordinate assumptions
 and dependence between recordings. These results do not certify consumer devices.
 
+Validate observable predictions separately from their interpretation. The historical
+“rotating globe” label includes a specified background field; “still globe” omits it.
+A better fit does not identify the field's physical cause. The [field follow-up](ROTATION_FIELD.md)
+must estimate its vector and magnitude freely before making rate comparisons. Neither
+a nominal-rate fit nor a latitude curve alone is a test of every cosmological explanation.
+
 ## Stationary crowdsourcing
 
 The app now collects still A/B blocks, original Bluetooth measurements, device information

@@ -9,6 +9,11 @@ The question is: **can independent IMUs recover a consistent horizontal rotation
 component, and does it change with latitude?** This is a field measurement, not a
 standalone test of globe versus flat, and it does not identify the field's ultimate cause.
 
+A recovered signal would establish angular motion relative to the IMU's inertial
+reference after instrument and support errors are controlled. It would not, by itself,
+identify what produces that reference or prove a heliocentric or geocentric explanation.
+The project compares measurable patterns and keeps their cause separate.
+
 ## Why reverse the IMU?
 
 Mark a horizontal positive sensor axis. In position A it points approximately toward
@@ -48,6 +53,9 @@ Only afterward would a separately validated population analysis compare signed r
 with latitude. The standard rotating-Earth prediction is
 **northward rate = A × cos(latitude)**, with A near 15 degrees/hour.
 Fit A freely; do not force the expected value or calibrate a sensor by matching it.
+That formula is a reference prediction to test, not a required interpretation of a
+measured field. A different explanation with the same observable prediction cannot
+be distinguished by this horizontal-rate measurement alone.
 True-north alignment and its uncertainty must be accounted for: an axis misaligned
 by angle ψ measures approximately A × cos(latitude) × cos(ψ).
 [VectorNav's gyrocompassing explanation](https://www.vectornav.com/resources/inertial-navigation-primer/theory-of-operation/theory-gyros)

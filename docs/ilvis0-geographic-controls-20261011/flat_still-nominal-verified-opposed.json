@@ -1,0 +1,299 @@
+{
+  "actual_tangent_sweeps": 39,
+  "actual_value_sweeps": 2,
+  "fit": {
+    "accepted_step_history": [
+      {
+        "cost": 9632030.244091613,
+        "evaluations": 12,
+        "parameters_at_limits": 1,
+        "relative_cost_change": null,
+        "relative_residual_step": null,
+        "stationarity": 0.5608509338556554
+      },
+      {
+        "cost": 6636274.039039153,
+        "evaluations": 13,
+        "parameters_at_limits": 1,
+        "relative_cost_change": 0.31102022409969987,
+        "relative_residual_step": 0.6033738952358596,
+        "stationarity": 0.63778113900136
+      },
+      {
+        "cost": 489534.3080891364,
+        "evaluations": 14,
+        "parameters_at_limits": 0,
+        "relative_cost_change": 0.9262335603970908,
+        "relative_residual_step": 2.682243699895662,
+        "stationarity": 0.6252123347881533
+      },
+      {
+        "cost": 7280.73464357747,
+        "evaluations": 15,
+        "parameters_at_limits": 0,
+        "relative_cost_change": 0.9851272229070168,
+        "relative_residual_step": 7.2004124349663465,
+        "stationarity": 0.6203081632260671
+      },
+      {
+        "cost": 4.950883402162439,
+        "evaluations": 16,
+        "parameters_at_limits": 0,
+        "relative_cost_change": 0.999320002218934,
+        "relative_residual_step": 37.61622334606845,
+        "stationarity": 0.6693978947897644
+      },
+      {
+        "cost": 0.5196562544286034,
+        "evaluations": 17,
+        "parameters_at_limits": 0,
+        "relative_cost_change": 0.8950376706101323,
+        "relative_residual_step": 1.8014835107390683,
+        "stationarity": 0.24983468791212737
+      },
+      {
+        "cost": 0.012214246027376906,
+        "evaluations": 18,
+        "parameters_at_limits": 0,
+        "relative_cost_change": 0.5074420084012266,
+        "relative_residual_step": 0.6104213953996969,
+        "stationarity": 0.04138760252832833
+      },
+      {
+        "cost": 1.644218587998889e-05,
+        "evaluations": 19,
+        "parameters_at_limits": 0,
+        "relative_cost_change": 0.012197803841496917,
+        "relative_residual_step": 0.1067537889813769,
+        "stationarity": 0.0013907892575576038
+      },
+      {
+        "cost": 2.338360541671608e-06,
+        "evaluations": 20,
+        "parameters_at_limits": 0,
+        "relative_cost_change": 1.4103825338317282e-05,
+        "relative_residual_step": 0.0037490097250953954,
+        "stationarity": 2.4068390794727176e-06
+      },
+      {
+        "cost": 2.1383238266189144e-06,
+        "evaluations": 21,
+        "parameters_at_limits": 0,
+        "relative_cost_change": 2.0003671505269358e-07,
+        "relative_residual_step": 0.0002888334094375081,
+        "stationarity": 3.8632196212339894e-07
+      },
+      {
+        "cost": 2.10094757371758e-06,
+        "evaluations": 22,
+        "parameters_at_limits": 0,
+        "relative_cost_change": 3.737625290133463e-08,
+        "relative_residual_step": 0.00014593145714210165,
+        "stationarity": 1.1766556445503246e-07
+      },
+      {
+        "cost": 2.0978018322133624e-06,
+        "evaluations": 23,
+        "parameters_at_limits": 0,
+        "relative_cost_change": 3.1457415042173597e-09,
+        "relative_residual_step": 4.8573130905769335e-05,
+        "stationarity": 1.9443523109344102e-07
+      },
+      {
+        "cost": 2.0977193545153577e-06,
+        "evaluations": 24,
+        "parameters_at_limits": 0,
+        "relative_cost_change": 8.247769800477626e-11,
+        "relative_residual_step": 7.371554930235656e-06,
+        "stationarity": 1.8143777542725042e-07
+      },
+      {
+        "cost": 2.097719354514264e-06,
+        "evaluations": 38,
+        "parameters_at_limits": 0,
+        "relative_cost_change": 1.0935195349053017e-18,
+        "relative_residual_step": 1.57128845418097e-12,
+        "stationarity": 1.8143777542723944e-07
+      }
+    ],
+    "active_bounds": [],
+    "active_parameters": [
+      "attitude_y",
+      "velocity_y",
+      "gyro_bias_z",
+      "gyro_gain_z",
+      "gravity_delta",
+      "time_offset"
+    ],
+    "calibration_bounds_supported": false,
+    "clock_independently_established": false,
+    "constant_bias_is_measured_drift": false,
+    "converged": true,
+    "derivative_method": "forward automatic differentiation, 27 tangent lanes",
+    "evaluations": 39,
+    "exact_projected_gradient_relative": 1.8143777542723944e-07,
+    "full_stage_x_scale": 1.0,
+    "gps_epochs_at_packet_boundaries": 0,
+    "gradient": [
+      -7.916879618541373e-08,
+      0.0010204628016091677,
+      -3.9062178821158625e-09,
+      -1.5456343029594268e-06,
+      -1.4505763848066447e-07,
+      0.001955491870512277
+    ],
+    "initialization_evaluations": 10,
+    "initialization_message": "`xtol` termination condition is satisfied.",
+    "initialization_x_scale": "jac",
+    "latency_derivative_convention": "left interval at a packet boundary; adjacent measured rates may differ",
+    "maximum_evaluations": 200,
+    "message": "`xtol` termination condition is satisfied.",
+    "model": "flat_still",
+    "normalized_parameters": [
+      0.3000044905804522,
+      0.25000092675501334,
+      0.7042410179992776,
+      0.24885807971951437,
+      0.23999926092069748,
+      0.22999988859184428
+    ],
+    "parameters": {
+      "accel_bias_x": 0.0,
+      "accel_bias_y": 0.0,
+      "accel_bias_z": 0.0,
+      "accel_gain_x": 0.0,
+      "accel_gain_y": 0.0,
+      "accel_gain_z": 0.0,
+      "attitude_x": 0.0,
+      "attitude_y": 0.003000044905804522,
+      "attitude_z": 0.0,
+      "earth_removal": 0.0,
+      "gravity_delta": 0.011999963046034874,
+      "gyro_bias_x": 0.0,
+      "gyro_bias_y": 0.0,
+      "gyro_bias_z": 3.4142568032455677e-06,
+      "gyro_gain_x": 0.0,
+      "gyro_gain_y": 0.0,
+      "gyro_gain_z": 0.004977161594390288,
+      "lever_x": 0.0,
+      "lever_y": 0.0,
+      "lever_z": 0.0,
+      "position_x": 0.0,
+      "position_y": 0.0,
+      "position_z": 0.0,
+      "time_offset": 0.02299998885918443,
+      "velocity_x": 0.0,
+      "velocity_y": 0.5000018535100267,
+      "velocity_z": 0.0
+    },
+    "processing_independence_established": false,
+    "projected_gradient": [
+      -7.916879618541373e-08,
+      0.0010204628016091677,
+      -3.9062178821158625e-09,
+      -1.5456343029594268e-06,
+      -1.4505763848066447e-07,
+      0.001955491870512277
+    ],
+    "receiver_covariance_calibrated": false,
+    "residual_sum_squares": 2.097719354514264e-06,
+    "right_singular_vectors": [
+      [
+        1.3994384174940099e-05,
+        -0.5073259419852104,
+        1.97838418657675e-06,
+        0.0008029051707487629,
+        -5.4666871932198384e-11,
+        -0.8617538765403657
+      ],
+      [
+        0.0001968611086859924,
+        0.8617497962950036,
+        -5.747048241295036e-06,
+        -0.002737044046858525,
+        -1.4566879172347458e-08,
+        -0.5073260868396975
+      ],
+      [
+        0.999999923077163,
+        -0.00016260186984146213,
+        -1.821918843961158e-06,
+        -1.991878662190172e-05,
+        -0.0003383402879826676,
+        0.00011194673563741965
+      ],
+      [
+        0.0003383402842276894,
+        -4.2484478692498925e-08,
+        -6.118226788658376e-10,
+        -4.965830502714368e-09,
+        0.9999999427629231,
+        3.0437561862387405e-08
+      ],
+      [
+        -2.044891117688637e-05,
+        -0.002765995327236055,
+        -0.0013596826731755304,
+        -0.9999950073711826,
+        1.8133361585384909e-09,
+        0.0006966688087799008
+      ],
+      [
+        1.7952202241077882e-06,
+        2.1950331337899835e-06,
+        0.9999990756109558,
+        -0.0013596944963408157,
+        -2.224118976845305e-12,
+        -2.632950303439817e-07
+      ]
+    ],
+    "scaled_projected_gradient": [
+      -5.123743687690361e-11,
+      1.5054225985826673e-07,
+      -3.9062178821158625e-09,
+      -1.1362511281820387e-07,
+      -1.8441826608529203e-10,
+      1.8143777542723944e-07
+    ],
+    "scientific_decision": "abstain",
+    "scientific_eligible": false,
+    "singular_values": [
+      12385.51945672465,
+      2950.969986273099,
+      1545.1357412275431,
+      786.5685857675212,
+      4.572855706741392,
+      0.0009888370889292862
+    ],
+    "solver_reported_success": true,
+    "stability_probe": null,
+    "stationarity_tolerance": 0.0001,
+    "stopping_rule_verified": false,
+    "termination": "scipy_stop",
+    "version": "ilvis0-unit-scale-verified-stop-v1"
+  },
+  "full_archival_solver_qualified": false,
+  "identity": "flat_still::nominal::verified::opposed",
+  "maximum_normalized_parameter_error": 0.45424101799927763,
+  "maximum_position_error_m": 5.205516251425175e-06,
+  "observed_fit_starts": 0,
+  "passed": true,
+  "start": [
+    -0.8,
+    -0.8,
+    -0.8,
+    -0.8,
+    -0.8,
+    -0.8
+  ],
+  "truth": {
+    "attitude_y": 0.003,
+    "gravity_delta": 0.012,
+    "gyro_bias_z": 1.21203420277384e-06,
+    "gyro_gain_z": 0.005,
+    "time_offset": 0.023,
+    "velocity_y": 0.5
+  },
+  "truth_maximum_position_error_m": 4.1205637799273054e-05,
+  "truth_objective": 8.07914597619376e-05
+}

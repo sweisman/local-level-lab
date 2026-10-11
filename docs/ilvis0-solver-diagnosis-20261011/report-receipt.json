@@ -1,0 +1,28 @@
+{
+  "artifacts": {
+    "README.md": "00fc845c57a8152f78d449f46981eae8b29e58f24b1e8edaefbcf493f65ba4ce",
+    "callback-history.csv": "5dba28eb08b3b0f03dcba5b32bd9b45326085f0057ca9b7392018e5d5b5036e1",
+    "fit-diagnostics.csv": "fb88882c605c4ffe4bab7bdcd5ee76edf760b851bd7f608db37a18d7d049222e",
+    "parameter-diagnostics.csv": "67b89988702121c15ec98e0ed7abb898edf1e35d0153321ba1484c4ce99435e8",
+    "summary.json": "1959dc12d4fb6f39808c5c95094977f6ced3cc557af5895ecbd6e7468e5aa7aa",
+    "weak-directions.csv": "8b958ef3981c7b54faac7b35bdb0ee8c7fe17deb52b5e278a58af73e206f7d69"
+  },
+  "inputs": {
+    "/site/repo/local-level-lab/docs/ilvis0-prediction-trial-20261011/completion.json": "0211b74045b1b24adc3a1290166cf14fccf0a6fa26cbefd4c5eede80c39918c7",
+    "/site/repo/local-level-lab/docs/ilvis0-prediction-trial-20261011/evidence-receipt.json": "7538b259b91c2916342e1e00419c461cbeff5dcd7f7e4b4760954cfb3a0d9d82",
+    "/site/repo/local-level-lab/docs/ilvis0-prediction-trial-20261011/manifest.json": "00a83a281a84a6fb244c90f91ed66e920d8a90267705d5b32616a230b64ff0bb",
+    "/site/repo/local-level-lab/docs/ilvis0-prediction-trial-20261011/summary.json": "74fccc5f928a1b87f342312334e66957de4d39bcfc683102ded30e1d24a66724",
+    "/site/repo/local-level-lab/docs/ilvis0-unit-scale-trial-20261011/completion.json": "61fbbcd82f5c65a522d0bb02969efda9a16834d4e4c7870d0edd77a1e2294307",
+    "/site/repo/local-level-lab/docs/ilvis0-unit-scale-trial-20261011/evidence-receipt.json": "1d5126f151d5459874c5859c2ed7fd7f44e2c74fb85bf23aaf4afd42c6e6655c",
+    "/site/repo/local-level-lab/docs/ilvis0-unit-scale-trial-20261011/manifest.json": "8c72fd32b95f619c5fd118117ea63870451245e6e8574aa6a89fd4378e4d5375",
+    "/site/repo/local-level-lab/docs/ilvis0-unit-scale-trial-20261011/summary.json": "4c39515caea711c87e4b252c39f49c5f044e99b4bebbc7287d3ac91a2ccc4d15"
+  },
+  "native_predictions": 0,
+  "optimizer_starts": 0,
+  "sources": {
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_saved_audit.py": "de3160a1533abd7bb0c181bb332e745d84f2ab24c12e49d0116d118f479350fb",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_solver_diagnosis.py": "98587b681056ec03be55ba2a3198765ad9a633d4f41e9eedb07fd7961f3fddf8",
+    "/site/repo/local-level-lab/docs/ilvis0-solver-diagnosis-20261011/build_report.py": "26268bc24d88cdba39b316e01ae65e594fef4f0651341635d7334443ac54c13f"
+  },
+  "version": "ilvis0-saved-solver-diagnosis-v1"
+}

@@ -1,0 +1,49 @@
+{
+  "artifacts": {
+    "PLAN.md": "bb7e3fbf4ece1bf72ca555b55d9a11689a8f573026245ace7c5a9f025edb4fc7",
+    "README.md": "29ad3715800a69b33c6eb3e6e4fe37505095b5f1a79e0c8bc2913aaf9c0227ba",
+    "comparisons.csv": "c2499097152aa87b8733fdac598dd827636b382fa69299069aa4b08511be7ac9",
+    "completion.json": "fbb5192e558e739da611f10a51c8d7c1a759c93bf3b62fad663b6c41b995246d",
+    "manifest.json": "6444da6647e344e3ad83de17616d8dfee36e6242afa8a4f0ef72aa4e6cdc59a7",
+    "offset-errors.svg": "dc02d34bbe719f44a1bd5b192f4373ed3644477a01b0b73131055cee81d75417",
+    "summary.json": "c2265399fc323ed093e71d291753037be980489e27c2d50dee50cb2887797e9f",
+    "trends.json": "76529801b397827291dcb9d0bf25e45e764654fa4e7ebafa5e94c99151ba5aff"
+  },
+  "environment": {
+    "matplotlib": "3.11.2",
+    "numpy": "2.5.3",
+    "python": "3.14.7",
+    "scipy": "1.18.1",
+    "threads": {
+      "MKL_NUM_THREADS": "2",
+      "OMP_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    }
+  },
+  "inputs": {
+    "/site/repo/local-level-lab/docs/ilvis0-geographic-controls-20261011/completion.json": "f5233b021175c6e1087c438cb8bda6c7f6f95d09617d4a16357c58dd503683fa",
+    "/site/repo/local-level-lab/docs/ilvis0-geographic-controls-20261011/manifest.json": "61551a3d443df207df8c2d3929e646f5559ebd2c0e14c652b056e0e960eaefd1",
+    "/site/repo/local-level-lab/docs/ilvis0-geographic-controls-20261011/report-receipt.json": "1ff7055fe8253e34b9fd3eea80102ebaceae9ef6113bd1933e232aa3712c0243",
+    "/site/repo/local-level-lab/docs/ilvis0-geographic-controls-20261011/summary.json": "31d395bffa4ba7cc0bd2a945dc8575e7e8b5d97d629dce9733a021747b8ab681"
+  },
+  "observed_fit_starts": 0,
+  "sources": {
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_estimator.py": "6393015ed2d15ef5ebf1cba10f823addda2b2821e9dd46f279c50ebb874cdcdd",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_exploratory.py": "3f7499f888e02b59fbb694078353d5e241434b25ac527bf41861fc2f93bbf3b8",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_forward.py": "37e91a623aafd7a7951be995d1b42d8f9144b8a63466a90088d2adcf8a842fad",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_geographic_controls.py": "b6763311f77327e1c181df79520c989fa1b017ed6e86de51f7f0a63b429d4691",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_interval_controls.py": "4f1f012f83442000fe4e1385ecbe375e227180d2ab6024178d8114e948699164",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_native.c": "5efb8c04a9a72822374a23df9b3e8d43c5bfa0e37c7a39a1326195e815aae49e",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_shape.py": "6e9e95dd1ec1b9d8b354994865be44bed89dec751d020cefdd9e834cf7b2850a",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_solver_refinement.py": "442dd52979f4db0973a29c7553ab5b0f02ba90e847dbea2f7db99735ade1db0f",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_solver_verified_stop.py": "037d5697b6a158160db9fbf1681b557a0f3bcc43bd888f48622965a219d91f28",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_tangent.cpp": "818c2932045f33f4adfc9321076e242313d5b99b62f69848876647b391c76938",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_geographic_controls.py": "9c5ce72666db70e2ed037b89ff76a7f21691cf9530f212ecb5e27a972bbaa8f5",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_interval_controls.py": "d48054dfa24c07f17cfbf39ff6522f25cc7b78140163f7f37e88c503d0132fe2",
+    "/site/repo/local-level-lab/docs/ilvis0-geographic-controls-20261011/PLAN.md": "a651e7683e29b1cecbc9c037cbc4d0f595e518fca2aa62ef28030b4e05fefdb7",
+    "/site/repo/local-level-lab/docs/ilvis0-geographic-controls-20261011/build_report.py": "6c4679bfdd64f2ff4319c60d29e062be88a2502484ac33af2e157137d58b405b",
+    "/site/repo/local-level-lab/docs/ilvis0-interval-controls-20261011/PLAN.md": "bb7e3fbf4ece1bf72ca555b55d9a11689a8f573026245ace7c5a9f025edb4fc7",
+    "/site/repo/local-level-lab/docs/ilvis0-interval-controls-20261011/build_report.py": "fe9c312b3ea704e8d648544a7d72922a1f4fee18e3ed8ad072b890f7ba441f32"
+  },
+  "version": "ilvis0-interval-resolution-controls-v1"
+}

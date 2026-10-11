@@ -22,6 +22,11 @@ incident histories, personal commentary or historical process IDs.
   Lead with observed model comparisons; replace blanket "conditional" labels with specific
   remaining checks. Unfinished fits are not equal model support. Raw increments do not by
   themselves establish absence of onboard filtering or corrections.
+  Separate geometry, measured angular motion/background field and causal interpretation.
+  “Rotating/still globe” are model names for specified-field/zero-field predictions;
+  a fit preference does not identify the field's cause or establish a cosmology.
+  Do not claim equal support for untested mechanisms or a measured sidereal/solar
+  distinction from a fit that fixes the background rate.
 
 ## Scientific boundaries
 
@@ -115,6 +120,14 @@ Post-run diagnosis may read saved fits and selected receiver geometry without ne
 Revised fits need a separately identified development freeze and explicit finite compute allowance;
 never spend the unused allowance of a completed study or tune assumptions to favor a model.
 
+The approved [integration comparison](docs/ilvis0-integration-trial-20261011/PLAN.md)
+uses analysis/tests/ilvis0_integration_trial.py and data/ilvis0-integration-trial-20261011/.
+Preparation/package modes perform no fits. Its allowance is six starts,
+200 native sweeps each including diagnostics, no retries, two numerical threads;
+estimate 90–120 minutes. Check its lock, journal and completion before any recovery.
+Preserve its header clock, bounds and original initialization. Apply corrections only under
+the stated ordinary-increment hypothesis; never assume onboard compensation is absent.
+
 The matched solver trial is complete; do not launch it again. Publication uses
 `analysis/tests/ilvis0_solver_trial.py --package-only`, without observed fits.
 The [saved-fit calibration/adequacy audit](docs/ilvis0-calibration-audit-20261010/README.md)
@@ -146,12 +159,16 @@ subtraction as independently identifiable quantities.
 The saved prediction audit and analytic solver screen are complete at
 docs/ilvis0-prediction-audit-20261011/. Regenerate its audit from metadata only;
 screen_solvers.py --render-only preserves the completed software screen. The unit-scale
-candidate has a prepared v2 freeze at data/ilvis0-unit-scale-trial-v2-20261011/ and
-guide docs/ilvis0-unit-scale-trial-20261011/. Its approved six-fit comparison is running:
-200 evaluations per fit, two numerical threads, no retries. Check its worker lock,
-start journal and completion before any action; never duplicate a running worker.
-The guide's watch_report.py performs metadata-only publication after completion;
-check report-watch.lock and report-watch.json before launching it with --detach.
-Preserve the
+candidate's v2 study at data/ilvis0-unit-scale-trial-v2-20261011/ and
+docs/ilvis0-unit-scale-trial-20261011/ is completed and frozen: six starts, five converged,
+749 evaluations. Its report watcher completed; do not relaunch either process.
+The saved solver diagnosis at docs/ilvis0-solver-diagnosis-20261011/ performs no fits.
+Its STOPPING_PLAN.md and ilvis0_solver_verified_stop.py describe a separately tested
+candidate. Do not relabel old failures or expand completed allowances.
+The verified-stop trial at data/ilvis0-verified-stop-trial-20261011/ and its guide in
+docs/ilvis0-verified-stop-trial-20261011/ is complete and frozen; do not relaunch its
+worker or watcher. Qualification failed; no retries, replication or archive rollout
+are authorized. Its saved-only diagnosis is docs/ilvis0-verified-stop-diagnosis-20261011/;
+next work follows docs/ILVIS0_DIAGNOSTIC_PLAN.md. Preserve the
 superseded zero-start v1 preparation without running it. The two-recording replication
 selection and NEXT_PLAN.md authorize no observed starts or archive-wide rollout.

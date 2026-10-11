@@ -26,6 +26,14 @@ A gyro measures the IMU's angular velocity relative to **inertial space** (any n
 
 ## The models: four defined, three tested
 
+The labels below describe kinematic predictions. “Earth rotation” denotes the standard
+background angular-rate term in these equations; its presence in a successful fit does
+not independently determine its physical cause. “Still globe” sets that term to zero,
+so it does not represent a theory proposing a stationary Earth with a nonzero inertial
+field. The [field-measurement plan](ROTATION_FIELD.md) separates free estimation from
+causal interpretation. Historical coefficient and uncertainty claims below belong to
+the earlier experiment, not a completed solar-versus-sidereal measurement.
+
 Four kinematic models are defined. Three of them can be told apart by this protocol, and those three are the ones the analysis tests.
 
 | | Earth rotation | Transport (moving over the surface) | tested? |

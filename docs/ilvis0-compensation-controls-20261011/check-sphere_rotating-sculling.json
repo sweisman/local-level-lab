@@ -1,0 +1,25 @@
+{
+  "condition_number": 11904593.953242306,
+  "maximum_truth_position_error_m": 3.518469882427979e-05,
+  "mode": "sculling",
+  "model": "sphere_rotating",
+  "native_sweeps": 1,
+  "receiver_epochs_at_boundaries": 0,
+  "singular_values": [
+    12385.455888851222,
+    2950.890635080576,
+    1538.874018806187,
+    786.5676136825174,
+    4.555315034215339,
+    0.0010403929724522817
+  ],
+  "truth_objective": 4.220714970188217e-05,
+  "weak_direction": {
+    "attitude_y": 2.227721406988828e-06,
+    "gravity_delta": 5.1133107903591445e-09,
+    "gyro_bias_z": 0.9999991828052478,
+    "gyro_gain_z": -0.001278428384780523,
+    "time_offset": -2.580015626758681e-07,
+    "velocity_y": 2.161563762578871e-06
+  }
+}

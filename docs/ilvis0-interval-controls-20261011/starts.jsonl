@@ -1,0 +1,9 @@
+{"identity": "sphere_rotating::r2::original", "manifest_sha256": "6444da6647e344e3ad83de17616d8dfee36e6242afa8a4f0ef72aa4e6cdc59a7", "maximum_fit_sweeps": 200, "maximum_fixture_sweeps": 1, "start": 1}
+{"identity": "sphere_rotating::r4::original", "manifest_sha256": "6444da6647e344e3ad83de17616d8dfee36e6242afa8a4f0ef72aa4e6cdc59a7", "maximum_fit_sweeps": 200, "maximum_fixture_sweeps": 1, "start": 2}
+{"identity": "sphere_rotating::r4::roll", "manifest_sha256": "6444da6647e344e3ad83de17616d8dfee36e6242afa8a4f0ef72aa4e6cdc59a7", "maximum_fit_sweeps": 200, "maximum_fixture_sweeps": 1, "start": 3}
+{"identity": "sphere_still::r2::original", "manifest_sha256": "6444da6647e344e3ad83de17616d8dfee36e6242afa8a4f0ef72aa4e6cdc59a7", "maximum_fit_sweeps": 200, "maximum_fixture_sweeps": 1, "start": 4}
+{"identity": "sphere_still::r4::original", "manifest_sha256": "6444da6647e344e3ad83de17616d8dfee36e6242afa8a4f0ef72aa4e6cdc59a7", "maximum_fit_sweeps": 200, "maximum_fixture_sweeps": 1, "start": 5}
+{"identity": "sphere_still::r4::roll", "manifest_sha256": "6444da6647e344e3ad83de17616d8dfee36e6242afa8a4f0ef72aa4e6cdc59a7", "maximum_fit_sweeps": 200, "maximum_fixture_sweeps": 1, "start": 6}
+{"identity": "flat_still::r2::original", "manifest_sha256": "6444da6647e344e3ad83de17616d8dfee36e6242afa8a4f0ef72aa4e6cdc59a7", "maximum_fit_sweeps": 200, "maximum_fixture_sweeps": 1, "start": 7}
+{"identity": "flat_still::r4::original", "manifest_sha256": "6444da6647e344e3ad83de17616d8dfee36e6242afa8a4f0ef72aa4e6cdc59a7", "maximum_fit_sweeps": 200, "maximum_fixture_sweeps": 1, "start": 8}
+{"identity": "flat_still::r4::roll", "manifest_sha256": "6444da6647e344e3ad83de17616d8dfee36e6242afa8a4f0ef72aa4e6cdc59a7", "maximum_fit_sweeps": 200, "maximum_fixture_sweeps": 1, "start": 9}

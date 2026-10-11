@@ -1,0 +1,19 @@
+{
+  "condition_number": 9748441.372824404,
+  "identity": "sphere_rotating::variable",
+  "maximum_derivative_difference_m_per_bound_unit": 8.566371631243788e-09,
+  "maximum_truth_position_error_m": 4.194528030488633e-05,
+  "maximum_value_tangent_difference_m": 0.0,
+  "native_sweeps": 15,
+  "passed": true,
+  "receiver_epochs_at_boundaries": 0,
+  "relative_1e_7_rank": 6,
+  "singular_values": [
+    12423.03184985006,
+    2941.96333820556,
+    1569.3821842458349,
+    799.0981491199512,
+    4.576641723904565,
+    0.0012743608311049164
+  ]
+}

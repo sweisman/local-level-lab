@@ -8,9 +8,14 @@ Stationary consumer crowdsourcing is a separate developing experiment.
 
 All 53 selected high-speed stretches have been analyzed. Twelve have complete comparisons
 favoring globe over the specified flat disc under both processing assumptions; all twelve
-then favor rotating over still globe. None has a complete flat preference. Forty-one
+then favor the background-field globe over the zero-field globe. None has a complete flat preference. Forty-one
 remain unresolved because required numerical fits did not finish. These are model-fit
 preferences, without independently calibrated statistical significance.
+
+Saved fits call those globe candidates “rotating” and “still.” Those names specify
+the background angular-rate term present in each prediction. The comparison does not
+identify what produces the measured rotation or establish a cosmology. A freely estimated
+field and a solar-versus-sidereal precision test remain [follow-on work](ROTATION_FIELD.md).
 
 The [source-aware findings](ilvis0-highspeed-segments-20261008/FINDINGS.md) give durations,
 speeds, instrument record types and partial results. The [analysis roadmap](ANALYSIS_ROADMAP.md)

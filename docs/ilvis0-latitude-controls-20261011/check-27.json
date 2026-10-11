@@ -1,0 +1,14 @@
+{
+  "condition_number": 10725408.163262825,
+  "construction": "interior",
+  "convention": "already_compensated",
+  "deliberate_mislabel_diagnostic": true,
+  "identity": "sphere_rotating::45.0::interior::already_compensated::mislabelled_combined",
+  "latitude_deg": 45.0,
+  "maximum_position_error_m": 4.1529090367724386e-05,
+  "mode": "mislabelled_combined",
+  "model": "sphere_rotating",
+  "native_sweeps": 1,
+  "objective": 8.150282053776617e-05,
+  "receiver_epochs_at_boundaries": 24
+}

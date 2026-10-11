@@ -1,0 +1,50 @@
+{
+  "archival_promotion": false,
+  "artifacts": {
+    "PLAN.md": "b74e788839d6ff267ace83cff24c2b54724c2557023461f45bd8f3ec73385b58",
+    "README.md": "8f24051ac5b5b141011889007d378e70de115f56c4895b3c6924c8e60eb15993",
+    "comparisons.csv": "c517fabd74299db6374b5d91a90eea2ee502fd2fdc15d55d134a16cc8696ee83",
+    "completion.json": "68720a5e033b408bc7bb910213fff6008b7a59d6f2b846e1d8fa7242840e82e5",
+    "known-calibration.csv": "979ab4046a2fead18e1b9c793f2cef3c70569967cffa3508fd1153c047404585",
+    "manifest.json": "976732555c6a64537407268245d4ebe4dcc7832e1c58ae58ee8053198f942596",
+    "offset-errors.svg": "f9f0eee03489a0bb39cd124a75b034fe8344c2afd0c7f66766eb5d0d6401ea07",
+    "summary.json": "60d1e4a23eece054e74b822265b45a9a62d3febeb12fa5588df0572f1fdfdc75"
+  },
+  "environment": {
+    "matplotlib": "3.11.2",
+    "numpy": "2.5.3",
+    "python": "3.14.7",
+    "scipy": "1.18.1",
+    "threads": {
+      "MKL_NUM_THREADS": "2",
+      "OMP_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    }
+  },
+  "inputs": {
+    "/site/repo/local-level-lab/docs/ilvis0-geographic-controls-20261011/manifest.json": "61551a3d443df207df8c2d3929e646f5559ebd2c0e14c652b056e0e960eaefd1",
+    "/site/repo/local-level-lab/docs/ilvis0-geographic-controls-20261011/report-receipt.json": "1ff7055fe8253e34b9fd3eea80102ebaceae9ef6113bd1933e232aa3712c0243",
+    "/site/repo/local-level-lab/docs/ilvis0-geographic-controls-20261011/summary.json": "31d395bffa4ba7cc0bd2a945dc8575e7e8b5d97d629dce9733a021747b8ab681"
+  },
+  "observed_fit_starts": 0,
+  "sources": {
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_compensation.cpp": "5371101a7bac198098f905be72e21911037227682da8575c02f23c9c775479f1",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_compensation.py": "8befd60278e4fc62eeb53ac3876556b24cedc04f5e0a0d887af37a558ab0154d",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_estimator.py": "6393015ed2d15ef5ebf1cba10f823addda2b2821e9dd46f279c50ebb874cdcdd",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_exploratory.py": "3f7499f888e02b59fbb694078353d5e241434b25ac527bf41861fc2f93bbf3b8",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_forward.py": "37e91a623aafd7a7951be995d1b42d8f9144b8a63466a90088d2adcf8a842fad",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_geographic_controls.py": "b6763311f77327e1c181df79520c989fa1b017ed6e86de51f7f0a63b429d4691",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_native.c": "5efb8c04a9a72822374a23df9b3e8d43c5bfa0e37c7a39a1326195e815aae49e",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_shape.py": "6e9e95dd1ec1b9d8b354994865be44bed89dec751d020cefdd9e834cf7b2850a",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_solver_refinement.py": "442dd52979f4db0973a29c7553ab5b0f02ba90e847dbea2f7db99735ade1db0f",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_solver_verified_stop.py": "037d5697b6a158160db9fbf1681b557a0f3bcc43bd888f48622965a219d91f28",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_tangent.cpp": "818c2932045f33f4adfc9321076e242313d5b99b62f69848876647b391c76938",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_compensation.py": "0577231cc6a6f5c95c8e2863ac08a9b2091b1f6d9ff457ecdc2b828e07960be4",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_geographic_controls.py": "9c5ce72666db70e2ed037b89ff76a7f21691cf9530f212ecb5e27a972bbaa8f5",
+    "/site/repo/local-level-lab/docs/ilvis0-compensation-controls-20261011/PLAN.md": "b74e788839d6ff267ace83cff24c2b54724c2557023461f45bd8f3ec73385b58",
+    "/site/repo/local-level-lab/docs/ilvis0-compensation-controls-20261011/build_report.py": "47a7c4d87bcf195a276b25c95f13a48079444ca9aa5801c23d707d7bf100b506",
+    "/site/repo/local-level-lab/docs/ilvis0-geographic-controls-20261011/PLAN.md": "a651e7683e29b1cecbc9c037cbc4d0f595e518fca2aa62ef28030b4e05fefdb7",
+    "/site/repo/local-level-lab/docs/ilvis0-geographic-controls-20261011/build_report.py": "6c4679bfdd64f2ff4319c60d29e062be88a2502484ac33af2e157137d58b405b"
+  },
+  "version": "ilvis0-linear-packet-compensation-controls-v1"
+}

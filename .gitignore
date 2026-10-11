@@ -41,3 +41,13 @@ android/.idea/
 /docs/protocol-development-20261006/launch.json
 /docs/protocol-development-20261006/case-input.json
 /docs/protocol-development-20261006/case-output.json
+
+# Rebuildable native kernels and coordination locks for documented IMU controls.
+/docs/ilvis0-geographic-controls-20261011/kernel/
+/docs/ilvis0-geographic-controls-20261011/run.lock
+/docs/ilvis0-interval-controls-20261011/kernel/
+/docs/ilvis0-interval-controls-20261011/run.lock
+/docs/ilvis0-compensation-controls-20261011/kernel/
+/docs/ilvis0-compensation-controls-20261011/run.lock
+/docs/ilvis0-latitude-controls-20261011/kernel/
+/docs/ilvis0-latitude-controls-20261011/run.lock

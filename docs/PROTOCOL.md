@@ -3,6 +3,7 @@
 An **IMU (inertial measurement unit)** measures turning and acceleration.
 This experiment records it resting in two opposite orientations to estimate a very
 slow horizontal rotation component. You do not need an aircraft or a moving GPS track.
+The target is a measured rotation field; the recording does not identify its physical cause.
 
 ## Prepare
 

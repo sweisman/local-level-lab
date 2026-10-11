@@ -1,0 +1,20 @@
+{
+  "artifacts": {
+    "FINDINGS.md": "a0f3ed8b0e633f8f01ec8a159b93df2a8a0b5e77e1dc1871cb9034dc975ab28f",
+    "NEXT_STEP.md": "12fa343afca6812e398aaf99fb9d0ad1e720e5629e8fcbe64f098b96b85cf465"
+  },
+  "inputs": {
+    "comparisons.csv": "c517fabd74299db6374b5d91a90eea2ee502fd2fdc15d55d134a16cc8696ee83",
+    "known-calibration.csv": "979ab4046a2fead18e1b9c793f2cef3c70569967cffa3508fd1153c047404585",
+    "report-receipt.json": "de7278ddac9d0117df27015886b2a198a22a0cdc8768d391bc8bff2f37772b96",
+    "starts.jsonl": "55302fec1b392a61bf81cf1e67004b6efd0e076539f337b12ba93bc95332de58",
+    "summary.json": "60d1e4a23eece054e74b822265b45a9a62d3febeb12fa5588df0572f1fdfdc75"
+  },
+  "verification": {
+    "focused_tests_passed": 34,
+    "links": 66,
+    "observed_fit_starts": 0,
+    "packaging_preserves_numerical_evidence": true,
+    "receipt_hashes": 28
+  }
+}

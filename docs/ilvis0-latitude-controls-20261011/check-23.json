@@ -1,0 +1,14 @@
+{
+  "condition_number": 759232.3944229652,
+  "construction": "near_roll",
+  "convention": "ordinary_rate_integrals",
+  "deliberate_mislabel_diagnostic": false,
+  "identity": "flat_still::45.0::near_roll::ordinary_rate_integrals::combined",
+  "latitude_deg": 45.0,
+  "maximum_position_error_m": 9.061977834790014e-10,
+  "mode": "combined",
+  "model": "flat_still",
+  "native_sweeps": 1,
+  "objective": 4.3967606340142386e-14,
+  "receiver_epochs_at_boundaries": 0
+}

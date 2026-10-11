@@ -7,8 +7,9 @@ which is primary, and a simpler stationary crowdsourced experiment under develop
 ## Primary: NASA airborne analysis
 
 An aircraft following local level over a globe gradually changes its orientation as
-it moves across the curved surface. A rotating globe adds a background rotation term;
-a still globe retains curvature without that term. The specified still flat disc uses
+it moves across the curved surface. The candidate called “rotating globe” adds a standard
+background angular-rate term; “still globe” retains curvature without that term.
+These are model names, not determinations of the field's physical cause. The specified still flat disc uses
 a different geometry. All three are fitted against the same raw IMU increments and
 receiver positions, with the same allowed instrument and motion errors.
 
@@ -26,10 +27,19 @@ assumptions for their entire duration; residual sections can expose violations b
 cannot prove stationarity.
 
 Interpret **globe versus the specified flat disc first**, using the better of the two
-globe fits. Report rotation only after all required fits converge and both processing
+globe fits. Report the background-field comparison only after all required fits converge and both processing
 cases favor globe. The two primary cases allow constant gyro offsets of ±1 degree/hour
 and either no Earth-rate removal or an unknown shared amount removed upstream.
 Those limits are analysis assumptions, not verified per-unit drift specifications.
+
+Keep three questions separate: which surface geometry fits, whether a retained background
+angular-rate field is needed, and what physically explains that field. Gyros measure
+angular motion relative to an inertial reference. A successful field fit does not itself
+explain that reference or establish heliocentrism. The zero-field globe does not represent
+every theory of a stationary Earth: a theory proposing a nonzero inertial field needs
+its own quantitative predictions. Explanations predicting identical measurements cannot
+be distinguished with those measurements. The [interpretation policy](ROTATION_FIELD.md#interpretation)
+applies to current model comparisons and the proposed freely estimated field alike.
 
 The archive contains independent recorded increments and a combined navigation answer.
 The latter supplies decoder checks and motion context, never independent Earth-model

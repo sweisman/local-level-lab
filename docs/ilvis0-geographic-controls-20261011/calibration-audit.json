@@ -1,0 +1,1706 @@
+{
+  "fit_rows": [
+    {
+      "active_bounds": [],
+      "completed": true,
+      "condition_number": 11903362.039515633,
+      "identity": "sphere_rotating::nominal::original::zero",
+      "maximum_position_error_m": 4.572913867509711e-06,
+      "numerical_rank": 5,
+      "parameter_count": 6,
+      "prediction_passed": true,
+      "weak_direction": {},
+      "weak_direction_dominant": null
+    },
+    {
+      "active_bounds": [],
+      "completed": true,
+      "condition_number": 11903361.376473457,
+      "identity": "sphere_rotating::nominal::original::opposed",
+      "maximum_position_error_m": 4.572444774832154e-06,
+      "numerical_rank": 5,
+      "parameter_count": 6,
+      "prediction_passed": true,
+      "weak_direction": {},
+      "weak_direction_dominant": null
+    },
+    {
+      "active_bounds": [],
+      "completed": true,
+      "condition_number": 11903362.040231617,
+      "identity": "sphere_rotating::nominal::verified::zero",
+      "maximum_position_error_m": 4.57291385909708e-06,
+      "numerical_rank": 5,
+      "parameter_count": 6,
+      "prediction_passed": true,
+      "weak_direction": {
+        "attitude_y": 2.2280858779509404e-06,
+        "gravity_delta": 5.111203954193813e-09,
+        "gyro_bias_z": 0.9999991828216401,
+        "gyro_gain_z": -0.0012784155615388618,
+        "time_offset": -2.5801420420098453e-07,
+        "velocity_y": 2.1616644435766866e-06
+      },
+      "weak_direction_dominant": "gyro_bias_z"
+    },
+    {
+      "active_bounds": [],
+      "completed": true,
+      "condition_number": 11903363.09311138,
+      "identity": "sphere_rotating::nominal::verified::opposed",
+      "maximum_position_error_m": 4.572982808671217e-06,
+      "numerical_rank": 5,
+      "parameter_count": 6,
+      "prediction_passed": true,
+      "weak_direction": {
+        "attitude_y": 2.228085572506515e-06,
+        "gravity_delta": 5.111206870039578e-09,
+        "gyro_bias_z": 0.99999918282164,
+        "gyro_gain_z": -0.001278415561634856,
+        "time_offset": -2.580141925147645e-07,
+        "velocity_y": 2.161664352924146e-06
+      },
+      "weak_direction_dominant": "gyro_bias_z"
+    },
+    {
+      "active_bounds": [
+        "gyro_bias_z"
+      ],
+      "completed": true,
+      "condition_number": 9748207.370562542,
+      "identity": "sphere_rotating::variable::original::zero",
+      "maximum_position_error_m": 5.497171351761718e-06,
+      "numerical_rank": 6,
+      "parameter_count": 6,
+      "prediction_passed": true,
+      "weak_direction": {},
+      "weak_direction_dominant": null
+    },
+    {
+      "active_bounds": [
+        "gyro_bias_z"
+      ],
+      "completed": true,
+      "condition_number": 9748207.361905135,
+      "identity": "sphere_rotating::variable::original::opposed",
+      "maximum_position_error_m": 5.497171038202342e-06,
+      "numerical_rank": 6,
+      "parameter_count": 6,
+      "prediction_passed": true,
+      "weak_direction": {},
+      "weak_direction_dominant": null
+    },
+    {
+      "active_bounds": [
+        "gyro_bias_z"
+      ],
+      "completed": true,
+      "condition_number": 9748207.372364983,
+      "identity": "sphere_rotating::variable::verified::zero",
+      "maximum_position_error_m": 5.497171351734965e-06,
+      "numerical_rank": 6,
+      "parameter_count": 6,
+      "prediction_passed": true,
+      "weak_direction": {
+        "attitude_y": 2.2753278128328843e-06,
+        "gravity_delta": 6.444360877704995e-09,
+        "gyro_bias_z": 0.9999971740734567,
+        "gyro_gain_z": -0.002377358532203786,
+        "time_offset": -3.2989110421569464e-07,
+        "velocity_y": 2.4948604683661467e-06
+      },
+      "weak_direction_dominant": "gyro_bias_z"
+    },
+    {
+      "active_bounds": [
+        "gyro_bias_z"
+      ],
+      "completed": true,
+      "condition_number": 9748207.361912139,
+      "identity": "sphere_rotating::variable::verified::opposed",
+      "maximum_position_error_m": 5.4971711214060644e-06,
+      "numerical_rank": 6,
+      "parameter_count": 6,
+      "prediction_passed": true,
+      "weak_direction": {
+        "attitude_y": 2.2753278174854067e-06,
+        "gravity_delta": 6.4443609224904045e-09,
+        "gyro_bias_z": 0.9999971740734591,
+        "gyro_gain_z": -0.002377358531098466,
+        "time_offset": -3.298911043460642e-07,
+        "velocity_y": 2.4948604694028363e-06
+      },
+      "weak_direction_dominant": "gyro_bias_z"
+    },
+    {
+      "active_bounds": [],
+      "completed": true,
+      "condition_number": 12523149.42203538,
+      "identity": "sphere_still::nominal::original::zero",
+      "maximum_position_error_m": 5.019167586869395e-06,
+      "numerical_rank": 5,
+      "parameter_count": 6,
+      "prediction_passed": true,
+      "weak_direction": {},
+      "weak_direction_dominant": null
+    },
+    {
+      "active_bounds": [],
+      "completed": true,
+      "condition_number": 12523149.471571738,
+      "identity": "sphere_still::nominal::original::opposed",
+      "maximum_position_error_m": 5.019288687169708e-06,
+      "numerical_rank": 5,
+      "parameter_count": 6,
+      "prediction_passed": true,
+      "weak_direction": {},
+      "weak_direction_dominant": null
+    },
+    {
+      "active_bounds": [],
+      "completed": true,
+      "condition_number": 12523149.422406955,
+      "identity": "sphere_still::nominal::verified::zero",
+      "maximum_position_error_m": 5.019152620405727e-06,
+      "numerical_rank": 5,
+      "parameter_count": 6,
+      "prediction_passed": true,
+      "weak_direction": {
+        "attitude_y": 1.9351910008215505e-06,
+        "gravity_delta": 1.6450987011173467e-09,
+        "gyro_bias_z": 0.9999991826664266,
+        "gyro_gain_z": -0.001278537431416301,
+        "time_offset": -2.588348412117237e-07,
+        "velocity_y": 2.1686581244590463e-06
+      },
+      "weak_direction_dominant": "gyro_bias_z"
+    },
+    {
+      "active_bounds": [],
+      "completed": true,
+      "condition_number": 12523149.51031276,
+      "identity": "sphere_still::nominal::verified::opposed",
+      "maximum_position_error_m": 5.019106193385969e-06,
+      "numerical_rank": 5,
+      "parameter_count": 6,
+      "prediction_passed": true,
+      "weak_direction": {
+        "attitude_y": 1.9351909744984994e-06,
+        "gravity_delta": 1.6450988822631542e-09,
+        "gyro_bias_z": 0.999999182666427,
+        "gyro_gain_z": -0.0012785374312164661,
+        "time_offset": -2.5883484024972774e-07,
+        "velocity_y": 2.1686581162609706e-06
+      },
+      "weak_direction_dominant": "gyro_bias_z"
+    },
+    {
+      "active_bounds": [
+        "gyro_bias_z"
+      ],
+      "completed": true,
+      "condition_number": 10081191.775971342,
+      "identity": "sphere_still::variable::original::zero",
+      "maximum_position_error_m": 5.522125186401924e-06,
+      "numerical_rank": 5,
+      "parameter_count": 6,
+      "prediction_passed": true,
+      "weak_direction": {},
+      "weak_direction_dominant": null
+    },
+    {
+      "active_bounds": [
+        "gyro_bias_z"
+      ],
+      "completed": true,
+      "condition_number": 10081191.782677365,
+      "identity": "sphere_still::variable::original::opposed",
+      "maximum_position_error_m": 5.522123588994562e-06,
+      "numerical_rank": 5,
+      "parameter_count": 6,
+      "prediction_passed": true,
+      "weak_direction": {},
+      "weak_direction_dominant": null
+    },
+    {
+      "active_bounds": [
+        "gyro_bias_z"
+      ],
+      "completed": true,
+      "condition_number": 10081191.775340011,
+      "identity": "sphere_still::variable::verified::zero",
+      "maximum_position_error_m": 5.522125186090851e-06,
+      "numerical_rank": 5,
+      "parameter_count": 6,
+      "prediction_passed": true,
+      "weak_direction": {
+        "attitude_y": 1.9893422652572363e-06,
+        "gravity_delta": 2.0759155330409084e-09,
+        "gyro_bias_z": 0.9999971735764019,
+        "gyro_gain_z": -0.00237756784879641,
+        "time_offset": -3.3095138153805975e-07,
+        "velocity_y": 2.5029715987217454e-06
+      },
+      "weak_direction_dominant": "gyro_bias_z"
+    },
+    {
+      "active_bounds": [
+        "gyro_bias_z"
+      ],
+      "completed": true,
+      "condition_number": 10081191.783082614,
+      "identity": "sphere_still::variable::verified::opposed",
+      "maximum_position_error_m": 5.522123588994562e-06,
+      "numerical_rank": 5,
+      "parameter_count": 6,
+      "prediction_passed": true,
+      "weak_direction": {
+        "attitude_y": 1.9893422612641075e-06,
+        "gravity_delta": 2.0759154938973797e-09,
+        "gyro_bias_z": 0.9999971735763996,
+        "gyro_gain_z": -0.0023775678497678695,
+        "time_offset": -3.309513812936173e-07,
+        "velocity_y": 2.502971597938291e-06
+      },
+      "weak_direction_dominant": "gyro_bias_z"
+    },
+    {
+      "active_bounds": [],
+      "completed": true,
+      "condition_number": 12525342.448429909,
+      "identity": "flat_still::nominal::original::zero",
+      "maximum_position_error_m": 5.205940466825125e-06,
+      "numerical_rank": 5,
+      "parameter_count": 6,
+      "prediction_passed": true,
+      "weak_direction": {},
+      "weak_direction_dominant": null
+    },
+    {
+      "active_bounds": [],
+      "completed": true,
+      "condition_number": 12525338.815543287,
+      "identity": "flat_still::nominal::original::opposed",
+      "maximum_position_error_m": 5.2056517810914316e-06,
+      "numerical_rank": 5,
+      "parameter_count": 6,
+      "prediction_passed": true,
+      "weak_direction": {},
+      "weak_direction_dominant": null
+    },
+    {
+      "active_bounds": [],
+      "completed": true,
+      "condition_number": 12525342.474925496,
+      "identity": "flat_still::nominal::verified::zero",
+      "maximum_position_error_m": 5.20567452053177e-06,
+      "numerical_rank": 5,
+      "parameter_count": 6,
+      "prediction_passed": true,
+      "weak_direction": {
+        "attitude_y": 1.7952190342240946e-06,
+        "gravity_delta": -2.2115552322769526e-12,
+        "gyro_bias_z": 0.9999990756109582,
+        "gyro_gain_z": -0.0013596944946432632,
+        "time_offset": -2.6329498140208806e-07,
+        "velocity_y": 2.1950327454168637e-06
+      },
+      "weak_direction_dominant": "gyro_bias_z"
+    },
+    {
+      "active_bounds": [],
+      "completed": true,
+      "condition_number": 12525338.69874936,
+      "identity": "flat_still::nominal::verified::opposed",
+      "maximum_position_error_m": 5.205516251425175e-06,
+      "numerical_rank": 5,
+      "parameter_count": 6,
+      "prediction_passed": true,
+      "weak_direction": {
+        "attitude_y": 1.7952202241077882e-06,
+        "gravity_delta": -2.224118976845305e-12,
+        "gyro_bias_z": 0.9999990756109558,
+        "gyro_gain_z": -0.0013596944963408157,
+        "time_offset": -2.632950303439817e-07,
+        "velocity_y": 2.1950331337899835e-06
+      },
+      "weak_direction_dominant": "gyro_bias_z"
+    },
+    {
+      "active_bounds": [
+        "gyro_bias_z"
+      ],
+      "completed": true,
+      "condition_number": 10044861.509738391,
+      "identity": "flat_still::variable::original::zero",
+      "maximum_position_error_m": 5.529605927021372e-06,
+      "numerical_rank": 5,
+      "parameter_count": 6,
+      "prediction_passed": true,
+      "weak_direction": {},
+      "weak_direction_dominant": null
+    },
+    {
+      "active_bounds": [
+        "gyro_bias_z"
+      ],
+      "completed": true,
+      "condition_number": 10044861.51426331,
+      "identity": "flat_still::variable::original::opposed",
+      "maximum_position_error_m": 5.529604970021317e-06,
+      "numerical_rank": 5,
+      "parameter_count": 6,
+      "prediction_passed": true,
+      "weak_direction": {},
+      "weak_direction_dominant": null
+    },
+    {
+      "active_bounds": [
+        "gyro_bias_z"
+      ],
+      "completed": true,
+      "condition_number": 10044861.510590494,
+      "identity": "flat_still::variable::verified::zero",
+      "maximum_position_error_m": 5.529605540443351e-06,
+      "numerical_rank": 5,
+      "parameter_count": 6,
+      "prediction_passed": true,
+      "weak_direction": {
+        "attitude_y": 1.8518689836627428e-06,
+        "gravity_delta": -5.138922895186028e-13,
+        "gyro_bias_z": 0.9999969776995734,
+        "gyro_gain_z": -0.0024585731219947406,
+        "time_offset": -3.356333108340773e-07,
+        "velocity_y": 2.52593871603592e-06
+      },
+      "weak_direction_dominant": "gyro_bias_z"
+    },
+    {
+      "active_bounds": [
+        "gyro_bias_z"
+      ],
+      "completed": true,
+      "condition_number": 10044861.514841555,
+      "identity": "flat_still::variable::verified::opposed",
+      "maximum_position_error_m": 5.529604159863373e-06,
+      "numerical_rank": 5,
+      "parameter_count": 6,
+      "prediction_passed": true,
+      "weak_direction": {
+        "attitude_y": 1.8518689810477843e-06,
+        "gravity_delta": -5.138182123056712e-13,
+        "gyro_bias_z": 0.9999969776995717,
+        "gyro_gain_z": -0.0024585731227064448,
+        "time_offset": -3.3563331064233657e-07,
+        "velocity_y": 2.5259387151526787e-06
+      },
+      "weak_direction_dominant": "gyro_bias_z"
+    }
+  ],
+  "full_archival_calibration_qualified": false,
+  "largest_normalized_parameter_error": 0.6467874076159825,
+  "native_sweeps": 0,
+  "numerical_rank_cutoff_relative": 1e-07,
+  "observed_fit_starts": 0,
+  "parameter_rows": [
+    {
+      "at_bound": false,
+      "error": 5.1127321073866916e-08,
+      "error_bound_units": 5.112732107386692e-06,
+      "fitted": 0.003000051127321074,
+      "identity": "sphere_rotating::nominal::original::zero",
+      "parameter": "attitude_y",
+      "truth": 0.003
+    },
+    {
+      "at_bound": false,
+      "error": -3.664798869928987e-08,
+      "error_bound_units": -7.329597739857974e-07,
+      "fitted": 0.011999963352011301,
+      "identity": "sphere_rotating::nominal::original::zero",
+      "parameter": "gravity_delta",
+      "truth": 0.012
+    },
+    {
+      "at_bound": false,
+      "error": 3.1332898604236827e-06,
+      "error_bound_units": 0.6462874259762825,
+      "fitted": 4.3453240631975224e-06,
+      "identity": "sphere_rotating::nominal::original::zero",
+      "parameter": "gyro_bias_z",
+      "truth": 1.21203420277384e-06
+    },
+    {
+      "at_bound": false,
+      "error": -2.700959783866891e-05,
+      "error_bound_units": -0.0013504798919334454,
+      "fitted": 0.004972990402161331,
+      "identity": "sphere_rotating::nominal::original::zero",
+      "parameter": "gyro_gain_z",
+      "truth": 0.005
+    },
+    {
+      "at_bound": false,
+      "error": -1.585582104848826e-08,
+      "error_bound_units": -1.585582104848826e-07,
+      "fitted": 0.02299998414417895,
+      "identity": "sphere_rotating::nominal::original::zero",
+      "parameter": "time_offset",
+      "truth": 0.023
+    },
+    {
+      "at_bound": false,
+      "error": 2.654965019277533e-06,
+      "error_bound_units": 1.3274825096387666e-06,
+      "fitted": 0.5000026549650193,
+      "identity": "sphere_rotating::nominal::original::zero",
+      "parameter": "velocity_y",
+      "truth": 0.5
+    },
+    {
+      "at_bound": false,
+      "error": 5.113846891996801e-08,
+      "error_bound_units": 5.113846891996801e-06,
+      "fitted": 0.00300005113846892,
+      "identity": "sphere_rotating::nominal::original::opposed",
+      "parameter": "attitude_y",
+      "truth": 0.003
+    },
+    {
+      "at_bound": false,
+      "error": -3.6647894489927335e-08,
+      "error_bound_units": -7.329578897985467e-07,
+      "fitted": 0.01199996335210551,
+      "identity": "sphere_rotating::nominal::original::opposed",
+      "parameter": "gravity_delta",
+      "truth": 0.012
+    },
+    {
+      "at_bound": false,
+      "error": 3.1357138398159843e-06,
+      "error_bound_units": 0.6467874076159825,
+      "fitted": 4.347748042589824e-06,
+      "identity": "sphere_rotating::nominal::original::opposed",
+      "parameter": "gyro_bias_z",
+      "truth": 1.21203420277384e-06
+    },
+    {
+      "at_bound": false,
+      "error": -2.7021864888418165e-05,
+      "error_bound_units": -0.0013510932444209083,
+      "fitted": 0.004972978135111582,
+      "identity": "sphere_rotating::nominal::original::opposed",
+      "parameter": "gyro_gain_z",
+      "truth": 0.005
+    },
+    {
+      "at_bound": false,
+      "error": -1.5872752549828117e-08,
+      "error_bound_units": -1.5872752549828117e-07,
+      "fitted": 0.02299998412724745,
+      "identity": "sphere_rotating::nominal::original::opposed",
+      "parameter": "time_offset",
+      "truth": 0.023
+    },
+    {
+      "at_bound": false,
+      "error": 2.657319590038121e-06,
+      "error_bound_units": 1.3286597950190604e-06,
+      "fitted": 0.50000265731959,
+      "identity": "sphere_rotating::nominal::original::opposed",
+      "parameter": "velocity_y",
+      "truth": 0.5
+    },
+    {
+      "at_bound": false,
+      "error": 5.112732107993845e-08,
+      "error_bound_units": 5.112732107993845e-06,
+      "fitted": 0.00300005112732108,
+      "identity": "sphere_rotating::nominal::verified::zero",
+      "parameter": "attitude_y",
+      "truth": 0.003
+    },
+    {
+      "at_bound": false,
+      "error": -3.66479886940857e-08,
+      "error_bound_units": -7.32959773881714e-07,
+      "fitted": 0.011999963352011306,
+      "identity": "sphere_rotating::nominal::verified::zero",
+      "parameter": "gravity_delta",
+      "truth": 0.012
+    },
+    {
+      "at_bound": false,
+      "error": 3.1332898607602538e-06,
+      "error_bound_units": 0.6462874260457053,
+      "fitted": 4.3453240635340935e-06,
+      "identity": "sphere_rotating::nominal::verified::zero",
+      "parameter": "gyro_bias_z",
+      "truth": 1.21203420277384e-06
+    },
+    {
+      "at_bound": false,
+      "error": -2.7009597841382883e-05,
+      "error_bound_units": -0.0013504798920691442,
+      "fitted": 0.004972990402158617,
+      "identity": "sphere_rotating::nominal::verified::zero",
+      "parameter": "gyro_gain_z",
+      "truth": 0.005
+    },
+    {
+      "at_bound": false,
+      "error": -1.5855821020732686e-08,
+      "error_bound_units": -1.5855821020732686e-07,
+      "fitted": 0.02299998414417898,
+      "identity": "sphere_rotating::nominal::verified::zero",
+      "parameter": "time_offset",
+      "truth": 0.023
+    },
+    {
+      "at_bound": false,
+      "error": 2.6549650189444662e-06,
+      "error_bound_units": 1.3274825094722331e-06,
+      "fitted": 0.5000026549650189,
+      "identity": "sphere_rotating::nominal::verified::zero",
+      "parameter": "velocity_y",
+      "truth": 0.5
+    },
+    {
+      "at_bound": false,
+      "error": 5.1110638551316034e-08,
+      "error_bound_units": 5.1110638551316034e-06,
+      "fitted": 0.0030000511106385514,
+      "identity": "sphere_rotating::nominal::verified::opposed",
+      "parameter": "attitude_y",
+      "truth": 0.003
+    },
+    {
+      "at_bound": false,
+      "error": -3.664809590346596e-08,
+      "error_bound_units": -7.329619180693192e-07,
+      "fitted": 0.011999963351904097,
+      "identity": "sphere_rotating::nominal::verified::opposed",
+      "parameter": "gravity_delta",
+      "truth": 0.012
+    },
+    {
+      "at_bound": false,
+      "error": 3.129657070269553e-06,
+      "error_bound_units": 0.6455381092190047,
+      "fitted": 4.341691273043393e-06,
+      "identity": "sphere_rotating::nominal::verified::opposed",
+      "parameter": "gyro_bias_z",
+      "truth": 1.21203420277384e-06
+    },
+    {
+      "at_bound": false,
+      "error": -2.6989571837143442e-05,
+      "error_bound_units": -0.001349478591857172,
+      "fitted": 0.004973010428162857,
+      "identity": "sphere_rotating::nominal::verified::opposed",
+      "parameter": "gyro_gain_z",
+      "truth": 0.005
+    },
+    {
+      "at_bound": false,
+      "error": -1.584075382671246e-08,
+      "error_bound_units": -1.5840753826712461e-07,
+      "fitted": 0.022999984159246173,
+      "identity": "sphere_rotating::nominal::verified::opposed",
+      "parameter": "time_offset",
+      "truth": 0.023
+    },
+    {
+      "at_bound": false,
+      "error": 2.651999186586984e-06,
+      "error_bound_units": 1.325999593293492e-06,
+      "fitted": 0.5000026519991866,
+      "identity": "sphere_rotating::nominal::verified::opposed",
+      "parameter": "velocity_y",
+      "truth": 0.5
+    },
+    {
+      "at_bound": false,
+      "error": 3.6615910562268206e-08,
+      "error_bound_units": 3.6615910562268206e-06,
+      "fitted": 0.009800036615910562,
+      "identity": "sphere_rotating::variable::original::zero",
+      "parameter": "attitude_y",
+      "truth": 0.0098
+    },
+    {
+      "at_bound": false,
+      "error": -3.695212678206383e-08,
+      "error_bound_units": -7.390425356412766e-07,
+      "fitted": 0.04949996304787322,
+      "identity": "sphere_rotating::variable::original::zero",
+      "parameter": "gravity_delta",
+      "truth": 0.0495
+    },
+    {
+      "at_bound": true,
+      "error": 4.848084890342038e-08,
+      "error_bound_units": 0.00999989290575876,
+      "fitted": 4.848136291887827e-06,
+      "identity": "sphere_rotating::variable::original::zero",
+      "parameter": "gyro_bias_z",
+      "truth": 4.799655442984406e-06
+    },
+    {
+      "at_bound": false,
+      "error": -1.1122215026033999e-05,
+      "error_bound_units": -0.0005561107513017,
+      "fitted": 0.019788877784973968,
+      "identity": "sphere_rotating::variable::original::zero",
+      "parameter": "gyro_gain_z",
+      "truth": 0.0198
+    },
+    {
+      "at_bound": false,
+      "error": 5.574124078977505e-10,
+      "error_bound_units": 5.574124078977505e-09,
+      "fitted": 0.09900000055741241,
+      "identity": "sphere_rotating::variable::original::zero",
+      "parameter": "time_offset",
+      "truth": 0.099
+    },
+    {
+      "at_bound": false,
+      "error": -1.2106136093592568e-07,
+      "error_bound_units": -6.053068046796284e-08,
+      "fitted": 1.979999878938639,
+      "identity": "sphere_rotating::variable::original::zero",
+      "parameter": "velocity_y",
+      "truth": 1.98
+    },
+    {
+      "at_bound": false,
+      "error": 3.6615903439493613e-08,
+      "error_bound_units": 3.6615903439493613e-06,
+      "fitted": 0.00980003661590344,
+      "identity": "sphere_rotating::variable::original::opposed",
+      "parameter": "attitude_y",
+      "truth": 0.0098
+    },
+    {
+      "at_bound": false,
+      "error": -3.6952152081271006e-08,
+      "error_bound_units": -7.390430416254201e-07,
+      "fitted": 0.04949996304784792,
+      "identity": "sphere_rotating::variable::original::opposed",
+      "parameter": "gravity_delta",
+      "truth": 0.0495
+    },
+    {
+      "at_bound": true,
+      "error": 4.8481368014108823e-08,
+      "error_bound_units": 0.009999999980024332,
+      "fitted": 4.848136810998515e-06,
+      "identity": "sphere_rotating::variable::original::opposed",
+      "parameter": "gyro_bias_z",
+      "truth": 4.799655442984406e-06
+    },
+    {
+      "at_bound": false,
+      "error": -1.1122670198329687e-05,
+      "error_bound_units": -0.0005561335099164844,
+      "fitted": 0.019788877329801672,
+      "identity": "sphere_rotating::variable::original::opposed",
+      "parameter": "gyro_gain_z",
+      "truth": 0.0198
+    },
+    {
+      "at_bound": false,
+      "error": 5.578700001951375e-10,
+      "error_bound_units": 5.5787000019513755e-09,
+      "fitted": 0.09900000055787,
+      "identity": "sphere_rotating::variable::original::opposed",
+      "parameter": "time_offset",
+      "truth": 0.099
+    },
+    {
+      "at_bound": false,
+      "error": -1.211910258813731e-07,
+      "error_bound_units": -6.059551294068655e-08,
+      "fitted": 1.979999878808974,
+      "identity": "sphere_rotating::variable::original::opposed",
+      "parameter": "velocity_y",
+      "truth": 1.98
+    },
+    {
+      "at_bound": false,
+      "error": 3.661591055879876e-08,
+      "error_bound_units": 3.661591055879876e-06,
+      "fitted": 0.009800036615910558,
+      "identity": "sphere_rotating::variable::verified::zero",
+      "parameter": "attitude_y",
+      "truth": 0.0098
+    },
+    {
+      "at_bound": false,
+      "error": -3.6952126983291755e-08,
+      "error_bound_units": -7.390425396658351e-07,
+      "fitted": 0.04949996304787302,
+      "identity": "sphere_rotating::variable::verified::zero",
+      "parameter": "gravity_delta",
+      "truth": 0.0495
+    },
+    {
+      "at_bound": true,
+      "error": 4.8480848842583934e-08,
+      "error_bound_units": 0.00999989289321034,
+      "fitted": 4.84813629182699e-06,
+      "identity": "sphere_rotating::variable::verified::zero",
+      "parameter": "gyro_bias_z",
+      "truth": 4.799655442984406e-06
+    },
+    {
+      "at_bound": false,
+      "error": -1.1122215025669707e-05,
+      "error_bound_units": -0.0005561107512834854,
+      "fitted": 0.019788877784974332,
+      "identity": "sphere_rotating::variable::verified::zero",
+      "parameter": "gyro_gain_z",
+      "truth": 0.0198
+    },
+    {
+      "at_bound": false,
+      "error": 5.574123662643871e-10,
+      "error_bound_units": 5.574123662643871e-09,
+      "fitted": 0.09900000055741237,
+      "identity": "sphere_rotating::variable::verified::zero",
+      "parameter": "time_offset",
+      "truth": 0.099
+    },
+    {
+      "at_bound": false,
+      "error": -1.210613616020595e-07,
+      "error_bound_units": -6.053068080102975e-08,
+      "fitted": 1.9799998789386384,
+      "identity": "sphere_rotating::variable::verified::zero",
+      "parameter": "velocity_y",
+      "truth": 1.98
+    },
+    {
+      "at_bound": false,
+      "error": 3.661590364766043e-08,
+      "error_bound_units": 3.661590364766043e-06,
+      "fitted": 0.009800036615903647,
+      "identity": "sphere_rotating::variable::verified::opposed",
+      "parameter": "attitude_y",
+      "truth": 0.0098
+    },
+    {
+      "at_bound": false,
+      "error": -3.695215276128261e-08,
+      "error_bound_units": -7.390430552256522e-07,
+      "fitted": 0.04949996304784724,
+      "identity": "sphere_rotating::variable::verified::opposed",
+      "parameter": "gravity_delta",
+      "truth": 0.0495
+    },
+    {
+      "at_bound": true,
+      "error": 4.8481368014108823e-08,
+      "error_bound_units": 0.009999999980024332,
+      "fitted": 4.848136810998515e-06,
+      "identity": "sphere_rotating::variable::verified::opposed",
+      "parameter": "gyro_bias_z",
+      "truth": 4.799655442984406e-06
+    },
+    {
+      "at_bound": false,
+      "error": -1.1122668129050911e-05,
+      "error_bound_units": -0.0005561334064525456,
+      "fitted": 0.01978887733187095,
+      "identity": "sphere_rotating::variable::verified::opposed",
+      "parameter": "gyro_gain_z",
+      "truth": 0.0198
+    },
+    {
+      "at_bound": false,
+      "error": 5.579785244957947e-10,
+      "error_bound_units": 5.579785244957947e-09,
+      "fitted": 0.09900000055797853,
+      "identity": "sphere_rotating::variable::verified::opposed",
+      "parameter": "time_offset",
+      "truth": 0.099
+    },
+    {
+      "at_bound": false,
+      "error": -1.2119475112370992e-07,
+      "error_bound_units": -6.059737556185496e-08,
+      "fitted": 1.9799998788052489,
+      "identity": "sphere_rotating::variable::verified::opposed",
+      "parameter": "velocity_y",
+      "truth": 1.98
+    },
+    {
+      "at_bound": false,
+      "error": 4.715770157573754e-08,
+      "error_bound_units": 4.715770157573754e-06,
+      "fitted": 0.003000047157701576,
+      "identity": "sphere_still::nominal::original::zero",
+      "parameter": "attitude_y",
+      "truth": 0.003
+    },
+    {
+      "at_bound": false,
+      "error": -3.6884085055297056e-08,
+      "error_bound_units": -7.376817011059411e-07,
+      "fitted": 0.011999963115914945,
+      "identity": "sphere_still::nominal::original::zero",
+      "parameter": "gravity_delta",
+      "truth": 0.012
+    },
+    {
+      "at_bound": false,
+      "error": 2.6086017962706965e-06,
+      "error_bound_units": 0.5380627440836028,
+      "fitted": 3.820635999044536e-06,
+      "identity": "sphere_still::nominal::original::zero",
+      "parameter": "gyro_bias_z",
+      "truth": 1.21203420277384e-06
+    },
+    {
+      "at_bound": false,
+      "error": -2.4243380381986507e-05,
+      "error_bound_units": -0.0012121690190993253,
+      "fitted": 0.004975756619618014,
+      "identity": "sphere_still::nominal::original::zero",
+      "parameter": "gyro_gain_z",
+      "truth": 0.005
+    },
+    {
+      "at_bound": false,
+      "error": -1.3108175697662539e-08,
+      "error_bound_units": -1.3108175697662539e-07,
+      "fitted": 0.022999986891824302,
+      "identity": "sphere_still::nominal::original::zero",
+      "parameter": "time_offset",
+      "truth": 0.023
+    },
+    {
+      "at_bound": false,
+      "error": 2.194262997079477e-06,
+      "error_bound_units": 1.0971314985397385e-06,
+      "fitted": 0.5000021942629971,
+      "identity": "sphere_still::nominal::original::zero",
+      "parameter": "velocity_y",
+      "truth": 0.5
+    },
+    {
+      "at_bound": false,
+      "error": 4.715683072200119e-08,
+      "error_bound_units": 4.715683072200119e-06,
+      "fitted": 0.003000047156830722,
+      "identity": "sphere_still::nominal::original::opposed",
+      "parameter": "attitude_y",
+      "truth": 0.003
+    },
+    {
+      "at_bound": false,
+      "error": -3.6884088653113545e-08,
+      "error_bound_units": -7.376817730622709e-07,
+      "fitted": 0.011999963115911347,
+      "identity": "sphere_still::nominal::original::opposed",
+      "parameter": "gravity_delta",
+      "truth": 0.012
+    },
+    {
+      "at_bound": false,
+      "error": 2.608384636336324e-06,
+      "error_bound_units": 0.5380179516318148,
+      "fitted": 3.8204188391101635e-06,
+      "identity": "sphere_still::nominal::original::opposed",
+      "parameter": "gyro_bias_z",
+      "truth": 1.21203420277384e-06
+    },
+    {
+      "at_bound": false,
+      "error": -2.4242560859603392e-05,
+      "error_bound_units": -0.0012121280429801696,
+      "fitted": 0.004975757439140397,
+      "identity": "sphere_still::nominal::original::opposed",
+      "parameter": "gyro_gain_z",
+      "truth": 0.005
+    },
+    {
+      "at_bound": false,
+      "error": -1.310581277530476e-08,
+      "error_bound_units": -1.310581277530476e-07,
+      "fitted": 0.022999986894187224,
+      "identity": "sphere_still::nominal::original::opposed",
+      "parameter": "time_offset",
+      "truth": 0.023
+    },
+    {
+      "at_bound": false,
+      "error": 2.1939759732303443e-06,
+      "error_bound_units": 1.0969879866151722e-06,
+      "fitted": 0.5000021939759732,
+      "identity": "sphere_still::nominal::original::opposed",
+      "parameter": "velocity_y",
+      "truth": 0.5
+    },
+    {
+      "at_bound": false,
+      "error": 4.715770162344243e-08,
+      "error_bound_units": 4.715770162344243e-06,
+      "fitted": 0.0030000471577016235,
+      "identity": "sphere_still::nominal::verified::zero",
+      "parameter": "attitude_y",
+      "truth": 0.003
+    },
+    {
+      "at_bound": false,
+      "error": -3.688408036980895e-08,
+      "error_bound_units": -7.376816073961789e-07,
+      "fitted": 0.01199996311591963,
+      "identity": "sphere_still::nominal::verified::zero",
+      "parameter": "gravity_delta",
+      "truth": 0.012
+    },
+    {
+      "at_bound": false,
+      "error": 2.608601786130922e-06,
+      "error_bound_units": 0.5380627419921241,
+      "fitted": 3.820635988904762e-06,
+      "identity": "sphere_still::nominal::verified::zero",
+      "parameter": "gyro_bias_z",
+      "truth": 1.21203420277384e-06
+    },
+    {
+      "at_bound": false,
+      "error": -2.4243375909793925e-05,
+      "error_bound_units": -0.0012121687954896963,
+      "fitted": 0.004975756624090206,
+      "identity": "sphere_still::nominal::verified::zero",
+      "parameter": "gyro_gain_z",
+      "truth": 0.005
+    },
+    {
+      "at_bound": false,
+      "error": -1.3108262003624915e-08,
+      "error_bound_units": -1.3108262003624915e-07,
+      "fitted": 0.022999986891737996,
+      "identity": "sphere_still::nominal::verified::zero",
+      "parameter": "time_offset",
+      "truth": 0.023
+    },
+    {
+      "at_bound": false,
+      "error": 2.194261535914954e-06,
+      "error_bound_units": 1.097130767957477e-06,
+      "fitted": 0.5000021942615359,
+      "identity": "sphere_still::nominal::verified::zero",
+      "parameter": "velocity_y",
+      "truth": 0.5
+    },
+    {
+      "at_bound": false,
+      "error": 4.715633836367694e-08,
+      "error_bound_units": 4.715633836367694e-06,
+      "fitted": 0.0030000471563383637,
+      "identity": "sphere_still::nominal::verified::opposed",
+      "parameter": "attitude_y",
+      "truth": 0.003
+    },
+    {
+      "at_bound": false,
+      "error": -3.688410106159057e-08,
+      "error_bound_units": -7.376820212318114e-07,
+      "fitted": 0.011999963115898939,
+      "identity": "sphere_still::nominal::verified::opposed",
+      "parameter": "gravity_delta",
+      "truth": 0.012
+    },
+    {
+      "at_bound": false,
+      "error": 2.608260417023427e-06,
+      "error_bound_units": 0.537992329559308,
+      "fitted": 3.820294619797267e-06,
+      "identity": "sphere_still::nominal::verified::opposed",
+      "parameter": "gyro_bias_z",
+      "truth": 1.21203420277384e-06
+    },
+    {
+      "at_bound": false,
+      "error": -2.4241622479283763e-05,
+      "error_bound_units": -0.0012120811239641881,
+      "fitted": 0.004975758377520716,
+      "identity": "sphere_still::nominal::verified::opposed",
+      "parameter": "gyro_gain_z",
+      "truth": 0.005
+    },
+    {
+      "at_bound": false,
+      "error": -1.3104681183956357e-08,
+      "error_bound_units": -1.3104681183956357e-07,
+      "fitted": 0.022999986895318816,
+      "identity": "sphere_still::nominal::verified::opposed",
+      "parameter": "time_offset",
+      "truth": 0.023
+    },
+    {
+      "at_bound": false,
+      "error": 2.193891176505147e-06,
+      "error_bound_units": 1.0969455882525736e-06,
+      "fitted": 0.5000021938911765,
+      "identity": "sphere_still::nominal::verified::opposed",
+      "parameter": "velocity_y",
+      "truth": 0.5
+    },
+    {
+      "at_bound": false,
+      "error": 3.6604681820373575e-08,
+      "error_bound_units": 3.6604681820373575e-06,
+      "fitted": 0.00980003660468182,
+      "identity": "sphere_still::variable::original::zero",
+      "parameter": "attitude_y",
+      "truth": 0.0098
+    },
+    {
+      "at_bound": false,
+      "error": -3.706917405671417e-08,
+      "error_bound_units": -7.413834811342834e-07,
+      "fitted": 0.049499962930825946,
+      "identity": "sphere_still::variable::original::zero",
+      "parameter": "gravity_delta",
+      "truth": 0.0495
+    },
+    {
+      "at_bound": true,
+      "error": 4.848136811095264e-08,
+      "error_bound_units": 0.009999999999999802,
+      "fitted": 4.848136811095359e-06,
+      "identity": "sphere_still::variable::original::zero",
+      "parameter": "gyro_bias_z",
+      "truth": 4.799655442984406e-06
+    },
+    {
+      "at_bound": false,
+      "error": -1.1122212039915702e-05,
+      "error_bound_units": -0.0005561106019957851,
+      "fitted": 0.019788877787960086,
+      "identity": "sphere_still::variable::original::zero",
+      "parameter": "gyro_gain_z",
+      "truth": 0.0198
+    },
+    {
+      "at_bound": false,
+      "error": 5.585071433111821e-10,
+      "error_bound_units": 5.585071433111821e-09,
+      "fitted": 0.09900000055850715,
+      "identity": "sphere_still::variable::original::zero",
+      "parameter": "time_offset",
+      "truth": 0.099
+    },
+    {
+      "at_bound": false,
+      "error": -1.2146542371915814e-07,
+      "error_bound_units": -6.073271185957907e-08,
+      "fitted": 1.9799998785345763,
+      "identity": "sphere_still::variable::original::zero",
+      "parameter": "velocity_y",
+      "truth": 1.98
+    },
+    {
+      "at_bound": false,
+      "error": 3.660468874885914e-08,
+      "error_bound_units": 3.6604688748859138e-06,
+      "fitted": 0.009800036604688749,
+      "identity": "sphere_still::variable::original::opposed",
+      "parameter": "attitude_y",
+      "truth": 0.0098
+    },
+    {
+      "at_bound": false,
+      "error": -3.706918057233555e-08,
+      "error_bound_units": -7.413836114467109e-07,
+      "fitted": 0.04949996293081943,
+      "identity": "sphere_still::variable::original::opposed",
+      "parameter": "gravity_delta",
+      "truth": 0.0495
+    },
+    {
+      "at_bound": true,
+      "error": 4.848132210445298e-08,
+      "error_bound_units": 0.009999990510478063,
+      "fitted": 4.848136765088859e-06,
+      "identity": "sphere_still::variable::original::opposed",
+      "parameter": "gyro_bias_z",
+      "truth": 4.799655442984406e-06
+    },
+    {
+      "at_bound": false,
+      "error": -1.1121811342652138e-05,
+      "error_bound_units": -0.0005560905671326069,
+      "fitted": 0.01978887818865735,
+      "identity": "sphere_still::variable::original::opposed",
+      "parameter": "gyro_gain_z",
+      "truth": 0.0198
+    },
+    {
+      "at_bound": false,
+      "error": 5.583393053454344e-10,
+      "error_bound_units": 5.583393053454344e-09,
+      "fitted": 0.09900000055833931,
+      "identity": "sphere_still::variable::original::opposed",
+      "parameter": "time_offset",
+      "truth": 0.099
+    },
+    {
+      "at_bound": false,
+      "error": -1.2140085425826896e-07,
+      "error_bound_units": -6.070042712913448e-08,
+      "fitted": 1.9799998785991457,
+      "identity": "sphere_still::variable::original::opposed",
+      "parameter": "velocity_y",
+      "truth": 1.98
+    },
+    {
+      "at_bound": false,
+      "error": 3.66046818221083e-08,
+      "error_bound_units": 3.66046818221083e-06,
+      "fitted": 0.009800036604681822,
+      "identity": "sphere_still::variable::verified::zero",
+      "parameter": "attitude_y",
+      "truth": 0.0098
+    },
+    {
+      "at_bound": false,
+      "error": -3.706917405671417e-08,
+      "error_bound_units": -7.413834811342834e-07,
+      "fitted": 0.049499962930825946,
+      "identity": "sphere_still::variable::verified::zero",
+      "parameter": "gravity_delta",
+      "truth": 0.0495
+    },
+    {
+      "at_bound": true,
+      "error": 4.848136811095264e-08,
+      "error_bound_units": 0.009999999999999802,
+      "fitted": 4.848136811095359e-06,
+      "identity": "sphere_still::variable::verified::zero",
+      "parameter": "gyro_bias_z",
+      "truth": 4.799655442984406e-06
+    },
+    {
+      "at_bound": false,
+      "error": -1.1122212040946128e-05,
+      "error_bound_units": -0.0005561106020473064,
+      "fitted": 0.019788877787959055,
+      "identity": "sphere_still::variable::verified::zero",
+      "parameter": "gyro_gain_z",
+      "truth": 0.0198
+    },
+    {
+      "at_bound": false,
+      "error": 5.585071294333943e-10,
+      "error_bound_units": 5.585071294333943e-09,
+      "fitted": 0.09900000055850713,
+      "identity": "sphere_still::variable::verified::zero",
+      "parameter": "time_offset",
+      "truth": 0.099
+    },
+    {
+      "at_bound": false,
+      "error": -1.214654223868905e-07,
+      "error_bound_units": -6.073271119344525e-08,
+      "fitted": 1.9799998785345776,
+      "identity": "sphere_still::variable::verified::zero",
+      "parameter": "velocity_y",
+      "truth": 1.98
+    },
+    {
+      "at_bound": false,
+      "error": 3.660468874885914e-08,
+      "error_bound_units": 3.6604688748859138e-06,
+      "fitted": 0.009800036604688749,
+      "identity": "sphere_still::variable::verified::opposed",
+      "parameter": "attitude_y",
+      "truth": 0.0098
+    },
+    {
+      "at_bound": false,
+      "error": -3.7069180357229836e-08,
+      "error_bound_units": -7.413836071445967e-07,
+      "fitted": 0.049499962930819645,
+      "identity": "sphere_still::variable::verified::opposed",
+      "parameter": "gravity_delta",
+      "truth": 0.0495
+    },
+    {
+      "at_bound": true,
+      "error": 4.8481322103894784e-08,
+      "error_bound_units": 0.009999990510362928,
+      "fitted": 4.848136765088301e-06,
+      "identity": "sphere_still::variable::verified::opposed",
+      "parameter": "gyro_bias_z",
+      "truth": 4.799655442984406e-06
+    },
+    {
+      "at_bound": false,
+      "error": -1.1121811342523769e-05,
+      "error_bound_units": -0.0005560905671261884,
+      "fitted": 0.019788878188657478,
+      "identity": "sphere_still::variable::verified::opposed",
+      "parameter": "gyro_gain_z",
+      "truth": 0.0198
+    },
+    {
+      "at_bound": false,
+      "error": 5.583392914676466e-10,
+      "error_bound_units": 5.583392914676466e-09,
+      "fitted": 0.0990000005583393,
+      "identity": "sphere_still::variable::verified::opposed",
+      "parameter": "time_offset",
+      "truth": 0.099
+    },
+    {
+      "at_bound": false,
+      "error": -1.2140085425826896e-07,
+      "error_bound_units": -6.070042712913448e-08,
+      "fitted": 1.9799998785991457,
+      "identity": "sphere_still::variable::verified::opposed",
+      "parameter": "velocity_y",
+      "truth": 1.98
+    },
+    {
+      "at_bound": false,
+      "error": 4.485063386655552e-08,
+      "error_bound_units": 4.485063386655552e-06,
+      "fitted": 0.0030000448506338666,
+      "identity": "flat_still::nominal::original::zero",
+      "parameter": "attitude_y",
+      "truth": 0.003
+    },
+    {
+      "at_bound": false,
+      "error": -3.6953962409200236e-08,
+      "error_bound_units": -7.390792481840047e-07,
+      "fitted": 0.011999963046037591,
+      "identity": "flat_still::nominal::original::zero",
+      "parameter": "gravity_delta",
+      "truth": 0.012
+    },
+    {
+      "at_bound": false,
+      "error": 2.1873254137081813e-06,
+      "error_bound_units": 0.4511682526578679,
+      "fitted": 3.399359616482021e-06,
+      "identity": "flat_still::nominal::original::zero",
+      "parameter": "gyro_bias_z",
+      "truth": 1.21203420277384e-06
+    },
+    {
+      "at_bound": false,
+      "error": -2.2755641815755227e-05,
+      "error_bound_units": -0.0011377820907877614,
+      "fitted": 0.004977244358184245,
+      "identity": "flat_still::nominal::original::zero",
+      "parameter": "gyro_gain_z",
+      "truth": 0.005
+    },
+    {
+      "at_bound": false,
+      "error": -1.1055002198390174e-08,
+      "error_bound_units": -1.1055002198390174e-07,
+      "fitted": 0.0229999889449978,
+      "identity": "flat_still::nominal::original::zero",
+      "parameter": "time_offset",
+      "truth": 0.023
+    },
+    {
+      "at_bound": false,
+      "error": 1.8396974102996566e-06,
+      "error_bound_units": 9.198487051498283e-07,
+      "fitted": 0.5000018396974103,
+      "identity": "flat_still::nominal::original::zero",
+      "parameter": "velocity_y",
+      "truth": 0.5
+    },
+    {
+      "at_bound": false,
+      "error": 4.4903872664908e-08,
+      "error_bound_units": 4.4903872664908e-06,
+      "fitted": 0.003000044903872665,
+      "identity": "flat_still::nominal::original::opposed",
+      "parameter": "attitude_y",
+      "truth": 0.003
+    },
+    {
+      "at_bound": false,
+      "error": -3.695395935608692e-08,
+      "error_bound_units": -7.390791871217384e-07,
+      "fitted": 0.011999963046040644,
+      "identity": "flat_still::nominal::original::opposed",
+      "parameter": "gravity_delta",
+      "truth": 0.012
+    },
+    {
+      "at_bound": false,
+      "error": 2.2017022604849337e-06,
+      "error_bound_units": 0.45413369017271893,
+      "fitted": 3.413736463258774e-06,
+      "identity": "flat_still::nominal::original::opposed",
+      "parameter": "gyro_bias_z",
+      "truth": 1.21203420277384e-06
+    },
+    {
+      "at_bound": false,
+      "error": -2.2835983682138045e-05,
+      "error_bound_units": -0.0011417991841069022,
+      "fitted": 0.004977164016317862,
+      "identity": "flat_still::nominal::original::opposed",
+      "parameter": "gyro_gain_z",
+      "truth": 0.005
+    },
+    {
+      "at_bound": false,
+      "error": -1.1135200428391556e-08,
+      "error_bound_units": -1.1135200428391556e-07,
+      "fitted": 0.02299998886479957,
+      "identity": "flat_still::nominal::original::opposed",
+      "parameter": "time_offset",
+      "truth": 0.023
+    },
+    {
+      "at_bound": false,
+      "error": 1.8528737253387106e-06,
+      "error_bound_units": 9.264368626693553e-07,
+      "fitted": 0.5000018528737253,
+      "identity": "flat_still::nominal::original::opposed",
+      "parameter": "velocity_y",
+      "truth": 0.5
+    },
+    {
+      "at_bound": false,
+      "error": 4.4850630338561653e-08,
+      "error_bound_units": 4.485063033856165e-06,
+      "fitted": 0.0030000448506303386,
+      "identity": "flat_still::nominal::verified::zero",
+      "parameter": "attitude_y",
+      "truth": 0.003
+    },
+    {
+      "at_bound": false,
+      "error": -3.69539624213433e-08,
+      "error_bound_units": -7.39079248426866e-07,
+      "fitted": 0.011999963046037579,
+      "identity": "flat_still::nominal::verified::zero",
+      "parameter": "gravity_delta",
+      "truth": 0.012
+    },
+    {
+      "at_bound": false,
+      "error": 2.187321731926285e-06,
+      "error_bound_units": 0.45116749323583843,
+      "fitted": 3.3993559347001253e-06,
+      "identity": "flat_still::nominal::verified::zero",
+      "parameter": "gyro_bias_z",
+      "truth": 1.21203420277384e-06
+    },
+    {
+      "at_bound": false,
+      "error": -2.2754629914649785e-05,
+      "error_bound_units": -0.0011377314957324892,
+      "fitted": 0.00497724537008535,
+      "identity": "flat_still::nominal::verified::zero",
+      "parameter": "gyro_gain_z",
+      "truth": 0.005
+    },
+    {
+      "at_bound": false,
+      "error": -1.1058209993530799e-08,
+      "error_bound_units": -1.1058209993530799e-07,
+      "fitted": 0.022999988941790006,
+      "identity": "flat_still::nominal::verified::zero",
+      "parameter": "time_offset",
+      "truth": 0.023
+    },
+    {
+      "at_bound": false,
+      "error": 1.8399711047001333e-06,
+      "error_bound_units": 9.199855523500666e-07,
+      "fitted": 0.5000018399711047,
+      "identity": "flat_still::nominal::verified::zero",
+      "parameter": "velocity_y",
+      "truth": 0.5
+    },
+    {
+      "at_bound": false,
+      "error": 4.490580452192611e-08,
+      "error_bound_units": 4.490580452192611e-06,
+      "fitted": 0.003000044905804522,
+      "identity": "flat_still::nominal::verified::opposed",
+      "parameter": "attitude_y",
+      "truth": 0.003
+    },
+    {
+      "at_bound": false,
+      "error": -3.69539651257772e-08,
+      "error_bound_units": -7.39079302515544e-07,
+      "fitted": 0.011999963046034874,
+      "identity": "flat_still::nominal::verified::opposed",
+      "parameter": "gravity_delta",
+      "truth": 0.012
+    },
+    {
+      "at_bound": false,
+      "error": 2.2022226004717276e-06,
+      "error_bound_units": 0.4542410179992776,
+      "fitted": 3.4142568032455677e-06,
+      "identity": "flat_still::nominal::verified::opposed",
+      "parameter": "gyro_bias_z",
+      "truth": 1.21203420277384e-06
+    },
+    {
+      "at_bound": false,
+      "error": -2.2838405609712335e-05,
+      "error_bound_units": -0.0011419202804856168,
+      "fitted": 0.004977161594390288,
+      "identity": "flat_still::nominal::verified::opposed",
+      "parameter": "gyro_gain_z",
+      "truth": 0.005
+    },
+    {
+      "at_bound": false,
+      "error": -1.1140815568688733e-08,
+      "error_bound_units": -1.1140815568688733e-07,
+      "fitted": 0.02299998885918443,
+      "identity": "flat_still::nominal::verified::opposed",
+      "parameter": "time_offset",
+      "truth": 0.023
+    },
+    {
+      "at_bound": false,
+      "error": 1.853510026683658e-06,
+      "error_bound_units": 9.26755013341829e-07,
+      "fitted": 0.5000018535100267,
+      "identity": "flat_still::nominal::verified::opposed",
+      "parameter": "velocity_y",
+      "truth": 0.5
+    },
+    {
+      "at_bound": false,
+      "error": 3.659678733496097e-08,
+      "error_bound_units": 3.6596787334960967e-06,
+      "fitted": 0.009800036596787335,
+      "identity": "flat_still::variable::original::zero",
+      "parameter": "attitude_y",
+      "truth": 0.0098
+    },
+    {
+      "at_bound": false,
+      "error": -3.7095582675061856e-08,
+      "error_bound_units": -7.419116535012371e-07,
+      "fitted": 0.04949996290441733,
+      "identity": "flat_still::variable::original::zero",
+      "parameter": "gravity_delta",
+      "truth": 0.0495
+    },
+    {
+      "at_bound": true,
+      "error": 4.848136787345731e-08,
+      "error_bound_units": 0.009999999951012873,
+      "fitted": 4.848136810857864e-06,
+      "identity": "flat_still::variable::original::zero",
+      "parameter": "gyro_bias_z",
+      "truth": 4.799655442984406e-06
+    },
+    {
+      "at_bound": false,
+      "error": -1.1140754985053403e-05,
+      "error_bound_units": -0.0005570377492526701,
+      "fitted": 0.019788859245014948,
+      "identity": "flat_still::variable::original::zero",
+      "parameter": "gyro_gain_z",
+      "truth": 0.0198
+    },
+    {
+      "at_bound": false,
+      "error": 5.515980866510617e-10,
+      "error_bound_units": 5.515980866510617e-09,
+      "fitted": 0.09900000055159809,
+      "identity": "flat_still::variable::original::zero",
+      "parameter": "time_offset",
+      "truth": 0.099
+    },
+    {
+      "at_bound": false,
+      "error": -1.2217713774020922e-07,
+      "error_bound_units": -6.108856887010461e-08,
+      "fitted": 1.9799998778228622,
+      "identity": "flat_still::variable::original::zero",
+      "parameter": "velocity_y",
+      "truth": 1.98
+    },
+    {
+      "at_bound": false,
+      "error": 3.659679174462804e-08,
+      "error_bound_units": 3.6596791744628043e-06,
+      "fitted": 0.009800036596791744,
+      "identity": "flat_still::variable::original::opposed",
+      "parameter": "attitude_y",
+      "truth": 0.0098
+    },
+    {
+      "at_bound": false,
+      "error": -3.7095587115953954e-08,
+      "error_bound_units": -7.419117423190791e-07,
+      "fitted": 0.049499962904412886,
+      "identity": "flat_still::variable::original::opposed",
+      "parameter": "gravity_delta",
+      "truth": 0.0495
+    },
+    {
+      "at_bound": true,
+      "error": 4.848136762768985e-08,
+      "error_bound_units": 0.009999999900319696,
+      "fitted": 4.848136810612096e-06,
+      "identity": "flat_still::variable::original::opposed",
+      "parameter": "gyro_bias_z",
+      "truth": 4.799655442984406e-06
+    },
+    {
+      "at_bound": false,
+      "error": -1.114050799231811e-05,
+      "error_bound_units": -0.0005570253996159055,
+      "fitted": 0.019788859492007684,
+      "identity": "flat_still::variable::original::opposed",
+      "parameter": "gyro_gain_z",
+      "truth": 0.0198
+    },
+    {
+      "at_bound": false,
+      "error": 5.525682550411304e-10,
+      "error_bound_units": 5.525682550411304e-09,
+      "fitted": 0.09900000055256826,
+      "identity": "flat_still::variable::original::opposed",
+      "parameter": "time_offset",
+      "truth": 0.099
+    },
+    {
+      "at_bound": false,
+      "error": -1.2215878553156756e-07,
+      "error_bound_units": -6.107939276578378e-08,
+      "fitted": 1.9799998778412145,
+      "identity": "flat_still::variable::original::opposed",
+      "parameter": "velocity_y",
+      "truth": 1.98
+    },
+    {
+      "at_bound": false,
+      "error": 3.6596787333226244e-08,
+      "error_bound_units": 3.6596787333226244e-06,
+      "fitted": 0.009800036596787333,
+      "identity": "flat_still::variable::verified::zero",
+      "parameter": "attitude_y",
+      "truth": 0.0098
+    },
+    {
+      "at_bound": false,
+      "error": -3.709558271669522e-08,
+      "error_bound_units": -7.419116543339044e-07,
+      "fitted": 0.049499962904417286,
+      "identity": "flat_still::variable::verified::zero",
+      "parameter": "gravity_delta",
+      "truth": 0.0495
+    },
+    {
+      "at_bound": true,
+      "error": 4.848136787345731e-08,
+      "error_bound_units": 0.009999999951012873,
+      "fitted": 4.848136810857864e-06,
+      "identity": "flat_still::variable::verified::zero",
+      "parameter": "gyro_bias_z",
+      "truth": 4.799655442984406e-06
+    },
+    {
+      "at_bound": false,
+      "error": -1.11407549892098e-05,
+      "error_bound_units": -0.00055703774946049,
+      "fitted": 0.019788859245010792,
+      "identity": "flat_still::variable::verified::zero",
+      "parameter": "gyro_gain_z",
+      "truth": 0.0198
+    },
+    {
+      "at_bound": false,
+      "error": 5.521421375664914e-10,
+      "error_bound_units": 5.5214213756649144e-09,
+      "fitted": 0.09900000055214214,
+      "identity": "flat_still::variable::verified::zero",
+      "parameter": "time_offset",
+      "truth": 0.099
+    },
+    {
+      "at_bound": false,
+      "error": -1.221964192055225e-07,
+      "error_bound_units": -6.109820960276124e-08,
+      "fitted": 1.9799998778035808,
+      "identity": "flat_still::variable::verified::zero",
+      "parameter": "velocity_y",
+      "truth": 1.98
+    },
+    {
+      "at_bound": false,
+      "error": 3.659679177238362e-08,
+      "error_bound_units": 3.659679177238362e-06,
+      "fitted": 0.009800036596791772,
+      "identity": "flat_still::variable::verified::opposed",
+      "parameter": "attitude_y",
+      "truth": 0.0098
+    },
+    {
+      "at_bound": false,
+      "error": -3.7095587226976257e-08,
+      "error_bound_units": -7.419117445395251e-07,
+      "fitted": 0.049499962904412775,
+      "identity": "flat_still::variable::verified::opposed",
+      "parameter": "gravity_delta",
+      "truth": 0.0495
+    },
+    {
+      "at_bound": true,
+      "error": 4.848136762768985e-08,
+      "error_bound_units": 0.009999999900319696,
+      "fitted": 4.848136810612096e-06,
+      "identity": "flat_still::variable::verified::opposed",
+      "parameter": "gyro_bias_z",
+      "truth": 4.799655442984406e-06
+    },
+    {
+      "at_bound": false,
+      "error": -1.1140488852399294e-05,
+      "error_bound_units": -0.0005570244426199647,
+      "fitted": 0.019788859511147602,
+      "identity": "flat_still::variable::verified::opposed",
+      "parameter": "gyro_gain_z",
+      "truth": 0.0198
+    },
+    {
+      "at_bound": false,
+      "error": 5.535370772857817e-10,
+      "error_bound_units": 5.535370772857817e-09,
+      "fitted": 0.09900000055353708,
+      "identity": "flat_still::variable::verified::opposed",
+      "parameter": "time_offset",
+      "truth": 0.099
+    },
+    {
+      "at_bound": false,
+      "error": -1.2218669165342533e-07,
+      "error_bound_units": -6.109334582671266e-08,
+      "fitted": 1.9799998778133083,
+      "identity": "flat_still::variable::verified::opposed",
+      "parameter": "velocity_y",
+      "truth": 1.98
+    }
+  ],
+  "weak_direction_dominant_counts": {
+    "gyro_bias_z": 12
+  }
+}
