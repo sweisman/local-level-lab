@@ -1,0 +1,28 @@
+{
+  "analytic_examples": {
+    "conditional_covariance": [
+      [
+        8.0
+      ]
+    ],
+    "conditional_mean": [
+      1.0
+    ],
+    "known_innovations": [
+      1.0,
+      1.0
+    ],
+    "known_log_determinant": 3.58351893845611,
+    "known_quadratic": 2.0,
+    "parameter_uncertainty_included": false
+  },
+  "archive_records_loaded": 0,
+  "covariance_calibrated": false,
+  "covariance_estimated": false,
+  "native_predictions": 0,
+  "observed_fit_starts": 0,
+  "passed_checks": 35,
+  "scientific_decision": "abstain",
+  "software_controls_only": true,
+  "version": "ilvis0-shared-error-controls-v1"
+}

@@ -1,0 +1,61 @@
+{
+  "archive_records_loaded": 0,
+  "artifacts": {
+    "README.md": "ddf1e5b3bd71cc93a9bdc65b7aa6c9d1b0ef1b8c55dfc007c86e95080a81beed",
+    "summary.json": "73d820a0dd2f535e199cd467773f69dbcea8208499c1c9ad3a8cf3b754f0879d"
+  },
+  "native_builds": {
+    "tangent": {
+      "binary_sha256": "6acb6fbb4d854f82daf3b2c4c027f5d0da3fc068cae87e4c143a66103fae145d",
+      "compiler": "c++ (GCC) 16.2.1 20260810",
+      "flags": [
+        "-O2",
+        "-std=c++17",
+        "-fPIC",
+        "-shared"
+      ],
+      "source_sha256": "818c2932045f33f4adfc9321076e242313d5b99b62f69848876647b391c76938"
+    },
+    "value": {
+      "binary_sha256": "f56bb8b398ac71f4e520ae249bfe2606988eb3ff850ca00fc2322b2b9dc00595",
+      "compiler": "cc (GCC) 16.2.1 20260810",
+      "flags": [
+        "-O2",
+        "-std=c99",
+        "-D_DEFAULT_SOURCE",
+        "-fPIC",
+        "-shared"
+      ],
+      "source_sha256": "5efb8c04a9a72822374a23df9b3e8d43c5bfa0e37c7a39a1326195e815aae49e"
+    }
+  },
+  "numerical_environment": {
+    "numpy": "2.5.3",
+    "python": "3.14.7",
+    "scipy": "1.18.1",
+    "thread_settings": {
+      "MKL_NUM_THREADS": "2",
+      "OMP_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    }
+  },
+  "observed_fit_starts": 0,
+  "sources": {
+    "analysis/lll/ilvis0_error_model.py": "bd29c39eff105f676a4d32d837d0eb0627400e8fe4e04bff2dc4892cbd6bb05c",
+    "analysis/lll/ilvis0_estimator.py": "6393015ed2d15ef5ebf1cba10f823addda2b2821e9dd46f279c50ebb874cdcdd",
+    "analysis/lll/ilvis0_exploratory.py": "3f7499f888e02b59fbb694078353d5e241434b25ac527bf41861fc2f93bbf3b8",
+    "analysis/lll/ilvis0_forward.py": "37e91a623aafd7a7951be995d1b42d8f9144b8a63466a90088d2adcf8a842fad",
+    "analysis/lll/ilvis0_geographic_controls.py": "b6763311f77327e1c181df79520c989fa1b017ed6e86de51f7f0a63b429d4691",
+    "analysis/lll/ilvis0_latitude_controls.py": "e970c1a462ee5defb6ddbb97c8258e4b206a646a1d4c11c74fc86dac1fad8678",
+    "analysis/lll/ilvis0_native.c": "5efb8c04a9a72822374a23df9b3e8d43c5bfa0e37c7a39a1326195e815aae49e",
+    "analysis/lll/ilvis0_shape.py": "6e9e95dd1ec1b9d8b354994865be44bed89dec751d020cefdd9e834cf7b2850a",
+    "analysis/lll/ilvis0_tangent.cpp": "818c2932045f33f4adfc9321076e242313d5b99b62f69848876647b391c76938",
+    "analysis/lll/ilvis0_uncertainty_adapter.py": "06c36ee523d8fce45d434fa9b45811eb370aeaa933dcde6f2358df7be3fd0b15",
+    "analysis/lll/ilvis0_uncertainty_geometry.py": "c1c2eed0f5a0cc8feb081728f8c369378ea4c3ea1c1a10faeb5cff0291286dde",
+    "analysis/lll/runtime.py": "062ee020ad13f8264bcb72c21a9a73e4fc6247bc755c80472f3781f0929edd73",
+    "analysis/tests/ilvis0_uncertainty_adapter_controls.py": "86367797a4cc0ca0e5ff9fc2c24951813897b12034900d209f556e0f636f0412",
+    "analysis/tests/test_ilvis0_uncertainty_adapter.py": "bc5a5d5bbcb13ec08695e8a0103d03d80b77692a601287c887d1d639cfcb178d",
+    "docs/ilvis0-native-uncertainty-controls-20261012/build_report.py": "6ee1e1325a7fc60cde6819ea8de296f7e78285fbfa37ba8b433dca304b265dd2"
+  },
+  "version": "ilvis0-native-uncertainty-controls-v1"
+}

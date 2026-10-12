@@ -147,6 +147,28 @@ No other recording, clock grid, retry or archive rollout is authorized. Publicat
 is automatic; --study removal/replication --package-only performs no fits.
 Superseded zero-start follow-up preparations with the -preparation-v1 suffix are
 preserved for provenance; never launch or resume them.
+The completed saved-only comparison is docs/ilvis0-z-followup-audit-20261012/.
+Its builder checks all 81 fits and 243 residual series without extraction, prediction
+or optimization. Preserve both unfinished labels despite passing saved stationarity.
+Saved residual covariance is audited in docs/ilvis0-residual-covariance-20261012/.
+Its ERROR_MODEL_PLAN.md specifies shared covariance development; no new observed
+allowance is authorized. The builder uses saved epochs only; never trigger refits.
+Shared covariance controls are complete at docs/ilvis0-error-model-controls-20261012/:
+35 analytic checks, no archive reads or observed fits. lll.ilvis0_error_model assumes
+known covariance/mean; its predictions omit fitted-parameter uncertainty. Do not
+deploy it or interpret its software checks as calibrated observational coverage.
+Training/prediction controls are complete at docs/ilvis0-error-training-controls-20261012/.
+lll.ilvis0_error_training selects a fixed covariance list on training data only;
+prediction includes unconstrained linear-mean uncertainty, not nonlinear bounds or
+integrated covariance-parameter uncertainty. No observed allowance or promotion follows.
+Nonlinear/boundary diagnostics are checked in docs/ilvis0-nonlinear-uncertainty-controls-20261012/.
+Keep active columns in rank checks. Local unconstrained covariance and sampled prediction
+ranges are not calibrated intervals. NEXT_PLAN.md guides adapter/freeze preparation;
+it authorizes no native observed predictions or fits.
+The native adapter is checked at docs/ilvis0-native-uncertainty-controls-20261012/:
+six software paths, all 27 columns. Its charged sweeps and training-only geometry
+do not qualify archive uncertainty or authorize observed work. Prepare a finite
+comparison and durable launcher before requesting a new numerical allowance.
 
 The matched solver trial is complete; do not launch it again. Publication uses
 `analysis/tests/ilvis0_solver_trial.py --package-only`, without observed fits.

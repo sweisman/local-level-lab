@@ -115,6 +115,14 @@ are spent and no retries are authorized. A saved-only audit now examines their
 calibration behavior and stopping failures. The second is a whole-stretch robustness check, not the deferred
 training/prediction replication. Further clocks, the second predeclared recording
 and archive rollout remain outside this allowance.
+
+The [completed saved-only audit](ilvis0-z-followup-audit-20261012/README.md) preserves
+all 81 grid fits and their original statuses. Both unfinished fits pass saved stationarity
+but lack solver-reported success at their budget ceiling. Preferred control fits keep
+near-zero removal and almost unchanged costs. Epoch files reproduce all saved costs
+and RMS values. The [completed covariance audit](ilvis0-residual-covariance-20261012/README.md)
+adds longer-lag, cross-axis and spectral diagnostics; these saved checks do not
+calibrate uncertainty or authorize retries.
 At each fixed gain/offset pair,
 reoptimize all remaining parameters with their existing physical bounds. Use identical
 grid coordinates, initialization policy and finite allowances for specified-field globe,
@@ -142,12 +150,14 @@ not permission to add flexible drift until the fit looks better.
 
 ## 2. Establish a shared residual-error model
 
-Extend diagnostics using saved epoch residuals before refitting. Report dense lag curves,
-cross-axis covariance and correlation, and low-frequency power in both physical errors
-and declared innovations. Include sample counts, actual lag durations, cadence and the
-limited frequency resolution of short records. Spectral methods must support the observed
-cadence; do not silently resample or interpolate measurements. Use a common reference
-metric for physical track-error comparisons across models.
+The [completed saved-only audit](ilvis0-residual-covariance-20261012/README.md)
+reports dense lag curves, cross-axis covariance and correlation, and low-frequency
+power in physical errors and declared innovations across all 81 grid fits. It retains
+sample counts, actual lag durations, cadence and the limited frequency resolution of
+these two short recordings. Irregular timestamps receive no FFT; measurements are
+never resampled. Physical track errors use a common reference metric across models.
+The control's vertical innovations retain substantial minute-scale dependence,
+with less slow dependence on the other date. Neither the objective nor rankings change.
 
 Relate those diagnostics to available receiver quality and precision fields. If a field
 is absent, report it absent. Fix quality is not a measured noise variance. Fitted residuals
@@ -155,8 +165,26 @@ combine receiver error, inertial error, parameter estimation and model mismatch;
 do not uniquely estimate GPS covariance. Very small whitened RMS does not by itself
 establish exceptional sensor accuracy or a calibrated likelihood.
 
-Prepare a separately versioned correlated-error objective only after this descriptive
-audit. Estimate its parameters on designated development or training observations and
+The [shared error-model plan](ilvis0-residual-covariance-20261012/ERROR_MODEL_PLAN.md)
+is prepared. Its [35 independent software checks](ilvis0-error-model-controls-20261012/README.md)
+now pass: positive-definite covariance, cross-axis transformations, whitening and
+train/prediction conditioning, including irregular times and fixed drift anchors.
+These known-mean/known-covariance controls do not include fitted-parameter uncertainty;
+The [training/prediction extension](ilvis0-error-training-controls-20261012/README.md)
+now passes 26 controls for training-only covariance selection, linear-mean uncertainty
+and sensitivity to all supplied covariances. Nonlinear calibration, active bounds
+and integrated covariance-parameter uncertainty remain outside these controls;
+specify their treatment before any observed comparison.
+The [nonlinear geometry checks](ilvis0-nonlinear-uncertainty-controls-20261012/README.md)
+now retain active columns, report nonlinear remainders and deficient rank, and keep
+disconnected sampled support. Their boundary-distribution control demonstrates why
+interior Gaussian covariance and likelihood thresholds cannot be transferred unchanged
+to bounded estimators. Finite prediction ranges are sensitivity checks, not calibrated
+intervals. The [native adapter controls](ilvis0-native-uncertainty-controls-20261012/README.md)
+now verify all 27 derivative columns on six independently constructed geographic paths.
+Training rank uses training predictions only. Prepare the finite comparison freeze next.
+A separately versioned correlated-error objective remains a development alternative.
+Estimate its parameters on designated development or training observations and
 apply the same sealed covariance specification to all physical models. Compare direct
 prediction errors as well as covariance-adjusted costs. Account for cross-boundary
 correlation, fitted-parameter uncertainty and active bounds in future predictive intervals.

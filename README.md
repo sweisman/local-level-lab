@@ -195,6 +195,27 @@ finished 25 of 27 fits. Its seven complete comparisons favor globe; two remain
 unfinished. The full-grid background-field conclusion is withheld. These checks
 preserve the original analysis; they add no independent statistical calibration.
 
+The [follow-up audit](docs/ilvis0-z-followup-audit-20261012/README.md) compares all
+81 saved fits. Both unfinished September 24 fits have small track errors and pass
+the saved stationarity check, but reached their evaluation cap without solver-reported
+success. They remain unfinished. The preferred model on the first recording changes
+very little when onboard field removal is allowed; its fitted removal fraction stays
+essentially zero.
+
+The [residual correlation audit](docs/ilvis0-residual-covariance-20261012/README.md)
+examines those saved errors across time and axes. On October 5, vertical errors remain
+correlated even a minute apart after the current uncertainty adjustment; September 24
+shows less slow correlation. This leaves the model preferences unchanged, but explains
+why small errors alone do not establish reliable uncertainty estimates. A shared
+error-model plan is ready; it has not replaced the original analysis.
+The [prediction uncertainty checks](docs/ilvis0-nonlinear-uncertainty-controls-20261012/README.md)
+now cover correlated errors, estimation from training data, nonlinear behavior and
+calibration limits. They verify the calculations and expose where simple uncertainty
+estimates fail. The [native integration checks](docs/ilvis0-native-uncertainty-controls-20261012/README.md)
+also verify all 27 calibration and processing derivatives against independently
+constructed paths. A matched archive prediction comparison remains the next development
+step; these software checks do not change the observed findings.
+
 The remaining checks concern numerical completion, fits reaching allowed calibration
 limits, and the exact timing and corrections used in the logs. Published hardware
 specifications provide useful performance context; these checks determine how confidently

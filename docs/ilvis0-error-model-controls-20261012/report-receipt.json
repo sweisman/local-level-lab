@@ -1,0 +1,30 @@
+{
+  "archive_records_loaded": 0,
+  "artifacts": {
+    "README.md": "280d9f2da8eabf90360f1d06b19e12ec714cab1b2fa8b9636000709cbddb561c",
+    "summary.json": "7e9ed3007fcad01a55bb2aa8df17ded2690270e4acb4a8810d18b1c7c8d79af4",
+    "test-output.txt": "98bf4a5cca2eaaf138d6f23111076456ad9e1a02f4ebbdfac231ee71ec440f35"
+  },
+  "inputs": {
+    "/site/repo/local-level-lab/docs/ilvis0-residual-covariance-20261012/ERROR_MODEL_PLAN.md": "67b859c1feb5a3cecb02d099f74e199c7aa9a2b1c2a99745f5516806e5e304dc"
+  },
+  "native_predictions": 0,
+  "numerical_environment": {
+    "numpy": "2.5.3",
+    "python": "3.14.7",
+    "scipy": "1.18.1",
+    "thread_settings": {
+      "MKL_NUM_THREADS": "2",
+      "OMP_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    }
+  },
+  "observed_fit_starts": 0,
+  "sources": {
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_error_model.py": "bd29c39eff105f676a4d32d837d0eb0627400e8fe4e04bff2dc4892cbd6bb05c",
+    "/site/repo/local-level-lab/analysis/lll/runtime.py": "062ee020ad13f8264bcb72c21a9a73e4fc6247bc755c80472f3781f0929edd73",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_error_model.py": "230bd0594ddf42836c1c43063ce045cdc47d262972617527dbb7026e112992fe",
+    "/site/repo/local-level-lab/docs/ilvis0-error-model-controls-20261012/build_report.py": "3a221b64c869ab0e759dbf3f36fddfaa3fb71060ecfea0ad2a020d7583db39ea"
+  },
+  "version": "ilvis0-shared-error-controls-v1"
+}

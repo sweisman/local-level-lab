@@ -1,0 +1,4 @@
+study,converged,complete_nodes,shape_preference,background_field_preference,native_sweeps
+original,27,9,globe,specified_field,4174
+removal,27,9,globe,specified_field,4244
+replication,25,7,unresolved,,4074

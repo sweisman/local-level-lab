@@ -1,0 +1,21 @@
+{
+  "archive_records_loaded": 0,
+  "boundary_distribution_control_passed": true,
+  "boundary_example": {
+    "coverage_at_boundary_for_that_threshold": 0.975,
+    "estimated_parameter_mean": 0.3989422804014327,
+    "estimated_parameter_variance": 0.3408450569081046,
+    "incorrect_fixed_bound_variance": 0.0,
+    "nominal_interior_chi_square_95_threshold": 3.841458820694124,
+    "probability_estimate_equals_lower_bound": 0.5,
+    "unconstrained_gaussian_variance": 1.0
+  },
+  "confidence_calibrated": false,
+  "native_predictions": 0,
+  "nonlinear_NASA_uncertainty_qualified": false,
+  "observed_fit_starts": 0,
+  "passed_geometry_checks": 25,
+  "scientific_decision": "abstain",
+  "software_controls_only": true,
+  "version": "ilvis0-uncertainty-geometry-controls-v1"
+}

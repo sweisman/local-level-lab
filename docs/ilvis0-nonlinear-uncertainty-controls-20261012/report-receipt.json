@@ -1,0 +1,29 @@
+{
+  "archive_records_loaded": 0,
+  "artifacts": {
+    "NEXT_PLAN.md": "6945d698804b6ce9a4bc1d103bc1f865f754c60fc47117e06cd39e6368dc3418",
+    "README.md": "a87317d9ec8753845e13299f76e4bec11f2dc43bfa4692493e2eec17cce753f2",
+    "summary.json": "70518b2bbfd1186777990615a6d8b525b91547f76d24f3f8f28e4f93ef85a762",
+    "test-output.txt": "c15b71be04f4376528c0ffb06a7288697e528de596c4cc548b1bdce763d39bd5"
+  },
+  "native_predictions": 0,
+  "numerical_environment": {
+    "numpy": "2.5.3",
+    "python": "3.14.7",
+    "scipy": "1.18.1",
+    "thread_settings": {
+      "MKL_NUM_THREADS": "2",
+      "OMP_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    }
+  },
+  "observed_fit_starts": 0,
+  "sources": {
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_error_model.py": "bd29c39eff105f676a4d32d837d0eb0627400e8fe4e04bff2dc4892cbd6bb05c",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_uncertainty_geometry.py": "c1c2eed0f5a0cc8feb081728f8c369378ea4c3ea1c1a10faeb5cff0291286dde",
+    "/site/repo/local-level-lab/analysis/lll/runtime.py": "062ee020ad13f8264bcb72c21a9a73e4fc6247bc755c80472f3781f0929edd73",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_uncertainty_geometry.py": "be75da2a6c7e87383f536f612fafa40c8104472afb88a57b5eff006b3b6f1ccb",
+    "/site/repo/local-level-lab/docs/ilvis0-nonlinear-uncertainty-controls-20261012/build_report.py": "bf934e2ccc2559e518c4e4f77ab3f3f6424c7d24ee41f5b4487267f35e43c639"
+  },
+  "version": "ilvis0-uncertainty-geometry-controls-v1"
+}

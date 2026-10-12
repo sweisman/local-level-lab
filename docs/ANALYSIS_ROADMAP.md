@@ -101,6 +101,40 @@ its 27-start allowance. The next saved-only audit compares remaining calibration
 limits and weak directions and examines the two stopping failures. The second grid
 checks whole-stretch robustness; held-out prediction replication remains deferred.
 
+The [saved follow-up audit](ilvis0-z-followup-audit-20261012/README.md) now compares
+all 81 grid fits and checks 243 epoch residual series against their saved costs and RMS.
+Both unfinished fits pass saved stationarity but exhausted the solver allowance without
+reported success; neither is relabeled. Preferred-model costs barely change when removal
+is profiled, with fitted removal effectively zero on the control. No new observed
+starts are included in this audit.
+
+The [residual covariance audit](ilvis0-residual-covariance-20261012/README.md) now
+reports dense lag curves, cross-axis matrices and spectra for all 81 saved fits.
+On October 5, the preferred model's vertical innovations retain a 60-second correlation
+of about 0.27, with about 68% of spectral power at periods of at least a minute;
+September 24 shows less slow dependence. These are two recordings, not independent
+calibration-grid replications. The [shared error-model plan](ilvis0-residual-covariance-20261012/ERROR_MODEL_PLAN.md)
+sets out common cross-axis and correlated-error terms, development-only estimation and
+blocked prediction checks. The [covariance software controls](ilvis0-error-model-controls-20261012/README.md)
+now pass all 35 checks: irregular times, cross-axis and coordinate transformations,
+whitening, fixed drift anchors and conditional prediction across a split. They use
+known covariance and residual mean; they do not include fitted-parameter uncertainty.
+The [training/prediction controls](ilvis0-error-training-controls-20261012/README.md)
+now pass 26 checks for training-only restricted-likelihood covariance selection,
+linear-parameter uncertainty and covariance-choice sensitivity. They do not integrate
+covariance-parameter uncertainty or handle the NASA fits' nonlinear active bounds.
+A bounded observed comparison must specify those treatments before launch and
+still requires qualification and a finite allowance.
+The [nonlinear/boundary controls](ilvis0-nonlinear-uncertainty-controls-20261012/README.md)
+now pass 25 geometry checks and an independent estimator-distribution check. They
+retain active parameters, identify deficient directions and preserve disconnected
+sampled support. They do not qualify NASA confidence intervals. The
+[preparation plan](ilvis0-nonlinear-uncertainty-controls-20261012/NEXT_PLAN.md)
+now has a [control-tested native adapter](ilvis0-native-uncertainty-controls-20261012/README.md).
+Six independent geographic controls verify all 27 columns with 348 native software
+sweeps and no archive reads or observed fits. A concrete costed freeze comes next,
+before any new observed starts.
+
 | Order | Work | What can happen without new observed fits? | Deliverable |
 |---|---|---|---|
 | P0 | Explain integration timing and joint Z-axis calibration | Audit preserved timestamps, calibration shifts and local weak directions; the completed stopping trial did not qualify. | Clock evidence and matched gain–bias profiles after separately budgeted solver qualification. |
@@ -201,12 +235,13 @@ the clock comparison; they neither establish a calibrated adequacy failure nor r
 held-out prediction checks. Speed/course covariates in this diagnostic are coordinate-derived
 proxies under a reference globe metric, not recorded VTG measurements or independent evidence.
 
-The diagnostic already reports five time lags. Extend it with a fuller lag curve,
-cross-axis covariance and low-frequency power, retaining actual time separations and
-cadence limitations. These are fitted navigation errors containing receiver error,
+The completed [covariance audit](ilvis0-residual-covariance-20261012/README.md)
+extends the saved grid epochs through 60 lags, with cross-axis covariance and
+low-frequency power, retaining actual time separations and cadence limitations.
+Irregular records receive no spectrum or resampling. These are fitted navigation errors containing receiver error,
 inertial error and model mismatch; they cannot alone identify receiver noise. Compare
 available fix-quality and precision channels without treating those indicators as measured
-error variance. Estimate and seal a shared covariance alternative on development or
+error variance; the selected saved epochs lack those fields. Estimate and seal a shared covariance alternative on development or
 training observations before evaluating later predictions. Do not choose a different
 covariance for each physical model or calibrate a significance threshold on its own
 in-sample residuals.
