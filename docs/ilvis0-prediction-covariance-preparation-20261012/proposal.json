@@ -1,0 +1,352 @@
+{
+  "baseline": "preserved tau60 comparison; its unfinished fit remains unfinished",
+  "cases": [
+    {
+      "bias_dph": 1.0,
+      "case_id": "bias1_unsubtracted",
+      "limits": {
+        "accel_bias_x": 0.25,
+        "accel_bias_y": 0.25,
+        "accel_bias_z": 0.25,
+        "accel_gain_x": 0.15,
+        "accel_gain_y": 0.15,
+        "accel_gain_z": 0.15,
+        "attitude_x": 0.17453292519943295,
+        "attitude_y": 0.17453292519943295,
+        "attitude_z": 3.141592653589793,
+        "gravity_delta": 0.05,
+        "gyro_bias_x": 4.84813681109536e-06,
+        "gyro_bias_y": 4.84813681109536e-06,
+        "gyro_bias_z": 4.84813681109536e-06,
+        "gyro_gain_x": 0.02,
+        "gyro_gain_y": 0.02,
+        "gyro_gain_z": 0.02,
+        "lever_x": 10.0,
+        "lever_y": 10.0,
+        "lever_z": 10.0,
+        "position_x": 100.0,
+        "position_y": 100.0,
+        "position_z": 100.0,
+        "time_offset": 0.15,
+        "velocity_x": 20.0,
+        "velocity_y": 20.0,
+        "velocity_z": 20.0
+      },
+      "profile": false
+    },
+    {
+      "bias_dph": 1.0,
+      "case_id": "bias1_profiled_removal",
+      "limits": {
+        "accel_bias_x": 0.25,
+        "accel_bias_y": 0.25,
+        "accel_bias_z": 0.25,
+        "accel_gain_x": 0.15,
+        "accel_gain_y": 0.15,
+        "accel_gain_z": 0.15,
+        "attitude_x": 0.17453292519943295,
+        "attitude_y": 0.17453292519943295,
+        "attitude_z": 3.141592653589793,
+        "gravity_delta": 0.05,
+        "gyro_bias_x": 4.84813681109536e-06,
+        "gyro_bias_y": 4.84813681109536e-06,
+        "gyro_bias_z": 4.84813681109536e-06,
+        "gyro_gain_x": 0.02,
+        "gyro_gain_y": 0.02,
+        "gyro_gain_z": 0.02,
+        "lever_x": 10.0,
+        "lever_y": 10.0,
+        "lever_z": 10.0,
+        "position_x": 100.0,
+        "position_y": 100.0,
+        "position_z": 100.0,
+        "time_offset": 0.15,
+        "velocity_x": 20.0,
+        "velocity_y": 20.0,
+        "velocity_z": 20.0
+      },
+      "profile": true
+    }
+  ],
+  "clock": "header_elapsed",
+  "confidence_calibrated": false,
+  "covariance_policy": "shared full-record covariance; training marginal; full-record drift anchor",
+  "covariances": [
+    {
+      "calibrated": false,
+      "correlated_sigma_neu_m": [
+        1.0,
+        1.0,
+        3.0
+      ],
+      "correlation_s": 10,
+      "drift_sigma_neu_m": [
+        1.0,
+        1.0,
+        3.0
+      ],
+      "name": "h1_v3_tau10",
+      "offset_sigma_neu_m": [
+        1.0,
+        1.0,
+        3.0
+      ],
+      "white_sigma_neu_m": [
+        0.3,
+        0.3,
+        0.7
+      ]
+    },
+    {
+      "calibrated": false,
+      "correlated_sigma_neu_m": [
+        1.0,
+        1.0,
+        3.0
+      ],
+      "correlation_s": 300,
+      "drift_sigma_neu_m": [
+        1.0,
+        1.0,
+        3.0
+      ],
+      "name": "h1_v3_tau300",
+      "offset_sigma_neu_m": [
+        1.0,
+        1.0,
+        3.0
+      ],
+      "white_sigma_neu_m": [
+        0.3,
+        0.3,
+        0.7
+      ]
+    }
+  ],
+  "diagnostics": {
+    "center_reused_from_tangent": true,
+    "failed_fit_policy": "retain failed convergence label; diagnostics only for saved finite feasible center",
+    "feasible_probe_policy": "center plus each permitted +/-.01 axis step; skip infeasible direction",
+    "maximum_tangent_sweeps_per_fit": 1,
+    "maximum_value_sweeps_per_fit": 54,
+    "normalized_step": 0.01,
+    "remove_bound_columns": false,
+    "reoptimized_profiles": false,
+    "uncertainty": "descriptive local geometry and axis sensitivity; no calibrated intervals"
+  },
+  "estimate_covariance_from_candidate_residuals": false,
+  "gyro_gain_limit_fraction": 0.02,
+  "gyro_offset_limit_dph": 1.0,
+  "identities": [
+    "570b37d23af5e245dd461051::h1_v3_tau10::bias1_unsubtracted::sphere_rotating",
+    "570b37d23af5e245dd461051::h1_v3_tau10::bias1_unsubtracted::sphere_still",
+    "570b37d23af5e245dd461051::h1_v3_tau10::bias1_unsubtracted::flat_still",
+    "570b37d23af5e245dd461051::h1_v3_tau10::bias1_profiled_removal::sphere_rotating",
+    "570b37d23af5e245dd461051::h1_v3_tau10::bias1_profiled_removal::sphere_still",
+    "570b37d23af5e245dd461051::h1_v3_tau10::bias1_profiled_removal::flat_still",
+    "570b37d23af5e245dd461051::h1_v3_tau300::bias1_unsubtracted::sphere_rotating",
+    "570b37d23af5e245dd461051::h1_v3_tau300::bias1_unsubtracted::sphere_still",
+    "570b37d23af5e245dd461051::h1_v3_tau300::bias1_unsubtracted::flat_still",
+    "570b37d23af5e245dd461051::h1_v3_tau300::bias1_profiled_removal::sphere_rotating",
+    "570b37d23af5e245dd461051::h1_v3_tau300::bias1_profiled_removal::sphere_still",
+    "570b37d23af5e245dd461051::h1_v3_tau300::bias1_profiled_removal::flat_still"
+  ],
+  "integration": "ordinary_increment",
+  "launch_requirements": [
+    "implemented and control-tested durable worker",
+    "new input/source/environment freeze and verified originals at launch",
+    "explicit finite observed-data allowance",
+    "locks and append-only pre-call charge journals"
+  ],
+  "maximum_diagnostic_sweeps": 660,
+  "maximum_fit_sweeps": 2400,
+  "maximum_native_sweeps": 3060,
+  "maximum_per_identity": 1,
+  "maximum_starts": 12,
+  "numerical_environment": {
+    "numpy": "2.5.3",
+    "python": "3.14.7",
+    "scipy": "1.18.1",
+    "thread_settings": {
+      "MKL_NUM_THREADS": "2",
+      "OMP_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    }
+  },
+  "numerical_threads": 2,
+  "observed_allowance_authorized": false,
+  "optimizer": "frozen_original_fit_shape_candidate",
+  "preparation_sources": {
+    "analysis/lll/ilvis0_prediction_comparison_plan.py": "a1f13f66e3d7faa447c679b6f16e4e5bbcdbeff426a6504121c0d8096d75f991",
+    "analysis/tests/test_ilvis0_prediction_comparison_plan.py": "87d5805e00f5ce30f918fccb52d86020d24c6da99a96175a8aad9ff7a18b70b3",
+    "docs/ilvis0-prediction-covariance-preparation-20261012/build_plan.py": "67780074dba8150fbab1a786a51fc4c61ad78975ec89aab5b6afc876720ef5c4"
+  },
+  "prospective_validation": false,
+  "receiver_covariance_calibrated": false,
+  "recording": {
+    "compressed_original_sha256": "a7cc829f98c7f160a47c25450a5a62f171d79f3465b18abffac582a9fc041db9",
+    "filename": "ILVIS0_applanix_57300_610_LVIS_38614965.013",
+    "imu_type": 21,
+    "median_ground_speed_kmh": 878.06,
+    "minimum_ground_speed_kmh": 859.55,
+    "selected_duration_s": 438.0,
+    "source_sha256": "62516a0d2c5c33e9e55b7db7a0f4f3649252bc8257c8dab9ae2dd48212c1faa8"
+  },
+  "references": {
+    "docs/ilvis0-native-uncertainty-controls-20261012/report-receipt.json": "dcbd65d823002ff1aaba5098e274c3e3c9854817d0107e8800ac81600faa85ad",
+    "docs/ilvis0-prediction-trial-20261011/manifest.json": "00a83a281a84a6fb244c90f91ed66e920d8a90267705d5b32616a230b64ff0bb",
+    "docs/ilvis0-prediction-trial-20261011/selection.json.gz": "610ec3b007bf0c11b377282ebc04e8de673427e106a2ed4f8cfc53fa8220303e",
+    "docs/ilvis0-prediction-trial-20261011/summary.json": "74fccc5f928a1b87f342312334e66957de4d39bcfc683102ded30e1d24a66724"
+  },
+  "retry_reserve": 0,
+  "runtime_estimate": {
+    "benchmark_of_new_objective": false,
+    "ceiling_minutes_at_median": 153.91712879190618,
+    "ceiling_minutes_at_slowest": 172.08691135558058,
+    "full_to_training_duration_ratio": 1.5051546391752577,
+    "guaranteed_wall_time": false,
+    "method": "saved per-evaluation wall time; diagnostics scaled by duration ratio",
+    "training_seconds_per_sweep_median": 2.7214658207828837,
+    "training_seconds_per_sweep_slowest": 3.042732482955034
+  },
+  "scientific_decision": "abstain",
+  "source_commit": "42cd8f8",
+  "split": {
+    "first_interval_start_utc_week_s": 132349.80372895222,
+    "first_prediction_time_s": 292.1962710477819,
+    "first_prediction_utc_week_s": 132642.0,
+    "first_training_time_s": 0.19627104778192006,
+    "last_prediction_time_s": 438.1962710477819,
+    "last_training_time_s": 291.1962710477819,
+    "last_training_utc_week_s": 132641.0,
+    "prediction_epochs": 147,
+    "segment_id": "570b37d23af5e245dd461051",
+    "selection": "first floor(2*N/3) epochs train; remaining epochs predict",
+    "training_epochs": 292
+  },
+  "state": "prepared_not_launchable",
+  "tasks": [
+    {
+      "covariance": "h1_v3_tau10",
+      "identity": "570b37d23af5e245dd461051::h1_v3_tau10::bias1_unsubtracted::sphere_rotating",
+      "maximum_diagnostic_sweeps": 55,
+      "maximum_fit_sweeps": 200,
+      "maximum_starts": 1,
+      "model": "sphere_rotating",
+      "parameters": 26,
+      "processing_case": "bias1_unsubtracted"
+    },
+    {
+      "covariance": "h1_v3_tau10",
+      "identity": "570b37d23af5e245dd461051::h1_v3_tau10::bias1_unsubtracted::sphere_still",
+      "maximum_diagnostic_sweeps": 55,
+      "maximum_fit_sweeps": 200,
+      "maximum_starts": 1,
+      "model": "sphere_still",
+      "parameters": 26,
+      "processing_case": "bias1_unsubtracted"
+    },
+    {
+      "covariance": "h1_v3_tau10",
+      "identity": "570b37d23af5e245dd461051::h1_v3_tau10::bias1_unsubtracted::flat_still",
+      "maximum_diagnostic_sweeps": 55,
+      "maximum_fit_sweeps": 200,
+      "maximum_starts": 1,
+      "model": "flat_still",
+      "parameters": 26,
+      "processing_case": "bias1_unsubtracted"
+    },
+    {
+      "covariance": "h1_v3_tau10",
+      "identity": "570b37d23af5e245dd461051::h1_v3_tau10::bias1_profiled_removal::sphere_rotating",
+      "maximum_diagnostic_sweeps": 55,
+      "maximum_fit_sweeps": 200,
+      "maximum_starts": 1,
+      "model": "sphere_rotating",
+      "parameters": 27,
+      "processing_case": "bias1_profiled_removal"
+    },
+    {
+      "covariance": "h1_v3_tau10",
+      "identity": "570b37d23af5e245dd461051::h1_v3_tau10::bias1_profiled_removal::sphere_still",
+      "maximum_diagnostic_sweeps": 55,
+      "maximum_fit_sweeps": 200,
+      "maximum_starts": 1,
+      "model": "sphere_still",
+      "parameters": 27,
+      "processing_case": "bias1_profiled_removal"
+    },
+    {
+      "covariance": "h1_v3_tau10",
+      "identity": "570b37d23af5e245dd461051::h1_v3_tau10::bias1_profiled_removal::flat_still",
+      "maximum_diagnostic_sweeps": 55,
+      "maximum_fit_sweeps": 200,
+      "maximum_starts": 1,
+      "model": "flat_still",
+      "parameters": 27,
+      "processing_case": "bias1_profiled_removal"
+    },
+    {
+      "covariance": "h1_v3_tau300",
+      "identity": "570b37d23af5e245dd461051::h1_v3_tau300::bias1_unsubtracted::sphere_rotating",
+      "maximum_diagnostic_sweeps": 55,
+      "maximum_fit_sweeps": 200,
+      "maximum_starts": 1,
+      "model": "sphere_rotating",
+      "parameters": 26,
+      "processing_case": "bias1_unsubtracted"
+    },
+    {
+      "covariance": "h1_v3_tau300",
+      "identity": "570b37d23af5e245dd461051::h1_v3_tau300::bias1_unsubtracted::sphere_still",
+      "maximum_diagnostic_sweeps": 55,
+      "maximum_fit_sweeps": 200,
+      "maximum_starts": 1,
+      "model": "sphere_still",
+      "parameters": 26,
+      "processing_case": "bias1_unsubtracted"
+    },
+    {
+      "covariance": "h1_v3_tau300",
+      "identity": "570b37d23af5e245dd461051::h1_v3_tau300::bias1_unsubtracted::flat_still",
+      "maximum_diagnostic_sweeps": 55,
+      "maximum_fit_sweeps": 200,
+      "maximum_starts": 1,
+      "model": "flat_still",
+      "parameters": 26,
+      "processing_case": "bias1_unsubtracted"
+    },
+    {
+      "covariance": "h1_v3_tau300",
+      "identity": "570b37d23af5e245dd461051::h1_v3_tau300::bias1_profiled_removal::sphere_rotating",
+      "maximum_diagnostic_sweeps": 55,
+      "maximum_fit_sweeps": 200,
+      "maximum_starts": 1,
+      "model": "sphere_rotating",
+      "parameters": 27,
+      "processing_case": "bias1_profiled_removal"
+    },
+    {
+      "covariance": "h1_v3_tau300",
+      "identity": "570b37d23af5e245dd461051::h1_v3_tau300::bias1_profiled_removal::sphere_still",
+      "maximum_diagnostic_sweeps": 55,
+      "maximum_fit_sweeps": 200,
+      "maximum_starts": 1,
+      "model": "sphere_still",
+      "parameters": 27,
+      "processing_case": "bias1_profiled_removal"
+    },
+    {
+      "covariance": "h1_v3_tau300",
+      "identity": "570b37d23af5e245dd461051::h1_v3_tau300::bias1_profiled_removal::flat_still",
+      "maximum_diagnostic_sweeps": 55,
+      "maximum_fit_sweeps": 200,
+      "maximum_starts": 1,
+      "model": "flat_still",
+      "parameters": 27,
+      "processing_case": "bias1_profiled_removal"
+    }
+  ],
+  "version": "ilvis0-prediction-covariance-preparation-v1",
+  "workers": 1
+}

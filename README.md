@@ -10,6 +10,13 @@ The data come from professional inertial equipment and GPS receivers aboard rese
 A simpler, stationary crowdsourced experiment using smaller, less expensive IMUs is secondary work.
 The code, selection criteria and analysis records are open for review.
 
+**The opportunity is to test Earth's curvature through the aircraft's measured motion.**
+Professional IMU recordings let anyone examine the gradual turning expected while
+crossing a curved surface, and compare competing explanations against the same data.
+The contribution is an open, reproducible airborne test of competing geometries.
+It builds on a long tradition of measuring Earth's figure, including Snellius's
+1617 survey ([English translation](https://arsastronomica.com/works/willebrord-snellius-eratosthenes-batavus/)).
+
 An **IMU (inertial measurement unit)** measures turning and acceleration. Its gyroscopes
 measure how it turns; its accelerometers measure forces associated with gravity and motion.
 GPS records where the aircraft went and when.
@@ -20,6 +27,9 @@ reference—a reference that is not itself turning. Separating aircraft motion f
 persistent background field is an analysis task. Identifying what produces that field
 is a further question, which these recordings alone do not settle. This project does
 not treat a gyro signal as proof of heliocentrism or any other cosmology.
+
+Earth's shape and its place in the solar system are separate questions. **Geocentric
+does not mean flat, and a globe result alone does not establish heliocentrism.**
 
 ## The idea
 
@@ -72,6 +82,16 @@ The analysis preserves original measurements and timestamps, checks packet integ
 and verifies units against the instrument's combined GPS/IMU navigation output. That
 combined output supplies decoder checks and motion context, rather than independent
 evidence about Earth's shape. The model fits use IMU increments and receiver positions.
+
+**The GPS positions come from the primary receiver's own recorded stream, separately
+from the combined IMU/GPS navigation solution.** Applanix's
+[interface specification](https://asapdata.arc.nasa.gov/share/ASF_Applanix/POSv6_User_ICD.pdf#page=71)
+identifies this as Group 10001. This avoids testing the instrument's finished navigation
+answer against itself. GPS latitude, longitude and height still use geodetic coordinate
+conventions, and the analysis assigns a declared geometry to each candidate. It is an
+explicit comparison of models with separate measurement streams, rather than a
+model-free measurement of curvature. The [archive guide](docs/ILVIS0.md#measurement-provenance-and-independence)
+explains the distinction and the checks planned to isolate the IMU's contribution.
 
 Here, **raw** means the recorded angle and velocity increments, before the finished
 navigation solution. It does not mean that the electronics applied no calibration or
@@ -214,7 +234,9 @@ calibration limits. They verify the calculations and expose where simple uncerta
 estimates fail. The [native integration checks](docs/ilvis0-native-uncertainty-controls-20261012/README.md)
 also verify all 27 calibration and processing derivatives against independently
 constructed paths. A matched archive prediction comparison remains the next development
-step; these software checks do not change the observed findings.
+step. The [bounded comparison](docs/ilvis0-prediction-covariance-20261012/README.md)
+is now running after software qualification. Its results will be published separately;
+the existing findings remain unchanged.
 
 The remaining checks concern numerical completion, fits reaching allowed calibration
 limits, and the exact timing and corrections used in the logs. Published hardware

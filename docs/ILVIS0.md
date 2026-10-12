@@ -26,6 +26,62 @@ They also contain GPS receiver sentences and the instrument's fused navigation s
 The latter combines measurements with a navigation model and is not independent evidence
 for Earth's shape or rotation.
 
+## Measurement provenance and independence
+
+The archived measurements and the finished navigation solution have different roles:
+
+| Recorded source | Use in this project |
+|---|---|
+| Group 4 angle and velocity increments | IMU observations used in the model fits. |
+| Group 10001 primary-receiver stream | Receiver positions and time information used in the fits. |
+| Group 1 fused IMU/GPS navigation | Physical-decoder validation and motion screening; no fitted gyro or position observations. |
+
+The [Applanix V6 interface specification](https://asapdata.arc.nasa.gov/share/ASF_Applanix/POSv6_User_ICD.pdf#page=71),
+document PUBS-ICD-003259 Rev. 9.0, section 3.3.2.1, printed page 64, says that
+Group 10001 packages the primary receiver's output irrespective of message boundaries.
+Concatenating its payloads reconstructs that receiver stream. The repository's
+[packet decoder](../analysis/lll/applanix.py) extracts those payloads; the
+[observation extractor](../analysis/lll/ilvis0_observation.py) reconstructs and checks
+receiver sentences without substituting Group 1 navigation observations. The
+[original inspector](../analysis/lll/ilvis0.py) also preserves the concatenated bytes
+and original sentence identifiers where those artifacts were produced.
+
+This supports separate IMU and receiver observation sources and avoids treating the
+fused INS answer as independent evidence. It does not establish statistical independence
+of their errors, absence of all receiver-side aiding, or identical behavior across the
+archive's historical configurations. The cited document describes V6; earlier files
+also need their recorded version and observed layout checks.
+
+GPS positions are navigation outputs, not direct measurements of surface curvature.
+Their latitude, longitude and height use geodetic conventions. WGS84 provides GPS's
+reference frame and an ellipsoidal geometry; see [NGA's description](https://earth-info.nga.mil/?action=wgs84&dir=wgs84).
+The present comparison applies a specified globe or disc metric to receiver coordinates
+and integrates the recorded IMU increments. It therefore tests explicit observation
+models. Planned gyro-channel, horizontal-only and height/geoid controls will isolate
+which measurements and conventions produce the separation.
+
+The project makes **no verified scientific-first or model-free-proof claim**.
+Physical measurements of Earth's figure predate WGS84. Snellius's
+[*Eratosthenes Batavus* (1617)](https://www.e-rara.ch/zut/content/structure/737032)
+is an early triangulation-based measurement of a meridian arc and Earth's size;
+an [English translation is available at Ars Astronomica](https://arsastronomica.com/works/willebrord-snellius-eratosthenes-batavus/).
+NOAA's
+[history of geodesy](https://www.ngs.noaa.gov/PUBS_LIB/Geodesy4Layman/TR80003A.HTM)
+describes measured survey baselines, angles and meridian arcs. The contribution here
+is an openly reproducible comparison using professional airborne IMU increments,
+receiver observations, explicit alternatives and preserved failures. A narrower
+publication novelty claim requires a dedicated literature review.
+
+For the eventual paper, cite the interface section and record, per source file,
+the numeric Group 10001 receiver-type codes, packet counts, firmware/ICD strings,
+receiver-stream hashes, and original NMEA talker/sentence identifiers with checksum
+status. Preserve configuration changes and binary-only or missing-NMEA outcomes;
+do not infer a receiver model from a talker identifier. The packet decoder already
+returns the receiver-type code, but the current observation summaries do not retain
+it or every original sentence identifier. Those fields remain recoverable from retained
+originals. Add a separately versioned provenance supplement after the active run;
+do not change frozen inputs or relabel old results.
+
 ## Instrument quality
 
 These are professional airborne survey systems. The validated reference identifies POS AV

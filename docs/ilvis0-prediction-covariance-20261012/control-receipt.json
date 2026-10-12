@@ -1,0 +1,41 @@
+{
+  "archive_records_loaded": 0,
+  "artifacts": {
+    "CONTROL.md": "47a5b826e078143278242d84d811f17deab56ea9f41ead5dfd302bacefc926d1",
+    "control-results.json": "c47ed4255d96f2ce810e77dbd9cbe306d545ae15a2bd83b12970869f0a8bb101",
+    "software-epochs.csv.gz": "c2c9e7adad720f593d513b8eac971e938f4a8647439b362c41a8cd8763df481a",
+    "test-output.txt": "04ceb5dcb28c31f94fd652c55edfd0296e7c4286587432ca56af041035952eff"
+  },
+  "numerical_environment": {
+    "numpy": "2.5.3",
+    "python": "3.14.7",
+    "scipy": "1.18.1",
+    "thread_settings": {
+      "MKL_NUM_THREADS": "2",
+      "OMP_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    }
+  },
+  "observed_fit_starts": 0,
+  "sources": {
+    "analysis/lll/ilvis0_error_model.py": "bd29c39eff105f676a4d32d837d0eb0627400e8fe4e04bff2dc4892cbd6bb05c",
+    "analysis/lll/ilvis0_estimator.py": "6393015ed2d15ef5ebf1cba10f823addda2b2821e9dd46f279c50ebb874cdcdd",
+    "analysis/lll/ilvis0_exploratory.py": "3f7499f888e02b59fbb694078353d5e241434b25ac527bf41861fc2f93bbf3b8",
+    "analysis/lll/ilvis0_geographic_controls.py": "b6763311f77327e1c181df79520c989fa1b017ed6e86de51f7f0a63b429d4691",
+    "analysis/lll/ilvis0_latitude_controls.py": "e970c1a462ee5defb6ddbb97c8258e4b206a646a1d4c11c74fc86dac1fad8678",
+    "analysis/lll/ilvis0_native.c": "5efb8c04a9a72822374a23df9b3e8d43c5bfa0e37c7a39a1326195e815aae49e",
+    "analysis/lll/ilvis0_prediction_comparison_plan.py": "a1f13f66e3d7faa447c679b6f16e4e5bbcdbeff426a6504121c0d8096d75f991",
+    "analysis/lll/ilvis0_shape.py": "6e9e95dd1ec1b9d8b354994865be44bed89dec751d020cefdd9e834cf7b2850a",
+    "analysis/lll/ilvis0_sweep_journal.py": "815632ecb6baaba047cb090ec3445117574a0a9b12419801a4c1ec2cfe2c4e5b",
+    "analysis/lll/ilvis0_tangent.cpp": "818c2932045f33f4adfc9321076e242313d5b99b62f69848876647b391c76938",
+    "analysis/lll/ilvis0_uncertainty_adapter.py": "06c36ee523d8fce45d434fa9b45811eb370aeaa933dcde6f2358df7be3fd0b15",
+    "analysis/lll/ilvis0_uncertainty_geometry.py": "c1c2eed0f5a0cc8feb081728f8c369378ea4c3ea1c1a10faeb5cff0291286dde",
+    "analysis/tests/ilvis0_prediction_covariance_worker.py": "fe64382a53566e004e1a0ff4d17bdc5822facedd7751d0d57273fecb437234ab",
+    "analysis/tests/ilvis0_uncertainty_adapter_controls.py": "86367797a4cc0ca0e5ff9fc2c24951813897b12034900d209f556e0f636f0412",
+    "analysis/tests/test_ilvis0_prediction_comparison_plan.py": "87d5805e00f5ce30f918fccb52d86020d24c6da99a96175a8aad9ff7a18b70b3",
+    "analysis/tests/test_ilvis0_prediction_covariance_worker.py": "22251297f9f5b71d810b3064feb503d8aa76c2278a43706a6a6a06a32e5a48db",
+    "analysis/tests/test_ilvis0_uncertainty_adapter.py": "bc5a5d5bbcb13ec08695e8a0103d03d80b77692a601287c887d1d639cfcb178d",
+    "docs/ilvis0-prediction-covariance-20261012/build_controls.py": "9b812354289e230fbd738af6c847ddd8eee9c1b965d9ca68ff399a0319d25cac"
+  },
+  "version": "ilvis0-prediction-covariance-worker-v1"
+}

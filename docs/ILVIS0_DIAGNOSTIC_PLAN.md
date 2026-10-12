@@ -1,10 +1,16 @@
 # Focused NASA analysis plan after the October 11 review
 
-The next work should explain the integration clock and Z-axis calibration trade-off,
-then test residual uncertainty and what the gyro measurements contribute. Keep the
-53-stretch first pass unchanged. It found 12 complete globe preferences, no complete
-flat preference and 41 unfinished comparisons. Unfinished comparisons provide no
-positive flat-Earth result.
+After the active covariance/prediction comparison finishes, numerical recovery of
+the 41 unfinished comparisons takes priority. Follow the four-step recovery sequence
+in the [roadmap](ANALYSIS_ROADMAP.md): representative subset, a qualified solver and
+larger finite budget, repeatability checks, then all 41. Additional diagnostics below
+are deferred; retain their completed evidence and do not make their expansion a
+prerequisite for attempting recovery.
+
+Keep the 53-stretch first pass unchanged. It found 12 complete globe preferences,
+no complete flat preference and 41 unfinished comparisons. Unfinished comparisons
+provide no positive flat-Earth result. More completed fits still require separate
+adequacy and uncertainty checks before calibrated scientific claims.
 
 An **IMU (inertial measurement unit)** measures turning and acceleration. These NASA
 records come from survey-grade airborne equipment. Exact device identification remains
@@ -182,7 +188,11 @@ interior Gaussian covariance and likelihood thresholds cannot be transferred unc
 to bounded estimators. Finite prediction ranges are sensitivity checks, not calibrated
 intervals. The [native adapter controls](ilvis0-native-uncertainty-controls-20261012/README.md)
 now verify all 27 derivative columns on six independently constructed geographic paths.
-Training rank uses training predictions only. Prepare the finite comparison freeze next.
+Training rank uses training predictions only. The [finite comparison preparation](ilvis0-prediction-covariance-preparation-20261012/README.md)
+specifies 12 matched starts and at most 3,060 native sweeps, including all nonlinear
+diagnostics. The [durable runner](ilvis0-prediction-covariance-20261012/README.md)
+now passes 39 targeted controls and has its own launch freeze. A separate finite
+observed-data allowance was approved and the comparison is running. Preserve the original comparison.
 A separately versioned correlated-error objective remains a development alternative.
 Estimate its parameters on designated development or training observations and
 apply the same sealed covariance specification to all physical models. Compare direct
@@ -192,6 +202,13 @@ Retain the original objective and its findings unchanged. An absolute-fit thresh
 requires independent calibration covering the shape hierarchy and selection procedure.
 
 ## 3. Identify the measurement contribution
+
+Group 10001 is the primary-receiver stream, separately recorded from Group 1 fused
+navigation. Cite the [interface specification and source checks](ILVIS0.md#measurement-provenance-and-independence)
+in the eventual paper. A versioned provenance supplement should retain receiver-type
+codes, original NMEA identifiers, stream hashes and historical firmware/layout evidence.
+Do not alter the active freeze. Separate streams do not establish independence from
+GPS coordinate conventions or statistical independence of measurement errors.
 
 Specify matched controls for gyro increments, acceleration increments, gravity and
 receiver-coordinate metric. State exactly which inputs each alternative uses in its

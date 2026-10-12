@@ -1,0 +1,17 @@
+{
+  "artifacts": {
+    "README.md": "b51a29ba221cb2f9056c94e742986f5144e423324f870bc6a9ecd2be93b3e257",
+    "all-unresolved.csv": "5527655b89a18a67776ae0a4efe0cbefcf2ba9935d091c3b9234bc954134b02a",
+    "representative-subset.csv": "a9047e4081cb1fb8c6249a2b3cbf1323066775b4a654f46e62356ab76325a833",
+    "selection-summary.json": "f46bc6d3327a4624604413731846f413d497d0e0a9852f83c932a74062722cc2"
+  },
+  "inputs": {
+    "docs/ilvis0-highspeed-segments-20261008/eligible-stretches.csv": "a5abfa6775b3f39025dad33165ae4c9e62ca6df4365fbaebfc9684f21de29044",
+    "docs/ilvis0-highspeed-segments-20261008/evidence-receipt.json": "b082549083356dbdc48fe4421daf6f9cb36086c6f4f851475bef75e130b8f187",
+    "docs/ilvis0-highspeed-segments-20261008/summary.json.gz": "41654f27764dc8af26e83c42ba291c76ebc1eb77ed579523baab6d80190642fa"
+  },
+  "sources": {
+    "docs/ilvis0-convergence-recovery-preparation-20261012/build_selection.py": "272d712ee337fb6ac7d6f28a23e7859c897f30649ea434cf0433901ca8cdd8a5"
+  },
+  "version": "ilvis0-recovery-subset-preparation-v1"
+}

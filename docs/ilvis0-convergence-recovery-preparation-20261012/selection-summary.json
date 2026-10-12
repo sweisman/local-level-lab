@@ -1,0 +1,25 @@
+{
+  "archive_records_loaded": 0,
+  "counts": {
+    "all_failed_stationary": 7,
+    "mixed_stationarity": 16,
+    "nonstationary": 18
+  },
+  "model_costs_used_for_selection": false,
+  "native_predictions": 0,
+  "observed_allowance_authorized": false,
+  "observed_fit_starts": 0,
+  "scientific_decision": "abstain",
+  "selected_segment_ids": [
+    "233183f67270980491416678",
+    "b365bdf39150ee6afc303ac1",
+    "034547522e2d98947b598466",
+    "570b37d23af5e245dd461051"
+  ],
+  "selection_policy": "earliest UTC interval per failure category; filename/ID tie-break; fixed completed control",
+  "solver_and_budget_qualified": false,
+  "state": "metadata_preparation_only",
+  "stationarity_only_changes_no_convergence_label": true,
+  "unresolved_stretches": 41,
+  "version": "ilvis0-recovery-subset-preparation-v1"
+}

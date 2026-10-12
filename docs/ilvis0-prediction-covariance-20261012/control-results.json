@@ -1,0 +1,120 @@
+{
+  "archive_records_loaded": 0,
+  "archive_uncertainty_calibrated": false,
+  "diagnostic_native_sweeps": 13,
+  "epochs_written": 24,
+  "fit_native_sweeps": 8,
+  "geometry": {
+    "active_bounds": [],
+    "confidence_calibrated": false,
+    "local_gaussian_boundary_compatible": true,
+    "maximum_whitened_remainder": 0.0002786791474088184,
+    "minimum_bound_distance_in_local_sd": 2.938866952685356e-05,
+    "parameters": 6,
+    "probe_count": 13,
+    "probed_parameter_rank": 6,
+    "rank": 6,
+    "relative_rank_cutoff": 1e-10,
+    "scientific_decision": "abstain",
+    "unconstrained_local_covariance": [
+      [
+        1.9775326057736623e-05,
+        1.391408799125383e-05,
+        10.645302360872595,
+        -0.02158331936236467,
+        3.725403947627297e-08,
+        -1.2512821974609529e-06
+      ],
+      [
+        1.391408799125383e-05,
+        1.3238515767409638e-05,
+        8.916414924603504,
+        -0.016859176406863238,
+        4.047356250533344e-08,
+        -1.3650711292688902e-06
+      ],
+      [
+        10.645302360872595,
+        8.916414924603504,
+        6845328.816295018,
+        -13908.045384380966,
+        0.023779310479004574,
+        -0.7995895686392314
+      ],
+      [
+        -0.02158331936236467,
+        -0.016859176406863238,
+        -13908.045384380966,
+        29.44518038371643,
+        -4.112958311190038e-05,
+        0.0014196819152434005
+      ],
+      [
+        3.725403947627297e-08,
+        4.047356250533344e-08,
+        0.023779310479004574,
+        -4.112958311190038e-05,
+        1.2321085239387539e-05,
+        -4.8323679744034085e-09
+      ],
+      [
+        -1.2512821974609529e-06,
+        -1.3650711292688902e-06,
+        -0.7995895686392314,
+        0.0014196819152434005,
+        -4.8323679744034085e-09,
+        1.8037090584840847e-07
+      ]
+    ],
+    "unidentifiable_dimensions": 0,
+    "version": "ilvis0-uncertainty-geometry-controls-v1"
+  },
+  "maximum_truth_error_m": 2.9475622659882596e-05,
+  "observed_fit_starts": 0,
+  "passed_checks": 39,
+  "prediction_epochs": 8,
+  "prediction_report": {
+    "confidence_calibrated": false,
+    "parameter_uncertainty_included": false,
+    "prediction": {
+      "conditional_cost": 2.23810011470798e-05,
+      "epochs": 8,
+      "horizontal_rms_m": 1.6726101305496387e-05,
+      "innovation_lag1_neu": [
+        0.9925161493179503,
+        0.9999317090946119,
+        0.711628055618477
+      ],
+      "rms_neu_m": [
+        8.647075563827756e-06,
+        1.4317491018861537e-05,
+        7.032550722532001e-09
+      ],
+      "vertical_rms_m": 7.032550722532001e-09,
+      "whitened_rms": 0.0009656819944793723
+    },
+    "scientific_decision": "abstain",
+    "training": {
+      "conditional_cost": 6.013350135378747e-07,
+      "epochs": 16,
+      "horizontal_rms_m": 1.938642674673704e-06,
+      "innovation_lag1_neu": [
+        0.861600789486557,
+        0.6844348472522779,
+        0.1631599683329121
+      ],
+      "rms_neu_m": [
+        1.8520244425913302e-06,
+        5.730103699849477e-07,
+        2.9007836362786754e-09
+      ],
+      "vertical_rms_m": 2.9007836362786754e-09,
+      "whitened_rms": 0.0001119277123059301
+    }
+  },
+  "prefix_agreement": true,
+  "scientific_decision": "abstain",
+  "software_only": true,
+  "training_epochs": 16,
+  "training_optimizer_converged": false
+}

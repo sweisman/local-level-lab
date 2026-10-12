@@ -1,0 +1,21 @@
+{
+  "archive_records_loaded": 0,
+  "artifacts": {
+    "README.md": "33a399fb75b270b1f2a8f2662299880281e8d922ce111b0d459f458e047c0a7d",
+    "proposal.json": "e027398061e2c0e34a1e361a9265b3c91cf5b51075a87630e8f0bd0a81c9809b"
+  },
+  "inputs": {
+    "docs/ilvis0-native-uncertainty-controls-20261012/report-receipt.json": "dcbd65d823002ff1aaba5098e274c3e3c9854817d0107e8800ac81600faa85ad",
+    "docs/ilvis0-prediction-trial-20261011/manifest.json": "00a83a281a84a6fb244c90f91ed66e920d8a90267705d5b32616a230b64ff0bb",
+    "docs/ilvis0-prediction-trial-20261011/selection.json.gz": "610ec3b007bf0c11b377282ebc04e8de673427e106a2ed4f8cfc53fa8220303e",
+    "docs/ilvis0-prediction-trial-20261011/summary.json": "74fccc5f928a1b87f342312334e66957de4d39bcfc683102ded30e1d24a66724"
+  },
+  "native_predictions": 0,
+  "observed_fit_starts": 0,
+  "sources": {
+    "analysis/lll/ilvis0_prediction_comparison_plan.py": "a1f13f66e3d7faa447c679b6f16e4e5bbcdbeff426a6504121c0d8096d75f991",
+    "analysis/tests/test_ilvis0_prediction_comparison_plan.py": "87d5805e00f5ce30f918fccb52d86020d24c6da99a96175a8aad9ff7a18b70b3",
+    "docs/ilvis0-prediction-covariance-preparation-20261012/build_plan.py": "67780074dba8150fbab1a786a51fc4c61ad78975ec89aab5b6afc876720ef5c4"
+  },
+  "version": "ilvis0-prediction-covariance-preparation-v1"
+}

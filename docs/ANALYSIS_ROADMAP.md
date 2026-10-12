@@ -26,10 +26,30 @@ Do not transfer one configuration's exact specifications to every recording or c
 assumed offset allowance measured drift. Unknown corrections matter where they prevent
 a particular quantity from being separated, rather than stopping all modeling.
 
-The next milestone is a comparison with finished fits for all three models, an adequately
-fitting preferred model, explained calibration behavior, and a preference that survives
-justified timing and observation alternatives. Independent replication then tests its
-generality. Numerical completion, fit adequacy and statistical support are separate checks.
+After the running covariance/prediction comparison finishes, the immediate priority
+is resolving as many of the 41 numerically incomplete stretches as possible.
+Further diagnostic expansion is deferred. Numerical completion, fit adequacy and
+statistical support remain separate checks; recovering a fit does not by itself
+establish a calibrated scientific detection.
+
+1. Freeze a small representative subset of the 41, covering numerical failure types
+   and observable recording properties without choosing favorable model preferences.
+2. Test a separately frozen numerical strategy and larger finite evaluation budget,
+   retaining the physical models, calibration bounds and two processing cases.
+3. Check objective agreement, valid stopping, repeatability and predicted tracks,
+   including a completed control. Keep all original failures and results unchanged.
+4. Apply the qualified method to all 41 in a separately budgeted recovery study.
+   Preserve numerical failures and report newly complete comparisons explicitly.
+
+The [recovery preparation](ilvis0-convergence-recovery-preparation-20261012/README.md)
+records all 41 unfinished stretches and selects one from each of three numerical
+failure categories, plus a completed control. This is metadata-only preparation;
+the numerical strategy and finite evaluation allowance remain to be qualified.
+
+Minimum solver qualification supports this recovery sequence. Additional clock,
+calibration, covariance, measurement-contribution and independent-flight studies
+can be revisited afterward; they are not prerequisites for attempting numerical
+recovery. No new numerical allowance is implied by this roadmap.
 
 ## Priority and scope
 
@@ -132,16 +152,21 @@ sampled support. They do not qualify NASA confidence intervals. The
 [preparation plan](ilvis0-nonlinear-uncertainty-controls-20261012/NEXT_PLAN.md)
 now has a [control-tested native adapter](ilvis0-native-uncertainty-controls-20261012/README.md).
 Six independent geographic controls verify all 27 columns with 348 native software
-sweeps and no archive reads or observed fits. A concrete costed freeze comes next,
-before any new observed starts.
+sweeps and no archive reads or observed fits. The [costed comparison preparation](ilvis0-prediction-covariance-preparation-20261012/README.md)
+now specifies 12 October 5 training/prediction fits under shared 10- and 300-second
+correlation assumptions, capped at 3,060 native sweeps with no retries. Its estimated
+ceiling is 154–172 minutes. The [durable launcher](ilvis0-prediction-covariance-20261012/README.md)
+now passes 39 worker, planning and native controls. Its separate freeze requires
+explicit approval of the finite allowance. Its approved 12-start comparison is now
+running; that allowance does not authorize the 41-stretch recovery study.
 
 | Order | Work | What can happen without new observed fits? | Deliverable |
 |---|---|---|---|
-| P0 | Explain integration timing and joint Z-axis calibration | Audit preserved timestamps, calibration shifts and local weak directions; the completed stopping trial did not qualify. | Clock evidence and matched gain–bias profiles after separately budgeted solver qualification. |
-| P1 | Model residual dependence and assess prediction quality | Extend saved-residual diagnostics; specify a common correlated-error alternative. | Covariance diagnostics and blocked predictive adequacy checks. |
-| P1 | Isolate what the inertial measurements contribute | Specify gyro, acceleration, gravity and receiver-metric controls. | Measurement-contribution study with identifiable comparisons and common error assumptions. |
-| P1 | Qualify numerical optima | Review saved failures and existing known-optimum controls; define missing physical controls. | Objective and prediction recovery under two numerical strategies, both clocks and difficult calibration cases. |
-| P2 | Test independent-flight generality | Group saved intervals by supported flight and installation provenance. | Dependence ledger and predeclared prediction replication. |
+| P0 | Recover the 41 numerically incomplete stretches after the active run | Freeze representative failures and prepare a bounded solver/budget comparison using existing controls and saved fits. | Qualified numerical method, then a separately budgeted recovery study on all 41. |
+| Deferred | Explain integration timing and joint Z-axis calibration | Preserve completed clock tests, gain–bias grids and weak-direction audits. | Further physically justified clock/calibration tests after recovery. |
+| Deferred | Model residual dependence and assess prediction quality | Preserve covariance audits and the active comparison's results. | Calibrated predictive adequacy and uncertainty checks. |
+| Deferred | Isolate what the inertial measurements contribute | Preserve the planned channel and receiver-metric controls. | Measurement-contribution study with matched assumptions. |
+| Deferred | Test independent-flight generality | Keep recording dependence and provenance explicit. | Predeclared prediction replication across independent flights. |
 | Parallel, lower priority | Seek exact device and processing records | Continue the existing inquiry; record what each source actually establishes. | Better-supported assumptions where information becomes available. |
 | Follow-on | Measure the background rotation field | Prepare the estimator design and separation checks after current numerical work is reviewed. | Freely estimated field before interpretation of its cause. |
 
@@ -350,7 +375,14 @@ whitening. Receiver latitude/longitude remain outputs of a geodetic navigation s
 these tests isolate their influence, not replace them with raw GNSS ranges. Raw ranges
 are a possible later extension, not a blocker for the present archive study.
 
-Add a measurement-contribution study separating gyro increments, acceleration increments,
+Preserve the primary-receiver provenance in the eventual paper. Cite Applanix
+V6 section 3.3.2.1 for Group 10001 and retain per-file receiver-type codes, original
+NMEA identifiers, stream hashes and historical version/layout evidence in a versioned
+supplement. Separate receiver output from fused Group 1 navigation, and separate
+that source distinction from independence of coordinate assumptions; see
+[the provenance record](ILVIS0.md#measurement-provenance-and-independence).
+
+The deferred measurement-contribution study separates gyro increments, acceleration increments,
 gravity and coordinate metric. Include a receiver-constrained gyro prediction where its
 frame and attitude assumptions can be stated explicitly. An ablation must define its
 replacement constraints and initialization, not silently supply missing gyros from fused

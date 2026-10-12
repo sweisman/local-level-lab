@@ -167,8 +167,14 @@ ranges are not calibrated intervals. NEXT_PLAN.md guides adapter/freeze preparat
 it authorizes no native observed predictions or fits.
 The native adapter is checked at docs/ilvis0-native-uncertainty-controls-20261012/:
 six software paths, all 27 columns. Its charged sweeps and training-only geometry
-do not qualify archive uncertainty or authorize observed work. Prepare a finite
-comparison and durable launcher before requesting a new numerical allowance.
+do not qualify archive uncertainty or authorize observed work. The finite proposal is
+docs/ilvis0-prediction-covariance-preparation-20261012/README.md: 12 starts, 3,060
+sweeps maximum, no retries. Its tested worker is analysis/tests/ilvis0_prediction_covariance_worker.py;
+guide/freeze: docs/ilvis0-prediction-covariance-20261012/ and data/ilvis0-prediction-covariance-20261012/.
+Its approved finite allowance is recorded in that runtime directory's authorization.json.
+Check its lock, metadata and unchanged freeze before resuming unfinished work; never
+retry a charged identity or expand its 12-start/3,060-sweep limits. Preparation never
+reads originals; launch verifies their saved hashes. Completed work cannot resume.
 
 The matched solver trial is complete; do not launch it again. Publication uses
 `analysis/tests/ilvis0_solver_trial.py --package-only`, without observed fits.
@@ -188,9 +194,13 @@ individual errors under both clocks. Packaging with `ilvis0_residual_diagnostic.
 and rendering with its guide's `build_report.py` perform no predictions. Original convergence
 labels remain unchanged; clock checks at fixed parameters are not reoptimized fits.
 
-After current numerical work is complete and reviewed, the proposed next scientific stage
-follows the [analysis roadmap](docs/ANALYSIS_ROADMAP.md): qualify the solver, audit calibration
-boundaries and absolute adequacy, then test timing/coordinate sensitivity and recording dependence.
+After the active covariance/prediction comparison finishes, prioritize recovery of
+the 41 unresolved stretches. Follow the roadmap's four steps: representative subset,
+bounded solver/larger-budget qualification, objective/stopping/prediction repeatability,
+then all 41. Keep physical models and bounds fixed and preserve old results. Defer
+additional diagnostic expansion. Prepare costed freezes before requesting new finite
+allowances; the current comparison does not authorize recovery fits or budget expansion.
+Recovery subset and all-41 inventory: docs/ilvis0-convergence-recovery-preparation-20261012/.
 Exact device characterization is lower-priority parallel work, not a prerequisite for modeling.
 The separate [rotation-field measurement](docs/ROTATION_FIELD.md) will infer the retained background vector
 before interpreting its cause, with aircraft motion, transport and calibration fitted jointly.

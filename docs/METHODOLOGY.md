@@ -41,11 +41,25 @@ its own quantitative predictions. Explanations predicting identical measurements
 be distinguished with those measurements. The [interpretation policy](ROTATION_FIELD.md#interpretation)
 applies to current model comparisons and the proposed freely estimated field alike.
 
-The archive contains independent recorded increments and a combined navigation answer.
-The latter supplies decoder checks and motion context, never independent Earth-model
-evidence. Receiver coordinates, height conventions, possible onboard corrections and
-calibration bounds remain explicit assumptions to test. Exact device identification is
-useful parallel work rather than a prerequisite for modeling with survey-grade data.
+The fit observations come from two separately recorded streams: Group 4 IMU increments
+and positions reconstructed from Group 10001 primary-receiver output. Applanix's
+[V6 interface specification, section 3.3.2.1](https://asapdata.arc.nasa.gov/share/ASF_Applanix/POSv6_User_ICD.pdf#page=71)
+describes Group 10001 as data emitted by the receiver. Group 1 is the combined IMU/GPS
+navigation answer; it supplies decoder checks and motion screening, never fitted gyro
+or position observations. This establishes a separation of recorded sources, not
+statistical independence of every error or proof of every historical receiver's processing.
+
+Receiver coordinates and height conventions still carry geodetic assumptions. The
+globe candidate uses WGS84 geometry; the disc uses its declared alternative metric.
+Separate streams therefore do not make the comparison independent of all models.
+The planned channel and coordinate controls will test whether the separation requires
+the observed gyro increments. The [provenance record](ILVIS0.md#measurement-provenance-and-independence)
+states the current evidence and limits. Exact device identification remains useful
+parallel work rather than a prerequisite for modeling with survey-grade data.
+
+The contribution is a reproducible test of moving-platform measurements under competing
+geometries. A first-of-its-kind claim has not been established. Earth's shape is separate
+from geocentric or heliocentric explanations; a globe result alone decides neither.
 
 Completed results favor globe in twelve stretches and flat in none; forty-one are
 numerically unresolved. Unfinished calculations do not give the models equal support.
