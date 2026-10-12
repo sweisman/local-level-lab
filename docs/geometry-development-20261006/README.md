@@ -120,4 +120,4 @@ same command with `--resume`, preserving the original cap; successes and failure
 larger cap on the existing freeze. Neither completed 1,000-attempt pilot may be resumed.
 After completion, review every cell across both nuisance models, retain failed/weak cells,
 update the next-stage readiness and handoff, and refreeze any revised scientific domain
-before seeking calibration funding. Git operations need fresh consent.
+before estimating the calibration campaign's cost.

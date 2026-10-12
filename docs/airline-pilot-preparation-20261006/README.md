@@ -178,9 +178,9 @@ This is a reproduction record, not authorization to generate new attempts:
 /home/sweisman/venv/bin/python analysis/tests/sharded_campaign.py run docs/airline-pilot-preparation-20261006/plan.json --output docs/airline-pilot-preparation-20261006/run --workers 2 --attempt-limit 3
 ```
 
-An explicit detached launch can survive terminal/chat disconnection, following the
-[runner instructions](../sharded-campaigns-20261006/README.md). Codex must launch outside its
-per-command sandbox so an authorized child survives command completion. The output `run/`
+An explicit detached launch can survive terminal disconnection, following the
+[runner instructions](../sharded-campaigns-20261006/README.md). The execution environment
+must allow child processes to persist after command completion. The output `run/`
 now exists and its status is `budget_complete`, with three preserved failures. Do not use
 `--attempt-limit 18` without approval
 of the additional work. No runtime ceiling is encoded in this proposal; a strict wall-time

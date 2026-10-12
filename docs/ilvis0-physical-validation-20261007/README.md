@@ -71,12 +71,12 @@ table for this older instrument. No proprietary manufacturer scale table has bee
 
 The geometry-only acquisition screen finds no qualifying one-minute level-flight window in
 the reference. Its newly generated bulk products were discarded after recording that result;
-the user's source and historical corpus were preserved. This folder keeps compact reports,
+the original source and historical corpus were preserved. This folder keeps compact reports,
 662 matched validation samples and the first 1,000 raw/physical IMU rows as decoder regression
 evidence, selected by timestamp order rather than Earth-model fit quality.
 
 The catalog tracks all 326 `.013` URLs and rounded metadata sizes. The six-file compatibility
-trial completed using a user-authorized session credential held only in process memory.
+trial used authenticated archive access.
 
 | File/configuration | Physical decoding | Geometry disposition |
 | --- | --- | --- |

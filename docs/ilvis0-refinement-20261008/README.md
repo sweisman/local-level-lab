@@ -106,7 +106,7 @@ total numerical threads. Scope: 72 primary starts plus 12 interruption retries, 
 two starts per file/case/model identity, and 200 total native evaluations per start,
 including fresh derivatives and diagnostics. Journals are fsynced; results are hashed
 and atomic; changed inputs, source or environment refuse resume. Completed work never
-resumes. No synthetic campaigns, deletions, scientific promotion or git operations.
+resumes. Synthetic campaigns, source deletion and scientific promotion are outside this study's scope.
 The worker produces a compact `RESULTS.md` on completion.
 
 Fourteen new focused tests pass, including all candidate derivative/value comparisons,

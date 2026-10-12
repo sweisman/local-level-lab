@@ -19,6 +19,9 @@ incident histories, personal commentary or historical process IDs.
   concurrency. Preserve frozen studies' original thread settings on resume.
 - Write public documentation in plain language. Define IMU before using it. Explain
   purpose, methodology, status and limitations; avoid JSON links in the main README.
+  Public docs describe the project, not private collaboration: omit personal requests,
+  chat handoffs, permission conversations and reminders addressed to a future author.
+  Express planned work as project goals; keep agent instructions here.
   Lead with observed model comparisons; replace blanket "conditional" labels with specific
   remaining checks. Unfinished fits are not equal model support. Raw increments do not by
   themselves establish absence of onboard filtering or corrections.

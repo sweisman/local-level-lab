@@ -75,15 +75,15 @@ is an openly reproducible comparison using professional airborne IMU increments,
 receiver observations, explicit alternatives and preserved failures. A narrower
 publication novelty claim requires a dedicated literature review.
 
-For the eventual paper, cite the interface section and record, per source file,
-the numeric Group 10001 receiver-type codes, packet counts, firmware/ICD strings,
+The planned per-file provenance supplement includes numeric Group 10001 receiver-type
+codes, packet counts, firmware/ICD strings,
 receiver-stream hashes, and original NMEA talker/sentence identifiers with checksum
-status. Preserve configuration changes and binary-only or missing-NMEA outcomes;
-do not infer a receiver model from a talker identifier. The packet decoder already
+status, configuration changes and binary-only or missing-NMEA outcomes.
+A talker identifier alone does not establish the receiver model. The packet decoder already
 returns the receiver-type code, but the current observation summaries do not retain
 it or every original sentence identifier. Those fields remain recoverable from retained
-originals. Add a separately versioned provenance supplement after the active run;
-do not change frozen inputs or relabel old results.
+originals. The supplement will be separately versioned, preserving the frozen inputs
+and original result labels. The interface reference above documents the stream's role.
 
 ## Instrument quality
 

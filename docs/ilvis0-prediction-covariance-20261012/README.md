@@ -17,8 +17,8 @@ receiver-error correlation using calibration fitted before the prediction period
 It is retrospective development evidence. The existing findings stay unchanged.
 
 The worker refuses to run without an authorization artifact matching its manifest
-and exact allowance. Recording that artifact requires explicit user approval;
-routine continuation or software qualification does not supply the allowance.
+and exact allowance. This binds execution to the recorded study scope;
+software qualification alone does not establish observational validity.
 
 Prepare or verify the freeze without extracting or integrating NASA originals:
 
@@ -26,10 +26,10 @@ Prepare or verify the freeze without extracting or integrating NASA originals:
 env PYTHONPATH=analysis OPENBLAS_NUM_THREADS=2 OMP_NUM_THREADS=2 MKL_NUM_THREADS=2 ~/venv/bin/python analysis/tests/ilvis0_prediction_covariance_worker.py --prepare-only
 ```
 
-Only after explicit approval, record the allowance with the same command and
+For a new, budgeted study, record the allowance with the same command and
 `--record-authorization`, then launch with `--detach` instead. The detached launch
 must run outside a short-lived command sandbox. The worker retains its lock,
-journals and metadata after a chat or network connection ends.
+journals and metadata after a terminal or network connection ends.
 
 After interruption, check the exclusive lock and unchanged freeze before launching
 again. An already charged identity without a saved result remains unresolved;

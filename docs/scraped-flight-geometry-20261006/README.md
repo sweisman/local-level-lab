@@ -1,7 +1,7 @@
 # Directly scraped flight geometry — 2026-10-06
 
-Scott authorized direct scraping of complete public track pages and requested Europe/Middle East
-to South Africa as additional north–south cases. Four FlightAware track tables were retrieved,
+Four public FlightAware track tables cover high-latitude, equatorial and north–south
+geometry, including Europe/Middle East to South Africa. The tables were retrieved
 without an account or browser session. Each flight departed on **2026-10-02 UTC**.
 
 | Flight | Geometry | Coordinate rows | Provider-estimated rows | Recorded span |
@@ -18,7 +18,7 @@ Source track pages:
 - [LH572](https://www.flightaware.com/live/flight/DLH572/history/20261002/2015Z/EDDF/FAOR/tracklog)
 - [EK761](https://www.flightaware.com/live/flight/UAE761/history/20261002/0015Z/OMDB/FAOR/tracklog)
 
-The CSV filenames follow Scott's `yyyy-mm-dd airline number origin destination` convention.
+The CSV filenames follow the `yyyy-mm-dd airline number origin destination` convention.
 Each has a matching `.provenance.json` with the source URL, retrieved HTML/export hashes,
 retrieval time, extractor hash, page timezone and UTC observation bounds. All coordinate rows
 in the public tables were extracted; event annotations and duplicate rounded mobile-display

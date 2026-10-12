@@ -399,11 +399,11 @@ whitening. Receiver latitude/longitude remain outputs of a geodetic navigation s
 these tests isolate their influence, not replace them with raw GNSS ranges. Raw ranges
 are a possible later extension, not a blocker for the present archive study.
 
-Preserve the primary-receiver provenance in the eventual paper. Cite Applanix
-V6 section 3.3.2.1 for Group 10001 and retain per-file receiver-type codes, original
-NMEA identifiers, stream hashes and historical version/layout evidence in a versioned
-supplement. Separate receiver output from fused Group 1 navigation, and separate
-that source distinction from independence of coordinate assumptions; see
+Applanix V6 section 3.3.2.1 documents Group 10001 as primary-receiver output.
+The planned versioned supplement will retain per-file receiver-type codes, original
+NMEA identifiers, stream hashes and historical version/layout evidence.
+Receiver output is distinct from fused Group 1 navigation; that source distinction
+does not establish independence of coordinate assumptions. See
 [the provenance record](ILVIS0.md#measurement-provenance-and-independence).
 
 The deferred measurement-contribution study separates gyro increments, acceleration increments,

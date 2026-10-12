@@ -1,7 +1,7 @@
 # Observed flight geometry — 2026-10-06
 
-Scott supplied three historical position-track exports for development geometry screening.
-The source files remain in his home directory; the importer opens only the three named files.
+Three historical position-track exports were used for development geometry screening.
+The importer opens only the three specified source files.
 Their source labels identify FlightAware ADS-B. No IMU, aircraft heading, measured wind,
 sensor calibration or mount-turn data accompany these tracks.
 

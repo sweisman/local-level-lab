@@ -10,13 +10,13 @@ method's known-answer, accuracy, fresh stability, stationarity and evaluation-bu
 checks. It adds an explicit objective check. No solver thresholds change.
 
 The patch is **prepared, not applied or tested**: the target test is a hashed source
-in the active trial's manifest. AGENTS.md prohibits editing active frozen dependencies.
+in the active trial's manifest. Its frozen dependencies remain unchanged during execution.
 After verified trial completion and publication, apply the patch from the repository root:
 
 ```sh
 patch -p1 --input=docs/ilvis0-rectangular-recovery-trial-20261012/ci-test-repair.patch
 ```
 
-Then run the targeted rectangular and recovery-screen tests with the approved Python
+Then run the targeted rectangular and recovery-screen tests with the pinned Python
 environment and at most two numerical threads. Preserve the completed trial's source
 snapshot and original 29/30 versus 30/30 screen results; do not regenerate them to match CI.

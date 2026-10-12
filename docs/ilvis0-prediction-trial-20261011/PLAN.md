@@ -96,6 +96,5 @@ training interval should reduce native integration cost; this estimate is not
 a measurement of the new trial or a wall-clock guarantee. At the previous
 slowest full-window rate, 1,200 evaluations would take about 74 minutes.
 
-New numerical launch needs explicit approval of this finite allowance. A separate
-bounded continuation Goal can monitor the approved job, verify/publish results
-and stop without authorizing further fits, archive expansion, commits or pushes.
+The trial has a finite allowance and publishes verified results on completion.
+Further fits or archive expansion require a separate study plan and allowance.

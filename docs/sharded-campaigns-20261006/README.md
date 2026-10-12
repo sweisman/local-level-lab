@@ -51,11 +51,11 @@ approved budget. Lowering it below already-started tasks is refused. The runner 
 because acceptance or a model decision looks favorable. A partial prefix is marked incomplete
 and is rejected as calibration/validation evidence by the shared record validator.
 
-Add `--detach` only for an explicitly authorized background launch. The coordinator starts
+For a background launch, add `--detach`. The coordinator starts
 in a new process session, writes its PID/command and log, and acknowledges launch only after
-the child writes ready status. For Codex, launch outside the per-command sandbox using the
-required escalation; otherwise the sandbox can kill children at command completion. No such
-background launch occurred during this implementation.
+the child writes ready status. The execution environment must allow child processes
+to persist after the launching command exits; environments that terminate children
+at command completion cannot support detached operation.
 
 Check status and active PIDs before resuming. Per-campaign and per-shard locks prevent duplicate
 workers; orphaned workers are detected before replacements are spawned. Ordinary SIGINT/SIGTERM

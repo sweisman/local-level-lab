@@ -80,4 +80,4 @@ worker. Original launch used the worker's `--output docs/protocol-development-20
 `--protocol-plan docs/geometry-development-20261006/protocol-comparison-plan.json`,
 `--wall-time-minutes 15 --detach` options and numerical thread settings of two. Recovery
 instructions apply only to an interrupted campaign under an unchanged freeze, never to
-restarting completed cases. Further flights, calibration and git operations require consent.
+restarting completed cases. Further simulations and calibration require a new study plan.

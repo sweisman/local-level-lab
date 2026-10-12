@@ -206,10 +206,10 @@ requires independent calibration covering the shape hierarchy and selection proc
 ## 3. Identify the measurement contribution
 
 Group 10001 is the primary-receiver stream, separately recorded from Group 1 fused
-navigation. Cite the [interface specification and source checks](ILVIS0.md#measurement-provenance-and-independence)
-in the eventual paper. A versioned provenance supplement should retain receiver-type
+navigation, as documented by the [interface specification and source checks](ILVIS0.md#measurement-provenance-and-independence).
+The planned versioned provenance supplement will retain receiver-type
 codes, original NMEA identifiers, stream hashes and historical firmware/layout evidence.
-Do not alter the active freeze. Separate streams do not establish independence from
+The active freeze remains unchanged. Separate streams do not establish independence from
 GPS coordinate conventions or statistical independence of measurement errors.
 
 Specify matched controls for gyro increments, acceleration increments, gravity and

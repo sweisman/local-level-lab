@@ -58,9 +58,9 @@ reconstruction/checksum/signed coordinate conversion. No full suite, campaign or
 Next check additional `.013` logs for compatibility and useful level-flight windows, and
 investigate onboard corrections, mounting and latency. The geometry-only one-minute screen
 finds no qualifying interval in this reference sample. Its new bulk derivative files were
-discarded, while this historical corpus and the user's original remain intact.
-A documentation-request draft is in the
-[airborne inspection notes](../AIRBORNE_DATA.md); no message has been sent.
+discarded, while this historical corpus and the original source remain intact.
+The [airborne inspection notes](../AIRBORNE_DATA.md) describe the remaining
+documentation questions.
 
 Data citation: Hofton, M. & Blair, J. B. (2011).
 [IceBridge LVIS L0 Raw Ranges, Version 1](https://nsidc.org/data/ilvis0/versions/1).

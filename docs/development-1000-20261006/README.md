@@ -73,5 +73,5 @@ historical cost estimates and must be refreshed before any launch.
 
 Next: review the geometry/rank/selection envelope, revise and freeze source/configuration/policy/
 environment, obtain a new compute budget, run fresh primary and pairwise calibration, then
-freeze independent validation with the actual thresholds. No additional flights, calibration,
-validation, production promotion or git operations are authorized by the completed pilot.
+freeze independent validation with the actual thresholds. Additional flights, calibration,
+validation and production promotion are separate stages.

@@ -449,7 +449,7 @@ Hash-chained shard journals fsync starts and completions. Resume preserves succe
 and records a lost started attempt as an infrastructure failure rather than fitting it again.
 Incomplete final bytes are archived before tail repair; malformed complete records are rejected.
 Locks exclude duplicate workers, live merging and orphan replacement. An explicit detached launch
-supports terminal/chat disconnection. Merging streams all records in task order, checks provenance
+supports terminal disconnection. Merging streams all records in task order, checks provenance
 and duplicates, and retains failures. Partial exports cannot become holdout evidence. No stopping
 depends on acceptance or model outcomes. Existing calibration precision and exact-bound rules
 remain; no threshold or scientific decision is automatically created by the executor.
@@ -1104,12 +1104,12 @@ fixed attempt count; recorded analysis failures are retained and never retried t
 The worker freezes its own source/configuration/environment manifest and appends/fsyncs every
 completed attempt to `docs/development-1000-20261005/records.jsonl`. Atomic `status.json` tracks
 progress; `campaign.json` and `rank-sweep.json` are generated automatically on completion.
-The detached worker needs no network or further model calls. It can survive chat disconnection
+The detached worker needs no network connection after launch. It can survive terminal disconnection
 while its host remains running; after process/host interruption, resume uses durable checkpoints.
 The process lock prevents duplicate workers. Changed source/environment/configuration prevents
 resume, and source changes during a run stop it. A partial final write is preserved before repair;
-complete malformed records are rejected. See [AGENTS.md](../AGENTS.md#analysis-campaign-handoff--2026-10-05)
-for the fresh-chat handoff and remaining research order.
+complete malformed records are rejected. Remaining research stages are described in
+the [analysis roadmap](ANALYSIS_ROADMAP.md).
 
 ```sh
 env OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 ~/venv/bin/python analysis/tests/development_campaign.py --detach
@@ -1463,7 +1463,7 @@ Earthdata login with0 measurement bytes. The supplied C1386246599-NSIDCV0 identi
 IPUTI0, DOI10.5067/7K31MCH5XXZA; its directory also redirects to login. IPUTI0 metadata advertises
 ASCII position/velocity/orientation, not confirmed independent gyro columns. The2014 Applanix
 V6 ICD documents packets but leaves IMU payload formats unpublished; its applicability to the
-2009 log is unverified. The user has since registered and supplied an IPUTI0 binary sample,
+2009 log is unverified. Subsequent inspection used an IPUTI0 binary sample,
 clock file and three format descriptions. `analysis/tests/inspect_iputi0_sample.py` preserves
 these in `research-next-stage-20261006/airborne-sample-iputi0/inputs/` with SHA256 provenance,
 and produces an exploratory navigation CSV and inspection record. The binary interleaves

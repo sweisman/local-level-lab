@@ -78,4 +78,4 @@ design contrast retention and pairwise abstention before proposing additional sp
 `run/status.json` is `budget_complete`, with three completed and 15 missing evaluations;
 both shards are complete. No worker is active and no additional attempt is authorized.
 The bound plan, launch/status, journals, diagnostics and partial campaign export remain in
-`run/`. Calibration, independent validation, production promotion and git operations remain separate.
+`run/`. Calibration, independent validation and production promotion remain separate stages.
