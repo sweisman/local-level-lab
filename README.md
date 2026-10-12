@@ -135,149 +135,26 @@ separate calibration and timing checks; the current short-stretch results do not
 
 ## Current status
 
-**All 12 completed whole-stretch comparisons favor globe geometry under both
-processing assumptions; none favors the specified flat disc.** The consistent
-result is substantial on its own. The analysis attempted all 53 selected stretches;
-41 comparisons remain numerically unfinished.
+- **Coverage:** all 232 retained recordings have been screened. The first full run
+  analyzed 53 eligible stretches, totaling 424.3 minutes.
+- **Shape:** 12 complete comparisons consistently favor globe geometry; none favors
+  the specified flat disc. The other 41 comparisons are numerically unfinished,
+  rather than evidence for either shape.
+- **Background rotation:** those same 12 stretches favor the specified rotation
+  field over zero field. Its physical cause and a solar-versus-sidereal distinction
+  have not been determined.
+- **Current priority:** recover more unfinished comparisons. A bounded solver trial
+  is running; completed timing, calibration and prediction checks are preserved
+  alongside the original results.
 
-The 12 completed comparisons also favor the globe candidate containing the standard
-background rotation term over the zero-field globe. This separate result compares
-observable predictions; it does not identify the physical cause of that field.
+The completed findings are substantial, but a validated statistical significance
+level has not yet been established. Some recordings overlap or share instruments,
+so the stretches cannot simply be counted as independent confirmations.
 
-- All **232 retained files** have been screened: **53 qualifying stretches, totaling
-  424.3 minutes**. Some instrument streams overlap; these are not 53 independent flights.
-- **12 stretches favor globe over flat under both processing assumptions.** All 12 also
-  favor the background-field globe over the zero-field globe. None has a resolved flat preference; 41 remain unknown
-  because required calculations did not pass the numerical stopping checks.
-  [Findings and source data](docs/ilvis0-highspeed-segments-20261008/FINDINGS.md) explain
-  the complete and partial comparisons and link to every source recording and track.
-- **The pilot's resolved comparisons favor globe.** Two recordings favored globe over
-  flat, then the background-field globe over the zero-field globe, under all four tested cases. Two other recordings
-  have globe-favoring partial shape comparisons; two have no completed shape comparison.
-  **None of the six has a resolved preference for flat.**
-  [Provisional pilot findings](docs/ilvis0-refinement-20261008/PROVISIONAL.md) explain the results.
-- The larger analysis tests two processing assumptions: the background rotation was retained
-  in the logged measurements, or a shared amount may have been removed onboard.
-  Both allow a constant gyro offset of ±1 degree/hour. This is the analysis's offset
-  allowance; it is not a claim that these instruments drift by that amount.
-
-**Converged** means the solver satisfied numerical stopping and stationarity checks.
-It measures whether a calculation finished, not whether its model matched the data well.
-A flat-disc calculation can converge while fitting the flight much worse than a globe.
-The 41 unknown results mean **the comparison could not be completed**, not that globe
-and flat received equal support. Missing calculations are not evidence for either shape.
-
-**A substantial finding is different from an established statistical significance
-level.** The study has not yet assigned a validated significance level. Some
-recordings share flight time or instruments, so twelve completed stretches are
-not automatically twelve independent replications. The remaining checks assess
-the finding's robustness and uncertainty; they do not erase the completed comparisons.
-
-The [saved-result diagnosis](docs/ilvis0-highspeed-segments-20261008/POST_RUN_REVIEW.md)
-found that most unresolved calculations exhausted their numerical allowance. The
-[small matched solver trial](docs/ilvis0-solver-trial-20261010/README.md) is complete:
-10 of its 12 fits finished, compared with 11 previously. It preserved the control's
-globe and rotation preference but did not improve completion.
-
-The [calibration and fit-quality audit](docs/ilvis0-calibration-audit-20261010/README.md)
-compares the same 12 resolved stretches under both processing cases. Median horizontal
-track mismatch is **0.068 m for rotating globe, 29.5 m for still globe and 47.1 m for
-flat disc**, using each model's declared coordinate metric. The audit also identifies
-weak Z-axis calibration directions and the residual checks still needed.
-
-A [two-recording residual diagnostic](docs/ilvis0-residual-diagnostic-20261010/README.md)
-now reproduces the saved errors without refitting. Rotating-globe errors remain much
-smaller, but show temporal correlation. Changing the integration clock at the same
-parameters raises vertical error from about 0.6–0.7 m to about 9.2–9.4 m. The report
-plots those errors and explains why timing needs a matched test next.
-
-The [software qualification checks](docs/ilvis0-solver-qualification-20261010/README.md)
-passed all 34 predefined starts, including short analytic IMU/GPS controls. These check
-known numerical answers; they add no real-flight evidence. A small comparison that
-refits the completed control under packet-header timing has finished: all six fits
-converged and preserved the globe and rotation preference. Calibration readjustment
-restored its rotating-globe vertical error to about 0.70 m. Z-axis calibration limits
-still need investigation.
-
-The [clock/calibration audit](docs/ilvis0-clock-calibration-audit-20261011/README.md)
-shows which estimates changed: gravity correction moved away from its limit, while
-Z-axis gyro gain and offset stayed at theirs. A
-[12-fit sensitivity comparison](docs/ilvis0-calibration-trial-20261011/README.md)
-has finished with 11 fits converged. Fixing Z gain to zero preserved the globe and
-rotation preference under both processing cases. Fixing Z offset to zero left one
-still-globe fit unfinished; that comparison remains unresolved. Rotating-globe
-track errors stayed close to the original values in both tests.
-
-The [integration follow-up](docs/ilvis0-integration-audit-20261011/README.md) tested
-a calculation that accounts for motion within each recorded interval. It completed
-four of six fits and left the Z-axis calibration corrections at the same limits.
-It has not improved the original method enough to replace it.
-
-The [joint Z-axis calibration grid](docs/ilvis0-z-profile-audit-20261011/README.md)
-has now completed **all 27 fits**. On the same 438-second recording, every tested
-combination of Z gyro gain (−2%, zero, +2%) and constant offset (−1, zero,
-+1 degree/hour) favors globe, then the specified background field. Horizontal
-track errors range from **0.081–0.093 m for the background-field globe**, versus
-**29.0–29.6 m for zero-field globe** and **63.6–64.1 m for the disc**. The preferred
-fit needs at most one remaining parameter at its limit. Its advantage does not
-depend on the two extreme Z corrections, although the grid does not identify their
-true calibration. These are repeated checks on one recording, not 27 new flights.
-
-Both bounded follow-ups are now complete. Allowing
-[possible onboard field removal](docs/ilvis0-z-profile-removal-20261011/RESULTS.md)
-finished all 27 fits and preserved globe preference at every grid point, then the
-specified background-field preference. The
-[preselected September 24 recording](docs/ilvis0-z-profile-replication-20261011/RESULTS.md)
-finished 25 of 27 fits. Its seven complete comparisons favor globe; two remain
-unfinished. The full-grid background-field conclusion is withheld. These checks
-preserve the original analysis; they add no independent statistical calibration.
-
-The [follow-up audit](docs/ilvis0-z-followup-audit-20261012/README.md) compares all
-81 saved fits. Both unfinished September 24 fits have small track errors and pass
-the saved stationarity check, but reached their evaluation cap without solver-reported
-success. They remain unfinished. The preferred model on the first recording changes
-very little when onboard field removal is allowed; its fitted removal fraction stays
-essentially zero.
-
-The [residual correlation audit](docs/ilvis0-residual-covariance-20261012/README.md)
-examines those saved errors across time and axes. On October 5, vertical errors remain
-correlated even a minute apart after the current uncertainty adjustment; September 24
-shows less slow correlation. This leaves the model preferences unchanged, but explains
-why small errors alone do not establish reliable uncertainty estimates. A shared
-error-model plan is ready; it has not replaced the original analysis.
-The [prediction uncertainty checks](docs/ilvis0-nonlinear-uncertainty-controls-20261012/README.md)
-now cover correlated errors, estimation from training data, nonlinear behavior and
-calibration limits. They verify the calculations and expose where simple uncertainty
-estimates fail. The [native integration checks](docs/ilvis0-native-uncertainty-controls-20261012/README.md)
-also verify all 27 calibration and processing derivatives against independently
-constructed paths. The [bounded archive prediction comparison](docs/ilvis0-prediction-covariance-20261012/RESULTS.md)
-has finished: 10 of 12 fits converged, leaving the combined comparison unresolved.
-The priority is now completing more of the 41 unfinished stretches. A
-[recovery qualification trial](docs/ilvis0-convergence-recovery-trial-20261012/README.md)
-has finished: all six completed-control fits passed, and eight of 15 unfinished
-primary fits were recovered. None of its three test stretches became fully resolved.
-A [numerical audit](docs/ilvis0-recovery-diagnosis-20261012/README.md) distinguishes
-early stopping from failed stability checks. A different bounded solver passed
-30 of 30 software controls and is [running in a separate archival trial](docs/ilvis0-rectangular-recovery-trial-20261012/README.md).
-The original findings remain unchanged.
-
-The remaining checks concern numerical completion, fits reaching allowed calibration
-limits, and the exact timing and corrections used in the logs. Published hardware
-specifications provide useful performance context; these checks determine how confidently
-we can quantify the model differences. The current study reports which model fits better,
-without assigning a validated statistical significance level. The completed results and
-preselected intervals remain preserved.
-
-The [analysis roadmap](docs/ANALYSIS_ROADMAP.md) puts calibration-boundary diagnosis,
-absolute fit quality and timing/GPS sensitivity next. Exact device characterization
-continues in parallel at lower priority; modeling does not wait for it. A separate
-[rotation-field study](docs/ROTATION_FIELD.md) is planned to estimate the background
-vector before interpreting its cause.
-
-A field's direction, magnitude and latitude pattern can constrain explanations.
-Explanations predicting identical measurements cannot be separated by those measurements
-alone. The present study has not freely measured the rotation magnitude or resolved
-solar versus sidereal rate; neither result should be inferred from the fixed-rate model label.
+See [findings and source tracks](docs/ilvis0-highspeed-segments-20261008/FINDINGS.md),
+[how the method works](docs/METHODOLOGY.md),
+[method development and robustness checks](docs/METHODOLOGY_DEVELOPMENT.md), and
+[the next steps](docs/ANALYSIS_ROADMAP.md).
 
 ## Secondary work: a stationary crowdsourced experiment
 

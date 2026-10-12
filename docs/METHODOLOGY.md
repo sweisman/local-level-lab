@@ -72,6 +72,8 @@ A better relative fit must still be checked for absolute adequacy, numerical sta
 and statistical uncertainty. See the [archive guide](ILVIS0.md),
 [findings](ilvis0-highspeed-segments-20261008/FINDINGS.md) and
 [analysis roadmap](ANALYSIS_ROADMAP.md).
+The [method development record](METHODOLOGY_DEVELOPMENT.md) organizes the completed
+timing, calibration, uncertainty and solver checks and explains what each establishes.
 
 ## Secondary: stationary crowdsourced measurements
 
