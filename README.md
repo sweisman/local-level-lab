@@ -174,8 +174,26 @@ track errors stayed close to the original values in both tests.
 The [integration follow-up](docs/ilvis0-integration-audit-20261011/README.md) tested
 a calculation that accounts for motion within each recorded interval. It completed
 four of six fits and left the Z-axis calibration corrections at the same limits.
-It has not improved the original method enough to replace it. The next diagnostic
-will examine how the gyro's scale and constant offset trade off in those fits.
+It has not improved the original method enough to replace it.
+
+The [joint Z-axis calibration grid](docs/ilvis0-z-profile-audit-20261011/README.md)
+has now completed **all 27 fits**. On the same 438-second recording, every tested
+combination of Z gyro gain (−2%, zero, +2%) and constant offset (−1, zero,
++1 degree/hour) favors globe, then the specified background field. Horizontal
+track errors range from **0.081–0.093 m for the background-field globe**, versus
+**29.0–29.6 m for zero-field globe** and **63.6–64.1 m for the disc**. The preferred
+fit needs at most one remaining parameter at its limit. Its advantage does not
+depend on the two extreme Z corrections, although the grid does not identify their
+true calibration. These are repeated checks on one recording, not 27 new flights.
+
+Both bounded follow-ups are now complete. Allowing
+[possible onboard field removal](docs/ilvis0-z-profile-removal-20261011/RESULTS.md)
+finished all 27 fits and preserved globe preference at every grid point, then the
+specified background-field preference. The
+[preselected September 24 recording](docs/ilvis0-z-profile-replication-20261011/RESULTS.md)
+finished 25 of 27 fits. Its seven complete comparisons favor globe; two remain
+unfinished. The full-grid background-field conclusion is withheld. These checks
+preserve the original analysis; they add no independent statistical calibration.
 
 The remaining checks concern numerical completion, fits reaching allowed calibration
 limits, and the exact timing and corrections used in the logs. Published hardware

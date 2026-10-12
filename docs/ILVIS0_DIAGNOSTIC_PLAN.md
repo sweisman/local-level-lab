@@ -97,10 +97,24 @@ for decoder validation. Investigate the vertical effect through accumulated velo
 gravity correction and timing/calibration sensitivity. A smaller rotating-globe cost
 alone cannot identify the clock convention.
 
-The [staged joint-profile plan](ilvis0-integration-audit-20261011/PROFILE_PLAN.md)
-now specifies the first grid: 27 fits under original integration, packet-header timing
-and no upstream field removal, with no starts authorized. Implement/test its worker
-before requesting its 5,400-sweep allowance. Other variants remain separately scoped.
+The [first joint grid](ilvis0-z-profile-audit-20261011/README.md) is complete:
+27/27 fits converged, using 4,174 native sweeps. Under original integration,
+packet-header timing and no upstream field removal, all nine Z gain/offset pairs
+favor globe, then the specified field. The preferred model's cost varies only 2.58%;
+horizontal error stays 0.081–0.093 m. Its remaining boundary count is 0–1, versus
+12–13 for zero-field globe and 13 for disc. The weakest remaining direction is
+dominated by gravity correction and X/Y gyro gains. This demonstrates robustness
+across tested Z corrections, not unique calibration.
+
+Two approved, separately frozen follow-ups use the same grid:
+[profiled upstream removal](ilvis0-z-profile-removal-20261011/PLAN.md), then the
+[earliest predeclared other recording](ilvis0-z-profile-replication-20261011/PLAN.md).
+Both have finished: removal converged 27/27, while the other recording converged
+25/27. Seven complete nodes favor globe; two remain unresolved. Their allowances
+are spent and no retries are authorized. A saved-only audit now examines their
+calibration behavior and stopping failures. The second is a whole-stretch robustness check, not the deferred
+training/prediction replication. Further clocks, the second predeclared recording
+and archive rollout remain outside this allowance.
 At each fixed gain/offset pair,
 reoptimize all remaining parameters with their existing physical bounds. Use identical
 grid coordinates, initialization policy and finite allowances for specified-field globe,

@@ -87,6 +87,20 @@ those records and criteria. The six-fit allowance is spent and permits no retrie
 The two-recording replication still needs its own finite allowance,
 and calibration robustness remains a separate check.
 
+The [joint Z calibration audit](ilvis0-z-profile-audit-20261011/README.md) now reports
+27/27 converged fits on the control. All nine fixed gain/offset pairs preserve globe
+preference, then the specified background-field preference. The preferred cost varies
+2.58%, with 0–1 remaining parameters at limits. Its advantage does not depend on
+the two extreme Z corrections, but this does not determine factory calibration.
+Two separately frozen grids now test
+[profiled upstream removal](ilvis0-z-profile-removal-20261011/README.md) and the
+[earliest predeclared other recording](ilvis0-z-profile-replication-20261011/README.md).
+Both are now complete: removal converged 27/27 fits; the other recording converged
+25/27, with seven complete globe preferences and two unresolved nodes. Each spent
+its 27-start allowance. The next saved-only audit compares remaining calibration
+limits and weak directions and examines the two stopping failures. The second grid
+checks whole-stretch robustness; held-out prediction replication remains deferred.
+
 | Order | Work | What can happen without new observed fits? | Deliverable |
 |---|---|---|---|
 | P0 | Explain integration timing and joint Z-axis calibration | Audit preserved timestamps, calibration shifts and local weak directions; the completed stopping trial did not qualify. | Clock evidence and matched gain–bias profiles after separately budgeted solver qualification. |
@@ -143,10 +157,11 @@ estimates describe the archive; they are not within-fit parameter uncertainties.
 projected gradients and available Jacobian singular vectors to examine local trade-offs.
 The baseline saved singular values alone; do not pretend it contains those vectors.
 
-The completed zero-gain and zero-offset tests remove one correction at a time; they do
-not map their joint ambiguity. Next specify two-dimensional Z gain–offset profile costs,
-reoptimizing the remaining nuisance parameters under unchanged bounds for all three
-models. Compare the same grid under both clocks and processing cases. Plot feasible
+The completed zero-gain and zero-offset tests remove one correction at a time. The first
+joint grid maps combined sensitivity under header timing and no removal, preserving
+gradients, remaining limits and weak directions. The next two approved grids test
+the other processing assumption and another preselected recording, keeping remaining
+bounds unchanged for all three models. Further clock grids need a separate allowance. Plot feasible
 limits, fitted points, unfinished grid points and cost valleys. Check whether those
 valleys move with clock convention. Keep this separate from an absolute calibration
 estimate: a shallow valley can preserve a model preference while leaving its calibration
@@ -266,7 +281,9 @@ original findings and identifies no improvement in Z boundary saturation. Its
 [staged profile plan](ilvis0-integration-audit-20261011/PROFILE_PLAN.md) proposes
 27 fixed gain/offset comparisons, roughly 6–7 hours, under original integration
 and one processing case first. Implement/test its worker and obtain a separate
-finite allowance before execution; this alternative is not ready for corpus rollout.
+finite allowance before execution. The [profile worker](ilvis0-z-profile-20261011/README.md)
+now implements fixed-coordinate reoptimization, final derivative capture and recovery;
+preparation starts no fits. The integration alternative is not ready for corpus rollout.
 
 The control's matched reoptimized clock comparison is complete: all six fits converged,
 the close rotating-globe fit returned, and globe/rotation preference survived. It shows

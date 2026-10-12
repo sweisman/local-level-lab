@@ -1,0 +1,28 @@
+{
+  "artifacts": {
+    "README.md": "4fe15780584f706da91204bd87d94ecc6b06a7f05af4cc39fb6049555584fe2f",
+    "fits.csv": "4465e25ebccc019c74302c127f55e4a05d9276b0cee41e2966b491311c79cfbd",
+    "models.csv": "c61a51c6c3bd1c2ce900ce197a503d9f3141779d9bca2b570c4eabb7c0335ad0",
+    "parameters.csv": "6be5770297d31d66b91a68e197253994c1dc689c69ef80ea9b5d7e2549d5110f",
+    "remaining-boundaries.csv": "dce2a9c8b920288276af2c2f5da57c39c9beaa7755dc714180617297937da0cb",
+    "residuals.csv": "5c4dd62610fe7584acbe5ec00697e4b687c5f5250c2ca13224eb9073f10f1c28",
+    "summary.json": "4f8f7039e4543a10d6eee09f91cd5cae18462db80cece4f9c8343aae574f5c1d",
+    "weak-directions.csv": "3cf60b7192e8531fadb5bcc8e06d2fce6d8809c83b83caddfef1b72eb1ab146e"
+  },
+  "inputs": {
+    "/site/repo/local-level-lab/docs/ilvis0-z-profile-20261011/completion.json": "300729e21038bc4682b38dcc864f5e93369b72e41462cff0ad7ac7ab985f277a",
+    "/site/repo/local-level-lab/docs/ilvis0-z-profile-20261011/evidence-receipt.json": "60e140d8300ebef6e44f365932a7f8ba27ee55fd4eec040cf2859fdb2487cfbd",
+    "/site/repo/local-level-lab/docs/ilvis0-z-profile-20261011/manifest.json": "1dd1fc4582b9aa608393965d46395a9d26f535be6233aefdcfff8cfb45acdfe6",
+    "/site/repo/local-level-lab/docs/ilvis0-z-profile-20261011/summary.json": "de7770eed2f50ab82ec6b8ad2a2f4725f53f645b937047569ae2967489da2887"
+  },
+  "native_predictions": 0,
+  "optimizer_starts": 0,
+  "sources": {
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_residuals.py": "39fe4efd1acaec5a9f4857e3329652758b26b9865bd20db2a0868750a14ecdf2",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_saved_audit.py": "de3160a1533abd7bb0c181bb332e745d84f2ab24c12e49d0116d118f479350fb",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_solver_diagnosis.py": "98587b681056ec03be55ba2a3198765ad9a633d4f41e9eedb07fd7961f3fddf8",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_z_profile_audit.py": "f85589c39f3fd96ceb8e883632f712a91231a02b17818b14efe66bbbb81e3fd3",
+    "/site/repo/local-level-lab/docs/ilvis0-z-profile-audit-20261011/build_report.py": "53fe7a9e69421c279e2a5991d9bbc6ba5a39c935a3fe60030401d52273c47c76"
+  },
+  "version": "ilvis0-saved-joint-z-audit-v1"
+}

@@ -1,0 +1,12 @@
+{
+  "artifacts": {
+    "manifest.json": "1dd1fc4582b9aa608393965d46395a9d26f535be6233aefdcfff8cfb45acdfe6",
+    "selection.json.gz": "610ec3b007bf0c11b377282ebc04e8de673427e106a2ed4f8cfc53fa8220303e"
+  },
+  "authorized_starts": 0,
+  "charged_starts": 0,
+  "manifest_sha256": "1dd1fc4582b9aa608393965d46395a9d26f535be6233aefdcfff8cfb45acdfe6",
+  "native_predictions": 0,
+  "state": "prepared",
+  "version": "ilvis0-joint-z-profile-worker-v1"
+}

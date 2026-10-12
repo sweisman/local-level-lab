@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1050" height="400" viewBox="0 0 1050 400">
+<rect width="1050" height="400" fill="white"/>
+<text x="20" y="28" font-family="sans-serif" font-size="18">Absolute achieved cost at fixed Z corrections</text>
+<text x="30" y="62" font-family="sans-serif" font-size="15">sphere_rotating</text>
+<text x="30" y="255" font-family="sans-serif" font-size="12">-2%</text>
+<rect x="68" y="225" width="88" height="68" fill="hsl(210, 65%, 87.0%)" stroke="#666"/>
+<text x="72" y="260" font-family="sans-serif" font-size="9">5.6128</text>
+<text x="103" y="325" font-family="sans-serif" font-size="12">-1</text>
+<rect x="158" y="225" width="88" height="68" fill="hsl(210, 65%, 87.0%)" stroke="#666"/>
+<text x="162" y="260" font-family="sans-serif" font-size="9">5.6202</text>
+<text x="193" y="325" font-family="sans-serif" font-size="12">+0</text>
+<rect x="248" y="225" width="88" height="68" fill="hsl(210, 65%, 87.0%)" stroke="#666"/>
+<text x="252" y="260" font-family="sans-serif" font-size="9">5.6288</text>
+<text x="283" y="325" font-family="sans-serif" font-size="12">+1</text>
+<text x="30" y="185" font-family="sans-serif" font-size="12">+0%</text>
+<rect x="68" y="155" width="88" height="68" fill="hsl(210, 65%, 87.0%)" stroke="#666"/>
+<text x="72" y="190" font-family="sans-serif" font-size="9">5.6207</text>
+<rect x="158" y="155" width="88" height="68" fill="hsl(210, 65%, 87.0%)" stroke="#666"/>
+<text x="162" y="190" font-family="sans-serif" font-size="9">5.6281</text>
+<rect x="248" y="155" width="88" height="68" fill="#eeeeee" stroke="#666"/>
+<text x="252" y="190" font-family="sans-serif" font-size="9">5.6364 / unresolved</text>
+<text x="30" y="115" font-family="sans-serif" font-size="12">+2%</text>
+<rect x="68" y="85" width="88" height="68" fill="hsl(210, 65%, 87.0%)" stroke="#666"/>
+<text x="72" y="120" font-family="sans-serif" font-size="9">5.6295</text>
+<rect x="158" y="85" width="88" height="68" fill="#eeeeee" stroke="#666"/>
+<text x="162" y="120" font-family="sans-serif" font-size="9">5.6363 / unresolved</text>
+<rect x="248" y="85" width="88" height="68" fill="hsl(210, 65%, 87.0%)" stroke="#666"/>
+<text x="252" y="120" font-family="sans-serif" font-size="9">5.6453</text>
+<text x="70" y="350" font-family="sans-serif" font-size="12">Z offset (degrees/hour); rows: Z gain</text>
+<text x="375" y="62" font-family="sans-serif" font-size="15">sphere_still</text>
+<text x="375" y="255" font-family="sans-serif" font-size="12">-2%</text>
+<rect x="413" y="225" width="88" height="68" fill="hsl(210, 65%, 56.3%)" stroke="#666"/>
+<text x="417" y="260" font-family="sans-serif" font-size="9">9325.7</text>
+<text x="448" y="325" font-family="sans-serif" font-size="12">-1</text>
+<rect x="503" y="225" width="88" height="68" fill="hsl(210, 65%, 56.2%)" stroke="#666"/>
+<text x="507" y="260" font-family="sans-serif" font-size="9">9454.4</text>
+<text x="538" y="325" font-family="sans-serif" font-size="12">+0</text>
+<rect x="593" y="225" width="88" height="68" fill="hsl(210, 65%, 56.1%)" stroke="#666"/>
+<text x="597" y="260" font-family="sans-serif" font-size="9">9593.7</text>
+<text x="628" y="325" font-family="sans-serif" font-size="12">+1</text>
+<text x="375" y="185" font-family="sans-serif" font-size="12">+0%</text>
+<rect x="413" y="155" width="88" height="68" fill="hsl(210, 65%, 56.3%)" stroke="#666"/>
+<text x="417" y="190" font-family="sans-serif" font-size="9">9354.1</text>
+<rect x="503" y="155" width="88" height="68" fill="hsl(210, 65%, 56.2%)" stroke="#666"/>
+<text x="507" y="190" font-family="sans-serif" font-size="9">9484.3</text>
+<rect x="593" y="155" width="88" height="68" fill="hsl(210, 65%, 56.1%)" stroke="#666"/>
+<text x="597" y="190" font-family="sans-serif" font-size="9">9622.4</text>
+<text x="375" y="115" font-family="sans-serif" font-size="12">+2%</text>
+<rect x="413" y="85" width="88" height="68" fill="hsl(210, 65%, 56.2%)" stroke="#666"/>
+<text x="417" y="120" font-family="sans-serif" font-size="9">9382.9</text>
+<rect x="503" y="85" width="88" height="68" fill="hsl(210, 65%, 56.2%)" stroke="#666"/>
+<text x="507" y="120" font-family="sans-serif" font-size="9">9514.2</text>
+<rect x="593" y="85" width="88" height="68" fill="hsl(210, 65%, 56.1%)" stroke="#666"/>
+<text x="597" y="120" font-family="sans-serif" font-size="9">9650.3</text>
+<text x="415" y="350" font-family="sans-serif" font-size="12">Z offset (degrees/hour); rows: Z gain</text>
+<text x="720" y="62" font-family="sans-serif" font-size="15">flat_still</text>
+<text x="720" y="255" font-family="sans-serif" font-size="12">-2%</text>
+<rect x="758" y="225" width="88" height="68" fill="hsl(210, 65%, 50.0%)" stroke="#666"/>
+<text x="762" y="260" font-family="sans-serif" font-size="9">40624</text>
+<text x="793" y="325" font-family="sans-serif" font-size="12">-1</text>
+<rect x="848" y="225" width="88" height="68" fill="hsl(210, 65%, 50.0%)" stroke="#666"/>
+<text x="852" y="260" font-family="sans-serif" font-size="9">40758</text>
+<text x="883" y="325" font-family="sans-serif" font-size="12">+0</text>
+<rect x="938" y="225" width="88" height="68" fill="hsl(210, 65%, 50.0%)" stroke="#666"/>
+<text x="942" y="260" font-family="sans-serif" font-size="9">40858</text>
+<text x="973" y="325" font-family="sans-serif" font-size="12">+1</text>
+<text x="720" y="185" font-family="sans-serif" font-size="12">+0%</text>
+<rect x="758" y="155" width="88" height="68" fill="hsl(210, 65%, 50.0%)" stroke="#666"/>
+<text x="762" y="190" font-family="sans-serif" font-size="9">40649</text>
+<rect x="848" y="155" width="88" height="68" fill="hsl(210, 65%, 50.0%)" stroke="#666"/>
+<text x="852" y="190" font-family="sans-serif" font-size="9">40780</text>
+<rect x="938" y="155" width="88" height="68" fill="hsl(210, 65%, 50.0%)" stroke="#666"/>
+<text x="942" y="190" font-family="sans-serif" font-size="9">40878</text>
+<text x="720" y="115" font-family="sans-serif" font-size="12">+2%</text>
+<rect x="758" y="85" width="88" height="68" fill="hsl(210, 65%, 50.0%)" stroke="#666"/>
+<text x="762" y="120" font-family="sans-serif" font-size="9">40673</text>
+<rect x="848" y="85" width="88" height="68" fill="hsl(210, 65%, 50.0%)" stroke="#666"/>
+<text x="852" y="120" font-family="sans-serif" font-size="9">40801</text>
+<rect x="938" y="85" width="88" height="68" fill="hsl(210, 65%, 50.0%)" stroke="#666"/>
+<text x="942" y="120" font-family="sans-serif" font-size="9">40897</text>
+<text x="760" y="350" font-family="sans-serif" font-size="12">Z offset (degrees/hour); rows: Z gain</text>
+<text x="20" y="382" font-family="sans-serif" font-size="12">Common logarithmic color scale; gray = unfinished (raw achieved cost). Grid nodes are not confidence contours.</text>
+</svg>

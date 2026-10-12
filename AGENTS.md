@@ -126,9 +126,27 @@ Its six starts used 974 native sweeps; four fits converged. No retries, resume o
 archive rollout. Package mode performs no fits. Preserve its header clock, bounds,
 initialization and ordinary-increment hypothesis; onboard compensation is not established.
 The [integration audit](docs/ilvis0-integration-audit-20261011/README.md) reads saved
-metadata only. Its PROFILE_PLAN.md proposes 27 joint Z gain/offset profiles;
-the worker still needs implementation/testing and a separate finite allowance.
-No profile starts are authorized by preparation or routine continuation.
+metadata only. Its first joint grid is complete at data/ilvis0-z-profile-20261011/
+and docs/ilvis0-z-profile-20261011/: 27 starts, 4,174 native sweeps, all converged.
+Do not resume it or edit its frozen dependencies. The saved-only audit is
+docs/ilvis0-z-profile-audit-20261011/; its builder performs no fits or predictions.
+
+Two completed follow-ups use analysis/tests/ilvis0_z_profile_followup.py, separately
+frozen under data/ilvis0-z-profile-removal-20261011/ and
+data/ilvis0-z-profile-replication-20261011/, with matching docs guides/plans.
+Removal completed 27/27 fits; replication completed 25/27. Each spent its 27-start
+allowance; no retries, resume or expansion. Original ceiling: 200 sweeps/start, 5,400 total.
+analysis/tests/ilvis0_z_profile_sequence.py runs removal then replication, reserving
+both worker locks and data/ilvis0-z-profile-followups-20261011/coordinator.lock.
+The sequence is complete and its locks are free. Never launch it again. Preserve
+stage authorizations, hashes, journals and failures. Publication alone performs no fits.
+Keep both completed freezes unchanged, including their shared sources and inputs.
+Replication uses only the earliest predeclared September 24 interval and fixed-zero
+removal. It is calibration robustness, not the deferred prediction experiment.
+No other recording, clock grid, retry or archive rollout is authorized. Publication
+is automatic; --study removal/replication --package-only performs no fits.
+Superseded zero-start follow-up preparations with the -preparation-v1 suffix are
+preserved for provenance; never launch or resume them.
 
 The matched solver trial is complete; do not launch it again. Publication uses
 `analysis/tests/ilvis0_solver_trial.py --package-only`, without observed fits.
