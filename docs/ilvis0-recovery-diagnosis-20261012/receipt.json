@@ -1,0 +1,20 @@
+{
+  "artifacts": {
+    "README.md": "a056274f2ed6e0a6d15421c9a73bcd4b070b3eb2cfaaf01f47f4c05bfab550be",
+    "diagnosis.json": "829b6248e91fbc5f6fe91a48e98dfde303cc662987ee8318553b353f8e60b4e9",
+    "fits.csv": "f2e7179705599fd6f9378b22b55a2a841405d6191dd559835a18b0c56bb6a3e1"
+  },
+  "inputs": {
+    "manifest.json": "6d7a330f412b8262531b5b617c3bf7d9042c8c516319f26b9ad6fdcdcef6a1b1",
+    "starts.jsonl": "2fb4b8771947d4eafdea0363e6d64b8061f6d6741bb0c0039d90308712ad91c3",
+    "summary.json": "5e3907a2fae2f8e5d4df311c3b395503c664d398ed09484599160242c4d72548",
+    "sweeps.jsonl": "8f30cc3ff6710cc207f3aebb50f4fe3d8e67a2e7ca77fba305eb3909d7db9f10"
+  },
+  "native_predictions": 0,
+  "observed_fit_starts": 0,
+  "sources": {
+    "analysis/lll/ilvis0_recovery_diagnosis.py": "771c3a78b03b596988506191eec979af387114e05986cb13c0f737b46738e35a",
+    "analysis/tests/test_ilvis0_recovery_diagnosis.py": "76d84a0d5e8cc3c6cd3009a30636a61d68514e233f77862dcd5ac24d23c894a7",
+    "docs/ilvis0-recovery-diagnosis-20261012/build_report.py": "42b7e28ce1de3a587ec375b20495c30aeac0f1f48d74f51416c6e94004c22ff1"
+  }
+}

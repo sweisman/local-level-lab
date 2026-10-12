@@ -1,0 +1,7 @@
+{
+  "approval": "explicit_user_approval",
+  "manifest_sha256": "6d7a330f412b8262531b5b617c3bf7d9042c8c516319f26b9ad6fdcdcef6a1b1",
+  "maximum_native_sweeps": 14448,
+  "maximum_starts": 24,
+  "retries": 0
+}

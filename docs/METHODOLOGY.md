@@ -63,6 +63,11 @@ from geocentric or heliocentric explanations; a globe result alone decides neith
 
 Completed results favor globe in twelve stretches and flat in none; forty-one are
 numerically unresolved. Unfinished calculations do not give the models equal support.
+The consistent completed comparisons are a substantial empirical finding. Establishing
+a statistical significance level additionally requires validated uncertainty and
+accounting for shared flights or instruments; the stretches are not automatically
+independent replications. Those checks quantify the finding's strength without
+discarding the observed model preferences.
 A better relative fit must still be checked for absolute adequacy, numerical stability
 and statistical uncertainty. See the [archive guide](ILVIS0.md),
 [findings](ilvis0-highspeed-segments-20261008/FINDINGS.md) and

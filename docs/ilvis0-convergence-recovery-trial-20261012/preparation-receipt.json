@@ -1,0 +1,13 @@
+{
+  "artifacts": {
+    "PLAN.md": "3c8517ebaa5499bc44db7f0214f95708f2b4e63eb68dbd94c0900990c00a3d09",
+    "control-receipt.json": "59dc17b5fb8cd3530f9421f7dbfb81927d687a6c302a0d17191bc5a02a49db28",
+    "manifest.json": "6d7a330f412b8262531b5b617c3bf7d9042c8c516319f26b9ad6fdcdcef6a1b1",
+    "proposal.json": "fa864850bcbc9b0680f585feff41e5a1cfd34a0c32d9350c0ad894c1af531f40",
+    "selection.json.gz": "6bd6730e4091e7a6caae3b0fb508ff598b6ea2522284d505ee86699bda8d199a"
+  },
+  "authorization_pending": true,
+  "observed_fit_starts": 0,
+  "state": "prepared_only",
+  "version": "ilvis0-recovery-qualification-worker-v1"
+}

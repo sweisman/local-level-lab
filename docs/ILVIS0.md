@@ -3,7 +3,10 @@
 **The completed high-speed analysis favors globe in 12 stretches and flat in none;
 all 12 also favor the globe candidate containing the standard background rotation field.** Another 41 comparisons lack finished
 calculations. See the [findings and source tracks](ilvis0-highspeed-segments-20261008/FINDINGS.md).
-Those unfinished calculations do not provide equal support for flat Earth.
+This is a substantial empirical finding. Unfinished calculations do not erase it
+or provide equal support for flat Earth. A validated statistical significance level
+has not yet been assigned, and shared flights or instruments must be accounted for
+before counting the stretches as independent replications.
 
 The historical fit labels “rotating globe” and “still globe” mean a globe with the
 specified background angular rate and a globe with zero background rate. They identify

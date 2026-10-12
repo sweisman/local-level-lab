@@ -1,8 +1,18 @@
 # What the airborne measurements show
 
-**The completed comparisons favor a rotating globe. None has a completed preference
-for the specified flat disc.** This is the result of fitting NASA's archived aircraft
-measurements, not a count of how many calculations finished for each model.
+**All 12 completed whole-stretch comparisons favor globe geometry under both
+processing assumptions. None favors the specified flat disc.** This is a substantial
+empirical finding from NASA's archived aircraft measurements. It reports which
+model fits better, rather than how many calculations finished for each model.
+
+The other 41 comparisons remain numerically unfinished; they do not erase the
+completed results or establish equal support for flatness. The finding's statistical
+strength still needs validated uncertainty estimates and accounting for shared
+flights and instruments. Twelve stretches are not automatically twelve independent
+replications, and no calibrated significance level has yet been assigned.
+
+All 12 also favor the globe candidate with the standard background rotation field
+over the zero-field globe. That comparison does not identify the field's physical cause.
 
 ## Recordings and flight tracks
 

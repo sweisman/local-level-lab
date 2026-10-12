@@ -1,0 +1,12 @@
+{"identity": "570b37d23af5e245dd461051::h1_v3_tau10::bias1_unsubtracted::sphere_rotating", "manifest_sha256": "c172db11288c24fb31e4515432d4665c58b767d3b2d9311ddb9a9c3ba26e902e", "number": 1}
+{"identity": "570b37d23af5e245dd461051::h1_v3_tau10::bias1_unsubtracted::sphere_still", "manifest_sha256": "c172db11288c24fb31e4515432d4665c58b767d3b2d9311ddb9a9c3ba26e902e", "number": 2}
+{"identity": "570b37d23af5e245dd461051::h1_v3_tau10::bias1_unsubtracted::flat_still", "manifest_sha256": "c172db11288c24fb31e4515432d4665c58b767d3b2d9311ddb9a9c3ba26e902e", "number": 3}
+{"identity": "570b37d23af5e245dd461051::h1_v3_tau10::bias1_profiled_removal::sphere_rotating", "manifest_sha256": "c172db11288c24fb31e4515432d4665c58b767d3b2d9311ddb9a9c3ba26e902e", "number": 4}
+{"identity": "570b37d23af5e245dd461051::h1_v3_tau10::bias1_profiled_removal::sphere_still", "manifest_sha256": "c172db11288c24fb31e4515432d4665c58b767d3b2d9311ddb9a9c3ba26e902e", "number": 5}
+{"identity": "570b37d23af5e245dd461051::h1_v3_tau10::bias1_profiled_removal::flat_still", "manifest_sha256": "c172db11288c24fb31e4515432d4665c58b767d3b2d9311ddb9a9c3ba26e902e", "number": 6}
+{"identity": "570b37d23af5e245dd461051::h1_v3_tau300::bias1_unsubtracted::sphere_rotating", "manifest_sha256": "c172db11288c24fb31e4515432d4665c58b767d3b2d9311ddb9a9c3ba26e902e", "number": 7}
+{"identity": "570b37d23af5e245dd461051::h1_v3_tau300::bias1_unsubtracted::sphere_still", "manifest_sha256": "c172db11288c24fb31e4515432d4665c58b767d3b2d9311ddb9a9c3ba26e902e", "number": 8}
+{"identity": "570b37d23af5e245dd461051::h1_v3_tau300::bias1_unsubtracted::flat_still", "manifest_sha256": "c172db11288c24fb31e4515432d4665c58b767d3b2d9311ddb9a9c3ba26e902e", "number": 9}
+{"identity": "570b37d23af5e245dd461051::h1_v3_tau300::bias1_profiled_removal::sphere_rotating", "manifest_sha256": "c172db11288c24fb31e4515432d4665c58b767d3b2d9311ddb9a9c3ba26e902e", "number": 10}
+{"identity": "570b37d23af5e245dd461051::h1_v3_tau300::bias1_profiled_removal::sphere_still", "manifest_sha256": "c172db11288c24fb31e4515432d4665c58b767d3b2d9311ddb9a9c3ba26e902e", "number": 11}
+{"identity": "570b37d23af5e245dd461051::h1_v3_tau300::bias1_profiled_removal::flat_still", "manifest_sha256": "c172db11288c24fb31e4515432d4665c58b767d3b2d9311ddb9a9c3ba26e902e", "number": 12}

@@ -4,8 +4,11 @@
 
 The completed study found **12 globe preferences, zero complete flat preferences and
 41 unfinished comparisons** among 53 eligible stretches. All 12 complete globe results
-also favor the background-field globe over the zero-field globe. These are useful findings; unfinished calculations do not provide
-equal support for flat Earth. The [findings](ilvis0-highspeed-segments-20261008/FINDINGS.md)
+also favor the background-field globe over the zero-field globe. This is a substantial
+empirical finding; unfinished calculations do not provide equal support for flat Earth.
+A calibrated statistical significance level and independent-replication count still
+require uncertainty validation and accounting for shared flights and instruments.
+The [findings](ilvis0-highspeed-segments-20261008/FINDINGS.md)
 and [saved-result diagnosis](ilvis0-highspeed-segments-20261008/POST_RUN_REVIEW.md)
 preserve what the measurements and calculations currently show.
 
@@ -26,8 +29,9 @@ Do not transfer one configuration's exact specifications to every recording or c
 assumed offset allowance measured drift. Unknown corrections matter where they prevent
 a particular quantity from being separated, rather than stopping all modeling.
 
-After the running covariance/prediction comparison finishes, the immediate priority
-is resolving as many of the 41 numerically incomplete stretches as possible.
+The covariance/prediction comparison has finished with 10 of 12 fits converged;
+its combined comparison remains unresolved. The immediate priority is resolving
+as many of the 41 numerically incomplete stretches as possible.
 Further diagnostic expansion is deferred. Numerical completion, fit adequacy and
 statistical support remain separate checks; recovering a fit does not by itself
 establish a calibrated scientific detection.
@@ -45,6 +49,25 @@ The [recovery preparation](ilvis0-convergence-recovery-preparation-20261012/READ
 records all 41 unfinished stretches and selects one from each of three numerical
 failure categories, plus a completed control. This is metadata-only preparation;
 the numerical strategy and finite evaluation allowance remain to be qualified.
+
+The [continuation trial](ilvis0-convergence-recovery-trial-20261012/README.md) is
+complete: 15/24 fits passed, including all six completed controls and eight of
+15 unfinished primary fits. None of the three unresolved stretches became fully
+resolved, so this method did not qualify for rollout. Its 24 starts cover 15 unfinished fits, six completed
+control fits and three perturbed-start repeats. Each allows 600 fitting sweeps plus
+two track checks; the 14,448-sweep ceiling estimates roughly 10–14 hours on two threads.
+The finite allowance is recorded in the runtime freeze. Unchanged converged reference
+fits are reused; original failures retain their labels.
+
+The [saved stopping audit](ilvis0-recovery-diagnosis-20261012/README.md) separates
+four early gradient failures, four early stability failures and one budget failure.
+A known-answer, near-boundary software control reproduces one stopping failure;
+the rectangular dogbox alternative passed 30/30 software controls versus TRF 29/30.
+The [separate rectangular proposal](ilvis0-rectangular-recovery-trial-20261012/README.md)
+preserves all physical assumptions, requires fresh stability verification, and
+saves final Jacobians and evaluation traces. Its v2 freeze is approved and running
+under its own finite authorization: 24 starts / 14,448 native sweeps, no retries,
+two total numerical threads. Software success alone does not authorize all-41 recovery.
 
 Minimum solver qualification supports this recovery sequence. Additional clock,
 calibration, covariance, measurement-contribution and independent-flight studies
@@ -157,12 +180,13 @@ now specifies 12 October 5 training/prediction fits under shared 10- and 300-sec
 correlation assumptions, capped at 3,060 native sweeps with no retries. Its estimated
 ceiling is 154–172 minutes. The [durable launcher](ilvis0-prediction-covariance-20261012/README.md)
 now passes 39 worker, planning and native controls. Its separate freeze requires
-explicit approval of the finite allowance. Its approved 12-start comparison is now
-running; that allowance does not authorize the 41-stretch recovery study.
+explicit approval of the finite allowance. Its approved 12-start comparison has
+completed with 10 converged fits; its combined hierarchy remains unresolved.
+That allowance does not authorize the separate recovery study.
 
 | Order | Work | What can happen without new observed fits? | Deliverable |
 |---|---|---|---|
-| P0 | Recover the 41 numerically incomplete stretches after the active run | Freeze representative failures and prepare a bounded solver/budget comparison using existing controls and saved fits. | Qualified numerical method, then a separately budgeted recovery study on all 41. |
+| P0 | Recover the 41 numerically incomplete stretches | Test the separately prepared rectangular solver on the frozen representative failures and completed control. | Qualified numerical method, then a separately budgeted recovery study on all 41. |
 | Deferred | Explain integration timing and joint Z-axis calibration | Preserve completed clock tests, gain–bias grids and weak-direction audits. | Further physically justified clock/calibration tests after recovery. |
 | Deferred | Model residual dependence and assess prediction quality | Preserve covariance audits and the active comparison's results. | Calibrated predictive adequacy and uncertainty checks. |
 | Deferred | Isolate what the inertial measurements contribute | Preserve the planned channel and receiver-metric controls. | Measurement-contribution study with matched assumptions. |

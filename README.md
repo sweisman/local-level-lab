@@ -10,6 +10,13 @@ The data come from professional inertial equipment and GPS receivers aboard rese
 A simpler, stationary crowdsourced experiment using smaller, less expensive IMUs is secondary work.
 The code, selection criteria and analysis records are open for review.
 
+**The first completed study found 12 stretches that consistently favor globe
+geometry over the specified flat disc. No completed comparison favors flat.**
+This is a substantial empirical finding from professional airborne measurements.
+Another 41 eligible stretches have unfinished numerical comparisons; recovering
+them is the current priority. [Results and source tracks](docs/ilvis0-highspeed-segments-20261008/FINDINGS.md)
+are available for review.
+
 **The opportunity is to test Earth's curvature through the aircraft's measured motion.**
 Professional IMU recordings let anyone examine the gradual turning expected while
 crossing a curved surface, and compare competing explanations against the same data.
@@ -128,10 +135,14 @@ separate calibration and timing checks; the current short-stretch results do not
 
 ## Current status
 
-**The completed comparisons favor globe geometry with the standard background rotation
-term. None has a completed preference for the specified flat disc.** All 53 selected
-stretches have been analyzed. These results compare observable predictions; they do
-not identify the physical cause of the background rotation.
+**All 12 completed whole-stretch comparisons favor globe geometry under both
+processing assumptions; none favors the specified flat disc.** The consistent
+result is substantial on its own. The analysis attempted all 53 selected stretches;
+41 comparisons remain numerically unfinished.
+
+The 12 completed comparisons also favor the globe candidate containing the standard
+background rotation term over the zero-field globe. This separate result compares
+observable predictions; it does not identify the physical cause of that field.
 
 - All **232 retained files** have been screened: **53 qualifying stretches, totaling
   424.3 minutes**. Some instrument streams overlap; these are not 53 independent flights.
@@ -155,6 +166,12 @@ It measures whether a calculation finished, not whether its model matched the da
 A flat-disc calculation can converge while fitting the flight much worse than a globe.
 The 41 unknown results mean **the comparison could not be completed**, not that globe
 and flat received equal support. Missing calculations are not evidence for either shape.
+
+**A substantial finding is different from an established statistical significance
+level.** The study has not yet assigned a validated significance level. Some
+recordings share flight time or instruments, so twelve completed stretches are
+not automatically twelve independent replications. The remaining checks assess
+the finding's robustness and uncertainty; they do not erase the completed comparisons.
 
 The [saved-result diagnosis](docs/ilvis0-highspeed-segments-20261008/POST_RUN_REVIEW.md)
 found that most unresolved calculations exhausted their numerical allowance. The
@@ -233,10 +250,16 @@ now cover correlated errors, estimation from training data, nonlinear behavior a
 calibration limits. They verify the calculations and expose where simple uncertainty
 estimates fail. The [native integration checks](docs/ilvis0-native-uncertainty-controls-20261012/README.md)
 also verify all 27 calibration and processing derivatives against independently
-constructed paths. A matched archive prediction comparison remains the next development
-step. The [bounded comparison](docs/ilvis0-prediction-covariance-20261012/README.md)
-is now running after software qualification. Its results will be published separately;
-the existing findings remain unchanged.
+constructed paths. The [bounded archive prediction comparison](docs/ilvis0-prediction-covariance-20261012/RESULTS.md)
+has finished: 10 of 12 fits converged, leaving the combined comparison unresolved.
+The priority is now completing more of the 41 unfinished stretches. A
+[recovery qualification trial](docs/ilvis0-convergence-recovery-trial-20261012/README.md)
+has finished: all six completed-control fits passed, and eight of 15 unfinished
+primary fits were recovered. None of its three test stretches became fully resolved.
+A [numerical audit](docs/ilvis0-recovery-diagnosis-20261012/README.md) distinguishes
+early stopping from failed stability checks. A different bounded solver passed
+30 of 30 software controls and is [running in a separate archival trial](docs/ilvis0-rectangular-recovery-trial-20261012/README.md).
+The original findings remain unchanged.
 
 The remaining checks concern numerical completion, fits reaching allowed calibration
 limits, and the exact timing and corrections used in the logs. Published hardware

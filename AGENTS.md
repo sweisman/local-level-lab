@@ -194,13 +194,26 @@ individual errors under both clocks. Packaging with `ilvis0_residual_diagnostic.
 and rendering with its guide's `build_report.py` perform no predictions. Original convergence
 labels remain unchanged; clock checks at fixed parameters are not reoptimized fits.
 
-After the active covariance/prediction comparison finishes, prioritize recovery of
-the 41 unresolved stretches. Follow the roadmap's four steps: representative subset,
+Prioritize recovery of the 41 unresolved stretches. Follow the roadmap's four steps: representative subset,
 bounded solver/larger-budget qualification, objective/stopping/prediction repeatability,
 then all 41. Keep physical models and bounds fixed and preserve old results. Defer
 additional diagnostic expansion. Prepare costed freezes before requesting new finite
 allowances; the current comparison does not authorize recovery fits or budget expansion.
 Recovery subset and all-41 inventory: docs/ilvis0-convergence-recovery-preparation-20261012/.
+The completed continuation trial is docs/ilvis0-convergence-recovery-trial-20261012/,
+with runtime freeze at data/ilvis0-convergence-recovery-trial-20261012/ and launcher
+analysis/tests/ilvis0_recovery_worker.py. Its authorization permits 24 starts /
+14,448 sweeps, no retries, and two total numerical threads. It failed qualification;
+never resume or reuse its unused allowance. Preserve its source freeze and results.
+The saved-only diagnosis and software screen are docs/ilvis0-recovery-diagnosis-20261012/.
+The separate rectangular proposal is docs/ilvis0-rectangular-recovery-trial-20261012/,
+with active freeze at data/ilvis0-rectangular-recovery-trial-v2-20261012/ and launcher
+analysis/tests/ilvis0_rectangular_worker.py. Its recorded approval permits
+24 starts / 14,448 sweeps, no retries, and two total numerical threads. Check its
+shared lock, runtime metadata and unchanged freeze before any resume. Completed
+work cannot resume; publication is automatic. Preserve the zero-start earlier preparation;
+do not launch it. The candidate requires fresh stability, saves local Jacobians and
+uses the original physical assumptions. No all-41 rollout follows from software controls.
 Exact device characterization is lower-priority parallel work, not a prerequisite for modeling.
 The separate [rotation-field measurement](docs/ROTATION_FIELD.md) will infer the retained background vector
 before interpreting its cause, with aircraft motion, transport and calibration fitted jointly.

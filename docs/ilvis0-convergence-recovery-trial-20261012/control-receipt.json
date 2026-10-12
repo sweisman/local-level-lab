@@ -1,0 +1,27 @@
+{
+  "artifacts": {
+    "CONTROL.md": "077ed75bc185f8dce4a7929226ab92e1b8a355a8aa8cf727981c27dad03272f5",
+    "control-results.json": "4f7a06406fc5095c62132b6d62bd2f8abafaf322da3469f9082e5cb23fdb3548",
+    "test-output.txt": "153e6b9c94e1c9b55d7521fb15cc425ee4594308ef8bf9c5fe76d125e2e6b548"
+  },
+  "numerical_environment": {
+    "numpy": "2.5.3",
+    "python": "3.14.7",
+    "scipy": "1.18.1",
+    "thread_settings": {
+      "MKL_NUM_THREADS": "2",
+      "OMP_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    }
+  },
+  "sources": {
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_recovery_plan.py": "aa5238ba5f36c53259affe1e33294a1d9c5b9bb78ca019763ec9771ff2182edd",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_solver_recovery.py": "2d91cbfe29c98ef705662f03325acc8238d63c47d09d2134494cdca2fb526bab",
+    "/site/repo/local-level-lab/analysis/tests/ilvis0_recovery_worker.py": "0fea26de9f16245c4cc926ec6a68196c2d6fea9847f8558f628d5203dd9b2eea",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_recovery_plan.py": "edf2d1b02bc5a35b627fb814cc16196485c9e7f0c52eec43b12adba63c801391",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_recovery_worker.py": "f5cbe283db649bbecfd4d40aa18dc75cd4e193d099001d6a52dddff8ce02d786",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_solver_recovery.py": "9edf7b2a6f7fb746e8ac8b2bce419798b2cdf80eb20eeac2011482d84735e48d",
+    "/site/repo/local-level-lab/docs/ilvis0-convergence-recovery-trial-20261012/build_controls.py": "c00206a6d28efaabe1e101a07d49d6729dadb1aaf8da8c8a51c845b8cfff1d66"
+  },
+  "version": "ilvis0-recovery-controls-v1"
+}

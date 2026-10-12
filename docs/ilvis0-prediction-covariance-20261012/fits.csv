@@ -1,0 +1,13 @@
+identity,covariance,processing,model,status,fit_sweeps,diagnostic_sweeps,training_horizontal_rms_m,prediction_horizontal_rms_m,prediction_vertical_rms_m,rank
+570b37d23af5e245dd461051::h1_v3_tau10::bias1_unsubtracted::sphere_rotating,h1_v3_tau10,bias1_unsubtracted,sphere_rotating,unresolved,200,51,0.037809598303100864,3.3222195540080555,3.4766129526416805,26
+570b37d23af5e245dd461051::h1_v3_tau10::bias1_unsubtracted::sphere_still,h1_v3_tau10,bias1_unsubtracted,sphere_still,converged,190,37,20.240753910584168,328.1522597736252,0.9102101631852652,26
+570b37d23af5e245dd461051::h1_v3_tau10::bias1_unsubtracted::flat_still,h1_v3_tau10,bias1_unsubtracted,flat_still,converged,163,38,11.655051820724672,235.19620906719143,5.655034827045964,26
+570b37d23af5e245dd461051::h1_v3_tau10::bias1_profiled_removal::sphere_rotating,h1_v3_tau10,bias1_profiled_removal,sphere_rotating,converged,133,52,0.03777466956267104,3.3478376848944285,3.4749831468287784,27
+570b37d23af5e245dd461051::h1_v3_tau10::bias1_profiled_removal::sphere_still,h1_v3_tau10,bias1_profiled_removal,sphere_still,converged,198,38,20.24082665651423,328.13594147037884,0.9100871781805219,27
+570b37d23af5e245dd461051::h1_v3_tau10::bias1_profiled_removal::flat_still,h1_v3_tau10,bias1_profiled_removal,flat_still,unresolved,200,41,8.235453758317401,265.37541498897826,1.9455779229589074,27
+570b37d23af5e245dd461051::h1_v3_tau300::bias1_unsubtracted::sphere_rotating,h1_v3_tau300,bias1_unsubtracted,sphere_rotating,converged,105,50,0.04139773220605195,2.417531635330457,3.2312149628741342,26
+570b37d23af5e245dd461051::h1_v3_tau300::bias1_unsubtracted::sphere_still,h1_v3_tau300,bias1_unsubtracted,sphere_still,converged,87,37,29.35036826742493,160.56255559523672,1.9837686739912415,26
+570b37d23af5e245dd461051::h1_v3_tau300::bias1_unsubtracted::flat_still,h1_v3_tau300,bias1_unsubtracted,flat_still,converged,105,39,14.081905273663347,167.7408200809713,2.157248981009787,26
+570b37d23af5e245dd461051::h1_v3_tau300::bias1_profiled_removal::sphere_rotating,h1_v3_tau300,bias1_profiled_removal,sphere_rotating,converged,108,52,0.041481452435490174,2.3761601749878687,3.230762075239567,27
+570b37d23af5e245dd461051::h1_v3_tau300::bias1_profiled_removal::sphere_still,h1_v3_tau300,bias1_profiled_removal,sphere_still,converged,96,38,29.350363452139284,160.5614521557609,1.9837954960094646,27
+570b37d23af5e245dd461051::h1_v3_tau300::bias1_profiled_removal::flat_still,h1_v3_tau300,bias1_profiled_removal,flat_still,converged,186,40,8.689985165014003,255.3596249709506,3.0653821880988916,27

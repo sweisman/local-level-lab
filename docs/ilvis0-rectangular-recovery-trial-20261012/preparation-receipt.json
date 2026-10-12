@@ -1,0 +1,11 @@
+{
+  "artifacts": {
+    "manifest.json": "42dcbbee9c6cf88c9297c4669f665511c3028e37aba0854a379f9864fe475914",
+    "proposal.json": "fa864850bcbc9b0680f585feff41e5a1cfd34a0c32d9350c0ad894c1af531f40",
+    "selection.json.gz": "6bd6730e4091e7a6caae3b0fb508ff598b6ea2522284d505ee86699bda8d199a"
+  },
+  "authorization_recorded": false,
+  "manifest_sha256": "42dcbbee9c6cf88c9297c4669f665511c3028e37aba0854a379f9864fe475914",
+  "observed_fit_starts": 0,
+  "starts": 0
+}

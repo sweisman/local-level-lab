@@ -1,7 +1,8 @@
 # Focused NASA analysis plan after the October 11 review
 
-After the active covariance/prediction comparison finishes, numerical recovery of
-the 41 unfinished comparisons takes priority. Follow the four-step recovery sequence
+The covariance/prediction comparison has finished with 10 of 12 fits converged and
+an unresolved combined hierarchy. Numerical recovery of the 41 unfinished comparisons
+takes priority. Follow the four-step recovery sequence
 in the [roadmap](ANALYSIS_ROADMAP.md): representative subset, a qualified solver and
 larger finite budget, repeatability checks, then all 41. Additional diagnostics below
 are deferred; retain their completed evidence and do not make their expansion a
@@ -192,7 +193,8 @@ Training rank uses training predictions only. The [finite comparison preparation
 specifies 12 matched starts and at most 3,060 native sweeps, including all nonlinear
 diagnostics. The [durable runner](ilvis0-prediction-covariance-20261012/README.md)
 now passes 39 targeted controls and has its own launch freeze. A separate finite
-observed-data allowance was approved and the comparison is running. Preserve the original comparison.
+observed-data allowance was approved and the comparison has completed: 10 of 12
+fits converged, with the combined hierarchy unresolved. Preserve the original comparison.
 A separately versioned correlated-error objective remains a development alternative.
 Estimate its parameters on designated development or training observations and
 apply the same sealed covariance specification to all physical models. Compare direct

@@ -1,0 +1,35 @@
+{
+  "artifacts": {
+    "CONTROL.md": "df2026f5fd8fb91cc407a0877d4d7f04d6ad84f5f372901c7545a4d1e3968c34",
+    "control-results.json": "e91d4422d2842f7bc929939aa1d3d6ff1fbce0686f80d727cfdd97b00217f4e2",
+    "test-output.txt": "ba1e9fcf86f12d12595399612ce5bb60bcc708d42f94cd9a0bc143ae1cd5af7c"
+  },
+  "numerical_environment": {
+    "numpy": "2.5.3",
+    "python": "3.14.7",
+    "scipy": "1.18.1",
+    "thread_settings": {
+      "MKL_NUM_THREADS": "2",
+      "OMP_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    }
+  },
+  "sources": {
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_estimator_controls.py": "b1f086b5fec7a0b5fef60721839802291df40523f364c3d2fd5a02738f11c82e",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_recovery_diagnosis.py": "771c3a78b03b596988506191eec979af387114e05986cb13c0f737b46738e35a",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_recovery_screen.py": "82c61028b18f124d77059166914fed198059b27d5de3d95a1f8a44413d4bdb6d",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_solver_controls.py": "844d8c639e37295e73ca7bc31fefb58207e669470d3f5c345bc9760b26109ed4",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_solver_rectangular.py": "3eb2d9be4af3b54646a31d75dc0b45c3f83db2e22691c559cebb1169e286b9b2",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_solver_refinement.py": "442dd52979f4db0973a29c7553ab5b0f02ba90e847dbea2f7db99735ade1db0f",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_solver_screen.py": "d0fa448567b4736dce75fe53113233890beb0dd22cc925a62a6a20c32ef45038",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_solver_verified_stop.py": "037d5697b6a158160db9fbf1681b557a0f3bcc43bd888f48622965a219d91f28",
+    "/site/repo/local-level-lab/analysis/tests/ilvis0_rectangular_worker.py": "f5802b4d544de545ccbebefa592fc78d3d3256a9f397d55264730fbd44799be4",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_recovery_diagnosis.py": "76d84a0d5e8cc3c6cd3009a30636a61d68514e233f77862dcd5ac24d23c894a7",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_recovery_plan.py": "edf2d1b02bc5a35b627fb814cc16196485c9e7f0c52eec43b12adba63c801391",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_recovery_screen.py": "b330944848c3ed898b4967035a859b2c743cce2e869cf08d9191a102aa35d244",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_recovery_worker.py": "f5cbe283db649bbecfd4d40aa18dc75cd4e193d099001d6a52dddff8ce02d786",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_rectangular_worker.py": "9c97d9d2b2b29d0ce66b9fffa8929b66f6c7788195d60a87bf1067ac8478e043",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_solver_rectangular.py": "5378059b5ba53251946a1098d73c670841885b855296f27ce875389c03077e57",
+    "/site/repo/local-level-lab/docs/ilvis0-rectangular-recovery-trial-20261012/build_controls.py": "e06749235b0769acd297be7889e90b3fe6ded8cb259db2540b552c28b011871d"
+  }
+}

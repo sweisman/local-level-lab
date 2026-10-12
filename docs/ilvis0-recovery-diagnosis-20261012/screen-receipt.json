@@ -1,0 +1,18 @@
+{
+  "artifacts": {
+    "METHOD_SCREEN.md": "a21282823c96afc6a1f2b3d361d7642c8b37c2cf76d871285c82c85459282a1e",
+    "method-screen.json": "6e15d3b8ad04c59eeb6f536f1798f27a8e5fddf56f42a6279a55960449f691fa"
+  },
+  "native_predictions": 0,
+  "observed_fit_starts": 0,
+  "sources": {
+    "analysis/lll/ilvis0_recovery_screen.py": "82c61028b18f124d77059166914fed198059b27d5de3d95a1f8a44413d4bdb6d",
+    "analysis/lll/ilvis0_solver_controls.py": "844d8c639e37295e73ca7bc31fefb58207e669470d3f5c345bc9760b26109ed4",
+    "analysis/lll/ilvis0_solver_recovery.py": "2d91cbfe29c98ef705662f03325acc8238d63c47d09d2134494cdca2fb526bab",
+    "analysis/lll/ilvis0_solver_refinement.py": "442dd52979f4db0973a29c7553ab5b0f02ba90e847dbea2f7db99735ade1db0f",
+    "analysis/lll/ilvis0_solver_screen.py": "d0fa448567b4736dce75fe53113233890beb0dd22cc925a62a6a20c32ef45038",
+    "analysis/lll/ilvis0_solver_verified_stop.py": "037d5697b6a158160db9fbf1681b557a0f3bcc43bd888f48622965a219d91f28",
+    "analysis/tests/test_ilvis0_recovery_screen.py": "b330944848c3ed898b4967035a859b2c743cce2e869cf08d9191a102aa35d244",
+    "docs/ilvis0-recovery-diagnosis-20261012/screen_methods.py": "507dedc53899837e7177af1eb72ad06f30fab7fdec287853b25ff8b3b83665ba"
+  }
+}
