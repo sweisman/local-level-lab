@@ -125,6 +125,8 @@ flights or receiving separate calibration fits.
 
 The [public selection record](docs/ilvis0-highspeed-segments-20261008/ELIGIBILITY.md)
 links to every eligible interval and every file's screening outcome.
+The [complete table of all 53 stretches](docs/ilvis0-position-stability-trial-20261013/STRETCHES.md)
+lists source recordings, dates, durations, speeds, courses, latitudes and current dispositions.
 See the [methodology](docs/METHODOLOGY.md) for the reasoning and the
 [archive guide](docs/ILVIS0.md) for instruments, decoding and remaining uncertainties.
 

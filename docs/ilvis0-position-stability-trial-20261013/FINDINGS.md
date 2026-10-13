@@ -14,7 +14,7 @@ These are numerical model preferences. Statistical significance and uncertainty 
 
 The three stretches add **31.65 minutes** of completed comparisons. One is IMU8 and two are IMU21, so completed findings now include both recorded types. These codes identify instrument/data configurations, not unique unit serial numbers or different experiment protocols. Their conversion scales are checked separately; the selection and physical model comparisons are the same.
 
-The two October 20 recordings overlap in time and must not be counted as two independent flights. The fifteen resolved stretches contain 15 distinct recording hashes across 10 dates, not fifteen established independent replications. [The current inventory](current-stretches.csv) preserves exact sources, hashes, intervals, speeds and result origins.
+The two October 20 recordings overlap in time and must not be counted as two independent flights. The fifteen resolved stretches contain 15 distinct recording hashes across 10 dates, not fifteen established independent replications. [All 53 stretches](STRETCHES.md) list current dispositions, courses and latitudes. [The current inventory](current-stretches.csv) preserves exact sources, hashes, intervals, speeds and result origins.
 
 ## What changed in the calculation
 
