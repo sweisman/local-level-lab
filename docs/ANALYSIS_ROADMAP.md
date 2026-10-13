@@ -120,6 +120,16 @@ preparation; the qualified trial now supports the separately frozen
 [remaining-stretch recovery](ilvis0-position-recovery-20261013/README.md).
 Each newly complete stretch must also pass its repeat check and fresh controls.
 
+After this run completes, the next priority is **overlapping flight legs recorded by
+two instruments when one comparison finishes and the other does not**. Start with
+the 24 October 2009 IMU8/IMU21 leg and the 26 September / 7 October 2015
+loaner/DMS legs. Use the same shared UTC interval, compare per-axis raw and
+motion-context rate differences, and inspect model-specific costs and stopping reasons.
+Keep different recorders separate; an unfinished result is not an opposing shape finding.
+The [analytics export](ilvis0-position-stability-trial-20261013/ANALYTICS.md) records
+these pairs and descriptive measurements without new fits. A subsequent numerical
+comparison needs its own finite freeze; the active recovery allowance stays unchanged.
+
 Minimum solver qualification supports this recovery sequence. Additional clock,
 calibration, covariance, measurement-contribution and independent-flight studies
 can be revisited afterward; they are not prerequisites for attempting numerical

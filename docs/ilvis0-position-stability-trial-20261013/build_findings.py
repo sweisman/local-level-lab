@@ -76,6 +76,12 @@ def stretch_report(rows):
     text += '[Findings and recovery checks](FINDINGS.md) explain the comparisons. '
     text += '[The downloadable inventory](current-stretches.csv) includes exact source hashes, '
     text += 'intervals, course, latitude and result origins.\n\n'
+    text += 'For deeper analysis, download the [comprehensive metadata CSV](stretch-analytics.csv). '
+    text += 'It adds raw gyro means, explicitly labeled motion-correction diagnostics, north/east '
+    text += 'velocities, transport predictions, all six saved model costs and stopping reasons, '
+    text += 'and shared-leg IDs. [Definitions and limitations](ANALYTICS.md), '
+    text += '[fit history](fit-analytics.csv) and [matched recorder differences](shared-leg-pairs.csv) '
+    text += 'keep those quantities and their provenance separate.\n\n'
     text += '| Source recording / stretch ID | UTC interval | IMU type | Minutes | Ground speed min / median (km/h) | Mean course | Latitude mean (range), ° | Track (km) | Current disposition |\n'
     text += '|---|---|---:|---:|---:|---:|---:|---:|---|\n'
     directions = ('N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW')

@@ -10,6 +10,8 @@ Selection requires at least four continuous minutes, every supported receiver gr
 
 All resolved stretches also prefer the specified background-field globe over the zero-field globe under both processing assumptions. This does not establish the field's cause or distinguish solar from sidereal rate. [Findings and recovery checks](FINDINGS.md) explain the comparisons. [The downloadable inventory](current-stretches.csv) includes exact source hashes, intervals, course, latitude and result origins.
 
+For deeper analysis, download the [comprehensive metadata CSV](stretch-analytics.csv). It adds raw gyro means, explicitly labeled motion-correction diagnostics, north/east velocities, transport predictions, all six saved model costs and stopping reasons, and shared-leg IDs. [Definitions and limitations](ANALYTICS.md), [fit history](fit-analytics.csv) and [matched recorder differences](shared-leg-pairs.csv) keep those quantities and their provenance separate.
+
 | Source recording / stretch ID | UTC interval | IMU type | Minutes | Ground speed min / median (km/h) | Mean course | Latitude mean (range), ° | Track (km) | Current disposition |
 |---|---|---:|---:|---:|---:|---:|---:|---|
 | `ILVIS0_applanix_55124_Ames_610-20Oct09_20Oct09.013`<br>`034547522e2d98947b598466` | 2009-10-20T13:23:57.047162Z<br>to 2009-10-20T13:34:45Z | 21 | 10.80 | 837.6 / 848.7 | 203.6° SW | -62.95 (-63.57 to -62.32) | 151.8 | Globe preferred |

@@ -266,6 +266,12 @@ failed; continue only unstarted identities. Never resume completed work, edit ac
 dependencies, select favorable costs or replace failed repeats. Automatic publication
 and --package-only perform no fits. Each recovery comparison needs its scheduled
 repeat and fresh controls; preserve original evidence separately.
+After the current recovery completes, prioritize overlapping shared flight legs with
+mismatched numerical completion, beginning with the three marked recorder pairs in
+docs/ilvis0-position-stability-trial-20261013/shared-leg-pairs.csv. Compare common
+UTC intervals; preserve each instrument separately and distinguish candidate
+same-track grouping from verified aircraft/installation identity. Descriptive gyro
+summaries and fused-attitude correction diagnostics do not relabel scientific results.
 The separate [rotation-field measurement](docs/ROTATION_FIELD.md) will infer the retained background vector
 before interpreting its cause, with aircraft motion, transport and calibration fitted jointly.
 The proposal authorizes no new fits or campaign budget. Do not fix or subtract the standard
