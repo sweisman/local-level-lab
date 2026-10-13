@@ -1,0 +1,21 @@
+{
+  "exit_code": 0,
+  "known_answer_passes": 40,
+  "matrix_path": "/site/repo/local-level-lab/docs/ilvis0-boundary-controls-20261012/controls.json",
+  "matrix_sha256": "89515999fc5ddf38b33d684209e5ed27348c7c63fa94e69c8afb858a65f1b6ce",
+  "numerical_environment": {
+    "numpy": "2.5.3",
+    "python": "3.14.7",
+    "scipy": "1.18.1",
+    "thread_settings": {
+      "MKL_NUM_THREADS": "2",
+      "OMP_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    }
+  },
+  "observed_fit_starts": 0,
+  "original_records_decoded": 0,
+  "scientific_decision": "abstain",
+  "solver_version": "ilvis0-boundary-bvls-v1",
+  "version": "ilvis0-boundary-worker-controls-v1"
+}

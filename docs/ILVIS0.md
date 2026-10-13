@@ -116,6 +116,14 @@ is deferred. All three models are fitted together, with shape interpreted first 
 reported only after a resolved globe result. Reports state which model fits better;
 a validated statistical significance level has not yet been assigned.
 
+The [qualified recovery findings](ilvis0-position-stability-trial-20261013/FINDINGS.md)
+add three completed globe preferences to the original twelve: **15 globe, zero flat,
+38 unresolved**. One recovered stretch is IMU8 and two are IMU21. These are recorded
+instrument/data configurations, not unique serial numbers or separate experimental
+protocols. Their units and conversion scales are checked separately; both follow
+the same selection and model-comparison rules. All fifteen resolved stretches also
+favor the specified background-field globe, without identifying that field's cause.
+
 The supplied 14 April 2009 ATM sample now passes an empirical physical-decoder check.
 Its six signed integers represent velocity X/Y/Z followed by angle X/Y/Z. The recovered
 scales agree with `2^-14` metres/second per count and `2^-18` radians per count. The check
@@ -178,8 +186,10 @@ their bytes. Qualifying IMU windows preserve raw integers and physical values.
 
 ## Commands and recovery
 
-Use the existing Python environment. Run from the repository root; keep at most two total
-CPU threads. These commands are ordinary acquisition/decoding, not simulation campaigns.
+Use the existing Python environment. Run from the repository root. Future work shares
+a four-thread total budget through the [numerical launch guard](DEVELOPMENT.md);
+historical freezes and the active recovery keep their recorded two-thread settings.
+These commands are ordinary acquisition/decoding, not simulation campaigns.
 
 ```sh
 env PYTHONPATH=analysis OPENBLAS_NUM_THREADS=2 OMP_NUM_THREADS=2 MKL_NUM_THREADS=2 /home/sweisman/venv/bin/python -m lll.ilvis0_acquisition catalog --output /tmp/ilvis0-catalog --quiet

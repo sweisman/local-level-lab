@@ -1,0 +1,29 @@
+{
+  "artifacts": {
+    "CONTROL.md": "7f5ed495166ca892d6640d385ddcf47765d0dc32ea88d2d034385789ed79708f",
+    "control-results.json": "a2ea4256c7236277d9c4decee795f7520ce2b87a0b673e8384022246ad50eee0",
+    "controls.xml": "83d3c5838a60110e6eab491979c22beaaa817971d08b6df7ed6b39dbd255d23b",
+    "test-output.txt": "f1075c24b762552210a0b578dd8ae867b3f793540ed00b5dc2a1b5d0a1f95a60"
+  },
+  "numerical_environment": {
+    "numpy": "2.5.3",
+    "python": "3.14.7",
+    "scipy": "1.18.1",
+    "thread_settings": {
+      "MKL_NUM_THREADS": "2",
+      "OMP_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    }
+  },
+  "sources": {
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_solver_position.py": "cd41ec46a11b75894fb93c09688fd8b8b39ebbf01b887b6ee3b2f969c86a559c",
+    "/site/repo/local-level-lab/analysis/tests/ilvis0_position_stability_worker.py": "b3319c0390e63e179d565a2d4be38f7f2bdc7599116bb785e12a25d4da6d5c26",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_boundary_worker.py": "cd614c4633032acdb671160ea749f4c9e1611808980ebbd154df6f39bf87e56b",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_position_stability_worker.py": "0be1d360dafeac8d606271e03cd22b805916f21abd33e082c6ee3ac549deacc0",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_recovery_plan.py": "edf2d1b02bc5a35b627fb814cc16196485c9e7f0c52eec43b12adba63c801391",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_recovery_worker.py": "f5cbe283db649bbecfd4d40aa18dc75cd4e193d099001d6a52dddff8ce02d786",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_solver_boundary.py": "33e1c39e6c510ae6fc1d72b89f3876e74bdf45bde686eb8ae2a07ab7d29d51b7",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_solver_position.py": "da5989668f7ce8389a4092f83c2337f64df5e130a22af27ef7c62cd258b61abb",
+    "/site/repo/local-level-lab/docs/ilvis0-position-stability-trial-20261013/qualify_position_stability.py": "05dccf1de67a924200fe61eb6bbbb8f17b71aa6650bfa4a7a4f10ed099a96de8"
+  }
+}

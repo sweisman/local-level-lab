@@ -1,0 +1,4178 @@
+{
+  "archived_passed": 8,
+  "counts": {
+    "budget_exhausted": 3,
+    "early_stability_failure": 3,
+    "early_stationarity_failure": 10,
+    "passed": 8
+  },
+  "early_count": 13,
+  "early_with_roundoff_bound": 11,
+  "local_original_stationary": 12,
+  "local_snapped_stationary": 16,
+  "maximum_affine_evaluations": 200,
+  "median_failed_condition": 95130782.56104149,
+  "native_predictions": 0,
+  "observed_fit_starts": 0,
+  "original_labels_changed": false,
+  "previous_archived_passed": 15,
+  "rows": [
+    {
+      "accepted_callbacks": 1,
+      "callback_probe_disagreement": false,
+      "case_id": "bias1_profiled_removal",
+      "converged": false,
+      "cost": 10978.413789398403,
+      "dominant_bound_distance": 0.11166031429099821,
+      "dominant_normalized_value": 0.8883396857090018,
+      "dominant_parameter": "gravity_delta",
+      "evaluations": 3,
+      "failure_class": "early_stationarity_failure",
+      "identity": "034547522e2d98947b598466::bias1_profiled_removal::flat_still::primary",
+      "jacobian_condition_ratio": 127418747.1990509,
+      "last_callback_cost": 10978.413789398403,
+      "last_optimizer_step": 5.63738590478358e-16,
+      "local": {
+        "column_normalized_condition": 5495025.386612572,
+        "column_norms": {
+          "accel_bias_x": 25141.05609564064,
+          "accel_bias_y": 21584.410110974226,
+          "accel_bias_z": 12810.6924196948,
+          "accel_gain_x": 2864.6716286310852,
+          "accel_gain_y": 2547.6445654955605,
+          "accel_gain_z": 75724.05438990086,
+          "attitude_x": 235236.60889148302,
+          "attitude_y": 68910.56748950589,
+          "attitude_z": 72225.18804796984,
+          "earth_removal": 941.7315070584333,
+          "gravity_delta": 2499.761801677742,
+          "gyro_bias_x": 1027.0532296029091,
+          "gyro_bias_y": 1259.9400813038785,
+          "gyro_bias_z": 8.854853859775607,
+          "gyro_gain_x": 149.69468784442017,
+          "gyro_gain_y": 79.78146755287356,
+          "gyro_gain_z": 0.7602399097469308,
+          "lever_x": 6.856714914973013,
+          "lever_y": 5.753381330382769,
+          "lever_z": 3.0281864357486326,
+          "position_x": 88.00317324240744,
+          "position_y": 15.222000820708862,
+          "position_z": 29.22915839248962,
+          "time_offset": 30.902417467936385,
+          "velocity_x": 9083.499996187289,
+          "velocity_y": 1528.4096774624638,
+          "velocity_z": 3018.4959395073415
+        },
+        "columns": 27,
+        "condition": 127418747.19905084,
+        "correlated_pairs": [
+          {
+            "cosine": -0.9999999996073397,
+            "first": "accel_bias_z",
+            "second": "accel_gain_z"
+          },
+          {
+            "cosine": 0.9999955822250288,
+            "first": "accel_bias_y",
+            "second": "accel_gain_y"
+          },
+          {
+            "cosine": 0.9998831273140939,
+            "first": "accel_bias_x",
+            "second": "accel_gain_x"
+          },
+          {
+            "cosine": -0.9971317032009424,
+            "first": "gyro_bias_x",
+            "second": "gyro_gain_x"
+          },
+          {
+            "cosine": 0.9970742145419618,
+            "first": "attitude_z",
+            "second": "gyro_gain_x"
+          }
+        ],
+        "dominant_gradient_parameter": "gravity_delta",
+        "dominant_gradient_ratio": 5.150513454782356,
+        "native_predictions": 0,
+        "near_outward_distances": {
+          "gyro_bias_x": 1.1102230246251565e-16,
+          "gyro_bias_z": 1.1102230246251565e-16,
+          "gyro_gain_x": 1.1102230246251565e-16,
+          "gyro_gain_y": 1.1102230246251565e-16,
+          "gyro_gain_z": 1.1102230246251565e-16,
+          "lever_x": 1.1102230246251565e-16,
+          "lever_y": 1.1102230246251565e-16,
+          "lever_z": 1.1102230246251565e-16,
+          "time_offset": 1.1102230246251565e-16
+        },
+        "near_outward_parameters": [
+          "gyro_bias_x",
+          "gyro_bias_z",
+          "gyro_gain_x",
+          "gyro_gain_y",
+          "gyro_gain_z",
+          "lever_x",
+          "lever_y",
+          "lever_z",
+          "time_offset"
+        ],
+        "observed_fit_starts": 0,
+        "original": {
+          "cost": 10978.413789398392,
+          "displacement_from_saved": 1.2799864381634288e-15,
+          "evaluations": 2,
+          "last_parameter_step": 1.2799864381634288e-15,
+          "message": "`xtol` termination condition is satisfied.",
+          "solver_reported_success": true,
+          "stationarity": 0.0005150513446133796,
+          "stationarity_passed": false
+        },
+        "qualifies_archival_fit": false,
+        "rank": 27,
+        "rank_cutoff": 1.0982467473394963e-07,
+        "reference": {
+          "cost": 10977.81212359273,
+          "normalized_step": 0.4076710419464398,
+          "relative_cost_change": 5.4804438711665004e-05,
+          "relative_residual_step": 0.0015399669660188038,
+          "success": true
+        },
+        "rows": 1944,
+        "snap_maximum_change": 1.1102230246251565e-16,
+        "snapped": {
+          "cost": 10977.81212359273,
+          "displacement_from_saved": 0.40767104194643905,
+          "evaluations": 13,
+          "last_parameter_step": 2.4688738836261024e-15,
+          "message": "`xtol` termination condition is satisfied.",
+          "solver_reported_success": true,
+          "stationarity": 3.4468544966214117e-14,
+          "stationarity_passed": true
+        },
+        "version": "ilvis0-saved-rectangular-diagnosis-v1",
+        "weakest_direction": [
+          {
+            "coefficient": 0.904370459481522,
+            "parameter": "gravity_delta",
+            "weight": 0.8178859279828191
+          },
+          {
+            "coefficient": 0.23317192616586666,
+            "parameter": "gyro_gain_x",
+            "weight": 0.054369147151900374
+          },
+          {
+            "coefficient": 0.22455369102489833,
+            "parameter": "gyro_gain_y",
+            "weight": 0.05042436015290551
+          },
+          {
+            "coefficient": 0.20740068387804853,
+            "parameter": "gyro_gain_z",
+            "weight": 0.04301504367308222
+          },
+          {
+            "coefficient": 0.17761258383658,
+            "parameter": "accel_bias_z",
+            "weight": 0.03154622993710616
+          }
+        ]
+      },
+      "maximum_evaluations": 600,
+      "model": "flat_still",
+      "predicted_cost_change_ratio": null,
+      "predicted_residual_step_ratio": null,
+      "previous_converged": true,
+      "probe_reason": "not_stationary",
+      "reference_cost": 10978.413789419112,
+      "relative_cost_change_from_reference": -1.886355784779118e-12,
+      "role": "primary",
+      "scientific_decision": "abstain",
+      "segment_id": "034547522e2d98947b598466",
+      "stability_verified": false,
+      "stable_accepted_iterations": 0,
+      "stationarity_passed": false,
+      "stationarity_ratio": 5.150513454782347,
+      "stopping_message": "`xtol` termination condition is satisfied.",
+      "task_role": "recovery"
+    },
+    {
+      "accepted_callbacks": 596,
+      "callback_probe_disagreement": false,
+      "case_id": "bias1_profiled_removal",
+      "converged": false,
+      "cost": 11149.318852249035,
+      "dominant_bound_distance": 0.907382557939347,
+      "dominant_normalized_value": 0.09261744206065299,
+      "dominant_parameter": "position_z",
+      "evaluations": 598,
+      "failure_class": "budget_exhausted",
+      "identity": "034547522e2d98947b598466::bias1_profiled_removal::flat_still::repeat",
+      "jacobian_condition_ratio": 124317246.38263774,
+      "last_callback_cost": 11149.318852249035,
+      "last_optimizer_step": 7.013356128652219e-07,
+      "local": {
+        "column_normalized_condition": 5373894.662513298,
+        "column_norms": {
+          "accel_bias_x": 25184.34615267031,
+          "accel_bias_y": 21552.896191414406,
+          "accel_bias_z": 12806.399150830595,
+          "accel_gain_x": 2845.6900330544545,
+          "accel_gain_y": 2535.803574827794,
+          "accel_gain_z": 75524.73720188274,
+          "attitude_x": 234582.10527322724,
+          "attitude_y": 68929.40335844965,
+          "attitude_z": 71646.39316845844,
+          "earth_removal": 939.5246565602046,
+          "gravity_delta": 2499.748227465052,
+          "gyro_bias_x": 1022.2918517327491,
+          "gyro_bias_y": 1259.1388571554292,
+          "gyro_bias_z": 8.723989041968668,
+          "gyro_gain_x": 148.99542721484963,
+          "gyro_gain_y": 79.99332327635408,
+          "gyro_gain_z": 0.7637949539288056,
+          "lever_x": 6.868146518803186,
+          "lever_y": 5.739706417858666,
+          "lever_z": 3.0277551918687324,
+          "position_x": 88.00317629209772,
+          "position_y": 15.222000820708862,
+          "position_z": 29.22915839248962,
+          "time_offset": 30.901207078738107,
+          "velocity_x": 9083.487988265748,
+          "velocity_y": 1528.4066451662534,
+          "velocity_z": 3018.4917822846273
+        },
+        "columns": 27,
+        "condition": 124317246.38263771,
+        "correlated_pairs": [
+          {
+            "cosine": -0.999999999605856,
+            "first": "accel_bias_z",
+            "second": "accel_gain_z"
+          },
+          {
+            "cosine": 0.9999955463177568,
+            "first": "accel_bias_y",
+            "second": "accel_gain_y"
+          },
+          {
+            "cosine": 0.9998811737487634,
+            "first": "accel_bias_x",
+            "second": "accel_gain_x"
+          },
+          {
+            "cosine": -0.9971318295382667,
+            "first": "gyro_bias_x",
+            "second": "gyro_gain_x"
+          },
+          {
+            "cosine": 0.9970755320944165,
+            "first": "attitude_z",
+            "second": "gyro_gain_x"
+          }
+        ],
+        "dominant_gradient_parameter": "position_z",
+        "dominant_gradient_ratio": 481.715105488804,
+        "native_predictions": 0,
+        "near_outward_distances": {},
+        "near_outward_parameters": [],
+        "observed_fit_starts": 0,
+        "original": {
+          "cost": 11145.11749092631,
+          "displacement_from_saved": 0.00013064362410981388,
+          "evaluations": 200,
+          "last_parameter_step": 1.0827588344686892e-06,
+          "message": "The maximum number of function evaluations is exceeded.",
+          "solver_reported_success": false,
+          "stationarity": 0.04759859150091841,
+          "stationarity_passed": false
+        },
+        "qualifies_archival_fit": false,
+        "rank": 27,
+        "rank_cutoff": 1.0950281457083134e-07,
+        "reference": {
+          "cost": 10977.851025370113,
+          "normalized_step": 0.6580057162851802,
+          "relative_cost_change": 0.015379219946188263,
+          "relative_residual_step": 0.1171144750564387,
+          "success": true
+        },
+        "rows": 1944,
+        "snap_maximum_change": 0.0,
+        "snapped": {
+          "cost": 11145.11749092631,
+          "displacement_from_saved": 0.00013064362410981388,
+          "evaluations": 200,
+          "last_parameter_step": 1.0827588344686892e-06,
+          "message": "The maximum number of function evaluations is exceeded.",
+          "solver_reported_success": false,
+          "stationarity": 0.04759859150091841,
+          "stationarity_passed": false
+        },
+        "version": "ilvis0-saved-rectangular-diagnosis-v1",
+        "weakest_direction": [
+          {
+            "coefficient": 0.9037359149579539,
+            "parameter": "gravity_delta",
+            "weight": 0.8167386039848901
+          },
+          {
+            "coefficient": 0.23353215535034985,
+            "parameter": "gyro_gain_x",
+            "weight": 0.054537267582579936
+          },
+          {
+            "coefficient": 0.22493728639214178,
+            "parameter": "gyro_gain_y",
+            "weight": 0.05059678280946041
+          },
+          {
+            "coefficient": 0.20930946366803221,
+            "parameter": "gyro_gain_z",
+            "weight": 0.0438104515809993
+          },
+          {
+            "coefficient": 0.1775821359615725,
+            "parameter": "accel_bias_z",
+            "weight": 0.031535415012674414
+          }
+        ]
+      },
+      "maximum_evaluations": 600,
+      "model": "flat_still",
+      "predicted_cost_change_ratio": null,
+      "predicted_residual_step_ratio": null,
+      "previous_converged": false,
+      "probe_reason": "not_stationary",
+      "reference_cost": 10978.413789419112,
+      "relative_cost_change_from_reference": 0.01556737303841102,
+      "role": "repeat",
+      "scientific_decision": "abstain",
+      "segment_id": "034547522e2d98947b598466",
+      "stability_verified": false,
+      "stable_accepted_iterations": 0,
+      "stationarity_passed": false,
+      "stationarity_ratio": 481.71510548880354,
+      "stopping_message": "The maximum number of function evaluations is exceeded.",
+      "task_role": "repeatability"
+    },
+    {
+      "accepted_callbacks": 90,
+      "callback_probe_disagreement": false,
+      "case_id": "bias1_profiled_removal",
+      "converged": false,
+      "cost": 3.402669069047597,
+      "dominant_bound_distance": 0.0,
+      "dominant_normalized_value": -1.0,
+      "dominant_parameter": "gravity_delta",
+      "evaluations": 97,
+      "failure_class": "early_stationarity_failure",
+      "identity": "034547522e2d98947b598466::bias1_profiled_removal::sphere_rotating::primary",
+      "jacobian_condition_ratio": 112327171.37386276,
+      "last_callback_cost": 3.402669069047597,
+      "last_optimizer_step": 1.5823356837330356e-11,
+      "local": {
+        "column_normalized_condition": 4286219.743183389,
+        "column_norms": {
+          "accel_bias_x": 35588.263960357646,
+          "accel_bias_y": 32910.15027549022,
+          "accel_bias_z": 12519.253976529155,
+          "accel_gain_x": 2178.5269642590442,
+          "accel_gain_y": 591.6311231889799,
+          "accel_gain_z": 73293.67135364765,
+          "attitude_x": 241913.32207662406,
+          "attitude_y": 241931.51044144356,
+          "attitude_z": 63898.16123788149,
+          "earth_removal": 5218.999238018109,
+          "gravity_delta": 2501.2709188433405,
+          "gyro_bias_x": 1534.929498741433,
+          "gyro_bias_y": 1519.2116090115005,
+          "gyro_bias_z": 24.19472130154644,
+          "gyro_gain_x": 261.6570706533703,
+          "gyro_gain_y": 85.6583670002563,
+          "gyro_gain_z": 1.7058185951853682,
+          "lever_x": 8.776863030129718,
+          "lever_y": 8.785462595519844,
+          "lever_z": 3.1235752704189146,
+          "position_x": 87.68039334309975,
+          "position_y": 86.66240467478012,
+          "position_z": 29.267531010441353,
+          "time_offset": 30.86684431804293,
+          "velocity_x": 8258.927344994181,
+          "velocity_y": 8260.460747394985,
+          "velocity_z": 3025.011990162738
+        },
+        "columns": 27,
+        "condition": 112327171.3738627,
+        "correlated_pairs": [
+          {
+            "cosine": -0.9999999996184179,
+            "first": "accel_bias_z",
+            "second": "accel_gain_z"
+          },
+          {
+            "cosine": -0.9997426623272014,
+            "first": "accel_bias_y",
+            "second": "accel_gain_y"
+          },
+          {
+            "cosine": 0.9995010165789948,
+            "first": "accel_gain_z",
+            "second": "gravity_delta"
+          },
+          {
+            "cosine": -0.9995010134861987,
+            "first": "accel_bias_z",
+            "second": "gravity_delta"
+          },
+          {
+            "cosine": 0.9993923926711663,
+            "first": "accel_bias_x",
+            "second": "accel_gain_x"
+          }
+        ],
+        "dominant_gradient_parameter": "gravity_delta",
+        "dominant_gradient_ratio": 3.393318291811687,
+        "native_predictions": 0,
+        "near_outward_distances": {},
+        "near_outward_parameters": [],
+        "observed_fit_starts": 0,
+        "original": {
+          "cost": 3.402668753226581,
+          "displacement_from_saved": 3.063285236895206e-09,
+          "evaluations": 5,
+          "last_parameter_step": 1.2117995462348463e-11,
+          "message": "`xtol` termination condition is satisfied.",
+          "solver_reported_success": true,
+          "stationarity": 0.00022298699926292997,
+          "stationarity_passed": false
+        },
+        "qualifies_archival_fit": false,
+        "rank": 27,
+        "rank_cutoff": 1.0902557703551752e-07,
+        "reference": {
+          "cost": 3.3920080225616407,
+          "normalized_step": 0.38852787561067254,
+          "relative_cost_change": 0.0031331423272790504,
+          "relative_residual_step": 0.05597447924382907,
+          "success": true
+        },
+        "rows": 1944,
+        "snap_maximum_change": 0.0,
+        "snapped": {
+          "cost": 3.402668753226581,
+          "displacement_from_saved": 3.063285236895206e-09,
+          "evaluations": 5,
+          "last_parameter_step": 1.2117995462348463e-11,
+          "message": "`xtol` termination condition is satisfied.",
+          "solver_reported_success": true,
+          "stationarity": 0.00022298699926292997,
+          "stationarity_passed": false
+        },
+        "version": "ilvis0-saved-rectangular-diagnosis-v1",
+        "weakest_direction": [
+          {
+            "coefficient": 0.9007468242810274,
+            "parameter": "gravity_delta",
+            "weight": 0.811344841452356
+          },
+          {
+            "coefficient": 0.22986515633576213,
+            "parameter": "gyro_gain_y",
+            "weight": 0.052837990097264365
+          },
+          {
+            "coefficient": 0.22923343967908116,
+            "parameter": "gyro_gain_x",
+            "weight": 0.052547969867102945
+          },
+          {
+            "coefficient": 0.2200504712323268,
+            "parameter": "gyro_gain_z",
+            "weight": 0.04842220988956908
+          },
+          {
+            "coefficient": 0.17986119167230666,
+            "parameter": "accel_bias_z",
+            "weight": 0.03235004826978223
+          }
+        ]
+      },
+      "maximum_evaluations": 600,
+      "model": "sphere_rotating",
+      "predicted_cost_change_ratio": null,
+      "predicted_residual_step_ratio": null,
+      "previous_converged": false,
+      "probe_reason": "not_stationary",
+      "reference_cost": 3.40875220176689,
+      "relative_cost_change_from_reference": -0.0017845629013866263,
+      "role": "primary",
+      "scientific_decision": "abstain",
+      "segment_id": "034547522e2d98947b598466",
+      "stability_verified": false,
+      "stable_accepted_iterations": 0,
+      "stationarity_passed": false,
+      "stationarity_ratio": 3.393318291811177,
+      "stopping_message": "`xtol` termination condition is satisfied.",
+      "task_role": "recovery"
+    },
+    {
+      "accepted_callbacks": 1,
+      "callback_probe_disagreement": false,
+      "case_id": "bias1_profiled_removal",
+      "converged": false,
+      "cost": 2854.477699454461,
+      "dominant_bound_distance": 0.752806205296791,
+      "dominant_normalized_value": 0.247193794703209,
+      "dominant_parameter": "attitude_z",
+      "evaluations": 3,
+      "failure_class": "early_stationarity_failure",
+      "identity": "034547522e2d98947b598466::bias1_profiled_removal::sphere_still::primary",
+      "jacobian_condition_ratio": 102665938.65447193,
+      "last_callback_cost": 2854.477699454461,
+      "last_optimizer_step": 9.142297534596737e-15,
+      "local": {
+        "column_normalized_condition": 3767604.8707673396,
+        "column_norms": {
+          "accel_bias_x": 30892.377755917958,
+          "accel_bias_y": 30902.279712297994,
+          "accel_bias_z": 12533.422415603784,
+          "accel_gain_x": 3568.5894391701713,
+          "accel_gain_y": 3646.087374364237,
+          "accel_gain_z": 73538.53443448471,
+          "attitude_x": 236634.0900184266,
+          "attitude_y": 236642.15704118,
+          "attitude_z": 72559.11444026527,
+          "earth_removal": 5223.181901394992,
+          "gravity_delta": 2502.253639727608,
+          "gyro_bias_x": 1498.8271414096557,
+          "gyro_bias_y": 1560.2948221350885,
+          "gyro_bias_z": 45.237895139967705,
+          "gyro_gain_x": 218.11636011173974,
+          "gyro_gain_y": 118.2195171186518,
+          "gyro_gain_z": 2.2956906488647406,
+          "lever_x": 8.781222780789046,
+          "lever_y": 8.78875909370273,
+          "lever_z": 3.12174275456579,
+          "position_x": 87.68188709116647,
+          "position_y": 86.66240467478012,
+          "position_z": 29.26752358354574,
+          "time_offset": 30.903817557910457,
+          "velocity_x": 8258.914324271094,
+          "velocity_y": 8261.140688668049,
+          "velocity_z": 3025.043825572614
+        },
+        "columns": 27,
+        "condition": 102665938.654472,
+        "correlated_pairs": [
+          {
+            "cosine": -0.9999999996223616,
+            "first": "accel_bias_z",
+            "second": "accel_gain_z"
+          },
+          {
+            "cosine": 0.9999947414445054,
+            "first": "accel_bias_y",
+            "second": "accel_gain_y"
+          },
+          {
+            "cosine": 0.9998714870651689,
+            "first": "accel_bias_x",
+            "second": "accel_gain_x"
+          },
+          {
+            "cosine": -0.9968639911383524,
+            "first": "gyro_bias_x",
+            "second": "gyro_gain_x"
+          },
+          {
+            "cosine": -0.9968212992404687,
+            "first": "accel_bias_z",
+            "second": "gravity_delta"
+          }
+        ],
+        "dominant_gradient_parameter": "attitude_z",
+        "dominant_gradient_ratio": 72.1295619697387,
+        "native_predictions": 0,
+        "near_outward_distances": {
+          "gyro_gain_x": 1.1102230246251565e-16,
+          "lever_x": 2.2648549702353193e-14,
+          "lever_z": 1.1102230246251565e-16
+        },
+        "near_outward_parameters": [
+          "gyro_gain_x",
+          "lever_x",
+          "lever_z"
+        ],
+        "observed_fit_starts": 0,
+        "original": {
+          "cost": 2854.311134813716,
+          "displacement_from_saved": 0.0020092728449871596,
+          "evaluations": 200,
+          "last_parameter_step": 6.531142911368387e-09,
+          "message": "The maximum number of function evaluations is exceeded.",
+          "solver_reported_success": false,
+          "stationarity": 0.003217915969945146,
+          "stationarity_passed": false
+        },
+        "qualifies_archival_fit": false,
+        "rank": 27,
+        "rank_cutoff": 1.076757244560052e-07,
+        "reference": {
+          "cost": 2828.4189181804268,
+          "normalized_step": 1.19936825047213,
+          "relative_cost_change": 0.00912908910762007,
+          "relative_residual_step": 0.03818493858237484,
+          "success": true
+        },
+        "rows": 1944,
+        "snap_maximum_change": 2.2648549702353193e-14,
+        "snapped": {
+          "cost": 2854.3111039811583,
+          "displacement_from_saved": 0.0020110088433244948,
+          "evaluations": 200,
+          "last_parameter_step": 2.998937737025134e-08,
+          "message": "The maximum number of function evaluations is exceeded.",
+          "solver_reported_success": false,
+          "stationarity": 0.003211497558459075,
+          "stationarity_passed": false
+        },
+        "version": "ilvis0-saved-rectangular-diagnosis-v1",
+        "weakest_direction": [
+          {
+            "coefficient": 0.8970601373499582,
+            "parameter": "gravity_delta",
+            "weight": 0.8047168900223258
+          },
+          {
+            "coefficient": 0.23430501857304667,
+            "parameter": "gyro_gain_x",
+            "weight": 0.054898841728515745
+          },
+          {
+            "coefficient": 0.22968938545571327,
+            "parameter": "gyro_gain_z",
+            "weight": 0.05275721379102322
+          },
+          {
+            "coefficient": 0.2215488027756218,
+            "parameter": "gyro_gain_y",
+            "weight": 0.04908387201131137
+          },
+          {
+            "coefficient": 0.17961632810734396,
+            "parameter": "accel_bias_z",
+            "weight": 0.03226202532276504
+          }
+        ]
+      },
+      "maximum_evaluations": 600,
+      "model": "sphere_still",
+      "predicted_cost_change_ratio": null,
+      "predicted_residual_step_ratio": null,
+      "previous_converged": true,
+      "probe_reason": "not_stationary",
+      "reference_cost": 2854.4776995205716,
+      "relative_cost_change_from_reference": -2.3160354391847936e-11,
+      "role": "primary",
+      "scientific_decision": "abstain",
+      "segment_id": "034547522e2d98947b598466",
+      "stability_verified": false,
+      "stable_accepted_iterations": 0,
+      "stationarity_passed": false,
+      "stationarity_ratio": 72.12956196973902,
+      "stopping_message": "`xtol` termination condition is satisfied.",
+      "task_role": "recovery"
+    },
+    {
+      "accepted_callbacks": 1,
+      "callback_probe_disagreement": false,
+      "case_id": "bias1_unsubtracted",
+      "converged": false,
+      "cost": 3.394987242979192,
+      "dominant_bound_distance": 0.9425311006179867,
+      "dominant_normalized_value": 0.057468899382013265,
+      "dominant_parameter": "accel_gain_z",
+      "evaluations": 3,
+      "failure_class": "early_stationarity_failure",
+      "identity": "034547522e2d98947b598466::bias1_unsubtracted::sphere_rotating::primary",
+      "jacobian_condition_ratio": 34532108.87485167,
+      "last_callback_cost": 3.394987242979192,
+      "last_optimizer_step": 4.4779288551555084e-12,
+      "local": {
+        "column_normalized_condition": 1262983.756235009,
+        "column_norms": {
+          "accel_bias_x": 35584.39785449936,
+          "accel_bias_y": 32850.79694231387,
+          "accel_bias_z": 12420.343314488237,
+          "accel_gain_x": 2207.9546895813914,
+          "accel_gain_y": 596.5297871169902,
+          "accel_gain_z": 72893.23239201332,
+          "attitude_x": 242476.84973554467,
+          "attitude_y": 242495.16616908825,
+          "attitude_z": 64280.02997991421,
+          "gravity_delta": 2501.274281676156,
+          "gyro_bias_x": 1534.8749355161947,
+          "gyro_bias_y": 1519.1181195981876,
+          "gyro_bias_z": 24.421810941044768,
+          "gyro_gain_x": 261.533852864174,
+          "gyro_gain_y": 85.7657841624119,
+          "gyro_gain_z": 1.7170851056012502,
+          "lever_x": 8.776851930908862,
+          "lever_y": 8.785416347132958,
+          "lever_z": 3.122611689512167,
+          "position_x": 87.68038637694065,
+          "position_y": 86.66240467478012,
+          "position_z": 29.267513585276223,
+          "time_offset": 30.866777704742944,
+          "velocity_x": 8257.098134226277,
+          "velocity_y": 8258.63362572226,
+          "velocity_z": 3025.0112275047895
+        },
+        "columns": 26,
+        "condition": 34532108.87485165,
+        "correlated_pairs": [
+          {
+            "cosine": -0.9999999996266773,
+            "first": "accel_bias_z",
+            "second": "accel_gain_z"
+          },
+          {
+            "cosine": -0.9997485375338626,
+            "first": "accel_bias_y",
+            "second": "accel_gain_y"
+          },
+          {
+            "cosine": 0.999491353430142,
+            "first": "accel_gain_z",
+            "second": "gravity_delta"
+          },
+          {
+            "cosine": -0.9994913521329988,
+            "first": "accel_bias_z",
+            "second": "gravity_delta"
+          },
+          {
+            "cosine": 0.999408369941777,
+            "first": "accel_bias_x",
+            "second": "accel_gain_x"
+          }
+        ],
+        "dominant_gradient_parameter": "accel_gain_z",
+        "dominant_gradient_ratio": 46.78101499750923,
+        "native_predictions": 0,
+        "near_outward_distances": {},
+        "near_outward_parameters": [],
+        "observed_fit_starts": 0,
+        "original": {
+          "cost": 3.39233653100054,
+          "displacement_from_saved": 0.5180218767236544,
+          "evaluations": 19,
+          "last_parameter_step": 1.288741811547479e-11,
+          "message": "`xtol` termination condition is satisfied.",
+          "solver_reported_success": true,
+          "stationarity": 1.7770224992979458e-06,
+          "stationarity_passed": true
+        },
+        "qualifies_archival_fit": false,
+        "rank": 26,
+        "rank_cutoff": 1.0927751055962383e-07,
+        "reference": {
+          "cost": 3.391990415604952,
+          "normalized_step": 0.510284839787946,
+          "relative_cost_change": 0.0008827212474618873,
+          "relative_residual_step": 0.01174902675968757,
+          "success": true
+        },
+        "rows": 1944,
+        "snap_maximum_change": 0.0,
+        "snapped": {
+          "cost": 3.39233653100054,
+          "displacement_from_saved": 0.5180218767236544,
+          "evaluations": 19,
+          "last_parameter_step": 1.288741811547479e-11,
+          "message": "`xtol` termination condition is satisfied.",
+          "solver_reported_success": true,
+          "stationarity": 1.7770224992979458e-06,
+          "stationarity_passed": true
+        },
+        "version": "ilvis0-saved-rectangular-diagnosis-v1",
+        "weakest_direction": [
+          {
+            "coefficient": 0.9118186039019036,
+            "parameter": "gravity_delta",
+            "weight": 0.8314131664216166
+          },
+          {
+            "coefficient": 0.23215068459653912,
+            "parameter": "gyro_gain_y",
+            "weight": 0.053893940358641784
+          },
+          {
+            "coefficient": 0.2320421950336939,
+            "parameter": "gyro_gain_x",
+            "weight": 0.053843580276054834
+          },
+          {
+            "coefficient": 0.18279318710004264,
+            "parameter": "accel_bias_z",
+            "weight": 0.033413349250191196
+          },
+          {
+            "coefficient": 0.1302424086743324,
+            "parameter": "gyro_gain_z",
+            "weight": 0.016963085017291817
+          }
+        ]
+      },
+      "maximum_evaluations": 600,
+      "model": "sphere_rotating",
+      "predicted_cost_change_ratio": null,
+      "predicted_residual_step_ratio": null,
+      "previous_converged": true,
+      "probe_reason": "not_stationary",
+      "reference_cost": 3.3949872437208493,
+      "relative_cost_change_from_reference": -2.184566093821875e-10,
+      "role": "primary",
+      "scientific_decision": "abstain",
+      "segment_id": "034547522e2d98947b598466",
+      "stability_verified": false,
+      "stable_accepted_iterations": 0,
+      "stationarity_passed": false,
+      "stationarity_ratio": 46.78101499750978,
+      "stopping_message": "`xtol` termination condition is satisfied.",
+      "task_role": "recovery"
+    },
+    {
+      "accepted_callbacks": 1,
+      "callback_probe_disagreement": false,
+      "case_id": "bias1_unsubtracted",
+      "converged": false,
+      "cost": 2849.544765857782,
+      "dominant_bound_distance": 3.9749810198941304e-06,
+      "dominant_normalized_value": -0.9999960250189801,
+      "dominant_parameter": "gyro_gain_z",
+      "evaluations": 4,
+      "failure_class": "early_stationarity_failure",
+      "identity": "034547522e2d98947b598466::bias1_unsubtracted::sphere_still::primary",
+      "jacobian_condition_ratio": 52705220.60628574,
+      "last_callback_cost": 2849.544765857782,
+      "last_optimizer_step": 2.839165929140665e-16,
+      "local": {
+        "column_normalized_condition": 1913256.9703108885,
+        "column_norms": {
+          "accel_bias_x": 30942.576545185955,
+          "accel_bias_y": 30904.35658582827,
+          "accel_bias_z": 12522.23338307634,
+          "accel_gain_x": 3710.4891670292914,
+          "accel_gain_y": 3646.3341605450037,
+          "accel_gain_z": 73378.05650119107,
+          "attitude_x": 236366.3053711596,
+          "attitude_y": 236375.82416443585,
+          "attitude_z": 74199.8886492832,
+          "gravity_delta": 2502.2538472800143,
+          "gyro_bias_x": 1496.9492271089202,
+          "gyro_bias_y": 1558.3685342734675,
+          "gyro_bias_z": 46.222434915856574,
+          "gyro_gain_x": 217.84588292731505,
+          "gyro_gain_y": 118.36845548055803,
+          "gyro_gain_z": 2.318588830871167,
+          "lever_x": 8.781110092035835,
+          "lever_y": 8.788756156654962,
+          "lever_z": 3.122075786211685,
+          "position_x": 87.68188694470119,
+          "position_y": 86.66240467478012,
+          "position_z": 29.267532443676828,
+          "time_offset": 30.903715269607105,
+          "velocity_x": 8259.867357798501,
+          "velocity_y": 8262.09165152238,
+          "velocity_z": 3025.0447339009943
+        },
+        "columns": 26,
+        "condition": 52705220.606285736,
+        "correlated_pairs": [
+          {
+            "cosine": -0.9999999996222774,
+            "first": "accel_bias_z",
+            "second": "accel_gain_z"
+          },
+          {
+            "cosine": 0.9999947424477693,
+            "first": "accel_bias_y",
+            "second": "accel_gain_y"
+          },
+          {
+            "cosine": 0.9998803866803978,
+            "first": "accel_bias_x",
+            "second": "accel_gain_x"
+          },
+          {
+            "cosine": -0.9968642958022874,
+            "first": "gyro_bias_x",
+            "second": "gyro_gain_x"
+          },
+          {
+            "cosine": -0.9966969449083436,
+            "first": "accel_bias_z",
+            "second": "gravity_delta"
+          }
+        ],
+        "dominant_gradient_parameter": "gyro_gain_z",
+        "dominant_gradient_ratio": 29.757692837811838,
+        "native_predictions": 0,
+        "near_outward_distances": {
+          "gyro_bias_x": 1.1102230246251565e-16,
+          "gyro_gain_x": 1.1102230246251565e-16,
+          "lever_x": 1.1102230246251565e-16,
+          "lever_z": 1.1102230246251565e-16
+        },
+        "near_outward_parameters": [
+          "gyro_bias_x",
+          "gyro_gain_x",
+          "lever_x",
+          "lever_z"
+        ],
+        "observed_fit_starts": 0,
+        "original": {
+          "cost": 2849.544765857781,
+          "displacement_from_saved": 2.839165929140665e-16,
+          "evaluations": 2,
+          "last_parameter_step": 2.839165929140665e-16,
+          "message": "`xtol` termination condition is satisfied.",
+          "solver_reported_success": true,
+          "stationarity": 0.0029757692843260016,
+          "stationarity_passed": false
+        },
+        "qualifies_archival_fit": false,
+        "rank": 26,
+        "rank_cutoff": 1.0777161277172979e-07,
+        "reference": {
+          "cost": 2828.3047764202615,
+          "normalized_step": 1.0772780147061134,
+          "relative_cost_change": 0.007453818480765841,
+          "relative_residual_step": 0.031923722686958866,
+          "success": true
+        },
+        "rows": 1944,
+        "snap_maximum_change": 1.1102230246251565e-16,
+        "snapped": {
+          "cost": 2843.297625778137,
+          "displacement_from_saved": 1.8353241816817774,
+          "evaluations": 200,
+          "last_parameter_step": 8.966606058713669e-09,
+          "message": "The maximum number of function evaluations is exceeded.",
+          "solver_reported_success": false,
+          "stationarity": 0.002942168765860717,
+          "stationarity_passed": false
+        },
+        "version": "ilvis0-saved-rectangular-diagnosis-v1",
+        "weakest_direction": [
+          {
+            "coefficient": 0.8859576966107262,
+            "parameter": "gravity_delta",
+            "weight": 0.7849210401837836
+          },
+          {
+            "coefficient": 0.2843725308241258,
+            "parameter": "gyro_gain_z",
+            "weight": 0.08086773628731837
+          },
+          {
+            "coefficient": 0.23193322820938467,
+            "parameter": "gyro_gain_x",
+            "weight": 0.05379302234762651
+          },
+          {
+            "coefficient": 0.21759817760037975,
+            "parameter": "gyro_gain_y",
+            "weight": 0.04734896689500641
+          },
+          {
+            "coefficient": 0.17817893402774632,
+            "parameter": "accel_bias_z",
+            "weight": 0.03174773253126397
+          }
+        ]
+      },
+      "maximum_evaluations": 600,
+      "model": "sphere_still",
+      "predicted_cost_change_ratio": null,
+      "predicted_residual_step_ratio": null,
+      "previous_converged": true,
+      "probe_reason": "not_stationary",
+      "reference_cost": 2849.544765857782,
+      "relative_cost_change_from_reference": 0.0,
+      "role": "primary",
+      "scientific_decision": "abstain",
+      "segment_id": "034547522e2d98947b598466",
+      "stability_verified": false,
+      "stable_accepted_iterations": 0,
+      "stationarity_passed": false,
+      "stationarity_ratio": 29.757692837811362,
+      "stopping_message": "`xtol` termination condition is satisfied.",
+      "task_role": "recovery"
+    },
+    {
+      "accepted_callbacks": 1,
+      "callback_probe_disagreement": false,
+      "case_id": "bias1_profiled_removal",
+      "converged": true,
+      "cost": 150485.7146906126,
+      "dominant_bound_distance": 0.9727895509827327,
+      "dominant_normalized_value": 0.02721044901726732,
+      "dominant_parameter": "position_z",
+      "evaluations": 5,
+      "failure_class": "passed",
+      "identity": "233183f67270980491416678::bias1_profiled_removal::flat_still::primary",
+      "jacobian_condition_ratio": 36127268.897194415,
+      "last_callback_cost": 150485.7146906126,
+      "last_optimizer_step": 1.9229626863835638e-16,
+      "local": {
+        "column_normalized_condition": 427378.9738669067,
+        "column_norms": {
+          "accel_bias_x": 10912.389732289887,
+          "accel_bias_y": 46238.04270662422,
+          "accel_bias_z": 13667.088478515885,
+          "accel_gain_x": 2302.114443440636,
+          "accel_gain_y": 8138.826923564762,
+          "accel_gain_z": 79952.7091083246,
+          "attitude_x": 268249.7282719223,
+          "attitude_y": 61797.30231456646,
+          "attitude_z": 129930.57282922605,
+          "earth_removal": 1105.7307743074539,
+          "gravity_delta": 2648.3672379211266,
+          "gyro_bias_x": 1665.2431224527868,
+          "gyro_bias_y": 391.81182538376993,
+          "gyro_bias_z": 72.68418572756056,
+          "gyro_gain_x": 125.6231794581705,
+          "gyro_gain_y": 92.07786663797398,
+          "gyro_gain_z": 6.794779659500561,
+          "lever_x": 2.029747196639603,
+          "lever_y": 8.760118366400315,
+          "lever_z": 3.3422540151831117,
+          "position_x": 88.14853355338795,
+          "position_y": 15.33476778511762,
+          "position_z": 29.280204834105312,
+          "time_offset": 31.450578539329438,
+          "velocity_x": 9356.855784806092,
+          "velocity_y": 1657.9004967431722,
+          "velocity_z": 3111.6695518324377
+        },
+        "columns": 27,
+        "condition": 36127268.89719443,
+        "correlated_pairs": [
+          {
+            "cosine": -0.9999999988893754,
+            "first": "accel_bias_z",
+            "second": "accel_gain_z"
+          },
+          {
+            "cosine": 0.9999989914479408,
+            "first": "accel_bias_y",
+            "second": "accel_gain_y"
+          },
+          {
+            "cosine": 0.9999817951342624,
+            "first": "accel_bias_x",
+            "second": "accel_gain_x"
+          },
+          {
+            "cosine": -0.9999467885941765,
+            "first": "attitude_x",
+            "second": "accel_bias_y"
+          },
+          {
+            "cosine": -0.9999461127276101,
+            "first": "attitude_x",
+            "second": "accel_gain_y"
+          }
+        ],
+        "dominant_gradient_parameter": "position_z",
+        "dominant_gradient_ratio": 0.001224405459508248,
+        "native_predictions": 0,
+        "near_outward_distances": {
+          "accel_bias_x": 1.1102230246251565e-16,
+          "accel_bias_y": 1.1102230246251565e-16,
+          "accel_gain_x": 1.1102230246251565e-16,
+          "accel_gain_y": 1.1102230246251565e-16,
+          "earth_removal": 1.1102230246251565e-16,
+          "gravity_delta": 1.1102230246251565e-16,
+          "gyro_bias_x": 1.1102230246251565e-16,
+          "gyro_bias_y": 1.1102230246251565e-16,
+          "gyro_bias_z": 1.1102230246251565e-16,
+          "gyro_gain_x": 1.1102230246251565e-16,
+          "gyro_gain_y": 1.1102230246251565e-16,
+          "gyro_gain_z": 1.1102230246251565e-16,
+          "lever_x": 1.1102230246251565e-16,
+          "lever_y": 1.1102230246251565e-16,
+          "lever_z": 1.1102230246251565e-16,
+          "position_y": 1.1102230246251565e-16,
+          "time_offset": 1.1102230246251565e-16
+        },
+        "near_outward_parameters": [
+          "position_y",
+          "gyro_bias_x",
+          "gyro_bias_y",
+          "gyro_bias_z",
+          "accel_bias_x",
+          "accel_bias_y",
+          "gyro_gain_x",
+          "gyro_gain_y",
+          "gyro_gain_z",
+          "accel_gain_x",
+          "accel_gain_y",
+          "lever_x",
+          "lever_y",
+          "lever_z",
+          "gravity_delta",
+          "time_offset",
+          "earth_removal"
+        ],
+        "observed_fit_starts": 0,
+        "original": {
+          "cost": 150485.7146906125,
+          "displacement_from_saved": 1.9229626863835638e-16,
+          "evaluations": 2,
+          "last_parameter_step": 1.9229626863835638e-16,
+          "message": "`xtol` termination condition is satisfied.",
+          "solver_reported_success": true,
+          "stationarity": 1.22440545950228e-07,
+          "stationarity_passed": true
+        },
+        "qualifies_archival_fit": false,
+        "rank": 27,
+        "rank_cutoff": 1.3508207689966927e-07,
+        "reference": {
+          "cost": 150485.71469059362,
+          "normalized_step": 1.219147748793687e-07,
+          "relative_cost_change": 1.2609633742845952e-13,
+          "relative_residual_step": 3.102292815303843e-07,
+          "success": true
+        },
+        "rows": 1998,
+        "snap_maximum_change": 1.1102230246251565e-16,
+        "snapped": {
+          "cost": 150485.71469059362,
+          "displacement_from_saved": 1.2191477471642525e-07,
+          "evaluations": 4,
+          "last_parameter_step": 1.7611715480791001e-16,
+          "message": "`xtol` termination condition is satisfied.",
+          "solver_reported_success": true,
+          "stationarity": 8.73049235619537e-15,
+          "stationarity_passed": true
+        },
+        "version": "ilvis0-saved-rectangular-diagnosis-v1",
+        "weakest_direction": [
+          {
+            "coefficient": 0.823286730426263,
+            "parameter": "gyro_bias_z",
+            "weight": 0.6778010404959662
+          },
+          {
+            "coefficient": -0.4912486935107859,
+            "parameter": "gyro_bias_y",
+            "weight": 0.2413252788760541
+          },
+          {
+            "coefficient": -0.19460991280693568,
+            "parameter": "gyro_gain_z",
+            "weight": 0.03787301816272311
+          },
+          {
+            "coefficient": 0.12696553956661713,
+            "parameter": "earth_removal",
+            "weight": 0.01612024823744222
+          },
+          {
+            "coefficient": -0.10722512230291872,
+            "parameter": "gravity_delta",
+            "weight": 0.011497226852875879
+          }
+        ]
+      },
+      "maximum_evaluations": 600,
+      "model": "flat_still",
+      "predicted_cost_change_ratio": 1.2628973671899395e-05,
+      "predicted_residual_step_ratio": 0.310229284838785,
+      "previous_converged": true,
+      "probe_reason": "fresh_stability_verified",
+      "reference_cost": 150485.7146906126,
+      "relative_cost_change_from_reference": 0.0,
+      "role": "primary",
+      "scientific_decision": "abstain",
+      "segment_id": "233183f67270980491416678",
+      "stability_verified": true,
+      "stable_accepted_iterations": 0,
+      "stationarity_passed": true,
+      "stationarity_ratio": 0.0012244054595047164,
+      "stopping_message": "`xtol` termination condition is satisfied.",
+      "task_role": "recovery"
+    },
+    {
+      "accepted_callbacks": 1,
+      "callback_probe_disagreement": false,
+      "case_id": "bias1_profiled_removal",
+      "converged": false,
+      "cost": 13.797300558649992,
+      "dominant_bound_distance": 0.9981570992156119,
+      "dominant_normalized_value": -0.00184290078438814,
+      "dominant_parameter": "velocity_y",
+      "evaluations": 4,
+      "failure_class": "early_stability_failure",
+      "identity": "233183f67270980491416678::bias1_profiled_removal::sphere_rotating::primary",
+      "jacobian_condition_ratio": 102551369.84977221,
+      "last_callback_cost": 13.797300558649992,
+      "last_optimizer_step": 1.1125266818373449e-16,
+      "local": {
+        "column_normalized_condition": 3755891.069434153,
+        "column_norms": {
+          "accel_bias_x": 37082.486839941186,
+          "accel_bias_y": 38565.05670958555,
+          "accel_bias_z": 13054.938779438358,
+          "accel_gain_x": 948.7517691353232,
+          "accel_gain_y": 342.8636481914877,
+          "accel_gain_z": 76265.03034041957,
+          "attitude_x": 255296.45445896022,
+          "attitude_y": 255259.5751712185,
+          "attitude_z": 84093.6626251139,
+          "earth_removal": 5677.889604028657,
+          "gravity_delta": 2659.079664787756,
+          "gyro_bias_x": 1645.8237025931676,
+          "gyro_bias_y": 1622.051267280727,
+          "gyro_bias_z": 26.71742682438616,
+          "gyro_gain_x": 164.94146439003697,
+          "gyro_gain_y": 419.20302175628757,
+          "gyro_gain_z": 4.3132419716435635,
+          "lever_x": 8.811599084477471,
+          "lever_y": 8.831140066808109,
+          "lever_z": 3.3403293443090383,
+          "position_x": 87.86643269064413,
+          "position_y": 87.2460798522227,
+          "position_z": 29.321534967032814,
+          "time_offset": 31.353530302639644,
+          "velocity_x": 8479.255918808776,
+          "velocity_y": 8474.797889666414,
+          "velocity_z": 3136.172052538403
+        },
+        "columns": 27,
+        "condition": 102551369.84977223,
+        "correlated_pairs": [
+          {
+            "cosine": -0.9999999989794905,
+            "first": "accel_bias_z",
+            "second": "accel_gain_z"
+          },
+          {
+            "cosine": -0.999934087067206,
+            "first": "accel_bias_z",
+            "second": "gravity_delta"
+          },
+          {
+            "cosine": 0.9999340586398945,
+            "first": "accel_gain_z",
+            "second": "gravity_delta"
+          },
+          {
+            "cosine": -0.9998982785105375,
+            "first": "gyro_bias_y",
+            "second": "gyro_gain_y"
+          },
+          {
+            "cosine": 0.9996545619375797,
+            "first": "accel_bias_y",
+            "second": "accel_gain_y"
+          }
+        ],
+        "dominant_gradient_parameter": "velocity_y",
+        "dominant_gradient_ratio": 0.00022224373914296703,
+        "native_predictions": 0,
+        "near_outward_distances": {
+          "earth_removal": 1.1102230246251565e-16,
+          "gyro_bias_z": 1.1102230246251565e-16,
+          "gyro_gain_y": 1.1102230246251565e-16,
+          "gyro_gain_z": 1.1102230246251565e-16
+        },
+        "near_outward_parameters": [
+          "gyro_bias_z",
+          "gyro_gain_y",
+          "gyro_gain_z",
+          "earth_removal"
+        ],
+        "observed_fit_starts": 0,
+        "original": {
+          "cost": 13.797300558649988,
+          "displacement_from_saved": 1.1125266818373449e-16,
+          "evaluations": 2,
+          "last_parameter_step": 1.1125266818373449e-16,
+          "message": "`xtol` termination condition is satisfied.",
+          "solver_reported_success": true,
+          "stationarity": 2.2224179870775676e-08,
+          "stationarity_passed": true
+        },
+        "qualifies_archival_fit": false,
+        "rank": 27,
+        "rank_cutoff": 1.2028837545721733e-07,
+        "reference": {
+          "cost": 13.797300550448016,
+          "normalized_step": 0.0002982446042748273,
+          "relative_cost_change": 5.94462369824535e-10,
+          "relative_residual_step": 2.4381281085820475e-05,
+          "success": true
+        },
+        "rows": 1998,
+        "snap_maximum_change": 1.1102230246251565e-16,
+        "snapped": {
+          "cost": 13.797300558649777,
+          "displacement_from_saved": 7.580338982914515e-12,
+          "evaluations": 2,
+          "last_parameter_step": 7.580338979662432e-12,
+          "message": "`xtol` termination condition is satisfied.",
+          "solver_reported_success": true,
+          "stationarity": 1.3090319253912745e-08,
+          "stationarity_passed": true
+        },
+        "version": "ilvis0-saved-rectangular-diagnosis-v1",
+        "weakest_direction": [
+          {
+            "coefficient": 0.9208405940693667,
+            "parameter": "gravity_delta",
+            "weight": 0.8479473996860242
+          },
+          {
+            "coefficient": 0.2372782826352718,
+            "parameter": "gyro_gain_x",
+            "weight": 0.05630098341034392
+          },
+          {
+            "coefficient": 0.23705074696030756,
+            "parameter": "gyro_gain_y",
+            "weight": 0.05619305663443976
+          },
+          {
+            "coefficient": 0.18758751469181595,
+            "parameter": "accel_bias_z",
+            "weight": 0.035189075668252266
+          },
+          {
+            "coefficient": 0.041435272756161934,
+            "parameter": "gyro_bias_y",
+            "weight": 0.0017168818283775354
+          }
+        ]
+      },
+      "maximum_evaluations": 600,
+      "model": "sphere_rotating",
+      "predicted_cost_change_ratio": 0.05944622410778406,
+      "predicted_residual_step_ratio": 24.381281085768478,
+      "previous_converged": false,
+      "probe_reason": "linear_correction_not_stable",
+      "reference_cost": 13.797300558649992,
+      "relative_cost_change_from_reference": 0.0,
+      "role": "primary",
+      "scientific_decision": "abstain",
+      "segment_id": "233183f67270980491416678",
+      "stability_verified": false,
+      "stable_accepted_iterations": 0,
+      "stationarity_passed": true,
+      "stationarity_ratio": 0.00022224373884078896,
+      "stopping_message": "`xtol` termination condition is satisfied.",
+      "task_role": "recovery"
+    },
+    {
+      "accepted_callbacks": 1,
+      "callback_probe_disagreement": false,
+      "case_id": "bias1_unsubtracted",
+      "converged": true,
+      "cost": 150485.71469412366,
+      "dominant_bound_distance": 0.9727893882277144,
+      "dominant_normalized_value": 0.027210611772285596,
+      "dominant_parameter": "position_z",
+      "evaluations": 5,
+      "failure_class": "passed",
+      "identity": "233183f67270980491416678::bias1_unsubtracted::flat_still::primary",
+      "jacobian_condition_ratio": 15775443.037532005,
+      "last_callback_cost": 150485.71469412366,
+      "last_optimizer_step": 1.1102230246251565e-16,
+      "local": {
+        "column_normalized_condition": 403627.47211305524,
+        "column_norms": {
+          "accel_bias_x": 10912.389735338604,
+          "accel_bias_y": 46238.042705886815,
+          "accel_bias_z": 13667.088477240191,
+          "accel_gain_x": 2302.1144440838452,
+          "accel_gain_y": 8138.826923435219,
+          "accel_gain_z": 79952.7090889889,
+          "attitude_x": 268249.7282301267,
+          "attitude_y": 61797.3023140891,
+          "attitude_z": 129930.5728370667,
+          "gravity_delta": 2648.3672379211266,
+          "gyro_bias_x": 1665.243122180013,
+          "gyro_bias_y": 391.8118254361787,
+          "gyro_bias_z": 72.68418571908549,
+          "gyro_gain_x": 125.62317943798891,
+          "gyro_gain_y": 92.0778666502902,
+          "gyro_gain_z": 6.79477965837158,
+          "lever_x": 2.0297471970928225,
+          "lever_y": 8.760118366292437,
+          "lever_z": 3.3422540151880957,
+          "position_x": 88.1485335533881,
+          "position_y": 15.33476778511762,
+          "position_z": 29.280204834105312,
+          "time_offset": 31.450578538695733,
+          "velocity_x": 9356.85578480607,
+          "velocity_y": 1657.900496743956,
+          "velocity_z": 3111.6695518324377
+        },
+        "columns": 26,
+        "condition": 15775443.037532005,
+        "correlated_pairs": [
+          {
+            "cosine": -0.9999999988893764,
+            "first": "accel_bias_z",
+            "second": "accel_gain_z"
+          },
+          {
+            "cosine": 0.9999989914479412,
+            "first": "accel_bias_y",
+            "second": "accel_gain_y"
+          },
+          {
+            "cosine": 0.9999817951342629,
+            "first": "accel_bias_x",
+            "second": "accel_gain_x"
+          },
+          {
+            "cosine": -0.9999467885941432,
+            "first": "attitude_x",
+            "second": "accel_bias_y"
+          },
+          {
+            "cosine": -0.9999461127275786,
+            "first": "attitude_x",
+            "second": "accel_gain_y"
+          }
+        ],
+        "dominant_gradient_parameter": "position_z",
+        "dominant_gradient_ratio": 0.0009437848111363031,
+        "native_predictions": 0,
+        "near_outward_distances": {
+          "accel_bias_x": 1.1102230246251565e-16,
+          "accel_bias_y": 1.1102230246251565e-16,
+          "accel_gain_x": 1.1102230246251565e-16,
+          "accel_gain_y": 1.1102230246251565e-16,
+          "gravity_delta": 1.1102230246251565e-16,
+          "gyro_bias_x": 1.1102230246251565e-16,
+          "gyro_bias_y": 1.1102230246251565e-16,
+          "gyro_bias_z": 1.1102230246251565e-16,
+          "gyro_gain_x": 1.1102230246251565e-16,
+          "gyro_gain_y": 1.1102230246251565e-16,
+          "gyro_gain_z": 1.1102230246251565e-16,
+          "lever_x": 1.1102230246251565e-16,
+          "lever_y": 1.1102230246251565e-16,
+          "lever_z": 1.1102230246251565e-16,
+          "position_y": 1.1102230246251565e-16,
+          "time_offset": 1.1102230246251565e-16
+        },
+        "near_outward_parameters": [
+          "position_y",
+          "gyro_bias_x",
+          "gyro_bias_y",
+          "gyro_bias_z",
+          "accel_bias_x",
+          "accel_bias_y",
+          "gyro_gain_x",
+          "gyro_gain_y",
+          "gyro_gain_z",
+          "accel_gain_x",
+          "accel_gain_y",
+          "lever_x",
+          "lever_y",
+          "lever_z",
+          "gravity_delta",
+          "time_offset"
+        ],
+        "observed_fit_starts": 0,
+        "original": {
+          "cost": 150485.71469412366,
+          "displacement_from_saved": 0.0,
+          "evaluations": 2,
+          "last_parameter_step": 1.1102230246251565e-16,
+          "message": "`xtol` termination condition is satisfied.",
+          "solver_reported_success": true,
+          "stationarity": 9.437848111363031e-08,
+          "stationarity_passed": true
+        },
+        "qualifies_archival_fit": false,
+        "rank": 26,
+        "rank_cutoff": 1.3508199052144426e-07,
+        "reference": {
+          "cost": 150485.71469411178,
+          "normalized_step": 1.0723804210366811e-07,
+          "relative_cost_change": 7.890691053621341e-14,
+          "relative_residual_step": 2.3459817021044354e-07,
+          "success": true
+        },
+        "rows": 1998,
+        "snap_maximum_change": 1.1102230246251565e-16,
+        "snapped": {
+          "cost": 150485.71469411175,
+          "displacement_from_saved": 1.07238041714821e-07,
+          "evaluations": 4,
+          "last_parameter_step": 5.610136018350766e-17,
+          "message": "`xtol` termination condition is satisfied.",
+          "solver_reported_success": true,
+          "stationarity": 2.8164942348786252e-15,
+          "stationarity_passed": true
+        },
+        "version": "ilvis0-saved-rectangular-diagnosis-v1",
+        "weakest_direction": [
+          {
+            "coefficient": 0.8226237278316644,
+            "parameter": "gyro_gain_z",
+            "weight": 0.6767097975916643
+          },
+          {
+            "coefficient": 0.4827286380341364,
+            "parameter": "gravity_delta",
+            "weight": 0.23302693797829227
+          },
+          {
+            "coefficient": 0.19971368454484045,
+            "parameter": "gyro_gain_y",
+            "weight": 0.039885555794476044
+          },
+          {
+            "coefficient": -0.1475978364530703,
+            "parameter": "gyro_bias_z",
+            "weight": 0.021785121325627294
+          },
+          {
+            "coefficient": 0.12906714796741464,
+            "parameter": "gyro_gain_x",
+            "weight": 0.016658328684442506
+          }
+        ]
+      },
+      "maximum_evaluations": 600,
+      "model": "flat_still",
+      "predicted_cost_change_ratio": 7.910030982674334e-06,
+      "predicted_residual_step_ratio": 0.23459817138282626,
+      "previous_converged": true,
+      "probe_reason": "fresh_stability_verified",
+      "reference_cost": 150485.71469412366,
+      "relative_cost_change_from_reference": 0.0,
+      "role": "primary",
+      "scientific_decision": "abstain",
+      "segment_id": "233183f67270980491416678",
+      "stability_verified": true,
+      "stable_accepted_iterations": 0,
+      "stationarity_passed": true,
+      "stationarity_ratio": 0.0009437848111792857,
+      "stopping_message": "`xtol` termination condition is satisfied.",
+      "task_role": "recovery"
+    },
+    {
+      "accepted_callbacks": 1,
+      "callback_probe_disagreement": false,
+      "case_id": "bias1_unsubtracted",
+      "converged": false,
+      "cost": 13.797300589652457,
+      "dominant_bound_distance": 0.9859915340129599,
+      "dominant_normalized_value": -0.014008465987040093,
+      "dominant_parameter": "velocity_z",
+      "evaluations": 3,
+      "failure_class": "early_stability_failure",
+      "identity": "233183f67270980491416678::bias1_unsubtracted::sphere_rotating::primary",
+      "jacobian_condition_ratio": 85669786.307862,
+      "last_callback_cost": 13.797300589652457,
+      "last_optimizer_step": 5.982841359230083e-16,
+      "local": {
+        "column_normalized_condition": 3035148.9215940936,
+        "column_norms": {
+          "accel_bias_x": 37082.48700009506,
+          "accel_bias_y": 38565.05510254489,
+          "accel_bias_z": 13054.845143077662,
+          "accel_gain_x": 948.7548883794436,
+          "accel_gain_y": 342.8641954714423,
+          "accel_gain_z": 76264.48337385122,
+          "attitude_x": 255296.45436744462,
+          "attitude_y": 255259.57511327686,
+          "attitude_z": 84093.6938103,
+          "gravity_delta": 2659.0796623830647,
+          "gyro_bias_x": 1645.8236548319185,
+          "gyro_bias_y": 1622.0512650469864,
+          "gyro_bias_z": 26.717450224772122,
+          "gyro_gain_x": 164.94146237073758,
+          "gyro_gain_y": 419.20302234802034,
+          "gyro_gain_z": 4.313242649837177,
+          "lever_x": 8.811599084672459,
+          "lever_y": 8.831140065997012,
+          "lever_z": 3.3403293001122494,
+          "position_x": 87.86643269066617,
+          "position_y": 87.2460798522227,
+          "position_z": 29.321534967010074,
+          "time_offset": 31.353530250781546,
+          "velocity_x": 8479.255917925842,
+          "velocity_y": 8474.797888792991,
+          "velocity_z": 3136.17205178903
+        },
+        "columns": 26,
+        "condition": 85669786.30786197,
+        "correlated_pairs": [
+          {
+            "cosine": -0.9999999989795059,
+            "first": "accel_bias_z",
+            "second": "accel_gain_z"
+          },
+          {
+            "cosine": -0.9999340866674126,
+            "first": "accel_bias_z",
+            "second": "gravity_delta"
+          },
+          {
+            "cosine": 0.9999340582402878,
+            "first": "accel_gain_z",
+            "second": "gravity_delta"
+          },
+          {
+            "cosine": -0.9998982785136767,
+            "first": "gyro_bias_y",
+            "second": "gyro_gain_y"
+          },
+          {
+            "cosine": 0.9996545630993183,
+            "first": "accel_bias_y",
+            "second": "accel_gain_y"
+          }
+        ],
+        "dominant_gradient_parameter": "velocity_z",
+        "dominant_gradient_ratio": 0.0012764470013020088,
+        "native_predictions": 0,
+        "near_outward_distances": {
+          "gravity_delta": 3.43836070726411e-13,
+          "gyro_gain_y": 1.1102230246251565e-16,
+          "gyro_gain_z": 1.1102230246251565e-16
+        },
+        "near_outward_parameters": [
+          "gyro_gain_y",
+          "gyro_gain_z",
+          "gravity_delta"
+        ],
+        "observed_fit_starts": 0,
+        "original": {
+          "cost": 13.797300589652453,
+          "displacement_from_saved": 1.5611803524664088e-16,
+          "evaluations": 2,
+          "last_parameter_step": 1.5611803524664088e-16,
+          "message": "`xtol` termination condition is satisfied.",
+          "solver_reported_success": true,
+          "stationarity": 1.2764269908270784e-07,
+          "stationarity_passed": true
+        },
+        "qualifies_archival_fit": false,
+        "rank": 26,
+        "rank_cutoff": 1.2028451707629272e-07,
+        "reference": {
+          "cost": 13.7973005896323,
+          "normalized_step": 9.495534902106752e-06,
+          "relative_cost_change": 1.4608887387574387e-12,
+          "relative_residual_step": 1.2084143974392103e-06,
+          "success": true
+        },
+        "rows": 1998,
+        "snap_maximum_change": 3.43836070726411e-13,
+        "snapped": {
+          "cost": 13.797300589632302,
+          "displacement_from_saved": 9.495534902007075e-06,
+          "evaluations": 3,
+          "last_parameter_step": 5.454347324679443e-16,
+          "message": "`xtol` termination condition is satisfied.",
+          "solver_reported_success": true,
+          "stationarity": 5.3215033050189903e-14,
+          "stationarity_passed": true
+        },
+        "version": "ilvis0-saved-rectangular-diagnosis-v1",
+        "weakest_direction": [
+          {
+            "coefficient": 0.9194655354538345,
+            "parameter": "gravity_delta",
+            "weight": 0.8454168708874066
+          },
+          {
+            "coefficient": 0.23757349568304234,
+            "parameter": "gyro_gain_y",
+            "weight": 0.056441165851060536
+          },
+          {
+            "coefficient": 0.23646371775887726,
+            "parameter": "gyro_gain_x",
+            "weight": 0.05591508981634996
+          },
+          {
+            "coefficient": 0.18728614224731419,
+            "parameter": "accel_bias_z",
+            "weight": 0.0350760990778812
+          },
+          {
+            "coefficient": 0.06433162650218349,
+            "parameter": "gyro_bias_y",
+            "weight": 0.0041385581684164376
+          }
+        ]
+      },
+      "maximum_evaluations": 600,
+      "model": "sphere_rotating",
+      "predicted_cost_change_ratio": 0.00014607599920632677,
+      "predicted_residual_step_ratio": 1.2084144162468458,
+      "previous_converged": false,
+      "probe_reason": "linear_correction_not_stable",
+      "reference_cost": 13.797300589653748,
+      "relative_cost_change_from_reference": -9.359884666225068e-14,
+      "role": "primary",
+      "scientific_decision": "abstain",
+      "segment_id": "233183f67270980491416678",
+      "stability_verified": false,
+      "stable_accepted_iterations": 1,
+      "stationarity_passed": true,
+      "stationarity_ratio": 0.0012764470015520872,
+      "stopping_message": "`xtol` termination condition is satisfied.",
+      "task_role": "recovery"
+    },
+    {
+      "accepted_callbacks": 596,
+      "callback_probe_disagreement": false,
+      "case_id": "bias1_unsubtracted",
+      "converged": false,
+      "cost": 612.4336735940204,
+      "dominant_bound_distance": 0.8176466713221269,
+      "dominant_normalized_value": 0.18235332867787318,
+      "dominant_parameter": "lever_y",
+      "evaluations": 598,
+      "failure_class": "budget_exhausted",
+      "identity": "233183f67270980491416678::bias1_unsubtracted::sphere_rotating::repeat",
+      "jacobian_condition_ratio": 87710195.27231072,
+      "last_callback_cost": 612.4336735940204,
+      "last_optimizer_step": 3.067707037965181e-06,
+      "local": {
+        "column_normalized_condition": 3105666.0666125263,
+        "column_norms": {
+          "accel_bias_x": 37136.859449478274,
+          "accel_bias_y": 38505.962836546554,
+          "accel_bias_z": 13060.81318964289,
+          "accel_gain_x": 997.6436247893253,
+          "accel_gain_y": 293.1220317548758,
+          "accel_gain_z": 76303.15172808584,
+          "attitude_x": 255317.49402235242,
+          "attitude_y": 255280.42109826882,
+          "attitude_z": 84610.84867248738,
+          "gravity_delta": 2659.068511412479,
+          "gyro_bias_x": 1646.3120950604393,
+          "gyro_bias_y": 1622.5081683994774,
+          "gyro_bias_z": 27.116814306895492,
+          "gyro_gain_x": 164.6954848671029,
+          "gyro_gain_y": 419.0960455253286,
+          "gyro_gain_z": 4.298943803462973,
+          "lever_x": 8.811604814133197,
+          "lever_y": 8.831164477986386,
+          "lever_z": 3.340461774988121,
+          "position_x": 87.86643198551825,
+          "position_y": 87.2460798522227,
+          "position_z": 29.321537236343055,
+          "time_offset": 31.354201392645045,
+          "velocity_x": 8479.277664884165,
+          "velocity_y": 8474.804223011291,
+          "velocity_z": 3136.1690938238626
+        },
+        "columns": 26,
+        "condition": 87710195.27231075,
+        "correlated_pairs": [
+          {
+            "cosine": -0.9999999989788042,
+            "first": "accel_bias_z",
+            "second": "accel_gain_z"
+          },
+          {
+            "cosine": -0.9999230723924859,
+            "first": "accel_bias_z",
+            "second": "gravity_delta"
+          },
+          {
+            "cosine": 0.9999230404256347,
+            "first": "accel_gain_z",
+            "second": "gravity_delta"
+          },
+          {
+            "cosine": -0.9998981201325376,
+            "first": "gyro_bias_y",
+            "second": "gyro_gain_y"
+          },
+          {
+            "cosine": 0.9995302422185997,
+            "first": "accel_bias_y",
+            "second": "accel_gain_y"
+          }
+        ],
+        "dominant_gradient_parameter": "lever_y",
+        "dominant_gradient_ratio": 3775.7534445928113,
+        "native_predictions": 0,
+        "near_outward_distances": {},
+        "near_outward_parameters": [],
+        "observed_fit_starts": 0,
+        "original": {
+          "cost": 505.7726086833607,
+          "displacement_from_saved": 0.0011105215776046635,
+          "evaluations": 200,
+          "last_parameter_step": 9.805881989267162e-06,
+          "message": "The maximum number of function evaluations is exceeded.",
+          "solver_reported_success": false,
+          "stationarity": 0.3801480367120765,
+          "stationarity_passed": false
+        },
+        "qualifies_archival_fit": false,
+        "rank": 26,
+        "rank_cutoff": 1.203616434776262e-07,
+        "reference": {
+          "cost": 13.796472623840788,
+          "normalized_step": 0.04418148871876462,
+          "relative_cost_change": 0.9774727073008946,
+          "relative_residual_step": 0.9886706875229004,
+          "success": true
+        },
+        "rows": 1998,
+        "snap_maximum_change": 0.0,
+        "snapped": {
+          "cost": 505.7726086833607,
+          "displacement_from_saved": 0.0011105215776046635,
+          "evaluations": 200,
+          "last_parameter_step": 9.805881989267162e-06,
+          "message": "The maximum number of function evaluations is exceeded.",
+          "solver_reported_success": false,
+          "stationarity": 0.3801480367120765,
+          "stationarity_passed": false
+        },
+        "version": "ilvis0-saved-rectangular-diagnosis-v1",
+        "weakest_direction": [
+          {
+            "coefficient": 0.9193848241792337,
+            "parameter": "gravity_delta",
+            "weight": 0.8452684549310805
+          },
+          {
+            "coefficient": 0.237572636351734,
+            "parameter": "gyro_gain_y",
+            "weight": 0.05644075754311324
+          },
+          {
+            "coefficient": 0.23639885475446978,
+            "parameter": "gyro_gain_x",
+            "weight": 0.0558844185292249
+          },
+          {
+            "coefficient": 0.18718284312538658,
+            "parameter": "accel_bias_z",
+            "weight": 0.03503741676050308
+          },
+          {
+            "coefficient": 0.06444560594726333,
+            "parameter": "gyro_bias_y",
+            "weight": 0.0041532361259099424
+          }
+        ]
+      },
+      "maximum_evaluations": 600,
+      "model": "sphere_rotating",
+      "predicted_cost_change_ratio": null,
+      "predicted_residual_step_ratio": null,
+      "previous_converged": false,
+      "probe_reason": "not_stationary",
+      "reference_cost": 13.797300589653748,
+      "relative_cost_change_from_reference": 43.38793440894295,
+      "role": "repeat",
+      "scientific_decision": "abstain",
+      "segment_id": "233183f67270980491416678",
+      "stability_verified": false,
+      "stable_accepted_iterations": 0,
+      "stationarity_passed": false,
+      "stationarity_ratio": 3775.7534445928145,
+      "stopping_message": "The maximum number of function evaluations is exceeded.",
+      "task_role": "repeatability"
+    },
+    {
+      "accepted_callbacks": 1,
+      "callback_probe_disagreement": false,
+      "case_id": "bias1_profiled_removal",
+      "converged": true,
+      "cost": 45776.369273860655,
+      "dominant_bound_distance": 0.912005667979787,
+      "dominant_normalized_value": 0.08799433202021296,
+      "dominant_parameter": "attitude_x",
+      "evaluations": 5,
+      "failure_class": "passed",
+      "identity": "570b37d23af5e245dd461051::bias1_profiled_removal::flat_still::primary",
+      "jacobian_condition_ratio": 63136582.21234441,
+      "last_callback_cost": 45776.369273860655,
+      "last_optimizer_step": 2.482534153247273e-16,
+      "local": {
+        "column_normalized_condition": 2381952.4032800156,
+        "column_norms": {
+          "accel_bias_x": 8434.504741719284,
+          "accel_bias_y": 16110.008233033968,
+          "accel_bias_z": 5325.358620383726,
+          "accel_gain_x": 1697.6156651746883,
+          "accel_gain_y": 3378.4573831996177,
+          "accel_gain_z": 31147.232611895677,
+          "attitude_x": 107397.29044960102,
+          "attitude_y": 24553.973322394024,
+          "attitude_z": 71283.96736770206,
+          "earth_removal": 366.5474385927957,
+          "gravity_delta": 1095.4413758496767,
+          "gyro_bias_x": 384.7443456967922,
+          "gyro_bias_y": 283.30511917760975,
+          "gyro_bias_z": 24.98055087897286,
+          "gyro_gain_x": 62.81688243861155,
+          "gyro_gain_y": 6.718012370393089,
+          "gyro_gain_z": 12.14086761318636,
+          "lever_x": 5.1267025887019715,
+          "lever_y": 7.115352391997742,
+          "lever_z": 3.1076797735588158,
+          "position_x": 85.7116622035146,
+          "position_y": 17.21032851453534,
+          "position_z": 28.473543856405136,
+          "time_offset": 31.781295627087296,
+          "velocity_x": 5902.505184011065,
+          "velocity_y": 1165.3964930282548,
+          "velocity_z": 1962.1077922880622
+        },
+        "columns": 27,
+        "condition": 63136582.21234441,
+        "correlated_pairs": [
+          {
+            "cosine": -0.9999999988374964,
+            "first": "accel_bias_z",
+            "second": "accel_gain_z"
+          },
+          {
+            "cosine": -0.9999994969634743,
+            "first": "accel_bias_y",
+            "second": "accel_gain_y"
+          },
+          {
+            "cosine": 0.9999592095623098,
+            "first": "accel_bias_x",
+            "second": "accel_gain_x"
+          },
+          {
+            "cosine": -0.9983115271852183,
+            "first": "accel_bias_z",
+            "second": "gravity_delta"
+          },
+          {
+            "cosine": 0.9983114778085425,
+            "first": "accel_gain_z",
+            "second": "gravity_delta"
+          }
+        ],
+        "dominant_gradient_parameter": "attitude_x",
+        "dominant_gradient_ratio": 1.5226074638625035e-06,
+        "native_predictions": 0,
+        "near_outward_distances": {
+          "accel_bias_x": 1.1102230246251565e-16,
+          "accel_bias_y": 1.1102230246251565e-16,
+          "accel_gain_x": 1.1102230246251565e-16,
+          "accel_gain_y": 1.1102230246251565e-16,
+          "gravity_delta": 1.1102230246251565e-16,
+          "gyro_bias_x": 1.1102230246251565e-16,
+          "gyro_bias_y": 1.1102230246251565e-16,
+          "gyro_bias_z": 1.1102230246251565e-16,
+          "gyro_gain_x": 1.1102230246251565e-16,
+          "gyro_gain_y": 1.1102230246251565e-16,
+          "gyro_gain_z": 1.1102230246251565e-16,
+          "lever_x": 1.1102230246251565e-16,
+          "lever_y": 1.1102230246251565e-16,
+          "position_y": 1.1102230246251565e-16
+        },
+        "near_outward_parameters": [
+          "position_y",
+          "gyro_bias_x",
+          "gyro_bias_y",
+          "gyro_bias_z",
+          "accel_bias_x",
+          "accel_bias_y",
+          "gyro_gain_x",
+          "gyro_gain_y",
+          "gyro_gain_z",
+          "accel_gain_x",
+          "accel_gain_y",
+          "lever_x",
+          "lever_y",
+          "gravity_delta"
+        ],
+        "observed_fit_starts": 0,
+        "original": {
+          "cost": 45776.369273860655,
+          "displacement_from_saved": 0.0,
+          "evaluations": 2,
+          "last_parameter_step": 2.482534153247273e-16,
+          "message": "`xtol` termination condition is satisfied.",
+          "solver_reported_success": true,
+          "stationarity": 1.5226074638625036e-10,
+          "stationarity_passed": true
+        },
+        "qualifies_archival_fit": false,
+        "rank": 27,
+        "rank_cutoff": 3.825661534225315e-08,
+        "reference": {
+          "cost": 45776.36927385892,
+          "normalized_step": 3.722143654879185e-08,
+          "relative_cost_change": 3.782907949330273e-14,
+          "relative_residual_step": 5.69092416767953e-10,
+          "success": true
+        },
+        "rows": 1317,
+        "snap_maximum_change": 1.1102230246251565e-16,
+        "snapped": {
+          "cost": 45776.369273858916,
+          "displacement_from_saved": 3.722143654517337e-08,
+          "evaluations": 4,
+          "last_parameter_step": 3.564086375138664e-15,
+          "message": "`xtol` termination condition is satisfied.",
+          "solver_reported_success": true,
+          "stationarity": 5.891852156046113e-15,
+          "stationarity_passed": true
+        },
+        "version": "ilvis0-saved-rectangular-diagnosis-v1",
+        "weakest_direction": [
+          {
+            "coefficient": 0.9000759338460321,
+            "parameter": "gravity_delta",
+            "weight": 0.8101366866888068
+          },
+          {
+            "coefficient": 0.23667136165754152,
+            "parameter": "gyro_gain_x",
+            "weight": 0.05601333342883481
+          },
+          {
+            "coefficient": 0.2286596600525977,
+            "parameter": "gyro_gain_y",
+            "weight": 0.05228524013536954
+          },
+          {
+            "coefficient": 0.21449496183152333,
+            "parameter": "gyro_gain_z",
+            "weight": 0.04600808865110665
+          },
+          {
+            "coefficient": 0.18510914772953335,
+            "parameter": "accel_bias_z",
+            "weight": 0.0342653965731542
+          }
+        ]
+      },
+      "maximum_evaluations": 600,
+      "model": "flat_still",
+      "predicted_cost_change_ratio": 3.7988025205459464e-06,
+      "predicted_residual_step_ratio": 0.0005690902903753472,
+      "previous_converged": true,
+      "probe_reason": "fresh_stability_verified",
+      "reference_cost": 45776.369273860655,
+      "relative_cost_change_from_reference": 0.0,
+      "role": "primary",
+      "scientific_decision": "abstain",
+      "segment_id": "570b37d23af5e245dd461051",
+      "stability_verified": true,
+      "stable_accepted_iterations": 0,
+      "stationarity_passed": true,
+      "stationarity_ratio": 1.5226078090084912e-06,
+      "stopping_message": "`xtol` termination condition is satisfied.",
+      "task_role": "control"
+    },
+    {
+      "accepted_callbacks": 1,
+      "callback_probe_disagreement": false,
+      "case_id": "bias1_profiled_removal",
+      "converged": true,
+      "cost": 2.311026082975893,
+      "dominant_bound_distance": 0.9900518479075228,
+      "dominant_normalized_value": 0.009948152092477245,
+      "dominant_parameter": "velocity_x",
+      "evaluations": 5,
+      "failure_class": "passed",
+      "identity": "570b37d23af5e245dd461051::bias1_profiled_removal::sphere_rotating::primary",
+      "jacobian_condition_ratio": 29614494.51219609,
+      "last_callback_cost": 2.311026082975893,
+      "last_optimizer_step": 1.1102230246251565e-16,
+      "local": {
+        "column_normalized_condition": 1120530.235410262,
+        "column_norms": {
+          "accel_bias_x": 16002.969571387393,
+          "accel_bias_y": 15710.430033933448,
+          "accel_bias_z": 5481.742044826166,
+          "accel_gain_x": 1284.1140851625346,
+          "accel_gain_y": 396.03451413863843,
+          "accel_gain_z": 32097.452137187036,
+          "attitude_x": 108958.6605558494,
+          "attitude_y": 108973.25941055278,
+          "attitude_z": 35918.99814867249,
+          "earth_removal": 1813.219130606459,
+          "gravity_delta": 1095.3934854765284,
+          "gyro_bias_x": 463.21680585064945,
+          "gyro_bias_y": 463.82429665108583,
+          "gyro_bias_z": 7.907946108494304,
+          "gyro_gain_x": 86.18640035381704,
+          "gyro_gain_y": 18.00286298392377,
+          "gyro_gain_z": 3.887303407118008,
+          "lever_x": 8.549770738074155,
+          "lever_y": 8.566021038336668,
+          "lever_z": 3.216794658403777,
+          "position_x": 85.40687431641493,
+          "position_y": 84.78022958733375,
+          "position_z": 28.493270031712044,
+          "time_offset": 31.65929163125944,
+          "velocity_x": 5637.458904217937,
+          "velocity_y": 5637.972188388223,
+          "velocity_z": 1963.9008565641443
+        },
+        "columns": 27,
+        "condition": 29614494.51219609,
+        "correlated_pairs": [
+          {
+            "cosine": -0.9999999987240293,
+            "first": "accel_bias_z",
+            "second": "accel_gain_z"
+          },
+          {
+            "cosine": -0.9999738634515624,
+            "first": "accel_bias_y",
+            "second": "accel_gain_y"
+          },
+          {
+            "cosine": 0.9996488234622669,
+            "first": "accel_bias_x",
+            "second": "accel_gain_x"
+          },
+          {
+            "cosine": -0.9986615759752361,
+            "first": "accel_bias_z",
+            "second": "gravity_delta"
+          },
+          {
+            "cosine": 0.9986610350987108,
+            "first": "accel_gain_z",
+            "second": "gravity_delta"
+          }
+        ],
+        "dominant_gradient_parameter": "velocity_x",
+        "dominant_gradient_ratio": 2.2057685282638912e-05,
+        "native_predictions": 0,
+        "near_outward_distances": {
+          "earth_removal": 1.1102230246251565e-16,
+          "gyro_bias_z": 1.1102230246251565e-16,
+          "gyro_gain_z": 1.1102230246251565e-16
+        },
+        "near_outward_parameters": [
+          "gyro_bias_z",
+          "gyro_gain_z",
+          "earth_removal"
+        ],
+        "observed_fit_starts": 0,
+        "original": {
+          "cost": 2.311026082975893,
+          "displacement_from_saved": 0.0,
+          "evaluations": 2,
+          "last_parameter_step": 1.1102230246251565e-16,
+          "message": "`xtol` termination condition is satisfied.",
+          "solver_reported_success": true,
+          "stationarity": 2.205768528263891e-09,
+          "stationarity_passed": true
+        },
+        "qualifies_archival_fit": false,
+        "rank": 27,
+        "rank_cutoff": 3.389770445057811e-08,
+        "reference": {
+          "cost": 2.311026082975874,
+          "normalized_step": 8.89061698673401e-09,
+          "relative_cost_change": 8.070764302964898e-15,
+          "relative_residual_step": 3.4532238884490963e-09,
+          "success": true
+        },
+        "rows": 1317,
+        "snap_maximum_change": 1.1102230246251565e-16,
+        "snapped": {
+          "cost": 2.311026082975874,
+          "displacement_from_saved": 1.4488141089062616e-10,
+          "evaluations": 8,
+          "last_parameter_step": 2.610013526697345e-11,
+          "message": "`xtol` termination condition is satisfied.",
+          "solver_reported_success": true,
+          "stationarity": 3.3842345788277085e-10,
+          "stationarity_passed": true
+        },
+        "version": "ilvis0-saved-rectangular-diagnosis-v1",
+        "weakest_direction": [
+          {
+            "coefficient": 0.9083994493587743,
+            "parameter": "gravity_delta",
+            "weight": 0.8251895595953243
+          },
+          {
+            "coefficient": 0.23123374480777684,
+            "parameter": "gyro_gain_y",
+            "weight": 0.05346904473782806
+          },
+          {
+            "coefficient": 0.2309650114375526,
+            "parameter": "gyro_gain_x",
+            "weight": 0.05334483650834881
+          },
+          {
+            "coefficient": 0.18186014178073548,
+            "parameter": "accel_bias_z",
+            "weight": 0.03307311116850921
+          },
+          {
+            "coefficient": 0.14444494186102208,
+            "parameter": "gyro_gain_z",
+            "weight": 0.02086434122923405
+          }
+        ]
+      },
+      "maximum_evaluations": 600,
+      "model": "sphere_rotating",
+      "predicted_cost_change_ratio": 7.686442193299903e-07,
+      "predicted_residual_step_ratio": 0.0034530728114921592,
+      "previous_converged": true,
+      "probe_reason": "fresh_stability_verified",
+      "reference_cost": 2.311026082975893,
+      "relative_cost_change_from_reference": 0.0,
+      "role": "primary",
+      "scientific_decision": "abstain",
+      "segment_id": "570b37d23af5e245dd461051",
+      "stability_verified": true,
+      "stable_accepted_iterations": 0,
+      "stationarity_passed": true,
+      "stationarity_ratio": 2.2057685587274542e-05,
+      "stopping_message": "`xtol` termination condition is satisfied.",
+      "task_role": "control"
+    },
+    {
+      "accepted_callbacks": 1,
+      "callback_probe_disagreement": false,
+      "case_id": "bias1_profiled_removal",
+      "converged": true,
+      "cost": 10747.016232433913,
+      "dominant_bound_distance": 0.8306342109950521,
+      "dominant_normalized_value": 0.16936578900494792,
+      "dominant_parameter": "attitude_y",
+      "evaluations": 5,
+      "failure_class": "passed",
+      "identity": "570b37d23af5e245dd461051::bias1_profiled_removal::sphere_still::primary",
+      "jacobian_condition_ratio": 28840870.597954586,
+      "last_callback_cost": 10747.016232433913,
+      "last_optimizer_step": 1.1102230246251565e-16,
+      "local": {
+        "column_normalized_condition": 950851.3464756476,
+        "column_norms": {
+          "accel_bias_x": 13913.49066235616,
+          "accel_bias_y": 18821.100578781323,
+          "accel_bias_z": 5399.921045018556,
+          "accel_gain_x": 2800.731544342326,
+          "accel_gain_y": 3947.283643407301,
+          "accel_gain_z": 31552.68294318484,
+          "attitude_x": 106162.34818826965,
+          "attitude_y": 106187.64085898342,
+          "attitude_z": 75304.5732547427,
+          "earth_removal": 1808.8598499341874,
+          "gravity_delta": 1096.0883571087313,
+          "gyro_bias_x": 472.3265036968132,
+          "gyro_bias_y": 472.2863200528284,
+          "gyro_bias_z": 25.15447186782093,
+          "gyro_gain_x": 80.59349844229907,
+          "gyro_gain_y": 11.379033100250489,
+          "gyro_gain_z": 12.504266048915953,
+          "lever_x": 8.549150938774586,
+          "lever_y": 8.564218444042375,
+          "lever_z": 3.255102140212343,
+          "position_x": 85.40579197320172,
+          "position_y": 84.78022958733375,
+          "position_z": 28.493280493060286,
+          "time_offset": 31.666996519752036,
+          "velocity_x": 5638.815958488098,
+          "velocity_y": 5639.546056068241,
+          "velocity_z": 1964.3567009251979
+        },
+        "columns": 27,
+        "condition": 28840870.59795457,
+        "correlated_pairs": [
+          {
+            "cosine": -0.999999998798992,
+            "first": "accel_bias_z",
+            "second": "accel_gain_z"
+          },
+          {
+            "cosine": -0.9999994582792505,
+            "first": "accel_bias_y",
+            "second": "accel_gain_y"
+          },
+          {
+            "cosine": 0.999957865069732,
+            "first": "accel_bias_x",
+            "second": "accel_gain_x"
+          },
+          {
+            "cosine": -0.9981510677139849,
+            "first": "gyro_bias_x",
+            "second": "gyro_gain_x"
+          },
+          {
+            "cosine": 0.9939286554141085,
+            "first": "gyro_bias_z",
+            "second": "gyro_gain_z"
+          }
+        ],
+        "dominant_gradient_parameter": "attitude_y",
+        "dominant_gradient_ratio": 1.7303119145764384e-07,
+        "native_predictions": 0,
+        "near_outward_distances": {
+          "accel_bias_x": 1.1102230246251565e-16,
+          "accel_bias_y": 1.1102230246251565e-16,
+          "accel_gain_x": 1.1102230246251565e-16,
+          "accel_gain_y": 1.1102230246251565e-16,
+          "earth_removal": 1.1102230246251565e-16,
+          "gravity_delta": 1.1102230246251565e-16,
+          "gyro_bias_y": 1.1102230246251565e-16,
+          "gyro_bias_z": 1.1102230246251565e-16,
+          "gyro_gain_x": 1.1102230246251565e-16,
+          "gyro_gain_y": 1.1102230246251565e-16,
+          "gyro_gain_z": 1.1102230246251565e-16,
+          "lever_x": 1.1102230246251565e-16,
+          "lever_y": 1.1102230246251565e-16,
+          "time_offset": 1.1102230246251565e-16
+        },
+        "near_outward_parameters": [
+          "gyro_bias_y",
+          "gyro_bias_z",
+          "accel_bias_x",
+          "accel_bias_y",
+          "gyro_gain_x",
+          "gyro_gain_y",
+          "gyro_gain_z",
+          "accel_gain_x",
+          "accel_gain_y",
+          "lever_x",
+          "lever_y",
+          "gravity_delta",
+          "time_offset",
+          "earth_removal"
+        ],
+        "observed_fit_starts": 0,
+        "original": {
+          "cost": 10747.01623243391,
+          "displacement_from_saved": 1.1102230246251565e-16,
+          "evaluations": 2,
+          "last_parameter_step": 1.1102230246251565e-16,
+          "message": "`xtol` termination condition is satisfied.",
+          "solver_reported_success": true,
+          "stationarity": 1.730457258728141e-11,
+          "stationarity_passed": true
+        },
+        "qualifies_archival_fit": false,
+        "rank": 27,
+        "rank_cutoff": 3.837323207959356e-08,
+        "reference": {
+          "cost": 10747.016232433902,
+          "normalized_step": 4.3715569191836103e-10,
+          "relative_cost_change": 1.0155317704217726e-15,
+          "relative_residual_step": 2.6811523398173236e-11,
+          "success": true
+        },
+        "rows": 1317,
+        "snap_maximum_change": 1.1102230246251565e-16,
+        "snapped": {
+          "cost": 10747.0162324339,
+          "displacement_from_saved": 1.349265531624159e-11,
+          "evaluations": 2,
+          "last_parameter_step": 1.3492655309846876e-11,
+          "message": "`xtol` termination condition is satisfied.",
+          "solver_reported_success": true,
+          "stationarity": 7.029335092574687e-10,
+          "stationarity_passed": true
+        },
+        "version": "ilvis0-saved-rectangular-diagnosis-v1",
+        "weakest_direction": [
+          {
+            "coefficient": 0.9015083593291809,
+            "parameter": "gravity_delta",
+            "weight": 0.8127173219403916
+          },
+          {
+            "coefficient": 0.2252022305729286,
+            "parameter": "gyro_gain_y",
+            "weight": 0.050716044655022496
+          },
+          {
+            "coefficient": 0.22411814227413787,
+            "parameter": "gyro_gain_x",
+            "weight": 0.050228941696410706
+          },
+          {
+            "coefficient": 0.21128058199609387,
+            "parameter": "gyro_gain_z",
+            "weight": 0.04463948432860815
+          },
+          {
+            "coefficient": 0.18538133869611945,
+            "parameter": "accel_bias_z",
+            "weight": 0.034366240736765356
+          }
+        ]
+      },
+      "maximum_evaluations": 600,
+      "model": "sphere_still",
+      "predicted_cost_change_ratio": 8.462764753514771e-08,
+      "predicted_residual_step_ratio": 2.6818455302669647e-05,
+      "previous_converged": true,
+      "probe_reason": "fresh_stability_verified",
+      "reference_cost": 10747.016232433913,
+      "relative_cost_change_from_reference": 0.0,
+      "role": "primary",
+      "scientific_decision": "abstain",
+      "segment_id": "570b37d23af5e245dd461051",
+      "stability_verified": true,
+      "stable_accepted_iterations": 0,
+      "stationarity_passed": true,
+      "stationarity_ratio": 1.7302945644941355e-07,
+      "stopping_message": "`xtol` termination condition is satisfied.",
+      "task_role": "control"
+    },
+    {
+      "accepted_callbacks": 1,
+      "callback_probe_disagreement": false,
+      "case_id": "bias1_unsubtracted",
+      "converged": true,
+      "cost": 49304.20124662942,
+      "dominant_bound_distance": 0.7003521940948354,
+      "dominant_normalized_value": 0.29964780590516465,
+      "dominant_parameter": "attitude_z",
+      "evaluations": 5,
+      "failure_class": "passed",
+      "identity": "570b37d23af5e245dd461051::bias1_unsubtracted::flat_still::primary",
+      "jacobian_condition_ratio": 49246170.70203577,
+      "last_callback_cost": 49304.20124662942,
+      "last_optimizer_step": 1.5700924586837752e-16,
+      "local": {
+        "column_normalized_condition": 1914864.0078337514,
+        "column_norms": {
+          "accel_bias_x": 8427.36384222839,
+          "accel_bias_y": 16101.913200645462,
+          "accel_bias_z": 5321.43372240835,
+          "accel_gain_x": 1696.3624834712627,
+          "accel_gain_y": 3376.790319869672,
+          "accel_gain_z": 31124.432149736363,
+          "attitude_x": 107321.33289779809,
+          "attitude_y": 24344.818877757403,
+          "attitude_z": 64889.863850276255,
+          "gravity_delta": 1094.6987230940433,
+          "gyro_bias_x": 385.2854402793001,
+          "gyro_bias_y": 281.63806521034877,
+          "gyro_bias_z": 24.932411292152434,
+          "gyro_gain_x": 62.8754614133232,
+          "gyro_gain_y": 6.763639026505537,
+          "gyro_gain_z": 12.119086738342707,
+          "lever_x": 5.1265665230609665,
+          "lever_y": 7.113493536643918,
+          "lever_z": 3.1089534639607455,
+          "position_x": 85.71165383662382,
+          "position_y": 17.21032851453534,
+          "position_z": 28.473543856405136,
+          "time_offset": 31.80011116452685,
+          "velocity_x": 5901.385697701823,
+          "velocity_y": 1165.149812061575,
+          "velocity_z": 1961.7373794371545
+        },
+        "columns": 26,
+        "condition": 49246170.702035785,
+        "correlated_pairs": [
+          {
+            "cosine": -0.9999999988363817,
+            "first": "accel_bias_z",
+            "second": "accel_gain_z"
+          },
+          {
+            "cosine": -0.9999994968028754,
+            "first": "accel_bias_y",
+            "second": "accel_gain_y"
+          },
+          {
+            "cosine": 0.999959307941674,
+            "first": "accel_bias_x",
+            "second": "accel_gain_x"
+          },
+          {
+            "cosine": -0.9982915662890713,
+            "first": "gyro_bias_x",
+            "second": "gyro_gain_x"
+          },
+          {
+            "cosine": -0.9982700512058611,
+            "first": "accel_bias_z",
+            "second": "gravity_delta"
+          }
+        ],
+        "dominant_gradient_parameter": "attitude_z",
+        "dominant_gradient_ratio": 1.607464939013538e-06,
+        "native_predictions": 0,
+        "near_outward_distances": {
+          "accel_bias_x": 1.1102230246251565e-16,
+          "accel_bias_y": 1.1102230246251565e-16,
+          "accel_gain_x": 1.1102230246251565e-16,
+          "accel_gain_y": 1.1102230246251565e-16,
+          "gravity_delta": 1.1102230246251565e-16,
+          "gyro_bias_x": 1.1102230246251565e-16,
+          "gyro_bias_y": 1.1102230246251565e-16,
+          "gyro_bias_z": 1.1102230246251565e-16,
+          "gyro_gain_x": 1.1102230246251565e-16,
+          "gyro_gain_y": 1.1102230246251565e-16,
+          "gyro_gain_z": 1.1102230246251565e-16,
+          "lever_x": 1.1102230246251565e-16,
+          "lever_y": 1.1102230246251565e-16,
+          "position_y": 1.1102230246251565e-16
+        },
+        "near_outward_parameters": [
+          "position_y",
+          "gyro_bias_x",
+          "gyro_bias_y",
+          "gyro_bias_z",
+          "accel_bias_x",
+          "accel_bias_y",
+          "gyro_gain_x",
+          "gyro_gain_y",
+          "gyro_gain_z",
+          "accel_gain_x",
+          "accel_gain_y",
+          "lever_x",
+          "lever_y",
+          "gravity_delta"
+        ],
+        "observed_fit_starts": 0,
+        "original": {
+          "cost": 49304.20124662941,
+          "displacement_from_saved": 1.5700924586837752e-16,
+          "evaluations": 2,
+          "last_parameter_step": 1.5700924586837752e-16,
+          "message": "`xtol` termination condition is satisfied.",
+          "solver_reported_success": true,
+          "stationarity": 1.607508700281415e-10,
+          "stationarity_passed": true
+        },
+        "qualifies_archival_fit": false,
+        "rank": 26,
+        "rank_cutoff": 3.7238150084348335e-08,
+        "reference": {
+          "cost": 49304.20124627512,
+          "normalized_step": 1.8119363648731466e-07,
+          "relative_cost_change": 7.185908525173977e-12,
+          "relative_residual_step": 1.2366295350389806e-08,
+          "success": true
+        },
+        "rows": 1317,
+        "snap_maximum_change": 1.1102230246251565e-16,
+        "snapped": {
+          "cost": 49304.201246275115,
+          "displacement_from_saved": 1.81193637121653e-07,
+          "evaluations": 4,
+          "last_parameter_step": 1.0234398063966198e-15,
+          "message": "`xtol` termination condition is satisfied.",
+          "solver_reported_success": true,
+          "stationarity": 8.658475119822797e-16,
+          "stationarity_passed": true
+        },
+        "version": "ilvis0-saved-rectangular-diagnosis-v1",
+        "weakest_direction": [
+          {
+            "coefficient": 0.9037931097181613,
+            "parameter": "gravity_delta",
+            "weight": 0.8168419851740243
+          },
+          {
+            "coefficient": 0.23898048222992097,
+            "parameter": "gyro_gain_x",
+            "weight": 0.05711167088684557
+          },
+          {
+            "coefficient": 0.22997201611009038,
+            "parameter": "gyro_gain_y",
+            "weight": 0.05288712819373967
+          },
+          {
+            "coefficient": 0.19444202765085686,
+            "parameter": "gyro_gain_z",
+            "weight": 0.03780770211697658
+          },
+          {
+            "coefficient": 0.18609295810278037,
+            "parameter": "accel_bias_z",
+            "weight": 0.03463058905544317
+          }
+        ]
+      },
+      "maximum_evaluations": 600,
+      "model": "flat_still",
+      "predicted_cost_change_ratio": 0.0007186056097945266,
+      "predicted_residual_step_ratio": 0.012366295390430097,
+      "previous_converged": true,
+      "probe_reason": "fresh_stability_verified",
+      "reference_cost": 49304.20124662942,
+      "relative_cost_change_from_reference": 0.0,
+      "role": "primary",
+      "scientific_decision": "abstain",
+      "segment_id": "570b37d23af5e245dd461051",
+      "stability_verified": true,
+      "stable_accepted_iterations": 0,
+      "stationarity_passed": true,
+      "stationarity_ratio": 1.6074652192755589e-06,
+      "stopping_message": "`xtol` termination condition is satisfied.",
+      "task_role": "control"
+    },
+    {
+      "accepted_callbacks": 1,
+      "callback_probe_disagreement": false,
+      "case_id": "bias1_unsubtracted",
+      "converged": true,
+      "cost": 2.3110260839923398,
+      "dominant_bound_distance": 0.9783694774152646,
+      "dominant_normalized_value": 0.02163052258473536,
+      "dominant_parameter": "velocity_y",
+      "evaluations": 5,
+      "failure_class": "passed",
+      "identity": "570b37d23af5e245dd461051::bias1_unsubtracted::sphere_rotating::primary",
+      "jacobian_condition_ratio": 22646070.57410407,
+      "last_callback_cost": 2.3110260839923398,
+      "last_optimizer_step": 1.1107649934270853e-16,
+      "local": {
+        "column_normalized_condition": 816411.955672819,
+        "column_norms": {
+          "accel_bias_x": 16002.969570996875,
+          "accel_bias_y": 15710.430031885166,
+          "accel_bias_z": 5481.7420448206685,
+          "accel_gain_x": 1284.1140852906121,
+          "accel_gain_y": 396.0345127683942,
+          "accel_gain_z": 32097.452146525113,
+          "attitude_x": 108958.66058701344,
+          "attitude_y": 108973.25944172649,
+          "attitude_z": 35918.998151019936,
+          "gravity_delta": 1095.393485477919,
+          "gyro_bias_x": 463.2168058476214,
+          "gyro_bias_y": 463.8242966346941,
+          "gyro_bias_z": 7.907946106360229,
+          "gyro_gain_x": 86.18640034747709,
+          "gyro_gain_y": 18.0028629676011,
+          "gyro_gain_z": 3.887303405484462,
+          "lever_x": 8.549770738073803,
+          "lever_y": 8.566021038327655,
+          "lever_z": 3.2167946581915423,
+          "position_x": 85.40687431641473,
+          "position_y": 84.78022958733375,
+          "position_z": 28.493270031711546,
+          "time_offset": 31.659291631258306,
+          "velocity_x": 5637.458904150618,
+          "velocity_y": 5637.9721883209095,
+          "velocity_z": 1963.9008565648103
+        },
+        "columns": 26,
+        "condition": 22646070.574104056,
+        "correlated_pairs": [
+          {
+            "cosine": -0.9999999987240287,
+            "first": "accel_bias_z",
+            "second": "accel_gain_z"
+          },
+          {
+            "cosine": -0.9999738634513934,
+            "first": "accel_bias_y",
+            "second": "accel_gain_y"
+          },
+          {
+            "cosine": 0.9996488234623601,
+            "first": "accel_bias_x",
+            "second": "accel_gain_x"
+          },
+          {
+            "cosine": -0.9986615759767462,
+            "first": "accel_bias_z",
+            "second": "gravity_delta"
+          },
+          {
+            "cosine": 0.9986610351002213,
+            "first": "accel_gain_z",
+            "second": "gravity_delta"
+          }
+        ],
+        "dominant_gradient_parameter": "velocity_y",
+        "dominant_gradient_ratio": 2.2721329489711975e-05,
+        "native_predictions": 0,
+        "near_outward_distances": {
+          "gyro_bias_z": 1.1102230246251565e-16,
+          "gyro_gain_z": 1.1102230246251565e-16
+        },
+        "near_outward_parameters": [
+          "gyro_bias_z",
+          "gyro_gain_z"
+        ],
+        "observed_fit_starts": 0,
+        "original": {
+          "cost": 2.3110260839923393,
+          "displacement_from_saved": 1.1107649934270853e-16,
+          "evaluations": 2,
+          "last_parameter_step": 1.1107649934270853e-16,
+          "message": "`xtol` termination condition is satisfied.",
+          "solver_reported_success": true,
+          "stationarity": 2.2719443884144666e-09,
+          "stationarity_passed": true
+        },
+        "qualifies_archival_fit": false,
+        "rank": 26,
+        "rank_cutoff": 3.3893784672175e-08,
+        "reference": {
+          "cost": 2.3110260839843733,
+          "normalized_step": 6.439338717774523e-08,
+          "relative_cost_change": 3.4471771611240192e-12,
+          "relative_residual_step": 4.477033838774475e-09,
+          "success": true
+        },
+        "rows": 1317,
+        "snap_maximum_change": 1.1102230246251565e-16,
+        "snapped": {
+          "cost": 2.311026083984373,
+          "displacement_from_saved": 6.178210545503785e-08,
+          "evaluations": 8,
+          "last_parameter_step": 2.2290014281239227e-11,
+          "message": "`xtol` termination condition is satisfied.",
+          "solver_reported_success": true,
+          "stationarity": 7.83237785606084e-10,
+          "stationarity_passed": true
+        },
+        "version": "ilvis0-saved-rectangular-diagnosis-v1",
+        "weakest_direction": [
+          {
+            "coefficient": 0.911258093131544,
+            "parameter": "gravity_delta",
+            "weight": 0.8303913122977378
+          },
+          {
+            "coefficient": 0.23170122539085172,
+            "parameter": "gyro_gain_x",
+            "weight": 0.05368545784762227
+          },
+          {
+            "coefficient": 0.23122933385212066,
+            "parameter": "gyro_gain_y",
+            "weight": 0.05346700483369547
+          },
+          {
+            "coefficient": 0.18241964258372015,
+            "parameter": "accel_bias_z",
+            "weight": 0.03327692600037221
+          },
+          {
+            "coefficient": 0.1665327846577826,
+            "parameter": "gyro_gain_z",
+            "weight": 0.02773316836587539
+          }
+        ]
+      },
+      "maximum_evaluations": 600,
+      "model": "sphere_rotating",
+      "predicted_cost_change_ratio": 0.00034475614832335153,
+      "predicted_residual_step_ratio": 0.004477054308511262,
+      "previous_converged": true,
+      "probe_reason": "fresh_stability_verified",
+      "reference_cost": 2.3110260839923398,
+      "relative_cost_change_from_reference": 0.0,
+      "role": "primary",
+      "scientific_decision": "abstain",
+      "segment_id": "570b37d23af5e245dd461051",
+      "stability_verified": true,
+      "stable_accepted_iterations": 0,
+      "stationarity_passed": true,
+      "stationarity_ratio": 2.272132925347096e-05,
+      "stopping_message": "`xtol` termination condition is satisfied.",
+      "task_role": "control"
+    },
+    {
+      "accepted_callbacks": 1,
+      "callback_probe_disagreement": false,
+      "case_id": "bias1_unsubtracted",
+      "converged": true,
+      "cost": 10747.016232348018,
+      "dominant_bound_distance": 0.8306342109530368,
+      "dominant_normalized_value": 0.16936578904696323,
+      "dominant_parameter": "attitude_y",
+      "evaluations": 5,
+      "failure_class": "passed",
+      "identity": "570b37d23af5e245dd461051::bias1_unsubtracted::sphere_still::primary",
+      "jacobian_condition_ratio": 25434259.895181216,
+      "last_callback_cost": 10747.016232348018,
+      "last_optimizer_step": 1.1102230246251565e-16,
+      "local": {
+        "column_normalized_condition": 802894.7183993632,
+        "column_norms": {
+          "accel_bias_x": 13913.490662358246,
+          "accel_bias_y": 18821.10057877887,
+          "accel_bias_z": 5399.921058912828,
+          "accel_gain_x": 2800.7315443427137,
+          "accel_gain_y": 3947.283643406744,
+          "accel_gain_z": 31552.683024369842,
+          "attitude_x": 106162.34818609104,
+          "attitude_y": 106187.64085681732,
+          "attitude_z": 75304.57325605635,
+          "gravity_delta": 1096.0883571087338,
+          "gyro_bias_x": 472.3265036968409,
+          "gyro_bias_y": 472.28632005288057,
+          "gyro_bias_z": 25.15447186803149,
+          "gyro_gain_x": 80.59349845275402,
+          "gyro_gain_y": 11.379033100317825,
+          "gyro_gain_z": 12.5042660490293,
+          "lever_x": 8.549150938774794,
+          "lever_y": 8.564218444042249,
+          "lever_z": 3.2551021402123137,
+          "position_x": 85.40579197320174,
+          "position_y": 84.78022958733375,
+          "position_z": 28.49328049306034,
+          "time_offset": 31.666996519852262,
+          "velocity_x": 5638.8159584881705,
+          "velocity_y": 5639.546056068293,
+          "velocity_z": 1964.356700925203
+        },
+        "columns": 26,
+        "condition": 25434259.895181216,
+        "correlated_pairs": [
+          {
+            "cosine": -0.9999999987989913,
+            "first": "accel_bias_z",
+            "second": "accel_gain_z"
+          },
+          {
+            "cosine": -0.9999994582792495,
+            "first": "accel_bias_y",
+            "second": "accel_gain_y"
+          },
+          {
+            "cosine": 0.9999578650697318,
+            "first": "accel_bias_x",
+            "second": "accel_gain_x"
+          },
+          {
+            "cosine": -0.9981510677145046,
+            "first": "gyro_bias_x",
+            "second": "gyro_gain_x"
+          },
+          {
+            "cosine": 0.9939286554141782,
+            "first": "gyro_bias_z",
+            "second": "gyro_gain_z"
+          }
+        ],
+        "dominant_gradient_parameter": "attitude_y",
+        "dominant_gradient_ratio": 9.28319915284494e-06,
+        "native_predictions": 0,
+        "near_outward_distances": {
+          "accel_bias_x": 1.1102230246251565e-16,
+          "accel_bias_y": 1.1102230246251565e-16,
+          "accel_gain_x": 1.1102230246251565e-16,
+          "accel_gain_y": 1.1102230246251565e-16,
+          "gravity_delta": 1.1102230246251565e-16,
+          "gyro_bias_y": 1.1102230246251565e-16,
+          "gyro_bias_z": 1.1102230246251565e-16,
+          "gyro_gain_x": 1.1102230246251565e-16,
+          "gyro_gain_y": 1.1102230246251565e-16,
+          "gyro_gain_z": 1.1102230246251565e-16,
+          "lever_x": 1.1102230246251565e-16,
+          "lever_y": 1.1102230246251565e-16,
+          "time_offset": 1.1102230246251565e-16
+        },
+        "near_outward_parameters": [
+          "gyro_bias_y",
+          "gyro_bias_z",
+          "accel_bias_x",
+          "accel_bias_y",
+          "gyro_gain_x",
+          "gyro_gain_y",
+          "gyro_gain_z",
+          "accel_gain_x",
+          "accel_gain_y",
+          "lever_x",
+          "lever_y",
+          "gravity_delta",
+          "time_offset"
+        ],
+        "observed_fit_starts": 0,
+        "original": {
+          "cost": 10747.016232348018,
+          "displacement_from_saved": 0.0,
+          "evaluations": 2,
+          "last_parameter_step": 1.1102230246251565e-16,
+          "message": "`xtol` termination condition is satisfied.",
+          "solver_reported_success": true,
+          "stationarity": 9.283199152844941e-10,
+          "stationarity_passed": true
+        },
+        "qualifies_archival_fit": false,
+        "rank": 26,
+        "rank_cutoff": 3.8370211336809876e-08,
+        "reference": {
+          "cost": 10747.016232292815,
+          "normalized_step": 1.0478021399118294e-07,
+          "relative_cost_change": 5.136559694834379e-12,
+          "relative_residual_step": 1.4761766724950634e-09,
+          "success": true
+        },
+        "rows": 1317,
+        "snap_maximum_change": 1.1102230246251565e-16,
+        "snapped": {
+          "cost": 10747.016232292812,
+          "displacement_from_saved": 1.0478021401791334e-07,
+          "evaluations": 4,
+          "last_parameter_step": 1.3968606988420394e-15,
+          "message": "`xtol` termination condition is satisfied.",
+          "solver_reported_success": true,
+          "stationarity": 2.032195484839996e-14,
+          "stationarity_passed": true
+        },
+        "version": "ilvis0-saved-rectangular-diagnosis-v1",
+        "weakest_direction": [
+          {
+            "coefficient": 0.9020061909055859,
+            "parameter": "gravity_delta",
+            "weight": 0.8136151684320042
+          },
+          {
+            "coefficient": 0.2250851073431598,
+            "parameter": "gyro_gain_y",
+            "weight": 0.050663305547681774
+          },
+          {
+            "coefficient": 0.22479557171193307,
+            "parameter": "gyro_gain_x",
+            "weight": 0.05053304906129484
+          },
+          {
+            "coefficient": 0.22164159040584194,
+            "parameter": "gyro_gain_z",
+            "weight": 0.049124994597631005
+          },
+          {
+            "coefficient": 0.18543592940546538,
+            "parameter": "accel_bias_z",
+            "weight": 0.03438648391446874
+          }
+        ]
+      },
+      "maximum_evaluations": 600,
+      "model": "sphere_still",
+      "predicted_cost_change_ratio": 0.0005136559694834379,
+      "predicted_residual_step_ratio": 0.0014761664594443084,
+      "previous_converged": true,
+      "probe_reason": "fresh_stability_verified",
+      "reference_cost": 10747.016232348018,
+      "relative_cost_change_from_reference": 0.0,
+      "role": "primary",
+      "scientific_decision": "abstain",
+      "segment_id": "570b37d23af5e245dd461051",
+      "stability_verified": true,
+      "stable_accepted_iterations": 0,
+      "stationarity_passed": true,
+      "stationarity_ratio": 9.283198409270392e-06,
+      "stopping_message": "`xtol` termination condition is satisfied.",
+      "task_role": "control"
+    },
+    {
+      "accepted_callbacks": 1,
+      "callback_probe_disagreement": false,
+      "case_id": "bias1_profiled_removal",
+      "converged": false,
+      "cost": 7344.76288258099,
+      "dominant_bound_distance": 0.966740850649708,
+      "dominant_normalized_value": -0.03325914935029193,
+      "dominant_parameter": "accel_bias_z",
+      "evaluations": 4,
+      "failure_class": "early_stationarity_failure",
+      "identity": "b365bdf39150ee6afc303ac1::bias1_profiled_removal::flat_still::primary",
+      "jacobian_condition_ratio": 129537837.95030478,
+      "last_callback_cost": 7344.76288258099,
+      "last_optimizer_step": 6.433085655296872e-15,
+      "local": {
+        "column_normalized_condition": 4336559.464927045,
+        "column_norms": {
+          "accel_bias_x": 17240.90270908753,
+          "accel_bias_y": 27408.43510127938,
+          "accel_bias_z": 10000.188296471755,
+          "accel_gain_x": 4335.995011043127,
+          "accel_gain_y": 2527.7735822027903,
+          "accel_gain_z": 58502.09335445306,
+          "attitude_x": 193174.9177967302,
+          "attitude_y": 43921.21298628048,
+          "attitude_z": 186028.5853564915,
+          "earth_removal": 670.1442617422513,
+          "gravity_delta": 2006.7348385192784,
+          "gyro_bias_x": 863.4772920877356,
+          "gyro_bias_y": 772.1374247251617,
+          "gyro_bias_z": 56.66106333331204,
+          "gyro_gain_x": 193.90699151638148,
+          "gyro_gain_y": 93.60391993233925,
+          "gyro_gain_z": 3.8669387802860573,
+          "lever_x": 5.842187483710078,
+          "lever_y": 6.703216126237553,
+          "lever_z": 3.0284508692421017,
+          "position_x": 87.42259005760424,
+          "position_y": 15.02202284568606,
+          "position_z": 29.036021439409048,
+          "time_offset": 30.775575753475728,
+          "velocity_x": 8101.735873021465,
+          "velocity_y": 1357.342863263688,
+          "velocity_z": 2692.2999658890185
+        },
+        "columns": 27,
+        "condition": 129537837.95030476,
+        "correlated_pairs": [
+          {
+            "cosine": -0.9999999992858618,
+            "first": "accel_bias_z",
+            "second": "accel_gain_z"
+          },
+          {
+            "cosine": -0.9999981177145087,
+            "first": "accel_bias_y",
+            "second": "accel_gain_y"
+          },
+          {
+            "cosine": 0.9999739847439071,
+            "first": "accel_bias_x",
+            "second": "accel_gain_x"
+          },
+          {
+            "cosine": -0.9998036357804853,
+            "first": "gyro_bias_y",
+            "second": "gyro_gain_y"
+          },
+          {
+            "cosine": 0.9991267825383863,
+            "first": "attitude_x",
+            "second": "attitude_z"
+          }
+        ],
+        "dominant_gradient_parameter": "accel_bias_z",
+        "dominant_gradient_ratio": 44.853301701611855,
+        "native_predictions": 0,
+        "near_outward_distances": {
+          "earth_removal": 1.1102230246251565e-16,
+          "gyro_bias_x": 1.2434497875801753e-14,
+          "gyro_gain_x": 3.3306690738754696e-16,
+          "gyro_gain_z": 1.1102230246251565e-16,
+          "lever_y": 7.511768984613809e-13,
+          "lever_z": 1.1102230246251565e-16
+        },
+        "near_outward_parameters": [
+          "gyro_bias_x",
+          "gyro_gain_x",
+          "gyro_gain_z",
+          "lever_y",
+          "lever_z",
+          "earth_removal"
+        ],
+        "observed_fit_starts": 0,
+        "original": {
+          "cost": 7344.762882580693,
+          "displacement_from_saved": 6.433085655296872e-15,
+          "evaluations": 2,
+          "last_parameter_step": 6.433085655296872e-15,
+          "message": "`xtol` termination condition is satisfied.",
+          "solver_reported_success": true,
+          "stationarity": 0.004485330165992908,
+          "stationarity_passed": false
+        },
+        "qualifies_archival_fit": false,
+        "rank": 27,
+        "rank_cutoff": 1.0592818873052918e-07,
+        "reference": {
+          "cost": 7237.794792188049,
+          "normalized_step": 0.7951500819727867,
+          "relative_cost_change": 0.014563858915939837,
+          "relative_residual_step": 0.03637296702325824,
+          "success": true
+        },
+        "rows": 1755,
+        "snap_maximum_change": 7.511768984613809e-13,
+        "snapped": {
+          "cost": 7237.794792188043,
+          "displacement_from_saved": 0.7951500819725712,
+          "evaluations": 19,
+          "last_parameter_step": 2.805198173012025e-13,
+          "message": "`xtol` termination condition is satisfied.",
+          "solver_reported_success": true,
+          "stationarity": 9.960256953339253e-15,
+          "stationarity_passed": true
+        },
+        "version": "ilvis0-saved-rectangular-diagnosis-v1",
+        "weakest_direction": [
+          {
+            "coefficient": 0.8894007126440086,
+            "parameter": "gravity_delta",
+            "weight": 0.7910336276516703
+          },
+          {
+            "coefficient": 0.25174410122723245,
+            "parameter": "gyro_gain_z",
+            "weight": 0.06337509250270706
+          },
+          {
+            "coefficient": 0.23236159875180512,
+            "parameter": "gyro_gain_x",
+            "weight": 0.053991912574494885
+          },
+          {
+            "coefficient": 0.22375225860283957,
+            "parameter": "gyro_gain_y",
+            "weight": 0.05006507322987199
+          },
+          {
+            "coefficient": 0.17933936393119176,
+            "parameter": "accel_bias_z",
+            "weight": 0.03216260745524444
+          }
+        ]
+      },
+      "maximum_evaluations": 600,
+      "model": "flat_still",
+      "predicted_cost_change_ratio": null,
+      "predicted_residual_step_ratio": null,
+      "previous_converged": false,
+      "probe_reason": "not_stationary",
+      "reference_cost": 7344.76288258099,
+      "relative_cost_change_from_reference": 0.0,
+      "role": "primary",
+      "scientific_decision": "abstain",
+      "segment_id": "b365bdf39150ee6afc303ac1",
+      "stability_verified": false,
+      "stable_accepted_iterations": 0,
+      "stationarity_passed": false,
+      "stationarity_ratio": 44.85330170161183,
+      "stopping_message": "`xtol` termination condition is satisfied.",
+      "task_role": "recovery"
+    },
+    {
+      "accepted_callbacks": 1,
+      "callback_probe_disagreement": false,
+      "case_id": "bias1_profiled_removal",
+      "converged": false,
+      "cost": 6.781604312389325,
+      "dominant_bound_distance": 1.5051563345691577e-06,
+      "dominant_normalized_value": -0.9999984948436654,
+      "dominant_parameter": "gyro_gain_x",
+      "evaluations": 4,
+      "failure_class": "early_stability_failure",
+      "identity": "b365bdf39150ee6afc303ac1::bias1_profiled_removal::sphere_rotating::primary",
+      "jacobian_condition_ratio": 134871665.78078663,
+      "last_callback_cost": 6.781604312389325,
+      "last_optimizer_step": 7.940750003401851e-16,
+      "local": {
+        "column_normalized_condition": 4470987.982475165,
+        "column_norms": {
+          "accel_bias_x": 28794.061182417365,
+          "accel_bias_y": 31752.33586951382,
+          "accel_bias_z": 10007.225616816562,
+          "accel_gain_x": 4735.787052554439,
+          "accel_gain_y": 1719.5616146455416,
+          "accel_gain_z": 58805.41133949841,
+          "attitude_x": 196727.09771511608,
+          "attitude_y": 196827.10623344046,
+          "attitude_z": 126467.27731415156,
+          "earth_removal": 3804.472567003497,
+          "gravity_delta": 2007.11921257598,
+          "gyro_bias_x": 1137.8660102113433,
+          "gyro_bias_y": 1100.1310413543024,
+          "gyro_bias_z": 39.01323332149713,
+          "gyro_gain_x": 289.3083775397944,
+          "gyro_gain_y": 112.25842063933855,
+          "gyro_gain_z": 2.752518584464029,
+          "lever_x": 8.715761136682278,
+          "lever_y": 8.726001051179745,
+          "lever_z": 3.110104047102876,
+          "position_x": 87.0992623816498,
+          "position_y": 86.15481663545475,
+          "position_z": 29.067868782933903,
+          "time_offset": 30.752870558030974,
+          "velocity_x": 7489.1226197849455,
+          "velocity_y": 7490.268121914575,
+          "velocity_z": 2696.871093009457
+        },
+        "columns": 27,
+        "condition": 134871665.7807866,
+        "correlated_pairs": [
+          {
+            "cosine": -0.9999999992929165,
+            "first": "accel_bias_z",
+            "second": "accel_gain_z"
+          },
+          {
+            "cosine": -0.999994529510223,
+            "first": "accel_bias_y",
+            "second": "accel_gain_y"
+          },
+          {
+            "cosine": 0.9999111333541111,
+            "first": "accel_bias_x",
+            "second": "accel_gain_x"
+          },
+          {
+            "cosine": -0.999711730075808,
+            "first": "gyro_bias_y",
+            "second": "gyro_gain_y"
+          },
+          {
+            "cosine": -0.9995564652351281,
+            "first": "attitude_x",
+            "second": "accel_bias_y"
+          }
+        ],
+        "dominant_gradient_parameter": "gyro_gain_x",
+        "dominant_gradient_ratio": 0.05897539996980936,
+        "native_predictions": 0,
+        "near_outward_distances": {
+          "gyro_bias_z": 1.1102230246251565e-16,
+          "gyro_gain_z": 1.1102230246251565e-16,
+          "lever_x": 1.1102230246251565e-16
+        },
+        "near_outward_parameters": [
+          "gyro_bias_z",
+          "gyro_gain_z",
+          "lever_x"
+        ],
+        "observed_fit_starts": 0,
+        "original": {
+          "cost": 6.781604312389325,
+          "displacement_from_saved": 0.0,
+          "evaluations": 2,
+          "last_parameter_step": 7.940750003401851e-16,
+          "message": "`xtol` termination condition is satisfied.",
+          "solver_reported_success": true,
+          "stationarity": 5.897539996980937e-06,
+          "stationarity_passed": true
+        },
+        "qualifies_archival_fit": false,
+        "rank": 27,
+        "rank_cutoff": 9.198236800911997e-08,
+        "reference": {
+          "cost": 6.763133218316358,
+          "normalized_step": 1.2073983631885694,
+          "relative_cost_change": 0.002723705663455213,
+          "relative_residual_step": 0.04807337849443563,
+          "success": true
+        },
+        "rows": 1755,
+        "snap_maximum_change": 1.1102230246251565e-16,
+        "snapped": {
+          "cost": 6.776062215909852,
+          "displacement_from_saved": 1.271504718129668,
+          "evaluations": 3,
+          "last_parameter_step": 7.188795042638388e-12,
+          "message": "`xtol` termination condition is satisfied.",
+          "solver_reported_success": true,
+          "stationarity": 4.782108019625849e-06,
+          "stationarity_passed": true
+        },
+        "version": "ilvis0-saved-rectangular-diagnosis-v1",
+        "weakest_direction": [
+          {
+            "coefficient": 0.8992554659027563,
+            "parameter": "gravity_delta",
+            "weight": 0.8086603929559832
+          },
+          {
+            "coefficient": 0.23081227836223425,
+            "parameter": "gyro_gain_y",
+            "weight": 0.05327430784276551
+          },
+          {
+            "coefficient": 0.23044093724111,
+            "parameter": "gyro_gain_z",
+            "weight": 0.0531030255565612
+          },
+          {
+            "coefficient": 0.2249529239606813,
+            "parameter": "gyro_gain_x",
+            "weight": 0.05060381799846007
+          },
+          {
+            "coefficient": 0.181296014975748,
+            "parameter": "accel_bias_z",
+            "weight": 0.03286824504608664
+          }
+        ]
+      },
+      "maximum_evaluations": 600,
+      "model": "sphere_rotating",
+      "predicted_cost_change_ratio": 272370.5663460451,
+      "predicted_residual_step_ratio": 48073.378494433004,
+      "previous_converged": false,
+      "probe_reason": "linear_correction_not_stable",
+      "reference_cost": 6.781604312389325,
+      "relative_cost_change_from_reference": 0.0,
+      "role": "primary",
+      "scientific_decision": "abstain",
+      "segment_id": "b365bdf39150ee6afc303ac1",
+      "stability_verified": false,
+      "stable_accepted_iterations": 0,
+      "stationarity_passed": true,
+      "stationarity_ratio": 0.058975399969385535,
+      "stopping_message": "`xtol` termination condition is satisfied.",
+      "task_role": "recovery"
+    },
+    {
+      "accepted_callbacks": 1,
+      "callback_probe_disagreement": false,
+      "case_id": "bias1_profiled_removal",
+      "converged": false,
+      "cost": 1548.4357798106469,
+      "dominant_bound_distance": 0.011782548690621564,
+      "dominant_normalized_value": -0.9882174513093784,
+      "dominant_parameter": "accel_bias_x",
+      "evaluations": 3,
+      "failure_class": "early_stationarity_failure",
+      "identity": "b365bdf39150ee6afc303ac1::bias1_profiled_removal::sphere_still::primary",
+      "jacobian_condition_ratio": 121337659.70273438,
+      "last_callback_cost": 1548.4357798106469,
+      "last_optimizer_step": 4.0870412746327873e-16,
+      "local": {
+        "column_normalized_condition": 3659153.610767384,
+        "column_norms": {
+          "accel_bias_x": 27900.458446903656,
+          "accel_bias_y": 33891.69236833684,
+          "accel_bias_z": 10137.228013078768,
+          "accel_gain_x": 8197.287787420004,
+          "accel_gain_y": 1626.7199519665155,
+          "accel_gain_z": 59233.3274560889,
+          "attitude_x": 192248.55547922937,
+          "attitude_y": 192446.83954027182,
+          "attitude_z": 160845.15492775064,
+          "earth_removal": 3781.690877343848,
+          "gravity_delta": 2008.3913700204846,
+          "gyro_bias_x": 1088.266197753919,
+          "gyro_bias_y": 1134.369786038456,
+          "gyro_bias_z": 62.14597223974549,
+          "gyro_gain_x": 242.23471145357593,
+          "gyro_gain_y": 150.1238578155911,
+          "gyro_gain_z": 3.6648529570502086,
+          "lever_x": 8.713747394409555,
+          "lever_y": 8.730388779425757,
+          "lever_z": 3.1143315930741178,
+          "position_x": 87.09987685510397,
+          "position_y": 86.15481663545475,
+          "position_z": 29.067901716833983,
+          "time_offset": 30.757777494211886,
+          "velocity_x": 7493.62919255107,
+          "velocity_y": 7495.26989331643,
+          "velocity_z": 2697.1471337891967
+        },
+        "columns": 27,
+        "condition": 121337659.70273435,
+        "correlated_pairs": [
+          {
+            "cosine": -0.9999999992837596,
+            "first": "accel_bias_z",
+            "second": "accel_gain_z"
+          },
+          {
+            "cosine": 0.9999920983746631,
+            "first": "accel_bias_y",
+            "second": "accel_gain_y"
+          },
+          {
+            "cosine": 0.9999738823626689,
+            "first": "accel_bias_x",
+            "second": "accel_gain_x"
+          },
+          {
+            "cosine": -0.9998157988377363,
+            "first": "gyro_bias_y",
+            "second": "gyro_gain_y"
+          },
+          {
+            "cosine": 0.9992217638509252,
+            "first": "attitude_x",
+            "second": "attitude_z"
+          }
+        ],
+        "dominant_gradient_parameter": "accel_bias_x",
+        "dominant_gradient_ratio": 4.417220633258207,
+        "native_predictions": 0,
+        "near_outward_distances": {
+          "gyro_bias_x": 1.1102230246251565e-16,
+          "gyro_gain_y": 6.217248937900877e-15,
+          "gyro_gain_z": 1.1102230246251565e-16,
+          "lever_z": 1.1102230246251565e-16,
+          "time_offset": 1.1102230246251565e-16
+        },
+        "near_outward_parameters": [
+          "gyro_bias_x",
+          "gyro_gain_y",
+          "gyro_gain_z",
+          "lever_z",
+          "time_offset"
+        ],
+        "observed_fit_starts": 0,
+        "original": {
+          "cost": 1548.4357798106407,
+          "displacement_from_saved": 1.0682150213337813e-15,
+          "evaluations": 2,
+          "last_parameter_step": 1.0682150213337813e-15,
+          "message": "`xtol` termination condition is satisfied.",
+          "solver_reported_success": true,
+          "stationarity": 0.00044172205797243113,
+          "stationarity_passed": false
+        },
+        "qualifies_archival_fit": false,
+        "rank": 27,
+        "rank_cutoff": 9.857962165706514e-08,
+        "reference": {
+          "cost": 1545.5155031236145,
+          "normalized_step": 0.9111284842510976,
+          "relative_cost_change": 0.0018859527305610743,
+          "relative_residual_step": 0.010769958440387271,
+          "success": true
+        },
+        "rows": 1755,
+        "snap_maximum_change": 6.217248937900877e-15,
+        "snapped": {
+          "cost": 1545.5155031236138,
+          "displacement_from_saved": 0.911128484251095,
+          "evaluations": 11,
+          "last_parameter_step": 3.63704328847997e-14,
+          "message": "`xtol` termination condition is satisfied.",
+          "solver_reported_success": true,
+          "stationarity": 8.839680056502845e-14,
+          "stationarity_passed": true
+        },
+        "version": "ilvis0-saved-rectangular-diagnosis-v1",
+        "weakest_direction": [
+          {
+            "coefficient": 0.8976488058042346,
+            "parameter": "gravity_delta",
+            "weight": 0.8057733785617684
+          },
+          {
+            "coefficient": 0.23496505337007764,
+            "parameter": "gyro_gain_x",
+            "weight": 0.055208576305203434
+          },
+          {
+            "coefficient": 0.2256927576825994,
+            "parameter": "gyro_gain_z",
+            "weight": 0.050937220870376526
+          },
+          {
+            "coefficient": 0.22179542218162368,
+            "parameter": "gyro_gain_y",
+            "weight": 0.04919320930072468
+          },
+          {
+            "coefficient": 0.18032376332120942,
+            "parameter": "accel_bias_z",
+            "weight": 0.03251665961832355
+          }
+        ]
+      },
+      "maximum_evaluations": 600,
+      "model": "sphere_still",
+      "predicted_cost_change_ratio": null,
+      "predicted_residual_step_ratio": null,
+      "previous_converged": false,
+      "probe_reason": "not_stationary",
+      "reference_cost": 1548.4357798106473,
+      "relative_cost_change_from_reference": -2.9368176376166765e-16,
+      "role": "primary",
+      "scientific_decision": "abstain",
+      "segment_id": "b365bdf39150ee6afc303ac1",
+      "stability_verified": false,
+      "stable_accepted_iterations": 0,
+      "stationarity_passed": false,
+      "stationarity_ratio": 4.417220633258002,
+      "stopping_message": "`xtol` termination condition is satisfied.",
+      "task_role": "recovery"
+    },
+    {
+      "accepted_callbacks": 1,
+      "callback_probe_disagreement": false,
+      "case_id": "bias1_unsubtracted",
+      "converged": false,
+      "cost": 21644.522956304918,
+      "dominant_bound_distance": 0.9732311831446686,
+      "dominant_normalized_value": 0.026768816855331355,
+      "dominant_parameter": "accel_gain_z",
+      "evaluations": 4,
+      "failure_class": "early_stationarity_failure",
+      "identity": "b365bdf39150ee6afc303ac1::bias1_unsubtracted::flat_still::primary",
+      "jacobian_condition_ratio": 23698165.572675467,
+      "last_callback_cost": 21644.522956304918,
+      "last_optimizer_step": 6.993087566257815e-15,
+      "local": {
+        "column_normalized_condition": 949226.1857755325,
+        "column_norms": {
+          "accel_bias_x": 21671.88706318742,
+          "accel_bias_y": 20756.361533973013,
+          "accel_bias_z": 10083.12243834638,
+          "accel_gain_x": 5743.790026057222,
+          "accel_gain_y": 3027.912138124451,
+          "accel_gain_z": 58971.09159511368,
+          "attitude_x": 182609.9298690176,
+          "attitude_y": 60620.2512377075,
+          "attitude_z": 118091.36414229739,
+          "gravity_delta": 2004.883051363063,
+          "gyro_bias_x": 659.0729782007577,
+          "gyro_bias_y": 927.7556146277466,
+          "gyro_bias_z": 15.190631074564022,
+          "gyro_gain_x": 147.26560277300248,
+          "gyro_gain_y": 81.1244533859734,
+          "gyro_gain_z": 1.2382103319566944,
+          "lever_x": 7.298374514733476,
+          "lever_y": 5.055000828254303,
+          "lever_z": 3.012508074538932,
+          "position_x": 87.42278166413291,
+          "position_y": 15.02202284568606,
+          "position_z": 29.036021439409048,
+          "time_offset": 30.791805838924912,
+          "velocity_x": 8099.813661083691,
+          "velocity_y": 1356.8749021094334,
+          "velocity_z": 2691.653376240158
+        },
+        "columns": 26,
+        "condition": 23698165.572675467,
+        "correlated_pairs": [
+          {
+            "cosine": -0.9999999993091727,
+            "first": "accel_bias_z",
+            "second": "accel_gain_z"
+          },
+          {
+            "cosine": 0.9999992500762415,
+            "first": "accel_bias_y",
+            "second": "accel_gain_y"
+          },
+          {
+            "cosine": 0.9999767854940899,
+            "first": "accel_bias_x",
+            "second": "accel_gain_x"
+          },
+          {
+            "cosine": -0.9996390677419781,
+            "first": "gyro_bias_y",
+            "second": "gyro_gain_y"
+          },
+          {
+            "cosine": 0.9971846392744951,
+            "first": "attitude_x",
+            "second": "attitude_z"
+          }
+        ],
+        "dominant_gradient_parameter": "accel_gain_z",
+        "dominant_gradient_ratio": 106.86088365100085,
+        "native_predictions": 0,
+        "near_outward_distances": {
+          "gyro_bias_x": 1.1102230246251565e-16,
+          "gyro_bias_z": 1.1102230246251565e-16,
+          "gyro_gain_x": 1.1102230246251565e-16,
+          "gyro_gain_z": 1.1102230246251565e-16,
+          "lever_y": 1.1102230246251565e-16,
+          "lever_z": 1.1102230246251565e-16,
+          "position_y": 1.1102230246251565e-16,
+          "time_offset": 1.1102230246251565e-16
+        },
+        "near_outward_parameters": [
+          "position_y",
+          "gyro_bias_x",
+          "gyro_bias_z",
+          "gyro_gain_x",
+          "gyro_gain_z",
+          "lever_y",
+          "lever_z",
+          "time_offset"
+        ],
+        "observed_fit_starts": 0,
+        "original": {
+          "cost": 21644.522956303357,
+          "displacement_from_saved": 6.993087566257815e-15,
+          "evaluations": 2,
+          "last_parameter_step": 6.993087566257815e-15,
+          "message": "`xtol` termination condition is satisfied.",
+          "solver_reported_success": true,
+          "stationarity": 0.010686088363327085,
+          "stationarity_passed": false
+        },
+        "qualifies_archival_fit": false,
+        "rank": 26,
+        "rank_cutoff": 8.790818527760973e-08,
+        "reference": {
+          "cost": 21587.40435987079,
+          "normalized_step": 1.0537654032293156,
+          "relative_cost_change": 0.002638939954899271,
+          "relative_residual_step": 0.014484759674498074,
+          "success": true
+        },
+        "rows": 1755,
+        "snap_maximum_change": 1.1102230246251565e-16,
+        "snapped": {
+          "cost": 21640.995113553774,
+          "displacement_from_saved": 4.609860556107874e-05,
+          "evaluations": 14,
+          "last_parameter_step": 8.55727529311395e-13,
+          "message": "`xtol` termination condition is satisfied.",
+          "solver_reported_success": true,
+          "stationarity": 0.008222521674577325,
+          "stationarity_passed": false
+        },
+        "version": "ilvis0-saved-rectangular-diagnosis-v1",
+        "weakest_direction": [
+          {
+            "coefficient": 0.8389767092460494,
+            "parameter": "gravity_delta",
+            "weight": 0.7038819186573301
+          },
+          {
+            "coefficient": 0.403595015744293,
+            "parameter": "gyro_gain_z",
+            "weight": 0.16288893673363614
+          },
+          {
+            "coefficient": 0.22064892353755278,
+            "parameter": "gyro_gain_x",
+            "weight": 0.04868594745828081
+          },
+          {
+            "coefficient": 0.2184599126625444,
+            "parameter": "gyro_gain_y",
+            "weight": 0.04772473344052652
+          },
+          {
+            "coefficient": 0.17795146663594846,
+            "parameter": "accel_bias_z",
+            "weight": 0.03166672447788508
+          }
+        ]
+      },
+      "maximum_evaluations": 600,
+      "model": "flat_still",
+      "predicted_cost_change_ratio": null,
+      "predicted_residual_step_ratio": null,
+      "previous_converged": true,
+      "probe_reason": "not_stationary",
+      "reference_cost": 21644.522956304918,
+      "relative_cost_change_from_reference": 0.0,
+      "role": "primary",
+      "scientific_decision": "abstain",
+      "segment_id": "b365bdf39150ee6afc303ac1",
+      "stability_verified": false,
+      "stable_accepted_iterations": 0,
+      "stationarity_passed": false,
+      "stationarity_ratio": 106.86088365100089,
+      "stopping_message": "`xtol` termination condition is satisfied.",
+      "task_role": "recovery"
+    },
+    {
+      "accepted_callbacks": 1,
+      "callback_probe_disagreement": false,
+      "case_id": "bias1_unsubtracted",
+      "converged": false,
+      "cost": 6.791820014999704,
+      "dominant_bound_distance": 0.9616969065760207,
+      "dominant_normalized_value": 0.03830309342397932,
+      "dominant_parameter": "accel_gain_z",
+      "evaluations": 3,
+      "failure_class": "early_stationarity_failure",
+      "identity": "b365bdf39150ee6afc303ac1::bias1_unsubtracted::sphere_rotating::primary",
+      "jacobian_condition_ratio": 33849445.87560755,
+      "last_callback_cost": 6.791820014999704,
+      "last_optimizer_step": 1.8328434925957873e-12,
+      "local": {
+        "column_normalized_condition": 1059320.7975821607,
+        "column_norms": {
+          "accel_bias_x": 28800.023627780207,
+          "accel_bias_y": 31757.31326518771,
+          "accel_bias_z": 10038.274858632874,
+          "accel_gain_x": 4742.612741259357,
+          "accel_gain_y": 1728.2169085436412,
+          "accel_gain_z": 58996.11260707608,
+          "attitude_x": 196753.58251255788,
+          "attitude_y": 196853.44829937562,
+          "attitude_z": 126556.55427900172,
+          "gravity_delta": 2007.1200631294741,
+          "gyro_bias_x": 1137.8355703135521,
+          "gyro_bias_y": 1100.2618855267206,
+          "gyro_bias_z": 39.068771058221145,
+          "gyro_gain_x": 290.00496122762297,
+          "gyro_gain_y": 111.90337705640272,
+          "gyro_gain_z": 2.7571405341669393,
+          "lever_x": 8.715746996676726,
+          "lever_y": 8.725986185122911,
+          "lever_z": 3.11007619051939,
+          "position_x": 87.09924995801528,
+          "position_y": 86.15481663545475,
+          "position_z": 29.067868102891193,
+          "time_offset": 30.752871690482078,
+          "velocity_x": 7489.044920689775,
+          "velocity_y": 7490.190510670278,
+          "velocity_z": 2696.871326589755
+        },
+        "columns": 26,
+        "condition": 33849445.87560755,
+        "correlated_pairs": [
+          {
+            "cosine": -0.9999999992887869,
+            "first": "accel_bias_z",
+            "second": "accel_gain_z"
+          },
+          {
+            "cosine": -0.9999945806135546,
+            "first": "accel_bias_y",
+            "second": "accel_gain_y"
+          },
+          {
+            "cosine": 0.9999113135477169,
+            "first": "accel_bias_x",
+            "second": "accel_gain_x"
+          },
+          {
+            "cosine": -0.9997098253354721,
+            "first": "gyro_bias_y",
+            "second": "gyro_gain_y"
+          },
+          {
+            "cosine": -0.9995535741918053,
+            "first": "attitude_x",
+            "second": "accel_bias_y"
+          }
+        ],
+        "dominant_gradient_parameter": "accel_gain_z",
+        "dominant_gradient_ratio": 56.114723229427405,
+        "native_predictions": 0,
+        "near_outward_distances": {
+          "gyro_gain_z": 1.1102230246251565e-16,
+          "lever_x": 1.1102230246251565e-16
+        },
+        "near_outward_parameters": [
+          "gyro_gain_z",
+          "lever_x"
+        ],
+        "observed_fit_starts": 0,
+        "original": {
+          "cost": 6.791820005857167,
+          "displacement_from_saved": 4.813803643196102e-12,
+          "evaluations": 2,
+          "last_parameter_step": 4.813803643196102e-12,
+          "message": "`xtol` termination condition is satisfied.",
+          "solver_reported_success": true,
+          "stationarity": 0.005611353265329777,
+          "stationarity_passed": false
+        },
+        "qualifies_archival_fit": false,
+        "rank": 26,
+        "rank_cutoff": 9.199830728795948e-08,
+        "reference": {
+          "cost": 6.7635408160926245,
+          "normalized_step": 1.2165922688950441,
+          "relative_cost_change": 0.004163714415962902,
+          "relative_residual_step": 0.06228705534223654,
+          "success": true
+        },
+        "rows": 1755,
+        "snap_maximum_change": 1.1102230246251565e-16,
+        "snapped": {
+          "cost": 6.7637835162342546,
+          "displacement_from_saved": 1.4534898052100789,
+          "evaluations": 35,
+          "last_parameter_step": 2.3494167067980177e-11,
+          "message": "`xtol` termination condition is satisfied.",
+          "solver_reported_success": true,
+          "stationarity": 3.0229464167344353e-06,
+          "stationarity_passed": true
+        },
+        "version": "ilvis0-saved-rectangular-diagnosis-v1",
+        "weakest_direction": [
+          {
+            "coefficient": 0.8959151615641838,
+            "parameter": "gravity_delta",
+            "weight": 0.8026639767205777
+          },
+          {
+            "coefficient": 0.22952353684669574,
+            "parameter": "gyro_gain_y",
+            "weight": 0.0526810539666165
+          },
+          {
+            "coefficient": 0.22375101785863563,
+            "parameter": "gyro_gain_z",
+            "weight": 0.05006451799277548
+          },
+          {
+            "coefficient": 0.2234022624670194,
+            "parameter": "gyro_gain_x",
+            "weight": 0.04990857087538303
+          },
+          {
+            "coefficient": 0.1788066620864258,
+            "parameter": "accel_bias_z",
+            "weight": 0.031971822406489256
+          }
+        ]
+      },
+      "maximum_evaluations": 600,
+      "model": "sphere_rotating",
+      "predicted_cost_change_ratio": null,
+      "predicted_residual_step_ratio": null,
+      "previous_converged": false,
+      "probe_reason": "not_stationary",
+      "reference_cost": 6.791820044636657,
+      "relative_cost_change_from_reference": -4.363624514924385e-09,
+      "role": "primary",
+      "scientific_decision": "abstain",
+      "segment_id": "b365bdf39150ee6afc303ac1",
+      "stability_verified": false,
+      "stable_accepted_iterations": 0,
+      "stationarity_passed": false,
+      "stationarity_ratio": 56.11472322942833,
+      "stopping_message": "`xtol` termination condition is satisfied.",
+      "task_role": "recovery"
+    },
+    {
+      "accepted_callbacks": 1,
+      "callback_probe_disagreement": false,
+      "case_id": "bias1_unsubtracted",
+      "converged": false,
+      "cost": 1557.106100742738,
+      "dominant_bound_distance": 0.05249323070921119,
+      "dominant_normalized_value": -0.9475067692907888,
+      "dominant_parameter": "accel_bias_x",
+      "evaluations": 4,
+      "failure_class": "early_stationarity_failure",
+      "identity": "b365bdf39150ee6afc303ac1::bias1_unsubtracted::sphere_still::primary",
+      "jacobian_condition_ratio": 54587919.31259271,
+      "last_callback_cost": 1557.106100742738,
+      "last_optimizer_step": 7.994636349059326e-14,
+      "local": {
+        "column_normalized_condition": 1614013.4620453303,
+        "column_norms": {
+          "accel_bias_x": 27951.543714783264,
+          "accel_bias_y": 33891.70040113221,
+          "accel_bias_z": 10124.769887462593,
+          "accel_gain_x": 8061.053338483455,
+          "accel_gain_y": 1731.9265413522025,
+          "accel_gain_z": 59162.95778472581,
+          "attitude_x": 192235.66856375564,
+          "attitude_y": 192428.995198409,
+          "attitude_z": 159029.4998198783,
+          "gravity_delta": 2008.3913444279956,
+          "gyro_bias_x": 1088.3209242911093,
+          "gyro_bias_y": 1134.3669186434934,
+          "gyro_bias_z": 61.15132103584354,
+          "gyro_gain_x": 242.24636744992088,
+          "gyro_gain_y": 150.12381243456912,
+          "gyro_gain_z": 3.585852103607322,
+          "lever_x": 8.71410143321236,
+          "lever_y": 8.730357816582401,
+          "lever_z": 3.1134341053281944,
+          "position_x": 87.09987695605619,
+          "position_y": 86.15481663545475,
+          "position_z": 29.06790154581824,
+          "time_offset": 30.757788462236913,
+          "velocity_x": 7493.629261383174,
+          "velocity_y": 7495.269939563848,
+          "velocity_z": 2697.147087003633
+        },
+        "columns": 26,
+        "condition": 54587919.31259273,
+        "correlated_pairs": [
+          {
+            "cosine": -0.9999999992847987,
+            "first": "accel_bias_z",
+            "second": "accel_gain_z"
+          },
+          {
+            "cosine": 0.9999930292395746,
+            "first": "accel_bias_y",
+            "second": "accel_gain_y"
+          },
+          {
+            "cosine": 0.9999727968179946,
+            "first": "accel_bias_x",
+            "second": "accel_gain_x"
+          },
+          {
+            "cosine": -0.9998158138914317,
+            "first": "gyro_bias_y",
+            "second": "gyro_gain_y"
+          },
+          {
+            "cosine": 0.999150396412833,
+            "first": "attitude_x",
+            "second": "attitude_z"
+          }
+        ],
+        "dominant_gradient_parameter": "accel_bias_x",
+        "dominant_gradient_ratio": 3.36898671998276,
+        "native_predictions": 0,
+        "near_outward_distances": {
+          "gyro_gain_z": 1.1102230246251565e-16,
+          "lever_x": 1.1102230246251565e-16,
+          "lever_z": 1.1102230246251565e-16,
+          "time_offset": 1.1102230246251565e-16
+        },
+        "near_outward_parameters": [
+          "gyro_gain_z",
+          "lever_x",
+          "lever_z",
+          "time_offset"
+        ],
+        "observed_fit_starts": 0,
+        "original": {
+          "cost": 1557.106100742336,
+          "displacement_from_saved": 7.994636349059326e-14,
+          "evaluations": 2,
+          "last_parameter_step": 7.994636349059326e-14,
+          "message": "`xtol` termination condition is satisfied.",
+          "solver_reported_success": true,
+          "stationarity": 0.00033689832657994475,
+          "stationarity_passed": false
+        },
+        "qualifies_archival_fit": false,
+        "rank": 26,
+        "rank_cutoff": 9.812249418772777e-08,
+        "reference": {
+          "cost": 1545.5321428427785,
+          "normalized_step": 0.944029097596145,
+          "relative_cost_change": 0.007432992455965994,
+          "relative_residual_step": 0.014096462143100147,
+          "success": true
+        },
+        "rows": 1755,
+        "snap_maximum_change": 1.1102230246251565e-16,
+        "snapped": {
+          "cost": 1557.106100696959,
+          "displacement_from_saved": 9.097918470932557e-12,
+          "evaluations": 2,
+          "last_parameter_step": 9.097918468222936e-12,
+          "message": "`xtol` termination condition is satisfied.",
+          "solver_reported_success": true,
+          "stationarity": 0.0003368593660233216,
+          "stationarity_passed": false
+        },
+        "version": "ilvis0-saved-rectangular-diagnosis-v1",
+        "weakest_direction": [
+          {
+            "coefficient": 0.8965227620122581,
+            "parameter": "gravity_delta",
+            "weight": 0.803753062806088
+          },
+          {
+            "coefficient": 0.24147998571501256,
+            "parameter": "gyro_gain_z",
+            "weight": 0.058312583500922666
+          },
+          {
+            "coefficient": 0.23500456154205865,
+            "parameter": "gyro_gain_x",
+            "weight": 0.05522714394557523
+          },
+          {
+            "coefficient": 0.22052522288347126,
+            "parameter": "gyro_gain_y",
+            "weight": 0.04863137392780468
+          },
+          {
+            "coefficient": 0.1808817909395462,
+            "parameter": "accel_bias_z",
+            "weight": 0.0327182222934977
+          }
+        ]
+      },
+      "maximum_evaluations": 600,
+      "model": "sphere_still",
+      "predicted_cost_change_ratio": null,
+      "predicted_residual_step_ratio": null,
+      "previous_converged": true,
+      "probe_reason": "not_stationary",
+      "reference_cost": 1557.106100742738,
+      "relative_cost_change_from_reference": 0.0,
+      "role": "primary",
+      "scientific_decision": "abstain",
+      "segment_id": "b365bdf39150ee6afc303ac1",
+      "stability_verified": false,
+      "stable_accepted_iterations": 0,
+      "stationarity_passed": false,
+      "stationarity_ratio": 3.368986719982824,
+      "stopping_message": "`xtol` termination condition is satisfied.",
+      "task_role": "recovery"
+    },
+    {
+      "accepted_callbacks": 596,
+      "callback_probe_disagreement": false,
+      "case_id": "bias1_unsubtracted",
+      "converged": false,
+      "cost": 4728.311104481417,
+      "dominant_bound_distance": 0.007990650694771673,
+      "dominant_normalized_value": -0.9920093493052283,
+      "dominant_parameter": "gyro_gain_z",
+      "evaluations": 598,
+      "failure_class": "budget_exhausted",
+      "identity": "b365bdf39150ee6afc303ac1::bias1_unsubtracted::sphere_still::repeat",
+      "jacobian_condition_ratio": 51449183.78197201,
+      "last_callback_cost": 4728.311104481417,
+      "last_optimizer_step": 1.7657488206305664e-05,
+      "local": {
+        "column_normalized_condition": 1520946.0938422878,
+        "column_norms": {
+          "accel_bias_x": 27990.05808080313,
+          "accel_bias_y": 33831.34827429008,
+          "accel_bias_z": 10122.327211405875,
+          "accel_gain_x": 8035.89459463655,
+          "accel_gain_y": 1664.4714519839763,
+          "accel_gain_z": 59146.05895771865,
+          "attitude_x": 192368.39301590502,
+          "attitude_y": 192560.90511013643,
+          "attitude_z": 158880.98685817048,
+          "gravity_delta": 2008.3822400445383,
+          "gyro_bias_x": 1088.5281321578427,
+          "gyro_bias_y": 1134.1098274024532,
+          "gyro_bias_z": 60.84676925730828,
+          "gyro_gain_x": 242.54721878829983,
+          "gyro_gain_y": 149.83385462862526,
+          "gyro_gain_z": 3.5595844274822506,
+          "lever_x": 8.714113372885265,
+          "lever_y": 8.730334723249063,
+          "lever_z": 3.1132490745717134,
+          "position_x": 87.09987961073723,
+          "position_y": 86.15481663545475,
+          "position_z": 29.067898329821357,
+          "time_offset": 30.752238806691075,
+          "velocity_x": 7493.602769814199,
+          "velocity_y": 7495.20147191554,
+          "velocity_z": 2697.143573961146
+        },
+        "columns": 26,
+        "condition": 51449183.78197202,
+        "correlated_pairs": [
+          {
+            "cosine": -0.9999999992850924,
+            "first": "accel_bias_z",
+            "second": "accel_gain_z"
+          },
+          {
+            "cosine": 0.999992506317604,
+            "first": "accel_bias_y",
+            "second": "accel_gain_y"
+          },
+          {
+            "cosine": 0.9999724748871242,
+            "first": "accel_bias_x",
+            "second": "accel_gain_x"
+          },
+          {
+            "cosine": -0.99981524480829,
+            "first": "gyro_bias_y",
+            "second": "gyro_gain_y"
+          },
+          {
+            "cosine": 0.9992292600405841,
+            "first": "attitude_x",
+            "second": "attitude_z"
+          }
+        ],
+        "dominant_gradient_parameter": "gyro_gain_z",
+        "dominant_gradient_ratio": 4793.654742555732,
+        "native_predictions": 0,
+        "near_outward_distances": {},
+        "near_outward_parameters": [],
+        "observed_fit_starts": 0,
+        "original": {
+          "cost": 3693.6310125394666,
+          "displacement_from_saved": 0.001917313586350399,
+          "evaluations": 200,
+          "last_parameter_step": 9.85369497088239e-06,
+          "message": "The maximum number of function evaluations is exceeded.",
+          "solver_reported_success": false,
+          "stationarity": 0.4252383605434396,
+          "stationarity_passed": false
+        },
+        "qualifies_archival_fit": false,
+        "rank": 26,
+        "rank_cutoff": 9.812254343155501e-08,
+        "reference": {
+          "cost": 1545.8336988932672,
+          "normalized_step": 0.9517776332769311,
+          "relative_cost_change": 0.6730685302352143,
+          "relative_residual_step": 0.8173915200484219,
+          "success": true
+        },
+        "rows": 1755,
+        "snap_maximum_change": 0.0,
+        "snapped": {
+          "cost": 3693.6310125394666,
+          "displacement_from_saved": 0.001917313586350399,
+          "evaluations": 200,
+          "last_parameter_step": 9.85369497088239e-06,
+          "message": "The maximum number of function evaluations is exceeded.",
+          "solver_reported_success": false,
+          "stationarity": 0.4252383605434396,
+          "stationarity_passed": false
+        },
+        "version": "ilvis0-saved-rectangular-diagnosis-v1",
+        "weakest_direction": [
+          {
+            "coefficient": 0.8961323030345891,
+            "parameter": "gravity_delta",
+            "weight": 0.8030531045420767
+          },
+          {
+            "coefficient": 0.24305245303253797,
+            "parameter": "gyro_gain_z",
+            "weight": 0.05907449492513408
+          },
+          {
+            "coefficient": 0.23493420089916017,
+            "parameter": "gyro_gain_x",
+            "weight": 0.05519407875212695
+          },
+          {
+            "coefficient": 0.22033753279188717,
+            "parameter": "gyro_gain_y",
+            "weight": 0.048548628356815955
+          },
+          {
+            "coefficient": 0.18090074138457357,
+            "parameter": "accel_bias_z",
+            "weight": 0.03272507823348837
+          }
+        ]
+      },
+      "maximum_evaluations": 600,
+      "model": "sphere_still",
+      "predicted_cost_change_ratio": null,
+      "predicted_residual_step_ratio": null,
+      "previous_converged": true,
+      "probe_reason": "not_stationary",
+      "reference_cost": 1557.106100742738,
+      "relative_cost_change_from_reference": 2.0366017461661845,
+      "role": "repeat",
+      "scientific_decision": "abstain",
+      "segment_id": "b365bdf39150ee6afc303ac1",
+      "stability_verified": false,
+      "stable_accepted_iterations": 0,
+      "stationarity_passed": false,
+      "stationarity_ratio": 4793.654742555731,
+      "stopping_message": "The maximum number of function evaluations is exceeded.",
+      "task_role": "repeatability"
+    }
+  ],
+  "scientific_decision": "abstain",
+  "snap_tolerance": 1e-12,
+  "version": "ilvis0-saved-rectangular-diagnosis-v1"
+}

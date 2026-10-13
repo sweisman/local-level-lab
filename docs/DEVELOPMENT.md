@@ -23,9 +23,23 @@ Synthetic sessions are excluded from ordinary collation; the example explicitly 
 Analysis produces a machine-readable result and an HTML report. Neither a software quality label
 nor a provisional significance value establishes validated scientific eligibility.
 
-For routine work use at most two CPU threads/workers total. A single numerical process can use
-`OPENBLAS_NUM_THREADS=2`, `OMP_NUM_THREADS=2` and `MKL_NUM_THREADS=2`; parallel workers must share
-that total budget. Frozen campaigns must retain their recorded thread settings. Expensive
+For new work use at most **four numerical threads in total**, shared across active jobs.
+One worker can use four threads, two workers can use two each, or four workers can
+use one each. Frozen studies retain their recorded settings; the current archival
+recovery remains at two threads. Reserve other active jobs' allocations before launching.
+
+The guard rejects oversubscription and sets numerical-library limits before imports:
+
+```sh
+~/venv/bin/python analysis/tests/run_numerical.py -- ~/venv/bin/python -m pytest analysis/tests
+```
+
+Use `--workers 2` for a target running two concurrent workers. While another job
+uses two threads, include `--reserved-threads 2`. The guard validates the declared
+allocation; it does not discover other jobs or set the target's worker count.
+New launchers may instead call `lll.compute_budget.environment` before numerical
+imports and freeze the validated allocation. Historical launch commands and limits
+remain part of their original freezes. Expensive
 simulation campaigns have their own explicit case and time budgets; a resource setting is not
 permission to launch them. The historical evidence generator runs simulations and prints
 Markdown for the technical evidence record; it is not a lightweight documentation check.
@@ -87,4 +101,5 @@ The [core-pipeline handoff](core-pipeline-20261006/README.md) documents the new 
 paths and frozen prospective inputs. Preparation writes specifications and cost bounds without
 running flights. Geometry search uses assumed axes and a finite uncertainty grid; empirical
 policies remain unavailable for observed-track replay. A campaign or nontrivial optimizer search
-requires a separate compute budget. Keep at most two total numerical threads/workers.
+requires a separate compute budget. Future work shares a four-thread total budget;
+historical freezes keep their original worker and numerical-thread settings.

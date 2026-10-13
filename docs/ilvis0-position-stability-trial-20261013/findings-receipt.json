@@ -1,0 +1,28 @@
+{
+  "artifacts": {
+    "FINDINGS.md": "48318c80c521a6c338bf5da0fb7877829ced170e4aee1013e4fb538ec6dd2a18",
+    "current-stretches.csv": "77d92b07e1b5479e48209896b543c1d206c0d52bbb7383627900ea9b4774680f"
+  },
+  "inputs": {
+    "data/ilvis0-position-stability-trial-20261013/completion.json": "cd3bd6b805ca8975f5d018397308302508007336b370c36991f324151269df8f",
+    "data/ilvis0-position-stability-trial-20261013/manifest.json": "7d35ba5b9a7e8f4fc1e29ce7c015f0b0665d4f6118f44386519180fa9ba238d1",
+    "data/ilvis0-position-stability-trial-20261013/starts.jsonl": "ce0c453c0d232949ac74b3e3b9e852c1bc99c28d373c142b9526b66c9bef78b7",
+    "data/ilvis0-position-stability-trial-20261013/summary.json": "92b2d745d4eed6202f85feb3c9fd192c85f91f5f3f0ce5883757ec7c727eb2b0",
+    "data/ilvis0-position-stability-trial-20261013/sweeps.jsonl": "2b13782e82e11e518cda4863f83750ee1d52094708028e3a78ee57687e12bfe1",
+    "docs/ilvis0-highspeed-segments-20261008/eligible-stretches.csv": "a5abfa6775b3f39025dad33165ae4c9e62ca6df4365fbaebfc9684f21de29044",
+    "docs/ilvis0-highspeed-segments-20261008/evidence-receipt.json": "b082549083356dbdc48fe4421daf6f9cb36086c6f4f851475bef75e130b8f187",
+    "docs/ilvis0-highspeed-segments-20261008/summary.json.gz": "41654f27764dc8af26e83c42ba291c76ebc1eb77ed579523baab6d80190642fa"
+  },
+  "native_predictions": 0,
+  "observed_starts": 0,
+  "original_files_read": 0,
+  "sources": {
+    "docs/ilvis0-position-stability-trial-20261013/build_findings.py": "b25ed0c34d339f1f4a94beaa35a0758d56d74269b3fd6df0e5294291974985c6"
+  },
+  "tally": {
+    "ambiguous": 0,
+    "flat": 0,
+    "globe": 15,
+    "unresolved": 38
+  }
+}

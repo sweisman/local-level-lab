@@ -1,0 +1,11 @@
+{
+  "journal_hashes": {
+    "starts.jsonl": "e2925070b870d99260f95be36ee42a07ca637cae2392e4b803c2f6b420bff397",
+    "sweeps.jsonl": "4449490695a2d46fcf358a741bdb175c6b2565edeaa857dedbc248572e25b30c"
+  },
+  "manifest_sha256": "42dcbbee9c6cf88c9297c4669f665511c3028e37aba0854a379f9864fe475914",
+  "native_sweeps": 2021,
+  "starts": 24,
+  "state": "complete",
+  "summary_sha256": "48ae4a057b7e9d29f14d0aea9c70ccf78529a782e6e9669a3e060faca3e0b101"
+}

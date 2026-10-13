@@ -8,15 +8,26 @@ incident histories, personal commentary or historical process IDs.
 
 - Keep responses concise. Use the cheapest sufficient verification and bounded output.
   Prefer durable local jobs to repeated probing. Do not reread successful edits.
-  Ask before expensive new work or delegation; stay within approved compute scopes.
+  Local tests, including computationally intensive suites, need no approval.
+  Ask before manually triggering GitHub Actions or delegation.
+  Continue the approved analysis roadmap, including new observed-data qualification
+  trials and qualified recovery runs, without requesting renewed permission.
+  Freeze each new study and record finite start/evaluation limits before launch;
+  keep the four-thread total limit and never expand an active or completed allowance.
 - Leave unfamiliar paths outside the documented corpus alone. Do not scan, document,
   ignore or stage them, and do not inspect unrelated credentials.
 - Perform git operations only when explicitly requested. Bundle related work into one
   logical commit; completion does not authorize committing or pushing.
 - Run shell steps separately. Avoid command chains and output-trimming pipelines.
 - Use ~/venv/bin/python and its pip. For Java, use ~/.local/jdk21 with JAVA_HOME set.
-- Use at most two total numerical threads/workers; do not multiply worker and BLAS
-  concurrency. Preserve frozen studies' original thread settings on resume.
+- Future work may use at most four total numerical threads across all active jobs.
+  Count workers × numerical threads per worker; one worker × four threads, two × two,
+  or four × one are valid. Reserve capacity for other running jobs before launching.
+  New numerical commands must use analysis/tests/run_numerical.py (or the same
+  lll.compute_budget guard in a new launcher) before numerical imports; specify the
+  target's actual worker count and --reserved-threads for other active allocations.
+  Freeze that allocation. Preserve frozen studies' original thread settings on resume;
+  the active position-recovery study remains at two threads and reserves two of four.
 - Write public documentation in plain language. Define IMU before using it. Explain
   purpose, methodology, status and limitations; avoid JSON links in the main README.
   Public docs describe the project, not private collaboration: omit personal requests,
@@ -120,7 +131,7 @@ Do not rerun numerical studies merely to regenerate documentation.
 The metadata-only final summary watcher is docs/ilvis0-highspeed-segments-20261008/summarize_results.py.
 Its summary is complete; regenerate with no flags only when needed. It performs no fits.
 Post-run diagnosis may read saved fits and selected receiver geometry without new observed starts.
-Revised fits need a separately identified development freeze and explicit finite compute allowance;
+Revised fits need a separately identified development freeze and documented finite compute limits;
 never spend the unused allowance of a completed study or tune assumptions to favor a model.
 
 The completed [integration comparison](docs/ilvis0-integration-trial-20261011/README.md)
@@ -200,8 +211,9 @@ labels remain unchanged; clock checks at fixed parameters are not reoptimized fi
 Prioritize recovery of the 41 unresolved stretches. Follow the roadmap's four steps: representative subset,
 bounded solver/larger-budget qualification, objective/stopping/prediction repeatability,
 then all 41. Keep physical models and bounds fixed and preserve old results. Defer
-additional diagnostic expansion. Prepare costed freezes before requesting new finite
-allowances; the current comparison does not authorize recovery fits or budget expansion.
+additional diagnostic expansion. Prepare costed finite freezes and continue this sequence
+automatically. No renewed approval is needed within this roadmap; preserve all earlier
+results and never spend a completed study's unused allowance.
 Recovery subset and all-41 inventory: docs/ilvis0-convergence-recovery-preparation-20261012/.
 The completed continuation trial is docs/ilvis0-convergence-recovery-trial-20261012/,
 with runtime freeze at data/ilvis0-convergence-recovery-trial-20261012/ and launcher
@@ -210,14 +222,50 @@ analysis/tests/ilvis0_recovery_worker.py. Its authorization permits 24 starts /
 never resume or reuse its unused allowance. Preserve its source freeze and results.
 The saved-only diagnosis and software screen are docs/ilvis0-recovery-diagnosis-20261012/.
 The separate rectangular proposal is docs/ilvis0-rectangular-recovery-trial-20261012/,
-with active freeze at data/ilvis0-rectangular-recovery-trial-v2-20261012/ and launcher
+with completed freeze at data/ilvis0-rectangular-recovery-trial-v2-20261012/ and launcher
 analysis/tests/ilvis0_rectangular_worker.py. Its recorded approval permits
-24 starts / 14,448 sweeps, no retries, and two total numerical threads. Check its
-shared lock, runtime metadata and unchanged freeze before any resume. Completed
-work cannot resume; publication is automatic. Preserve the zero-start earlier preparation;
+24 starts / 14,448 sweeps, no retries, and two total numerical threads. It completed
+24 starts / 2,021 sweeps with 8/24 passing fits; qualification failed. Publication is
+verified and complete; never resume or reuse unused allowance. Preserve its original
+source snapshots, including the subsequently repaired CI test. Preserve the zero-start earlier preparation;
 do not launch it. The candidate requires fresh stability, saves local Jacobians and
 uses the original physical assumptions. No all-41 rollout follows from software controls.
+Saved-tangent diagnosis: docs/ilvis0-rectangular-diagnosis-20261012/; its builder
+uses sealed residual/Jacobian artifacts and affine systems only, with no native
+predictions or archival fits. Local successes never relabel observed failures.
 Exact device characterization is lower-priority parallel work, not a prerequisite for modeling.
+Boundary-aware nonlinear software controls are complete at
+docs/ilvis0-boundary-controls-20261012/. The separate ilvis0_solver_boundary candidate
+passed 40/40 known-answer checks with unchanged bounds and fresh stopping gates.
+This is software qualification only; the subsequent observed trial failed qualification.
+The report builder defaults to saved-only rendering. Do not rerun completed controls.
+The completed analysis/tests/ilvis0_boundary_worker.py study has guide/freeze
+docs/ilvis0-boundary-recovery-trial-20261012/ and data/ilvis0-boundary-recovery-trial-20261012/.
+It spent 24 starts / 2,399 sweeps, passing 17/24; no test stretch became fully resolved.
+Never resume it or reuse its unused allowance. Package completed work only.
+Saved-only diagnosis: docs/ilvis0-boundary-diagnosis-20261013/. Six stationary stability
+stalls and one budget failure remain; paired tracks agree but stopping outcomes differ.
+The separate actual-position candidate is analysis/lll/ilvis0_solver_position.py;
+it preserves gradient/cost limits and checks fresh position changes against 1 mm
+axis RMS / 1 cm epoch maximum. These are numerical limits, not sensor accuracy.
+Current guide/freeze: docs/ilvis0-position-stability-trial-20261013/ and
+data/ilvis0-position-stability-trial-20261013/. Launcher:
+analysis/tests/ilvis0_position_stability_worker.py. Completed and qualified: 24/24
+passing fits, 393 sweeps, all controls and repeats passed. Never restart this trial
+or reuse its unused allowance. --package-only performs no fits. Preserve its freeze
+and original first-pass labels; the three qualified recoveries are separate results.
+Metadata-only full recovery preparation: docs/ilvis0-position-recovery-preparation-20261013/.
+Qualified full recovery guide/freeze: docs/ilvis0-position-recovery-20261013/ and
+data/ilvis0-position-recovery-20261013/. Launcher:
+analysis/tests/ilvis0_position_recovery_worker.py --detach, with PYTHONPATH=analysis
+and all three numerical thread variables set to 2. Frozen allowance: 159 new starts /
+95,718 sweeps (115 primaries, 38 repeats, six controls), no retries. Reuse the 18
+declared subset results without new charges. Before continuation check exclusive lock,
+completion and unchanged hashes/environment. Interrupted charged identities remain
+failed; continue only unstarted identities. Never resume completed work, edit active
+dependencies, select favorable costs or replace failed repeats. Automatic publication
+and --package-only perform no fits. Each recovery comparison needs its scheduled
+repeat and fresh controls; preserve original evidence separately.
 The separate [rotation-field measurement](docs/ROTATION_FIELD.md) will infer the retained background vector
 before interpreting its cause, with aircraft motion, transport and calibration fitted jointly.
 The proposal authorizes no new fits or campaign budget. Do not fix or subtract the standard

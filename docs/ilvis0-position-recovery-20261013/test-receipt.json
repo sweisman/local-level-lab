@@ -1,0 +1,17 @@
+{
+  "artifacts": {
+    "tests.xml": "f61d546cdc02bd8302466a58797fe6a0bbe0c149509f8e37669d2c5fcc04a0fd"
+  },
+  "exit_code": 0,
+  "failures": 0,
+  "observed_fit_starts": 0,
+  "sources": {
+    "/site/repo/local-level-lab/analysis/tests/ilvis0_position_recovery_worker.py": "d4bd16c3c9b07ac95576f2a4a92dec2db20313cfa560ad6ec9713528cc193707",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_position_recovery_plan.py": "45a82f3e2c7ce3792673f8e837ff5edc46400a460c4802fa47a751451cf65f79",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_position_recovery_worker.py": "7dcf0fe7a76ce8da1028b87bb452ddd530469ed29ea82ca9734a4e191a5104d7",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_position_stability_worker.py": "0be1d360dafeac8d606271e03cd22b805916f21abd33e082c6ee3ac549deacc0",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_recovery_worker.py": "f5cbe283db649bbecfd4d40aa18dc75cd4e193d099001d6a52dddff8ce02d786",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_solver_position.py": "da5989668f7ce8389a4092f83c2337f64df5e130a22af27ef7c62cd258b61abb"
+  },
+  "tests": 90
+}

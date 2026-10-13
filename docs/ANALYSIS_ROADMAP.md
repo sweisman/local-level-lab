@@ -2,13 +2,15 @@
 
 ## Starting point
 
-The completed study found **12 globe preferences, zero complete flat preferences and
-41 unfinished comparisons** among 53 eligible stretches. All 12 complete globe results
-also favor the background-field globe over the zero-field globe. This is a substantial
+The preserved first study found 12 globe preferences. Qualified recovery adds three,
+giving **15 globe preferences, zero flat preferences and 38 unfinished comparisons**
+among the same 53 eligible stretches. All fifteen also favor the background-field globe
+over the zero-field globe. Completed results now include both IMU8 and IMU21 recordings.
+This is a substantial
 empirical finding; unfinished calculations do not provide equal support for flat Earth.
 A calibrated statistical significance level and independent-replication count still
 require uncertainty validation and accounting for shared flights and instruments.
-The [findings](ilvis0-highspeed-segments-20261008/FINDINGS.md)
+The [current findings](ilvis0-position-stability-trial-20261013/FINDINGS.md)
 and [saved-result diagnosis](ilvis0-highspeed-segments-20261008/POST_RUN_REVIEW.md)
 preserve what the measurements and calculations currently show.
 
@@ -31,7 +33,9 @@ a particular quantity from being separated, rather than stopping all modeling.
 
 The covariance/prediction comparison has finished with 10 of 12 fits converged;
 its combined comparison remains unresolved. The immediate priority is resolving
-as many of the 41 numerically incomplete stretches as possible.
+as many of the remaining 38 numerically incomplete stretches as possible.
+The active wider run retains all 41 original recovery identities and reuses the
+three completed subset stretches, preserving the earlier evidence.
 Further diagnostic expansion is deferred. Numerical completion, fit adequacy and
 statistical support remain separate checks; recovering a fit does not by itself
 establish a calibrated scientific detection.
@@ -65,9 +69,56 @@ A known-answer, near-boundary software control reproduces one stopping failure;
 the rectangular dogbox alternative passed 30/30 software controls versus TRF 29/30.
 The [separate rectangular proposal](ilvis0-rectangular-recovery-trial-20261012/README.md)
 preserves all physical assumptions, requires fresh stability verification, and
-saves final Jacobians and evaluation traces. Its v2 freeze is approved and running
-under its own finite authorization: 24 starts / 14,448 native sweeps, no retries,
-two total numerical threads. Software success alone does not authorize all-41 recovery.
+saves final Jacobians and evaluation traces. Its v2 trial is complete: 24 starts used
+2,021 native sweeps; 8/24 fits passed, including all six completed controls but only
+two unfinished primary fits and no perturbed repeats. No test stretch became fully
+resolved, so qualification failed. Its saved traces and Jacobians support further
+numerical diagnosis; software success did not translate into all-41 recovery readiness.
+
+The [saved-tangent diagnosis](ilvis0-rectangular-diagnosis-20261012/README.md)
+reproduces a boundary-start stall on an independent two-parameter control. Exact-bound
+initialization improves completion on saved affine systems from 12/24 to 16/24;
+the remaining weak directions involve gravity correction and gyro gains. The
+[boundary-aware nonlinear controls](ilvis0-boundary-controls-20261012/README.md)
+now pass 40/40 known-answer comparisons with bounded linear steps, versus 35/40
+for the original method and 38/40 when only the start is snapped to the boundary.
+All retain the same bounds and fresh stopping checks. The separate
+[boundary-aware archival trial](ilvis0-boundary-recovery-trial-20261012/README.md)
+is complete: 17/24 fits passed using 2,399 sweeps, including nine of fifteen
+unfinished primaries, all six controls and two repeats. No test stretch became
+fully resolved; the method did not qualify for rollout.
+The [saved-result diagnosis](ilvis0-boundary-diagnosis-20261013/README.md) separates
+six stationary stability stalls from one budget failure. All three predetermined
+primary/repeat pairs agree in cost and track to within 0.13 mm on every axis, yet
+have opposite stopping outcomes. Before another trial, isolate native prediction
+and tangent accuracy near these endpoints, keeping the physical models and bounds
+unchanged. Further budget alone does not address the six early stops.
+No archival result is relabeled by these local calculations.
+
+The separate [actual-position stability comparison](ilvis0-position-stability-trial-20261013/README.md)
+checks the full model's predicted-position change instead of rejecting a correction
+solely on its local residual prediction. It retains gradient and objective-change
+limits, requires at most 1 mm axis-specific RMS movement and 1 cm at every epoch,
+and preserves the old rule and results. These numerical tolerances are not claims
+of receiver accuracy. Forty known-answer cases and independent short native motion
+controls pass. The new finite trial uses all primary endpoints of the completed
+boundary-aware study, the same four recordings, 24 starts and a 14,448-sweep ceiling.
+No endpoint is chosen for a favorable cost or convergence result. Both primary and
+perturbed starts must independently pass before an all-41 recovery freeze.
+This trial is now complete and qualified: **24/24 fits passed**, including all
+controls and repeats, using 393 native sweeps. Three previously unresolved stretches
+consistently favor globe, giving a combined numerical tally of 15 globe, zero flat
+and 38 unresolved while preserving the original study.
+
+The [full recovery preparation](ilvis0-position-recovery-preparation-20261013/README.md)
+records all 41 original unresolved stretches and their 130 unfinished fits. If the
+qualification passes, reusing its 15 primaries and three repeats leaves 115 primary
+recoveries, 38 repeated-start checks and six fresh controls: 159 starts, capped at
+95,718 native sweeps. The ceiling estimate is 51–76 hours on two threads. Selection
+uses original completion status and UTC order, never model costs. This is metadata
+preparation; the qualified trial now supports the separately frozen
+[remaining-stretch recovery](ilvis0-position-recovery-20261013/README.md).
+Each newly complete stretch must also pass its repeat check and fresh controls.
 
 Minimum solver qualification supports this recovery sequence. Additional clock,
 calibration, covariance, measurement-contribution and independent-flight studies
@@ -202,7 +253,8 @@ the next studies; they do not interrupt the approved numerical trial or expand t
 This roadmap authorizes no new observed starts, synthetic campaigns, deletion, resumption
 of completed studies or production promotion. The verified-stopping trial is complete;
 its six-start allowance is spent, with no retries. Any new numerical work needs a separately identified
-configuration and finite approved allowance. At most two total numerical threads/workers.
+configuration and finite approved allowance. Future jobs share a four-thread total
+budget through the launch guard; active and historical freezes retain their original settings.
 
 ## 1. Qualify numerical completion
 
@@ -445,9 +497,11 @@ Manufacturer replies can improve that support without holding up the other audit
 The [saved solver diagnosis](ilvis0-solver-diagnosis-20261011/README.md) separates the
 remaining numerical stopping issue from calibration ambiguity. A verified-stopping
 candidate passed cheap known-optimum and false-stop controls, but its completed six-fit
-airborne comparison did not qualify. Recording replication and a versioned rerun
-of all 53 saved eligible stretches remain deferred. Preserve the original 12 resolved and 41 unresolved
-results; software controls alone do not change them.
+airborne comparison did not qualify. Later actual-position qualification passed its
+observed control and repeat checks, recovering three complete globe comparisons.
+The [wider recovery](ilvis0-position-recovery-20261013/README.md) is now active under
+its separate finite freeze. Preserve the original 12 resolved and 41 unresolved
+results alongside new recovery evidence; software controls alone do not relabel them.
 
 The [rotation-field proposal](ROTATION_FIELD.md) remains separate: fit a retained
 background vector freely and examine latitude/altitude/velocity dependence. Report its

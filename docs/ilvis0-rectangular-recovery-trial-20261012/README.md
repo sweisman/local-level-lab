@@ -5,18 +5,21 @@ recovered eight unfinished primary fits but did not finish any of its three
 unresolved stretches. The [saved-result audit](../ilvis0-recovery-diagnosis-20261012/README.md)
 separates excessive remaining gradients from failed measurement-stability checks.
 
-This next proposal changes how the optimizer chooses its bounded steps. The
+This trial changed how the optimizer chooses its bounded steps. The
 measurements, Earth models, calibration bounds and uncertainty assumptions stay
 the same. It also requires a fresh stability check and saves enough local numerical
 information to diagnose another stall without repeating a complete fit.
 
 The small software screen found a known-answer problem that reproduces one of the
 earlier stopping failures. The alternative method passed that problem and all
-30 screen controls. Those are software results; the new archival trial is
-**approved and running** under its recorded finite allowance. Results publish
-automatically on completion.
+30 screen controls. The completed archival trial passed **8/24 fits**: all six
+completed controls, two unfinished primary fits and no perturbed repeats. It used
+2,021 native sweeps. None of the three test stretches became fully resolved;
+qualification failed. [Results](RESULTS.md) and the
+[saved-tangent diagnosis](../ilvis0-rectangular-diagnosis-20261012/README.md)
+preserve the outcomes and explain the numerical stalls. Do not resume this study.
 
-The active preparation is `data/ilvis0-rectangular-recovery-trial-v2-20261012/`,
+The completed freeze is `data/ilvis0-rectangular-recovery-trial-v2-20261012/`,
 which freezes the complete numerical-helper dependencies. The zero-start earlier
 preparation is preserved and must not be launched.
 

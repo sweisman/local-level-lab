@@ -7,8 +7,9 @@ from lll import ilvis0_recovery_screen as screen
 from lll import ilvis0_solver_rectangular as solver
 
 
-def test_reproduced_near_boundary_stall_is_repaired_without_looser_checks():
-    assert not screen.run_one('coupled_boundary', 2, 'trf')['converged']
+def test_near_boundary_control_recovers_known_answer_without_looser_checks():
+    # Another optimizer may also pass on a different BLAS/platform. Its failure
+    # is not a requirement; known-answer recovery and fresh checks are.
     problem, optimum = screen.coupled_problem('coupled_boundary')
     start = np.where(np.arange(27) % 2 == 0, .99998, -.99998)
     result = solver.fit_candidate(problem, 'control', start=start)
@@ -16,6 +17,7 @@ def test_reproduced_near_boundary_stall_is_repaired_without_looser_checks():
     actual = problem.residual_tangent(np.array(result['normalized_parameters']), 'control')[0]
     expected = problem.residual_tangent(optimum, 'control')[0]
     assert np.linalg.norm(actual-expected) <= 1e-4
+    assert result['residual_sum_squares'] == pytest.approx(1., abs=1e-7, rel=0)
     assert result['stationarity_tolerance'] == 1e-4
     assert result['evaluations'] <= 600
     assert not result['scientific_eligible']

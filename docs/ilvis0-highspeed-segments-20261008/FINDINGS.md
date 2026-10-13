@@ -1,11 +1,19 @@
 # What the airborne measurements show
 
+**Current combined findings: 15 globe preferences, zero flat, 38 unresolved.**
+The [qualified recovery](../ilvis0-position-stability-trial-20261013/FINDINGS.md)
+adds three completed stretches, including an IMU8 recording, with full source-track
+details. All fifteen also favor the specified background-field globe. The wider
+recovery is running; partial fits are not yet added to the headline.
+
+## Preserved first-study findings
+
 **All 12 completed whole-stretch comparisons favor globe geometry under both
 processing assumptions. None favors the specified flat disc.** This is a substantial
 empirical finding from NASA's archived aircraft measurements. It reports which
 model fits better, rather than how many calculations finished for each model.
 
-The other 41 comparisons remain numerically unfinished; they do not erase the
+At the end of the first study, 41 comparisons were numerically unfinished; they do not erase the
 completed results or establish equal support for flatness. The finding's statistical
 strength still needs validated uncertainty estimates and accounting for shared
 flights and instruments. Twelve stretches are not automatically twelve independent
@@ -30,8 +38,8 @@ and links to exact filenames, source fingerprints, UTC intervals, durations and 
 Several instruments recorded overlapping flight time; 53 stretches are not 53 independent flights.
 
 The records contain Applanix **Group-4 angle and velocity increments**, with logged IMU
-types 8 and 21 decoded separately. All 12 stretches with complete comparisons are IMU21;
-the remaining 41 include 39 IMU21 stretches and two IMU8 stretches. A successful IMU8
+types 8 and 21 decoded separately. All 12 first-pass completed comparisons are IMU21;
+the original unresolved group includes 39 IMU21 stretches and two IMU8 stretches. A successful IMU8
 decoder check is not a hardware identification or calibration certificate for IMU21.
 The [detailed recording and track tables](FINAL_SUMMARY.md#source-recordings-and-tracks)
 and [track positions](tracks.csv) preserve the source detail.

@@ -1,0 +1,20 @@
+{
+  "exit_code": 0,
+  "known_answer_passes": 40,
+  "numerical_environment": {
+    "numpy": "2.5.3",
+    "python": "3.14.7",
+    "scipy": "1.18.1",
+    "thread_settings": {
+      "MKL_NUM_THREADS": "2",
+      "OMP_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    }
+  },
+  "observed_fit_starts": 0,
+  "original_records_decoded": 0,
+  "scientific_decision": "abstain",
+  "solver_version": "ilvis0-actual-position-stability-v1",
+  "total_checks": 109,
+  "version": "ilvis0-position-stability-controls-v1"
+}

@@ -46,6 +46,12 @@ models equal support, and successful numerical completion does not mean equal fi
 Some recordings overlap or share instruments; these are not automatically twelve
 independent replications. Statistical significance has not yet been calibrated.
 
+The later qualified recovery adds three complete globe comparisons, including the
+first IMU8 stretch: **15 globe preferences, zero flat, 38 unresolved**. All fifteen
+also favor the specified background field. The original table above remains the
+first-pass result; [updated findings and source tracks](ilvis0-position-stability-trial-20261013/FINDINGS.md)
+show the additional evidence and its recording overlap.
+
 The earlier [six-recording pilot](ilvis0-refinement-20261008/PROVISIONAL.md) found two
 complete globe preferences under its four tested cases, two partial globe-favoring
 comparisons, and two recordings without complete shape comparisons. It remains a
@@ -141,12 +147,37 @@ step materially changes the result. A failed check is not evidence for either ge
 | [Known-answer software qualification](ilvis0-solver-qualification-20261010/README.md) | 34/34 predefined starts passed; no additional flight evidence. |
 | [Saved-point continuation trial](ilvis0-convergence-recovery-trial-20261012/README.md) | 15/24 passed; eight unfinished primary fits recovered, but none of three test stretches fully resolved. |
 | [Alternative-method software screen](ilvis0-recovery-diagnosis-20261012/METHOD_SCREEN.md) | Rectangular method passed 30/30 controls; the previous method passed 29/30 in that saved environment. |
-| [Separate rectangular-method archival trial](ilvis0-rectangular-recovery-trial-20261012/README.md) | Running with a finite allowance and fresh stability checks; archive qualification remains pending. |
+| [Separate rectangular-method archival trial](ilvis0-rectangular-recovery-trial-20261012/RESULTS.md) | 8/24 passed: all six completed controls, two unfinished primary fits and no perturbed repeats. No test stretch became fully resolved; qualification failed. |
+| [Boundary-aware nonlinear controls](ilvis0-boundary-controls-20261012/README.md) | Bounded linear steps passed 40/40 known-answer checks, versus 35/40 for the original method and 38/40 with a snapped start. No archival fits. |
+| [Boundary-aware archival trial](ilvis0-boundary-recovery-trial-20261012/RESULTS.md) | Complete: 17/24 passed, including nine unfinished primaries, all six controls and two repeats. No test stretch became fully resolved; qualification failed. |
+| [Saved boundary-trial diagnosis](ilvis0-boundary-diagnosis-20261013/README.md) | Six failures pass stationarity but fail prediction stability; one exhausts its budget. All three primary/repeat pairs have nearly identical costs and tracks but opposite stopping outcomes. No new native predictions or fits. |
+| [Actual-position stability comparison](ilvis0-position-stability-trial-20261013/README.md) | Fresh full-model position checks preserve gradient and objective limits. The archival trial passed 24/24 fits, all controls and all repeats; three previously unresolved stretches favor globe. |
+| [Remaining-stretch recovery](ilvis0-position-recovery-20261013/README.md) | Qualified method applied under a separate finite freeze: 159 new starts, 18 reused subset results, no retries, unchanged physical assumptions. Each stretch needs passing primary fits, repeat and controls. |
 
 Software controls have known answers and expose numerical failures without choosing
 favorable flight data. Their success cannot guarantee success on the archive. The
-current trial retains the original physical models and bounds, preserves old results,
-and allows no retries. It does not authorize a full rerun of the 41 unfinished stretches.
+completed trial retains the original physical models and bounds, preserves old results,
+and allowed no retries. It did not qualify a full rerun of the 41 unfinished stretches.
+
+The [saved-tangent audit](ilvis0-rectangular-diagnosis-20261012/README.md) distinguishes
+ten early gradient failures, three early stability failures and three exhausted fits.
+A known-answer control reproduces a stall caused by starting one floating-point step
+inside a parameter bound. Moving such coordinates to their exact limits improves
+local affine-system completion from 12/24 to 16/24, but does not resolve every failure.
+These are numerical diagnostics, not recovered flight results.
+
+The separate boundary-aware candidate checks each bounded linear step against the
+actual nonlinear cost and shortens rejected moves. It passes the predetermined
+nonlinear controls, including weak and redundant directions. Its final stationarity
+and fresh stability requirements are unchanged. Its completed observed comparison
+does not qualify for wider use. Saved results now locate the remaining problem in
+prediction-stability checks near nearly identical tracks, plus one genuinely
+nonstationary budget failure. The separate actual-position rule checks the full
+model's change in predicted receiver coordinates rather than allowing a local
+residual estimate alone to reject it. Covariance unwhitening is verified against
+direct native coordinates on independent short controls. Its 1 mm RMS / 1 cm maximum
+limits describe numerical stability; they do not establish instrument accuracy or
+calibrated uncertainty. A new finite observed trial is required before wider use.
 
 ## 7. Next milestone and interpretation
 

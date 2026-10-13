@@ -1,0 +1,33 @@
+{
+  "artifacts": {
+    "CONTROL.md": "139b99a180e9e99eaeb6ca63f2cdae8d9b4dc7d1b9de6244b0a9c7421f81fbfe",
+    "control-results.json": "bcc1c3569bbd0a25c4e439cfcf8413db67baae13eaf35b93bb1c31d0ec0a213a",
+    "matrix-receipt.json": "215c30d8e1beeff628b701646c56e7bbd15df81294567314ce3f956c3762ef28",
+    "test-output.txt": "c615bd1174acff75e793b42757144e1008db69e7c795c52e0a1881b1603bbd0f"
+  },
+  "numerical_environment": {
+    "numpy": "2.5.3",
+    "python": "3.14.7",
+    "scipy": "1.18.1",
+    "thread_settings": {
+      "MKL_NUM_THREADS": "2",
+      "OMP_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    }
+  },
+  "sources": {
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_boundary_controls.py": "57248a0e24fb2fa77a129d1fcc928993f905c4fbf3c00cf873f5075f6410fd4c",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_solver_boundary.py": "391729dca8b5800107220a4f3a1cca91f676ab6a0ddd3bce1819a6eeb15e643f",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_solver_controls.py": "844d8c639e37295e73ca7bc31fefb58207e669470d3f5c345bc9760b26109ed4",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_solver_rectangular.py": "3eb2d9be4af3b54646a31d75dc0b45c3f83db2e22691c559cebb1169e286b9b2",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_solver_refinement.py": "442dd52979f4db0973a29c7553ab5b0f02ba90e847dbea2f7db99735ade1db0f",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_solver_verified_stop.py": "037d5697b6a158160db9fbf1681b557a0f3bcc43bd888f48622965a219d91f28",
+    "/site/repo/local-level-lab/analysis/tests/ilvis0_boundary_worker.py": "fe1d7b2d3c422f453e131606282ba6fb2dca5a0e9a5dc8d0fd2aeb2911c02b3e",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_boundary_controls.py": "d697d91cb4db3b99fd4a0cb414877fc512a7a5544b81391c256c928c2501ddc3",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_boundary_worker.py": "cd614c4633032acdb671160ea749f4c9e1611808980ebbd154df6f39bf87e56b",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_recovery_plan.py": "edf2d1b02bc5a35b627fb814cc16196485c9e7f0c52eec43b12adba63c801391",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_recovery_worker.py": "f5cbe283db649bbecfd4d40aa18dc75cd4e193d099001d6a52dddff8ce02d786",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_solver_boundary.py": "33e1c39e6c510ae6fc1d72b89f3876e74bdf45bde686eb8ae2a07ab7d29d51b7",
+    "/site/repo/local-level-lab/docs/ilvis0-boundary-recovery-trial-20261012/seal_controls.py": "95bcc0755132a5dac88ca4f925b04e69338ecbf32bb4ee3bda167c183763c85d"
+  }
+}

@@ -61,8 +61,11 @@ The contribution is a reproducible test of moving-platform measurements under co
 geometries. A first-of-its-kind claim has not been established. Earth's shape is separate
 from geocentric or heliocentric explanations; a globe result alone decides neither.
 
-Completed results favor globe in twelve stretches and flat in none; forty-one are
-numerically unresolved. Unfinished calculations do not give the models equal support.
+The original first study found twelve complete globe preferences. A qualified recovery
+adds three, giving **15 globe preferences, none for flat and 38 unresolved stretches**.
+Completed comparisons now include both recorded IMU8 and IMU21 configurations; their
+conversion scales differ, but the selection and physical comparison rules are the same.
+Unfinished calculations do not give the models equal support.
 The consistent completed comparisons are a substantial empirical finding. Establishing
 a statistical significance level additionally requires validated uncertainty and
 accounting for shared flights or instruments; the stretches are not automatically
@@ -70,7 +73,7 @@ independent replications. Those checks quantify the finding's strength without
 discarding the observed model preferences.
 A better relative fit must still be checked for absolute adequacy, numerical stability
 and statistical uncertainty. See the [archive guide](ILVIS0.md),
-[findings](ilvis0-highspeed-segments-20261008/FINDINGS.md) and
+[current findings](ilvis0-position-stability-trial-20261013/FINDINGS.md) and
 [analysis roadmap](ANALYSIS_ROADMAP.md).
 The [method development record](METHODOLOGY_DEVELOPMENT.md) organizes the completed
 timing, calibration, uncertainty and solver checks and explains what each establishes.

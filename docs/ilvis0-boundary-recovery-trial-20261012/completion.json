@@ -1,0 +1,11 @@
+{
+  "journal_hashes": {
+    "starts.jsonl": "9822135b2bf91e3467b40abf18bbbb538958d5c48802b878d5d04ffaa2f191ea",
+    "sweeps.jsonl": "a13ada11f4cbc7381bbfee60a3482c4d9b33bbd298f8b5a0282016d2756cbf9e"
+  },
+  "manifest_sha256": "323ce712d6dceaa7300131927f87c2fd27c41389878317ef82352e6c83656083",
+  "native_sweeps": 2399,
+  "starts": 24,
+  "state": "complete",
+  "summary_sha256": "bd7fd56cc01e520e1864ca1b041477583b5c02cff3cb9e7d2bc37d04b812f0ab"
+}

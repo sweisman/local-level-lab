@@ -1,0 +1,257 @@
+{
+  "clock": "nominal_200Hz",
+  "control_cost_relative_tolerance": 1e-06,
+  "covariance": "h1_v3_tau60",
+  "estimate_at_ceiling_hours": 11.91240594274934,
+  "estimate_range_hours": [
+    9.529924754199472,
+    14.294887131299207
+  ],
+  "execution_authority": "standing_analysis_roadmap",
+  "identities": [
+    "233183f67270980491416678::bias1_unsubtracted::sphere_rotating::primary",
+    "233183f67270980491416678::bias1_unsubtracted::flat_still::primary",
+    "233183f67270980491416678::bias1_profiled_removal::sphere_rotating::primary",
+    "233183f67270980491416678::bias1_profiled_removal::flat_still::primary",
+    "233183f67270980491416678::bias1_unsubtracted::sphere_rotating::repeat",
+    "b365bdf39150ee6afc303ac1::bias1_unsubtracted::sphere_rotating::primary",
+    "b365bdf39150ee6afc303ac1::bias1_unsubtracted::sphere_still::primary",
+    "b365bdf39150ee6afc303ac1::bias1_unsubtracted::flat_still::primary",
+    "b365bdf39150ee6afc303ac1::bias1_profiled_removal::sphere_rotating::primary",
+    "b365bdf39150ee6afc303ac1::bias1_profiled_removal::sphere_still::primary",
+    "b365bdf39150ee6afc303ac1::bias1_profiled_removal::flat_still::primary",
+    "b365bdf39150ee6afc303ac1::bias1_unsubtracted::sphere_still::repeat",
+    "034547522e2d98947b598466::bias1_unsubtracted::sphere_rotating::primary",
+    "034547522e2d98947b598466::bias1_unsubtracted::sphere_still::primary",
+    "034547522e2d98947b598466::bias1_profiled_removal::sphere_rotating::primary",
+    "034547522e2d98947b598466::bias1_profiled_removal::sphere_still::primary",
+    "034547522e2d98947b598466::bias1_profiled_removal::flat_still::primary",
+    "034547522e2d98947b598466::bias1_profiled_removal::flat_still::repeat",
+    "570b37d23af5e245dd461051::bias1_unsubtracted::sphere_rotating::primary",
+    "570b37d23af5e245dd461051::bias1_unsubtracted::sphere_still::primary",
+    "570b37d23af5e245dd461051::bias1_unsubtracted::flat_still::primary",
+    "570b37d23af5e245dd461051::bias1_profiled_removal::sphere_rotating::primary",
+    "570b37d23af5e245dd461051::bias1_profiled_removal::sphere_still::primary",
+    "570b37d23af5e245dd461051::bias1_profiled_removal::flat_still::primary"
+  ],
+  "maximum_diagnostic_sweeps": 2,
+  "maximum_fit_sweeps": 600,
+  "maximum_native_sweeps": 14448,
+  "maximum_starts": 24,
+  "numerical_threads": 2,
+  "observed_allowance_authorized": true,
+  "perturbation": 0.01,
+  "physical_bounds_unchanged": true,
+  "prior_endpoint_manifest_sha256": "323ce712d6dceaa7300131927f87c2fd27c41389878317ef82352e6c83656083",
+  "repeat_cost_relative_tolerance": 1e-06,
+  "repeat_track_rms_tolerance_m": 0.01,
+  "retries": 0,
+  "reuse_converged_reference_fits": true,
+  "runtime_estimate_basis": "same-recording first-pass elapsed seconds/evaluation; not a guarantee",
+  "scientific_decision": "abstain",
+  "selected_segment_ids": [
+    "233183f67270980491416678",
+    "b365bdf39150ee6afc303ac1",
+    "034547522e2d98947b598466",
+    "570b37d23af5e245dd461051"
+  ],
+  "solver_version": "ilvis0-actual-position-stability-v1",
+  "start_source": "completed boundary-trial primary endpoint; fixed perturbation for repeats",
+  "state": "prepared_only",
+  "tasks": [
+    {
+      "case_id": "bias1_unsubtracted",
+      "identity": "233183f67270980491416678::bias1_unsubtracted::sphere_rotating::primary",
+      "model": "sphere_rotating",
+      "role": "recovery",
+      "segment_id": "233183f67270980491416678",
+      "start": "completed boundary-trial primary endpoint; fixed perturbation for repeats"
+    },
+    {
+      "case_id": "bias1_unsubtracted",
+      "identity": "233183f67270980491416678::bias1_unsubtracted::flat_still::primary",
+      "model": "flat_still",
+      "role": "recovery",
+      "segment_id": "233183f67270980491416678",
+      "start": "completed boundary-trial primary endpoint; fixed perturbation for repeats"
+    },
+    {
+      "case_id": "bias1_profiled_removal",
+      "identity": "233183f67270980491416678::bias1_profiled_removal::sphere_rotating::primary",
+      "model": "sphere_rotating",
+      "role": "recovery",
+      "segment_id": "233183f67270980491416678",
+      "start": "completed boundary-trial primary endpoint; fixed perturbation for repeats"
+    },
+    {
+      "case_id": "bias1_profiled_removal",
+      "identity": "233183f67270980491416678::bias1_profiled_removal::flat_still::primary",
+      "model": "flat_still",
+      "role": "recovery",
+      "segment_id": "233183f67270980491416678",
+      "start": "completed boundary-trial primary endpoint; fixed perturbation for repeats"
+    },
+    {
+      "case_id": "bias1_unsubtracted",
+      "identity": "233183f67270980491416678::bias1_unsubtracted::sphere_rotating::repeat",
+      "model": "sphere_rotating",
+      "role": "repeatability",
+      "segment_id": "233183f67270980491416678",
+      "start": "completed boundary-trial primary endpoint; fixed perturbation for repeats"
+    },
+    {
+      "case_id": "bias1_unsubtracted",
+      "identity": "b365bdf39150ee6afc303ac1::bias1_unsubtracted::sphere_rotating::primary",
+      "model": "sphere_rotating",
+      "role": "recovery",
+      "segment_id": "b365bdf39150ee6afc303ac1",
+      "start": "completed boundary-trial primary endpoint; fixed perturbation for repeats"
+    },
+    {
+      "case_id": "bias1_unsubtracted",
+      "identity": "b365bdf39150ee6afc303ac1::bias1_unsubtracted::sphere_still::primary",
+      "model": "sphere_still",
+      "role": "recovery",
+      "segment_id": "b365bdf39150ee6afc303ac1",
+      "start": "completed boundary-trial primary endpoint; fixed perturbation for repeats"
+    },
+    {
+      "case_id": "bias1_unsubtracted",
+      "identity": "b365bdf39150ee6afc303ac1::bias1_unsubtracted::flat_still::primary",
+      "model": "flat_still",
+      "role": "recovery",
+      "segment_id": "b365bdf39150ee6afc303ac1",
+      "start": "completed boundary-trial primary endpoint; fixed perturbation for repeats"
+    },
+    {
+      "case_id": "bias1_profiled_removal",
+      "identity": "b365bdf39150ee6afc303ac1::bias1_profiled_removal::sphere_rotating::primary",
+      "model": "sphere_rotating",
+      "role": "recovery",
+      "segment_id": "b365bdf39150ee6afc303ac1",
+      "start": "completed boundary-trial primary endpoint; fixed perturbation for repeats"
+    },
+    {
+      "case_id": "bias1_profiled_removal",
+      "identity": "b365bdf39150ee6afc303ac1::bias1_profiled_removal::sphere_still::primary",
+      "model": "sphere_still",
+      "role": "recovery",
+      "segment_id": "b365bdf39150ee6afc303ac1",
+      "start": "completed boundary-trial primary endpoint; fixed perturbation for repeats"
+    },
+    {
+      "case_id": "bias1_profiled_removal",
+      "identity": "b365bdf39150ee6afc303ac1::bias1_profiled_removal::flat_still::primary",
+      "model": "flat_still",
+      "role": "recovery",
+      "segment_id": "b365bdf39150ee6afc303ac1",
+      "start": "completed boundary-trial primary endpoint; fixed perturbation for repeats"
+    },
+    {
+      "case_id": "bias1_unsubtracted",
+      "identity": "b365bdf39150ee6afc303ac1::bias1_unsubtracted::sphere_still::repeat",
+      "model": "sphere_still",
+      "role": "repeatability",
+      "segment_id": "b365bdf39150ee6afc303ac1",
+      "start": "completed boundary-trial primary endpoint; fixed perturbation for repeats"
+    },
+    {
+      "case_id": "bias1_unsubtracted",
+      "identity": "034547522e2d98947b598466::bias1_unsubtracted::sphere_rotating::primary",
+      "model": "sphere_rotating",
+      "role": "recovery",
+      "segment_id": "034547522e2d98947b598466",
+      "start": "completed boundary-trial primary endpoint; fixed perturbation for repeats"
+    },
+    {
+      "case_id": "bias1_unsubtracted",
+      "identity": "034547522e2d98947b598466::bias1_unsubtracted::sphere_still::primary",
+      "model": "sphere_still",
+      "role": "recovery",
+      "segment_id": "034547522e2d98947b598466",
+      "start": "completed boundary-trial primary endpoint; fixed perturbation for repeats"
+    },
+    {
+      "case_id": "bias1_profiled_removal",
+      "identity": "034547522e2d98947b598466::bias1_profiled_removal::sphere_rotating::primary",
+      "model": "sphere_rotating",
+      "role": "recovery",
+      "segment_id": "034547522e2d98947b598466",
+      "start": "completed boundary-trial primary endpoint; fixed perturbation for repeats"
+    },
+    {
+      "case_id": "bias1_profiled_removal",
+      "identity": "034547522e2d98947b598466::bias1_profiled_removal::sphere_still::primary",
+      "model": "sphere_still",
+      "role": "recovery",
+      "segment_id": "034547522e2d98947b598466",
+      "start": "completed boundary-trial primary endpoint; fixed perturbation for repeats"
+    },
+    {
+      "case_id": "bias1_profiled_removal",
+      "identity": "034547522e2d98947b598466::bias1_profiled_removal::flat_still::primary",
+      "model": "flat_still",
+      "role": "recovery",
+      "segment_id": "034547522e2d98947b598466",
+      "start": "completed boundary-trial primary endpoint; fixed perturbation for repeats"
+    },
+    {
+      "case_id": "bias1_profiled_removal",
+      "identity": "034547522e2d98947b598466::bias1_profiled_removal::flat_still::repeat",
+      "model": "flat_still",
+      "role": "repeatability",
+      "segment_id": "034547522e2d98947b598466",
+      "start": "completed boundary-trial primary endpoint; fixed perturbation for repeats"
+    },
+    {
+      "case_id": "bias1_unsubtracted",
+      "identity": "570b37d23af5e245dd461051::bias1_unsubtracted::sphere_rotating::primary",
+      "model": "sphere_rotating",
+      "role": "control",
+      "segment_id": "570b37d23af5e245dd461051",
+      "start": "completed boundary-trial primary endpoint; fixed perturbation for repeats"
+    },
+    {
+      "case_id": "bias1_unsubtracted",
+      "identity": "570b37d23af5e245dd461051::bias1_unsubtracted::sphere_still::primary",
+      "model": "sphere_still",
+      "role": "control",
+      "segment_id": "570b37d23af5e245dd461051",
+      "start": "completed boundary-trial primary endpoint; fixed perturbation for repeats"
+    },
+    {
+      "case_id": "bias1_unsubtracted",
+      "identity": "570b37d23af5e245dd461051::bias1_unsubtracted::flat_still::primary",
+      "model": "flat_still",
+      "role": "control",
+      "segment_id": "570b37d23af5e245dd461051",
+      "start": "completed boundary-trial primary endpoint; fixed perturbation for repeats"
+    },
+    {
+      "case_id": "bias1_profiled_removal",
+      "identity": "570b37d23af5e245dd461051::bias1_profiled_removal::sphere_rotating::primary",
+      "model": "sphere_rotating",
+      "role": "control",
+      "segment_id": "570b37d23af5e245dd461051",
+      "start": "completed boundary-trial primary endpoint; fixed perturbation for repeats"
+    },
+    {
+      "case_id": "bias1_profiled_removal",
+      "identity": "570b37d23af5e245dd461051::bias1_profiled_removal::sphere_still::primary",
+      "model": "sphere_still",
+      "role": "control",
+      "segment_id": "570b37d23af5e245dd461051",
+      "start": "completed boundary-trial primary endpoint; fixed perturbation for repeats"
+    },
+    {
+      "case_id": "bias1_profiled_removal",
+      "identity": "570b37d23af5e245dd461051::bias1_profiled_removal::flat_still::primary",
+      "model": "flat_still",
+      "role": "control",
+      "segment_id": "570b37d23af5e245dd461051",
+      "start": "completed boundary-trial primary endpoint; fixed perturbation for repeats"
+    }
+  ],
+  "version": "ilvis0-recovery-subset-plan-v1",
+  "x_scale": "physical-bound normalized; unscaled BVLS"
+}

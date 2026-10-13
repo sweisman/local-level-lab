@@ -13,8 +13,9 @@ The code, selection criteria and analysis records are open for review.
 **The first completed study found 12 stretches that consistently favor globe
 geometry over the specified flat disc. No completed comparison favors flat.**
 This is a substantial empirical finding from professional airborne measurements.
-Another 41 eligible stretches have unfinished numerical comparisons; recovering
-them is the current priority. [Results and source tracks](docs/ilvis0-highspeed-segments-20261008/FINDINGS.md)
+The qualified recovery trial adds three globe preferences, bringing the current
+combined findings to **15 globe, zero flat and 38 unresolved**. Completing the
+remaining comparisons is the current priority. [Current findings and source tracks](docs/ilvis0-position-stability-trial-20261013/FINDINGS.md)
 are available for review.
 
 **The opportunity is to test Earth's curvature through the aircraft's measured motion.**
@@ -137,21 +138,25 @@ separate calibration and timing checks; the current short-stretch results do not
 
 - **Coverage:** all 232 retained recordings have been screened. The first full run
   analyzed 53 eligible stretches, totaling 424.3 minutes.
-- **Shape:** 12 complete comparisons consistently favor globe geometry; none favors
-  the specified flat disc. The other 41 comparisons are numerically unfinished,
-  rather than evidence for either shape.
-- **Background rotation:** those same 12 stretches favor the specified rotation
+- **Shape:** the preserved first study found 12 complete globe preferences. The
+  qualified recovery trial adds three: **15 globe, zero flat, 38 unresolved**.
+  Unfinished comparisons are not evidence for either shape.
+- **Background rotation:** all 15 resolved stretches favor the specified rotation
   field over zero field. Its physical cause and a solar-versus-sidereal distinction
   have not been determined.
-- **Current priority:** recover more unfinished comparisons. A bounded solver trial
-  is running; completed timing, calibration and prediction checks are preserved
-  alongside the original results.
+- **Current priority:** complete the remaining comparisons using the qualified
+  actual-position stability check. Its trial passed **24/24 fits**, including all
+  controls and repeats. The [wider recovery run](docs/ilvis0-position-recovery-20261013/README.md)
+  permits 159 new starts, reuses qualified results and keeps the physical assumptions fixed.
+  Earlier results and the completed timing, calibration and prediction checks remain preserved.
+- **Instrument coverage:** completed comparisons now include both recorded IMU8
+  and IMU21 configurations, decoded separately under the same analysis rules.
 
 The completed findings are substantial, but a validated statistical significance
 level has not yet been established. Some recordings overlap or share instruments,
 so the stretches cannot simply be counted as independent confirmations.
 
-See [findings and source tracks](docs/ilvis0-highspeed-segments-20261008/FINDINGS.md),
+See [current findings and source tracks](docs/ilvis0-position-stability-trial-20261013/FINDINGS.md),
 [how the method works](docs/METHODOLOGY.md),
 [method development and robustness checks](docs/METHODOLOGY_DEVELOPMENT.md), and
 [the next steps](docs/ANALYSIS_ROADMAP.md).

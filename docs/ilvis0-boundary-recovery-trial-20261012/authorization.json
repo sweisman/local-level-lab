@@ -1,0 +1,7 @@
+{
+  "approval": "standing_analysis_roadmap",
+  "manifest_sha256": "323ce712d6dceaa7300131927f87c2fd27c41389878317ef82352e6c83656083",
+  "maximum_native_sweeps": 14448,
+  "maximum_starts": 24,
+  "retries": 0
+}

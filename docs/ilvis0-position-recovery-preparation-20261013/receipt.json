@@ -1,0 +1,23 @@
+{
+  "artifacts": {
+    "README.md": "1b76b0128347a81f2a7cdda92bec5c79be5aa2d746e225e915bd4b338c7db1ee",
+    "plan.json": "1d4f518d40180738435a4f6d5b25f6466f97bb7bf2965971c6fdc0aaa66102ce",
+    "stretches.csv": "5527655b89a18a67776ae0a4efe0cbefcf2ba9935d091c3b9234bc954134b02a",
+    "tasks.csv": "a4f118f2f1bc89e260173c1ef489329a21cd4922140a40a097c83c5efe9a6a6c"
+  },
+  "inputs": {
+    "data/ilvis0-position-stability-trial-20261013/manifest.json": "7d35ba5b9a7e8f4fc1e29ce7c015f0b0665d4f6118f44386519180fa9ba238d1",
+    "data/ilvis0-position-stability-trial-20261013/proposal.json": "f14f9fce7d8abe6057bd9552dc631a4f7257e3f46c540e9da38b85bfe96ae04c",
+    "docs/ilvis0-convergence-recovery-preparation-20261012/all-unresolved.csv": "5527655b89a18a67776ae0a4efe0cbefcf2ba9935d091c3b9234bc954134b02a",
+    "docs/ilvis0-convergence-recovery-preparation-20261012/preparation-receipt.json": "5002f69eb30495486412dd1cba087706e9b859a906c5049763ec800f828be9b0",
+    "docs/ilvis0-highspeed-segments-20261008/evidence-receipt.json": "b082549083356dbdc48fe4421daf6f9cb36086c6f4f851475bef75e130b8f187",
+    "docs/ilvis0-highspeed-segments-20261008/summary.json.gz": "41654f27764dc8af26e83c42ba291c76ebc1eb77ed579523baab6d80190642fa"
+  },
+  "native_predictions": 0,
+  "observed_fit_starts": 0,
+  "original_files_read": 0,
+  "sources": {
+    "analysis/tests/test_ilvis0_position_recovery_plan.py": "45a82f3e2c7ce3792673f8e837ff5edc46400a460c4802fa47a751451cf65f79",
+    "docs/ilvis0-position-recovery-preparation-20261013/build_plan.py": "cb434d505c6e985ec48bbc224cb47fc03259e256c7d3fb22369729f8dbb9c9fd"
+  }
+}
