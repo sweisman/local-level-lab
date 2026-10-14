@@ -1,8 +1,10 @@
 # Acquiring and decoding the airborne IMU archive
 
-**The completed high-speed analysis favors globe in 12 stretches and flat in none;
-all 12 also favor the globe candidate containing the standard background rotation field.** Another 41 comparisons lack finished
-calculations. See the [findings and source tracks](ilvis0-highspeed-segments-20261008/FINDINGS.md).
+<!-- current-status:start -->
+**41 globe preferences, 0 flat preferences, 12 unresolved** among 53 preselected stretches.
+See the [verified current status](CURRENT_STATUS.md) for coverage, background-field comparisons and the supporting result records. Unfinished comparisons are not evidence for either shape.
+<!-- current-status:end -->
+
 This is a substantial empirical finding. Unfinished calculations do not erase it
 or provide equal support for flat Earth. A validated statistical significance level
 has not yet been assigned, and shared flights or instruments must be accounted for
@@ -117,12 +119,12 @@ reported only after a resolved globe result. Reports state which model fits bett
 a validated statistical significance level has not yet been assigned.
 
 The [qualified recovery findings](ilvis0-position-stability-trial-20261013/FINDINGS.md)
-add twenty-nine completed globe preferences to the original twelve: **41 globe, zero flat,
-12 unresolved**. Completed findings include IMU8 and IMU21. These are recorded
+extend the original first-pass results; the [current status](CURRENT_STATUS.md) gives
+the verified combined totals. Completed findings include IMU8 and IMU21. These are recorded
 instrument/data configurations, not unique serial numbers or separate experimental
 protocols. Their units and conversion scales are checked separately; both follow
-the same selection and model-comparison rules. All forty-one resolved stretches also
-favor the specified background-field globe, without identifying that field's cause.
+the same selection and model-comparison rules. Background-field comparisons are
+reported separately from the field's cause.
 
 The supplied 14 April 2009 ATM sample now passes an empirical physical-decoder check.
 Its six signed integers represent velocity X/Y/Z followed by angle X/Y/Z. The recovered

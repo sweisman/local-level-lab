@@ -2,10 +2,12 @@
 
 ## Starting point
 
-The preserved first study found 12 globe preferences. Completed recovery adds twenty-nine,
-giving **41 globe preferences, zero flat preferences and 12 unfinished comparisons**
-among the same 53 eligible stretches. All forty-one also favor the background-field globe
-over the zero-field globe. Completed results now include both IMU8 and IMU21 recordings.
+<!-- current-status:start -->
+**41 globe preferences, 0 flat preferences, 12 unresolved** among 53 preselected stretches.
+See the [verified current status](CURRENT_STATUS.md) for coverage, background-field comparisons and the supporting result records. Unfinished comparisons are not evidence for either shape.
+<!-- current-status:end -->
+
+Completed results include both IMU8 and IMU21 recordings.
 This is a substantial
 empirical finding; unfinished calculations do not provide equal support for flat Earth.
 A calibrated statistical significance level and independent-replication count still
@@ -31,28 +33,34 @@ Do not transfer one configuration's exact specifications to every recording or c
 assumed offset allowance measured drift. Unknown corrections matter where they prevent
 a particular quantity from being separated, rather than stopping all modeling.
 
-The covariance/prediction comparison has finished with 10 of 12 fits converged;
-its combined comparison remains unresolved. The immediate priority is resolving
-as many of the remaining 38 numerically incomplete stretches as possible.
-The active wider run retains all 41 original recovery identities and reuses the
-three completed subset stretches, preserving the earlier evidence.
+## Current execution order
+
+The priority is recovering the unfinished comparisons in the verified status above.
 Further diagnostic expansion is deferred. Numerical completion, fit adequacy and
 statistical support remain separate checks; recovering a fit does not by itself
 establish a calibrated scientific detection.
 
-1. Freeze a small representative subset of the 41, covering numerical failure types
-   and observable recording properties without choosing favorable model preferences.
-2. Test a separately frozen numerical strategy and larger finite evaluation budget,
-   retaining the physical models, calibration bounds and two processing cases.
-3. Check objective agreement, valid stopping, repeatability and predicted tracks,
-   including a completed control. Keep all original failures and results unchanged.
-4. Apply the qualified method to all 41 in a separately budgeted recovery study.
-   Preserve numerical failures and report newly complete comparisons explicitly.
+1. Preserve the completed [budget continuation](ilvis0-budget-continuation-20261014/RESULTS.md).
+   Both controls passed, but none of its three target stretches passed every primary
+   and repeat check. Those stretches remain unresolved.
+2. Finish the separately frozen [nine-stretch assessment](ilvis0-remaining-precision-20261014/README.md).
+   Its finite allowance is 65 starts; incomplete work cannot change published totals.
+3. Qualify the separate [damped solver](ilvis0-trust-qualification-20261014/README.md)
+   on known-answer controls after the active analysis releases its numerical allocation.
+   Changes to step selection retain the existing physical models, bounds and final checks.
+4. If qualification passes, freeze a small matched archival trial with controls and
+   predetermined repeats before considering further recovery. Preserve every earlier failure.
+
+## Recovery development history
+
+The following dated stages explain how the current method developed. Their counts
+describe those stages, not the current disposition. Original reports and result
+ledgers remain unchanged. The original recovery population comprised 41 unfinished
+stretches; many have since been recovered.
 
 The [recovery preparation](ilvis0-convergence-recovery-preparation-20261012/README.md)
-records all 41 unfinished stretches and selects one from each of three numerical
-failure categories, plus a completed control. This is metadata-only preparation;
-the numerical strategy and finite evaluation allowance remain to be qualified.
+recorded the original 41 unfinished stretches and selected one from each of three
+numerical failure categories, plus a completed control.
 
 The [continuation trial](ilvis0-convergence-recovery-trial-20261012/README.md) is
 complete: 15/24 fits passed, including all six completed controls and eight of
@@ -126,7 +134,7 @@ comparison and repeat, bringing the combined tally to 30 globe, zero flat and 23
 unresolved. The earlier 15/0/38 tally above describes the subset stage, not current findings.
 The completed freeze permits no retries or use of its unused allowance.
 
-The next priority is **overlapping flight legs recorded by
+The next development stage examined **overlapping flight legs recorded by
 two instruments when one comparison finishes and the other does not**. Start with
 the 24 October 2009 IMU8/IMU21 leg and the 26 September / 7 October 2015
 loaner/DMS legs. Use the same shared UTC interval, compare per-axis raw and
@@ -169,16 +177,16 @@ including both cost-only failures; the September disc vertical failure remains.
 Eleven arithmetic/derivative controls and six exact-motion solver controls passed.
 The [paired qualification trial](ilvis0-paired-precision-trial-20261014/README.md)
 passed all sixteen fits, including both controls and perturbed repeats, in 129
-sweeps. Both previously unresolved targets now favor globe, bringing current
-findings to **32 globe preferences, zero flat and 21 unresolved**.
+sweeps. Both previously unresolved targets favored globe, bringing findings at
+that stage to **32 globe preferences, zero flat and 21 unresolved**.
 
 The [separate cost-only recovery](ilvis0-cost-precision-recovery-20261014/README.md)
 completed all 86 starts in 891 sweeps, passing 83 fits, both controls and all twelve
 repeats. Nine more stretches have complete comparisons, bringing findings to
 **41 globe preferences, zero flat and 12 unresolved**. The other three primary fits
-exhausted the forty-evaluation allowance. The next bounded continuation preserves
+exhausted the forty-evaluation allowance. The subsequent bounded continuation preserved
 models and gates while allowing up to 200 evaluations and fresh repeats/controls.
-The nine earlier stationarity/position-failure stretches require their own assessment.
+Its completed results and the separate nine-stretch assessment appear in the current execution order above.
 Neither prior freeze may restart or reuse its unused allowance.
 
 Minimum solver qualification supports this recovery sequence. Additional clock,
@@ -298,7 +306,7 @@ That allowance does not authorize the separate recovery study.
 
 | Order | Work | What can happen without new observed fits? | Deliverable |
 |---|---|---|---|
-| P0 | Recover the 41 numerically incomplete stretches | Test the separately prepared rectangular solver on the frozen representative failures and completed control. | Qualified numerical method, then a separately budgeted recovery study on all 41. |
+| P0 | Recover the remaining numerically incomplete stretches | Audit completed recovery evidence and qualify the damped solver on known-answer controls. | Finish the bounded nine-stretch assessment; use a separately frozen matched trial before further rollout. |
 | Deferred | Explain integration timing and joint Z-axis calibration | Preserve completed clock tests, gain–bias grids and weak-direction audits. | Further physically justified clock/calibration tests after recovery. |
 | Deferred | Model residual dependence and assess prediction quality | Preserve covariance audits and the active comparison's results. | Calibrated predictive adequacy and uncertainty checks. |
 | Deferred | Isolate what the inertial measurements contribute | Preserve the planned channel and receiver-metric controls. | Measurement-contribution study with matched assumptions. |
@@ -563,7 +571,7 @@ observed control and repeat checks, recovering three complete globe comparisons.
 The [wider recovery](ilvis0-position-recovery-20261013/README.md) is complete, yielding
 30 globe preferences, none for flat and 23 unresolved stretches at that stage. The subsequent
 paired wider-arithmetic trial added two complete comparisons; the cost-only recovery
-adds nine more. Current findings are 41 globe preferences, zero flat and 12 unresolved. Preserve the original 12 resolved and 41 unresolved
+adds nine more. The [generated status](CURRENT_STATUS.md) records current findings. Preserve the original 12 resolved and 41 unresolved
 results alongside new recovery evidence; software controls alone do not relabel them.
 
 The [rotation-field proposal](ROTATION_FIELD.md) remains separate: fit a retained

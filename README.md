@@ -10,11 +10,13 @@ The data come from professional inertial equipment and GPS receivers aboard rese
 A simpler, stationary crowdsourced experiment using smaller, less expensive IMUs is secondary work.
 The code, selection criteria and analysis records are open for review.
 
-**Forty-one of 53 selected stretches consistently favor globe geometry over the
-specified flat disc. None favor flat; 12 remain unresolved.**
+<!-- current-status:start -->
+**41 globe preferences, 0 flat preferences, 12 unresolved** among 53 preselected stretches.
+See the [verified current status](docs/CURRENT_STATUS.md) for coverage, background-field comparisons and the supporting result records. Unfinished comparisons are not evidence for either shape.
+<!-- current-status:end -->
+
 This is a substantial empirical finding from professional airborne measurements.
-The completed numerical recovery adds twenty-nine to the original twelve while preserving
-the same observations, selected intervals and physical assumptions.
+Numerical recovery preserves the same observations, selected intervals and physical assumptions.
 [Current findings and source tracks](docs/ilvis0-position-stability-trial-20261013/FINDINGS.md)
 are available for review.
 
@@ -139,19 +141,16 @@ separate calibration and timing checks; the current short-stretch results do not
 ## Current status
 
 - **Coverage:** all 232 retained recordings have been screened. The first full run
-  analyzed 53 eligible stretches, totaling 424.3 minutes.
-- **Shape:** the preserved first study found 12 complete globe preferences. The
-  completed recovery brings that to **41 globe, zero flat, 12 unresolved**.
-  Unfinished comparisons are not evidence for either shape.
-- **Background rotation:** all 41 resolved stretches favor the specified rotation
-  field over zero field. Its physical cause and a solar-versus-sidereal distinction
-  have not been determined.
+  analyzed the eligible stretches listed in the [verified status](docs/CURRENT_STATUS.md).
+- **Shape and background rotation:** the status page gives the current counts from
+  verified result records. The field's physical cause and a solar-versus-sidereal
+  distinction have not been determined.
 - **Numerical recovery:** the [completed run](docs/ilvis0-position-recovery-20261013/README.md)
   finished 159 new fits. The subsequent [precision recovery](docs/ilvis0-cost-precision-recovery-20261014/README.md)
   passed 83/86 fits, both controls and all twelve repeats, adding nine complete comparisons.
   Every reported recovery passed its full comparison and scheduled repeat.
-- **Current priority:** continue the three fits that exhausted their small evaluation
-  allowances, then address the other nine unfinished stretches separately. Earlier results
+- **Current priority:** recover unfinished comparisons with bounded solver qualification
+  and repeatability checks. Earlier results
   and the completed timing, calibration and prediction checks remain preserved.
 - **Instrument coverage:** completed comparisons now include both recorded IMU8
   and IMU21 configurations, decoded separately under the same analysis rules.

@@ -46,10 +46,10 @@ models equal support, and successful numerical completion does not mean equal fi
 Some recordings overlap or share instruments; these are not automatically twelve
 independent replications. Statistical significance has not yet been calibrated.
 
-The completed recovery adds twenty-nine complete globe comparisons, including IMU8
-stretches: **41 globe preferences, zero flat, 12 unresolved**. All forty-one
-also favor the specified background field. The original table above remains the
-first-pass result; [updated findings and source tracks](ilvis0-position-stability-trial-20261013/FINDINGS.md)
+Completed recovery extends these first-pass results and includes IMU8 recordings.
+The [generated current status](CURRENT_STATUS.md) gives the combined totals and
+background-field comparisons. The original table above is historical;
+[updated findings and source tracks](ilvis0-position-stability-trial-20261013/FINDINGS.md)
 show the additional evidence and its recording overlap.
 
 The earlier [six-recording pilot](ilvis0-refinement-20261008/PROVISIONAL.md) found two
@@ -156,7 +156,7 @@ step materially changes the result. A failed check is not evidence for either ge
 
 | [Paired wider-arithmetic qualification](ilvis0-paired-precision-trial-20261014/RESULTS.md) | 16/16 fits passed in 129 sweeps, including both controls and repeats. Two additional stretches resolve, bringing the tally to 32/0/21. Physical assumptions and numerical stopping tolerances unchanged. |
 
-| [Completed cost-only precision recovery](ilvis0-cost-precision-recovery-20261014/RESULTS.md) | 83/86 fits passed in 891 sweeps and about four hours. Both controls and all twelve repeats passed; nine more stretches have complete comparisons. Current tally: 41 globe, zero flat, 12 unresolved. Three primary fits exhausted their small evaluation allowance; all prior failures remain preserved. |
+| [Completed cost-only precision recovery](ilvis0-cost-precision-recovery-20261014/RESULTS.md) | 83/86 fits passed in 891 sweeps and about four hours. Both controls and all twelve repeats passed; nine more stretches have complete comparisons. Tally at that stage: 41 globe, zero flat, 12 unresolved. Three primary fits exhausted their small evaluation allowance; all prior failures remain preserved. |
 
 Software controls have known answers and expose numerical failures without choosing
 favorable flight data. Their success cannot guarantee success on the archive. The
