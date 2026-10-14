@@ -61,8 +61,10 @@ The contribution is a reproducible test of moving-platform measurements under co
 geometries. A first-of-its-kind claim has not been established. Earth's shape is separate
 from geocentric or heliocentric explanations; a globe result alone decides neither.
 
-The original first study found twelve complete globe preferences. A qualified recovery
-adds three, giving **15 globe preferences, none for flat and 38 unresolved stretches**.
+The original first study found twelve complete globe preferences. Completed numerical
+recovery adds eighteen, giving **30 globe preferences, none for flat and 23 unresolved stretches**.
+Each recovered comparison passed all six primary fits, its scheduled repeat and fresh
+controls. The same intervals, measurements and physical assumptions were retained.
 Completed comparisons now include both recorded IMU8 and IMU21 configurations; their
 conversion scales differ, but the selection and physical comparison rules are the same.
 Unfinished calculations do not give the models equal support.

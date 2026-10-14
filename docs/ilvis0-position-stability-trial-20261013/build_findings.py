@@ -11,10 +11,30 @@ ROOT = Path(__file__).resolve().parents[2]
 HERE = Path(__file__).resolve().parent
 BASELINE = ROOT/'docs/ilvis0-highspeed-segments-20261008'
 TRIAL = ROOT/'data/ilvis0-position-stability-trial-20261013'
+RECOVERY = ROOT/'docs/ilvis0-position-recovery-20261013'
 
 
 def sha(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+
+def recovery_updates(original, recovery):
+    """Promote complete per-stretch comparisons, never a failed whole-run gate."""
+    expected = {r['segment_id'] for r in original['results']
+                if r['profile']['conditional_shape_preference'] == 'unresolved'}
+    rows = recovery['comparisons']
+    updates = {r['segment_id']: r for r in rows}
+    if recovery['state'] != 'complete' or set(updates) != expected or len(rows) != len(expected):
+        raise ValueError('completed recovery must cover each original unfinished stretch once')
+    for row in rows:
+        shape = row['profile']['conditional_shape_preference']
+        if shape != 'unresolved':
+            fits = [f for case in row['cases'] for f in case['fits']]
+            if (not recovery['qualification']['controls_passed']
+                    or not row['recovery_checks_passed'] or len(row['cases']) != 2
+                    or len(fits) != 6 or not all(f['converged'] for f in fits)):
+                raise ValueError('resolved recovery lacks complete primary/control/repeat checks')
+    return updates
 
 
 def route_context(fixes):
@@ -52,7 +72,8 @@ def stretch_report(rows):
              for label in ('globe', 'flat', 'unresolved')}
     text += f"**{tally['globe']} globe preferences, {tally['flat']} flat, {tally['unresolved']} unresolved.** "
     text += 'Current dispositions combine the preserved first study with the completed, qualified '
-    text += 'recovery trial. Partial fits from the ongoing wider recovery are not promoted to findings. '
+    text += 'recovery run. Each recovered result passed all six primary fits, its scheduled repeat '
+    text += 'and the fresh controls. Failed or partial comparisons remain unresolved. '
     text += 'An unresolved comparison supplies no conclusion about shape. These are numerical '
     text += 'preferences; statistical significance has not yet been calibrated.\n\n'
     text += 'An inertial measurement unit (IMU) records angular and acceleration increments. '
@@ -124,11 +145,21 @@ def main():
     records = {r['segment_id']: r for r in original['results']}
     with (BASELINE/'eligible-stretches.csv').open() as stream:
         inventory = {r['segment_id']: r for r in csv.DictReader(stream)}
-    recovered = [r for r in trial['comparisons']
-                 if records[r['segment_id']]['profile']['conditional_shape_preference'] == 'unresolved']
-    if len(records) != 53 or len(recovered) != 3:
+    recovery_receipt = json.loads((RECOVERY/'evidence-receipt.json').read_text())
+    for name in ('summary.json', 'completion.json', 'manifest.json'):
+        if sha(RECOVERY/name) != recovery_receipt['artifacts'][name]:
+            raise ValueError('recovery publication hash mismatch')
+    recovery_complete = json.loads((RECOVERY/'completion.json').read_text())
+    if (recovery_complete['state'] != 'complete'
+            or sha(RECOVERY/'summary.json') != recovery_complete['summary_sha256']
+            or sha(RECOVERY/'manifest.json') != recovery_complete['manifest_sha256']):
+        raise ValueError('sealed recovery required')
+    recovery = json.loads((RECOVERY/'summary.json').read_text())
+    updates = recovery_updates(original, recovery)
+    recovered = [r for r in updates.values()
+                 if r['profile']['conditional_shape_preference'] == 'globe']
+    if len(records) != 53 or len(recovered) != 18:
         raise ValueError('frozen population changed')
-    updates = {r['segment_id']: r for r in recovered}
     rows = []
     for sid, old in records.items():
         result = updates.get(sid, old)
@@ -136,12 +167,12 @@ def main():
         rotation = result['profile']['rotation_diagnostics']
         background = bool(shape == 'globe' and rotation and
                           all(r['conditional_still_minus_rotating_cost'] > 0 for r in rotation))
-        rows.append(dict(inventory[sid], result_origin='qualified_recovery' if sid in updates else 'original_first_pass',
+        rows.append(dict(inventory[sid], result_origin='completed_recovery' if sid in updates else 'original_first_pass',
                          shape_preference=shape, specified_background_preferred=background,
                          **route_context(tracks[sid])))
     tally = {label: sum(r['shape_preference'] == label for r in rows)
              for label in ('globe', 'flat', 'unresolved', 'ambiguous')}
-    if tally != dict(globe=15, flat=0, unresolved=38, ambiguous=0):
+    if tally != recovery['combined_tally'] or tally != dict(globe=30, flat=0, unresolved=23, ambiguous=0):
         raise ValueError('combined tally differs from declared findings')
     finished = [r for r in rows if r['shape_preference'] == 'globe']
     with (HERE/'current-stretches.csv').open('w', newline='') as stream:
@@ -150,26 +181,28 @@ def main():
         writer.writerows(sorted(rows, key=lambda r: (r['start_utc'], r['filename'])))
     (HERE/'STRETCHES.md').write_text(stretch_report(rows))
     text = '# Updated airborne findings\n\n'
-    text += '**15 globe preferences, zero flat, 38 unresolved** among the same 53 preselected stretches. '
-    text += 'The original study supplied 12 complete comparisons; the qualified recovery adds three. '
-    text += 'All fifteen favor the specified background-field globe over the zero-field globe in both '
+    text += '**30 globe preferences, zero flat, 23 unresolved** among the same 53 preselected stretches. '
+    text += 'The original study supplied 12 complete comparisons; numerical recovery adds 18, '
+    text += 'including the three previously recovered in the qualification trial. '
+    text += 'All thirty favor the specified background-field globe over the zero-field globe in both '
     text += 'processing cases. This does not identify the field\'s physical cause or measure a solar-versus-sidereal difference.\n\n'
     text += 'These are numerical model preferences. Statistical significance and uncertainty remain '
     text += 'uncalibrated. The original observations, selected intervals and first-pass results are preserved.\n\n'
-    text += '## The three newly completed stretches\n\n'
+    text += '## The eighteen recovered stretches\n\n'
     text += '| Source recording | Recorded IMU type | UTC interval | Duration | Minimum / median ground speed |\n'
     text += '|---|---:|---|---:|---:|\n'
-    for r in sorted((inventory[sid] for sid in updates), key=lambda r: (r['start_utc'], r['filename'])):
+    for r in sorted((inventory[item['segment_id']] for item in recovered), key=lambda r: (r['start_utc'], r['filename'])):
         text += f"| `{r['filename']}` | {r['imu_type']} | {r['start_utc']} to {r['end_utc']} | {float(r['duration_s'])/60:.2f} min | {float(r['minimum_ground_speed_kmh']):.1f} / {float(r['median_ground_speed_kmh']):.1f} km/h |\n"
-    minutes = sum(float(inventory[sid]['duration_s']) for sid in updates)/60
-    text += f'\nThe three stretches add **{minutes:.2f} minutes** of completed comparisons. '
-    text += 'One is IMU8 and two are IMU21, so completed findings now include both recorded types. '
+    minutes = sum(float(inventory[r['segment_id']]['duration_s']) for r in recovered)/60
+    text += f'\nThe eighteen stretches add **{minutes:.2f} minutes** of completed comparisons. '
+    types = {kind: sum(str(r['imu_type']) == kind for r in finished) for kind in ('8', '21')}
+    text += f"Completed findings include {types['8']} IMU8 and {types['21']} IMU21 stretches. "
     text += 'These codes identify instrument/data configurations, not unique unit serial numbers '
     text += 'or different experiment protocols. Their conversion scales are checked separately; '
     text += 'the selection and physical model comparisons are the same.\n\n'
     text += 'The two October 20 recordings overlap in time and must not be counted as two independent flights. '
-    text += f"The fifteen resolved stretches contain {len({r['source_sha256'] for r in finished})} distinct recording hashes "
-    text += f"across {len({r['start_utc'][:10] for r in finished})} dates, not fifteen established independent replications. "
+    text += f"The thirty resolved stretches contain {len({r['source_sha256'] for r in finished})} distinct recording hashes "
+    text += f"across {len({r['start_utc'][:10] for r in finished})} dates, not thirty established independent replications. "
     text += '[All 53 stretches](STRETCHES.md) list current dispositions, courses and latitudes. '
     text += '[The current inventory](current-stretches.csv) preserves exact sources, hashes, intervals, speeds and result origins.\n\n'
     text += '## What changed in the calculation\n\n'
@@ -183,14 +216,22 @@ def main():
     text += 'has all six model/case fits and a passing repeat. Repeat agreement demonstrates numerical '
     text += 'repeatability under these starts; it does not prove a global minimum. '
     text += '[Individual results](RESULTS.md) and the [finite plan](PLAN.md) retain the evidence.\n\n'
-    text += '## Continuing the recovery\n\n'
-    text += 'The [wider recovery run](../ilvis0-position-recovery-20261013/README.md) is active. '
-    text += 'It reuses the qualified subset and permits 159 new starts with no retries. Partial fits '
-    text += 'are not added to the headline until a stretch passes its complete comparison and repeat. '
-    text += 'Incomplete calculations remain unknown, rather than evidence for either shape.\n'
+    text += '## Completed wider recovery and remaining failures\n\n'
+    text += 'The [wider recovery](../ilvis0-position-recovery-20261013/README.md) completed all '
+    text += '159 new starts and 22,355 native integration sweeps, with 117 passing fits: '
+    text += '84/115 primary recoveries, 27/38 repeats and all six controls. There were no execution errors. '
+    text += 'The combined tally improves from 15/0/38 after the subset to 30/0/23. '
+    text += 'Some primary and repeat checks failed, so the entire run did not qualify every comparison; '
+    text += 'only individually complete comparisons contribute to the findings. '
+    text += 'Incomplete calculations remain unknown, rather than evidence for either shape.\n\n'
+    text += 'The next investigation compares overlapping flight legs whose instruments have different '
+    text += 'numerical completion outcomes. [All stretch metadata](ANALYTICS.md) retains last costs, '
+    text += 'stopping reasons and recorder-pair differences. No recorded interval or physical bound '
+    text += 'was changed to obtain these recoveries.\n'
     (HERE/'FINDINGS.md').write_text(text)
     inputs = [BASELINE/'summary.json.gz', BASELINE/'eligible-stretches.csv', BASELINE/'selection.json.gz', BASELINE/'evidence-receipt.json',
               TRIAL/'completion.json']+[TRIAL/n for n in hashes]
+    inputs += [RECOVERY/n for n in ('evidence-receipt.json', 'summary.json', 'completion.json', 'manifest.json')]
     report = dict(inputs={str(p.relative_to(ROOT)): sha(p) for p in inputs},
                   sources={str(Path(__file__).relative_to(ROOT)): sha(__file__)},
                   artifacts={n: sha(HERE/n) for n in ('FINDINGS.md', 'STRETCHES.md', 'current-stretches.csv')},

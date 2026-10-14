@@ -1,12 +1,11 @@
 # Focused NASA analysis plan after the October 11 review
 
 The covariance/prediction comparison has finished with 10 of 12 fits converged and
-an unresolved combined hierarchy. Numerical recovery of the 41 unfinished comparisons
-takes priority. Follow the four-step recovery sequence
-in the [roadmap](ANALYSIS_ROADMAP.md): representative subset, a qualified solver and
-larger finite budget, repeatability checks, then all 41. Additional diagnostics below
-are deferred; retain their completed evidence and do not make their expansion a
-prerequisite for attempting recovery.
+an unresolved combined hierarchy. The subsequent numerical recovery is complete:
+**30 globe preferences, none for flat and 23 unresolved stretches**. The next priority
+is comparing overlapping legs whose recorders have different completion outcomes;
+the [roadmap](ANALYSIS_ROADMAP.md) describes that investigation. Additional diagnostics
+below remain available for later development; preserve their completed evidence.
 
 Keep the 53-stretch first pass unchanged. It found 12 complete globe preferences,
 no complete flat preference and 41 unfinished comparisons. Unfinished comparisons

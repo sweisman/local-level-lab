@@ -2,9 +2,9 @@
 
 ## Starting point
 
-The preserved first study found 12 globe preferences. Qualified recovery adds three,
-giving **15 globe preferences, zero flat preferences and 38 unfinished comparisons**
-among the same 53 eligible stretches. All fifteen also favor the background-field globe
+The preserved first study found 12 globe preferences. Completed recovery adds eighteen,
+giving **30 globe preferences, zero flat preferences and 23 unfinished comparisons**
+among the same 53 eligible stretches. All thirty also favor the background-field globe
 over the zero-field globe. Completed results now include both IMU8 and IMU21 recordings.
 This is a substantial
 empirical finding; unfinished calculations do not provide equal support for flat Earth.
@@ -120,7 +120,13 @@ preparation; the qualified trial now supports the separately frozen
 [remaining-stretch recovery](ilvis0-position-recovery-20261013/README.md).
 Each newly complete stretch must also pass its repeat check and fresh controls.
 
-After this run completes, the next priority is **overlapping flight legs recorded by
+The wider run completed all 159 starts and 22,355 sweeps: 117 fits passed, including
+all six fresh controls. Eighteen original unfinished stretches pass their complete
+comparison and repeat, bringing the combined tally to 30 globe, zero flat and 23
+unresolved. The earlier 15/0/38 tally above describes the subset stage, not current findings.
+The completed freeze permits no retries or use of its unused allowance.
+
+The next priority is **overlapping flight legs recorded by
 two instruments when one comparison finishes and the other does not**. Start with
 the 24 October 2009 IMU8/IMU21 leg and the 26 September / 7 October 2015
 loaner/DMS legs. Use the same shared UTC interval, compare per-axis raw and
@@ -128,7 +134,7 @@ motion-context rate differences, and inspect model-specific costs and stopping r
 Keep different recorders separate; an unfinished result is not an opposing shape finding.
 The [analytics export](ilvis0-position-stability-trial-20261013/ANALYTICS.md) records
 these pairs and descriptive measurements without new fits. A subsequent numerical
-comparison needs its own finite freeze; the active recovery allowance stays unchanged.
+comparison needs its own finite freeze; the completed recovery allowance stays closed.
 
 Minimum solver qualification supports this recovery sequence. Additional clock,
 calibration, covariance, measurement-contribution and independent-flight studies
@@ -509,8 +515,8 @@ remaining numerical stopping issue from calibration ambiguity. A verified-stoppi
 candidate passed cheap known-optimum and false-stop controls, but its completed six-fit
 airborne comparison did not qualify. Later actual-position qualification passed its
 observed control and repeat checks, recovering three complete globe comparisons.
-The [wider recovery](ilvis0-position-recovery-20261013/README.md) is now active under
-its separate finite freeze. Preserve the original 12 resolved and 41 unresolved
+The [wider recovery](ilvis0-position-recovery-20261013/README.md) is complete, yielding
+30 globe preferences, none for flat and 23 unresolved stretches. Preserve the original 12 resolved and 41 unresolved
 results alongside new recovery evidence; software controls alone do not relabel them.
 
 The [rotation-field proposal](ROTATION_FIELD.md) remains separate: fit a retained

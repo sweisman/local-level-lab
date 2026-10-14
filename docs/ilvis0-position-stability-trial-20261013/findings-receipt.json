@@ -1,8 +1,8 @@
 {
   "artifacts": {
-    "FINDINGS.md": "59c0da973a8bfed145b08444ce02b184f134c4d0f8516c2cc517db1e532d7664",
-    "STRETCHES.md": "acb1a7e2c634ce153773ab0e87ca560bc188041d74829f060eb93aacafd8cf74",
-    "current-stretches.csv": "ebdf693c46d7c1241dff4d0fad9db06f9a5a55aadc092ae192a7995f419e025e"
+    "FINDINGS.md": "3aeea39acb615b8263da04ff54dc3caf4ecff2f248e4f1c0cfaa301be84f4385",
+    "STRETCHES.md": "88985af0ec0d66de31ec5e5e5b3eac2dbe56cd4fc8ebbb5f34c712b09457aa32",
+    "current-stretches.csv": "e75bcf6483246720c02f4c599a8d9b4d45a783b435b05c16dcb353d7e598485d"
   },
   "inputs": {
     "data/ilvis0-position-stability-trial-20261013/completion.json": "cd3bd6b805ca8975f5d018397308302508007336b370c36991f324151269df8f",
@@ -13,18 +13,22 @@
     "docs/ilvis0-highspeed-segments-20261008/eligible-stretches.csv": "a5abfa6775b3f39025dad33165ae4c9e62ca6df4365fbaebfc9684f21de29044",
     "docs/ilvis0-highspeed-segments-20261008/evidence-receipt.json": "b082549083356dbdc48fe4421daf6f9cb36086c6f4f851475bef75e130b8f187",
     "docs/ilvis0-highspeed-segments-20261008/selection.json.gz": "934dea342a64b716533732d7ab0e961d23709cf37499faf7cee8e4c386778809",
-    "docs/ilvis0-highspeed-segments-20261008/summary.json.gz": "41654f27764dc8af26e83c42ba291c76ebc1eb77ed579523baab6d80190642fa"
+    "docs/ilvis0-highspeed-segments-20261008/summary.json.gz": "41654f27764dc8af26e83c42ba291c76ebc1eb77ed579523baab6d80190642fa",
+    "docs/ilvis0-position-recovery-20261013/completion.json": "41381a759ef9bd6f015e0d2920847c419445c8634fd93f5010d89e0cec8100d0",
+    "docs/ilvis0-position-recovery-20261013/evidence-receipt.json": "21ff354d3cf7e1f929a9ee6ebda74e5276daf9c7c51a6a83eb7745034e4a6684",
+    "docs/ilvis0-position-recovery-20261013/manifest.json": "969024701053674cb8e500df1b858cc7ef334f1b946cb9516e3cfb040ed44417",
+    "docs/ilvis0-position-recovery-20261013/summary.json": "b0c76efd53fa05e0b5a8b15673dad2ab5d4d14ff8ac928b1e5178a442dce3bad"
   },
   "native_predictions": 0,
   "observed_starts": 0,
   "original_files_read": 0,
   "sources": {
-    "docs/ilvis0-position-stability-trial-20261013/build_findings.py": "c13239f5197efdfe1a3798af9d253eaaa8ca85b05bbf739f048d8c32665c65a9"
+    "docs/ilvis0-position-stability-trial-20261013/build_findings.py": "e9cab39ecf0febcd2f4bccdd2112f6795a449383591ec92da8644af5da949325"
   },
   "tally": {
     "ambiguous": 0,
     "flat": 0,
-    "globe": 15,
-    "unresolved": 38
+    "globe": 30,
+    "unresolved": 23
   }
 }

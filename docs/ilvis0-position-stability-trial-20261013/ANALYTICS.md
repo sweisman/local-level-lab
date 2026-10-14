@@ -1,6 +1,6 @@
 # Stretch analytics: measurements, geometry and numerical outcomes
 
-Snapshot: **2026-10-13T12:36:05.226108+00:00**. All **53** preselected stretches are included, including unfinished comparisons. The summary table remains unchanged. These descriptive calculations perform **no fits or forward-model predictions**, change no selection, and do not relabel findings.
+Snapshot: **2026-10-14T04:39:08.916484+00:00**. All **53** preselected stretches are included, including unfinished comparisons. The summary table remains unchanged. These descriptive calculations perform **no fits or forward-model predictions**, change no selection, and do not relabel findings.
 
 - [Comprehensive stretch CSV](stretch-analytics.csv): one row per stretch; all six latest saved primary costs and stopping outcomes.
 - [Fit history CSV](fit-analytics.csv): original fits, qualified-subset fits, controls/repeats and atomically saved wider-recovery attempts, retained separately.
@@ -28,7 +28,7 @@ Every model is retained under both processing cases. `cost` is the last saved re
 
 A shared-leg ID groups simultaneous receiver tracks with at least three identical UTC receiver epochs, maximum horizontal separation ≤1 km and height separation ≤300 m. This is a documented same-track candidate, not proof of an aircraft identity or unchanged instrument installation. Distinct instruments and originals remain separate. Pair differences use only common complete UTC-second bins inside the shared interval, with no interpolation. Each difference is **left minus right**, with both mean difference and RMS difference retained. Aircraft-axis raw differences, restricted track proxies and fused-context corrections are separate. Differences alone cannot assign the cause to hardware versus mounting, processing, timing or solver behavior.
 
-After the current recovery finishes, overlapping legs with mismatched completion are the next numerical priority, beginning with the three marked pairs. The current worker and its frozen allowance remain unchanged.
+The wider recovery is complete: 30 globe preferences, zero flat and 23 unresolved. Overlapping legs with mismatched completion are the next priority, beginning with the three marked pairs. Its original freeze and failures remain preserved.
 
 ## Column dictionary
 

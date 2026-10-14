@@ -70,6 +70,12 @@ def fit_snapshot(original):
             'qualified_subset',task['role'],task['identity'])
     runtime=load(RECOVERY/'manifest.json');digest=sha(RECOVERY/'manifest.json')
     inputs[str(RECOVERY/'manifest.json')]=digest
+    completion=load(RECOVERY/'completion.json') if (RECOVERY/'completion.json').exists() else None
+    if completion:
+        if completion['state']!='complete' or completion['manifest_sha256']!=digest or sha(RECOVERY/'summary.json')!=completion['summary_sha256']:
+            raise ValueError('sealed wider recovery integrity mismatch')
+        inputs[str(RECOVERY/'completion.json')]=sha(RECOVERY/'completion.json')
+        inputs[str(RECOVERY/'summary.json')]=sha(RECOVERY/'summary.json')
     for task in runtime['proposal']['tasks']:
         path=RECOVERY/(task['identity'].replace('::','-')+'.json')
         if not path.exists(): continue
@@ -78,7 +84,8 @@ def fit_snapshot(original):
         if saved['manifest_sha256']!=digest or saved['result_sha256']!=result_hash:
             raise ValueError('saved live attempt integrity mismatch')
         inputs[str(path)]=hashlib.sha256(data).hexdigest()
-        add(task['segment_id'],task['case_id'],task['model'],fit,'wider_recovery_snapshot',task['role'],task['identity'])
+        add(task['segment_id'],task['case_id'],task['model'],fit,
+            'completed_wider_recovery' if completion else 'wider_recovery_snapshot',task['role'],task['identity'])
     return fits,rows,inputs
 
 
@@ -97,6 +104,8 @@ def main():
     inventory_by_id={r['segment_id']:r for r in inventory}
     if len(selected)!=53 or {r['segment_id'] for r in inventory}!=set(selected): raise ValueError('population mismatch')
     latest,fit_rows,fit_inputs=fit_snapshot(load(BASELINE/'summary.json.gz'))
+    completed_recovery=load(RECOVERY/'summary.json') if (RECOVERY/'completion.json').exists() else None
+    repeat_checks={r['identity'].split('::')[0]:r['passed'] for r in completed_recovery['qualification']['repeatability']} if completed_recovery else {}
     pairs=[];parents={sid:sid for sid in selected}
     def parent(sid):
         while parents[sid]!=sid: sid=parents[sid]
@@ -199,6 +208,8 @@ def main():
             row['disposition_pending_reason']='primary_fit_checks_incomplete'
         elif repeat and not repeat['converged']:
             row['disposition_pending_reason']='repeat_fit_checks_incomplete'
+        elif completed_recovery and not repeat_checks.get(sid,False):
+            row['disposition_pending_reason']='scheduled_repeat_agreement_failed'
         else:
             row['disposition_pending_reason']='awaiting_sealed_wider_run_qualification'
         # A genuine cost tie requires all three matched candidates to have finished.
@@ -232,7 +243,7 @@ def main():
     text+='## Stopping and shared tracks\n\n'
     text+='Every model is retained under both processing cases. `cost` is the last saved residual sum of squares, including unfinished endpoints; `stop_reason` separates budget, stall, stability check, stationarity check and execution error. Original messages, stationarity and active bounds remain available. A last cost from an unfinished fit is not a model exclusion or a tie. The published disposition remains the latest **qualified whole-stretch** comparison; partial wider-recovery fits do not change it. `latest_repeat_status` and `disposition_pending_reason` distinguish unfinished primaries, failed repeats and pending sealed qualification. Passing a repeat fit alone does not establish its required cost/track agreement; that remains the worker\'s sealed qualification.\n\n'
     text+='A shared-leg ID groups simultaneous receiver tracks with at least three identical UTC receiver epochs, maximum horizontal separation ≤1 km and height separation ≤300 m. This is a documented same-track candidate, not proof of an aircraft identity or unchanged instrument installation. Distinct instruments and originals remain separate. Pair differences use only common complete UTC-second bins inside the shared interval, with no interpolation. Each difference is **left minus right**, with both mean difference and RMS difference retained. Aircraft-axis raw differences, restricted track proxies and fused-context corrections are separate. Differences alone cannot assign the cause to hardware versus mounting, processing, timing or solver behavior.\n\n'
-    text+='After the current recovery finishes, overlapping legs with mismatched completion are the next numerical priority, beginning with the three marked pairs. The current worker and its frozen allowance remain unchanged.\n\n'
+    text+='The wider recovery is complete: 30 globe preferences, zero flat and 23 unresolved. Overlapping legs with mismatched completion are the next priority, beginning with the three marked pairs. Its original freeze and failures remain preserved.\n\n'
     text+='## Column dictionary\n\n'
     text+='Original inventory columns retain source hash, exact UTC bounds, configuration and disposition. `raw_dtheta_*_sum_counts` preserve the selected signed integer totals. `native_samples`, both durations and both clock means describe completeness and scaling. `shared_leg_members` lists related stretch IDs. `bias1_*__MODEL__FIELD` columns contain each saved primary endpoint; full nuisance values are in the fit-history `parameters` column. `result_origin` distinguishes original, qualified-subset and unfinished wider-run outputs. The CSV headers are the complete machine-readable field list.\n'
     atomic(HERE/'ANALYTICS.md',text.encode())

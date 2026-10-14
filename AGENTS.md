@@ -27,7 +27,7 @@ incident histories, personal commentary or historical process IDs.
   lll.compute_budget guard in a new launcher) before numerical imports; specify the
   target's actual worker count and --reserved-threads for other active allocations.
   Freeze that allocation. Preserve frozen studies' original thread settings on resume;
-  the active position-recovery study remains at two threads and reserves two of four.
+  completed freezes retain their recorded allocations; new jobs may use up to four.
 - Write public documentation in plain language. Define IMU before using it. Explain
   purpose, methodology, status and limitations; avoid JSON links in the main README.
   Public docs describe the project, not private collaboration: omit personal requests,
@@ -255,18 +255,13 @@ passing fits, 393 sweeps, all controls and repeats passed. Never restart this tr
 or reuse its unused allowance. --package-only performs no fits. Preserve its freeze
 and original first-pass labels; the three qualified recoveries are separate results.
 Metadata-only full recovery preparation: docs/ilvis0-position-recovery-preparation-20261013/.
-Qualified full recovery guide/freeze: docs/ilvis0-position-recovery-20261013/ and
+Completed full recovery guide/freeze: docs/ilvis0-position-recovery-20261013/ and
 data/ilvis0-position-recovery-20261013/. Launcher:
-analysis/tests/ilvis0_position_recovery_worker.py --detach, with PYTHONPATH=analysis
-and all three numerical thread variables set to 2. Frozen allowance: 159 new starts /
-95,718 sweeps (115 primaries, 38 repeats, six controls), no retries. Reuse the 18
-declared subset results without new charges. Before continuation check exclusive lock,
-completion and unchanged hashes/environment. Interrupted charged identities remain
-failed; continue only unstarted identities. Never resume completed work, edit active
-dependencies, select favorable costs or replace failed repeats. Automatic publication
-and --package-only perform no fits. Each recovery comparison needs its scheduled
-repeat and fresh controls; preserve original evidence separately.
-After the current recovery completes, prioritize overlapping shared flight legs with
+analysis/tests/ilvis0_position_recovery_worker.py --package-only performs no fits.
+Completed: 159 starts / 22,355 sweeps, 117 passing fits, all six controls passed.
+Combined disposition: 30 globe / zero flat / 23 unresolved. Preserve the original
+freeze, failed primaries and repeats; never restart or reuse unused allowance.
+Prioritize overlapping shared flight legs with
 mismatched numerical completion, beginning with the three marked recorder pairs in
 docs/ilvis0-position-stability-trial-20261013/shared-leg-pairs.csv. Compare common
 UTC intervals; preserve each instrument separately and distinguish candidate

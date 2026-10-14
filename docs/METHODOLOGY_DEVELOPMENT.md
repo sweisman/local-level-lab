@@ -46,8 +46,8 @@ models equal support, and successful numerical completion does not mean equal fi
 Some recordings overlap or share instruments; these are not automatically twelve
 independent replications. Statistical significance has not yet been calibrated.
 
-The later qualified recovery adds three complete globe comparisons, including the
-first IMU8 stretch: **15 globe preferences, zero flat, 38 unresolved**. All fifteen
+The completed recovery adds eighteen complete globe comparisons, including IMU8
+stretches: **30 globe preferences, zero flat, 23 unresolved**. All thirty
 also favor the specified background field. The original table above remains the
 first-pass result; [updated findings and source tracks](ilvis0-position-stability-trial-20261013/FINDINGS.md)
 show the additional evidence and its recording overlap.
@@ -152,7 +152,7 @@ step materially changes the result. A failed check is not evidence for either ge
 | [Boundary-aware archival trial](ilvis0-boundary-recovery-trial-20261012/RESULTS.md) | Complete: 17/24 passed, including nine unfinished primaries, all six controls and two repeats. No test stretch became fully resolved; qualification failed. |
 | [Saved boundary-trial diagnosis](ilvis0-boundary-diagnosis-20261013/README.md) | Six failures pass stationarity but fail prediction stability; one exhausts its budget. All three primary/repeat pairs have nearly identical costs and tracks but opposite stopping outcomes. No new native predictions or fits. |
 | [Actual-position stability comparison](ilvis0-position-stability-trial-20261013/README.md) | Fresh full-model position checks preserve gradient and objective limits. The archival trial passed 24/24 fits, all controls and all repeats; three previously unresolved stretches favor globe. |
-| [Remaining-stretch recovery](ilvis0-position-recovery-20261013/README.md) | Qualified method applied under a separate finite freeze: 159 new starts, 18 reused subset results, no retries, unchanged physical assumptions. Each stretch needs passing primary fits, repeat and controls. |
+| [Remaining-stretch recovery](ilvis0-position-recovery-20261013/README.md) | Completed: 159 new starts, 117 passing fits, all six controls passed. Eighteen original unfinished stretches now pass their full comparison and scheduled repeat; combined tally 30 globe, zero flat, 23 unresolved. Physical assumptions unchanged; no retries. |
 
 Software controls have known answers and expose numerical failures without choosing
 favorable flight data. Their success cannot guarantee success on the archive. The
