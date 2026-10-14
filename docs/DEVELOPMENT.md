@@ -89,6 +89,11 @@ or unit certificates to ground recordings. See [the stationary method](STATIONAR
 
 ## Documentation and reproducibility
 
+The [public website build](../website/README.md) renders the root README and linked
+Markdown as a GitHub Pages site at locallevellab.com. Data downloads and source files
+remain on GitHub. Website dependencies and checks are separate from the frozen
+numerical environment; building the site runs no scientific analysis.
+
 Public guides explain the method and current evidence without requiring raw research files.
 [MATH](MATH.md), the [technical methodology record](METHODOLOGY_TECHNICAL.md),
 [technical validation record](VALIDATION_TECHNICAL.md), [technical bench checklist](BENCH_TECHNICAL.md)
