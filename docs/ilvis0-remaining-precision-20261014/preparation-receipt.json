@@ -1,0 +1,23 @@
+{
+  "artifacts": {
+    "PLAN.md": "1a1692cf9f0a0e1f00a0234116447b4043b529856d675d7f665fc2451f2b9df8",
+    "selection.json": "dbfe3c66db8e0fb13b8184b89e92c11b457b8ffa8a37860de9df9554493a0109",
+    "targets.csv": "ac8fb6949236be2d6737fe5eb0d6c235ede1808b75018f878a6c0e726fa4ddf4"
+  },
+  "estimated_ceiling_hours": 72.2602844239249,
+  "inputs": {
+    "/site/repo/local-level-lab/docs/ilvis0-cost-precision-recovery-20261014/completion.json": "76ad6f0a0bcdc4a0a16577ed21cefd6f38282fc4d10f8f845989afc0ff659fa2",
+    "/site/repo/local-level-lab/docs/ilvis0-cost-precision-recovery-20261014/manifest.json": "7ca067ee16808afaa0832f3cea8653e88d60743eff5e6836d26a55f1117387c1",
+    "/site/repo/local-level-lab/docs/ilvis0-cost-precision-recovery-20261014/summary.json": "684b5a84581b1b846ad557b47d0114502d58f753c01de946cbf99dc8d7fcbf75",
+    "/site/repo/local-level-lab/docs/ilvis0-position-recovery-20261013/manifest.json": "969024701053674cb8e500df1b858cc7ef334f1b946cb9516e3cfb040ed44417",
+    "/site/repo/local-level-lab/docs/ilvis0-position-recovery-20261013/summary.json": "b0c76efd53fa05e0b5a8b15673dad2ab5d4d14ff8ac928b1e5178a442dce3bad",
+    "/site/repo/local-level-lab/docs/ilvis0-position-stability-trial-20261013/current-stretches.csv": "0ff134a81abf347f7351a657a607b0e3f420eac190d8aa1b103e7415059c659c"
+  },
+  "native_predictions": 0,
+  "observed_starts": 0,
+  "original_files_read": 0,
+  "sources": {
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_precision_continuation_plan.py": "54ce2fca28a5a507758116d4174301ba7a4a87ab87e183437b86314244154938",
+    "/site/repo/local-level-lab/docs/ilvis0-budget-continuation-20261014/prepare_continuation.py": "0b7d9c5f73710d460e8e55b2a280325b426b62d410bf357b27cc96398672e809"
+  }
+}

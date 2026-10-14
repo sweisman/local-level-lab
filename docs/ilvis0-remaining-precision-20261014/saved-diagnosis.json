@@ -1,0 +1,547 @@
+[
+  {
+    "failures": [
+      {
+        "accepted_steps": 5,
+        "case_id": "bias1_unsubtracted",
+        "converged": false,
+        "cost_change_ratio": null,
+        "endpoint_stationarity_ratio": 310.0726221009206,
+        "establishes_prediction_noise_floor": false,
+        "failed_gates": [
+          "endpoint_stationarity"
+        ],
+        "fresh_stationarity_ratio": null,
+        "last_rejected_relative_cost_change": 1.0119471952546588,
+        "maximum_position_change_m": null,
+        "maximum_position_rms_m": null,
+        "model": "sphere_rotating",
+        "position_max_ratios": null,
+        "position_rms_ratios": null,
+        "rejected_steps": 32,
+        "rejected_tail_steps": 3,
+        "smallest_rejected_fraction": 0.25
+      }
+    ],
+    "segment_id": "2a56eb8fa7d4e10c9a867bb0",
+    "stage": "budget"
+  },
+  {
+    "failures": [
+      {
+        "accepted_steps": 11,
+        "case_id": "bias1_unsubtracted",
+        "converged": false,
+        "cost_change_ratio": 1.2682618870105438,
+        "endpoint_stationarity_ratio": 0.004977350836662932,
+        "establishes_prediction_noise_floor": false,
+        "failed_gates": [
+          "relative_cost"
+        ],
+        "fresh_stationarity_ratio": 0.13176668206214434,
+        "last_rejected_relative_cost_change": 1.2682618652935787e-08,
+        "maximum_position_change_m": 0.0007132174236429065,
+        "maximum_position_rms_m": 0.0004110285549276461,
+        "model": "flat_still",
+        "position_max_ratios": [
+          0.07132174236429065,
+          0.06489809606878919,
+          0.00034525801312724536
+        ],
+        "position_rms_ratios": [
+          0.4110285549276461,
+          0.3616954472616671,
+          0.0022280287411503823
+        ],
+        "rejected_steps": 26,
+        "rejected_tail_steps": 1,
+        "smallest_rejected_fraction": 1.0
+      }
+    ],
+    "segment_id": "7df21c836bec5751f83c0cce",
+    "stage": "budget"
+  },
+  {
+    "failures": [
+      {
+        "accepted_steps": 1,
+        "case_id": "bias1_profiled_removal",
+        "converged": false,
+        "cost_change_ratio": 176.0930256367956,
+        "endpoint_stationarity_ratio": 0.4084789662639367,
+        "establishes_prediction_noise_floor": false,
+        "failed_gates": [
+          "relative_cost",
+          "position_rms_east",
+          "position_rms_down"
+        ],
+        "fresh_stationarity_ratio": 0.7768079828887972,
+        "last_rejected_relative_cost_change": 2.8667803097260172e-11,
+        "maximum_position_change_m": 0.005328311608536933,
+        "maximum_position_rms_m": 0.0016980175199316624,
+        "model": "sphere_still",
+        "position_max_ratios": [
+          0.23526412044423922,
+          0.330963077499064,
+          0.5328311608536933
+        ],
+        "position_rms_ratios": [
+          0.957607817433569,
+          1.2385589518034401,
+          1.6980175199316623
+        ],
+        "rejected_steps": 36,
+        "rejected_tail_steps": 20,
+        "smallest_rejected_fraction": 1.9073486328125e-06
+      }
+    ],
+    "segment_id": "fd7b81e48a4122b149c4925b",
+    "stage": "budget"
+  },
+  {
+    "failures": [
+      {
+        "accepted_steps": 90,
+        "case_id": "bias1_unsubtracted",
+        "converged": false,
+        "cost_change_ratio": null,
+        "endpoint_stationarity_ratio": 317.7897051093997,
+        "establishes_prediction_noise_floor": false,
+        "failed_gates": [
+          "endpoint_stationarity"
+        ],
+        "fresh_stationarity_ratio": null,
+        "last_rejected_relative_cost_change": null,
+        "maximum_position_change_m": null,
+        "maximum_position_rms_m": null,
+        "model": "sphere_rotating",
+        "position_max_ratios": null,
+        "position_rms_ratios": null,
+        "rejected_steps": 507,
+        "rejected_tail_steps": 0,
+        "smallest_rejected_fraction": null
+      },
+      {
+        "accepted_steps": 80,
+        "case_id": "bias1_profiled_removal",
+        "converged": false,
+        "cost_change_ratio": null,
+        "endpoint_stationarity_ratio": 485.5015400364397,
+        "establishes_prediction_noise_floor": false,
+        "failed_gates": [
+          "endpoint_stationarity"
+        ],
+        "fresh_stationarity_ratio": null,
+        "last_rejected_relative_cost_change": 4.381758803704027,
+        "maximum_position_change_m": null,
+        "maximum_position_rms_m": null,
+        "model": "sphere_rotating",
+        "position_max_ratios": null,
+        "position_rms_ratios": null,
+        "rejected_steps": 517,
+        "rejected_tail_steps": 1,
+        "smallest_rejected_fraction": 1.0
+      }
+    ],
+    "segment_id": "013fdb894ff28509889a8896",
+    "stage": "remaining"
+  },
+  {
+    "failures": [
+      {
+        "accepted_steps": 94,
+        "case_id": "bias1_unsubtracted",
+        "converged": false,
+        "cost_change_ratio": null,
+        "endpoint_stationarity_ratio": 2.3853788429578486,
+        "establishes_prediction_noise_floor": false,
+        "failed_gates": [
+          "endpoint_stationarity"
+        ],
+        "fresh_stationarity_ratio": null,
+        "last_rejected_relative_cost_change": 4.689035590952543e-06,
+        "maximum_position_change_m": null,
+        "maximum_position_rms_m": null,
+        "model": "sphere_still",
+        "position_max_ratios": null,
+        "position_rms_ratios": null,
+        "rejected_steps": 503,
+        "rejected_tail_steps": 4,
+        "smallest_rejected_fraction": 0.125
+      },
+      {
+        "accepted_steps": 87,
+        "case_id": "bias1_profiled_removal",
+        "converged": false,
+        "cost_change_ratio": null,
+        "endpoint_stationarity_ratio": 4.660798035503045,
+        "establishes_prediction_noise_floor": false,
+        "failed_gates": [
+          "endpoint_stationarity"
+        ],
+        "fresh_stationarity_ratio": null,
+        "last_rejected_relative_cost_change": 8.36143783926331e-07,
+        "maximum_position_change_m": null,
+        "maximum_position_rms_m": null,
+        "model": "sphere_still",
+        "position_max_ratios": null,
+        "position_rms_ratios": null,
+        "rejected_steps": 510,
+        "rejected_tail_steps": 7,
+        "smallest_rejected_fraction": 0.015625
+      }
+    ],
+    "segment_id": "0e73879f98c3b701fd7c42df",
+    "stage": "remaining"
+  },
+  {
+    "failures": [
+      {
+        "accepted_steps": 3,
+        "case_id": "bias1_unsubtracted",
+        "converged": false,
+        "cost_change_ratio": 0.21779129812614137,
+        "endpoint_stationarity_ratio": 0.004397591535819225,
+        "establishes_prediction_noise_floor": false,
+        "failed_gates": [
+          "position_rms_east"
+        ],
+        "fresh_stationarity_ratio": 0.010123046196585089,
+        "last_rejected_relative_cost_change": 2.1011794818219938e-11,
+        "maximum_position_change_m": 0.0019306355302371216,
+        "maximum_position_rms_m": 0.0012354006367811794,
+        "model": "flat_still",
+        "position_max_ratios": [
+          0.13371622698930388,
+          0.19306355302371214,
+          0.0091567560957712
+        ],
+        "position_rms_ratios": [
+          0.6106967240548669,
+          1.2354006367811794,
+          0.05320024185948802
+        ],
+        "rejected_steps": 86,
+        "rejected_tail_steps": 24,
+        "smallest_rejected_fraction": 1.1920928955078125e-07
+      },
+      {
+        "accepted_steps": 78,
+        "case_id": "bias1_profiled_removal",
+        "converged": false,
+        "cost_change_ratio": null,
+        "endpoint_stationarity_ratio": 4.090142047256372,
+        "establishes_prediction_noise_floor": false,
+        "failed_gates": [
+          "endpoint_stationarity"
+        ],
+        "fresh_stationarity_ratio": null,
+        "last_rejected_relative_cost_change": 1.9688406731482e-12,
+        "maximum_position_change_m": null,
+        "maximum_position_rms_m": null,
+        "model": "sphere_rotating",
+        "position_max_ratios": null,
+        "position_rms_ratios": null,
+        "rejected_steps": 431,
+        "rejected_tail_steps": 24,
+        "smallest_rejected_fraction": 1.1920928955078125e-07
+      }
+    ],
+    "segment_id": "370cec66878c4c1cf84b4ceb",
+    "stage": "remaining"
+  },
+  {
+    "failures": [
+      {
+        "accepted_steps": 20,
+        "case_id": "bias1_unsubtracted",
+        "converged": false,
+        "cost_change_ratio": null,
+        "endpoint_stationarity_ratio": 1.3132261445757545,
+        "establishes_prediction_noise_floor": false,
+        "failed_gates": [
+          "endpoint_stationarity"
+        ],
+        "fresh_stationarity_ratio": null,
+        "last_rejected_relative_cost_change": 9.53595502334257e-12,
+        "maximum_position_change_m": null,
+        "maximum_position_rms_m": null,
+        "model": "sphere_still",
+        "position_max_ratios": null,
+        "position_rms_ratios": null,
+        "rejected_steps": 192,
+        "rejected_tail_steps": 24,
+        "smallest_rejected_fraction": 1.1920928955078125e-07
+      },
+      {
+        "accepted_steps": 87,
+        "case_id": "bias1_profiled_removal",
+        "converged": false,
+        "cost_change_ratio": 3.73841667377846,
+        "endpoint_stationarity_ratio": 0.00524424021151147,
+        "establishes_prediction_noise_floor": false,
+        "failed_gates": [
+          "relative_cost"
+        ],
+        "fresh_stationarity_ratio": 0.00042731741234250544,
+        "last_rejected_relative_cost_change": 7.813054677319383e-10,
+        "maximum_position_change_m": 1.7535326044170048e-06,
+        "maximum_position_rms_m": 7.189659016827634e-07,
+        "model": "sphere_rotating",
+        "position_max_ratios": [
+          0.0001357858439138519,
+          0.0001753532604417005,
+          0.00011805459502315112
+        ],
+        "position_rms_ratios": [
+          0.0006096781461860919,
+          0.0007189659016827634,
+          0.00046548637586399914
+        ],
+        "rejected_steps": 502,
+        "rejected_tail_steps": 24,
+        "smallest_rejected_fraction": 1.1920928955078125e-07
+      }
+    ],
+    "segment_id": "50f24131843071ae9312c082",
+    "stage": "remaining"
+  },
+  {
+    "failures": [
+      {
+        "accepted_steps": 2,
+        "case_id": "bias1_profiled_removal",
+        "converged": false,
+        "cost_change_ratio": 0.026525769492758238,
+        "endpoint_stationarity_ratio": 0.02280439890984073,
+        "establishes_prediction_noise_floor": false,
+        "failed_gates": [
+          "position_rms_down"
+        ],
+        "fresh_stationarity_ratio": 7.905709592049953e-06,
+        "last_rejected_relative_cost_change": 1.2380091383563731e-15,
+        "maximum_position_change_m": 0.0024514415235899114,
+        "maximum_position_rms_m": 0.0018995707263254919,
+        "model": "flat_still",
+        "position_max_ratios": [
+          0.017141745226170256,
+          0.0005537331606142296,
+          0.24514415235899115
+        ],
+        "position_rms_ratios": [
+          0.10037385645920535,
+          0.003940826309128537,
+          1.899570726325492
+        ],
+        "rejected_steps": 37,
+        "rejected_tail_steps": 24,
+        "smallest_rejected_fraction": 1.1920928955078125e-07
+      }
+    ],
+    "segment_id": "9f4d888995ab94bb8eff4df6",
+    "stage": "remaining"
+  },
+  {
+    "failures": [
+      {
+        "accepted_steps": 28,
+        "case_id": "bias1_profiled_removal",
+        "converged": false,
+        "cost_change_ratio": null,
+        "endpoint_stationarity_ratio": 3.5879512407878584,
+        "establishes_prediction_noise_floor": false,
+        "failed_gates": [
+          "endpoint_stationarity"
+        ],
+        "fresh_stationarity_ratio": null,
+        "last_rejected_relative_cost_change": 1.0684521318414628e-09,
+        "maximum_position_change_m": null,
+        "maximum_position_rms_m": null,
+        "model": "sphere_rotating",
+        "position_max_ratios": null,
+        "position_rms_ratios": null,
+        "rejected_steps": 133,
+        "rejected_tail_steps": 24,
+        "smallest_rejected_fraction": 1.1920928955078125e-07
+      }
+    ],
+    "segment_id": "b4e44ddc0f130ecd45674c78",
+    "stage": "remaining"
+  },
+  {
+    "failures": [
+      {
+        "accepted_steps": 25,
+        "case_id": "bias1_unsubtracted",
+        "converged": false,
+        "cost_change_ratio": 11.211117900700174,
+        "endpoint_stationarity_ratio": 0.0026228922220560076,
+        "establishes_prediction_noise_floor": false,
+        "failed_gates": [
+          "relative_cost"
+        ],
+        "fresh_stationarity_ratio": 0.0004964942711631223,
+        "last_rejected_relative_cost_change": 2.7292779147813917e-10,
+        "maximum_position_change_m": 2.2350814106326757e-06,
+        "maximum_position_rms_m": 1.0661337847161092e-06,
+        "model": "sphere_rotating",
+        "position_max_ratios": [
+          0.00013175533770484242,
+          0.00010751277165148796,
+          0.00022350814106326757
+        ],
+        "position_rms_ratios": [
+          0.0005753469120093942,
+          0.00043451662866371513,
+          0.001066133784716109
+        ],
+        "rejected_steps": 131,
+        "rejected_tail_steps": 24,
+        "smallest_rejected_fraction": 1.1920928955078125e-07
+      },
+      {
+        "accepted_steps": 23,
+        "case_id": "bias1_unsubtracted",
+        "converged": false,
+        "cost_change_ratio": null,
+        "endpoint_stationarity_ratio": 2.3637871460744657,
+        "establishes_prediction_noise_floor": false,
+        "failed_gates": [
+          "endpoint_stationarity"
+        ],
+        "fresh_stationarity_ratio": null,
+        "last_rejected_relative_cost_change": 2.623509477964853e-10,
+        "maximum_position_change_m": null,
+        "maximum_position_rms_m": null,
+        "model": "sphere_still",
+        "position_max_ratios": null,
+        "position_rms_ratios": null,
+        "rejected_steps": 195,
+        "rejected_tail_steps": 24,
+        "smallest_rejected_fraction": 1.1920928955078125e-07
+      },
+      {
+        "accepted_steps": 90,
+        "case_id": "bias1_profiled_removal",
+        "converged": false,
+        "cost_change_ratio": 10.202721290042405,
+        "endpoint_stationarity_ratio": 0.0022851387702575152,
+        "establishes_prediction_noise_floor": false,
+        "failed_gates": [
+          "relative_cost"
+        ],
+        "fresh_stationarity_ratio": 0.0004223185127704161,
+        "last_rejected_relative_cost_change": 1.8830682790849096e-08,
+        "maximum_position_change_m": 1.8160881154272714e-06,
+        "maximum_position_rms_m": 8.65359340569627e-07,
+        "model": "sphere_rotating",
+        "position_max_ratios": [
+          0.00010716669323645256,
+          8.491454576295864e-05,
+          0.00018160881154272713
+        ],
+        "position_rms_ratios": [
+          0.0004674722067463483,
+          0.00036798151875820395,
+          0.000865359340569627
+        ],
+        "rejected_steps": 507,
+        "rejected_tail_steps": 6,
+        "smallest_rejected_fraction": 0.03125
+      },
+      {
+        "accepted_steps": 9,
+        "case_id": "bias1_profiled_removal",
+        "converged": false,
+        "cost_change_ratio": 1.4691428570275435,
+        "endpoint_stationarity_ratio": 0.004763772267703883,
+        "establishes_prediction_noise_floor": false,
+        "failed_gates": [
+          "relative_cost"
+        ],
+        "fresh_stationarity_ratio": 0.0006254828415069642,
+        "last_rejected_relative_cost_change": 5.871019163915354e-11,
+        "maximum_position_change_m": 7.828859061670182e-06,
+        "maximum_position_rms_m": 2.518080661951613e-06,
+        "model": "sphere_still",
+        "position_max_ratios": [
+          0.000557292288945842,
+          0.0007828859061670181,
+          0.0004734164576846702
+        ],
+        "position_rms_ratios": [
+          0.0016481772291982225,
+          0.0025180806619516127,
+          0.0016053504502054371
+        ],
+        "rejected_steps": 59,
+        "rejected_tail_steps": 24,
+        "smallest_rejected_fraction": 1.1920928955078125e-07
+      }
+    ],
+    "segment_id": "bb8061a43b4f14b6262ceda1",
+    "stage": "remaining"
+  },
+  {
+    "failures": [
+      {
+        "accepted_steps": 67,
+        "case_id": "bias1_unsubtracted",
+        "converged": false,
+        "cost_change_ratio": null,
+        "endpoint_stationarity_ratio": 644.1369743642963,
+        "establishes_prediction_noise_floor": false,
+        "failed_gates": [
+          "endpoint_stationarity"
+        ],
+        "fresh_stationarity_ratio": null,
+        "last_rejected_relative_cost_change": 0.003761884725790282,
+        "maximum_position_change_m": null,
+        "maximum_position_rms_m": null,
+        "model": "sphere_rotating",
+        "position_max_ratios": null,
+        "position_rms_ratios": null,
+        "rejected_steps": 530,
+        "rejected_tail_steps": 6,
+        "smallest_rejected_fraction": 0.03125
+      }
+    ],
+    "segment_id": "da346f70a6661ee42cecea19",
+    "stage": "remaining"
+  },
+  {
+    "failures": [
+      {
+        "accepted_steps": 4,
+        "case_id": "bias1_profiled_removal",
+        "converged": false,
+        "cost_change_ratio": 0.02960731856640564,
+        "endpoint_stationarity_ratio": 0.09922804627905865,
+        "establishes_prediction_noise_floor": false,
+        "failed_gates": [
+          "position_rms_down"
+        ],
+        "fresh_stationarity_ratio": 6.578222268110395e-06,
+        "last_rejected_relative_cost_change": 8.119679596625232e-12,
+        "maximum_position_change_m": 0.006522527559354421,
+        "maximum_position_rms_m": 0.003765848888982894,
+        "model": "flat_still",
+        "position_max_ratios": [
+          0.05554811953782898,
+          0.0031832777020799324,
+          0.6522527559354421
+        ],
+        "position_rms_ratios": [
+          0.30353577370667234,
+          0.01744339209122277,
+          3.7658488889828936
+        ],
+        "rejected_steps": 48,
+        "rejected_tail_steps": 24,
+        "smallest_rejected_fraction": 1.1920928955078125e-07
+      }
+    ],
+    "segment_id": "e6629f14d2e03e471a446e06",
+    "stage": "remaining"
+  }
+]

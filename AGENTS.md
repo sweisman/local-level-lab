@@ -307,6 +307,21 @@ findings: 41 globe / zero flat / 12 unresolved. Publish only per-stretch complet
 primary/control/repeat comparisons. Next: separately freeze continuations of the
 three forty-evaluation failures (up to 200 evaluations with repeats/controls), then
 assess the nine excluded stationarity/position-failure stretches separately.
+Sequential continuation guides/freezes: docs/ilvis0-budget-continuation-20261014/
+and data/ilvis0-budget-continuation-20261014/; docs/ilvis0-remaining-precision-20261014/
+and data/ilvis0-remaining-precision-20261014/. Launcher:
+analysis/tests/ilvis0_precision_continuation_worker.py --sequence --detach via
+run_numerical.py --threads 4. Check coordinator.lock/coordinator-status.json in the
+budget freeze plus both worker locks/completion records before continuation.
+Budget stage: eight starts / 1,296 sweeps; reuse fifteen passing parent primaries,
+continue three failed primaries and repeat each of those models, with two controls.
+Remaining stage: 65 starts / 12,810 sweeps; all six primaries on nine fixed targets,
+their scheduled repeats and two controls. Primaries/repeats allow 200 fitting calls,
+controls forty, each start two diagnostics; four total threads and no retries.
+Freeze both before launch. The sequence advances only after budget completion and
+passing controls; it skips completed stages, never spending their allowances again.
+Package-only performs no fits. Preserve frozen sources, reused artifacts and failed
+charged starts; source edits require a separately identified freeze.
 The separate [rotation-field measurement](docs/ROTATION_FIELD.md) will infer the retained background vector
 before interpreting its cause, with aircraft motion, transport and calibration fitted jointly.
 The proposal authorizes no new fits or campaign budget. Do not fix or subtract the standard

@@ -1,0 +1,98 @@
+{
+  "control_cost_relative_tolerance": 1e-06,
+  "control_segment_ids": [
+    "233183f67270980491416678",
+    "31d7e5019dfdc9e2e6387206"
+  ],
+  "control_track_rms_tolerance_m": 0.01,
+  "maximum_native_sweeps": 1296,
+  "maximum_starts": 8,
+  "physical_bounds_changed": false,
+  "repeat_cost_relative_tolerance": 1e-06,
+  "repeat_track_rms_tolerance_m": 0.01,
+  "retry_allowance": 0,
+  "reuse_passed_parent_primaries": true,
+  "stage": "budget",
+  "stopping_tolerances_changed": false,
+  "target_segment_ids": [
+    "2a56eb8fa7d4e10c9a867bb0",
+    "7df21c836bec5751f83c0cce",
+    "fd7b81e48a4122b149c4925b"
+  ],
+  "target_selection": "all three unfinished budget failures",
+  "tasks": [
+    {
+      "case_id": "bias1_unsubtracted",
+      "identity": "233183f67270980491416678::bias1_unsubtracted::sphere_rotating::control",
+      "maximum_evaluations": 40,
+      "model": "sphere_rotating",
+      "role": "control",
+      "seed_policy": "frozen_primary_endpoint",
+      "segment_id": "233183f67270980491416678"
+    },
+    {
+      "case_id": "bias1_profiled_removal",
+      "identity": "31d7e5019dfdc9e2e6387206::bias1_profiled_removal::sphere_rotating::control",
+      "maximum_evaluations": 40,
+      "model": "sphere_rotating",
+      "role": "control",
+      "seed_policy": "frozen_primary_endpoint",
+      "segment_id": "31d7e5019dfdc9e2e6387206"
+    },
+    {
+      "case_id": "bias1_unsubtracted",
+      "identity": "2a56eb8fa7d4e10c9a867bb0::bias1_unsubtracted::sphere_rotating::primary",
+      "maximum_evaluations": 200,
+      "model": "sphere_rotating",
+      "role": "primary",
+      "seed_policy": "frozen_primary_endpoint",
+      "segment_id": "2a56eb8fa7d4e10c9a867bb0"
+    },
+    {
+      "case_id": "bias1_unsubtracted",
+      "identity": "2a56eb8fa7d4e10c9a867bb0::bias1_unsubtracted::sphere_rotating::repeat",
+      "maximum_evaluations": 200,
+      "model": "sphere_rotating",
+      "role": "repeat",
+      "seed_policy": "frozen_primary_endpoint_plus_0.01",
+      "segment_id": "2a56eb8fa7d4e10c9a867bb0"
+    },
+    {
+      "case_id": "bias1_unsubtracted",
+      "identity": "7df21c836bec5751f83c0cce::bias1_unsubtracted::flat_still::primary",
+      "maximum_evaluations": 200,
+      "model": "flat_still",
+      "role": "primary",
+      "seed_policy": "frozen_primary_endpoint",
+      "segment_id": "7df21c836bec5751f83c0cce"
+    },
+    {
+      "case_id": "bias1_unsubtracted",
+      "identity": "7df21c836bec5751f83c0cce::bias1_unsubtracted::flat_still::repeat",
+      "maximum_evaluations": 200,
+      "model": "flat_still",
+      "role": "repeat",
+      "seed_policy": "frozen_primary_endpoint_plus_0.01",
+      "segment_id": "7df21c836bec5751f83c0cce"
+    },
+    {
+      "case_id": "bias1_profiled_removal",
+      "identity": "fd7b81e48a4122b149c4925b::bias1_profiled_removal::sphere_still::primary",
+      "maximum_evaluations": 200,
+      "model": "sphere_still",
+      "role": "primary",
+      "seed_policy": "frozen_primary_endpoint",
+      "segment_id": "fd7b81e48a4122b149c4925b"
+    },
+    {
+      "case_id": "bias1_profiled_removal",
+      "identity": "fd7b81e48a4122b149c4925b::bias1_profiled_removal::sphere_still::repeat",
+      "maximum_evaluations": 200,
+      "model": "sphere_still",
+      "role": "repeat",
+      "seed_policy": "frozen_primary_endpoint_plus_0.01",
+      "segment_id": "fd7b81e48a4122b149c4925b"
+    }
+  ],
+  "version": "ilvis0-precision-continuation-plan-v1"
+}
