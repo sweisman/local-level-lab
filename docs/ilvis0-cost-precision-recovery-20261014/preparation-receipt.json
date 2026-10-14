@@ -1,0 +1,26 @@
+{
+  "artifacts": {
+    "PLAN.md": "521e8065936407d6d6608faeb7151dbf93871aeefc13dd5fcc6e68a3e6e21284",
+    "remaining-stretches.csv": "27233eba661f5cc991ddf428cbd67a80ef9bb266a63a9052b98c93ab01063c25",
+    "selection.json": "ad86aa5ce017f154d1bce7f72cf0c94877715053a7d5801ebad6f4b0ba2b4ee6"
+  },
+  "estimated_ceiling_hours": 24.870862760320485,
+  "inputs": {
+    "/site/repo/local-level-lab/docs/ilvis0-paired-precision-trial-20261014/completion.json": "63b876996a683f75f70d9ce0c850fa7c8d1b39daa4cda089bcb723b615aeb273",
+    "/site/repo/local-level-lab/docs/ilvis0-paired-precision-trial-20261014/evidence-receipt.json": "1d66cc7bc62a8f564f6c5aefc07c8789283906222646df396940fcf102f3b06d",
+    "/site/repo/local-level-lab/docs/ilvis0-paired-precision-trial-20261014/manifest.json": "bd5c8faed37be722ed666cbbd27fcf82fa477d5f1a91c7514d58827af4bfbed8",
+    "/site/repo/local-level-lab/docs/ilvis0-paired-precision-trial-20261014/summary.json": "af536393b5e61c59f57c61d6f7d18157dc11c2d23037d9b77bc553a88bd9ae9f",
+    "/site/repo/local-level-lab/docs/ilvis0-position-recovery-20261013/completion.json": "41381a759ef9bd6f015e0d2920847c419445c8634fd93f5010d89e0cec8100d0",
+    "/site/repo/local-level-lab/docs/ilvis0-position-recovery-20261013/evidence-receipt.json": "21ff354d3cf7e1f929a9ee6ebda74e5276daf9c7c51a6a83eb7745034e4a6684",
+    "/site/repo/local-level-lab/docs/ilvis0-position-recovery-20261013/manifest.json": "969024701053674cb8e500df1b858cc7ef334f1b946cb9516e3cfb040ed44417",
+    "/site/repo/local-level-lab/docs/ilvis0-position-recovery-20261013/summary.json": "b0c76efd53fa05e0b5a8b15673dad2ab5d4d14ff8ac928b1e5178a442dce3bad",
+    "/site/repo/local-level-lab/docs/ilvis0-position-stability-trial-20261013/current-stretches.csv": "c78af5102a41336842abb14186437d1e58deb1ed5dfc48b0d3a023b15667400e"
+  },
+  "native_predictions": 0,
+  "observed_starts": 0,
+  "originals_read": 0,
+  "sources": {
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_precision_recovery_plan.py": "b64061ef92e79f8361629cb3b1218332bf968e4929ae65a06a336323b7b9aa07",
+    "/site/repo/local-level-lab/docs/ilvis0-cost-precision-recovery-20261014/build_preparation.py": "981aa62f3b8043086a6e7e0223c79bfd15dc3c74e2f594f3d2da53d740524019"
+  }
+}

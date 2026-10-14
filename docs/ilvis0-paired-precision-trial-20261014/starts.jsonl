@@ -1,0 +1,16 @@
+{"identity": "233183f67270980491416678::bias1_unsubtracted::sphere_rotating::control", "manifest_sha256": "bd5c8faed37be722ed666cbbd27fcf82fa477d5f1a91c7514d58827af4bfbed8", "number": 1}
+{"identity": "31d7e5019dfdc9e2e6387206::bias1_profiled_removal::sphere_rotating::control", "manifest_sha256": "bd5c8faed37be722ed666cbbd27fcf82fa477d5f1a91c7514d58827af4bfbed8", "number": 2}
+{"identity": "3df34ea39a6cbdbe15bb0f36::bias1_unsubtracted::sphere_rotating::primary", "manifest_sha256": "bd5c8faed37be722ed666cbbd27fcf82fa477d5f1a91c7514d58827af4bfbed8", "number": 3}
+{"identity": "3df34ea39a6cbdbe15bb0f36::bias1_unsubtracted::sphere_still::primary", "manifest_sha256": "bd5c8faed37be722ed666cbbd27fcf82fa477d5f1a91c7514d58827af4bfbed8", "number": 4}
+{"identity": "3df34ea39a6cbdbe15bb0f36::bias1_unsubtracted::flat_still::primary", "manifest_sha256": "bd5c8faed37be722ed666cbbd27fcf82fa477d5f1a91c7514d58827af4bfbed8", "number": 5}
+{"identity": "3df34ea39a6cbdbe15bb0f36::bias1_profiled_removal::sphere_rotating::primary", "manifest_sha256": "bd5c8faed37be722ed666cbbd27fcf82fa477d5f1a91c7514d58827af4bfbed8", "number": 6}
+{"identity": "3df34ea39a6cbdbe15bb0f36::bias1_profiled_removal::sphere_still::primary", "manifest_sha256": "bd5c8faed37be722ed666cbbd27fcf82fa477d5f1a91c7514d58827af4bfbed8", "number": 7}
+{"identity": "3df34ea39a6cbdbe15bb0f36::bias1_profiled_removal::flat_still::primary", "manifest_sha256": "bd5c8faed37be722ed666cbbd27fcf82fa477d5f1a91c7514d58827af4bfbed8", "number": 8}
+{"identity": "3df34ea39a6cbdbe15bb0f36::bias1_unsubtracted::sphere_rotating::repeat", "manifest_sha256": "bd5c8faed37be722ed666cbbd27fcf82fa477d5f1a91c7514d58827af4bfbed8", "number": 9}
+{"identity": "a953c8ddf4fae255674de128::bias1_unsubtracted::sphere_rotating::primary", "manifest_sha256": "bd5c8faed37be722ed666cbbd27fcf82fa477d5f1a91c7514d58827af4bfbed8", "number": 10}
+{"identity": "a953c8ddf4fae255674de128::bias1_unsubtracted::sphere_still::primary", "manifest_sha256": "bd5c8faed37be722ed666cbbd27fcf82fa477d5f1a91c7514d58827af4bfbed8", "number": 11}
+{"identity": "a953c8ddf4fae255674de128::bias1_unsubtracted::flat_still::primary", "manifest_sha256": "bd5c8faed37be722ed666cbbd27fcf82fa477d5f1a91c7514d58827af4bfbed8", "number": 12}
+{"identity": "a953c8ddf4fae255674de128::bias1_profiled_removal::sphere_rotating::primary", "manifest_sha256": "bd5c8faed37be722ed666cbbd27fcf82fa477d5f1a91c7514d58827af4bfbed8", "number": 13}
+{"identity": "a953c8ddf4fae255674de128::bias1_profiled_removal::sphere_still::primary", "manifest_sha256": "bd5c8faed37be722ed666cbbd27fcf82fa477d5f1a91c7514d58827af4bfbed8", "number": 14}
+{"identity": "a953c8ddf4fae255674de128::bias1_profiled_removal::flat_still::primary", "manifest_sha256": "bd5c8faed37be722ed666cbbd27fcf82fa477d5f1a91c7514d58827af4bfbed8", "number": 15}
+{"identity": "a953c8ddf4fae255674de128::bias1_profiled_removal::sphere_rotating::repeat", "manifest_sha256": "bd5c8faed37be722ed666cbbd27fcf82fa477d5f1a91c7514d58827af4bfbed8", "number": 16}

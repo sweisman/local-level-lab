@@ -2,9 +2,9 @@
 
 ## Starting point
 
-The preserved first study found 12 globe preferences. Completed recovery adds eighteen,
-giving **30 globe preferences, zero flat preferences and 23 unfinished comparisons**
-among the same 53 eligible stretches. All thirty also favor the background-field globe
+The preserved first study found 12 globe preferences. Completed recovery adds twenty-nine,
+giving **41 globe preferences, zero flat preferences and 12 unfinished comparisons**
+among the same 53 eligible stretches. All forty-one also favor the background-field globe
 over the zero-field globe. Completed results now include both IMU8 and IMU21 recordings.
 This is a substantial
 empirical finding; unfinished calculations do not provide equal support for flat Earth.
@@ -135,6 +135,51 @@ Keep different recorders separate; an unfinished result is not an opposing shape
 The [analytics export](ilvis0-position-stability-trial-20261013/ANALYTICS.md) records
 these pairs and descriptive measurements without new fits. A subsequent numerical
 comparison needs its own finite freeze; the completed recovery allowance stays closed.
+
+The [saved paired-recording diagnosis](ilvis0-shared-leg-diagnosis-20261014/README.md)
+finds six overlapping recorder pairs with different completion outcomes. Each of
+the three priority pairs has one failed primary fit: two miss only the relative-cost
+stability check, while the third misses the vertical position-stability check.
+All three pass endpoint stationarity. Saved agreement does not relabel a failure.
+The [bounded endpoint diagnostic](ilvis0-shared-leg-probes-20261014/PLAN.md) checks
+the three failed endpoints and their three successful-recorder counterparts with
+sixty native evaluations maximum and zero optimizer starts. It compares repeated
+predictions, value/derivative implementation agreement, and full/half/quarter local
+corrections before any new fit policy is considered.
+It completed all sixty evaluations. Repeated coordinates were identical, and the
+value and tangent implementations agreed within 0.00025 micrometres across all
+evaluated points. Smaller corrections pass the measured probe checks at two failed
+endpoints; the October 2015 DMS endpoint still fails the cost check. A neighboring
+originally completed loaner endpoint also fails the newer full-correction check.
+The [completed probe report](ilvis0-shared-leg-probes-20261014/README.md) retains
+these observations without changing any disposition. The next test concerns
+derivative accuracy and integration precision in weak calibration directions,
+rather than further attempts under the unchanged stopping procedure.
+
+The [wider-arithmetic diagnostic](ilvis0-shared-leg-precision-20261014/README.md)
+now compares the same six endpoints at identical parameters and frozen local
+corrections. Its maximum is 84 native evaluations with zero optimizer starts.
+The new kernel passed exact-motion and derivative controls before archived use;
+it retains the equations, bounds and packet-clock branches. A completion watcher
+publishes the sealed report and then runs six exact-motion solver controls after
+the native job releases its four-thread allocation. Any subsequent observed-fit
+qualification still needs its own finite freeze; no old failed fit is promoted.
+That comparison is now complete: five of six full probes pass with wider arithmetic,
+including both cost-only failures; the September disc vertical failure remains.
+Eleven arithmetic/derivative controls and six exact-motion solver controls passed.
+The [paired qualification trial](ilvis0-paired-precision-trial-20261014/README.md)
+passed all sixteen fits, including both controls and perturbed repeats, in 129
+sweeps. Both previously unresolved targets now favor globe, bringing current
+findings to **32 globe preferences, zero flat and 21 unresolved**.
+
+The [separate cost-only recovery](ilvis0-cost-precision-recovery-20261014/README.md)
+completed all 86 starts in 891 sweeps, passing 83 fits, both controls and all twelve
+repeats. Nine more stretches have complete comparisons, bringing findings to
+**41 globe preferences, zero flat and 12 unresolved**. The other three primary fits
+exhausted the forty-evaluation allowance. The next bounded continuation preserves
+models and gates while allowing up to 200 evaluations and fresh repeats/controls.
+The nine earlier stationarity/position-failure stretches require their own assessment.
+Neither prior freeze may restart or reuse its unused allowance.
 
 Minimum solver qualification supports this recovery sequence. Additional clock,
 calibration, covariance, measurement-contribution and independent-flight studies
@@ -516,7 +561,9 @@ candidate passed cheap known-optimum and false-stop controls, but its completed 
 airborne comparison did not qualify. Later actual-position qualification passed its
 observed control and repeat checks, recovering three complete globe comparisons.
 The [wider recovery](ilvis0-position-recovery-20261013/README.md) is complete, yielding
-30 globe preferences, none for flat and 23 unresolved stretches. Preserve the original 12 resolved and 41 unresolved
+30 globe preferences, none for flat and 23 unresolved stretches at that stage. The subsequent
+paired wider-arithmetic trial added two complete comparisons; the cost-only recovery
+adds nine more. Current findings are 41 globe preferences, zero flat and 12 unresolved. Preserve the original 12 resolved and 41 unresolved
 results alongside new recovery evidence; software controls alone do not relabel them.
 
 The [rotation-field proposal](ROTATION_FIELD.md) remains separate: fit a retained

@@ -259,7 +259,7 @@ Completed full recovery guide/freeze: docs/ilvis0-position-recovery-20261013/ an
 data/ilvis0-position-recovery-20261013/. Launcher:
 analysis/tests/ilvis0_position_recovery_worker.py --package-only performs no fits.
 Completed: 159 starts / 22,355 sweeps, 117 passing fits, all six controls passed.
-Combined disposition: 30 globe / zero flat / 23 unresolved. Preserve the original
+Combined disposition at that stage: 30 globe / zero flat / 23 unresolved. Preserve the original
 freeze, failed primaries and repeats; never restart or reuse unused allowance.
 Prioritize overlapping shared flight legs with
 mismatched numerical completion, beginning with the three marked recorder pairs in
@@ -267,6 +267,46 @@ docs/ilvis0-position-stability-trial-20261013/shared-leg-pairs.csv. Compare comm
 UTC intervals; preserve each instrument separately and distinguish candidate
 same-track grouping from verified aircraft/installation identity. Descriptive gyro
 summaries and fused-attitude correction diagnostics do not relabel scientific results.
+Saved paired diagnosis: docs/ilvis0-shared-leg-diagnosis-20261014/. It audits sealed
+fits and common-time recorder summaries only; no new fits or predictions.
+Bounded endpoint diagnostic: docs/ilvis0-shared-leg-probes-20261014/ and
+data/ilvis0-shared-leg-probes-20261014/. Launcher:
+analysis/tests/ilvis0_shared_leg_probes.py via run_numerical.py. Six diagnostic
+identities, ten native calls each, sixty maximum, zero optimizer starts, no retries,
+four numerical threads. Completed: six identities / sixty native evaluations.
+Never restart or retry. Render its build_report.py without integration;
+never relabel failed fits from damped diagnostic probes. Continue with derivative
+and integration-precision qualification in the weak gravity/calibration directions;
+keep frozen sources, original acceptance rules and earlier evidence preserved.
+The completed fixed-endpoint precision study is docs/ilvis0-shared-leg-precision-20261014/
+and data/ilvis0-shared-leg-precision-20261014/, launched by
+analysis/tests/ilvis0_precision_worker.py via run_numerical.py. Six diagnostic
+identities / fourteen calls each / 84 maximum, zero optimizer starts, no retries,
+four numerical threads. All 84 evaluations completed; five of six wider probes
+passed, including both cost-only failures. The vertical-stability failure remains.
+All eleven arithmetic/derivative and six exact-motion solver controls passed.
+The completion watcher finished; never restart either worker or watcher. Report-only
+build_report.py performs no integration. Preserve frozen source/input snapshots.
+Completed paired qualification: docs/ilvis0-paired-precision-trial-20261014/ and
+data/ilvis0-paired-precision-trial-20261014/. Launcher:
+analysis/tests/ilvis0_paired_precision_worker.py --detach via run_numerical.py.
+Sixteen starts / 992 sweeps maximum: 12 primaries and two controls at forty fitting
+calls each, two repeats at two hundred each, plus two diagnostic calls/start.
+Completed and qualified: 16/16 passing fits, 129 sweeps, both controls/repeats passed.
+Never restart or reuse allowance. Combined findings at that stage: 32 globe / zero flat /
+21 unresolved. Public tables include qualified primary fits separately from repeats.
+Completed bounded recovery: docs/ilvis0-cost-precision-recovery-20261014/ and
+data/ilvis0-cost-precision-recovery-20261014/. Launcher:
+analysis/tests/ilvis0_precision_recovery_worker.py --detach via run_numerical.py.
+Twelve cost-only failure stretches; nine other failure classes excluded. Limits:
+86 starts / 5,532 sweeps, four total numerical threads, no retries. Primaries and
+two controls have forty fitting calls each; twelve repeats have two hundred each;
+each start has two diagnostic calls. Completed: 83/86 fits passed, 891 sweeps; both
+controls and all twelve repeats passed. Never resume or reuse its allowance. Current
+findings: 41 globe / zero flat / 12 unresolved. Publish only per-stretch complete
+primary/control/repeat comparisons. Next: separately freeze continuations of the
+three forty-evaluation failures (up to 200 evaluations with repeats/controls), then
+assess the nine excluded stationarity/position-failure stretches separately.
 The separate [rotation-field measurement](docs/ROTATION_FIELD.md) will infer the retained background vector
 before interpreting its cause, with aircraft motion, transport and calibration fitted jointly.
 The proposal authorizes no new fits or campaign budget. Do not fix or subtract the standard

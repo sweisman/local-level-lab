@@ -1,9 +1,9 @@
 {
   "artifacts": {
-    "ANALYTICS.md": "ce89fd4691bdab4aeb2447759588119f511b36a320f9c879ac5219da56aa1fb8",
-    "fit-analytics.csv": "c6f3f87040446ec25e8c19d85af2561837e4c6a677c940512e56525fdccfbe26",
+    "ANALYTICS.md": "8236bb01a45c1ec6e50fd0227b8f9cb7eac473de25836fd5e447155a071bf08e",
+    "fit-analytics.csv": "c7909bf6552a1afabd6d2c07f3e2120835b653b9944147e44cb1735e848a7157",
     "shared-leg-pairs.csv": "f3d8d293e2020595ba1d53eeb1462630a70f0cf547cc220b5237b99e608efc88",
-    "stretch-analytics.csv": "350f9d5a9db83440290f14e768e5351e31bb81d72354f1e973f54e8a07b933b3"
+    "stretch-analytics.csv": "125b646fa6bd4dd1baf96ae46a187909e287ea31e24e6cf5246237bd244bf9ef"
   },
   "cache_artifacts": {
     "/site/repo/local-level-lab/data/ilvis0-stretch-analytics-20261013/01177d345ecb28bcfdcc6a4f.json.gz": "2240c7a310d8203caa04e7925529b629996e18abcdbdaa17e718863a43a7812b",
@@ -260,7 +260,7 @@
     "/site/repo/local-level-lab/data/ilvis0-ready/f50467521369a9e0579e/decoded/ILVIS0_applanix_57324_610_DMS_29Oct15DMS.013.gz": "dbfc28541f9db07034e3d23a677ff01acd5dd7bd77c663168fa057089c988471",
     "/site/repo/local-level-lab/data/ilvis0-ready/ff36ab86ea03f8c2c49b/decoded/ILVIS0_applanix_55124_Ames_510-20oct09_20Oct09.013.gz": "f39deb582f207574911dd3a16e6c389a8baac76ceace13ec2f13aefdc42341dd"
   },
-  "fit_rows": 501,
+  "fit_rows": 603,
   "forward_predictions": 0,
   "inputs": {
     "/site/repo/local-level-lab/data/ilvis0-position-recovery-20261013/01177d345ecb28bcfdcc6a4f-bias1_profiled_removal-flat_still-primary.json": "d33606f4a9e179a4c4a4cc7b53a28ba3d8f4e846773ba194371d18ea61206eee",
@@ -425,11 +425,21 @@
     "/site/repo/local-level-lab/data/ilvis0-position-recovery-20261013/fd7b81e48a4122b149c4925b-bias1_unsubtracted-sphere_rotating-repeat.json": "df4c1d0a31420608cd848bece1e7059c02b1250aab3b21bbef59aff541b4b77a",
     "/site/repo/local-level-lab/data/ilvis0-position-recovery-20261013/manifest.json": "969024701053674cb8e500df1b858cc7ef334f1b946cb9516e3cfb040ed44417",
     "/site/repo/local-level-lab/data/ilvis0-position-recovery-20261013/summary.json": "b0c76efd53fa05e0b5a8b15673dad2ab5d4d14ff8ac928b1e5178a442dce3bad",
+    "/site/repo/local-level-lab/docs/ilvis0-cost-precision-recovery-20261014/completion.json": "76ad6f0a0bcdc4a0a16577ed21cefd6f38282fc4d10f8f845989afc0ff659fa2",
+    "/site/repo/local-level-lab/docs/ilvis0-cost-precision-recovery-20261014/manifest.json": "7ca067ee16808afaa0832f3cea8653e88d60743eff5e6836d26a55f1117387c1",
+    "/site/repo/local-level-lab/docs/ilvis0-cost-precision-recovery-20261014/starts.jsonl": "75c56913d7a1718a626b20c000b921fbe4d15c821b516b4b0764ce292ca384b6",
+    "/site/repo/local-level-lab/docs/ilvis0-cost-precision-recovery-20261014/summary.json": "684b5a84581b1b846ad557b47d0114502d58f753c01de946cbf99dc8d7fcbf75",
+    "/site/repo/local-level-lab/docs/ilvis0-cost-precision-recovery-20261014/sweeps.jsonl": "1cbafc3a9fb9524fe9493e9b0d9b66ff1e72401e0befe0cdef7a2dc80dd21f5e",
     "/site/repo/local-level-lab/docs/ilvis0-highspeed-segments-20261008/evidence-receipt.json": "b082549083356dbdc48fe4421daf6f9cb36086c6f4f851475bef75e130b8f187",
     "/site/repo/local-level-lab/docs/ilvis0-highspeed-segments-20261008/selection.json.gz": "934dea342a64b716533732d7ab0e961d23709cf37499faf7cee8e4c386778809",
     "/site/repo/local-level-lab/docs/ilvis0-highspeed-segments-20261008/summary.json.gz": "41654f27764dc8af26e83c42ba291c76ebc1eb77ed579523baab6d80190642fa",
-    "/site/repo/local-level-lab/docs/ilvis0-position-stability-trial-20261013/current-stretches.csv": "e75bcf6483246720c02f4c599a8d9b4d45a783b435b05c16dcb353d7e598485d",
-    "/site/repo/local-level-lab/docs/ilvis0-position-stability-trial-20261013/findings-receipt.json": "9a32768f7aa52f95d88a8b71c62bbc24d1e1ff93a58eb4e7eec3ef725e1e709f",
+    "/site/repo/local-level-lab/docs/ilvis0-paired-precision-trial-20261014/completion.json": "63b876996a683f75f70d9ce0c850fa7c8d1b39daa4cda089bcb723b615aeb273",
+    "/site/repo/local-level-lab/docs/ilvis0-paired-precision-trial-20261014/manifest.json": "bd5c8faed37be722ed666cbbd27fcf82fa477d5f1a91c7514d58827af4bfbed8",
+    "/site/repo/local-level-lab/docs/ilvis0-paired-precision-trial-20261014/starts.jsonl": "2b4c5e80c0f95673dd4cd16e7bbb3e2ed44ff19a54693429d87d15f1cebe0a49",
+    "/site/repo/local-level-lab/docs/ilvis0-paired-precision-trial-20261014/summary.json": "af536393b5e61c59f57c61d6f7d18157dc11c2d23037d9b77bc553a88bd9ae9f",
+    "/site/repo/local-level-lab/docs/ilvis0-paired-precision-trial-20261014/sweeps.jsonl": "4e5b19b6f9926bbb9726f9a031b69ff46d05eed27aaff528d6694784ecfe6963",
+    "/site/repo/local-level-lab/docs/ilvis0-position-stability-trial-20261013/current-stretches.csv": "0ff134a81abf347f7351a657a607b0e3f420eac190d8aa1b103e7415059c659c",
+    "/site/repo/local-level-lab/docs/ilvis0-position-stability-trial-20261013/findings-receipt.json": "c73eb8f807135446d3b5b8f241552f11da3eddea5455b3b001043d40c2930ca3",
     "/site/repo/local-level-lab/docs/ilvis0-position-stability-trial-20261013/manifest.json": "7d35ba5b9a7e8f4fc1e29ce7c015f0b0665d4f6118f44386519180fa9ba238d1",
     "/site/repo/local-level-lab/docs/ilvis0-position-stability-trial-20261013/summary.json": "92b2d745d4eed6202f85feb3c9fd192c85f91f5f3f0ce5883757ec7c727eb2b0"
   },
@@ -439,14 +449,14 @@
   "priority_pairs": 3,
   "python_version": "3.14.7",
   "shared_pairs": 12,
-  "snapshot_utc": "2026-10-14T04:39:08.916484+00:00",
+  "snapshot_utc": "2026-10-14T11:31:06.083066+00:00",
   "sources": {
     "/site/repo/local-level-lab/analysis/lll/applanix.py": "466866ea3d93600f698a76665b0269b1a5e2d35f067043edaf656d7c55a6dad4",
     "/site/repo/local-level-lab/analysis/lll/ilvis0.py": "692b7c41c6e7b0fb0a7fb7fa3c2671cac754b4eae87681092a6448df3324f76d",
     "/site/repo/local-level-lab/analysis/lll/ilvis0_followup.py": "d3e238cab5dff807c23a51d0d189e19a21d81eef482711700f9f0a5c0dc9fb8e",
     "/site/repo/local-level-lab/analysis/lll/ilvis0_installation.py": "aa813292e7781ca808d9da9971188233621c022586a2a89797c49d36a59a0bae",
     "/site/repo/local-level-lab/analysis/lll/ilvis0_stretch_analytics.py": "bb4a74eb51937617955dd17f006899078db97899b4ca5d57256a8d106a3af73b",
-    "/site/repo/local-level-lab/docs/ilvis0-position-stability-trial-20261013/build_analytics.py": "ff614b8a3a0b4d3404843924e3d64855f70dc92163201a388d87d375853e9ca6"
+    "/site/repo/local-level-lab/docs/ilvis0-position-stability-trial-20261013/build_analytics.py": "ea0d3d148803e3f9a5565c2c1ff5aa40c8c3926d506931af58adf00c035247a2"
   },
   "stretches": 53,
   "threads": {

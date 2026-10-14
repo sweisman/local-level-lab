@@ -1,0 +1,57 @@
+{
+  "artifacts": {
+    "README.md": "c21ae6028183c8bb1d9cac8937b3a4ef037838033ff697adb85d677a4be5038b",
+    "diagnosis.json": "d7947feae56a7037281c81c209e5a68ddb4098a0ec2f27103181e5c7f51504d5",
+    "pairs.csv": "8a52612a69514d5791469c174199db61f5fa03265c336e890ad43e18d4de6fb5",
+    "priority-fits.csv": "3c62adf31091883e44f942ca82c64a9c30a574fef9b9c6c125e239c712d03691",
+    "stopping-gates.csv": "7d5e154c6b7f56e624ec9844b2bef27b8a637c0cca4033cc40085ca1d5dfe30a"
+  },
+  "environment": {
+    "numpy": "2.5.3",
+    "python": "3.14.7",
+    "scipy": "1.18.1"
+  },
+  "inputs": {
+    "docs/ilvis0-position-recovery-20261013/233183f67270980491416678-bias1_profiled_removal-flat_still-primary-linearization.json.gz": "9b5a16347f49f284a443b8703952bc7d0d10d209b7a4df4c4b5c7db337e13bdf",
+    "docs/ilvis0-position-recovery-20261013/233183f67270980491416678-bias1_profiled_removal-sphere_rotating-primary-linearization.json.gz": "0e8225e1ec444295ba75ea16af8f19b9de2db538c6d21d30acd4b0732d8428b2",
+    "docs/ilvis0-position-recovery-20261013/233183f67270980491416678-bias1_unsubtracted-flat_still-primary-linearization.json.gz": "e7b899e9fcf58d360d562a00c04cb6b1c85fd95452d536bf08e780a11d723e71",
+    "docs/ilvis0-position-recovery-20261013/233183f67270980491416678-bias1_unsubtracted-sphere_rotating-primary-epochs.json.gz": "f065dd4ef9126b36ba2f90e984f23d85de99954978970e89ef25255052b6964b",
+    "docs/ilvis0-position-recovery-20261013/233183f67270980491416678-bias1_unsubtracted-sphere_rotating-primary-linearization.json.gz": "59a550ed6b063d6b631902fa21603d7b950715597de0c36ad710ee9d35f1f91e",
+    "docs/ilvis0-position-recovery-20261013/233183f67270980491416678-bias1_unsubtracted-sphere_rotating-repeat-epochs.json.gz": "84c0ebb1dd623532f859870b6b42119d6047a275c82b842fdb162cca3649ba8d",
+    "docs/ilvis0-position-recovery-20261013/233183f67270980491416678-bias1_unsubtracted-sphere_rotating-repeat-linearization.json.gz": "705a4a9cc4b7f23c4bf6c7c80258b2dbe0d9fda3f8e8c69e8132dce583ef61be",
+    "docs/ilvis0-position-recovery-20261013/3df34ea39a6cbdbe15bb0f36-bias1_profiled_removal-sphere_rotating-primary-linearization.json.gz": "3fcb4ac91b77fecab0d0febfd4e8021dd2f32dcba672b41ec907a885ecdac0fa",
+    "docs/ilvis0-position-recovery-20261013/3df34ea39a6cbdbe15bb0f36-bias1_unsubtracted-sphere_rotating-primary-epochs.json.gz": "25437b8b74ee4708c3fad1ac6c8ef0f5016e17b99ec8b8cfefab1d345e62a0c9",
+    "docs/ilvis0-position-recovery-20261013/3df34ea39a6cbdbe15bb0f36-bias1_unsubtracted-sphere_rotating-primary-linearization.json.gz": "ac3fd6d0c2289b0d16deca4f2f821034270985edb01a97b75d8d362c1c53d055",
+    "docs/ilvis0-position-recovery-20261013/3df34ea39a6cbdbe15bb0f36-bias1_unsubtracted-sphere_rotating-repeat-epochs.json.gz": "8c32a90e4903dc676184c8a85dd0ae95d46e19eec2fac0343fb670f50c6bcdfc",
+    "docs/ilvis0-position-recovery-20261013/3df34ea39a6cbdbe15bb0f36-bias1_unsubtracted-sphere_rotating-repeat-linearization.json.gz": "393bae89ea858ccf266c7d27988b8a5a39352affb981e5b07c502a4723df4548",
+    "docs/ilvis0-position-recovery-20261013/a953c8ddf4fae255674de128-bias1_profiled_removal-sphere_rotating-primary-epochs.json.gz": "66483735abb740b09aca7e691015435d3d9e3add72bde69f5d1c3edcdc11fb8d",
+    "docs/ilvis0-position-recovery-20261013/a953c8ddf4fae255674de128-bias1_profiled_removal-sphere_rotating-primary-linearization.json.gz": "b0b855204de1aaf64127b666c31ac45ec526c57ffd6f3b973fa796069180103a",
+    "docs/ilvis0-position-recovery-20261013/a953c8ddf4fae255674de128-bias1_profiled_removal-sphere_rotating-repeat-epochs.json.gz": "89ed075d6ead815063df51265321f0b23d153d5f63ee94a2b901d12e41895d1a",
+    "docs/ilvis0-position-recovery-20261013/a953c8ddf4fae255674de128-bias1_profiled_removal-sphere_rotating-repeat-linearization.json.gz": "50482ca447bc4950bd5f305fb8e8649fd22e4b227637edbb3360ae6ae9b49d0a",
+    "docs/ilvis0-position-recovery-20261013/completion.json": "41381a759ef9bd6f015e0d2920847c419445c8634fd93f5010d89e0cec8100d0",
+    "docs/ilvis0-position-recovery-20261013/e6629f14d2e03e471a446e06-bias1_profiled_removal-flat_still-primary-linearization.json.gz": "0438d03fdfb75e9685ff1539804c16942d03de1f2fe29c5e7662307597beae99",
+    "docs/ilvis0-position-recovery-20261013/e6629f14d2e03e471a446e06-bias1_profiled_removal-sphere_still-primary-epochs.json.gz": "ddf136654a4697e3d28e972100a44327e8bace13a98cebeaec5d159109ea440e",
+    "docs/ilvis0-position-recovery-20261013/e6629f14d2e03e471a446e06-bias1_profiled_removal-sphere_still-primary-linearization.json.gz": "088ae5a937ba6a337b8a1265d64ebcbff22b67e5353f71de755b2f8460ef067d",
+    "docs/ilvis0-position-recovery-20261013/e6629f14d2e03e471a446e06-bias1_profiled_removal-sphere_still-repeat-epochs.json.gz": "84b396c471306e8bf1d7160de881f5c01c6128f0fb952d8f60527460746cf91d",
+    "docs/ilvis0-position-recovery-20261013/e6629f14d2e03e471a446e06-bias1_profiled_removal-sphere_still-repeat-linearization.json.gz": "6320c5988bff9a9583985b2f0ccd0315ef0e8bb6d37cce01587cf2617a36b89e",
+    "docs/ilvis0-position-recovery-20261013/e6629f14d2e03e471a446e06-bias1_unsubtracted-flat_still-primary-linearization.json.gz": "1b0f1ed472d7156b762d184f7b8eb4cb078f74f3d4412310b3bea4be6222ca4f",
+    "docs/ilvis0-position-recovery-20261013/manifest.json": "969024701053674cb8e500df1b858cc7ef334f1b946cb9516e3cfb040ed44417",
+    "docs/ilvis0-position-recovery-20261013/summary.json": "b0c76efd53fa05e0b5a8b15673dad2ab5d4d14ff8ac928b1e5178a442dce3bad",
+    "docs/ilvis0-position-stability-trial-20261013/analytics-receipt.json": "4bd96f9b73cbd9412a08449e55efffbf32022756cb49e8ec392f46409c81628b",
+    "docs/ilvis0-position-stability-trial-20261013/current-stretches.csv": "e75bcf6483246720c02f4c599a8d9b4d45a783b435b05c16dcb353d7e598485d",
+    "docs/ilvis0-position-stability-trial-20261013/findings-receipt.json": "9a32768f7aa52f95d88a8b71c62bbc24d1e1ff93a58eb4e7eec3ef725e1e709f",
+    "docs/ilvis0-position-stability-trial-20261013/shared-leg-pairs.csv": "f3d8d293e2020595ba1d53eeb1462630a70f0cf547cc220b5237b99e608efc88"
+  },
+  "native_predictions": 0,
+  "observed_fit_starts": 0,
+  "original_files_read": 0,
+  "sources": {
+    "analysis/lll/ilvis0_boundary_diagnosis.py": "b338d7b72746c5efeef4a532424e6e27cea447b54ba057c3671471678f7b56a5",
+    "analysis/lll/ilvis0_pair_diagnosis.py": "1d9fff1b54b4b480ba0da55296a806e97fe70c0a9681ad18726915feafc3fffd",
+    "analysis/lll/ilvis0_recovery_diagnosis.py": "771c3a78b03b596988506191eec979af387114e05986cb13c0f737b46738e35a",
+    "analysis/lll/ilvis0_rectangular_diagnosis.py": "97d9b19c611bd687e3fbf626030b678f0264a4cbee9be0b7083c3081ace92ea1",
+    "analysis/tests/test_ilvis0_pair_diagnosis.py": "1d4e7bd93ac9af0e219539cd6ee447888e6485d49cbf7ef169fa530920ce626b",
+    "docs/ilvis0-shared-leg-diagnosis-20261014/build_report.py": "750dddf843bd0f23150d108ee8e13a8dc4e9a62803f8c481e1c436ae5917e021"
+  },
+  "version": "ilvis0-shared-leg-stopping-audit-v1"
+}

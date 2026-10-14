@@ -1,0 +1,1292 @@
+{
+  "native_evaluations": 60,
+  "observed_fit_starts": 0,
+  "original_labels_changed": false,
+  "results": [
+    {
+      "boundary_epochs": 0,
+      "center_tangent_cost": 27.217983436769252,
+      "center_value_cost": 27.217983436768677,
+      "center_value_tangent_cost_relative_difference": 2.1145564192980388e-14,
+      "endpoint_stationarity": 7.125878270048702e-06,
+      "identity": "3df34ea39a6cbdbe15bb0f36::bias1_unsubtracted::sphere_rotating::probe",
+      "native_evaluations": 10,
+      "normalized_correction": [
+        4.104146274032211e-07,
+        1.1192673597574904e-07,
+        3.521608156494599e-07,
+        -3.263423671545299e-08,
+        1.48957286688478e-08,
+        9.795938020042937e-10,
+        2.950568730224092e-06,
+        -4.230104653498308e-06,
+        2.144352635995066e-07,
+        1.514029804589217e-05,
+        -5.378158166278729e-06,
+        0.0,
+        -3.882890372797115e-07,
+        3.418841260868601e-06,
+        -8.24182412795609e-06,
+        0.0,
+        2.220446049250313e-16,
+        0.0,
+        -1.939874137598524e-06,
+        -8.795454723021181e-06,
+        -1.4086557265082607e-06,
+        -3.019043900052993e-06,
+        2.955238810205689e-06,
+        -2.354483492000179e-06,
+        0.0,
+        1.5160788007466027e-05
+      ],
+      "observed_fit_starts": 0,
+      "probes": [
+        {
+          "affine_predicted_cost": 27.217983431708664,
+          "fraction": 1.0,
+          "fresh_stationarity": 2.4763908878931705e-08,
+          "tangent_cost": 27.217983724391242,
+          "tangent_cost_relative_change": 1.0567351099084386e-08,
+          "tangent_position_change": {
+            "maximum_neu_m": [
+              5.659920298662375e-05,
+              2.8638807516549484e-05,
+              1.366880678688176e-05
+            ],
+            "rms_neu_m": [
+              2.624642527864131e-05,
+              1.1187669759178402e-05,
+              3.819991743684175e-06
+            ]
+          },
+          "value_cost": 27.217983724391242,
+          "value_cost_relative_change": 1.0567372244648355e-08,
+          "value_position_change": {
+            "maximum_neu_m": [
+              5.659920298662375e-05,
+              2.8638807516549484e-05,
+              1.3668801329913549e-05
+            ],
+            "rms_neu_m": [
+              2.624642527864131e-05,
+              1.1187669759178402e-05,
+              3.819990455525133e-06
+            ]
+          },
+          "value_tangent_difference": {
+            "maximum_neu_m": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rms_neu_m": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        },
+        {
+          "affine_predicted_cost": 27.217983432973806,
+          "fraction": 0.5,
+          "fresh_stationarity": 3.559229191344701e-06,
+          "tangent_cost": 27.217983658054788,
+          "tangent_cost_relative_change": 8.130122291687323e-09,
+          "tangent_position_change": {
+            "maximum_neu_m": [
+              2.8322322971829186e-05,
+              1.4405921934107046e-05,
+              7.042810466373339e-06
+            ],
+            "rms_neu_m": [
+              1.3100618082185619e-05,
+              5.617503108806845e-06,
+              1.9661943350759532e-06
+            ]
+          },
+          "value_cost": 27.217983658054788,
+          "value_cost_relative_change": 8.130143437251343e-09,
+          "value_position_change": {
+            "maximum_neu_m": [
+              2.8322322971829186e-05,
+              1.4405921934107046e-05,
+              7.042805009405129e-06
+            ],
+            "rms_neu_m": [
+              1.3100618082185619e-05,
+              5.617503108806845e-06,
+              1.9661930140573003e-06
+            ]
+          },
+          "value_tangent_difference": {
+            "maximum_neu_m": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rms_neu_m": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        },
+        {
+          "affine_predicted_cost": 27.21798343455525,
+          "fraction": 0.25,
+          "fresh_stationarity": 5.351775117456291e-06,
+          "tangent_cost": 27.217983526338756,
+          "tangent_cost_relative_change": 3.2908207078314576e-09,
+          "tangent_position_change": {
+            "maximum_neu_m": [
+              1.4075955941474674e-05,
+              7.306266251629407e-06,
+              3.421795554459095e-06
+            ],
+            "rms_neu_m": [
+              6.4940317405391385e-06,
+              2.8447422618380107e-06,
+              9.554547286684901e-07
+            ]
+          },
+          "value_cost": 27.217983526331835,
+          "value_cost_relative_change": 3.2905875845142425e-09,
+          "value_position_change": {
+            "maximum_neu_m": [
+              1.4075955941474674e-05,
+              7.306266251629407e-06,
+              3.4220374800497666e-06
+            ],
+            "rms_neu_m": [
+              6.4940317405391385e-06,
+              2.8447422618380107e-06,
+              9.555343181164867e-07
+            ]
+          },
+          "value_tangent_difference": {
+            "maximum_neu_m": [
+              0.0,
+              0.0,
+              2.473825588822365e-10
+            ],
+            "rms_neu_m": [
+              0.0,
+              0.0,
+              1.0913421301091516e-10
+            ]
+          }
+        }
+      ],
+      "reference_cost": 27.217983436769252,
+      "status": "complete",
+      "tangent_repeat": {
+        "maximum_neu_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rms_neu_m": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "value_repeat": {
+        "maximum_neu_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rms_neu_m": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "value_tangent_difference": {
+        "maximum_neu_m": [
+          0.0,
+          0.0,
+          5.4569682106375694e-12
+        ],
+        "rms_neu_m": [
+          0.0,
+          0.0,
+          1.8607178580196115e-12
+        ]
+      }
+    },
+    {
+      "boundary_epochs": 0,
+      "center_tangent_cost": 13.79730058106408,
+      "center_value_cost": 13.79730058106408,
+      "center_value_tangent_cost_relative_difference": 0.0,
+      "endpoint_stationarity": 1.241347934884536e-07,
+      "identity": "233183f67270980491416678::bias1_unsubtracted::sphere_rotating::probe",
+      "native_evaluations": 10,
+      "normalized_correction": [
+        -1.4689666977527411e-08,
+        -9.537968120601527e-08,
+        1.616850354913599e-09,
+        -1.4943192849950496e-09,
+        -6.629722121316076e-10,
+        4.467439560632165e-09,
+        2.0000717084584097e-07,
+        -4.254058245439981e-07,
+        -3.349634406708668e-08,
+        -1.7034907285150806e-08,
+        3.3868295982066884e-09,
+        0.0,
+        6.529061298977848e-07,
+        -1.1244317324497997e-07,
+        8.842114214744163e-06,
+        6.939591641350108e-07,
+        -1.1102230246251565e-16,
+        0.0,
+        1.6716239494817503e-08,
+        1.4479049447931764e-08,
+        1.5129501357225113e-06,
+        -1.8972197171673825e-06,
+        -3.586474561990442e-07,
+        3.2372955392943567e-07,
+        0.0,
+        1.8399228151525346e-06
+      ],
+      "observed_fit_starts": 0,
+      "probes": [
+        {
+          "affine_predicted_cost": 13.797300581044203,
+          "fraction": 1.0,
+          "fresh_stationarity": 1.0199636459085015e-08,
+          "tangent_cost": 13.797300635845993,
+          "tangent_cost_relative_change": 3.9704804429235404e-09,
+          "tangent_position_change": {
+            "maximum_neu_m": [
+              1.3490574615818317e-06,
+              6.206352349953861e-07,
+              3.180362909915857e-06
+            ],
+            "rms_neu_m": [
+              4.840423239332119e-07,
+              1.9854732021126384e-07,
+              1.3299662129054922e-06
+            ]
+          },
+          "value_cost": 13.797300635845993,
+          "value_cost_relative_change": 3.9704804429235404e-09,
+          "value_position_change": {
+            "maximum_neu_m": [
+              1.3490574615818317e-06,
+              6.206352349953861e-07,
+              3.180362909915857e-06
+            ],
+            "rms_neu_m": [
+              4.840423239332119e-07,
+              1.9854732021126384e-07,
+              1.3299662129054922e-06
+            ]
+          },
+          "value_tangent_difference": {
+            "maximum_neu_m": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rms_neu_m": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        },
+        {
+          "affine_predicted_cost": 13.797300581049175,
+          "fraction": 0.5,
+          "fresh_stationarity": 6.11948902278896e-08,
+          "tangent_cost": 13.79730061858677,
+          "tangent_cost_relative_change": 2.719567398960049e-09,
+          "tangent_position_change": {
+            "maximum_neu_m": [
+              6.319269162146474e-07,
+              3.0901921742448094e-07,
+              1.5844307199586183e-06
+            ],
+            "rms_neu_m": [
+              2.4040992839452896e-07,
+              9.81885588045402e-08,
+              6.63976395563174e-07
+            ]
+          },
+          "value_cost": 13.797300618586918,
+          "value_cost_relative_change": 2.719578213682307e-09,
+          "value_position_change": {
+            "maximum_neu_m": [
+              6.319269162146474e-07,
+              3.0901921742448094e-07,
+              1.5844325389480218e-06
+            ],
+            "rms_neu_m": [
+              2.4040992839452896e-07,
+              9.81885588045402e-08,
+              6.639767170041141e-07
+            ]
+          },
+          "value_tangent_difference": {
+            "maximum_neu_m": [
+              0.0,
+              0.0,
+              1.8189894035458565e-12
+            ],
+            "rms_neu_m": [
+              0.0,
+              0.0,
+              1.0189812613352854e-12
+            ]
+          }
+        },
+        {
+          "affine_predicted_cost": 13.797300581055387,
+          "fraction": 0.25,
+          "fresh_stationarity": 9.398175423474094e-08,
+          "tangent_cost": 13.797300623940501,
+          "tangent_cost_relative_change": 3.1075948698084217e-09,
+          "tangent_position_change": {
+            "maximum_neu_m": [
+              3.635354843841567e-07,
+              1.7919187876848746e-07,
+              7.701491995248944e-07
+            ],
+            "rms_neu_m": [
+              1.2195308523846627e-07,
+              5.556929780208097e-08,
+              3.26980766992158e-07
+            ]
+          },
+          "value_cost": 13.797300623940501,
+          "value_cost_relative_change": 3.1075948698084217e-09,
+          "value_position_change": {
+            "maximum_neu_m": [
+              3.635354843841567e-07,
+              1.7919187876848746e-07,
+              7.701491995248944e-07
+            ],
+            "rms_neu_m": [
+              1.2195308523846627e-07,
+              5.556929780208097e-08,
+              3.26980766992158e-07
+            ]
+          },
+          "value_tangent_difference": {
+            "maximum_neu_m": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rms_neu_m": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        }
+      ],
+      "reference_cost": 13.797300581064079,
+      "status": "complete",
+      "tangent_repeat": {
+        "maximum_neu_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rms_neu_m": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "value_repeat": {
+        "maximum_neu_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rms_neu_m": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "value_tangent_difference": {
+        "maximum_neu_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rms_neu_m": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "boundary_epochs": 0,
+      "center_tangent_cost": 22663.44131061575,
+      "center_value_cost": 22663.44131061575,
+      "center_value_tangent_cost_relative_difference": 0.0,
+      "endpoint_stationarity": 9.922804627905858e-06,
+      "identity": "e6629f14d2e03e471a446e06::bias1_profiled_removal::flat_still::probe",
+      "native_evaluations": 10,
+      "normalized_correction": [
+        1.5284946067042221e-09,
+        -5.346370678046152e-10,
+        -1.9901073215737205e-09,
+        -3.55888674686858e-08,
+        1.2872185652274814e-08,
+        5.934403343897681e-07,
+        1.035197192274081e-08,
+        0.0,
+        -1.5936594014430283e-07,
+        0.0,
+        0.0,
+        -2.220446049250313e-16,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        3.469446951953614e-18,
+        0.0,
+        9.91455004443911e-13,
+        2.220446049250313e-16,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.1102230246251565e-16
+      ],
+      "observed_fit_starts": 0,
+      "probes": [
+        {
+          "affine_predicted_cost": 22663.441308239824,
+          "fraction": 1.0,
+          "fresh_stationarity": 6.578222459124459e-10,
+          "tangent_cost": 22663.44131732579,
+          "tangent_cost_relative_change": 2.960731856640564e-10,
+          "tangent_position_change": {
+            "maximum_neu_m": [
+              0.0005554811953779458,
+              3.1834059101310855e-05,
+              0.006522527561173774
+            ],
+            "rms_neu_m": [
+              0.0003035357737066849,
+              1.744338312126039e-05,
+              0.0037658488902837938
+            ]
+          },
+          "value_cost": 22663.441317325774,
+          "value_cost_relative_change": 2.960725435764308e-10,
+          "value_position_change": {
+            "maximum_neu_m": [
+              0.0005554811953779458,
+              3.1834059101310855e-05,
+              0.006522527393826749
+            ],
+            "rms_neu_m": [
+              0.0003035357737066849,
+              1.744338312126039e-05,
+              0.0037658488124055647
+            ]
+          },
+          "value_tangent_difference": {
+            "maximum_neu_m": [
+              0.0,
+              0.0,
+              1.673470251262188e-10
+            ],
+            "rms_neu_m": [
+              0.0,
+              0.0,
+              7.985624005442557e-11
+            ]
+          }
+        },
+        {
+          "affine_predicted_cost": 22663.441308833797,
+          "fraction": 0.5,
+          "fresh_stationarity": 4.961388416098766e-06,
+          "tangent_cost": 22663.441326451037,
+          "tangent_cost_relative_change": 6.987149384794824e-10,
+          "tangent_position_change": {
+            "maximum_neu_m": [
+              0.0002776283643413986,
+              1.5895234181959404e-05,
+              0.00326127295193146
+            ],
+            "rms_neu_m": [
+              0.00015168791317488894,
+              8.713575845232586e-06,
+              0.00188292774995817
+            ]
+          },
+          "value_cost": 22663.441326451037,
+          "value_cost_relative_change": 6.987149384794824e-10,
+          "value_position_change": {
+            "maximum_neu_m": [
+              0.0002776283643413986,
+              1.5895234181959404e-05,
+              0.00326127295193146
+            ],
+            "rms_neu_m": [
+              0.00015168791317488894,
+              8.713575845232586e-06,
+              0.00188292774995817
+            ]
+          },
+          "value_tangent_difference": {
+            "maximum_neu_m": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rms_neu_m": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        },
+        {
+          "affine_predicted_cost": 22663.44130957628,
+          "fraction": 0.25,
+          "fresh_stationarity": 7.4420912310359704e-06,
+          "tangent_cost": 22663.441320825557,
+          "tangent_cost_relative_change": 4.5049670430150837e-10,
+          "tangent_position_change": {
+            "maximum_neu_m": [
+              0.00013888947796084408,
+              7.892487628983875e-06,
+              0.001630641132578603
+            ],
+            "rms_neu_m": [
+              7.589858743333454e-05,
+              4.308130169683653e-06,
+              0.0009414649354371887
+            ]
+          },
+          "value_cost": 22663.441320825557,
+          "value_cost_relative_change": 4.5049670430150837e-10,
+          "value_position_change": {
+            "maximum_neu_m": [
+              0.00013888947796084408,
+              7.892487628983875e-06,
+              0.001630641132578603
+            ],
+            "rms_neu_m": [
+              7.589858743333454e-05,
+              4.308130169683653e-06,
+              0.0009414649354371887
+            ]
+          },
+          "value_tangent_difference": {
+            "maximum_neu_m": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rms_neu_m": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        }
+      ],
+      "reference_cost": 22663.44131061575,
+      "status": "complete",
+      "tangent_repeat": {
+        "maximum_neu_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rms_neu_m": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "value_repeat": {
+        "maximum_neu_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rms_neu_m": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "value_tangent_difference": {
+        "maximum_neu_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rms_neu_m": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "boundary_epochs": 0,
+      "center_tangent_cost": 18951.192266217968,
+      "center_value_cost": 18951.192266217968,
+      "center_value_tangent_cost_relative_difference": 0.0,
+      "endpoint_stationarity": 4.0804322951316556e-08,
+      "identity": "abe881b5c87cc878226a9aef::bias1_profiled_removal::flat_still::probe",
+      "native_evaluations": 10,
+      "normalized_correction": [
+        2.1623762671523038e-10,
+        8.223733063532437e-11,
+        -2.378641347444214e-10,
+        4.802333367901121e-10,
+        6.326644478738273e-10,
+        5.405095622550308e-10,
+        -1.892292522575768e-09,
+        -1.1102230246251565e-16,
+        -3.935701819909112e-08,
+        -1.1102230246251565e-16,
+        -1.1102230246251565e-16,
+        0.0,
+        2.220446049250313e-16,
+        0.0,
+        -3.0731771838432564e-07,
+        2.220446049250313e-16,
+        0.0,
+        -1.1102230246251565e-16,
+        -1.1102230246251565e-16,
+        -1.1102230246251565e-16,
+        -5.273765472854824e-08,
+        0.0,
+        0.0,
+        -1.1102230246251565e-16,
+        -1.1102230246251565e-16,
+        -1.1102230246251565e-16,
+        0.0
+      ],
+      "observed_fit_starts": 0,
+      "probes": [
+        {
+          "affine_predicted_cost": 18951.192266173046,
+          "fraction": 1.0,
+          "fresh_stationarity": 3.43680036579182e-10,
+          "tangent_cost": 18951.192269307852,
+          "tangent_cost_relative_change": 1.6304433589638915e-10,
+          "tangent_position_change": {
+            "maximum_neu_m": [
+              1.3979285890805571e-06,
+              3.021007208317046e-07,
+              2.6187579351244494e-05
+            ],
+            "rms_neu_m": [
+              7.193599365693678e-07,
+              2.1737964654636425e-07,
+              1.216732056493347e-05
+            ]
+          },
+          "value_cost": 18951.192269307867,
+          "value_cost_relative_change": 1.6304510375917155e-10,
+          "value_position_change": {
+            "maximum_neu_m": [
+              1.3979285890805571e-06,
+              3.021007208317046e-07,
+              2.6187410185229965e-05
+            ],
+            "rms_neu_m": [
+              7.193599365693678e-07,
+              2.1737964654636425e-07,
+              1.216723924512924e-05
+            ]
+          },
+          "value_tangent_difference": {
+            "maximum_neu_m": [
+              0.0,
+              0.0,
+              1.6916601452976465e-10
+            ],
+            "rms_neu_m": [
+              0.0,
+              0.0,
+              8.200641548413674e-11
+            ]
+          }
+        },
+        {
+          "affine_predicted_cost": 18951.192266195496,
+          "fraction": 0.5,
+          "fresh_stationarity": 2.0407915285526802e-08,
+          "tangent_cost": 18951.192267741157,
+          "tangent_cost_relative_change": 8.037430907778919e-11,
+          "tangent_position_change": {
+            "maximum_neu_m": [
+              7.259568181099235e-07,
+              1.510503604158523e-07,
+              1.3090526408632286e-05
+            ],
+            "rms_neu_m": [
+              3.791626903022015e-07,
+              1.0753631820935147e-07,
+              6.082462688158428e-06
+            ]
+          },
+          "value_cost": 18951.192267741157,
+          "value_cost_relative_change": 8.037430907778919e-11,
+          "value_position_change": {
+            "maximum_neu_m": [
+              7.259568181099235e-07,
+              1.510503604158523e-07,
+              1.3090526408632286e-05
+            ],
+            "rms_neu_m": [
+              3.791626903022015e-07,
+              1.0753631820935147e-07,
+              6.082462688158428e-06
+            ]
+          },
+          "value_tangent_difference": {
+            "maximum_neu_m": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rms_neu_m": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        },
+        {
+          "affine_predicted_cost": 18951.192266206726,
+          "fraction": 0.25,
+          "fresh_stationarity": 3.0620588253514765e-08,
+          "tangent_cost": 18951.19226624335,
+          "tangent_cost_relative_change": 1.3393446586624879e-12,
+          "tangent_position_change": {
+            "maximum_neu_m": [
+              3.6368873862258396e-07,
+              7.635362991306843e-08,
+              6.537655281135812e-06
+            ],
+            "rms_neu_m": [
+              1.9400271981303845e-07,
+              5.476019987859537e-08,
+              3.0382708735679757e-06
+            ]
+          },
+          "value_cost": 18951.192266243343,
+          "value_cost_relative_change": 1.3389607272711562e-12,
+          "value_position_change": {
+            "maximum_neu_m": [
+              3.6368873862258396e-07,
+              7.635362991306843e-08,
+              6.5378153522033244e-06
+            ],
+            "rms_neu_m": [
+              1.9400271981303845e-07,
+              5.476019987859537e-08,
+              3.038334736917317e-06
+            ]
+          },
+          "value_tangent_difference": {
+            "maximum_neu_m": [
+              0.0,
+              0.0,
+              1.6007106751203537e-10
+            ],
+            "rms_neu_m": [
+              0.0,
+              0.0,
+              6.530577951189119e-11
+            ]
+          }
+        }
+      ],
+      "reference_cost": 18951.192266217964,
+      "status": "complete",
+      "tangent_repeat": {
+        "maximum_neu_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rms_neu_m": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "value_repeat": {
+        "maximum_neu_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rms_neu_m": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "value_tangent_difference": {
+        "maximum_neu_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rms_neu_m": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "boundary_epochs": 0,
+      "center_tangent_cost": 2.373851976808215,
+      "center_value_cost": 2.3738519768082122,
+      "center_value_tangent_cost_relative_difference": 1.1224521516640653e-15,
+      "endpoint_stationarity": 8.24158654598014e-07,
+      "identity": "a953c8ddf4fae255674de128::bias1_profiled_removal::sphere_rotating::probe",
+      "native_evaluations": 10,
+      "normalized_correction": [
+        6.420331379532755e-08,
+        3.338992280122703e-07,
+        2.5711510396578243e-08,
+        -3.810422144306266e-09,
+        6.410186145766337e-09,
+        6.679883684799013e-09,
+        -2.269192767761397e-06,
+        1.3856713407353245e-06,
+        1.4296046025981876e-07,
+        3.656397292053873e-07,
+        -8.326672684688674e-17,
+        0.0,
+        -2.237701506534449e-06,
+        4.6603062198395786e-07,
+        -1.0807568362419566e-05,
+        -1.9686072680777593e-05,
+        0.0,
+        0.0,
+        6.417887320326155e-08,
+        -2.3722673030906412e-06,
+        -1.8243010480835063e-06,
+        2.863520866930774e-05,
+        -9.02421457749862e-06,
+        -1.0120257454904913e-06,
+        0.0,
+        -1.565298319427875e-05,
+        -2.249810120134254e-07
+      ],
+      "observed_fit_starts": 0,
+      "probes": [
+        {
+          "affine_predicted_cost": 2.373851976556981,
+          "fraction": 1.0,
+          "fresh_stationarity": 4.5360896142170184e-08,
+          "tangent_cost": 2.373852072084149,
+          "tangent_cost_relative_change": 4.0135581898130685e-08,
+          "tangent_position_change": {
+            "maximum_neu_m": [
+              2.6733481036993223e-06,
+              2.4304620680065636e-06,
+              5.242578481556848e-06
+            ],
+            "rms_neu_m": [
+              1.4225765759833472e-06,
+              1.0861809759994474e-06,
+              1.7725679819471958e-06
+            ]
+          },
+          "value_cost": 2.373852072084149,
+          "value_cost_relative_change": 4.0135583020582794e-08,
+          "value_position_change": {
+            "maximum_neu_m": [
+              2.6733481036993223e-06,
+              2.4304620680065636e-06,
+              5.242578481556848e-06
+            ],
+            "rms_neu_m": [
+              1.4225765759833472e-06,
+              1.0861809759994474e-06,
+              1.772567350562627e-06
+            ]
+          },
+          "value_tangent_difference": {
+            "maximum_neu_m": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rms_neu_m": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        },
+        {
+          "affine_predicted_cost": 2.37385197661979,
+          "fraction": 0.5,
+          "fresh_stationarity": 3.9502893270981155e-07,
+          "tangent_cost": 2.3738520066404503,
+          "tangent_cost_relative_change": 1.2567015662830602e-08,
+          "tangent_position_change": {
+            "maximum_neu_m": [
+              1.4177399773520435e-06,
+              1.1805862896128373e-06,
+              2.6214274839730933e-06
+            ],
+            "rms_neu_m": [
+              7.193275054622223e-07,
+              5.536349613757558e-07,
+              8.865315719529459e-07
+            ]
+          },
+          "value_cost": 2.3738520066404503,
+          "value_cost_relative_change": 1.256701678528274e-08,
+          "value_position_change": {
+            "maximum_neu_m": [
+              1.4177399773520435e-06,
+              1.1805862896128373e-06,
+              2.6214274839730933e-06
+            ],
+            "rms_neu_m": [
+              7.193275054622223e-07,
+              5.536349613757558e-07,
+              8.865309362314687e-07
+            ]
+          },
+          "value_tangent_difference": {
+            "maximum_neu_m": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rms_neu_m": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        },
+        {
+          "affine_predicted_cost": 2.3738519766983006,
+          "fraction": 0.25,
+          "fresh_stationarity": 6.054156762414999e-07,
+          "tangent_cost": 2.3738520168206017,
+          "tangent_cost_relative_change": 1.6855468013049e-08,
+          "tangent_position_change": {
+            "maximum_neu_m": [
+              7.188140566534409e-07,
+              5.889606546375554e-07,
+              1.3108801795169711e-06
+            ],
+            "rms_neu_m": [
+              3.6204162897635953e-07,
+              2.748411277420662e-07,
+              4.4405256691233093e-07
+            ]
+          },
+          "value_cost": 2.3738520168206017,
+          "value_cost_relative_change": 1.6855469135501133e-08,
+          "value_position_change": {
+            "maximum_neu_m": [
+              7.188140566534409e-07,
+              5.889606546375554e-07,
+              1.3108801795169711e-06
+            ],
+            "rms_neu_m": [
+              3.6204162897635953e-07,
+              2.748411277420662e-07,
+              4.440519188121445e-07
+            ]
+          },
+          "value_tangent_difference": {
+            "maximum_neu_m": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rms_neu_m": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        }
+      ],
+      "reference_cost": 2.373851976808215,
+      "status": "complete",
+      "tangent_repeat": {
+        "maximum_neu_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rms_neu_m": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "value_repeat": {
+        "maximum_neu_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rms_neu_m": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "value_tangent_difference": {
+        "maximum_neu_m": [
+          0.0,
+          0.0,
+          3.637978807091713e-12
+        ],
+        "rms_neu_m": [
+          0.0,
+          0.0,
+          2.1338434280708726e-12
+        ]
+      }
+    },
+    {
+      "boundary_epochs": 0,
+      "center_tangent_cost": 0.9786212867607604,
+      "center_value_cost": 0.9786212867626636,
+      "center_value_tangent_cost_relative_difference": 1.9031443088124433e-12,
+      "endpoint_stationarity": 2.024422268098756e-09,
+      "identity": "31d7e5019dfdc9e2e6387206::bias1_profiled_removal::sphere_rotating::probe",
+      "native_evaluations": 10,
+      "normalized_correction": [
+        2.42601184646357e-09,
+        1.6959559262620808e-07,
+        9.130715310882356e-09,
+        -1.8795909525583245e-09,
+        -1.946868750322016e-09,
+        8.939524536868919e-09,
+        -1.0168981239923217e-07,
+        2.090610596314689e-07,
+        8.263854175048848e-09,
+        3.412700386286295e-07,
+        8.404821947588848e-07,
+        -1.1102230246251565e-16,
+        -1.1599860830131848e-06,
+        9.76200196310038e-08,
+        -1.1876240436014771e-05,
+        -5.8759549451889244e-06,
+        3.0906226236993236e-06,
+        -1.1102230246251565e-16,
+        8.193464563452591e-08,
+        -6.154843585859529e-07,
+        -2.0216538751621443e-06,
+        4.7208659414555275e-06,
+        3.6039401707551227e-07,
+        -1.1363075708454283e-07,
+        -2.257837624641823e-07,
+        -1.9772758524224676e-06,
+        -9.756689167694788e-08
+      ],
+      "observed_fit_starts": 0,
+      "probes": [
+        {
+          "affine_predicted_cost": 0.9786212866627853,
+          "fraction": 1.0,
+          "fresh_stationarity": 3.909436587419592e-08,
+          "tangent_cost": 0.978621341505758,
+          "tangent_cost_relative_change": 5.4744997535216555e-08,
+          "tangent_position_change": {
+            "maximum_neu_m": [
+              6.150883046037008e-07,
+              6.326982248449784e-07,
+              2.8905160434078425e-06
+            ],
+            "rms_neu_m": [
+              3.3800073983546906e-07,
+              3.2313070646766815e-07,
+              9.593796483824057e-07
+            ]
+          },
+          "value_cost": 0.978621341505758,
+          "value_cost_relative_change": 5.474309439090774e-08,
+          "value_position_change": {
+            "maximum_neu_m": [
+              6.150883046037008e-07,
+              6.326982248449784e-07,
+              2.890510586439632e-06
+            ],
+            "rms_neu_m": [
+              3.3800073983546906e-07,
+              3.2313070646766815e-07,
+              9.593780016771309e-07
+            ]
+          },
+          "value_tangent_difference": {
+            "maximum_neu_m": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rms_neu_m": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        },
+        {
+          "affine_predicted_cost": 0.9786212867062671,
+          "fraction": 0.5,
+          "fresh_stationarity": 3.42167326235012e-08,
+          "tangent_cost": 0.9786212932542998,
+          "tangent_cost_relative_change": 6.4935393728760005e-09,
+          "tangent_position_change": {
+            "maximum_neu_m": [
+              3.366649611803166e-07,
+              3.058041420084062e-07,
+              1.445270754629746e-06
+            ],
+            "rms_neu_m": [
+              1.7692908653335772e-07,
+              1.5543007079392988e-07,
+              4.807040431501874e-07
+            ]
+          },
+          "value_cost": 0.9786212932542998,
+          "value_cost_relative_change": 6.491636228567188e-09,
+          "value_position_change": {
+            "maximum_neu_m": [
+              3.366649611803166e-07,
+              3.058041420084062e-07,
+              1.4452652976615354e-06
+            ],
+            "rms_neu_m": [
+              1.7692908653335772e-07,
+              1.5543007079392988e-07,
+              4.807013008103078e-07
+            ]
+          },
+          "value_tangent_difference": {
+            "maximum_neu_m": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "rms_neu_m": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        },
+        {
+          "affine_predicted_cost": 0.9786212867321373,
+          "fraction": 0.25,
+          "fresh_stationarity": 2.7329068747190313e-08,
+          "tangent_cost": 0.9786212907523605,
+          "tangent_cost_relative_change": 3.991600050490263e-09,
+          "tangent_position_change": {
+            "maximum_neu_m": [
+              1.7756590779552564e-07,
+              1.819007396429313e-07,
+              7.232811185531318e-07
+            ],
+            "rms_neu_m": [
+              9.388347663724262e-08,
+              7.761423480652101e-08,
+              2.4453619543110695e-07
+            ]
+          },
+          "value_cost": 0.9786212907541978,
+          "value_cost_relative_change": 3.991534214264902e-09,
+          "value_position_change": {
+            "maximum_neu_m": [
+              1.7756590779552564e-07,
+              1.819007396429313e-07,
+              7.232702046167105e-07
+            ],
+            "rms_neu_m": [
+              9.388347663724262e-08,
+              7.761423480652101e-08,
+              2.445157444063746e-07
+            ]
+          },
+          "value_tangent_difference": {
+            "maximum_neu_m": [
+              0.0,
+              0.0,
+              1.418811734765768e-10
+            ],
+            "rms_neu_m": [
+              0.0,
+              0.0,
+              6.785506870831844e-11
+            ]
+          }
+        }
+      ],
+      "reference_cost": 0.9786212867607605,
+      "status": "complete",
+      "tangent_repeat": {
+        "maximum_neu_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rms_neu_m": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "value_repeat": {
+        "maximum_neu_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rms_neu_m": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "value_tangent_difference": {
+        "maximum_neu_m": [
+          0.0,
+          0.0,
+          1.4733814168721437e-10
+        ],
+        "rms_neu_m": [
+          0.0,
+          0.0,
+          6.474357117873284e-11
+        ]
+      }
+    }
+  ],
+  "scientific_decision": "abstain",
+  "state": "complete",
+  "version": "ilvis0-shared-leg-native-probes-v1"
+}

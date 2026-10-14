@@ -1,0 +1,1637 @@
+{
+  "combined_tally": {
+    "ambiguous": 0,
+    "flat": 0,
+    "globe": 30,
+    "unresolved": 23
+  },
+  "failed_gate_counts": {
+    "endpoint_stationarity": 11,
+    "position_rms_down": 2,
+    "position_rms_east": 1,
+    "relative_cost": 28
+  },
+  "focus_fits": [
+    {
+      "accepted_steps": 0,
+      "active_bounds": [
+        "position_y",
+        "gyro_bias_x",
+        "gyro_bias_y",
+        "gyro_bias_z",
+        "accel_bias_x",
+        "accel_bias_y",
+        "accel_bias_z",
+        "gyro_gain_x",
+        "gyro_gain_y",
+        "gyro_gain_z",
+        "accel_gain_x",
+        "accel_gain_y",
+        "lever_x",
+        "lever_y",
+        "lever_z",
+        "gravity_delta",
+        "time_offset",
+        "earth_removal"
+      ],
+      "case_id": "bias1_profiled_removal",
+      "converged": true,
+      "cost": 150485.71469061257,
+      "cost_change_ratio": 0.013709244087158227,
+      "endpoint_stationarity_ratio": 0.0012244054549349391,
+      "establishes_prediction_noise_floor": false,
+      "evaluations": 3,
+      "failed_gates": [],
+      "fresh_stationarity_ratio": 2.2966244225990683e-06,
+      "identity": "233183f67270980491416678::bias1_profiled_removal::flat_still::primary",
+      "jacobian_condition": 36127268.89725134,
+      "last_rejected_relative_cost_change": null,
+      "maximum_position_change_m": 0.0002911113460872983,
+      "maximum_position_rms_m": 0.00020854858638227918,
+      "message": "local correction small; fresh verification required",
+      "model": "flat_still",
+      "position_max_ratios": [
+        0.0015048302461856543,
+        0.00017759963723314618,
+        0.029111134608729827
+      ],
+      "position_rms_ratios": [
+        0.011694774474829174,
+        0.0013490838373077187,
+        0.2085485863822792
+      ],
+      "rejected_steps": 0,
+      "rejected_tail_steps": 0,
+      "role": "primary",
+      "segment_id": "233183f67270980491416678",
+      "smallest_rejected_fraction": null,
+      "track_rms_neu_m": [
+        16.060969117702346,
+        127.26185697683367,
+        9.361718805428856
+      ],
+      "weakest_direction": [
+        {
+          "parameter": "gyro_bias_z",
+          "weight": 0.6778010404959441
+        },
+        {
+          "parameter": "gyro_bias_y",
+          "weight": 0.24132527887607796
+        },
+        {
+          "parameter": "gyro_gain_z",
+          "weight": 0.0378730181627304
+        },
+        {
+          "parameter": "earth_removal",
+          "weight": 0.01612024823744096
+        },
+        {
+          "parameter": "gravity_delta",
+          "weight": 0.011497226852849962
+        }
+      ]
+    },
+    {
+      "accepted_steps": 0,
+      "active_bounds": [
+        "gyro_bias_z",
+        "gyro_gain_y",
+        "gyro_gain_z",
+        "gravity_delta",
+        "earth_removal"
+      ],
+      "case_id": "bias1_profiled_removal",
+      "converged": true,
+      "cost": 13.79730054698057,
+      "cost_change_ratio": 0.5547504879340038,
+      "endpoint_stationarity_ratio": 0.00022322747274490295,
+      "establishes_prediction_noise_floor": false,
+      "evaluations": 27,
+      "failed_gates": [],
+      "fresh_stationarity_ratio": 0.00016193433312536258,
+      "identity": "233183f67270980491416678::bias1_profiled_removal::sphere_rotating::primary",
+      "jacobian_condition": 102551370.37179026,
+      "last_rejected_relative_cost_change": 4.041809355955193e-11,
+      "maximum_position_change_m": 3.22707655862919e-05,
+      "maximum_position_rms_m": 1.3450331389072935e-05,
+      "message": "no decreasing feasible nonlinear step",
+      "model": "sphere_rotating",
+      "position_max_ratios": [
+        9.527992740882312e-05,
+        8.645610373196865e-05,
+        0.00322707655862919
+      ],
+      "position_rms_ratios": [
+        0.00041488543585721695,
+        0.00045889694546470265,
+        0.013450331389072935
+      ],
+      "rejected_steps": 24,
+      "rejected_tail_steps": 24,
+      "role": "primary",
+      "segment_id": "233183f67270980491416678",
+      "smallest_rejected_fraction": 1.1920928955078125e-07,
+      "track_rms_neu_m": [
+        0.20130578236244726,
+        0.1505993448393719,
+        2.3413079143573334
+      ],
+      "weakest_direction": [
+        {
+          "parameter": "gravity_delta",
+          "weight": 0.8479473995186042
+        },
+        {
+          "parameter": "gyro_gain_x",
+          "weight": 0.05630098340155847
+        },
+        {
+          "parameter": "gyro_gain_y",
+          "weight": 0.05619305662413133
+        },
+        {
+          "parameter": "accel_bias_z",
+          "weight": 0.03518907585852038
+        },
+        {
+          "parameter": "gyro_bias_y",
+          "weight": 0.001716881829179923
+        }
+      ]
+    },
+    {
+      "accepted_steps": 0,
+      "active_bounds": [
+        "position_y",
+        "gyro_bias_x",
+        "gyro_bias_y",
+        "gyro_bias_z",
+        "accel_bias_x",
+        "accel_bias_y",
+        "accel_bias_z",
+        "gyro_gain_x",
+        "gyro_gain_y",
+        "gyro_gain_z",
+        "accel_gain_x",
+        "accel_gain_y",
+        "lever_x",
+        "lever_y",
+        "lever_z",
+        "gravity_delta",
+        "time_offset"
+      ],
+      "case_id": "bias1_unsubtracted",
+      "converged": true,
+      "cost": 150485.71469412366,
+      "cost_change_ratio": 0.012864301926666667,
+      "endpoint_stationarity_ratio": 0.0009437848099786028,
+      "establishes_prediction_noise_floor": false,
+      "evaluations": 3,
+      "failed_gates": [],
+      "fresh_stationarity_ratio": 1.7155276473635342e-06,
+      "identity": "233183f67270980491416678::bias1_unsubtracted::flat_still::primary",
+      "jacobian_condition": 15775443.037521252,
+      "last_rejected_relative_cost_change": null,
+      "maximum_position_change_m": 0.00021433247275091214,
+      "maximum_position_rms_m": 0.00015321092250484417,
+      "message": "local correction small; fresh verification required",
+      "model": "flat_still",
+      "position_max_ratios": [
+        0.0011431389224646404,
+        0.00020470797207807395,
+        0.021433247275091213
+      ],
+      "position_rms_ratios": [
+        0.00887708576101131,
+        0.0015693502163321178,
+        0.15321092250484417
+      ],
+      "rejected_steps": 0,
+      "rejected_tail_steps": 0,
+      "role": "primary",
+      "segment_id": "233183f67270980491416678",
+      "smallest_rejected_fraction": null,
+      "track_rms_neu_m": [
+        16.060969353415395,
+        127.26185679838692,
+        9.361723454425277
+      ],
+      "weakest_direction": [
+        {
+          "parameter": "gyro_gain_z",
+          "weight": 0.6767097975908137
+        },
+        {
+          "parameter": "gravity_delta",
+          "weight": 0.23302693797899313
+        },
+        {
+          "parameter": "gyro_gain_y",
+          "weight": 0.03988555579454027
+        },
+        {
+          "parameter": "gyro_bias_z",
+          "weight": 0.0217851213256377
+        },
+        {
+          "parameter": "gyro_gain_x",
+          "weight": 0.01665832868449705
+        }
+      ]
+    },
+    {
+      "accepted_steps": 0,
+      "active_bounds": [
+        "gyro_bias_z",
+        "gyro_gain_y",
+        "gyro_gain_z",
+        "gravity_delta"
+      ],
+      "case_id": "bias1_unsubtracted",
+      "converged": true,
+      "cost": 13.797300581064079,
+      "cost_change_ratio": 0.40541860067460184,
+      "endpoint_stationarity_ratio": 0.0012413479345948105,
+      "establishes_prediction_noise_floor": false,
+      "evaluations": 27,
+      "failed_gates": [],
+      "fresh_stationarity_ratio": 0.0001020480575312701,
+      "identity": "233183f67270980491416678::bias1_unsubtracted::sphere_rotating::primary",
+      "jacobian_condition": 85669786.88330041,
+      "last_rejected_relative_cost_change": 1.96480330096545e-12,
+      "maximum_position_change_m": 3.179988198108065e-06,
+      "maximum_position_rms_m": 1.3298633203613228e-06,
+      "message": "no decreasing feasible nonlinear step",
+      "model": "sphere_rotating",
+      "position_max_ratios": [
+        0.00013490574615397638,
+        6.20635234995386e-05,
+        0.0003179988198108065
+      ],
+      "position_rms_ratios": [
+        0.00048404205184494247,
+        0.00019845121383229179,
+        0.0013298633203613227
+      ],
+      "rejected_steps": 24,
+      "rejected_tail_steps": 24,
+      "role": "primary",
+      "segment_id": "233183f67270980491416678",
+      "smallest_rejected_fraction": 1.1920928955078125e-07,
+      "track_rms_neu_m": [
+        0.20130618572490866,
+        0.15059901725820726,
+        2.341305550683147
+      ],
+      "weakest_direction": [
+        {
+          "parameter": "gravity_delta",
+          "weight": 0.845416870798325
+        },
+        {
+          "parameter": "gyro_gain_y",
+          "weight": 0.0564411658486635
+        },
+        {
+          "parameter": "gyro_gain_x",
+          "weight": 0.05591508982026679
+        },
+        {
+          "parameter": "accel_bias_z",
+          "weight": 0.03507609917764107
+        },
+        {
+          "parameter": "gyro_bias_y",
+          "weight": 0.004138558168467283
+        }
+      ]
+    },
+    {
+      "accepted_steps": 6,
+      "active_bounds": [
+        "gyro_bias_z",
+        "gyro_gain_y",
+        "gyro_gain_z",
+        "gravity_delta"
+      ],
+      "case_id": "bias1_unsubtracted",
+      "converged": true,
+      "cost": 13.797300626679462,
+      "cost_change_ratio": 0.02887999486247786,
+      "endpoint_stationarity_ratio": 0.0002573404841420606,
+      "establishes_prediction_noise_floor": false,
+      "evaluations": 9,
+      "failed_gates": [],
+      "fresh_stationarity_ratio": 9.51040964029411e-05,
+      "identity": "233183f67270980491416678::bias1_unsubtracted::sphere_rotating::repeat",
+      "jacobian_condition": 85669874.54636055,
+      "last_rejected_relative_cost_change": null,
+      "maximum_position_change_m": 2.801789380305313e-07,
+      "maximum_position_rms_m": 1.1870411365706576e-07,
+      "message": "local correction small; fresh verification required",
+      "model": "sphere_rotating",
+      "position_max_ratios": [
+        2.1158435116328608e-05,
+        2.195161216688559e-05,
+        2.8017893803053132e-05
+      ],
+      "position_rms_ratios": [
+        0.00011870411365706575,
+        9.829331535642853e-05,
+        9.249878324835435e-05
+      ],
+      "rejected_steps": 0,
+      "rejected_tail_steps": 0,
+      "role": "repeat",
+      "segment_id": "233183f67270980491416678",
+      "smallest_rejected_fraction": null,
+      "track_rms_neu_m": [
+        0.2013059592198297,
+        0.15059902597206656,
+        2.3413056758392905
+      ],
+      "weakest_direction": [
+        {
+          "parameter": "gravity_delta",
+          "weight": 0.8454168576569733
+        },
+        {
+          "parameter": "gyro_gain_y",
+          "weight": 0.05644116539269546
+        },
+        {
+          "parameter": "gyro_gain_x",
+          "weight": 0.0559150904109046
+        },
+        {
+          "parameter": "accel_bias_z",
+          "weight": 0.03507611406995047
+        },
+        {
+          "parameter": "gyro_bias_y",
+          "weight": 0.004138558189664048
+        }
+      ]
+    },
+    {
+      "accepted_steps": 33,
+      "active_bounds": [
+        "gyro_bias_y",
+        "gyro_bias_z",
+        "gyro_gain_x",
+        "gyro_gain_y",
+        "gyro_gain_z",
+        "gravity_delta"
+      ],
+      "case_id": "bias1_profiled_removal",
+      "converged": true,
+      "cost": 22.745423060754266,
+      "cost_change_ratio": 0.13030088300999612,
+      "endpoint_stationarity_ratio": 0.0003570682809563066,
+      "establishes_prediction_noise_floor": false,
+      "evaluations": 157,
+      "failed_gates": [],
+      "fresh_stationarity_ratio": 0.00013991880445872934,
+      "identity": "3df34ea39a6cbdbe15bb0f36::bias1_profiled_removal::sphere_rotating::primary",
+      "jacobian_condition": 48105806.80674243,
+      "last_rejected_relative_cost_change": null,
+      "maximum_position_change_m": 4.5822838657731327e-07,
+      "maximum_position_rms_m": 2.002061873295003e-07,
+      "message": "local correction small; fresh verification required",
+      "model": "sphere_rotating",
+      "position_max_ratios": [
+        3.521763058421154e-05,
+        4.5822838657731324e-05,
+        8.20818982340261e-06
+      ],
+      "position_rms_ratios": [
+        0.00018133732177635773,
+        0.0002002061873295003,
+        3.8332721478611024e-05
+      ],
+      "rejected_steps": 121,
+      "rejected_tail_steps": 0,
+      "role": "primary",
+      "segment_id": "3df34ea39a6cbdbe15bb0f36",
+      "smallest_rejected_fraction": null,
+      "track_rms_neu_m": [
+        0.3124800871518122,
+        0.8662772342077772,
+        1.7809085752351248
+      ],
+      "weakest_direction": [
+        {
+          "parameter": "gravity_delta",
+          "weight": 0.8213388363538596
+        },
+        {
+          "parameter": "gyro_gain_y",
+          "weight": 0.055369243526714386
+        },
+        {
+          "parameter": "gyro_gain_x",
+          "weight": 0.05139385553774805
+        },
+        {
+          "parameter": "accel_bias_z",
+          "weight": 0.03442361083728447
+        },
+        {
+          "parameter": "gyro_gain_z",
+          "weight": 0.018484259296961375
+        }
+      ]
+    },
+    {
+      "accepted_steps": 52,
+      "active_bounds": [
+        "gyro_bias_z",
+        "gyro_gain_x",
+        "gyro_gain_y",
+        "gyro_gain_z",
+        "gravity_delta"
+      ],
+      "case_id": "bias1_unsubtracted",
+      "converged": false,
+      "cost": 27.217983436769252,
+      "cost_change_ratio": 1.0688386739614215,
+      "endpoint_stationarity_ratio": 0.07125878270031079,
+      "establishes_prediction_noise_floor": false,
+      "evaluations": 388,
+      "failed_gates": [
+        "relative_cost"
+      ],
+      "fresh_stationarity_ratio": 0.00024764845318454734,
+      "identity": "3df34ea39a6cbdbe15bb0f36::bias1_unsubtracted::sphere_rotating::primary",
+      "jacobian_condition": 48228518.987094864,
+      "last_rejected_relative_cost_change": 1.7009935632625128e-10,
+      "maximum_position_change_m": 5.659920298664165e-05,
+      "maximum_position_rms_m": 2.6246418588642968e-05,
+      "message": "no decreasing feasible nonlinear step",
+      "model": "sphere_rotating",
+      "position_max_ratios": [
+        0.005659920298664164,
+        0.0028638807516549484,
+        0.0013669967302172579
+      ],
+      "position_rms_ratios": [
+        0.026246418588642968,
+        0.011187677650043784,
+        0.003820250157321621
+      ],
+      "rejected_steps": 333,
+      "rejected_tail_steps": 24,
+      "role": "primary",
+      "segment_id": "3df34ea39a6cbdbe15bb0f36",
+      "smallest_rejected_fraction": 1.1920928955078125e-07,
+      "track_rms_neu_m": [
+        0.48651350457670967,
+        0.9674891434376827,
+        1.7798179594216337
+      ],
+      "weakest_direction": [
+        {
+          "parameter": "gravity_delta",
+          "weight": 0.8329305613115204
+        },
+        {
+          "parameter": "gyro_gain_y",
+          "weight": 0.05585988998005145
+        },
+        {
+          "parameter": "gyro_gain_x",
+          "weight": 0.052246986503005834
+        },
+        {
+          "parameter": "accel_bias_z",
+          "weight": 0.03506084243235591
+        },
+        {
+          "parameter": "gyro_gain_z",
+          "weight": 0.015448874048689134
+        }
+      ]
+    },
+    {
+      "accepted_steps": 7,
+      "active_bounds": [
+        "gyro_bias_z",
+        "gyro_gain_x",
+        "gyro_gain_y",
+        "gyro_gain_z",
+        "gravity_delta"
+      ],
+      "case_id": "bias1_unsubtracted",
+      "converged": true,
+      "cost": 27.217983441964186,
+      "cost_change_ratio": 0.646454052300141,
+      "endpoint_stationarity_ratio": 0.06401144922840958,
+      "establishes_prediction_noise_floor": false,
+      "evaluations": 74,
+      "failed_gates": [],
+      "fresh_stationarity_ratio": 0.0003161476146509161,
+      "identity": "3df34ea39a6cbdbe15bb0f36::bias1_unsubtracted::sphere_rotating::repeat",
+      "jacobian_condition": 48228513.25528201,
+      "last_rejected_relative_cost_change": 4.787473207733631e-11,
+      "maximum_position_change_m": 5.045063493953605e-05,
+      "maximum_position_rms_m": 2.045739994196178e-05,
+      "message": "no decreasing feasible nonlinear step",
+      "model": "sphere_rotating",
+      "position_max_ratios": [
+        0.0028083747447587974,
+        0.005045063493953604,
+        0.0006881766239639957
+      ],
+      "position_rms_ratios": [
+        0.013694835642633008,
+        0.020457399941961777,
+        0.002484698833829709
+      ],
+      "rejected_steps": 64,
+      "rejected_tail_steps": 24,
+      "role": "repeat",
+      "segment_id": "3df34ea39a6cbdbe15bb0f36",
+      "smallest_rejected_fraction": 1.1920928955078125e-07,
+      "track_rms_neu_m": [
+        0.48651005173107514,
+        0.9674888682191495,
+        1.7798182902964106
+      ],
+      "weakest_direction": [
+        {
+          "parameter": "gravity_delta",
+          "weight": 0.8329305628768827
+        },
+        {
+          "parameter": "gyro_gain_y",
+          "weight": 0.05585989098552918
+        },
+        {
+          "parameter": "gyro_gain_x",
+          "weight": 0.052246986914978706
+        },
+        {
+          "parameter": "accel_bias_z",
+          "weight": 0.035060834698500076
+        },
+        {
+          "parameter": "gyro_gain_z",
+          "weight": 0.015448878756858296
+        }
+      ]
+    },
+    {
+      "accepted_steps": 13,
+      "active_bounds": [
+        "gyro_bias_y",
+        "gyro_bias_z",
+        "gyro_gain_y",
+        "gyro_gain_z",
+        "gravity_delta"
+      ],
+      "case_id": "bias1_profiled_removal",
+      "converged": false,
+      "cost": 2.373851976808215,
+      "cost_change_ratio": 4.008447010812806,
+      "endpoint_stationarity_ratio": 0.008241586545988177,
+      "establishes_prediction_noise_floor": false,
+      "evaluations": 83,
+      "failed_gates": [
+        "relative_cost"
+      ],
+      "fresh_stationarity_ratio": 0.0004549167142600702,
+      "identity": "a953c8ddf4fae255674de128::bias1_profiled_removal::sphere_rotating::primary",
+      "jacobian_condition": 64676620.140425965,
+      "last_rejected_relative_cost_change": 4.445110691223412e-10,
+      "maximum_position_change_m": 5.24258575759384e-06,
+      "maximum_position_rms_m": 1.7726469006269425e-06,
+      "message": "no decreasing feasible nonlinear step",
+      "model": "sphere_rotating",
+      "position_max_ratios": [
+        0.00026733481036952765,
+        0.00024291295778377004,
+        0.000524258575759384
+      ],
+      "position_rms_ratios": [
+        0.0014225765759827687,
+        0.0010861503273548083,
+        0.0017726469006269425
+      ],
+      "rejected_steps": 67,
+      "rejected_tail_steps": 24,
+      "role": "primary",
+      "segment_id": "a953c8ddf4fae255674de128",
+      "smallest_rejected_fraction": 1.1920928955078125e-07,
+      "track_rms_neu_m": [
+        0.09714270997053111,
+        0.12473893575705168,
+        0.7281908073967173
+      ],
+      "weakest_direction": [
+        {
+          "parameter": "gravity_delta",
+          "weight": 0.8385624691512057
+        },
+        {
+          "parameter": "gyro_gain_x",
+          "weight": 0.05245456525720325
+        },
+        {
+          "parameter": "gyro_gain_y",
+          "weight": 0.05090342105446198
+        },
+        {
+          "parameter": "accel_bias_z",
+          "weight": 0.033612204030145997
+        },
+        {
+          "parameter": "gyro_gain_z",
+          "weight": 0.021183401548280016
+        }
+      ]
+    },
+    {
+      "accepted_steps": 6,
+      "active_bounds": [
+        "gyro_bias_y",
+        "gyro_bias_z",
+        "gyro_gain_y",
+        "gyro_gain_z",
+        "gravity_delta"
+      ],
+      "case_id": "bias1_profiled_removal",
+      "converged": false,
+      "cost": 2.3738519536469225,
+      "cost_change_ratio": 4.88267100912167,
+      "endpoint_stationarity_ratio": 0.008257010489477669,
+      "establishes_prediction_noise_floor": false,
+      "evaluations": 63,
+      "failed_gates": [
+        "relative_cost"
+      ],
+      "fresh_stationarity_ratio": 0.00043204181881723237,
+      "identity": "a953c8ddf4fae255674de128::bias1_profiled_removal::sphere_rotating::repeat",
+      "jacobian_condition": 64676621.62005537,
+      "last_rejected_relative_cost_change": 7.184228876271011e-10,
+      "maximum_position_change_m": 5.355375833476744e-06,
+      "maximum_position_rms_m": 1.877030242002369e-06,
+      "message": "no decreasing feasible nonlinear step",
+      "model": "sphere_rotating",
+      "position_max_ratios": [
+        0.00027088601667149884,
+        0.0002550386183204256,
+        0.0005355375833476744
+      ],
+      "position_rms_ratios": [
+        0.0013918611362810135,
+        0.0011025894502558298,
+        0.001877030242002369
+      ],
+      "rejected_steps": 54,
+      "rejected_tail_steps": 24,
+      "role": "repeat",
+      "segment_id": "a953c8ddf4fae255674de128",
+      "smallest_rejected_fraction": 1.1920928955078125e-07,
+      "track_rms_neu_m": [
+        0.09714265572913032,
+        0.12473894999608633,
+        0.7281908299797759
+      ],
+      "weakest_direction": [
+        {
+          "parameter": "gravity_delta",
+          "weight": 0.8385624676025556
+        },
+        {
+          "parameter": "gyro_gain_x",
+          "weight": 0.05245456791225543
+        },
+        {
+          "parameter": "gyro_gain_y",
+          "weight": 0.050903421011939065
+        },
+        {
+          "parameter": "accel_bias_z",
+          "weight": 0.03361220457311963
+        },
+        {
+          "parameter": "gyro_gain_z",
+          "weight": 0.02118339997779626
+        }
+      ]
+    },
+    {
+      "accepted_steps": 4,
+      "active_bounds": [
+        "position_y",
+        "gyro_bias_x",
+        "gyro_bias_y",
+        "gyro_bias_z",
+        "accel_bias_x",
+        "accel_bias_y",
+        "accel_bias_z",
+        "gyro_gain_x",
+        "gyro_gain_y",
+        "gyro_gain_z",
+        "accel_gain_x",
+        "accel_gain_y",
+        "lever_x",
+        "lever_y",
+        "lever_z",
+        "gravity_delta",
+        "time_offset",
+        "earth_removal"
+      ],
+      "case_id": "bias1_profiled_removal",
+      "converged": false,
+      "cost": 22663.44131061575,
+      "cost_change_ratio": 0.02960731856640564,
+      "endpoint_stationarity_ratio": 0.09922804627905865,
+      "establishes_prediction_noise_floor": false,
+      "evaluations": 55,
+      "failed_gates": [
+        "position_rms_down"
+      ],
+      "fresh_stationarity_ratio": 6.578222268110395e-06,
+      "identity": "e6629f14d2e03e471a446e06::bias1_profiled_removal::flat_still::primary",
+      "jacobian_condition": 54431602.614004105,
+      "last_rejected_relative_cost_change": 8.119679596625232e-12,
+      "maximum_position_change_m": 0.006522527559354421,
+      "maximum_position_rms_m": 0.003765848888982894,
+      "message": "no decreasing feasible nonlinear step",
+      "model": "flat_still",
+      "position_max_ratios": [
+        0.05554811953782898,
+        0.0031832777020799324,
+        0.6522527559354421
+      ],
+      "position_rms_ratios": [
+        0.30353577370667234,
+        0.01744339209122277,
+        3.7658488889828936
+      ],
+      "rejected_steps": 48,
+      "rejected_tail_steps": 24,
+      "role": "primary",
+      "segment_id": "e6629f14d2e03e471a446e06",
+      "smallest_rejected_fraction": 1.1920928955078125e-07,
+      "track_rms_neu_m": [
+        3.600662464208375,
+        50.13018375538476,
+        2.2703671158130425
+      ],
+      "weakest_direction": [
+        {
+          "parameter": "gravity_delta",
+          "weight": 0.7958693473362217
+        },
+        {
+          "parameter": "gyro_gain_z",
+          "weight": 0.055412442224612245
+        },
+        {
+          "parameter": "gyro_gain_y",
+          "weight": 0.05364921117843528
+        },
+        {
+          "parameter": "gyro_gain_x",
+          "weight": 0.052651869636774755
+        },
+        {
+          "parameter": "accel_bias_z",
+          "weight": 0.03003394871682809
+        }
+      ]
+    },
+    {
+      "accepted_steps": 2,
+      "active_bounds": [
+        "gyro_bias_x",
+        "gyro_bias_y",
+        "gyro_bias_z",
+        "accel_bias_x",
+        "accel_bias_y",
+        "accel_bias_z",
+        "gyro_gain_x",
+        "gyro_gain_y",
+        "gyro_gain_z",
+        "accel_gain_x",
+        "accel_gain_y",
+        "lever_x",
+        "lever_z",
+        "gravity_delta",
+        "time_offset",
+        "earth_removal"
+      ],
+      "case_id": "bias1_profiled_removal",
+      "converged": true,
+      "cost": 9930.96262991176,
+      "cost_change_ratio": 0.01615474177955543,
+      "endpoint_stationarity_ratio": 1.556145535514922e-05,
+      "establishes_prediction_noise_floor": false,
+      "evaluations": 5,
+      "failed_gates": [],
+      "fresh_stationarity_ratio": 3.740664025602592e-06,
+      "identity": "e6629f14d2e03e471a446e06::bias1_profiled_removal::sphere_still::primary",
+      "jacobian_condition": 81763357.07262023,
+      "last_rejected_relative_cost_change": null,
+      "maximum_position_change_m": 1.5169278657265463e-06,
+      "maximum_position_rms_m": 9.872860906684576e-07,
+      "message": "local correction small; fresh verification required",
+      "model": "sphere_still",
+      "position_max_ratios": [
+        1.7331580337796472e-05,
+        0.00015169278657265462,
+        5.32781993429405e-06
+      ],
+      "position_rms_ratios": [
+        9.752315408553579e-05,
+        0.0009872860906684575,
+        1.5838637097321377e-05
+      ],
+      "rejected_steps": 0,
+      "rejected_tail_steps": 0,
+      "role": "primary",
+      "segment_id": "e6629f14d2e03e471a446e06",
+      "smallest_rejected_fraction": null,
+      "track_rms_neu_m": [
+        23.331925536448125,
+        12.126684556571137,
+        1.7564818834838796
+      ],
+      "weakest_direction": [
+        {
+          "parameter": "gravity_delta",
+          "weight": 0.8110278967102613
+        },
+        {
+          "parameter": "gyro_gain_y",
+          "weight": 0.055917606300272864
+        },
+        {
+          "parameter": "gyro_gain_x",
+          "weight": 0.05506831434525611
+        },
+        {
+          "parameter": "gyro_gain_z",
+          "weight": 0.04249006449431536
+        },
+        {
+          "parameter": "accel_bias_z",
+          "weight": 0.03418062965203432
+        }
+      ]
+    },
+    {
+      "accepted_steps": 12,
+      "active_bounds": [
+        "gyro_bias_x",
+        "gyro_bias_y",
+        "gyro_bias_z",
+        "accel_bias_x",
+        "accel_bias_y",
+        "accel_bias_z",
+        "gyro_gain_x",
+        "gyro_gain_y",
+        "gyro_gain_z",
+        "accel_gain_x",
+        "accel_gain_y",
+        "lever_x",
+        "lever_z",
+        "gravity_delta",
+        "time_offset",
+        "earth_removal"
+      ],
+      "case_id": "bias1_profiled_removal",
+      "converged": true,
+      "cost": 9930.962640527958,
+      "cost_change_ratio": 0.14364749427913603,
+      "endpoint_stationarity_ratio": 0.004103567238139311,
+      "establishes_prediction_noise_floor": false,
+      "evaluations": 157,
+      "failed_gates": [],
+      "fresh_stationarity_ratio": 0.0003474625743083647,
+      "identity": "e6629f14d2e03e471a446e06::bias1_profiled_removal::sphere_still::repeat",
+      "jacobian_condition": 81763715.08916458,
+      "last_rejected_relative_cost_change": 5.931565244645548e-12,
+      "maximum_position_change_m": 0.0006014482578927315,
+      "maximum_position_rms_m": 0.0004079844473392459,
+      "message": "no decreasing feasible nonlinear step",
+      "model": "sphere_still",
+      "position_max_ratios": [
+        0.006226992543166634,
+        0.060144825789273146,
+        0.0017755346561878866
+      ],
+      "position_rms_ratios": [
+        0.029400013382478996,
+        0.4079844473392459,
+        0.00500925900623656
+      ],
+      "rejected_steps": 142,
+      "rejected_tail_steps": 24,
+      "role": "repeat",
+      "segment_id": "e6629f14d2e03e471a446e06",
+      "smallest_rejected_fraction": 1.1920928955078125e-07,
+      "track_rms_neu_m": [
+        23.331895622614745,
+        12.126726027943436,
+        1.7564814601566063
+      ],
+      "weakest_direction": [
+        {
+          "parameter": "gravity_delta",
+          "weight": 0.8110279791997574
+        },
+        {
+          "parameter": "gyro_gain_y",
+          "weight": 0.05591760662936963
+        },
+        {
+          "parameter": "gyro_gain_x",
+          "weight": 0.055068325776275774
+        },
+        {
+          "parameter": "gyro_gain_z",
+          "weight": 0.04248997113842283
+        },
+        {
+          "parameter": "accel_bias_z",
+          "weight": 0.03418063333945644
+        }
+      ]
+    },
+    {
+      "accepted_steps": 2,
+      "active_bounds": [
+        "position_y",
+        "gyro_bias_x",
+        "gyro_bias_y",
+        "gyro_bias_z",
+        "accel_bias_x",
+        "accel_bias_y",
+        "accel_bias_z",
+        "gyro_gain_x",
+        "gyro_gain_y",
+        "gyro_gain_z",
+        "accel_gain_x",
+        "accel_gain_y",
+        "lever_x",
+        "lever_y",
+        "lever_z",
+        "gravity_delta",
+        "time_offset"
+      ],
+      "case_id": "bias1_unsubtracted",
+      "converged": true,
+      "cost": 22663.44131703758,
+      "cost_change_ratio": 0.0018997446585396521,
+      "endpoint_stationarity_ratio": 4.781137853862146e-06,
+      "establishes_prediction_noise_floor": false,
+      "evaluations": 5,
+      "failed_gates": [],
+      "fresh_stationarity_ratio": 1.6239673085479994e-06,
+      "identity": "e6629f14d2e03e471a446e06::bias1_unsubtracted::flat_still::primary",
+      "jacobian_condition": 53679322.59801367,
+      "last_rejected_relative_cost_change": null,
+      "maximum_position_change_m": 3.3384628031901627e-07,
+      "maximum_position_rms_m": 1.9957668026726297e-07,
+      "message": "local correction small; fresh verification required",
+      "model": "flat_still",
+      "position_max_ratios": [
+        3.338462803190163e-05,
+        1.583178423015758e-06,
+        1.0137226296177925e-06
+      ],
+      "position_rms_ratios": [
+        0.00019957668026726296,
+        1.1105005016087893e-05,
+        4.310555451594117e-06
+      ],
+      "rejected_steps": 0,
+      "rejected_tail_steps": 0,
+      "role": "primary",
+      "segment_id": "e6629f14d2e03e471a446e06",
+      "smallest_rejected_fraction": null,
+      "track_rms_neu_m": [
+        3.6006316442936455,
+        50.13018473263795,
+        2.270720474283763
+      ],
+      "weakest_direction": [
+        {
+          "parameter": "gravity_delta",
+          "weight": 0.8151142441255756
+        },
+        {
+          "parameter": "gyro_gain_y",
+          "weight": 0.0541985213308797
+        },
+        {
+          "parameter": "gyro_gain_x",
+          "weight": 0.053227659003220004
+        },
+        {
+          "parameter": "gyro_gain_z",
+          "weight": 0.04520060478626639
+        },
+        {
+          "parameter": "accel_bias_z",
+          "weight": 0.030739147119469533
+        }
+      ]
+    }
+  ],
+  "native_predictions": 0,
+  "observed_fit_starts": 0,
+  "original_files_read": 0,
+  "original_labels_changed": false,
+  "pairs": [
+    {
+      "completion_mismatch": false,
+      "difference_sign": "left minus right",
+      "fused_context_corrected_difference_across_left_dph": "0.4981248121063166",
+      "fused_context_corrected_difference_along_dph": "-0.5349311302519707",
+      "fused_context_corrected_difference_down_dph": "-0.2808165138777056",
+      "fused_context_corrected_difference_rms_across_left_dph": "26.21384950172451",
+      "fused_context_corrected_difference_rms_along_dph": "156.41217975477676",
+      "fused_context_corrected_difference_rms_down_dph": "39.957677749690355",
+      "fused_context_corrected_matched_seconds": "552",
+      "left_disposition": "globe",
+      "left_filename": "ILVIS0_applanix_55124_Ames_510-20oct09_20Oct09.013",
+      "left_segment_id": "b365bdf39150ee6afc303ac1",
+      "level_course_proxy_difference_across_left_dph": "0.40266294158120436",
+      "level_course_proxy_difference_along_dph": "-0.08627229756564143",
+      "level_course_proxy_difference_down_dph": "-0.28978584329800344",
+      "level_course_proxy_difference_rms_across_left_dph": "12.009835623117366",
+      "level_course_proxy_difference_rms_along_dph": "7.581360433608046",
+      "level_course_proxy_difference_rms_down_dph": "12.661779336715615",
+      "level_course_proxy_matched_seconds": "552",
+      "matched_raw_seconds": "552",
+      "matched_receiver_epochs": "553",
+      "maximum_height_separation_m": "1.1960000000017317",
+      "maximum_track_separation_m": "20.295166405916223",
+      "overlap_duration_s": "552.2164443198417",
+      "overlap_end_utc": "2009-10-20T13:34:45Z",
+      "overlap_end_utc_week_s": "221685.0",
+      "overlap_start_utc": "2009-10-20T13:25:32.783556Z",
+      "overlap_start_utc_week_s": "221132.78355568016",
+      "priority_pair": "False",
+      "raw_aircraft_difference_rms_x_dph": "7.581360433608046",
+      "raw_aircraft_difference_rms_y_dph": "12.009835623117366",
+      "raw_aircraft_difference_rms_z_dph": "7.7632723902534355",
+      "raw_aircraft_difference_x_dph": "-0.08627229756564143",
+      "raw_aircraft_difference_y_dph": "-0.40266294158120436",
+      "raw_aircraft_difference_z_dph": "-0.2720914530208709",
+      "raw_aircraft_matched_seconds": "552",
+      "right_disposition": "globe",
+      "right_filename": "ILVIS0_applanix_55124_Ames_610-20Oct09_20Oct09.013",
+      "right_segment_id": "034547522e2d98947b598466",
+      "same_track_candidate": "True",
+      "shared_leg_id": "leg-13805a9a35c4"
+    },
+    {
+      "completion_mismatch": true,
+      "difference_sign": "left minus right",
+      "fused_context_corrected_difference_across_left_dph": "0.43392846689040687",
+      "fused_context_corrected_difference_along_dph": "0.05486611563932409",
+      "fused_context_corrected_difference_down_dph": "-0.17690051600942655",
+      "fused_context_corrected_difference_rms_across_left_dph": "36.73754522706731",
+      "fused_context_corrected_difference_rms_along_dph": "252.2967981543975",
+      "fused_context_corrected_difference_rms_down_dph": "61.67344675708563",
+      "fused_context_corrected_matched_seconds": "659",
+      "left_disposition": "unresolved",
+      "left_filename": "ILVIS0_applanix_55128_Ames_510-24Oct09_24Oct09.013",
+      "left_segment_id": "3df34ea39a6cbdbe15bb0f36",
+      "level_course_proxy_difference_across_left_dph": "0.5200865441450165",
+      "level_course_proxy_difference_along_dph": "0.1186505668773167",
+      "level_course_proxy_difference_down_dph": "-0.13716725877623176",
+      "level_course_proxy_difference_rms_across_left_dph": "13.106554724935746",
+      "level_course_proxy_difference_rms_along_dph": "8.41814851552139",
+      "level_course_proxy_difference_rms_down_dph": "25.26642575500699",
+      "level_course_proxy_matched_seconds": "659",
+      "matched_raw_seconds": "659",
+      "matched_receiver_epochs": "660",
+      "maximum_height_separation_m": "0.8469999999997526",
+      "maximum_track_separation_m": "20.318734973349173",
+      "overlap_duration_s": "660.6901128015015",
+      "overlap_end_utc": "2009-10-24T13:36:59.693758Z",
+      "overlap_end_utc_week_s": "567419.6937584755",
+      "overlap_start_utc": "2009-10-24T13:25:59.003645Z",
+      "overlap_start_utc_week_s": "566759.003645674",
+      "priority_pair": "True",
+      "raw_aircraft_difference_rms_x_dph": "8.41814851552139",
+      "raw_aircraft_difference_rms_y_dph": "13.106554724935746",
+      "raw_aircraft_difference_rms_z_dph": "11.468570999026918",
+      "raw_aircraft_difference_x_dph": "0.1186505668773167",
+      "raw_aircraft_difference_y_dph": "-0.5200865441450165",
+      "raw_aircraft_difference_z_dph": "-0.12063735915078332",
+      "raw_aircraft_matched_seconds": "659",
+      "right_disposition": "globe",
+      "right_filename": "ILVIS0_applanix_55128_Ames_610-24Oct09_24Oct09.013",
+      "right_segment_id": "233183f67270980491416678",
+      "same_track_candidate": "True",
+      "shared_leg_id": "leg-590ee7971efb"
+    },
+    {
+      "completion_mismatch": true,
+      "difference_sign": "left minus right",
+      "fused_context_corrected_difference_across_left_dph": "-0.40508472635255555",
+      "fused_context_corrected_difference_along_dph": "1.0322631499339532",
+      "fused_context_corrected_difference_down_dph": "0.09908063395194462",
+      "fused_context_corrected_difference_rms_across_left_dph": "19.228445923416718",
+      "fused_context_corrected_difference_rms_along_dph": "26.494689274580665",
+      "fused_context_corrected_difference_rms_down_dph": "12.407128362641462",
+      "fused_context_corrected_matched_seconds": "505",
+      "left_disposition": "unresolved",
+      "left_filename": "ILVIS0_applanix_57291_610_DMS_26Sept15DMS.013",
+      "left_segment_id": "e6629f14d2e03e471a446e06",
+      "level_course_proxy_difference_across_left_dph": "-0.10951213872395107",
+      "level_course_proxy_difference_along_dph": "0.0027416498621233177",
+      "level_course_proxy_difference_down_dph": "0.05104694545566647",
+      "level_course_proxy_difference_rms_across_left_dph": "5.747608472610751",
+      "level_course_proxy_difference_rms_along_dph": "3.6829477349752078",
+      "level_course_proxy_difference_rms_down_dph": "3.8137629618378033",
+      "level_course_proxy_matched_seconds": "505",
+      "matched_raw_seconds": "505",
+      "matched_receiver_epochs": "506",
+      "maximum_height_separation_m": "0.8799999999991996",
+      "maximum_track_separation_m": "0.2208283845188854",
+      "overlap_duration_s": "505.82821800070815",
+      "overlap_end_utc": "2015-09-26T14:10:47Z",
+      "overlap_end_utc_week_s": "569447.0",
+      "overlap_start_utc": "2015-09-26T14:02:21.171782Z",
+      "overlap_start_utc_week_s": "568941.1717819993",
+      "priority_pair": "True",
+      "raw_aircraft_difference_rms_x_dph": "3.6829477349752078",
+      "raw_aircraft_difference_rms_y_dph": "5.747608472610751",
+      "raw_aircraft_difference_rms_z_dph": "2.152917737669348",
+      "raw_aircraft_difference_x_dph": "0.0027416498621233177",
+      "raw_aircraft_difference_y_dph": "0.10951213872395107",
+      "raw_aircraft_difference_z_dph": "0.050216571225061755",
+      "raw_aircraft_matched_seconds": "505",
+      "right_disposition": "globe",
+      "right_filename": "ILVIS0_applanix_57291_610_loaner_26Sept15LVIS.013",
+      "right_segment_id": "abe881b5c87cc878226a9aef",
+      "same_track_candidate": "True",
+      "shared_leg_id": "leg-9c109162b404"
+    },
+    {
+      "completion_mismatch": false,
+      "difference_sign": "left minus right",
+      "fused_context_corrected_difference_across_left_dph": "-3.720223429032449",
+      "fused_context_corrected_difference_along_dph": "-0.6319610636836851",
+      "fused_context_corrected_difference_down_dph": "0.4799757590114305",
+      "fused_context_corrected_difference_rms_across_left_dph": "42.90700417946558",
+      "fused_context_corrected_difference_rms_along_dph": "21.918934419039733",
+      "fused_context_corrected_difference_rms_down_dph": "7.785273296003806",
+      "fused_context_corrected_matched_seconds": "454",
+      "left_disposition": "unresolved",
+      "left_filename": "ILVIS0_applanix_57294_610_DMS_29Sept15DMS.013",
+      "left_segment_id": "01177d345ecb28bcfdcc6a4f",
+      "level_course_proxy_difference_across_left_dph": "-0.2281398847820465",
+      "level_course_proxy_difference_along_dph": "0.07071306435844477",
+      "level_course_proxy_difference_down_dph": "0.1567458052131295",
+      "level_course_proxy_difference_rms_across_left_dph": "19.808613734316733",
+      "level_course_proxy_difference_rms_along_dph": "9.429527004754856",
+      "level_course_proxy_difference_rms_down_dph": "9.987162203990657",
+      "level_course_proxy_matched_seconds": "454",
+      "matched_raw_seconds": "454",
+      "matched_receiver_epochs": "455",
+      "maximum_height_separation_m": "0.6399999999994179",
+      "maximum_track_separation_m": "0.8603545540500247",
+      "overlap_duration_s": "454.9123909958871",
+      "overlap_end_utc": "2015-09-29T12:56:32Z",
+      "overlap_end_utc_week_s": "219392.0",
+      "overlap_start_utc": "2015-09-29T12:48:57.087609Z",
+      "overlap_start_utc_week_s": "218937.0876090041",
+      "priority_pair": "False",
+      "raw_aircraft_difference_rms_x_dph": "9.429527004754856",
+      "raw_aircraft_difference_rms_y_dph": "19.808613734316733",
+      "raw_aircraft_difference_rms_z_dph": "2.446354076115094",
+      "raw_aircraft_difference_x_dph": "0.07071306435844477",
+      "raw_aircraft_difference_y_dph": "0.2281398847820465",
+      "raw_aircraft_difference_z_dph": "0.13394674943247398",
+      "raw_aircraft_matched_seconds": "454",
+      "right_disposition": "unresolved",
+      "right_filename": "ILVIS0_applanix_57294_610_loaner_29Sept15LVIS.013",
+      "right_segment_id": "dac266ab5c198050d25b17f6",
+      "same_track_candidate": "True",
+      "shared_leg_id": "leg-63c877c00c40"
+    },
+    {
+      "completion_mismatch": true,
+      "difference_sign": "left minus right",
+      "fused_context_corrected_difference_across_left_dph": "-1.405744183283905",
+      "fused_context_corrected_difference_along_dph": "3.4035588417498386",
+      "fused_context_corrected_difference_down_dph": "0.15853159832426916",
+      "fused_context_corrected_difference_rms_across_left_dph": "14.949711841911768",
+      "fused_context_corrected_difference_rms_along_dph": "22.925787016092873",
+      "fused_context_corrected_difference_rms_down_dph": "8.87268697823398",
+      "fused_context_corrected_matched_seconds": "59",
+      "left_disposition": "unresolved",
+      "left_filename": "ILVIS0_applanix_57298_610_DMS_03Oct15DMS.013",
+      "left_segment_id": "f50ff54d2e6175d2e8277823",
+      "level_course_proxy_difference_across_left_dph": "-0.08721602715619407",
+      "level_course_proxy_difference_along_dph": "-0.00464086960569616",
+      "level_course_proxy_difference_down_dph": "0.11809144768299214",
+      "level_course_proxy_difference_rms_across_left_dph": "2.9434846567510813",
+      "level_course_proxy_difference_rms_along_dph": "2.7422949728474535",
+      "level_course_proxy_difference_rms_down_dph": "2.878164373297951",
+      "level_course_proxy_matched_seconds": "504",
+      "matched_raw_seconds": "504",
+      "matched_receiver_epochs": "505",
+      "maximum_height_separation_m": "0.886000000000422",
+      "maximum_track_separation_m": "0.3579171871825745",
+      "overlap_duration_s": "504.9529230000917",
+      "overlap_end_utc": "2015-10-03T14:27:08Z",
+      "overlap_end_utc_week_s": "570428.0",
+      "overlap_start_utc": "2015-10-03T14:18:43.047077Z",
+      "overlap_start_utc_week_s": "569923.0470769999",
+      "priority_pair": "False",
+      "raw_aircraft_difference_rms_x_dph": "2.7422949728474535",
+      "raw_aircraft_difference_rms_y_dph": "2.9434846567510813",
+      "raw_aircraft_difference_rms_z_dph": "2.243004200921949",
+      "raw_aircraft_difference_x_dph": "-0.00464086960569616",
+      "raw_aircraft_difference_y_dph": "0.08721602715619407",
+      "raw_aircraft_difference_z_dph": "0.11307774565863296",
+      "raw_aircraft_matched_seconds": "504",
+      "right_disposition": "globe",
+      "right_filename": "ILVIS0_applanix_57298_610_loaner_03Oct15LVIS.013",
+      "right_segment_id": "d4e793dd58b79bf4d95c692b",
+      "same_track_candidate": "True",
+      "shared_leg_id": "leg-57f1dae19c0f"
+    },
+    {
+      "completion_mismatch": true,
+      "difference_sign": "left minus right",
+      "fused_context_corrected_difference_across_left_dph": "-0.5675542739488019",
+      "fused_context_corrected_difference_along_dph": "1.0268139326190315",
+      "fused_context_corrected_difference_down_dph": "-0.09481934788562955",
+      "fused_context_corrected_difference_rms_across_left_dph": "61.87825855763849",
+      "fused_context_corrected_difference_rms_along_dph": "36.69369433093948",
+      "fused_context_corrected_difference_rms_down_dph": "9.327202177708505",
+      "fused_context_corrected_matched_seconds": "519",
+      "left_disposition": "unresolved",
+      "left_filename": "ILVIS0_applanix_57302_610_DMS_07Oct15DMS.013",
+      "left_segment_id": "a953c8ddf4fae255674de128",
+      "level_course_proxy_difference_across_left_dph": "-0.22805179787255994",
+      "level_course_proxy_difference_along_dph": "-0.0025027529829157644",
+      "level_course_proxy_difference_down_dph": "0.214014368047883",
+      "level_course_proxy_difference_rms_across_left_dph": "24.12633905718913",
+      "level_course_proxy_difference_rms_along_dph": "12.116391883295439",
+      "level_course_proxy_difference_rms_down_dph": "4.707425145948792",
+      "level_course_proxy_matched_seconds": "519",
+      "matched_raw_seconds": "519",
+      "matched_receiver_epochs": "520",
+      "maximum_height_separation_m": "0.9089999999996508",
+      "maximum_track_separation_m": "0.3526370937093677",
+      "overlap_duration_s": "519.9022459965199",
+      "overlap_end_utc": "2015-10-07T13:36:31Z",
+      "overlap_end_utc_week_s": "308191.0",
+      "overlap_start_utc": "2015-10-07T13:27:51.097754Z",
+      "overlap_start_utc_week_s": "307671.0977540035",
+      "priority_pair": "True",
+      "raw_aircraft_difference_rms_x_dph": "12.116391883295439",
+      "raw_aircraft_difference_rms_y_dph": "24.12633905718913",
+      "raw_aircraft_difference_rms_z_dph": "3.40429558748386",
+      "raw_aircraft_difference_x_dph": "-0.0025027529829157644",
+      "raw_aircraft_difference_y_dph": "0.22805179787255994",
+      "raw_aircraft_difference_z_dph": "0.19796784608006612",
+      "raw_aircraft_matched_seconds": "519",
+      "right_disposition": "globe",
+      "right_filename": "ILVIS0_applanix_57302_610_loaner_07Oct15LVIS.013",
+      "right_segment_id": "31d7e5019dfdc9e2e6387206",
+      "same_track_candidate": "True",
+      "shared_leg_id": "leg-bf6c72fb73b4"
+    },
+    {
+      "completion_mismatch": false,
+      "difference_sign": "left minus right",
+      "fused_context_corrected_difference_across_left_dph": "0.9242355980932888",
+      "fused_context_corrected_difference_along_dph": "1.335725034426187",
+      "fused_context_corrected_difference_down_dph": "-0.3209850792846383",
+      "fused_context_corrected_difference_rms_across_left_dph": "39.8955480275564",
+      "fused_context_corrected_difference_rms_along_dph": "32.793794867860086",
+      "fused_context_corrected_difference_rms_down_dph": "8.44729427329307",
+      "fused_context_corrected_matched_seconds": "405",
+      "left_disposition": "unresolved",
+      "left_filename": "ILVIS0_applanix_57305_610_DMS_10Oct15DMS.013",
+      "left_segment_id": "f66ab49757292bc3c396aba2",
+      "level_course_proxy_difference_across_left_dph": "-0.08983310407976165",
+      "level_course_proxy_difference_along_dph": "0.013753837140897776",
+      "level_course_proxy_difference_down_dph": "0.13432643369996905",
+      "level_course_proxy_difference_rms_across_left_dph": "10.70871592157634",
+      "level_course_proxy_difference_rms_along_dph": "4.528533463855944",
+      "level_course_proxy_difference_rms_down_dph": "4.945692101377748",
+      "level_course_proxy_matched_seconds": "405",
+      "matched_raw_seconds": "405",
+      "matched_receiver_epochs": "406",
+      "maximum_height_separation_m": "0.6920000000009168",
+      "maximum_track_separation_m": "0.514919386960273",
+      "overlap_duration_s": "405.0",
+      "overlap_end_utc": "2015-10-10T14:21:40Z",
+      "overlap_end_utc_week_s": "570100.0",
+      "overlap_start_utc": "2015-10-10T14:14:55Z",
+      "overlap_start_utc_week_s": "569695.0",
+      "priority_pair": "False",
+      "raw_aircraft_difference_rms_x_dph": "4.528533463855944",
+      "raw_aircraft_difference_rms_y_dph": "10.70871592157634",
+      "raw_aircraft_difference_rms_z_dph": "2.2989645431087427",
+      "raw_aircraft_difference_x_dph": "0.013753837140897776",
+      "raw_aircraft_difference_y_dph": "0.08983310407976165",
+      "raw_aircraft_difference_z_dph": "0.14739350741226728",
+      "raw_aircraft_matched_seconds": "405",
+      "right_disposition": "unresolved",
+      "right_filename": "ILVIS0_applanix_57305_610_loaner_10Oct15LVIS.013",
+      "right_segment_id": "9f4d888995ab94bb8eff4df6",
+      "same_track_candidate": "True",
+      "shared_leg_id": "leg-a37ab8671511"
+    },
+    {
+      "completion_mismatch": true,
+      "difference_sign": "left minus right",
+      "fused_context_corrected_difference_across_left_dph": "-2.0277147418653327",
+      "fused_context_corrected_difference_along_dph": "-0.4508314891197691",
+      "fused_context_corrected_difference_down_dph": "-0.1774071542862799",
+      "fused_context_corrected_difference_rms_across_left_dph": "35.601157066976285",
+      "fused_context_corrected_difference_rms_along_dph": "41.25523881693283",
+      "fused_context_corrected_difference_rms_down_dph": "10.09032880070611",
+      "fused_context_corrected_matched_seconds": "492",
+      "left_disposition": "unresolved",
+      "left_filename": "ILVIS0_applanix_57312_610_DMS_17Oct15DMS.013",
+      "left_segment_id": "a6e658d1550299e4eb9f00a3",
+      "level_course_proxy_difference_across_left_dph": "-0.08614353445586592",
+      "level_course_proxy_difference_along_dph": "0.006775261081356405",
+      "level_course_proxy_difference_down_dph": "0.07559484090917021",
+      "level_course_proxy_difference_rms_across_left_dph": "23.13671259876475",
+      "level_course_proxy_difference_rms_along_dph": "11.958561087391574",
+      "level_course_proxy_difference_rms_down_dph": "4.783330462178237",
+      "level_course_proxy_matched_seconds": "492",
+      "matched_raw_seconds": "492",
+      "matched_receiver_epochs": "493",
+      "maximum_height_separation_m": "0.5969999999997526",
+      "maximum_track_separation_m": "0.23990468184231628",
+      "overlap_duration_s": "492.0",
+      "overlap_end_utc": "2015-10-17T13:25:56Z",
+      "overlap_end_utc_week_s": "566756.0",
+      "overlap_start_utc": "2015-10-17T13:17:44Z",
+      "overlap_start_utc_week_s": "566264.0",
+      "priority_pair": "False",
+      "raw_aircraft_difference_rms_x_dph": "11.958561087391574",
+      "raw_aircraft_difference_rms_y_dph": "23.13671259876475",
+      "raw_aircraft_difference_rms_z_dph": "3.0798644453604234",
+      "raw_aircraft_difference_x_dph": "0.006775261081356405",
+      "raw_aircraft_difference_y_dph": "0.08614353445586592",
+      "raw_aircraft_difference_z_dph": "0.05865976790272665",
+      "raw_aircraft_matched_seconds": "492",
+      "right_disposition": "globe",
+      "right_filename": "ILVIS0_applanix_57312_610_loaner_17Oct15LVIS.013",
+      "right_segment_id": "8cc288f5de7e88878c04b7f1",
+      "same_track_candidate": "True",
+      "shared_leg_id": "leg-1c0a0583b775"
+    },
+    {
+      "completion_mismatch": true,
+      "difference_sign": "left minus right",
+      "fused_context_corrected_difference_across_left_dph": "-0.7536371646386714",
+      "fused_context_corrected_difference_along_dph": "-2.471882498185599",
+      "fused_context_corrected_difference_down_dph": "1.003438145470774",
+      "fused_context_corrected_difference_rms_across_left_dph": "24.32645397502543",
+      "fused_context_corrected_difference_rms_along_dph": "39.504371811339894",
+      "fused_context_corrected_difference_rms_down_dph": "11.159723981477118",
+      "fused_context_corrected_matched_seconds": "408",
+      "left_disposition": "unresolved",
+      "left_filename": "ILVIS0_applanix_57315_610_DMS_20Oct15DMS.013",
+      "left_segment_id": "50f24131843071ae9312c082",
+      "level_course_proxy_difference_across_left_dph": "-0.0961387211146914",
+      "level_course_proxy_difference_along_dph": "0.03369428853764665",
+      "level_course_proxy_difference_down_dph": "0.033733566452334246",
+      "level_course_proxy_difference_rms_across_left_dph": "7.902640246408184",
+      "level_course_proxy_difference_rms_along_dph": "4.085847563944619",
+      "level_course_proxy_difference_rms_down_dph": "5.5551610857685105",
+      "level_course_proxy_matched_seconds": "408",
+      "matched_raw_seconds": "408",
+      "matched_receiver_epochs": "409",
+      "maximum_height_separation_m": "0.4499999999989086",
+      "maximum_track_separation_m": "0.21312216405575357",
+      "overlap_duration_s": "408.0",
+      "overlap_end_utc": "2015-10-20T13:24:12Z",
+      "overlap_end_utc_week_s": "221052.0",
+      "overlap_start_utc": "2015-10-20T13:17:24Z",
+      "overlap_start_utc_week_s": "220644.0",
+      "priority_pair": "False",
+      "raw_aircraft_difference_rms_x_dph": "4.085847563944619",
+      "raw_aircraft_difference_rms_y_dph": "7.902640246408184",
+      "raw_aircraft_difference_rms_z_dph": "2.2975828996952004",
+      "raw_aircraft_difference_x_dph": "0.03369428853764665",
+      "raw_aircraft_difference_y_dph": "0.0961387211146914",
+      "raw_aircraft_difference_z_dph": "0.019319178851001605",
+      "raw_aircraft_matched_seconds": "408",
+      "right_disposition": "globe",
+      "right_filename": "ILVIS0_applanix_57315_610_loaner_20Oct15LVIS.013",
+      "right_segment_id": "61e1b08da0912019eb521cd9",
+      "same_track_candidate": "True",
+      "shared_leg_id": "leg-8e6717c0a5a0"
+    },
+    {
+      "completion_mismatch": false,
+      "difference_sign": "left minus right",
+      "fused_context_corrected_difference_across_left_dph": "0.14939296996441156",
+      "fused_context_corrected_difference_along_dph": "-0.5158510948393231",
+      "fused_context_corrected_difference_down_dph": "0.2592017411775198",
+      "fused_context_corrected_difference_rms_across_left_dph": "14.305274272346647",
+      "fused_context_corrected_difference_rms_along_dph": "16.95072424865705",
+      "fused_context_corrected_difference_rms_down_dph": "8.138476803741112",
+      "fused_context_corrected_matched_seconds": "232",
+      "left_disposition": "unresolved",
+      "left_filename": "ILVIS0_applanix_57320_610_DMS_25Oct15DMS.013",
+      "left_segment_id": "370cec66878c4c1cf84b4ceb",
+      "level_course_proxy_difference_across_left_dph": "-0.16572849434913237",
+      "level_course_proxy_difference_along_dph": "-0.012963122501818405",
+      "level_course_proxy_difference_down_dph": "-0.04438534989774925",
+      "level_course_proxy_difference_rms_across_left_dph": "4.693148822344051",
+      "level_course_proxy_difference_rms_along_dph": "3.7216233237308938",
+      "level_course_proxy_difference_rms_down_dph": "3.6560428868251185",
+      "level_course_proxy_matched_seconds": "232",
+      "matched_raw_seconds": "232",
+      "matched_receiver_epochs": "233",
+      "maximum_height_separation_m": "0.2890000000006694",
+      "maximum_track_separation_m": "0.24383850773834326",
+      "overlap_duration_s": "232.0",
+      "overlap_end_utc": "2015-10-25T13:18:17Z",
+      "overlap_end_utc_week_s": "47897.0",
+      "overlap_start_utc": "2015-10-25T13:14:25Z",
+      "overlap_start_utc_week_s": "47665.0",
+      "priority_pair": "False",
+      "raw_aircraft_difference_rms_x_dph": "3.7216233237308938",
+      "raw_aircraft_difference_rms_y_dph": "4.693148822344051",
+      "raw_aircraft_difference_rms_z_dph": "2.06475034470076",
+      "raw_aircraft_difference_x_dph": "-0.012963122501818405",
+      "raw_aircraft_difference_y_dph": "0.16572849434913237",
+      "raw_aircraft_difference_z_dph": "0.00044557312722873655",
+      "raw_aircraft_matched_seconds": "232",
+      "right_disposition": "unresolved",
+      "right_filename": "ILVIS0_applanix_57320_610_loaner_25Oct15LVIS.013",
+      "right_segment_id": "2eb8727803b318a39937e7ec",
+      "same_track_candidate": "True",
+      "shared_leg_id": "leg-47a9a0ba5806"
+    },
+    {
+      "completion_mismatch": false,
+      "difference_sign": "left minus right",
+      "fused_context_corrected_difference_across_left_dph": "-0.0039010507076823586",
+      "fused_context_corrected_difference_along_dph": "1.2838433958123074",
+      "fused_context_corrected_difference_down_dph": "0.026491449913108468",
+      "fused_context_corrected_difference_rms_across_left_dph": "14.973820002702181",
+      "fused_context_corrected_difference_rms_along_dph": "19.716324756850312",
+      "fused_context_corrected_difference_rms_down_dph": "10.69348168257173",
+      "fused_context_corrected_matched_seconds": "427",
+      "left_disposition": "unresolved",
+      "left_filename": "ILVIS0_applanix_57322_610_DMS_27Oct15bDMS.013",
+      "left_segment_id": "2a56eb8fa7d4e10c9a867bb0",
+      "level_course_proxy_difference_across_left_dph": "-0.15201937495382023",
+      "level_course_proxy_difference_along_dph": "0.027273357691371472",
+      "level_course_proxy_difference_down_dph": "0.019353009458857484",
+      "level_course_proxy_difference_rms_across_left_dph": "3.32293860498351",
+      "level_course_proxy_difference_rms_along_dph": "3.139850386698487",
+      "level_course_proxy_difference_rms_down_dph": "8.781278027084001",
+      "level_course_proxy_matched_seconds": "427",
+      "matched_raw_seconds": "427",
+      "matched_receiver_epochs": "428",
+      "maximum_height_separation_m": "0.9540000000015425",
+      "maximum_track_separation_m": "0.39787758678134244",
+      "overlap_duration_s": "427.0",
+      "overlap_end_utc": "2015-10-27T14:34:30Z",
+      "overlap_end_utc_week_s": "225270.0",
+      "overlap_start_utc": "2015-10-27T14:27:23Z",
+      "overlap_start_utc_week_s": "224843.0",
+      "priority_pair": "False",
+      "raw_aircraft_difference_rms_x_dph": "3.139850386698487",
+      "raw_aircraft_difference_rms_y_dph": "3.32293860498351",
+      "raw_aircraft_difference_rms_z_dph": "2.1764890900035834",
+      "raw_aircraft_difference_x_dph": "0.027273357691371472",
+      "raw_aircraft_difference_y_dph": "0.15201937495382023",
+      "raw_aircraft_difference_z_dph": "0.010487949261446276",
+      "raw_aircraft_matched_seconds": "427",
+      "right_disposition": "unresolved",
+      "right_filename": "ILVIS0_applanix_57322_610_loaner_27Oct15bLVIS.013",
+      "right_segment_id": "013fdb894ff28509889a8896",
+      "same_track_candidate": "True",
+      "shared_leg_id": "leg-b8eb186f98a8"
+    },
+    {
+      "completion_mismatch": false,
+      "difference_sign": "left minus right",
+      "fused_context_corrected_difference_across_left_dph": "0.5304380598712234",
+      "fused_context_corrected_difference_along_dph": "-1.7759190888930043",
+      "fused_context_corrected_difference_down_dph": "0.35972959155118944",
+      "fused_context_corrected_difference_rms_across_left_dph": "42.57847722246461",
+      "fused_context_corrected_difference_rms_along_dph": "44.38351189493783",
+      "fused_context_corrected_difference_rms_down_dph": "12.069399152680697",
+      "fused_context_corrected_matched_seconds": "188",
+      "left_disposition": "globe",
+      "left_filename": "ILVIS0_applanix_57324_610_DMS_29Oct15DMS.013",
+      "left_segment_id": "5a642167dfb523f6c9cc284c",
+      "level_course_proxy_difference_across_left_dph": "-0.450059076423833",
+      "level_course_proxy_difference_along_dph": "0.1138031086333642",
+      "level_course_proxy_difference_down_dph": "0.26206183558065266",
+      "level_course_proxy_difference_rms_across_left_dph": "9.380530382360412",
+      "level_course_proxy_difference_rms_along_dph": "6.400874530669457",
+      "level_course_proxy_difference_rms_down_dph": "4.80133511832303",
+      "level_course_proxy_matched_seconds": "188",
+      "matched_raw_seconds": "188",
+      "matched_receiver_epochs": "189",
+      "maximum_height_separation_m": "0.29099999999925785",
+      "maximum_track_separation_m": "0.23721648847695512",
+      "overlap_duration_s": "188.0",
+      "overlap_end_utc": "2015-10-29T13:20:04Z",
+      "overlap_end_utc_week_s": "393604.0",
+      "overlap_start_utc": "2015-10-29T13:16:56Z",
+      "overlap_start_utc_week_s": "393416.0",
+      "priority_pair": "False",
+      "raw_aircraft_difference_rms_x_dph": "6.400874530669457",
+      "raw_aircraft_difference_rms_y_dph": "9.380530382360412",
+      "raw_aircraft_difference_rms_z_dph": "4.627311386952018",
+      "raw_aircraft_difference_x_dph": "0.1138031086333642",
+      "raw_aircraft_difference_y_dph": "0.450059076423833",
+      "raw_aircraft_difference_z_dph": "0.14060309268168308",
+      "raw_aircraft_matched_seconds": "188",
+      "right_disposition": "globe",
+      "right_filename": "ILVIS0_applanix_57324_610_loaner_29Oct15LVIS.013",
+      "right_segment_id": "7ee5e21c025360c970124eeb",
+      "same_track_candidate": "True",
+      "shared_leg_id": "leg-530cceb77358"
+    }
+  ],
+  "repeated_predictions": [
+    {
+      "identity": "233183f67270980491416678::bias1_unsubtracted::sphere_rotating::repeat",
+      "native_predictions": 0,
+      "numerical_agreement": true,
+      "observed_fit_starts": 0,
+      "primary_converged": true,
+      "qualified_repeatability": true,
+      "qualifies_archival_fit": false,
+      "relative_cost_difference": 3.306109267654227e-09,
+      "repeat_converged": true,
+      "track_difference_rms_neu_m": [
+        5.109109434705787e-07,
+        1.9392845103633944e-07,
+        1.3610706921845968e-06
+      ]
+    },
+    {
+      "identity": "3df34ea39a6cbdbe15bb0f36::bias1_unsubtracted::sphere_rotating::repeat",
+      "native_predictions": 0,
+      "numerical_agreement": true,
+      "observed_fit_starts": 0,
+      "primary_converged": false,
+      "qualified_repeatability": false,
+      "qualifies_archival_fit": false,
+      "relative_cost_difference": 1.9086403927098087e-10,
+      "repeat_converged": true,
+      "track_difference_rms_neu_m": [
+        3.8117006941088425e-05,
+        1.369311311847204e-05,
+        2.9070741242517363e-06
+      ]
+    },
+    {
+      "identity": "a953c8ddf4fae255674de128::bias1_profiled_removal::sphere_rotating::repeat",
+      "native_predictions": 0,
+      "numerical_agreement": true,
+      "observed_fit_starts": 0,
+      "primary_converged": false,
+      "qualified_repeatability": false,
+      "qualifies_archival_fit": false,
+      "relative_cost_difference": 9.756839375744291e-09,
+      "repeat_converged": false,
+      "track_difference_rms_neu_m": [
+        2.149467898176852e-07,
+        4.66164272924188e-08,
+        2.403396890682706e-07
+      ]
+    },
+    {
+      "identity": "e6629f14d2e03e471a446e06::bias1_profiled_removal::sphere_still::repeat",
+      "native_predictions": 0,
+      "numerical_agreement": true,
+      "observed_fit_starts": 0,
+      "primary_converged": true,
+      "qualified_repeatability": true,
+      "qualifies_archival_fit": false,
+      "relative_cost_difference": 1.068999788240141e-09,
+      "repeat_converged": true,
+      "track_difference_rms_neu_m": [
+        3.207306126374279e-05,
+        0.000446091633605326,
+        5.476887389356551e-06
+      ]
+    }
+  ],
+  "scientific_decision": "abstain",
+  "version": "ilvis0-shared-leg-stopping-audit-v1"
+}

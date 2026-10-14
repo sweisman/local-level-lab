@@ -57,3 +57,64 @@ def test_failed_comparison_is_preserved_as_unknown():
     row['recovery_checks_passed'] = False
     row['cases'][0]['fits'][0]['converged'] = False
     assert report.recovery_updates(original, recovery)['unfinished']['profile']['conditional_shape_preference'] == 'unresolved'
+
+
+def precision_example():
+    original, recovery = examples()
+    before = report.recovery_updates(original, recovery)
+    before['unfinished']['profile']['conditional_shape_preference'] = 'unresolved'
+    row = copy.deepcopy(recovery['comparisons'][0])
+    row['profile']['conditional_shape_preference'] = 'globe'
+    trial = dict(state='complete', comparisons=[row], qualification=dict(
+        qualified=True, controls_passed=True,
+        repeatability=[dict(identity='unfinished::case::model::repeat', passed=True)]))
+    return before, trial
+
+
+def test_qualified_precision_overlay_preserves_old_results():
+    before, trial = precision_example()
+    saved = copy.deepcopy(before)
+    updates = report.precision_updates(before, trial, ['unfinished'])
+    assert updates['unfinished']['profile']['conditional_shape_preference'] == 'globe'
+    assert before == saved
+
+
+@pytest.mark.parametrize('failure', ['control', 'repeat', 'primary', 'missing', 'duplicate', 'active', 'unqualified', 'already_resolved'])
+def test_precision_overlay_requires_all_qualification_checks(failure):
+    before, trial = precision_example()
+    if failure == 'control': trial['qualification']['controls_passed'] = False
+    elif failure == 'repeat': trial['qualification']['repeatability'][0]['passed'] = False
+    elif failure == 'primary': trial['comparisons'][0]['cases'][0]['fits'][0]['converged'] = False
+    elif failure == 'missing': trial['comparisons'] = []
+    elif failure == 'duplicate': trial['comparisons'] *= 2
+    elif failure == 'active': trial['state'] = 'fitting'
+    elif failure == 'unqualified': trial['qualification']['qualified'] = False
+    else: before['unfinished']['profile']['conditional_shape_preference'] = 'globe'
+    with pytest.raises(ValueError): report.precision_updates(before, trial, ['unfinished'])
+
+
+def test_cost_recovery_publishes_only_complete_stretches_when_whole_run_fails():
+    before, trial = precision_example()
+    trial['qualification']['qualified'] = False
+    before['other'] = copy.deepcopy(before['unfinished'])
+    row = copy.deepcopy(trial['comparisons'][0]); row['segment_id'] = 'other'
+    row['cases'][0]['fits'][0]['converged'] = False
+    row['profile']['conditional_shape_preference'] = 'unresolved'
+    trial['comparisons'].append(row)
+    trial['qualification']['repeatability'].append(dict(identity='other::case::model::repeat',passed=True))
+    updates = report.cost_precision_updates(before, trial, ['unfinished','other'])
+    assert updates['unfinished']['profile']['conditional_shape_preference'] == 'globe'
+    assert updates['other']['profile']['conditional_shape_preference'] == 'unresolved'
+
+
+@pytest.mark.parametrize('failure',['control','repeat','primary','missing','duplicate','active'])
+def test_cost_recovery_never_promotes_an_unqualified_stretch(failure):
+    before, trial = precision_example()
+    trial['qualification']['qualified'] = False
+    if failure == 'control': trial['qualification']['controls_passed'] = False
+    elif failure == 'repeat': trial['qualification']['repeatability'][0]['passed'] = False
+    elif failure == 'primary': trial['comparisons'][0]['cases'][0]['fits'][0]['converged'] = False
+    elif failure == 'missing': trial['comparisons'] = []
+    elif failure == 'duplicate': trial['comparisons'] *= 2
+    else: trial['state'] = 'fitting'
+    with pytest.raises(ValueError): report.cost_precision_updates(before, trial, ['unfinished'])

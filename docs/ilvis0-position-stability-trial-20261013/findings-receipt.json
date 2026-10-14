@@ -1,8 +1,8 @@
 {
   "artifacts": {
-    "FINDINGS.md": "3aeea39acb615b8263da04ff54dc3caf4ecff2f248e4f1c0cfaa301be84f4385",
-    "STRETCHES.md": "88985af0ec0d66de31ec5e5e5b3eac2dbe56cd4fc8ebbb5f34c712b09457aa32",
-    "current-stretches.csv": "e75bcf6483246720c02f4c599a8d9b4d45a783b435b05c16dcb353d7e598485d"
+    "FINDINGS.md": "5e69999fc2b974ecbab69a0d7cae7f03f1bbb66ad38161f57c118c535989a03a",
+    "STRETCHES.md": "3d377a424e2ba8083e1b17be2a07d41641f29d879c540d4205ccbbc55c6fb973",
+    "current-stretches.csv": "0ff134a81abf347f7351a657a607b0e3f420eac190d8aa1b103e7415059c659c"
   },
   "inputs": {
     "data/ilvis0-position-stability-trial-20261013/completion.json": "cd3bd6b805ca8975f5d018397308302508007336b370c36991f324151269df8f",
@@ -10,10 +10,22 @@
     "data/ilvis0-position-stability-trial-20261013/starts.jsonl": "ce0c453c0d232949ac74b3e3b9e852c1bc99c28d373c142b9526b66c9bef78b7",
     "data/ilvis0-position-stability-trial-20261013/summary.json": "92b2d745d4eed6202f85feb3c9fd192c85f91f5f3f0ce5883757ec7c727eb2b0",
     "data/ilvis0-position-stability-trial-20261013/sweeps.jsonl": "2b13782e82e11e518cda4863f83750ee1d52094708028e3a78ee57687e12bfe1",
+    "docs/ilvis0-cost-precision-recovery-20261014/completion.json": "76ad6f0a0bcdc4a0a16577ed21cefd6f38282fc4d10f8f845989afc0ff659fa2",
+    "docs/ilvis0-cost-precision-recovery-20261014/evidence-receipt.json": "e3c9ca531ee688bb7e600582643d1ffcabc89a740765a53162ed7e91883a24c8",
+    "docs/ilvis0-cost-precision-recovery-20261014/manifest.json": "7ca067ee16808afaa0832f3cea8653e88d60743eff5e6836d26a55f1117387c1",
+    "docs/ilvis0-cost-precision-recovery-20261014/starts.jsonl": "75c56913d7a1718a626b20c000b921fbe4d15c821b516b4b0764ce292ca384b6",
+    "docs/ilvis0-cost-precision-recovery-20261014/summary.json": "684b5a84581b1b846ad557b47d0114502d58f753c01de946cbf99dc8d7fcbf75",
+    "docs/ilvis0-cost-precision-recovery-20261014/sweeps.jsonl": "1cbafc3a9fb9524fe9493e9b0d9b66ff1e72401e0befe0cdef7a2dc80dd21f5e",
     "docs/ilvis0-highspeed-segments-20261008/eligible-stretches.csv": "a5abfa6775b3f39025dad33165ae4c9e62ca6df4365fbaebfc9684f21de29044",
     "docs/ilvis0-highspeed-segments-20261008/evidence-receipt.json": "b082549083356dbdc48fe4421daf6f9cb36086c6f4f851475bef75e130b8f187",
     "docs/ilvis0-highspeed-segments-20261008/selection.json.gz": "934dea342a64b716533732d7ab0e961d23709cf37499faf7cee8e4c386778809",
     "docs/ilvis0-highspeed-segments-20261008/summary.json.gz": "41654f27764dc8af26e83c42ba291c76ebc1eb77ed579523baab6d80190642fa",
+    "docs/ilvis0-paired-precision-trial-20261014/completion.json": "63b876996a683f75f70d9ce0c850fa7c8d1b39daa4cda089bcb723b615aeb273",
+    "docs/ilvis0-paired-precision-trial-20261014/evidence-receipt.json": "1d66cc7bc62a8f564f6c5aefc07c8789283906222646df396940fcf102f3b06d",
+    "docs/ilvis0-paired-precision-trial-20261014/manifest.json": "bd5c8faed37be722ed666cbbd27fcf82fa477d5f1a91c7514d58827af4bfbed8",
+    "docs/ilvis0-paired-precision-trial-20261014/starts.jsonl": "2b4c5e80c0f95673dd4cd16e7bbb3e2ed44ff19a54693429d87d15f1cebe0a49",
+    "docs/ilvis0-paired-precision-trial-20261014/summary.json": "af536393b5e61c59f57c61d6f7d18157dc11c2d23037d9b77bc553a88bd9ae9f",
+    "docs/ilvis0-paired-precision-trial-20261014/sweeps.jsonl": "4e5b19b6f9926bbb9726f9a031b69ff46d05eed27aaff528d6694784ecfe6963",
     "docs/ilvis0-position-recovery-20261013/completion.json": "41381a759ef9bd6f015e0d2920847c419445c8634fd93f5010d89e0cec8100d0",
     "docs/ilvis0-position-recovery-20261013/evidence-receipt.json": "21ff354d3cf7e1f929a9ee6ebda74e5276daf9c7c51a6a83eb7745034e4a6684",
     "docs/ilvis0-position-recovery-20261013/manifest.json": "969024701053674cb8e500df1b858cc7ef334f1b946cb9516e3cfb040ed44417",
@@ -23,12 +35,12 @@
   "observed_starts": 0,
   "original_files_read": 0,
   "sources": {
-    "docs/ilvis0-position-stability-trial-20261013/build_findings.py": "e9cab39ecf0febcd2f4bccdd2112f6795a449383591ec92da8644af5da949325"
+    "docs/ilvis0-position-stability-trial-20261013/build_findings.py": "167a1a06b05e0755c66c4ab6ab4134a5bf9966a4cc4e552f842432026cb5cabb"
   },
   "tally": {
     "ambiguous": 0,
     "flat": 0,
-    "globe": 30,
-    "unresolved": 23
+    "globe": 41,
+    "unresolved": 12
   }
 }

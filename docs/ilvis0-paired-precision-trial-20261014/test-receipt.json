@@ -1,0 +1,25 @@
+{
+  "environment": {
+    "numpy": "2.5.3",
+    "python": "3.14.7",
+    "scipy": "1.18.1",
+    "thread_settings": {
+      "MKL_NUM_THREADS": "4",
+      "OMP_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "observed_fit_starts": 0,
+  "passed": 23,
+  "sources": {
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_paired_precision_plan.py": "3d9bbbb286f5918b525a6c59a8e8b15ee53fe50ea29520930b76a87542307383",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_precision.py": "cd262cfc296edf37b15b6850218f5b63365226136eb654c257e4d630985af372",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_precision_probes.py": "d427533ada2d6ec7a3b169f75b0c909269b59d100163cf97adc7b06572c7514d",
+    "/site/repo/local-level-lab/analysis/tests/ilvis0_paired_precision_worker.py": "dd4ab0fb16f5291fea3309e12ec21318882ecfc90c51708d6af7952cca2f716f",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_paired_precision_plan.py": "0961f97d70bfa8dccb26f8fcec7ddcdd6d0c75b5d32539fe1a8d6af24fd77d32",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_paired_precision_worker.py": "b262619ca93747c3c4c54919fd4c68a8c9c9b215809be4ae7e02115039fb7561",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_precision.py": "bfdcd0954190068d6ea931ab09bd133c765802ef7e99e05d0bb6f93e865e827b",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_precision_probes.py": "1168b694a7e32cff0505ba1f24786de82a7432a94d25797a7dfd75d98cd880e9",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_precision_solver.py": "1afea828213768f768cf3385edb03a31586aba4e32957f0685fcec8e9e1c40dc"
+  }
+}

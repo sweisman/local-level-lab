@@ -12,6 +12,8 @@ HERE = Path(__file__).resolve().parent
 BASELINE = ROOT/'docs/ilvis0-highspeed-segments-20261008'
 TRIAL = ROOT/'data/ilvis0-position-stability-trial-20261013'
 RECOVERY = ROOT/'docs/ilvis0-position-recovery-20261013'
+PRECISION = ROOT/'docs/ilvis0-paired-precision-trial-20261014'
+COST_PRECISION = ROOT/'docs/ilvis0-cost-precision-recovery-20261014'
 
 
 def sha(path):
@@ -35,6 +37,62 @@ def recovery_updates(original, recovery):
                     or len(fits) != 6 or not all(f['converged'] for f in fits)):
                 raise ValueError('resolved recovery lacks complete primary/control/repeat checks')
     return updates
+
+
+def precision_updates(previous, trial, targets):
+    """Require a sealed, fully qualified trial; never replace a resolved result."""
+    rows = trial['comparisons']
+    updates = {r['segment_id']: r for r in rows}
+    checks = trial['qualification']
+    repeats = checks['repeatability']
+    if (trial['state'] != 'complete' or not checks['qualified'] or not checks['controls_passed']
+            or len(rows) != len(targets) or set(updates) != set(targets)
+            or len(repeats) != len(targets)
+            or {r['identity'].split('::')[0] for r in repeats} != set(targets)
+            or not all(r['passed'] for r in repeats)):
+        raise ValueError('complete precision qualification required')
+    for sid, row in updates.items():
+        fits = [f for c in row['cases'] for f in c['fits']]
+        if (sid not in previous or previous[sid]['profile']['conditional_shape_preference'] != 'unresolved'
+                or len(row['cases']) != 2 or len(fits) != 6 or not all(f['converged'] for f in fits)):
+            raise ValueError('precision result must cover six fits of an unresolved stretch')
+    return updates
+
+
+def cost_precision_updates(previous, trial, targets):
+    """A failed whole-run gate does not erase individually qualified stretches."""
+    rows = trial['comparisons']
+    updates = {r['segment_id']: r for r in rows}
+    checks = trial['qualification']
+    repeats = checks['repeatability']
+    repeat_by_id = {r['identity'].split('::')[0]: r['passed'] for r in repeats}
+    if (trial['state'] != 'complete' or len(rows) != len(targets) or set(updates) != set(targets)
+            or len(repeats) != len(targets) or set(repeat_by_id) != set(targets)):
+        raise ValueError('completed cost recovery must cover each frozen target once')
+    for sid, row in updates.items():
+        if sid not in previous or previous[sid]['profile']['conditional_shape_preference'] != 'unresolved':
+            raise ValueError('cost recovery cannot replace a resolved comparison')
+        fits = [f for c in row['cases'] for f in c['fits']]
+        if row['profile']['conditional_shape_preference'] != 'unresolved' and (
+                not checks['controls_passed'] or not repeat_by_id[sid] or len(row['cases']) != 2
+                or len(fits) != 6 or not all(f['converged'] for f in fits)):
+            raise ValueError('resolved cost recovery lacks primary/control/repeat checks')
+    return updates
+
+
+def sealed_precision(directory=PRECISION):
+    receipt = json.loads((directory/'evidence-receipt.json').read_text())
+    for name, digest in receipt['artifacts'].items():
+        if Path(name).name != name or sha(directory/name) != digest:
+            raise ValueError('precision publication hash mismatch')
+    complete = json.loads((directory/'completion.json').read_text())
+    if (complete['state'] != 'complete'
+            or sha(directory/'summary.json') != complete['summary_sha256']
+            or sha(directory/'manifest.json') != complete['manifest_sha256']
+            or any(sha(directory/n) != h for n, h in complete['journal_hashes'].items())):
+        raise ValueError('sealed precision trial required')
+    return (json.loads((directory/'summary.json').read_text()),
+            json.loads((directory/'manifest.json').read_text()))
 
 
 def route_context(fixes):
@@ -156,9 +214,15 @@ def main():
         raise ValueError('sealed recovery required')
     recovery = json.loads((RECOVERY/'summary.json').read_text())
     updates = recovery_updates(original, recovery)
+    precision, precision_manifest = sealed_precision()
+    precision_rows = precision_updates(updates, precision, precision_manifest['plan']['target_segment_ids'])
+    updates.update(precision_rows)
+    cost_precision, cost_manifest = sealed_precision(COST_PRECISION)
+    cost_rows = cost_precision_updates(updates, cost_precision, cost_manifest['plan']['target_segment_ids'])
+    updates.update(cost_rows)
     recovered = [r for r in updates.values()
                  if r['profile']['conditional_shape_preference'] == 'globe']
-    if len(records) != 53 or len(recovered) != 18:
+    if len(records) != 53 or len(recovered) != 29:
         raise ValueError('frozen population changed')
     rows = []
     for sid, old in records.items():
@@ -167,12 +231,13 @@ def main():
         rotation = result['profile']['rotation_diagnostics']
         background = bool(shape == 'globe' and rotation and
                           all(r['conditional_still_minus_rotating_cost'] > 0 for r in rotation))
-        rows.append(dict(inventory[sid], result_origin='completed_recovery' if sid in updates else 'original_first_pass',
+        origin = 'completed_cost_precision' if sid in cost_rows else 'qualified_paired_precision' if sid in precision_rows else 'completed_recovery' if sid in updates else 'original_first_pass'
+        rows.append(dict(inventory[sid], result_origin=origin,
                          shape_preference=shape, specified_background_preferred=background,
                          **route_context(tracks[sid])))
     tally = {label: sum(r['shape_preference'] == label for r in rows)
              for label in ('globe', 'flat', 'unresolved', 'ambiguous')}
-    if tally != recovery['combined_tally'] or tally != dict(globe=30, flat=0, unresolved=23, ambiguous=0):
+    if tally != dict(globe=41, flat=0, unresolved=12, ambiguous=0):
         raise ValueError('combined tally differs from declared findings')
     finished = [r for r in rows if r['shape_preference'] == 'globe']
     with (HERE/'current-stretches.csv').open('w', newline='') as stream:
@@ -181,28 +246,28 @@ def main():
         writer.writerows(sorted(rows, key=lambda r: (r['start_utc'], r['filename'])))
     (HERE/'STRETCHES.md').write_text(stretch_report(rows))
     text = '# Updated airborne findings\n\n'
-    text += '**30 globe preferences, zero flat, 23 unresolved** among the same 53 preselected stretches. '
-    text += 'The original study supplied 12 complete comparisons; numerical recovery adds 18, '
+    text += '**41 globe preferences, zero flat, 12 unresolved** among the same 53 preselected stretches. '
+    text += 'The original study supplied 12 complete comparisons; numerical recovery adds 29, '
     text += 'including the three previously recovered in the qualification trial. '
-    text += 'All thirty favor the specified background-field globe over the zero-field globe in both '
+    text += 'All forty-one favor the specified background-field globe over the zero-field globe in both '
     text += 'processing cases. This does not identify the field\'s physical cause or measure a solar-versus-sidereal difference.\n\n'
     text += 'These are numerical model preferences. Statistical significance and uncertainty remain '
     text += 'uncalibrated. The original observations, selected intervals and first-pass results are preserved.\n\n'
-    text += '## The eighteen recovered stretches\n\n'
+    text += '## The twenty-nine recovered stretches\n\n'
     text += '| Source recording | Recorded IMU type | UTC interval | Duration | Minimum / median ground speed |\n'
     text += '|---|---:|---|---:|---:|\n'
     for r in sorted((inventory[item['segment_id']] for item in recovered), key=lambda r: (r['start_utc'], r['filename'])):
         text += f"| `{r['filename']}` | {r['imu_type']} | {r['start_utc']} to {r['end_utc']} | {float(r['duration_s'])/60:.2f} min | {float(r['minimum_ground_speed_kmh']):.1f} / {float(r['median_ground_speed_kmh']):.1f} km/h |\n"
     minutes = sum(float(inventory[r['segment_id']]['duration_s']) for r in recovered)/60
-    text += f'\nThe eighteen stretches add **{minutes:.2f} minutes** of completed comparisons. '
+    text += f'\nThe twenty-nine stretches add **{minutes:.2f} minutes** of completed comparisons. '
     types = {kind: sum(str(r['imu_type']) == kind for r in finished) for kind in ('8', '21')}
     text += f"Completed findings include {types['8']} IMU8 and {types['21']} IMU21 stretches. "
     text += 'These codes identify instrument/data configurations, not unique unit serial numbers '
     text += 'or different experiment protocols. Their conversion scales are checked separately; '
     text += 'the selection and physical model comparisons are the same.\n\n'
     text += 'The two October 20 recordings overlap in time and must not be counted as two independent flights. '
-    text += f"The thirty resolved stretches contain {len({r['source_sha256'] for r in finished})} distinct recording hashes "
-    text += f"across {len({r['start_utc'][:10] for r in finished})} dates, not thirty established independent replications. "
+    text += f"The forty-one resolved stretches contain {len({r['source_sha256'] for r in finished})} distinct recording hashes "
+    text += f"across {len({r['start_utc'][:10] for r in finished})} dates, not forty-one established independent replications. "
     text += '[All 53 stretches](STRETCHES.md) list current dispositions, courses and latitudes. '
     text += '[The current inventory](current-stretches.csv) preserves exact sources, hashes, intervals, speeds and result origins.\n\n'
     text += '## What changed in the calculation\n\n'
@@ -224,14 +289,30 @@ def main():
     text += 'Some primary and repeat checks failed, so the entire run did not qualify every comparison; '
     text += 'only individually complete comparisons contribute to the findings. '
     text += 'Incomplete calculations remain unknown, rather than evidence for either shape.\n\n'
-    text += 'The next investigation compares overlapping flight legs whose instruments have different '
-    text += 'numerical completion outcomes. [All stretch metadata](ANALYTICS.md) retains last costs, '
+    text += '\n## Qualified wider-arithmetic recovery\n\n'
+    text += 'The [paired precision trial](../ilvis0-paired-precision-trial-20261014/RESULTS.md) passed '
+    text += 'all 16 fits, including both controls and both perturbed repeats, in 129 native sweeps. '
+    text += 'It adds the October 24, 2009 IMU8 and October 7, 2015 DMS stretches, bringing the tally '
+    text += 'to 32/0/21. Wider internal arithmetic removes rounding sensitivity in these cost-only '
+    text += 'stopping failures; measurements, physical models, calibration bounds, clock, receiver '
+    text += 'weights and stopping tolerances are unchanged. Neither repeats nor probes replace failed '
+    text += 'original fits. All earlier outcomes remain available.\n\n'
+    text += 'The [completed cost-only recovery](../ilvis0-cost-precision-recovery-20261014/RESULTS.md) '
+    text += 'passed 83/86 fits in 891 sweeps and about four hours: 69/72 primaries, both controls and '
+    text += 'all twelve repeats. Nine additional stretches pass their complete comparisons, giving '
+    text += '41/0/12. Three primary fits exhausted their forty-evaluation allowance, so those stretches '
+    text += 'remain unresolved; the nine excluded stationarity/position-failure stretches remain unchanged. '
+    text += 'The run did not qualify every target. Only individually complete comparisons are reported.\n\n'
+    text += 'Next are bounded continuations of the three budget failures, followed by a separate '
+    text += 'investigation of the other nine. [All stretch metadata](ANALYTICS.md) retains last costs, '
     text += 'stopping reasons and recorder-pair differences. No recorded interval or physical bound '
     text += 'was changed to obtain these recoveries.\n'
     (HERE/'FINDINGS.md').write_text(text)
     inputs = [BASELINE/'summary.json.gz', BASELINE/'eligible-stretches.csv', BASELINE/'selection.json.gz', BASELINE/'evidence-receipt.json',
               TRIAL/'completion.json']+[TRIAL/n for n in hashes]
     inputs += [RECOVERY/n for n in ('evidence-receipt.json', 'summary.json', 'completion.json', 'manifest.json')]
+    inputs += [PRECISION/n for n in ('evidence-receipt.json', 'summary.json', 'completion.json', 'manifest.json', 'starts.jsonl', 'sweeps.jsonl')]
+    inputs += [COST_PRECISION/n for n in ('evidence-receipt.json', 'summary.json', 'completion.json', 'manifest.json', 'starts.jsonl', 'sweeps.jsonl')]
     report = dict(inputs={str(p.relative_to(ROOT)): sha(p) for p in inputs},
                   sources={str(Path(__file__).relative_to(ROOT)): sha(__file__)},
                   artifacts={n: sha(HERE/n) for n in ('FINDINGS.md', 'STRETCHES.md', 'current-stretches.csv')},

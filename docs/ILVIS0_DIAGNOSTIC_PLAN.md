@@ -2,8 +2,9 @@
 
 The covariance/prediction comparison has finished with 10 of 12 fits converged and
 an unresolved combined hierarchy. The subsequent numerical recovery is complete:
-**30 globe preferences, none for flat and 23 unresolved stretches**. The next priority
-is comparing overlapping legs whose recorders have different completion outcomes;
+**41 globe preferences, none for flat and 12 unresolved stretches** after completed
+precision recovery. The next priority is bounded continuation of the three new
+budget failures, followed by separate assessment of the other nine;
 the [roadmap](ANALYSIS_ROADMAP.md) describes that investigation. Additional diagnostics
 below remain available for later development; preserve their completed evidence.
 

@@ -117,11 +117,11 @@ reported only after a resolved globe result. Reports state which model fits bett
 a validated statistical significance level has not yet been assigned.
 
 The [qualified recovery findings](ilvis0-position-stability-trial-20261013/FINDINGS.md)
-add eighteen completed globe preferences to the original twelve: **30 globe, zero flat,
-23 unresolved**. Completed findings include IMU8 and IMU21. These are recorded
+add twenty-nine completed globe preferences to the original twelve: **41 globe, zero flat,
+12 unresolved**. Completed findings include IMU8 and IMU21. These are recorded
 instrument/data configurations, not unique serial numbers or separate experimental
 protocols. Their units and conversion scales are checked separately; both follow
-the same selection and model-comparison rules. All thirty resolved stretches also
+the same selection and model-comparison rules. All forty-one resolved stretches also
 favor the specified background-field globe, without identifying that field's cause.
 
 The supplied 14 April 2009 ATM sample now passes an empirical physical-decoder check.

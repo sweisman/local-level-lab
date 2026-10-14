@@ -1,0 +1,6 @@
+{"identity": "3df34ea39a6cbdbe15bb0f36::bias1_unsubtracted::sphere_rotating::probe", "manifest_sha256": "f265176b84b19558d8cbaa74f952b90c997e3b7e90fdcffab43c5eb079aa79a8", "number": 1}
+{"identity": "233183f67270980491416678::bias1_unsubtracted::sphere_rotating::probe", "manifest_sha256": "f265176b84b19558d8cbaa74f952b90c997e3b7e90fdcffab43c5eb079aa79a8", "number": 2}
+{"identity": "e6629f14d2e03e471a446e06::bias1_profiled_removal::flat_still::probe", "manifest_sha256": "f265176b84b19558d8cbaa74f952b90c997e3b7e90fdcffab43c5eb079aa79a8", "number": 3}
+{"identity": "abe881b5c87cc878226a9aef::bias1_profiled_removal::flat_still::probe", "manifest_sha256": "f265176b84b19558d8cbaa74f952b90c997e3b7e90fdcffab43c5eb079aa79a8", "number": 4}
+{"identity": "a953c8ddf4fae255674de128::bias1_profiled_removal::sphere_rotating::probe", "manifest_sha256": "f265176b84b19558d8cbaa74f952b90c997e3b7e90fdcffab43c5eb079aa79a8", "number": 5}
+{"identity": "31d7e5019dfdc9e2e6387206::bias1_profiled_removal::sphere_rotating::probe", "manifest_sha256": "f265176b84b19558d8cbaa74f952b90c997e3b7e90fdcffab43c5eb079aa79a8", "number": 6}

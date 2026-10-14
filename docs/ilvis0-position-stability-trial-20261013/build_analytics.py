@@ -14,6 +14,8 @@ ROOT=Path(__file__).resolve().parents[2]
 HERE=Path(__file__).resolve().parent
 BASELINE=ROOT/'docs/ilvis0-highspeed-segments-20261008'
 RECOVERY=ROOT/'data/ilvis0-position-recovery-20261013'
+PRECISION=ROOT/'docs/ilvis0-paired-precision-trial-20261014'
+COST_PRECISION=ROOT/'docs/ilvis0-cost-precision-recovery-20261014'
 CACHE=ROOT/'data/ilvis0-stretch-analytics-20261013'
 CASES=('bias1_unsubtracted','bias1_profiled_removal')
 MODELS=('sphere_rotating','sphere_still','flat_still')
@@ -55,7 +57,8 @@ def fit_snapshot(original):
                  active_bounds=';'.join(fit.get('active_bounds',[])),
                  parameters=json.dumps(fit.get('parameters',{}),sort_keys=True))
         rows.append(row)
-        if role=='recovery' or origin=='original_first_pass': fits[(sid,case,model)]=row
+        if role=='recovery' or origin=='original_first_pass' or (role=='primary' and origin in ('qualified_paired_precision','completed_cost_precision')):
+            fits[(sid,case,model)]=row
     for record in original['results']:
         for case in record['cases']:
             for fit in case['fits']:
@@ -86,6 +89,32 @@ def fit_snapshot(original):
         inputs[str(path)]=hashlib.sha256(data).hexdigest()
         add(task['segment_id'],task['case_id'],task['model'],fit,
             'completed_wider_recovery' if completion else 'wider_recovery_snapshot',task['role'],task['identity'])
+    precision=load(PRECISION/'summary.json');manifest=load(PRECISION/'manifest.json')
+    seal=load(PRECISION/'completion.json');receipt=load(PRECISION/'evidence-receipt.json')
+    if (seal['state']!='complete' or not precision['qualification']['qualified']
+            or seal['summary_sha256']!=sha(PRECISION/'summary.json')
+            or seal['manifest_sha256']!=sha(PRECISION/'manifest.json')):
+        raise ValueError('qualified precision publication required')
+    for name in ('summary.json','manifest.json','completion.json','starts.jsonl','sweeps.jsonl'):
+        if sha(PRECISION/name)!=receipt['artifacts'][name]:
+            raise ValueError('precision publication integrity mismatch')
+        inputs[str(PRECISION/name)]=sha(PRECISION/name)
+    for task in manifest['plan']['tasks']:
+        add(task['segment_id'],task['case_id'],task['model'],precision['results'][task['identity']],
+            'qualified_paired_precision',task['role'],task['identity'])
+    cost=load(COST_PRECISION/'summary.json');manifest=load(COST_PRECISION/'manifest.json')
+    seal=load(COST_PRECISION/'completion.json');receipt=load(COST_PRECISION/'evidence-receipt.json')
+    if (seal['state']!='complete' or not cost['qualification']['controls_passed']
+            or seal['summary_sha256']!=sha(COST_PRECISION/'summary.json')
+            or seal['manifest_sha256']!=sha(COST_PRECISION/'manifest.json')):
+        raise ValueError('completed cost recovery publication required')
+    for name in ('summary.json','manifest.json','completion.json','starts.jsonl','sweeps.jsonl'):
+        if sha(COST_PRECISION/name)!=receipt['artifacts'][name]:
+            raise ValueError('cost recovery publication integrity mismatch')
+        inputs[str(COST_PRECISION/name)]=sha(COST_PRECISION/name)
+    for task in manifest['plan']['tasks']:
+        add(task['segment_id'],task['case_id'],task['model'],cost['results'][task['identity']],
+            'completed_cost_precision',task['role'],task['identity'])
     return fits,rows,inputs
 
 
@@ -106,6 +135,10 @@ def main():
     latest,fit_rows,fit_inputs=fit_snapshot(load(BASELINE/'summary.json.gz'))
     completed_recovery=load(RECOVERY/'summary.json') if (RECOVERY/'completion.json').exists() else None
     repeat_checks={r['identity'].split('::')[0]:r['passed'] for r in completed_recovery['qualification']['repeatability']} if completed_recovery else {}
+    repeat_checks.update({r['identity'].split('::')[0]:r['passed']
+                         for r in load(PRECISION/'summary.json')['qualification']['repeatability']})
+    repeat_checks.update({r['identity'].split('::')[0]:r['passed']
+                         for r in load(COST_PRECISION/'summary.json')['qualification']['repeatability']})
     pairs=[];parents={sid:sid for sid in selected}
     def parent(sid):
         while parents[sid]!=sid: sid=parents[sid]
@@ -198,7 +231,7 @@ def main():
                 for key in ('result_origin','stop_reason','converged','cost','evaluations','maximum_evaluations','message','stationarity','active_bounds'):
                     row[prefix+key]=fit[key]
         row['unfinished_reasons']=';'.join(sorted({latest[(sid,c,m)]['stop_reason'] for c in CASES for m in MODELS if not latest[(sid,c,m)]['converged']}))
-        repeats=[f for f in fit_rows if f['segment_id']==sid and f['role']=='repeatability']
+        repeats=[f for f in fit_rows if f['segment_id']==sid and f['role'] in ('repeatability','repeat')]
         repeat=repeats[-1] if repeats else None
         row['latest_repeat_status']=repeat['stop_reason'] if repeat else 'not_saved_or_not_scheduled'
         row['latest_repeat_origin']=repeat['result_origin'] if repeat else ''
@@ -243,7 +276,7 @@ def main():
     text+='## Stopping and shared tracks\n\n'
     text+='Every model is retained under both processing cases. `cost` is the last saved residual sum of squares, including unfinished endpoints; `stop_reason` separates budget, stall, stability check, stationarity check and execution error. Original messages, stationarity and active bounds remain available. A last cost from an unfinished fit is not a model exclusion or a tie. The published disposition remains the latest **qualified whole-stretch** comparison; partial wider-recovery fits do not change it. `latest_repeat_status` and `disposition_pending_reason` distinguish unfinished primaries, failed repeats and pending sealed qualification. Passing a repeat fit alone does not establish its required cost/track agreement; that remains the worker\'s sealed qualification.\n\n'
     text+='A shared-leg ID groups simultaneous receiver tracks with at least three identical UTC receiver epochs, maximum horizontal separation ≤1 km and height separation ≤300 m. This is a documented same-track candidate, not proof of an aircraft identity or unchanged instrument installation. Distinct instruments and originals remain separate. Pair differences use only common complete UTC-second bins inside the shared interval, with no interpolation. Each difference is **left minus right**, with both mean difference and RMS difference retained. Aircraft-axis raw differences, restricted track proxies and fused-context corrections are separate. Differences alone cannot assign the cause to hardware versus mounting, processing, timing or solver behavior.\n\n'
-    text+='The wider recovery is complete: 30 globe preferences, zero flat and 23 unresolved. Overlapping legs with mismatched completion are the next priority, beginning with the three marked pairs. Its original freeze and failures remain preserved.\n\n'
+    text+='The combined findings are 41 globe preferences, zero flat and 12 unresolved. The paired precision trial added two stretches; the completed cost-only recovery adds nine after individually complete primary comparisons and passing controls/repeats. Its 72 primary fits supply the latest costs for twelve targets, including three still unfinished comparisons. All 603 attempt records remain available. Controls and repeats never replace primary fits. Earlier freezes and failures remain preserved.\n\n'
     text+='## Column dictionary\n\n'
     text+='Original inventory columns retain source hash, exact UTC bounds, configuration and disposition. `raw_dtheta_*_sum_counts` preserve the selected signed integer totals. `native_samples`, both durations and both clock means describe completeness and scaling. `shared_leg_members` lists related stretch IDs. `bias1_*__MODEL__FIELD` columns contain each saved primary endpoint; full nuisance values are in the fit-history `parameters` column. `result_origin` distinguishes original, qualified-subset and unfinished wider-run outputs. The CSV headers are the complete machine-readable field list.\n'
     atomic(HERE/'ANALYTICS.md',text.encode())

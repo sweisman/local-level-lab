@@ -62,7 +62,7 @@ geometries. A first-of-its-kind claim has not been established. Earth's shape is
 from geocentric or heliocentric explanations; a globe result alone decides neither.
 
 The original first study found twelve complete globe preferences. Completed numerical
-recovery adds eighteen, giving **30 globe preferences, none for flat and 23 unresolved stretches**.
+recovery adds twenty-nine, giving **41 globe preferences, none for flat and 12 unresolved stretches**.
 Each recovered comparison passed all six primary fits, its scheduled repeat and fresh
 controls. The same intervals, measurements and physical assumptions were retained.
 Completed comparisons now include both recorded IMU8 and IMU21 configurations; their

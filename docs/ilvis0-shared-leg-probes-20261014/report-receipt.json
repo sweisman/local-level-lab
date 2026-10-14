@@ -1,0 +1,18 @@
+{
+  "artifacts": {
+    "README.md": "91655e2c09d4c44827c21a52d3ba575a39f6e6a1b8a87b1739b3988e0000862c",
+    "probes.csv": "8e6c12a3fdd73fa303dbafcc0ecbb5789ea54d1c4a13eaeab5ebc791adfad854"
+  },
+  "inputs": {
+    "docs/ilvis0-shared-leg-probes-20261014/completion.json": "26efdd886230ce6004100068cc6ea95ebe287cb6486b9ae750a9f1e29d74fc99",
+    "docs/ilvis0-shared-leg-probes-20261014/evidence-receipt.json": "090d6ea6c6f59ac46a3e62c80814bdaa269f74d21d9f96018b412cf91546d6db",
+    "docs/ilvis0-shared-leg-probes-20261014/manifest.json": "74a7309466a2be000f7e01af4518fca455a09243a406158578ee98436f726f86",
+    "docs/ilvis0-shared-leg-probes-20261014/summary.json": "8b46c1f6e8b210a9dd61e6972bc92751f980024e6e0d9c4afe3524263167fa6b"
+  },
+  "native_predictions": 0,
+  "observed_fit_starts": 0,
+  "original_labels_changed": false,
+  "sources": {
+    "docs/ilvis0-shared-leg-probes-20261014/build_report.py": "2a5a170ff88b91e838b51cdd2f247b461c453f46f2c34615ca5d7a739a7b2542"
+  }
+}

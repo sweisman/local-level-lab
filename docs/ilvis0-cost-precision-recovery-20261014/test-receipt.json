@@ -1,0 +1,16 @@
+{
+  "command": "env PYTHONPATH=analysis /home/sweisman/venv/bin/python analysis/tests/run_numerical.py --threads 4 -- /home/sweisman/venv/bin/python -m pytest analysis/tests/test_ilvis0_precision_recovery_plan.py analysis/tests/test_ilvis0_precision_recovery_worker.py analysis/tests/test_ilvis0_current_findings.py analysis/tests/test_ilvis0_precision.py analysis/tests/test_ilvis0_precision_probes.py analysis/tests/test_ilvis0_precision_solver.py -q",
+  "elapsed_s": 22.84,
+  "observed_fit_starts": 0,
+  "passed": true,
+  "sources": {
+    "analysis/tests/test_ilvis0_current_findings.py": "94a281905e7fba715c2e51cacd95cbf1ba16188434f151bde4ebdbd3433ce02d",
+    "analysis/tests/test_ilvis0_precision.py": "bfdcd0954190068d6ea931ab09bd133c765802ef7e99e05d0bb6f93e865e827b",
+    "analysis/tests/test_ilvis0_precision_probes.py": "1168b694a7e32cff0505ba1f24786de82a7432a94d25797a7dfd75d98cd880e9",
+    "analysis/tests/test_ilvis0_precision_recovery_plan.py": "e91cf46894121ed20a33bc2c4c2ff0ad8b3561f0e4240d82293fa0f296eed4e4",
+    "analysis/tests/test_ilvis0_precision_recovery_worker.py": "5200b71f1f095e0991943472782eb01398b65013b5e3534a8ce7fd9071106769",
+    "analysis/tests/test_ilvis0_precision_solver.py": "1afea828213768f768cf3385edb03a31586aba4e32957f0685fcec8e9e1c40dc"
+  },
+  "tests_passed": 47,
+  "threads": 4
+}

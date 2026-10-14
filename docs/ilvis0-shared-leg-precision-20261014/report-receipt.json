@@ -1,0 +1,20 @@
+{
+  "artifacts": {
+    "README.md": "086f421a541c98d8abf479f6ae112bb2c2dfb6ca92eb0aa027e53e83990c8020",
+    "probes.csv": "c765efe5a528abb34a8ca15b1a3a289909aa06f805c64a8cc1e11ba67d64e98d"
+  },
+  "failed_diagnostic_identities": [],
+  "inputs": {
+    "docs/ilvis0-shared-leg-precision-20261014/completion.json": "f8874d26f1b6397e287986b9506e1b8d5bd4bff0b6c45998c734a7cdb2f822fb",
+    "docs/ilvis0-shared-leg-precision-20261014/control-receipt.json": "4aa342e34338c7363cabc439bf600931072e77916c3f9f52b35d5fbf661eacec",
+    "docs/ilvis0-shared-leg-precision-20261014/evidence-receipt.json": "18af3951eb4415f5ea7769cdefee68b31ea0e40666f57548231ecee2d31133bf",
+    "docs/ilvis0-shared-leg-precision-20261014/manifest.json": "f265176b84b19558d8cbaa74f952b90c997e3b7e90fdcffab43c5eb079aa79a8",
+    "docs/ilvis0-shared-leg-precision-20261014/summary.json": "44ef90c7906a27fc036a9ec765ef8dfefb49b9f1f2f1ebaf62975bf080c22745"
+  },
+  "native_predictions": 0,
+  "observed_fit_starts": 0,
+  "original_labels_changed": false,
+  "sources": {
+    "docs/ilvis0-shared-leg-precision-20261014/build_report.py": "d4b0c6307cb6469be1eb28ed2ff5b8c6fa2af64817280310021dd7921ac172b1"
+  }
+}

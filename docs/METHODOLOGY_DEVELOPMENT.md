@@ -46,8 +46,8 @@ models equal support, and successful numerical completion does not mean equal fi
 Some recordings overlap or share instruments; these are not automatically twelve
 independent replications. Statistical significance has not yet been calibrated.
 
-The completed recovery adds eighteen complete globe comparisons, including IMU8
-stretches: **30 globe preferences, zero flat, 23 unresolved**. All thirty
+The completed recovery adds twenty-nine complete globe comparisons, including IMU8
+stretches: **41 globe preferences, zero flat, 12 unresolved**. All forty-one
 also favor the specified background field. The original table above remains the
 first-pass result; [updated findings and source tracks](ilvis0-position-stability-trial-20261013/FINDINGS.md)
 show the additional evidence and its recording overlap.
@@ -153,6 +153,10 @@ step materially changes the result. A failed check is not evidence for either ge
 | [Saved boundary-trial diagnosis](ilvis0-boundary-diagnosis-20261013/README.md) | Six failures pass stationarity but fail prediction stability; one exhausts its budget. All three primary/repeat pairs have nearly identical costs and tracks but opposite stopping outcomes. No new native predictions or fits. |
 | [Actual-position stability comparison](ilvis0-position-stability-trial-20261013/README.md) | Fresh full-model position checks preserve gradient and objective limits. The archival trial passed 24/24 fits, all controls and all repeats; three previously unresolved stretches favor globe. |
 | [Remaining-stretch recovery](ilvis0-position-recovery-20261013/README.md) | Completed: 159 new starts, 117 passing fits, all six controls passed. Eighteen original unfinished stretches now pass their full comparison and scheduled repeat; combined tally 30 globe, zero flat, 23 unresolved. Physical assumptions unchanged; no retries. |
+
+| [Paired wider-arithmetic qualification](ilvis0-paired-precision-trial-20261014/RESULTS.md) | 16/16 fits passed in 129 sweeps, including both controls and repeats. Two additional stretches resolve, bringing the tally to 32/0/21. Physical assumptions and numerical stopping tolerances unchanged. |
+
+| [Completed cost-only precision recovery](ilvis0-cost-precision-recovery-20261014/RESULTS.md) | 83/86 fits passed in 891 sweeps and about four hours. Both controls and all twelve repeats passed; nine more stretches have complete comparisons. Current tally: 41 globe, zero flat, 12 unresolved. Three primary fits exhausted their small evaluation allowance; all prior failures remain preserved. |
 
 Software controls have known answers and expose numerical failures without choosing
 favorable flight data. Their success cannot guarantee success on the archive. The

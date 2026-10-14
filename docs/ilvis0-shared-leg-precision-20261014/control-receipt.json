@@ -1,0 +1,23 @@
+{
+  "environment": {
+    "numpy": "2.5.3",
+    "python": "3.14.7",
+    "scipy": "1.18.1",
+    "thread_settings": {
+      "MKL_NUM_THREADS": "4",
+      "OMP_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "native_observed_evaluations": 0,
+  "observed_fit_starts": 0,
+  "passed": 11,
+  "sources": {
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_precision.py": "cd262cfc296edf37b15b6850218f5b63365226136eb654c257e4d630985af372",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_precision_probes.py": "d427533ada2d6ec7a3b169f75b0c909269b59d100163cf97adc7b06572c7514d",
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_tangent.cpp": "818c2932045f33f4adfc9321076e242313d5b99b62f69848876647b391c76938",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_precision.py": "bfdcd0954190068d6ea931ab09bd133c765802ef7e99e05d0bb6f93e865e827b",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_precision_probes.py": "1168b694a7e32cff0505ba1f24786de82a7432a94d25797a7dfd75d98cd880e9",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_shape.py": "690cb3fc08daa5804d8863a47932f9d17d056f767538268b78f90ea7b2894604"
+  }
+}

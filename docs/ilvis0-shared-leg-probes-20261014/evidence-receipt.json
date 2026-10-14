@@ -1,0 +1,12 @@
+{
+  "artifacts": {
+    "completion.json": "26efdd886230ce6004100068cc6ea95ebe287cb6486b9ae750a9f1e29d74fc99",
+    "manifest.json": "74a7309466a2be000f7e01af4518fca455a09243a406158578ee98436f726f86",
+    "starts.jsonl": "8074a6b578cb1d271a3d856bfe34535294ab068183ad7bcd6e9483498a0c8b5c",
+    "summary.json": "8b46c1f6e8b210a9dd61e6972bc92751f980024e6e0d9c4afe3524263167fa6b",
+    "sweeps.jsonl": "297d7800f2d663376e711c49c0f2aac7f11ad07e82f84787ac6c43b1de21d761"
+  },
+  "native_evaluations": 60,
+  "observed_fit_starts": 0,
+  "scientific_decision": "abstain"
+}
