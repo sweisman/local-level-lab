@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="4" skipped="0" tests="48" time="8.619" timestamp="2026-10-15T16:16:10.688853+03:00" hostname="zaphod"><testcase classname="tests.test_ilvis0_solver_trust" name="test_known_objective_prediction_and_feasible_parameters[0-interior]" time="0.298" /><testcase classname="tests.test_ilvis0_solver_trust" name="test_known_objective_prediction_and_feasible_parameters[0-boundary]" time="0.002" /><testcase classname="tests.test_ilvis0_solver_trust" name="test_known_objective_prediction_and_feasible_parameters[0-redundant]" time="0.001" /><testcase classname="tests.test_ilvis0_solver_trust" name="test_known_objective_prediction_and_feasible_parameters[0-scaled]" time="0.001" /><testcase classname="tests.test_ilvis0_solver_trust" name="test_known_objective_prediction_and_feasible_parameters[0-nonlinear]" time="0.001" /><testcase classname="tests.test_ilvis0_solver_trust" name="test_known_objective_prediction_and_feasible_parameters[0-gain_offset]" time="0.002" /><testcase classname="tests.test_ilvis0_solver_trust" name="test_known_objective_prediction_and_feasible_parameters[0-curved_boundary]" time="0.002" /><testcase classname="tests.test_ilvis0_solver_trust" name="test_known_objective_prediction_and_feasible_parameters[0-exponential]" time="0.002" /><testcase classname="tests.test_ilvis0_solver_trust" name="test_known_objective_prediction_and_feasible_parameters[0-curved_redundant]" time="0.001" /><testcase classname="tests.test_ilvis0_solver_trust" name="test_known_objective_prediction_and_feasible_parameters[0-nonlinear27]" time="0.139"><failure message="assert (False)">name = 'nonlinear27', index = 0
+
+    @pytest.mark.parametrize('name',CONTROLS)
+    @pytest.mark.parametrize('index',range(4))
+    def test_known_objective_prediction_and_feasible_parameters(name,index):
+        solver=candidate()
+        import numpy as np
+        from lll.ilvis0_boundary_controls import problem_for,starts
+        problem,optimum,expected,unique=problem_for(name)
+        fit=solver.fit_candidate(problem,'control',start=starts(len(optimum))[index],
+                                 maximum_evaluations=200,physical_step=meters)
+        point=np.array(fit['normalized_parameters'])
+&gt;       assert fit['converged'] and fit['stability_verified']
+E       assert (False)
+
+analysis/tests/test_ilvis0_solver_trust.py:32: AssertionError</failure></testcase><testcase classname="tests.test_ilvis0_solver_trust" name="test_known_objective_prediction_and_feasible_parameters[1-interior]" time="0.001" /><testcase classname="tests.test_ilvis0_solver_trust" name="test_known_objective_prediction_and_feasible_parameters[1-boundary]" time="0.002" /><testcase classname="tests.test_ilvis0_solver_trust" name="test_known_objective_prediction_and_feasible_parameters[1-redundant]" time="0.001" /><testcase classname="tests.test_ilvis0_solver_trust" name="test_known_objective_prediction_and_feasible_parameters[1-scaled]" time="0.001" /><testcase classname="tests.test_ilvis0_solver_trust" name="test_known_objective_prediction_and_feasible_parameters[1-nonlinear]" time="0.001" /><testcase classname="tests.test_ilvis0_solver_trust" name="test_known_objective_prediction_and_feasible_parameters[1-gain_offset]" time="0.002" /><testcase classname="tests.test_ilvis0_solver_trust" name="test_known_objective_prediction_and_feasible_parameters[1-curved_boundary]" time="0.002" /><testcase classname="tests.test_ilvis0_solver_trust" name="test_known_objective_prediction_and_feasible_parameters[1-exponential]" time="0.002" /><testcase classname="tests.test_ilvis0_solver_trust" name="test_known_objective_prediction_and_feasible_parameters[1-curved_redundant]" time="0.001" /><testcase classname="tests.test_ilvis0_solver_trust" name="test_known_objective_prediction_and_feasible_parameters[1-nonlinear27]" time="0.149"><failure message="assert (False)">name = 'nonlinear27', index = 1
+
+    @pytest.mark.parametrize('name',CONTROLS)
+    @pytest.mark.parametrize('index',range(4))
+    def test_known_objective_prediction_and_feasible_parameters(name,index):
+        solver=candidate()
+        import numpy as np
+        from lll.ilvis0_boundary_controls import problem_for,starts
+        problem,optimum,expected,unique=problem_for(name)
+        fit=solver.fit_candidate(problem,'control',start=starts(len(optimum))[index],
+                                 maximum_evaluations=200,physical_step=meters)
+        point=np.array(fit['normalized_parameters'])
+&gt;       assert fit['converged'] and fit['stability_verified']
+E       assert (False)
+
+analysis/tests/test_ilvis0_solver_trust.py:32: AssertionError</failure></testcase><testcase classname="tests.test_ilvis0_solver_trust" name="test_known_objective_prediction_and_feasible_parameters[2-interior]" time="0.002" /><testcase classname="tests.test_ilvis0_solver_trust" name="test_known_objective_prediction_and_feasible_parameters[2-boundary]" time="0.002" /><testcase classname="tests.test_ilvis0_solver_trust" name="test_known_objective_prediction_and_feasible_parameters[2-redundant]" time="0.001" /><testcase classname="tests.test_ilvis0_solver_trust" name="test_known_objective_prediction_and_feasible_parameters[2-scaled]" time="0.001" /><testcase classname="tests.test_ilvis0_solver_trust" name="test_known_objective_prediction_and_feasible_parameters[2-nonlinear]" time="0.002" /><testcase classname="tests.test_ilvis0_solver_trust" name="test_known_objective_prediction_and_feasible_parameters[2-gain_offset]" time="0.002" /><testcase classname="tests.test_ilvis0_solver_trust" name="test_known_objective_prediction_and_feasible_parameters[2-curved_boundary]" time="0.002" /><testcase classname="tests.test_ilvis0_solver_trust" name="test_known_objective_prediction_and_feasible_parameters[2-exponential]" time="0.002" /><testcase classname="tests.test_ilvis0_solver_trust" name="test_known_objective_prediction_and_feasible_parameters[2-curved_redundant]" time="0.002" /><testcase classname="tests.test_ilvis0_solver_trust" name="test_known_objective_prediction_and_feasible_parameters[2-nonlinear27]" time="0.174"><failure message="assert (False)">name = 'nonlinear27', index = 2
+
+    @pytest.mark.parametrize('name',CONTROLS)
+    @pytest.mark.parametrize('index',range(4))
+    def test_known_objective_prediction_and_feasible_parameters(name,index):
+        solver=candidate()
+        import numpy as np
+        from lll.ilvis0_boundary_controls import problem_for,starts
+        problem,optimum,expected,unique=problem_for(name)
+        fit=solver.fit_candidate(problem,'control',start=starts(len(optimum))[index],
+                                 maximum_evaluations=200,physical_step=meters)
+        point=np.array(fit['normalized_parameters'])
+&gt;       assert fit['converged'] and fit['stability_verified']
+E       assert (False)
+
+analysis/tests/test_ilvis0_solver_trust.py:32: AssertionError</failure></testcase><testcase classname="tests.test_ilvis0_solver_trust" name="test_known_objective_prediction_and_feasible_parameters[3-interior]" time="0.002" /><testcase classname="tests.test_ilvis0_solver_trust" name="test_known_objective_prediction_and_feasible_parameters[3-boundary]" time="0.001" /><testcase classname="tests.test_ilvis0_solver_trust" name="test_known_objective_prediction_and_feasible_parameters[3-redundant]" time="0.001" /><testcase classname="tests.test_ilvis0_solver_trust" name="test_known_objective_prediction_and_feasible_parameters[3-scaled]" time="0.001" /><testcase classname="tests.test_ilvis0_solver_trust" name="test_known_objective_prediction_and_feasible_parameters[3-nonlinear]" time="0.002" /><testcase classname="tests.test_ilvis0_solver_trust" name="test_known_objective_prediction_and_feasible_parameters[3-gain_offset]" time="0.002" /><testcase classname="tests.test_ilvis0_solver_trust" name="test_known_objective_prediction_and_feasible_parameters[3-curved_boundary]" time="0.002" /><testcase classname="tests.test_ilvis0_solver_trust" name="test_known_objective_prediction_and_feasible_parameters[3-exponential]" time="0.002" /><testcase classname="tests.test_ilvis0_solver_trust" name="test_known_objective_prediction_and_feasible_parameters[3-curved_redundant]" time="0.002" /><testcase classname="tests.test_ilvis0_solver_trust" name="test_known_objective_prediction_and_feasible_parameters[3-nonlinear27]" time="0.131"><failure message="assert (False)">name = 'nonlinear27', index = 3
+
+    @pytest.mark.parametrize('name',CONTROLS)
+    @pytest.mark.parametrize('index',range(4))
+    def test_known_objective_prediction_and_feasible_parameters(name,index):
+        solver=candidate()
+        import numpy as np
+        from lll.ilvis0_boundary_controls import problem_for,starts
+        problem,optimum,expected,unique=problem_for(name)
+        fit=solver.fit_candidate(problem,'control',start=starts(len(optimum))[index],
+                                 maximum_evaluations=200,physical_step=meters)
+        point=np.array(fit['normalized_parameters'])
+&gt;       assert fit['converged'] and fit['stability_verified']
+E       assert (False)
+
+analysis/tests/test_ilvis0_solver_trust.py:32: AssertionError</failure></testcase><testcase classname="tests.test_ilvis0_solver_trust" name="test_exhausted_nonstationary_fit_cannot_pass" time="0.001" /><testcase classname="tests.test_ilvis0_solver_trust" name="test_independent_raw_increment_motion_controls[start0-truth0]" time="1.682" /><testcase classname="tests.test_ilvis0_solver_trust" name="test_independent_raw_increment_motion_controls[start0-truth1]" time="0.836" /><testcase classname="tests.test_ilvis0_solver_trust" name="test_independent_raw_increment_motion_controls[start0-truth2]" time="1.284" /><testcase classname="tests.test_ilvis0_solver_trust" name="test_independent_raw_increment_motion_controls[start1-truth0]" time="1.143" /><testcase classname="tests.test_ilvis0_solver_trust" name="test_independent_raw_increment_motion_controls[start1-truth1]" time="1.308" /><testcase classname="tests.test_ilvis0_solver_trust" name="test_independent_raw_increment_motion_controls[start1-truth2]" time="1.336" /><testcase classname="tests.test_ilvis0_solver_trust" name="test_damping_cannot_make_a_failed_physical_gate_pass" time="0.002" /></testsuite></testsuites>

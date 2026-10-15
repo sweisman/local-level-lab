@@ -1,0 +1,80 @@
+.........F.........F.........F.........F........                         [100%]
+=================================== FAILURES ===================================
+____ test_known_objective_prediction_and_feasible_parameters[0-nonlinear27] ____
+
+name = 'nonlinear27', index = 0
+
+    @pytest.mark.parametrize('name',CONTROLS)
+    @pytest.mark.parametrize('index',range(4))
+    def test_known_objective_prediction_and_feasible_parameters(name,index):
+        solver=candidate()
+        import numpy as np
+        from lll.ilvis0_boundary_controls import problem_for,starts
+        problem,optimum,expected,unique=problem_for(name)
+        fit=solver.fit_candidate(problem,'control',start=starts(len(optimum))[index],
+                                 maximum_evaluations=200,physical_step=meters)
+        point=np.array(fit['normalized_parameters'])
+>       assert fit['converged'] and fit['stability_verified']
+E       assert (False)
+
+analysis/tests/test_ilvis0_solver_trust.py:32: AssertionError
+____ test_known_objective_prediction_and_feasible_parameters[1-nonlinear27] ____
+
+name = 'nonlinear27', index = 1
+
+    @pytest.mark.parametrize('name',CONTROLS)
+    @pytest.mark.parametrize('index',range(4))
+    def test_known_objective_prediction_and_feasible_parameters(name,index):
+        solver=candidate()
+        import numpy as np
+        from lll.ilvis0_boundary_controls import problem_for,starts
+        problem,optimum,expected,unique=problem_for(name)
+        fit=solver.fit_candidate(problem,'control',start=starts(len(optimum))[index],
+                                 maximum_evaluations=200,physical_step=meters)
+        point=np.array(fit['normalized_parameters'])
+>       assert fit['converged'] and fit['stability_verified']
+E       assert (False)
+
+analysis/tests/test_ilvis0_solver_trust.py:32: AssertionError
+____ test_known_objective_prediction_and_feasible_parameters[2-nonlinear27] ____
+
+name = 'nonlinear27', index = 2
+
+    @pytest.mark.parametrize('name',CONTROLS)
+    @pytest.mark.parametrize('index',range(4))
+    def test_known_objective_prediction_and_feasible_parameters(name,index):
+        solver=candidate()
+        import numpy as np
+        from lll.ilvis0_boundary_controls import problem_for,starts
+        problem,optimum,expected,unique=problem_for(name)
+        fit=solver.fit_candidate(problem,'control',start=starts(len(optimum))[index],
+                                 maximum_evaluations=200,physical_step=meters)
+        point=np.array(fit['normalized_parameters'])
+>       assert fit['converged'] and fit['stability_verified']
+E       assert (False)
+
+analysis/tests/test_ilvis0_solver_trust.py:32: AssertionError
+____ test_known_objective_prediction_and_feasible_parameters[3-nonlinear27] ____
+
+name = 'nonlinear27', index = 3
+
+    @pytest.mark.parametrize('name',CONTROLS)
+    @pytest.mark.parametrize('index',range(4))
+    def test_known_objective_prediction_and_feasible_parameters(name,index):
+        solver=candidate()
+        import numpy as np
+        from lll.ilvis0_boundary_controls import problem_for,starts
+        problem,optimum,expected,unique=problem_for(name)
+        fit=solver.fit_candidate(problem,'control',start=starts(len(optimum))[index],
+                                 maximum_evaluations=200,physical_step=meters)
+        point=np.array(fit['normalized_parameters'])
+>       assert fit['converged'] and fit['stability_verified']
+E       assert (False)
+
+analysis/tests/test_ilvis0_solver_trust.py:32: AssertionError
+=========================== short test summary info ============================
+FAILED analysis/tests/test_ilvis0_solver_trust.py::test_known_objective_prediction_and_feasible_parameters[0-nonlinear27]
+FAILED analysis/tests/test_ilvis0_solver_trust.py::test_known_objective_prediction_and_feasible_parameters[1-nonlinear27]
+FAILED analysis/tests/test_ilvis0_solver_trust.py::test_known_objective_prediction_and_feasible_parameters[2-nonlinear27]
+FAILED analysis/tests/test_ilvis0_solver_trust.py::test_known_objective_prediction_and_feasible_parameters[3-nonlinear27]
+4 failed, 44 passed in 8.62s

@@ -12,13 +12,14 @@ The final acceptance test uses the existing **undamped** correction and fresh
 stationarity, objective and actual-position checks. Small damped steps cannot
 establish convergence by themselves.
 
-**Prepared; qualification has not yet run.** The [finite plan](PLAN.md) defines
-48 checks, with zero NASA-data fits. A metadata-only waiter starts the checks after
-the active nine-stretch sequence finishes and releases its four-thread allocation.
-It does not pause, restart or change that active study. Test execution is charged
-once; interrupted or failed qualification is not retried automatically.
+**Completed; qualification failed.** Of the 48 known-answer checks in the
+[finite plan](PLAN.md), 44 passed and four failed. All four failures concern the
+same 27-parameter nonlinear control, under its four starting points. The
+[qualification record](RESULTS.md) preserves the failures and frozen source.
+No archival recordings were fitted. The batch ran after the nine-stretch assessment
+finished; its allowance is closed and cannot be retried.
 
-Passing these controls would justify a separately frozen matched archival trial.
-It would not establish statistical significance, a global optimum or the cause of
-the background field. The current public finding remains 41 globe preferences,
-zero flat and 12 unresolved pending audited results from the active recovery.
+The next step is to diagnose the failing control before preparing a revised,
+separately frozen candidate. This candidate is not qualified for a matched archival
+trial. Current airborne findings are reported separately in the
+[verified status](../CURRENT_STATUS.md); these software controls do not change them.

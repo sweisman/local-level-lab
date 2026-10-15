@@ -1,5 +1,11 @@
 # Separate assessment of the nine remaining stretches
 
+**Completed:** 65 starts used 3,252 native sweeps; 52 fits passed. Both controls
+passed. Three stretches passed all six primary fits and their scheduled repeats,
+and all three favor globe. Six remain unresolved. The study did not qualify every
+target. [Completed results](RESULTS.md) preserve every outcome; no retries or
+unused-budget continuation are permitted.
+
 Nine of the twelve unfinished comparisons were excluded from the cost-only
 recovery because their stopping failures included stationarity or predicted
 position stability. This study keeps them separate from the three new budget
