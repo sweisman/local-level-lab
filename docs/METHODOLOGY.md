@@ -75,7 +75,7 @@ independent replications. Those checks quantify the finding's strength without
 discarding the observed model preferences.
 A better relative fit must still be checked for absolute adequacy, numerical stability
 and statistical uncertainty. See the [archive guide](ILVIS0.md),
-[current findings](ilvis0-position-stability-trial-20261013/FINDINGS.md) and
+[current findings](ilvis0-current-findings-20261015/FINDINGS.md) and
 [analysis roadmap](ANALYSIS_ROADMAP.md).
 The [method development record](METHODOLOGY_DEVELOPMENT.md) organizes the completed
 timing, calibration, uncertainty and solver checks and explains what each establishes.

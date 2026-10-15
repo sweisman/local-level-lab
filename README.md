@@ -11,13 +11,13 @@ A simpler, stationary crowdsourced experiment using smaller, less expensive IMUs
 The code, selection criteria and analysis records are open for review.
 
 <!-- current-status:start -->
-**41 globe preferences, 0 flat preferences, 12 unresolved** among 53 preselected stretches.
+**46 globe preferences, 0 flat preferences, 7 unresolved** among 53 preselected stretches.
 See the [verified current status](docs/CURRENT_STATUS.md) for coverage, background-field comparisons and the supporting result records. Unfinished comparisons are not evidence for either shape.
 <!-- current-status:end -->
 
 This is a substantial empirical finding from professional airborne measurements.
 Numerical recovery preserves the same observations, selected intervals and physical assumptions.
-[Current findings and source tracks](docs/ilvis0-position-stability-trial-20261013/FINDINGS.md)
+[Current findings and source tracks](docs/ilvis0-current-findings-20261015/FINDINGS.md)
 are available for review.
 
 **The opportunity is to test Earth's curvature through the aircraft's measured motion.**
@@ -127,7 +127,7 @@ flights or receiving separate calibration fits.
 
 The [public selection record](docs/ilvis0-highspeed-segments-20261008/ELIGIBILITY.md)
 links to every eligible interval and every file's screening outcome.
-The [complete table of all 53 stretches](docs/ilvis0-position-stability-trial-20261013/STRETCHES.md)
+The [complete table of all 53 stretches](docs/ilvis0-current-findings-20261015/STRETCHES.md)
 lists source recordings, dates, durations, speeds, courses, latitudes and current dispositions.
 See the [methodology](docs/METHODOLOGY.md) for the reasoning and the
 [archive guide](docs/ILVIS0.md) for instruments, decoding and remaining uncertainties.
@@ -145,10 +145,9 @@ separate calibration and timing checks; the current short-stretch results do not
 - **Shape and background rotation:** the status page gives the current counts from
   verified result records. The field's physical cause and a solar-versus-sidereal
   distinction have not been determined.
-- **Numerical recovery:** the [completed run](docs/ilvis0-position-recovery-20261013/README.md)
-  finished 159 new fits. The subsequent [precision recovery](docs/ilvis0-cost-precision-recovery-20261014/README.md)
-  passed 83/86 fits, both controls and all twelve repeats, adding nine complete comparisons.
-  Every reported recovery passed its full comparison and scheduled repeat.
+- **Numerical recovery:** the latest [matched trial](docs/ilvis0-trust-trial-20261015/README.md)
+  passed six of eight fits, including both controls. Two targets passed their complete
+  comparisons and repeats; the third remains unresolved. Earlier results are preserved.
 - **Current priority:** recover unfinished comparisons with bounded solver qualification
   and repeatability checks. Earlier results
   and the completed timing, calibration and prediction checks remain preserved.
@@ -159,7 +158,7 @@ The completed findings are substantial, but a validated statistical significance
 level has not yet been established. Some recordings overlap or share instruments,
 so the stretches cannot simply be counted as independent confirmations.
 
-See [current findings and source tracks](docs/ilvis0-position-stability-trial-20261013/FINDINGS.md),
+See [current findings and source tracks](docs/ilvis0-current-findings-20261015/FINDINGS.md),
 [how the method works](docs/METHODOLOGY.md),
 [method development and robustness checks](docs/METHODOLOGY_DEVELOPMENT.md), and
 [the next steps](docs/ANALYSIS_ROADMAP.md).

@@ -315,6 +315,20 @@ data/ilvis0-trust-qualification-20261014/. Do not relaunch its worker or waiter.
 Qualification failed on all four starts of nonlinear27; preserve the frozen
 candidate and failures. Diagnose that known-answer control before any new candidate
 qualification. The planned eight-start archival trial cannot follow this failed gate.
+Current publication: docs/ilvis0-current-findings-20261015/; its metadata-only
+build_report.py preserves the older findings and copies measured summaries without
+decoding originals. Regenerate docs/build_current_status.py afterward; --check
+verifies the combined snapshot and landing-page excerpts.
+Revised candidate qualification is complete at docs/ilvis0-trust-v2-qualification-20261015/
+and data/ilvis0-trust-v2-qualification-20261015/. Never relaunch its completed worker.
+The completed matched trial uses analysis/tests/ilvis0_trust_trial_worker.py
+with docs/ilvis0-trust-trial-20261015/ and data/ilvis0-trust-trial-20261015/.
+Its scope is eight starts / 1,296 native sweeps, four total threads and no retries.
+Never relaunch its worker, retry failures or reuse its allowance. Preserve its
+candidate and engine snapshots. --package-only performs no fits. Next numerical
+work needs separate freezes: the six other unresolved stretches under the hybrid
+solver, and a focused saved-endpoint diagnosis of the last trial target. No wider
+rollout or relaxed stopping limits follow from partial trial success.
 The separate [rotation-field measurement](docs/ROTATION_FIELD.md) will infer the retained background vector
 before interpreting its cause, with aircraft motion, transport and calibration fitted jointly.
 The proposal authorizes no new fits or campaign budget. Do not fix or subtract the standard

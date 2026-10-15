@@ -3,7 +3,7 @@
 ## Starting point
 
 <!-- current-status:start -->
-**41 globe preferences, 0 flat preferences, 12 unresolved** among 53 preselected stretches.
+**46 globe preferences, 0 flat preferences, 7 unresolved** among 53 preselected stretches.
 See the [verified current status](CURRENT_STATUS.md) for coverage, background-field comparisons and the supporting result records. Unfinished comparisons are not evidence for either shape.
 <!-- current-status:end -->
 
@@ -12,7 +12,7 @@ This is a substantial
 empirical finding; unfinished calculations do not provide equal support for flat Earth.
 A calibrated statistical significance level and independent-replication count still
 require uncertainty validation and accounting for shared flights and instruments.
-The [current findings](ilvis0-position-stability-trial-20261013/FINDINGS.md)
+The [current findings](ilvis0-current-findings-20261015/FINDINGS.md)
 and [saved-result diagnosis](ilvis0-highspeed-segments-20261008/POST_RUN_REVIEW.md)
 preserve what the measurements and calculations currently show.
 
@@ -43,13 +43,20 @@ establish a calibrated scientific detection.
 1. Preserve the completed [budget continuation](ilvis0-budget-continuation-20261014/RESULTS.md).
    Both controls passed, but none of its three target stretches passed every primary
    and repeat check. Those stretches remain unresolved.
-2. Finish the separately frozen [nine-stretch assessment](ilvis0-remaining-precision-20261014/README.md).
-   Its finite allowance is 65 starts; incomplete work cannot change published totals.
-3. Qualify the separate [damped solver](ilvis0-trust-qualification-20261014/README.md)
-   on known-answer controls after the active analysis releases its numerical allocation.
-   Changes to step selection retain the existing physical models, bounds and final checks.
-4. If qualification passes, freeze a small matched archival trial with controls and
-   predetermined repeats before considering further recovery. Preserve every earlier failure.
+2. Preserve the completed [nine-stretch assessment](ilvis0-remaining-precision-20261014/README.md).
+   Its 65 starts produced three additional complete globe comparisons; six targets
+   remain unresolved. The current status above incorporates the three recoveries.
+3. Preserve the [failed damped-solver qualification](ilvis0-trust-qualification-20261014/README.md)
+   and [known-answer diagnosis](ilvis0-trust-diagnosis-20261015/README.md).
+   The revised hybrid candidate passed its separately frozen
+   [48-control qualification](ilvis0-trust-v2-qualification-20261015/RESULTS.md).
+4. Preserve the completed [eight-start matched trial](ilvis0-trust-trial-20261015/README.md).
+   Six fits passed, including both controls. Two targets passed their full comparisons
+   and repeats, adding two globe preferences; the third remains unresolved.
+5. Prepare a separate bounded hybrid-solver assessment of the other six unresolved
+   stretches, reusing passing primary fits and predeclaring repeat/control checks.
+   Separately diagnose the last matched-trial target's fresh stability failure;
+   both starts stopped before their evaluation caps. No completed allowance reopens.
 
 ## Recovery development history
 
@@ -306,7 +313,7 @@ That allowance does not authorize the separate recovery study.
 
 | Order | Work | What can happen without new observed fits? | Deliverable |
 |---|---|---|---|
-| P0 | Recover the remaining numerically incomplete stretches | Audit completed recovery evidence and qualify the damped solver on known-answer controls. | Finish the bounded nine-stretch assessment; use a separately frozen matched trial before further rollout. |
+| P0 | Recover the remaining numerically incomplete stretches | Preserve the completed hybrid trial and diagnose its one unresolved target from saved endpoints. | Prepare a separately bounded assessment of the six stretches not yet tested with the hybrid solver; preserve passing fits and scheduled repeats/controls. |
 | Deferred | Explain integration timing and joint Z-axis calibration | Preserve completed clock tests, gain–bias grids and weak-direction audits. | Further physically justified clock/calibration tests after recovery. |
 | Deferred | Model residual dependence and assess prediction quality | Preserve covariance audits and the active comparison's results. | Calibrated predictive adequacy and uncertainty checks. |
 | Deferred | Isolate what the inertial measurements contribute | Preserve the planned channel and receiver-metric controls. | Measurement-contribution study with matched assumptions. |

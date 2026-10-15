@@ -1,0 +1,9 @@
+{
+  "archival_starts": 0,
+  "maximum_evaluations_per_start": 200,
+  "software_starts": 4,
+  "sources": {
+    "analysis/lll/ilvis0_solver_trust.py": "f3d8ee7a0e921906f8b76e5b7931a2e3b4add0b0b3f9f0967ab997c74cea2db1",
+    "docs/ilvis0-trust-diagnosis-20261015/diagnose.py": "e4a4d3e54163856be27c231a94ce97b7279d044efa15c7d36944e66b9eb4eb6b"
+  }
+}

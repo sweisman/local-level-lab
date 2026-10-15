@@ -157,6 +157,8 @@ step materially changes the result. A failed check is not evidence for either ge
 | [Paired wider-arithmetic qualification](ilvis0-paired-precision-trial-20261014/RESULTS.md) | 16/16 fits passed in 129 sweeps, including both controls and repeats. Two additional stretches resolve, bringing the tally to 32/0/21. Physical assumptions and numerical stopping tolerances unchanged. |
 
 | [Completed cost-only precision recovery](ilvis0-cost-precision-recovery-20261014/RESULTS.md) | 83/86 fits passed in 891 sweeps and about four hours. Both controls and all twelve repeats passed; nine more stretches have complete comparisons. Tally at that stage: 41 globe, zero flat, 12 unresolved. Three primary fits exhausted their small evaluation allowance; all prior failures remain preserved. |
+| [Revised hybrid-solver qualification](ilvis0-trust-v2-qualification-20261015/RESULTS.md) | All 48 known-answer checks passed after diagnosing the earlier candidate's weak-direction step restriction. Physical models and final acceptance checks are unchanged. Software qualification alone does not resolve archival comparisons. |
+| [Matched hybrid-solver trial](ilvis0-trust-trial-20261015/RESULTS.md) | Six of eight fits passed in 471 native sweeps, including both controls. Two targets passed complete comparisons and repeats, both favoring globe. The third remains unresolved; full-run qualification failed. Individually complete comparisons enter the generated status separately. |
 
 Software controls have known answers and expose numerical failures without choosing
 favorable flight data. Their success cannot guarantee success on the archive. The

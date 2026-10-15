@@ -1,0 +1,47 @@
+{
+  "artifacts": {
+    "ANALYTICS.md": "4e35d642dada34b8ff7a76ef54b27b2a0e70f6718c4568c35c05f8c8cd3c4411",
+    "FINDINGS.md": "0f69c75c1b1a02774cb2b5092f25794e1b1b3933a419609be6a5e0780de39fd4",
+    "STRETCHES.md": "bce327dfe531782b5de78312dd0e2ac655497eb2a6dc7c03d61880f7c4e69913",
+    "current-stretches.csv": "c57922f797d4d78576f3e13c7ad3df51e5a416cb7b3c4efba828cf475e5124db",
+    "fit-analytics.csv": "2b6ca453113e70fdcb258ac4dffd4726c4e5709d774f344c1d6872e55828f3f5",
+    "shared-leg-pairs.csv": "f3d8d293e2020595ba1d53eeb1462630a70f0cf547cc220b5237b99e608efc88",
+    "stretch-analytics.csv": "02b37430548831034353042a67fc493e51523eb70706c19671c53f528995086e"
+  },
+  "inputs": {
+    "docs/ilvis0-budget-continuation-20261014/completion.json": "0f2603d9c5427029a272870fa8428015ec7c7be87241e1c3032d55c9b08bd6ad",
+    "docs/ilvis0-budget-continuation-20261014/evidence-receipt.json": "55e448c58c7a794d570d270117de7650786a7b9651fa9b64b3746e1578d4d4ab",
+    "docs/ilvis0-budget-continuation-20261014/manifest.json": "d32174d96ba42d4e41d8eedefafe1c59519f0935dcca623766881caa6b6a02e4",
+    "docs/ilvis0-budget-continuation-20261014/starts.jsonl": "a26f2fe2a60c0542413f96bbb9a4f32bae975c137ca8a6c68082d797212fc511",
+    "docs/ilvis0-budget-continuation-20261014/summary.json": "5d8bb394c8e52845cbed46db02f61751090f87b5cbad61fa14a95b191837077c",
+    "docs/ilvis0-budget-continuation-20261014/sweeps.jsonl": "1cd4e696a7869aa4275234dee3b3bf86208fa6195bda62da7c4cdc9bbeed0cbc",
+    "docs/ilvis0-position-stability-trial-20261013/analytics-receipt.json": "cfd6961b4db5ffbea4ddf7b0c9753226dd9cce3d60efe8c0a01d8a63073739f4",
+    "docs/ilvis0-position-stability-trial-20261013/findings-receipt.json": "c73eb8f807135446d3b5b8f241552f11da3eddea5455b3b001043d40c2930ca3",
+    "docs/ilvis0-remaining-precision-20261014/completion.json": "7d6212e412d1ed3c7bacbe2b7948b226292bbd9a7371064d66037b81ab14c10e",
+    "docs/ilvis0-remaining-precision-20261014/evidence-receipt.json": "ebb3dd293ea4aa9e4e8a7518ceb3c081b7db578548617bd930afa7a573095e74",
+    "docs/ilvis0-remaining-precision-20261014/manifest.json": "7ade8ce005958189d5f1582daa026c12339622e2d622cb2bf201219e7e316e70",
+    "docs/ilvis0-remaining-precision-20261014/starts.jsonl": "510479e11e7d01e4cdd8847003370009699c23cc9108c6c6a7ecec083e67971e",
+    "docs/ilvis0-remaining-precision-20261014/summary.json": "de5a5c2c792e8fef3fe0382c9363d185ea64aa97ea62eb7e1822fbfbe450814f",
+    "docs/ilvis0-remaining-precision-20261014/sweeps.jsonl": "4c0363df50d2111d7eeead33beac83c8582e4c823f0f09ae4a25fa977090782c",
+    "docs/ilvis0-trust-trial-20261015/completion.json": "57ca25ef552dbe5d1d6f1c3d66ee754ef4a8b7d6e1b3454e8e6c12090cd5f79f",
+    "docs/ilvis0-trust-trial-20261015/evidence-receipt.json": "5bcf95f271f584d930e9f4f7358f248bf8282b3104c402aa7df78021e6a99e84",
+    "docs/ilvis0-trust-trial-20261015/manifest.json": "abbd90f46535773a743105aa24847c80d06bce9c1432bbe74c1492aa33748448",
+    "docs/ilvis0-trust-trial-20261015/starts.jsonl": "3a69b7449cbcc096c0d8357813bd6ebc84b4a846b6a449166603a6fd9aeaab14",
+    "docs/ilvis0-trust-trial-20261015/summary.json": "cb6380eaa7177cf6f341a45a556f9ef5301b73a7e3260f691488b43881f13ac3",
+    "docs/ilvis0-trust-trial-20261015/sweeps.jsonl": "fba5630fd2d15c3ef71d7315d05b6e59f0b6f543c64b3a00850248e3d8fa4b01"
+  },
+  "native_predictions": 0,
+  "observed_starts": 0,
+  "original_files_read": 0,
+  "publication_builder": "docs/ilvis0-current-findings-20261015/build_report.py",
+  "sources": {
+    "docs/build_current_status.py": "eaa9db5a22cb950b288d3190e89893fadea452d7087387a038e1ed8fdd35209f",
+    "docs/ilvis0-current-findings-20261015/build_report.py": "18efb136cd79334032a7e8404df1fdd85b89e4accf65e585dd51069b4141d214"
+  },
+  "tally": {
+    "ambiguous": 0,
+    "flat": 0,
+    "globe": 46,
+    "unresolved": 7
+  }
+}

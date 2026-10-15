@@ -9,7 +9,7 @@ import json
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
-FINDINGS='docs/ilvis0-position-stability-trial-20261013'
+FINDINGS='docs/ilvis0-current-findings-20261015'
 START='<!-- current-status:start -->'
 END='<!-- current-status:end -->'
 PAGES=('README.md','docs/ILVIS0.md','docs/ANALYSIS_ROADMAP.md')
@@ -53,11 +53,22 @@ def summarize(rows):
                 imu_types=sorted({r['imu_type'] for r in rows}))
 
 
-def load_snapshot(root):
-    directory=root/FINDINGS
+def load_snapshot(root,findings=FINDINGS):
+    directory=root/findings
     receipt=json.loads((directory/'findings-receipt.json').read_text())
     verify_inputs(root,receipt['inputs']);verify_inputs(root,receipt['sources'])
-    verify_inputs(root,{FINDINGS+'/'+name:digest for name,digest in receipt['artifacts'].items()})
+    verify_inputs(root,{findings+'/'+name:digest for name,digest in receipt['artifacts'].items()})
+    if 'publication_builder' in receipt:
+        path=public_path(root,receipt['publication_builder'])
+        spec=importlib.util.spec_from_file_location('current_publication',path)
+        publication=importlib.util.module_from_spec(spec);spec.loader.exec_module(publication)
+        expected=publication.verified_rows(root)
+        with (directory/'current-stretches.csv').open(newline='') as stream: rows=list(csv.DictReader(stream))
+        if rows!=expected: raise ValueError('current inventory differs from sealed result ledgers')
+        snapshot=summarize(rows)
+        if snapshot['tally']!=receipt['tally']: raise ValueError('current tally differs from sealed results')
+        snapshot['receipt_sha256']=sha(directory/'findings-receipt.json')
+        return snapshot
     path=directory/'build_findings.py'
     spec=importlib.util.spec_from_file_location('sealed_findings',path)
     report=importlib.util.module_from_spec(spec);spec.loader.exec_module(report)
@@ -108,7 +119,7 @@ def replace_block(text,block):
 
 
 def render(snapshot):
-    tally=snapshot['tally'];prefix='ilvis0-position-stability-trial-20261013/'
+    tally=snapshot['tally'];prefix=FINDINGS.removeprefix('docs/')+'/'
     text='# Current airborne analysis status\n\n'
     text+=headline(snapshot)+'\n\n'
     text+=f"The selected stretches total **{snapshot['minutes']:.1f} minutes**. "
