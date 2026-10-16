@@ -25,6 +25,18 @@ Every fully checked stretch favors the globe under both tested processing cases.
 Unfinished comparisons still need numerical checks; they supply no opposing
 shape finding.
 
+![Recorded gyro motion across all 53 flight stretches, with a median line](docs/ilvis0-gyro-overview/raw-pitch.png)
+
+**The recorded motion has a consistent direction: all 53 traces finish nose-down.**
+Each thin line sums the raw gyro increments around the aircraft's pitch axis,
+starting at zero; the thick line shows the median. No fitted corrections or GPS
+values enter these angles. The graph includes the unresolved stretches too.
+
+This is a direct visualization of the measurements, not a separate curvature test:
+aircraft motion and the background rotation field also contribute. The full analysis
+accounts for those contributions when comparing shapes.
+[How to read the graph and download its data](docs/ilvis0-gyro-overview/README.md).
+
 On the original twelve completed comparisons, median horizontal fitting error was
 about **7 centimetres for the globe with a background rotation field, versus
 47 metres for the flat disc**. These describe agreement with the positions used in
