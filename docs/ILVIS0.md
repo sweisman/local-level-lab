@@ -5,10 +5,12 @@
 See the [verified current status](CURRENT_STATUS.md) for coverage, background-field comparisons and the supporting result records. Unfinished comparisons are not evidence for either shape.
 <!-- current-status:end -->
 
-This is a substantial empirical finding. Unfinished calculations do not erase it
-or provide equal support for flat Earth. A validated statistical significance level
-has not yet been assigned, and shared flights or instruments must be accounted for
-before counting the stretches as independent replications.
+This guide covers the source recordings, decoding and instrument evidence.
+The [study index](STUDIES.md) explains what each analysis added;
+[planned work](NEXT_STEPS.md) lists the remaining diagnostics and rotation-rate study.
+The [separate stretch table](ilvis0-current-findings-20261015/STRETCHES.md) preserves
+all 53 intervals, with a [comprehensive metadata CSV](ilvis0-current-findings-20261015/stretch-analytics.csv)
+for further analysis.
 
 The historical fit labels “rotating globe” and “still globe” mean a globe with the
 specified background angular rate and a globe with zero background rate. They identify
@@ -34,6 +36,13 @@ for Earth's shape or rotation.
 ## Measurement provenance and independence
 
 The archived measurements and the finished navigation solution have different roles:
+
+The gyro angle increments are the central turning observations being investigated.
+Accelerometer increments help reconstruct motion, while receiver positions provide
+route context and fitting constraints. GPS is the positioning system; WGS84 is its
+coordinate reference, not a synonym for the receiver measurements. The planned
+[channel and coordinate checks](NEXT_STEPS.md#then-strengthen-the-interpretation)
+will isolate those contributions rather than assume how much evidence each supplies.
 
 | Recorded source | Use in this project |
 |---|---|

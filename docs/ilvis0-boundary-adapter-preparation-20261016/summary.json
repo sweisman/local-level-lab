@@ -1,0 +1,822 @@
+{
+  "clock_queries_charged": 7197,
+  "native_predictions": 0,
+  "observed_fit_starts": 0,
+  "original_files_read": 0,
+  "original_labels_changed": false,
+  "results": [
+    {
+      "filename": "ILVIS0_applanix_55133_610-29Oct09_29Oct09.013",
+      "geometry": {
+        "boundary_changed_epochs": 1,
+        "center_relocation_s": -1.1629127111278947e-08,
+        "knots": [
+          -1.0,
+          -0.31630087263624296,
+          -0.316300872634893,
+          -0.2829675429632061,
+          1.0
+        ],
+        "left_interval_width_s": 2.0249635301894386e-13,
+        "maximum_queries": 1024,
+        "minimum_side_probe_s": 1.2656022063683991e-14,
+        "native_predictions": 0,
+        "observed_fit_starts": 0,
+        "original_point": -0.3163007951073789,
+        "point": -0.316300872634893,
+        "queries": 336,
+        "right_interval_width_s": 0.0049999994507530345,
+        "side_geometry_supported": true,
+        "side_points": [
+          -0.3163008726352305,
+          -0.31630087263497736,
+          -0.3163008726345555,
+          -0.3163008726348086
+        ],
+        "version": "ilvis0-representable-clock-brackets-v1"
+      },
+      "identity": "0e73879f98c3b701fd7c42df::bias1_unsubtracted::sphere_still::primary",
+      "original_converged": false,
+      "queries_charged": 336,
+      "role": "primary",
+      "segment_id": "0e73879f98c3b701fd7c42df",
+      "status": "complete"
+    },
+    {
+      "filename": "ILVIS0_applanix_55133_610-29Oct09_29Oct09.013",
+      "geometry": {
+        "boundary_changed_epochs": 1,
+        "center_relocation_s": 0.0022970305910184367,
+        "knots": [
+          -1.0,
+          -0.44963420596810505,
+          -0.41630087629641815,
+          -0.4163008762903549,
+          1.0
+        ],
+        "left_interval_width_s": 0.0049999994507530345,
+        "maximum_queries": 1024,
+        "minimum_side_probe_s": 5.684307191611282e-14,
+        "native_predictions": 0,
+        "observed_fit_starts": 0,
+        "original_point": -0.4316144135698744,
+        "point": -0.41630087629641815,
+        "queries": 337,
+        "right_interval_width_s": 9.094891506578051e-13,
+        "side_geometry_supported": true,
+        "side_points": [
+          -0.416300876297934,
+          -0.41630087629679713,
+          -0.4163008762949023,
+          -0.4163008762960392
+        ],
+        "version": "ilvis0-representable-clock-brackets-v1"
+      },
+      "identity": "0e73879f98c3b701fd7c42df::bias1_unsubtracted::sphere_still::repeat",
+      "original_converged": true,
+      "queries_charged": 337,
+      "role": "repeat",
+      "segment_id": "0e73879f98c3b701fd7c42df",
+      "status": "complete"
+    },
+    {
+      "filename": "ILVIS0_applanix_55133_610-29Oct09_29Oct09.013",
+      "geometry": {
+        "boundary_changed_epochs": 1,
+        "center_relocation_s": 5.95061661404217e-09,
+        "knots": [
+          -1.0,
+          -0.08296753930177185,
+          -0.049634209630085024,
+          -0.04963420962402173,
+          1.0
+        ],
+        "left_interval_width_s": 0.004999999450753024,
+        "maximum_queries": 1024,
+        "minimum_side_probe_s": 5.6843397176764564e-14,
+        "native_predictions": 0,
+        "observed_fit_starts": 0,
+        "original_point": -0.04963424930086245,
+        "point": -0.049634209630085024,
+        "queries": 354,
+        "right_interval_width_s": 9.09494354828233e-13,
+        "side_geometry_supported": true,
+        "side_points": [
+          -0.04963420963160085,
+          -0.04963420963046398,
+          -0.0496342096285692,
+          -0.04963420962970607
+        ],
+        "version": "ilvis0-representable-clock-brackets-v1"
+      },
+      "identity": "0e73879f98c3b701fd7c42df::bias1_profiled_removal::sphere_still::primary",
+      "original_converged": false,
+      "queries_charged": 354,
+      "role": "primary",
+      "segment_id": "0e73879f98c3b701fd7c42df",
+      "status": "complete"
+    },
+    {
+      "filename": "ILVIS0_applanix_55133_610-29Oct09_29Oct09.013",
+      "geometry": {
+        "boundary_changed_epochs": 1,
+        "center_relocation_s": -3.4708060915322746e-07,
+        "knots": [
+          -1.0,
+          -0.5163008726363453,
+          -0.516300872634711,
+          -0.4829675429630242,
+          1.0
+        ],
+        "left_interval_width_s": 2.4513724383723456e-13,
+        "maximum_queries": 1024,
+        "minimum_side_probe_s": 1.532107773982716e-14,
+        "native_predictions": 0,
+        "observed_fit_starts": 0,
+        "original_point": -0.5162985587639833,
+        "point": -0.516300872634711,
+        "queries": 332,
+        "right_interval_width_s": 0.004999999450753026,
+        "side_geometry_supported": true,
+        "side_points": [
+          -0.5163008726351196,
+          -0.5163008726348132,
+          -0.5163008726343025,
+          -0.5163008726346089
+        ],
+        "version": "ilvis0-representable-clock-brackets-v1"
+      },
+      "identity": "0e73879f98c3b701fd7c42df::bias1_profiled_removal::sphere_still::repeat",
+      "original_converged": false,
+      "queries_charged": 332,
+      "role": "repeat",
+      "segment_id": "0e73879f98c3b701fd7c42df",
+      "status": "complete"
+    },
+    {
+      "filename": "ILVIS0_applanix_57320_610_DMS_25Oct15DMS.013",
+      "geometry": {
+        "boundary_changed_epochs": 1,
+        "center_relocation_s": -2.5187500377055193e-09,
+        "knots": [
+          -1.0,
+          0.2375068797764139,
+          0.23750687977757443,
+          0.2708402101465406,
+          1.0
+        ],
+        "left_interval_width_s": 1.7407741914610142e-13,
+        "maximum_queries": 1024,
+        "minimum_side_probe_s": 1.0879838696631339e-14,
+        "native_predictions": 0,
+        "observed_fit_starts": 0,
+        "original_point": 0.23750689656924134,
+        "point": 0.23750687977757443,
+        "queries": 340,
+        "right_interval_width_s": 0.0049999995553449235,
+        "side_geometry_supported": true,
+        "side_points": [
+          0.2375068797772843,
+          0.2375068797775019,
+          0.23750687977786455,
+          0.23750687977764695
+        ],
+        "version": "ilvis0-representable-clock-brackets-v1"
+      },
+      "identity": "370cec66878c4c1cf84b4ceb::bias1_unsubtracted::sphere_rotating::primary",
+      "original_converged": false,
+      "queries_charged": 340,
+      "role": "primary",
+      "segment_id": "370cec66878c4c1cf84b4ceb",
+      "status": "complete"
+    },
+    {
+      "filename": "ILVIS0_applanix_57320_610_DMS_25Oct15DMS.013",
+      "geometry": {
+        "boundary_changed_epochs": 1,
+        "center_relocation_s": -6.57944315154979e-08,
+        "knots": [
+          -1.0,
+          0.2375068797764139,
+          0.23750687977757443,
+          0.2708402101465406,
+          1.0
+        ],
+        "left_interval_width_s": 1.7407741914610142e-13,
+        "maximum_queries": 1024,
+        "minimum_side_probe_s": 1.0879838696631339e-14,
+        "native_predictions": 0,
+        "observed_fit_starts": 0,
+        "original_point": 0.23750731840711786,
+        "point": 0.23750687977757443,
+        "queries": 339,
+        "right_interval_width_s": 0.0049999995553449235,
+        "side_geometry_supported": true,
+        "side_points": [
+          0.2375068797772843,
+          0.2375068797775019,
+          0.23750687977786455,
+          0.23750687977764695
+        ],
+        "version": "ilvis0-representable-clock-brackets-v1"
+      },
+      "identity": "370cec66878c4c1cf84b4ceb::bias1_unsubtracted::sphere_rotating::repeat",
+      "original_converged": false,
+      "queries_charged": 339,
+      "role": "repeat",
+      "segment_id": "370cec66878c4c1cf84b4ceb",
+      "status": "complete"
+    },
+    {
+      "filename": "ILVIS0_applanix_57320_610_DMS_25Oct15DMS.013",
+      "geometry": {
+        "boundary_changed_epochs": 1,
+        "center_relocation_s": 2.4275388782468707e-10,
+        "knots": [
+          -1.0,
+          0.2041735464442714,
+          0.23750687681323748,
+          0.2375068768193008,
+          1.0
+        ],
+        "left_interval_width_s": 0.004999999555344911,
+        "maximum_queries": 1024,
+        "minimum_side_probe_s": 5.684359233315561e-14,
+        "native_predictions": 0,
+        "observed_fit_starts": 0,
+        "original_point": 0.23750687519487823,
+        "point": 0.23750687681323748,
+        "queries": 343,
+        "right_interval_width_s": 9.094974773304898e-13,
+        "side_geometry_supported": true,
+        "side_points": [
+          0.23750687681172167,
+          0.23750687681285854,
+          0.2375068768147533,
+          0.23750687681361643
+        ],
+        "version": "ilvis0-representable-clock-brackets-v1"
+      },
+      "identity": "370cec66878c4c1cf84b4ceb::bias1_profiled_removal::sphere_rotating::primary",
+      "original_converged": false,
+      "queries_charged": 343,
+      "role": "primary",
+      "segment_id": "370cec66878c4c1cf84b4ceb",
+      "status": "complete"
+    },
+    {
+      "filename": "ILVIS0_applanix_57320_610_DMS_25Oct15DMS.013",
+      "geometry": {
+        "boundary_changed_epochs": 1,
+        "center_relocation_s": 1.4162488003177652e-08,
+        "knots": [
+          -1.0,
+          0.2041735464442714,
+          0.23750687681323748,
+          0.2375068768193008,
+          1.0
+        ],
+        "left_interval_width_s": 0.004999999555344911,
+        "maximum_queries": 1024,
+        "minimum_side_probe_s": 5.684359233315561e-14,
+        "native_predictions": 0,
+        "observed_fit_starts": 0,
+        "original_point": 0.2375067823966508,
+        "point": 0.23750687681323748,
+        "queries": 342,
+        "right_interval_width_s": 9.094974773304898e-13,
+        "side_geometry_supported": true,
+        "side_points": [
+          0.23750687681172167,
+          0.23750687681285854,
+          0.2375068768147533,
+          0.23750687681361643
+        ],
+        "version": "ilvis0-representable-clock-brackets-v1"
+      },
+      "identity": "370cec66878c4c1cf84b4ceb::bias1_profiled_removal::sphere_rotating::repeat",
+      "original_converged": false,
+      "queries_charged": 342,
+      "role": "repeat",
+      "segment_id": "370cec66878c4c1cf84b4ceb",
+      "status": "complete"
+    },
+    {
+      "filename": "ILVIS0_applanix_57315_610_DMS_20Oct15DMS.013",
+      "geometry": {
+        "boundary_changed_epochs": 1,
+        "center_relocation_s": -1.2435020763090776e-09,
+        "knots": [
+          -1.0,
+          -0.1381264586473918,
+          -0.13812645864566284,
+          -0.10479312828276002,
+          1.0
+        ],
+        "left_interval_width_s": 2.593425474373134e-13,
+        "maximum_queries": 1024,
+        "minimum_side_probe_s": 1.620890921483209e-14,
+        "native_predictions": 0,
+        "observed_fit_starts": 0,
+        "original_point": -0.138126450355649,
+        "point": -0.13812645864566284,
+        "queries": 344,
+        "right_interval_width_s": 0.004999999554435422,
+        "side_geometry_supported": true,
+        "side_points": [
+          -0.13812645864609507,
+          -0.1381264586457709,
+          -0.1381264586452306,
+          -0.13812645864555478
+        ],
+        "version": "ilvis0-representable-clock-brackets-v1"
+      },
+      "identity": "50f24131843071ae9312c082::bias1_unsubtracted::sphere_still::primary",
+      "original_converged": false,
+      "queries_charged": 344,
+      "role": "primary",
+      "segment_id": "50f24131843071ae9312c082",
+      "status": "complete"
+    },
+    {
+      "filename": "ILVIS0_applanix_57315_610_DMS_20Oct15DMS.013",
+      "geometry": {
+        "boundary_changed_epochs": 1,
+        "center_relocation_s": -3.3497224421169534e-06,
+        "knots": [
+          -1.0,
+          -0.43812645864754535,
+          -0.43812645864539,
+          -0.4047931282824872,
+          1.0
+        ],
+        "left_interval_width_s": 3.2329972032840716e-13,
+        "maximum_queries": 1024,
+        "minimum_side_probe_s": 2.0206232520525447e-14,
+        "native_predictions": 0,
+        "observed_fit_starts": 0,
+        "original_point": -0.43810412716244257,
+        "point": -0.43812645864539,
+        "queries": 337,
+        "right_interval_width_s": 0.004999999554435422,
+        "side_geometry_supported": true,
+        "side_points": [
+          -0.43812645864592886,
+          -0.43812645864552474,
+          -0.43812645864485117,
+          -0.4381264586452553
+        ],
+        "version": "ilvis0-representable-clock-brackets-v1"
+      },
+      "identity": "50f24131843071ae9312c082::bias1_unsubtracted::sphere_still::repeat",
+      "original_converged": false,
+      "queries_charged": 337,
+      "role": "repeat",
+      "segment_id": "50f24131843071ae9312c082",
+      "status": "complete"
+    },
+    {
+      "filename": "ILVIS0_applanix_57320_610_LVIS_38614965.013",
+      "geometry": {
+        "boundary_changed_epochs": 1,
+        "center_relocation_s": 1.7763734727963e-07,
+        "knots": [
+          -1.0,
+          0.0862892423202292,
+          0.1196225734166016,
+          0.1196225734226649,
+          1.0
+        ],
+        "left_interval_width_s": 0.004999999664455858,
+        "maximum_queries": 1024,
+        "minimum_side_probe_s": 5.684346222889492e-14,
+        "native_predictions": 0,
+        "observed_fit_starts": 0,
+        "original_point": 0.11962138916761973,
+        "point": 0.1196225734166016,
+        "queries": 348,
+        "right_interval_width_s": 9.094953956623187e-13,
+        "side_geometry_supported": true,
+        "side_points": [
+          0.11962257341508577,
+          0.11962257341622264,
+          0.11962257341811743,
+          0.11962257341698056
+        ],
+        "version": "ilvis0-representable-clock-brackets-v1"
+      },
+      "identity": "b4e44ddc0f130ecd45674c78::bias1_unsubtracted::sphere_rotating::primary",
+      "original_converged": false,
+      "queries_charged": 348,
+      "role": "primary",
+      "segment_id": "b4e44ddc0f130ecd45674c78",
+      "status": "complete"
+    },
+    {
+      "filename": "ILVIS0_applanix_57320_610_LVIS_38614965.013",
+      "geometry": {
+        "boundary_changed_epochs": 1,
+        "center_relocation_s": 4.861801844446844e-09,
+        "knots": [
+          -1.0,
+          0.0862892423202292,
+          0.1196225734166016,
+          0.1196225734226649,
+          1.0
+        ],
+        "left_interval_width_s": 0.004999999664455858,
+        "maximum_queries": 1024,
+        "minimum_side_probe_s": 5.684346222889492e-14,
+        "native_predictions": 0,
+        "observed_fit_starts": 0,
+        "original_point": 0.1196225410045893,
+        "point": 0.1196225734166016,
+        "queries": 348,
+        "right_interval_width_s": 9.094953956623187e-13,
+        "side_geometry_supported": true,
+        "side_points": [
+          0.11962257341508577,
+          0.11962257341622264,
+          0.11962257341811743,
+          0.11962257341698056
+        ],
+        "version": "ilvis0-representable-clock-brackets-v1"
+      },
+      "identity": "b4e44ddc0f130ecd45674c78::bias1_unsubtracted::sphere_rotating::repeat",
+      "original_converged": false,
+      "queries_charged": 348,
+      "role": "repeat",
+      "segment_id": "b4e44ddc0f130ecd45674c78",
+      "status": "complete"
+    },
+    {
+      "filename": "ILVIS0_applanix_57320_610_LVIS_38614965.013",
+      "geometry": {
+        "boundary_changed_epochs": 1,
+        "center_relocation_s": 1.825718626280448e-09,
+        "knots": [
+          -1.0,
+          0.5862892423197745,
+          0.6196225734161469,
+          0.6196225734222103,
+          1.0
+        ],
+        "left_interval_width_s": 0.004999999664455856,
+        "maximum_queries": 1024,
+        "minimum_side_probe_s": 5.684411275019841e-14,
+        "native_predictions": 0,
+        "observed_fit_starts": 0,
+        "original_point": 0.6196225612446894,
+        "point": 0.6196225734161469,
+        "queries": 330,
+        "right_interval_width_s": 9.095058040031745e-13,
+        "side_geometry_supported": true,
+        "side_points": [
+          0.619622573414631,
+          0.619622573415768,
+          0.6196225734176628,
+          0.6196225734165258
+        ],
+        "version": "ilvis0-representable-clock-brackets-v1"
+      },
+      "identity": "b4e44ddc0f130ecd45674c78::bias1_unsubtracted::sphere_still::primary",
+      "original_converged": false,
+      "queries_charged": 330,
+      "role": "primary",
+      "segment_id": "b4e44ddc0f130ecd45674c78",
+      "status": "complete"
+    },
+    {
+      "filename": "ILVIS0_applanix_57320_610_LVIS_38614965.013",
+      "geometry": {
+        "boundary_changed_epochs": 1,
+        "center_relocation_s": -0.002056613652088407,
+        "knots": [
+          -1.0,
+          0.9862892423192924,
+          0.9862892423194106,
+          1.0
+        ],
+        "left_interval_width_s": 1.7735812818386876e-14,
+        "maximum_queries": 1024,
+        "minimum_side_probe_s": 1.1084883011491797e-15,
+        "native_predictions": 0,
+        "observed_fit_starts": 0,
+        "original_point": 1.0,
+        "point": 0.9862892423194106,
+        "queries": 221,
+        "right_interval_width_s": 0.002056613652088407,
+        "side_geometry_supported": false,
+        "side_points": [
+          0.9862892423193811,
+          0.9862892423194032,
+          0.9862892423194402,
+          0.9862892423194181
+        ],
+        "version": "ilvis0-representable-clock-brackets-v1"
+      },
+      "identity": "b4e44ddc0f130ecd45674c78::bias1_unsubtracted::sphere_still::repeat",
+      "original_converged": true,
+      "queries_charged": 221,
+      "role": "repeat",
+      "segment_id": "b4e44ddc0f130ecd45674c78",
+      "status": "complete"
+    },
+    {
+      "filename": "ILVIS0_applanix_57320_610_LVIS_38614965.013",
+      "geometry": {
+        "boundary_changed_epochs": 1,
+        "center_relocation_s": 6.213757544962228e-08,
+        "knots": [
+          -1.0,
+          0.0862892423202292,
+          0.1196225734166016,
+          0.1196225734226649,
+          1.0
+        ],
+        "left_interval_width_s": 0.004999999664455858,
+        "maximum_queries": 1024,
+        "minimum_side_probe_s": 5.684346222889492e-14,
+        "native_predictions": 0,
+        "observed_fit_starts": 0,
+        "original_point": 0.1196221591660986,
+        "point": 0.1196225734166016,
+        "queries": 348,
+        "right_interval_width_s": 9.094953956623187e-13,
+        "side_geometry_supported": true,
+        "side_points": [
+          0.11962257341508577,
+          0.11962257341622264,
+          0.11962257341811743,
+          0.11962257341698056
+        ],
+        "version": "ilvis0-representable-clock-brackets-v1"
+      },
+      "identity": "b4e44ddc0f130ecd45674c78::bias1_profiled_removal::sphere_rotating::primary",
+      "original_converged": false,
+      "queries_charged": 348,
+      "role": "primary",
+      "segment_id": "b4e44ddc0f130ecd45674c78",
+      "status": "complete"
+    },
+    {
+      "filename": "ILVIS0_applanix_57320_610_LVIS_38614965.013",
+      "geometry": {
+        "boundary_changed_epochs": 1,
+        "center_relocation_s": 1.741410340573568e-07,
+        "knots": [
+          -1.0,
+          0.0862892423202292,
+          0.1196225734166016,
+          0.1196225734226649,
+          1.0
+        ],
+        "left_interval_width_s": 0.004999999664455858,
+        "maximum_queries": 1024,
+        "minimum_side_probe_s": 5.684346222889492e-14,
+        "native_predictions": 0,
+        "observed_fit_starts": 0,
+        "original_point": 0.11962141247637455,
+        "point": 0.1196225734166016,
+        "queries": 348,
+        "right_interval_width_s": 9.094953956623187e-13,
+        "side_geometry_supported": true,
+        "side_points": [
+          0.11962257341508577,
+          0.11962257341622264,
+          0.11962257341811743,
+          0.11962257341698056
+        ],
+        "version": "ilvis0-representable-clock-brackets-v1"
+      },
+      "identity": "b4e44ddc0f130ecd45674c78::bias1_profiled_removal::sphere_rotating::repeat",
+      "original_converged": false,
+      "queries_charged": 348,
+      "role": "repeat",
+      "segment_id": "b4e44ddc0f130ecd45674c78",
+      "status": "complete"
+    },
+    {
+      "filename": "ILVIS0_applanix_57320_610_LVIS_38614965.013",
+      "geometry": {
+        "boundary_changed_epochs": 1,
+        "center_relocation_s": 1.9602018341835502e-10,
+        "knots": [
+          -1.0,
+          0.5862892423197745,
+          0.6196225734161469,
+          0.6196225734222103,
+          1.0
+        ],
+        "left_interval_width_s": 0.004999999664455856,
+        "maximum_queries": 1024,
+        "minimum_side_probe_s": 5.684411275019841e-14,
+        "native_predictions": 0,
+        "observed_fit_starts": 0,
+        "original_point": 0.6196225721093457,
+        "point": 0.6196225734161469,
+        "queries": 329,
+        "right_interval_width_s": 9.095058040031745e-13,
+        "side_geometry_supported": true,
+        "side_points": [
+          0.619622573414631,
+          0.619622573415768,
+          0.6196225734176628,
+          0.6196225734165258
+        ],
+        "version": "ilvis0-representable-clock-brackets-v1"
+      },
+      "identity": "b4e44ddc0f130ecd45674c78::bias1_profiled_removal::sphere_still::primary",
+      "original_converged": false,
+      "queries_charged": 329,
+      "role": "primary",
+      "segment_id": "b4e44ddc0f130ecd45674c78",
+      "status": "complete"
+    },
+    {
+      "filename": "ILVIS0_applanix_57320_610_LVIS_38614965.013",
+      "geometry": {
+        "boundary_changed_epochs": 1,
+        "center_relocation_s": -0.002056613652088407,
+        "knots": [
+          -1.0,
+          0.9862892423192924,
+          0.9862892423194106,
+          1.0
+        ],
+        "left_interval_width_s": 1.7735812818386876e-14,
+        "maximum_queries": 1024,
+        "minimum_side_probe_s": 1.1084883011491797e-15,
+        "native_predictions": 0,
+        "observed_fit_starts": 0,
+        "original_point": 1.0,
+        "point": 0.9862892423194106,
+        "queries": 221,
+        "right_interval_width_s": 0.002056613652088407,
+        "side_geometry_supported": false,
+        "side_points": [
+          0.9862892423193811,
+          0.9862892423194032,
+          0.9862892423194402,
+          0.9862892423194181
+        ],
+        "version": "ilvis0-representable-clock-brackets-v1"
+      },
+      "identity": "b4e44ddc0f130ecd45674c78::bias1_profiled_removal::sphere_still::repeat",
+      "original_converged": true,
+      "queries_charged": 221,
+      "role": "repeat",
+      "segment_id": "b4e44ddc0f130ecd45674c78",
+      "status": "complete"
+    },
+    {
+      "filename": "ILVIS0_applanix_55300_20100414_Ames610_14Apr10.013",
+      "geometry": {
+        "boundary_changed_epochs": 1,
+        "center_relocation_s": 1.9382695115588432e-09,
+        "knots": [
+          -1.0,
+          0.8633434899469705,
+          0.8966768213404447,
+          0.896676821346508,
+          1.0
+        ],
+        "left_interval_width_s": 0.0049999997090211246,
+        "maximum_queries": 1024,
+        "minimum_side_probe_s": 5.684307191611282e-14,
+        "native_predictions": 0,
+        "observed_fit_starts": 0,
+        "original_point": 0.8966768084186479,
+        "point": 0.8966768213404447,
+        "queries": 324,
+        "right_interval_width_s": 9.094891506578051e-13,
+        "side_geometry_supported": true,
+        "side_points": [
+          0.8966768213389289,
+          0.8966768213400658,
+          0.8966768213419605,
+          0.8966768213408236
+        ],
+        "version": "ilvis0-representable-clock-brackets-v1"
+      },
+      "identity": "bb8061a43b4f14b6262ceda1::bias1_unsubtracted::sphere_still::primary",
+      "original_converged": false,
+      "queries_charged": 324,
+      "role": "primary",
+      "segment_id": "bb8061a43b4f14b6262ceda1",
+      "status": "complete"
+    },
+    {
+      "filename": "ILVIS0_applanix_55300_20100414_Ames610_14Apr10.013",
+      "geometry": {
+        "boundary_changed_epochs": 1,
+        "center_relocation_s": -3.1693491331363786e-09,
+        "knots": [
+          -1.0,
+          0.8966768232790184,
+          0.8966768232802735,
+          0.9300101546737477,
+          1.0
+        ],
+        "left_interval_width_s": 1.8826606940081092e-13,
+        "maximum_queries": 1024,
+        "minimum_side_probe_s": 1.1766629337550683e-14,
+        "native_predictions": 0,
+        "observed_fit_starts": 0,
+        "original_point": 0.8966768444092678,
+        "point": 0.8966768232802735,
+        "queries": 322,
+        "right_interval_width_s": 0.0049999997090211246,
+        "side_geometry_supported": true,
+        "side_points": [
+          0.8966768232799598,
+          0.896676823280195,
+          0.8966768232805873,
+          0.896676823280352
+        ],
+        "version": "ilvis0-representable-clock-brackets-v1"
+      },
+      "identity": "bb8061a43b4f14b6262ceda1::bias1_unsubtracted::sphere_still::repeat",
+      "original_converged": false,
+      "queries_charged": 322,
+      "role": "repeat",
+      "segment_id": "bb8061a43b4f14b6262ceda1",
+      "status": "complete"
+    },
+    {
+      "filename": "ILVIS0_applanix_55140_610-05Nov09_05Nov09.013",
+      "geometry": {
+        "boundary_changed_epochs": 1,
+        "center_relocation_s": 3.773648060700907e-14,
+        "knots": [
+          -1.0,
+          0.7210075565775753,
+          0.7543408881529484,
+          0.7543408881590117,
+          1.0
+        ],
+        "left_interval_width_s": 0.004999999736305966,
+        "maximum_queries": 1024,
+        "minimum_side_probe_s": 5.684307191611282e-14,
+        "native_predictions": 0,
+        "observed_fit_starts": 0,
+        "original_point": 0.7543408881526968,
+        "point": 0.7543408881529484,
+        "queries": 327,
+        "right_interval_width_s": 9.094891506578051e-13,
+        "side_geometry_supported": true,
+        "side_points": [
+          0.7543408881514326,
+          0.7543408881525695,
+          0.7543408881544642,
+          0.7543408881533273
+        ],
+        "version": "ilvis0-representable-clock-brackets-v1"
+      },
+      "identity": "fd7b81e48a4122b149c4925b::bias1_profiled_removal::sphere_still::primary",
+      "original_converged": false,
+      "queries_charged": 327,
+      "role": "primary",
+      "segment_id": "fd7b81e48a4122b149c4925b",
+      "status": "complete"
+    },
+    {
+      "filename": "ILVIS0_applanix_55140_610-05Nov09_05Nov09.013",
+      "geometry": {
+        "boundary_changed_epochs": 1,
+        "center_relocation_s": 1.1890488593735426e-14,
+        "knots": [
+          -1.0,
+          0.7543408899098126,
+          0.7543408899108783,
+          0.7876742214862514,
+          1.0
+        ],
+        "left_interval_width_s": 1.5985546220065315e-13,
+        "maximum_queries": 1024,
+        "minimum_side_probe_s": 9.990966387540822e-15,
+        "native_predictions": 0,
+        "observed_fit_starts": 0,
+        "original_point": 0.7543408899107991,
+        "point": 0.7543408899108783,
+        "queries": 327,
+        "right_interval_width_s": 0.004999999736305966,
+        "side_geometry_supported": true,
+        "side_points": [
+          0.7543408899106119,
+          0.7543408899108117,
+          0.7543408899111448,
+          0.754340889910945
+        ],
+        "version": "ilvis0-representable-clock-brackets-v1"
+      },
+      "identity": "fd7b81e48a4122b149c4925b::bias1_profiled_removal::sphere_still::repeat",
+      "original_converged": false,
+      "queries_charged": 327,
+      "role": "repeat",
+      "segment_id": "fd7b81e48a4122b149c4925b",
+      "status": "complete"
+    }
+  ],
+  "state": "complete"
+}

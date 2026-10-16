@@ -133,3 +133,36 @@ def test_linked_documentation_outside_docs_also_becomes_a_page(tmp_path):
     write(root,'website/README.md','# Build guide\n\n[Home](../README.md)\n')
     out=tmp_path/'site';report=site.build(root,out,assets=site.HERE/'assets',navigation=False)
     assert report['page_count']==2 and (out/'website/README.html').exists()
+
+
+def test_link_preview_describes_telemetry_and_keeps_source_attribution_in_body(tmp_path):
+    root=tmp_path/'repo';root.mkdir()
+    write(root,'README.md','# Local Level Lab\n\nNASA survey recordings supply the observations.\n')
+    out=tmp_path/'site';site.build(root,out,assets=site.HERE/'assets',navigation=False)
+    text=(out/'index.html').read_text()
+    from html.parser import HTMLParser
+    class Metadata(HTMLParser):
+        values={}
+        def handle_starttag(self,tag,attrs):
+            if tag=='meta':
+                a=dict(attrs);self.values[a.get('property',a.get('name'))]=a.get('content','')
+    parser=Metadata();parser.feed(text)
+    for name in ('description','og:description','twitter:description'):
+        assert 'airborne lidar survey' in parser.values[name].lower()
+        assert 'NASA' not in parser.values[name]
+    assert parser.values['og:url']=='https://locallevellab.com/'
+    assert parser.values['og:title']=='Local Level Lab — Airborne lidar survey IMU analysis'
+    assert 'NASA survey recordings supply the observations.' in text
+
+
+def test_navigation_opens_current_findings_stretches_and_study_index(tmp_path):
+    root=tmp_path/'repo';root.mkdir();write(root,'README.md','# Home\n')
+    for name in ('docs/CURRENT_STATUS.md','docs/STUDIES.md','docs/NEXT_STEPS.md','docs/METHODOLOGY.md',
+                 'docs/ilvis0-current-findings-20261015/STRETCHES.md','docs/STATIONARY.md'):
+        write(root,name,'# Reference\n')
+    out=tmp_path/'site';site.build(root,out,assets=site.HERE/'assets')
+    text=(out/'index.html').read_text()
+    assert 'href="/docs/CURRENT_STATUS.html"' in text
+    assert 'href="/docs/STUDIES.html"' in text
+    assert 'href="/docs/NEXT_STEPS.html"' in text
+    assert 'href="/docs/ilvis0-current-findings-20261015/STRETCHES.html"' in text

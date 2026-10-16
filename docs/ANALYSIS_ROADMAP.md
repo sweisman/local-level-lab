@@ -35,8 +35,8 @@ a particular quantity from being separated, rather than stopping all modeling.
 
 ## Current execution order
 
-The priority is recovering the unfinished comparisons in the verified status above.
-Further diagnostic expansion is deferred. Numerical completion, fit adequacy and
+The priority is focused diagnostics that can resolve the six unfinished comparisons
+in the verified status above. Broader diagnostic expansion is deferred. Numerical completion, fit adequacy and
 statistical support remain separate checks; recovering a fit does not by itself
 establish a calibrated scientific detection.
 
@@ -77,8 +77,21 @@ establish a calibrated scientific detection.
    passed all 67 sealed software checks. Its [four-start observed trial](ilvis0-timing-trial-20261016/README.md)
    completed four starts / 237 native calls. Both controls passed, but the target
    primary and repeat failed the original final stability gate. The candidate did
-   not qualify for wider use. Next, audit that gate at packet boundaries and screen
-   the other unresolved endpoints from saved evidence before more solver trials.
+   not qualify for wider use. The completed [stopping-gate audit](ilvis0-stopping-audit-20261016/INTERPRETATION.md)
+   screened all six unresolved stretches and 22 primary/repeat endpoints. All eleven
+   unfinished primaries place every receiver epoch within 1 µs of a packet boundary;
+   timing dominates the scaled gradient in every case. Five known-answer controls
+   show that the old gate can reject a true cusp minimum. The separate [two-sided
+   stopping check](ilvis0-boundary-stop-qualification-20261016/README.md) passed
+   43/43 software controls. [Clock preparation](ilvis0-boundary-adapter-preparation-20261016/README.md)
+   supports all nineteen unfinished primary/repeat endpoints; three passing smooth
+   repeats stay unchanged. The [next diagnostic plan](ilvis0-boundary-adapter-preparation-20261016/NEXT_PLAN.md)
+   targets all six stretches. The adapter passed [30 software controls](ilvis0-boundary-adapter-qualification-20261016/RESULTS.md)
+   and [two positive compiled-motion checks](ilvis0-boundary-native-qualification-20261016/RESULTS.md).
+   The separately frozen [all-six diagnostic](ilvis0-boundary-diagnostic-20261016/README.md)
+   runs two unchanged smooth controls first, followed by nineteen time-only searches,
+   capped at 546 native evaluations and four numerical threads. Passing local checks
+   do not replace the required full comparisons and repeat agreement.
 
 ## Recovery development history
 

@@ -1,0 +1,1627 @@
+{
+  "analytic_control_evaluations": 10,
+  "control_affine_solves": 5,
+  "controls": [
+    {
+      "analytic_evaluations": 2,
+      "case": "cusp_left",
+      "center_cost": 1601.0,
+      "expectation_met": true,
+      "known_global_minimum": true,
+      "native_predictions": 0,
+      "observed_fit_starts": 0,
+      "original_gate": {
+        "actual_cost_change": 1.2498422855274547e-06,
+        "actual_residual_step": 2.4992191160200317e-05,
+        "fresh_stationarity": 2.501716771759158e-05,
+        "normalized_parameter_step": 1.0,
+        "passed": false,
+        "position_max_abs_neu_m": [
+          0.0019999999999997797,
+          0.0,
+          0.0
+        ],
+        "position_max_tolerance_m": 0.01,
+        "position_rms_neu_m": [
+          0.0014142135623729393,
+          0.0,
+          0.0
+        ],
+        "position_rms_tolerance_m": 0.001,
+        "predicted_cost_change": 1.2485946284003234e-06,
+        "predicted_residual_step": 2.4992191160203092e-05,
+        "reason": "fresh_position_probe_not_stable"
+      },
+      "probe_parameter": 1.0,
+      "proof": "minimize (1+0.001*abs(u))^2+1600 on [-1,1]",
+      "signed_actual_cost_change": 0.0020010000000638684,
+      "stationarity": 2.499219116020307e-05,
+      "stationarity_passed": true
+    },
+    {
+      "analytic_evaluations": 2,
+      "case": "cusp_right",
+      "center_cost": 1601.0,
+      "expectation_met": true,
+      "known_global_minimum": true,
+      "native_predictions": 0,
+      "observed_fit_starts": 0,
+      "original_gate": {
+        "actual_cost_change": 1.2498422855274547e-06,
+        "actual_residual_step": 2.4992191160200317e-05,
+        "fresh_stationarity": 2.501716771759158e-05,
+        "normalized_parameter_step": 1.0,
+        "passed": false,
+        "position_max_abs_neu_m": [
+          0.0019999999999997797,
+          0.0,
+          0.0
+        ],
+        "position_max_tolerance_m": 0.01,
+        "position_rms_neu_m": [
+          0.0014142135623729393,
+          0.0,
+          0.0
+        ],
+        "position_rms_tolerance_m": 0.001,
+        "predicted_cost_change": 1.2485946284003234e-06,
+        "predicted_residual_step": 2.4992191160203092e-05,
+        "reason": "fresh_position_probe_not_stable"
+      },
+      "probe_parameter": -1.0,
+      "proof": "minimize (1+0.001*abs(u))^2+1600 on [-1,1]",
+      "signed_actual_cost_change": 0.0020010000000638684,
+      "stationarity": 2.499219116020307e-05,
+      "stationarity_passed": true
+    },
+    {
+      "analytic_evaluations": 2,
+      "case": "smooth_minimum",
+      "center_cost": 1600.0,
+      "expectation_met": true,
+      "known_global_minimum": true,
+      "native_predictions": 0,
+      "observed_fit_starts": 0,
+      "original_gate": {
+        "actual_cost_change": 0.0,
+        "actual_residual_step": 0.0,
+        "fresh_stationarity": 0.0,
+        "normalized_parameter_step": 0.0,
+        "passed": true,
+        "position_max_abs_neu_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "position_max_tolerance_m": 0.01,
+        "position_rms_neu_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "position_rms_tolerance_m": 0.001,
+        "predicted_cost_change": 0.0,
+        "predicted_residual_step": 0.0,
+        "reason": "fresh_position_stability_verified"
+      },
+      "probe_parameter": 0.0,
+      "proof": "minimize (0.005*u)^2+1600 on [-1,1]",
+      "signed_actual_cost_change": 0.0,
+      "stationarity": 0.0,
+      "stationarity_passed": true
+    },
+    {
+      "analytic_evaluations": 2,
+      "case": "constrained_minimum",
+      "center_cost": 1601.0,
+      "expectation_met": true,
+      "known_global_minimum": true,
+      "native_predictions": 0,
+      "observed_fit_starts": 0,
+      "original_gate": {
+        "actual_cost_change": 0.0,
+        "actual_residual_step": 0.0,
+        "fresh_stationarity": 0.0,
+        "normalized_parameter_step": 0.0,
+        "passed": true,
+        "position_max_abs_neu_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "position_max_tolerance_m": 0.01,
+        "position_rms_neu_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "position_rms_tolerance_m": 0.001,
+        "predicted_cost_change": 0.0,
+        "predicted_residual_step": 0.0,
+        "reason": "fresh_position_stability_verified"
+      },
+      "probe_parameter": 1.0,
+      "proof": "monotone residual minimized at upper bound",
+      "signed_actual_cost_change": 0.0,
+      "stationarity": 0.0,
+      "stationarity_passed": true
+    },
+    {
+      "analytic_evaluations": 2,
+      "case": "smooth_nonminimum",
+      "center_cost": 1600.000016,
+      "expectation_met": true,
+      "known_global_minimum": false,
+      "native_predictions": 0,
+      "observed_fit_starts": 0,
+      "original_gate": {
+        "actual_cost_change": 9.999999874752428e-09,
+        "actual_residual_step": 9.99999995e-05,
+        "fresh_stationarity": 0.0,
+        "normalized_parameter_step": 0.8,
+        "passed": false,
+        "position_max_abs_neu_m": [
+          0.008,
+          0.0,
+          0.0
+        ],
+        "position_max_tolerance_m": 0.01,
+        "position_rms_neu_m": [
+          0.00565685424949238,
+          0.0,
+          0.0
+        ],
+        "position_rms_tolerance_m": 0.001,
+        "predicted_cost_change": 9.999999874752428e-09,
+        "predicted_residual_step": 9.99999995e-05,
+        "reason": "fresh_position_probe_not_stable"
+      },
+      "probe_parameter": 0.0,
+      "proof": "minimize (0.005*u)^2+1600 on [-1,1]",
+      "signed_actual_cost_change": -1.5999999959603883e-05,
+      "stationarity": 4.999999975e-07,
+      "stationarity_passed": true
+    }
+  ],
+  "endpoints": [
+    {
+      "affine_slices": [
+        {
+          "feasible": true,
+          "method": "full",
+          "native_predictions": 0,
+          "normalized_step": 0.13801790908523792,
+          "normalized_time_step": -0.12948377366334132,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -0.0365127125737672,
+          "success": true
+        },
+        {
+          "feasible": true,
+          "method": "current_packet_interval",
+          "native_predictions": 0,
+          "normalized_step": 0.004568917934499482,
+          "normalized_time_step": -7.752760211587884e-08,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -7.830749382264912e-07,
+          "success": true
+        },
+        {
+          "feasible": true,
+          "method": "fixed_time",
+          "native_predictions": 0,
+          "normalized_step": 0.004568911880453225,
+          "normalized_time_step": 0.0,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -7.393518899334595e-07,
+          "success": true
+        }
+      ],
+      "case_id": "bias1_unsubtracted",
+      "converged": false,
+      "filename": "ILVIS0_applanix_55133_610-29Oct09_29Oct09.013",
+      "fresh_axis_rms_m": null,
+      "identity": "0e73879f98c3b701fd7c42df::bias1_unsubtracted::sphere_still::primary",
+      "model": "sphere_still",
+      "packet_screen": {
+        "changed_packet_epochs_minus_100ns": 669,
+        "changed_packet_epochs_plus_100ns": 0,
+        "epochs_within_100ns": 669,
+        "epochs_within_10us": 669,
+        "epochs_within_1us": 669,
+        "lower_normalized_time_step": -7.752760211587884e-08,
+        "maximum_packet_distance_ns": 12.178475117252674,
+        "median_packet_distance_ns": 11.874647043441655,
+        "minimum_packet_distance_ns": 11.629140317381825,
+        "receiver_epochs": 669,
+        "upper_normalized_time_step": 0.033333252143468904
+      },
+      "role": "primary",
+      "segment_id": "0e73879f98c3b701fd7c42df",
+      "signed_fresh_cost_change": null,
+      "stability_reason": "not_stationary",
+      "stage": "ilvis0-hybrid-remaining-20261015",
+      "stationarity": 0.00022440736000887892,
+      "stationarity_passed": false,
+      "stop_message": "no positive predicted decrease",
+      "time_offset_s": -0.04744511926610683
+    },
+    {
+      "affine_slices": [
+        {
+          "feasible": true,
+          "method": "full",
+          "native_predictions": 0,
+          "normalized_step": 3.1077615617306463e-06,
+          "normalized_time_step": 1.8384074545569343e-06,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -8.185452315956354e-12,
+          "success": true
+        },
+        {
+          "feasible": true,
+          "method": "current_packet_interval",
+          "native_predictions": 0,
+          "normalized_step": 3.1077615618479553e-06,
+          "normalized_time_step": 1.838407454556935e-06,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -8.185452315956354e-12,
+          "success": true
+        },
+        {
+          "feasible": true,
+          "method": "fixed_time",
+          "native_predictions": 0,
+          "normalized_step": 2.5264576100506988e-06,
+          "normalized_time_step": 0.0,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -9.094947017729282e-13,
+          "success": true
+        }
+      ],
+      "case_id": "bias1_unsubtracted",
+      "converged": true,
+      "filename": "ILVIS0_applanix_55133_610-29Oct09_29Oct09.013",
+      "fresh_axis_rms_m": [
+        1.2190523582382137e-07,
+        1.1052892567998697e-07,
+        1.608536263382421e-07
+      ],
+      "identity": "0e73879f98c3b701fd7c42df::bias1_unsubtracted::sphere_still::repeat",
+      "model": "sphere_still",
+      "packet_screen": {
+        "changed_packet_epochs_minus_100ns": 0,
+        "changed_packet_epochs_plus_100ns": 0,
+        "epochs_within_100ns": 0,
+        "epochs_within_10us": 0,
+        "epochs_within_1us": 0,
+        "lower_normalized_time_step": -0.018019792398244288,
+        "maximum_packet_distance_ns": 2297031.1402588096,
+        "median_packet_distance_ns": 2297030.8947378728,
+        "minimum_packet_distance_ns": 2297030.5909666424,
+        "receiver_epochs": 669,
+        "upper_normalized_time_step": 0.015313537273110949
+      },
+      "role": "repeat",
+      "segment_id": "0e73879f98c3b701fd7c42df",
+      "signed_fresh_cost_change": -2.5078406906686723e-08,
+      "stability_reason": "fresh_position_stability_verified",
+      "stage": "ilvis0-hybrid-remaining-20261015",
+      "stationarity": 3.305419367862255e-09,
+      "stationarity_passed": true,
+      "stop_message": "undamped correction small; fresh verification required",
+      "time_offset_s": -0.06474216203548115
+    },
+    {
+      "affine_slices": [
+        {
+          "feasible": true,
+          "method": "full",
+          "native_predictions": 0,
+          "normalized_step": 0.0830381441677279,
+          "normalized_time_step": 0.07813080449300165,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -0.014389316413598863,
+          "success": true
+        },
+        {
+          "feasible": true,
+          "method": "current_packet_interval",
+          "native_predictions": 0,
+          "normalized_step": 0.004290795252030225,
+          "normalized_time_step": 3.967064306914514e-08,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -1.1605020517890807e-06,
+          "success": true
+        },
+        {
+          "feasible": true,
+          "method": "fixed_time",
+          "native_predictions": 0,
+          "normalized_step": 0.0042907942940628154,
+          "normalized_time_step": 0.0,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -1.1458910194050986e-06,
+          "success": true
+        }
+      ],
+      "case_id": "bias1_profiled_removal",
+      "converged": false,
+      "filename": "ILVIS0_applanix_55133_610-29Oct09_29Oct09.013",
+      "fresh_axis_rms_m": null,
+      "identity": "0e73879f98c3b701fd7c42df::bias1_profiled_removal::sphere_still::primary",
+      "model": "sphere_still",
+      "packet_screen": {
+        "changed_packet_epochs_minus_100ns": 0,
+        "changed_packet_epochs_plus_100ns": 669,
+        "epochs_within_100ns": 669,
+        "epochs_within_10us": 669,
+        "epochs_within_1us": 669,
+        "lower_normalized_time_step": -0.033333290000996385,
+        "maximum_packet_distance_ns": 6.499845994767384,
+        "median_packet_distance_ns": 6.2543108469981235,
+        "minimum_packet_distance_ns": 5.950596460024826,
+        "receiver_epochs": 669,
+        "upper_normalized_time_step": 3.967064306683218e-08
+      },
+      "role": "primary",
+      "segment_id": "0e73879f98c3b701fd7c42df",
+      "signed_fresh_cost_change": null,
+      "stability_reason": "not_stationary",
+      "stage": "ilvis0-hybrid-remaining-20261015",
+      "stationarity": 0.0001465893798823602,
+      "stationarity_passed": false,
+      "stop_message": "no positive predicted decrease",
+      "time_offset_s": -0.007445137395129368
+    },
+    {
+      "affine_slices": [
+        {
+          "feasible": true,
+          "method": "full",
+          "native_predictions": 0,
+          "normalized_step": 0.011437579497725597,
+          "normalized_time_step": -0.010785567550935543,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -0.00026699256341089495,
+          "success": true
+        },
+        {
+          "feasible": true,
+          "method": "current_packet_interval",
+          "native_predictions": 0,
+          "normalized_step": 3.0116296542578183e-05,
+          "normalized_time_step": -2.3138707661019e-06,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -1.8842706595023628e-07,
+          "success": true
+        },
+        {
+          "feasible": true,
+          "method": "fixed_time",
+          "native_predictions": 0,
+          "normalized_step": 2.9975215601847644e-05,
+          "normalized_time_step": 0.0,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -7.391258805000689e-08,
+          "success": true
+        }
+      ],
+      "case_id": "bias1_profiled_removal",
+      "converged": false,
+      "filename": "ILVIS0_applanix_55133_610-29Oct09_29Oct09.013",
+      "fresh_axis_rms_m": [
+        0.0005206617720786423,
+        0.00048327534239786833,
+        0.0003738500707083118
+      ],
+      "identity": "0e73879f98c3b701fd7c42df::bias1_profiled_removal::sphere_still::repeat",
+      "model": "sphere_still",
+      "packet_screen": {
+        "changed_packet_epochs_minus_100ns": 0,
+        "changed_packet_epochs_plus_100ns": 0,
+        "epochs_within_100ns": 0,
+        "epochs_within_10us": 669,
+        "epochs_within_1us": 669,
+        "lower_normalized_time_step": -2.3138707661019e-06,
+        "maximum_packet_distance_ns": 347.62990708259167,
+        "median_packet_distance_ns": 347.3261358521995,
+        "minimum_packet_distance_ns": 347.08061491528497,
+        "receiver_epochs": 669,
+        "upper_normalized_time_step": 0.033331015800589135
+      },
+      "role": "repeat",
+      "segment_id": "0e73879f98c3b701fd7c42df",
+      "signed_fresh_cost_change": 0.007691698175904094,
+      "stability_reason": "fresh_position_probe_not_stable",
+      "stage": "ilvis0-hybrid-remaining-20261015",
+      "stationarity": 2.069525761928573e-05,
+      "stationarity_passed": true,
+      "stop_message": "no positive predicted decrease",
+      "time_offset_s": -0.0774447838145975
+    },
+    {
+      "affine_slices": [
+        {
+          "feasible": true,
+          "method": "full",
+          "native_predictions": 0,
+          "normalized_step": 0.01676067724632921,
+          "normalized_time_step": -0.012428876592626266,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -3.811691225186209e-05,
+          "success": true
+        },
+        {
+          "feasible": true,
+          "method": "current_packet_interval",
+          "native_predictions": 0,
+          "normalized_step": 0.0002839855728752951,
+          "normalized_time_step": -1.6791735409527487e-08,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -3.558464634068059e-10,
+          "success": true
+        },
+        {
+          "feasible": true,
+          "method": "fixed_time",
+          "native_predictions": 0,
+          "normalized_step": 0.00028397729624952354,
+          "normalized_time_step": 0.0,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -2.528524056799597e-10,
+          "success": true
+        }
+      ],
+      "case_id": "bias1_unsubtracted",
+      "converged": false,
+      "filename": "ILVIS0_applanix_57320_610_DMS_25Oct15DMS.013",
+      "fresh_axis_rms_m": [
+        0.00015471142565974584,
+        0.00015569762876906575,
+        0.0005265671287354642
+      ],
+      "identity": "370cec66878c4c1cf84b4ceb::bias1_unsubtracted::sphere_rotating::primary",
+      "model": "sphere_rotating",
+      "packet_screen": {
+        "changed_packet_epochs_minus_100ns": 554,
+        "changed_packet_epochs_plus_100ns": 0,
+        "epochs_within_100ns": 554,
+        "epochs_within_10us": 554,
+        "epochs_within_1us": 554,
+        "lower_normalized_time_step": -1.679173540954556e-08,
+        "maximum_packet_distance_ns": 2.963474798889365,
+        "median_packet_distance_ns": 2.7119995138491504,
+        "minimum_packet_distance_ns": 2.5187603114318335,
+        "receiver_epochs": 554,
+        "upper_normalized_time_step": 0.03333331357680436
+      },
+      "role": "primary",
+      "segment_id": "370cec66878c4c1cf84b4ceb",
+      "signed_fresh_cost_change": 0.0001163120871150447,
+      "stability_reason": "fresh_position_probe_not_stable",
+      "stage": "ilvis0-hybrid-remaining-20261015",
+      "stationarity": 6.38679331056631e-05,
+      "stationarity_passed": true,
+      "stop_message": "no positive predicted decrease",
+      "time_offset_s": 0.0356260344853862
+    },
+    {
+      "affine_slices": [
+        {
+          "feasible": true,
+          "method": "full",
+          "native_predictions": 0,
+          "normalized_step": 0.01677473012046341,
+          "normalized_time_step": -0.012429402934394084,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -3.812022494287248e-05,
+          "success": true
+        },
+        {
+          "feasible": true,
+          "method": "current_packet_interval",
+          "native_predictions": 0,
+          "normalized_step": 0.00032026617494100015,
+          "normalized_time_step": -4.38629588946581e-07,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -3.068492571145498e-09,
+          "success": true
+        },
+        {
+          "feasible": true,
+          "method": "fixed_time",
+          "native_predictions": 0,
+          "normalized_step": 0.00032005042064966804,
+          "normalized_time_step": 0.0,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -3.7806602293244396e-10,
+          "success": true
+        }
+      ],
+      "case_id": "bias1_unsubtracted",
+      "converged": false,
+      "filename": "ILVIS0_applanix_57320_610_DMS_25Oct15DMS.013",
+      "fresh_axis_rms_m": [
+        0.00015484074048417485,
+        0.0001554548681726893,
+        0.0005376568613621402
+      ],
+      "identity": "370cec66878c4c1cf84b4ceb::bias1_unsubtracted::sphere_rotating::repeat",
+      "model": "sphere_rotating",
+      "packet_screen": {
+        "changed_packet_epochs_minus_100ns": 554,
+        "changed_packet_epochs_plus_100ns": 0,
+        "epochs_within_100ns": 554,
+        "epochs_within_10us": 554,
+        "epochs_within_1us": 554,
+        "lower_normalized_time_step": -4.386295889465449e-07,
+        "maximum_packet_distance_ns": 66.2391812511487,
+        "median_packet_distance_ns": 65.98764912268962,
+        "minimum_packet_distance_ns": 65.79443834198173,
+        "receiver_epochs": 554,
+        "upper_normalized_time_step": 0.03333289173876135
+      },
+      "role": "repeat",
+      "segment_id": "370cec66878c4c1cf84b4ceb",
+      "signed_fresh_cost_change": 0.00011631163959879842,
+      "stability_reason": "fresh_position_probe_not_stable",
+      "stage": "ilvis0-hybrid-remaining-20261015",
+      "stationarity": 6.626253513790343e-05,
+      "stationarity_passed": true,
+      "stop_message": "no positive predicted decrease",
+      "time_offset_s": 0.03562609776106768
+    },
+    {
+      "affine_slices": [
+        {
+          "feasible": true,
+          "method": "full",
+          "native_predictions": 0,
+          "normalized_step": 0.018354830733028116,
+          "normalized_time_step": 0.012815423319463438,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -4.029003785177565e-05,
+          "success": true
+        },
+        {
+          "feasible": true,
+          "method": "current_packet_interval",
+          "native_predictions": 0,
+          "normalized_step": 0.001774606460088055,
+          "normalized_time_step": 1.6181426569043349e-09,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -7.665939882883777e-09,
+          "success": true
+        },
+        {
+          "feasible": true,
+          "method": "fixed_time",
+          "native_predictions": 0,
+          "normalized_step": 0.0017746055452977356,
+          "normalized_time_step": 0.0,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -7.655766243175322e-09,
+          "success": true
+        }
+      ],
+      "case_id": "bias1_profiled_removal",
+      "converged": false,
+      "filename": "ILVIS0_applanix_57320_610_DMS_25Oct15DMS.013",
+      "fresh_axis_rms_m": [
+        0.0001572825263522545,
+        0.00015912876748339603,
+        0.000666459994569996
+      ],
+      "identity": "370cec66878c4c1cf84b4ceb::bias1_profiled_removal::sphere_rotating::primary",
+      "model": "sphere_rotating",
+      "packet_screen": {
+        "changed_packet_epochs_minus_100ns": 0,
+        "changed_packet_epochs_plus_100ns": 554,
+        "epochs_within_100ns": 554,
+        "epochs_within_10us": 554,
+        "epochs_within_1us": 554,
+        "lower_normalized_time_step": -0.03333332875068133,
+        "maximum_packet_distance_ns": 0.6873932534290361,
+        "median_packet_distance_ns": 0.4941966835758649,
+        "minimum_packet_distance_ns": 0.24272139853565022,
+        "receiver_epochs": 554,
+        "upper_normalized_time_step": 1.6181426569043349e-09
+      },
+      "role": "primary",
+      "segment_id": "370cec66878c4c1cf84b4ceb",
+      "signed_fresh_cost_change": 0.00011941679787419446,
+      "stability_reason": "fresh_position_probe_not_stable",
+      "stage": "ilvis0-hybrid-remaining-20261015",
+      "stationarity": 6.793657683613719e-05,
+      "stationarity_passed": true,
+      "stop_message": "no positive predicted decrease",
+      "time_offset_s": 0.03562603127923173
+    },
+    {
+      "affine_slices": [
+        {
+          "feasible": true,
+          "method": "full",
+          "native_predictions": 0,
+          "normalized_step": 0.017634997734072375,
+          "normalized_time_step": 0.012820088839730086,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -4.031224398470812e-05,
+          "success": true
+        },
+        {
+          "feasible": true,
+          "method": "current_packet_interval",
+          "native_predictions": 0,
+          "normalized_step": 0.00018819644694146928,
+          "normalized_time_step": 9.441616081555064e-08,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -6.969393950839731e-10,
+          "success": true
+        },
+        {
+          "feasible": true,
+          "method": "fixed_time",
+          "native_predictions": 0,
+          "normalized_step": 0.00018814366746814645,
+          "normalized_time_step": 0.0,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -1.031685847863173e-10,
+          "success": true
+        }
+      ],
+      "case_id": "bias1_profiled_removal",
+      "converged": false,
+      "filename": "ILVIS0_applanix_57320_610_DMS_25Oct15DMS.013",
+      "fresh_axis_rms_m": [
+        0.00015629713705973724,
+        0.00015908013840352971,
+        0.0005660888698247903
+      ],
+      "identity": "370cec66878c4c1cf84b4ceb::bias1_profiled_removal::sphere_rotating::repeat",
+      "model": "sphere_rotating",
+      "packet_screen": {
+        "changed_packet_epochs_minus_100ns": 0,
+        "changed_packet_epochs_plus_100ns": 554,
+        "epochs_within_100ns": 554,
+        "epochs_within_10us": 554,
+        "epochs_within_1us": 554,
+        "lower_normalized_time_step": -0.03333323595247369,
+        "maximum_packet_distance_ns": 14.607124398935412,
+        "median_packet_distance_ns": 14.41389940737281,
+        "minimum_packet_distance_ns": 14.162424122332595,
+        "receiver_epochs": 554,
+        "upper_normalized_time_step": 9.441616081555064e-08
+      },
+      "role": "repeat",
+      "segment_id": "370cec66878c4c1cf84b4ceb",
+      "signed_fresh_cost_change": 0.00011944203881864013,
+      "stability_reason": "fresh_position_probe_not_stable",
+      "stage": "ilvis0-hybrid-remaining-20261015",
+      "stationarity": 6.797582780066847e-05,
+      "stationarity_passed": true,
+      "stop_message": "no positive predicted decrease",
+      "time_offset_s": 0.035626017359497615
+    },
+    {
+      "affine_slices": [
+        {
+          "feasible": true,
+          "method": "full",
+          "native_predictions": 0,
+          "normalized_step": 0.4417015912459352,
+          "normalized_time_step": -0.42127916856995323,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -0.07527783163095592,
+          "success": true
+        },
+        {
+          "feasible": true,
+          "method": "current_packet_interval",
+          "native_predictions": 0,
+          "normalized_step": 1.4419570223409139e-05,
+          "normalized_time_step": -8.290044210129688e-09,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -7.516237019444816e-07,
+          "success": true
+        },
+        {
+          "feasible": true,
+          "method": "fixed_time",
+          "native_predictions": 0,
+          "normalized_step": 1.4420686304047419e-05,
+          "normalized_time_step": 0.0,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -7.486610229534563e-07,
+          "success": true
+        }
+      ],
+      "case_id": "bias1_unsubtracted",
+      "converged": false,
+      "filename": "ILVIS0_applanix_57315_610_DMS_20Oct15DMS.013",
+      "fresh_axis_rms_m": null,
+      "identity": "50f24131843071ae9312c082::bias1_unsubtracted::sphere_still::primary",
+      "model": "sphere_still",
+      "packet_screen": {
+        "changed_packet_epochs_minus_100ns": 555,
+        "changed_packet_epochs_plus_100ns": 0,
+        "epochs_within_100ns": 555,
+        "epochs_within_10us": 555,
+        "epochs_within_1us": 555,
+        "lower_normalized_time_step": -8.290044206660241e-09,
+        "maximum_packet_distance_ns": 1.689159034867771,
+        "median_packet_distance_ns": 1.437172159057809,
+        "minimum_packet_distance_ns": 1.2435066309990361,
+        "receiver_epochs": 555,
+        "upper_normalized_time_step": 0.03333332207224279
+      },
+      "role": "primary",
+      "segment_id": "50f24131843071ae9312c082",
+      "signed_fresh_cost_change": null,
+      "stability_reason": "not_stationary",
+      "stage": "ilvis0-hybrid-remaining-20261015",
+      "stationarity": 0.0001313232806820597,
+      "stationarity_passed": false,
+      "stop_message": "no positive predicted decrease",
+      "time_offset_s": -0.02071896755334735
+    },
+    {
+      "affine_slices": [
+        {
+          "feasible": true,
+          "method": "full",
+          "native_predictions": 0,
+          "normalized_step": 0.015604762331272741,
+          "normalized_time_step": -0.014883350004600037,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -9.921340688379132e-05,
+          "success": true
+        },
+        {
+          "feasible": true,
+          "method": "current_packet_interval",
+          "native_predictions": 0,
+          "normalized_step": 2.3413868664327533e-05,
+          "normalized_time_step": -2.2331482985768134e-05,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -2.975025381601881e-07,
+          "success": true
+        },
+        {
+          "feasible": true,
+          "method": "fixed_time",
+          "native_predictions": 0,
+          "normalized_step": 6.860034714188575e-10,
+          "normalized_time_step": 0.0,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": 0.0,
+          "success": true
+        }
+      ],
+      "case_id": "bias1_unsubtracted",
+      "converged": false,
+      "filename": "ILVIS0_applanix_57315_610_DMS_20Oct15DMS.013",
+      "fresh_axis_rms_m": [
+        0.00026151777851876227,
+        0.0004277074957279084,
+        0.0005436771987010513
+      ],
+      "identity": "50f24131843071ae9312c082::bias1_unsubtracted::sphere_still::repeat",
+      "model": "sphere_still",
+      "packet_screen": {
+        "changed_packet_epochs_minus_100ns": 0,
+        "changed_packet_epochs_plus_100ns": 0,
+        "epochs_within_100ns": 0,
+        "epochs_within_10us": 555,
+        "epochs_within_1us": 0,
+        "lower_normalized_time_step": -2.2331482985767558e-05,
+        "maximum_packet_distance_ns": 3350.1680718472926,
+        "median_packet_distance_ns": 3349.9161418149015,
+        "minimum_packet_distance_ns": 3349.7224478651333,
+        "receiver_epochs": 555,
+        "upper_normalized_time_step": 0.033310998879490704
+      },
+      "role": "repeat",
+      "segment_id": "50f24131843071ae9312c082",
+      "signed_fresh_cost_change": 0.0056652826233403175,
+      "stability_reason": "fresh_position_probe_not_stable",
+      "stage": "ilvis0-hybrid-remaining-20261015",
+      "stationarity": 4.813515926939485e-06,
+      "stationarity_passed": true,
+      "stop_message": "no positive predicted decrease",
+      "time_offset_s": -0.06571561907436638
+    },
+    {
+      "affine_slices": [
+        {
+          "feasible": true,
+          "method": "full",
+          "native_predictions": 0,
+          "normalized_step": 0.006455841633836952,
+          "normalized_time_step": 0.004304046069716551,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -2.5477333267520663e-06,
+          "success": true
+        },
+        {
+          "feasible": true,
+          "method": "current_packet_interval",
+          "native_predictions": 0,
+          "normalized_step": 0.00020078440073568595,
+          "normalized_time_step": 1.1842488826588338e-06,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -1.777486602350109e-09,
+          "success": true
+        },
+        {
+          "feasible": true,
+          "method": "fixed_time",
+          "native_predictions": 0,
+          "normalized_step": 0.00020087919567246356,
+          "normalized_time_step": 0.0,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -3.758797717523521e-10,
+          "success": true
+        }
+      ],
+      "case_id": "bias1_unsubtracted",
+      "converged": false,
+      "filename": "ILVIS0_applanix_57320_610_LVIS_38614965.013",
+      "fresh_axis_rms_m": [
+        8.03745775805398e-05,
+        6.900414571475353e-05,
+        0.0001216518976695857
+      ],
+      "identity": "b4e44ddc0f130ecd45674c78::bias1_unsubtracted::sphere_rotating::primary",
+      "model": "sphere_rotating",
+      "packet_screen": {
+        "changed_packet_epochs_minus_100ns": 0,
+        "changed_packet_epochs_plus_100ns": 0,
+        "epochs_within_100ns": 0,
+        "epochs_within_10us": 434,
+        "epochs_within_1us": 434,
+        "lower_normalized_time_step": -0.033332146847442345,
+        "maximum_packet_distance_ns": 177.97287910070736,
+        "median_packet_distance_ns": 177.83420958039642,
+        "minimum_packet_distance_ns": 177.637332399172,
+        "receiver_epochs": 434,
+        "upper_normalized_time_step": 1.1842488826611468e-06
+      },
+      "role": "primary",
+      "segment_id": "b4e44ddc0f130ecd45674c78",
+      "signed_fresh_cost_change": 2.022267298396052e-05,
+      "stability_reason": "fresh_position_probe_not_stable",
+      "stage": "ilvis0-hybrid-remaining-20261015",
+      "stationarity": 1.717157977831793e-05,
+      "stationarity_passed": true,
+      "stop_message": "no positive predicted decrease",
+      "time_offset_s": 0.01794320837514296
+    },
+    {
+      "affine_slices": [
+        {
+          "feasible": true,
+          "method": "full",
+          "native_predictions": 0,
+          "normalized_step": 0.006451288111684383,
+          "normalized_time_step": 0.004303337253467699,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -2.5467931445977143e-06,
+          "success": true
+        },
+        {
+          "feasible": true,
+          "method": "current_packet_interval",
+          "native_predictions": 0,
+          "normalized_step": 0.00013954631057668128,
+          "normalized_time_step": 3.2411738480619956e-08,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -3.134144055394472e-10,
+          "success": true
+        },
+        {
+          "feasible": true,
+          "method": "fixed_time",
+          "native_predictions": 0,
+          "normalized_step": 0.0001395509983585379,
+          "normalized_time_step": 0.0,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -2.7505508981562343e-10,
+          "success": true
+        }
+      ],
+      "case_id": "bias1_unsubtracted",
+      "converged": false,
+      "filename": "ILVIS0_applanix_57320_610_LVIS_38614965.013",
+      "fresh_axis_rms_m": [
+        7.873744934920981e-05,
+        6.697277834270245e-05,
+        0.00012325623978809989
+      ],
+      "identity": "b4e44ddc0f130ecd45674c78::bias1_unsubtracted::sphere_rotating::repeat",
+      "model": "sphere_rotating",
+      "packet_screen": {
+        "changed_packet_epochs_minus_100ns": 0,
+        "changed_packet_epochs_plus_100ns": 434,
+        "epochs_within_100ns": 434,
+        "epochs_within_10us": 434,
+        "epochs_within_1us": 434,
+        "lower_normalized_time_step": -0.03333329868439705,
+        "maximum_packet_distance_ns": 5.197335894990829,
+        "median_packet_distance_ns": 5.058637952970457,
+        "minimum_packet_distance_ns": 4.861760771746049,
+        "receiver_epochs": 434,
+        "upper_normalized_time_step": 3.2411738478306994e-08
+      },
+      "role": "repeat",
+      "segment_id": "b4e44ddc0f130ecd45674c78",
+      "signed_fresh_cost_change": 2.0228030805258257e-05,
+      "stability_reason": "fresh_position_probe_not_stable",
+      "stage": "ilvis0-hybrid-remaining-20261015",
+      "stationarity": 1.716808471188682e-05,
+      "stationarity_passed": true,
+      "stop_message": "no positive predicted decrease",
+      "time_offset_s": 0.017943381150688394
+    },
+    {
+      "affine_slices": [
+        {
+          "feasible": true,
+          "method": "full",
+          "native_predictions": 0,
+          "normalized_step": 0.3726108531763281,
+          "normalized_time_step": 0.3524663160403122,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -0.02926579087625214,
+          "success": true
+        },
+        {
+          "feasible": true,
+          "method": "current_packet_interval",
+          "native_predictions": 0,
+          "normalized_step": 2.5318358480368596e-07,
+          "normalized_time_step": 1.2171312846476212e-08,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -2.038177626673132e-09,
+          "success": true
+        },
+        {
+          "feasible": true,
+          "method": "fixed_time",
+          "native_predictions": 0,
+          "normalized_step": 2.5272761370318323e-07,
+          "normalized_time_step": 0.0,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -1.3869794202037156e-11,
+          "success": true
+        }
+      ],
+      "case_id": "bias1_unsubtracted",
+      "converged": false,
+      "filename": "ILVIS0_applanix_57320_610_LVIS_38614965.013",
+      "fresh_axis_rms_m": [
+        0.004025077627475827,
+        0.012124801079188556,
+        0.011562546285802128
+      ],
+      "identity": "b4e44ddc0f130ecd45674c78::bias1_unsubtracted::sphere_still::primary",
+      "model": "sphere_still",
+      "packet_screen": {
+        "changed_packet_epochs_minus_100ns": 0,
+        "changed_packet_epochs_plus_100ns": 434,
+        "epochs_within_100ns": 434,
+        "epochs_within_10us": 434,
+        "epochs_within_1us": 434,
+        "lower_normalized_time_step": -0.03333331892491742,
+        "maximum_packet_distance_ns": 2.1612578393614967,
+        "median_packet_distance_ns": 2.0225741081958404,
+        "minimum_packet_distance_ns": 1.8256969269714318,
+        "receiver_epochs": 434,
+        "upper_normalized_time_step": 1.2171312846476212e-08
+      },
+      "role": "primary",
+      "segment_id": "b4e44ddc0f130ecd45674c78",
+      "signed_fresh_cost_change": 0.018363288445698345,
+      "stability_reason": "fresh_position_probe_not_stable",
+      "stage": "ilvis0-hybrid-remaining-20261015",
+      "stationarity": 6.371702748094946e-05,
+      "stationarity_passed": true,
+      "stop_message": "no positive predicted decrease",
+      "time_offset_s": 0.0929433841867034
+    },
+    {
+      "affine_slices": [
+        {
+          "feasible": true,
+          "method": "full",
+          "native_predictions": 0,
+          "normalized_step": 1.2576727587990428e-05,
+          "normalized_time_step": 0.0,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -1.9620074453996494e-09,
+          "success": true
+        },
+        {
+          "feasible": true,
+          "method": "current_packet_interval",
+          "native_predictions": 0,
+          "normalized_step": 1.2576727588176057e-05,
+          "normalized_time_step": 0.0,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -1.9620074453996494e-09,
+          "success": true
+        },
+        {
+          "feasible": true,
+          "method": "fixed_time",
+          "native_predictions": 0,
+          "normalized_step": 1.2576727587990428e-05,
+          "normalized_time_step": 0.0,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -1.9620074453996494e-09,
+          "success": true
+        }
+      ],
+      "case_id": "bias1_unsubtracted",
+      "converged": true,
+      "filename": "ILVIS0_applanix_57320_610_LVIS_38614965.013",
+      "fresh_axis_rms_m": [
+        4.802771802274362e-06,
+        1.104434890344429e-05,
+        3.6770889879796032e-06
+      ],
+      "identity": "b4e44ddc0f130ecd45674c78::bias1_unsubtracted::sphere_still::repeat",
+      "model": "sphere_still",
+      "packet_screen": {
+        "changed_packet_epochs_minus_100ns": 0,
+        "changed_packet_epochs_plus_100ns": 0,
+        "epochs_within_100ns": 0,
+        "epochs_within_10us": 0,
+        "epochs_within_1us": 0,
+        "lower_normalized_time_step": -0.01371075768067461,
+        "maximum_packet_distance_ns": 2056613.9876336819,
+        "median_packet_distance_ns": 2056613.7907849224,
+        "minimum_packet_distance_ns": 2056613.6521011912,
+        "receiver_epochs": 434,
+        "upper_normalized_time_step": 0.019622573415745137
+      },
+      "role": "repeat",
+      "segment_id": "b4e44ddc0f130ecd45674c78",
+      "signed_fresh_cost_change": 1.0855046639335342e-08,
+      "stability_reason": "fresh_position_stability_verified",
+      "stage": "ilvis0-hybrid-remaining-20261015",
+      "stationarity": 6.58044071893101e-09,
+      "stationarity_passed": true,
+      "stop_message": "undamped correction small; fresh verification required",
+      "time_offset_s": 0.15
+    },
+    {
+      "affine_slices": [
+        {
+          "feasible": true,
+          "method": "full",
+          "native_predictions": 0,
+          "normalized_step": 0.006443062983321929,
+          "normalized_time_step": 0.004303413248668127,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -2.5470538660421482e-06,
+          "success": true
+        },
+        {
+          "feasible": true,
+          "method": "current_packet_interval",
+          "native_predictions": 0,
+          "normalized_step": 0.00023531129965783586,
+          "normalized_time_step": 4.1425020450881755e-07,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -9.361205144386986e-10,
+          "success": true
+        },
+        {
+          "feasible": true,
+          "method": "fixed_time",
+          "native_predictions": 0,
+          "normalized_step": 0.00023537540908161468,
+          "normalized_time_step": 0.0,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -4.458666769124875e-10,
+          "success": true
+        }
+      ],
+      "case_id": "bias1_profiled_removal",
+      "converged": false,
+      "filename": "ILVIS0_applanix_57320_610_LVIS_38614965.013",
+      "fresh_axis_rms_m": [
+        7.865657379474733e-05,
+        6.816790979519433e-05,
+        0.00012170920713798275
+      ],
+      "identity": "b4e44ddc0f130ecd45674c78::bias1_profiled_removal::sphere_rotating::primary",
+      "model": "sphere_rotating",
+      "packet_screen": {
+        "changed_packet_epochs_minus_100ns": 0,
+        "changed_packet_epochs_plus_100ns": 434,
+        "epochs_within_100ns": 434,
+        "epochs_within_10us": 434,
+        "epochs_within_1us": 434,
+        "lower_normalized_time_step": -0.033332916845931024,
+        "maximum_packet_distance_ns": 62.47310579965415,
+        "median_packet_distance_ns": 62.33443627934321,
+        "minimum_packet_distance_ns": 62.13753067640937,
+        "receiver_epochs": 434,
+        "upper_normalized_time_step": 4.142502045093958e-07
+      },
+      "role": "primary",
+      "segment_id": "b4e44ddc0f130ecd45674c78",
+      "signed_fresh_cost_change": 2.022778117982682e-05,
+      "stability_reason": "fresh_position_probe_not_stable",
+      "stage": "ilvis0-hybrid-remaining-20261015",
+      "stationarity": 1.7164250862988874e-05,
+      "stationarity_passed": true,
+      "stop_message": "no positive predicted decrease",
+      "time_offset_s": 0.01794332387491479
+    },
+    {
+      "affine_slices": [
+        {
+          "feasible": true,
+          "method": "full",
+          "native_predictions": 0,
+          "normalized_step": 0.0064346854556620444,
+          "normalized_time_step": 0.0043045682317218795,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -2.5481816079420128e-06,
+          "success": true
+        },
+        {
+          "feasible": true,
+          "method": "current_packet_interval",
+          "native_predictions": 0,
+          "normalized_step": 0.00014352523231013622,
+          "normalized_time_step": 1.1609400492797878e-06,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -1.5788406138028677e-09,
+          "success": true
+        },
+        {
+          "feasible": true,
+          "method": "fixed_time",
+          "native_predictions": 0,
+          "normalized_step": 0.00014390229218017044,
+          "normalized_time_step": 0.0,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -2.0464985261980928e-10,
+          "success": true
+        }
+      ],
+      "case_id": "bias1_profiled_removal",
+      "converged": false,
+      "filename": "ILVIS0_applanix_57320_610_LVIS_38614965.013",
+      "fresh_axis_rms_m": [
+        7.874771451136218e-05,
+        6.652019745298653e-05,
+        0.00012283390432941456
+      ],
+      "identity": "b4e44ddc0f130ecd45674c78::bias1_profiled_removal::sphere_rotating::repeat",
+      "model": "sphere_rotating",
+      "packet_screen": {
+        "changed_packet_epochs_minus_100ns": 0,
+        "changed_packet_epochs_plus_100ns": 0,
+        "epochs_within_100ns": 0,
+        "epochs_within_10us": 434,
+        "epochs_within_1us": 434,
+        "lower_normalized_time_step": -0.03333217015618099,
+        "maximum_packet_distance_ns": 174.4765683042715,
+        "median_packet_distance_ns": 174.33788457310584,
+        "minimum_packet_distance_ns": 174.14100739188143,
+        "receiver_epochs": 434,
+        "upper_normalized_time_step": 1.1609400492792097e-06
+      },
+      "role": "repeat",
+      "segment_id": "b4e44ddc0f130ecd45674c78",
+      "signed_fresh_cost_change": 2.0221017143162712e-05,
+      "stability_reason": "fresh_position_probe_not_stable",
+      "stage": "ilvis0-hybrid-remaining-20261015",
+      "stationarity": 1.720940840778844e-05,
+      "stationarity_passed": true,
+      "stop_message": "no positive predicted decrease",
+      "time_offset_s": 0.017943211871456182
+    },
+    {
+      "affine_slices": [
+        {
+          "feasible": true,
+          "method": "full",
+          "native_predictions": 0,
+          "normalized_step": 0.37261084700713104,
+          "normalized_time_step": 0.3524663100632157,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -0.029265789128885444,
+          "success": true
+        },
+        {
+          "feasible": true,
+          "method": "current_packet_interval",
+          "native_predictions": 0,
+          "normalized_step": 2.6350929622718906e-07,
+          "normalized_time_step": 1.3066407192341423e-09,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -2.3214852262753993e-10,
+          "success": true
+        },
+        {
+          "feasible": true,
+          "method": "fixed_time",
+          "native_predictions": 0,
+          "normalized_step": 2.634918607830035e-07,
+          "normalized_time_step": 0.0,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -1.432454155292362e-11,
+          "success": true
+        }
+      ],
+      "case_id": "bias1_profiled_removal",
+      "converged": false,
+      "filename": "ILVIS0_applanix_57320_610_LVIS_38614965.013",
+      "fresh_axis_rms_m": [
+        0.004025083781543531,
+        0.01212480003033735,
+        0.01156254569647523
+      ],
+      "identity": "b4e44ddc0f130ecd45674c78::bias1_profiled_removal::sphere_still::primary",
+      "model": "sphere_still",
+      "packet_screen": {
+        "changed_packet_epochs_minus_100ns": 0,
+        "changed_packet_epochs_plus_100ns": 434,
+        "epochs_within_100ns": 434,
+        "epochs_within_10us": 434,
+        "epochs_within_1us": 434,
+        "lower_normalized_time_step": -0.03333332978958955,
+        "maximum_packet_distance_ns": 0.531557020622131,
+        "median_packet_distance_ns": 0.3928732894564746,
+        "minimum_packet_distance_ns": 0.19599610823206604,
+        "receiver_epochs": 434,
+        "upper_normalized_time_step": 1.306640721547107e-09
+      },
+      "role": "primary",
+      "segment_id": "b4e44ddc0f130ecd45674c78",
+      "signed_fresh_cost_change": 0.018363270303325407,
+      "stability_reason": "fresh_position_probe_not_stable",
+      "stage": "ilvis0-hybrid-remaining-20261015",
+      "stationarity": 6.371702726459058e-05,
+      "stationarity_passed": true,
+      "stop_message": "no positive predicted decrease",
+      "time_offset_s": 0.09294338581640185
+    },
+    {
+      "affine_slices": [
+        {
+          "feasible": true,
+          "method": "full",
+          "native_predictions": 0,
+          "normalized_step": 2.813515287146668e-05,
+          "normalized_time_step": 0.0,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -9.823224900173955e-09,
+          "success": true
+        },
+        {
+          "feasible": true,
+          "method": "current_packet_interval",
+          "native_predictions": 0,
+          "normalized_step": 2.8135152872394455e-05,
+          "normalized_time_step": 0.0,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -9.822997526498511e-09,
+          "success": true
+        },
+        {
+          "feasible": true,
+          "method": "fixed_time",
+          "native_predictions": 0,
+          "normalized_step": 2.813515287146668e-05,
+          "normalized_time_step": 0.0,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -9.823224900173955e-09,
+          "success": true
+        }
+      ],
+      "case_id": "bias1_profiled_removal",
+      "converged": true,
+      "filename": "ILVIS0_applanix_57320_610_LVIS_38614965.013",
+      "fresh_axis_rms_m": [
+        1.0743002902091846e-05,
+        2.47330906011506e-05,
+        8.2381113637419e-06
+      ],
+      "identity": "b4e44ddc0f130ecd45674c78::bias1_profiled_removal::sphere_still::repeat",
+      "model": "sphere_still",
+      "packet_screen": {
+        "changed_packet_epochs_minus_100ns": 0,
+        "changed_packet_epochs_plus_100ns": 0,
+        "epochs_within_100ns": 0,
+        "epochs_within_10us": 0,
+        "epochs_within_1us": 0,
+        "lower_normalized_time_step": -0.01371075768067461,
+        "maximum_packet_distance_ns": 2056613.9876336819,
+        "median_packet_distance_ns": 2056613.7907849224,
+        "minimum_packet_distance_ns": 2056613.6521011912,
+        "receiver_epochs": 434,
+        "upper_normalized_time_step": 0.019622573415745137
+      },
+      "role": "repeat",
+      "segment_id": "b4e44ddc0f130ecd45674c78",
+      "signed_fresh_cost_change": 1.6911599232116714e-08,
+      "stability_reason": "fresh_position_stability_verified",
+      "stage": "ilvis0-hybrid-remaining-20261015",
+      "stationarity": 2.4586397184630822e-08,
+      "stationarity_passed": true,
+      "stop_message": "no positive predicted decrease",
+      "time_offset_s": 0.15
+    },
+    {
+      "affine_slices": [
+        {
+          "feasible": true,
+          "method": "full",
+          "native_predictions": 0,
+          "normalized_step": 0.01902234747473275,
+          "normalized_time_step": 0.018058993713504466,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -0.0006488796534966923,
+          "success": true
+        },
+        {
+          "feasible": true,
+          "method": "current_packet_interval",
+          "native_predictions": 0,
+          "normalized_step": 2.0988379635446458e-05,
+          "normalized_time_step": 1.2921645968499984e-08,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -4.0838159520717454e-08,
+          "success": true
+        },
+        {
+          "feasible": true,
+          "method": "fixed_time",
+          "native_predictions": 0,
+          "normalized_step": 2.0988193063013428e-05,
+          "normalized_time_step": 0.0,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -3.9909622273626155e-08,
+          "success": true
+        }
+      ],
+      "case_id": "bias1_unsubtracted",
+      "converged": false,
+      "filename": "ILVIS0_applanix_55300_20100414_Ames610_14Apr10.013",
+      "fresh_axis_rms_m": null,
+      "identity": "bb8061a43b4f14b6262ceda1::bias1_unsubtracted::sphere_still::primary",
+      "model": "sphere_still",
+      "packet_screen": {
+        "changed_packet_epochs_minus_100ns": 0,
+        "changed_packet_epochs_plus_100ns": 384,
+        "epochs_within_100ns": 384,
+        "epochs_within_10us": 384,
+        "epochs_within_1us": 384,
+        "lower_normalized_time_step": -0.0333333184716859,
+        "maximum_packet_distance_ns": 2.229242568319023,
+        "median_packet_distance_ns": 2.112386709995917,
+        "minimum_packet_distance_ns": 1.9382468963158317,
+        "receiver_epochs": 384,
+        "upper_normalized_time_step": 1.2921645975438878e-08
+      },
+      "role": "primary",
+      "segment_id": "bb8061a43b4f14b6262ceda1",
+      "signed_fresh_cost_change": null,
+      "stability_reason": "not_stationary",
+      "stage": "ilvis0-hybrid-remaining-20261015",
+      "stationarity": 0.0001416550980474678,
+      "stationarity_passed": false,
+      "stop_message": "no positive predicted decrease",
+      "time_offset_s": 0.13450152126279719
+    },
+    {
+      "affine_slices": [
+        {
+          "feasible": true,
+          "method": "full",
+          "native_predictions": 0,
+          "normalized_step": 0.028794195381340995,
+          "normalized_time_step": -0.027335603329513295,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -0.0016209095459487344,
+          "success": true
+        },
+        {
+          "feasible": true,
+          "method": "current_packet_interval",
+          "native_predictions": 0,
+          "normalized_step": 3.4100378305715712e-06,
+          "normalized_time_step": -2.112907774668808e-08,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -7.399492574222677e-09,
+          "success": true
+        },
+        {
+          "feasible": true,
+          "method": "fixed_time",
+          "native_predictions": 0,
+          "normalized_step": 3.410008120758739e-06,
+          "normalized_time_step": 0.0,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -4.893720984000538e-09,
+          "success": true
+        }
+      ],
+      "case_id": "bias1_unsubtracted",
+      "converged": false,
+      "filename": "ILVIS0_applanix_55300_20100414_Ames610_14Apr10.013",
+      "fresh_axis_rms_m": null,
+      "identity": "bb8061a43b4f14b6262ceda1::bias1_unsubtracted::sphere_still::repeat",
+      "model": "sphere_still",
+      "packet_screen": {
+        "changed_packet_epochs_minus_100ns": 384,
+        "changed_packet_epochs_plus_100ns": 0,
+        "epochs_within_100ns": 384,
+        "epochs_within_10us": 384,
+        "epochs_within_1us": 384,
+        "lower_normalized_time_step": -2.112907774668808e-08,
+        "maximum_packet_distance_ns": 3.460343123151688,
+        "median_packet_distance_ns": 3.2862033094716026,
+        "minimum_packet_distance_ns": 3.1693616620032117,
+        "receiver_epochs": 384,
+        "upper_normalized_time_step": 0.03333331026434887
+      },
+      "role": "repeat",
+      "segment_id": "bb8061a43b4f14b6262ceda1",
+      "signed_fresh_cost_change": null,
+      "stability_reason": "not_stationary",
+      "stage": "ilvis0-hybrid-remaining-20261015",
+      "stationarity": 0.00023624526550329188,
+      "stationarity_passed": false,
+      "stop_message": "no positive predicted decrease",
+      "time_offset_s": 0.13450152666139015
+    },
+    {
+      "affine_slices": [
+        {
+          "feasible": true,
+          "method": "full",
+          "native_predictions": 0,
+          "normalized_step": 0.027704773863140242,
+          "normalized_time_step": 0.026543448805740923,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -0.0011202116729691625,
+          "success": true
+        },
+        {
+          "feasible": true,
+          "method": "current_packet_interval",
+          "native_predictions": 0,
+          "normalized_step": 1.8675486167201928e-09,
+          "normalized_time_step": 1.734723475976807e-18,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -4.547473508864641e-13,
+          "success": true
+        },
+        {
+          "feasible": true,
+          "method": "fixed_time",
+          "native_predictions": 0,
+          "normalized_step": 1.8675485786341793e-09,
+          "normalized_time_step": 0.0,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": 0.0,
+          "success": true
+        }
+      ],
+      "case_id": "bias1_profiled_removal",
+      "converged": false,
+      "filename": "ILVIS0_applanix_55140_610-05Nov09_05Nov09.013",
+      "fresh_axis_rms_m": [
+        0.0009528925571025688,
+        0.0012380888954332263,
+        0.0016973754490774498
+      ],
+      "identity": "fd7b81e48a4122b149c4925b::bias1_profiled_removal::sphere_still::primary",
+      "model": "sphere_still",
+      "packet_screen": {
+        "changed_packet_epochs_minus_100ns": 0,
+        "changed_packet_epochs_plus_100ns": 354,
+        "epochs_within_100ns": 354,
+        "epochs_within_10us": 354,
+        "epochs_within_1us": 354,
+        "lower_normalized_time_step": -0.03333333157513607,
+        "maximum_packet_distance_ns": 0.2637250418047188,
+        "median_packet_distance_ns": 0.16049739315349143,
+        "minimum_packet_distance_ns": 0.0,
+        "receiver_epochs": 354,
+        "upper_normalized_time_step": 0.0
+      },
+      "role": "primary",
+      "segment_id": "fd7b81e48a4122b149c4925b",
+      "signed_fresh_cost_change": 0.0031062199786902056,
+      "stability_reason": "fresh_position_probe_not_stable",
+      "stage": "ilvis0-timing-trial-20261016",
+      "stationarity": 4.165232706808208e-05,
+      "stationarity_passed": true,
+      "stop_message": "no positive predicted decrease",
+      "time_offset_s": 0.11315113322290452
+    },
+    {
+      "affine_slices": [
+        {
+          "feasible": true,
+          "method": "full",
+          "native_predictions": 0,
+          "normalized_step": 0.03251428014624065,
+          "normalized_time_step": -0.03115156519779464,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -0.0016144288351824798,
+          "success": true
+        },
+        {
+          "feasible": true,
+          "method": "current_packet_interval",
+          "native_predictions": 0,
+          "normalized_step": 1.1706287446589805e-08,
+          "normalized_time_step": -9.947598300641403e-13,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -7.503331289626658e-12,
+          "success": true
+        },
+        {
+          "feasible": true,
+          "method": "fixed_time",
+          "native_predictions": 0,
+          "normalized_step": 1.1706155848342922e-08,
+          "normalized_time_step": 0.0,
+          "observed_fit_starts": 0,
+          "predicted_cost_change": -7.503331289626658e-12,
+          "success": true
+        }
+      ],
+      "case_id": "bias1_profiled_removal",
+      "converged": false,
+      "filename": "ILVIS0_applanix_55140_610-05Nov09_05Nov09.013",
+      "fresh_axis_rms_m": [
+        0.001116756673288996,
+        0.0013531037462425832,
+        0.0019339891065513488
+      ],
+      "identity": "fd7b81e48a4122b149c4925b::bias1_profiled_removal::sphere_still::repeat",
+      "model": "sphere_still",
+      "packet_screen": {
+        "changed_packet_epochs_minus_100ns": 353,
+        "changed_packet_epochs_plus_100ns": 1,
+        "epochs_within_100ns": 354,
+        "epochs_within_10us": 354,
+        "epochs_within_1us": 354,
+        "lower_normalized_time_step": -9.947598300641403e-13,
+        "maximum_packet_distance_ns": 0.2636966200952884,
+        "median_packet_distance_ns": 0.10319922694179695,
+        "minimum_packet_distance_ns": 0.0,
+        "receiver_epochs": 354,
+        "upper_normalized_time_step": 0.0
+      },
+      "role": "repeat",
+      "segment_id": "fd7b81e48a4122b149c4925b",
+      "signed_fresh_cost_change": 0.004044470818826085,
+      "stability_reason": "fresh_position_probe_not_stable",
+      "stage": "ilvis0-timing-trial-20261016",
+      "stationarity": 5.114682025869231e-05,
+      "stationarity_passed": true,
+      "stop_message": "no positive predicted decrease",
+      "time_offset_s": 0.11315113348661986
+    }
+  ],
+  "native_predictions": 0,
+  "observed_fit_starts": 0,
+  "original_files_read": 0,
+  "original_labels_changed": false,
+  "saved_affine_solves": 66,
+  "state": "complete",
+  "version": "ilvis0-saved-stopping-boundary-audit-v1"
+}

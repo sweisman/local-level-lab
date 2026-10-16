@@ -14,6 +14,9 @@ incident histories, personal commentary or historical process IDs.
   trials and qualified recovery runs, without requesting renewed permission.
   Freeze each new study and record finite start/evaluation limits before launch;
   keep the four-thread total limit and never expand an active or completed allowance.
+- Prioritize diagnostics that help resolve the remaining six stretches, particularly
+  timing-boundary stopping and repeat disagreement. Defer broader covariance,
+  publication and unrelated diagnostic expansion while this recovery work proceeds.
 - Leave unfamiliar paths outside the documented corpus alone. Do not scan, document,
   ignore or stage them, and do not inspect unrelated credentials.
 - Perform git operations only when explicitly requested. Bundle related work into one
@@ -361,6 +364,36 @@ target primary and repeat failed fresh stability. Qualification failed. Never
 restart, retry or reuse its unused allowance. Preserve the five reused companions,
 sources and evidence. Packaging performs no fits. Continue saved-result diagnostics
 of the stopping gate and other unresolved endpoints; no wider solver rollout follows.
+The saved-only stopping audit is complete at docs/ilvis0-stopping-audit-20261016/
+and data/ilvis0-stopping-audit-20261016/: 22 endpoints over all six unresolved
+stretches, 66 saved affine solves and five independent gate controls, no native
+predictions or observed fits. Never rerun its charged numerical batch; build_report.py
+--render-only packages saved results. interpret_results.py reads sealed metadata only.
+All eleven unfinished primaries cluster within 1 µs of packet boundaries, with timing
+as their largest gradient component. Keep failures and dispositions unchanged.
+The separate exact-knot stopping policy is analysis/lll/ilvis0_boundary_stop.py.
+Its qualification passed 43/43 at docs/ilvis0-boundary-stop-qualification-20261016/
+and data/ilvis0-boundary-stop-qualification-20261016/. Never rerun the sealed batch.
+It is software qualification only; no archive adapter or labels are qualified by it.
+Saved-clock preparation is complete at docs/ilvis0-boundary-adapter-preparation-20261016/
+and data/ilvis0-boundary-adapter-preparation-20261016/: 22 endpoints / 7,197 clock
+queries, zero native predictions or observed fits. Never rerun its batch;
+build_report.py --render-only packages saved metadata. All nineteen unfinished
+endpoints support side geometry; keep three passing smooth repeats unchanged.
+NEXT_PLAN.md proposes adapter controls then a finite native diagnostic for all six:
+nineteen time-only searches plus two controls, 546 calls maximum. Preparation
+authorizes no launch until its runner, qualification and new freeze are complete.
+Adapter software qualification passed 30/30 at docs/ilvis0-boundary-adapter-qualification-20261016/;
+native callback qualification passed 2/2 at docs/ilvis0-boundary-native-qualification-20261016/.
+Both sealed batches are complete; never rerun them. The all-six diagnostic is
+docs/ilvis0-boundary-diagnostic-20261016/ and data/ilvis0-boundary-diagnostic-20261016/,
+launched by analysis/tests/ilvis0_boundary_diagnostic_worker.py. Its finite scope is
+nineteen time-only starts plus two smooth controls, 546 native calls, four threads,
+no retries. Check its lock, freeze and journals before continuation; never restart
+completed work. Passing local diagnostics cannot relabel stretches without repeat
+and full-companion checks. Keep all three passing smooth repeats unchanged.
+Read this diagnostic's runtime failure.json before continuation; an invalid journal
+blocks resume and must remain preserved, including its incomplete tail.
 The separate [rotation-field measurement](docs/ROTATION_FIELD.md) will infer the retained background vector
 before interpreting its cause, with aircraft motion, transport and calibration fitted jointly.
 The proposal authorizes no new fits or campaign budget. Do not fix or subtract the standard

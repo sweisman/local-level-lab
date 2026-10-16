@@ -1,0 +1,17 @@
+{
+  "affine_solves": 0,
+  "artifacts": {
+    "INTERPRETATION.md": "43cf4b496fab59001aea22fcfbc40a01071314c2f83101f6847a7106fc3fe170",
+    "interpretation.json": "5fe96bca92dbedc475e0a9d75387114c1a229043970e50d66302102809d2e1a8"
+  },
+  "inputs": {
+    "completion.json": "0095b491820a8a151f1f9c0723c090e01f9cc45802f4f1e4a61d7bc2e491e608",
+    "diagnosis.json": "4ddc679b918079bbceed6e2813e71e69adb049e2aa42cd3d2ab773e5e6170358",
+    "manifest.json": "efde4abe93cfaee843cd0ae63413e68db38ada67771660b4786953db678dc944"
+  },
+  "native_predictions": 0,
+  "observed_fit_starts": 0,
+  "sources": {
+    "interpret_results.py": "91966f39a2a6e51a00bb5253313a4aa2dfd99a7c33faf2a20a9b95f07089bcb9"
+  }
+}

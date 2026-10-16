@@ -1,0 +1,14 @@
+{
+  "archival_native_predictions": 0,
+  "elapsed_s": 7.250718421069905,
+  "errors": 0,
+  "failures": 0,
+  "native_evaluations": 20,
+  "observed_fit_starts": 0,
+  "original_files_read": 0,
+  "passed": true,
+  "returncode": 0,
+  "skipped": 0,
+  "state": "complete",
+  "tests": 2
+}

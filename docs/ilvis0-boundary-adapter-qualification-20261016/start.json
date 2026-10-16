@@ -1,0 +1,6 @@
+{
+  "manifest_sha256": "05986407d4dcd875a7e5c7412ce6302be3d8ef4f31dc9c660df60dddd63642c0",
+  "maximum_software_evaluations": 2048,
+  "tests": 30,
+  "utc": "2026-10-16T08:35:32.848064+00:00"
+}

@@ -1,0 +1,13 @@
+{
+  "artifacts": {
+    "README.md": "38997145ff603a55ab269d5080285f486c0bf7acfc93c03d99e6ad7aeea8375b",
+    "completion.json": "2e7aa7a222577a8200d6e3d11939fee9e273620261993397121a5323d77b2369",
+    "endpoints.csv": "2917307eff757407ffccd174720c4a3b479fbbb4d822ccf142d8feedb5147b2d",
+    "manifest.json": "2b41ddb6ec54d109ec62d08251e2046b87ae3d74787d7c6ab85925488a62d2f8",
+    "start.json": "caaad652d4912a0f3c87ea932f8f9859b5982ccd8f31a7037d2fd77524e0129d",
+    "summary.json": "9974572fe0dc3e266500b99ff0227a215845fba171eed4fd32ff17d9bb330d95"
+  },
+  "native_predictions": 0,
+  "observed_fit_starts": 0,
+  "original_files_read": 0
+}

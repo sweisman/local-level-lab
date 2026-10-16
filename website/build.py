@@ -18,10 +18,13 @@ from markdown.preprocessors import Preprocessor
 HERE=Path(__file__).resolve().parent
 REPOSITORY='https://github.com/sweisman/local-level-lab'
 DOMAIN='https://locallevellab.com'
+DESCRIPTION="Testing Earth's shape with airborne lidar survey IMU telemetry; developing a stationary crowdsourced rotation-field experiment."
 NAVIGATION=(('Home','README.md'),
-            ('Findings','docs/ilvis0-position-stability-trial-20261013/FINDINGS.md'),
+            ('Findings','docs/CURRENT_STATUS.md'),
+            ('Studies','docs/STUDIES.md'),
             ('Method','docs/METHODOLOGY.md'),
-            ('Flight stretches','docs/ilvis0-position-stability-trial-20261013/STRETCHES.md'),
+            ('Flight stretches','docs/ilvis0-current-findings-20261015/STRETCHES.md'),
+            ('Next steps','docs/NEXT_STEPS.md'),
             ('Ground experiment','docs/STATIONARY.md'))
 IMAGES={'.png','.jpg','.jpeg','.gif','.svg','.webp','.ico'}
 
@@ -174,10 +177,18 @@ def build(root,output,*,assets,base_path='',navigation=True):
         nav=''.join(f'<a href="{site_url(name,base_path)}"'+(' aria-current="page"' if name==source else '')+'>'+html.escape(label)+'</a>' for label,name in NAVIGATION) if navigation else ''
         canonical=DOMAIN+site_url(source)
         source_url=REPOSITORY+'/blob/main/'+quote(source,safe='/')
+        title=('Local Level Lab — Airborne lidar survey IMU analysis' if source=='README.md'
+               else page['title']+' — Local Level Lab')
+        title=html.escape(title,quote=True);description=html.escape(DESCRIPTION,quote=True)
         template=f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{html.escape(page['title'])} — Local Level Lab</title>
-<meta name="description" content="Open analysis of NASA airborne IMU recordings and a stationary crowdsourced rotation-field experiment.">
+<title>{title}</title>
+<meta name="description" content="{description}">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Local Level Lab">
+<meta property="og:title" content="{title}"><meta property="og:description" content="{description}">
+<meta property="og:url" content="{canonical}"><meta property="og:image" content="{DOMAIN}/docs/img/logo.png">
+<meta name="twitter:card" content="summary"><meta name="twitter:title" content="{title}">
+<meta name="twitter:description" content="{description}">
 <link rel="canonical" href="{canonical}"><link rel="stylesheet" href="{base_path}/assets/site.css">
 <script defer src="{base_path}/assets/site.js"></script></head>
 <body><a class="skip" href="#main">Skip to content</a>

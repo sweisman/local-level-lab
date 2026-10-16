@@ -1,0 +1,12 @@
+{
+  "artifacts": {
+    "RESULTS.md": "883cfcd4a22dda26a311d4fc5a185605231ab78006d4f550872250c2d09703b3",
+    "completion.json": "376351682e9de95576390a7da6c2f3c5395c715e69af33dc91cffdcbac252067",
+    "manifest.json": "db8971e2572761bc06fba5c2795975542eda963019a2031e877cde11ab20b4fb",
+    "pytest.log": "d913aefbb30f886a6b069f2429a2c2d289a8e02a9ecc65b1182f687d41756a10",
+    "result.json": "9b4072ea4b7f81c74e353574be8a41feb5fdb347ffa2ca372fb43a59df34c105",
+    "start.json": "c54c282ca92755c122b4a219a227b377f59eb80720a0500e6fa020577eac87a1",
+    "tests.xml": "2d96feae7f358a80a4304c25c847d587942b18e53bc1c377307914cf14429f8a"
+  },
+  "observed_fit_starts": 0
+}
