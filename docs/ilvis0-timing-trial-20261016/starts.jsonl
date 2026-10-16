@@ -1,0 +1,4 @@
+{"identity": "233183f67270980491416678::bias1_unsubtracted::sphere_rotating::control", "manifest_sha256": "e852b19d7132550c211b25440b123885bdc8b6888d31e3da702be0c79ad959ae", "number": 1}
+{"identity": "31d7e5019dfdc9e2e6387206::bias1_profiled_removal::sphere_rotating::control", "manifest_sha256": "e852b19d7132550c211b25440b123885bdc8b6888d31e3da702be0c79ad959ae", "number": 2}
+{"identity": "fd7b81e48a4122b149c4925b::bias1_profiled_removal::sphere_still::primary", "manifest_sha256": "e852b19d7132550c211b25440b123885bdc8b6888d31e3da702be0c79ad959ae", "number": 3}
+{"identity": "fd7b81e48a4122b149c4925b::bias1_profiled_removal::sphere_still::repeat", "manifest_sha256": "e852b19d7132550c211b25440b123885bdc8b6888d31e3da702be0c79ad959ae", "number": 4}

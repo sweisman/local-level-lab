@@ -1,0 +1,10 @@
+{
+  "artifacts": {
+    "README.md": "137b559530f81fb228d57fdb563e8ca09453d7bce8215fb3c8cfae92c4eb85db",
+    "completion.json": "83f8b1bd29fe6f5cfb44212c973d2178378b3cff72acafd00cb86b9255a6e0bd",
+    "diagnosis.json": "221e943408eaae0dda9e4642d265b7f5edfa10532b69a154f4fb807fe9d0a860",
+    "manifest.json": "528ced499794fef53aefda82ead177ded22ba7ce4b97227bece063b10026128f"
+  },
+  "native_predictions": 0,
+  "observed_fit_starts": 0
+}

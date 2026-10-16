@@ -1,0 +1,11 @@
+{
+  "elapsed_s": 14.063540838076733,
+  "errors": 0,
+  "failures": 0,
+  "observed_fit_starts": 0,
+  "passed": true,
+  "returncode": 0,
+  "skipped": 0,
+  "state": "complete",
+  "tests": 67
+}

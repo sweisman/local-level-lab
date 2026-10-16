@@ -3,7 +3,7 @@
 ## Starting point
 
 <!-- current-status:start -->
-**46 globe preferences, 0 flat preferences, 7 unresolved** among 53 preselected stretches.
+**47 globe preferences, 0 flat preferences, 6 unresolved** among 53 preselected stretches.
 See the [verified current status](CURRENT_STATUS.md) for coverage, background-field comparisons and the supporting result records. Unfinished comparisons are not evidence for either shape.
 <!-- current-status:end -->
 
@@ -53,10 +53,32 @@ establish a calibrated scientific detection.
 4. Preserve the completed [eight-start matched trial](ilvis0-trust-trial-20261015/README.md).
    Six fits passed, including both controls. Two targets passed their full comparisons
    and repeats, adding two globe preferences; the third remains unresolved.
-5. Prepare a separate bounded hybrid-solver assessment of the other six unresolved
-   stretches, reusing passing primary fits and predeclaring repeat/control checks.
-   Separately diagnose the last matched-trial target's fresh stability failure;
-   both starts stopped before their evaluation caps. No completed allowance reopens.
+5. Preserve the completed [six-target hybrid assessment](ilvis0-hybrid-remaining-20261015/README.md):
+   24 starts and 1,336 native sweeps; seven fits passed, including both controls.
+   One stretch passed its full comparison and repeat, adding a globe preference.
+   Five assessment targets and one earlier target remain unresolved.
+6. Follow the [saved-tangent audit](ilvis0-final-stability-audit-20261015/README.md) and
+   [timing-direction interpretation](ilvis0-final-stability-audit-20261015/INTERPRETATION.md)
+   for the last matched-trial target. The two affine solvers agree, but saved full-model
+   corrections in the time-alignment direction increase the objective. A finite native
+   derivative/perturbation check is the next diagnostic; no new fit is launched by the audit.
+   The latest remaining failures also stop early, so increasing their evaluation
+   limits alone is not the next recovery method.
+   The [fixed-endpoint timing check](ilvis0-timing-derivative-20261016/README.md)
+   freezes 34 native predictions across a failed primary/repeat pair and a completed
+   control, with zero optimizer starts and unchanged stopping limits.
+   That run finished with ten control calls and two preflight errors before any
+   target evaluations. The [corrected two-endpoint freeze](ilvis0-timing-derivative-v2-20261016/README.md)
+   records roundoff-only endpoint adjustments at the existing bounds, reuses the
+   completed control and permits 24 native calls with no optimizer starts.
+   Both corrected endpoints completed. They sit on opposite sides of a packet
+   boundary; full and half coupled corrections predict lower costs but increase
+   the actual cost. The separate [packet-aware candidate](ilvis0-timing-solver-qualification-20261016/README.md)
+   passed all 67 sealed software checks. Its [four-start observed trial](ilvis0-timing-trial-20261016/README.md)
+   completed four starts / 237 native calls. Both controls passed, but the target
+   primary and repeat failed the original final stability gate. The candidate did
+   not qualify for wider use. Next, audit that gate at packet boundaries and screen
+   the other unresolved endpoints from saved evidence before more solver trials.
 
 ## Recovery development history
 
@@ -313,7 +335,7 @@ That allowance does not authorize the separate recovery study.
 
 | Order | Work | What can happen without new observed fits? | Deliverable |
 |---|---|---|---|
-| P0 | Recover the remaining numerically incomplete stretches | Preserve the completed hybrid trial and diagnose its one unresolved target from saved endpoints. | Prepare a separately bounded assessment of the six stretches not yet tested with the hybrid solver; preserve passing fits and scheduled repeats/controls. |
+| P0 | Recover the remaining numerically incomplete stretches | Preserve both completed hybrid assessments and the saved timing-direction audit. | Test the time-alignment derivative against bounded native predictions before qualifying another recovery method. |
 | Deferred | Explain integration timing and joint Z-axis calibration | Preserve completed clock tests, gain–bias grids and weak-direction audits. | Further physically justified clock/calibration tests after recovery. |
 | Deferred | Model residual dependence and assess prediction quality | Preserve covariance audits and the active comparison's results. | Calibrated predictive adequacy and uncertainty checks. |
 | Deferred | Isolate what the inertial measurements contribute | Preserve the planned channel and receiver-metric controls. | Measurement-contribution study with matched assumptions. |

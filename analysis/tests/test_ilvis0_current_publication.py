@@ -37,3 +37,15 @@ def test_missing_required_check_cannot_promote(failure):
     if failure=='resolved': old['a']='globe'
     if failure=='population': p['target_segment_ids'].append('b')
     with pytest.raises(ValueError): publication().qualified_updates(old,s,p)
+
+
+@pytest.mark.parametrize('failure',['hidden_failure','missing_pair','extra_pair'])
+def test_every_declared_repeat_pair_is_checked(failure):
+    old,s,p=fixture()
+    identities=['a::case::model::repeat','a::other::model::repeat']
+    p['tasks']=[dict(identity=i,role='repeat') for i in identities]
+    s['qualification']['pair_repeatability']=[dict(identity=i,passed=True) for i in identities]
+    if failure=='hidden_failure': s['qualification']['pair_repeatability'][0]['passed']=False
+    if failure=='missing_pair': s['qualification']['pair_repeatability'].pop()
+    if failure=='extra_pair': s['qualification']['pair_repeatability'].append(dict(identity='a::extra',passed=True))
+    with pytest.raises(ValueError): publication().qualified_updates(old,s,p)

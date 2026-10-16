@@ -11,7 +11,7 @@ A simpler, stationary crowdsourced experiment using smaller, less expensive IMUs
 The code, selection criteria and analysis records are open for review.
 
 <!-- current-status:start -->
-**46 globe preferences, 0 flat preferences, 7 unresolved** among 53 preselected stretches.
+**47 globe preferences, 0 flat preferences, 6 unresolved** among 53 preselected stretches.
 See the [verified current status](docs/CURRENT_STATUS.md) for coverage, background-field comparisons and the supporting result records. Unfinished comparisons are not evidence for either shape.
 <!-- current-status:end -->
 
@@ -145,9 +145,10 @@ separate calibration and timing checks; the current short-stretch results do not
 - **Shape and background rotation:** the status page gives the current counts from
   verified result records. The field's physical cause and a solar-versus-sidereal
   distinction have not been determined.
-- **Numerical recovery:** the latest [matched trial](docs/ilvis0-trust-trial-20261015/README.md)
-  passed six of eight fits, including both controls. Two targets passed their complete
-  comparisons and repeats; the third remains unresolved. Earlier results are preserved.
+- **Numerical recovery:** the [six-target assessment](docs/ilvis0-hybrid-remaining-20261015/README.md)
+  recovered one more complete globe comparison. A later [timing-aware trial](docs/ilvis0-timing-trial-20261016/README.md)
+  passed both controls but left its target unresolved. Six stretches still need
+  complete numerical checks; earlier results are preserved.
 - **Current priority:** recover unfinished comparisons with bounded solver qualification
   and repeatability checks. Earlier results
   and the completed timing, calibration and prediction checks remain preserved.

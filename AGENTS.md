@@ -329,6 +329,38 @@ candidate and engine snapshots. --package-only performs no fits. Next numerical
 work needs separate freezes: the six other unresolved stretches under the hybrid
 solver, and a focused saved-endpoint diagnosis of the last trial target. No wider
 rollout or relaxed stopping limits follow from partial trial success.
+Completed six-target freeze: docs/ilvis0-hybrid-remaining-20261015/ and
+data/ilvis0-hybrid-remaining-20261015/; launcher
+analysis/tests/ilvis0_hybrid_remaining_worker.py --detach. Limits: 24 starts /
+4,528 native sweeps, four total threads, no retries. Eleven failed primaries each
+require their own repeat; all pair checks must pass per stretch. Reuse only the
+25 hashed passing companions. Completed:
+24 starts / 1,336 sweeps, 7/24 passing fits, both controls passed, one stretch recovered.
+Combined findings: 47 globe / zero flat / six unresolved. Never resume or reuse allowance. Preserve its
+planner, candidate and engine snapshots. No wider allowance follows.
+The separate saved-only audit is docs/ilvis0-final-stability-audit-20261015/ and
+data/ilvis0-final-stability-audit-20261015/. It is complete: render only with
+build_report.py --render-only; do not replay its four affine solves as a new result.
+INTERPRETATION.md describes the timing-direction discrepancy. Native perturbation
+checks need their own finite freeze; the audit authorizes no new fits or label changes.
+The first timing diagnostic is complete at docs/ilvis0-timing-derivative-20261016/
+and data/ilvis0-timing-derivative-20261016/: the control used ten calls; both target
+identities failed preflight with zero calls. Preserve all errors; never restart it.
+The separate corrected diagnostic uses analysis/tests/ilvis0_timing_worker_v2.py,
+docs/ilvis0-timing-derivative-v2-20261016/ and data/ilvis0-timing-derivative-v2-20261016/.
+Completed: two endpoints / 24 native calls, zero optimizer starts, four threads.
+Never restart it. Preserve the one-epsilon coupled-bound adjustments and all results.
+The separate packet-aware solver is analysis/lll/ilvis0_solver_timing.py.
+Its sealed software qualification passed 67/67 at
+docs/ilvis0-timing-solver-qualification-20261016/ and
+data/ilvis0-timing-solver-qualification-20261016/. Never rerun the completed batch.
+The completed matched observed trial uses analysis/tests/ilvis0_timing_trial_worker.py,
+docs/ilvis0-timing-trial-20261016/ and data/ilvis0-timing-trial-20261016/.
+Completed: four starts / 237 native calls, 2/4 passing fits; both controls passed,
+target primary and repeat failed fresh stability. Qualification failed. Never
+restart, retry or reuse its unused allowance. Preserve the five reused companions,
+sources and evidence. Packaging performs no fits. Continue saved-result diagnostics
+of the stopping gate and other unresolved endpoints; no wider solver rollout follows.
 The separate [rotation-field measurement](docs/ROTATION_FIELD.md) will infer the retained background vector
 before interpreting its cause, with aircraft motion, transport and calibration fitted jointly.
 The proposal authorizes no new fits or campaign budget. Do not fix or subtract the standard

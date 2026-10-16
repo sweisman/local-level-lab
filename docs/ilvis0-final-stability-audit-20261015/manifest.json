@@ -1,0 +1,32 @@
+{
+  "environment": {
+    "numpy": "2.5.3",
+    "python": "3.14.7",
+    "scipy": "1.18.1",
+    "thread_settings": {
+      "MKL_NUM_THREADS": "4",
+      "OMP_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "inputs": {
+    "/site/repo/local-level-lab/docs/ilvis0-trust-trial-20261015/completion.json": "57ca25ef552dbe5d1d6f1c3d66ee754ef4a8b7d6e1b3454e8e6c12090cd5f79f",
+    "/site/repo/local-level-lab/docs/ilvis0-trust-trial-20261015/evidence-receipt.json": "5bcf95f271f584d930e9f4f7358f248bf8282b3104c402aa7df78021e6a99e84",
+    "/site/repo/local-level-lab/docs/ilvis0-trust-trial-20261015/fd7b81e48a4122b149c4925b-bias1_profiled_removal-sphere_still-primary-linearization.json.gz": "7aa5fd60264b00354f5dfb049e2d4abbaf58b4a5708f7b2e24d39b30d4dc9824",
+    "/site/repo/local-level-lab/docs/ilvis0-trust-trial-20261015/fd7b81e48a4122b149c4925b-bias1_profiled_removal-sphere_still-repeat-linearization.json.gz": "84ef4d38370f702fbc85d99bc01a2298b1754655114efcf24804a1a82344c5b9",
+    "/site/repo/local-level-lab/docs/ilvis0-trust-trial-20261015/manifest.json": "abbd90f46535773a743105aa24847c80d06bce9c1432bbe74c1492aa33748448",
+    "/site/repo/local-level-lab/docs/ilvis0-trust-trial-20261015/summary.json": "cb6380eaa7177cf6f341a45a556f9ef5301b73a7e3260f691488b43881f13ac3"
+  },
+  "maximum_affine_solves": 4,
+  "native_predictions": 0,
+  "numerical_threads": 4,
+  "observed_fit_starts": 0,
+  "retries": 0,
+  "sources": {
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_affine_audit.py": "5419f78555ea73e0a0d6cd4e70d690c90f3c2d96eeb753de7ddb39bb4c749f27",
+    "/site/repo/local-level-lab/analysis/tests/test_ilvis0_affine_audit.py": "4e7e16dbcfeca615ef4dd1ae12a18c919c7ead20cf731bd7da791673e817cbd9",
+    "/site/repo/local-level-lab/docs/ilvis0-final-stability-audit-20261015/build_report.py": "cb44e2812904ce4e8da95adb57e1b791682c303ab809e26149b7e28b058b317d"
+  },
+  "systems": 2,
+  "version": "ilvis0-saved-affine-zero-step-audit-v1"
+}

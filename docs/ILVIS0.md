@@ -1,7 +1,7 @@
 # Acquiring and decoding the airborne IMU archive
 
 <!-- current-status:start -->
-**46 globe preferences, 0 flat preferences, 7 unresolved** among 53 preselected stretches.
+**47 globe preferences, 0 flat preferences, 6 unresolved** among 53 preselected stretches.
 See the [verified current status](CURRENT_STATUS.md) for coverage, background-field comparisons and the supporting result records. Unfinished comparisons are not evidence for either shape.
 <!-- current-status:end -->
 

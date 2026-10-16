@@ -10,7 +10,8 @@ ROOT=Path(__file__).resolve().parents[2]
 HERE=Path(__file__).resolve().parent
 BASE='docs/ilvis0-position-stability-trial-20261013'
 STAGES=('ilvis0-budget-continuation-20261014','ilvis0-remaining-precision-20261014',
-        'ilvis0-trust-trial-20261015')
+        'ilvis0-trust-trial-20261015','ilvis0-hybrid-remaining-20261015',
+        'ilvis0-timing-trial-20261016')
 CASES={'bias1_unsubtracted','bias1_profiled_removal'}
 MODELS={'sphere_rotating','sphere_still','flat_still'}
 
@@ -40,6 +41,15 @@ def qualified_updates(previous,summary,plan):
     q=summary['qualification'];repeats=q['repeatability']
     repeated={r['identity'].split('::')[0]:r['passed'] for r in repeats}
     if len(repeated)!=len(repeats) or set(repeated)!=set(updates): raise ValueError('scheduled repeats required')
+    if 'pair_repeatability' in q:
+        pairs=q['pair_repeatability'];by_pair={r['identity']:r['passed'] for r in pairs}
+        expected={t['identity'] for t in plan['tasks'] if t['role']=='repeat'}
+        if len(by_pair)!=len(pairs) or set(by_pair)!=expected:
+            raise ValueError('every declared repeat pair required')
+        for sid in updates:
+            group=[passed for identity,passed in by_pair.items() if identity.split('::')[0]==sid]
+            if not group or repeated[sid]!=all(group):
+                raise ValueError('aggregate repeat result disagrees with required pairs')
     for sid,row in updates.items():
         if previous.get(sid)!='unresolved': raise ValueError('cannot replace a resolved or absent stretch')
         if row['profile']['conditional_shape_preference'] not in ('globe','flat'): continue
@@ -74,7 +84,7 @@ def stop_reason(fit):
     text=fit.get('message','').lower()
     if any(s in text for s in ('maximum','budget','evaluation limit','exhaust')): return 'budget'
     if 'stability' in text: return 'stability_check'
-    if any(s in text for s in ('no decreasing','stall','no feasible','no progress')): return 'stall'
+    if any(s in text for s in ('no decreasing','stall','no feasible','no progress','no positive predicted decrease')): return 'stall'
     if 'stationar' in text: return 'stationarity_check'
     return 'other_numerical_stop'
 
@@ -108,12 +118,17 @@ def analytics(root,rows):
         for sid in manifest['plan']['target_segment_ids']:
             r=by_id[sid];reasons={r[c+'__'+m+'__stop_reason'] for c in CASES for m in MODELS
                                  if r[c+'__'+m+'__converged']!='True'}
+            pairs=[p for p in summary['qualification'].get('pair_repeatability',summary['qualification']['repeatability'])
+                   if p['identity'].split('::')[0]==sid]
+            r.update(required_repeat_pairs=len(pairs),passed_repeat_pairs=sum(p['passed'] for p in pairs),
+                     all_required_repeat_checks_passed=all(p['passed'] for p in pairs),
+                     failed_repeat_identities=';'.join(p['identity'] for p in pairs if not p['passed']))
             r['unfinished_reasons']=';'.join(sorted(reasons))
             r['disposition_pending_reason']=('' if dispositions[sid]['shape_preference'] in ('globe','flat')
                 else 'primary_fit_checks_incomplete' if reasons else 'scheduled_repeat_agreement_failed' if not repeats[sid]
                 else 'shape_comparison_unresolved')
     for row in stretches:
-        row.update(dispositions[row['segment_id']]);row['snapshot_utc']='2026-10-15'
+        row.update(dispositions[row['segment_id']]);row['snapshot_utc']='2026-10-16'
     return stretches,fits
 
 
@@ -121,7 +136,7 @@ def main():
     helper=module(ROOT/'docs/build_current_status.py','status_publication_helpers')
     report=module(ROOT/BASE/'build_findings.py','table_publication_helpers')
     rows=verified_rows(ROOT);snapshot=helper.summarize(rows)
-    if snapshot['tally']!=dict(globe=46,flat=0,unresolved=7,ambiguous=0): raise ValueError('unexpected combined tally')
+    if snapshot['tally']!=dict(globe=47,flat=0,unresolved=6,ambiguous=0): raise ValueError('unexpected combined tally')
     if snapshot['background']!=snapshot['tally']['globe']: raise ValueError('background preferences require explicit review')
     write_csv(HERE/'current-stretches.csv',rows)
     table_rows=[dict(r,**{k:float(r[k]) for k in ('mean_course_deg','mean_latitude_deg','minimum_latitude_deg','maximum_latitude_deg','gps_track_km')}) for r in rows]
@@ -130,29 +145,34 @@ def main():
     shutil.copyfile(ROOT/BASE/'shared-leg-pairs.csv',HERE/'shared-leg-pairs.csv')
     text='# Updated airborne findings\n\n'+helper.headline(snapshot)+'\n\n'
     text+='The completed nine-stretch assessment added three complete globe preferences, bringing the tally '
-    text+='to 44/0/9. The subsequent hybrid-solver trial resolves two more. Every added result passed '
-    text+='six primary fits, its predetermined repeat and both controls. These are numerical preferences, '
-    text+='without a calibrated significance level. All 46 globe-preferred stretches also favor the '
+    text+='to 44/0/9. The subsequent hybrid-solver trial resolved two more, and the completed six-target '
+    text+='assessment adds one. Every added result passed six primary fits, every required repeat pair '
+    text+='and both controls. These are numerical preferences, '
+    text+='without a calibrated significance level. All 47 globe-preferred stretches also favor the '
     text+="specified background field; its cause is not determined.\n\n"
     text+='## Latest matched comparison\n\n'
-    text+='The eight-start hybrid trial used 471 native sweeps; six fits passed, including both controls. '
-    text+='Two targets pass their full comparisons and repeats. '
-    text+='The third target fails its primary and repeat stability checks and remains unresolved. '
-    text+='The run did not qualify every target; individually complete comparisons are reported separately.\n\n'
+    text+='The six-target hybrid assessment completed all 24 starts using 1,336 native sweeps. '
+    text+='Seven fits passed, including both controls, one primary and four repeats. One stretch '
+    text+='passes its complete comparison and repeat; five remain unresolved. Passing repeats alone '
+    text+='cannot replace failed primaries or another required pair.\n\n'
+    text+='The subsequent four-start timing-aware trial used 237 native calls. Both controls passed; '
+    text+='the target primary and repeat still failed fresh stability, so the tally is unchanged. '
+    text+='That candidate did not qualify for wider use.\n\n'
     text+='| Newly completed source | UTC interval | IMU type | Minutes | Ground speed min / median |\n'
     text+='|---|---|---:|---:|---:|\n'
     for row in rows:
-        if row['result_origin']=='completed_ilvis0-trust-trial-20261015' and row['shape_preference']=='globe':
+        if row['result_origin']=='completed_ilvis0-hybrid-remaining-20261015' and row['shape_preference']=='globe':
             text+=f"| `{row['filename']}` | {row['start_utc']} to {row['end_utc']} | {row['imu_type']} | {float(row['duration_s'])/60:.2f} | {float(row['minimum_ground_speed_kmh']):.1f} / {float(row['median_ground_speed_kmh']):.1f} km/h |\n"
     text+='\n'
-    text+='## Seven unresolved stretches\n\n'
-    text+='Six stretches from the earlier nine-stretch assessment have not yet been tested with the hybrid '
-    text+='solver. Their latest ledgers contain eleven unfinished primary fits. The seventh is the third '
-    text+='hybrid-trial target: its primary and repeat stop before their evaluation caps. Their endpoints '
-    text+='closely agree, but fresh corrections still move receiver predictions beyond the fixed objective '
-    text+='and one-millimetre axis-RMS stability limits. More iterations alone do not explain that stop. '
-    text+='A separately frozen assessment of the other six and a focused diagnosis of that last target '
-    text+='are the next numerical work. No previous allowance is reopened.\n\n'
+    text+='## Six unresolved stretches\n\n'
+    text+='All remaining stretches have now been tested with the hybrid solver. Ten primary fits '
+    text+='in five assessment targets remain unfinished; one primary in the earlier matched trial '
+    text+='also remains unfinished. These failures stop before their evaluation caps when the local '
+    text+='solver cannot predict further improvement. Some endpoints fail stationarity, others fail '
+    text+='fresh prediction stability. They are numerical failures, not ties between shapes. '
+    text+='Native timing checks found changes in the local derivative at a packet boundary. '
+    text+='The next focused diagnosis audits the stopping check at such boundaries and screens '
+    text+='the other saved endpoints before additional fits. No previous allowance is reopened.\n\n'
     text+='[All stretches and source tracks](STRETCHES.md) · [Comprehensive metadata](ANALYTICS.md)\n\n'
     for name in STAGES: text+=f'- [Preserved {name} results](../{name}/RESULTS.md).\n'
     text+='\nEarlier [41/0/12 findings](../ilvis0-position-stability-trial-20261013/FINDINGS.md) remain an unchanged historical snapshot. '
@@ -160,7 +180,8 @@ def main():
     (HERE/'FINDINGS.md').write_text(text)
     (HERE/'ANALYTICS.md').write_text('# Current stretch analytics\n\n'+helper.headline(snapshot)+'\n\n'
         +f'The [stretch CSV](stretch-analytics.csv) contains all 53 stretches; the [fit history](fit-analytics.csv) retains all {len(fits)} attempts. '
-        +'The 81 continuation and hybrid-trial attempts are appended; repeats and controls never replace primary fits. '
+        +'The 109 continuation, hybrid and timing-aware attempts are appended; repeats and controls never replace primary fits. '
+        +'Repeat-pair counts and failed identities preserve every required check, including stretches with several pairs. '
         +'Raw gyro summaries, receiver trajectories and [paired-recorder differences](shared-leg-pairs.csv) are copied unchanged '
         +'from the verified preceding snapshot. Only dispositions and saved numerical outcomes are updated.\n\n'
         +'The [column definitions and measurement limitations](../ilvis0-position-stability-trial-20261013/ANALYTICS.md) '
