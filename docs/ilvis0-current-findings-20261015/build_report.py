@@ -14,6 +14,7 @@ STAGES=('ilvis0-budget-continuation-20261014','ilvis0-remaining-precision-202610
         'ilvis0-timing-trial-20261016')
 CASES={'bias1_unsubtracted','bias1_profiled_removal'}
 MODELS={'sphere_rotating','sphere_still','flat_still'}
+BOUNDARY='docs/ilvis0-boundary-review-20261016'
 
 
 def module(path,name):
@@ -62,6 +63,20 @@ def qualified_updates(previous,summary,plan):
     return updates
 
 
+def boundary_review(root):
+    helper=module(root/'docs/build_current_status.py','boundary_publication_hashes')
+    directory=root/BOUNDARY;receipt=load(directory/'evidence-receipt.json')
+    helper.verify_inputs(root,{BOUNDARY+'/'+n:h for n,h in receipt['artifacts'].items()})
+    complete=load(directory/'completion.json');manifest=load(directory/'manifest.json');review=load(directory/'review.json')
+    if (complete['state']!='complete' or complete['manifest_sha256']!=helper.sha(directory/'manifest.json')
+            or complete['review_sha256']!=helper.sha(directory/'review.json')):raise ValueError('sealed boundary review required')
+    helper.verify_inputs(root,manifest['inputs']);helper.verify_inputs(root,manifest['sources'])
+    policy=module(root/'analysis/lll/ilvis0_boundary_publication.py','boundary_publication_policy')
+    expected=policy.classify(review,{sid:'unresolved' for sid in review['target_segment_ids']})
+    if expected!=review['dispositions']:raise ValueError('boundary dispositions disagree with required checks')
+    return review
+
+
 def verified_rows(root):
     helper=module(root/'docs/build_current_status.py','publication_status_helpers')
     helper.load_snapshot(root,findings=BASE)
@@ -75,6 +90,11 @@ def verified_rows(root):
             background=bool(shape=='globe' and rotation and all(r['conditional_still_minus_rotating_cost']>0 for r in rotation))
             by_id[sid].update(shape_preference=shape,specified_background_preferred=str(background),
                              result_origin='completed_'+stage)
+    review=boundary_review(root)
+    policy=module(root/'analysis/lll/ilvis0_boundary_publication.py','current_boundary_policy')
+    for sid,d in policy.classify(review,{sid:r['shape_preference'] for sid,r in by_id.items()}).items():
+        by_id[sid].update(shape_preference=d['shape_preference'],specified_background_preferred=str(d['specified_background_preferred']),
+                         result_origin='completed_ilvis0-boundary-review-20261016')
     return rows
 
 
@@ -127,6 +147,29 @@ def analytics(root,rows):
             r['disposition_pending_reason']=('' if dispositions[sid]['shape_preference'] in ('globe','flat')
                 else 'primary_fit_checks_incomplete' if reasons else 'scheduled_repeat_agreement_failed' if not repeats[sid]
                 else 'shape_comparison_unresolved')
+    review=boundary_review(root);origin='completed_ilvis0-boundary-review-20261016'
+    for item in review['attempts']:
+        fit=item['fit'];sid=item['segment_id'];interrupted=item['status']=='interrupted'
+        saved=dict(segment_id=sid,case_id=item['case_id'],model=item['model'],result_origin=origin,
+            role=item['role'],identity=item['identity'],operation=item['operation'],stop_reason='passed' if fit['converged'] else item['display_reason'],
+            converged=fit['converged'],cost=fit['residual_sum_squares'],evaluations='' if interrupted else fit['evaluations'],
+            maximum_evaluations=26,message=fit['message'],error=fit.get('error',''),stationarity=fit.get('exact_projected_gradient_relative'),
+            active_bounds=';'.join(fit.get('active_bounds',[])),parameters=json.dumps(fit.get('parameters',{}),sort_keys=True),
+            reserved_native_allowance=26 if interrupted else '')
+        fits.append(saved)
+        if item['role']=='primary':
+            prefix=item['case_id']+'__'+item['model']+'__'
+            for k in ('result_origin','stop_reason','converged','cost','evaluations','maximum_evaluations','message','stationarity','active_bounds'):
+                by_id[sid][prefix+k]=str(saved[k]) if saved[k] is not None else ''
+        if item['role']=='repeat':by_id[sid].update(latest_repeat_status=saved['stop_reason'],latest_repeat_origin=origin)
+    for sid,d in review['dispositions'].items():
+        row=by_id[sid]
+        row.update({k:d[k] for k in ('required_repeat_pairs','passed_repeat_pairs','all_required_repeat_checks_passed')})
+        row['failed_repeat_identities']=';'.join(d['failed_repeat_identities'])
+        reasons={row[c+'__'+m+'__stop_reason'] for c in CASES for m in MODELS if row[c+'__'+m+'__converged']!='True'}
+        row['unfinished_reasons']=';'.join(sorted(reasons))
+        row['disposition_pending_reason']=('' if d['shape_preference'] in ('globe','flat') else
+            'primary_fit_checks_incomplete' if reasons else 'required_repeat_incomplete_or_disagreeing')
     for row in stretches:
         row.update(dispositions[row['segment_id']]);row['snapshot_utc']='2026-10-16'
     return stretches,fits
@@ -136,51 +179,56 @@ def main():
     helper=module(ROOT/'docs/build_current_status.py','status_publication_helpers')
     report=module(ROOT/BASE/'build_findings.py','table_publication_helpers')
     rows=verified_rows(ROOT);snapshot=helper.summarize(rows)
-    if snapshot['tally']!=dict(globe=47,flat=0,unresolved=6,ambiguous=0): raise ValueError('unexpected combined tally')
+    if snapshot['tally']!=dict(globe=48,flat=0,unresolved=5,ambiguous=0): raise ValueError('unexpected combined tally')
     if snapshot['background']!=snapshot['tally']['globe']: raise ValueError('background preferences require explicit review')
     write_csv(HERE/'current-stretches.csv',rows)
     table_rows=[dict(r,**{k:float(r[k]) for k in ('mean_course_deg','mean_latitude_deg','minimum_latitude_deg','maximum_latitude_deg','gps_track_km')}) for r in rows]
-    (HERE/'STRETCHES.md').write_text(report.stretch_report(table_rows))
+    (HERE/'STRETCHES.md').write_text(report.stretch_report(table_rows).replace('the fresh controls','the verified controls'))
     stretches,fits=analytics(ROOT,rows);write_csv(HERE/'stretch-analytics.csv',stretches);write_csv(HERE/'fit-analytics.csv',fits)
     shutil.copyfile(ROOT/BASE/'shared-leg-pairs.csv',HERE/'shared-leg-pairs.csv')
     text='# Updated airborne findings\n\n'+helper.headline(snapshot)+'\n\n'
-    text+='The completed nine-stretch assessment added three complete globe preferences, bringing the tally '
-    text+='to 44/0/9. The subsequent hybrid-solver trial resolved two more, and the completed six-target '
-    text+='assessment adds one. Every added result passed six primary fits, every required repeat pair '
-    text+='and both controls. These are numerical preferences, '
-    text+='without a calibrated significance level. All 47 globe-preferred stretches also favor the '
+    text+='The timing-boundary review resolves one additional comparison after all six primary fits, '
+    text+='its required repeat and both verified controls pass. The stopping check now tests both sides '
+    text+='of a timing boundary, with unchanged observations, physical bounds, receiver weights and clock. '
+    text+='Earlier smooth-rule stopping failures remain preserved. These are numerical preferences, '
+    text+='without a calibrated significance level. All 48 globe-preferred stretches also favor the '
     text+="specified background field; its cause is not determined.\n\n"
-    text+='## Latest matched comparison\n\n'
+    text+='## What the latest review added\n\n'
+    text+='The recovered primary and repeat agree in relative cost to 8.4 × 10⁻¹² and in reconstructed '
+    text+='track RMS to at most 1.1 micrometres per axis. The five other required primary fits were '
+    text+='already complete and verified. These figures describe numerical repeatability, not instrument accuracy. '
+    text+='The [full review](../ilvis0-boundary-review-20261016/README.md) preserves all six targets, '
+    text+='including failed geometry/stationarity checks, a zero-call reporting error and an interrupted identity.\n\n'
+    text+='## Earlier stages\n\n'
     text+='The six-target hybrid assessment completed all 24 starts using 1,336 native sweeps. '
     text+='Seven fits passed, including both controls, one primary and four repeats. One stretch '
     text+='passes its complete comparison and repeat; five remain unresolved. Passing repeats alone '
     text+='cannot replace failed primaries or another required pair.\n\n'
     text+='The subsequent four-start timing-aware trial used 237 native calls. Both controls passed; '
-    text+='the target primary and repeat still failed fresh stability, so the tally is unchanged. '
+    text+='the target primary and repeat still failed the earlier smooth stability check. '
     text+='That candidate did not qualify for wider use.\n\n'
     text+='| Newly completed source | UTC interval | IMU type | Minutes | Ground speed min / median |\n'
     text+='|---|---|---:|---:|---:|\n'
     for row in rows:
-        if row['result_origin']=='completed_ilvis0-hybrid-remaining-20261015' and row['shape_preference']=='globe':
+        if row['result_origin']=='completed_ilvis0-boundary-review-20261016' and row['shape_preference']=='globe':
             text+=f"| `{row['filename']}` | {row['start_utc']} to {row['end_utc']} | {row['imu_type']} | {float(row['duration_s'])/60:.2f} | {float(row['minimum_ground_speed_kmh']):.1f} / {float(row['median_ground_speed_kmh']):.1f} km/h |\n"
     text+='\n'
-    text+='## Six unresolved stretches\n\n'
-    text+='All remaining stretches have now been tested with the hybrid solver. Ten primary fits '
-    text+='in five assessment targets remain unfinished; one primary in the earlier matched trial '
-    text+='also remains unfinished. These failures stop before their evaluation caps when the local '
-    text+='solver cannot predict further improvement. Some endpoints fail stationarity, others fail '
-    text+='fresh prediction stability. They are numerical failures, not ties between shapes. '
-    text+='Native timing checks found changes in the local derivative at a packet boundary. '
-    text+='The next focused diagnosis audits the stopping check at such boundaries and screens '
-    text+='the other saved endpoints before additional fits. No previous allowance is reopened.\n\n'
+    text+='## Five unresolved stretches\n\n'
+    text+='Remaining obstacles are unsupported probes between closely spaced timing boundaries, '
+    text+='one-sided stationarity failures, repeat disagreement, a zero-call reporting error and '
+    text+='the preserved interrupted check. One stretch has six passing primaries but lacks its '
+    text+='required completed repeat. These are incomplete numerical comparisons, not ties between shapes. '
+    text+='The next work uses saved diagnostics to separate those failure mechanisms before further native work. '
+    text+='No completed study allowance is reopened.\n\n'
     text+='[All stretches and source tracks](STRETCHES.md) · [Comprehensive metadata](ANALYTICS.md)\n\n'
-    for name in STAGES: text+=f'- [Preserved {name} results](../{name}/RESULTS.md).\n'
+    text+='[Study index](../STUDIES.md) gives descriptive summaries and links to preserved runs.\n'
     text+='\nEarlier [41/0/12 findings](../ilvis0-position-stability-trial-20261013/FINDINGS.md) remain an unchanged historical snapshot. '
     text+='No observations, intervals, physical bounds, receiver weights or clocks were changed by this metadata publication.\n'
     (HERE/'FINDINGS.md').write_text(text)
     (HERE/'ANALYTICS.md').write_text('# Current stretch analytics\n\n'+helper.headline(snapshot)+'\n\n'
-        +f'The [stretch CSV](stretch-analytics.csv) contains all 53 stretches; the [fit history](fit-analytics.csv) retains all {len(fits)} attempts. '
-        +'The 109 continuation, hybrid and timing-aware attempts are appended; repeats and controls never replace primary fits. '
+        +f'The [stretch CSV](stretch-analytics.csv) contains all 53 stretches; the [fit and diagnostic history](fit-analytics.csv) retains all {len(fits)} records. '
+        +'It includes 712 earlier fitting attempts and 21 boundary-diagnostic identities, with an operation column separating them. '
+        +'The interrupted identity retains its reserved allowance and has no asserted evaluation count. Repeats and controls never replace primary fits. '
         +'Repeat-pair counts and failed identities preserve every required check, including stretches with several pairs. '
         +'Raw gyro summaries, receiver trajectories and [paired-recorder differences](shared-leg-pairs.csv) are copied unchanged '
         +'from the verified preceding snapshot. Only dispositions and saved numerical outcomes are updated.\n\n'
@@ -191,6 +239,8 @@ def main():
     for stage in STAGES:
         for n in ('manifest.json','summary.json','completion.json','evidence-receipt.json','starts.jsonl','sweeps.jsonl'):
             name='docs/'+stage+'/'+n;inputs[name]=helper.sha(ROOT/name)
+    for n in ('manifest.json','review.json','completion.json','evidence-receipt.json'):
+        name=BOUNDARY+'/'+n;inputs[name]=helper.sha(ROOT/name)
     outputs=('FINDINGS.md','STRETCHES.md','current-stretches.csv','stretch-analytics.csv','fit-analytics.csv','shared-leg-pairs.csv','ANALYTICS.md')
     receipt=dict(publication_builder=str(Path(__file__).relative_to(ROOT)),inputs=inputs,
         sources={str(p.relative_to(ROOT)):helper.sha(p) for p in (Path(__file__),ROOT/'docs/build_current_status.py')},

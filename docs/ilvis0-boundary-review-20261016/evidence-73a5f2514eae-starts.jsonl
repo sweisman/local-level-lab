@@ -1,0 +1,9 @@
+{"identity": "233183f67270980491416678::bias1_unsubtracted::sphere_rotating::control::boundary_diagnostic", "manifest_sha256": "6afdb7f49e09be01ef3d34810e6c71cb3702d17c3bacf4e358cea2e059f386a3", "number": 1}
+{"identity": "31d7e5019dfdc9e2e6387206::bias1_profiled_removal::sphere_rotating::control::boundary_diagnostic", "manifest_sha256": "6afdb7f49e09be01ef3d34810e6c71cb3702d17c3bacf4e358cea2e059f386a3", "number": 2}
+{"identity": "0e73879f98c3b701fd7c42df::bias1_unsubtracted::sphere_still::primary::boundary_diagnostic", "manifest_sha256": "6afdb7f49e09be01ef3d34810e6c71cb3702d17c3bacf4e358cea2e059f386a3", "number": 3}
+{"identity": "0e73879f98c3b701fd7c42df::bias1_profiled_removal::sphere_still::primary::boundary_diagnostic", "manifest_sha256": "6afdb7f49e09be01ef3d34810e6c71cb3702d17c3bacf4e358cea2e059f386a3", "number": 4}
+{"identity": "0e73879f98c3b701fd7c42df::bias1_profiled_removal::sphere_still::repeat::boundary_diagnostic", "manifest_sha256": "6afdb7f49e09be01ef3d34810e6c71cb3702d17c3bacf4e358cea2e059f386a3", "number": 5}
+{"identity": "370cec66878c4c1cf84b4ceb::bias1_unsubtracted::sphere_rotating::primary::boundary_diagnostic", "manifest_sha256": "6afdb7f49e09be01ef3d34810e6c71cb3702d17c3bacf4e358cea2e059f386a3", "number": 6}
+{"identity": "370cec66878c4c1cf84b4ceb::bias1_unsubtracted::sphere_rotating::repeat::boundary_diagnostic", "manifest_sha256": "6afdb7f49e09be01ef3d34810e6c71cb3702d17c3bacf4e358cea2e059f386a3", "number": 7}
+{"identity": "370cec66878c4c1cf84b4ceb::bias1_profiled_removal::sphere_rotating::primary::boundary_diagnostic", "manifest_sha256": "6afdb7f49e09be01ef3d34810e6c71cb3702d17c3bacf4e358cea2e059f386a3", "number": 8}
+{"identity": "370cec66878c4c1cf84b4ceb::bias1_profiled_removal::sphere_rotating::repeat::boundary_diagnostic", "manifest_sha256": "6afdb7f49e09be01ef3d34810e6c71cb3702d17c3bacf4e358cea2e059f386a3", "number": 9}

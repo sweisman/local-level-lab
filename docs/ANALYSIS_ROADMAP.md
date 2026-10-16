@@ -3,7 +3,7 @@
 ## Starting point
 
 <!-- current-status:start -->
-**47 globe preferences, 0 flat preferences, 6 unresolved** among 53 preselected stretches.
+**48 globe preferences, 0 flat preferences, 5 unresolved** among 53 preselected stretches.
 See the [verified current status](CURRENT_STATUS.md) for coverage, background-field comparisons and the supporting result records. Unfinished comparisons are not evidence for either shape.
 <!-- current-status:end -->
 
@@ -35,7 +35,7 @@ a particular quantity from being separated, rather than stopping all modeling.
 
 ## Current execution order
 
-The priority is focused diagnostics that can resolve the six unfinished comparisons
+The priority is focused diagnostics that can resolve the five unfinished comparisons
 in the verified status above. Broader diagnostic expansion is deferred. Numerical completion, fit adequacy and
 statistical support remain separate checks; recovering a fit does not by itself
 establish a calibrated scientific detection.
@@ -45,7 +45,7 @@ establish a calibrated scientific detection.
    and repeat check. Those stretches remain unresolved.
 2. Preserve the completed [nine-stretch assessment](ilvis0-remaining-precision-20261014/README.md).
    Its 65 starts produced three additional complete globe comparisons; six targets
-   remain unresolved. The current status above incorporates the three recoveries.
+   remained unresolved at that stage.
 3. Preserve the [failed damped-solver qualification](ilvis0-trust-qualification-20261014/README.md)
    and [known-answer diagnosis](ilvis0-trust-diagnosis-20261015/README.md).
    The revised hybrid candidate passed its separately frozen
@@ -93,9 +93,17 @@ establish a calibrated scientific detection.
    capped at 546 native evaluations and four numerical threads. Passing local checks
    do not replace the required full comparisons and repeat agreement.
 
+The [completed boundary review](ilvis0-boundary-review-20261016/README.md)
+checks the interrupted diagnostic and its unstarted-only continuation together.
+One stretch passes every companion, control and required repeat check, bringing
+the published total to **48 globe / 0 flat / 5 unresolved**. The next work diagnoses
+the five remaining timing solutions from saved evidence, including repeat disagreement,
+unsupported local geometry and incomplete checks. Earlier failures stay recorded;
+any further native work needs a separate finite freeze.
+
 ## Recovery development history
 
-The following dated stages explain how the current method developed. Their counts
+The following stages explain how the current method developed. Their counts
 describe those stages, not the current disposition. Original reports and result
 ledgers remain unchanged. The original recovery population comprised 41 unfinished
 stretches; many have since been recovered.

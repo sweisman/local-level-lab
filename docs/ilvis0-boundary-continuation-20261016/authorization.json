@@ -1,0 +1,9 @@
+{
+  "manifest_sha256": "4897daea74daca2e91c532cea7dfbd82abaab31112f521ca317ed36b5fdeeb91",
+  "maximum_native_evaluations": 312,
+  "maximum_starts": 12,
+  "maximum_time_only_starts": 12,
+  "numerical_threads": 4,
+  "retries": 0,
+  "scope": "unstarted identities within original bounded diagnostic"
+}

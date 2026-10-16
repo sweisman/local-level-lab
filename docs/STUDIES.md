@@ -90,7 +90,11 @@ flight evidence. A method that passes them must still be checked on the recordin
 | [Packet-aware solver trial](ilvis0-timing-trial-20261016/README.md) | Both controls passed, but its target primary and repeat still failed the original stability gate. |
 | [All-six stopping audit](ilvis0-stopping-audit-20261016/INTERPRETATION.md) | Found timing-boundary behavior in every unfinished primary and reproduced an old-gate rejection at a known cusp minimum. |
 | [Two-sided rule](ilvis0-boundary-stop-qualification-20261016/RESULTS.md), [adapter](ilvis0-boundary-adapter-qualification-20261016/RESULTS.md) and [compiled-motion checks](ilvis0-boundary-native-qualification-20261016/RESULTS.md) | Passed 43, 30 and two software controls respectively, qualifying a bounded diagnostic rather than changing old labels. |
-| [All-six timing-boundary diagnostic](ilvis0-boundary-diagnostic-20261016/README.md) | Tests all nineteen unfinished endpoints with two controls; its results need full companion and repeat checks before any stretch can be relabeled. |
+| [All-six timing-boundary diagnostic](ilvis0-boundary-diagnostic-20261016/README.md) | Preserved eight completed checks before an interrupted journal blocked continuation; the interrupted identity remains unresolved. |
+| [Interrupted-run accounting audit](ilvis0-accounting-audit-20261016/README.md) and [receipt controls](ilvis0-receipt-qualification-20261016/RESULTS.md) | Verified eight saved checks and qualified durable per-charge accounting without repairing the incomplete original journal. |
+| [Unstarted-check continuation](ilvis0-boundary-continuation-20261016/README.md) | Completed the twelve previously unstarted identities in 233 native calls, preserving the interrupted identity and earlier checks. |
+
+| [Complete timing-boundary review](ilvis0-boundary-review-20261016/README.md) | Verified companions, controls and repeat agreement; added one globe preference, bringing the current total to **48 globe / 0 flat / 5 unresolved**. |
 
 ## Supporting controls and earlier simulated-flight work
 

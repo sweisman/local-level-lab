@@ -1,7 +1,7 @@
 # What comes next
 
 The current analysis favors a globe in every fully checked comparison. The next
-work has two purposes: complete the six unfinished comparisons, then establish
+work has two purposes: complete the five unfinished comparisons, then establish
 more precisely what the measurements reveal and how reliably they predict new data.
 The [verified status](CURRENT_STATUS.md) gives the published totals; the
 [study index](STUDIES.md) explains the completed work.
@@ -9,13 +9,17 @@ The [verified status](CURRENT_STATUS.md) gives the published totals; the
 An **IMU (inertial measurement unit)** records turning and acceleration. The archive
 analysis uses its recorded increments together with GPS receiver positions.
 
-## First: resolve the six unfinished stretches
+## First: resolve the five unfinished stretches
 
 | Planned work | Question it answers | Required result |
 |---|---|---|
-| [Timing-boundary diagnostic](ilvis0-boundary-diagnostic-20261016/README.md), partial | Is the stopping check rejecting a settled fit because time alignment crosses an IMU packet boundary? | Validate accounting before continuation; both sides must pass fresh checks with all nuisance directions included, while completed controls remain stable. |
-| Compare each primary fit with its repeat | Do separate starts reach sufficiently similar costs and reconstructed tracks? | Every required pair must agree; a passing local diagnostic alone cannot resolve a stretch. |
+| Diagnose the remaining timing solutions | Why do some timing boundaries fail their two-sided checks, or give different solutions on repeat? | Separate unsupported local geometry, nonstationary endpoints and repeat disagreement using saved results first. |
+| Complete the missing checks under new finite plans | Can the interrupted check and the zero-evaluation reporting failure be assessed reliably? | Preserve both failures; qualify corrected handling before any separately frozen numerical work. |
 | Focused timing profiles where disagreement remains | Are competing time alignments genuinely different fitting solutions? | Reoptimize the same permitted calibration parameters across a separately frozen, bounded profile. |
+
+The [completed timing-boundary review](ilvis0-boundary-review-20261016/README.md)
+resolved one more stretch after checking all companion fits, controls and required
+repeats. Five remain unresolved; individual passing fits cannot replace those checks.
 
 The measurements, selected intervals and physical error bounds stay fixed during
 numerical recovery. Earlier failures remain in the record. Each new numerical

@@ -1,6 +1,6 @@
 # All 53 selected flight stretches
 
-**47 globe preferences, 0 flat, 6 unresolved.** Current dispositions combine the preserved first study with the completed, qualified recovery run. Each recovered result passed all six primary fits, its scheduled repeat and the fresh controls. Failed or partial comparisons remain unresolved. An unresolved comparison supplies no conclusion about shape. These are numerical preferences; statistical significance has not yet been calibrated.
+**48 globe preferences, 0 flat, 5 unresolved.** Current dispositions combine the preserved first study with the completed, qualified recovery run. Each recovered result passed all six primary fits, its scheduled repeat and the verified controls. Failed or partial comparisons remain unresolved. An unresolved comparison supplies no conclusion about shape. These are numerical preferences; statistical significance has not yet been calibrated.
 
 An inertial measurement unit (IMU) records angular and acceleration increments. Every stretch below uses Applanix Group-4 increments and the primary receiver positions. Recorded IMU types identify configurations, not individual serial numbers. Overlapping tracks are not independent flights.
 
@@ -21,7 +21,7 @@ For deeper analysis, download the [comprehensive metadata CSV](stretch-analytics
 | `ILVIS0_applanix_55129_610-25Oct09_25Oct09.013`<br>`c16df82d514fc69d11d941d2` | 2009-10-25T14:57:57.272991Z<br>to 2009-10-25T15:08:45.272659Z | 21 | 10.80 | 839.8 / 843.1 | 195.6° S | -63.70 (-64.36 to -63.05) | 151.1 | Globe preferred |
 | `ILVIS0_applanix_55131_610-27Oct09_27Oct09.013`<br>`fad74da3a09951b31e882472` | 2009-10-27T13:28:57.062636Z<br>to 2009-10-27T13:34:29.062525Z | 21 | 5.53 | 787.1 / 790.3 | 201.9° S | -63.25 (-63.55 to -62.95) | 72.4 | Globe preferred |
 | `ILVIS0_applanix_55133_610-29Oct09_29Oct09.013`<br>`0e73879f98c3b701fd7c42df` | 2009-10-29T13:26:58.932564Z<br>to 2009-10-29T13:38:07.931964Z | 21 | 11.15 | 836.1 / 837.7 | 191.7° S | -63.96 (-64.64 to -63.28) | 154.8 | Unresolved |
-| `ILVIS0_applanix_55140_610-05Nov09_05Nov09.013`<br>`fd7b81e48a4122b149c4925b` | 2009-11-05T14:40:28.063157Z<br>to 2009-11-05T14:46:22.062864Z | 21 | 5.90 | 718.2 / 737.1 | 152.0° SE | -61.57 (-61.85 to -61.28) | 71.8 | Unresolved |
+| `ILVIS0_applanix_55140_610-05Nov09_05Nov09.013`<br>`fd7b81e48a4122b149c4925b` | 2009-11-05T14:40:28.063157Z<br>to 2009-11-05T14:46:22.062864Z | 21 | 5.90 | 718.2 / 737.1 | 152.0° SE | -61.57 (-61.85 to -61.28) | 71.8 | Globe preferred |
 | `ILVIS0_applanix_55277_20100322_610_AMES_08Dec09.013`<br>`7024120d59221e8eaf127084` | 2010-03-22T07:52:03.263559Z<br>to 2010-03-22T07:59:19.264160Z | 21 | 7.27 | 801.8 / 820.7 | 8.7° N | 42.29 (41.85 to 42.73) | 98.9 | Globe preferred |
 | `ILVIS0_applanix_55284_20100329_610_AMES_29Mar100329_103936.013`<br>`b4ab6e128de963c2ce69aa51` | 2010-03-29T13:06:37.134207Z<br>to 2010-03-29T13:13:30.134487Z | 21 | 6.88 | 862.3 / 863.2 | 333.8° NW | 75.28 (74.88 to 75.68) | 98.2 | Globe preferred |
 | `ILVIS0_applanix_55295_20100409_610_LVIS_09Apr10.013`<br>`7df21c836bec5751f83c0cce` | 2010-04-09T12:56:16.115058Z<br>to 2010-04-09T13:00:20.115282Z | 21 | 4.07 | 834.3 / 841.7 | 86.4° E | 71.89 (71.87 to 71.91) | 56.5 | Globe preferred |

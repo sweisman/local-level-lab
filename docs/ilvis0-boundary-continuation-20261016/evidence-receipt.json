@@ -1,0 +1,26 @@
+{
+  "artifacts": {
+    "50f24131843071ae9312c082-bias1_unsubtracted-sphere_still-primary-boundary_diagnostic-linearization.json.gz": "1f38c189e71baac9bc37faf9fcd56ce4efa93aa47631b1dc0f7052157d8fdd2c",
+    "RESULTS.md": "0fc55ed48ae40a9d56932e9ad97f9d7fb1ab5793ea24908b091894e1f916e00b",
+    "authorization.json": "48291a702e120acaf2a0e7584317c80cade70a6475b8bda4a3b776ae640c1c5c",
+    "b4e44ddc0f130ecd45674c78-bias1_profiled_removal-sphere_rotating-primary-boundary_diagnostic-linearization.json.gz": "44aa6e4f0d5027539efddfca1625cb2ec7667917269734b75f7327c63b7a91ab",
+    "b4e44ddc0f130ecd45674c78-bias1_profiled_removal-sphere_rotating-repeat-boundary_diagnostic-linearization.json.gz": "b44e537f8c0acee300d090a011798d5c4d6c347479c46c290e2b78292a65928a",
+    "b4e44ddc0f130ecd45674c78-bias1_profiled_removal-sphere_still-primary-boundary_diagnostic-linearization.json.gz": "efbbe7d1ad9737eed4997c16903a1ceb3ee7f13b3489401dc42447de60b757be",
+    "b4e44ddc0f130ecd45674c78-bias1_unsubtracted-sphere_rotating-primary-boundary_diagnostic-linearization.json.gz": "ba17ebcd2f3c8bf688422fd334ca8400806280bed13a1a79c5e4eba2f904587b",
+    "b4e44ddc0f130ecd45674c78-bias1_unsubtracted-sphere_rotating-repeat-boundary_diagnostic-linearization.json.gz": "349b6b93b751fcd016e7ba773956bf36314d9eee83f1d89e2a10968e769aee9f",
+    "b4e44ddc0f130ecd45674c78-bias1_unsubtracted-sphere_still-primary-boundary_diagnostic-linearization.json.gz": "d2b1f82da6d3f0db1c7e3dce964c52affde24acbd463d91478ef546ff2a5251d",
+    "bb8061a43b4f14b6262ceda1-bias1_unsubtracted-sphere_still-primary-boundary_diagnostic-linearization.json.gz": "f6b3cd7c7df0916c9529eb751d670e66b9f84b1f13fb8d20996cb0c9353ab08d",
+    "bb8061a43b4f14b6262ceda1-bias1_unsubtracted-sphere_still-repeat-boundary_diagnostic-linearization.json.gz": "cd36d6a62d918ab9be3caf68671221adfa155964f34a5c49be229a6df02e225e",
+    "charges-index.json": "f5b52d697d7e764ab15b100ac5b4e967c84c8066c82124aebd423abe2e582522",
+    "completion.json": "188a6b7b0a4c9166b8c4319271c1bbf6441a0feaac719111f576c4480d50ddb7",
+    "fd7b81e48a4122b149c4925b-bias1_profiled_removal-sphere_still-primary-boundary_diagnostic-linearization.json.gz": "5a1bb12cf53f11c8eb186bc3afea218d47748c570758e93d7f7f452a31dfb11b",
+    "fd7b81e48a4122b149c4925b-bias1_profiled_removal-sphere_still-repeat-boundary_diagnostic-linearization.json.gz": "50e6ae82af700dde216c31dc13a4d9c7109105dedac2f66ed15230ca3a952fdd",
+    "manifest.json": "4897daea74daca2e91c532cea7dfbd82abaab31112f521ca317ed36b5fdeeb91",
+    "starts.jsonl": "3e8e50ca0b839d7249fb2066cf85574047c70cd33c8f07bfb0df7e75fa402df3",
+    "summary.json": "71a6840e9f198cde6d6afd2ffeef147d33e3f6bfeaabdc1a15b8d6f6ce5f9f50",
+    "sweeps.jsonl": "5dbb6214c95a166f296aea54fff35527966b83e79df2f6328dc42edb5f1db4bf"
+  },
+  "native_evaluations": 233,
+  "original_labels_changed": false,
+  "scientific_decision": "abstain"
+}

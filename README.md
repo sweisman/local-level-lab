@@ -2,7 +2,7 @@
 
 # Local Level Lab
 
-**Testing Earth’s curvature with NASA aircraft measurements.**
+**Testing Earth’s curvature with airborne lidar survey measurements.**
 
 An aircraft flying level over a globe gradually turns as the direction of local down
 changes along its route. At 900 km/h, following that curve means about eight degrees
@@ -17,7 +17,7 @@ The measurements, code and results are open.
 ## What the measurements show
 
 <!-- current-status:start -->
-**47 globe preferences, 0 flat preferences, 6 unresolved** among 53 preselected stretches.
+**48 globe preferences, 0 flat preferences, 5 unresolved** among 53 preselected stretches.
 See the [verified current status](docs/CURRENT_STATUS.md) for coverage, background-field comparisons and the supporting result records. Unfinished comparisons are not evidence for either shape.
 <!-- current-status:end -->
 

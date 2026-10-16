@@ -1,14 +1,18 @@
 {
   "artifacts": {
-    "ANALYTICS.md": "43c10d728c78561c2e2f1f08c308f1d5120fa9e02c87e63aea662220f99af7ec",
-    "FINDINGS.md": "9e7d1b36f62322e1d534991445e893331cb09df58b0f5727ff6de1bdb7697f19",
-    "STRETCHES.md": "8a78ffde13d511dbb08a6c28244f56ca4eb1daf26374b851c03e5ecbcca946d2",
-    "current-stretches.csv": "f5f07cabf319047a8111e2fa20ea905439b459ffb768085e96e5a73c4c77f8c7",
-    "fit-analytics.csv": "25e4e20a42315790b480d90d673f4586c4b06942ba7be8126566a746a6374e39",
+    "ANALYTICS.md": "93dbd0b6bac74f303fd1485f76964d0460243e70abd6b1611dbb746f78ce4117",
+    "FINDINGS.md": "aee23735a14661529995235684a0bae4343db0142bba825670dd3ddc183ee184",
+    "STRETCHES.md": "1618b3d3c600b5d28a328b3fdb23c4694c881e8bf81f06e4a2a585517208df68",
+    "current-stretches.csv": "e42ab520dd5b72c95c72d428d9820056f75946ec13aeb686b8fe4ceef1997103",
+    "fit-analytics.csv": "b7fa3125d84c73a77b33cf2114ad020e34b03393bfa5f7776993ce7e1edf7517",
     "shared-leg-pairs.csv": "f3d8d293e2020595ba1d53eeb1462630a70f0cf547cc220b5237b99e608efc88",
-    "stretch-analytics.csv": "4b2240ab720182af00e767f25d586218df3f236c08127ec31f0613012d655947"
+    "stretch-analytics.csv": "8a4a0663f00243fdd64dfd205834bfac6f9e63d31e632c7fdddafe8c508e5df6"
   },
   "inputs": {
+    "docs/ilvis0-boundary-review-20261016/completion.json": "8d0cddf73afe2040ef722b8d9a1443f2157f7191408f4e3470d1762d155ae03f",
+    "docs/ilvis0-boundary-review-20261016/evidence-receipt.json": "fc9198ba47296da8910e31d8a38bc80cdeb0986556cb0a649d5a8e09a3cfca33",
+    "docs/ilvis0-boundary-review-20261016/manifest.json": "bb1181a7aa2630aad54eba5031342b625cceab5867f42f3cab0a50c28b2fb09d",
+    "docs/ilvis0-boundary-review-20261016/review.json": "e447a0f2b26010d0dacce5d5ad538d880667c73bd09dadd13ad857cfa661c9ae",
     "docs/ilvis0-budget-continuation-20261014/completion.json": "0f2603d9c5427029a272870fa8428015ec7c7be87241e1c3032d55c9b08bd6ad",
     "docs/ilvis0-budget-continuation-20261014/evidence-receipt.json": "55e448c58c7a794d570d270117de7650786a7b9651fa9b64b3746e1578d4d4ab",
     "docs/ilvis0-budget-continuation-20261014/manifest.json": "d32174d96ba42d4e41d8eedefafe1c59519f0935dcca623766881caa6b6a02e4",
@@ -47,13 +51,13 @@
   "original_files_read": 0,
   "publication_builder": "docs/ilvis0-current-findings-20261015/build_report.py",
   "sources": {
-    "docs/build_current_status.py": "eaa9db5a22cb950b288d3190e89893fadea452d7087387a038e1ed8fdd35209f",
-    "docs/ilvis0-current-findings-20261015/build_report.py": "c9d284a3a21d45b3e1baa3063115206cbba0252527f11a73ec47a674f4c74371"
+    "docs/build_current_status.py": "4ab5cd2d325b157d97ff3f9fd9800e502f020c61489164ecb23a94b4fa23e564",
+    "docs/ilvis0-current-findings-20261015/build_report.py": "b934b546fac0eb68d0bdf4175036033d4bfadfe49689ed4030027d12122edd84"
   },
   "tally": {
     "ambiguous": 0,
     "flat": 0,
-    "globe": 47,
-    "unresolved": 6
+    "globe": 48,
+    "unresolved": 5
   }
 }

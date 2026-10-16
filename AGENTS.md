@@ -14,7 +14,7 @@ incident histories, personal commentary or historical process IDs.
   trials and qualified recovery runs, without requesting renewed permission.
   Freeze each new study and record finite start/evaluation limits before launch;
   keep the four-thread total limit and never expand an active or completed allowance.
-- Prioritize diagnostics that help resolve the remaining six stretches, particularly
+- Prioritize diagnostics that help resolve the remaining five stretches, particularly
   timing-boundary stopping and repeat disagreement. Defer broader covariance,
   publication and unrelated diagnostic expansion while this recovery work proceeds.
 - Leave unfamiliar paths outside the documented corpus alone. Do not scan, document,
@@ -387,13 +387,20 @@ Adapter software qualification passed 30/30 at docs/ilvis0-boundary-adapter-qual
 native callback qualification passed 2/2 at docs/ilvis0-boundary-native-qualification-20261016/.
 Both sealed batches are complete; never rerun them. The all-six diagnostic is
 docs/ilvis0-boundary-diagnostic-20261016/ and data/ilvis0-boundary-diagnostic-20261016/,
-launched by analysis/tests/ilvis0_boundary_diagnostic_worker.py. Its finite scope is
-nineteen time-only starts plus two smooth controls, 546 native calls, four threads,
-no retries. Check its lock, freeze and journals before continuation; never restart
-completed work. Passing local diagnostics cannot relabel stretches without repeat
-and full-companion checks. Keep all three passing smooth repeats unchanged.
-Read this diagnostic's runtime failure.json before continuation; an invalid journal
-blocks resume and must remain preserved, including its incomplete tail.
+launched by analysis/tests/ilvis0_boundary_diagnostic_worker.py. It stopped after
+eight saved checks and one interrupted identity; its truncated journal blocks resume.
+Never restart it or repair the journal. The saved-only accounting audit is
+docs/ilvis0-accounting-audit-20261016/; receipt qualification passed 18/18 at
+docs/ilvis0-receipt-qualification-20261016/. Never rerun either sealed batch.
+The unstarted-only continuation at docs/ilvis0-boundary-continuation-20261016/
+and data/ilvis0-boundary-continuation-20261016/ completed twelve identities /233 calls
+within its 312-call ceiling and four-thread allocation. Never restart or reuse its allowance.
+Its zero-evaluation reporting error and the old interrupted identity remain failures.
+The saved-only review at docs/ilvis0-boundary-review-20261016/ verifies all companions,
+controls and repeats, adding one globe preference: current totals 48/0/5. Never rerun
+its arithmetic batch. Use render_report.py for publication only; the original frozen
+builder has a receipt self-inclusion defect on repeated rendering. Continue saved-only
+diagnosis of the five remaining timing solutions before freezing more native work.
 The separate [rotation-field measurement](docs/ROTATION_FIELD.md) will infer the retained background vector
 before interpreting its cause, with aircraft motion, transport and calibration fitted jointly.
 The proposal authorizes no new fits or campaign budget. Do not fix or subtract the standard

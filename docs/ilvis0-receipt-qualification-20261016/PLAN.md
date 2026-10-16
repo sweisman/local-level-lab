@@ -1,0 +1,3 @@
+# Charge-receipt software qualification
+
+One sealed batch of eighteen controls, no retries, maximum ten minutes, four numerical threads. At most 2,048 software callbacks, zero native predictions, affine solves or observed starts. Controls test partial and zero writes, failed fsync and head commits, duplicate starts, hash chains, original limits and exports larger than the legacy failure boundary. The interrupted source is represented by deterministic synthetic metadata in tests. The immutable ledger must persist a complete charge and head before any callback. Unfinished transactions block execution without repair. Old sources, corrupted journal bytes and charged identities remain unchanged.

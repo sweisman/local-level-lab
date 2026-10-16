@@ -1,0 +1,29 @@
+{
+  "artifacts": {
+    "233183f67270980491416678-bias1_unsubtracted-sphere_rotating-control-epochs.json.gz": "29932f3888c895457a24a7bb8caecf47cd49553d1dd1a567035414f7216d1036",
+    "233183f67270980491416678-bias1_unsubtracted-sphere_rotating-control-linearization.json.gz": "29c8fbd36b905237fb6c83628d8fcdd9ba8b6b4375f006347f42a71c671c16ad",
+    "31d7e5019dfdc9e2e6387206-bias1_profiled_removal-sphere_rotating-control-epochs.json.gz": "2debea0136f6cd1959294c8cd664314d7065aa7f9ba7c8a4f27023ce14a1f4f3",
+    "31d7e5019dfdc9e2e6387206-bias1_profiled_removal-sphere_rotating-control-linearization.json.gz": "f4ccda1825de98c1144566df1b04f4367261c849efe28efefc05cc41202f2155",
+    "RESULTS.md": "d9765892798c32b804f68c83dc42aab99a632da11e6ef4703dfaec340a32eb6c",
+    "completion.json": "673ac2282e47371b4aaf9a552c16c359542baf5ca25e8117a1b15975b1cb20d9",
+    "fd7b81e48a4122b149c4925b-bias1_profiled_removal-flat_still-primary-epochs.json.gz": "0811c1d04d6782573ddfed081a5c559034788eb500200f03c43117f9fd1a15c0",
+    "fd7b81e48a4122b149c4925b-bias1_profiled_removal-flat_still-primary-linearization.json.gz": "c49debdf1d4c40c03861839a2db1a2f146f6480db7c6929c0e3528df7ca04ad0",
+    "fd7b81e48a4122b149c4925b-bias1_profiled_removal-sphere_rotating-primary-epochs.json.gz": "4f1a691e87e3905c4177dfa97ffe82fbc0c412e62ad6f609ca276ca2553b8748",
+    "fd7b81e48a4122b149c4925b-bias1_profiled_removal-sphere_rotating-primary-linearization.json.gz": "155a77ffe44189addb51679dd470d5158d06f260a745f6b1bc47be8dba992a0c",
+    "fd7b81e48a4122b149c4925b-bias1_profiled_removal-sphere_still-primary-epochs.json.gz": "a50eb3883febe474bd47dd92366e0e30c763395ddfe617e33ad343285698ddc6",
+    "fd7b81e48a4122b149c4925b-bias1_profiled_removal-sphere_still-primary-linearization.json.gz": "4256e03517392f57fd4b05a0608cc143b6ef952aeb6424723e8fcebfd3a97c3a",
+    "fd7b81e48a4122b149c4925b-bias1_profiled_removal-sphere_still-repeat-epochs.json.gz": "4b53ce43f4822d66dedbc246120886b4b6e12aa19ae28e9f0a2e731aeafa8756",
+    "fd7b81e48a4122b149c4925b-bias1_profiled_removal-sphere_still-repeat-linearization.json.gz": "b9660c07d91d5a032691a71cfffa2fcfb90f69ed7477a0c0721704b733d57e69",
+    "fd7b81e48a4122b149c4925b-bias1_unsubtracted-flat_still-primary-epochs.json.gz": "637e6ffe14972a77e30e3f3e140f53159ee4c0353ea064734073ca59bbd6a0c6",
+    "fd7b81e48a4122b149c4925b-bias1_unsubtracted-flat_still-primary-linearization.json.gz": "86b2d50eaa303724c51d7e7960036be7b210766e61868ca33e667427bed5d784",
+    "fd7b81e48a4122b149c4925b-bias1_unsubtracted-sphere_rotating-primary-epochs.json.gz": "3603145591de0055a06fdcecd863090b507cba9b14ab6339533a9947fad3749d",
+    "fd7b81e48a4122b149c4925b-bias1_unsubtracted-sphere_rotating-primary-linearization.json.gz": "7e9c21bdcf69e6ddef289d92c4554bfe5e9d85d9aad010220a4d2b0319a97f82",
+    "fd7b81e48a4122b149c4925b-bias1_unsubtracted-sphere_still-primary-epochs.json.gz": "64942877b581e92353a1b2ac8379a2ebcb44ef74d7663cb985b0dc148bc3244e",
+    "fd7b81e48a4122b149c4925b-bias1_unsubtracted-sphere_still-primary-linearization.json.gz": "e85f68fef5ec345185478a933195325b18daa3726344c29bbfa92c29b3356c60",
+    "manifest.json": "e852b19d7132550c211b25440b123885bdc8b6888d31e3da702be0c79ad959ae",
+    "starts.jsonl": "85d9b864de9c022e5477df0ed1708b5fc25d0c1db04564d1d735e4f214b31e84",
+    "summary.json": "38522318b59c3177ebf75f2aee5c3a0e3dcb3fd8850250d266877e34e55ff983",
+    "sweeps.jsonl": "239263454eb4a39930fc99d7cf03b28ff3f6332335a51f19b327bf248d2b25ed"
+  },
+  "scientific_decision": "abstain"
+}
