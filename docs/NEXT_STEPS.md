@@ -1,7 +1,7 @@
 # What comes next
 
 The current analysis favors a globe in every fully checked comparison. The next
-work has two purposes: complete the five unfinished comparisons, then establish
+work has two purposes: complete the four unfinished comparisons, then establish
 more precisely what the measurements reveal and how reliably they predict new data.
 The [verified status](CURRENT_STATUS.md) gives the published totals; the
 [study index](STUDIES.md) explains the completed work.
@@ -9,7 +9,7 @@ The [verified status](CURRENT_STATUS.md) gives the published totals; the
 An **IMU (inertial measurement unit)** records turning and acceleration. The archive
 analysis uses its recorded increments together with GPS receiver positions.
 
-## First: resolve the five unfinished stretches
+## First: resolve the four unfinished stretches
 
 | Planned work | Question it answers | Required result |
 |---|---|---|
@@ -17,9 +17,15 @@ analysis uses its recorded increments together with GPS receiver positions.
 | Complete the missing checks under new finite plans | Can the interrupted check and the zero-evaluation reporting failure be assessed reliably? | Preserve both failures; qualify corrected handling before any separately frozen numerical work. |
 | Focused timing profiles where disagreement remains | Are competing time alignments genuinely different fitting solutions? | Reoptimize the same permitted calibration parameters across a separately frozen, bounded profile. |
 
-The [completed timing-boundary review](ilvis0-boundary-review-20261016/README.md)
-resolved one more stretch after checking all companion fits, controls and required
-repeats. Five remain unresolved; individual passing fits cannot replace those checks.
+The [completed adjacent-boundary review](ilvis0-neighbor-review-20261017/README.md)
+resolved another stretch after both controls, all six primary fits and repeat
+agreement passed. Four remain unresolved. The next numerical work targets
+different time-alignment solutions and their coupled calibration parameters;
+a reporting repair alone cannot resolve the outstanding repeat disagreement.
+The [saved timing/calibration comparison](ilvis0-timing-basins-20261017/INTERPRETATION.md)
+separates those problems across all four stretches. The
+[matched profile preparation](ilvis0-timing-basins-20261017/PROFILE_PLAN.md) begins
+with the two distinct time offsets in the closest-to-complete comparison.
 
 The measurements, selected intervals and physical error bounds stay fixed during
 numerical recovery. Earlier failures remain in the record. Each new numerical

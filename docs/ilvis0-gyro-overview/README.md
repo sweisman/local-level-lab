@@ -4,8 +4,9 @@
 
 **All 53 stretches end with accumulated pitch-axis increments in the nose-down
 direction.** Thin lines show each recording; the thick line shows their median.
-Every line starts at zero. No line is reversed, stretched or scaled to match an
-expected result. The solid median covers the common first four minutes; the dashed
+Every line starts at zero. No individual recording is flipped or rescaled to match an
+expected result. The vertical axis increases downward, so nose-down motion points
+down the page; the underlying values and signs are unchanged. The solid median covers the common first four minutes; the dashed
 median uses the recordings still available afterward, while at least five remain.
 
 An **IMU (inertial measurement unit)** records angular and velocity increments.

@@ -1,8 +1,8 @@
 {
   "artifacts": {
     "plotted-bins.csv.gz": "b3ba077ac1f2d51fd0e7766e31f5dbe8349ceaf59cd916e99f9f448974ff0a9f",
-    "raw-pitch.png": "97a24c6c598645477ee8a3d8a81bb20203f863a1726334fd5f095e0bb2a3a727",
-    "raw-pitch.svg": "41fc57e76283b042bbe587ee9470b8723b8a3aae1e12a05d162001e388e5c635"
+    "raw-pitch.png": "7b92f0db4c60c27eb6894b5f32e5553d52cd13b581db64099ab24ab78c991157",
+    "raw-pitch.svg": "c6b68d64f8e709c55fd9ab236b00f89f16d1720228a6483b12a4b656f24b09b2"
   },
   "common_interval_s": 240,
   "endpoint_maximum_deg": 2.675685626217476,
@@ -65,7 +65,7 @@
     "data/ilvis0-stretch-analytics-20261013/fad74da3a09951b31e882472.json.gz": "d88ceaadd7666de928a4d7cb16d13540e9657ecc71b90cd9968422c8bb10ee53",
     "data/ilvis0-stretch-analytics-20261013/fd7b81e48a4122b149c4925b.json.gz": "531b78c07bbe699e63b2c7c83b6246b357b711db0d96949113588b8559579d5b",
     "data/ilvis0-stretch-analytics-20261013/manifest.json": "3397cac222f4b5b6ec33218f1fab7448396101048c80cfbc2301445ea20dc58f",
-    "docs/ilvis0-current-findings-20261015/current-stretches.csv": "e42ab520dd5b72c95c72d428d9820056f75946ec13aeb686b8fe4ceef1997103",
+    "docs/ilvis0-current-findings-20261015/current-stretches.csv": "b3b9df8c3b70652c522bd13c6ef905b38112413d142ed98affbe23659217b108",
     "docs/ilvis0-position-stability-trial-20261013/analytics-receipt.json": "cfd6961b4db5ffbea4ddf7b0c9753226dd9cce3d60efe8c0a01d8a63073739f4"
   },
   "minimum_retained_coverage": 0.9959007241115316,
@@ -76,6 +76,7 @@
   "original_files_read": 0,
   "quantity": "negative cumulative recorded aircraft-y gyro increments; not Euler pitch or isolated curvature",
   "selection_uses_receiver_data": true,
-  "source_sha256": "3ed96c603ed17f4aa5cde40ace365d2fa88f6d2084ba7e4075a5ac378aa3e6ec",
-  "stretches": 53
+  "source_sha256": "4580c659bd238ab3f0e09facfadf163d6c0227d39b5cde9445c883714ca95a96",
+  "stretches": 53,
+  "vertical_axis": "inverted: positive nose-down increments increase down the page"
 }

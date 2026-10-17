@@ -14,7 +14,7 @@ incident histories, personal commentary or historical process IDs.
   trials and qualified recovery runs, without requesting renewed permission.
   Freeze each new study and record finite start/evaluation limits before launch;
   keep the four-thread total limit and never expand an active or completed allowance.
-- Prioritize diagnostics that help resolve the remaining five stretches, particularly
+- Prioritize diagnostics that help resolve the remaining four stretches, particularly
   timing-boundary stopping and repeat disagreement. Defer broader covariance,
   publication and unrelated diagnostic expansion while this recovery work proceeds.
 - Leave unfamiliar paths outside the documented corpus alone. Do not scan, document,
@@ -397,10 +397,31 @@ and data/ilvis0-boundary-continuation-20261016/ completed twelve identities /233
 within its 312-call ceiling and four-thread allocation. Never restart or reuse its allowance.
 Its zero-evaluation reporting error and the old interrupted identity remain failures.
 The saved-only review at docs/ilvis0-boundary-review-20261016/ verifies all companions,
-controls and repeats, adding one globe preference: current totals 48/0/5. Never rerun
+controls and repeats, adding one globe preference: totals at that stage 48/0/5. Never rerun
 its arithmetic batch. Use render_report.py for publication only; the original frozen
 builder has a receipt self-inclusion defect on repeated rendering. Continue saved-only
-diagnosis of the five remaining timing solutions before freezing more native work.
+diagnosis of remaining timing solutions before freezing more native work.
+The adjacent-boundary follow-up uses analysis/tests/ilvis0_boundary_followup_worker.py,
+docs/ilvis0-boundary-followup-20261016/ and data/ilvis0-boundary-followup-v3-20261016/.
+Its frozen controls passed 65/65 at docs/ilvis0-boundary-followup-controls-v3-20261016/.
+Limits: two smooth controls (three calls each), the bb8061a43b4f14b6262ceda1
+unsubtracted zero-field-globe primary/repeat (thirty calls each), 66 total calls,
+four total threads, no retries. Completed: four identities /44 native calls, all
+four passed. Never restart, retry or reuse its unused allowance. Package-only
+performs no fits. Its saved-only review at docs/ilvis0-neighbor-review-20261017/
+passed the required repeat and companion checks: current totals 49/0/4. Never
+rerun that review’s single numerical batch; --render-only publishes saved evidence.
+Preserve the earlier zero-start preparations and qualification snapshots. Live
+status publications are excluded from numerical inputs; frozen task geometry and
+original hashes remain required. Continue finite timing-basin/calibration work on
+the remaining four stretches; a reporting-only repair cannot resolve repeat disagreement.
+Saved timing-basin comparison is complete at docs/ilvis0-timing-basins-20261017/
+and data/ilvis0-timing-basins-v2-20261017/: eight pairs /sixteen local projection
+solves, zero native predictions. Never rerun the numerical batch; --render-only
+publishes saved evidence. Preserve the earlier pre-comparison schema failure.
+PROFILE_PLAN.md prepares six identities /330 native calls for the 50f24131843071ae9312c082
+fixed-time profile, with software qualification and a separate freeze still required.
+Fixed-time convergence cannot replace the full free-time gate or repeat agreement.
 The separate [rotation-field measurement](docs/ROTATION_FIELD.md) will infer the retained background vector
 before interpreting its cause, with aircraft motion, transport and calibration fitted jointly.
 The proposal authorizes no new fits or campaign budget. Do not fix or subtract the standard

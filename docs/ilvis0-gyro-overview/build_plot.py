@@ -86,7 +86,8 @@ def build():
     ax.plot([i/60 for i in tail], [median[i] for i in tail], color='#123e50',
             linewidth=2.5, linestyle='--', label='Median: available stretches (at least 5)')
     ax.set_xlabel('Elapsed time from first retained one-second bin (minutes)', labelpad=12)
-    ax.set_ylabel('Accumulated pitch-axis increments (degrees)\nNose-down positive', labelpad=12)
+    ax.set_ylabel('Accumulated pitch-axis increments (degrees)\nNose-down positive; axis increases downward', labelpad=12)
+    ax.invert_yaxis()
     ax.set_xlim(0, max(t[-1] for t, _ in traces) + .15)
     ax.grid(axis='y', alpha=.16)
     ax.legend(loc='upper left', frameon=False, fontsize=10)
@@ -123,6 +124,7 @@ def build():
         gps_values_in_angle_calculation=False, fused_attitude_in_angle_calculation=False,
         selection_uses_receiver_data=True, original_files_read=0,
         quantity='negative cumulative recorded aircraft-y gyro increments; not Euler pitch or isolated curvature',
+        vertical_axis='inverted: positive nose-down increments increase down the page',
         inputs=inputs, source_sha256=sha(Path(__file__)),
         artifacts={name:sha(HERE/name) for name in ('raw-pitch.png','raw-pitch.svg','plotted-bins.csv.gz')})
     (HERE / 'provenance.json').write_text(json.dumps(summary, indent=2, sort_keys=True)+'\n')

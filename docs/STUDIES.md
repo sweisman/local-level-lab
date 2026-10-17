@@ -94,9 +94,16 @@ flight evidence. A method that passes them must still be checked on the recordin
 | [Interrupted-run accounting audit](ilvis0-accounting-audit-20261016/README.md) and [receipt controls](ilvis0-receipt-qualification-20261016/RESULTS.md) | Verified eight saved checks and qualified durable per-charge accounting without repairing the incomplete original journal. |
 | [Unstarted-check continuation](ilvis0-boundary-continuation-20261016/README.md) | Completed the twelve previously unstarted identities in 233 native calls, preserving the interrupted identity and earlier checks. |
 
-| [Complete timing-boundary review](ilvis0-boundary-review-20261016/README.md) | Verified companions, controls and repeat agreement; added one globe preference, bringing the current total to **48 globe / 0 flat / 5 unresolved**. |
+| [Complete timing-boundary review](ilvis0-boundary-review-20261016/README.md) | Verified companions, controls and repeat agreement; added one globe preference, bringing the total at that stage to **48 globe / 0 flat / 5 unresolved**. |
+
+| [Adjacent-boundary trial](ilvis0-boundary-followup-20261016/RESULTS.md) and [complete review](ilvis0-neighbor-review-20261017/README.md) | Explicitly checked a neighboring timing boundary; both controls and the target pair passed in 44 calls, adding a globe preference: **49 globe / 0 flat / 4 unresolved**. |
 
 ## Supporting controls and earlier simulated-flight work
+
+The [remaining timing/calibration comparison](ilvis0-timing-basins-20261017/INTERPRETATION.md)
+examined eight outstanding endpoint pairs using saved data only. It distinguishes
+widely separated timing solutions from nearby solutions with calibration-stability
+failures, guiding the next matched profile without changing the published tally.
 
 | Work | What it contributed |
 |---|---|

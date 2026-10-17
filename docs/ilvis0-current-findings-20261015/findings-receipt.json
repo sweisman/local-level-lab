@@ -1,12 +1,12 @@
 {
   "artifacts": {
-    "ANALYTICS.md": "93dbd0b6bac74f303fd1485f76964d0460243e70abd6b1611dbb746f78ce4117",
-    "FINDINGS.md": "aee23735a14661529995235684a0bae4343db0142bba825670dd3ddc183ee184",
-    "STRETCHES.md": "1618b3d3c600b5d28a328b3fdb23c4694c881e8bf81f06e4a2a585517208df68",
-    "current-stretches.csv": "e42ab520dd5b72c95c72d428d9820056f75946ec13aeb686b8fe4ceef1997103",
-    "fit-analytics.csv": "b7fa3125d84c73a77b33cf2114ad020e34b03393bfa5f7776993ce7e1edf7517",
+    "ANALYTICS.md": "671efe03ecbea9bc8ba01c823d9f8eb074222794f523b46251e67b66322b7f6c",
+    "FINDINGS.md": "403e993ef400c76341b81343c72e008f841f541b47d3bc3a57f1080a9049f428",
+    "STRETCHES.md": "43d1dd0fbfcc7c7853fdf69c38ece03cc450403444761d06fed6a9ba155d9618",
+    "current-stretches.csv": "b3b9df8c3b70652c522bd13c6ef905b38112413d142ed98affbe23659217b108",
+    "fit-analytics.csv": "83c22e8fd50041c3ca5b5ac00dff8f20001592ef8b015ae92f148b6c90abb24f",
     "shared-leg-pairs.csv": "f3d8d293e2020595ba1d53eeb1462630a70f0cf547cc220b5237b99e608efc88",
-    "stretch-analytics.csv": "8a4a0663f00243fdd64dfd205834bfac6f9e63d31e632c7fdddafe8c508e5df6"
+    "stretch-analytics.csv": "fbeefea590713a1ec8e33f44906650869d5a60c4353178cd92b16da9e4161732"
   },
   "inputs": {
     "docs/ilvis0-boundary-review-20261016/completion.json": "8d0cddf73afe2040ef722b8d9a1443f2157f7191408f4e3470d1762d155ae03f",
@@ -25,6 +25,10 @@
     "docs/ilvis0-hybrid-remaining-20261015/starts.jsonl": "dd2b5ebb843e93265663c4a6970627b78686d22563c37467b64bd385a308620a",
     "docs/ilvis0-hybrid-remaining-20261015/summary.json": "b0916b16ae285368602c178ff56de2eea6792d170c52cc313d924393aac33eed",
     "docs/ilvis0-hybrid-remaining-20261015/sweeps.jsonl": "e4bb1a0da1337d355c4a525288a4bccbe5924e165e7c97076781b081235af81f",
+    "docs/ilvis0-neighbor-review-20261017/completion.json": "03101324442b2f68852f1183131a8909c1d9bbb53f2e2e4d152eb4c996a7cdaf",
+    "docs/ilvis0-neighbor-review-20261017/evidence-receipt.json": "0678ea1d184aeaa2591d79c79ae1e15c18536207c8d2ef2fb021766e9b0e6e8d",
+    "docs/ilvis0-neighbor-review-20261017/manifest.json": "14e97f7634f45164972439acb878b2a1eaf355d342610eb5b722b37669262b48",
+    "docs/ilvis0-neighbor-review-20261017/review.json": "c243691f59a38a1343c4dd07ecdd05337dc812bc9be6db860b219c352a69eb4e",
     "docs/ilvis0-position-stability-trial-20261013/analytics-receipt.json": "cfd6961b4db5ffbea4ddf7b0c9753226dd9cce3d60efe8c0a01d8a63073739f4",
     "docs/ilvis0-position-stability-trial-20261013/findings-receipt.json": "c73eb8f807135446d3b5b8f241552f11da3eddea5455b3b001043d40c2930ca3",
     "docs/ilvis0-remaining-precision-20261014/completion.json": "7d6212e412d1ed3c7bacbe2b7948b226292bbd9a7371064d66037b81ab14c10e",
@@ -52,12 +56,12 @@
   "publication_builder": "docs/ilvis0-current-findings-20261015/build_report.py",
   "sources": {
     "docs/build_current_status.py": "4ab5cd2d325b157d97ff3f9fd9800e502f020c61489164ecb23a94b4fa23e564",
-    "docs/ilvis0-current-findings-20261015/build_report.py": "b934b546fac0eb68d0bdf4175036033d4bfadfe49689ed4030027d12122edd84"
+    "docs/ilvis0-current-findings-20261015/build_report.py": "6c9282f81cc58b96c1491a49c74113f46ea54d8419d9e4485565b8801c23eb86"
   },
   "tally": {
     "ambiguous": 0,
     "flat": 0,
-    "globe": 48,
-    "unresolved": 5
+    "globe": 49,
+    "unresolved": 4
   }
 }

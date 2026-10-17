@@ -1,17 +1,17 @@
 # Current airborne analysis status
 
-**48 globe preferences, 0 flat preferences, 5 unresolved** among 53 preselected stretches.
+**49 globe preferences, 0 flat preferences, 4 unresolved** among 53 preselected stretches.
 
 The selected stretches total **424.3 minutes**. The same preselected intervals and original measurements are retained through numerical recovery.
 
 | Current disposition | Stretches |
 |---|---:|
-| Globe preferred | 48 |
+| Globe preferred | 49 |
 | Specified flat disc preferred | 0 |
-| Unresolved | 5 |
+| Unresolved | 4 |
 | Different preferences across assumptions | 0 |
 
-Of the globe-preferred stretches, **48** also favor the specified background rotation field over zero field under both processing assumptions. That comparison does not identify the field's physical cause or distinguish a solar from a sidereal day.
+Of the globe-preferred stretches, **49** also favor the specified background rotation field over zero field under both processing assumptions. That comparison does not identify the field's physical cause or distinguish a solar from a sidereal day.
 
 These are numerical model preferences; statistical significance is not yet calibrated. Overlapping recordings and shared instruments mean stretches cannot be counted as independent replications. An unresolved comparison has not passed its required calculations and checks; it supplies no opposing shape finding.
 
@@ -21,6 +21,6 @@ These are numerical model preferences; statistical significance is not yet calib
 
 This snapshot is generated from published, hash-verified result ledgers and their qualified per-stretch comparisons. It excludes active workers and incomplete publications. The original [first-pass report](ilvis0-highspeed-segments-20261008/FINDINGS.md) and preserved trial reports describe their own historical stages; their earlier totals remain unchanged.
 
-Snapshot receipt SHA-256: `fdb93b2c06dbbbe6741ceab15452b18fa50e41087dd9810cf26dc4425434a3c1`.
+Snapshot receipt SHA-256: `96ff0c0629f1c35bc9828adb5e5427a3fa5f0ae4932e8f7bc0c82c61800ca06f`.
 
 Reproduce with `~/venv/bin/python docs/build_current_status.py`; `--check` verifies the evidence and checks this page and the landing-page excerpts without writing. Only published metadata is read; no original IMU files, model refits or numerical predictions are needed.

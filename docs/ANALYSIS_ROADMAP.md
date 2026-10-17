@@ -3,7 +3,7 @@
 ## Starting point
 
 <!-- current-status:start -->
-**48 globe preferences, 0 flat preferences, 5 unresolved** among 53 preselected stretches.
+**49 globe preferences, 0 flat preferences, 4 unresolved** among 53 preselected stretches.
 See the [verified current status](CURRENT_STATUS.md) for coverage, background-field comparisons and the supporting result records. Unfinished comparisons are not evidence for either shape.
 <!-- current-status:end -->
 
@@ -35,7 +35,7 @@ a particular quantity from being separated, rather than stopping all modeling.
 
 ## Current execution order
 
-The priority is focused diagnostics that can resolve the five unfinished comparisons
+The priority is focused diagnostics that can resolve the four unfinished comparisons
 in the verified status above. Broader diagnostic expansion is deferred. Numerical completion, fit adequacy and
 statistical support remain separate checks; recovering a fit does not by itself
 establish a calibrated scientific detection.
@@ -96,10 +96,17 @@ establish a calibrated scientific detection.
 The [completed boundary review](ilvis0-boundary-review-20261016/README.md)
 checks the interrupted diagnostic and its unstarted-only continuation together.
 One stretch passes every companion, control and required repeat check, bringing
-the published total to **48 globe / 0 flat / 5 unresolved**. The next work diagnoses
-the five remaining timing solutions from saved evidence, including repeat disagreement,
+the total at that stage to **48 globe / 0 flat / 5 unresolved**. Further work diagnosed
+the remaining timing solutions from saved evidence, including repeat disagreement,
 unsupported local geometry and incomplete checks. Earlier failures stay recorded;
 any further native work needs a separate finite freeze.
+
+The [completed adjacent-boundary review](ilvis0-neighbor-review-20261017/README.md)
+adds another fully checked globe comparison: **49 globe / 0 flat / 4 unresolved**.
+Both fresh controls and the target pair passed in 44 native calls, with unchanged
+physical assumptions. The next priority is resolving distinct timing basins and
+coupled calibration corrections in the four remaining stretches, while retaining
+unsupported geometry, interrupted checks and failed repeats in the record.
 
 ## Recovery development history
 

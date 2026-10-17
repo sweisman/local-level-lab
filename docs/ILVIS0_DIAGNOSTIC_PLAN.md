@@ -1,12 +1,11 @@
 # Focused NASA analysis plan after the October 11 review
 
-The covariance/prediction comparison has finished with 10 of 12 fits converged and
-an unresolved combined hierarchy. The subsequent numerical recovery is complete:
-**41 globe preferences, none for flat and 12 unresolved stretches** after completed
-precision recovery. The next priority is bounded continuation of the three new
-budget failures, followed by separate assessment of the other nine;
-the [roadmap](ANALYSIS_ROADMAP.md) describes that investigation. Additional diagnostics
-below remain available for later development; preserve their completed evidence.
+The [verified current status](CURRENT_STATUS.md) incorporates the completed
+recovery studies. The [adjacent-boundary review](ilvis0-neighbor-review-20261017/README.md)
+adds a complete globe comparison; the current result is **49 globe preferences,
+none for flat and four unresolved stretches**. The immediate priority remains
+resolving those numerical comparisons. The [roadmap](ANALYSIS_ROADMAP.md) describes
+the current sequence; the diagnostic topics below preserve the wider backlog.
 
 Keep the 53-stretch first pass unchanged. It found 12 complete globe preferences,
 no complete flat preference and 41 unfinished comparisons. Unfinished comparisons

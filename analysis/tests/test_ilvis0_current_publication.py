@@ -49,3 +49,30 @@ def test_every_declared_repeat_pair_is_checked(failure):
     if failure=='missing_pair': s['qualification']['pair_repeatability'].pop()
     if failure=='extra_pair': s['qualification']['pair_repeatability'].append(dict(identity='a::extra',passed=True))
     with pytest.raises(ValueError): publication().qualified_updates(old,s,p)
+
+
+def test_later_saved_review_updates_only_its_declared_unresolved_stretch():
+    from test_ilvis0_boundary_publication import example
+    review, _ = example()
+    rows = {'s': dict(shape_preference='unresolved'),
+            'earlier': dict(shape_preference='globe', result_origin='earlier')}
+    publication().apply_boundary_review(rows, review, 'later')
+    assert rows['s']['shape_preference'] == 'globe'
+    assert rows['s']['result_origin'] == 'later'
+    assert rows['earlier'] == dict(shape_preference='globe', result_origin='earlier')
+
+
+def test_later_review_cannot_overwrite_an_already_resolved_comparison():
+    from test_ilvis0_boundary_publication import example
+    review, _ = example()
+    with pytest.raises(ValueError):
+        publication().apply_boundary_review({'s':dict(shape_preference='globe')}, review, 'later')
+
+
+def test_failing_repeat_keeps_a_later_publication_unresolved():
+    from test_ilvis0_boundary_publication import example
+    review, _ = example()
+    review['pairs'][0].update(passed=False, relative_cost_difference=.01)
+    rows = {'s':dict(shape_preference='unresolved')}
+    publication().apply_boundary_review(rows, review, 'later')
+    assert rows['s']['shape_preference'] == 'unresolved'
