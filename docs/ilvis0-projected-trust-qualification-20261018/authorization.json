@@ -1,0 +1,1 @@
+{"manifest_sha256":"21ce19d68f775a086d3e0454642b0d3bb93a7cfebc0eb320b23714c4971418c4","maximum_diagnostic_calls_per_start":2,"maximum_native_evaluations":3888,"maximum_starts":24,"maximum_tangents_per_start":160,"maximum_wall_s":1800,"numerical_threads":4,"observed_starts":0,"original_recording_reads":0,"retries":0}

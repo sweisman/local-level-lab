@@ -1,0 +1,10 @@
+........................F
+=================================== FAILURES ===================================
+_ test_independent_motion_refits_retained_coordinates[zero-axes1-nominal-sphere_rotating] _
+analysis/tests/qualify_ilvis0_projected_fitting.py:188: in test_independent_motion_refits_retained_coordinates
+    assert fit['converged']
+E   assert False
+=========================== short test summary info ============================
+FAILED analysis/tests/qualify_ilvis0_projected_fitting.py::test_independent_motion_refits_retained_coordinates[zero-axes1-nominal-sphere_rotating]
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
+1 failed, 24 passed in 70.89s (0:01:10)

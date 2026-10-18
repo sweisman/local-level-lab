@@ -1,5 +1,13 @@
 {
   "studies": [
+    {"name": "Horizontal-only full-calibration qualification", "path": "data/ilvis0-projected-horizontal-fullcal-20261018"},
+    {"name": "Generated paired-endpoint budget continuation", "path": "data/ilvis0-projected-budget-continuation-20261018"},
+    {"name": "Full-calibration projected qualification", "path": "data/ilvis0-projected-fullcal-qualification-20261018"},
+    {"name": "Local projected stability qualification", "path": "data/ilvis0-projected-local-qualification-20261018"},
+    {"name": "Projected trust qualification", "path": "data/ilvis0-projected-trust-qualification-20261018"},
+    {"name": "Generated height-only endpoint diagnosis", "path": "data/ilvis0-projected-endpoint-diagnostic-20261018"},
+    {"name": "Generated-motion projected fitting qualification", "path": "data/ilvis0-projected-fitting-controls-20261018"},
+    {"name": "Saved receiver-coordinate projection audit", "path": "data/ilvis0-receiver-projection-20261018"},
     {"name": "Final-stretch zero-field boundary checks", "path": "data/ilvis0-last-zero-boundary-20261018"},
     {"name": "Final-stretch full free-timing comparison", "path": "data/ilvis0-last-free-time-20261018"},
     {"name": "Final-stretch zero-field timing profiles", "path": "data/ilvis0-last-time-profile-20261018"},

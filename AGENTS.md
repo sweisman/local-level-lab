@@ -17,11 +17,13 @@ incident histories, personal commentary or historical process IDs.
   Ask before manually triggering GitHub Actions or delegation.
   Continue the approved analysis roadmap, including new observed-data qualification
   trials and qualified recovery runs, without requesting renewed permission.
+  Continue through the approved gated sequence instead of ending after each
+  test or diagnostic. A failed gate blocks dependent observed fits, while saved
+  diagnosis and separately frozen software qualification may continue.
   Freeze each new study and record finite start/evaluation limits before launch;
   keep the four-thread total limit and never expand an active or completed allowance.
-- Prioritize diagnostics that help resolve the remaining stretch, particularly
-  timing-boundary stopping and repeat disagreement. Defer broader covariance,
-  publication and unrelated diagnostic expansion while this recovery work proceeds.
+- Numerical recovery is complete. Prioritize measurement-contribution checks,
+  then predictive adequacy and uncertainty; preserve all prior recovery evidence.
 - Leave unfamiliar paths outside the documented corpus alone. Do not scan, document,
   ignore or stage them, and do not inspect unrelated credentials.
 - Perform git operations only when explicitly requested. Bundle related work into one
@@ -704,6 +706,92 @@ priority is the measurement-contribution study, then predictive adequacy,
 residual uncertainty and shared-flight dependence in docs/NEXT_STEPS.md.
 Current publication verifies the old interrupted manifest through its exact
 public source-freeze copy; do not alter either historical manifest to match it.
+Measurement-contribution development: docs/ilvis0-measurement-contribution/.
+lll.ilvis0_observation_projection has 19 deterministic software controls for
+receiver-coordinate marginalization; it changes no frozen fit or scientific gate.
+The inventory and bounded fixed-parameter projection audit are complete.
+No observed ablation study is launched. Retain all nuisance
+columns, and do not label objective-only coordinate removal as removing that
+coordinate from initialization, covariance, selection or propagation.
+Saved-primary inventory: docs/ilvis0-contribution-inventory-20261018/ and matching
+data/. Completed 318 inspections, zero native predictions/original reads/fits or
+dense operations. Fourteen software controls passed. Preserve the completed
+manifest/source snapshots and use build_report.py --render-only, never replay it.
+164 artifacts are ready; eighteen stretches have all six. 133 lack declared
+linearizations, twenty lack saved time context, one reference is unresolved.
+Resolve other metadata references separately without replacing
+the original inventory or substituting historical fits by cost. Missing reusable
+arrays do not reverse the completed 53/0/0 model comparisons.
+Saved projection audit: analysis/tests/ilvis0_projection_worker.py;
+guide/freeze docs/ilvis0-receiver-projection-20261018/ and matching data/.
+Exactly eighteen complete inventory sets /108 saved primary fits. Limits: eighteen
+charged groups, 324 projections/SVDs, 126 Cholesky factorizations, eighteen shared
+covariances, four total threads, twenty minutes, no retries. Zero original reads,
+native predictions or optimizer starts. Check its lock, hashes, environment and
+completion before any continuation; charged or completed work cannot restart or expand.
+Keep frozen dependencies unchanged. --package-only performs no matrix operations.
+Completed: 18/18 groups, 324 projections, zero native calls/fits/original reads;
+31 software checks passed. Never restart. Next qualify the projected physical
+objective on generated motion, then prepare a finite matched observed refit study.
+Rank and coordinate-subset rankings are fixed-parameter diagnostics; they do not
+update 53/0/0, isolate gyro evidence or qualify newly optimized ablated models.
+Generated-motion projected-fitting qualification: guide/freeze
+docs/ilvis0-projected-fitting-controls-20261018/ and matching data/. Launcher
+analysis/tests/ilvis0_projected_controls_worker.py; check its status and lock.
+Its explicit qualification matrix is separate from routine adapter CI tests.
+Frozen maximum: 24 generated starts, 2,400 generated native sweeps, four threads,
+600 seconds, one fail-fast batch, no retries. No observed fits or originals.
+Preserve failed controls and unrun identities; never restart a charged batch.
+Retained-coordinate stability does not check omitted axes. No observed refits
+follow a failed qualification; all archive dispositions remain unchanged.
+Completed and failed: 24 controls passed, one failed, eighteen unrun; seven
+generated starts /459 native sweeps. Never restart or reuse the allowance.
+Package-only renders saved results. Diagnose the generated height-only stopping
+failure before a separately frozen revised qualification; six passing horizontal
+fits do not complete their unrun second-start checks or authorize observed work.
+Generated endpoint diagnosis: docs/ilvis0-projected-endpoint-diagnostic-20261018/
+and matching data/. Completed 33/33 generated native calls, zero fits/original
+reads; three constructed-matrix checks passed. Never restart or reuse allowance.
+Launcher analysis/tests/ilvis0_projected_endpoint_worker.py --package-only
+performs no integration. Preserve its sources and saved full/projected arrays.
+Large compensating linear steps worsen the nonlinear objective; column scaling
+alone does not help. Next test a bounded trust-region candidate under unchanged
+physical bounds and fresh gates, in separate controls and a finite new freeze.
+Projected trust qualification: docs/ilvis0-projected-trust-qualification-20261018/
+and matching data/. Completed 24 starts /1,364 calls: 16 passing fits, 8/12 pairs.
+Never restart or reuse allowance. All eight failures are height-only stability.
+Local-probe successor: docs/ilvis0-projected-local-qualification-20261018/ and
+matching data/; launcher analysis/tests/ilvis0_projected_local_worker.py. It
+explicitly changes the probe neighborhood, not the original studies' gates.
+Full-calibration successor: docs/ilvis0-projected-fullcal-qualification-20261018/
+and matching data/; launcher analysis/tests/ilvis0_projected_fullcal_worker.py.
+Each successor has 24 starts /3,888 native calls /four threads /30 minutes,
+no retries and no originals/observed fits. Preserve all frozen sources.
+analysis/tests/ilvis0_projection_sequence.py coordinates local then full-calibration
+qualification; data/ilvis0-projection-sequence-20261018/ holds its exclusive lock,
+manifest and state. It uses zero numerical threads and gates the next launch on
+verified completion, released worker lock, matching publication and a passing
+summary. Never duplicate its launch or restart charged/completed work. Public
+sequence status: docs/ilvis0-projection-sequence-20261018/README.md. Continue
+through qualified stages automatically; a failed gate blocks dependent fits.
+Both metadata coordinators are completed and blocked: local qualification passed
+24 fits but 11/12 pairs; the larger-budget height-only continuation passed both
+fits in 1,035/1,204 calls but still failed its pair. The complete saved review
+remains 24 passing fits /11 passing pairs. Never restart either coordinator or
+completed worker, or spend unused allowances. Preserve all failed labels.
+Saved horizontal capability: docs/data ilvis0-projected-horizontal-review-20261018/;
+twelve horizontal fits and six pairs pass, height-only stays unqualified.
+Current horizontal-only full-calibration controls: docs/data
+ilvis0-projected-horizontal-fullcal-20261018/; launcher
+analysis/tests/ilvis0_projected_horizontal_worker.py. Frozen scope: twelve
+generated starts, 1,944 native calls, thirty minutes, four total threads, no
+retries, no original reads or observed starts. All 26/27 nuisance columns and
+all six paired checks must pass before preparing a separately frozen small
+horizontal-only observed study. Check metadata, lock and completion; never
+duplicate or restart charged work. Preserve active sources and PLAN.md.
+The broader 24-case full-calibration preparation remains unstarted; its unused
+allowance is not transferable. Horizontal success does not qualify height-only
+refitting, global optimality, unique calibration or observational uncertainty.
 Preserve the zero-start first preparation at data/ilvis0-remaining-free-time-20261018/;
 its duplicate-source-lock failure spent zero native calls and must not restart.
 The v2 launcher deduplicates source locks and checks its complete qualified source

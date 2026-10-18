@@ -51,6 +51,53 @@ and shared flights also require grouping before statistical claims.
 
 ## Checking why the models differ
 
+The next [measurement-contribution study](ilvis0-measurement-contribution/README.md)
+has an input-dependency audit and 19 passing covariance/coordinate-projection
+controls. It has not yet run observed ablation fits.
+
+The [saved-primary inventory](ilvis0-contribution-inventory-20261018/COVERAGE.md)
+checks all 318 final primary fits. It finds 164 complete reusable artifacts and
+eighteen stretches with all six fits ready, while recording every missing array,
+time-context gap and unresolved reference. It makes no native predictions or fits.
+
+The [receiver-coordinate projection audit](ilvis0-receiver-projection-20261018/README.md)
+compares full, horizontal and height-only constraints at the saved parameters
+for those eighteen complete sets. All 36 horizontal-only processing-case
+comparisons favor globe; height-only scoring favors globe in 28 and flat in
+eight. No parameters were refitted. The original model results remain unchanged.
+
+The [generated-motion refitting qualification](ilvis0-projected-fitting-controls-20261018/README.md)
+passed 24 controls before stopping at a failed height-only fit. Eighteen planned
+controls remain untested. All six horizontal fits reached so far passed, but
+their second-start checks did not run. The candidate is **not qualified** for
+observed refits; no recorded-flight result changed.
+
+The [fixed-endpoint diagnostic](ilvis0-projected-endpoint-diagnostic-20261018/INTERPRETATION.md)
+used 33 generated-motion evaluations to show that the proposed linear correction
+is too large to predict the actual fit reliably. Column rescaling gives the
+same result. It identifies a smaller trust-region step as the next candidate,
+without performing new fits or changing the failed qualification.
+
+The [complete trust-region control matrix](ilvis0-projected-trust-qualification-20261018/README.md)
+passed sixteen of 24 generated fits and eight of twelve paired-start checks.
+All twelve horizontal fits passed; eight height-only fits failed the final
+full-range stability probe. The [following sequence](ilvis0-projection-sequence-20261018/README.md)
+separately tested a local probe with unchanged numerical tolerances: all 24 fits
+passed, but one paired-start objective check still failed. The
+[larger-budget continuation](ilvis0-projected-budget-continuation-20261018/PLAN.md)
+completed both fits in 1,035 native calls but did not resolve the height-only pair.
+The [complete review](ilvis0-projected-complete-review-20261018/README.md) remains
+unqualified at eleven of twelve passing pairs. Both coordinators completed
+without launching their dependent full-calibration matrix.
+
+The [horizontal-only review](ilvis0-projected-horizontal-review-20261018/README.md)
+verifies all twelve horizontal fits and all six paired-start comparisons; it
+leaves height-only unqualified and preserves the failed broader gate. The current
+[horizontal full-calibration study](ilvis0-projected-horizontal-fullcal-20261018/PLAN.md)
+tests all 26/27 nuisance columns, both processing cases and two starts in twelve
+generated fits. These are software controls, with no new recorded-flight fits
+or changes to the 53/0/0 findings.
+
 | Study | What it solved, tested or left open |
 |---|---|
 | [Calibration and fit-quality audit](ilvis0-calibration-audit-20261010/README.md) | Found a substantial fitting-error gap on the original twelve resolved stretches, together with frequent calibration parameters at their limits. |

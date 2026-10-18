@@ -1,11 +1,13 @@
 # Focused NASA analysis plan after the October 11 review
 
 The [verified current status](CURRENT_STATUS.md) incorporates the completed
-recovery studies. The [adjacent-boundary review](ilvis0-neighbor-review-20261017/README.md)
-adds a complete globe comparison; the current result is **49 globe preferences,
-none for flat and four unresolved stretches**. The immediate priority remains
-resolving those numerical comparisons. The [roadmap](ANALYSIS_ROADMAP.md) describes
-the current sequence; the diagnostic topics below preserve the wider backlog.
+recovery studies: **53 globe preferences, none for flat and none numerically
+unresolved**. The [final complete review](ilvis0-last-review-20261018/README.md)
+checks every required companion and repeat for the last stretch. The immediate
+priority is the [measurement-contribution study](ilvis0-measurement-contribution/README.md),
+followed by predictive adequacy, residual uncertainty and shared-flight dependence.
+The [roadmap](ANALYSIS_ROADMAP.md) describes the current sequence; older study
+counts and failed diagnostics below retain their historical meaning.
 
 Keep the 53-stretch first pass unchanged. It found 12 complete globe preferences,
 no complete flat preference and 41 unfinished comparisons. Unfinished comparisons

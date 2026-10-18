@@ -43,6 +43,11 @@ about **7 centimetres for the globe with a background rotation field, versus
 47 metres for the flat disc**. These describe agreement with the positions used in
 fitting; prediction on unused observations is a separate check.
 
+A [measurement-contribution check](docs/ilvis0-measurement-contribution/README.md)
+on eighteen stretches preserves the globe preference in all 36 processing-case
+comparisons when height is removed from the score. Those scores reuse the
+existing fitted parameters; horizontal-only refitting is being qualified separately.
+
 **[See all 53 stretches](docs/ilvis0-current-findings-20261015/STRETCHES.md)** —
 instrument configuration, duration, speed, course, latitude and current result.
 **[Download the comprehensive CSV](docs/ilvis0-current-findings-20261015/stretch-analytics.csv)**

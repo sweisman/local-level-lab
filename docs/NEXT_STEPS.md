@@ -30,6 +30,47 @@ separation and whether the fitted models predict observations outside training.
 
 ## Then: strengthen the interpretation
 
+The [measurement-contribution work](ilvis0-measurement-contribution/README.md)
+has completed its input audit, saved-fit inventory and first coordinate-subset
+comparison. Of 318 primary fits, 164 have reusable saved arrays, including all six
+fits for eighteen stretches. At their existing fitted parameters, all **36
+horizontal-only processing-case comparisons favor globe**; height-only scoring
+gives 28 globe and eight flat preferences. No parameters were refitted. Both gyro
+and acceleration observations remain in use, and heights still enter other parts
+of the reconstruction.
+
+The next step is to qualify refitting after a coordinate constraint is removed.
+The completed [software review](ilvis0-projected-complete-review-20261018/README.md)
+passes all 24 individual generated fits but only eleven of twelve paired-start
+checks. A [larger-budget continuation](ilvis0-projected-budget-continuation-20261018/PLAN.md)
+did not resolve the remaining height-only pair: its objective difference stays
+above the frozen repeatability limit despite predictions agreeing within about
+1.3 micrometres. Height-only refitting remains unqualified; the broader qualification
+failed and its dependent full-calibration batch did not start.
+
+The separately reviewed [horizontal-only capability](ilvis0-projected-horizontal-review-20261018/README.md)
+passes every predeclared horizontal case: twelve generated fits and six paired-start
+comparisons. The current [full-calibration controls](ilvis0-projected-horizontal-fullcal-20261018/PLAN.md)
+test that mode with all **26/27 nuisance columns**, both processing cases and two
+starting points. Their finite allowance is twelve generated fits and 1,944 native
+calculations, using four numerical threads. No original recordings are read and
+no observed-data refits have started.
+
+The remaining sequence is:
+
+1. Complete every horizontal full-calibration control and paired-start check.
+2. If those pass, freeze a small matched recorded-flight horizontal-only refit
+   study with finite limits and independent repeats; compare the reoptimized
+   scores with the existing three-dimensional fits.
+3. Test gyro and acceleration contributions using explicit replacement constraints.
+   Coordinate removal alone does not isolate either IMU channel.
+4. Establish prediction on unused observations, residual uncertainty and
+   shared-flight dependence before calibrated population claims.
+
+Height-only qualification and missing saved-artifact references remain separate
+open work. Failed controls retain their original labels; no numerical threshold
+or recorded-flight disposition has changed.
+
 | Analysis | What it adds |
 |---|---|
 | Separate gyro, acceleration and coordinate contributions | Isolates what the central gyro observations add, using matched tests of gyro input, acceleration input, horizontal-only receiver constraints and coordinate/height assumptions. |

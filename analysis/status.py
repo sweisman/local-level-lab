@@ -83,14 +83,14 @@ def inspect_study(directory):
     try:
         manifest=load(directory/'manifest.json');manifest_hash=file_digest(directory/'manifest.json')
         status=load(directory/'status.json') if (directory/'status.json').exists() else {}
-        plan=manifest.get('plan',{});tasks=plan.get('tasks',[])
-        result.update(total=len(tasks) if tasks else status.get('total'),
-            native_limit=plan.get('maximum_native_evaluations',plan.get('maximum_sweeps')),
+        plan=manifest.get('plan',manifest.get('limits',{}));tasks=plan.get('tasks',[])
+        result.update(total=len(tasks) if tasks else len(manifest['tests']) if 'tests' in manifest else status.get('total'),
+            native_limit=plan.get('maximum_native_evaluations',plan.get('maximum_sweeps',plan.get('maximum_native_sweeps'))),
             worker_phase=status.get('state'),identity=status.get('identity'),pid=status.get('pid'))
         with read_lock(directory/'worker.lock') as state:result['lock']=state
         held=result['lock']=='held'
         result['state']='running' if held else 'incomplete'
-        result['threads']=status.get('allocated_numerical_threads',plan.get('numerical_threads',0)) if held else 0
+        result['threads']=status.get('allocated_numerical_threads',status.get('numerical_threads',plan.get('numerical_threads',0))) if held else 0
         rows=[]
         if (directory/'completion.json').exists():
             completion=load(directory/'completion.json')
@@ -99,9 +99,23 @@ def inspect_study(directory):
                 raise ValueError('completion/manifest/summary hash mismatch')
             summary=load(directory/'summary.json');rows=summary.get('results',[])
             result.update(state='complete',native_calls=summary.get('native_evaluations'))
+            if 'tests' in summary and not rows:
+                rows=[dict(row,passed=row['outcome']=='passed',status='error' if row['outcome'] in ('failure','error') else 'complete')
+                      for row in summary['tests']]
+                budget=summary.get('budget') or {}
+                result.update(native_calls=budget.get('native_sweeps'),charged_identities=budget.get('starts'))
+                if summary.get('passed') is False:
+                    result['warnings'].append('qualification failed; '+str(len(summary.get('unrun_tests',[])))+' controls not run')
         else:
             rows=completed_rows(directory,manifest,manifest_hash)
             if status.get('state')=='stopped' and not held:result['state']='stopped'
+            if held and (directory/'progress.json').exists():
+                progress=load(directory/'progress.json')
+                completed=progress.get('completed');passed=progress.get('passed');total=result['total']
+                if (type(completed) is int and type(passed) is int and type(total) is int
+                        and 0<=passed<=completed<=total):
+                    result['worker_progress']=dict(completed=completed,passed=passed)
+                else:result['warnings'].append('invalid worker progress snapshot; verified counts retained')
         result['completed']=len(rows)
         gates=('conditional_verified','passed','conditional_converged','converged')
         result['passed']=sum(next((r[k] is True for k in gates if k in r),False) for r in rows)
@@ -146,6 +160,9 @@ def render(report):
     text=f"{report['name']}: {report['state']} | {report['completed']}/{total} results, {report['passed']} passed, {report['errors']} errors"
     text+=f" | {calls}/{limit} charged native calls | {report['threads']} threads | lock {report['lock']}"
     if report.get('identity') and report['state']=='running':text+='\n  Current: '+report['identity']
+    if report.get('worker_progress'):
+        progress=report['worker_progress']
+        text+=f"\n  Worker snapshot: {progress['completed']}/{total} complete, {progress['passed']} passing; completion verification pending"
     for warning in report['warnings']:text+='\n  Warning: '+warning
     return text
 
