@@ -1,0 +1,6 @@
+{"identity":"233183f67270980491416678::bias1_unsubtracted::sphere_rotating::control::remaining_free_time_control","manifest_sha256":"e55b51e7d47916a83e794fd3db0e5178d618897680c0dc94b18641b68968f3f6","number":1}
+{"identity":"31d7e5019dfdc9e2e6387206::bias1_profiled_removal::sphere_rotating::control::remaining_free_time_control","manifest_sha256":"e55b51e7d47916a83e794fd3db0e5178d618897680c0dc94b18641b68968f3f6","number":2}
+{"identity":"0e73879f98c3b701fd7c42df::bias1_unsubtracted::sphere_still::free_time_primary","manifest_sha256":"e55b51e7d47916a83e794fd3db0e5178d618897680c0dc94b18641b68968f3f6","number":3}
+{"identity":"0e73879f98c3b701fd7c42df::bias1_unsubtracted::sphere_still::free_time_repeat","manifest_sha256":"e55b51e7d47916a83e794fd3db0e5178d618897680c0dc94b18641b68968f3f6","number":4}
+{"identity":"0e73879f98c3b701fd7c42df::bias1_profiled_removal::sphere_still::free_time_primary","manifest_sha256":"e55b51e7d47916a83e794fd3db0e5178d618897680c0dc94b18641b68968f3f6","number":5}
+{"identity":"0e73879f98c3b701fd7c42df::bias1_profiled_removal::sphere_still::free_time_repeat","manifest_sha256":"e55b51e7d47916a83e794fd3db0e5178d618897680c0dc94b18641b68968f3f6","number":6}

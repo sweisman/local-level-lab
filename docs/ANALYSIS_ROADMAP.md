@@ -3,8 +3,8 @@
 ## Starting point
 
 <!-- current-status:start -->
-**49 globe preferences, 0 flat preferences, 4 unresolved** among 53 preselected stretches.
-See the [verified current status](CURRENT_STATUS.md) for coverage, background-field comparisons and the supporting result records. Unfinished comparisons are not evidence for either shape.
+**53 globe preferences, 0 flat preferences, 0 unresolved** among 53 preselected stretches.
+See the [verified current status](CURRENT_STATUS.md) for coverage, background-field comparisons and the supporting result records. All selected comparisons have passed their required numerical checks.
 <!-- current-status:end -->
 
 Completed results include both IMU8 and IMU21 recordings.
@@ -35,10 +35,12 @@ a particular quantity from being separated, rather than stopping all modeling.
 
 ## Current execution order
 
-The priority is focused diagnostics that can resolve the four unfinished comparisons
-in the verified status above. Broader diagnostic expansion is deferred. Numerical completion, fit adequacy and
-statistical support remain separate checks; recovering a fit does not by itself
-establish a calibrated scientific detection.
+Numerical recovery is complete for all 53 selected stretches. The next priorities
+are measurement-contribution checks, residual uncertainty, held-out prediction
+and shared-flight dependence. Numerical completion, fit adequacy and statistical
+support remain separate checks; a completed fit does not by itself establish a
+calibrated scientific detection. The numbered sequence below records the recovery
+stages and their historical counts.
 
 1. Preserve the completed [budget continuation](ilvis0-budget-continuation-20261014/RESULTS.md).
    Both controls passed, but none of its three target stretches passed every primary
@@ -104,9 +106,25 @@ any further native work needs a separate finite freeze.
 The [completed adjacent-boundary review](ilvis0-neighbor-review-20261017/README.md)
 adds another fully checked globe comparison: **49 globe / 0 flat / 4 unresolved**.
 Both fresh controls and the target pair passed in 44 native calls, with unchanged
-physical assumptions. The next priority is resolving distinct timing basins and
-coupled calibration corrections in the four remaining stretches, while retaining
-unsupported geometry, interrupted checks and failed repeats in the record.
+physical assumptions. The later [clustered-boundary review](ilvis0-cluster-review-20261018/README.md)
+adds one further complete comparison: **50 globe / 0 flat / 3 unresolved**.
+All six primaries, both controls and the newly checked target repeat pass.
+The [complete two-case review](ilvis0-representable-review-20261018/README.md)
+adds another globe comparison: **51 globe / 0 flat / 2 unresolved**. Both required
+repeat pairs, all six primary fits and fresh controls pass. The revised probe
+geometry accepts distinct representable clock states while retaining the scientific
+stopping limits. Earlier failures remain preserved.
+The later [scaled-correction review](ilvis0-scaled-pair-review-20261018/README.md)
+adds another complete comparison: **52 globe / 0 flat / 1 unresolved**. Rescaling
+the local affine correction resolves a numerical failure without changing any
+physical bound or full native acceptance limit. Both scheduled repeat pairs,
+all six primaries and fresh controls pass; earlier failures remain preserved.
+The [final complete review](ilvis0-last-review-20261018/README.md) resolves the last
+comparison: **53 globe / 0 flat / 0 unresolved**. All six model/case primaries,
+four scheduled repeat pairs and both fresh controls pass. Two-sided native checks
+resolve the timing-boundary failure with the original physical and acceptance
+bounds. The review used saved evidence only. [Next steps](NEXT_STEPS.md) now focus
+on measurement contributions, prediction quality, uncertainty and dependence.
 
 ## Recovery development history
 
@@ -363,11 +381,11 @@ That allowance does not authorize the separate recovery study.
 
 | Order | Work | What can happen without new observed fits? | Deliverable |
 |---|---|---|---|
-| P0 | Recover the remaining numerically incomplete stretches | Preserve both completed hybrid assessments and the saved timing-direction audit. | Test the time-alignment derivative against bounded native predictions before qualifying another recovery method. |
-| Deferred | Explain integration timing and joint Z-axis calibration | Preserve completed clock tests, gain–bias grids and weak-direction audits. | Further physically justified clock/calibration tests after recovery. |
-| Deferred | Model residual dependence and assess prediction quality | Preserve covariance audits and the active comparison's results. | Calibrated predictive adequacy and uncertainty checks. |
-| Deferred | Isolate what the inertial measurements contribute | Preserve the planned channel and receiver-metric controls. | Measurement-contribution study with matched assumptions. |
-| Deferred | Test independent-flight generality | Keep recording dependence and provenance explicit. | Predeclared prediction replication across independent flights. |
+| Complete | Recover numerically incomplete stretches | Preserve all 53 comparisons, earlier failures and separately checked recoveries. | All selected comparisons pass; no recovery worker or allowance remains open. |
+| P0 | Isolate what the inertial measurements contribute | Prepare matched gyro, acceleration and receiver-metric controls. | Measurement-contribution study with shared assumptions and independent software controls. |
+| P1 | Model residual dependence and assess prediction quality | Preserve covariance audits and completed prediction comparisons. | Calibrated predictive adequacy and uncertainty checks. |
+| P1 | Test independent-flight generality | Verify shared-flight grouping, overlapping recorder times and installation evidence. | Predeclared prediction replication across independent flights. |
+| Supporting | Explain integration timing and joint Z-axis calibration | Preserve clock tests, gain–bias grids and weak-direction audits. | Physically justified sensitivity checks where these affect interpretation. |
 | Parallel, lower priority | Seek exact device and processing records | Continue the existing inquiry; record what each source actually establishes. | Better-supported assumptions where information becomes available. |
 | Follow-on | Measure the background rotation field | Prepare the estimator design and separation checks after current numerical work is reviewed. | Freely estimated field before interpretation of its cause. |
 

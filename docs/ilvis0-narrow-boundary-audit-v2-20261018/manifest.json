@@ -1,0 +1,20 @@
+{
+  "inputs": {
+    "/site/repo/local-level-lab/data/ilvis0-remaining-boundary-20261018/0e73879f98c3b701fd7c42df-bias1_unsubtracted-sphere_still-free_time_primary-remaining_cluster_check-linearization.json.gz": "496f65b0de8b9990ec30ef2eb9149e47f0eaf287909b2c029acdc8c91937fc1e",
+    "/site/repo/local-level-lab/data/ilvis0-remaining-boundary-20261018/0e73879f98c3b701fd7c42df-bias1_unsubtracted-sphere_still-free_time_repeat-remaining_cluster_check-linearization.json.gz": "c36195aa462c1e9d6ea2bcf2f84add1059f6f214ad1fce6eb3ebbb51c2a9f90c",
+    "/site/repo/local-level-lab/data/ilvis0-remaining-boundary-20261018/completion.json": "bc34525b41e9f1b0e0aa762131cf5feed98db2b94f75a0a608567bc256066867",
+    "/site/repo/local-level-lab/data/ilvis0-remaining-boundary-20261018/manifest.json": "ec7bfa783addac2c6374eefa1dffe1cb042fe790f892166ff243145b79a5854f",
+    "/site/repo/local-level-lab/data/ilvis0-remaining-boundary-20261018/summary.json": "bda00ff3a5fd7712a466aa2afbffe57ac98d2a8632c96bafbc60a3caa0c3ece0"
+  },
+  "maximum_clock_queries": 12,
+  "maximum_target_reports": 2,
+  "native_calls": 0,
+  "numerical_threads": 4,
+  "optimizer_starts": 0,
+  "original_reads": 0,
+  "sources": {
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_clock_brackets.py": "8035bde0f3a048a67f66aba67e8ab3520e243c7be8f5ce30324062061b39a0ae",
+    "/site/repo/local-level-lab/docs/ilvis0-narrow-boundary-audit-20261018/build_report.py": "c9f54afd31ff7dbe81ca0aef8bf8206c0e3e386eecaee45f58803bbaba6c9817",
+    "/site/repo/local-level-lab/docs/ilvis0-narrow-boundary-audit-v2-20261018/build_report.py": "c88601d29453da28024023737ce232661a15b45bc3274bfaa22fa3b82bad576f"
+  }
+}

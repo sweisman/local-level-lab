@@ -1,26 +1,20 @@
 # Updated airborne findings
 
-**49 globe preferences, 0 flat preferences, 4 unresolved** among 53 preselected stretches.
+**53 globe preferences, 0 flat preferences, 0 unresolved** among 53 preselected stretches.
 
-The adjacent-boundary review resolves one additional comparison after all six primary fits, its required repeat and both fresh controls pass. The check explicitly covers the neighboring timing boundary reached by a small correction, with unchanged observations, physical bounds, receiver weights and clock. Earlier stopping failures remain preserved. These are numerical preferences, without a calibrated significance level. All 49 globe-preferred stretches also favor the specified background field; its cause is not determined.
+Every selected stretch now has a complete numerical comparison. The final saved-data review verifies all six model/case primary fits, all four required primary/repeat pairs and both fresh controls. Two-sided checks resolved a timing-boundary failure that a smooth free-timing correction could not pass. Scientific stopping limits, observations, physical bounds, receiver weights and clock remain unchanged. Earlier failures remain preserved. These are numerical preferences without a calibrated significance level. All 53 globe-preferred stretches also favor the specified background field; its cause is not determined.
 
 ## What the latest review added
 
-The recovered primary and repeat agree in relative cost to 1.15 × 10⁻¹⁰ and in reconstructed track RMS to at most 0.12 micrometres per axis. The five other required primary fits were already complete and verified. These figures describe numerical repeatability, not instrument accuracy. The [full review](../ilvis0-neighbor-review-20261017/README.md) verifies the complete comparison. The preceding [timing-boundary review](../ilvis0-boundary-review-20261016/README.md) added the earlier recovery and preserves all six targets, including failed checks and interrupted work.
-
-## Earlier stages
-
-The six-target hybrid assessment completed all 24 starts using 1,336 native sweeps. Seven fits passed, including both controls, one primary and four repeats. One stretch passes its complete comparison and repeat; six stretches remained unresolved across the corpus at that stage. Passing repeats alone cannot replace failed primaries or another required pair.
-
-The subsequent four-start timing-aware trial used 237 native calls. Both controls passed; the target primary and repeat still failed the earlier smooth stability check. That candidate did not qualify for wider use.
+The final stretch passes the specified-field and zero-field globe checks under both processing assumptions. All four scheduled repeat pairs agree; their largest track difference is about 35 micrometres RMS on one axis. Both previously passing flat-disc primary artifacts were verified. These figures describe numerical repeatability, not instrument accuracy. The [complete review](../ilvis0-last-review-20261018/README.md) preserves all 28 focused outcomes, including conditional profiles and failed smooth free-timing fits. It required no new predictions, fits or original-file reads.
 
 | Newly completed source | UTC interval | IMU type | Minutes | Ground speed min / median |
 |---|---|---:|---:|---:|
-| `ILVIS0_applanix_55300_20100414_Ames610_14Apr10.013` | 2010-04-14T12:41:33.104523Z to 2010-04-14T12:47:57.103723Z | 21 | 6.40 | 793.7 / 794.4 km/h |
+| `ILVIS0_applanix_57320_610_LVIS_38614965.013` | 2015-10-25T12:52:41Z to 2015-10-25T12:59:54Z | 21 | 7.22 | 822.0 / 824.9 km/h |
 
-## Four unresolved stretches
+## What numerical completion establishes
 
-Remaining obstacles are unsupported probes between closely spaced timing boundaries, one-sided stationarity failures, repeat disagreement, a zero-call reporting error and the preserved interrupted check. One stretch has six passing primaries but lacks its required completed repeat. These are incomplete numerical comparisons, not ties between shapes. The next work uses saved diagnostics to separate those failure mechanisms before further native work. No completed study allowance is reopened.
+The original study completed 12 comparisons and left 41 unfinished. All 41 now have separately checked recovery results, using the same selected intervals and measurements. None favors the specified flat disc. Original failures remain in the record. Numerical completion does not establish a calibrated false-rejection rate or adequate prediction on unused observations. Measurement-contribution tests, residual uncertainty and shared-flight grouping remain important next checks.
 
 [All stretches and source tracks](STRETCHES.md) · [Comprehensive metadata](ANALYTICS.md)
 

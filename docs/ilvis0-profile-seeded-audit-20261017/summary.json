@@ -1,0 +1,52 @@
+{
+  "charged_identities": 4,
+  "charged_native_calls": 53,
+  "clock_geometry": {
+    "boundary_changed_epochs": 1,
+    "center_relocation_s": -1.2435020763090776e-09,
+    "knots": [
+      -1.0,
+      -0.1381264586473918,
+      -0.13812645864566284,
+      -0.10479312828276002,
+      1.0
+    ],
+    "left_interval_width_s": 2.593425474373134e-13,
+    "maximum_queries": 1024,
+    "minimum_side_probe_s": 1.620890921483209e-14,
+    "native_predictions": 0,
+    "observed_fit_starts": 0,
+    "original_point": -0.138126450355649,
+    "point": -0.13812645864566284,
+    "queries": 344,
+    "right_interval_width_s": 0.004999999554435422,
+    "side_geometry_supported": true,
+    "side_points": [
+      -0.13812645864609507,
+      -0.1381264586457709,
+      -0.1381264586452306,
+      -0.13812645864555478
+    ],
+    "version": "ilvis0-representable-clock-brackets-v1"
+  },
+  "missing_result_identities": [
+    "50f24131843071ae9312c082::bias1_unsubtracted::sphere_still::profile_seeded_repeat"
+  ],
+  "native_predictions": 0,
+  "nearest_boundary_s": 1.2435066309990361e-09,
+  "optimizer_starts": 0,
+  "original_labels_changed": false,
+  "saved_results": 3,
+  "state": "complete",
+  "target": {
+    "accepted_steps": 0,
+    "failing_coordinates": [
+      "time_offset"
+    ],
+    "identity": "50f24131843071ae9312c082::bias1_unsubtracted::sphere_still::profile_seeded_primary",
+    "limit": 0.0001,
+    "starting_point_unchanged": true,
+    "stationarity": 0.00012902955819089353,
+    "trial_steps": 39
+  }
+}

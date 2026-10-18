@@ -17,20 +17,21 @@ The measurements, code and results are open.
 ## What the measurements show
 
 <!-- current-status:start -->
-**49 globe preferences, 0 flat preferences, 4 unresolved** among 53 preselected stretches.
-See the [verified current status](docs/CURRENT_STATUS.md) for coverage, background-field comparisons and the supporting result records. Unfinished comparisons are not evidence for either shape.
+**53 globe preferences, 0 flat preferences, 0 unresolved** among 53 preselected stretches.
+See the [verified current status](docs/CURRENT_STATUS.md) for coverage, background-field comparisons and the supporting result records. All selected comparisons have passed their required numerical checks.
 <!-- current-status:end -->
 
-Every fully checked stretch favors the globe under both tested processing cases.
-Unfinished comparisons still need numerical checks; they supply no opposing
-shape finding.
+**All 53 stretches now pass their required numerical comparisons and favor the
+globe under both tested processing cases.** The original run completed twelve;
+the remaining 41 have now passed separately checked recoveries using the same
+measurements and selected intervals.
 
 ![Recorded gyro motion across all 53 flight stretches, with a median line](docs/ilvis0-gyro-overview/raw-pitch.png)
 
 **The recorded motion has a consistent direction: all 53 traces finish nose-down.**
 Each thin line sums the raw gyro increments around the aircraft's pitch axis,
 starting at zero; the thick line shows the median. No fitted corrections or GPS
-values enter these angles. The graph includes the unresolved stretches too.
+values enter these angles. The graph includes every selected stretch.
 
 This is a direct visualization of the measurements, not a separate curvature test:
 aircraft motion and the background rotation field also contribute. The full analysis
@@ -88,8 +89,8 @@ solar-versus-sidereal rate difference.
 - **[Studies and what each added](docs/STUDIES.md)** — a concise guide to the analyses,
   successful recoveries and approaches that did not qualify.
 - **[How the method works](docs/METHODOLOGY.md)** — observations, models and checks.
-- **[What comes next](docs/NEXT_STEPS.md)** — unfinished comparisons, stronger
-  prediction tests and a freely measured rotation rate.
+- **[What comes next](docs/NEXT_STEPS.md)** — measurement-contribution checks,
+  stronger prediction tests and a freely measured rotation rate.
 - **[Archive and instrument guide](docs/ILVIS0.md)** — source data, decoding and provenance.
 
 ## A separate ground experiment

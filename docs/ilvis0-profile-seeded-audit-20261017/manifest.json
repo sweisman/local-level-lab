@@ -1,0 +1,21 @@
+{
+  "inputs": {
+    "/site/repo/local-level-lab/data/ilvis0-profile-seeded-trial-20261017/233183f67270980491416678-bias1_unsubtracted-sphere_rotating-control-profile_seeded_control.json": "ed5e9109e122723e4cee0c1e84aaefbd39781a30473d3c0f9b28922f693ab4c5",
+    "/site/repo/local-level-lab/data/ilvis0-profile-seeded-trial-20261017/31d7e5019dfdc9e2e6387206-bias1_profiled_removal-sphere_rotating-control-profile_seeded_control.json": "52f51962272401aab1fc8ffebf691caae5d63f9f75e3ea41d89fc8e9810b436f",
+    "/site/repo/local-level-lab/data/ilvis0-profile-seeded-trial-20261017/50f24131843071ae9312c082-bias1_unsubtracted-sphere_still-profile_seeded_primary-linearization.json.gz": "f0bb262f28699278f464a2c5f185555668b5c7be1b6478bf09edc8e4295b147f",
+    "/site/repo/local-level-lab/data/ilvis0-profile-seeded-trial-20261017/50f24131843071ae9312c082-bias1_unsubtracted-sphere_still-profile_seeded_primary.json": "0999a177294604e4e1801aba6f8eb3f6fdab8e3210ae87e3d14100b484992f72",
+    "/site/repo/local-level-lab/data/ilvis0-profile-seeded-trial-20261017/charges/HEAD.json": "7b515de2811cd9fcd16433dc7793aeafd2f7bc2e3758a47d94e2bb0f0b8e9cbf",
+    "/site/repo/local-level-lab/data/ilvis0-profile-seeded-trial-20261017/manifest.json": "6fe98cff0ac19118339f9489e9b5835e0b631c6d976f34cde98340ae89412434"
+  },
+  "maximum_clock_checks": 1,
+  "maximum_geometry_queries": 1024,
+  "native_predictions": 0,
+  "numerical_threads": 4,
+  "optimizer_starts": 0,
+  "original_reads": 0,
+  "sources": {
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_clock_brackets.py": "8035bde0f3a048a67f66aba67e8ab3520e243c7be8f5ce30324062061b39a0ae",
+    "/site/repo/local-level-lab/analysis/status.py": "a2587f3e4ceb29cf4117d17f1d90ea067bccf5f772a82a9875be29365239e52d",
+    "/site/repo/local-level-lab/docs/ilvis0-profile-seeded-audit-20261017/build_report.py": "d6b3db97c3f41e3f29f0df265c671b2126914186b196b2658522fe13587d3dce"
+  }
+}

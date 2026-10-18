@@ -6,6 +6,11 @@ incident histories, personal commentary or historical process IDs.
 
 ## Working practices
 
+- For routine process status use `~/venv/bin/python analysis/status.py`;
+  `--json` gives structured output and `--study data/<study>` selects an explicit
+  freeze. Keep analysis/study-status.json pointed at current/recent monitored jobs.
+  The command is metadata-only and never launches or resumes work. Do not generate
+  one-off status scripts. See analysis/STATUS.md for counter and lock semantics.
 - Keep responses concise. Use the cheapest sufficient verification and bounded output.
   Prefer durable local jobs to repeated probing. Do not reread successful edits.
   Local tests, including computationally intensive suites, need no approval.
@@ -14,7 +19,7 @@ incident histories, personal commentary or historical process IDs.
   trials and qualified recovery runs, without requesting renewed permission.
   Freeze each new study and record finite start/evaluation limits before launch;
   keep the four-thread total limit and never expand an active or completed allowance.
-- Prioritize diagnostics that help resolve the remaining four stretches, particularly
+- Prioritize diagnostics that help resolve the remaining stretch, particularly
   timing-boundary stopping and repeat disagreement. Defer broader covariance,
   publication and unrelated diagnostic expansion while this recovery work proceeds.
 - Leave unfamiliar paths outside the documented corpus alone. Do not scan, document,
@@ -46,6 +51,18 @@ incident histories, personal commentary or historical process IDs.
   distinction from a fit that fixes the background rate.
 
 ## Scientific boundaries
+
+- Additional-source inventory: docs/external-imu-data/README.md and
+  data/external-imu-survey-20261018/. Each source may have separate predeclared
+  eligibility criteria; keep the existing 53-stretch cohort unchanged. ESA has a
+  verified nine-file iMAR catalog and one inspected 8.49-hour original, with GNSS
+  PPP export. See its separate receipts; do not rerun the completed full-file scan.
+  FTPS uses the explicitly trusted leaf certificate in esa-sample/ftps-peer.pem
+  and ~/.esa-ftps.netrc through curl; never print or copy credentials into reports.
+  SmartPNT fused reference tracks are context only; raw RINEX
+  observations are separate. The long-file range probe verifies endpoints only,
+  not interior continuity or stationary conditions. No new fits are authorized
+  by metadata acquisition or format inspection alone.
 
 - Select intervals from completeness, receiver data and documented motion/protocol criteria
   before examining Earth-model residuals. Never select favorable gyro values.
@@ -409,7 +426,7 @@ unsubtracted zero-field-globe primary/repeat (thirty calls each), 66 total calls
 four total threads, no retries. Completed: four identities /44 native calls, all
 four passed. Never restart, retry or reuse its unused allowance. Package-only
 performs no fits. Its saved-only review at docs/ilvis0-neighbor-review-20261017/
-passed the required repeat and companion checks: current totals 49/0/4. Never
+passed the required repeat and companion checks: totals at that stage 49/0/4. Never
 rerun that review’s single numerical batch; --render-only publishes saved evidence.
 Preserve the earlier zero-start preparations and qualification snapshots. Live
 status publications are excluded from numerical inputs; frozen task geometry and
@@ -419,9 +436,279 @@ Saved timing-basin comparison is complete at docs/ilvis0-timing-basins-20261017/
 and data/ilvis0-timing-basins-v2-20261017/: eight pairs /sixteen local projection
 solves, zero native predictions. Never rerun the numerical batch; --render-only
 publishes saved evidence. Preserve the earlier pre-comparison schema failure.
-PROFILE_PLAN.md prepares six identities /330 native calls for the 50f24131843071ae9312c082
-fixed-time profile, with software qualification and a separate freeze still required.
-Fixed-time convergence cannot replace the full free-time gate or repeat agreement.
+The fixed-time profile is frozen at data/ilvis0-fixed-time-profile-20261017/ with
+guide docs/ilvis0-fixed-time-profile-20261017/ and launcher
+analysis/tests/ilvis0_fixed_time_worker.py. Its separate qualification passed 21/21,
+including three compiled-motion controls, at docs/ilvis0-fixed-time-controls-20261017/.
+Scope: two smooth controls (three calls each), four 50f24131843071ae9312c082
+conditional nuisance fits (80 fitting calls plus one diagnostic call each), 330
+native calls maximum, four total numerical threads, no retries. Completed: six
+identities /23 calls; both controls passed, four final diagnostics failed accounting
+after conditional stopping checks. Never restart or reuse allowance; preserve errors.
+The separate saved-endpoint verification uses analysis/tests/ilvis0_profile_verification_worker.py,
+docs/ilvis0-profile-verification-20261017/ and data/ilvis0-profile-verification-20261017/.
+Its eight software checks passed using the real receipt ledger. Limits: four
+diagnostic identities /12 native calls, zero optimizer starts, four total threads,
+no retries. Completed: 4/4 endpoints verified, twelve native calls; both within-anchor
+repeat checks passed. Never restart or reuse its allowance. Preserve both exact
+timing anchors, saved endpoints and frozen sources. Package-only performs no native calls. Conditional verification cannot
+replace the full free-time gate or change the scientific disposition.
+Interior timing-profile guide/freeze: docs/ilvis0-interior-timing-profile-20261017/
+and data/ilvis0-interior-timing-profile-20261017/. Launcher:
+analysis/tests/ilvis0_timing_profile_worker.py through run_numerical.py. Its eleven
+software controls passed. Scope: three interior time offsets crossed with both
+verified nuisance starts, six fits /486 native calls, four total numerical threads,
+no retries. Completed: six fits /36 native calls, all six and three repeat pairs
+passed. Never restart or reuse unused allowance. Preserve frozen sources/inputs.
+Package-only performs no native calls. A coarse fixed-time profile
+cannot qualify a full free-time fit or change findings; revised solver work needs
+its own finite qualification after interpreting this profile.
+Profile-seeded trial: analysis/lll/ilvis0_profile_seeded.py and launcher
+analysis/tests/ilvis0_profile_seeded_worker.py; guide/freeze at
+docs/ilvis0-profile-seeded-trial-20261017/ and data/ilvis0-profile-seeded-trial-20261017/.
+The finite proposal is two fresh controls and two free-time fits: four charged
+identities /two optimizer starts /174 native calls, four total threads, no retries.
+All five verified timing points per nuisance start are reused for seed selection;
+time and every other original parameter are free in the new fits. All 24 software
+checks passed before the observed freeze. Stopped with 53 charged calls: both
+controls passed, the primary failed time stationarity, and the charged repeat
+was interrupted. Its incomplete receipt transaction blocks resume; never repair,
+restart, retry or reuse its remaining allowance. Preserve all saved results,
+pending transactions and frozen sources. The saved-only audit at
+docs/ilvis0-profile-seeded-audit-20261017/ and data/ilvis0-profile-seeded-audit-20261017/
+is complete: three saved results and one clock-geometry check (344 queries), zero
+native calls/fits/original reads. Use build_report.py --render-only for publication;
+never rerun its metadata batch. The failed primary is about 1.24 ns from a supported
+integration knot. Next native work should check both sides of that exact boundary
+under a new finite freeze, retaining original stopping/repeat limits and all failures.
+Successful full gates and repeats still need a saved companion/model review before
+any published disposition changes.
+Exact-boundary diagnostic: analysis/tests/ilvis0_profile_boundary_worker.py,
+docs/ilvis0-profile-boundary-20261017/ and data/ilvis0-profile-boundary-20261017/.
+Its eleven software controls passed. Limits: four diagnostic identities /66
+native calls, zero nonlinear optimizer starts, four total numerical threads,
+no retries. Sources are the completed failed primary, separately verified profile
+companion and two passing controls; never retry the interrupted free-time start.
+Preserve the source-to-final movement gate, exact clock checks and all failures.
+Check status, locks, hashes and receipts before continuation; never duplicate or
+restart completed work, retry charged identities or reuse unused allowance.
+Do not edit active frozen dependencies. Package-only performs no native calls.
+The exact-boundary study is complete: four identities /24 native calls, both
+controls passed and both target left checks failed. Never restart, retry or
+reuse its remaining allowance. The saved-only left-side audit at
+docs/ilvis0-left-boundary-audit-20261017/ and data/ilvis0-left-boundary-audit-20261017/
+is complete (two saved target reports, zero native calls/fits). Render only;
+never rerun its metadata batch. It motivates searching the close boundary cluster
+without relaxing the final stationarity gate.
+Clustered-boundary launcher: analysis/tests/ilvis0_clustered_boundary_worker.py;
+guide/freeze docs/ilvis0-clustered-boundary-20261017/ and
+data/ilvis0-clustered-boundary-20261017/. All twelve software checks passed.
+Scope: four diagnostic identities /58 native calls, zero nonlinear optimizer
+starts, four total numerical threads, no retries. It reuses the verified executor
+in a private, checked adaptation; never edit the completed template or active
+search/source dependencies. Preserve exact scopes, source-to-final movement,
+full two-sided gate and endpoint repeat checks. Check status, locks, hashes and
+receipts before continuation; never duplicate or restart completed work, retry
+charged identities or reuse unused allowance. Package-only performs no native
+calls. Completed: four identities /54 native calls, all passed. Never restart
+or reuse its allowance. The saved companion/model review is complete at
+docs/ilvis0-cluster-review-20261018/ and data/ilvis0-cluster-review-20261018/:
+one saved residual-pair comparison, zero native calls/fits/original reads.
+All six primaries, both controls and the newly checked diagnostic repeat pass;
+current totals are 50/0/3. Use build_report.py --render-only; never recompute its
+single numerical batch. The diagnostic repeat comes from the separately verified
+profile companion; it does not relabel the interrupted free-time fit. Prioritize
+the three remaining IDs in docs/NEXT_STEPS.md under separate finite freezes.
+Remaining time-profile launcher: analysis/tests/ilvis0_remaining_time_profile_worker.py;
+guide/freeze docs/ilvis0-remaining-time-profile-20261018/ and
+data/ilvis0-remaining-time-profile-20261018/. All 25 software checks passed,
+including three compiled-motion controls. Scope: 0e73879f98c3b701fd7c42df,
+zero-field globe under both processing cases, two exact saved time anchors per
+case crossed with both nuisance starts; eight conditional fits and two fresh
+controls. Limits: ten identities /654 native calls, four total threads, no retries.
+Check locks, metadata, receipts and unchanged freeze before resuming unfinished
+work; never duplicate or restart completed work or reuse its allowance. Preserve
+the completed executor template and every frozen dependency. Package-only makes
+no native calls. Completed: all ten identities passed, 83 native calls; never
+restart or reuse its allowance. Fixed-time fits cannot change the 50/0/3 tally.
+Next free-time test: analysis/tests/ilvis0_remaining_free_time_v2_worker.py;
+guide/freeze docs/ilvis0-remaining-free-time-v2-20261018/ and
+data/ilvis0-remaining-free-time-v2-20261018/. All 38 software checks passed.
+Scope: same stretch and both zero-field-globe processing cases, two fresh controls
+and four free-time fits. Limits: six identities / four optimizer starts / 342 native
+calls, four total numerical threads, no retries. Both verified offsets per start
+are retained for deterministic seed choice; all original parameters then become
+free. Preserve full stationarity, physical stability and per-case repeat gates.
+Check locks, metadata, receipts and freeze before continuation; never duplicate or
+restart completed work or reuse its allowance. Do not edit frozen dependencies.
+Package-only performs no native calls. Successful fits still need a saved review
+of all companions before any published disposition changes.
+Completed: six identities /198 native calls; both controls passed, all four targets
+failed full gates despite within-case repeat agreement. Never resume or reuse its
+allowance. Saved-only diagnosis: docs/ilvis0-remaining-free-time-audit-20261018/;
+four endpoints, 1,336 clock-geometry queries, zero native calls/fits/original reads.
+Use build_report.py --render-only; never repeat its charged geometry batch.
+Timing-only stationarity fails without removal; profiled removal fails the fresh
+cost/stationarity correction while physical-position limits pass. Next work needs
+a separate finite source-preserving boundary/correction diagnostic, not relaxed gates.
+That diagnostic is frozen at data/ilvis0-remaining-boundary-20261018/ with guide
+docs/ilvis0-remaining-boundary-20261018/ and launcher
+analysis/tests/ilvis0_remaining_boundary_worker.py. All 18 software checks passed.
+Limits: six diagnostic identities, 110 native calls, zero optimizer starts,
+804,096 clock queries, ten affine solves, four total numerical threads, no retries.
+It checks both controls and all four saved endpoints under both processing cases
+with the existing source-preserving cluster helper. Keep full two-sided gates and
+case-separated repeat checks; neither timing-only search nor repeat agreement alone
+qualifies a result. Check locks, receipts, metadata and source/environment hashes
+before continuation. Never retry charged identities, restart completed work or
+reuse unused allowance. Package-only performs no native calls. Do not edit frozen
+sources, inputs or PLAN.md while active. A pass still needs saved companion review.
+Completed: six identities /82 native calls. Both controls and the profiled-removal
+pair passed; both unsubtracted endpoints failed the spacing/geometry guard.
+Never resume or reuse this completed allowance. Saved-clock diagnosis is complete
+at docs/ilvis0-narrow-boundary-audit-v2-20261018/: two reports, twelve clock-state
+queries, zero native calls/fits/original reads. Render only; do not rerun it or
+the superseded failed metadata batch. NEXT_PLAN.md specifies representability-aware
+software qualification before a separate 58-call observed diagnostic. Preserve
+scientific stopping tolerances and all failures. ESA selection remains a proposal
+at docs/external-imu-data/ELIGIBILITY_PLAN.md; metadata checks authorize no ESA fits.
+Representability candidate: lll.ilvis0_representable_boundary and launcher
+analysis/tests/ilvis0_representable_worker.py; guide/freeze at
+docs/ilvis0-representable-boundary-20261018/ and data/ilvis0-representable-boundary-20261018/.
+All 31 qualification checks passed (40 compiled-motion calls, six compiled clock
+comparisons). It changes only probe geometry qualification: distinct exact clock
+states and an eight-ULP parameter margin. Scientific stopping limits stay fixed.
+Limits: four diagnostic identities /58 native calls /zero optimizer starts,
+402,048 clock queries, six affine solves, four total threads, no retries. Check
+locks, receipts, metadata, source hashes and environment before continuation;
+never retry charged identities, restart completed work or reuse unused allowance.
+Completed: four identities /56 native calls, all four passed. Never restart or reuse
+its allowance. Preserve frozen dependencies; package-only performs no native calls.
+The saved companion/model review is complete at docs/ilvis0-representable-review-20261018/
+and data/ilvis0-representable-review-20261018/: two saved repeat-pair comparisons,
+zero native calls/fits/original reads. All six primaries, fresh controls and both
+required repeat pairs pass; totals at that stage are 51/0/2. Preserve all ten diagnostic
+outcomes, including the earlier geometry failures. Use build_report.py --render-only;
+never recompute its batch. Current remaining targets are listed in docs/NEXT_STEPS.md.
+Saved final-two diagnosis: docs/ilvis0-final-two-audit-20261018/; nine reports and
+fourteen branch summaries, zero native calls/solves/fits. Complete; render only.
+Focused nearby-pair launcher: analysis/tests/ilvis0_final_pair_worker.py;
+guide/freeze docs/ilvis0-final-pair-boundary-20261018/ and
+data/ilvis0-final-pair-boundary-20261018/. Software qualification passed 33/33,
+including 40 compiled-motion calls and six clock comparisons. Limits: four
+diagnostic identities /58 native calls, zero optimizer starts, four total threads,
+no retries. Target only 370cec66878c4c1cf84b4ceb profiled-removal specified-field
+primary/repeat, from the complete original saved fits; preserve the older
+interrupted diagnostic. Check locks, receipts, hashes and environment before
+continuation; never duplicate or restart completed work or reuse its allowance.
+Keep its sources and PLAN.md unchanged while active. Both fresh controls, full
+two-sided/source-movement checks and repeat comparison must pass; a separate
+saved companion/model review is still required before changing 51/0/2.
+The first focused nearby-pair trial is complete: two controls passed, two targets
+failed saved-context preflight with zero target calls; six native calls total.
+Never restart it or reuse its allowance. The separate corrected-context worker is
+analysis/tests/ilvis0_final_pair_v2_worker.py, with guide/freeze
+docs/ilvis0-final-pair-boundary-v2-20261018/ and data/ilvis0-final-pair-boundary-v2-20261018/.
+It checks numerical receiver-coordinate rows and exact relative epochs through
+lll.ilvis0_saved_context before original extraction. Limits remain four identities /
+58 native calls, zero optimizer starts, four threads, no retries; sources and
+identities are separately frozen. Preserve both older preflight errors and the
+interrupted original diagnostic. Never edit completed source files to repair this
+new study. A full pass still requires a saved companion/model review.
+The corrected-context trial is complete: 54 native calls, two controls passed,
+both targets failed right-side fresh stability despite repeat agreement; no
+software errors. Never restart it or reuse its allowance.
+Saved correction audit: docs/ilvis0-correction-audit-20261018/ and matching data/;
+complete six affine solves /four SVDs, zero native calls. Render only; never
+repeat its numerical batch. INTERPRETATION.md identifies an affine solve that
+reports success while worsening its own objective relative to a feasible zero step.
+Range-scaled candidate/trial: lll.ilvis0_scaled_branch and
+analysis/tests/ilvis0_scaled_pair_worker.py; docs/ilvis0-scaled-pair-boundary-20261018/
+and matching data/. Software qualification passed 33/33, including 40 compiled
+motion calls and six clock comparisons. Limits: four identities /58 native calls,
+zero optimizer starts, four total threads, no retries. Only 370cec66878c4c1cf84b4ceb
+profiled-removal specified-field primary/repeat and two fresh controls are included.
+Preserve the qualified sources, exact bounds, full native stopping gates and
+corrected context. Check locks, hashes, receipts and environment before continuation;
+never duplicate/restart completed work or reuse unused allowance. A complete saved
+companion/model review is required before any change to 51/0/2.
+The range-scaled observed trial is complete: all four checks passed, 54 native
+calls; never restart or reuse its allowance. The saved complete review at
+docs/ilvis0-scaled-pair-review-20261018/ and matching data/ is complete: two saved
+pair comparisons, all six primaries and both required pairs pass, twelve focused
+outcomes preserved, zero native calls/fits/original reads. Render only; never
+recompute its batch. Current totals: 52 globe /zero flat /one unresolved. The last
+target is b4e44ddc0f130ecd45674c78; separate its timing-profile disagreement from
+local calibration/geometry failures under a new finite freeze. Preserve all
+earlier source snapshots, preflight errors and failed native gates.
+Last-stretch field-endpoint launcher: analysis/tests/ilvis0_last_field_worker.py;
+guide/freeze docs/ilvis0-last-field-boundary-20261018/ and matching data/.
+Qualification passed 34/34, including 40 compiled-motion calls and six clock
+comparisons. Limits: six identities /110 native calls, zero optimizer starts,
+four total threads, no retries. Only b4e44ddc0f130ecd45674c78 specified-field
+primary/repeat under both processing cases and two fresh controls are included.
+The separate zero-field timing profile is not included or qualified by a pass.
+Check locks, receipts, hashes and environment before continuation; preserve
+active frozen sources/PLAN.md, never duplicate or restart completed work and
+never reuse allowance. Both case-specific pairs must pass; keep 52/0/1 until
+all zero-field/flat companions and the complete scheduled repeats are qualified.
+The final-stretch field study is complete: all six checks passed, 100 native calls,
+both processing-case repeat pairs passed. Never restart or reuse its allowance.
+Final zero-field timing profiles: analysis/tests/ilvis0_last_time_profile_worker.py;
+docs/ilvis0-last-time-profile-20261018/ and matching data/. Qualification passed
+26/26 with three compiled-motion controls. Limits: ten identities, eight conditional
+profile starts, 654 native calls (80 fitting +one full diagnostic per profile,
+two controls at three calls), four total threads, no retries. Both exact saved
+offsets are crossed with both original starts in both processing cases; preserve
+the exact +0.15 s bound anchor. Check locks, hashes, environment and receipts before
+continuation; keep frozen sources/PLAN.md unchanged, never duplicate/restart
+completed work or reuse unused allowance. A fixed-time pass cannot relabel the
+stretch; require a separately frozen full free-time check and complete review.
+Final zero-field profiles are complete: ten checks passed, 132 native calls,
+all four conditional repeat pairs passed. Never resume or reuse the allowance.
+The separate full free-time launcher is analysis/tests/ilvis0_last_free_time_worker.py;
+guide/freeze docs/ilvis0-last-free-time-20261018/ and matching data/. Scope:
+only b4e44ddc0f130ecd45674c78 zero-field globe, both processing cases and both
+original nuisance starts, seeded from the verified profiles. Limits: six charged
+identities, four optimizer starts, 342 native calls, four total threads, no retries.
+Check locks, receipts, environment and hashes before resuming unchanged unfinished
+work. Never restart completed work, retry charged identities or expand the allowance.
+Keep all original active parameters and physical/stopping bounds; complete saved
+companion-model review is required before changing the public disposition.
+The final free-time trial is complete: six identities, 190 native calls, both
+controls passed but all four targets failed full stability. Never restart or
+reuse its allowance. Saved-only diagnosis is complete at
+docs/ilvis0-last-correction-audit-20261018/ and matching data/: twelve affine
+solves, eight spectra, 1,334 saved-clock queries, zero native calls/original reads.
+Use build_report.py --render-only; do not replay the completed batch.
+Next boundary launcher: analysis/tests/ilvis0_last_zero_boundary_worker.py;
+guide/freeze docs/ilvis0-last-zero-boundary-20261018/ and matching data/.
+Scope is only the four completed final-stretch zero-field endpoints under both
+processing cases, plus two fresh controls. Limits: six identities /110 native
+calls, zero optimizer starts, 804,096 clock queries, ten affine solves, four total
+threads, no retries. Use the qualified scaled/representable two-sided checker;
+do not change physical or full native stopping limits. Check locks, receipts,
+environment and source hashes before unchanged unfinished continuation. Never
+duplicate workers, restart completed work, retry identities or reuse allowances.
+Complete companion-model review remains necessary before changing 52/0/1.
+Final zero-field boundary checks are complete: six passed, 102 native calls,
+both processing-case repeat pairs passed. Never resume or reuse the allowance.
+The complete saved-evidence review is docs/ilvis0-last-review-20261018/ and
+matching data/: four pair comparisons, zero observed starts/native calls/original
+reads. All six primaries, four original required repeats and both fresh controls
+pass. Use build_report.py --render-only; never replay the completed batch.
+Combined disposition is 53 globe /0 flat /0 unresolved. Numerical recovery of
+the original 41 unfinished comparisons is complete; do not launch more recovery
+work. Preserve earlier failures and conditional-only profile labels. The next
+priority is the measurement-contribution study, then predictive adequacy,
+residual uncertainty and shared-flight dependence in docs/NEXT_STEPS.md.
+Current publication verifies the old interrupted manifest through its exact
+public source-freeze copy; do not alter either historical manifest to match it.
+Preserve the zero-start first preparation at data/ilvis0-remaining-free-time-20261018/;
+its duplicate-source-lock failure spent zero native calls and must not restart.
+The v2 launcher deduplicates source locks and checks its complete qualified source
+set. Its earlier software-only qualification remains separate from the final
+software-controls-revised freeze; neither authorizes repeated observed starts.
 The separate [rotation-field measurement](docs/ROTATION_FIELD.md) will infer the retained background vector
 before interpreting its cause, with aircraft motion, transport and calibration fitted jointly.
 The proposal authorizes no new fits or campaign budget. Do not fix or subtract the standard

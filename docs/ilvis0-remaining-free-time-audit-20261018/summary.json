@@ -1,0 +1,230 @@
+{
+  "geometry_queries": 1336,
+  "native_calls": 0,
+  "optimizer_starts": 0,
+  "original_labels_changed": false,
+  "original_reads": 0,
+  "state": "complete",
+  "targets": [
+    {
+      "accepted_steps": 0,
+      "actual_relative_cost_change": null,
+      "case_id": "bias1_unsubtracted",
+      "clock_geometry": {
+        "boundary_changed_epochs": 1,
+        "center_relocation_s": -1.1629127111278947e-08,
+        "knots": [
+          -1.0,
+          -0.31630087263624296,
+          -0.316300872634893,
+          -0.2829675429632061,
+          1.0
+        ],
+        "left_interval_width_s": 2.0249635301894386e-13,
+        "maximum_queries": 1024,
+        "minimum_side_probe_s": 1.2656022063683991e-14,
+        "native_predictions": 0,
+        "observed_fit_starts": 0,
+        "original_point": -0.3163007951073789,
+        "point": -0.316300872634893,
+        "queries": 336,
+        "right_interval_width_s": 0.0049999994507530345,
+        "side_geometry_supported": true,
+        "side_points": [
+          -0.3163008726352305,
+          -0.31630087263497736,
+          -0.3163008726345555,
+          -0.3163008726348086
+        ],
+        "version": "ilvis0-representable-clock-brackets-v1"
+      },
+      "cost": 1674.9110891186808,
+      "failing_coordinates": [
+        "time_offset"
+      ],
+      "fresh_probe_stationarity": null,
+      "full_gate_passed": false,
+      "identity": "0e73879f98c3b701fd7c42df::bias1_unsubtracted::sphere_still::free_time_primary",
+      "nearest_boundary_s": 1.1629140317381825e-08,
+      "original_converged": false,
+      "position_max_abs_neu_m": null,
+      "position_rms_limit_m": 0.001,
+      "position_rms_neu_m": null,
+      "probe_reason": "not_stationary",
+      "seed_unchanged": true,
+      "start_role": "primary",
+      "stationarity": 0.000224395856975538,
+      "stationarity_limit": 0.0001,
+      "step_count": 45,
+      "time_offset_s": -0.04744511926610683
+    },
+    {
+      "accepted_steps": 0,
+      "actual_relative_cost_change": null,
+      "case_id": "bias1_unsubtracted",
+      "clock_geometry": {
+        "boundary_changed_epochs": 1,
+        "center_relocation_s": -1.1629127111278947e-08,
+        "knots": [
+          -1.0,
+          -0.31630087263624296,
+          -0.316300872634893,
+          -0.2829675429632061,
+          1.0
+        ],
+        "left_interval_width_s": 2.0249635301894386e-13,
+        "maximum_queries": 1024,
+        "minimum_side_probe_s": 1.2656022063683991e-14,
+        "native_predictions": 0,
+        "observed_fit_starts": 0,
+        "original_point": -0.3163007951073789,
+        "point": -0.316300872634893,
+        "queries": 336,
+        "right_interval_width_s": 0.0049999994507530345,
+        "side_geometry_supported": true,
+        "side_points": [
+          -0.3163008726352305,
+          -0.31630087263497736,
+          -0.3163008726345555,
+          -0.3163008726348086
+        ],
+        "version": "ilvis0-representable-clock-brackets-v1"
+      },
+      "cost": 1674.911089160626,
+      "failing_coordinates": [
+        "time_offset"
+      ],
+      "fresh_probe_stationarity": null,
+      "full_gate_passed": false,
+      "identity": "0e73879f98c3b701fd7c42df::bias1_unsubtracted::sphere_still::free_time_repeat",
+      "nearest_boundary_s": 1.1629140317381825e-08,
+      "original_converged": false,
+      "position_max_abs_neu_m": null,
+      "position_rms_limit_m": 0.001,
+      "position_rms_neu_m": null,
+      "probe_reason": "not_stationary",
+      "seed_unchanged": true,
+      "start_role": "repeat",
+      "stationarity": 0.0002244003358131117,
+      "stationarity_limit": 0.0001,
+      "step_count": 45,
+      "time_offset_s": -0.04744511926610683
+    },
+    {
+      "accepted_steps": 1,
+      "actual_relative_cost_change": 4.592059764976486e-06,
+      "case_id": "bias1_profiled_removal",
+      "clock_geometry": {
+        "boundary_changed_epochs": 1,
+        "center_relocation_s": -6.097831423135247e-08,
+        "knots": [
+          -1.0,
+          -0.5163008726363453,
+          -0.516300872634711,
+          -0.4829675429630242,
+          1.0
+        ],
+        "left_interval_width_s": 2.4513724383723456e-13,
+        "maximum_queries": 1024,
+        "minimum_side_probe_s": 1.532107773982716e-14,
+        "native_predictions": 0,
+        "observed_fit_starts": 0,
+        "original_point": -0.5163004661126162,
+        "point": -0.516300872634711,
+        "queries": 332,
+        "right_interval_width_s": 0.004999999450753026,
+        "side_geometry_supported": true,
+        "side_points": [
+          -0.5163008726351196,
+          -0.5163008726348132,
+          -0.5163008726343025,
+          -0.5163008726346089
+        ],
+        "version": "ilvis0-representable-clock-brackets-v1"
+      },
+      "cost": 1674.9167860111666,
+      "failing_coordinates": [],
+      "fresh_probe_stationarity": 0.0002893623413956397,
+      "full_gate_passed": false,
+      "identity": "0e73879f98c3b701fd7c42df::bias1_profiled_removal::sphere_still::free_time_primary",
+      "nearest_boundary_s": 6.097832283558091e-08,
+      "original_converged": false,
+      "position_max_abs_neu_m": [
+        0.0015524896358811242,
+        0.0012667524077489007,
+        0.0009217498991350512
+      ],
+      "position_rms_limit_m": 0.001,
+      "position_rms_neu_m": [
+        0.0005532759147108111,
+        0.0004385519567726585,
+        0.0003124867063339474
+      ],
+      "probe_reason": "fresh_position_probe_not_stable",
+      "seed_unchanged": false,
+      "start_role": "primary",
+      "stationarity": 1.6582906198314994e-05,
+      "stationarity_limit": 0.0001,
+      "step_count": 39,
+      "time_offset_s": -0.07744506991689241
+    },
+    {
+      "accepted_steps": 1,
+      "actual_relative_cost_change": 4.5920731205688414e-06,
+      "case_id": "bias1_profiled_removal",
+      "clock_geometry": {
+        "boundary_changed_epochs": 1,
+        "center_relocation_s": -6.097831423135247e-08,
+        "knots": [
+          -1.0,
+          -0.5163008726363453,
+          -0.516300872634711,
+          -0.4829675429630242,
+          1.0
+        ],
+        "left_interval_width_s": 2.4513724383723456e-13,
+        "maximum_queries": 1024,
+        "minimum_side_probe_s": 1.532107773982716e-14,
+        "native_predictions": 0,
+        "observed_fit_starts": 0,
+        "original_point": -0.5163004661126162,
+        "point": -0.516300872634711,
+        "queries": 332,
+        "right_interval_width_s": 0.004999999450753026,
+        "side_geometry_supported": true,
+        "side_points": [
+          -0.5163008726351196,
+          -0.5163008726348132,
+          -0.5163008726343025,
+          -0.5163008726346089
+        ],
+        "version": "ilvis0-representable-clock-brackets-v1"
+      },
+      "cost": 1674.9167860096513,
+      "failing_coordinates": [],
+      "fresh_probe_stationarity": 0.0002893702651800208,
+      "full_gate_passed": false,
+      "identity": "0e73879f98c3b701fd7c42df::bias1_profiled_removal::sphere_still::free_time_repeat",
+      "nearest_boundary_s": 6.097832283558091e-08,
+      "original_converged": false,
+      "position_max_abs_neu_m": [
+        0.0015515919408837454,
+        0.0012658643080613596,
+        0.0009219036455756771
+      ],
+      "position_rms_limit_m": 0.001,
+      "position_rms_neu_m": [
+        0.0005520821769120712,
+        0.0004376437003318716,
+        0.00031260522734180297
+      ],
+      "probe_reason": "fresh_position_probe_not_stable",
+      "seed_unchanged": false,
+      "start_role": "repeat",
+      "stationarity": 1.6600812928655344e-05,
+      "stationarity_limit": 0.0001,
+      "step_count": 39,
+      "time_offset_s": -0.07744506991689241
+    }
+  ]
+}

@@ -16,6 +16,11 @@ CASES={'bias1_unsubtracted','bias1_profiled_removal'}
 MODELS={'sphere_rotating','sphere_still','flat_still'}
 BOUNDARY='docs/ilvis0-boundary-review-20261016'
 NEIGHBOR='docs/ilvis0-neighbor-review-20261017'
+CLUSTER='docs/ilvis0-cluster-review-20261018'
+REPRESENTABLE='docs/ilvis0-representable-review-20261018'
+SCALED='docs/ilvis0-scaled-pair-review-20261018'
+FINAL='docs/ilvis0-last-review-20261018'
+REVIEWS=(BOUNDARY,NEIGHBOR,CLUSTER,REPRESENTABLE,SCALED,FINAL)
 
 
 def module(path,name):
@@ -64,6 +69,15 @@ def qualified_updates(previous,summary,plan):
     return updates
 
 
+def published_sources(review_directory,sources):
+    # The interrupted runtime's manifest and its older publication differ.
+    # The later study preserved the exact reviewed bytes in its public snapshot.
+    aliases=({'data/ilvis0-boundary-diagnostic-20261016/manifest.json':
+        'docs/ilvis0-last-zero-boundary-20261018/source-freeze/data/ilvis0-boundary-diagnostic-20261016/manifest.json'}
+        if review_directory==FINAL else {})
+    return {aliases.get(name,name):digest for name,digest in sources.items()}
+
+
 def boundary_review(root,review_directory=BOUNDARY):
     helper=module(root/'docs/build_current_status.py','boundary_publication_hashes')
     directory=root/review_directory;receipt=load(directory/'evidence-receipt.json')
@@ -71,7 +85,7 @@ def boundary_review(root,review_directory=BOUNDARY):
     complete=load(directory/'completion.json');manifest=load(directory/'manifest.json');review=load(directory/'review.json')
     if (complete['state']!='complete' or complete['manifest_sha256']!=helper.sha(directory/'manifest.json')
             or complete['review_sha256']!=helper.sha(directory/'review.json')):raise ValueError('sealed boundary review required')
-    helper.verify_inputs(root,manifest['inputs']);helper.verify_inputs(root,manifest['sources'])
+    helper.verify_inputs(root,manifest['inputs']);helper.verify_inputs(root,published_sources(review_directory,manifest['sources']))
     policy=module(root/'analysis/lll/ilvis0_boundary_publication.py','boundary_publication_policy')
     expected=policy.classify(review,{sid:'unresolved' for sid in review['target_segment_ids']})
     if expected!=review['dispositions']:raise ValueError('boundary dispositions disagree with required checks')
@@ -99,7 +113,7 @@ def verified_rows(root):
             background=bool(shape=='globe' and rotation and all(r['conditional_still_minus_rotating_cost']>0 for r in rotation))
             by_id[sid].update(shape_preference=shape,specified_background_preferred=str(background),
                              result_origin='completed_'+stage)
-    for directory in (BOUNDARY,NEIGHBOR):
+    for directory in REVIEWS:
         apply_boundary_review(by_id,boundary_review(root,directory),'completed_'+Path(directory).name)
     return rows
 
@@ -153,7 +167,7 @@ def analytics(root,rows):
             r['disposition_pending_reason']=('' if dispositions[sid]['shape_preference'] in ('globe','flat')
                 else 'primary_fit_checks_incomplete' if reasons else 'scheduled_repeat_agreement_failed' if not repeats[sid]
                 else 'shape_comparison_unresolved')
-    for directory in (BOUNDARY,NEIGHBOR):
+    for directory in REVIEWS:
         review=boundary_review(root,directory);origin='completed_'+Path(directory).name
         for item in review['attempts']:
             fit=item['fit'];sid=item['segment_id'];interrupted=item['status']=='interrupted'
@@ -178,7 +192,7 @@ def analytics(root,rows):
             row['disposition_pending_reason']=('' if d['shape_preference'] in ('globe','flat') else
                 'primary_fit_checks_incomplete' if reasons else 'required_repeat_incomplete_or_disagreeing')
     for row in stretches:
-        row.update(dispositions[row['segment_id']]);row['snapshot_utc']='2026-10-17'
+        row.update(dispositions[row['segment_id']]);row['snapshot_utc']='2026-10-18'
     return stretches,fits
 
 
@@ -186,7 +200,7 @@ def main():
     helper=module(ROOT/'docs/build_current_status.py','status_publication_helpers')
     report=module(ROOT/BASE/'build_findings.py','table_publication_helpers')
     rows=verified_rows(ROOT);snapshot=helper.summarize(rows)
-    if snapshot['tally']!=dict(globe=49,flat=0,unresolved=4,ambiguous=0): raise ValueError('unexpected combined tally')
+    if snapshot['tally']!=dict(globe=53,flat=0,unresolved=0,ambiguous=0): raise ValueError('unexpected combined tally')
     if snapshot['background']!=snapshot['tally']['globe']: raise ValueError('background preferences require explicit review')
     write_csv(HERE/'current-stretches.csv',rows)
     table_rows=[dict(r,**{k:float(r[k]) for k in ('mean_course_deg','mean_latitude_deg','minimum_latitude_deg','maximum_latitude_deg','gps_track_km')}) for r in rows]
@@ -194,40 +208,33 @@ def main():
     stretches,fits=analytics(ROOT,rows);write_csv(HERE/'stretch-analytics.csv',stretches);write_csv(HERE/'fit-analytics.csv',fits)
     shutil.copyfile(ROOT/BASE/'shared-leg-pairs.csv',HERE/'shared-leg-pairs.csv')
     text='# Updated airborne findings\n\n'+helper.headline(snapshot)+'\n\n'
-    text+='The adjacent-boundary review resolves one additional comparison after all six primary fits, '
-    text+='its required repeat and both fresh controls pass. The check explicitly covers the neighboring '
-    text+='timing boundary reached by a small correction, with unchanged observations, physical bounds, receiver weights and clock. '
-    text+='Earlier stopping failures remain preserved. These are numerical preferences, '
-    text+='without a calibrated significance level. All 49 globe-preferred stretches also favor the '
+    text+='Every selected stretch now has a complete numerical comparison. The final saved-data review verifies '
+    text+='all six model/case primary fits, all four required primary/repeat pairs and both fresh controls. '
+    text+='Two-sided checks resolved a timing-boundary failure that a smooth free-timing correction could not pass. '
+    text+='Scientific stopping limits, observations, physical bounds, receiver weights and clock remain unchanged. '
+    text+='Earlier failures remain preserved. These are numerical preferences without a calibrated significance level. '
+    text+='All 53 globe-preferred stretches also favor the '
     text+="specified background field; its cause is not determined.\n\n"
     text+='## What the latest review added\n\n'
-    text+='The recovered primary and repeat agree in relative cost to 1.15 × 10⁻¹⁰ and in reconstructed '
-    text+='track RMS to at most 0.12 micrometres per axis. The five other required primary fits were '
-    text+='already complete and verified. These figures describe numerical repeatability, not instrument accuracy. '
-    text+='The [full review](../ilvis0-neighbor-review-20261017/README.md) verifies the complete comparison. '
-    text+='The preceding [timing-boundary review](../ilvis0-boundary-review-20261016/README.md) '
-    text+='added the earlier recovery and preserves all six targets, including failed checks and interrupted work.\n\n'
-    text+='## Earlier stages\n\n'
-    text+='The six-target hybrid assessment completed all 24 starts using 1,336 native sweeps. '
-    text+='Seven fits passed, including both controls, one primary and four repeats. One stretch '
-    text+='passes its complete comparison and repeat; six stretches remained unresolved across the corpus at that stage. Passing repeats alone '
-    text+='cannot replace failed primaries or another required pair.\n\n'
-    text+='The subsequent four-start timing-aware trial used 237 native calls. Both controls passed; '
-    text+='the target primary and repeat still failed the earlier smooth stability check. '
-    text+='That candidate did not qualify for wider use.\n\n'
+    text+='The final stretch passes the specified-field and zero-field globe checks under both processing assumptions. '
+    text+='All four scheduled repeat pairs agree; their largest track difference is about 35 micrometres RMS '
+    text+='on one axis. Both previously passing flat-disc primary artifacts were verified. These figures describe '
+    text+='numerical repeatability, not instrument accuracy. '
+    text+='The [complete review](../ilvis0-last-review-20261018/README.md) preserves all 28 focused outcomes, '
+    text+='including conditional profiles and failed smooth free-timing fits. It required no new predictions, '
+    text+='fits or original-file reads.\n\n'
     text+='| Newly completed source | UTC interval | IMU type | Minutes | Ground speed min / median |\n'
     text+='|---|---|---:|---:|---:|\n'
     for row in rows:
-        if row['result_origin']=='completed_ilvis0-neighbor-review-20261017' and row['shape_preference']=='globe':
+        if row['result_origin']=='completed_ilvis0-last-review-20261018' and row['shape_preference']=='globe':
             text+=f"| `{row['filename']}` | {row['start_utc']} to {row['end_utc']} | {row['imu_type']} | {float(row['duration_s'])/60:.2f} | {float(row['minimum_ground_speed_kmh']):.1f} / {float(row['median_ground_speed_kmh']):.1f} km/h |\n"
     text+='\n'
-    text+='## Four unresolved stretches\n\n'
-    text+='Remaining obstacles are unsupported probes between closely spaced timing boundaries, '
-    text+='one-sided stationarity failures, repeat disagreement, a zero-call reporting error and '
-    text+='the preserved interrupted check. One stretch has six passing primaries but lacks its '
-    text+='required completed repeat. These are incomplete numerical comparisons, not ties between shapes. '
-    text+='The next work uses saved diagnostics to separate those failure mechanisms before further native work. '
-    text+='No completed study allowance is reopened.\n\n'
+    text+='## What numerical completion establishes\n\n'
+    text+='The original study completed 12 comparisons and left 41 unfinished. All 41 now have separately '
+    text+='checked recovery results, using the same selected intervals and measurements. None favors the specified '
+    text+='flat disc. Original failures remain in the record. Numerical completion does not establish a calibrated '
+    text+='false-rejection rate or adequate prediction on unused observations. Measurement-contribution tests, '
+    text+='residual uncertainty and shared-flight grouping remain important next checks.\n\n'
     text+='[All stretches and source tracks](STRETCHES.md) · [Comprehensive metadata](ANALYTICS.md)\n\n'
     text+='[Study index](../STUDIES.md) gives descriptive summaries and links to preserved runs.\n'
     text+='\nEarlier [41/0/12 findings](../ilvis0-position-stability-trial-20261013/FINDINGS.md) remain an unchanged historical snapshot. '
@@ -235,7 +242,7 @@ def main():
     (HERE/'FINDINGS.md').write_text(text)
     (HERE/'ANALYTICS.md').write_text('# Current stretch analytics\n\n'+helper.headline(snapshot)+'\n\n'
         +f'The [stretch CSV](stretch-analytics.csv) contains all 53 stretches; the [fit and diagnostic history](fit-analytics.csv) retains all {len(fits)} records. '
-        +'It includes 712 earlier fitting attempts, 21 initial boundary-diagnostic identities and four adjacent-boundary identities, with an operation column separating them. '
+        +'It includes 712 earlier fitting attempts, 21 initial boundary-diagnostic identities, four adjacent-boundary identities, four clustered-boundary identities, six matched two-case identities, four representable-side identities, twelve focused calibration-correction identities and 28 final-stretch identities. An operation column separates full fits, boundary checks and conditional profiles. '
         +'The interrupted identity retains its reserved allowance and has no asserted evaluation count. Repeats and controls never replace primary fits. '
         +'Repeat-pair counts and failed identities preserve every required check, including stretches with several pairs. '
         +'Raw gyro summaries, receiver trajectories and [paired-recorder differences](shared-leg-pairs.csv) are copied unchanged '
@@ -247,7 +254,7 @@ def main():
     for stage in STAGES:
         for n in ('manifest.json','summary.json','completion.json','evidence-receipt.json','starts.jsonl','sweeps.jsonl'):
             name='docs/'+stage+'/'+n;inputs[name]=helper.sha(ROOT/name)
-    for directory in (BOUNDARY,NEIGHBOR):
+    for directory in REVIEWS:
         for n in ('manifest.json','review.json','completion.json','evidence-receipt.json'):
             name=directory+'/'+n;inputs[name]=helper.sha(ROOT/name)
     outputs=('FINDINGS.md','STRETCHES.md','current-stretches.csv','stretch-analytics.csv','fit-analytics.csv','shared-leg-pairs.csv','ANALYTICS.md')

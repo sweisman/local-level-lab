@@ -1,13 +1,13 @@
 # Acquiring and decoding the airborne IMU archive
 
 <!-- current-status:start -->
-**49 globe preferences, 0 flat preferences, 4 unresolved** among 53 preselected stretches.
-See the [verified current status](CURRENT_STATUS.md) for coverage, background-field comparisons and the supporting result records. Unfinished comparisons are not evidence for either shape.
+**53 globe preferences, 0 flat preferences, 0 unresolved** among 53 preselected stretches.
+See the [verified current status](CURRENT_STATUS.md) for coverage, background-field comparisons and the supporting result records. All selected comparisons have passed their required numerical checks.
 <!-- current-status:end -->
 
 This guide covers the source recordings, decoding and instrument evidence.
 The [study index](STUDIES.md) explains what each analysis added;
-[planned work](NEXT_STEPS.md) lists the remaining diagnostics and rotation-rate study.
+[planned work](NEXT_STEPS.md) lists measurement-contribution checks, prediction validation and the rotation-rate study.
 The [separate stretch table](ilvis0-current-findings-20261015/STRETCHES.md) preserves
 all 53 intervals, with a [comprehensive metadata CSV](ilvis0-current-findings-20261015/stretch-analytics.csv)
 for further analysis.

@@ -106,9 +106,12 @@ def headline(snapshot):
 
 
 def status_block(snapshot,prefix):
+    coverage=('All selected comparisons have passed their required numerical checks.'
+              if snapshot['tally']['unresolved']==0 and snapshot['tally']['ambiguous']==0
+              else 'Unfinished comparisons are not evidence for either shape.')
     return (START+'\n'+headline(snapshot)+'\n'
             f"See the [verified current status]({prefix}CURRENT_STATUS.md) for coverage, background-field comparisons "
-            'and the supporting result records. Unfinished comparisons are not evidence for either shape.\n'+END)
+            'and the supporting result records. '+coverage+'\n'+END)
 
 
 def replace_block(text,block):

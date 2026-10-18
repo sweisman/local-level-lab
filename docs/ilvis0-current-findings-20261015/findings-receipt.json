@@ -1,12 +1,12 @@
 {
   "artifacts": {
-    "ANALYTICS.md": "671efe03ecbea9bc8ba01c823d9f8eb074222794f523b46251e67b66322b7f6c",
-    "FINDINGS.md": "403e993ef400c76341b81343c72e008f841f541b47d3bc3a57f1080a9049f428",
-    "STRETCHES.md": "43d1dd0fbfcc7c7853fdf69c38ece03cc450403444761d06fed6a9ba155d9618",
-    "current-stretches.csv": "b3b9df8c3b70652c522bd13c6ef905b38112413d142ed98affbe23659217b108",
-    "fit-analytics.csv": "83c22e8fd50041c3ca5b5ac00dff8f20001592ef8b015ae92f148b6c90abb24f",
+    "ANALYTICS.md": "b0053627cc7d38db33dce336a8a2d091af4c85e339f1da008119f94a907fc192",
+    "FINDINGS.md": "dd6a4a8c33cc79326e34687cd25ba9cb7074daa7607cffe429e7c5708a0440a0",
+    "STRETCHES.md": "9fdfacbbb922bbec5a978d7175cd109d31de4a2673ef4e8c213816558fb3ae8a",
+    "current-stretches.csv": "7f41d5c4ea5bb8b76c5daf069631bfdf7cd3531ad0e7491147686267c87ac51e",
+    "fit-analytics.csv": "cb2b615949f4fbb3763b16fb38426b500f80b39cf4617a65caad2d61754ddb09",
     "shared-leg-pairs.csv": "f3d8d293e2020595ba1d53eeb1462630a70f0cf547cc220b5237b99e608efc88",
-    "stretch-analytics.csv": "fbeefea590713a1ec8e33f44906650869d5a60c4353178cd92b16da9e4161732"
+    "stretch-analytics.csv": "9afba4e71ef12fd8b6c585ad540c17f96fc2c987c14a1e45874047ee4e3a3f4d"
   },
   "inputs": {
     "docs/ilvis0-boundary-review-20261016/completion.json": "8d0cddf73afe2040ef722b8d9a1443f2157f7191408f4e3470d1762d155ae03f",
@@ -19,12 +19,20 @@
     "docs/ilvis0-budget-continuation-20261014/starts.jsonl": "a26f2fe2a60c0542413f96bbb9a4f32bae975c137ca8a6c68082d797212fc511",
     "docs/ilvis0-budget-continuation-20261014/summary.json": "5d8bb394c8e52845cbed46db02f61751090f87b5cbad61fa14a95b191837077c",
     "docs/ilvis0-budget-continuation-20261014/sweeps.jsonl": "1cd4e696a7869aa4275234dee3b3bf86208fa6195bda62da7c4cdc9bbeed0cbc",
+    "docs/ilvis0-cluster-review-20261018/completion.json": "c222a74ef8c4adf872b05f61c4c9bec67340a247adb2a93e16b9b7a65cb9d735",
+    "docs/ilvis0-cluster-review-20261018/evidence-receipt.json": "b26d7246acedaadf846f492cabfc6355bba7a77b932f50974a075529d142b7b2",
+    "docs/ilvis0-cluster-review-20261018/manifest.json": "1fb3294dc7c43bdfc5d524c14edff7fd7b4f9b346417f0f7c8c228702ebc094a",
+    "docs/ilvis0-cluster-review-20261018/review.json": "0e3e86a8c814e2b333491b8bc435b8828cddca0629e4e3506bf06735e801b25b",
     "docs/ilvis0-hybrid-remaining-20261015/completion.json": "a4ca9fbfce62ab72c42c0083df70050fcec0115f250b577260d7b0a379d580d5",
     "docs/ilvis0-hybrid-remaining-20261015/evidence-receipt.json": "75f1d6cddfcdd68e25d9e7f7c3c85f00d97da31ac45b7191b71b25431c0d214a",
     "docs/ilvis0-hybrid-remaining-20261015/manifest.json": "03703297eda093815ec26c3c8ef180dfde45ef741dd6cf5bc4b80fe8faf7ce73",
     "docs/ilvis0-hybrid-remaining-20261015/starts.jsonl": "dd2b5ebb843e93265663c4a6970627b78686d22563c37467b64bd385a308620a",
     "docs/ilvis0-hybrid-remaining-20261015/summary.json": "b0916b16ae285368602c178ff56de2eea6792d170c52cc313d924393aac33eed",
     "docs/ilvis0-hybrid-remaining-20261015/sweeps.jsonl": "e4bb1a0da1337d355c4a525288a4bccbe5924e165e7c97076781b081235af81f",
+    "docs/ilvis0-last-review-20261018/completion.json": "407ae34c585ba0cbf56da5b773051dccbfc941388ea551304d111e5fac354131",
+    "docs/ilvis0-last-review-20261018/evidence-receipt.json": "3149b2c2420e2c18c6f09dba05ea70758e041442c971fc82ff5588b0e186b129",
+    "docs/ilvis0-last-review-20261018/manifest.json": "969a92a1a661f11f50182890b6c71c6c83cbd0a0d703d22f5d0f436d1953021d",
+    "docs/ilvis0-last-review-20261018/review.json": "b5e64630ddd4f655e1f76c3c3e302b3991cba6d8195618cf0678a8dc43b75b84",
     "docs/ilvis0-neighbor-review-20261017/completion.json": "03101324442b2f68852f1183131a8909c1d9bbb53f2e2e4d152eb4c996a7cdaf",
     "docs/ilvis0-neighbor-review-20261017/evidence-receipt.json": "0678ea1d184aeaa2591d79c79ae1e15c18536207c8d2ef2fb021766e9b0e6e8d",
     "docs/ilvis0-neighbor-review-20261017/manifest.json": "14e97f7634f45164972439acb878b2a1eaf355d342610eb5b722b37669262b48",
@@ -37,6 +45,14 @@
     "docs/ilvis0-remaining-precision-20261014/starts.jsonl": "510479e11e7d01e4cdd8847003370009699c23cc9108c6c6a7ecec083e67971e",
     "docs/ilvis0-remaining-precision-20261014/summary.json": "de5a5c2c792e8fef3fe0382c9363d185ea64aa97ea62eb7e1822fbfbe450814f",
     "docs/ilvis0-remaining-precision-20261014/sweeps.jsonl": "4c0363df50d2111d7eeead33beac83c8582e4c823f0f09ae4a25fa977090782c",
+    "docs/ilvis0-representable-review-20261018/completion.json": "15a6b9a6c6f5144e9883a3edd7cf31ded04f1294a35841424290ffd7294a6eca",
+    "docs/ilvis0-representable-review-20261018/evidence-receipt.json": "a3397328306528dd5cf33a4d414c4f5e598c705b96a48ad46885ee64a8b1a333",
+    "docs/ilvis0-representable-review-20261018/manifest.json": "e8c5650a44e5a5cb5b7eb8eb920489bdec2904315108d5554e443650046160c7",
+    "docs/ilvis0-representable-review-20261018/review.json": "d18bc5eaea00195c03053f4e83c79f653994d50d084797acdecde729f5640eb7",
+    "docs/ilvis0-scaled-pair-review-20261018/completion.json": "ae98b7ee7c85bf67f298254e938e15ff75ad27578be4afb7a84f57707c6b2c9b",
+    "docs/ilvis0-scaled-pair-review-20261018/evidence-receipt.json": "eb8d00e1746c86ca0167f7653e232f114ade86f84974bfd19e04e23d14150780",
+    "docs/ilvis0-scaled-pair-review-20261018/manifest.json": "53f9665f80c053689c1b5c430b23983cad1e65765384ae1db31cf0ab7b0b0927",
+    "docs/ilvis0-scaled-pair-review-20261018/review.json": "f953cd9cdeb18ee4a1b3c833fdf98120e6d9519744d108af97a0c5f1d2a1759a",
     "docs/ilvis0-timing-trial-20261016/completion.json": "673ac2282e47371b4aaf9a552c16c359542baf5ca25e8117a1b15975b1cb20d9",
     "docs/ilvis0-timing-trial-20261016/evidence-receipt.json": "2f2b3969cab455eb3d1a71836dbf6f6158aa49d741ef08567eb9e03fbc42110d",
     "docs/ilvis0-timing-trial-20261016/manifest.json": "e852b19d7132550c211b25440b123885bdc8b6888d31e3da702be0c79ad959ae",
@@ -55,13 +71,13 @@
   "original_files_read": 0,
   "publication_builder": "docs/ilvis0-current-findings-20261015/build_report.py",
   "sources": {
-    "docs/build_current_status.py": "4ab5cd2d325b157d97ff3f9fd9800e502f020c61489164ecb23a94b4fa23e564",
-    "docs/ilvis0-current-findings-20261015/build_report.py": "6c9282f81cc58b96c1491a49c74113f46ea54d8419d9e4485565b8801c23eb86"
+    "docs/build_current_status.py": "25d60d925abbbe32f972cfa13b0b24a2bf2badf2492d6dc96290e5d1f0065fb3",
+    "docs/ilvis0-current-findings-20261015/build_report.py": "2772dace6581dec00bf748f4fe04f37953768e2b693c1c0e6c3c56cbeb20af8a"
   },
   "tally": {
     "ambiguous": 0,
     "flat": 0,
-    "globe": 49,
-    "unresolved": 4
+    "globe": 53,
+    "unresolved": 0
   }
 }

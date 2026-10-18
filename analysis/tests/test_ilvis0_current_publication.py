@@ -76,3 +76,18 @@ def test_failing_repeat_keeps_a_later_publication_unresolved():
     rows = {'s':dict(shape_preference='unresolved')}
     publication().apply_boundary_review(rows, review, 'later')
     assert rows['s']['shape_preference'] == 'unresolved'
+
+
+def test_current_publication_includes_complete_final_stretch_review_last():
+    report=publication()
+    assert report.REVIEWS[-1]=='docs/ilvis0-last-review-20261018'
+    assert len(set(report.REVIEWS))==len(report.REVIEWS)
+
+
+def test_final_review_checks_exact_public_source_snapshot_instead_of_live_runtime():
+    report=publication();name='data/ilvis0-boundary-diagnostic-20261016/manifest.json'
+    sources={name:'sealed-hash','analysis/lll/ilvis0_shape.py':'source-hash'}
+    expected='docs/ilvis0-last-zero-boundary-20261018/source-freeze/'+name
+    assert report.published_sources(report.FINAL,sources)=={
+        expected:'sealed-hash','analysis/lll/ilvis0_shape.py':'source-hash'}
+    assert report.published_sources(report.SCALED,sources)==sources

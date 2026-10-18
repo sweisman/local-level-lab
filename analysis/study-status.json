@@ -1,0 +1,22 @@
+{
+  "studies": [
+    {"name": "Final-stretch zero-field boundary checks", "path": "data/ilvis0-last-zero-boundary-20261018"},
+    {"name": "Final-stretch full free-timing comparison", "path": "data/ilvis0-last-free-time-20261018"},
+    {"name": "Final-stretch zero-field timing profiles", "path": "data/ilvis0-last-time-profile-20261018"},
+    {"name": "Final-stretch two-case field endpoints", "path": "data/ilvis0-last-field-boundary-20261018"},
+    {"name": "Range-scaled affine nearby timing pair", "path": "data/ilvis0-scaled-pair-boundary-20261018"},
+    {"name": "Corrected-context nearby timing pair", "path": "data/ilvis0-final-pair-boundary-v2-20261018"},
+    {"name": "Final nearby timing-pair diagnostic", "path": "data/ilvis0-final-pair-boundary-20261018"},
+    {"name": "Representable timing-boundary diagnostic", "path": "data/ilvis0-representable-boundary-20261018"},
+    {"name": "Remaining two-case boundary diagnostic", "path": "data/ilvis0-remaining-boundary-20261018"},
+    {"name": "Remaining two-case free-time test", "path": "data/ilvis0-remaining-free-time-v2-20261018"},
+    {"name": "Remaining two-case timing profile", "path": "data/ilvis0-remaining-time-profile-20261018"},
+    {"name": "Clustered-boundary endpoint diagnostic", "path": "data/ilvis0-clustered-boundary-20261017"},
+    {"name": "Exact-boundary endpoint diagnostic", "path": "data/ilvis0-profile-boundary-20261017"},
+    {"name": "Profile-seeded free-time trial", "path": "data/ilvis0-profile-seeded-trial-20261017"},
+    {"name": "Interior timing profile", "path": "data/ilvis0-interior-timing-profile-20261017"},
+    {"name": "Saved timing endpoint verification", "path": "data/ilvis0-profile-verification-20261017"},
+    {"name": "Fixed-time profile trial", "path": "data/ilvis0-fixed-time-profile-20261017"},
+    {"name": "Adjacent-boundary recovery", "path": "data/ilvis0-boundary-followup-v3-20261016"}
+  ]
+}

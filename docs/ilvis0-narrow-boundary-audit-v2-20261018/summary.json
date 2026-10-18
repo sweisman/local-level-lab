@@ -1,0 +1,59 @@
+{
+  "clock_queries": 12,
+  "minimum_probe_guard_s": 2.1316282072803005e-15,
+  "native_calls": 0,
+  "optimizer_starts": 0,
+  "original_labels_changed": false,
+  "original_reads": 0,
+  "state": "complete",
+  "targets": [
+    {
+      "adjacent_clock_states_distinct": true,
+      "clock_state_matches": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "identity": "0e73879f98c3b701fd7c42df::bias1_unsubtracted::sphere_still::free_time_primary::remaining_cluster_check",
+      "knot_normalized": -0.3163008727288748,
+      "left_width_s": 2.098321516541546e-14,
+      "minimum_probe_s": 2.451164271555228e-16,
+      "original_passed": false,
+      "probe_guard_passed": false,
+      "probe_ulps": [
+        118.0,
+        29.0,
+        118.0,
+        29.0
+      ],
+      "probes_distinct": true,
+      "right_width_s": 3.921862834488365e-15,
+      "source": "bias1_unsubtracted/primary"
+    },
+    {
+      "adjacent_clock_states_distinct": true,
+      "clock_state_matches": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "identity": "0e73879f98c3b701fd7c42df::bias1_unsubtracted::sphere_still::free_time_repeat::remaining_cluster_check",
+      "knot_normalized": -0.3163008727288748,
+      "left_width_s": 2.098321516541546e-14,
+      "minimum_probe_s": 2.451164271555228e-16,
+      "original_passed": false,
+      "probe_guard_passed": false,
+      "probe_ulps": [
+        118.0,
+        29.0,
+        118.0,
+        29.0
+      ],
+      "probes_distinct": true,
+      "right_width_s": 3.921862834488365e-15,
+      "source": "bias1_unsubtracted/repeat"
+    }
+  ]
+}

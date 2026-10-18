@@ -1,0 +1,21 @@
+{
+  "inputs": {
+    "/site/repo/local-level-lab/data/ilvis0-remaining-free-time-v2-20261018/0e73879f98c3b701fd7c42df-bias1_profiled_removal-sphere_still-free_time_primary-linearization.json.gz": "0dd8ad28692cf53bcd44d7043ea929aa79af07d386a548e07b591b9dad615d5e",
+    "/site/repo/local-level-lab/data/ilvis0-remaining-free-time-v2-20261018/0e73879f98c3b701fd7c42df-bias1_profiled_removal-sphere_still-free_time_repeat-linearization.json.gz": "6b2408e4118c98b3046f250f36bfe45de9eb8a7f358466c6c7d0d89ee125a808",
+    "/site/repo/local-level-lab/data/ilvis0-remaining-free-time-v2-20261018/0e73879f98c3b701fd7c42df-bias1_unsubtracted-sphere_still-free_time_primary-linearization.json.gz": "496f65b0de8b9990ec30ef2eb9149e47f0eaf287909b2c029acdc8c91937fc1e",
+    "/site/repo/local-level-lab/data/ilvis0-remaining-free-time-v2-20261018/0e73879f98c3b701fd7c42df-bias1_unsubtracted-sphere_still-free_time_repeat-linearization.json.gz": "c36195aa462c1e9d6ea2bcf2f84add1059f6f214ad1fce6eb3ebbb51c2a9f90c",
+    "/site/repo/local-level-lab/data/ilvis0-remaining-free-time-v2-20261018/completion.json": "818bbc471c9b539ed79087ef27c02d0032ac74fe92b80746827969214dfe02af",
+    "/site/repo/local-level-lab/data/ilvis0-remaining-free-time-v2-20261018/manifest.json": "e55b51e7d47916a83e794fd3db0e5178d618897680c0dc94b18641b68968f3f6",
+    "/site/repo/local-level-lab/data/ilvis0-remaining-free-time-v2-20261018/summary.json": "a1f8d4007ec6a59142b19e488e4573d41d07d79d450117856107f812e334c6b1"
+  },
+  "maximum_endpoints": 4,
+  "maximum_geometry_queries": 4096,
+  "native_calls": 0,
+  "numerical_threads": 4,
+  "optimizer_starts": 0,
+  "original_reads": 0,
+  "sources": {
+    "/site/repo/local-level-lab/analysis/lll/ilvis0_clock_brackets.py": "8035bde0f3a048a67f66aba67e8ab3520e243c7be8f5ce30324062061b39a0ae",
+    "/site/repo/local-level-lab/docs/ilvis0-remaining-free-time-audit-20261018/build_report.py": "dd3f7757b36f18869250fa2718485572fc59edfe99564fee60ae13f4eec5c8cc"
+  }
+}

@@ -1,35 +1,32 @@
 # What comes next
 
-The current analysis favors a globe in every fully checked comparison. The next
-work has two purposes: complete the four unfinished comparisons, then establish
-more precisely what the measurements reveal and how reliably they predict new data.
+The current analysis favors a globe in all 53 selected comparisons. The next work
+will establish more precisely what the measurements reveal and how reliably
+the fitted models predict new data.
 The [verified status](CURRENT_STATUS.md) gives the published totals; the
 [study index](STUDIES.md) explains the completed work.
 
 An **IMU (inertial measurement unit)** records turning and acceleration. The archive
 analysis uses its recorded increments together with GPS receiver positions.
 
-## First: resolve the four unfinished stretches
+## Numerical recovery is complete
 
-| Planned work | Question it answers | Required result |
-|---|---|---|
-| Diagnose the remaining timing solutions | Why do some timing boundaries fail their two-sided checks, or give different solutions on repeat? | Separate unsupported local geometry, nonstationary endpoints and repeat disagreement using saved results first. |
-| Complete the missing checks under new finite plans | Can the interrupted check and the zero-evaluation reporting failure be assessed reliably? | Preserve both failures; qualify corrected handling before any separately frozen numerical work. |
-| Focused timing profiles where disagreement remains | Are competing time alignments genuinely different fitting solutions? | Reoptimize the same permitted calibration parameters across a separately frozen, bounded profile. |
+All **53 selected stretches** now pass their required model comparisons and favor
+the globe under both processing assumptions. The original run completed twelve;
+all 41 formerly unfinished comparisons now have separately checked recoveries.
+Each stretch counts once. The final [complete review](ilvis0-last-review-20261018/README.md)
+verified six primary model/case fits, four required repeat pairs and two fresh
+controls using saved evidence only.
 
-The [completed adjacent-boundary review](ilvis0-neighbor-review-20261017/README.md)
-resolved another stretch after both controls, all six primary fits and repeat
-agreement passed. Four remain unresolved. The next numerical work targets
-different time-alignment solutions and their coupled calibration parameters;
-a reporting repair alone cannot resolve the outstanding repeat disagreement.
-The [saved timing/calibration comparison](ilvis0-timing-basins-20261017/INTERPRETATION.md)
-separates those problems across all four stretches. The
-[matched profile preparation](ilvis0-timing-basins-20261017/PROFILE_PLAN.md) begins
-with the two distinct time offsets in the closest-to-complete comparison.
+The last failure concerned fitting across closely spaced packet-timing boundaries.
+Two-sided checks resolved it without changing the observations, selected interval,
+physical bounds or final native acceptance limits. Failed smooth fits and
+conditional timing profiles remain in the history. No recovery worker is active,
+and no completed allowance is reopened.
 
-The measurements, selected intervals and physical error bounds stay fixed during
-numerical recovery. Earlier failures remain in the record. Each new numerical
-study gets its own finite limits before it starts.
+Numerical completion answers whether the declared comparisons have passed their
+calculation checks. The next studies establish which measurements drive the
+separation and whether the fitted models predict observations outside training.
 
 ## Then: strengthen the interpretation
 
@@ -46,6 +43,14 @@ they do not complete every check in this table. Exact device documentation remai
 useful supporting work. Its absence does not suspend analysis of survey-grade data.
 
 ## Measure the rotation field freely
+
+The [additional-data inventory](external-imu-data/README.md) covers longer ESA/DTU
+survey lines and raw Wuhan University IMU/GNSS recordings. Each will have a
+separate eligibility policy before model fitting. These sources do not change
+the existing study or inherit its calibration assumptions or thresholds.
+The [ESA selection proposal](external-imu-data/ELIGIBILITY_PLAN.md) uses longer,
+slower stretches and receiver-based motion screening. It is a development plan,
+not a frozen eligible cohort or authorization to begin fitting.
 
 The present model comparison tests a specified background angular rate against
 zero. The next [rotation-field study](ROTATION_FIELD.md) will estimate the retained
