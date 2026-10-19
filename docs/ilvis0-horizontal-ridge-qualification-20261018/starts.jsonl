@@ -1,0 +1,8 @@
+{"identity":"sphere_still-bias1_unsubtracted-horizontal-zero--ridge-continuation","maximum_evaluations":200}
+{"identity":"sphere_still-bias1_unsubtracted-horizontal-opposed--ridge-continuation","maximum_evaluations":200}
+{"identity":"flat_still-bias1_unsubtracted-horizontal-zero--ridge-continuation","maximum_evaluations":200}
+{"identity":"flat_still-bias1_unsubtracted-horizontal-opposed--ridge-continuation","maximum_evaluations":200}
+{"identity":"flat_still-bias1_profiled_removal-horizontal-zero--ridge-continuation","maximum_evaluations":200}
+{"identity":"flat_still-bias1_profiled_removal-horizontal-opposed--ridge-continuation","maximum_evaluations":200}
+{"identity":"sphere_rotating--fresh-opposed","maximum_evaluations":200}
+{"identity":"flat_still--fresh-opposed","maximum_evaluations":200}

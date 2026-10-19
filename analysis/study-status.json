@@ -1,5 +1,12 @@
 {
   "studies": [
+    {"name": "Matched observed horizontal multi-start", "path": "data/ilvis0-horizontal-multistart-20261019"},
+    {"name": "Constructed multi-start qualification", "path": "data/ilvis0-multistart-controls-v3-20261019"},
+    {"name": "Horizontal timing path and derivatives", "path": "data/ilvis0-horizontal-timing-path-20261019"},
+    {"name": "Fixed-point diagnosis of horizontal repeats", "path": "data/ilvis0-horizontal-repeat-probes-20261019"},
+    {"name": "Matched horizontal-only observed refits", "path": "data/ilvis0-horizontal-observed-20261018"},
+    {"name": "Remaining horizontal paired-cost continuation", "path": "data/ilvis0-horizontal-pair-continuation-20261018"},
+    {"name": "Horizontal ridge-probe staged qualification", "path": "data/ilvis0-horizontal-ridge-qualification-20261018"},
     {"name": "Horizontal-only full-calibration qualification", "path": "data/ilvis0-projected-horizontal-fullcal-20261018"},
     {"name": "Generated paired-endpoint budget continuation", "path": "data/ilvis0-projected-budget-continuation-20261018"},
     {"name": "Full-calibration projected qualification", "path": "data/ilvis0-projected-fullcal-qualification-20261018"},

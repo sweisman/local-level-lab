@@ -92,11 +92,43 @@ without launching their dependent full-calibration matrix.
 
 The [horizontal-only review](ilvis0-projected-horizontal-review-20261018/README.md)
 verifies all twelve horizontal fits and all six paired-start comparisons; it
-leaves height-only unqualified and preserves the failed broader gate. The current
+leaves height-only unqualified and preserves the failed broader gate. The subsequent
 [horizontal full-calibration study](ilvis0-projected-horizontal-fullcal-20261018/PLAN.md)
-tests all 26/27 nuisance columns, both processing cases and two starts in twelve
-generated fits. These are software controls, with no new recorded-flight fits
-or changes to the 53/0/0 findings.
+tested all 26/27 nuisance columns: eight of twelve fits and three of six paired
+comparisons passed, leaving recorded-data refitting blocked.
+
+The [saved correction audit](ilvis0-horizontal-correction-audit-20261018/INTERPRETATION.md)
+identified overlarge parameter moves in weak directions. Its separately bounded
+[native probe check](ilvis0-horizontal-probe-20261018/README.md) reproduced all
+twelve endpoints and passed all twelve regularized proposals without changing
+the physical objective or final tolerances. The current
+[staged qualification](ilvis0-horizontal-ridge-qualification-20261018/README.md)
+passed all eight fits and five of six paired comparisons in 534 native calls.
+The [remaining paired continuation](ilvis0-horizontal-pair-continuation-20261018/README.md)
+passed both fits and all six combined pairs in 508 native calls, completing
+the staged horizontal-only software qualification.
+
+The [first horizontal-only recorded-flight study](ilvis0-horizontal-observed-20261018/README.md)
+completed all twelve baseline reconstructions and 24 fits in 1,112 native calls.
+The IMU8 stretch passes all six repeats and still favors globe; the IMU21 stretch
+passes three of six repeats and remains unresolved in this sensitivity study.
+Both starts rank the models the same way. The
+[saved-fit audit](ilvis0-horizontal-repeat-audit-20261019/INTERPRETATION.md)
+separates competing timing solutions from a marginal prediction-repeat failure
+and reports the large unscored height errors. The
+[completed 28-point diagnostic](ilvis0-horizontal-repeat-probes-20261019/INTERPRETATION.md)
+isolates coupled timing/calibration and an unobserved vertical direction. The
+[completed 29-point timing check](ilvis0-horizontal-timing-path-20261019/DIAGNOSIS.md)
+finds no gross derivative fault and a path consistent with different locally
+stationary solutions, without optimization or label changes.
+The original 53/0/0 findings remain unchanged.
+
+The [multi-start qualification](ilvis0-multistart-controls-v3-20261019/README.md)
+passed four known-answer systems with coupled calibration, multiple local optima,
+active bounds and invisible nuisance coordinates: 24 starts /166 constructed
+calls. The [matched recorded-data follow-up](ilvis0-horizontal-multistart-20261019/OVERVIEW.md)
+gives each model the same three timing starts and two independent seed families,
+with two fresh controls and unchanged stopping/repeatability limits.
 
 | Study | What it solved, tested or left open |
 |---|---|

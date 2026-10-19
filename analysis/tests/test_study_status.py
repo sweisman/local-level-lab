@@ -39,6 +39,39 @@ def test_lock_overrides_untrusted_running_snapshot_without_writing(tmp_path):
     assert {p:p.read_bytes() for p in study.iterdir()}==before
 
 
+def test_hashed_summary_can_supply_completion_state(tmp_path):
+    study=setup(tmp_path)
+    put(study/'summary.json',dict(state='complete',native_evaluations=0,results=[dict(identity='a',passed=True)]))
+    put(study/'completion.json',dict(manifest_sha256=digest(study/'manifest.json'),summary_sha256=digest(study/'summary.json')))
+    report=module().inspect_study(study)
+    assert report['state']=='complete' and report['passed']==1 and report['native_calls']==0
+
+
+def test_completion_without_any_explicit_complete_state_is_rejected(tmp_path):
+    study=setup(tmp_path)
+    put(study/'summary.json',dict(state='running',results=[]))
+    put(study/'completion.json',dict(manifest_sha256=digest(study/'manifest.json'),summary_sha256=digest(study/'summary.json')))
+    assert module().inspect_study(study)['state']=='invalid'
+
+
+def test_active_preflight_calls_are_included_before_any_fit_ledger(tmp_path):
+    from lll.ilvis0_receipt_journal import Ledger
+    study=setup(tmp_path);book=Ledger(study/'preflight',digest(study/'manifest.json'),['check'],fit_limit=1,diagnostic_limit=1)
+    book.start('check');book.call('check','diagnostic','tangent',lambda:None)
+    report=module().inspect_study(study)
+    assert report['native_calls']==1 and report['preflight_identities']==1
+
+
+def test_active_native_total_sums_separate_fit_and_preflight_ledgers(tmp_path):
+    from lll.ilvis0_receipt_journal import Ledger
+    study=setup(tmp_path);h=digest(study/'manifest.json')
+    for path,identity in ((study,'fit'),(study/'preflight','check')):
+        book=Ledger(path,h,[identity],fit_limit=1,diagnostic_limit=1)
+        book.start(identity);book.call(identity,'diagnostic','tangent',lambda:None)
+    report=module().inspect_study(study)
+    assert report['native_calls']==2 and report['charged_identities']==1
+
+
 def test_held_lock_reports_running_and_capped_allocation(tmp_path):
     study=setup(tmp_path)
     with (study/'worker.lock').open('w') as lock:
@@ -99,6 +132,18 @@ def test_sealed_completion_overrides_stale_status_and_counts_failures(tmp_path):
     report=module().inspect_study(study)
     assert report['state']=='complete' and report['completed']==1 and report['errors']==1
     assert report['native_calls']==2 and report['threads']==0
+
+
+def test_verified_completed_total_includes_separately_charged_preflight(tmp_path,monkeypatch):
+    study=setup(tmp_path);status=module()
+    put(study/'summary.json',dict(results=[dict(identity='a',passed=True)],native_evaluations=3,
+                                 preflight=[dict(identity='check',passed=True)]))
+    put(study/'completion.json',dict(state='complete',manifest_sha256=digest(study/'manifest.json'),
+                                    summary_sha256=digest(study/'summary.json')))
+    monkeypatch.setattr(status,'receipt_counts',lambda *a:dict(starts=1,sweeps=2,incomplete_transaction=False))
+    report=status.inspect_study(study)
+    assert report['state']=='complete' and report['native_calls']==3
+    assert report['charged_identities']==1
 
 
 def test_altered_completion_is_never_reported_as_verified(tmp_path):

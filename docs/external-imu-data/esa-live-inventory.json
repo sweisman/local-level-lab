@@ -1,0 +1,19 @@
+{
+  "catalog_sha256": "d589c4a64e5b30cef286050c6cc67388a46c80ea6fcb95998a8a1fe5ca0b2dd8",
+  "credentials_stored": false,
+  "downloaded_files": 1,
+  "earth_model_fits": 0,
+  "files": 9,
+  "inputs": {
+    "data/external-imu-survey-20261018/esa-sample/catalog/lvl0-178-rqh01-list.txt": "8a6e5ec8df8e2807c397fce102a5752d4a5dbc81c84ddf0bd7ae6887497955cf",
+    "data/external-imu-survey-20261018/esa-sample/catalog/lvl0-179-rqh01-list.txt": "f75a086381849cce29e7d49c4cb7775a560f9367389fb828450971046a71c54f",
+    "data/external-imu-survey-20261018/esa-sample/catalog/lvl0-180-rqh01-list.txt": "f9ad41ba3d06c82ac87fff02ff8347d7106bf820b2d8a24bcc60bb80f43c42cd",
+    "data/external-imu-survey-20261018/esa-sample/catalog/lvl0-182-rqh01-list.txt": "0a0652d7f415f3f9b5b9868ce380cfed7c8532f0c3812a9211282c55dfb60fac",
+    "data/external-imu-survey-20261018/esa-sample/catalog/lvl0-183-rqh01-list.txt": "4698350da9451e9d13bb7a462b73cf07b596bd39c233f2874eb98832083e144d",
+    "data/external-imu-survey-20261018/esa-sample/catalog/lvl0-184-rqh01-list.txt": "375907de3274f8e157e7ef7ae7840e1efa5412741f0c751b9772d106556bfa32",
+    "data/external-imu-survey-20261018/esa-sample/catalog/lvl0-186-rqh01-list.txt": "cec5fcaab2ca3923c9ad383c125eada8b6b507cf917074631e09984c8f1021f5",
+    "data/external-imu-survey-20261018/esa-sample/catalog/lvl0-187-rqh01-list.txt": "03943a12f02afac3ea018221dab3c5af4284932a748a65100447b62e9a02eb8d"
+  },
+  "script_sha256": "dc6f770fd13cd538faa463a301d878a910911bd77ae51478683a891fb81ece08",
+  "total_bytes": 8017015440
+}

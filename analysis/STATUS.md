@@ -30,6 +30,9 @@ Workers that package their verified result inventory only at completion may also
 publish an atomic `progress.json`. The command displays its bounded counts as a
 separate **Worker snapshot**, never as verified passing results. Inconsistent
 snapshot counts are rejected. Completed, hash-checked summaries remain authoritative.
+Active native-call totals include separately journaled preflight checks as well
+as fitting calls. Completion state may be explicit in either the completion
+record or its hash-verified summary; an absent or unfinished state in both is rejected.
 A charge is recorded before a native call; its presence does not mean the call
 finished. A busy receipt ledger produces an explicit unavailable-snapshot warning.
 Missing locks are never created. An unlocked, unfinished study is shown as

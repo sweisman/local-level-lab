@@ -39,37 +39,61 @@ gives 28 globe and eight flat preferences. No parameters were refitted. Both gyr
 and acceleration observations remain in use, and heights still enter other parts
 of the reconstruction.
 
-The next step is to qualify refitting after a coordinate constraint is removed.
-The completed [software review](ilvis0-projected-complete-review-20261018/README.md)
-passes all 24 individual generated fits but only eleven of twelve paired-start
-checks. A [larger-budget continuation](ilvis0-projected-budget-continuation-20261018/PLAN.md)
-did not resolve the remaining height-only pair: its objective difference stays
-above the frozen repeatability limit despite predictions agreeing within about
-1.3 micrometres. Height-only refitting remains unqualified; the broader qualification
-failed and its dependent full-calibration batch did not start.
+The staged horizontal-only fitting software is now qualified, including every
+generated-model pair. Its earlier failed studies remain preserved in the
+[study index](STUDIES.md).
 
-The separately reviewed [horizontal-only capability](ilvis0-projected-horizontal-review-20261018/README.md)
-passes every predeclared horizontal case: twelve generated fits and six paired-start
-comparisons. The current [full-calibration controls](ilvis0-projected-horizontal-fullcal-20261018/PLAN.md)
-test that mode with all **26/27 nuisance columns**, both processing cases and two
-starting points. Their finite allowance is twelve generated fits and 1,944 native
-calculations, using four numerical threads. No original recordings are read and
-no observed-data refits have started.
+The [first recorded-flight refit study](ilvis0-horizontal-observed-20261018/README.md)
+has completed all twelve reconstruction checks and all 24 individual fits in
+1,112 native calls, taking 3.64 hours. Its two stretches were selected by duration
+and IMU configuration, without model scores.
+
+| Configuration | Duration | Passed repeats | Horizontal-only outcome |
+|---|---:|---:|---|
+| IMU8 | 9.75 minutes | 6/6 | Globe preferred under both processing cases. |
+| IMU21 | 4.07 minutes | 3/6 | Matched result unresolved; both starts rank specified-field globe first. |
+
+The [saved-fit review](ilvis0-horizontal-repeat-audit-20261019/INTERPRETATION.md)
+explains the distinction. The two zero-field globe pairs settle about 19 ms apart
+in timing; the unsubtracted flat pair misses the prediction-repeat limit by about
+0.2 mm. All endpoints pass their individual gates. Changing the affine solve's
+coordinate scaling does not resolve the disagreements.
+
+Removing height from the score also permits implausible vertical paths: unscored
+height RMS ranges from about 0.65 to 114 km. The completed IMU8 result shows that
+the preference survives removing the scored height constraint. It is not a
+credible full flight reconstruction or a gyro-only/altitude-independent test.
+The original full-position **53 globe / zero flat / zero unresolved** findings
+remain unchanged.
+
+The completed [28-point diagnostic](ilvis0-horizontal-repeat-probes-20261019/INTERPRETATION.md)
+reproduced every saved endpoint. A timing-only swap changes horizontal positions
+by 4.43 m, while the complete parameter midpoint changes them by about 4 mm:
+timing and calibration compensate each other. In the flat model, a gravity swap
+changes height by 669 m with no horizontal-score change.
+
+The completed [29-point timing check](ilvis0-horizontal-timing-path-20261019/DIAGNOSIS.md)
+finds no gross derivative fault: five comparisons differ by 0.008–0.015% in
+vector norm, with no integration boundary crossed. The sampled path is consistent
+with different locally stationary solutions. It is not an optimized timing profile.
+No fit, repeat or scientific labels change from these checks.
 
 The remaining sequence is:
 
-1. Complete every horizontal full-calibration control and paired-start check.
-2. If those pass, freeze a small matched recorded-flight horizontal-only refit
-   study with finite limits and independent repeats; compare the reoptimized
-   scores with the existing three-dimensional fits.
-3. Test gyro and acceleration contributions using explicit replacement constraints.
+1. The [multi-start controls](ilvis0-multistart-controls-v3-20261019/README.md)
+   passed all four known-answer systems in 24 starts /166 constructed calls.
+   The separate [matched recorded-data study](ilvis0-horizontal-multistart-20261019/OVERVIEW.md)
+   gives all three models the same timing grid and two independent seed families,
+   with fresh controls and unchanged physical assumptions/repeatability limits.
+2. Preserve complete and unresolved sensitivity results separately; do not expand
+   the cohort merely to obtain more favorable outcomes.
+3. Test gyro and acceleration contributions with explicit replacement constraints.
    Coordinate removal alone does not isolate either IMU channel.
 4. Establish prediction on unused observations, residual uncertainty and
    shared-flight dependence before calibrated population claims.
 
 Height-only qualification and missing saved-artifact references remain separate
-open work. Failed controls retain their original labels; no numerical threshold
-or recorded-flight disposition has changed.
+open work. Failed controls retain their original labels.
 
 | Analysis | What it adds |
 |---|---|

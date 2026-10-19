@@ -1,0 +1,69 @@
+{
+  "catalog_size_bytes": 1441497088,
+  "downloaded_bytes": 576,
+  "earth_model_fits": 0,
+  "eligibility": "not evaluated; sensor-characterization lead, not shape evidence",
+  "endpoint_span_hours": 20.854789873333324,
+  "expected_records_from_size": 45046768,
+  "first_time_s": 484720.445711,
+  "full_file_downloaded": false,
+  "full_file_sha256": null,
+  "header": {
+    "accel_scale_si_per_count": 0.011162109375,
+    "byte_order": "<",
+    "creation_time_fields": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "delta_angle": false,
+    "delta_velocity": false,
+    "gyro_scale_degrees_per_count": 0.03278490801606113,
+    "imu_name": "NovAtel SPAN HG4930",
+    "lever_arm_mm": [
+      0,
+      0,
+      0
+    ],
+    "lever_arm_valid": false,
+    "program": "OEM42GPB.dll",
+    "receiver_time_code": 0,
+    "reserved_axis_bytes_hex": "00000000",
+    "reserved_sha256": "b8ee8f605b48094836514072487ba22a6f735786a337ecd0d5e1549e8eb706fc",
+    "sample_rate_hz": 600.0,
+    "time_system_code": 2,
+    "time_tag_bias_header": 1.967,
+    "version": 8.703114
+  },
+  "interior_continuity_verified": false,
+  "last_time_s": 559797.689255,
+  "mounting_verified": false,
+  "path": "POSMind_Software/AllanVarData/HG4930(600Hz).IMR",
+  "range_receipts": [
+    {
+      "content_range": "bytes 0-511/1441497088",
+      "downloaded_bytes": 512,
+      "etag": "\"59f4f46b860e59ecd2d31088246949e6\"",
+      "file": "header.bin",
+      "http_status": 206
+    },
+    {
+      "content_range": "bytes 512-543/1441497088",
+      "downloaded_bytes": 32,
+      "etag": "\"59f4f46b860e59ecd2d31088246949e6\"",
+      "file": "first-record.bin",
+      "http_status": 206
+    },
+    {
+      "content_range": "bytes 1441497056-1441497087/1441497088",
+      "downloaded_bytes": 32,
+      "etag": "\"59f4f46b860e59ecd2d31088246949e6\"",
+      "file": "last-record.bin",
+      "http_status": 206
+    }
+  ],
+  "stationary_context_verified": false
+}

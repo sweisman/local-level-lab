@@ -46,7 +46,10 @@ fitting; prediction on unused observations is a separate check.
 A [measurement-contribution check](docs/ilvis0-measurement-contribution/README.md)
 on eighteen stretches preserves the globe preference in all 36 processing-case
 comparisons when height is removed from the score. Those scores reuse the
-existing fitted parameters; horizontal-only refitting is being qualified separately.
+existing fitted parameters. A separate **9.75-minute refit still favors globe
+without scoring height**. A 4.07-minute refit ranks the models the same way but
+remains unresolved at the required repeat precision.
+[What these checks establish and their limits](docs/ilvis0-horizontal-repeat-audit-20261019/INTERPRETATION.md).
 
 **[See all 53 stretches](docs/ilvis0-current-findings-20261015/STRETCHES.md)** —
 instrument configuration, duration, speed, course, latitude and current result.

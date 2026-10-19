@@ -1,0 +1,145 @@
+{
+  "axis_mount_applied": false,
+  "checksum_available": false,
+  "dataset_id": "Data06_20210115_HG4930_UAV_Opensky",
+  "duration_s": 1156.9453160000267,
+  "earth_model_fits": 0,
+  "eligibility": "not evaluated; dataset-specific policy not frozen",
+  "first_record": {
+    "angle_increment_rad": [
+      5.43543137609958e-07,
+      -1.4556571841239914e-06,
+      6.854534149169914e-07
+    ],
+    "angular_rate_nominal_rads": [
+      5.4354313760995804e-05,
+      -0.00014556571841239916,
+      6.854534149169915e-05
+    ],
+    "dt_s": null,
+    "packet_offset": 512,
+    "raw_accel": [
+      256793,
+      472130,
+      43161902
+    ],
+    "raw_gyro": [
+      4669,
+      -12504,
+      5888
+    ],
+    "specific_force_nominal_mps2": [
+      0.058316071629524166,
+      0.10721774697303758,
+      9.801795877218234
+    ],
+    "time_raw_s": 439165.981438,
+    "velocity_increment_mps": [
+      0.0005831607162952416,
+      0.0010721774697303758,
+      0.09801795877218235
+    ]
+  },
+  "first_time_s": 439165.981438,
+  "gap_count": 0,
+  "header": {
+    "accel_scale_si_per_count": 2.27093696594238e-09,
+    "byte_order": "<",
+    "creation_time_fields": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "delta_angle": true,
+    "delta_velocity": true,
+    "gyro_scale_degrees_per_count": 6.67010661134057e-09,
+    "imu_name": "NovAtel SPAN HG4930",
+    "lever_arm_mm": [
+      0,
+      0,
+      0
+    ],
+    "lever_arm_valid": false,
+    "program": "OEM42GPB.dll",
+    "receiver_time_code": 2,
+    "reserved_axis_bytes_hex": "00000000",
+    "reserved_sha256": "b8ee8f605b48094836514072487ba22a6f735786a337ecd0d5e1549e8eb706fc",
+    "sample_rate_hz": 100.0,
+    "time_system_code": 2,
+    "time_tag_bias_header": 0.0,
+    "version": 8.703114
+  },
+  "last_record": {
+    "angle_increment_rad": [
+      3.0838418751955e-06,
+      -2.957647666335103e-06,
+      7.91507773101329e-07
+    ],
+    "angular_rate_nominal_rads": [
+      0.00030838418751955,
+      -0.0002957647666335103,
+      7.91507773101329e-05
+    ],
+    "dt_s": 0.009999000001698732,
+    "packet_offset": 3702752,
+    "raw_accel": [
+      111764,
+      667514,
+      43148605
+    ],
+    "raw_gyro": [
+      26490,
+      -25406,
+      6799
+    ],
+    "specific_force_nominal_mps2": [
+      0.025380899906158418,
+      0.15158822178840617,
+      9.798776212334621
+    ],
+    "time_raw_s": 440322.926754,
+    "velocity_increment_mps": [
+      0.0002538089990615842,
+      0.0015158822178840618,
+      0.09798776212334621
+    ]
+  },
+  "last_time_s": 440322.926754,
+  "maximum_dt_s": 0.010007000004407018,
+  "median_dt_s": 0.010000000009313226,
+  "minimum_dt_s": 0.009998999943491071,
+  "native_predictions": 0,
+  "processing_corrections_established": false,
+  "raw_gnss": {
+    "INTERVAL": "0.200",
+    "REC # / TYPE / VERS": "NovAtel GPSCard",
+    "TIME OF FIRST OBS": "2021     1    15     1    59   26.0000000     GPS",
+    "TIME OF LAST OBS": "2021     1    15     2    18   45.0000000     GPS",
+    "contains_raw_receiver_observations": true,
+    "first_epoch_time_scale_as_header": "2021-01-15T01:59:26",
+    "last_epoch_time_scale_as_header": "2021-01-15T02:18:45",
+    "observation_epochs": 5796,
+    "positions_computed": false,
+    "rinex_version": "3.02",
+    "span_s": 1159.0,
+    "validation": "header and epoch-order inspection, not complete RINEX observation validation"
+  },
+  "records": 115696,
+  "reference_context": {
+    "epochs": 1154,
+    "first_gps_sow": 439167.0,
+    "independent_gnss": false,
+    "last_gps_sow": 440320.0,
+    "maximum_ground_speed_kmh": 29.187763893796323,
+    "median_ground_speed_kmh": 24.893875591321162,
+    "source": "GNSS/INS Epochs (Smoothed TC Combined)",
+    "use": "motion context only; not admission or scientific evidence"
+  },
+  "selection": "small airborne sample selected from file catalog before gyro/model inspection",
+  "source_bytes": 3702784,
+  "source_sha256": "0205d9e6a847d6e9026125ffc117dec4c06dea027f6e20c1804ae219e7dcbd7d",
+  "time_bias_applied": false
+}

@@ -71,8 +71,11 @@ Their latitude, longitude and height use geodetic conventions. WGS84 provides GP
 reference frame and an ellipsoidal geometry; see [NGA's description](https://earth-info.nga.mil/?action=wgs84&dir=wgs84).
 The present comparison applies a specified globe or disc metric to receiver coordinates
 and integrates the recorded IMU increments. It therefore tests explicit observation
-models. Planned gyro-channel, horizontal-only and height/geoid controls will isolate
-which measurements and conventions produce the separation.
+models. The [first horizontal-only refits](ilvis0-horizontal-repeat-audit-20261019/INTERPRETATION.md)
+preserve globe preference in one completed repeat-checked stretch; the second
+remains unresolved at repeat precision. Large unscored vertical errors limit
+their interpretation. Gyro-channel and height/geoid controls remain planned to
+separate the remaining measurement and coordinate dependencies.
 
 The project makes **no verified scientific-first or model-free-proof claim**.
 Physical measurements of Earth's figure predate WGS84. Snellius's

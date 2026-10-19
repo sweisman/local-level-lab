@@ -781,7 +781,7 @@ remains 24 passing fits /11 passing pairs. Never restart either coordinator or
 completed worker, or spend unused allowances. Preserve all failed labels.
 Saved horizontal capability: docs/data ilvis0-projected-horizontal-review-20261018/;
 twelve horizontal fits and six pairs pass, height-only stays unqualified.
-Current horizontal-only full-calibration controls: docs/data
+Completed horizontal-only full-calibration controls: docs/data
 ilvis0-projected-horizontal-fullcal-20261018/; launcher
 analysis/tests/ilvis0_projected_horizontal_worker.py. Frozen scope: twelve
 generated starts, 1,944 native calls, thirty minutes, four total threads, no
@@ -789,6 +789,83 @@ retries, no original reads or observed starts. All 26/27 nuisance columns and
 all six paired checks must pass before preparing a separately frozen small
 horizontal-only observed study. Check metadata, lock and completion; never
 duplicate or restart charged work. Preserve active sources and PLAN.md.
+Completed with 8/12 fits and 3/6 pairs passing, 1,294 calls; qualification failed.
+Never restart or reuse its remaining allowance. The saved correction audit at
+docs/data ilvis0-horizontal-correction-audit-20261018/ completed 36 affine solves,
+zero native calls. Its build_report.py --render-only performs no solves.
+The fixed-point successor docs/data ilvis0-horizontal-probe-20261018/ completed
+36 native calls, no starts; all twelve ridge probes pass and original failures
+reproduce. Package-only performs no integrations; never replay either audit.
+Completed staged software freeze: docs/data ilvis0-horizontal-ridge-qualification-20261018/;
+analysis/tests/ilvis0_horizontal_ridge_worker.py. Eight generated starts /1,616
+native calls /four threads /thirty minutes, no retries or originals. Six exact
+endpoint continuations, two fresh controls, six hashed passing companions.
+All eight fits and all six combined pairs must pass. Preserve failed parent
+labels and physical scores/bounds/thresholds. Ridge changes only the correction
+proposal. Check locks, completion and unchanged dependencies before continuation;
+never duplicate charged work or resume completed work. Package-only makes no calls.
+Completed: 8/8 individual fits, 5/6 pairs, 534 native calls; qualification failed.
+Never resume or reuse allowance. Completed pair continuation: docs/data
+ilvis0-horizontal-pair-continuation-20261018/; analysis/tests/ilvis0_horizontal_pair_worker.py.
+Two exact unsubtracted zero-field globe endpoints, 600 tangents plus two values
+each: 1,204 calls maximum, four threads, fifteen minutes, no retries/originals.
+Preserve ten exact passing primaries and both fresh controls. All six combined
+pairs must pass before preparing observed refits. Same method, bounds and gates;
+never expand or restart a charged/completed study. Check lock/hash/completion.
+Completed: two passing fits, all six combined pairs pass, 508 native calls.
+Never restart or reuse allowance. Completed observed sensitivity freeze:
+docs/data ilvis0-horizontal-observed-20261018/;
+analysis/tests/ilvis0_horizontal_observed_worker.py. Select shortest artifact-ready
+stretch per IMU8/IMU21, without scores. Twelve full-system preflight calls must
+pass before 24 primary/repeat starts. Limits: 200 tangents plus two predictions
+per start, 4,860 total calls, four threads, eight hours, no retries or expansion.
+Keep both processing cases, every nuisance column, nominal clock, original
+covariance assumptions and qualified ridge probe. Heights remain outside the
+objective in initialization/covariance/propagation. Preserve 53/0/0 and failed
+fits; no significance or production promotion. Check sources/inputs/environment,
+exclusive locks and completion. Never restart charged/completed work. Source
+snapshots and PLAN.md stay immutable; --package-only performs no fits.
+Completed: 24/24 fits passed, twelve reconstructions passed, 1,112 native calls,
+3.64 hours. IMU8 passes six repeats and favors globe; IMU21 passes three of six
+repeats and remains unresolved in this sensitivity study. Never restart or reuse
+allowance. The saved-only audit is docs/data ilvis0-horizontal-repeat-audit-20261019/:
+48 affine solves, zero native calls, completed; --render-only performs no solves.
+Completed diagnostic: docs/data ilvis0-horizontal-repeat-probes-20261019/;
+analysis/tests/ilvis0_horizontal_repeat_probes.py. Six failed-pair endpoints ×four
+points plus two control endpoints ×two points: eight identities /28 native calls,
+zero optimizer starts, four threads, fifteen minutes, no retries. Freeze exact
+coordinate swaps, midpoints and saved affine steps. Reproduce every center first;
+save full predictions and unscored height behavior. Preserve all fit/repeat labels
+and 53/0/0. Check lock/source/input/environment/completion; never restart charged
+or completed work. Completed all 28 calls in 5.13 minutes; never restart or reuse
+allowance. --package-only performs no integrations.
+Completed timing-path diagnostic: docs/data ilvis0-horizontal-timing-path-20261019/;
+analysis/tests/ilvis0_horizontal_timing_path.py. Three diagnostic identities /29
+native calls, zero optimizer starts, four threads, fifteen minutes, no retries.
+Two IMU21 zero-field cases receive both endpoints, seven full-vector path points
+and symmetric 1-microsecond timing probes; an IMU8 primary is the control.
+Preserve source/input/environment freezes and original labels. Check metadata,
+completion and locks; never restart charged or completed work. Package-only
+performs no integrations. All 29 calls completed in 5.28 minutes; never restart or
+reuse allowance. DIAGNOSIS.md is saved-only; NEXT_PLAN.md defines multi-start
+software qualification before new observed allowances.
+Unscored height freedom prevents treating horizontal
+score comparisons as adequate full-flight reconstructions.
+Multi-start controls: docs/data ilvis0-multistart-controls-v3-20261019/ completed
+24 starts /166 constructed calls, all four known-answer systems passed. No native
+or archive work; never restart. Earlier zero-call preparations remain sealed.
+Current matched comparison: docs/data ilvis0-horizontal-multistart-20261019/;
+analysis/tests/ilvis0_horizontal_multistart_worker.py. Frozen 38 starts /7,646
+native calls /20 hours /four threads, no retries. Eight exact preflight checks,
+36 IMU21 starts (same three times ×two independent seeds ×three models ×two cases),
+two fresh IMU8 controls. Preserve all attempts; lower-cost unfinished starts block
+selection. Unchanged numerical and repeat gates; old results remain separate.
+Check locks, hashes, environment and completion. Never restart charged/completed
+work or reuse allowance; --package-only performs no fits.
+Its zero-compute docs guide/watch_results.py watcher has a separately hashed
+report source manifest and finite 20-hour-plus-five-minute deadline. It renders
+DETAILS.md/attempts.csv from completed publication only. Check its runtime
+report-watcher metadata/lock before action; never duplicate or restart it.
 The broader 24-case full-calibration preparation remains unstarted; its unused
 allowance is not transferable. Horizontal success does not qualify height-only
 refitting, global optimality, unique calibration or observational uncertainty.

@@ -94,10 +94,13 @@ def inspect_study(directory):
         rows=[]
         if (directory/'completion.json').exists():
             completion=load(directory/'completion.json')
-            if (completion.get('state')!='complete' or completion.get('manifest_sha256')!=manifest_hash
+            if (completion.get('state','complete')!='complete' or completion.get('manifest_sha256')!=manifest_hash
                     or completion.get('summary_sha256')!=file_digest(directory/'summary.json')):
                 raise ValueError('completion/manifest/summary hash mismatch')
-            summary=load(directory/'summary.json');rows=summary.get('results',[])
+            summary=load(directory/'summary.json')
+            if 'state' not in completion and summary.get('state')!='complete':
+                raise ValueError('verified completion requires explicit complete state')
+            rows=summary.get('results',[])
             result.update(state='complete',native_calls=summary.get('native_evaluations'))
             if 'tests' in summary and not rows:
                 rows=[dict(row,passed=row['outcome']=='passed',status='error' if row['outcome'] in ('failure','error') else 'complete')
@@ -124,9 +127,16 @@ def inspect_study(directory):
             for r in rows if r.get('status') in ('error','interrupted','not_started')]
         try:
             counts=receipt_counts(directory,manifest_hash)
+            preflight=receipt_counts(directory/'preflight',manifest_hash)
             if counts is not None:
-                result.update(native_calls=counts['sweeps'],charged_identities=counts['starts'])
-                if counts['incomplete_transaction']:
+                result.update(charged_identities=counts['starts'])
+            if preflight is not None:result['preflight_identities']=preflight['starts']
+            ledgers=[c for c in (counts,preflight) if c is not None]
+            if ledgers:
+                # Sum active subledgers, preserving an authoritative sealed total.
+                if result['state']!='complete' or result['native_calls'] is None:
+                    result['native_calls']=sum(c['sweeps'] for c in ledgers)
+                if any(c['incomplete_transaction'] for c in ledgers):
                     result['warnings'].append('incomplete charge transaction; preserve receipts; resumption blocked')
                     # A dependent job may reserve the old worker lock. A sealed
                     # orphan transaction still prevents this ledger from working.
@@ -135,7 +145,7 @@ def inspect_study(directory):
             result['warnings'].append('charge snapshot: '+str(error))
         if result['native_calls'] is None:result['native_calls']=status.get('native_evaluations')
         latest=max((p.stat().st_mtime for p in (directory/'status.json',directory/'completion.json',
-            directory/'charges/HEAD.json') if p.exists()),default=None)
+            directory/'charges/HEAD.json',directory/'preflight/charges/HEAD.json') if p.exists()),default=None)
         result['updated_seconds_ago']=round(max(0,time.time()-latest)) if latest is not None else None
     except (OSError,ValueError,KeyError,TypeError) as error:
         result.update(state='invalid');result['warnings'].append(str(error))

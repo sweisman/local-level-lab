@@ -1,116 +1,98 @@
 # What each measurement contributes
 
-All 53 selected stretches now have complete numerical comparisons favoring the
-globe. This next investigation asks which measured combinations create that
-separation, and how it changes when specific receiver constraints are removed.
+All 53 selected stretches have complete full-position model comparisons favoring
+the globe. This investigation asks which measured combinations create that
+separation and how it changes when particular receiver constraints are removed.
 
 An **IMU (inertial measurement unit)** records turning with gyroscopes and
-acceleration with accelerometers. In this analysis, recorded gyro increments
-drive the reconstructed attitude; that attitude turns the measured acceleration
-into a trajectory. The predicted positions are then compared with the receiver's
-recorded positions. There is no separate term that simply rewards an expected
-Earth-rate gyro value. [Measurement dependencies](SOURCE_AUDIT.md) explains the
-full path, including initialization and selection.
+acceleration with accelerometers. Recorded gyro increments drive reconstructed
+attitude; that attitude turns measured acceleration into a predicted trajectory.
+Receiver positions constrain the fit. No separate score simply rewards an
+expected Earth-rate gyro value. [Measurement dependencies](SOURCE_AUDIT.md)
+documents the full path, including initialization and selection.
 
-## First software result
-
-The new receiver-coordinate adapter passes **19 known-answer checks**. It can
-retain full three-dimensional positions, horizontal positions or heights while
-using each selection's correct marginal covariance. It preserves all nuisance
-parameter columns, including columns that become unidentifiable after coordinates
-are removed.
-
-One control explicitly demonstrates why deleting already-whitened residual rows
-can produce the wrong likelihood. Other controls verify derivatives, coordinate
-permutations, lost rank and rejection of invalid covariance or saved arrays.
-These checks use small constructed matrices, with no original-recording reads,
-native predictions or observed-data fits. They do not add an empirical finding.
-
-## First receiver-coordinate result
+## Removing height from the score
 
 The [saved-parameter comparison](../ilvis0-receiver-projection-20261018/README.md)
-completed **324 projections** for eighteen stretches, covering all three models
-and both processing assumptions. At the existing fitted parameters:
+checked eighteen stretches with all six saved primary artifacts available. At
+their existing parameters, every one of 36 horizontal-only processing-case
+comparisons favors globe. Height-only scoring gives 28 globe and eight flat
+rankings. No parameters were refitted in that check.
 
-| Receiver constraints scored | Globe / flat / tie |
-|---|---:|
-| Full positions | 36 / 0 / 0 |
-| Horizontal positions only | 36 / 0 / 0 |
-| Height only | 28 / 8 / 0 |
+The [first horizontal-only refit study](../ilvis0-horizontal-observed-20261018/README.md)
+then used the shortest artifact-complete stretch from each IMU configuration.
+Selection used duration and configuration, not model scores. All twelve baseline
+reconstruction checks and all 24 individual fits passed; the study used 1,112
+native calls and took 3.64 hours.
 
-These are 36 processing-case comparisons on eighteen stretches, not independent
-flights. The globe preference persists when height is removed from the score.
-Height alone gives mixed rankings. The parameters still come from full-position
-fits, so these scores do not establish the best fit attainable after removing
-coordinates. Both gyro and acceleration observations remain in use.
+| Stretch | Duration | Passed independent repeats | Matched result |
+|---|---:|---:|---|
+| IMU8 | 9.75 min | 6/6 | Globe preferred under both processing cases. |
+| IMU21 | 4.07 min | 3/6 | Unresolved at repeat precision; both starts rank specified-field globe first. |
 
-The full scores reproduce the saved objectives exactly. Removing coordinates
-also makes some nuisance directions unidentifiable: fifty of 108 horizontal
-projections and all 108 height-only projections lose numerical rank. Every
-parameter column was retained; this rank diagnostic changes no acceptance rule.
-[Interpretation and limits](../ilvis0-receiver-projection-20261018/INTERPRETATION.md).
+For the complete IMU8 comparison, specified-field globe horizontal RMS is about
+0.37 m, versus 34 m for unsubtracted flat and 17 m with profiled removal. The
+zero-field globe is about 7.6 m. The preference therefore persists after
+horizontal-only refitting; the background-field comparison also favors the
+specified-field model. Its cause and freely measured rate remain separate questions.
 
-## Refitting qualification
+The shorter IMU21 stretch has about 1.4 cm horizontal RMS for specified-field
+globe, 30 cm for zero-field globe and 9–17 m for flat. Three repeat failures
+withhold its matched interpretation. They are not equal model support.
+[Detailed results, tracks and metrics](../ilvis0-horizontal-repeat-audit-20261019/INTERPRETATION.md).
 
-The [refitting qualification](../ilvis0-projected-fitting-controls-20261018/README.md)
-has completed its fail-fast batch: **24 controls passed, one failed and eighteen
-were not run**. The six horizontal fits reached so far passed; their second-start
-checks remain untested. A height-only control exhausted its allowance without
-meeting stationarity, despite a very small retained-position error. Omitted
-coordinates moved substantially. The candidate remains unqualified and no
-observed refit follows from these partial successes.
-[What passed and why advancement is blocked](../ilvis0-projected-fitting-controls-20261018/INTERPRETATION.md).
+## Limits exposed by this check
 
-The subsequent [trust-region matrix](../ilvis0-projected-trust-qualification-20261018/README.md)
-ran all 24 generated fits. Sixteen fits and eight paired-start comparisons
-passed, including every horizontal fit. Its eight failures were height-only
-stability probes that made large nonlinear moves through weak directions.
-The subsequent local-probe matrix used the same numerical tolerances within an
-explicit 0.001 normalized-coordinate neighborhood. It passed all 24 individual
-fits but only eleven of twelve paired-start comparisons. The
-[larger-budget continuation](../ilvis0-projected-budget-continuation-20261018/PLAN.md)
-completed both height-only fits in 1,035 native calls, within its 1,204-call
-allowance, but did not resolve that pair's objective disagreement. The
-[complete saved review](../ilvis0-projected-complete-review-20261018/README.md)
-therefore remains unqualified. Both coordinators finished without launching the
-broader full-calibration matrix; they are not waiting or running.
-[Call-allowance publication correction](../ilvis0-projected-budget-continuation-20261018/PUBLICATION_NOTE.md).
+The unscored vertical paths drift far from receiver altitude: height RMS ranges
+from about 0.65 to 114 km across returned fits. These are fitted errors, not
+measured aircraft altitude changes. Removing the vertical constraint permits
+poorly identified nuisance directions and implausible full trajectories.
 
-All twelve predeclared horizontal fits and all six horizontal repeat comparisons
-pass. A separate [horizontal-only capability review](../ilvis0-projected-horizontal-review-20261018/README.md)
-verifies that entire subset while retaining height-only as unqualified. The current
-[full-calibration qualification](../ilvis0-projected-horizontal-fullcal-20261018/PLAN.md)
-tests horizontal scoring with all 26/27 nuisance columns: twelve generated fits,
-six repeat comparisons and at most 1,944 native calls. It reads no original
-recordings and starts no observed-data fits. Success would qualify preparation
-of a small matched horizontal-only recorded-data study, not height-only refitting
-or calibrated scientific significance.
+Heights remain in initialization, covariance and propagation. Both IMU channels
+and conventional receiver coordinates remain. This tests sensitivity to the
+scored height constraint; it does not establish altitude/datum independence,
+isolate gyro evidence or demonstrate adequate full-flight predictions. The
+existing 53-stretch full-position findings stay unchanged.
 
-The [saved-primary inventory](../ilvis0-contribution-inventory-20261018/COVERAGE.md)
-is complete. Of 318 final primary fits, 164 have ready residual/Jacobian and
-receiver-time artifacts. Eighteen stretches have all six fits ready for a matched
-comparison. Other fits lack a declared array, saved time context or a resolvable
-reference. These reuse gaps do not change the completed 53/0/0 model result.
+## Current diagnosis
 
-1. Preserve the completed inventory and trace the twenty time-context gaps and
-   one unresolved artifact reference through saved provenance.
-2. Preserve the completed fixed-parameter comparison and its frozen sources;
-   do not repeat projections to regenerate documentation.
-3. Complete the separately frozen horizontal-only full-calibration controls,
-   retaining every column and checking unscored-coordinate effects. Height-only
-   qualification remains a separate open problem; preserve the failed repeat check.
-4. Only after those controls pass, freeze a small matched horizontal-only observed
-   refit study with finite limits, common initialization rules and independent repeats.
-5. Develop gyro/acceleration contribution controls with explicit replacement
-   constraints, then held-out prediction and calibrated uncertainty.
+The [saved-fit audit](../ilvis0-horizontal-repeat-audit-20261019/README.md)
+reviewed all 24 endpoints and twelve pairs without original reads or native
+predictions. Two zero-field globe pairs settle about 19 ms apart in timing. The
+unsubtracted flat pair agrees in cost but misses the 1 mm prediction-RMS limit
+by about 0.2 mm. Ordinary and range-scaled affine corrections agree closely;
+rescaling alone does not explain the failures.
 
-Removing receiver heights from the objective still leaves heights in the current
-initialization, covariance and trajectory context. That experiment measures
-sensitivity to a constraint; it does not establish independence from altitude or
-the coordinate datum. Likewise, coordinate projections retain both IMU channels
-and do not isolate the gyroscope by themselves. No fused navigation attitude or
-angular rate may substitute for a removed observation stream.
+The completed [28-point diagnostic](../ilvis0-horizontal-repeat-probes-20261019/INTERPRETATION.md)
+reproduced every endpoint. Swapping only timing moves horizontal predictions by
+4.43 m; the complete parameter midpoint moves them by about 4 mm. The flat
+gravity swap changes height by 669 m without changing the horizontal score.
+These checks identify coupled timing/calibration and unobserved vertical freedom.
 
-The existing findings and all frozen studies remain unchanged. No observed
-ablation run has started. [Detailed scope](PLAN.md) · [Current findings](../CURRENT_STATUS.md) ·
+The completed [29-point timing check](../ilvis0-horizontal-timing-path-20261019/DIAGNOSIS.md)
+finds derivative differences of 0.008–0.015% in vector norm without crossing a
+nominal boundary. The full parameter path is consistent with different locally
+stationary solutions. Neither diagnostic performs optimization or relabeling.
+
+## What remains
+
+- Complete the [matched multi-start comparison](../ilvis0-horizontal-multistart-20261019/OVERVIEW.md).
+  Its [software qualification](../ilvis0-multistart-controls-v3-20261019/README.md)
+  passed all four known-answer systems. All models receive the same timing grid,
+  independent seed families and unchanged repeat limits; every attempt is kept.
+  An attempt-level report and calibration CSV are generated automatically from
+  verified saved results at completion, for separate publication.
+- Develop gyro/acceleration contribution controls with explicit replacement
+  constraints; fused navigation cannot replace a removed observation stream.
+- Test held-out predictions, residual uncertainty and shared-flight dependence.
+- Preserve the [artifact inventory](../ilvis0-contribution-inventory-20261018/COVERAGE.md):
+  164 ready primaries, eighteen complete six-fit sets. Trace twenty saved-time
+  gaps and one unresolved reference separately without replacing historical fits.
+
+The projection adapter passed nineteen constructed checks using correct marginal
+covariance and every nuisance column. The subsequent solver studies preserve
+their failed stages and completed horizontal-only qualification; height-only
+refitting remains unqualified. [Study history](../STUDIES.md).
+
+[Detailed scope](PLAN.md) · [Current full-position findings](../CURRENT_STATUS.md) ·
 [Next analyses](../NEXT_STEPS.md).

@@ -1,0 +1,40 @@
+{
+  "artifacts": {
+    "esa-reported-imu-files.csv": "8aeb20e040993a8d512526d4cccfedf897f478ca4c55a6d02ebced0221128af3",
+    "esa-reported-lines.csv": "fd3ebb438c0d1e77df9aace98f67835afc3b6518fb50abc1711580de56d7322e",
+    "smartpnt-files.csv": "b71b8c4722f0f000be3983669214d92361a35622aec437ef53502ab19b77875b",
+    "smartpnt-long-record-report.json": "b6a5cbdf71a89d6b54ff493a304f8d57b74f4045a0d09710168ae1f4747b7e86",
+    "smartpnt-sample-report.json": "118db6136689ecfaeb8efd3c02219c9b4f8a578c89a7cf71078e8dbbab1a9ffb"
+  },
+  "earth_model_fits": 0,
+  "existing_study_criteria_changed": false,
+  "inputs": {
+    "data/external-imu-survey-20261018/references/ReadIMR.cpp": "95585f09e358b71b2cc9206a90a0bcfc51a7d330bd2765173c4dd242aeb91f51",
+    "data/external-imu-survey-20261018/references/acquisition.json": "eac395ec7edbc854cd564fc6c5d41f927a95d4654669976fdd5449e1f7d24c03",
+    "data/external-imu-survey-20261018/references/esa-catalog-page.html": "1d53319b8cbb292c953d668ddc91236a85aa84c95519b3f593e6fd2dcc8ab88c",
+    "data/external-imu-survey-20261018/references/esa-final-report.pdf": "5b60a482faee091d696e5b99bb118bf58d26e2fa920bf1c51e8628fdf8710e0b",
+    "data/external-imu-survey-20261018/references/esa-final-report.txt": "363188571b1e6cb723c8400a33662098b185fc1da6d8607e051bcf755f5839e0",
+    "data/external-imu-survey-20261018/references/smartpnt-catalog-1.json": "1545a56c43e3d1ab61d682a719c6d2552230f6a12946ea55b2fb9a5b5aaa2faf",
+    "data/external-imu-survey-20261018/references/smartpnt-catalog-2.json": "1d68eb952ae7c7c1486182344855a90802cf2bd7e9911f65e87baf4fafdfb957",
+    "data/external-imu-survey-20261018/references/smartpnt-catalog-3.json": "ac46657b7c9da4600adca1d3a8b9f671bda9f5d56cd48af385cf065cc2da317f",
+    "data/external-imu-survey-20261018/references/smartpnt-catalog-4.json": "40fbe8263d6c20721de6174d86c1f520fcc9ef0fb2fe4c1cc952813614758ef3",
+    "data/external-imu-survey-20261018/smartpnt-long-record/first-record.bin": "3ee067e5b80263e5970208be26313424bb7e541841f98695ad9ffc929b02bf11",
+    "data/external-imu-survey-20261018/smartpnt-long-record/header.bin": "01dc1f7cf29b46368f8c8e38a4131bdcdb6487f1d9d42c8db9bf2191fb5bcccd",
+    "data/external-imu-survey-20261018/smartpnt-long-record/last-record.bin": "91d8fab29a4fbbc8c94590efb79e894010e45392c5a73c74072d23466eb99252",
+    "data/external-imu-survey-20261018/smartpnt-long-record/range-receipts.json": "3037589939e3b4cc4d3cd5a0ac76777db2506fc57d853e9eee9cab0e093c595b",
+    "data/external-imu-survey-20261018/smartpnt-sample/HG4930.imr": "0205d9e6a847d6e9026125ffc117dec4c06dea027f6e20c1804ae219e7dcbd7d",
+    "data/external-imu-survey-20261018/smartpnt-sample/README.xml": "bd0e13af3f144d307967421969fc0b55f633cb966a7572a4a81ccf34611ce477",
+    "data/external-imu-survey-20261018/smartpnt-sample/ROVE.21O": "bb774d84ded36053d4786f5da0fe2ac2388844573fd1863bfba519dd3c0db720",
+    "data/external-imu-survey-20261018/smartpnt-sample/ROVE_GroundTruth.txt": "e958e1f37bc03ab5f16ed92c0614779a40ff525986f83c11f84f6fad424b59f9"
+  },
+  "native_predictions": 0,
+  "physical_artifact": {
+    "path": "data/external-imu-survey-20261018/smartpnt-sample/imu-physical.csv.gz",
+    "sha256": "f7914e9e5dcfa71a0a384400f90b2c3803b5daee5c71d7167f4711484bc32fae"
+  },
+  "sources": {
+    "analysis/lll/imr.py": "e1bab56cfc3309a7c61e0994e4f5656ea215c376f2a810442e01577b7737cc59",
+    "analysis/tests/test_imr.py": "aefba03764c6081ed4cdbef466ebb01a0239e70288bcc6291849d4b25b56b92c",
+    "docs/external-imu-data/build_inventory.py": "1e71e81b1f4a8e9778f6724634deda952be9d7857daddbfdcf877a58dbfdffdd"
+  }
+}

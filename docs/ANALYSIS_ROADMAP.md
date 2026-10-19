@@ -37,7 +37,17 @@ a particular quantity from being separated, rather than stopping all modeling.
 
 Numerical recovery is complete for all 53 selected stretches. The next priorities
 are measurement-contribution checks, residual uncertainty, held-out prediction
-and shared-flight dependence. Numerical completion, fit adequacy and statistical
+and shared-flight dependence. The [first horizontal-only refits](ilvis0-horizontal-repeat-audit-20261019/INTERPRETATION.md)
+are complete: one repeat-checked globe preference, one unresolved sensitivity
+comparison, with all 24 individual fits passed. The completed
+[fixed-point probes](ilvis0-horizontal-repeat-probes-20261019/INTERPRETATION.md)
+isolate coupled timing/calibration and unobserved height freedom. The completed
+[timing-path check](ilvis0-horizontal-timing-path-20261019/DIAGNOSIS.md) finds no
+gross derivative fault. The [multi-start qualification](ilvis0-multistart-controls-v3-20261019/README.md)
+passed all four known-answer systems. The separate
+[matched recorded-data comparison](ilvis0-horizontal-multistart-20261019/OVERVIEW.md)
+uses identical timing grids across models without altering full-position findings.
+Numerical completion, fit adequacy and statistical
 support remain separate checks; a completed fit does not by itself establish a
 calibrated scientific detection. The numbered sequence below records the recovery
 stages and their historical counts.

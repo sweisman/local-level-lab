@@ -1,0 +1,653 @@
+path,size_bytes,group,date,instrument_token,platform_token,raw_imu,raw_gnss,processed_reference,sample_downloaded,eligibility
+Data Formats/Coordinate frame and mounting parameters.pdf,156335,Data Formats,,,,False,False,False,False,not evaluated
+Data Formats/IMUErrorModel.txt,4880,Data Formats,,,,False,False,False,False,not evaluated
+Data Formats/ReadIMR.cpp,9971,Data Formats,,,,False,False,False,False,not evaluated
+Data Formats/Waypoint_Software_User_Manual.pdf,5348383,Data Formats,,,,False,False,False,False,not evaluated
+Dataset/Data01_20230102_ISA-100C_Vehicle_Complex/BASE.23O,234755644,Data01_20230102_ISA-100C_Vehicle_Complex,20230102,ISA-100C,Vehicle,False,True,False,False,not evaluated
+Dataset/Data01_20230102_ISA-100C_Vehicle_Complex/FSAS.imr,57600512,Data01_20230102_ISA-100C_Vehicle_Complex,20230102,ISA-100C,Vehicle,True,False,False,False,not evaluated
+Dataset/Data01_20230102_ISA-100C_Vehicle_Complex/FSAS_GroundTruth.txt,5903098,Data01_20230102_ISA-100C_Vehicle_Complex,20230102,ISA-100C,Vehicle,False,False,True,False,not evaluated
+Dataset/Data01_20230102_ISA-100C_Vehicle_Complex/Figures/Ambiguity fixing status.png,31398,Data01_20230102_ISA-100C_Vehicle_Complex,20230102,ISA-100C,Vehicle,False,False,False,False,not evaluated
+Dataset/Data01_20230102_ISA-100C_Vehicle_Complex/Figures/Forward and reverse separation of attitude.png,73289,Data01_20230102_ISA-100C_Vehicle_Complex,20230102,ISA-100C,Vehicle,False,False,False,False,not evaluated
+Dataset/Data01_20230102_ISA-100C_Vehicle_Complex/Figures/Forward and reverse separation of position.png,99131,Data01_20230102_ISA-100C_Vehicle_Complex,20230102,ISA-100C,Vehicle,False,False,False,False,not evaluated
+Dataset/Data01_20230102_ISA-100C_Vehicle_Complex/Figures/Height profile.png,77162,Data01_20230102_ISA-100C_Vehicle_Complex,20230102,ISA-100C,Vehicle,False,False,False,False,not evaluated
+Dataset/Data01_20230102_ISA-100C_Vehicle_Complex/Figures/NSAT.png,108869,Data01_20230102_ISA-100C_Vehicle_Complex,20230102,ISA-100C,Vehicle,False,False,False,False,not evaluated
+Dataset/Data01_20230102_ISA-100C_Vehicle_Complex/Figures/PDOP.png,58901,Data01_20230102_ISA-100C_Vehicle_Complex,20230102,ISA-100C,Vehicle,False,False,False,False,not evaluated
+Dataset/Data01_20230102_ISA-100C_Vehicle_Complex/Figures/Trajectory.png,2051392,Data01_20230102_ISA-100C_Vehicle_Complex,20230102,ISA-100C,Vehicle,False,False,False,False,not evaluated
+Dataset/Data01_20230102_ISA-100C_Vehicle_Complex/ISA-100C.imr,57600224,Data01_20230102_ISA-100C_Vehicle_Complex,20230102,ISA-100C,Vehicle,True,False,False,False,not evaluated
+Dataset/Data01_20230102_ISA-100C_Vehicle_Complex/ISA-100C_GroundTruth.txt,5902983,Data01_20230102_ISA-100C_Vehicle_Complex,20230102,ISA-100C,Vehicle,False,False,True,False,not evaluated
+Dataset/Data01_20230102_ISA-100C_Vehicle_Complex/POMS-G6615.imr,28800512,Data01_20230102_ISA-100C_Vehicle_Complex,20230102,ISA-100C,Vehicle,True,False,False,False,not evaluated
+Dataset/Data01_20230102_ISA-100C_Vehicle_Complex/POMS-G6615_GroundTruth.txt,5903098,Data01_20230102_ISA-100C_Vehicle_Complex,20230102,ISA-100C,Vehicle,False,False,True,False,not evaluated
+Dataset/Data01_20230102_ISA-100C_Vehicle_Complex/README.xml,2026,Data01_20230102_ISA-100C_Vehicle_Complex,20230102,ISA-100C,Vehicle,False,False,False,False,not evaluated
+Dataset/Data01_20230102_ISA-100C_Vehicle_Complex/ROVE.23O,63238248,Data01_20230102_ISA-100C_Vehicle_Complex,20230102,ISA-100C,Vehicle,False,True,False,False,not evaluated
+Dataset/Data01_20230102_ISA-100C_Vehicle_Complex/ROVE_GroundTruth.txt,5903098,Data01_20230102_ISA-100C_Vehicle_Complex,20230102,ISA-100C,Vehicle,False,False,True,False,not evaluated
+Dataset/Data01_20230102_ISA-100C_Vehicle_Complex/STIM300.imr,57600512,Data01_20230102_ISA-100C_Vehicle_Complex,20230102,ISA-100C,Vehicle,True,False,False,False,not evaluated
+Dataset/Data01_20230102_ISA-100C_Vehicle_Complex/STIM300_GroundTruth.txt,5903098,Data01_20230102_ISA-100C_Vehicle_Complex,20230102,ISA-100C,Vehicle,False,False,True,False,not evaluated
+Dataset/Data01_20230102_ISA-100C_Vehicle_Complex/Trajectory.kml,14119038,Data01_20230102_ISA-100C_Vehicle_Complex,20230102,ISA-100C,Vehicle,False,False,False,False,not evaluated
+Dataset/Data01_20230102_ISA-100C_Vehicle_Complex/WUM0MGXFIN_20230020000_01D_05M_ORB.SP3,2810532,Data01_20230102_ISA-100C_Vehicle_Complex,20230102,ISA-100C,Vehicle,False,False,False,False,not evaluated
+Dataset/Data01_20230102_ISA-100C_Vehicle_Complex/WUM0MGXFIN_20230020000_01D_30S_CLK.CLK,20685093,Data01_20230102_ISA-100C_Vehicle_Complex,20230102,ISA-100C,Vehicle,False,False,False,False,not evaluated
+Dataset/Data01_20230102_ISA-100C_Vehicle_Complex/brdm0020.23p,6967774,Data01_20230102_ISA-100C_Vehicle_Complex,20230102,ISA-100C,Vehicle,False,False,False,False,not evaluated
+Dataset/Data02_20220309_ISA-100C_Vehicle_Complex/BASE.22o,159545050,Data02_20220309_ISA-100C_Vehicle_Complex,20220309,ISA-100C,Vehicle,False,True,False,False,not evaluated
+Dataset/Data02_20220309_ISA-100C_Vehicle_Complex/Figures/Ambiguity fixing status.png,34667,Data02_20220309_ISA-100C_Vehicle_Complex,20220309,ISA-100C,Vehicle,False,False,False,False,not evaluated
+Dataset/Data02_20220309_ISA-100C_Vehicle_Complex/Figures/Forward and reverse separation of attitude.png,96339,Data02_20220309_ISA-100C_Vehicle_Complex,20220309,ISA-100C,Vehicle,False,False,False,False,not evaluated
+Dataset/Data02_20220309_ISA-100C_Vehicle_Complex/Figures/Forward and reverse separation of position.png,94480,Data02_20220309_ISA-100C_Vehicle_Complex,20220309,ISA-100C,Vehicle,False,False,False,False,not evaluated
+Dataset/Data02_20220309_ISA-100C_Vehicle_Complex/Figures/Height profile.png,54946,Data02_20220309_ISA-100C_Vehicle_Complex,20220309,ISA-100C,Vehicle,False,False,False,False,not evaluated
+Dataset/Data02_20220309_ISA-100C_Vehicle_Complex/Figures/NSAT.png,116344,Data02_20220309_ISA-100C_Vehicle_Complex,20220309,ISA-100C,Vehicle,False,False,False,False,not evaluated
+Dataset/Data02_20220309_ISA-100C_Vehicle_Complex/Figures/PDOP.png,53027,Data02_20220309_ISA-100C_Vehicle_Complex,20220309,ISA-100C,Vehicle,False,False,False,False,not evaluated
+Dataset/Data02_20220309_ISA-100C_Vehicle_Complex/Figures/Trajectory.png,2116658,Data02_20220309_ISA-100C_Vehicle_Complex,20220309,ISA-100C,Vehicle,False,False,False,False,not evaluated
+Dataset/Data02_20220309_ISA-100C_Vehicle_Complex/ISA-100C.imr,40141216,Data02_20220309_ISA-100C_Vehicle_Complex,20220309,ISA-100C,Vehicle,True,False,False,False,not evaluated
+Dataset/Data02_20220309_ISA-100C_Vehicle_Complex/ISA-100C_GroundTruth.txt,4082854,Data02_20220309_ISA-100C_Vehicle_Complex,20220309,ISA-100C,Vehicle,False,False,True,False,not evaluated
+Dataset/Data02_20220309_ISA-100C_Vehicle_Complex/README.xml,865,Data02_20220309_ISA-100C_Vehicle_Complex,20220309,ISA-100C,Vehicle,False,False,False,False,not evaluated
+Dataset/Data02_20220309_ISA-100C_Vehicle_Complex/ROVE.22O,51592385,Data02_20220309_ISA-100C_Vehicle_Complex,20220309,ISA-100C,Vehicle,False,True,False,False,not evaluated
+Dataset/Data02_20220309_ISA-100C_Vehicle_Complex/ROVE_GroundTruth.txt,4082969,Data02_20220309_ISA-100C_Vehicle_Complex,20220309,ISA-100C,Vehicle,False,False,True,False,not evaluated
+Dataset/Data02_20220309_ISA-100C_Vehicle_Complex/Trajectory.kml,9832406,Data02_20220309_ISA-100C_Vehicle_Complex,20220309,ISA-100C,Vehicle,False,False,False,False,not evaluated
+Dataset/Data02_20220309_ISA-100C_Vehicle_Complex/WUM0MGXFIN_20220680000_01D_15M_ORB.SP3,707751,Data02_20220309_ISA-100C_Vehicle_Complex,20220309,ISA-100C,Vehicle,False,False,False,False,not evaluated
+Dataset/Data02_20220309_ISA-100C_Vehicle_Complex/WUM0MGXFIN_20220680000_01D_30S_CLK.CLK,20574790,Data02_20220309_ISA-100C_Vehicle_Complex,20220309,ISA-100C,Vehicle,False,False,False,False,not evaluated
+Dataset/Data02_20220309_ISA-100C_Vehicle_Complex/brdm0680.22p,7061180,Data02_20220309_ISA-100C_Vehicle_Complex,20220309,ISA-100C,Vehicle,False,False,False,False,not evaluated
+Dataset/Data03_20150722_FSAS_Vehicle_Opensky/BASE.15O,16146247,Data03_20150722_FSAS_Vehicle_Opensky,20150722,FSAS,Vehicle,False,True,False,False,not evaluated
+Dataset/Data03_20150722_FSAS_Vehicle_Opensky/FSAS.imr,77690112,Data03_20150722_FSAS_Vehicle_Opensky,20150722,FSAS,Vehicle,True,False,False,False,not evaluated
+Dataset/Data03_20150722_FSAS_Vehicle_Opensky/FSAS_GroundTruth.txt,6159683,Data03_20150722_FSAS_Vehicle_Opensky,20150722,FSAS,Vehicle,False,False,True,False,not evaluated
+Dataset/Data03_20150722_FSAS_Vehicle_Opensky/Figures/Ambiguity fixing status.png,26600,Data03_20150722_FSAS_Vehicle_Opensky,20150722,FSAS,Vehicle,False,False,False,False,not evaluated
+Dataset/Data03_20150722_FSAS_Vehicle_Opensky/Figures/Forward and reverse separation of attitude.png,99127,Data03_20150722_FSAS_Vehicle_Opensky,20150722,FSAS,Vehicle,False,False,False,False,not evaluated
+Dataset/Data03_20150722_FSAS_Vehicle_Opensky/Figures/Forward and reverse separation of position.png,70136,Data03_20150722_FSAS_Vehicle_Opensky,20150722,FSAS,Vehicle,False,False,False,False,not evaluated
+Dataset/Data03_20150722_FSAS_Vehicle_Opensky/Figures/Height profile.png,74677,Data03_20150722_FSAS_Vehicle_Opensky,20150722,FSAS,Vehicle,False,False,False,False,not evaluated
+Dataset/Data03_20150722_FSAS_Vehicle_Opensky/Figures/NSAT.png,54477,Data03_20150722_FSAS_Vehicle_Opensky,20150722,FSAS,Vehicle,False,False,False,False,not evaluated
+Dataset/Data03_20150722_FSAS_Vehicle_Opensky/Figures/PDOP.png,48523,Data03_20150722_FSAS_Vehicle_Opensky,20150722,FSAS,Vehicle,False,False,False,False,not evaluated
+Dataset/Data03_20150722_FSAS_Vehicle_Opensky/Figures/Trajectory.png,1860636,Data03_20150722_FSAS_Vehicle_Opensky,20150722,FSAS,Vehicle,False,False,False,False,not evaluated
+Dataset/Data03_20150722_FSAS_Vehicle_Opensky/README.xml,760,Data03_20150722_FSAS_Vehicle_Opensky,20150722,FSAS,Vehicle,False,False,False,False,not evaluated
+Dataset/Data03_20150722_FSAS_Vehicle_Opensky/ROVE.15O,19162181,Data03_20150722_FSAS_Vehicle_Opensky,20150722,FSAS,Vehicle,False,True,False,False,not evaluated
+Dataset/Data03_20150722_FSAS_Vehicle_Opensky/ROVE_GroundTruth.txt,6159796,Data03_20150722_FSAS_Vehicle_Opensky,20150722,FSAS,Vehicle,False,False,True,False,not evaluated
+Dataset/Data03_20150722_FSAS_Vehicle_Opensky/Trajectory.kml,3767042,Data03_20150722_FSAS_Vehicle_Opensky,20150722,FSAS,Vehicle,False,False,False,False,not evaluated
+Dataset/Data03_20150722_FSAS_Vehicle_Opensky/brdm2030.15p,1571294,Data03_20150722_FSAS_Vehicle_Opensky,20150722,FSAS,Vehicle,False,False,False,False,not evaluated
+Dataset/Data03_20150722_FSAS_Vehicle_Opensky/wum18543.clk,3613563,Data03_20150722_FSAS_Vehicle_Opensky,20150722,FSAS,Vehicle,False,False,False,False,not evaluated
+Dataset/Data03_20150722_FSAS_Vehicle_Opensky/wum18543.sp3,432458,Data03_20150722_FSAS_Vehicle_Opensky,20150722,FSAS,Vehicle,False,False,False,False,not evaluated
+Dataset/Data04_20220315_FSAS_Vehicle_Complex/BASE.22o,105161107,Data04_20220315_FSAS_Vehicle_Complex,20220315,FSAS,Vehicle,False,True,False,False,not evaluated
+Dataset/Data04_20220315_FSAS_Vehicle_Complex/FSAS.imr,42380960,Data04_20220315_FSAS_Vehicle_Complex,20220315,FSAS,Vehicle,True,False,False,False,not evaluated
+Dataset/Data04_20220315_FSAS_Vehicle_Complex/FSAS_GroundTruth.txt,4310706,Data04_20220315_FSAS_Vehicle_Complex,20220315,FSAS,Vehicle,False,False,True,False,not evaluated
+Dataset/Data04_20220315_FSAS_Vehicle_Complex/Figures/Ambiguity fixing status.png,34280,Data04_20220315_FSAS_Vehicle_Complex,20220315,FSAS,Vehicle,False,False,False,False,not evaluated
+Dataset/Data04_20220315_FSAS_Vehicle_Complex/Figures/Forward and reverse separation of attitude.png,84706,Data04_20220315_FSAS_Vehicle_Complex,20220315,FSAS,Vehicle,False,False,False,False,not evaluated
+Dataset/Data04_20220315_FSAS_Vehicle_Complex/Figures/Forward and reverse separation of position.png,75503,Data04_20220315_FSAS_Vehicle_Complex,20220315,FSAS,Vehicle,False,False,False,False,not evaluated
+Dataset/Data04_20220315_FSAS_Vehicle_Complex/Figures/Height profile.png,62981,Data04_20220315_FSAS_Vehicle_Complex,20220315,FSAS,Vehicle,False,False,False,False,not evaluated
+Dataset/Data04_20220315_FSAS_Vehicle_Complex/Figures/NSAT.png,112206,Data04_20220315_FSAS_Vehicle_Complex,20220315,FSAS,Vehicle,False,False,False,False,not evaluated
+Dataset/Data04_20220315_FSAS_Vehicle_Complex/Figures/PDOP.png,47485,Data04_20220315_FSAS_Vehicle_Complex,20220315,FSAS,Vehicle,False,False,False,False,not evaluated
+Dataset/Data04_20220315_FSAS_Vehicle_Complex/Figures/Trajectory.png,1828676,Data04_20220315_FSAS_Vehicle_Complex,20220315,FSAS,Vehicle,False,False,False,False,not evaluated
+Dataset/Data04_20220315_FSAS_Vehicle_Complex/README.xml,854,Data04_20220315_FSAS_Vehicle_Complex,20220315,FSAS,Vehicle,False,False,False,False,not evaluated
+Dataset/Data04_20220315_FSAS_Vehicle_Complex/ROVE.22O,31715074,Data04_20220315_FSAS_Vehicle_Complex,20220315,FSAS,Vehicle,False,True,False,False,not evaluated
+Dataset/Data04_20220315_FSAS_Vehicle_Complex/ROVE_GroundTruth.txt,4310820,Data04_20220315_FSAS_Vehicle_Complex,20220315,FSAS,Vehicle,False,False,True,False,not evaluated
+Dataset/Data04_20220315_FSAS_Vehicle_Complex/Trajectory.kml,10381140,Data04_20220315_FSAS_Vehicle_Complex,20220315,FSAS,Vehicle,False,False,False,False,not evaluated
+Dataset/Data04_20220315_FSAS_Vehicle_Complex/WUM0MGXFIN_20220740000_01D_15M_ORB.SP3,701895,Data04_20220315_FSAS_Vehicle_Complex,20220315,FSAS,Vehicle,False,False,False,False,not evaluated
+Dataset/Data04_20220315_FSAS_Vehicle_Complex/WUM0MGXFIN_20220740000_01D_30S_CLK.CLK,20575030,Data04_20220315_FSAS_Vehicle_Complex,20220315,FSAS,Vehicle,False,False,False,False,not evaluated
+Dataset/Data04_20220315_FSAS_Vehicle_Complex/brdm0740.22p,7220323,Data04_20220315_FSAS_Vehicle_Complex,20220315,FSAS,Vehicle,False,False,False,False,not evaluated
+Dataset/Data05_20201128_HG4930_Vehicle_Opensky/BASE.20O,28897434,Data05_20201128_HG4930_Vehicle_Opensky,20201128,HG4930,Vehicle,False,True,False,False,not evaluated
+Dataset/Data05_20201128_HG4930_Vehicle_Opensky/Figures/Ambiguity fixing status.png,27121,Data05_20201128_HG4930_Vehicle_Opensky,20201128,HG4930,Vehicle,False,False,False,False,not evaluated
+Dataset/Data05_20201128_HG4930_Vehicle_Opensky/Figures/Forward and reverse separation of attitude.png,90486,Data05_20201128_HG4930_Vehicle_Opensky,20201128,HG4930,Vehicle,False,False,False,False,not evaluated
+Dataset/Data05_20201128_HG4930_Vehicle_Opensky/Figures/Forward and reverse separation of position.png,94531,Data05_20201128_HG4930_Vehicle_Opensky,20201128,HG4930,Vehicle,False,False,False,False,not evaluated
+Dataset/Data05_20201128_HG4930_Vehicle_Opensky/Figures/Height profile.png,54666,Data05_20201128_HG4930_Vehicle_Opensky,20201128,HG4930,Vehicle,False,False,False,False,not evaluated
+Dataset/Data05_20201128_HG4930_Vehicle_Opensky/Figures/NSAT.png,66353,Data05_20201128_HG4930_Vehicle_Opensky,20201128,HG4930,Vehicle,False,False,False,False,not evaluated
+Dataset/Data05_20201128_HG4930_Vehicle_Opensky/Figures/PDOP.png,40708,Data05_20201128_HG4930_Vehicle_Opensky,20201128,HG4930,Vehicle,False,False,False,False,not evaluated
+Dataset/Data05_20201128_HG4930_Vehicle_Opensky/Figures/Trajectory.png,1908560,Data05_20201128_HG4930_Vehicle_Opensky,20201128,HG4930,Vehicle,False,False,False,False,not evaluated
+Dataset/Data05_20201128_HG4930_Vehicle_Opensky/HG4930.imr,6225920,Data05_20201128_HG4930_Vehicle_Opensky,20201128,HG4930,Vehicle,True,False,False,False,not evaluated
+Dataset/Data05_20201128_HG4930_Vehicle_Opensky/HG4930_GroundTruth.txt,1266606,Data05_20201128_HG4930_Vehicle_Opensky,20201128,HG4930,Vehicle,False,False,True,False,not evaluated
+Dataset/Data05_20201128_HG4930_Vehicle_Opensky/README.xml,818,Data05_20201128_HG4930_Vehicle_Opensky,20201128,HG4930,Vehicle,False,False,False,False,not evaluated
+Dataset/Data05_20201128_HG4930_Vehicle_Opensky/ROVE.20O,50533658,Data05_20201128_HG4930_Vehicle_Opensky,20201128,HG4930,Vehicle,False,True,False,False,not evaluated
+Dataset/Data05_20201128_HG4930_Vehicle_Opensky/ROVE_GroundTruth.txt,1266720,Data05_20201128_HG4930_Vehicle_Opensky,20201128,HG4930,Vehicle,False,False,True,False,not evaluated
+Dataset/Data05_20201128_HG4930_Vehicle_Opensky/Trajectory.kml,3049636,Data05_20201128_HG4930_Vehicle_Opensky,20201128,HG4930,Vehicle,False,False,False,False,not evaluated
+Dataset/Data05_20201128_HG4930_Vehicle_Opensky/WUM0MGXFIN_20203330000_01D_15M_ORB.SP3,713607,Data05_20201128_HG4930_Vehicle_Opensky,20201128,HG4930,Vehicle,False,False,False,False,not evaluated
+Dataset/Data05_20201128_HG4930_Vehicle_Opensky/WUM0MGXFIN_20203330000_01D_30S_CLK.CLK,21058939,Data05_20201128_HG4930_Vehicle_Opensky,20201128,HG4930,Vehicle,False,False,False,False,not evaluated
+Dataset/Data05_20201128_HG4930_Vehicle_Opensky/brdm3330.20p,6530656,Data05_20201128_HG4930_Vehicle_Opensky,20201128,HG4930,Vehicle,False,False,False,False,not evaluated
+Dataset/Data06_20210115_HG4930_UAV_Opensky/BASE.21O,19510108,Data06_20210115_HG4930_UAV_Opensky,20210115,HG4930,UAV,False,True,False,False,not evaluated
+Dataset/Data06_20210115_HG4930_UAV_Opensky/Figures/Ambiguity fixing status.png,27670,Data06_20210115_HG4930_UAV_Opensky,20210115,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data06_20210115_HG4930_UAV_Opensky/Figures/Forward and reverse separation of attitude.png,71855,Data06_20210115_HG4930_UAV_Opensky,20210115,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data06_20210115_HG4930_UAV_Opensky/Figures/Forward and reverse separation of position.png,91730,Data06_20210115_HG4930_UAV_Opensky,20210115,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data06_20210115_HG4930_UAV_Opensky/Figures/Height profile.png,55476,Data06_20210115_HG4930_UAV_Opensky,20210115,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data06_20210115_HG4930_UAV_Opensky/Figures/NSAT.png,50745,Data06_20210115_HG4930_UAV_Opensky,20210115,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data06_20210115_HG4930_UAV_Opensky/Figures/PDOP.png,32802,Data06_20210115_HG4930_UAV_Opensky,20210115,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data06_20210115_HG4930_UAV_Opensky/Figures/Trajectory.png,1633991,Data06_20210115_HG4930_UAV_Opensky,20210115,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data06_20210115_HG4930_UAV_Opensky/HG4930.imr,3702784,Data06_20210115_HG4930_UAV_Opensky,20210115,HG4930,UAV,True,False,False,True,not evaluated
+Dataset/Data06_20210115_HG4930_UAV_Opensky/HG4930_GroundTruth.txt,753815,Data06_20210115_HG4930_UAV_Opensky,20210115,HG4930,UAV,False,False,True,False,not evaluated
+Dataset/Data06_20210115_HG4930_UAV_Opensky/README.xml,818,Data06_20210115_HG4930_UAV_Opensky,20210115,HG4930,UAV,False,False,False,True,not evaluated
+Dataset/Data06_20210115_HG4930_UAV_Opensky/ROVE.21O,31972639,Data06_20210115_HG4930_UAV_Opensky,20210115,HG4930,UAV,False,True,False,True,not evaluated
+Dataset/Data06_20210115_HG4930_UAV_Opensky/ROVE_GroundTruth.txt,753929,Data06_20210115_HG4930_UAV_Opensky,20210115,HG4930,UAV,False,False,True,True,not evaluated
+Dataset/Data06_20210115_HG4930_UAV_Opensky/Trajectory.kml,1815446,Data06_20210115_HG4930_UAV_Opensky,20210115,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data06_20210115_HG4930_UAV_Opensky/WUM0MGXFIN_20210150000_01D_15M_ORB.SP3,713607,Data06_20210115_HG4930_UAV_Opensky,20210115,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data06_20210115_HG4930_UAV_Opensky/WUM0MGXFIN_20210150000_01D_30S_CLK.CLK,20919899,Data06_20210115_HG4930_UAV_Opensky,20210115,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data06_20210115_HG4930_UAV_Opensky/brdm0150.21p,6627727,Data06_20210115_HG4930_UAV_Opensky,20210115,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data07_20210126_HG4930_UAV_Opensky/BASE.21o,31640220,Data07_20210126_HG4930_UAV_Opensky,20210126,HG4930,UAV,False,True,False,False,not evaluated
+Dataset/Data07_20210126_HG4930_UAV_Opensky/Figures/Ambiguity fixing status.png,27733,Data07_20210126_HG4930_UAV_Opensky,20210126,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data07_20210126_HG4930_UAV_Opensky/Figures/Forward and reverse separation of attitude.png,71762,Data07_20210126_HG4930_UAV_Opensky,20210126,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data07_20210126_HG4930_UAV_Opensky/Figures/Forward and reverse separation of position.png,77516,Data07_20210126_HG4930_UAV_Opensky,20210126,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data07_20210126_HG4930_UAV_Opensky/Figures/Height profile.png,55875,Data07_20210126_HG4930_UAV_Opensky,20210126,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data07_20210126_HG4930_UAV_Opensky/Figures/NSAT.png,45576,Data07_20210126_HG4930_UAV_Opensky,20210126,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data07_20210126_HG4930_UAV_Opensky/Figures/PDOP.png,33546,Data07_20210126_HG4930_UAV_Opensky,20210126,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data07_20210126_HG4930_UAV_Opensky/Figures/Trajectory.png,1634892,Data07_20210126_HG4930_UAV_Opensky,20210126,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data07_20210126_HG4930_UAV_Opensky/HG4930.imr,4161536,Data07_20210126_HG4930_UAV_Opensky,20210126,HG4930,UAV,True,False,False,False,not evaluated
+Dataset/Data07_20210126_HG4930_UAV_Opensky/HG4930_GroundTruth.txt,846906,Data07_20210126_HG4930_UAV_Opensky,20210126,HG4930,UAV,False,False,True,False,not evaluated
+Dataset/Data07_20210126_HG4930_UAV_Opensky/README.xml,818,Data07_20210126_HG4930_UAV_Opensky,20210126,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data07_20210126_HG4930_UAV_Opensky/ROVE.21O,38391987,Data07_20210126_HG4930_UAV_Opensky,20210126,HG4930,UAV,False,True,False,False,not evaluated
+Dataset/Data07_20210126_HG4930_UAV_Opensky/ROVE_GroundTruth.txt,847020,Data07_20210126_HG4930_UAV_Opensky,20210126,HG4930,UAV,False,False,True,False,not evaluated
+Dataset/Data07_20210126_HG4930_UAV_Opensky/Trajectory.kml,2039678,Data07_20210126_HG4930_UAV_Opensky,20210126,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data07_20210126_HG4930_UAV_Opensky/WUM0MGXFIN_20210260000_01D_15M_ORB.SP3,719463,Data07_20210126_HG4930_UAV_Opensky,20210126,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data07_20210126_HG4930_UAV_Opensky/WUM0MGXFIN_20210260000_01D_30S_CLK.CLK,21092699,Data07_20210126_HG4930_UAV_Opensky,20210126,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data07_20210126_HG4930_UAV_Opensky/brdm0260.21p,6503533,Data07_20210126_HG4930_UAV_Opensky,20210126,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data08_20210123_HGI300_UAV_Opensky/BASE.21O,16297382,Data08_20210123_HGI300_UAV_Opensky,20210123,HGI300,UAV,False,True,False,False,not evaluated
+Dataset/Data08_20210123_HGI300_UAV_Opensky/Figures/Ambiguity fixing status.png,29765,Data08_20210123_HGI300_UAV_Opensky,20210123,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data08_20210123_HGI300_UAV_Opensky/Figures/Forward and reverse separation of attitude.png,74504,Data08_20210123_HGI300_UAV_Opensky,20210123,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data08_20210123_HGI300_UAV_Opensky/Figures/Forward and reverse separation of position.png,67149,Data08_20210123_HGI300_UAV_Opensky,20210123,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data08_20210123_HGI300_UAV_Opensky/Figures/Height profile.png,48492,Data08_20210123_HGI300_UAV_Opensky,20210123,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data08_20210123_HGI300_UAV_Opensky/Figures/NSAT.png,45538,Data08_20210123_HGI300_UAV_Opensky,20210123,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data08_20210123_HGI300_UAV_Opensky/Figures/PDOP.png,32513,Data08_20210123_HGI300_UAV_Opensky,20210123,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data08_20210123_HGI300_UAV_Opensky/Figures/Trajectory.png,1655222,Data08_20210123_HGI300_UAV_Opensky,20210123,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data08_20210123_HGI300_UAV_Opensky/HGI300.imr,4014080,Data08_20210123_HGI300_UAV_Opensky,20210123,HGI300,UAV,True,False,False,False,not evaluated
+Dataset/Data08_20210123_HGI300_UAV_Opensky/HGI300_GroundTruth.txt,823685,Data08_20210123_HGI300_UAV_Opensky,20210123,HGI300,UAV,False,False,True,False,not evaluated
+Dataset/Data08_20210123_HGI300_UAV_Opensky/README.xml,821,Data08_20210123_HGI300_UAV_Opensky,20210123,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data08_20210123_HGI300_UAV_Opensky/ROVE.21O,64947769,Data08_20210123_HGI300_UAV_Opensky,20210123,HGI300,UAV,False,True,False,False,not evaluated
+Dataset/Data08_20210123_HGI300_UAV_Opensky/ROVE_GroundTruth.txt,823799,Data08_20210123_HGI300_UAV_Opensky,20210123,HGI300,UAV,False,False,True,False,not evaluated
+Dataset/Data08_20210123_HGI300_UAV_Opensky/Trajectory.kml,1970498,Data08_20210123_HGI300_UAV_Opensky,20210123,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data08_20210123_HGI300_UAV_Opensky/WUM0MGXFIN_20210230000_01D_15M_ORB.SP3,719463,Data08_20210123_HGI300_UAV_Opensky,20210123,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data08_20210123_HGI300_UAV_Opensky/WUM0MGXFIN_20210230000_01D_30S_CLK.CLK,21088939,Data08_20210123_HGI300_UAV_Opensky,20210123,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data08_20210123_HGI300_UAV_Opensky/brdm0230.21p,6590445,Data08_20210123_HGI300_UAV_Opensky,20210123,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data09_20210222_HGI300_UAV_Opensky/BASE.21o,86278790,Data09_20210222_HGI300_UAV_Opensky,20210222,HGI300,UAV,False,True,False,False,not evaluated
+Dataset/Data09_20210222_HGI300_UAV_Opensky/Figures/Ambiguity fixing status.png,27335,Data09_20210222_HGI300_UAV_Opensky,20210222,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data09_20210222_HGI300_UAV_Opensky/Figures/Forward and reverse separation of attitude.png,103186,Data09_20210222_HGI300_UAV_Opensky,20210222,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data09_20210222_HGI300_UAV_Opensky/Figures/Forward and reverse separation of position.png,88631,Data09_20210222_HGI300_UAV_Opensky,20210222,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data09_20210222_HGI300_UAV_Opensky/Figures/Height profile.png,47628,Data09_20210222_HGI300_UAV_Opensky,20210222,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data09_20210222_HGI300_UAV_Opensky/Figures/NSAT.png,61532,Data09_20210222_HGI300_UAV_Opensky,20210222,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data09_20210222_HGI300_UAV_Opensky/Figures/PDOP.png,37006,Data09_20210222_HGI300_UAV_Opensky,20210222,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data09_20210222_HGI300_UAV_Opensky/Figures/Trajectory.png,1554769,Data09_20210222_HGI300_UAV_Opensky,20210222,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data09_20210222_HGI300_UAV_Opensky/HGI300.imr,4390912,Data09_20210222_HGI300_UAV_Opensky,20210222,HGI300,UAV,True,False,False,False,not evaluated
+Dataset/Data09_20210222_HGI300_UAV_Opensky/HGI300_GroundTruth.txt,900438,Data09_20210222_HGI300_UAV_Opensky,20210222,HGI300,UAV,False,False,True,False,not evaluated
+Dataset/Data09_20210222_HGI300_UAV_Opensky/README.xml,821,Data09_20210222_HGI300_UAV_Opensky,20210222,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data09_20210222_HGI300_UAV_Opensky/ROVE.21O,64360037,Data09_20210222_HGI300_UAV_Opensky,20210222,HGI300,UAV,False,True,False,False,not evaluated
+Dataset/Data09_20210222_HGI300_UAV_Opensky/ROVE_GroundTruth.txt,900552,Data09_20210222_HGI300_UAV_Opensky,20210222,HGI300,UAV,False,False,True,False,not evaluated
+Dataset/Data09_20210222_HGI300_UAV_Opensky/Trajectory.kml,2152708,Data09_20210222_HGI300_UAV_Opensky,20210222,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data09_20210222_HGI300_UAV_Opensky/WUM0MGXFIN_20210530000_01D_15M_ORB.SP3,719463,Data09_20210222_HGI300_UAV_Opensky,20210222,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data09_20210222_HGI300_UAV_Opensky/WUM0MGXFIN_20210530000_01D_30S_CLK.CLK,20938149,Data09_20210222_HGI300_UAV_Opensky,20210222,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data09_20210222_HGI300_UAV_Opensky/brdm0530.21p,6898579,Data09_20210222_HGI300_UAV_Opensky,20210222,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data10_20150108_LCI_Marine_Opensky/BASE.15O,68718895,Data10_20150108_LCI_Marine_Opensky,20150108,LCI,Marine,False,True,False,False,not evaluated
+Dataset/Data10_20150108_LCI_Marine_Opensky/Figures/Ambiguity fixing status.png,28812,Data10_20150108_LCI_Marine_Opensky,20150108,LCI,Marine,False,False,False,False,not evaluated
+Dataset/Data10_20150108_LCI_Marine_Opensky/Figures/Forward and reverse separation of attitude.png,83769,Data10_20150108_LCI_Marine_Opensky,20150108,LCI,Marine,False,False,False,False,not evaluated
+Dataset/Data10_20150108_LCI_Marine_Opensky/Figures/Forward and reverse separation of position.png,53638,Data10_20150108_LCI_Marine_Opensky,20150108,LCI,Marine,False,False,False,False,not evaluated
+Dataset/Data10_20150108_LCI_Marine_Opensky/Figures/Height profile.png,50571,Data10_20150108_LCI_Marine_Opensky,20150108,LCI,Marine,False,False,False,False,not evaluated
+Dataset/Data10_20150108_LCI_Marine_Opensky/Figures/NSAT.png,54266,Data10_20150108_LCI_Marine_Opensky,20150108,LCI,Marine,False,False,False,False,not evaluated
+Dataset/Data10_20150108_LCI_Marine_Opensky/Figures/PDOP.png,44910,Data10_20150108_LCI_Marine_Opensky,20150108,LCI,Marine,False,False,False,False,not evaluated
+Dataset/Data10_20150108_LCI_Marine_Opensky/Figures/Trajectory.png,1662093,Data10_20150108_LCI_Marine_Opensky,20150108,LCI,Marine,False,False,False,False,not evaluated
+Dataset/Data10_20150108_LCI_Marine_Opensky/LCI.imr,68640832,Data10_20150108_LCI_Marine_Opensky,20150108,LCI,Marine,True,False,False,False,not evaluated
+Dataset/Data10_20150108_LCI_Marine_Opensky/LCI_GroundTruth.txt,7035708,Data10_20150108_LCI_Marine_Opensky,20150108,LCI,Marine,False,False,True,False,not evaluated
+Dataset/Data10_20150108_LCI_Marine_Opensky/README.xml,759,Data10_20150108_LCI_Marine_Opensky,20150108,LCI,Marine,False,False,False,False,not evaluated
+Dataset/Data10_20150108_LCI_Marine_Opensky/ROVE.15O,234168860,Data10_20150108_LCI_Marine_Opensky,20150108,LCI,Marine,False,True,False,False,not evaluated
+Dataset/Data10_20150108_LCI_Marine_Opensky/ROVE_GroundTruth.txt,7035822,Data10_20150108_LCI_Marine_Opensky,20150108,LCI,Marine,False,False,True,False,not evaluated
+Dataset/Data10_20150108_LCI_Marine_Opensky/Trajectory.kml,16848842,Data10_20150108_LCI_Marine_Opensky,20150108,LCI,Marine,False,False,False,False,not evaluated
+Dataset/Data10_20150108_LCI_Marine_Opensky/brdm0080.15p,2775554,Data10_20150108_LCI_Marine_Opensky,20150108,LCI,Marine,False,False,False,False,not evaluated
+Dataset/Data10_20150108_LCI_Marine_Opensky/wum18264.clk,3594383,Data10_20150108_LCI_Marine_Opensky,20150108,LCI,Marine,False,False,False,False,not evaluated
+Dataset/Data10_20150108_LCI_Marine_Opensky/wum18264.sp3,426602,Data10_20150108_LCI_Marine_Opensky,20150108,LCI,Marine,False,False,False,False,not evaluated
+Dataset/Data11_20221230_ISA-100C_CAR_Complex/Base.22O,174206646,Data11_20221230_ISA-100C_CAR_Complex,20221230,ISA-100C,CAR,False,True,False,False,not evaluated
+Dataset/Data11_20221230_ISA-100C_CAR_Complex/FSAS.imr,55584032,Data11_20221230_ISA-100C_CAR_Complex,20221230,ISA-100C,CAR,True,False,False,False,not evaluated
+Dataset/Data11_20221230_ISA-100C_CAR_Complex/FSAS_GroundTruth.txt,5670185,Data11_20221230_ISA-100C_CAR_Complex,20221230,ISA-100C,CAR,False,False,True,False,not evaluated
+Dataset/Data11_20221230_ISA-100C_CAR_Complex/Figures/Ambiguity fixing status.png,35395,Data11_20221230_ISA-100C_CAR_Complex,20221230,ISA-100C,CAR,False,False,False,False,not evaluated
+Dataset/Data11_20221230_ISA-100C_CAR_Complex/Figures/Forward and reverse separation of attitude.png,93411,Data11_20221230_ISA-100C_CAR_Complex,20221230,ISA-100C,CAR,False,False,False,False,not evaluated
+Dataset/Data11_20221230_ISA-100C_CAR_Complex/Figures/Forward and reverse separation of position.png,77076,Data11_20221230_ISA-100C_CAR_Complex,20221230,ISA-100C,CAR,False,False,False,False,not evaluated
+Dataset/Data11_20221230_ISA-100C_CAR_Complex/Figures/Height profile.png,84795,Data11_20221230_ISA-100C_CAR_Complex,20221230,ISA-100C,CAR,False,False,False,False,not evaluated
+Dataset/Data11_20221230_ISA-100C_CAR_Complex/Figures/NSAT.png,112098,Data11_20221230_ISA-100C_CAR_Complex,20221230,ISA-100C,CAR,False,False,False,False,not evaluated
+Dataset/Data11_20221230_ISA-100C_CAR_Complex/Figures/PDOP.png,102016,Data11_20221230_ISA-100C_CAR_Complex,20221230,ISA-100C,CAR,False,False,False,False,not evaluated
+Dataset/Data11_20221230_ISA-100C_CAR_Complex/ISA-100C.imr,55385312,Data11_20221230_ISA-100C_CAR_Complex,20221230,ISA-100C,CAR,True,False,False,False,not evaluated
+Dataset/Data11_20221230_ISA-100C_CAR_Complex/ISA-100C_GroundTruth.txt,5670070,Data11_20221230_ISA-100C_CAR_Complex,20221230,ISA-100C,CAR,False,False,True,False,not evaluated
+Dataset/Data11_20221230_ISA-100C_CAR_Complex/POMS-G6615.imr,31775328,Data11_20221230_ISA-100C_CAR_Complex,20221230,ISA-100C,CAR,True,False,False,False,not evaluated
+Dataset/Data11_20221230_ISA-100C_CAR_Complex/POMS-G6615_GroundTruth.txt,5670185,Data11_20221230_ISA-100C_CAR_Complex,20221230,ISA-100C,CAR,False,False,True,False,not evaluated
+Dataset/Data11_20221230_ISA-100C_CAR_Complex/README.xml,2177,Data11_20221230_ISA-100C_CAR_Complex,20221230,ISA-100C,CAR,False,False,False,False,not evaluated
+Dataset/Data11_20221230_ISA-100C_CAR_Complex/ROVE_01.22O,38962152,Data11_20221230_ISA-100C_CAR_Complex,20221230,ISA-100C,CAR,False,True,False,False,not evaluated
+Dataset/Data11_20221230_ISA-100C_CAR_Complex/ROVE_02.22O,40335151,Data11_20221230_ISA-100C_CAR_Complex,20221230,ISA-100C,CAR,False,True,False,False,not evaluated
+Dataset/Data11_20221230_ISA-100C_CAR_Complex/ROVE_03.22O,70158914,Data11_20221230_ISA-100C_CAR_Complex,20221230,ISA-100C,CAR,False,True,False,False,not evaluated
+Dataset/Data11_20221230_ISA-100C_CAR_Complex/ROVE_04.22o,90173338,Data11_20221230_ISA-100C_CAR_Complex,20221230,ISA-100C,CAR,False,True,False,False,not evaluated
+Dataset/Data11_20221230_ISA-100C_CAR_Complex/Rove_01_GroundTruth.txt,5670185,Data11_20221230_ISA-100C_CAR_Complex,20221230,ISA-100C,CAR,False,False,True,False,not evaluated
+Dataset/Data11_20221230_ISA-100C_CAR_Complex/Rove_02_GroundTruth.txt,5670184,Data11_20221230_ISA-100C_CAR_Complex,20221230,ISA-100C,CAR,False,False,True,False,not evaluated
+Dataset/Data11_20221230_ISA-100C_CAR_Complex/Rove_03_GroundTruth.txt,5670185,Data11_20221230_ISA-100C_CAR_Complex,20221230,ISA-100C,CAR,False,False,True,False,not evaluated
+Dataset/Data11_20221230_ISA-100C_CAR_Complex/Rove_04_GroundTruth.txt,5670185,Data11_20221230_ISA-100C_CAR_Complex,20221230,ISA-100C,CAR,False,False,True,False,not evaluated
+Dataset/Data11_20221230_ISA-100C_CAR_Complex/STIM300.imr,53334432,Data11_20221230_ISA-100C_CAR_Complex,20221230,ISA-100C,CAR,True,False,False,False,not evaluated
+Dataset/Data11_20221230_ISA-100C_CAR_Complex/STIM300_GroundTruth.txt,5670185,Data11_20221230_ISA-100C_CAR_Complex,20221230,ISA-100C,CAR,False,False,True,False,not evaluated
+Dataset/Data11_20221230_ISA-100C_CAR_Complex/Trajectory.kml,3399925,Data11_20221230_ISA-100C_CAR_Complex,20221230,ISA-100C,CAR,False,False,False,False,not evaluated
+Dataset/Data11_20221230_ISA-100C_CAR_Complex/WUM0MGXFIN_20223640000_01D_05M_ORB.SP3,2857188,Data11_20221230_ISA-100C_CAR_Complex,20221230,ISA-100C,CAR,False,False,False,False,not evaluated
+Dataset/Data11_20221230_ISA-100C_CAR_Complex/WUM0MGXFIN_20223640000_01D_30S_CLK.CLK,21102653,Data11_20221230_ISA-100C_CAR_Complex,20221230,ISA-100C,CAR,False,False,False,False,not evaluated
+Dataset/Data11_20221230_ISA-100C_CAR_Complex/brdm3640.22p,6920928,Data11_20221230_ISA-100C_CAR_Complex,20221230,ISA-100C,CAR,False,False,False,False,not evaluated
+Dataset/Data12_20230104_ISA-100C_CAR_Complex/BASE.23O,308639550,Data12_20230104_ISA-100C_CAR_Complex,20230104,ISA-100C,CAR,False,True,False,False,not evaluated
+Dataset/Data12_20230104_ISA-100C_CAR_Complex/FSAS.imr,131443200,Data12_20230104_ISA-100C_CAR_Complex,20230104,ISA-100C,CAR,True,False,False,False,not evaluated
+Dataset/Data12_20230104_ISA-100C_CAR_Complex/FSAS_GroundTruth.txt,13365122,Data12_20230104_ISA-100C_CAR_Complex,20230104,ISA-100C,CAR,False,False,True,False,not evaluated
+Dataset/Data12_20230104_ISA-100C_CAR_Complex/Figures/Ambiguity fixing status.png,37755,Data12_20230104_ISA-100C_CAR_Complex,20230104,ISA-100C,CAR,False,False,False,False,not evaluated
+Dataset/Data12_20230104_ISA-100C_CAR_Complex/Figures/Forward and reverse separation of attitude.png,106298,Data12_20230104_ISA-100C_CAR_Complex,20230104,ISA-100C,CAR,False,False,False,False,not evaluated
+Dataset/Data12_20230104_ISA-100C_CAR_Complex/Figures/Forward and reverse separation of position.png,86422,Data12_20230104_ISA-100C_CAR_Complex,20230104,ISA-100C,CAR,False,False,False,False,not evaluated
+Dataset/Data12_20230104_ISA-100C_CAR_Complex/Figures/Height profile.png,78055,Data12_20230104_ISA-100C_CAR_Complex,20230104,ISA-100C,CAR,False,False,False,False,not evaluated
+Dataset/Data12_20230104_ISA-100C_CAR_Complex/Figures/NSAT.png,121504,Data12_20230104_ISA-100C_CAR_Complex,20230104,ISA-100C,CAR,False,False,False,False,not evaluated
+Dataset/Data12_20230104_ISA-100C_CAR_Complex/Figures/PDOP.png,90050,Data12_20230104_ISA-100C_CAR_Complex,20230104,ISA-100C,CAR,False,False,False,False,not evaluated
+Dataset/Data12_20230104_ISA-100C_CAR_Complex/ISA-100C.imr,131243968,Data12_20230104_ISA-100C_CAR_Complex,20230104,ISA-100C,CAR,True,False,False,False,not evaluated
+Dataset/Data12_20230104_ISA-100C_CAR_Complex/ISA-100C_GroundTruth.txt,13365007,Data12_20230104_ISA-100C_CAR_Complex,20230104,ISA-100C,CAR,False,False,True,False,not evaluated
+Dataset/Data12_20230104_ISA-100C_CAR_Complex/POMS-G6615.imr,67098432,Data12_20230104_ISA-100C_CAR_Complex,20230104,ISA-100C,CAR,True,False,False,False,not evaluated
+Dataset/Data12_20230104_ISA-100C_CAR_Complex/POMS-G6615_GroundTruth.txt,13365122,Data12_20230104_ISA-100C_CAR_Complex,20230104,ISA-100C,CAR,False,False,True,False,not evaluated
+Dataset/Data12_20230104_ISA-100C_CAR_Complex/README.xml,2132,Data12_20230104_ISA-100C_CAR_Complex,20230104,ISA-100C,CAR,False,False,False,False,not evaluated
+Dataset/Data12_20230104_ISA-100C_CAR_Complex/ROVE_01.23O,97288591,Data12_20230104_ISA-100C_CAR_Complex,20230104,ISA-100C,CAR,False,True,False,False,not evaluated
+Dataset/Data12_20230104_ISA-100C_CAR_Complex/ROVE_02.23O,116818229,Data12_20230104_ISA-100C_CAR_Complex,20230104,ISA-100C,CAR,False,True,False,False,not evaluated
+Dataset/Data12_20230104_ISA-100C_CAR_Complex/ROVE_03.23O,141222733,Data12_20230104_ISA-100C_CAR_Complex,20230104,ISA-100C,CAR,False,True,False,False,not evaluated
+Dataset/Data12_20230104_ISA-100C_CAR_Complex/Rove_01_GroundTruth.txt,13365122,Data12_20230104_ISA-100C_CAR_Complex,20230104,ISA-100C,CAR,False,False,True,False,not evaluated
+Dataset/Data12_20230104_ISA-100C_CAR_Complex/Rove_02_GroundTruth.txt,13365121,Data12_20230104_ISA-100C_CAR_Complex,20230104,ISA-100C,CAR,False,False,True,False,not evaluated
+Dataset/Data12_20230104_ISA-100C_CAR_Complex/Rove_03_GroundTruth.txt,13365122,Data12_20230104_ISA-100C_CAR_Complex,20230104,ISA-100C,CAR,False,False,True,False,not evaluated
+Dataset/Data12_20230104_ISA-100C_CAR_Complex/STIM300.imr,130874752,Data12_20230104_ISA-100C_CAR_Complex,20230104,ISA-100C,CAR,True,False,False,False,not evaluated
+Dataset/Data12_20230104_ISA-100C_CAR_Complex/STIM300_GroundTruth.txt,13365122,Data12_20230104_ISA-100C_CAR_Complex,20230104,ISA-100C,CAR,False,False,True,False,not evaluated
+Dataset/Data12_20230104_ISA-100C_CAR_Complex/Trajectory.kml,8007300,Data12_20230104_ISA-100C_CAR_Complex,20230104,ISA-100C,CAR,False,False,False,False,not evaluated
+Dataset/Data12_20230104_ISA-100C_CAR_Complex/WUM0MGXFIN_20230040000_01D_05M_ORB.SP3,2857188,Data12_20230104_ISA-100C_CAR_Complex,20230104,ISA-100C,CAR,False,False,False,False,not evaluated
+Dataset/Data12_20230104_ISA-100C_CAR_Complex/WUM0MGXFIN_20230040000_01D_30S_CLK.CLK,20956173,Data12_20230104_ISA-100C_CAR_Complex,20230104,ISA-100C,CAR,False,False,False,False,not evaluated
+Dataset/Data12_20230104_ISA-100C_CAR_Complex/brdm0040.23p,6564962,Data12_20230104_ISA-100C_CAR_Complex,20230104,ISA-100C,CAR,False,False,False,False,not evaluated
+Dataset/Data13_20211118_ISA-100C_CAR_Complex/BASE.21o,94209332,Data13_20211118_ISA-100C_CAR_Complex,20211118,ISA-100C,CAR,False,True,False,False,not evaluated
+Dataset/Data13_20211118_ISA-100C_CAR_Complex/Figures/Ambiguity fixing status.png,35672,Data13_20211118_ISA-100C_CAR_Complex,20211118,ISA-100C,CAR,False,False,False,False,not evaluated
+Dataset/Data13_20211118_ISA-100C_CAR_Complex/Figures/Forward and reverse separation of attitude.png,96035,Data13_20211118_ISA-100C_CAR_Complex,20211118,ISA-100C,CAR,False,False,False,False,not evaluated
+Dataset/Data13_20211118_ISA-100C_CAR_Complex/Figures/Forward and reverse separation of position.png,64227,Data13_20211118_ISA-100C_CAR_Complex,20211118,ISA-100C,CAR,False,False,False,False,not evaluated
+Dataset/Data13_20211118_ISA-100C_CAR_Complex/Figures/Height profile.png,71085,Data13_20211118_ISA-100C_CAR_Complex,20211118,ISA-100C,CAR,False,False,False,False,not evaluated
+Dataset/Data13_20211118_ISA-100C_CAR_Complex/Figures/NSAT.png,113370,Data13_20211118_ISA-100C_CAR_Complex,20211118,ISA-100C,CAR,False,False,False,False,not evaluated
+Dataset/Data13_20211118_ISA-100C_CAR_Complex/Figures/PDOP.png,62589,Data13_20211118_ISA-100C_CAR_Complex,20211118,ISA-100C,CAR,False,False,False,False,not evaluated
+Dataset/Data13_20211118_ISA-100C_CAR_Complex/ISA-100C.imr,45489696,Data13_20211118_ISA-100C_CAR_Complex,20211118,ISA-100C,CAR,True,False,False,False,not evaluated
+Dataset/Data13_20211118_ISA-100C_CAR_Complex/ISA-100C_GroundTruth.txt,4657421,Data13_20211118_ISA-100C_CAR_Complex,20211118,ISA-100C,CAR,False,False,True,False,not evaluated
+Dataset/Data13_20211118_ISA-100C_CAR_Complex/README.xml,844,Data13_20211118_ISA-100C_CAR_Complex,20211118,ISA-100C,CAR,False,False,False,False,not evaluated
+Dataset/Data13_20211118_ISA-100C_CAR_Complex/ROVE.21O,38105806,Data13_20211118_ISA-100C_CAR_Complex,20211118,ISA-100C,CAR,False,True,False,False,not evaluated
+Dataset/Data13_20211118_ISA-100C_CAR_Complex/ROVE_GroundTruth.txt,4657536,Data13_20211118_ISA-100C_CAR_Complex,20211118,ISA-100C,CAR,False,False,True,False,not evaluated
+Dataset/Data13_20211118_ISA-100C_CAR_Complex/Trajectory.kml,2792623,Data13_20211118_ISA-100C_CAR_Complex,20211118,ISA-100C,CAR,False,False,False,False,not evaluated
+Dataset/Data13_20211118_ISA-100C_CAR_Complex/WUM0MGXFIN_20213220000_01D_15M_ORB.SP3,707751,Data13_20211118_ISA-100C_CAR_Complex,20211118,ISA-100C,CAR,False,False,False,False,not evaluated
+Dataset/Data13_20211118_ISA-100C_CAR_Complex/WUM0MGXFIN_20213220000_01D_30S_CLK.CLK,20575190,Data13_20211118_ISA-100C_CAR_Complex,20211118,ISA-100C,CAR,False,False,False,False,not evaluated
+Dataset/Data13_20211118_ISA-100C_CAR_Complex/brdm3220.21p,6686073,Data13_20211118_ISA-100C_CAR_Complex,20211118,ISA-100C,CAR,False,False,False,False,not evaluated
+Dataset/Data14_20200828_FSAS_CAR_Complex/BASE.20O,110279220,Data14_20200828_FSAS_CAR_Complex,20200828,FSAS,CAR,False,True,False,False,not evaluated
+Dataset/Data14_20200828_FSAS_CAR_Complex/FSAS.imr,54399200,Data14_20200828_FSAS_CAR_Complex,20200828,FSAS,CAR,True,False,False,False,not evaluated
+Dataset/Data14_20200828_FSAS_CAR_Complex/FSAS_GroundTruth.txt,5565256,Data14_20200828_FSAS_CAR_Complex,20200828,FSAS,CAR,False,False,True,False,not evaluated
+Dataset/Data14_20200828_FSAS_CAR_Complex/Figures/Ambiguity fixing status.png,30786,Data14_20200828_FSAS_CAR_Complex,20200828,FSAS,CAR,False,False,False,False,not evaluated
+Dataset/Data14_20200828_FSAS_CAR_Complex/Figures/Forward and reverse separation of attitude.png,115321,Data14_20200828_FSAS_CAR_Complex,20200828,FSAS,CAR,False,False,False,False,not evaluated
+Dataset/Data14_20200828_FSAS_CAR_Complex/Figures/Forward and reverse separation of position.png,104805,Data14_20200828_FSAS_CAR_Complex,20200828,FSAS,CAR,False,False,False,False,not evaluated
+Dataset/Data14_20200828_FSAS_CAR_Complex/Figures/Height profile.png,85872,Data14_20200828_FSAS_CAR_Complex,20200828,FSAS,CAR,False,False,False,False,not evaluated
+Dataset/Data14_20200828_FSAS_CAR_Complex/Figures/NSAT.png,117639,Data14_20200828_FSAS_CAR_Complex,20200828,FSAS,CAR,False,False,False,False,not evaluated
+Dataset/Data14_20200828_FSAS_CAR_Complex/Figures/PDOP.png,69755,Data14_20200828_FSAS_CAR_Complex,20200828,FSAS,CAR,False,False,False,False,not evaluated
+Dataset/Data14_20200828_FSAS_CAR_Complex/README.xml,834,Data14_20200828_FSAS_CAR_Complex,20200828,FSAS,CAR,False,False,False,False,not evaluated
+Dataset/Data14_20200828_FSAS_CAR_Complex/ROVE.20O,34580568,Data14_20200828_FSAS_CAR_Complex,20200828,FSAS,CAR,False,True,False,False,not evaluated
+Dataset/Data14_20200828_FSAS_CAR_Complex/ROVE_GroundTruth.txt,5565370,Data14_20200828_FSAS_CAR_Complex,20200828,FSAS,CAR,False,False,True,False,not evaluated
+Dataset/Data14_20200828_FSAS_CAR_Complex/Trajectory.kml,3335475,Data14_20200828_FSAS_CAR_Complex,20200828,FSAS,CAR,False,False,False,False,not evaluated
+Dataset/Data14_20200828_FSAS_CAR_Complex/WUM0MGXFIN_20202410000_01D_15M_ORB.SP3,660903,Data14_20200828_FSAS_CAR_Complex,20200828,FSAS,CAR,False,False,False,False,not evaluated
+Dataset/Data14_20200828_FSAS_CAR_Complex/WUM0MGXFIN_20202410000_01D_30S_CLK.CLK,19365110,Data14_20200828_FSAS_CAR_Complex,20200828,FSAS,CAR,False,False,False,False,not evaluated
+Dataset/Data14_20200828_FSAS_CAR_Complex/brdm2410.20p,6959796,Data14_20200828_FSAS_CAR_Complex,20200828,FSAS,CAR,False,False,False,False,not evaluated
+Dataset/Data15_20200922_FSAS_CAR_Complex/BASE.20O,114695284,Data15_20200922_FSAS_CAR_Complex,20200922,FSAS,CAR,False,True,False,False,not evaluated
+Dataset/Data15_20200922_FSAS_CAR_Complex/FSAS.imr,74996320,Data15_20200922_FSAS_CAR_Complex,20200922,FSAS,CAR,True,False,False,False,not evaluated
+Dataset/Data15_20200922_FSAS_CAR_Complex/FSAS_GroundTruth.txt,7676321,Data15_20200922_FSAS_CAR_Complex,20200922,FSAS,CAR,False,False,True,False,not evaluated
+Dataset/Data15_20200922_FSAS_CAR_Complex/Figures/Ambiguity fixing status.png,38732,Data15_20200922_FSAS_CAR_Complex,20200922,FSAS,CAR,False,False,False,False,not evaluated
+Dataset/Data15_20200922_FSAS_CAR_Complex/Figures/Forward and reverse separation of attitude.png,102139,Data15_20200922_FSAS_CAR_Complex,20200922,FSAS,CAR,False,False,False,False,not evaluated
+Dataset/Data15_20200922_FSAS_CAR_Complex/Figures/Forward and reverse separation of position.png,105334,Data15_20200922_FSAS_CAR_Complex,20200922,FSAS,CAR,False,False,False,False,not evaluated
+Dataset/Data15_20200922_FSAS_CAR_Complex/Figures/Height profile.png,95693,Data15_20200922_FSAS_CAR_Complex,20200922,FSAS,CAR,False,False,False,False,not evaluated
+Dataset/Data15_20200922_FSAS_CAR_Complex/Figures/NSAT.png,117313,Data15_20200922_FSAS_CAR_Complex,20200922,FSAS,CAR,False,False,False,False,not evaluated
+Dataset/Data15_20200922_FSAS_CAR_Complex/Figures/PDOP.png,83718,Data15_20200922_FSAS_CAR_Complex,20200922,FSAS,CAR,False,False,False,False,not evaluated
+Dataset/Data15_20200922_FSAS_CAR_Complex/README.xml,833,Data15_20200922_FSAS_CAR_Complex,20200922,FSAS,CAR,False,False,False,False,not evaluated
+Dataset/Data15_20200922_FSAS_CAR_Complex/ROVE.20O,41407056,Data15_20200922_FSAS_CAR_Complex,20200922,FSAS,CAR,False,True,False,False,not evaluated
+Dataset/Data15_20200922_FSAS_CAR_Complex/ROVE_GroundTruth.txt,7676435,Data15_20200922_FSAS_CAR_Complex,20200922,FSAS,CAR,False,False,True,False,not evaluated
+Dataset/Data15_20200922_FSAS_CAR_Complex/Trajectory.kml,4599445,Data15_20200922_FSAS_CAR_Complex,20200922,FSAS,CAR,False,False,False,False,not evaluated
+Dataset/Data15_20200922_FSAS_CAR_Complex/WUM0MGXFIN_20202660000_01D_15M_ORB.SP3,660903,Data15_20200922_FSAS_CAR_Complex,20200922,FSAS,CAR,False,False,False,False,not evaluated
+Dataset/Data15_20200922_FSAS_CAR_Complex/WUM0MGXFIN_20202660000_01D_30S_CLK.CLK,19365030,Data15_20200922_FSAS_CAR_Complex,20200922,FSAS,CAR,False,False,False,False,not evaluated
+Dataset/Data15_20200922_FSAS_CAR_Complex/brdm2660.20p,6760171,Data15_20200922_FSAS_CAR_Complex,20200922,FSAS,CAR,False,False,False,False,not evaluated
+Dataset/Data16_20211118_FSAS_CAR_Complex/BASE.21o,78381898,Data16_20211118_FSAS_CAR_Complex,20211118,FSAS,CAR,False,True,False,False,not evaluated
+Dataset/Data16_20211118_FSAS_CAR_Complex/FSAS.imr,37430656,Data16_20211118_FSAS_CAR_Complex,20211118,FSAS,CAR,True,False,False,False,not evaluated
+Dataset/Data16_20211118_FSAS_CAR_Complex/FSAS_GroundTruth.txt,3821639,Data16_20211118_FSAS_CAR_Complex,20211118,FSAS,CAR,False,False,True,False,not evaluated
+Dataset/Data16_20211118_FSAS_CAR_Complex/Figures/Ambiguity fixing status.png,35334,Data16_20211118_FSAS_CAR_Complex,20211118,FSAS,CAR,False,False,False,False,not evaluated
+Dataset/Data16_20211118_FSAS_CAR_Complex/Figures/Forward and reverse separation of attitude.png,91316,Data16_20211118_FSAS_CAR_Complex,20211118,FSAS,CAR,False,False,False,False,not evaluated
+Dataset/Data16_20211118_FSAS_CAR_Complex/Figures/Forward and reverse separation of position.png,74883,Data16_20211118_FSAS_CAR_Complex,20211118,FSAS,CAR,False,False,False,False,not evaluated
+Dataset/Data16_20211118_FSAS_CAR_Complex/Figures/Height profile.png,61080,Data16_20211118_FSAS_CAR_Complex,20211118,FSAS,CAR,False,False,False,False,not evaluated
+Dataset/Data16_20211118_FSAS_CAR_Complex/Figures/NSAT.png,101169,Data16_20211118_FSAS_CAR_Complex,20211118,FSAS,CAR,False,False,False,False,not evaluated
+Dataset/Data16_20211118_FSAS_CAR_Complex/Figures/PDOP.png,52884,Data16_20211118_FSAS_CAR_Complex,20211118,FSAS,CAR,False,False,False,False,not evaluated
+Dataset/Data16_20211118_FSAS_CAR_Complex/README.xml,834,Data16_20211118_FSAS_CAR_Complex,20211118,FSAS,CAR,False,False,False,False,not evaluated
+Dataset/Data16_20211118_FSAS_CAR_Complex/ROVE.21O,22628466,Data16_20211118_FSAS_CAR_Complex,20211118,FSAS,CAR,False,True,False,False,not evaluated
+Dataset/Data16_20211118_FSAS_CAR_Complex/ROVE_GroundTruth.txt,3821753,Data16_20211118_FSAS_CAR_Complex,20211118,FSAS,CAR,False,False,True,False,not evaluated
+Dataset/Data16_20211118_FSAS_CAR_Complex/Trajectory.kml,2292022,Data16_20211118_FSAS_CAR_Complex,20211118,FSAS,CAR,False,False,False,False,not evaluated
+Dataset/Data16_20211118_FSAS_CAR_Complex/WUM0MGXFIN_20213220000_01D_15M_ORB.SP3,707751,Data16_20211118_FSAS_CAR_Complex,20211118,FSAS,CAR,False,False,False,False,not evaluated
+Dataset/Data16_20211118_FSAS_CAR_Complex/WUM0MGXFIN_20213220000_01D_30S_CLK.CLK,20575190,Data16_20211118_FSAS_CAR_Complex,20211118,FSAS,CAR,False,False,False,False,not evaluated
+Dataset/Data16_20211118_FSAS_CAR_Complex/brdm3220.21p,6686073,Data16_20211118_FSAS_CAR_Complex,20211118,FSAS,CAR,False,False,False,False,not evaluated
+Dataset/Data17_20200617_HG4930_CAR_Complex/BASE.20o,422099602,Data17_20200617_HG4930_CAR_Complex,20200617,HG4930,CAR,False,True,False,False,not evaluated
+Dataset/Data17_20200617_HG4930_CAR_Complex/Figures/Ambiguity fixing status.png,34421,Data17_20200617_HG4930_CAR_Complex,20200617,HG4930,CAR,False,False,False,False,not evaluated
+Dataset/Data17_20200617_HG4930_CAR_Complex/Figures/Forward and reverse separation of attitude.png,109422,Data17_20200617_HG4930_CAR_Complex,20200617,HG4930,CAR,False,False,False,False,not evaluated
+Dataset/Data17_20200617_HG4930_CAR_Complex/Figures/Forward and reverse separation of position.png,104449,Data17_20200617_HG4930_CAR_Complex,20200617,HG4930,CAR,False,False,False,False,not evaluated
+Dataset/Data17_20200617_HG4930_CAR_Complex/Figures/Height profile.png,68652,Data17_20200617_HG4930_CAR_Complex,20200617,HG4930,CAR,False,False,False,False,not evaluated
+Dataset/Data17_20200617_HG4930_CAR_Complex/Figures/NSAT.png,115808,Data17_20200617_HG4930_CAR_Complex,20200617,HG4930,CAR,False,False,False,False,not evaluated
+Dataset/Data17_20200617_HG4930_CAR_Complex/Figures/PDOP.png,55265,Data17_20200617_HG4930_CAR_Complex,20200617,HG4930,CAR,False,False,False,False,not evaluated
+Dataset/Data17_20200617_HG4930_CAR_Complex/HG4930.imr,17694720,Data17_20200617_HG4930_CAR_Complex,20200617,HG4930,CAR,True,False,False,False,not evaluated
+Dataset/Data17_20200617_HG4930_CAR_Complex/HG4930_GroundTruth.txt,3623848,Data17_20200617_HG4930_CAR_Complex,20200617,HG4930,CAR,False,False,True,False,not evaluated
+Dataset/Data17_20200617_HG4930_CAR_Complex/README.xml,832,Data17_20200617_HG4930_CAR_Complex,20200617,HG4930,CAR,False,False,False,False,not evaluated
+Dataset/Data17_20200617_HG4930_CAR_Complex/ROVE.20O,78791690,Data17_20200617_HG4930_CAR_Complex,20200617,HG4930,CAR,False,True,False,False,not evaluated
+Dataset/Data17_20200617_HG4930_CAR_Complex/ROVE_GroundTruth.txt,3623949,Data17_20200617_HG4930_CAR_Complex,20200617,HG4930,CAR,False,False,True,False,not evaluated
+Dataset/Data17_20200617_HG4930_CAR_Complex/Trajectory.kml,2172938,Data17_20200617_HG4930_CAR_Complex,20200617,HG4930,CAR,False,False,False,False,not evaluated
+Dataset/Data17_20200617_HG4930_CAR_Complex/WUM0MGXFIN_20201690000_01D_15M_ORB.SP3,666759,Data17_20200617_HG4930_CAR_Complex,20200617,HG4930,CAR,False,False,False,False,not evaluated
+Dataset/Data17_20200617_HG4930_CAR_Complex/WUM0MGXFIN_20201690000_01D_30S_CLK.CLK,19537750,Data17_20200617_HG4930_CAR_Complex,20200617,HG4930,CAR,False,False,False,False,not evaluated
+Dataset/Data17_20200617_HG4930_CAR_Complex/brdm1690.20p,6809746,Data17_20200617_HG4930_CAR_Complex,20200617,HG4930,CAR,False,False,False,False,not evaluated
+Dataset/Data18_20200618_HG4930_CAR_Complex/BASE.20o,446490519,Data18_20200618_HG4930_CAR_Complex,20200618,HG4930,CAR,False,True,False,False,not evaluated
+Dataset/Data18_20200618_HG4930_CAR_Complex/Figures/Ambiguity fixing status.png,31835,Data18_20200618_HG4930_CAR_Complex,20200618,HG4930,CAR,False,False,False,False,not evaluated
+Dataset/Data18_20200618_HG4930_CAR_Complex/Figures/Forward and reverse separation of attitude.png,112525,Data18_20200618_HG4930_CAR_Complex,20200618,HG4930,CAR,False,False,False,False,not evaluated
+Dataset/Data18_20200618_HG4930_CAR_Complex/Figures/Forward and reverse separation of position.png,97849,Data18_20200618_HG4930_CAR_Complex,20200618,HG4930,CAR,False,False,False,False,not evaluated
+Dataset/Data18_20200618_HG4930_CAR_Complex/Figures/Height profile.png,84400,Data18_20200618_HG4930_CAR_Complex,20200618,HG4930,CAR,False,False,False,False,not evaluated
+Dataset/Data18_20200618_HG4930_CAR_Complex/Figures/NSAT.png,118164,Data18_20200618_HG4930_CAR_Complex,20200618,HG4930,CAR,False,False,False,False,not evaluated
+Dataset/Data18_20200618_HG4930_CAR_Complex/Figures/PDOP.png,76988,Data18_20200618_HG4930_CAR_Complex,20200618,HG4930,CAR,False,False,False,False,not evaluated
+Dataset/Data18_20200618_HG4930_CAR_Complex/HG4930.imr,30834688,Data18_20200618_HG4930_CAR_Complex,20200618,HG4930,CAR,True,False,False,False,not evaluated
+Dataset/Data18_20200618_HG4930_CAR_Complex/HG4930_GroundTruth.txt,6311302,Data18_20200618_HG4930_CAR_Complex,20200618,HG4930,CAR,False,False,True,False,not evaluated
+Dataset/Data18_20200618_HG4930_CAR_Complex/README.xml,841,Data18_20200618_HG4930_CAR_Complex,20200618,HG4930,CAR,False,False,False,False,not evaluated
+Dataset/Data18_20200618_HG4930_CAR_Complex/ROVE.20O,179992031,Data18_20200618_HG4930_CAR_Complex,20200618,HG4930,CAR,False,True,False,False,not evaluated
+Dataset/Data18_20200618_HG4930_CAR_Complex/ROVE_GroundTruth.txt,6311415,Data18_20200618_HG4930_CAR_Complex,20200618,HG4930,CAR,False,False,True,False,not evaluated
+Dataset/Data18_20200618_HG4930_CAR_Complex/Trajectory.kml,3782732,Data18_20200618_HG4930_CAR_Complex,20200618,HG4930,CAR,False,False,False,False,not evaluated
+Dataset/Data18_20200618_HG4930_CAR_Complex/WUM0MGXFIN_20201700000_01D_15M_ORB.SP3,660903,Data18_20200618_HG4930_CAR_Complex,20200618,HG4930,CAR,False,False,False,False,not evaluated
+Dataset/Data18_20200618_HG4930_CAR_Complex/WUM0MGXFIN_20201700000_01D_30S_CLK.CLK,19364710,Data18_20200618_HG4930_CAR_Complex,20200618,HG4930,CAR,False,False,False,False,not evaluated
+Dataset/Data18_20200618_HG4930_CAR_Complex/brdm1700.20p,7006089,Data18_20200618_HG4930_CAR_Complex,20200618,HG4930,CAR,False,False,False,False,not evaluated
+Dataset/Data19_20201214_HG4930_CAR_Opensky/BASE.20o,15428305,Data19_20201214_HG4930_CAR_Opensky,20201214,HG4930,CAR,False,True,False,False,not evaluated
+Dataset/Data19_20201214_HG4930_CAR_Opensky/Figures/Ambiguity fixing status.png,31914,Data19_20201214_HG4930_CAR_Opensky,20201214,HG4930,CAR,False,False,False,False,not evaluated
+Dataset/Data19_20201214_HG4930_CAR_Opensky/Figures/Forward and reverse separation of attitude.png,123671,Data19_20201214_HG4930_CAR_Opensky,20201214,HG4930,CAR,False,False,False,False,not evaluated
+Dataset/Data19_20201214_HG4930_CAR_Opensky/Figures/Forward and reverse separation of position.png,111417,Data19_20201214_HG4930_CAR_Opensky,20201214,HG4930,CAR,False,False,False,False,not evaluated
+Dataset/Data19_20201214_HG4930_CAR_Opensky/Figures/Height profile.png,59393,Data19_20201214_HG4930_CAR_Opensky,20201214,HG4930,CAR,False,False,False,False,not evaluated
+Dataset/Data19_20201214_HG4930_CAR_Opensky/Figures/NSAT.png,92566,Data19_20201214_HG4930_CAR_Opensky,20201214,HG4930,CAR,False,False,False,False,not evaluated
+Dataset/Data19_20201214_HG4930_CAR_Opensky/Figures/PDOP.png,40942,Data19_20201214_HG4930_CAR_Opensky,20201214,HG4930,CAR,False,False,False,False,not evaluated
+Dataset/Data19_20201214_HG4930_CAR_Opensky/HG4930.imr,6422528,Data19_20201214_HG4930_CAR_Opensky,20201214,HG4930,CAR,True,False,False,False,not evaluated
+Dataset/Data19_20201214_HG4930_CAR_Opensky/HG4930_GroundTruth.txt,1314965,Data19_20201214_HG4930_CAR_Opensky,20201214,HG4930,CAR,False,False,True,False,not evaluated
+Dataset/Data19_20201214_HG4930_CAR_Opensky/README.xml,792,Data19_20201214_HG4930_CAR_Opensky,20201214,HG4930,CAR,False,False,False,False,not evaluated
+Dataset/Data19_20201214_HG4930_CAR_Opensky/ROVE.20O,48579064,Data19_20201214_HG4930_CAR_Opensky,20201214,HG4930,CAR,False,True,False,False,not evaluated
+Dataset/Data19_20201214_HG4930_CAR_Opensky/ROVE_GroundTruth.txt,1315079,Data19_20201214_HG4930_CAR_Opensky,20201214,HG4930,CAR,False,False,True,False,not evaluated
+Dataset/Data19_20201214_HG4930_CAR_Opensky/Trajectory.kml,790148,Data19_20201214_HG4930_CAR_Opensky,20201214,HG4930,CAR,False,False,False,False,not evaluated
+Dataset/Data19_20201214_HG4930_CAR_Opensky/WUM0MGXFIN_20203490000_01D_15M_ORB.SP3,713607,Data19_20201214_HG4930_CAR_Opensky,20201214,HG4930,CAR,False,False,False,False,not evaluated
+Dataset/Data19_20201214_HG4930_CAR_Opensky/WUM0MGXFIN_20203490000_01D_30S_CLK.CLK,20920699,Data19_20201214_HG4930_CAR_Opensky,20201214,HG4930,CAR,False,False,False,False,not evaluated
+Dataset/Data19_20201214_HG4930_CAR_Opensky/brdm3490.20p,7115558,Data19_20201214_HG4930_CAR_Opensky,20201214,HG4930,CAR,False,False,False,False,not evaluated
+Dataset/Data20_20210115_HG4930_CAR_Opensky/BASE.21O,19510028,Data20_20210115_HG4930_CAR_Opensky,20210115,HG4930,CAR,False,True,False,False,not evaluated
+Dataset/Data20_20210115_HG4930_CAR_Opensky/Figures/Ambiguity fixing status.png,32910,Data20_20210115_HG4930_CAR_Opensky,20210115,HG4930,CAR,False,False,False,False,not evaluated
+Dataset/Data20_20210115_HG4930_CAR_Opensky/Figures/Forward and reverse separation of attitude.png,121728,Data20_20210115_HG4930_CAR_Opensky,20210115,HG4930,CAR,False,False,False,False,not evaluated
+Dataset/Data20_20210115_HG4930_CAR_Opensky/Figures/Forward and reverse separation of position.png,111571,Data20_20210115_HG4930_CAR_Opensky,20210115,HG4930,CAR,False,False,False,False,not evaluated
+Dataset/Data20_20210115_HG4930_CAR_Opensky/Figures/Height profile.png,68417,Data20_20210115_HG4930_CAR_Opensky,20210115,HG4930,CAR,False,False,False,False,not evaluated
+Dataset/Data20_20210115_HG4930_CAR_Opensky/Figures/NSAT.png,93425,Data20_20210115_HG4930_CAR_Opensky,20210115,HG4930,CAR,False,False,False,False,not evaluated
+Dataset/Data20_20210115_HG4930_CAR_Opensky/Figures/PDOP.png,42564,Data20_20210115_HG4930_CAR_Opensky,20210115,HG4930,CAR,False,False,False,False,not evaluated
+Dataset/Data20_20210115_HG4930_CAR_Opensky/HG4930.imr,5111808,Data20_20210115_HG4930_CAR_Opensky,20210115,HG4930,CAR,True,False,False,False,not evaluated
+Dataset/Data20_20210115_HG4930_CAR_Opensky/HG4930_GroundTruth.txt,1048380,Data20_20210115_HG4930_CAR_Opensky,20210115,HG4930,CAR,False,False,True,False,not evaluated
+Dataset/Data20_20210115_HG4930_CAR_Opensky/README.xml,792,Data20_20210115_HG4930_CAR_Opensky,20210115,HG4930,CAR,False,False,False,False,not evaluated
+Dataset/Data20_20210115_HG4930_CAR_Opensky/ROVE.21O,54413480,Data20_20210115_HG4930_CAR_Opensky,20210115,HG4930,CAR,False,True,False,False,not evaluated
+Dataset/Data20_20210115_HG4930_CAR_Opensky/ROVE_GroundTruth.txt,1048494,Data20_20210115_HG4930_CAR_Opensky,20210115,HG4930,CAR,False,False,True,False,not evaluated
+Dataset/Data20_20210115_HG4930_CAR_Opensky/Trajectory.kml,630611,Data20_20210115_HG4930_CAR_Opensky,20210115,HG4930,CAR,False,False,False,False,not evaluated
+Dataset/Data20_20210115_HG4930_CAR_Opensky/WUM0MGXFIN_20210150000_01D_15M_ORB.SP3,713607,Data20_20210115_HG4930_CAR_Opensky,20210115,HG4930,CAR,False,False,False,False,not evaluated
+Dataset/Data20_20210115_HG4930_CAR_Opensky/WUM0MGXFIN_20210150000_01D_30S_CLK.CLK,20919899,Data20_20210115_HG4930_CAR_Opensky,20210115,HG4930,CAR,False,False,False,False,not evaluated
+Dataset/Data20_20210115_HG4930_CAR_Opensky/brdm0150.21p,6627727,Data20_20210115_HG4930_CAR_Opensky,20210115,HG4930,CAR,False,False,False,False,not evaluated
+Dataset/Data21_20201215_HG4930_UAV_Opensky/BASE.20o,24819541,Data21_20201215_HG4930_UAV_Opensky,20201215,HG4930,UAV,False,True,False,False,not evaluated
+Dataset/Data21_20201215_HG4930_UAV_Opensky/Figures/Ambiguity fixing status.png,32038,Data21_20201215_HG4930_UAV_Opensky,20201215,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data21_20201215_HG4930_UAV_Opensky/Figures/Forward and reverse separation of attitude.png,82443,Data21_20201215_HG4930_UAV_Opensky,20201215,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data21_20201215_HG4930_UAV_Opensky/Figures/Forward and reverse separation of position.png,85542,Data21_20201215_HG4930_UAV_Opensky,20201215,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data21_20201215_HG4930_UAV_Opensky/Figures/Height profile.png,54955,Data21_20201215_HG4930_UAV_Opensky,20201215,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data21_20201215_HG4930_UAV_Opensky/Figures/NSAT.png,55751,Data21_20201215_HG4930_UAV_Opensky,20201215,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data21_20201215_HG4930_UAV_Opensky/Figures/PDOP.png,36646,Data21_20201215_HG4930_UAV_Opensky,20201215,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data21_20201215_HG4930_UAV_Opensky/HG4930.imr,4128768,Data21_20201215_HG4930_UAV_Opensky,20201215,HG4930,UAV,True,False,False,False,not evaluated
+Dataset/Data21_20201215_HG4930_UAV_Opensky/HG4930_GroundTruth.txt,847293,Data21_20201215_HG4930_UAV_Opensky,20201215,HG4930,UAV,False,False,True,False,not evaluated
+Dataset/Data21_20201215_HG4930_UAV_Opensky/README.xml,792,Data21_20201215_HG4930_UAV_Opensky,20201215,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data21_20201215_HG4930_UAV_Opensky/ROVE.20o,29895208,Data21_20201215_HG4930_UAV_Opensky,20201215,HG4930,UAV,False,True,False,False,not evaluated
+Dataset/Data21_20201215_HG4930_UAV_Opensky/ROVE_GroundTruth.txt,847407,Data21_20201215_HG4930_UAV_Opensky,20201215,HG4930,UAV,False,False,True,False,not evaluated
+Dataset/Data21_20201215_HG4930_UAV_Opensky/Trajectory.kml,510144,Data21_20201215_HG4930_UAV_Opensky,20201215,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data21_20201215_HG4930_UAV_Opensky/WUM0MGXFIN_20203500000_01D_15M_ORB.SP3,719463,Data21_20201215_HG4930_UAV_Opensky,20201215,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data21_20201215_HG4930_UAV_Opensky/WUM0MGXFIN_20203500000_01D_30S_CLK.CLK,21093899,Data21_20201215_HG4930_UAV_Opensky,20201215,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data21_20201215_HG4930_UAV_Opensky/brdm3500.20p,7199071,Data21_20201215_HG4930_UAV_Opensky,20201215,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data22_20220124_HG4930_UAV_Opensky/BASE.22o,40063057,Data22_20220124_HG4930_UAV_Opensky,20220124,HG4930,UAV,False,True,False,False,not evaluated
+Dataset/Data22_20220124_HG4930_UAV_Opensky/Figures/Ambiguity fixing status.png,29974,Data22_20220124_HG4930_UAV_Opensky,20220124,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data22_20220124_HG4930_UAV_Opensky/Figures/Forward and reverse separation of attitude.png,112817,Data22_20220124_HG4930_UAV_Opensky,20220124,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data22_20220124_HG4930_UAV_Opensky/Figures/Forward and reverse separation of position.png,86258,Data22_20220124_HG4930_UAV_Opensky,20220124,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data22_20220124_HG4930_UAV_Opensky/Figures/Height profile.png,54062,Data22_20220124_HG4930_UAV_Opensky,20220124,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data22_20220124_HG4930_UAV_Opensky/Figures/NSAT.png,86724,Data22_20220124_HG4930_UAV_Opensky,20220124,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data22_20220124_HG4930_UAV_Opensky/Figures/PDOP.png,43471,Data22_20220124_HG4930_UAV_Opensky,20220124,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data22_20220124_HG4930_UAV_Opensky/HG4930.imr,5898240,Data22_20220124_HG4930_UAV_Opensky,20220124,HG4930,UAV,True,False,False,False,not evaluated
+Dataset/Data22_20220124_HG4930_UAV_Opensky/HG4930_GroundTruth.txt,1209578,Data22_20220124_HG4930_UAV_Opensky,20220124,HG4930,UAV,False,False,True,False,not evaluated
+Dataset/Data22_20220124_HG4930_UAV_Opensky/README.xml,816,Data22_20220124_HG4930_UAV_Opensky,20220124,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data22_20220124_HG4930_UAV_Opensky/ROVE.22O,68911178,Data22_20220124_HG4930_UAV_Opensky,20220124,HG4930,UAV,False,True,False,False,not evaluated
+Dataset/Data22_20220124_HG4930_UAV_Opensky/ROVE_GroundTruth.txt,1209692,Data22_20220124_HG4930_UAV_Opensky,20220124,HG4930,UAV,False,False,True,False,not evaluated
+Dataset/Data22_20220124_HG4930_UAV_Opensky/Trajectory.kml,728519,Data22_20220124_HG4930_UAV_Opensky,20220124,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data22_20220124_HG4930_UAV_Opensky/WUM0MGXFIN_20220240000_01D_15M_ORB.SP3,713607,Data22_20220124_HG4930_UAV_Opensky,20220124,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data22_20220124_HG4930_UAV_Opensky/WUM0MGXFIN_20220240000_01D_30S_CLK.CLK,20746379,Data22_20220124_HG4930_UAV_Opensky,20220124,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data22_20220124_HG4930_UAV_Opensky/brdm0240.22p,7459892,Data22_20220124_HG4930_UAV_Opensky,20220124,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data23_20220125_HG4930_UAV_Opensky/BASE.22o,56493251,Data23_20220125_HG4930_UAV_Opensky,20220125,HG4930,UAV,False,True,False,False,not evaluated
+Dataset/Data23_20220125_HG4930_UAV_Opensky/Figures/Ambiguity fixing status.png,31083,Data23_20220125_HG4930_UAV_Opensky,20220125,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data23_20220125_HG4930_UAV_Opensky/Figures/Forward and reverse separation of attitude.png,110766,Data23_20220125_HG4930_UAV_Opensky,20220125,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data23_20220125_HG4930_UAV_Opensky/Figures/Forward and reverse separation of position.png,77133,Data23_20220125_HG4930_UAV_Opensky,20220125,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data23_20220125_HG4930_UAV_Opensky/Figures/Height profile.png,52062,Data23_20220125_HG4930_UAV_Opensky,20220125,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data23_20220125_HG4930_UAV_Opensky/Figures/NSAT.png,75869,Data23_20220125_HG4930_UAV_Opensky,20220125,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data23_20220125_HG4930_UAV_Opensky/Figures/PDOP.png,42744,Data23_20220125_HG4930_UAV_Opensky,20220125,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data23_20220125_HG4930_UAV_Opensky/HG4930.imr,7766016,Data23_20220125_HG4930_UAV_Opensky,20220125,HG4930,UAV,True,False,False,False,not evaluated
+Dataset/Data23_20220125_HG4930_UAV_Opensky/HG4930_GroundTruth.txt,1591444,Data23_20220125_HG4930_UAV_Opensky,20220125,HG4930,UAV,False,False,True,False,not evaluated
+Dataset/Data23_20220125_HG4930_UAV_Opensky/README.xml,792,Data23_20220125_HG4930_UAV_Opensky,20220125,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data23_20220125_HG4930_UAV_Opensky/ROVE.22O,88362090,Data23_20220125_HG4930_UAV_Opensky,20220125,HG4930,UAV,False,True,False,False,not evaluated
+Dataset/Data23_20220125_HG4930_UAV_Opensky/ROVE_GroundTruth.txt,1591558,Data23_20220125_HG4930_UAV_Opensky,20220125,HG4930,UAV,False,False,True,False,not evaluated
+Dataset/Data23_20220125_HG4930_UAV_Opensky/Trajectory.kml,958177,Data23_20220125_HG4930_UAV_Opensky,20220125,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data23_20220125_HG4930_UAV_Opensky/WUM0MGXFIN_20220250000_01D_15M_ORB.SP3,707751,Data23_20220125_HG4930_UAV_Opensky,20220125,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data23_20220125_HG4930_UAV_Opensky/WUM0MGXFIN_20220250000_01D_30S_CLK.CLK,20573430,Data23_20220125_HG4930_UAV_Opensky,20220125,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data23_20220125_HG4930_UAV_Opensky/brdm0250.22p,7591727,Data23_20220125_HG4930_UAV_Opensky,20220125,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data24_20201215_HG4930_UAV_Opensky/BASE.20O,25202267,Data24_20201215_HG4930_UAV_Opensky,20201215,HG4930,UAV,False,True,False,False,not evaluated
+Dataset/Data24_20201215_HG4930_UAV_Opensky/Figures/Ambiguity fixing status.png,29589,Data24_20201215_HG4930_UAV_Opensky,20201215,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data24_20201215_HG4930_UAV_Opensky/Figures/Forward and reverse separation of attitude.png,74580,Data24_20201215_HG4930_UAV_Opensky,20201215,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data24_20201215_HG4930_UAV_Opensky/Figures/Forward and reverse separation of position.png,78556,Data24_20201215_HG4930_UAV_Opensky,20201215,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data24_20201215_HG4930_UAV_Opensky/Figures/Height profile.png,54623,Data24_20201215_HG4930_UAV_Opensky,20201215,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data24_20201215_HG4930_UAV_Opensky/Figures/NSAT.png,52014,Data24_20201215_HG4930_UAV_Opensky,20201215,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data24_20201215_HG4930_UAV_Opensky/Figures/PDOP.png,35114,Data24_20201215_HG4930_UAV_Opensky,20201215,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data24_20201215_HG4930_UAV_Opensky/HG4930.imr,4227072,Data24_20201215_HG4930_UAV_Opensky,20201215,HG4930,UAV,True,False,False,False,not evaluated
+Dataset/Data24_20201215_HG4930_UAV_Opensky/HG4930_GroundTruth.txt,867599,Data24_20201215_HG4930_UAV_Opensky,20201215,HG4930,UAV,False,False,True,False,not evaluated
+Dataset/Data24_20201215_HG4930_UAV_Opensky/README.xml,792,Data24_20201215_HG4930_UAV_Opensky,20201215,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data24_20201215_HG4930_UAV_Opensky/ROVE.20O,49279672,Data24_20201215_HG4930_UAV_Opensky,20201215,HG4930,UAV,False,True,False,False,not evaluated
+Dataset/Data24_20201215_HG4930_UAV_Opensky/ROVE_GroundTruth.txt,867713,Data24_20201215_HG4930_UAV_Opensky,20201215,HG4930,UAV,False,False,True,False,not evaluated
+Dataset/Data24_20201215_HG4930_UAV_Opensky/Trajectory.kml,524401,Data24_20201215_HG4930_UAV_Opensky,20201215,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data24_20201215_HG4930_UAV_Opensky/WUM0MGXFIN_20203500000_01D_15M_ORB.SP3,719463,Data24_20201215_HG4930_UAV_Opensky,20201215,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data24_20201215_HG4930_UAV_Opensky/WUM0MGXFIN_20203500000_01D_30S_CLK.CLK,21093899,Data24_20201215_HG4930_UAV_Opensky,20201215,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data24_20201215_HG4930_UAV_Opensky/brdm3500.20p,7199071,Data24_20201215_HG4930_UAV_Opensky,20201215,HG4930,UAV,False,False,False,False,not evaluated
+Dataset/Data25_20210119_HGI300_UAV_Opensky/BASE.21O,23941623,Data25_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,True,False,False,not evaluated
+Dataset/Data25_20210119_HGI300_UAV_Opensky/Figures/Ambiguity fixing status.png,30151,Data25_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data25_20210119_HGI300_UAV_Opensky/Figures/Forward and reverse separation of attitude.png,99590,Data25_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data25_20210119_HGI300_UAV_Opensky/Figures/Forward and reverse separation of position.png,74262,Data25_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data25_20210119_HGI300_UAV_Opensky/Figures/Height profile.png,51053,Data25_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data25_20210119_HGI300_UAV_Opensky/Figures/NSAT.png,54575,Data25_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data25_20210119_HGI300_UAV_Opensky/Figures/PDOP.png,40879,Data25_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data25_20210119_HGI300_UAV_Opensky/HGI300.imr,3997696,Data25_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,True,False,False,False,not evaluated
+Dataset/Data25_20210119_HGI300_UAV_Opensky/HGI300_GroundTruth.txt,820439,Data25_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,True,False,not evaluated
+Dataset/Data25_20210119_HGI300_UAV_Opensky/README.xml,791,Data25_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data25_20210119_HGI300_UAV_Opensky/ROVE.21O,49144475,Data25_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,True,False,False,not evaluated
+Dataset/Data25_20210119_HGI300_UAV_Opensky/ROVE_GroundTruth.txt,820553,Data25_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,True,False,not evaluated
+Dataset/Data25_20210119_HGI300_UAV_Opensky/Trajectory.kml,496057,Data25_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data25_20210119_HGI300_UAV_Opensky/WUM0MGXFIN_20210190000_01D_15M_ORB.SP3,719463,Data25_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data25_20210119_HGI300_UAV_Opensky/WUM0MGXFIN_20210190000_01D_30S_CLK.CLK,21093019,Data25_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data25_20210119_HGI300_UAV_Opensky/brdm0190.21p,6262240,Data25_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data26_20210119_HGI300_UAV_Opensky/BASE.21o,23941623,Data26_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,True,False,False,not evaluated
+Dataset/Data26_20210119_HGI300_UAV_Opensky/Figures/Ambiguity fixing status.png,31299,Data26_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data26_20210119_HGI300_UAV_Opensky/Figures/Forward and reverse separation of attitude.png,100341,Data26_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data26_20210119_HGI300_UAV_Opensky/Figures/Forward and reverse separation of position.png,66160,Data26_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data26_20210119_HGI300_UAV_Opensky/Figures/Height profile.png,50242,Data26_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data26_20210119_HGI300_UAV_Opensky/Figures/NSAT.png,46973,Data26_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data26_20210119_HGI300_UAV_Opensky/Figures/PDOP.png,39844,Data26_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data26_20210119_HGI300_UAV_Opensky/HGI300.imr,3964928,Data26_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,True,False,False,False,not evaluated
+Dataset/Data26_20210119_HGI300_UAV_Opensky/HGI300_GroundTruth.txt,813889,Data26_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,True,False,not evaluated
+Dataset/Data26_20210119_HGI300_UAV_Opensky/README.xml,795,Data26_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data26_20210119_HGI300_UAV_Opensky/ROVE.21O,69278877,Data26_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,True,False,False,not evaluated
+Dataset/Data26_20210119_HGI300_UAV_Opensky/ROVE_GroundTruth.txt,814003,Data26_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,True,False,not evaluated
+Dataset/Data26_20210119_HGI300_UAV_Opensky/Trajectory.kml,489783,Data26_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data26_20210119_HGI300_UAV_Opensky/WUM0MGXFIN_20210190000_01D_15M_ORB.SP3,719463,Data26_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data26_20210119_HGI300_UAV_Opensky/WUM0MGXFIN_20210190000_01D_30S_CLK.CLK,21093019,Data26_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data26_20210119_HGI300_UAV_Opensky/brdm0190.21p,6262240,Data26_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data27_20210119_HGI300_UAV_Opensky/BASE.21O,23941623,Data27_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,True,False,False,not evaluated
+Dataset/Data27_20210119_HGI300_UAV_Opensky/Figures/Ambiguity fixing status.png,31458,Data27_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data27_20210119_HGI300_UAV_Opensky/Figures/Forward and reverse separation of attitude.png,126625,Data27_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data27_20210119_HGI300_UAV_Opensky/Figures/Forward and reverse separation of position.png,75429,Data27_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data27_20210119_HGI300_UAV_Opensky/Figures/Height profile.png,50517,Data27_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data27_20210119_HGI300_UAV_Opensky/Figures/NSAT.png,56507,Data27_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data27_20210119_HGI300_UAV_Opensky/Figures/PDOP.png,40466,Data27_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data27_20210119_HGI300_UAV_Opensky/HGI300.imr,3964928,Data27_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,True,False,False,False,not evaluated
+Dataset/Data27_20210119_HGI300_UAV_Opensky/HGI300_GroundTruth.txt,813234,Data27_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,True,False,not evaluated
+Dataset/Data27_20210119_HGI300_UAV_Opensky/README.xml,795,Data27_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data27_20210119_HGI300_UAV_Opensky/ROVE.21O,70747534,Data27_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,True,False,False,not evaluated
+Dataset/Data27_20210119_HGI300_UAV_Opensky/ROVE_GroundTruth.txt,813348,Data27_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,True,False,not evaluated
+Dataset/Data27_20210119_HGI300_UAV_Opensky/Trajectory.kml,489783,Data27_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data27_20210119_HGI300_UAV_Opensky/WUM0MGXFIN_20210190000_01D_15M_ORB.SP3,719463,Data27_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data27_20210119_HGI300_UAV_Opensky/WUM0MGXFIN_20210190000_01D_30S_CLK.CLK,21093019,Data27_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data27_20210119_HGI300_UAV_Opensky/brdm0190.21p,6262240,Data27_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data28_20210119_HGI300_UAV_Opensky/BASE.21O,23941623,Data28_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,True,False,False,not evaluated
+Dataset/Data28_20210119_HGI300_UAV_Opensky/Figures/Ambiguity fixing status.png,32342,Data28_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data28_20210119_HGI300_UAV_Opensky/Figures/Forward and reverse separation of attitude.png,154773,Data28_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data28_20210119_HGI300_UAV_Opensky/Figures/Forward and reverse separation of position.png,83607,Data28_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data28_20210119_HGI300_UAV_Opensky/Figures/Height profile.png,50786,Data28_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data28_20210119_HGI300_UAV_Opensky/Figures/NSAT.png,65040,Data28_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data28_20210119_HGI300_UAV_Opensky/Figures/PDOP.png,40763,Data28_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data28_20210119_HGI300_UAV_Opensky/HGI300.imr,4210688,Data28_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,True,False,False,False,not evaluated
+Dataset/Data28_20210119_HGI300_UAV_Opensky/HGI300_GroundTruth.txt,862357,Data28_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,True,False,not evaluated
+Dataset/Data28_20210119_HGI300_UAV_Opensky/README.xml,795,Data28_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data28_20210119_HGI300_UAV_Opensky/ROVE.21O,74910574,Data28_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,True,False,False,not evaluated
+Dataset/Data28_20210119_HGI300_UAV_Opensky/ROVE_GroundTruth.txt,862471,Data28_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,True,False,not evaluated
+Dataset/Data28_20210119_HGI300_UAV_Opensky/Trajectory.kml,519594,Data28_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data28_20210119_HGI300_UAV_Opensky/WUM0MGXFIN_20210190000_01D_15M_ORB.SP3,719463,Data28_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data28_20210119_HGI300_UAV_Opensky/WUM0MGXFIN_20210190000_01D_30S_CLK.CLK,21093019,Data28_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data28_20210119_HGI300_UAV_Opensky/brdm0190.21p,6262240,Data28_20210119_HGI300_UAV_Opensky,20210119,HGI300,UAV,False,False,False,False,not evaluated
+Dataset/Data29_20220524_MG300_UAV_Opensky/BASE.22O,45731768,Data29_20220524_MG300_UAV_Opensky,20220524,MG300,UAV,False,True,False,False,not evaluated
+Dataset/Data29_20220524_MG300_UAV_Opensky/Figures/Ambiguity fixing status.png,29916,Data29_20220524_MG300_UAV_Opensky,20220524,MG300,UAV,False,False,False,False,not evaluated
+Dataset/Data29_20220524_MG300_UAV_Opensky/Figures/Forward and reverse separation of attitude.png,112597,Data29_20220524_MG300_UAV_Opensky,20220524,MG300,UAV,False,False,False,False,not evaluated
+Dataset/Data29_20220524_MG300_UAV_Opensky/Figures/Forward and reverse separation of position.png,80201,Data29_20220524_MG300_UAV_Opensky,20220524,MG300,UAV,False,False,False,False,not evaluated
+Dataset/Data29_20220524_MG300_UAV_Opensky/Figures/Height profile.png,47691,Data29_20220524_MG300_UAV_Opensky,20220524,MG300,UAV,False,False,False,False,not evaluated
+Dataset/Data29_20220524_MG300_UAV_Opensky/Figures/NSAT.png,53267,Data29_20220524_MG300_UAV_Opensky,20220524,MG300,UAV,False,False,False,False,not evaluated
+Dataset/Data29_20220524_MG300_UAV_Opensky/Figures/PDOP.png,41415,Data29_20220524_MG300_UAV_Opensky,20220524,MG300,UAV,False,False,False,False,not evaluated
+Dataset/Data29_20220524_MG300_UAV_Opensky/MG300.imr,8847360,Data29_20220524_MG300_UAV_Opensky,20220524,MG300,UAV,True,False,False,False,not evaluated
+Dataset/Data29_20220524_MG300_UAV_Opensky/MG300_GroundTruth.txt,907550,Data29_20220524_MG300_UAV_Opensky,20220524,MG300,UAV,False,False,True,False,not evaluated
+Dataset/Data29_20220524_MG300_UAV_Opensky/README.xml,821,Data29_20220524_MG300_UAV_Opensky,20220524,MG300,UAV,False,False,False,False,not evaluated
+Dataset/Data29_20220524_MG300_UAV_Opensky/ROVE.22O,32959424,Data29_20220524_MG300_UAV_Opensky,20220524,MG300,UAV,False,True,False,False,not evaluated
+Dataset/Data29_20220524_MG300_UAV_Opensky/ROVE_GroundTruth.txt,907665,Data29_20220524_MG300_UAV_Opensky,20220524,MG300,UAV,False,False,True,False,not evaluated
+Dataset/Data29_20220524_MG300_UAV_Opensky/Trajectory.kml,547828,Data29_20220524_MG300_UAV_Opensky,20220524,MG300,UAV,False,False,False,False,not evaluated
+Dataset/Data29_20220524_MG300_UAV_Opensky/WUM0MGXFIN_20221440000_01D_15M_ORB.SP3,737031,Data29_20220524_MG300_UAV_Opensky,20220524,MG300,UAV,False,False,False,False,not evaluated
+Dataset/Data29_20220524_MG300_UAV_Opensky/WUM0MGXFIN_20221440000_01D_30S_CLK.CLK,21267419,Data29_20220524_MG300_UAV_Opensky,20220524,MG300,UAV,False,False,False,False,not evaluated
+Dataset/Data29_20220524_MG300_UAV_Opensky/brdm1140.22p,7658337,Data29_20220524_MG300_UAV_Opensky,20220524,MG300,UAV,False,False,False,False,not evaluated
+Dataset/Data30_20220524_MG300_UAV_Opensky/BASE.22O,45731768,Data30_20220524_MG300_UAV_Opensky,20220524,MG300,UAV,False,True,False,False,not evaluated
+Dataset/Data30_20220524_MG300_UAV_Opensky/Figures/Ambiguity fixing status.png,32086,Data30_20220524_MG300_UAV_Opensky,20220524,MG300,UAV,False,False,False,False,not evaluated
+Dataset/Data30_20220524_MG300_UAV_Opensky/Figures/Forward and reverse separation of attitude.png,116041,Data30_20220524_MG300_UAV_Opensky,20220524,MG300,UAV,False,False,False,False,not evaluated
+Dataset/Data30_20220524_MG300_UAV_Opensky/Figures/Forward and reverse separation of position.png,86057,Data30_20220524_MG300_UAV_Opensky,20220524,MG300,UAV,False,False,False,False,not evaluated
+Dataset/Data30_20220524_MG300_UAV_Opensky/Figures/Height profile.png,47511,Data30_20220524_MG300_UAV_Opensky,20220524,MG300,UAV,False,False,False,False,not evaluated
+Dataset/Data30_20220524_MG300_UAV_Opensky/Figures/NSAT.png,56526,Data30_20220524_MG300_UAV_Opensky,20220524,MG300,UAV,False,False,False,False,not evaluated
+Dataset/Data30_20220524_MG300_UAV_Opensky/Figures/PDOP.png,40655,Data30_20220524_MG300_UAV_Opensky,20220524,MG300,UAV,False,False,False,False,not evaluated
+Dataset/Data30_20220524_MG300_UAV_Opensky/MG300.imr,8060928,Data30_20220524_MG300_UAV_Opensky,20220524,MG300,UAV,True,False,False,False,not evaluated
+Dataset/Data30_20220524_MG300_UAV_Opensky/MG300_GroundTruth.txt,827640,Data30_20220524_MG300_UAV_Opensky,20220524,MG300,UAV,False,False,True,False,not evaluated
+Dataset/Data30_20220524_MG300_UAV_Opensky/README.xml,821,Data30_20220524_MG300_UAV_Opensky,20220524,MG300,UAV,False,False,False,False,not evaluated
+Dataset/Data30_20220524_MG300_UAV_Opensky/ROVE.22O,27199834,Data30_20220524_MG300_UAV_Opensky,20220524,MG300,UAV,False,True,False,False,not evaluated
+Dataset/Data30_20220524_MG300_UAV_Opensky/ROVE_GroundTruth.txt,827755,Data30_20220524_MG300_UAV_Opensky,20220524,MG300,UAV,False,False,True,False,not evaluated
+Dataset/Data30_20220524_MG300_UAV_Opensky/Trajectory.kml,499169,Data30_20220524_MG300_UAV_Opensky,20220524,MG300,UAV,False,False,False,False,not evaluated
+Dataset/Data30_20220524_MG300_UAV_Opensky/WUM0MGXFIN_20221440000_01D_15M_ORB.SP3,737031,Data30_20220524_MG300_UAV_Opensky,20220524,MG300,UAV,False,False,False,False,not evaluated
+Dataset/Data30_20220524_MG300_UAV_Opensky/WUM0MGXFIN_20221440000_01D_30S_CLK.CLK,21267419,Data30_20220524_MG300_UAV_Opensky,20220524,MG300,UAV,False,False,False,False,not evaluated
+Dataset/Data30_20220524_MG300_UAV_Opensky/brdm1140.22p,7658337,Data30_20220524_MG300_UAV_Opensky,20220524,MG300,UAV,False,False,False,False,not evaluated
+"POSMind_Software/A Large-Scale Diverse GNSSSINS Dataset Construction, Publication, and Application.pdf",4594913,POSMind_Software,,,,False,False,False,False,not evaluated
+POSMind_Software/AllanVarData/HG4930(600Hz).IMR,1441497088,AllanVarData,,,,True,False,False,False,not evaluated
+POSMind_Software/IPSLicence.lic,352,POSMind_Software,,,,False,False,False,False,not evaluated
+POSMind_Software/POSMind developing a hierarchical GNSS SINS post-processing service system for precise position and attitude determination.pdf,8428933,POSMind_Software,,,,False,False,False,False,not evaluated
+POSMind_Software/POSMind_Data processing flow and examples.mp4,68182190,POSMind_Software,,,,False,False,False,False,not evaluated
+POSMind_Software/POSMind_Detailed instructions for exporting solution results.pdf,480528,POSMind_Software,,,,False,False,False,False,not evaluated
+POSMind_Software/POSMind_Setup.exe,454784822,POSMind_Software,,,,False,False,False,False,not evaluated
+POSMind_Software/README.md,975,POSMind_Software,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/COMMIT_EDITMSG,11,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/HEAD,21,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/config,308,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/description,73,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/hooks/applypatch-msg.sample,478,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/hooks/commit-msg.sample,896,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/hooks/fsmonitor-watchman.sample,4726,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/hooks/post-update.sample,189,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/hooks/pre-applypatch.sample,424,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/hooks/pre-commit.sample,1649,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/hooks/pre-merge-commit.sample,416,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/hooks/pre-push.sample,1374,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/hooks/pre-rebase.sample,4898,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/hooks/pre-receive.sample,544,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/hooks/prepare-commit-msg.sample,1492,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/hooks/push-to-checkout.sample,2783,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/hooks/sendemail-validate.sample,2308,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/hooks/update.sample,3650,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/index,1823,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/info/exclude,240,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/logs/HEAD,634,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/logs/refs/heads/main,634,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/logs/refs/remotes/origin/HEAD,201,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/logs/refs/remotes/origin/main,423,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/objects/00/c0a9fac248dbaf815cfe5498dc2feb823cfe4e,95,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/objects/16/498aaa5765ce8fa99e0dcc75040405bab112b5,1297,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/objects/29/cda0f2fb7657c7985e4ce0ce1a0144b08336e5,53,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/objects/2d/0f3cc07f37528787f5cdc50b4655e0374b7b13,238,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/objects/2d/a8e061d4492a0b86dcfb6647435cfdad84e86e,152,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/objects/50/b23d0d1ebf8cc6dda7d7d7993156a4d675914d,151,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/objects/5b/f34dbd683260e1b5a564c119927d0305858bb9,133,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/objects/7c/d47741143535b1848f7218be762605e1a629f5,330,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/objects/82/e3a754b6a0fcb238b03c0e47d05219fbf9cf89,55,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/objects/86/b2a88d37daff54ce3c7d15447e1996aceae909,1260,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/objects/94/c502fde9eae131aec5dbec661e88bb567f75b7,149,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/objects/9f/dad5cfacb899232664ff64b7e26a6b61cffce7,4338,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/objects/af/f47d6118d3e8280c224805f0fe22568f1c6783,153,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/objects/bf/dc38dfba3485e809497ef49581898f3aeb3f50,2196,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/objects/c7/4050b1ae683efbbea68708fe614bc353b45bba,238,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/objects/d7/9a4a1b8256614d6220004722d9a9c151dbb10d,125,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/objects/dc/48e4e82fa33f86416891c2cb823e53ec933dd1,1088,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/objects/e6/9de29bb2d1d6434b8b29ae775ad8c2e48c5391,15,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/objects/fe/a03dd2ff5f2cea351cca35c7fb202c3a92c6ea,439,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/objects/pack/pack-31b6c6de6221c09cd4e0e0b890c463976373eeec.idx,1744,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/objects/pack/pack-31b6c6de6221c09cd4e0e0b890c463976373eeec.pack,8002,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/objects/pack/pack-31b6c6de6221c09cd4e0e0b890c463976373eeec.rev,148,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/packed-refs,112,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/refs/heads/main,41,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/refs/remotes/origin/HEAD,30,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/.git/refs/remotes/origin/main,41,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/README.MD,2463,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/config/conf.json,1074,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/context_detection/algorithms.py,9380,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/context_detection/models.py,4549,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/context_detection/trainAndtest.py,936,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/context_detection/utils.py,16432,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/.gitignore,0,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/rtcm_raw-20200921-102432.obs,10918601,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/time1.obs,110279220,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/time2.obs,185724158,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ub63940.obs,7542356,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ub73941.obs,7931324,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ub83943.obs,7867208,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx100139.obs,5473359,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx70252.obs,5824403,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx80136.obs,5743743,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx_raw_20200827-101518.obs,10547991,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx_raw_20200827-101531.obs,10519357,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx_raw_20200827-101532.obs,10357725,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx_raw_20200827-135140.obs,11948775,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx_raw_20200827-135142.obs,12116915,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx_raw_20200828-094756.obs,11048075,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx_raw_20200828-094830.obs,11034814,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx_raw_20200828-094911.obs,11003580,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx_raw_20200828-132825.obs,20204423,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx_raw_20200828-132838.obs,18853542,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx_raw_20200902-093059.obs,24975578,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx_raw_20200902-094701.obs,13999158,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx_raw_20200902-134606.obs,8325522,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx_raw_20200917-134710.obs,27142922,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx_raw_20200917-134712.obs,26030116,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx_raw_20200917-134713.obs,27353951,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx_raw_20200917-200604.obs,7364565,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx_raw_20200917-200606.obs,7368706,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx_raw_20200917-200607.obs,7410477,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx_raw_20200920-085339.obs,17495739,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx_raw_20200920-085344.obs,17093271,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx_raw_20200920-085356.obs,17435506,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx_raw_20200920-141808.obs,12860192,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx_raw_20200920-141812.obs,13002209,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx_raw_20200920-141824.obs,13160488,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx_raw_20200921-102426.obs,11609683,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx_raw_20200921-102432.obs,28268794,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx_raw_20200922-092047.obs,16414656,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx_raw_20200922-092052.obs,16131054,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx_raw_20200922-092058.obs,16147080,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx_raw_20200922-141201.obs,12897438,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx_raw_20200923-091751.obs,15950027,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx_raw_20200923-091827.obs,15759398,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx_raw_20200923-092410.obs,15499288,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx_raw_20200923-134137.obs,13714698,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx_raw_20200923-134213.obs,13771831,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx_raw_20200923-135231.obs,13779275,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx_raw_20200924-085401.obs,19421825,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx_raw_20200924-085852.obs,19635429,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx_raw_20200924-085900.obs,13833680,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx_raw_20200924-143123.obs,11811542,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx_raw_20200924-143144.obs,11648146,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx_raw_20200924-143205.obs,11536418,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/ubx_zy_03.obs,19639082,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/zy01.obs,8705191,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/zy02.obs,9862353,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/raw/zy03.obs,9737082,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/test/.gitignore,0,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/data/train/.gitignore,0,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/positioning/.gitignore,0,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/results/.gitignore,0,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/results/context_detection/.gitignore,0,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/results/positioning/.gitignore,0,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/results/stochastic model/.gitignore,0,context_detection,,,,False,False,False,False,not evaluated
+POSMind_Software/context_detection/stochastic_model/.gitignore,0,context_detection,,,,False,False,False,False,not evaluated
+README.md,1605,README.md,,,,False,False,False,False,not evaluated

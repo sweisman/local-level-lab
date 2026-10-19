@@ -1,0 +1,43 @@
+{
+  "axes_source": "ESA report: aircraft forward, starboard, through-floor",
+  "byte_size": 1100258400,
+  "corrections_applied": false,
+  "decoder_sha256": "b20008a47cf3935c16b612ee4afed3c315a175d1dbd0c5a9a9dfbdcb48869797",
+  "decoder_version": "esa-airquantumgrav-imar-level0-ascii-v1",
+  "dt_microsecond_counts": {
+    "3333": 5873321,
+    "3334": 3295497
+  },
+  "earth_model_fits": 0,
+  "effective_hz": 299.9976518214804,
+  "elapsed_s": 29.008618716034107,
+  "first_gps_sow_s": 384897.453542,
+  "first_low_force_rows": [
+    {
+      "force_norm_mps2": 0.00010337889090269978,
+      "gps_time_s": 384897.453542,
+      "line_number": 2
+    }
+  ],
+  "force_norm_below_1_mps2_count": 1,
+  "gaps_above_1p5_nominal_periods": 0,
+  "inspector_sha256": "5c1b5cc2aa259177b49618e9b27ee6fcccac3c59a50d19971efa9b5cf16a4b1a",
+  "interpolation": false,
+  "last_gps_sow_s": 415460.419433,
+  "layout": "GPS seconds-of-week; three accelerations m/s^2; three angular rates rad/s; temperature C",
+  "low_force_rows_use": "preserved startup/quality flags; not automatically excluded or repaired",
+  "maximum_dt_s": 0.0033340000081807375,
+  "median_dt_microsecond_histogram_s": 0.003333,
+  "minimum_dt_s": 0.003332999942358583,
+  "original_preserved": true,
+  "records": 9168819,
+  "reported_nominal_hz": 300,
+  "scientific_eligibility": "not evaluated",
+  "source_file": "187_rqh01.txt",
+  "source_sha256": "7415a1ab77fe787bdd3c86e067ae0626adb181540eaeb69629f8a205c0d24ee6",
+  "span_hours": 8.4897127475,
+  "span_s": 30562.965891,
+  "temperature_max_c": 38.989559,
+  "temperature_min_c": 35.420532,
+  "units_status": "header and report agree; no independent per-unit calibration established"
+}

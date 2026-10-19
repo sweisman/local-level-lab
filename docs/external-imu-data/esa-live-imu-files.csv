@@ -1,0 +1,10 @@
+filename,date,flight_ids,size_bytes,url,downloaded,local_sha256,eligibility
+178a_rqh01.txt,2023-06-27,178a,582485760,ftps://tpm-if.eo.esa.int/lvl0/178/rqh01/178a_rqh01.txt,False,,not evaluated
+178b_rqh01.txt,2023-06-27,178b,296022720,ftps://tpm-if.eo.esa.int/lvl0/178/rqh01/178b_rqh01.txt,False,,not evaluated
+179_rqh01.txt,2023-06-28,179,1088847840,ftps://tpm-if.eo.esa.int/lvl0/179/rqh01/179_rqh01.txt,False,,not evaluated
+180_rqh01.txt,2023-06-29,180,936527040,ftps://tpm-if.eo.esa.int/lvl0/180/rqh01/180_rqh01.txt,False,,not evaluated
+182_rqh01.txt,2023-07-01,182a;182b;182c,1602139800,ftps://tpm-if.eo.esa.int/lvl0/182/rqh01/182_rqh01.txt,False,,not evaluated
+183_rqh01.txt,2023-07-02,183,899031000,ftps://tpm-if.eo.esa.int/lvl0/183/rqh01/183_rqh01.txt,False,,not evaluated
+184_rqh01.txt,2023-07-03,184,736402320,ftps://tpm-if.eo.esa.int/lvl0/184/rqh01/184_rqh01.txt,False,,not evaluated
+186_rqh01.txt,2023-07-05,186,775300560,ftps://tpm-if.eo.esa.int/lvl0/186/rqh01/186_rqh01.txt,False,,not evaluated
+187_rqh01.txt,2023-07-06,187a;187b,1100258400,ftps://tpm-if.eo.esa.int/lvl0/187/rqh01/187_rqh01.txt,True,7415a1ab77fe787bdd3c86e067ae0626adb181540eaeb69629f8a205c0d24ee6,not evaluated

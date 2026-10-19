@@ -78,8 +78,21 @@ GPS is a positioning system; WGS84 is the geodetic reference used for its report
 coordinates. GPS latitude, longitude and height use those conventions. Each candidate assigns
 its declared geometry to those coordinates. Separate recorded streams therefore
 avoid fitting the finished navigation answer against itself, but do not make the
-comparison free of coordinate assumptions. Planned channel and coordinate checks
-will isolate what the inertial observations add.
+comparison free of coordinate assumptions. Channel and coordinate checks
+test what the inertial observations add.
+
+The first horizontal-only refits remove height from the score using the correct
+marginal receiver covariance. A 9.75-minute IMU8 stretch passes every model/case
+and independent-repeat check and still favors globe. A 4.07-minute IMU21 stretch
+has all individual fits completed but three repeat failures, so its matched
+comparison remains unresolved. Both starts still rank the specified-field globe
+first. [Results and detailed limits](ilvis0-horizontal-repeat-audit-20261019/INTERPRETATION.md).
+
+Omitting the height score lets fitted vertical paths drift far from receiver
+altitude. Those paths are not plausible full flight reconstructions. Heights also
+remain in initialization, covariance construction and propagation, and both IMU
+channels remain active. The check tests sensitivity to the scored height constraint;
+it does not establish altitude independence or isolate the gyroscope.
 
 A completed fit means the numerical search passed its checks; it does not mean the
 fit is good. Fit quality, prediction on unused observations, correlated errors and

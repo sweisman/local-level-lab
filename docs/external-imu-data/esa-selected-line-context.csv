@@ -1,0 +1,3 @@
+line_id,report_start_s,report_end_s,report_duration_min,gnss_epochs,raw_imu_time_span_covers_report_line,mean_ground_speed_kmh,min_ground_speed_kmh,max_ground_speed_kmh,mean_latitude_deg,min_ellipsoid_height_m,max_ellipsoid_height_m,eligibility
+9001,395989.0,396357.0,6.133333333333334,736,True,282.1535852399366,279.89488978228957,285.3580973578286,66.35270416056821,1948.892,1952.053,"not evaluated; report lines are descriptive, not a frozen study cohort"
+3007,410159.0,413603.0,57.4,6888,True,262.93726837755366,252.6220195960756,300.7564319599499,65.1984046779779,1512.012,1902.163,"not evaluated; report lines are descriptive, not a frozen study cohort"
