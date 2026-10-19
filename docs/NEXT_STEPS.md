@@ -35,6 +35,10 @@ has reached these milestones:
 | First horizontal-only refits | The 9.75-minute IMU8 stretch passed all six repeats and favored globe. The 4.07-minute IMU21 stretch remained unresolved at repeat precision. |
 | Matched timing search | Both controls and 37 of 38 fits passed individually, but only two of six selected repeat comparisons agreed. The IMU21 sensitivity result remains unresolved. |
 | Channel-removal software controls | All 25 checks pass. They define the ambiguity left without gyroscopes and an acceleration-magnitude diagnostic that does not use fused attitude. |
+| Independent force and derivative checks | All 18 exact-trajectory controls and 22 derivative/covariance unit checks pass, providing the mathematical basis for the error-budget matrix. |
+| Approximation and averaging error budget | All 46 implementation controls pass, while 27/108 candidate/window combinations fail the declared approximation screens. Polynomial bias, nonlinear response and acceleration aggregation must be controlled. |
+| Acceleration calibration ambiguity | A constant gain change of 0.066–0.307% erases all wrong-model scalar differences on the constructed straight leg. Nine mathematical controls pass; this is not a measured device error. |
+| Changing-motion calibration controls | All 72 local controls pass. Changing motion retains local scalar differences, but wrong-model linear corrections exceed bounds; bounded nonlinear calibration remains to be checked. |
 
 Removing height from the score also permits implausible vertical paths. Even
 repeatable horizontal fits can reconstruct the wrong altitude by hundreds of
@@ -44,10 +48,15 @@ it does not reopen the original full-position comparisons.
 
 The next sequence is:
 
-1. **Qualify the channel comparison.** Check the acceleration-only diagnostic on
-   independently generated trajectories. Specify receiver-trajectory
-   differentiation, its uncertainty and calibration assumptions before applying
-   it to recordings. An omitted gyro stream cannot be replaced with fused attitude.
+1. **Qualify the channel comparison.** The independent exact-trajectory controls
+   now pass. The [error-budget matrix](ilvis0-channel-error-budget-20261019/INTERPRETATION.md)
+   exposes approximation and aggregation failures. The [calibration control](ilvis0-measurement-contribution/CALIBRATION.md)
+   shows that straight-leg scalar separation disappears with a small permitted
+   gain change. The [72-case changing-motion matrix](ilvis0-scalar-calibration-controls-20261019/INTERPRETATION.md)
+   retains local differences but requires bounded nonlinear calibration checks.
+   Next qualify those checks, quantization and synchronization, then define a common motion-based support
+   policy and consistent uncertainty model before recorded-data use. An omitted
+   gyro stream cannot be replaced with fused attitude.
 2. **Run a finite matched recorded-data check after qualification.** Reuse
    preselected intervals, preserve failures, and compare all candidates under
    the same declared assumptions. A wider timing search is deferred.

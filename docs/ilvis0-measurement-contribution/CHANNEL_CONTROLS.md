@@ -80,16 +80,35 @@ Implementation: [channel helpers](../../analysis/lll/ilvis0_channel_controls.py)
 and [known-answer tests](../../analysis/tests/test_ilvis0_channel_controls.py).
 The helpers contain no archive reader, optimizer or model-selection gate.
 
-## Next qualification steps
+## Qualification progress and next steps
 
-1. Generate independent trajectories and attitudes under all three physical
-   candidates. Check the magnitude residual against independently computed force,
-   with both ordinary motion and near-degenerate cases. Preserve mismatched-model
-   outcomes without requiring them to be identifiable.
-2. Specify receiver-trajectory differentiation, its temporal uncertainty, the
-   shared calibration freedoms and the exact initialization dependencies. Noise
-   in differentiated positions must not be treated as an exact force observation.
-3. Qualify those choices before freezing a finite recorded-data comparison.
+The independent [18-case trajectory-force matrix](../ilvis0-channel-trajectory-controls-20261019/INTERPRETATION.md)
+has now passed. The calculations agree for stationary, slow, straight,
+direction-changing and climbing motion without using gyro or fused-attitude
+observations. The following [receiver-derivative adapter](../ilvis0-channel-trajectory-controls-20261019/DERIVATIVES.md)
+passes 22 mathematical checks, including joint covariance and overlapping-window
+dependence. These checks do not establish observational uncertainty.
+
+The subsequent [46-case error-budget diagnostic](../ilvis0-channel-error-budget-20261019/INTERPRETATION.md)
+quantifies approximation, nonlinear response and acceleration-aggregation errors.
+It preserves 27 of 108 candidate/window combinations that fail its declared
+approximation screens. The subsequent [calibration control](CALIBRATION.md)
+shows that one permitted constant gain erases wrong-model scalar differences on
+the constructed straight leg. All nine combinations pass that limitation check;
+it is not an observed calibration measurement. The [72-case local matrix](../ilvis0-scalar-calibration-controls-20261019/INTERPRETATION.md)
+now covers changing motion with all seven calibration directions. Its surviving
+local differences and infeasible wrong-model linear corrections require a
+bounded nonlinear check before recorded-data use.
+
+1. Preserve the completed exact-trajectory controls, including indistinguishable
+   stationary cases and every incorrect-model outcome. They qualify the force
+   calculation, not a recorded-data likelihood.
+2. Assess receiver-trajectory approximation and propagate its joint uncertainty
+   through force and magnitude. Specify shared calibration freedoms, raw-increment
+   averaging, synchronization and initialization dependencies. Noise in differentiated
+   positions must not be treated as an exact force observation.
+3. Follow the completed local calibration matrix with bounded nonlinear checks
+   of the surviving temporal distinctions before freezing a recorded-data comparison.
    Reuse preselected intervals; do not choose stretches by favorable force residuals.
 4. Preserve the original full-position results and the unresolved horizontal-only
    sensitivity result separately. Further timing-grid expansion is deferred.

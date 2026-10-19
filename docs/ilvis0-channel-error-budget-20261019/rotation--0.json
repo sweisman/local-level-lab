@@ -1,0 +1,1 @@
+{"angle_deg":0.0,"closed_form_error_mps2":8.881784197001252e-15,"constructed_increments":200,"identity":"rotation::0","kind":"rotation","mean_packet_magnitude_mps2":9.81,"packet_integration_loss_mps2":0.0,"passed":true,"scientific_decision":"abstain","summed_vector_magnitude_mps2":9.809999999999992,"uncorrected_vector_average_loss_mps2":8.881784197001252e-15}

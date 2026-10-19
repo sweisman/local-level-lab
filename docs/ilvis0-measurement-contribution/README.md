@@ -22,6 +22,11 @@ reward an expected Earth-rate gyro value.
 | [Timing and calibration diagnosis](../ilvis0-horizontal-timing-path-20261019/DIAGNOSIS.md) | Fixed-point and derivative checks find coupled timing/calibration freedom and different local solutions. | Explains the repeat disagreement without changing failed labels or performing a new fit. |
 | [Matched timing search](../ilvis0-horizontal-multistart-20261019/INTERPRETATION.md) | Both controls and 37/38 individual fits pass, but only 2/6 selected repeat comparisons pass. | The specified-field globe solution repeats; the zero-field and flat results do not. The IMU21 sensitivity result stays unresolved. |
 | [Channel-removal controls](CHANNEL_CONTROLS.md) | All 25 software checks pass. | Defines missing orientation/force constraints and an acceleration-only diagnostic; not yet a qualified recorded-data comparison. |
+| [Independent trajectory-force matrix](../ilvis0-channel-trajectory-controls-20261019/INTERPRETATION.md) | All 18 controls pass under independent Cartesian reference motion. | Qualifies exact-trajectory force calculations; some generated cases separate without gyro input. |
+| [Receiver derivatives and covariance](../ilvis0-channel-trajectory-controls-20261019/DERIVATIVES.md) | All 22 mathematical checks pass. | Preserves joint uncertainty, overlapping-window dependence and covariance symmetry; approximation is assessed separately below. |
+| [Approximation and averaging matrix](../ilvis0-channel-error-budget-20261019/INTERPRETATION.md) | All 46 implementation controls pass; 81/108 candidate/window combinations pass the declared approximation screens. | Exposes trajectory bias, nonlinear response and aggregation effects before recorded-data use. |
+| [Acceleration calibration ambiguity](CALIBRATION.md) | All nine known-answer checks pass; a constant gain change of 0.066–0.307% erases wrong-model scalar differences on the constructed straight leg. | A fixed-calibration acceleration-only ranking would overstate what the diagnostic distinguishes. |
+| [Local calibration and changing motion](../ilvis0-scalar-calibration-controls-20261019/INTERPRETATION.md) | All 72 controls pass, with all seven calibration columns retained. Straight-leg differences disappear; changing motion retains local differences but wrong-model linear corrections exceed bounds. | Identifies the need for bounded nonlinear calibration checks; a local projection is not a feasible nonlinear fit. |
 
 The timing search used 2,376 native evaluations in 6.59 hours. It is complete;
 wider searches are deferred. [Every attempt](../ilvis0-horizontal-multistart-20261019/DETAILS.md)
@@ -59,8 +64,14 @@ of initial tilt. Fused navigation cannot supply the missing measurement.
 The first diagnostic compares measured acceleration magnitude with the magnitude
 required by each receiver-trajectory model, without assuming an attitude. It
 still depends on gravity, receiver coordinates and calibration. Independent
-generated-motion checks and trajectory-derivative uncertainty must be qualified
-before applying it to recordings.
+exact-trajectory checks now pass, as do the linear derivative/covariance checks.
+The new approximation/averaging matrix quantifies failures of otherwise plausible
+choices. The calibration control now shows that a small permitted gain change can
+erase the straight-leg scalar distinction. The changing-geometry matrix now
+retains local distinctions under all seven calibration directions, with
+out-of-bounds suggested wrong-model corrections. Next qualify bounded nonlinear
+calibration, quantization, synchronization and a common motion-based window
+policy before applying it to recordings.
 
 After that qualification, a finite matched recorded-data comparison can be
 prepared. Held-out prediction, correlated errors and shared-flight dependence

@@ -1,0 +1,1 @@
+{"bias_order5_mps2":1.0193679914394238e-05,"bias_order9_mps2":1.0193679916170595e-05,"identity":"noise::0.01","kind":"noise","passed":true,"quadrature_disagreement_mps2":1.7763568394002505e-15,"quadrature_evaluations":854,"scientific_decision":"abstain","sigma":0.01,"sigma_mps2":0.01,"small_noise_prediction_mps2":1.019367991845056e-05}

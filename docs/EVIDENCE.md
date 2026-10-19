@@ -22,7 +22,7 @@ navigation does not supply the fitted observations.
 | Complete full-position model comparison | All 53 stretches pass their required numerical comparisons and favor globe. |
 | Background-field comparison | All 53 also prefer the specified field over zero; its cause and freely measured rate are not determined. |
 | Height-removal sensitivity | The horizontal score advantage persists, but unscored vertical paths can be implausible. One of two refitted stretches is complete; the other remains unresolved after a matched timing search. |
-| Sensor-channel separation | Twenty-five software checks pass. The acceleration-only diagnostic still needs generated-trajectory and uncertainty qualification before recorded-data use. |
+| Sensor-channel separation | Exact-force, derivative and error-budget controls pass while preserving approximation failures. Nine calibration checks show straight-leg scalar separation can vanish with a small gain change. A 72-case local matrix retains changing-motion differences, but bounded nonlinear calibration and synchronization remain before recorded-data use. |
 | Prediction and significance | Earlier trials provide development evidence; calibrated significance, adequate withheld prediction and independent-replication counts remain open. |
 
 The [measurement-contribution overview](ilvis0-measurement-contribution/README.md)

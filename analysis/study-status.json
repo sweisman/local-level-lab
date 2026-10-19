@@ -1,5 +1,8 @@
 {
   "studies": [
+    {"name": "Scalar calibration projection controls", "path": "data/ilvis0-scalar-calibration-controls-20261019"},
+    {"name": "Channel approximation and averaging error budget", "path": "data/ilvis0-channel-error-budget-20261019"},
+    {"name": "Independent channel trajectory controls", "path": "data/ilvis0-channel-trajectory-controls-20261019"},
     {"name": "Matched observed horizontal multi-start", "path": "data/ilvis0-horizontal-multistart-20261019"},
     {"name": "Constructed multi-start qualification", "path": "data/ilvis0-multistart-controls-v3-20261019"},
     {"name": "Horizontal timing path and derivatives", "path": "data/ilvis0-horizontal-timing-path-20261019"},

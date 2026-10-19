@@ -97,8 +97,17 @@ it does not establish altitude independence or isolate the gyroscope.
 
 The next [channel controls](ilvis0-measurement-contribution/CHANNEL_CONTROLS.md)
 separate gyro and acceleration information explicitly. Their 25 software checks
-pass, but the new acceleration-only diagnostic still needs trajectory and
-uncertainty qualification before use on recordings. Fused attitude cannot replace
+pass, and all 18 independent exact-trajectory controls now pass. The
+[derivative/covariance adapter](ilvis0-channel-trajectory-controls-20261019/DERIVATIVES.md)
+passes 22 unit checks. A [46-case error-budget matrix](ilvis0-channel-error-budget-20261019/INTERPRETATION.md)
+now quantifies approximation and aggregation effects, preserving failed screens.
+The [calibration ambiguity control](ilvis0-measurement-contribution/CALIBRATION.md)
+shows that small permitted gain changes erase the scalar model difference on a
+constructed straight leg. A [72-case changing-motion matrix](ilvis0-scalar-calibration-controls-20261019/INTERPRETATION.md)
+retains local differences under all seven calibration directions, with infeasible
+wrong-model linear corrections. Bounded nonlinear calibration, quantization and
+synchronization still need qualification before use on recordings.
+Fused attitude cannot replace
 an omitted gyro stream, and omitted acceleration cannot still supply initial tilt.
 
 A completed fit means the numerical search passed its checks; it does not mean the

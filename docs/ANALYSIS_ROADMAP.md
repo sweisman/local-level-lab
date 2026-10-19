@@ -21,8 +21,15 @@ model evidence.
 
 ## Current execution order
 
-1. Qualify the gyro/acceleration contribution comparison on independent generated
-   trajectories, including trajectory differentiation and its uncertainty.
+1. Qualify bounded nonlinear calibration for the channel comparison. The
+   [72-case local matrix](ilvis0-scalar-calibration-controls-20261019/INTERPRETATION.md)
+   retains changing-motion differences but has infeasible wrong-model linear
+   corrections. A constant gain already erases scalar straight-leg separation
+   in the [known-answer control](ilvis0-measurement-contribution/CALIBRATION.md).
+   Qualify quantization and synchronization and define a common motion-based
+   support policy. Exact-force and
+   derivative controls pass; the completed error-budget matrix now preserves
+   approximation/averaging successes and failures separately.
 2. Freeze a finite matched recorded-data study only after those controls pass.
 3. Establish prediction on unused observations and an adequate shared residual
    model; then assess confidence and independent replication.

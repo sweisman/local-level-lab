@@ -19,7 +19,7 @@ the instrument's fused navigation answer.
 | Does preference survive a different clock convention? | All six matched refits completed and preserved globe/field preferences. | Independent support for the physical integration interval and its calibration interaction. |
 | Does the horizontal score retain separation? | All 36 saved-parameter comparisons favor globe; one of two refitted stretches passes every repeat and favors globe. | A physically adequate comparison when height is not scored; the other sensitivity stretch remains unresolved. |
 | Did a timing grid resolve that sensitivity stretch? | Both controls and 37/38 fits passed individually. | Four selected repeat comparisons still fail; wider searches are deferred. |
-| Can sensor channels simply be removed? | Twenty-five software controls expose the missing orientation/force constraints and define a force-magnitude diagnostic. | Independent trajectory and uncertainty qualification before recorded-data use. |
+| Can sensor channels simply be removed? | Exact-force controls, 22 derivative/covariance unit checks and a 46-case error-budget matrix quantify the required transformations and their limits. | Calibration, quantization, synchronization and a common support policy before recorded-data use. |
 | Are prediction and uncertainty validated? | Residual audits and split-recording trials provide development evidence. | Complete withheld prediction and calibrated coverage with shared-flight accounting. |
 
 ## 1. Investigate clock and joint calibration
@@ -50,11 +50,16 @@ their unresolved influence. Numerical controls do not establish empirical covera
 The [channel-control requirements](ilvis0-measurement-contribution/CHANNEL_CONTROLS.md)
 now define the next implementation stage:
 
-- Qualify force calculations using independent generated motion under all three
-  physical candidates.
-- Specify differentiation of receiver trajectories and propagate its uncertainty.
+- Preserve the completed 18-case independent exact-force qualification.
+- Preserve the completed approximation/averaging matrix and its failed screens;
+  qualify calibration, quantization and synchronization beyond the 22 passing
+  derivative/covariance unit checks.
 - Keep acceleration calibration, gravity and coordinate assumptions explicit in
   the acceleration-magnitude comparison.
+- Preserve the [constant-gain ambiguity control](ilvis0-measurement-contribution/CALIBRATION.md)
+  and [72-case local calibration matrix](ilvis0-scalar-calibration-controls-20261019/INTERPRETATION.md).
+  Qualify bounded nonlinear calibration before interpreting a fixed-calibration
+  scalar model difference as information supplied without gyros.
 - Never supply fused attitude in place of omitted gyros, or use omitted
   acceleration measurements to initialize tilt.
 - Freeze a finite matched recorded-data comparison only after qualification.
