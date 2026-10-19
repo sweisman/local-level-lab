@@ -13,6 +13,13 @@ reward an expected Earth-rate gyro value.
 [Measurement dependencies](SOURCE_AUDIT.md) · [Main findings](../CURRENT_STATUS.md) ·
 [Next analyses](../NEXT_STEPS.md).
 
+The [authoritative backlog](../ANALYSIS_ROADMAP.md) orders remaining work:
+nonlinear calibration and measurement error qualification, finite recorded-data
+contribution checks, withheld prediction, then protected ESA replication.
+The [provenance ledger](../analysis-provenance/README.md) defines conservative
+split groups before new validation selection. Earlier development plans and
+completed studies do not provide additional execution allowances.
+
 ## Completed checks
 
 | Check | Result | What it establishes |
@@ -27,6 +34,8 @@ reward an expected Earth-rate gyro value.
 | [Approximation and averaging matrix](../ilvis0-channel-error-budget-20261019/INTERPRETATION.md) | All 46 implementation controls pass; 81/108 candidate/window combinations pass the declared approximation screens. | Exposes trajectory bias, nonlinear response and aggregation effects before recorded-data use. |
 | [Acceleration calibration ambiguity](CALIBRATION.md) | All nine known-answer checks pass; a constant gain change of 0.066–0.307% erases wrong-model scalar differences on the constructed straight leg. | A fixed-calibration acceleration-only ranking would overstate what the diagnostic distinguishes. |
 | [Local calibration and changing motion](../ilvis0-scalar-calibration-controls-20261019/INTERPRETATION.md) | All 72 controls pass, with all seven calibration columns retained. Straight-leg differences disappear; changing motion retains local differences but wrong-model linear corrections exceed bounds. | Identifies the need for bounded nonlinear calibration checks; a local projection is not a feasible nonlinear fit. |
+| [Bounded nonlinear calibration](../ilvis0-scalar-nonlinear-controls-20261019/INTERPRETATION.md) | All 12 known-answer starts pass; 32/72 matched comparisons pass all three starts. | Near-zero weakly determined cases still exhaust the budget; observed channel fitting remains blocked. |
+| [Quantization and integration-period bounds](QUANTIZATION.md) | All 17 mathematical checks pass. | Bounds packet-mean magnitudes under declared count and timing hypotheses; neither statistical averaging nor a continuous-force upper bound is established. |
 
 The timing search used 2,376 native evaluations in 6.59 hours. It is complete;
 wider searches are deferred. [Every attempt](../ilvis0-horizontal-multistart-20261019/DETAILS.md)
@@ -69,9 +78,11 @@ The new approximation/averaging matrix quantifies failures of otherwise plausibl
 choices. The calibration control now shows that a small permitted gain change can
 erase the straight-leg scalar distinction. The changing-geometry matrix now
 retains local distinctions under all seven calibration directions, with
-out-of-bounds suggested wrong-model corrections. Next qualify bounded nonlinear
-calibration, quantization, synchronization and a common motion-based window
-policy before applying it to recordings.
+out-of-bounds suggested wrong-model corrections. The bounded nonlinear study
+handles the known solutions but does not qualify every matched comparison;
+near-zero calibration directions need a separate candidate. Initial deterministic
+quantization bounds pass. Synchronization, within-packet averaging, combined
+uncertainty and a common support policy remain before recorded-data use.
 
 After that qualification, a finite matched recorded-data comparison can be
 prepared. Held-out prediction, correlated errors and shared-flight dependence

@@ -4,6 +4,12 @@ Two archives offer raw observations for separate development cohorts. Neither ha
 been added to the existing 53-stretch comparison. No new Earth-model fits have
 been run on these sources.
 
+**ESA confirmation is reserved before fitting.** Recording 187 is development
+material. The other eight cataloged files form seven protected confirmation
+groups. Integrity and receiver-only eligibility checks may proceed; model fitting
+and outcome inspection wait for a frozen method and confirmation selection.
+See the [provenance ledger and reservation](../analysis-provenance/README.md).
+
 An **IMU (inertial measurement unit)** records angular motion and acceleration.
 The relevant files contain its observations, rather than only a finished
 navigation solution.

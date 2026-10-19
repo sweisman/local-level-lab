@@ -7,7 +7,8 @@ See the [verified current status](CURRENT_STATUS.md) for coverage, background-fi
 
 This guide covers the source recordings, decoding and instrument evidence.
 The [study index](STUDIES.md) explains what each analysis added;
-[planned work](NEXT_STEPS.md) lists measurement-contribution checks, prediction validation and the rotation-rate study.
+[planned work](NEXT_STEPS.md) prioritizes measurement contributions, withheld
+prediction and independent ESA confirmation before rotation-field precision.
 The [separate stretch table](ilvis0-current-findings-20261015/STRETCHES.md) preserves
 all 53 intervals, with a [comprehensive metadata CSV](ilvis0-current-findings-20261015/stretch-analytics.csv)
 for further analysis.
@@ -46,6 +47,14 @@ route context and fitting constraints. GPS is the positioning system; WGS84 is i
 coordinate reference, not a synonym for the receiver measurements. The planned
 [channel and coordinate checks](NEXT_STEPS.md#then-strengthen-the-interpretation)
 will isolate those contributions rather than assume how much evidence each supplies.
+
+The [provenance ledger](analysis-provenance/README.md) groups the 53 stretches
+into 27 conservative validation groups using source hashes, UTC overlaps,
+same-date observations and candidate shared legs. These are not 27 verified
+independent flights or installations. NASA prediction tests remain retrospective
+development validation; separate ESA groups are reserved for confirmation
+before model fitting. The [roadmap](ANALYSIS_ROADMAP.md) defines the execution
+order and remaining qualification gates.
 
 | Recorded source | Use in this project |
 |---|---|

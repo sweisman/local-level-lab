@@ -100,6 +100,12 @@ now covers changing motion with all seven calibration directions. Its surviving
 local differences and infeasible wrong-model linear corrections require a
 bounded nonlinear check before recorded-data use.
 
+The subsequent [nonlinear study](../ilvis0-scalar-nonlinear-controls-20261019/INTERPRETATION.md)
+passes all known-answer starts but only 32/72 full matrix comparisons. Its failed
+qualification blocks observed channel fitting. Independent [quantization/period controls](QUANTIZATION.md)
+pass 17 checks; their deterministic bounds are not a statistical error model or
+a continuous-force upper bound.
+
 1. Preserve the completed exact-trajectory controls, including indistinguishable
    stationary cases and every incorrect-model outcome. They qualify the force
    calculation, not a recorded-data likelihood.

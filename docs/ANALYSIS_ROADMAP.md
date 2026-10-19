@@ -7,172 +7,141 @@
 See the [verified current status](CURRENT_STATUS.md) for coverage, background-field comparisons and the supporting result records. All selected comparisons have passed their required numerical checks.
 <!-- current-status:end -->
 
-The main full-position comparison and its numerical recovery are complete.
-The same 53 preselected stretches total 424.3 minutes; each is counted once.
-All also prefer the specified background field over zero under both processing
-assumptions. These are numerical model preferences, not a calibrated significance
-level or a count of independent flights.
+The complete full-position comparison covers 424.3 minutes. All 53 stretches
+also prefer the specified nonzero background field over zero under both tested
+processing assumptions. These are numerical preferences, not a significance
+level or 53 independent flights.
 
-An **IMU (inertial measurement unit)** records angular motion and specific force.
-Gyroscopes supply the central turning observations. Accelerometers and
-primary-receiver positions constrain the reconstructed trajectory. Fused
-navigation is used for motion screening and decoder checks, not independent
-model evidence.
+An **IMU (inertial measurement unit)** records turning and specific force.
+Gyroscopes supply the turning observations; accelerometers and primary-receiver
+positions constrain reconstructed motion. Group-1 fused navigation is context
+and decoder-check material, not independent fitted evidence.
 
-## Current execution order
+This is the authoritative backlog. Detailed study plans define their own frozen
+allowances; they do not create competing execution queues. Status changes below
+must link to evidence. Runtime state belongs in worker metadata.
 
-1. Qualify bounded nonlinear calibration for the channel comparison. The
-   [72-case local matrix](ilvis0-scalar-calibration-controls-20261019/INTERPRETATION.md)
-   retains changing-motion differences but has infeasible wrong-model linear
-   corrections. A constant gain already erases scalar straight-leg separation
-   in the [known-answer control](ilvis0-measurement-contribution/CALIBRATION.md).
-   Qualify quantization and synchronization and define a common motion-based
-   support policy. Exact-force and
-   derivative controls pass; the completed error-budget matrix now preserves
-   approximation/averaging successes and failures separately.
-2. Freeze a finite matched recorded-data study only after those controls pass.
-3. Establish prediction on unused observations and an adequate shared residual
-   model; then assess confidence and independent replication.
-4. Develop a freely estimated background field and, where supported by precision,
-   test solar versus sidereal rate.
+## Dependency-ordered backlog
 
-The [height-removal sensitivity work](ilvis0-measurement-contribution/README.md)
-is complete. One of two stretches passed all repeat checks. The other remained
-unresolved after a 38-start matched timing search, despite 37 individual passes
-and passing controls. Removing height also allowed implausible vertical paths.
-Further timing-grid expansion is deferred; this sensitivity outcome does not
-reopen the original full-position comparisons.
+| ID | Priority / status | Work and output | Depends on / completion gate |
+|---|---|---|---|
+| F01 | Foundation — metadata ledger complete | [Provenance ledger](analysis-provenance/README.md): 53 archive stretches form 27 conservative split groups; physical instrument/installation identity remains unknown. | Eleven metadata controls pass; preserve candidates and conservative grouping separately from verified flight identity. |
+| F02 | Foundation — reservation recorded | Nine ESA files form eight groups: recording 187 for development and seven protected confirmation groups. [Policy and ledger](analysis-provenance/README.md). | No protected model fitting or outcome inspection before method freeze. Future workers must enforce the reservation; integrity and receiver-only screening are permitted. |
+| C01 | P0 — complete | Independent force, receiver-derivative, approximation/averaging and local calibration controls. | [Completed evidence](ilvis0-measurement-contribution/README.md); preserve failures and indistinguishable cases. Do not rerun. |
+| C02 | P0 — qualification incomplete | [Nonlinear calibration outcome](ilvis0-scalar-nonlinear-controls-20261019/INTERPRETATION.md): 12/12 known-answer starts pass, but only 32/72 matched comparisons pass every repeat check. | All 228 starts completed; 80 endpoints exhausted budget near small residuals. No resume. A separate candidate must handle flat/near-zero directions before observed use. |
+| C03 | P0 — initial bounds checked | [17 quantization/period controls](ilvis0-measurement-contribution/QUANTIZATION.md) pass; synchronization, within-packet averaging, combined uncertainty and common support remain. | C01. Deterministic bounds do not shrink as independent noise or establish continuous-force upper bounds. |
+| C04 | P0 — blocked | Finite matched gyro-free necessary-constraint versus complete-observation comparison on preselected recordings. | F01, C02, C03 and new-objective solver qualification. Freeze identities and costs before launch. Non-identifiability is a valid outcome. |
+| V01 | P0 — pending | Shared residual covariance and bounded nuisance uncertainty fitted on training data only. | F01; reuse completed software controls and residual audits. Qualify parameter/covariance uncertainty, not only local linear covariance. |
+| V02 | P0 — blocked | Representative NASA blocked predictions and supported cross-flight transfer, with absolute three-axis adequacy. | F01, V01 and qualified solver. Freeze splits, initialization dependencies and adequacy criteria before prediction evaluation. |
+| L01 | P1 — pending prerequisite | Structured covariance and matrix-free residual/Jacobian whitening; streaming/block integration with preserved state. | Match dense small-problem references and benchmark long-record memory/runtime. Required before long ESA fits, not short NASA controls. |
+| E01 | P1 — pending | ESA-specific eligibility inventory, rejection reasons and qualified rate/acceleration adapter. | F02; implement the existing [selection proposal](external-imu-data/ELIGIBILITY_PLAN.md) as its first version. Keep all protected outcomes sealed. |
+| E02 | P1 — blocked | ESA development comparison, then separately frozen confirmation on reserved groups. | C04, V02, L01, E01. Freeze model, uncertainty, adequacy, selection and numerical rules before protected model evaluation. |
+| G01 | P1 — pending | Companion gyro-prediction plot: course/latitude/mount/transport/field versus observed signed variation. | F01 and explicit orientation provenance. Preserve raw plot; expose aircraft motion and mount/crab ambiguity rather than using fused attitude to remove them. |
+| U01 | P1 — pending | Versioned paper dataset with grouping, selections, hashes, fits, prediction errors, exclusions and abstentions. | F01; assemble incrementally. Seal final version after C04, V02 and E02. |
+| U02 | P1 — blocked | Calibrate the shape-first decision and subsequent field comparison at the flight-group level. | V02, E02, U01 and separately frozen finite calibration design; include correlated errors, nuisance fitting and minimum over globe candidates. |
+| R01 | Follow-on — deferred | Freely measured retained background vector and geographic patterns. | C04 and V02; audit geographic/installation rank before fitting. [Field plan](ROTATION_FIELD.md). |
+| R02 | Follow-on — deferred | Solar/sidereal precision comparison with freely fitted rate. | R01 plus supported clock/gain/bias precision and longer records; no inference from a fixed-rate candidate. |
+| S01 | Secondary — deferred | Wuhan independent positions/eligibility and stationary-consumer physical validation. | Separate dataset-specific qualification; no automatic transfer of archive thresholds. |
+| D01 | Supporting | Exact instrument/processing documentation and defensible calibration alternatives. | Supporting work, not a blanket reason to suspend analysis. |
 
-The first [channel-removal controls](ilvis0-measurement-contribution/CHANNEL_CONTROLS.md)
-pass 25 software checks. They establish geometric requirements, not a qualified
-recorded-data likelihood.
+The execution order is F01/F02, C02/C03/C04, V01/V02, L01/E01/E02,
+G01, then U02. U01 is assembled throughout. Cheap software and metadata
+prerequisites may precede a blocked stage without consuming protected outcomes.
 
-## Recovery development history
+### Where earlier unfinished plans belong
 
-The [detailed study history](STUDY_HISTORY.md) and
-[earlier technical roadmap](ANALYSIS_HISTORY.md) preserve the progression from
-twelve completed comparisons to all 53. Failed fits, interrupted work and
-superseded methods remain part of that record. Historical counts apply only to
-their own stage.
+| Existing design or unresolved requirement | Backlog home |
+|---|---|
+| [Channel-removal requirements](ilvis0-measurement-contribution/CHANNEL_CONTROLS.md), calibration ambiguity and failed nonlinear matrix | C02/C04; preserve completed controls and qualify a separate candidate before observed use. |
+| [Error-budget next gate](ilvis0-channel-error-budget-20261019/NEXT_PLAN.md): timing, quantization, averaging, support and joint uncertainty | C03; initial deterministic quantization bounds are complete, the combined observational model is not. |
+| [Shared error-model design](ilvis0-residual-covariance-20261012/ERROR_MODEL_PLAN.md), bounded uncertainty and earlier incomplete prediction studies | V01/V02, L01 and U02; reuse their controls, not completed start allowances. |
+| [ESA selection proposal](external-imu-data/ELIGIBILITY_PLAN.md) and rate/axis/lever-arm qualification | E01, with F02 reservation enforced before any development or confirmation fit. |
+| Raw gyro geographic-prediction companion, residual trends and shared-recorder comparisons | G01 and V02; no fused-attitude substitution or independent-vote counting. |
+| Free vector/latitude/rate/altitude follow-ups and [solar/sidereal precision](ROTATION_FIELD.md) | R01/R02 after contribution and prediction qualification. |
+| Wuhan independent GNSS processing, consumer physical controls and exact device documentation | S01/D01; retained as separate secondary/supporting work. |
 
-## Priority and scope
+## What is already complete
 
-| Priority | Work | Completion requirement |
-|---|---|---|
-| Current | Separate measurement contributions | Explicit missing-channel constraints, independent physical controls and a matched finite recorded-data comparison. |
-| Next | Predictive adequacy and correlated errors | Nuisance fitting on training data only, withheld predictions and checked uncertainty. |
-| Next | Independent-flight accounting | Provenance-supported flight/instrument groups and overlapping-time accounting. |
-| Follow-on | Free rotation field and rate | Identifiable field parameters with calibration, timing and unknown processing considered jointly. |
-| Supporting | Exact device documentation | Better-supported assumptions where available; it does not suspend modeling. |
+- Main numerical recovery is retired: all 53 required comparisons are complete.
+- The height-score sensitivity work is complete. IMU8 repeats pass; the IMU21
+  sensitivity remains unresolved after its finite timing search. Implausible
+  unscored heights prevent treating horizontal fits as full-flight adequacy.
+- The channel controls include 18 independent exact-trajectory cases, 22
+  receiver-derivative/covariance checks, 46 error-budget identities, nine
+  constant-gain ambiguity checks and 72 local calibration cases.
+- A small constant gain erases straight-leg scalar separation. Changing motion
+  retains local differences, but wrong-model linear corrections exceed bounds.
+  That is why C02 precedes real-recording interpretation.
+- Earlier residual, clock, calibration and split-recording studies remain
+  development evidence. Their failed or incomplete outcomes are preserved.
 
-No new corpus expansion, synthetic campaign or production threshold follows
-automatically from a software check. New numerical studies have their own
-finite freezes and retain every charged failure.
+[Study index](STUDIES.md) · [Contribution evidence](ilvis0-measurement-contribution/README.md) ·
+[Earlier development history](ANALYSIS_HISTORY.md).
 
-## 1. Qualify numerical completion
+## Measurement-contribution and prediction rules
 
-The main recovery is finished. New diagnostic objectives still need their own
-qualification: solving the full-position problem does not qualify a score that
-omits height or removes a sensor channel.
+The gyro-free magnitude comparison is a necessary constraint, not a complete
+motion reconstruction. Agreement does not identify orientation or establish
+that a full history fits without gyros. Never insert fused attitude or assumed
+aircraft heading to replace omitted observations. Channel costs need not divide
+into percentages of gyro and acceleration evidence.
 
-Known-answer controls must cover all declared physical models, independent
-starts, active calibration bounds, weak directions, both processing assumptions
-where relevant, and incorrect-model outcomes. Check objective agreement and
-predicted observations, not completion counts alone. Do not require an
-uninformative control to discriminate models.
+Keep coordinate metric, gravity, calibration, receiver differentiation and
+timing dependencies explicit. Select support from receiver motion and
+completeness before inspecting model-dependent residuals. Use every nuisance
+column in rank checks and retain nonlinear ambiguity.
 
-Keep the full nuisance layout and unchanged numerical gates. A failed method
-remains failed even when another method later succeeds. No global-optimum
-certificate is claimed by finite searches.
+NASA prediction splits are retrospective development validation: all 53
+recordings have informed development. Withhold prediction observations from
+calibration, covariance selection and initialization corrections. Distinguish
+within-record prediction from calibration transfer across a verified installation.
+Report all position components, especially height, rather than rewarding a
+better horizontal score with an implausible altitude.
 
-## 2. Explain calibration-boundary saturation
+Adequacy thresholds and predictive uncertainty must be specified before evaluation.
+A smaller relative error does not establish an adequate model; uncalibrated
+criteria remain descriptive. Preserve convergence, physical adequacy, predictive
+performance and calibrated detection as separate result fields.
 
-The original audit found frequent parameters at their limits. Completed
-[calibration profiles](ilvis0-z-profile-audit-20261011/README.md) and
-[follow-up comparisons](ilvis0-z-followup-audit-20261012/README.md) provide
-sensitivity evidence, but do not uniquely identify each instrument's calibration.
+## ESA development and confirmation boundary
 
-Future alternatives must use physically defensible, matched bounds and record
-joint gain/bias/clock behavior. A larger bias allowance is not a measured drift
-specification. Additional flexibility must not be introduced simply to improve
-one candidate's residuals.
+Recording 187 is the development recording. All other currently cataloged ESA
+flight groups are reserved for confirmation. Inventory, integrity checks and
+receiver-only eligibility screening are allowed; model fitting and outcome
+inspection are not allowed until the method and confirmation identities are
+frozen. Shared files and overlapping flights remain in one group.
 
-## 3. Assess absolute model adequacy
+The policy is at the flight-group level, not a filename-based claim of independence.
+Different dates do not prove a different physical instrument or installation.
+If no interval qualifies, publish that result; do not silently relax the policy
+or consume confirmation groups for development.
 
-A lower cost does not establish an adequate observation model. Examine physical
-position errors, temporal correlation, cross-axis covariance and residual
-dependence on motion, speed, latitude and supported environmental measurements.
+ESA has its own slower-flight eligibility, units, processing assumptions and
+calibration bounds. Existing Applanix limits do not automatically transfer.
+Long-record infrastructure must avoid dense whole-record covariance/projection
+matrices and validate any block/state-space treatment against the dense reference.
 
-The [residual covariance audit](ilvis0-residual-covariance-20261012/README.md)
-documents correlation. The [training/prediction trial](ilvis0-prediction-covariance-20261012/RESULTS.md)
-remains an incomplete development comparison, not calibrated coverage.
+## Publication, deferred work and execution safeguards
 
-Fit calibration and any selected covariance parameters on training observations
-only. Reserve separate time blocks or supported independent flights for prediction.
-Training residuals and fixed-parameter sections of a fitted stretch are not
-held-out tests. Include nuisance and covariance-estimation uncertainty before
-claiming calibrated confidence or absolute-fit acceptance.
+Preserve the raw gyro plot. Its companion must separate precomputed predictions
+from reconstructions using fitted orientation; neither the common sign nor
+Group-1 attitude is independent curvature evidence. Report unsupported mounting
+or aircraft-motion corrections as unknown.
 
-## 4. Compare timing and receiver-coordinate assumptions
+The paper dataset must preserve source/group/selection versions, failed fits,
+all prediction outcomes and exclusions. Calibrate the complete hierarchy,
+including selection of the better globe model, field comparison and recording
+dependence, before attaching significance or promoting production thresholds.
 
-The [matched clock trial](ilvis0-clock-trial-20261010/README.md) preserved
-globe/field preferences after reoptimization. It did not by itself establish
-which physical integration period the archived increments represent. Packet
-timestamps and increment intervals need not be interchangeable.
+Further NASA recovery, broad horizontal timing searches, large Z-axis grids
+and passenger-flight geometry optimization are retired or deferred. Precise
+device identification remains supporting work. Free-field precision, Wuhan
+expansion and stationary-consumer expansion follow the higher-priority gates.
 
-Receiver coordinates come from the primary-receiver stream rather than the
-fused INS solution, but still use geodetic conventions. The
-[measurement-contribution work](ilvis0-measurement-contribution/README.md)
-separates these dependencies explicitly:
+Each new numerical study needs a separate source/input/environment freeze,
+finite starts/evaluations, at most four total numerical threads and no adaptive
+retries. Completed studies never restart or donate unused allowance. Failed
+qualification blocks dependent observed fits. No automatic corpus-wide campaign
+or production promotion follows from this roadmap.
 
-- Coordinate-subset scores use the retained coordinates' marginal covariance.
-- Dropping height from the score does not remove its initialization or
-  propagation influence; unscored errors must still be reported.
-- A gyro-free comparison cannot borrow fused attitude. The new force-magnitude
-  diagnostic avoids an assumed attitude but retains metric, gravity and
-  acceleration-calibration dependencies.
-- Receiver-trajectory derivatives need a declared smoothing/differentiation rule
-  and propagated uncertainty before becoming force constraints.
-- An acceleration-free comparison needs independently justified replacement
-  constraints and cannot retain acceleration-derived initial tilt.
-
-Channel interactions need not admit a single percentage of evidence attributed
-to gyroscopes. Report what each matched comparison can and cannot distinguish.
-
-## 5. Account for completion selection and dependence
-
-Main numerical recovery removed the original incomplete-fit subset, but does
-not make 53 stretches independent. Group simultaneous recorders, overlapping
-time, repeated stretches and demonstrably shared physical installations.
-
-Configuration bytes or similar filenames do not alone establish instrument
-identity. Share calibration only where continuity is supported. Assess how
-results transfer to independent recordings instead of counting repeated fits
-as confirmations.
-
-## Rotation-field follow-on and publication
-
-The [rotation-field plan](ROTATION_FIELD.md) estimates the retained vector
-before interpreting its cause. Audit the actual latitude, heading and
-installation coverage before fitting common field parameters against gyro
-offsets and unknown upstream removal.
-
-The current specified-field versus zero-field comparison fixes its rate; it
-does not measure solar versus sidereal timing. The dedicated precision stage
-compares freely fitted magnitude with 15.0000 and approximately 15.0411
-degrees/hour only after clock, gain, offset and shared-error uncertainty permit it.
-
-A stronger empirical result needs adequate predictions, justified uncertainty
-and replication. The existing numerical preferences remain worth reporting
-with those open checks stated specifically.
-
-## Secondary branch: stationary consumer crowdsourcing
-
-The [stationary experiment](STATIONARY.md) uses solid supports and same-face
-180° reversals. It estimates signed rate without an expected rate or latitude
-in the per-session calculation. Consumer sensitivity and population inference
-still need validation; the current diagnostic always abstains from a scientific
-decision.
-
-[Current findings](CURRENT_STATUS.md) · [Study index](STUDIES.md) ·
-[Diagnostic requirements](ILVIS0_DIAGNOSTIC_PLAN.md).
+[Public next steps](NEXT_STEPS.md) · [Diagnostic requirements](ILVIS0_DIAGNOSTIC_PLAN.md).

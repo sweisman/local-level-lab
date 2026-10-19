@@ -56,6 +56,12 @@ motion retains local differences, but all wrong-model changing-motion linear
 corrections exceed the permitted bounds. A bounded nonlinear check is needed
 before those differences can be interpreted.
 
+The [bounded nonlinear follow-up](../ilvis0-scalar-nonlinear-controls-20261019/INTERPRETATION.md)
+passes its twelve known-answer starts but only 32/72 complete matched comparisons.
+It is finished; incomplete repeat comparisons still block observed channel
+fitting. The [roadmap](../ANALYSIS_ROADMAP.md) records the remaining qualification
+and independent measurement-error tasks.
+
 An acceleration-only model ranking with calibration fixed cannot establish
 which part of the original separation requires gyroscopes. Before recorded-data
 use, test whether differences remain after the allowed calibration freedoms:

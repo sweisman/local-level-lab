@@ -9,6 +9,13 @@ based on receiver trajectory, source completeness and the survey report, before
 any ESA Earth-model fitting. Reported survey-line boundaries describe the survey
 and do not automatically define eligible intervals.
 
+The [confirmation reservation](../analysis-provenance/README.md) fixes recording
+187 as development material and protects the other cataloged groups. This policy
+may screen protected groups using receiver observations alone. It must not use
+model outcomes, tune thresholds to retain a preferred result, or move a protected
+group into development. Selection and confirmation identities are frozen before
+protected model evaluation.
+
 ## Proposed initial cohort
 
 | Requirement | Proposed rule | Purpose |

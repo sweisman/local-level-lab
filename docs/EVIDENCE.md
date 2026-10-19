@@ -22,8 +22,10 @@ navigation does not supply the fitted observations.
 | Complete full-position model comparison | All 53 stretches pass their required numerical comparisons and favor globe. |
 | Background-field comparison | All 53 also prefer the specified field over zero; its cause and freely measured rate are not determined. |
 | Height-removal sensitivity | The horizontal score advantage persists, but unscored vertical paths can be implausible. One of two refitted stretches is complete; the other remains unresolved after a matched timing search. |
-| Sensor-channel separation | Exact-force, derivative and error-budget controls pass while preserving approximation failures. Nine calibration checks show straight-leg scalar separation can vanish with a small gain change. A 72-case local matrix retains changing-motion differences, but bounded nonlinear calibration and synchronization remain before recorded-data use. |
+| Sensor-channel separation | Independent force/error controls pass and retain calibration ambiguity. The bounded nonlinear matrix qualifies only 32/72 comparisons, so observed channel fitting remains blocked. Seventeen quantization/period checks pass, without calibrated coverage or a continuous-force upper bound. |
 | Prediction and significance | Earlier trials provide development evidence; calibrated significance, adequate withheld prediction and independent-replication counts remain open. |
+| Shared observations | The metadata ledger forms 27 conservative split groups from 53 stretches; these are not verified independent flights or installations. |
+| Independent confirmation reservation | ESA recording 187 is development material. Eight other cataloged files form seven protected groups; no ESA model comparison has been run. |
 
 The [measurement-contribution overview](ilvis0-measurement-contribution/README.md)
 explains the separate sensitivity outcomes. They do not reopen the completed
@@ -38,7 +40,10 @@ accuracy on unused data or an error summary of all 53.
 Overlapping streams and shared flights cannot be counted as independent
 replications. Model preferences describe the declared observations and physical
 assumptions; a calibrated statistical significance level has not been established.
-The [next analyses](NEXT_STEPS.md) address these remaining checks.
+The [provenance ledger](analysis-provenance/README.md) records the grouping and
+confirmation reservation. The [next analyses](NEXT_STEPS.md) prioritize sensor
+contribution, withheld prediction and independent ESA confirmation before
+free-field precision.
 
 ## Rotation field and additional data
 

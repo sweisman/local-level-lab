@@ -105,8 +105,13 @@ The [calibration ambiguity control](ilvis0-measurement-contribution/CALIBRATION.
 shows that small permitted gain changes erase the scalar model difference on a
 constructed straight leg. A [72-case changing-motion matrix](ilvis0-scalar-calibration-controls-20261019/INTERPRETATION.md)
 retains local differences under all seven calibration directions, with infeasible
-wrong-model linear corrections. Bounded nonlinear calibration, quantization and
-synchronization still need qualification before use on recordings.
+wrong-model linear corrections. Nonlinear calibration, integration timing,
+averaging and combined uncertainty still need qualification before recorded-data use.
+The following [nonlinear calibration trial](ilvis0-scalar-nonlinear-controls-20261019/INTERPRETATION.md)
+passes its known-answer controls but qualifies only 32/72 matched comparisons;
+observed channel fitting remains blocked. Initial deterministic
+[quantization/period bounds](ilvis0-measurement-contribution/QUANTIZATION.md)
+do not replace an observational uncertainty model.
 Fused attitude cannot replace
 an omitted gyro stream, and omitted acceleration cannot still supply initial tilt.
 

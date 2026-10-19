@@ -1,8 +1,13 @@
 # Calibration-aware channel controls
 
-The completed constant-gain control rules out treating fixed-calibration scalar
-separation as sufficient information. The next software check measures the
-part of a force-magnitude difference outside a local calibration tangent space.
+This local-calibration design is implemented and its 72-case matrix is complete.
+The [subsequent nonlinear study](../ilvis0-scalar-nonlinear-controls-20261019/INTERPRETATION.md)
+does not qualify the whole diagnostic for observed use. Current pending work is
+collated under C02/C03/C04 in the [authoritative roadmap](../ANALYSIS_ROADMAP.md).
+
+The constant-gain control rules out treating fixed-calibration scalar separation
+as sufficient information. The calculation below measures the part of a
+force-magnitude difference outside a local calibration tangent space.
 
 ## Defined calculation
 

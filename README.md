@@ -69,10 +69,10 @@ instrument’s finished navigation answer as evidence.
 GPS locates the flight so each model can predict the turning associated with its
 route. Receiver positions also constrain the reconstructed track during fitting.
 **GPS is the positioning system; WGS84 is the coordinate reference used for its
-reported positions.** Those conventions remain part of the analysis. Planned
+reported positions.** Those conventions remain part of the analysis. The ongoing
 [measurement-contribution checks](docs/NEXT_STEPS.md#then-strengthen-the-interpretation)
-will isolate how much separation comes from the gyro measurements and how much
-depends on other inputs.
+test what the gyro adds beyond the receiver positions, acceleration and declared
+physical assumptions, including cases that cannot distinguish the models.
 
 Select steady, complete stretches of at least four minutes and 700 km/h throughout,
 **before examining model preferences**. Fit each whole stretch with the same permitted
@@ -90,11 +90,18 @@ solar-versus-sidereal rate difference.
 
 ## Follow the work
 
+The priorities are to finish those measurement-contribution checks, test
+predictions on observations excluded from fitting, then seek independent
+confirmation in the ESA airborne survey archive. Shared recordings are grouped
+before validation; ESA recording 187 is development material and the other
+cataloged groups are reserved for confirmation. A freely measured rotation
+field and solar-versus-sidereal precision come later.
+
 - **[Studies and what each added](docs/STUDIES.md)** — a concise guide to the analyses,
   successful recoveries and approaches that did not qualify.
 - **[How the method works](docs/METHODOLOGY.md)** — observations, models and checks.
-- **[What comes next](docs/NEXT_STEPS.md)** — measurement-contribution checks,
-  stronger prediction tests and a freely measured rotation rate.
+- **[What comes next](docs/NEXT_STEPS.md)** — measurement contributions,
+  withheld predictions, protected ESA confirmation and later rotation-field work.
 - **[Archive and instrument guide](docs/ILVIS0.md)** — source data, decoding and provenance.
 
 ## A separate ground experiment

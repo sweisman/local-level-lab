@@ -1,5 +1,6 @@
 {
   "studies": [
+    {"name": "Bounded nonlinear scalar calibration controls", "path": "data/ilvis0-scalar-nonlinear-controls-20261019"},
     {"name": "Scalar calibration projection controls", "path": "data/ilvis0-scalar-calibration-controls-20261019"},
     {"name": "Channel approximation and averaging error budget", "path": "data/ilvis0-channel-error-budget-20261019"},
     {"name": "Independent channel trajectory controls", "path": "data/ilvis0-channel-trajectory-controls-20261019"},

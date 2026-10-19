@@ -6,6 +6,13 @@ The main airborne model comparison is complete. This follow-on has not yet fitte
 a free rotation field; measurement-contribution and predictive checks come first.
 It asks **what persistent rotation the original
 IMU measurements support**, independently of choosing a physical explanation for it.
+
+This is follow-on work under R01/R02 in the [authoritative roadmap](ANALYSIS_ROADMAP.md).
+Completing measurement-contribution checks and withheld prediction takes priority;
+the separate ESA replication has protected confirmation groups. This proposal
+does not open those groups for field-model development or create a competing
+execution queue.
+
 An **IMU (inertial measurement unit)** measures turning and acceleration. GPS records
 position and motion over the ground. Survey-grade hardware makes slow rotation a credible
 measurement target; this study will test the vector pattern rather than assume its rate.

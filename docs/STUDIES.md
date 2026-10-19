@@ -47,6 +47,9 @@ recovery stage and the approaches that did not qualify.
 | [Approximation and averaging controls](ilvis0-channel-error-budget-20261019/INTERPRETATION.md) | Completed 46 implementation checks and preserved 27/108 approximation-screen failures; quantified polynomial bias, nonlinear magnitude bias and aggregation effects. |
 | [Acceleration calibration ambiguity](ilvis0-measurement-contribution/CALIBRATION.md) | Nine known-answer checks show that small constant gain changes erase scalar model separation on a constructed straight leg; changing geometry needs a full-calibration check. |
 | [Changing-motion calibration matrix](ilvis0-scalar-calibration-controls-20261019/INTERPRETATION.md) | All 72 local controls pass with seven calibration directions. Changing motion retains local differences, while wrong-model linear corrections exceed bounds; bounded nonlinear checks remain. |
+| [Provenance and confirmation reservation](analysis-provenance/README.md) | Records conservative split groups and protects unmodeled ESA groups before fitting; does not infer independent flight or instrument counts. |
+| [Bounded nonlinear calibration](ilvis0-scalar-nonlinear-controls-20261019/INTERPRETATION.md) | Completes 228 mathematical starts: 12/12 known-answer starts pass, but only 32/72 matrix comparisons qualify; no observed fitting follows. |
+| [Quantization and period bounds](ilvis0-measurement-contribution/QUANTIZATION.md) | Passes 17 checks of deterministic packet-mean bounds while retaining unresolved averaging, calibration and timing assumptions. |
 
 On the original twelve completed comparisons, median horizontal in-sample errors
 were about **0.068 m** for specified-field globe, **29.5 m** for zero-field globe
