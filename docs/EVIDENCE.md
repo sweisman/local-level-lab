@@ -1,40 +1,70 @@
 # Evidence so far
 
-An **IMU (inertial measurement unit)** measures turning and acceleration.
-The project's empirical evidence comes primarily from NASA survey-grade airborne IMUs.
-Stationary consumer crowdsourcing is a separate developing experiment.
+The main airborne comparison is complete: **53 globe preferences, zero flat
+preferences and zero unresolved stretches**, under both tested processing cases.
+The same 53 preselected stretches total 424.3 minutes. The original twelve
+completed comparisons and 41 later recoveries are one cohort, not separate
+replications.
 
-## NASA archive
+An **IMU (inertial measurement unit)** measures turning and specific force.
+The central observation is the recorded gyroscope motion. Acceleration and
+primary-receiver positions constrain the reconstructed aircraft track; fused
+navigation does not supply the fitted observations.
 
-All 53 selected high-speed stretches have been analyzed. Twelve have complete comparisons
-favoring globe over the specified flat disc under both processing assumptions; all twelve
-then favor the background-field globe over the zero-field globe. None has a complete flat preference. Forty-one
-remain unresolved because required numerical fits did not finish. These are model-fit
-preferences, without independently calibrated statistical significance.
+[Verified findings](CURRENT_STATUS.md) ·
+[All stretches and source tracks](ilvis0-current-findings-20261015/STRETCHES.md) ·
+[Comprehensive CSV](ilvis0-current-findings-20261015/stretch-analytics.csv).
 
-Saved fits call those globe candidates “rotating” and “still.” Those names specify
-the background angular-rate term present in each prediction. The comparison does not
-identify what produces the measured rotation or establish a cosmology. A freely estimated
-field and a solar-versus-sidereal precision test remain [follow-on work](ROTATION_FIELD.md).
+## What is established, and what is still open?
 
-The [source-aware findings](ilvis0-highspeed-segments-20261008/FINDINGS.md) give durations,
-speeds, instrument record types and partial results. The [analysis roadmap](ANALYSIS_ROADMAP.md)
-tracks smaller numerical, timing, calibration and prediction checks. Overlapping streams
-and repeated flights are not counted as independent instruments.
+| Result or check | Present conclusion |
+|---|---|
+| Complete full-position model comparison | All 53 stretches pass their required numerical comparisons and favor globe. |
+| Background-field comparison | All 53 also prefer the specified field over zero; its cause and freely measured rate are not determined. |
+| Height-removal sensitivity | The horizontal score advantage persists, but unscored vertical paths can be implausible. One of two refitted stretches is complete; the other remains unresolved after a matched timing search. |
+| Sensor-channel separation | Twenty-five software checks pass. The acceleration-only diagnostic still needs generated-trajectory and uncertainty qualification before recorded-data use. |
+| Prediction and significance | Earlier trials provide development evidence; calibrated significance, adequate withheld prediction and independent-replication counts remain open. |
+
+The [measurement-contribution overview](ilvis0-measurement-contribution/README.md)
+explains the separate sensitivity outcomes. They do not reopen the completed
+main comparisons. Unfinished calculations or nonrepeatable sensitivity fits
+supply no positive flat-Earth finding.
+
+On the original twelve completed stretches, median horizontal in-sample errors
+were approximately 7 cm for specified-field globe and 47 m for flat. Those
+figures describe fitting the observations used in estimation, not predictive
+accuracy on unused data or an error summary of all 53.
+
+Overlapping streams and shared flights cannot be counted as independent
+replications. Model preferences describe the declared observations and physical
+assumptions; a calibrated statistical significance level has not been established.
+The [next analyses](NEXT_STEPS.md) address these remaining checks.
+
+## Rotation field and additional data
+
+Saved fits use “rotating globe” and “still globe” for specified-background-field
+and zero-field predictions. These names do not identify the field's physical
+cause or a cosmology. A [freely fitted field and solar/sidereal rate test](ROTATION_FIELD.md)
+remain follow-on work; the current fixed-rate fit does not measure that distinction.
+
+Longer [ESA and Wuhan recordings](external-imu-data/README.md) have been inspected
+but have not entered the Earth-model comparison. They need separate selection
+and observation-model qualification.
 
 ## Stationary consumer experiment
 
-The Android app now guides still A/B reversals on a solid surface. Its preliminary analyzer
-estimates a signed horizontal reversal signal without latitude or an expected rotation
-amplitude. No real consumer unit has yet completed the required slow-rate validation here.
-Software tests establish specific behavior; they are not detections of a geographic field.
+The Android app guides stationary A/B reversals on a solid surface. Its
+preliminary analyzer estimates a signed horizontal reversal signal without
+latitude or an expected amplitude. Consumer sensitivity, physical slow-rate
+controls and uncertainty still need validation. The diagnostic always abstains
+from a scientific decision; population pooling is not validated.
 
 See the [stationary method](STATIONARY.md), [instrument checks](BENCH.md) and
-[validation plan](VALIDATION.md). Geographic pooling and calibrated uncertainty remain future work.
+[validation plan](VALIDATION.md).
 
-## Historical passenger-flight work
+## Historical development
 
-Two 1,000-attempt synthetic pilots and later route/turn studies remain recorded in the
-[technical evidence](EVIDENCE_TECHNICAL.md) and [technical validation history](VALIDATION_TECHNICAL.md).
-They explored aircraft collection and exposed motion, wind and sensor limitations.
-They do not validate the new ground protocol. No simulation campaign was rerun for this change.
+The [detailed study history](STUDY_HISTORY.md), [technical simulation evidence](EVIDENCE_TECHNICAL.md)
+and [aircraft validation history](VALIDATION_TECHNICAL.md) preserve earlier
+methods, intermediate counts and failed trials. They do not provide thresholds
+for the archival analysis or the new stationary protocol.

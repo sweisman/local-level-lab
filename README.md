@@ -21,10 +21,8 @@ The measurements, code and results are open.
 See the [verified current status](docs/CURRENT_STATUS.md) for coverage, background-field comparisons and the supporting result records. All selected comparisons have passed their required numerical checks.
 <!-- current-status:end -->
 
-**All 53 stretches now pass their required numerical comparisons and favor the
-globe under both tested processing cases.** The original run completed twelve;
-the remaining 41 have now passed separately checked recoveries using the same
-measurements and selected intervals.
+The original run completed twelve comparisons; the other 41 passed separately
+checked numerical recoveries. Every result uses the same preselected observations.
 
 ![Recorded gyro motion across all 53 flight stretches, with a median line](docs/ilvis0-gyro-overview/raw-pitch.png)
 
@@ -43,15 +41,11 @@ about **7 centimetres for the globe with a background rotation field, versus
 47 metres for the flat disc**. These describe agreement with the positions used in
 fitting; prediction on unused observations is a separate check.
 
-A [measurement-contribution check](docs/ilvis0-measurement-contribution/README.md)
-on eighteen stretches preserves the globe preference in all 36 processing-case
-comparisons when height is removed from the score. Those scores reuse the
-existing fitted parameters. A separate **9.75-minute refit still favors globe
-without scoring height**. A 4.07-minute refit ranks the models the same way but
-remains unresolved at the required repeat precision.
-A matched timing search reproduced the specified-field globe solution but left
-the other models' repeat checks unresolved; the sensitivity result stays unresolved.
-[What these checks establish and their limits](docs/ilvis0-horizontal-repeat-audit-20261019/INTERPRETATION.md).
+Separate [height-removal checks](docs/ilvis0-measurement-contribution/README.md)
+preserve the horizontal score advantage, but allow unrealistic vertical paths.
+One of two refitted stretches passed every repeat check; the other remains
+unresolved after a matched timing search. These test what drives the result;
+they do not replace the complete 53-stretch analysis.
 
 **[See all 53 stretches](docs/ilvis0-current-findings-20261015/STRETCHES.md)** —
 instrument configuration, duration, speed, course, latitude and current result.

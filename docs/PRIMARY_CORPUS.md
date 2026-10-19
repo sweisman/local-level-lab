@@ -9,7 +9,9 @@ have separate selection, instrument and uncertainty requirements.
 The saved [eligibility rules and interval inventory](ilvis0-highspeed-segments-20261008/ELIGIBILITY.md)
 define the existing airborne selection. Whole-stretch model comparisons, failures and
 processing assumptions remain unchanged. Repeated or overlapping instrument streams
-do not create independent flights. See the [archive guide](ILVIS0.md).
+do not create independent flights. The [verified findings](CURRENT_STATUS.md)
+give the complete main-analysis disposition; separate sensitivity results do
+not change that inventory. See the [archive guide](ILVIS0.md).
 
 ## Stationary recordings
 

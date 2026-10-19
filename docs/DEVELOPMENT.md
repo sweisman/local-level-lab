@@ -25,8 +25,9 @@ nor a provisional significance value establishes validated scientific eligibilit
 
 For new work use at most **four numerical threads in total**, shared across active jobs.
 One worker can use four threads, two workers can use two each, or four workers can
-use one each. Frozen studies retain their recorded settings; the current archival
-recovery remains at two threads. Reserve other active jobs' allocations before launching.
+use one each. Frozen studies retain their recorded settings, including earlier
+two-thread freezes. Reserve other active jobs' allocations before launching;
+completed recovery studies must not be restarted.
 
 The guard rejects oversubscription and sets numerical-library limits before imports:
 

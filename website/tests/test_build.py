@@ -166,3 +166,47 @@ def test_navigation_opens_current_findings_stretches_and_study_index(tmp_path):
     assert 'href="/docs/STUDIES.html"' in text
     assert 'href="/docs/NEXT_STEPS.html"' in text
     assert 'href="/docs/ilvis0-current-findings-20261015/STRETCHES.html"' in text
+
+
+@pytest.mark.parametrize('base_path', ('', '/project'))
+def test_completed_study_has_context_without_rewriting_its_historical_source(tmp_path, base_path):
+    root=tmp_path/'repo';root.mkdir()
+    report_path='docs/ilvis0-example/README.md'
+    original='# Study results\n\n12 globe / 0 flat / 41 unresolved.\n'
+    write(root,'README.md','# Home\n\n[Earlier study]('+report_path+')\n')
+    write(root,report_path,original)
+    write(root,'docs/ilvis0-example/completion.json','{}')
+    write(root,'docs/ilvis0-example/evidence-receipt.json','{}')
+    write(root,'docs/CURRENT_STATUS.md','# Current findings\n\n53 globe / 0 flat / 0 unresolved.\n')
+    write(root,'docs/NEXT_STEPS.md','# Next analyses\n')
+    out=tmp_path/'site'
+    result=site.build(root,out,assets=site.HERE/'assets',navigation=False,base_path=base_path)
+    text=(out/'docs/ilvis0-example/README.html').read_text()
+    assert 'class="study-context"' in text
+    assert 'Individual study report' in text
+    assert '12 globe / 0 flat / 41 unresolved.' in text
+    assert f'href="{base_path}/docs/CURRENT_STATUS.html"' in text
+    assert f'href="{base_path}/docs/NEXT_STEPS.html"' in text
+    assert (root/report_path).read_text()==original
+    assert result['missing_pages']==[] and result['missing_fragments']==[]
+    assert 'class="study-context"' not in (out/'index.html').read_text()
+
+
+def test_current_aggregate_is_not_labeled_as_an_individual_study(tmp_path):
+    root=tmp_path/'repo';root.mkdir()
+    source=dict(site.NAVIGATION)['Flight stretches'];parent=str(Path(source).parent)
+    write(root,'README.md','# Home\n\n[Stretches]('+source+')\n')
+    write(root,source,'# Current stretches\n')
+    write(root,parent+'/completion.json','{}')
+    write(root,parent+'/evidence-receipt.json','{}')
+    out=tmp_path/'site';site.build(root,out,assets=site.HERE/'assets',navigation=False)
+    assert 'class="study-context"' not in (out/site.output_path(source)).read_text()
+
+
+def test_uncompleted_study_does_not_get_a_completed_report_notice(tmp_path):
+    root=tmp_path/'repo';root.mkdir()
+    source='docs/ilvis0-preparation/README.md'
+    write(root,'README.md','# Home\n\n[Plan]('+source+')\n')
+    write(root,source,'# Research preparation\n')
+    out=tmp_path/'site';site.build(root,out,assets=site.HERE/'assets',navigation=False)
+    assert 'class="study-context"' not in (out/site.output_path(source)).read_text()

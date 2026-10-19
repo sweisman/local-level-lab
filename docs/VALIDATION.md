@@ -7,11 +7,19 @@ measures turning and acceleration. Each project needs its own error model and va
 
 ## NASA analysis
 
-The completed archive comparisons and current numerical checks are described in the
-[findings](ilvis0-highspeed-segments-20261008/FINDINGS.md) and
-[analysis roadmap](ANALYSIS_ROADMAP.md). Outstanding work includes solver qualification,
-calibration-boundary sensitivity, absolute model adequacy, timing/coordinate assumptions
-and dependence between recordings. These results do not certify consumer devices.
+All 53 selected full-position comparisons now pass their required numerical
+checks and favor globe. The [verified findings](CURRENT_STATUS.md) and
+[analysis roadmap](ANALYSIS_ROADMAP.md) distinguish that completed result from
+the remaining validation work: measurement contributions, adequate prediction on
+unused observations, correlated errors, calibration/clock sensitivity and
+dependence between recordings. New objectives need separate qualification.
+These results do not certify consumer devices.
+
+The completed [height-removal work](ilvis0-measurement-contribution/README.md)
+left one of two sensitivity comparisons unresolved and exposed implausible
+unscored height paths. That limits its interpretation without reopening the
+main result. The first 25 channel-removal software checks pass; recorded-data
+channel comparisons and their uncertainty are not yet qualified.
 
 Validate observable predictions separately from their interpretation. The historical
 “rotating globe” label includes a specified background field; “still globe” omits it.

@@ -28,7 +28,10 @@ same parameters. These criteria do not establish model separation. See the
 NASA's [ILVIS0 archive](https://nsidc.org/data/ilvis0/versions/1) contains Applanix recordings
 from survey aircraft. An inertial measurement unit (IMU) measures motion using gyroscopes
 and accelerometers. These `.013` files record small **changes in angle and velocity**;
-dividing an increment by its measured integration interval gives a rate-equivalent value.
+dividing an increment by its integration interval gives a rate-equivalent value.
+The integration period and the elapsed time between packet headers need not be
+identical; the [clock investigation](ilvis0-clock-audit-20261011/README.md)
+examines that distinction.
 They also contain GPS receiver sentences and the instrument's fused navigation solution.
 The latter combines measurements with a navigation model and is not independent evidence
 for Earth's shape or rotation.
@@ -73,9 +76,12 @@ The present comparison applies a specified globe or disc metric to receiver coor
 and integrates the recorded IMU increments. It therefore tests explicit observation
 models. The [first horizontal-only refits](ilvis0-horizontal-repeat-audit-20261019/INTERPRETATION.md)
 preserve globe preference in one completed repeat-checked stretch; the second
-remains unresolved at repeat precision. Large unscored vertical errors limit
-their interpretation. Gyro-channel and height/geoid controls remain planned to
-separate the remaining measurement and coordinate dependencies.
+remains unresolved at repeat precision, including after the completed
+[matched timing search](ilvis0-horizontal-multistart-20261019/INTERPRETATION.md).
+Large unscored vertical errors limit their interpretation. The first
+[channel-removal software controls](ilvis0-measurement-contribution/CHANNEL_CONTROLS.md)
+now pass; recorded-data channel comparisons, trajectory uncertainty and stronger
+height/geoid controls remain to be qualified.
 
 The project makes **no verified scientific-first or model-free-proof claim**.
 Physical measurements of Earth's figure predate WGS84. Snellius's

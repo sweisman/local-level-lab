@@ -84,15 +84,22 @@ test what the inertial observations add.
 The first horizontal-only refits remove height from the score using the correct
 marginal receiver covariance. A 9.75-minute IMU8 stretch passes every model/case
 and independent-repeat check and still favors globe. A 4.07-minute IMU21 stretch
-has all individual fits completed but three repeat failures, so its matched
-comparison remains unresolved. Both starts still rank the specified-field globe
-first. [Results and detailed limits](ilvis0-horizontal-repeat-audit-20261019/INTERPRETATION.md).
+remains unresolved at the required repeat precision. A subsequent matched timing
+search completed 38 starts; only two of six selected repeat comparisons passed,
+both for specified-field globe. The zero-field and flat candidates did not
+reproduce their own best predictions. [Latest sensitivity results](ilvis0-horizontal-multistart-20261019/INTERPRETATION.md).
 
 Omitting the height score lets fitted vertical paths drift far from receiver
 altitude. Those paths are not plausible full flight reconstructions. Heights also
 remain in initialization, covariance construction and propagation, and both IMU
 channels remain active. The check tests sensitivity to the scored height constraint;
 it does not establish altitude independence or isolate the gyroscope.
+
+The next [channel controls](ilvis0-measurement-contribution/CHANNEL_CONTROLS.md)
+separate gyro and acceleration information explicitly. Their 25 software checks
+pass, but the new acceleration-only diagnostic still needs trajectory and
+uncertainty qualification before use on recordings. Fused attitude cannot replace
+an omitted gyro stream, and omitted acceleration cannot still supply initial tilt.
 
 A completed fit means the numerical search passed its checks; it does not mean the
 fit is good. Fit quality, prediction on unused observations, correlated errors and

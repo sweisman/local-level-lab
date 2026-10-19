@@ -2,8 +2,9 @@
 
 ## Purpose and status
 
-This is a proposed follow-on to the current NASA airborne analysis, to begin after its
-numerical work is complete and reviewed. It asks **what persistent rotation the original
+The main airborne model comparison is complete. This follow-on has not yet fitted
+a free rotation field; measurement-contribution and predictive checks come first.
+It asks **what persistent rotation the original
 IMU measurements support**, independently of choosing a physical explanation for it.
 An **IMU (inertial measurement unit)** measures turning and acceleration. GPS records
 position and motion over the ground. Survey-grade hardware makes slow rotation a credible

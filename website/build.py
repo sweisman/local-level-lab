@@ -128,6 +128,23 @@ def public_page(name):
     return name.endswith('.md') and PurePosixPath(name).name not in ('AGENTS.md','CLAUDE.md')
 
 
+def study_context(root,source):
+    """Context for completed study pages; never rewrite sealed report sources."""
+    parent=PurePosixPath(source).parent
+    current=PurePosixPath(dict(NAVIGATION)['Flight stretches']).parent
+    if (len(parent.parts)!=2 or parent.parts[0]!='docs'
+            or not parent.name.startswith('ilvis0-') or parent==current):
+        return ''
+    if not all(checked_path(root,str(parent/name)).is_file()
+               for name in ('completion.json','evidence-receipt.json')):
+        return ''
+    return ('<aside class="study-context" aria-label="Study context">'
+            '<strong>Individual study report.</strong> Its scope and counts describe '
+            'this study, rather than the combined analysis. '
+            '<a href="/docs/CURRENT_STATUS.md">Current findings</a> · '
+            '<a href="/docs/NEXT_STEPS.md">Next analyses</a></aside>\n')
+
+
 def build(root,output,*,assets,base_path='',navigation=True):
     root=Path(root).resolve();output=Path(output)
     if output.exists(): raise ValueError('website output must be a fresh directory')
@@ -144,7 +161,7 @@ def build(root,output,*,assets,base_path='',navigation=True):
         content=data.decode('utf-8')
         md=markdown.Markdown(extensions=['tables','fenced_code','toc','sane_lists',MathExtension()],
                              extension_configs={'toc':{'slugify':slug}},output_format='html')
-        body=md.convert(content)
+        body=study_context(root,source)+md.convert(content)
         def rewrite(url,tag,key,refs):
             target=local_target(source,url)
             if target is None: return url

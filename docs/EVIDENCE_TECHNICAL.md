@@ -1,7 +1,8 @@
-> Participant collection now uses the [stationary ground protocol](PROTOCOL.md).
-> The aircraft/consumer sections below preserve the earlier method and its evidence;
-> they are not the current stationary decision policy. NASA archival analysis remains
-> primary. See [the stationary method and validation needs](STATIONARY.md).
+> **Historical passenger-aircraft development.** The equations, protocols and
+> results below describe that earlier experiment, not the present archival fitter
+> or the stationary consumer policy. Read the [current method](METHODOLOGY.md),
+> [verified airborne findings](CURRENT_STATUS.md) and [stationary experiment](STATIONARY.md)
+> for the active project branches. Historical outcomes remain preserved below.
 
 # Evidence for docs/METHODOLOGY_TECHNICAL.md
 
