@@ -12,6 +12,9 @@ __pycache__/
 /docs/extended-airline-pilot-20261006/run/*.lock
 /docs/matched-airline-pilot-20261006/run/*.lock
 
+# Local receipt-journal locks are not published scientific evidence.
+/docs/ilvis0-*/charges/ledger.lock
+
 android/.gradle/
 android/build/
 android/app/build/

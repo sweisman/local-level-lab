@@ -45,8 +45,11 @@ isolate coupled timing/calibration and unobserved height freedom. The completed
 [timing-path check](ilvis0-horizontal-timing-path-20261019/DIAGNOSIS.md) finds no
 gross derivative fault. The [multi-start qualification](ilvis0-multistart-controls-v3-20261019/README.md)
 passed all four known-answer systems. The separate
-[matched recorded-data comparison](ilvis0-horizontal-multistart-20261019/OVERVIEW.md)
-uses identical timing grids across models without altering full-position findings.
+[matched recorded-data comparison](ilvis0-horizontal-multistart-20261019/INTERPRETATION.md)
+completed 38 starts /2,376 native calls in 6.59 hours. Both controls and 37
+individual fits passed; only two of six selected repeat comparisons passed.
+The sensitivity result remains unresolved. Further timing expansion is deferred;
+the next controls define what replaces an omitted IMU channel.
 Numerical completion, fit adequacy and statistical
 support remain separate checks; a completed fit does not by itself establish a
 calibrated scientific detection. The numbered sequence below records the recovery

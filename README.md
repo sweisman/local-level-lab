@@ -49,6 +49,8 @@ comparisons when height is removed from the score. Those scores reuse the
 existing fitted parameters. A separate **9.75-minute refit still favors globe
 without scoring height**. A 4.07-minute refit ranks the models the same way but
 remains unresolved at the required repeat precision.
+A matched timing search reproduced the specified-field globe solution but left
+the other models' repeat checks unresolved; the sensitivity result stays unresolved.
 [What these checks establish and their limits](docs/ilvis0-horizontal-repeat-audit-20261019/INTERPRETATION.md).
 
 **[See all 53 stretches](docs/ilvis0-current-findings-20261015/STRETCHES.md)** —

@@ -83,8 +83,11 @@ The remaining sequence is:
 1. The [multi-start controls](ilvis0-multistart-controls-v3-20261019/README.md)
    passed all four known-answer systems in 24 starts /166 constructed calls.
    The separate [matched recorded-data study](ilvis0-horizontal-multistart-20261019/OVERVIEW.md)
-   gives all three models the same timing grid and two independent seed families,
-   with fresh controls and unchanged physical assumptions/repeatability limits.
+   completed 38 starts /2,376 native calls in 6.59 hours. Both controls and 37
+   individual fits passed, but only two of six selected repeat comparisons
+   passed. The IMU21 sensitivity result remains unresolved; its
+   [interpretation and next step](ilvis0-horizontal-multistart-20261019/INTERPRETATION.md)
+   defer wider timing searches in favor of channel-contribution controls.
 2. Preserve complete and unresolved sensitivity results separately; do not expand
    the cohort merely to obtain more favorable outcomes.
 3. Test gyro and acceleration contributions with explicit replacement constraints.

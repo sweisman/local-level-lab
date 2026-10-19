@@ -1,0 +1,12 @@
+{"identity": "sphere_rotating-bias1_unsubtracted-horizontal-zero", "maximum_evaluations": 160, "number": 1}
+{"identity": "sphere_rotating-bias1_unsubtracted-horizontal-opposed", "maximum_evaluations": 160, "number": 2}
+{"identity": "sphere_rotating-bias1_profiled_removal-horizontal-zero", "maximum_evaluations": 160, "number": 3}
+{"identity": "sphere_rotating-bias1_profiled_removal-horizontal-opposed", "maximum_evaluations": 160, "number": 4}
+{"identity": "sphere_still-bias1_unsubtracted-horizontal-zero", "maximum_evaluations": 160, "number": 5}
+{"identity": "sphere_still-bias1_unsubtracted-horizontal-opposed", "maximum_evaluations": 160, "number": 6}
+{"identity": "sphere_still-bias1_profiled_removal-horizontal-zero", "maximum_evaluations": 160, "number": 7}
+{"identity": "sphere_still-bias1_profiled_removal-horizontal-opposed", "maximum_evaluations": 160, "number": 8}
+{"identity": "flat_still-bias1_unsubtracted-horizontal-zero", "maximum_evaluations": 160, "number": 9}
+{"identity": "flat_still-bias1_unsubtracted-horizontal-opposed", "maximum_evaluations": 160, "number": 10}
+{"identity": "flat_still-bias1_profiled_removal-horizontal-zero", "maximum_evaluations": 160, "number": 11}
+{"identity": "flat_still-bias1_profiled_removal-horizontal-opposed", "maximum_evaluations": 160, "number": 12}

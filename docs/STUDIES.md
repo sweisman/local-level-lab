@@ -126,9 +126,12 @@ The original 53/0/0 findings remain unchanged.
 The [multi-start qualification](ilvis0-multistart-controls-v3-20261019/README.md)
 passed four known-answer systems with coupled calibration, multiple local optima,
 active bounds and invisible nuisance coordinates: 24 starts /166 constructed
-calls. The [matched recorded-data follow-up](ilvis0-horizontal-multistart-20261019/OVERVIEW.md)
-gives each model the same three timing starts and two independent seed families,
-with two fresh controls and unchanged stopping/repeatability limits.
+calls. The [matched recorded-data follow-up](ilvis0-horizontal-multistart-20261019/INTERPRETATION.md)
+completed 38 starts /2,376 native calls in 6.59 hours: both controls and 37
+individual fits passed, but only two of six selected repeat comparisons passed.
+Specified-field globe reproduced its best predictions; the IMU21 sensitivity
+comparison remains unresolved. Wider timing searches are deferred while the
+separate gyro/acceleration contribution controls are developed.
 
 | Study | What it solved, tested or left open |
 |---|---|

@@ -866,6 +866,11 @@ Its zero-compute docs guide/watch_results.py watcher has a separately hashed
 report source manifest and finite 20-hour-plus-five-minute deadline. It renders
 DETAILS.md/attempts.csv from completed publication only. Check its runtime
 report-watcher metadata/lock before action; never duplicate or restart it.
+Both matched comparison and report watcher are complete: 38 starts /2,376 native
+calls, 37 individual passes, both controls passed, two of six selected repeat
+pairs passed. Never restart or reuse allowance. Preserve unresolved sensitivity
+labels and 53/0/0. INTERPRETATION.md defers wider timing searches; prioritize
+explicit gyro/acceleration replacement controls before further observed refits.
 The broader 24-case full-calibration preparation remains unstarted; its unused
 allowance is not transferable. Horizontal success does not qualify height-only
 refitting, global optimality, unique calibration or observational uncertainty.

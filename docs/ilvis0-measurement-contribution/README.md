@@ -74,14 +74,18 @@ finds derivative differences of 0.008–0.015% in vector norm without crossing a
 nominal boundary. The full parameter path is consistent with different locally
 stationary solutions. Neither diagnostic performs optimization or relabeling.
 
+The [matched timing search](../ilvis0-horizontal-multistart-20261019/INTERPRETATION.md)
+is also complete: 38 starts, 2,376 native calls and 6.59 hours. Both controls and
+37 individual fits passed, but only two of six selected repeat comparisons
+passed. Specified-field globe reproduced its best predictions; the zero-field
+and flat candidates did not. The IMU21 sensitivity result remains unresolved.
+Widening that search is deferred in favor of defining the channel-removal controls.
+
 ## What remains
 
-- Complete the [matched multi-start comparison](../ilvis0-horizontal-multistart-20261019/OVERVIEW.md).
-  Its [software qualification](../ilvis0-multistart-controls-v3-20261019/README.md)
-  passed all four known-answer systems. All models receive the same timing grid,
-  independent seed families and unchanged repeat limits; every attempt is kept.
-  An attempt-level report and calibration CSV are generated automatically from
-  verified saved results at completion, for separate publication.
+- Preserve the [completed timing-search results](../ilvis0-horizontal-multistart-20261019/README.md),
+  [all attempts](../ilvis0-horizontal-multistart-20261019/DETAILS.md) and
+  [calibration CSV](../ilvis0-horizontal-multistart-20261019/attempts.csv).
 - Develop gyro/acceleration contribution controls with explicit replacement
   constraints; fused navigation cannot replace a removed observation stream.
 - Test held-out predictions, residual uncertainty and shared-flight dependence.
