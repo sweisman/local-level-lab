@@ -27,22 +27,31 @@ The current calculation allows ranges that are too wide for useful tests over
 a full stretch. That is a limitation of the calculation, not a measurement of
 how badly the aircraft data fit.
 
-The latest prediction comparison meets the width target in four of six groups.
-Both specified-field globe groups still miss it. A follow-up found that all 36
-tested extremes disappear when their error terms are recomputed from one
-calibration. The next method must keep those terms coupled; the current range
-is still too loose. No new aircraft fits ran.
-[Latest diagnostic](ilvis0-calibration-map-diagnostic/INTERPRETATION.md).
+The latest [192-box generated-data comparison](ilvis0-coupled-subdivision/INTERPRETATION.md)
+passes every correctness check, but only four of six groups meet the fixed width
+target. Both specified-field globe groups still miss it. No new aircraft fits ran.
 
-The [complete calibration-map component](ilvis0-coupled-map-controls/INTERPRETATION.md)
-passes all 24 qualification cases, but the [complete range comparison](ilvis0-coupled-prediction/INTERPRETATION.md)
-still improves widths by less than 0.12%. Next is a bounded test of smaller
-calibration boxes; the acceptance target stays fixed.
-
-The [192-box comparison](ilvis0-coupled-subdivision/INTERPRETATION.md) is complete:
-all checks pass, but ranges shrink by at most 1.26%. Four of six groups still
-meet the target. Smaller mounting-angle boxes alone have not solved the problem;
-the next step is to identify which remaining calibration directions set the limits.
+Keeping calibration errors tied together and using smaller mounting-angle boxes
+has helped only slightly. The [endpoint audit](ilvis0-coupled-subdivision/ENDPOINT_DIAGNOSIS.md)
+points to conservative propagation allowances as the next target. The
+[six-bound diagnostic](ilvis0-training-remainder-diagnostic/INTERPRETATION.md)
+finds that smaller domains barely change the height allowance. Its original
+comparison had a unit mismatch; the saved-only audit resolves that discrepancy
+without rerunning any bounds. A [direction-preserving rotation component](ilvis0-directional-rotation/README.md)
+now extends to calibrated force vectors and passes all [24 static controls](ilvis0-directional-force-controls/INTERPRETATION.md).
+Their height ranges are substantially tighter. All
+[24 native propagation controls](ilvis0-directional-native-controls/INTERPRETATION.md)
+also pass under the original limits. The [prediction comparison](ilvis0-directional-prediction/INTERPRETATION.md)
+then reached its time ceiling with 39 passing sectors. All four complete globe
+groups retain their earlier widths; the fixed target still fails. The
+[baseline audit](ilvis0-directional-prediction/BASELINE_DIAGNOSIS.md) shows that
+the new static bound lost tighter training information. Next is direction-aware
+dynamic propagation that preserves that information. A [componentwise value prototype](ilvis0-directional-dynamics/README.md)
+now passes local controls for vector, matrix and scalar operations. A
+[six-source preflight](ilvis0-source-norm-preflight/INTERPRETATION.md) now passes,
+with vertical value intervals about 5.6–6.3% as wide as the actual baseline.
+Reference-coefficient and remainder qualification still precede native integration.
+The observations, physical bounds and acceptance target remain unchanged.
 
 ## Dependency-ordered backlog
 

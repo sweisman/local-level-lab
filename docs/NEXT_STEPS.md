@@ -33,6 +33,20 @@ therefore needs to keep those errors coupled. This has not yet produced a
 qualified narrower range, so new aircraft prediction fits remain gated.
 [Latest diagnostic](ilvis0-calibration-map-diagnostic/INTERPRETATION.md).
 
+The [completed smaller-box test](ilvis0-coupled-subdivision/INTERPRETATION.md)
+also leaves four of six groups passing. Its [endpoint audit](ilvis0-coupled-subdivision/ENDPOINT_DIAGNOSIS.md)
+points to conservative propagation allowances as the next improvement to test.
+The [six-bound diagnostic](ilvis0-training-remainder-diagnostic/INTERPRETATION.md)
+finds that smaller domains barely improve height allowances. The
+[direction-preserving method](ilvis0-directional-native-controls/INTERPRETATION.md)
+passes its static and native controls, but the [prediction comparison](ilvis0-directional-prediction/INTERPRETATION.md)
+did not improve the complete globe groups. It replaced a tighter training-derived
+bound with a weaker physical-only bound. Next is to preserve the training
+information while improving how the dynamic calculation carries direction.
+The [six-source value preflight](ilvis0-source-norm-preflight/INTERPRETATION.md)
+passes and narrows the relevant vertical intervals substantially. Matching its
+reference coefficients and bounding propagation error are the next checks.
+
 ## Then: four larger tests
 
 | Order | Question | What is needed |

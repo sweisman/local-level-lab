@@ -205,3 +205,21 @@ these observations or to the stationary experiment.
 [Complete coupled-map prediction comparison](ilvis0-coupled-prediction/INTERPRETATION.md): all 48 sectors pass correctness, but widths improve by less than 0.12% and four of six groups still pass the target. The saved decomposition supports testing smaller calibration boxes before recomputing native bounds.
 
 [Smaller calibration-box comparison](ilvis0-coupled-subdivision/INTERPRETATION.md): all 192 checks pass, but ranges narrow by at most 1.26% and four of six groups still meet the target. This rules out the tested mounting-angle subdivision as a sufficient remedy.
+
+[Saved prediction-endpoint audit](ilvis0-coupled-subdivision/ENDPOINT_DIAGNOSIS.md): exact accounting of all 36 union endpoints identifies substantial training and future propagation allowances. It uses saved evidence only and directs the next test toward those allowances.
+
+[Training-remainder diagnostic](ilvis0-training-remainder-diagnostic/INTERPRETATION.md): six bounds finish; smaller domains change height allowances by less than 0.003%. A saved-only audit resolves the adapter's coefficient-unit mismatch while preserving its original failed labels. No aircraft fit or future prediction ran.
+
+[Direction-preserving rotation bound](ilvis0-directional-rotation/README.md): 12 local checks, including 384 independent numerical rotations, support an exact unit-axis bound that preserves the difference between yaw and tilt. It is a component test, not a qualified replacement for full propagation.
+
+[Calibrated directional-force controls](ilvis0-directional-force-controls/INTERPRETATION.md): all 24 cases and 1,158 independent probes pass. Static height ranges are about 9–31% as wide as the old norm-based ranges; usefulness in an integrated trajectory remains to be tested.
+
+[Directional native propagation controls](ilvis0-directional-native-controls/INTERPRETATION.md): all 24 matched cases pass, using 78 native evaluations and 348 bounds. Original center, derivative, stationary-pose and containment criteria remain; the complete prediction comparison is a separate gate.
+
+[Directional prediction comparison](ilvis0-directional-prediction/INTERPRETATION.md): 39 sectors pass before the time ceiling; four starts are interrupted and five remain unstarted. All four complete globe groups keep their inherited widths. A saved audit identifies loss of tighter training-derived bounds; this method does not pass the width gate.
+
+[Componentwise dynamic-value prototype](ilvis0-directional-dynamics/README.md): twelve local tests preserve separate coordinate changes and Taylor remainders through four vector operations. This starts a direction-aware dynamic method; complete matrix/rotation propagation is not yet qualified.
+
+[Matrix and rotation-identity controls](ilvis0-directional-dynamics/OPERATOR_DERIVATION.md): the prototype reaches 33 local checks covering matrix actions, exact polynomial curves, scalar domains and norm-preserving departures. Source and reference-coefficient qualification remain necessary before native integration.
+
+[Source-level norm preflight](ilvis0-source-norm-preflight/INTERPRETATION.md): all six controls pass against the actual body-rotation baseline while retaining training-derived force bounds. Vertical value widths retain about 5.6–6.3% of the old width; native reference coefficients and propagation remainders remain unqualified.

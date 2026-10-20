@@ -463,6 +463,26 @@
     {
       "name": "Complete prediction over smaller calibration boxes",
       "path": "data/ilvis0-coupled-subdivision-20261020"
+    },
+    {
+      "name": "Last-training-epoch remainder diagnostic",
+      "path": "data/ilvis0-training-remainder-diagnostic-v2-20261020"
+    },
+    {
+      "name": "Direction-preserving calibrated-force qualification",
+      "path": "data/ilvis0-directional-force-controls-20261020"
+    },
+    {
+      "name": "Directional acceleration in native propagation",
+      "path": "data/ilvis0-directional-native-controls-20261020"
+    },
+    {
+      "name": "Complete directional prediction comparison",
+      "path": "data/ilvis0-directional-prediction-20261020"
+    },
+    {
+      "name": "Source-level norm-preserving value preflight",
+      "path": "data/ilvis0-source-norm-preflight-20261020"
     }
   ]
 }
