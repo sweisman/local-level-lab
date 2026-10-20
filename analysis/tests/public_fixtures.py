@@ -8,6 +8,28 @@ recordings, credentials, optimizer outputs or replacement scientific values.
 import os
 from pathlib import Path
 
+GENERATED_RUNTIME_COPIES = {
+    'ilvis0-affine-support-qualification-20261019': 'ilvis0-affine-support-qualification',
+    'ilvis0-correlated-clock-controls-20261019': 'ilvis0-correlated-clock-controls',
+    'ilvis0-native-training-contraction-20261019': 'ilvis0-native-training-contraction',
+}
+
+
+def generated_read_path(root):
+    """Relocate only the named generated prerequisites, even on a local checkout."""
+    root = Path(root)
+    def remap(value):
+        if not isinstance(value, (str, os.PathLike)):
+            return value
+        path = Path(value)
+        if not path.is_relative_to(root / 'data'):
+            return value
+        parts = path.relative_to(root / 'data').parts
+        if not parts or parts[0] not in GENERATED_RUNTIME_COPIES:
+            return value
+        return root / 'docs' / GENERATED_RUNTIME_COPIES[parts[0]] / Path(*parts[1:])
+    return remap
+
 
 def public_read_path(root,*,recorded_root=Path('/site/repo/local-level-lab')):
     root=Path(root);recorded_root=Path(recorded_root)

@@ -371,6 +371,26 @@
     {
       "name": "Saved prediction with consistent calibration errors",
       "path": "data/ilvis0-consistent-prediction-20261020"
+    },
+    {
+      "name": "Shared vector-norm component qualification",
+      "path": "data/ilvis0-shared-norm-controls-20261020"
+    },
+    {
+      "name": "Saved prediction with shared vector-norm bounds",
+      "path": "data/ilvis0-norm-prediction-20261020"
+    },
+    {
+      "name": "Rotation/gain support component qualification",
+      "path": "data/ilvis0-rotation-gain-controls-20261020"
+    },
+    {
+      "name": "Saved prediction with rotation/gain supports",
+      "path": "data/ilvis0-rotation-gain-prediction-20261020"
+    },
+    {
+      "name": "Exact feasible-witness software controls",
+      "path": "data/ilvis0-feasible-witness-controls-20261020"
     }
   ]
 }

@@ -124,9 +124,9 @@ direction. Whether the resulting prediction ranges are narrow enough is tested
 separately; software correctness alone cannot establish aircraft accuracy.
 The [short comparison](ilvis0-acceleration-cover/INTERPRETATION.md) reduces
 generated 1.8-second prediction widths to 0.061–0.358 m. The later
-[7.2-second comparison](ilvis0-consistent-prediction/INTERPRETATION.md) preserves
+[7.2-second comparison](ilvis0-rotation-gain-prediction/INTERPRETATION.md) preserves
 the physical bounds and passes all 48 correctness checks, with widths of about
-0.22–1.72 m. Three of six groups still miss the fixed improvement target.
+0.21–1.70 m. Three of six groups still miss the fixed improvement target.
 Useful ranges over flight-length intervals and actual aircraft coverage remain
 separate requirements.
 

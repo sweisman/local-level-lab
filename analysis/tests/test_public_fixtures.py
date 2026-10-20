@@ -43,3 +43,26 @@ def test_source_aliases_keep_original_hashes_and_paths(tmp_path):
     assert aliased[key]=='original-hash'
     assert aliased[str(tmp_path/'analysis/lll/ilvis0_shape.py')]=='original-hash'
     assert values=={key:'original-hash'}
+
+
+def test_generated_prerequisites_always_use_named_public_copies(tmp_path):
+    module = resolver()
+    remap = module.generated_read_path(tmp_path)
+    for runtime, public in module.GENERATED_RUNTIME_COPIES.items():
+        path = tmp_path / 'data' / runtime / 'manifest.json'
+        path.parent.mkdir(parents=True)
+        path.write_text('local runtime must not mask missing CI fixtures')
+        assert remap(path) == tmp_path / 'docs' / public / 'manifest.json'
+    assert remap(tmp_path / 'data/unrelated/file') == tmp_path / 'data/unrelated/file'
+    assert remap('/unrelated/private/file') == '/unrelated/private/file'
+    assert remap(3) == 3
+
+
+def test_production_worker_still_rejects_environment_mismatch(tmp_path, monkeypatch):
+    import pytest
+    import ilvis0_acceleration_cover_worker as worker
+    monkeypatch.setattr(worker, 'DATA', tmp_path / 'new-study')
+    monkeypatch.setattr(worker.base, 'environment', lambda: {'environment': 'mismatch'})
+    with pytest.raises(ValueError, match='environment changed'):
+        worker.prepare()
+    assert not worker.DATA.exists()

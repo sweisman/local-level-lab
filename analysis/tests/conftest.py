@@ -6,6 +6,43 @@ import pytest
 
 
 @pytest.fixture(autouse=True)
+def generated_worker_fixtures(request, monkeypatch):
+    """Exercise frozen lifecycle code with public fixtures on any CI machine.
+
+    Emulate the fixture's recorded environment only in these tests. Production
+    workers retain their exact-environment checks; no sealed bytes are changed.
+    """
+    names = {
+        'test_ilvis0_acceleration_cover_worker.py',
+        'test_ilvis0_acceleration_duration_worker.py',
+        'test_ilvis0_acceleration_envelope_worker.py',
+        'test_ilvis0_acceleration_native_worker.py',
+        'test_ilvis0_constraint_audit_worker.py',
+        'test_ilvis0_orientation_cover_worker.py',
+        'test_ilvis0_reference_acceleration_worker.py',
+        'test_ilvis0_regrouped_cover_worker.py',
+        'test_ilvis0_regrouped_worker.py',
+        'test_ilvis0_shared_cover_worker.py',
+        'test_ilvis0_shared_duration_worker.py',
+        'test_ilvis0_shared_envelope_worker.py',
+        'test_ilvis0_shared_native_worker.py',
+    }
+    if request.path.name not in names:
+        return
+    import builtins
+    import io
+    import json
+    from pathlib import Path
+    from public_fixtures import generated_read_path, read_adapter
+    root = Path(__file__).resolve().parents[2]
+    recorded = json.loads((root / 'docs/ilvis0-regrouped-controls/manifest.json').read_bytes())['environment']
+    monkeypatch.setattr(request.module.worker.base, 'environment', lambda: recorded)
+    remap = generated_read_path(root)
+    monkeypatch.setattr(builtins, 'open', read_adapter(builtins.open, remap))
+    monkeypatch.setattr(io, 'open', read_adapter(io.open, remap))
+
+
+@pytest.fixture(autouse=True)
 def published_worker_fixtures(request,monkeypatch):
     """Use sealed public metadata for the six local-runtime integration tests."""
     from pathlib import Path

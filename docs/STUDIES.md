@@ -157,3 +157,13 @@ these observations or to the stationary experiment.
 [Calibration consistency](ilvis0-calibration-consistency-controls/README.md): all 24 controls, 9,216 exact inequalities and 4,608 matrix-column checks pass. The necessary constraints preserve physical bounds and tie existing error coordinates to one calibration; prediction usefulness remains a separate gate.
 
 [Prediction with consistent calibration](ilvis0-consistent-prediction/INTERPRETATION.md): all 48 saved cases and 288 independent endpoint/support checks pass without new native calculations. Complete widths narrow only 0.1–0.7%; the overall twofold target remains unmet.
+
+[Shared vector-norm qualification](ilvis0-shared-norm-controls/README.md): all 24 controls pass, checking 1,536 physical probes, 10,752 vector bounds and 279,552 exact inequalities. Seven shared error vectors retain their proven norm limits; this does not yet establish narrower predictions.
+
+[Prediction with shared vector norms](ilvis0-norm-prediction/INTERPRETATION.md): all 48 saved cases and 288 independent support checks pass, but complete widths improve by less than 0.1%. The fixed twofold target remains unmet; no longer prediction or aircraft fitting follows.
+
+[Rotation/gain supports](ilvis0-rotation-gain-controls/README.md): all 24 controls and 119,808 exact inequalities pass. Matrix columns retain necessary directional bounds tied to their calibration gains; a separate saved-case comparison tests usefulness.
+
+[Prediction with rotation/gain supports](ilvis0-rotation-gain-prediction/INTERPRETATION.md): all 48 cases and 288 independent support checks pass. Horizontal ranges narrow 1–3%, while height ranges remain unchanged; the fixed target is still unmet.
+
+[Exact feasible-witness controls](ilvis0-feasible-witness-controls/README.md): twenty known-answer cases pass with all 51 coordinates. Exact repairs verify every constraint and preserve boundary collapse; these witnesses describe a relaxation, not necessarily a physical calibration.
