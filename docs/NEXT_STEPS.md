@@ -26,12 +26,12 @@ The present calculation is too conservative: it allows ranges too wide to be
 useful over a full recording. Recent improvements helped, but have not solved
 this problem. These wide ranges are not measured aircraft errors.
 
-The latest comparison passes all 48 correctness checks. Prediction widths meet
-the target in four of six groups; both specified-field globe groups still miss
-it. Stronger matrix constraints barely helped. Next we will check whether the
-extreme error combinations allowed by the calculation represent an actual
-calibration. The gate for new aircraft fits remains closed.
-[Latest result](ilvis0-product-prediction/INTERPRETATION.md).
+Prediction widths meet the target in four of six groups. Both specified-field
+globe groups still miss it. A follow-up checked 36 extreme error combinations:
+none survived recomputing all the errors from one calibration. The calculation
+therefore needs to keep those errors coupled. This has not yet produced a
+qualified narrower range, so new aircraft prediction fits remain gated.
+[Latest diagnostic](ilvis0-calibration-map-diagnostic/INTERPRETATION.md).
 
 ## Then: four larger tests
 

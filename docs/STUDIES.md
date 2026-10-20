@@ -193,3 +193,15 @@ these observations or to the stationary experiment.
 [Joint rotation-product constraints](ilvis0-rotation-product-controls/INTERPRETATION.md): all 24 cases retain 1,536 sealed physical probes under 198,144 exact inequality checks. Arithmetic products relate matrix columns without adding physical parameters; complete prediction usefulness remains a separate test.
 
 [Prediction with joint rotation relationships](ilvis0-product-prediction/INTERPRETATION.md): all 48 sectors pass correctness and all charges reconcile. Widths improve by less than 0.1%, leaving four of six groups passing; further linear matrix variations are deprioritized in favor of checking the complete calibration map.
+
+[Complete calibration-map diagnosis](ilvis0-calibration-map-diagnostic/INTERPRETATION.md): all 36 allowed extremes fail after their common errors are recomputed from one calibration. Six known controls reproduce exactly; this identifies loose error bookkeeping without supplying a narrower certified prediction range.
+
+[ESA position-based motion qualification](esa-position-motion/INTERPRETATION.md): all ten identities pass, covering 24 analytic paths and 2,304 noisy realizations. Treating correlated errors as independent undercovers badly; real receiver assessment and the unchanged zero-eligible selection remain separate.
+
+[ESA matched position/velocity assessment](esa-position-assessment/INTERPRETATION.md): checks all 2,048 fixed centers and identifies 96 quiet-trend intervals under arbitrary temporal correlation. It improves the uncertainty check without establishing continuous quiet flight or changing the zero-eligible inventory.
+
+[Complete coupled calibration map](ilvis0-coupled-map-controls/INTERPRETATION.md): all 24 source/domain controls pass 1,158 value and independent derivative checks plus 1.61 million scalar inequalities. Prediction usefulness still requires the next complete comparison.
+
+[Complete coupled-map prediction comparison](ilvis0-coupled-prediction/INTERPRETATION.md): all 48 sectors pass correctness, but widths improve by less than 0.12% and four of six groups still pass the target. The saved decomposition supports testing smaller calibration boxes before recomputing native bounds.
+
+[Smaller calibration-box comparison](ilvis0-coupled-subdivision/INTERPRETATION.md): all 192 checks pass, but ranges narrow by at most 1.26% and four of six groups still meet the target. This rules out the tested mounting-angle subdivision as a sufficient remedy.

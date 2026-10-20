@@ -1,0 +1,1 @@
+{"alpha":0.01,"degree":3,"half_second_correlations":[0.0,0.8,0.98],"maximum_assessments":2328,"protected_confirmation_reads":0,"realizations_per_family":256,"receiver_reads":0,"rounding_m":[1e-05,1e-05,0.0005],"seed":2026102023,"sigmas":[0.01,0.05,0.2],"version":"esa-position-motion-software-v1"}

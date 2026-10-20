@@ -439,6 +439,30 @@
     {
       "name": "Saved prediction with joint rotation products",
       "path": "data/ilvis0-product-prediction-20261020"
+    },
+    {
+      "name": "Complete calibration-map extreme-point diagnosis",
+      "path": "data/ilvis0-calibration-map-diagnostic-20261020"
+    },
+    {
+      "name": "ESA position-derived motion qualification",
+      "path": "data/esa-position-motion-controls-20261020"
+    },
+    {
+      "name": "ESA matched receiver-position motion assessment",
+      "path": "data/esa-position-assessment-20261020"
+    },
+    {
+      "name": "Complete coupled calibration-map qualification",
+      "path": "data/ilvis0-coupled-map-controls-20261020"
+    },
+    {
+      "name": "Complete prediction with coupled calibration errors",
+      "path": "data/ilvis0-coupled-prediction-20261020"
+    },
+    {
+      "name": "Complete prediction over smaller calibration boxes",
+      "path": "data/ilvis0-coupled-subdivision-20261020"
     }
   ]
 }

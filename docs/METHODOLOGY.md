@@ -137,6 +137,11 @@ coordinate ranges lose. Six [propagation controls](ilvis0-conditioned-native-con
 passed without changing predictions or derivatives. The complete sector comparison
 now passes four groups' width targets; these checks do not yet establish narrower aircraft predictions.
 
+The [complete calibration-map check](ilvis0-calibration-map-diagnostic/INTERPRETATION.md)
+shows that all 36 tested extreme error combinations fail when recomputed from
+one calibration. The next calculation must preserve that relationship rather
+than let derived errors vary independently.
+
 A [saved-error audit](ilvis0-saved-prediction-comparison/INTERPRETATION.md)
 checks existing retrospective predictions without new fits. Across three fully
 completed settings on one recording, horizontal RMS during the withheld interval

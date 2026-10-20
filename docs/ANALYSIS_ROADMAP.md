@@ -27,12 +27,22 @@ The current calculation allows ranges that are too wide for useful tests over
 a full stretch. That is a limitation of the calculation, not a measurement of
 how badly the aircraft data fit.
 
-The latest comparison passes all 48 correctness checks and the width target
-in four of six groups. Both specified-field globe groups still miss it. Stronger
-matrix relationships barely helped. Next we will check whether the extreme error
-combinations allowed by the calculation can come from one physical calibration.
-No new aircraft fits ran.
-[Latest result](ilvis0-product-prediction/INTERPRETATION.md).
+The latest prediction comparison meets the width target in four of six groups.
+Both specified-field globe groups still miss it. A follow-up found that all 36
+tested extremes disappear when their error terms are recomputed from one
+calibration. The next method must keep those terms coupled; the current range
+is still too loose. No new aircraft fits ran.
+[Latest diagnostic](ilvis0-calibration-map-diagnostic/INTERPRETATION.md).
+
+The [complete calibration-map component](ilvis0-coupled-map-controls/INTERPRETATION.md)
+passes all 24 qualification cases, but the [complete range comparison](ilvis0-coupled-prediction/INTERPRETATION.md)
+still improves widths by less than 0.12%. Next is a bounded test of smaller
+calibration boxes; the acceptance target stays fixed.
+
+The [192-box comparison](ilvis0-coupled-subdivision/INTERPRETATION.md) is complete:
+all checks pass, but ranges shrink by at most 1.26%. Four of six groups still
+meet the target. Smaller mounting-angle boxes alone have not solved the problem;
+the next step is to identify which remaining calibration directions set the limits.
 
 ## Dependency-ordered backlog
 
@@ -48,10 +58,10 @@ validated.
 | C02 | First | Software checked | [Test which calibration changes can imitate a model difference](ilvis0-scalar-certificate-controls-20261019/INTERPRETATION.md). |
 | C03 | First | Initial check complete | [Include measurement-error assumptions](ilvis0-channel-envelopes-20261019/INTERPRETATION.md) in the accelerometer-only checks. |
 | C04 | First | Initial check complete | [Compare checks without gyroscopes](ilvis0-channel-history-v2-20261019/INTERPRETATION.md). These leave all models possible; they do not reconstruct a complete flight. |
-| V01 | First | **In progress** | Make prediction error ranges useful over full recordings. [Four of six groups](ilvis0-product-prediction/INTERPRETATION.md) pass the current width target. |
+| V01 | First | **In progress** | Keep prediction errors tied to one calibration. [Extreme-point diagnostic](ilvis0-calibration-map-diagnostic/INTERPRETATION.md); four of six groups pass the width target so far. |
 | V02 | First | Waiting for V01 | Test predictions against measurements excluded from fitting, including height. [Earlier prediction evidence](ilvis0-saved-prediction-comparison/INTERPRETATION.md). |
 | L01 | Next | Software checked | [Process long recordings](ilvis0-streaming-precision/INTERPRETATION.md) without excessive memory use. |
-| E01 | Next | More checks needed | [Prepare the ESA data](esa-development-selection/README.md). No interval yet passes its current selection rules. |
+| E01 | Next | Receiver diagnostic complete; selection still open | [Position-based assessment](esa-position-assessment/INTERPRETATION.md) finds 96 robust quiet-trend checks. These are not eligible stretches; continuous motion and receiver-error validation remain. |
 | E02 | Next | Waiting | Compare models on ESA development data, then test the frozen method on reserved flights. |
 | G01 | Next | Complete as a descriptive check | [Compare raw gyro trends with geographic predictions](ilvis0-gyro-companion-v2/INTERPRETATION.md) across all 53 stretches. |
 | U01 | Next | Development dataset ready | [Assemble the evidence for publication](PAPER_DATASET.md). Final prediction and uncertainty results are still needed. |

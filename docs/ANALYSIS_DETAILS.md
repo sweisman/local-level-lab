@@ -27,6 +27,12 @@ The [roadmap](ANALYSIS_ROADMAP.md) sets current priorities;
 | S01 | Wuhan independent positions/eligibility and stationary-consumer physical validation. | Separate dataset-specific qualification; no automatic transfer of archive thresholds. |
 | D01 | Exact instrument/processing documentation and defensible calibration alternatives. | Supporting work, not a blanket reason to suspend analysis. |
 
+Recent supporting checks: the [complete calibration-map diagnostic](ilvis0-calibration-map-diagnostic/INTERPRETATION.md)
+finds all 36 tested linear extremes unrealizable by their physical calibration.
+The [ESA position assessment](esa-position-assessment/INTERPRETATION.md) improves
+receiver-motion uncertainty on the same sampled centers. Neither result passes
+the remaining V01/V02 gates or creates a revised ESA cohort.
+
 ## Earlier plans and their task IDs
 
 | Existing design or unresolved requirement | Backlog home |

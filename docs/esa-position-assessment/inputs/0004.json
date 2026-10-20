@@ -1,0 +1,15 @@
+{
+  "version": "esa-flight-group-reservation-v1",
+  "development_files": ["187_rqh01.txt"],
+  "confirmation_files": [
+    "178a_rqh01.txt", "178b_rqh01.txt", "179_rqh01.txt",
+    "180_rqh01.txt", "182_rqh01.txt", "183_rqh01.txt",
+    "184_rqh01.txt", "186_rqh01.txt"
+  ],
+  "protected_until": "selection, method, error model, adequacy rules and confirmation identities are frozen",
+  "permitted_before_freeze": ["inventory", "integrity", "receiver-only eligibility"],
+  "prohibited_before_freeze": ["model fitting", "model outcome inspection"],
+  "unknown_sources": "unassigned; reject model-use authorization",
+  "shared_group_rule": "group shared files, reported flight labels and same-date observations before splitting; reject mixed development/confirmation groups",
+  "independence_claim": "reserved flight groups do not establish separate physical instruments or installations"
+}
