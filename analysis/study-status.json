@@ -419,6 +419,14 @@
     {
       "name": "Oracle-assisted internal error-block diagnosis",
       "path": "data/ilvis0-error-block-ablation-20261020"
+    },
+    {
+      "name": "Training-only combined acceleration projection",
+      "path": "data/ilvis0-acceleration-projection-20261020"
+    },
+    {
+      "name": "Native qualification with training-conditioned acceleration",
+      "path": "data/ilvis0-conditioned-native-controls-20261020"
     }
   ]
 }

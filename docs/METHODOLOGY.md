@@ -130,6 +130,12 @@ the physical bounds and passes all 48 correctness checks, with widths of about
 Useful ranges over flight-length intervals and actual aircraft coverage remain
 separate requirements.
 
+A [training-only acceleration projection](ilvis0-acceleration-projection/INTERPRETATION.md)
+reduces the allowed acceleration-change radius by about 92–93% in six generated
+cases. It preserves relationships between calibration terms that separate
+coordinate ranges lose. Carrying that improvement through propagation requires
+its own checks; it does not yet establish narrower aircraft predictions.
+
 A [saved-error audit](ilvis0-saved-prediction-comparison/INTERPRETATION.md)
 checks existing retrospective predictions without new fits. Across three fully
 completed settings on one recording, horizontal RMS during the withheld interval

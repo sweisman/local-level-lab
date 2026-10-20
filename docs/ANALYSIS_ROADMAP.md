@@ -27,11 +27,12 @@ The current calculation allows ranges that are too wide for useful tests over
 a full stretch. That is a limitation of the calculation, not a measurement of
 how badly the aircraft data fit.
 
-The search is already almost as tight as this method allows. It can admit
-impossible rotation matrices, but restricting those has barely narrowed the
-ranges. Isolating error groups found no single dominant term. Next we will use
-the training constraints jointly to narrow possible acceleration.
-[Latest diagnostic](ilvis0-error-block-ablation/INTERPRETATION.md).
+A new check reduced the allowed acceleration range by about 92–93% in all six
+generated cases, by using the training constraints jointly. Six longer propagation
+controls also passed, preserving the predictions and their derivatives. The
+complete sector comparison must now test whether position ranges are useful.
+No new aircraft fits ran.
+[Latest result](ilvis0-conditioned-native-controls/INTERPRETATION.md).
 
 ## Dependency-ordered backlog
 
@@ -47,7 +48,7 @@ validated.
 | C02 | First | Software checked | [Test which calibration changes can imitate a model difference](ilvis0-scalar-certificate-controls-20261019/INTERPRETATION.md). |
 | C03 | First | Initial check complete | [Include measurement-error assumptions](ilvis0-channel-envelopes-20261019/INTERPRETATION.md) in the accelerometer-only checks. |
 | C04 | First | Initial check complete | [Compare checks without gyroscopes](ilvis0-channel-history-v2-20261019/INTERPRETATION.md). These leave all models possible; they do not reconstruct a complete flight. |
-| V01 | First | **In progress** | Make prediction error ranges useful over full recordings. [Latest result](ilvis0-column-orientation-prediction/INTERPRETATION.md). |
+| V01 | First | **In progress** | Make prediction error ranges useful over full recordings. [Conditioned propagation](ilvis0-conditioned-native-controls/INTERPRETATION.md) passed controls; complete widths need testing. |
 | V02 | First | Waiting for V01 | Test predictions against measurements excluded from fitting, including height. [Earlier prediction evidence](ilvis0-saved-prediction-comparison/INTERPRETATION.md). |
 | L01 | Next | Software checked | [Process long recordings](ilvis0-streaming-precision/INTERPRETATION.md) without excessive memory use. |
 | E01 | Next | More checks needed | [Prepare the ESA data](esa-development-selection/README.md). No interval yet passes its current selection rules. |

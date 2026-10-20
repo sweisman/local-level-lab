@@ -181,3 +181,9 @@ these observations or to the stationary experiment.
 [Prediction with separate column bounds](ilvis0-column-orientation-prediction/INTERPRETATION.md): all 48 sectors pass correctness, but ranges improve by at most 0.016%. The fixed target remains unmet; the next diagnostic isolates internal error blocks before further refinement.
 
 [Internal error-block diagnosis](ilvis0-error-block-ablation/INTERPRETATION.md): all 24 known-value-assisted cases pass numerical checks. No single block dominates the width. The report discloses 144 extra source-certificate checks beyond the declared allowance; this is diagnosis, not qualification.
+
+[Training-derived acceleration bounds](ilvis0-acceleration-projection/INTERPRETATION.md): all six cases pass exact checks and reduce the acceleration-change radius by about 92–93%. Bounds use training information only. Propagation and complete prediction usefulness still need testing.
+
+[Propagation with training-derived acceleration](ilvis0-conditioned-native-controls/INTERPRETATION.md): all six longer native controls pass, preserving centers, derivatives, shared coefficients and known-probe containment. Unshared position bounds narrow about 3–19%; a complete sector comparison is next.
+
+[Background-subtracted gyro visualization](ilvis0-background-subtracted/README.md): the same 53 raw traces remain nose-down after subtracting the specified field's level/course projection. It is a descriptive display using GPS for the correction, with aircraft motion retained and no new fit.

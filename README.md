@@ -36,6 +36,14 @@ aircraft motion and the background rotation field also contribute. The full anal
 accounts for those contributions when comparing shapes.
 [How to read the graph and download its data](docs/ilvis0-gyro-overview/README.md).
 
+![The same 53 gyro traces with the specified background-field prediction subtracted](docs/ilvis0-background-subtracted/background-subtracted.png)
+
+**Subtracting the specified background field leaves all 53 traces ending
+nose-down.** This uses the same gyro bins, but the correction uses GPS latitude
+and direction with an assumed level attitude. Aircraft motion remains; the
+background rate is supplied rather than measured by this plot.
+[What was subtracted, and the plotted data](docs/ilvis0-background-subtracted/README.md).
+
 A [route-based companion](docs/ilvis0-gyro-companion-v2/INTERPRETATION.md) compares
 these raw rates with geographic predictions, without fitting gyro corrections.
 Median rate differences are **0.88°/h for globe plus the specified field,

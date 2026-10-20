@@ -30,6 +30,11 @@ the established per-configuration unit conversion. No new fits or raw-file decod
 are required. Some simultaneous instrument records cover the same flight leg;
 53 curves are not 53 independent flights.
 
+A [second visualization](../ilvis0-background-subtracted/README.md) subtracts the
+specified background-field prediction from the same gyro bins. Unlike this raw
+plot, that correction uses receiver coordinates and a declared level/course
+attitude; it leaves aircraft motion and transport in place.
+
 [Full-size image](raw-pitch.png) · [Vector image](raw-pitch.svg) ·
 [Plotted values](plotted-bins.csv.gz) · [All flight stretches](../ilvis0-current-findings-20261015/STRETCHES.md) ·
 [Analysis method](../METHODOLOGY.md).
