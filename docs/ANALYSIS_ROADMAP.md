@@ -30,7 +30,8 @@ how badly the aircraft data fit.
 A new check reduced the allowed acceleration range by about 92–93% in all six
 generated cases, by using the training constraints jointly. Six longer propagation
 controls also passed, preserving the predictions and their derivatives. The
-complete sector comparison must now test whether position ranges are useful.
+[complete 48-sector comparison](ilvis0-conditioned-prediction/PLAN.md) is now
+testing whether position ranges are useful, under the unchanged target.
 No new aircraft fits ran.
 [Latest result](ilvis0-conditioned-native-controls/INTERPRETATION.md).
 

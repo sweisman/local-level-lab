@@ -427,6 +427,10 @@
     {
       "name": "Native qualification with training-conditioned acceleration",
       "path": "data/ilvis0-conditioned-native-controls-20261020"
+    },
+    {
+      "name": "Complete prediction with training-conditioned acceleration",
+      "path": "data/ilvis0-conditioned-prediction-20261020"
     }
   ]
 }

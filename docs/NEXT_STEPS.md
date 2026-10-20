@@ -27,8 +27,8 @@ useful over a full recording. Recent improvements helped, but have not solved
 this problem. These wide ranges are not measured aircraft errors.
 
 The latest check narrowed the allowed acceleration range by about 92–93% in
-all six generated cases, and six longer propagation controls passed. Next we
-will test complete position ranges across all original sectors. This has not
+all six generated cases, and six longer propagation controls passed. The
+[complete sector comparison](ilvis0-conditioned-prediction/PLAN.md) is now running. This has not
 yet cleared the gate for new aircraft fits.
 [Latest result](ilvis0-conditioned-native-controls/INTERPRETATION.md).
 

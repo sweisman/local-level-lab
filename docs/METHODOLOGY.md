@@ -133,8 +133,9 @@ separate requirements.
 A [training-only acceleration projection](ilvis0-acceleration-projection/INTERPRETATION.md)
 reduces the allowed acceleration-change radius by about 92–93% in six generated
 cases. It preserves relationships between calibration terms that separate
-coordinate ranges lose. Carrying that improvement through propagation requires
-its own checks; it does not yet establish narrower aircraft predictions.
+coordinate ranges lose. Six [propagation controls](ilvis0-conditioned-native-controls/INTERPRETATION.md)
+passed without changing predictions or derivatives. The complete sector comparison
+is testing usefulness; these checks do not yet establish narrower aircraft predictions.
 
 A [saved-error audit](ilvis0-saved-prediction-comparison/INTERPRETATION.md)
 checks existing retrospective predictions without new fits. Across three fully

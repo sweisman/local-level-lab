@@ -27,20 +27,10 @@ def test_standalone_entry_does_not_need_a_package_relative_import():
     assert callable(module.evaluate)
 
 
-def test_sealed_generated_case_reuses_evidence_without_native_calls(tmp_path,monkeypatch):
-    from lll import ilvis0_control_shards as runner
-    from lll.ilvis0_sharded_native import read
-    root=Path(__file__).resolve().parents[2];old=root/'docs/ilvis0-orientation-gain-prediction'
-    manifest=read(old/'manifest.json');task=manifest['tasks'][0]
-    summary=read(old/'summary.json');result=next(r for r in summary['results'] if r['identity']==task['identity'])
-    identity=task['identity'];bundle=dict(result=read(old/result['artifact'])['result'],
-        training=read(old/'artifacts'/identity/'training.json'),future=read(old/'artifacts'/identity/'future.json'))
-    path=tmp_path/'bundle.json';path.write_text(json.dumps(bundle));saved={}
-    case_key=task['payload']['case_key']
-    case=old/manifest['inputs'][case_key]['path']
-    monkeypatch.setattr(runner,'_check_continue',lambda *args:None)
-    context=SimpleNamespace(root=tmp_path,manifest={},input_path=lambda key=None:case if key else path,
-        save=lambda name,value:saved.update({name:value}))
-    result=candidate.evaluate(dict(identity=identity,payload=dict(case_key=case_key,maximum_proposals=6)),context)
+def test_generated_case_reuses_inputs_without_native_calls(tmp_path,monkeypatch):
+    from saved_prediction_fixtures import generated_context
+    root=Path(__file__).resolve().parents[2]
+    task,context,saved=generated_context(root/'docs/ilvis0-orientation-gain-prediction',tmp_path,monkeypatch)
+    result=candidate.evaluate(task,context)
     assert result['passed'] and result['native_evaluations']==0
     assert result['exact_supports_checked']==6 and 'independent-audit.json' in saved
