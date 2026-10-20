@@ -187,3 +187,9 @@ these observations or to the stationary experiment.
 [Propagation with training-derived acceleration](ilvis0-conditioned-native-controls/INTERPRETATION.md): all six longer native controls pass, preserving centers, derivatives, shared coefficients and known-probe containment. Unshared position bounds narrow about 3–19%; a complete sector comparison is next.
 
 [Background-subtracted gyro visualization](ilvis0-background-subtracted/README.md): the same 53 raw traces remain nose-down after subtracting the specified field's level/course projection. It is a descriptive display using GPS for the correction, with aircraft motion retained and no new fit.
+
+[Prediction with training-conditioned acceleration](ilvis0-conditioned-prediction/INTERPRETATION.md): all 48 sectors pass correctness, and four of six groups meet the unchanged width target. Both specified-field globe groups remain above it. All 576 LP proposals and 2,304 exact supports reconcile with sealed reservations; no observed fit follows.
+
+[Joint rotation-product constraints](ilvis0-rotation-product-controls/INTERPRETATION.md): all 24 cases retain 1,536 sealed physical probes under 198,144 exact inequality checks. Arithmetic products relate matrix columns without adding physical parameters; complete prediction usefulness remains a separate test.
+
+[Prediction with joint rotation relationships](ilvis0-product-prediction/INTERPRETATION.md): all 48 sectors pass correctness and all charges reconcile. Widths improve by less than 0.1%, leaving four of six groups passing; further linear matrix variations are deprioritized in favor of checking the complete calibration map.

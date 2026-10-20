@@ -26,11 +26,12 @@ The present calculation is too conservative: it allows ranges too wide to be
 useful over a full recording. Recent improvements helped, but have not solved
 this problem. These wide ranges are not measured aircraft errors.
 
-The latest check narrowed the allowed acceleration range by about 92–93% in
-all six generated cases, and six longer propagation controls passed. The
-[complete sector comparison](ilvis0-conditioned-prediction/PLAN.md) is now running. This has not
-yet cleared the gate for new aircraft fits.
-[Latest result](ilvis0-conditioned-native-controls/INTERPRETATION.md).
+The latest comparison passes all 48 correctness checks. Prediction widths meet
+the target in four of six groups; both specified-field globe groups still miss
+it. Stronger matrix constraints barely helped. Next we will check whether the
+extreme error combinations allowed by the calculation represent an actual
+calibration. The gate for new aircraft fits remains closed.
+[Latest result](ilvis0-product-prediction/INTERPRETATION.md).
 
 ## Then: four larger tests
 

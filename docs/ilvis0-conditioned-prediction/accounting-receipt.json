@@ -1,0 +1,13 @@
+{
+  "artifacts": {
+    "ACCOUNTING.md": "f16073456ebac0cc69d8905c6c8efe86fa1a2908c1e260a1710ea0dd89857b48",
+    "accounting.json": "a718f907c52a09e3f1a5d44e7764e0b3e2069781b6bd9c59989aee26b1fac85f",
+    "check_accounting.py": "5ee3e080c3381bdb91bb449da7f5782a3f6bf3425b3349df68cf7fdeeca2f5ee"
+  },
+  "sources": {
+    "analysis/lll/ilvis0_support_accounting.py": "1a4dca73c72995cbd7600ef0950c4b11c93d2276ef663b2d20db72c35a5d57a7",
+    "analysis/tests/test_ilvis0_support_accounting.py": "b9862b8acd77ab87ebc7bf4811257f6e17dd4ebb28612528efcadc55ac3ed7bd"
+  },
+  "study_manifest_sha256": "096351b095f24323f9c19b92b9a5535e1510db5a99adbc282a262de2d3f089ab",
+  "study_summary_sha256": "c89f6469cb1ec9a1af45814722e5a9d78bf77fc994bf244494c01a0d389141af"
+}

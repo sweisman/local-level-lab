@@ -124,9 +124,9 @@ direction. Whether the resulting prediction ranges are narrow enough is tested
 separately; software correctness alone cannot establish aircraft accuracy.
 The [short comparison](ilvis0-acceleration-cover/INTERPRETATION.md) reduces
 generated 1.8-second prediction widths to 0.061–0.358 m. The later
-[7.2-second comparison](ilvis0-column-orientation-prediction/INTERPRETATION.md) preserves
+[7.2-second comparison](ilvis0-product-prediction/INTERPRETATION.md) preserves
 the physical bounds and passes all 48 correctness checks, with widths of about
-0.21–1.70 m. Three of six groups still miss the fixed improvement target.
+0.21–1.63 m. Two of six groups still miss the fixed improvement target.
 Useful ranges over flight-length intervals and actual aircraft coverage remain
 separate requirements.
 
@@ -135,7 +135,7 @@ reduces the allowed acceleration-change radius by about 92–93% in six generate
 cases. It preserves relationships between calibration terms that separate
 coordinate ranges lose. Six [propagation controls](ilvis0-conditioned-native-controls/INTERPRETATION.md)
 passed without changing predictions or derivatives. The complete sector comparison
-is testing usefulness; these checks do not yet establish narrower aircraft predictions.
+now passes four groups' width targets; these checks do not yet establish narrower aircraft predictions.
 
 A [saved-error audit](ilvis0-saved-prediction-comparison/INTERPRETATION.md)
 checks existing retrospective predictions without new fits. Across three fully

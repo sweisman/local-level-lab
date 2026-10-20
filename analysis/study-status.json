@@ -431,6 +431,14 @@
     {
       "name": "Complete prediction with training-conditioned acceleration",
       "path": "data/ilvis0-conditioned-prediction-20261020"
+    },
+    {
+      "name": "Joint rotation-product component qualification",
+      "path": "data/ilvis0-rotation-product-controls-20261020"
+    },
+    {
+      "name": "Saved prediction with joint rotation products",
+      "path": "data/ilvis0-product-prediction-20261020"
     }
   ]
 }

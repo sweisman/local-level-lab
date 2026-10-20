@@ -27,13 +27,12 @@ The current calculation allows ranges that are too wide for useful tests over
 a full stretch. That is a limitation of the calculation, not a measurement of
 how badly the aircraft data fit.
 
-A new check reduced the allowed acceleration range by about 92–93% in all six
-generated cases, by using the training constraints jointly. Six longer propagation
-controls also passed, preserving the predictions and their derivatives. The
-[complete 48-sector comparison](ilvis0-conditioned-prediction/PLAN.md) is now
-testing whether position ranges are useful, under the unchanged target.
+The latest comparison passes all 48 correctness checks and the width target
+in four of six groups. Both specified-field globe groups still miss it. Stronger
+matrix relationships barely helped. Next we will check whether the extreme error
+combinations allowed by the calculation can come from one physical calibration.
 No new aircraft fits ran.
-[Latest result](ilvis0-conditioned-native-controls/INTERPRETATION.md).
+[Latest result](ilvis0-product-prediction/INTERPRETATION.md).
 
 ## Dependency-ordered backlog
 
@@ -49,7 +48,7 @@ validated.
 | C02 | First | Software checked | [Test which calibration changes can imitate a model difference](ilvis0-scalar-certificate-controls-20261019/INTERPRETATION.md). |
 | C03 | First | Initial check complete | [Include measurement-error assumptions](ilvis0-channel-envelopes-20261019/INTERPRETATION.md) in the accelerometer-only checks. |
 | C04 | First | Initial check complete | [Compare checks without gyroscopes](ilvis0-channel-history-v2-20261019/INTERPRETATION.md). These leave all models possible; they do not reconstruct a complete flight. |
-| V01 | First | **In progress** | Make prediction error ranges useful over full recordings. [Conditioned propagation](ilvis0-conditioned-native-controls/INTERPRETATION.md) passed controls; complete widths need testing. |
+| V01 | First | **In progress** | Make prediction error ranges useful over full recordings. [Four of six groups](ilvis0-product-prediction/INTERPRETATION.md) pass the current width target. |
 | V02 | First | Waiting for V01 | Test predictions against measurements excluded from fitting, including height. [Earlier prediction evidence](ilvis0-saved-prediction-comparison/INTERPRETATION.md). |
 | L01 | Next | Software checked | [Process long recordings](ilvis0-streaming-precision/INTERPRETATION.md) without excessive memory use. |
 | E01 | Next | More checks needed | [Prepare the ESA data](esa-development-selection/README.md). No interval yet passes its current selection rules. |
