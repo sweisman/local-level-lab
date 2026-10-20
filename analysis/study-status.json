@@ -391,6 +391,34 @@
     {
       "name": "Exact feasible-witness software controls",
       "path": "data/ilvis0-feasible-witness-controls-20261020"
+    },
+    {
+      "name": "Saved prediction-region width diagnosis",
+      "path": "data/ilvis0-relaxed-width-audit-20261020"
+    },
+    {
+      "name": "Saved extreme-matrix rotation diagnosis",
+      "path": "data/ilvis0-matrix-gram-audit-20261020"
+    },
+    {
+      "name": "Orientation-constrained matrix support qualification",
+      "path": "data/ilvis0-orientation-gain-controls-20261020"
+    },
+    {
+      "name": "Saved prediction with orientation-constrained matrix supports",
+      "path": "data/ilvis0-orientation-gain-prediction-20261020"
+    },
+    {
+      "name": "Column-specific orientation support qualification",
+      "path": "data/ilvis0-column-orientation-controls-20261020"
+    },
+    {
+      "name": "Saved prediction with column-specific orientation bounds",
+      "path": "data/ilvis0-column-orientation-prediction-20261020"
+    },
+    {
+      "name": "Oracle-assisted internal error-block diagnosis",
+      "path": "data/ilvis0-error-block-ablation-20261020"
     }
   ]
 }

@@ -26,9 +26,11 @@ The present calculation is too conservative: it allows ranges too wide to be
 useful over a full recording. Recent improvements helped, but have not solved
 this problem. These wide ranges are not measured aircraft errors.
 
-The current diagnostic checks why the ranges remain wide, using saved test
-cases whose answers are known. It runs no new aircraft fits.
-[Latest result](ilvis0-rotation-gain-prediction/INTERPRETATION.md).
+The latest checks show that a better solver alone will not fix the ranges.
+Restricting impossible rotation matrices barely helped, and no single internal
+error group explains most of the width. Next we will use the training constraints
+jointly to narrow possible acceleration. No new aircraft fits ran.
+[Latest diagnostic](ilvis0-error-block-ablation/INTERPRETATION.md).
 
 ## Then: four larger tests
 

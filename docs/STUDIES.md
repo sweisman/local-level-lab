@@ -167,3 +167,17 @@ these observations or to the stationary experiment.
 [Prediction with rotation/gain supports](ilvis0-rotation-gain-prediction/INTERPRETATION.md): all 48 cases and 288 independent support checks pass. Horizontal ranges narrow 1–3%, while height ranges remain unchanged; the fixed target is still unmet.
 
 [Exact feasible-witness controls](ilvis0-feasible-witness-controls/README.md): twenty known-answer cases pass with all 51 coordinates. Exact repairs verify every constraint and preserve boundary collapse; these witnesses describe a relaxation, not necessarily a physical calibration.
+
+[Prediction-range diagnosis](ilvis0-relaxed-width-audit/INTERPRETATION.md): all six saved cases supply exactly checked examples. Their widths are within 0.00000214 m of the existing upper bounds; better optimization alone cannot meet the failing targets under this construction.
+
+[Extreme-matrix check](ilvis0-matrix-gram-audit/INTERPRETATION.md): all 36 tested extreme examples fail a necessary rotation condition, while all six physical anchors pass. This identifies impossible combinations admitted by the uncertainty method; it does not yet establish narrower valid predictions.
+
+[Orientation-aware matrix constraints](ilvis0-orientation-gain-controls/INTERPRETATION.md): all 24 controls pass, preserving 1,536 physical probes and 119,808 new inequalities. The constraints retain the allowed orientation range; prediction usefulness is tested separately.
+
+[Prediction with orientation constraints](ilvis0-orientation-gain-prediction/INTERPRETATION.md): all 48 sectors and their endpoint checks pass, but complete ranges improve by less than 0.2%. The fixed target remains unmet; no new aircraft fits follow.
+
+[Separate column-motion bounds](ilvis0-column-orientation-controls/INTERPRETATION.md): all 24 controls pass, including 1,536 physical probes and 119,808 new support checks. Pure axial rotation correctly leaves its own column unchanged; complete prediction usefulness is tested separately.
+
+[Prediction with separate column bounds](ilvis0-column-orientation-prediction/INTERPRETATION.md): all 48 sectors pass correctness, but ranges improve by at most 0.016%. The fixed target remains unmet; the next diagnostic isolates internal error blocks before further refinement.
+
+[Internal error-block diagnosis](ilvis0-error-block-ablation/INTERPRETATION.md): all 24 known-value-assisted cases pass numerical checks. No single block dominates the width. The report discloses 144 extra source-certificate checks beyond the declared allowance; this is diagnosis, not qualification.
