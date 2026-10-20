@@ -1,0 +1,16 @@
+{
+  "certificate_sha256": "6338eec248edb8b99174b41ce90c8153028f939935e5e1b27070c4a4dd806d4c",
+  "earth_model_fits": 0,
+  "elapsed_s": 33.5072295665741,
+  "expected_size_source": "ESA FTPS directory listing",
+  "filename": "187_rqh01.txt",
+  "gnss_filename": "187_air1_ppp_2Hz_final.txt",
+  "gnss_sha256": "72af2c1e8f2631fb189fbe80e05c7708c351e2afe9234b89f3cc3e1fd9f17024",
+  "numerical_threads": 0,
+  "server_checksum_available": false,
+  "sha256": "7415a1ab77fe787bdd3c86e067ae0626adb181540eaeb69629f8a205c0d24ee6",
+  "size_bytes": 1100258400,
+  "state": "complete",
+  "transport": "implicit FTPS; hostname verified; explicitly trusted leaf certificate",
+  "url": "ftps://tpm-if.eo.esa.int/lvl0/187/rqh01/187_rqh01.txt"
+}

@@ -46,6 +46,11 @@ totals cover the monitored studies; they are not a machine-wide process inventor
 Passed checks describe the study's numerical checks, not scientific detections or
 changes to the published globe/flat findings. `--json` includes failure reasons.
 
+Sharded controls also show charged bounds and their separate ceiling. Bound
+reservations are checked against each shard's receipt chain; they are not
+counted as native integration calls. Inherited shard leases retain the full
+frozen thread reservation if the coordinator disconnects.
+
 Exit status is zero for a readable snapshot, including completed studies with
 recorded failures. It is nonzero for invalid or unavailable metadata, warnings,
 or a monitored allocation above four threads. Unsupported historical metadata is

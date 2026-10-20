@@ -35,7 +35,15 @@ completed studies do not provide additional execution allowances.
 | [Acceleration calibration ambiguity](CALIBRATION.md) | All nine known-answer checks pass; a constant gain change of 0.066–0.307% erases wrong-model scalar differences on the constructed straight leg. | A fixed-calibration acceleration-only ranking would overstate what the diagnostic distinguishes. |
 | [Local calibration and changing motion](../ilvis0-scalar-calibration-controls-20261019/INTERPRETATION.md) | All 72 controls pass, with all seven calibration columns retained. Straight-leg differences disappear; changing motion retains local differences but wrong-model linear corrections exceed bounds. | Identifies the need for bounded nonlinear calibration checks; a local projection is not a feasible nonlinear fit. |
 | [Bounded nonlinear calibration](../ilvis0-scalar-nonlinear-controls-20261019/INTERPRETATION.md) | All 12 known-answer starts pass; 32/72 matched comparisons pass all three starts. | Near-zero weakly determined cases still exhaust the budget; observed channel fitting remains blocked. |
+| [Feasible scalar calibration](../ilvis0-scalar-certificate-controls-20261019/INTERPRETATION.md) | All 12 known-answer identities and 72/72 matched comparisons pass; 147 certificates and 81 actual optimizer starts. | Qualifies the mathematical calibration control while preserving scalar ambiguity; observational error and timing gates still remain. |
 | [Quantization and integration-period bounds](QUANTIZATION.md) | All 17 mathematical checks pass. | Bounds packet-mean magnitudes under declared count and timing hypotheses; neither statistical averaging nor a continuous-force upper bound is established. |
+| [Within-packet force averaging](FORCE_AVERAGING.md) | All 11 additional mathematical checks pass. | A continuous upper bound can be supplied with an explicit force-direction-rate assumption; absent or unsupported assumptions leave that bound unavailable. |
+| [Common time support and synchronization](TIME_SUPPORT.md) | All 34 interval and prediction-bound checks pass. | Preserves whole packets and gaps, rejects unsupported receiver coverage, and bounds scalar averaging/time shifts under a declared magnitude-rate envelope. |
+| [Receiver-trajectory truncation bounds](DERIVATIVE_BOUNDS.md) | All 13 deterministic checks pass. | Propagates declared higher-derivative and coordinate-error envelopes through all nine estimated quantities, retaining cross-axis sensitivity and polynomial-reproduction defects. |
+| [Nonlinear force-box propagation](FORCE_BOUNDS.md) | All 30 controls pass, including independent Cartesian truth for each candidate. | Carries coordinate-jet, gravity and field bounds through the nonlinear force calculation; overlapping boxes do not establish a complete feasible fit. |
+| [Combined deterministic error budget](COMBINED_BOUNDS.md) | Fifteen calibrated-increment checks and six independent end-to-end examples pass, bringing the component chain to 126 checks. | Compares continuous magnitude envelopes on shared support; the physical hypotheses still require a frozen observational assessment. |
+| [Recorded acceleration-only snapshots](../ilvis0-channel-envelopes-20261019/INTERPRETATION.md) | All 144 candidate cases overlap on six fixed snapshot windows from IMU8 and IMU21; none unsupported. | The scalar constraint excludes none under the declared bounds. It is not a matched whole-history ablation or a complete feasible gyro-free fit. |
+| [Whole-history scalar constraints](../ilvis0-channel-history-v2-20261019/INTERPRETATION.md) | All 27,468 cases overlap across 763 packet groups. One fixed zero gain/offset correction survives every group for all 24 history variants. | Extends coverage and shared-calibration checks; it does not establish a jointly feasible receiver history or full gyro-free reconstruction. |
 
 The timing search used 2,376 native evaluations in 6.59 hours. It is complete;
 wider searches are deferred. [Every attempt](../ilvis0-horizontal-multistart-20261019/DETAILS.md)
@@ -78,14 +86,25 @@ The new approximation/averaging matrix quantifies failures of otherwise plausibl
 choices. The calibration control now shows that a small permitted gain change can
 erase the straight-leg scalar distinction. The changing-geometry matrix now
 retains local distinctions under all seven calibration directions, with
-out-of-bounds suggested wrong-model corrections. The bounded nonlinear study
-handles the known solutions but does not qualify every matched comparison;
-near-zero calibration directions need a separate candidate. Initial deterministic
-quantization bounds pass. Synchronization, within-packet averaging, combined
-uncertainty and a common support policy remain before recorded-data use.
+out-of-bounds suggested wrong-model corrections. The later certificate candidate
+now qualifies all mathematical comparisons by explicitly recognizing feasible
+near-zero histories. It does not establish a full gyro-free reconstruction.
+Deterministic quantization and direction-cone averaging bounds pass. The latter
+needs an explicit supported continuous motion envelope. Whole-packet support and
+common-offset prediction bounds now pass their checks. Supported clock/motion
+hypotheses are explicit in the completed two-recording snapshot assessment.
+Receiver truncation now has a checked bound under declared derivative envelopes;
+the helper does not establish those envelopes for recordings. Nonlinear force-box
+propagation and its combination with measured-increment/calibration bounds now
+pass independent software checks on the same time support. No recorded-data
+likelihood or calibrated uncertainty is established by those controls. All 144
+recorded snapshot cases now overlap, so this scalar check excludes none of the
+candidates. The complete comparisons on both recordings still favor globe.
 
-After that qualification, a finite matched recorded-data comparison can be
-prepared. Held-out prediction, correlated errors and shared-flight dependence
+The supported whole-history comparison is now complete: this conservative scalar
+constraint excludes none, even with a shared zero-calibration point. Its relaxed
+receiver/latency/gravity dependence prevents claiming a full gyro-free fit.
+Held-out prediction, correlated errors and shared-flight dependence
 remain subsequent checks; finite searches do not establish global optima or
 calibrated statistical significance.
 

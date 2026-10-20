@@ -1,0 +1,18 @@
+{
+  "artifacts": {
+    "ELIGIBILITY.md": "85eba1081bc01aad8af459d403c30752218618d6a1899b400456f2ae879cd369",
+    "RESULTS.md": "395fe56d6c16d05724268175504b832999f1ad615dcd52f1eb0e3ff365612043",
+    "completion.json": "b7febc755fe2314949dc51cfd08581693668d45877c482b5c6abd394008a274e",
+    "eligible-stretches.csv": "a5abfa6775b3f39025dad33165ae4c9e62ca6df4365fbaebfc9684f21de29044",
+    "files.csv": "61710b7c10316767c950af64637de9f091731563e7fca084768a9094aded418d",
+    "fit-manifest.json": "9751fecb341d1626f0ad08e9aa4c99603293ee9a5b4c881bb74423b8c0eb4650",
+    "manifest.json": "86997702d75ff0d04159831afadc99a1940486c6677c95c9a572564f76f7f063",
+    "segments.csv": "fb04969089587294a6f7c8c4ca6f05cb31d5af4a5b29fd512359cf0c379d05bf",
+    "selection-receipt.json": "6f319edcb10918ce81dafefd3bfc9fc15370854917d004986878b506a458f4d2",
+    "selection.json.gz": "934dea342a64b716533732d7ab0e961d23709cf37499faf7cee8e4c386778809",
+    "starts.jsonl": "91d207318db088fe91f1522ee6ea83347c45311af5da8b901d15bd8f2d89fec6",
+    "summary.json.gz": "41654f27764dc8af26e83c42ba291c76ebc1eb77ed579523baab6d80190642fa"
+  },
+  "scientific_decision": "abstain",
+  "state": "complete"
+}

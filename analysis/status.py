@@ -47,7 +47,7 @@ def receipt_counts(directory,manifest_hash):
         pending=charges.is_dir() and any(p.name.startswith('.pending-') for p in charges.iterdir())
         if not (charges/'HEAD.json').exists():return None
         head=load(charges/'HEAD.json');previous=None;counts=dict(starts=0,sweeps=0)
-        events=head['events']
+        events=head['events'];native_sweeps=0
         if type(events) is not int or not 0<=events<=1000000:raise ValueError('invalid charge count')
         for number in range(1,events+1):
             item=load(charges/f'{number:08d}.json');payload=item['payload'];kind=payload['record_type']
@@ -56,8 +56,9 @@ def receipt_counts(directory,manifest_hash):
                     or payload['record']['manifest_sha256']!=manifest_hash):
                 raise ValueError('charge chain mismatch')
             counts[kind]+=1;previous=item['sha256']
+            if kind=='sweeps' and payload['record'].get('phase')=='fit':native_sweeps+=1
         if head['sha256']!=previous:raise ValueError('charge head mismatch')
-        return dict(counts,incomplete_transaction=pending)
+        return dict(counts,native_sweeps=native_sweeps,incomplete_transaction=pending)
 
 
 def completed_rows(directory,manifest,manifest_hash):
@@ -83,25 +84,50 @@ def inspect_study(directory):
     try:
         manifest=load(directory/'manifest.json');manifest_hash=file_digest(directory/'manifest.json')
         status=load(directory/'status.json') if (directory/'status.json').exists() else {}
-        plan=manifest.get('plan',manifest.get('limits',{}));tasks=plan.get('tasks',[])
+        plan=manifest.get('plan',manifest.get('limits',{}));tasks=plan.get('tasks',manifest.get('tasks',[]))
         result.update(total=len(tasks) if tasks else len(manifest['tests']) if 'tests' in manifest else status.get('total'),
             native_limit=plan.get('maximum_native_evaluations',plan.get('maximum_sweeps',plan.get('maximum_native_sweeps'))),
             worker_phase=status.get('state'),identity=status.get('identity'),pid=status.get('pid'))
         with read_lock(directory/'worker.lock') as state:result['lock']=state
         held=result['lock']=='held'
+        sharded=manifest.get('version')=='ilvis0-sharded-native-controls-v1'
+        child_held=False
+        if sharded:
+            allocation=manifest['allocation'];workers=allocation['workers'];threads=allocation['threads']
+            if type(workers) is not int or type(threads) is not int or not 1<=workers<=4 or not 1<=workers*threads<=4:
+                raise ValueError('invalid sharded numerical allocation')
+            states={}
+            for shard in range(workers):
+                with read_lock(directory/'shards'/f'{shard:03d}'/'worker.lock') as state:states[str(shard)]=state
+            child_held=any(state=='held' for state in states.values());held=held or child_held
+            result.update(shard_locks=states,native_limit=manifest['limits']['native_calls'],bound_limit=manifest['limits']['bound_calls'])
         result['state']='running' if held else 'incomplete'
         result['threads']=status.get('allocated_numerical_threads',status.get('numerical_threads',plan.get('numerical_threads',0))) if held else 0
+        if sharded:result['threads']=workers*threads if held else 0
         rows=[]
         if (directory/'completion.json').exists():
+            if child_held:raise ValueError('sealed completion still has an owned shard lease')
             completion=load(directory/'completion.json')
-            if (completion.get('state','complete')!='complete' or completion.get('manifest_sha256')!=manifest_hash
+            terminal_state=completion.get('state','complete')
+            if (terminal_state not in ('complete','terminal') or completion.get('manifest_sha256')!=manifest_hash
                     or completion.get('summary_sha256')!=file_digest(directory/'summary.json')):
                 raise ValueError('completion/manifest/summary hash mismatch')
             summary=load(directory/'summary.json')
+            if terminal_state=='terminal':
+                if summary.get('state')!='terminal' or not summary.get('terminal_reason'):
+                    raise ValueError('terminal receipt requires a matching sealed terminal summary')
+                result['warnings'].append('study ended without qualification: '+str(summary['terminal_reason']))
             if 'state' not in completion and summary.get('state')!='complete':
                 raise ValueError('verified completion requires explicit complete state')
             rows=summary.get('results',[])
-            result.update(state='complete',native_calls=summary.get('native_evaluations'))
+            if isinstance(rows,dict):
+                if any(not isinstance(r,dict) or ('identity' in r and r['identity']!=key) for key,r in rows.items()):
+                    raise ValueError('invalid keyed result summary')
+                rows=[dict(r,identity=key) for key,r in rows.items()]
+            if not isinstance(rows,list) or any(not isinstance(r,dict) for r in rows):
+                raise ValueError('invalid result summary rows')
+            result.update(state=terminal_state,native_calls=summary.get('native_evaluations',summary.get('native_sweeps')))
+            if sharded:result['threads']=0
             if 'tests' in summary and not rows:
                 rows=[dict(row,passed=row['outcome']=='passed',status='error' if row['outcome'] in ('failure','error') else 'complete')
                       for row in summary['tests']]
@@ -143,6 +169,25 @@ def inspect_study(directory):
                     result.update(state='blocked',threads=0)
         except (OSError,ValueError,KeyError,TypeError) as error:
             result['warnings'].append('charge snapshot: '+str(error))
+        if sharded:
+            shard_native=0;shard_starts=0;shard_bounds=0;valid=True
+            for shard in range(workers):
+                try:
+                    counts=receipt_counts(directory/'shards'/f'{shard:03d}',manifest_hash)
+                    if counts:
+                        shard_native+=counts['native_sweeps'];shard_starts+=counts['starts']
+                        shard_bounds+=counts['sweeps']-counts['native_sweeps']
+                        if counts['incomplete_transaction']:raise ValueError('incomplete transaction; continuation blocked')
+                except (OSError,ValueError,KeyError,TypeError) as error:
+                    valid=False;result['warnings'].append(f'shard {shard} charge snapshot: '+str(error))
+            if valid:
+                result['charged_identities']=shard_starts
+                if result['state'] in ('complete','terminal') and result['native_calls']!=shard_native:
+                    raise ValueError('sealed native total differs from shard receipts')
+                result['native_calls']=shard_native
+                if result['state'] in ('complete','terminal') and summary.get('bound_evaluations')!=shard_bounds:
+                    raise ValueError('sealed bound total differs from shard receipts')
+                result['bound_calls']=shard_bounds
         if result['native_calls'] is None:result['native_calls']=status.get('native_evaluations')
         latest=max((p.stat().st_mtime for p in (directory/'status.json',directory/'completion.json',
             directory/'charges/HEAD.json',directory/'preflight/charges/HEAD.json') if p.exists()),default=None)
@@ -169,6 +214,10 @@ def render(report):
     limit=report['native_limit'] if report['native_limit'] is not None else '?'
     text=f"{report['name']}: {report['state']} | {report['completed']}/{total} results, {report['passed']} passed, {report['errors']} errors"
     text+=f" | {calls}/{limit} charged native calls | {report['threads']} threads | lock {report['lock']}"
+    if report.get('shard_locks'):
+        text+=f" | {sum(v=='held' for v in report['shard_locks'].values())} owned shard leases"
+    if 'bound_calls' in report:
+        text+=f" | {report['bound_calls']}/{report['bound_limit']} charged bounds"
     if report.get('identity') and report['state']=='running':text+='\n  Current: '+report['identity']
     if report.get('worker_progress'):
         progress=report['worker_progress']

@@ -1,0 +1,11 @@
+gate_id,status,scope
+latest_numerical_comparisons,complete,53 stretches; all six latest primary fits per stretch pass
+gyro_geographic_companion,descriptive_complete,level/course assumptions; 243 finite scenarios; no new fitted corrections
+shared_scale_software,qualified_under_declared_assumptions,generated Gaussian-family controls; not aircraft error calibration
+recording_scale_prediction_bounds,not_useful_and_matrix_incomplete,wide mathematical bounds; three complete histories and one partial
+observational_covariance,not_qualified,shared receiver error shape and selection need assessment
+withheld_prediction_adequacy,not_qualified,earlier development outputs are retained separately
+independent_flight_count,not_established,27 conservative groups are not verified independent flights
+independent_ESA_confirmation,reserved_not_evaluated,protected groups contain no inspected model outcomes
+calibrated_two_stage_decision,not_established,no significance level or production evidence promotion
+final_paper_dataset,development_only,"withheld adequacy, confirmation and dependence-aware uncertainty remain"

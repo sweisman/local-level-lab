@@ -1,0 +1,1 @@
+{"archive_native_evaluations":0,"deadline_policy":"cooperative-no-signals","manifest_sha256":"14f0483cc4877e390dc344dc3dc1c76e4a1f76e431c49b66d6ed98db622812dc","maximum_bound_steps":288000,"maximum_c_calls":96,"maximum_identities":6,"maximum_probes":96,"maximum_tangent_calls":24,"maximum_wall_s":900,"numerical_threads":4,"optimizer_starts":0,"original_reads":0,"retries":0}

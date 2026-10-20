@@ -1,6 +1,7 @@
 # Increment resolution, integration time and magnitude bounds
 
-The first **17 deterministic quantization/period checks pass**. They qualify a
+The first **17 deterministic quantization/period checks pass**. Eleven additional
+[within-packet direction-cone checks](FORCE_AVERAGING.md) also pass. They qualify a
 small mathematical helper, not an IMU (inertial measurement unit) error model or
 a likelihood for recorded flights. No original measurements or fits are used.
 
@@ -39,11 +40,12 @@ such assumption and provide no calibrated statistical coverage.
 ## What remains unbounded
 
 The norm of an integrated force vector can be smaller than the integral of its
-norm when the body rotates inside a packet. The helper's upper bound therefore
+norm when the body rotates inside a packet. The helper's default upper bound therefore
 applies to packet-mean force, not instantaneous force or continuously averaged
-force magnitude. It explicitly reports that no continuous-force upper bound has
-been established. Such a bound needs a declared within-packet motion model;
-an omitted gyro cannot be silently reused to provide it.
+force magnitude. Without another assumption, the continuous upper bound remains
+unavailable. The new [direction-cone extension](FORCE_AVERAGING.md) supplies a
+bound only under an explicit continuous force-direction-rate assumption; an
+omitted gyro cannot be silently reused to provide it.
 
 Calibration uncertainty, receiver differentiation, synchronization and nonlinear
 magnitude bias must still be combined consistently. The completed averaging

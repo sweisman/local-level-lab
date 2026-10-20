@@ -1,0 +1,12 @@
+{
+  "state": "complete",
+  "new_confirmed_rejections": 35,
+  "removed_this_run": 35,
+  "reclaimed_bytes_this_run": 208952434,
+  "original_confirmed_rejections": 58,
+  "total_confirmed_rejected_files": 93,
+  "candidate_files_kept": 80,
+  "unresolved_originals_kept": 153,
+  "original_screening_ledger_changed": false,
+  "disposition_journal_sha256": "d2834186b9e9accb0284a4124cdaa41f9c277ddb7e81912c3d545292664b4fa5"
+}

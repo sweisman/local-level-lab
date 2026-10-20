@@ -36,10 +36,18 @@ aircraft motion and the background rotation field also contribute. The full anal
 accounts for those contributions when comparing shapes.
 [How to read the graph and download its data](docs/ilvis0-gyro-overview/README.md).
 
-On the original twelve completed comparisons, median horizontal fitting error was
-about **7 centimetres for the globe with a background rotation field, versus
-47 metres for the flat disc**. These describe agreement with the positions used in
-fitting; prediction on unused observations is a separate check.
+A [route-based companion](docs/ilvis0-gyro-companion-v2/INTERPRETATION.md) compares
+these raw rates with geographic predictions, without fitting gyro corrections.
+Median rate differences are **0.88°/h for globe plus the specified field,
+2.84°/h for zero-field globe, and 5.87°/h for the level flat prediction**.
+Aircraft motion remains in this descriptive comparison.
+
+A [saved prediction check](docs/ilvis0-saved-prediction-comparison/INTERPRETATION.md)
+continued one recording for 2.4 minutes using IMU readings while withholding
+later GPS positions. Across three completed settings, typical horizontal error
+was **2.4 m for globe plus the specified field, 143–161 m for zero-field globe,
+and 166–255 m for flat disc**. These settings reuse one flight; calibration
+uncertainty and independent confirmation remain open.
 
 Separate [height-removal checks](docs/ilvis0-measurement-contribution/README.md)
 preserve the horizontal score advantage, but allow unrealistic vertical paths.
@@ -90,9 +98,10 @@ solar-versus-sidereal rate difference.
 
 ## Follow the work
 
-The priorities are to finish those measurement-contribution checks, test
-predictions on observations excluded from fitting, then seek independent
-confirmation in the ESA airborne survey archive. Shared recordings are grouped
+The next milestone is reliable prediction on observations excluded from fitting.
+The first conservative uncertainty construction remains too wide for useful
+prediction intervals. Independent confirmation in the ESA airborne survey
+archive follows those checks. Shared recordings are grouped
 before validation; ESA recording 187 is development material and the other
 cataloged groups are reserved for confirmation. A freely measured rotation
 field and solar-versus-sidereal precision come later.

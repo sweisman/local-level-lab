@@ -1,0 +1,1 @@
+{"cumulative":{"component_intervals":1056,"ode_rhs":0,"ode_solves":0},"reservation":{"component_intervals":32,"ode_rhs":0,"ode_solves":0},"task":{"family":"sinusoidal","identity":"quadrature-32","kind":"quadrature","method":"linear_points","profile":0}}

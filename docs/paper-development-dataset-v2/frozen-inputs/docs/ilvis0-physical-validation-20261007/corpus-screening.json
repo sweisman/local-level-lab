@@ -1,0 +1,301 @@
+{
+  "state": "complete_catalog_screening",
+  "catalog_files": 326,
+  "counts": {
+    "discarded_no_level": 58,
+    "unresolved": 250,
+    "retained": 18
+  },
+  "physical_accepted_files": 3,
+  "retained_physical_accepted_files": 2,
+  "retained_window_count": 22,
+  "retained_geometry_seconds": 7329.62022568391,
+  "retained_validated_geometry_seconds": 692.0126374040265,
+  "retained_files": [
+    {
+      "task_id": "e2eab4a5165f2b84a703",
+      "filename": "ILVIS0_gyro_54936_atm_applanix_15Apr09.013",
+      "date": "2009-04-15",
+      "source_sha256": "070a6ef0b926a19817606b1a5eb18d25be88f89afd8c666e1763406960915a47",
+      "physical_accepted": true,
+      "windows": [
+        {
+          "duration_s": 103.00206154352054,
+          "end_s": 304287.48725831753,
+          "start_s": 304184.485196774
+        },
+        {
+          "duration_s": 214.00394429510925,
+          "end_s": 304537.4914712949,
+          "start_s": 304323.4875269998
+        },
+        {
+          "duration_s": 103.00208623812068,
+          "end_s": 304662.493592106,
+          "start_s": 304559.49150586786
+        }
+      ]
+    },
+    {
+      "task_id": "0428cb9b1d87fedfb19e",
+      "filename": "ILVIS0_gyro_54937_atm_applanix_16Apr09.013",
+      "date": "2009-04-16",
+      "source_sha256": "61e813eb65e1bd9f9a6dbe9de884e96e9b542ce305304bd145441ac173533068",
+      "physical_accepted": true,
+      "windows": [
+        {
+          "duration_s": 272.004545327276,
+          "end_s": 391479.5876524527,
+          "start_s": 391207.5831071254
+        }
+      ]
+    },
+    {
+      "task_id": "30b98b4d421c7e9d0292",
+      "filename": "ILVIS0_applanix_55842_610_LVIS.013",
+      "date": "2011-10-08",
+      "source_sha256": "e863c1e91f4a1edc2f6962a73fd669d1f5442b088e50286a6efd3a1087406b12",
+      "physical_accepted": false,
+      "windows": [
+        {
+          "duration_s": 426.24844682973344,
+          "end_s": 572845.2125687293,
+          "start_s": 572418.9641218996
+        }
+      ]
+    },
+    {
+      "task_id": "187a21019bce7b34a04c",
+      "filename": "ILVIS0_applanix_55844_610_LVIS.013",
+      "date": "2011-10-10",
+      "source_sha256": "8befd824cf785f055562eaedeb3474406dd5bc346f666091db17c016138918da",
+      "physical_accepted": false,
+      "windows": [
+        {
+          "duration_s": 377.56741630475153,
+          "end_s": 131181.7960777808,
+          "start_s": 130804.22866147605
+        }
+      ]
+    },
+    {
+      "task_id": "12fbcbce3c7f52a3eae7",
+      "filename": "ILVIS0_applanix_55846_610_LVIS.013",
+      "date": "2011-10-12",
+      "source_sha256": "02459608f57b1b266e25daefcd9e5190515e1a046c0f633474604d1877a3ac75",
+      "physical_accepted": false,
+      "windows": [
+        {
+          "duration_s": 443.3288159251679,
+          "end_s": 303183.1048759358,
+          "start_s": 302739.77606001066
+        }
+      ]
+    },
+    {
+      "task_id": "4876a722de50db44fd7a",
+      "filename": "ILVIS0_applanix_57289_610_LVIS_38614965.013",
+      "date": "2015-09-24",
+      "source_sha256": "b1b624d9c5d736b411e6faa58b53000f1884d01563615b2681413234fcd48363",
+      "physical_accepted": false,
+      "windows": [
+        {
+          "duration_s": 439.57001391222,
+          "end_s": 392112.4384345297,
+          "start_s": 391672.8684206175
+        }
+      ]
+    },
+    {
+      "task_id": "3223697e5fe287b1d443",
+      "filename": "ILVIS0_applanix_57291_610_LVIS_38614965.013",
+      "date": "2015-09-26",
+      "source_sha256": "aed33e93397d83185507cdf213cdde9592b6b17acd10545f17c7ba19c6fcf1e5",
+      "physical_accepted": false,
+      "windows": [
+        {
+          "duration_s": 440.7904813028872,
+          "end_s": 567140.122343092,
+          "start_s": 566699.3318617891
+        }
+      ]
+    },
+    {
+      "task_id": "adfd80e2038861ee52fa",
+      "filename": "ILVIS0_applanix_57298_610_LVIS_38614965.013",
+      "date": "2015-10-03",
+      "source_sha256": "f87065a4678b2bcfe2134838327b3a4f2caf56eaa1ebb9908573968eb2dd38b5",
+      "physical_accepted": false,
+      "windows": [
+        {
+          "duration_s": 134.22324742015917,
+          "end_s": 568896.5787518808,
+          "start_s": 568762.3555044606
+        },
+        {
+          "duration_s": 282.50640016561374,
+          "end_s": 569199.1251530468,
+          "start_s": 568916.6187528812
+        }
+      ]
+    },
+    {
+      "task_id": "a0534d9c30195543709c",
+      "filename": "ILVIS0_applanix_57300_610_LVIS_38614965.013",
+      "date": "2015-10-05",
+      "source_sha256": "62516a0d2c5c33e9e55b7db7a0f4f3649252bc8257c8dab9ae2dd48212c1faa8",
+      "physical_accepted": false,
+      "windows": [
+        {
+          "duration_s": 438.7099167157721,
+          "end_s": 132788.19842538037,
+          "start_s": 132349.4885086646
+        }
+      ]
+    },
+    {
+      "task_id": "448e008466fda5ad79ea",
+      "filename": "ILVIS0_applanix_57302_610_LVIS_38614965.013",
+      "date": "2015-10-07",
+      "source_sha256": "4d0f2527e5b1c11a6848528ec7def5a791f53ab84575c880eeda18cf7c98ae20",
+      "physical_accepted": false,
+      "windows": [
+        {
+          "duration_s": 333.0477985353791,
+          "end_s": 306018.0542079757,
+          "start_s": 305685.0064094403
+        }
+      ]
+    },
+    {
+      "task_id": "41cf7c4dcca04dce0678",
+      "filename": "ILVIS0_applanix_57305_610_LVIS_38614965.013",
+      "date": "2015-10-10",
+      "source_sha256": "b348ff5526a3352a50d02bc0dab03e91a81b25016a39b597eeae81c0cd3f3f45",
+      "physical_accepted": false,
+      "windows": [
+        {
+          "duration_s": 426.7093913689023,
+          "end_s": 568745.1249435976,
+          "start_s": 568318.4155522287
+        }
+      ]
+    },
+    {
+      "task_id": "e53cc76ff2a5fe3046f9",
+      "filename": "ILVIS0_applanix_57307_610_LVIS_38614965.013",
+      "date": "2015-10-12",
+      "source_sha256": "48289f3ee7857e43c84a4420c2b7a1cb00810f29f4e2df8cf42e2d4cae39c957",
+      "physical_accepted": false,
+      "windows": [
+        {
+          "duration_s": 204.58460111773456,
+          "end_s": 133289.75171892662,
+          "start_s": 133085.1671178089
+        },
+        {
+          "duration_s": 160.8237005910778,
+          "end_s": 133470.61541955412,
+          "start_s": 133309.79171896304
+        }
+      ]
+    },
+    {
+      "task_id": "b2e4d9044f4718247f16",
+      "filename": "ILVIS0_applanix_57312_610_LVIS_38614965.013",
+      "date": "2015-10-17",
+      "source_sha256": "a8c4fdb754e5d3ac4bd4027c47ec5d67a3d4fc6877521c830ea63e1c6f7304a7",
+      "physical_accepted": false,
+      "windows": [
+        {
+          "duration_s": 436.88976911769714,
+          "end_s": 565279.3011404162,
+          "start_s": 564842.4113712985
+        }
+      ]
+    },
+    {
+      "task_id": "a869222776a6ad61940f",
+      "filename": "ILVIS0_applanix_57315_610_LVIS_38614965.013",
+      "date": "2015-10-20",
+      "source_sha256": "3d9d56ad3523899faab65133c2ddd7edb4bc264cbeb22ff232a3abaac4a684c6",
+      "physical_accepted": false,
+      "windows": [
+        {
+          "duration_s": 436.229557552957,
+          "end_s": 219704.939983931,
+          "start_s": 219268.71042637803
+        }
+      ]
+    },
+    {
+      "task_id": "64e033ebd4066f692c7d",
+      "filename": "ILVIS0_applanix_57317_610_LVIS_38614965.013",
+      "date": "2015-10-22",
+      "source_sha256": "dc32b2cb80a2e3f8d2919455ec693d1e2fec7de507016bb7e5fbbf095a11cf3f",
+      "physical_accepted": false,
+      "windows": [
+        {
+          "duration_s": 432.5695841857232,
+          "end_s": 392439.1227606968,
+          "start_s": 392006.5531765111
+        }
+      ]
+    },
+    {
+      "task_id": "cd8e05202eb41b83eb26",
+      "filename": "ILVIS0_applanix_57320_610_LVIS_38614965.013",
+      "date": "2015-10-25",
+      "source_sha256": "ffb1b6b76c3b2bb3daf03e1c261d47b4f365fd5d5a68be087bcc4717779130c8",
+      "physical_accepted": false,
+      "windows": [
+        {
+          "duration_s": 434.6501212943476,
+          "end_s": 46795.002833696664,
+          "start_s": 46360.35271240232
+        }
+      ]
+    },
+    {
+      "task_id": "b8a39f615741686e805a",
+      "filename": "ILVIS0_applanix_57322_610_LVIS_38614965.013",
+      "date": "2015-10-27",
+      "source_sha256": "12abb28abbbb1d1d41973f7a23973381a8f54f1fdea957a4fd1ac20f5ef32ee1",
+      "physical_accepted": false,
+      "windows": [
+        {
+          "duration_s": 434.8502015620179,
+          "end_s": 223777.18367807387,
+          "start_s": 223342.33347651185
+        }
+      ]
+    },
+    {
+      "task_id": "2cde8478531840037384",
+      "filename": "ILVIS0_applanix_57324_610_LVIS_38614965.013",
+      "date": "2015-10-29",
+      "source_sha256": "6bb4767c8ba1d9ddb88e8248be3389fd44164c800af717de99df0e156d4d9fc1",
+      "physical_accepted": false,
+      "windows": [
+        {
+          "duration_s": 354.3081243777415,
+          "end_s": 392619.5317282688,
+          "start_s": 392265.22360389103
+        }
+      ]
+    }
+  ],
+  "provenance_sha256": {
+    "manifest.json": "d10485d3f9c6a625d0cae8ce05f83cc2347ccd480845990560c19b87a9df9d0e",
+    "records.jsonl": "9b9fb403c942bb0af5cf83121a157b68c6e0aaec430ca11ab8c2d60121c2a8bc",
+    "inventory.json": "928e92001ea85684cc2ebc61fb0d08e999dbe2d4e68e32e88ef67a8970ffecc5",
+    "status.json": "0559c85c6fe9277bf11ec6455d478e2f4bb5cd22835f4f3d9535c8009e4ba142",
+    "storage.jsonl": "6898c8940e07f7124fe1bdb0d336cedc0bcfa0a587f1e6c71d77594ddca2ab29"
+  },
+  "source_corpus": "data/ilvis0-ready",
+  "earth_model_fit_attempts": 0,
+  "earth_shape_status": "blocked: independent processing/orientation unresolved",
+  "scope": "GPS/motion-based retention only; qualifying geometry is not calibrated scientific eligibility",
+  "unresolved_originals": "all kept",
+  "confirmed_no_level": "owned bulk copies removed; source hashes and reasons retained"
+}

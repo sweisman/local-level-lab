@@ -166,6 +166,13 @@ def build(root,output,*,assets,base_path='',navigation=True):
             target=local_target(source,url)
             if target is None: return url
             name,parsed=target
+            if '/source-freeze/' in source and not checked_path(root,name).exists():
+                # Frozen copies retain original relative links. Prefer a frozen
+                # neighbor; when absent, resolve in the original source context.
+                original=source.split('/source-freeze/',1)[1]
+                fallback=local_target(original,url)
+                if fallback is not None and checked_path(root,fallback[0]).exists():
+                    name,parsed=fallback
             if public_page(name):
                 page=checked_path(root,name)
                 if page.is_file():

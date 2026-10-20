@@ -22,7 +22,7 @@ navigation does not supply the fitted observations.
 | Complete full-position model comparison | All 53 stretches pass their required numerical comparisons and favor globe. |
 | Background-field comparison | All 53 also prefer the specified field over zero; its cause and freely measured rate are not determined. |
 | Height-removal sensitivity | The horizontal score advantage persists, but unscored vertical paths can be implausible. One of two refitted stretches is complete; the other remains unresolved after a matched timing search. |
-| Sensor-channel separation | Independent force/error controls pass and retain calibration ambiguity. The bounded nonlinear matrix qualifies only 32/72 comparisons, so observed channel fitting remains blocked. Seventeen quantization/period checks pass, without calibrated coverage or a continuous-force upper bound. |
+| Sensor-channel separation | Mathematical calibration and error-budget controls pass. The [whole-history scalar check](ilvis0-channel-history-v2-20261019/INTERPRETATION.md) excludes none in 27,468 cases; a common zero-calibration point survives all 24 history variants. This reduced constraint does not reproduce the full method's separation or establish a complete gyro-free reconstruction. |
 | Prediction and significance | Earlier trials provide development evidence; calibrated significance, adequate withheld prediction and independent-replication counts remain open. |
 | Shared observations | The metadata ledger forms 27 conservative split groups from 53 stretches; these are not verified independent flights or installations. |
 | Independent confirmation reservation | ESA recording 187 is development material. Eight other cataloged files form seven protected groups; no ESA model comparison has been run. |

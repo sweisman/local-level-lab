@@ -1,0 +1,1 @@
+{"covariance_alternatives":2,"exact_99pct_lower":0.9910458562488609,"generated_artifact":"generated/finite_covariance_union.json.gz","generated_sha256":"6a110eab7ff2e20907a0316401612c21890d90a17481f2668d702f26089f51c5","identity":"finite_covariance_union","kind":"coverage","original_parameter_count":4,"passed":true,"realizations":512,"simultaneous_covered":512,"unsupported":0}

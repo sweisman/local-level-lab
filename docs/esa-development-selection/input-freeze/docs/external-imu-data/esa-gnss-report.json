@@ -1,0 +1,56 @@
+{
+  "covariance_calibrated": false,
+  "earth_model_fits": 0,
+  "epochs": 64080,
+  "export_label_note": "The software uses a generic GNSS/INS epoch label. GNSS-only attribution comes from the report, not that label.",
+  "export_source_label": "GNSS/INS Epochs(PPP Combined)",
+  "first_gps_sow_s": 383696.49963427,
+  "gyro_used_for_selection": false,
+  "imu_overlap_epochs": 61126,
+  "inspector_sha256": "c705abd3d176a72e94fa21fd9b4d7f3a6889527caac4eafd9ffa6db852667cfe",
+  "last_gps_sow_s": 415735.99958754,
+  "latitude_range_deg": [
+    64.0753804916,
+    66.3910791821
+  ],
+  "maximum_dt_s": 0.500001440057531,
+  "maximum_ground_speed_kmh": 351.4133301371478,
+  "observed_median_dt_s": 0.5000011899974197,
+  "processing_provenance": "ESA report section 7.2.1: GNSS-only PPP using final CODE orbit/clock products; antenna positions",
+  "raw_rinex_reprocessed": false,
+  "reported_lines": [
+    {
+      "eligibility": "not evaluated; report lines are descriptive, not a frozen study cohort",
+      "gnss_epochs": 736,
+      "line_id": "9001",
+      "max_ellipsoid_height_m": 1952.053,
+      "max_ground_speed_kmh": 285.3580973578286,
+      "mean_ground_speed_kmh": 282.1535852399366,
+      "mean_latitude_deg": 66.35270416056821,
+      "min_ellipsoid_height_m": 1948.892,
+      "min_ground_speed_kmh": 279.89488978228957,
+      "raw_imu_time_span_covers_report_line": true,
+      "report_duration_min": 6.133333333333334,
+      "report_end_s": 396357.0,
+      "report_start_s": 395989.0
+    },
+    {
+      "eligibility": "not evaluated; report lines are descriptive, not a frozen study cohort",
+      "gnss_epochs": 6888,
+      "line_id": "3007",
+      "max_ellipsoid_height_m": 1902.163,
+      "max_ground_speed_kmh": 300.7564319599499,
+      "mean_ground_speed_kmh": 262.93726837755366,
+      "mean_latitude_deg": 65.1984046779779,
+      "min_ellipsoid_height_m": 1512.012,
+      "min_ground_speed_kmh": 252.6220195960756,
+      "raw_imu_time_span_covers_report_line": true,
+      "report_duration_min": 57.4,
+      "report_end_s": 413603.0,
+      "report_start_s": 410159.0
+    }
+  ],
+  "sha256": "72af2c1e8f2631fb189fbe80e05c7708c351e2afe9234b89f3cc3e1fd9f17024",
+  "source_file": "187_air1_ppp_2Hz_final.txt",
+  "span_hours": 8.899861098130561
+}

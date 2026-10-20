@@ -1,0 +1,1 @@
+{"cumulative":{"component_intervals":640,"ode_rhs":0,"ode_solves":0},"reservation":{"component_intervals":32,"ode_rhs":0,"ode_solves":0},"task":{"family":"linear","identity":"quadrature-19","kind":"quadrature","method":"right_hold","profile":3}}

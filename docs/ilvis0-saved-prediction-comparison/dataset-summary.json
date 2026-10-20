@@ -1,0 +1,21 @@
+{
+  "absolute_adequacy_criterion_calibrated": false,
+  "calibrated_detection": false,
+  "complete_three_model_sets": 3,
+  "conservative_groups": 1,
+  "fit_records": 18,
+  "independent_confirmation": false,
+  "input_freeze_manifest_sha256": "5045fb9be955d638af402a873da96f162f3db5b932e8511f946793f6562b95eb",
+  "new_native_calls": 0,
+  "new_optimizer_starts": 0,
+  "original_reads": 0,
+  "prediction_duration_s": 146.0,
+  "prediction_epochs": 147,
+  "saved_epochs": 7902,
+  "source_converged_fits": 15,
+  "source_recordings": 1,
+  "source_unresolved_fits": 3,
+  "stage": "saved_reductions_complete",
+  "total_three_model_sets": 6,
+  "training_epochs": 292
+}

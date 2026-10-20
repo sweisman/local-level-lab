@@ -1,0 +1,1 @@
+{"box":"narrow","error":"cooperative wall allowance exhausted","generated_artifact":"generated/sphere_still-narrow.json.gz","generated_sha256":"89109bc4501fdcfee443aaff1f14f83f7b034f3d7f69d6d4c97765fb0e4d64ef","identity":"sphere_still-narrow","maximum_bound_steps":48000,"maximum_c_calls":16,"maximum_tangent_calls":4,"model":"sphere_still","passed":false}

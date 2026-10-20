@@ -2,8 +2,10 @@
 
 This local-calibration design is implemented and its 72-case matrix is complete.
 The [subsequent nonlinear study](../ilvis0-scalar-nonlinear-controls-20261019/INTERPRETATION.md)
-does not qualify the whole diagnostic for observed use. Current pending work is
-collated under C02/C03/C04 in the [authoritative roadmap](../ANALYSIS_ROADMAP.md).
+did not qualify the whole matrix. A separate
+[certificate candidate](../ilvis0-scalar-certificate-controls-20261019/INTERPRETATION.md)
+now qualifies its mathematical controls. C03/C04 observational gates remain in
+the [authoritative roadmap](../ANALYSIS_ROADMAP.md).
 
 The constant-gain control rules out treating fixed-calibration scalar separation
 as sufficient information. The calculation below measures the part of a

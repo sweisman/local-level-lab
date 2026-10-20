@@ -185,6 +185,13 @@ and SHA-256 checks verify downloads. Filename tokens explicitly identify three A
 LVIS entries; the others remain unclassified. Instruments are never equated by flight date.
 Only actual HTTPS download paths ending `.013` are selected. JPS and `.031` are outside scope.
 
+The [reconciled census](paper-development-dataset-v2/README.md) accounts for every
+entry: 58 initial no-level rejections, 35 later rejections, one verified duplicate
+removal and **232 retained files**. Of those retained files, 53 supply the current
+53 selected stretches; 179 have no interval under the current four-minute and
+700 km/h policy. Storage usefulness and current scientific eligibility are
+separate. Earlier reports below preserve their historical counts.
+
 ```mermaid
 flowchart TD
     A[Catalog every .013 file] --> B[Check a small cross-date batch]
@@ -208,7 +215,7 @@ and maneuvers and supplies no qualifying window under it.
 Each catalog item has a stable task ID and durable ledger status: pending, retained,
 discarded with no level window, unresolved, invalid input, failed, or authentication required.
 Discarded files retain hashes, URLs, validation/motion reports and reasons. **All unresolved
-originals are kept**, following the latest retention instruction. Only newly
+originals are kept**. Only newly
 acquired files inside the pipeline's marked directory can be removed; supplied originals
 and historical evidence are untouched. Retained originals are compressed without changing
 their bytes. Qualifying IMU windows preserve raw integers and physical values.

@@ -1,0 +1,25 @@
+{
+  "acquisition_census_complete": false,
+  "calibrated_detections": 0,
+  "conservative_split_groups": 27,
+  "final_paper_dataset": false,
+  "fit_origin_environment_index_complete": false,
+  "gyro_baseline_rows": 159,
+  "history_rows_not_marked_converged": 244,
+  "indexed_diagnostic_studies": 10,
+  "latest_primary_comparisons": 318,
+  "model_evaluations": 0,
+  "numerical_history_records": 791,
+  "optimizer_starts": 0,
+  "original_reads": 0,
+  "preferences": {
+    "ambiguous": 0,
+    "flat": 0,
+    "globe": 53,
+    "unresolved": 0
+  },
+  "retained_file_eligibility_rows": 232,
+  "snapshot_role": "retrospective_development",
+  "stretches": 53,
+  "verified_independent_flights": null
+}

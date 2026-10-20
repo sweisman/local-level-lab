@@ -1,0 +1,18 @@
+{
+  "artifacts": {
+    "ELIGIBILITY.md": "85eba1081bc01aad8af459d403c30752218618d6a1899b400456f2ae879cd369",
+    "PLAN.md": "7bfa7c52b503e263c427e15c117d46bc493bc00cdde4fc07df30e242be3ab5a5",
+    "README.md": "8c377c2418632a7bdbbc4dc6024f1d4d8ae5ec000cfa515e696e361f0ff06f0d",
+    "dataset-summary.json": "7f6020df52ed93b79b0aa90cc0111cdb98c424b33f186c4ab5d45f5b5c44bf54",
+    "diagnostic-studies.csv": "ffb2aa58e09483dc99aa8c57d8cf46b570db0f1e2486e913e881449183743c02",
+    "gyro-baselines.csv": "c370137262dfec304f53c1e1a02f4f7ee937a8d490fd9fc7e1b8cc9b9cbd458e",
+    "latest-primary-comparisons.csv": "8a336497df23a2a73d69e995ac17dc6841781b8d447ca69ec61136b1a05dc025",
+    "numerical-history.csv.gz": "ef9a66d7de6df53bb9c354815428ea6fd83403708f4de4efc307d29dacad62e5",
+    "recording-groups.csv": "dbafa692101f6c972d72576f84644f68af1c1b398c181856efa08a5a99095e30",
+    "retained-file-eligibility.csv": "61710b7c10316767c950af64637de9f091731563e7fca084768a9094aded418d",
+    "source-index.csv": "fd681a49b8915d0d65d9aca6c8c61aee1eb0a0c59974fc53a7a2145b5bbb85c3",
+    "stretches.csv": "1a91390eb68ef870d7d88a71dd2386c091ccdb2bc656548e3ada6e7789732216",
+    "validation-gates.csv": "eb4ffca98bd17de1ca8f0cb1fdb8834b970d0757a2ee339c2bea94a3a8739876"
+  },
+  "manifest_sha256": "33f0fe45c61d48aed68c2f4b00350ed24cdde9b67deaa9c8ee1d54d3e615b9b7"
+}

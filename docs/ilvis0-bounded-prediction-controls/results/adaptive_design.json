@@ -1,0 +1,1 @@
+{"covariance_alternatives":1,"exact_99pct_lower":0.9775025049771454,"generated_artifact":"generated/adaptive_design.json.gz","generated_sha256":"8ca457266b858d7da1fa0814767656c9b08d89b1e9b8feaad14a02865cadcabe","identity":"adaptive_design","kind":"coverage","original_parameter_count":1,"passed":true,"realizations":512,"simultaneous_covered":508,"unsupported":0}

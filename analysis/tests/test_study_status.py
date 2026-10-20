@@ -47,6 +47,47 @@ def test_hashed_summary_can_supply_completion_state(tmp_path):
     assert report['state']=='complete' and report['passed']==1 and report['native_calls']==0
 
 
+def test_sealed_cooperative_terminal_is_not_misreported_as_corruption(tmp_path):
+    study=setup(tmp_path)
+    put(study/'summary.json',dict(state='terminal',terminal_reason='cooperative wall allowance exhausted',
+        results=[dict(identity='a',passed=False)],native_evaluations=0))
+    put(study/'completion.json',dict(state='terminal',manifest_sha256=digest(study/'manifest.json'),
+        summary_sha256=digest(study/'summary.json')))
+    report=module().inspect_study(study)
+    assert report['state']=='terminal' and report['completed']==1 and report['passed']==0
+    assert report['threads']==0 and report['native_calls']==0
+    assert any('cooperative' in w for w in report['warnings'])
+
+
+def test_terminal_state_requires_matching_sealed_summary(tmp_path):
+    study=setup(tmp_path)
+    put(study/'summary.json',dict(state='running',results=[]))
+    put(study/'completion.json',dict(state='terminal',manifest_sha256=digest(study/'manifest.json'),
+        summary_sha256=digest(study/'summary.json')))
+    assert module().inspect_study(study)['state']=='invalid'
+
+
+def test_historical_mapping_results_are_read_without_rewriting_evidence(tmp_path):
+    study=setup(tmp_path)
+    put(study/'summary.json',dict(state='complete',native_sweeps=12,results={
+        'a':dict(converged=True), 'b':dict(converged=False)}))
+    put(study/'completion.json',dict(state='complete',manifest_sha256=digest(study/'manifest.json'),
+        summary_sha256=digest(study/'summary.json')))
+    before=(study/'summary.json').read_bytes()
+    report=module().inspect_study(study)
+    assert report['state']=='complete' and report['completed']==2 and report['passed']==1
+    assert report['native_calls']==12
+    assert (study/'summary.json').read_bytes()==before
+
+
+def test_malformed_result_mapping_is_invalid_instead_of_crashing(tmp_path):
+    study=setup(tmp_path)
+    put(study/'summary.json',dict(state='complete',results={'a':'broken'}))
+    put(study/'completion.json',dict(state='complete',manifest_sha256=digest(study/'manifest.json'),
+        summary_sha256=digest(study/'summary.json')))
+    assert module().inspect_study(study)['state']=='invalid'
+
+
 def test_completion_without_any_explicit_complete_state_is_rejected(tmp_path):
     study=setup(tmp_path)
     put(study/'summary.json',dict(state='running',results=[]))

@@ -1,0 +1,17 @@
+{
+  "fit_manifest_sha256": "9751fecb341d1626f0ad08e9aa4c99603293ee9a5b4c881bb74423b8c0eb4650",
+  "fit_version": "ilvis0-highspeed-two-case-profiles-v2",
+  "fitted_segments": 53,
+  "manifest_sha256": "86997702d75ff0d04159831afadc99a1940486c6677c95c9a572564f76f7f063",
+  "originals_deleted": 0,
+  "qualifying_seconds": 25456.30765762637,
+  "scientific_rotation_decision": "abstain",
+  "scientific_shape_decision": "abstain",
+  "selected_segments": 53,
+  "selection_files": 232,
+  "starts": 318,
+  "state": "complete",
+  "summary_sha256": "41654f27764dc8af26e83c42ba291c76ebc1eb77ed579523baab6d80190642fa",
+  "unsupported_segments": 0,
+  "version": "ilvis0-all-highspeed-level-segments-v1"
+}

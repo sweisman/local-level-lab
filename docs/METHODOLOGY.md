@@ -22,8 +22,9 @@ that motion. The analysis also uses acceleration and receiver-position constrain
 
 The gyroscope is the central measurement of interest; this does not establish a
 numerical percentage of the evidence attributable to it. The current objective
-fits integrated IMU motion against receiver positions. Separating those contributions
-requires the planned [measurement-channel checks](NEXT_STEPS.md#then-strengthen-the-interpretation).
+fits integrated IMU motion against receiver positions. The completed descriptive
+[measurement-channel checks](NEXT_STEPS.md#then-strengthen-the-interpretation)
+test reduced observations; calibrated attribution remains open.
 
 ### The physical prediction
 
@@ -81,39 +82,62 @@ avoid fitting the finished navigation answer against itself, but do not make the
 comparison free of coordinate assumptions. Channel and coordinate checks
 test what the inertial observations add.
 
-The first horizontal-only refits remove height from the score using the correct
-marginal receiver covariance. A 9.75-minute IMU8 stretch passes every model/case
-and independent-repeat check and still favors globe. A 4.07-minute IMU21 stretch
-remains unresolved at the required repeat precision. A subsequent matched timing
-search completed 38 starts; only two of six selected repeat comparisons passed,
-both for specified-field globe. The zero-field and flat candidates did not
-reproduce their own best predictions. [Latest sensitivity results](ilvis0-horizontal-multistart-20261019/INTERPRETATION.md).
+Two reduced-observation checks address different dependencies:
 
-Omitting the height score lets fitted vertical paths drift far from receiver
-altitude. Those paths are not plausible full flight reconstructions. Heights also
-remain in initialization, covariance construction and propagation, and both IMU
-channels remain active. The check tests sensitivity to the scored height constraint;
-it does not establish altitude independence or isolate the gyroscope.
+- **Remove the height score.** One IMU8 comparison passes all repeats and still
+  favors globe; the IMU21 sensitivity remains unresolved. Unscored vertical paths
+  can become implausible, so this is not a full altitude-independent reconstruction.
+  [Height sensitivity](ilvis0-horizontal-multistart-20261019/INTERPRETATION.md).
+- **Remove gyro information from a necessary force-magnitude constraint.**
+  Permitted calibration and error assumptions leave every candidate overlapping
+  in 144 snapshot cases and across 763 packet groups. This reduced observation
+  does not distinguish the models, but does not establish a complete feasible
+  gyro-free trajectory either. [Whole-history assessment](ilvis0-channel-history-v2-20261019/INTERPRETATION.md).
 
-The next [channel controls](ilvis0-measurement-contribution/CHANNEL_CONTROLS.md)
-separate gyro and acceleration information explicitly. Their 25 software checks
-pass, and all 18 independent exact-trajectory controls now pass. The
-[derivative/covariance adapter](ilvis0-channel-trajectory-controls-20261019/DERIVATIVES.md)
-passes 22 unit checks. A [46-case error-budget matrix](ilvis0-channel-error-budget-20261019/INTERPRETATION.md)
-now quantifies approximation and aggregation effects, preserving failed screens.
-The [calibration ambiguity control](ilvis0-measurement-contribution/CALIBRATION.md)
-shows that small permitted gain changes erase the scalar model difference on a
-constructed straight leg. A [72-case changing-motion matrix](ilvis0-scalar-calibration-controls-20261019/INTERPRETATION.md)
-retains local differences under all seven calibration directions, with infeasible
-wrong-model linear corrections. Nonlinear calibration, integration timing,
-averaging and combined uncertainty still need qualification before recorded-data use.
-The following [nonlinear calibration trial](ilvis0-scalar-nonlinear-controls-20261019/INTERPRETATION.md)
-passes its known-answer controls but qualifies only 32/72 matched comparisons;
-observed channel fitting remains blocked. Initial deterministic
-[quantization/period bounds](ilvis0-measurement-contribution/QUANTIZATION.md)
-do not replace an observational uncertainty model.
-Fused attitude cannot replace
-an omitted gyro stream, and omitted acceleration cannot still supply initial tilt.
+Fused attitude cannot replace an omitted gyro stream, and omitted acceleration
+cannot still supply initial tilt. The [study index](STUDIES.md) records the
+independent trajectory, timing, averaging and calibration controls behind those checks.
+
+The [raw gyro companion](ilvis0-gyro-companion-v2/INTERPRETATION.md) compares all
+53 pitch-axis means directly with geographic predictions, without fitting gyro
+corrections. It assumes level attitude and heading along each candidate's ground
+course for the reference plot; 243 fixed orientation/processing scenarios per
+stretch expose sensitivity. Aircraft pitching and instrument/mounting effects
+remain in the differences. This is a descriptive check of the observed variation,
+not a replacement for the full trajectory comparison.
+
+The next prediction method must account for nuisance uncertainty and correlated
+receiver errors. Short mathematical controls and the shared-scale calculation
+pass, but the first [recording-scale bounds](ilvis0-recording-scale-bounds/INTERPRETATION.md)
+are too wide to supply useful intervals. New fitted prediction trials remain
+blocked while that method is refined. A [shared reference](ilvis0-shared-reference-scale/INTERPRETATION.md)
+keeps candidates from independently inflating their error scales; its Gaussian
+covariance assumptions still require observational assessment.
+
+One refinement preserves calibration errors that affect every measurement time
+together. For example, an uncertain initial mounting offset is one common
+offset, not a fresh error at each later GPS fix. The
+[native controls](ilvis0-shared-native-controls/INTERPRETATION.md) and
+[joint-interface controls](ilvis0-shared-envelope-controls/INTERPRETATION.md)
+check that shared structure while retaining every original physical calibration
+direction. Whether the resulting prediction ranges are narrow enough is tested
+separately; software correctness alone cannot establish aircraft accuracy.
+The [short comparison](ilvis0-acceleration-cover/INTERPRETATION.md) reduces
+generated 1.8-second prediction widths to 0.061–0.358 m. The later
+[7.2-second comparison](ilvis0-consistent-prediction/INTERPRETATION.md) preserves
+the physical bounds and passes all 48 correctness checks, with widths of about
+0.22–1.72 m. Three of six groups still miss the fixed improvement target.
+Useful ranges over flight-length intervals and actual aircraft coverage remain
+separate requirements.
+
+A [saved-error audit](ilvis0-saved-prediction-comparison/INTERPRETATION.md)
+checks existing retrospective predictions without new fits. Across three fully
+completed settings on one recording, horizontal RMS during the withheld interval
+is about 2.4 m for the specified-field globe, 143–161 m for zero-field globe and
+166–255 m for flat disc. The weaker models already fit the training positions
+less closely; the advantage persists after later GPS positions are withheld.
+All 18 saved analyses and their original stopping labels remain available.
+This adds no independent flight or calibrated absolute-adequacy result.
 
 A completed fit means the numerical search passed its checks; it does not mean the
 fit is good. Fit quality, prediction on unused observations, correlated errors and

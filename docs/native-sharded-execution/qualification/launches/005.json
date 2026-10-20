@@ -1,0 +1,1 @@
+{"argv":["/home/sweisman/venv/bin/python","/site/repo/local-level-lab/data/ilvis0-sharded-execution-controls-20261020/fixtures/010/01/study/source-freeze/analysis/tests/ilvis0_control_shards.py","--study","/site/repo/local-level-lab/data/ilvis0-sharded-execution-controls-20261020/fixtures/010/01/study","--run-shard","0","--lease-fd","5"],"control":10,"ordinal":5}

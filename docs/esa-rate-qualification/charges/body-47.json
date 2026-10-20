@@ -1,0 +1,1 @@
+{"cumulative":{"component_intervals":1152,"ode_rhs":24000,"ode_solves":24},"reservation":{"component_intervals":0,"ode_rhs":2000,"ode_solves":2},"task":{"identity":"body-47","kind":"body","period":0.1,"variant":3}}

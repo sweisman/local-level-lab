@@ -1,0 +1,25 @@
+{
+  "acquisition_sha256": "81a6876cf7ad9ea03993a5e1cd114ade3b66d28808fc46cbd0eae2d1cd4fb9bc",
+  "catalog_sha256": "eaa27bd11c27604d8cff511c036b965361044aca05829cb7ec7b70ce1fdfd709",
+  "decoder_sha256": "1440b76d4785cfecbf3ecff3cae0c83457ccd938fd9dde1e7eee3325dc105798",
+  "numerical_threads": {
+    "MKL_NUM_THREADS": "2",
+    "OMP_NUM_THREADS": "2",
+    "OPENBLAS_NUM_THREADS": "2"
+  },
+  "numpy": "2.5.3",
+  "parser_sha256": "466866ea3d93600f698a76665b0269b1a5e2d35f067043edaf656d7c55a6dad4",
+  "python": "3.14.7",
+  "screen_policy": {
+    "maneuver_buffer_s": 10,
+    "maximum_context_gap_s": 2,
+    "maximum_course_rate_deg_s": 0.05,
+    "maximum_roll_deg": 5,
+    "maximum_vertical_speed_mps": 1.5,
+    "minimum_context_coverage_for_discard": 0.95,
+    "minimum_speed_mps": 50,
+    "minimum_window_s": 60,
+    "version": "ilvis0-level-v2"
+  },
+  "validation_version": "ilvis0-increments-v1"
+}

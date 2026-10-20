@@ -1,0 +1,1 @@
+{"elapsed_s":5.507342338562012,"native_evaluations":0,"optimizer_starts":0,"passed":true,"results":[{"artifact":"results/receiver-inventory-187.json","artifact_sha256":"426938e79c3b00855e44b4f87a923999d6b3f89c4a5e59d7d8f0c6b25dcb535e","identity":"receiver-inventory-187","passed":true}],"scientific_decision":"abstain","state":"complete","wall_overrun_s":0.0}

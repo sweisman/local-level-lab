@@ -34,6 +34,23 @@ def test_recursive_pages_links_and_repo_downloads(tmp_path):
     assert report['missing_fragments']==[]
 
 
+def test_frozen_doc_relative_links_keep_snapshot_neighbors_and_resolve_original_context(tmp_path):
+    root=tmp_path/'repo';out=tmp_path/'site'
+    write(root,'README.md','# Home\n\n[Snapshot](docs/study/source-freeze/docs/adapter/METHOD.md)\n')
+    write(root,'docs/study/source-freeze/docs/adapter/METHOD.md',
+        '# Frozen method\n\n[Neighbor](NEIGHBOR.md) [Guide](../GUIDE.md#current) [Adapter](README.md)\n')
+    write(root,'docs/study/source-freeze/docs/adapter/NEIGHBOR.md','# Frozen neighbor\n')
+    write(root,'docs/adapter/NEIGHBOR.md','# Current neighbor\n')
+    write(root,'docs/adapter/README.md','# Adapter\n')
+    write(root,'docs/GUIDE.md','# Guide\n\n## Current\n')
+    report=site.build(root,out,assets=site.HERE/'assets',navigation=False)
+    text=(out/'docs/study/source-freeze/docs/adapter/METHOD.html').read_text()
+    assert report['missing_pages']==[] and report['missing_fragments']==[]
+    assert 'href="/docs/GUIDE.html#current"' in text
+    assert 'href="/docs/adapter/README.html"' in text
+    assert 'href="/docs/study/source-freeze/docs/adapter/NEIGHBOR.html"' in text
+
+
 def test_math_mermaid_tables_and_code_literals(tmp_path):
     root=tmp_path/'repo';example(root)
     write(root,'README.md',r'''# Home

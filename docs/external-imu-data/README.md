@@ -16,7 +16,7 @@ navigation solution.
 
 | Source | What is verified | What remains |
 |---|---|---|
-| ESA/DTU AirQuantumGrav and Green Quantum | The live catalog contains **nine raw iMAR files totaling 8.02 GB**. One complete recording has **9,168,819 records over 8.49 hours**, approximately **300 Hz**, with no gaps above 1.5 nominal periods. Its matching GNSS PPP position file is downloaded. | Define and qualify a separate motion/geometry policy before admitting intervals. The other eight raw recordings have not been downloaded. |
+| ESA/DTU AirQuantumGrav and Green Quantum | The live catalog contains **nine raw iMAR files totaling 8.02 GB**. One complete recording has **9,168,819 records over 8.49 hours**, approximately **300 Hz**, with no gaps above 1.5 nominal periods. Its matching GNSS PPP position file is downloaded. | The [first frozen selection](../esa-development-selection/README.md) admits no intervals from recording 187. The [motion diagnostic](../esa-motion-diagnostic/INTERPRETATION.md) confirms noise sensitivity, but receiver-error assessment is still needed before another policy. The other eight raw recordings have not been downloaded or model-tested. |
 | Wuhan University SmartPNT-POS | The public catalog contains **652 files**, including **40 IMR files**. One downloaded airborne sample contains **115,696 IMU records over 19.28 minutes**, with no timestamp reversal, duplicate or gap exceeding 1.5 nominal sample periods. | Independent receiver positions, dataset-specific motion screening and model qualification remain to be developed. |
 | SmartPNT-POS long-record lead | Header and endpoint range requests verify a **20.85-hour timestamp span** for a 600 Hz HG4930 file in the Allan-variance folder. Only **576 bytes** were downloaded. | Interior completeness, stationary conditions and mounting are unverified. It is a sensor-characterization lead, not curvature evidence. |
 
@@ -28,6 +28,9 @@ compensate for slower travel in accumulated surface curvature: 240 km/h for
 30 minutes covers about the same distance as 700 km/h for ten minutes. It does
 not automatically compensate for sensor bias or drift.
 
+The [rate/body qualification](../esa-rate-qualification/INTERPRETATION.md) now
+passes 48 generated controls while keeping constructed increments and unresolved
+sampling/processing assumptions explicit.
 The iMAR Level-0 files are documented as ASCII records of GPS time, three
 accelerations, three angular rates in radians/second, and temperature. The report
 states that their axes have already been rotated to aircraft forward, starboard

@@ -39,11 +39,37 @@ intervals/time association, averaging, common motion-based support and propagate
 uncertainty. Require known-answer, boundary and independent-start checks before
 a finite recorded-data comparison. Use the same physical region for all candidates.
 
-The [nonlinear study](ilvis0-scalar-nonlinear-controls-20261019/INTERPRETATION.md)
-passed 12 known-answer starts but only 32/72 complete matrix comparisons. It is
-complete and cannot resume; observed channel fitting remains blocked. The first
+The first nonlinear study passed only 32/72 complete matrix comparisons.
+The separate [certificate candidate](ilvis0-scalar-certificate-controls-20261019/INTERPRETATION.md)
+now qualifies all 72, distinguishing feasible scalar matches from optimizer
+convergence. Both studies are complete and cannot resume. Observational timing
+and uncertainty still block channel fitting. The first
 [17 quantization/period checks](ilvis0-measurement-contribution/QUANTIZATION.md)
 pass, without establishing a continuous-force bound or statistical coverage.
+The further [eleven direction-cone controls](ilvis0-measurement-contribution/FORCE_AVERAGING.md)
+bound continuous averaging only under an explicit force-direction-rate assumption.
+Another [34 common-support controls](ilvis0-measurement-contribution/TIME_SUPPORT.md)
+check whole-packet association and bound scalar averaging/common-offset effects.
+No such motion envelope, physical clock or statistical coverage is established
+for the actual recordings by these software checks. The
+[13 derivative-error controls](ilvis0-measurement-contribution/DERIVATIVE_BOUNDS.md)
+now bound truncation under a declared higher-derivative envelope. Supported
+physical envelopes remain open. Thirty further
+[nonlinear force-box controls](ilvis0-measurement-contribution/FORCE_BOUNDS.md)
+pass. The [combined chain](ilvis0-measurement-contribution/COMBINED_BOUNDS.md)
+now includes fifteen calibrated-increment and six independent end-to-end checks.
+The finite [observational snapshot assessment](ilvis0-channel-envelopes-20261019/INTERPRETATION.md)
+is now complete: all 144 candidate cases overlap, none unsupported. The
+[whole-history continuation](ilvis0-channel-history-v2-20261019/INTERPRETATION.md)
+also completes: 763 groups, 27,468 overlapping cases and one common zero-calibration
+point surviving all 24 history variants. Receiver/latency/gravity dependence
+remains relaxed, so no full gyro-free trajectory or calibrated likelihood follows.
+Next qualify training-only covariance and nuisance uncertainty before new prediction tests.
+
+The [structured covariance operations](ilvis0-structured-error-controls/INTERPRETATION.md)
+are qualified against dense references and a 64,080-epoch/27-column benchmark.
+They preserve block state and avoid whole-record dense factors. This does not
+qualify covariance estimation, bounded nonlinear uncertainty or native integration.
 
 Acceleration magnitude is a gyro-free necessary constraint. Agreement neither
 determines orientation nor proves a complete gyro-free fit. Never insert fused
@@ -78,12 +104,18 @@ split-recording trials retain their labels.
 
 ## Independent replication and scalability — L01/E01/E02
 
-Implement the initial ESA eligibility proposal before examining model outcomes.
-Qualify rate-versus-increment handling, clocks, axes, lever arms and dataset-specific
-calibration assumptions. Reuse no Applanix bound or threshold automatically.
+The [first ESA selection inventory](esa-development-selection/README.md) is
+complete and admits no stretches from development recording 187. Preserve that
+outcome. The receiver-motion calculation now passes its diagnostic, but receiver
+error and motion-model adequacy remain unresolved before a revised policy. Rate
+arithmetic is checked under an explicit sampling hypothesis, while sampling phase,
+clocks, axes, lever arms and dataset-specific calibration still require qualification.
+Reuse no Applanix bound or threshold automatically.
 
-Before long fits, validate structured covariance, marginal-coordinate whitening
-and matrix-free residual/Jacobian operations against dense small controls.
+Structured covariance, marginal-coordinate whitening and matrix-free
+residual/Jacobian operations now pass dense references and long-record controls.
+The bounded prediction calculation also passes its generated-data coverage study;
+native global remainder and observational error assumptions remain open.
 Check streaming integration and receiver association across block boundaries.
 Computational blocks must not silently drop statistical dependence.
 

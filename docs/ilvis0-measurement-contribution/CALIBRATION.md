@@ -58,9 +58,11 @@ before those differences can be interpreted.
 
 The [bounded nonlinear follow-up](../ilvis0-scalar-nonlinear-controls-20261019/INTERPRETATION.md)
 passes its twelve known-answer starts but only 32/72 complete matched comparisons.
-It is finished; incomplete repeat comparisons still block observed channel
-fitting. The [roadmap](../ANALYSIS_ROADMAP.md) records the remaining qualification
-and independent measurement-error tasks.
+It is finished and its failures remain preserved. The later
+[certificate candidate](../ilvis0-scalar-certificate-controls-20261019/INTERPRETATION.md)
+qualifies all 72 mathematical comparisons with algebraic matches and optimizer
+convergence kept distinct. Observational error and timing still block recorded-data
+use; the [roadmap](../ANALYSIS_ROADMAP.md) records those remaining tasks.
 
 An acceleration-only model ranking with calibration fixed cannot establish
 which part of the original separation requires gyroscopes. Before recorded-data

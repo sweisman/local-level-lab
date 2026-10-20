@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "/site/repo/local-level-lab/data/ilvis0-transform-prediction-audit-20261020/source-freeze/analysis/tests/ilvis0_control_shards.py", line 31, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "/site/repo/local-level-lab/data/ilvis0-transform-prediction-audit-20261020/source-freeze/analysis/tests/ilvis0_control_shards.py", line 24, in main
+    elif args.run_shard is not None:runner.run_shard(args.study,args.run_shard,lease_fd=args.lease_fd)
+                                    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/site/repo/local-level-lab/data/ilvis0-transform-prediction-audit-20261020/source-freeze/analysis/lll/ilvis0_control_shards.py", line 374, in run_shard
+    module=importlib.util.module_from_spec(spec);sys.modules[spec.name]=module;spec.loader.exec_module(module);evaluate=module.evaluate
+                                                                               ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "/site/repo/local-level-lab/data/ilvis0-transform-prediction-audit-20261020/source-freeze/analysis/lll/ilvis0_transform_audit.py", line 10, in <module>
+    from .ilvis0_saved_prediction_audit import support, endpoint
+ImportError: attempted relative import with no known parent package

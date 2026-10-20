@@ -1,0 +1,14 @@
+{
+  "artifacts": {
+    "PLAN.md": "3e8a97ecf39315700905b53b9016482a93bb86175300fb6a342ed764b90c7bdf",
+    "README.md": "ffece7faa6738106c87b2f85d93e1e9e0406e314e416f4792c2be49664ac5644",
+    "audit.json": "0bbae6a0eb51c87d042b0ee13c42be5cc5b53cb9a85fb037ab294fff82e4881f",
+    "comparisons.csv": "862e9d95bbde86b9124194cc18179dbe465777d54cacd4cf16a6138e77161407",
+    "dataset-summary.json": "abaf48cae562c45a512c3cfa6c9cec94ad101c6f9ab668715a6e643e51a37c43",
+    "epochs.csv.gz": "25ae8a9ca96fc52185fc3a9cb4f472b0db5896883dfc5fac5785cc5830db11f9",
+    "prediction-errors.png": "73998ebbfba6997c90c98ea19238fd73a6ae9019d6784decbf157edb1b1016c9",
+    "prediction-errors.svg": "43bcfc3edb33948e09681a6c8d0a68112334e19a12559ed07b0599b06271b653",
+    "sections.csv": "294f76689880795982cc165266781e5563ff396dc77124c97af374b6347532bd"
+  },
+  "manifest_sha256": "324c7047567bb5ef1446ed42e9531ce6520506054e54535691a1e083a0679556"
+}

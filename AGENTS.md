@@ -8,9 +8,8 @@ progress counts, session histories, personal commentary or process IDs.
 
 - Keep responses concise and verification proportionate. Prefer durable local jobs
   to repeated probing. Do not reread successful edits.
-- Continue the approved roadmap through its qualification gates without repeatedly
-  requesting permission. Local tests, including intensive suites, need no approval.
-  Ask before manually triggering GitHub Actions or delegating work.
+- Local tests, including intensive suites, need no approval. Ask before manually
+  triggering GitHub Actions or delegating work.
 - Perform git operations only when explicitly requested. Bundle related work into
   one logical commit; completion does not authorize committing or pushing.
 - Leave unfamiliar paths outside the documented project corpus alone. Do not scan,
@@ -19,8 +18,38 @@ progress counts, session histories, personal commentary or process IDs.
 - Use `~/venv/bin/python` and its pip. For Java, use `~/.local/jdk21` and set
   `JAVA_HOME` accordingly.
 
+## Continuous roadmap execution
+
+- Approval of the analysis roadmap is standing authorization to implement its
+  next ready tasks, run local tests, prepare finite study freezes, launch qualified
+  studies and package results. Do not request another "go" for each step.
+- Continue across ordinary milestones and study completions. Verify saved results,
+  update the backlog, then start the next ready task. Give concise progress updates;
+  do not end the work merely to report a completed test or propose the next task.
+- After each verified milestone, update the public roadmap, study index and
+  relevant overview with the result and next gate. Keep the homepage brief and
+  change it only when its public summary needs updating. Preserve frozen reports;
+  publication updates do not authorize committing or pushing.
+- A failed scientific gate blocks dependent fits, not all work. Preserve failures
+  and continue permitted diagnosis, software qualification or independent backlog
+  tasks. Never relax scientific gates, expand completed allowances or consume
+  protected confirmation data to maintain momentum.
+- Treat status questions as requests for a brief update, then continue. Honor an
+  explicit pause/stop or an incompatible replacement task. Stop when the approved
+  work is complete, the runtime ends, or no meaningful authorized work can proceed.
+- Keep the next task, blockers, source freezes and charged work recoverable through
+  the canonical backlog and runtime metadata. Compaction is not a reset or a reason
+  to stop. After a real interruption, verify locks, hashes and charges before resume.
+- Use native Goal mode when explicitly requested for continuation across turns.
+  Repository instructions do not activate it, bypass sandbox/approval controls or
+  guarantee execution after the app, session or host stops. Preserve the separate
+  consent requirements for git operations, GitHub Actions and delegation.
+
 ## Compute and execution safety
 
+- Never kill, terminate or signal a running process. On a requested pause, start
+  nothing new and let the current process finish before pausing. Use cooperative
+  budget checks in new workers; do not enforce deadlines with process signals.
 - Use at most **four total numerical threads** across all active jobs. Count
   workers × threads per worker and reserve capacity for other running jobs.
 - Launch numerical commands through `analysis/tests/run_numerical.py`, or the

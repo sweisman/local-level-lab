@@ -1,0 +1,19 @@
+{
+  "catalog_rows": 326,
+  "complete": true,
+  "downloads": 0,
+  "duplicate_removals": 1,
+  "initial_no_level_rejections": 58,
+  "later_no_level_rejections": 35,
+  "missing_source_hashes": 0,
+  "original_reads": 0,
+  "originals_deleted": 0,
+  "selected_files": 53,
+  "selected_stretches": 53,
+  "storage_counts": {
+    "discarded_no_level": 93,
+    "duplicate_removed": 1,
+    "retained": 232,
+    "unresolved": 0
+  }
+}

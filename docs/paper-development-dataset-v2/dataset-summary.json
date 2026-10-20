@@ -1,0 +1,42 @@
+{
+  "acquisition_census_complete": true,
+  "calibrated_detections": 0,
+  "catalog_files": 326,
+  "conservative_split_groups": 27,
+  "diagnostic_point_ancestry_unresolved_rows": 73,
+  "execution_manifests": 23,
+  "final_paper_dataset": false,
+  "fit_origin_environment_index_complete": true,
+  "gyro_baseline_rows": 159,
+  "history_origin_tags": 16,
+  "history_rows_linked": 791,
+  "history_rows_not_marked_converged": 244,
+  "indexed_diagnostic_studies": 10,
+  "initial_no_level_rejections": 58,
+  "interrupted_history_rows": 1,
+  "later_no_level_rejections": 35,
+  "latest_primary_comparisons": 318,
+  "model_evaluations": 0,
+  "numerical_history_records": 791,
+  "operation_classes": {
+    "conditional_profile": 10,
+    "endpoint_diagnostic": 63,
+    "full_fit": 718
+  },
+  "operation_origin_environment_index_complete": true,
+  "optimizer_starts": 0,
+  "original_reads": 0,
+  "parent_snapshot_version": "paper-development-evidence-v1",
+  "preferences": {
+    "ambiguous": 0,
+    "flat": 0,
+    "globe": 53,
+    "unresolved": 0
+  },
+  "recorded_duplicate_removals": 1,
+  "recorded_numerical_environments": 2,
+  "retained_file_eligibility_rows": 232,
+  "snapshot_role": "retrospective_development",
+  "stretches": 53,
+  "verified_independent_flights": null
+}
