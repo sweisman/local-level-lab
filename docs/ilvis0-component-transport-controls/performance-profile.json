@@ -1,0 +1,252 @@
+{
+  "scope": "single shortened generated-prefix profiling probe per implementation",
+  "packets": 32,
+  "query_fraction": 0.75,
+  "clock_limit_s": 0,
+  "native_trajectory_calls": 0,
+  "optimizer_starts": 0,
+  "observational_qualification": false,
+  "profiles": [
+    {
+      "candidate": "original",
+      "profile_sha256": "967db7f68eae30a34c31503130be8fedeba7aa9120f02980b94fc9de132d2775",
+      "total_calls": 6267629,
+      "total_profile_time_s": 4.032740617000002,
+      "functions": [
+        {
+          "file": "ilvis0_component_native.py",
+          "line": 124,
+          "function": "enclose",
+          "calls": 1,
+          "cumulative_s": 4.068607696
+        },
+        {
+          "file": "ilvis0_component_native.py",
+          "line": 72,
+          "function": "_increment",
+          "calls": 50,
+          "cumulative_s": 2.8982782150000004
+        },
+        {
+          "file": "fractions.py",
+          "line": 206,
+          "function": "__new__",
+          "calls": 321694,
+          "cumulative_s": 1.01155982
+        },
+        {
+          "file": "ilvis0_directional_values.py",
+          "line": 33,
+          "function": "__post_init__",
+          "calls": 7956,
+          "cumulative_s": 0.960715415
+        },
+        {
+          "file": "ilvis0_directional_values.py",
+          "line": 17,
+          "function": "_radii",
+          "calls": 16524,
+          "cumulative_s": 0.9574221020000001
+        },
+        {
+          "file": "ilvis0_component_transport.py",
+          "line": 52,
+          "function": "_combine",
+          "calls": 2008,
+          "cumulative_s": 0.928702141
+        },
+        {
+          "file": "fractions.py",
+          "line": 697,
+          "function": "forward",
+          "calls": 217113,
+          "cumulative_s": 0.881380889
+        },
+        {
+          "file": "ilvis0_component_transport.py",
+          "line": 85,
+          "function": "matrix_vector",
+          "calls": 306,
+          "cumulative_s": 0.8606095210000001
+        },
+        {
+          "file": "ilvis0_component_transport.py",
+          "line": 26,
+          "function": "__init__",
+          "calls": 2739,
+          "cumulative_s": 0.8315194850000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.sum>",
+          "calls": 25337,
+          "cumulative_s": 0.7660047750000001
+        },
+        {
+          "file": "ilvis0_component_transport.py",
+          "line": 70,
+          "function": "scalar_product",
+          "calls": 450,
+          "cumulative_s": 0.737559951
+        },
+        {
+          "file": "ilvis0_component_transport.py",
+          "line": 58,
+          "function": "add",
+          "calls": 601,
+          "cumulative_s": 0.7303108060000001
+        },
+        {
+          "file": "ilvis0_component_transport.py",
+          "line": 18,
+          "function": "_norm",
+          "calls": 9092,
+          "cumulative_s": 0.72532448
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.isinstance>",
+          "calls": 980876,
+          "cumulative_s": 0.583635399
+        },
+        {
+          "file": "ilvis0_saved_prediction_audit.py",
+          "line": 27,
+          "function": "endpoint",
+          "calls": 51724,
+          "cumulative_s": 0.527420046
+        },
+        {
+          "file": "ilvis0_directional_values.py",
+          "line": 82,
+          "function": "_product_bounds",
+          "calls": 5004,
+          "cumulative_s": 0.497371121
+        }
+      ]
+    },
+    {
+      "candidate": "cached",
+      "profile_sha256": "a1e21d2f361d97579c1ae734547d171d95a2622ca799eded9ad4d7efd8fb7d05",
+      "total_calls": 4864429,
+      "total_profile_time_s": 2.996023248,
+      "functions": [
+        {
+          "file": "ilvis0_cached_native.py",
+          "line": 124,
+          "function": "enclose",
+          "calls": 1,
+          "cumulative_s": 3.0208816840000003
+        },
+        {
+          "file": "ilvis0_cached_native.py",
+          "line": 72,
+          "function": "_increment",
+          "calls": 50,
+          "cumulative_s": 2.0962950040000004
+        },
+        {
+          "file": "fractions.py",
+          "line": 697,
+          "function": "forward",
+          "calls": 205516,
+          "cumulative_s": 0.772272747
+        },
+        {
+          "file": "ilvis0_cached_transport.py",
+          "line": 109,
+          "function": "matrix_vector",
+          "calls": 306,
+          "cumulative_s": 0.6980831510000001
+        },
+        {
+          "file": "fractions.py",
+          "line": 206,
+          "function": "__new__",
+          "calls": 241075,
+          "cumulative_s": 0.696456517
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.sum>",
+          "calls": 20951,
+          "cumulative_s": 0.599077839
+        },
+        {
+          "file": "ilvis0_cached_transport.py",
+          "line": 77,
+          "function": "_combine",
+          "calls": 2008,
+          "cumulative_s": 0.49801831500000004
+        },
+        {
+          "file": "ilvis0_cached_transport.py",
+          "line": 94,
+          "function": "scalar_product",
+          "calls": 450,
+          "cumulative_s": 0.474025691
+        },
+        {
+          "file": "ilvis0_cached_transport.py",
+          "line": 23,
+          "function": "_norm",
+          "calls": 9092,
+          "cumulative_s": 0.46608272900000003
+        },
+        {
+          "file": "ilvis0_directional_values.py",
+          "line": 82,
+          "function": "_product_bounds",
+          "calls": 5004,
+          "cumulative_s": 0.464860092
+        },
+        {
+          "file": "ilvis0_relative_rotation.py",
+          "line": 23,
+          "function": "__post_init__",
+          "calls": 958,
+          "cumulative_s": 0.44275838100000003
+        },
+        {
+          "file": "ilvis0_cached_transport.py",
+          "line": 82,
+          "function": "add",
+          "calls": 601,
+          "cumulative_s": 0.441695445
+        },
+        {
+          "file": "ilvis0_directional_matrices.py",
+          "line": 89,
+          "function": "apply",
+          "calls": 306,
+          "cumulative_s": 0.405765776
+        },
+        {
+          "file": "ilvis0_cached_transport.py",
+          "line": 20,
+          "function": "_cached_norm",
+          "calls": 4506,
+          "cumulative_s": 0.390985464
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.isinstance>",
+          "calls": 762651,
+          "cumulative_s": 0.380178703
+        },
+        {
+          "file": "ilvis0_directional_values.py",
+          "line": 17,
+          "function": "_radii",
+          "calls": 6290,
+          "cumulative_s": 0.37437155800000005
+        }
+      ]
+    }
+  ],
+  "warning": "Profiler overhead and a fixed clock make this diagnostic unsuitable as a full-recording performance acceptance test."
+}

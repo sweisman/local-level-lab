@@ -483,6 +483,30 @@
     {
       "name": "Source-level norm-preserving value preflight",
       "path": "data/ilvis0-source-norm-preflight-20261020"
+    },
+    {
+      "name": "Source reference coefficients and affine-error comparison",
+      "path": "data/ilvis0-source-reference-20261020"
+    },
+    {
+      "name": "Coordinate-preserving native transport qualification",
+      "path": "data/ilvis0-component-transport-controls-20261020"
+    },
+    {
+      "name": "Native transport with cached exact certificates",
+      "path": "data/ilvis0-cached-transport-controls-20261020"
+    },
+    {
+      "name": "Streaming midpoint and endpoint source references",
+      "path": "data/ilvis0-source-stream-controls-20261020"
+    },
+    {
+      "name": "Actual-baseline coordinate-transport range preflight",
+      "path": "data/ilvis0-transport-range-preflight-20261020"
+    },
+    {
+      "name": "Finite transport runtime profiles",
+      "path": "data/ilvis0-transport-runtime-profile-20261020"
     }
   ]
 }

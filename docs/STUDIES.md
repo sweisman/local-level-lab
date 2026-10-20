@@ -223,3 +223,19 @@ these observations or to the stationary experiment.
 [Matrix and rotation-identity controls](ilvis0-directional-dynamics/OPERATOR_DERIVATION.md): the prototype reaches 33 local checks covering matrix actions, exact polynomial curves, scalar domains and norm-preserving departures. Source and reference-coefficient qualification remain necessary before native integration.
 
 [Source-level norm preflight](ilvis0-source-norm-preflight/INTERPRETATION.md): all six controls pass against the actual body-rotation baseline while retaining training-derived force bounds. Vertical value widths retain about 5.6–6.3% of the old width; native reference coefficients and propagation remainders remain unqualified.
+
+[Source reference and affine-error comparison](ilvis0-source-reference/INTERPRETATION.md): all six groups pass the 27-column reference check, and usable vertical source error allowances shrink by 68–69%. Complete dynamic propagation remains the next gate; no aircraft refits ran.
+
+[Direction-preserving force action](ilvis0-directional-dynamics/SOURCE_ACTION.md): five local checks qualify an operator that retains component bounds and all 27 affine columns, including coefficient-rounding allowances. Complete velocity and coordinate propagation remain to be integrated.
+
+[Coordinate-preserving native transport](ilvis0-component-transport-controls/INTERPRETATION.md): 20/24 controls pass; four long globe bounds reach the unchanged time limit. The failed qualification remains preserved.
+
+[Cached coordinate transport](ilvis0-cached-transport-controls/INTERPRETATION.md): all 24 native controls pass, preserving exact coordinate/norm bounds and all physical/shared columns. The next step is connecting the tighter body-source interval before a complete prediction comparison.
+
+[Streaming source references](ilvis0-source-stream-controls/INTERPRETATION.md): all six generated sources pass 3,225,600 midpoint/end comparisons with a fixed 10,768-byte working state. This supplies the explicit rows needed for source integration.
+
+[Body-interval prototype](ilvis0-body-interval/README.md): ten local tests check training-conditioned bounds around explicit reference rows, including deliberately changed rows and contradictory-interval rejection. Complete native integration remains unqualified.
+
+[Saved-baseline transport screen](ilvis0-transport-range-preflight/README.md): four compatible full-history bounds and two time-limit failures; the completed specified-field cases tighten east allowances by about 3.4% and height by about 10%. All six attempts and 36 support verifications remain accounted for.
+
+[Transport runtime profiles](ilvis0-transport-runtime-profile/INTERPRETATION.md): both shortened probes complete and identify repeated exact-arithmetic bound operations as major costs. A compiled backend must retain conservative bounds and pass exact-reference checks before longer comparisons.

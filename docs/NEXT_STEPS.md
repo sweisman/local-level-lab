@@ -33,19 +33,23 @@ therefore needs to keep those errors coupled. This has not yet produced a
 qualified narrower range, so new aircraft prediction fits remain gated.
 [Latest diagnostic](ilvis0-calibration-map-diagnostic/INTERPRETATION.md).
 
-The [completed smaller-box test](ilvis0-coupled-subdivision/INTERPRETATION.md)
-also leaves four of six groups passing. Its [endpoint audit](ilvis0-coupled-subdivision/ENDPOINT_DIAGNOSIS.md)
-points to conservative propagation allowances as the next improvement to test.
-The [six-bound diagnostic](ilvis0-training-remainder-diagnostic/INTERPRETATION.md)
-finds that smaller domains barely improve height allowances. The
-[direction-preserving method](ilvis0-directional-native-controls/INTERPRETATION.md)
-passes its static and native controls, but the [prediction comparison](ilvis0-directional-prediction/INTERPRETATION.md)
-did not improve the complete globe groups. It replaced a tighter training-derived
-bound with a weaker physical-only bound. Next is to preserve the training
-information while improving how the dynamic calculation carries direction.
-The [six-source value preflight](ilvis0-source-norm-preflight/INTERPRETATION.md)
-passes and narrows the relevant vertical intervals substantially. Matching its
-reference coefficients and bounding propagation error are the next checks.
+The [source-reference check](ilvis0-source-reference/INTERPRETATION.md)
+passes all six generated groups and reduces the relevant vertical error
+allowance by 68–69%. The next step is to carry that gain through the dynamic
+calculation without losing training-derived information.
+
+The [cached transport implementation](ilvis0-cached-transport-controls/INTERPRETATION.md)
+now passes all 24 controls under the same numerical and time limits. Next is
+connecting the tighter body-source interval at the correct packet prefixes.
+Complete prediction and aircraft-validation gates remain open.
+The [streamed source rows](ilvis0-source-stream-controls/INTERPRETATION.md) now
+pass every midpoint/end check. The [six-source screen](ilvis0-transport-range-preflight/README.md)
+finishes with four compatible bounds and two time-limit failures. The completed
+specified-field cases tighten east allowances by about 3.4% and height by
+about 10%. Completed [runtime profiles](ilvis0-transport-runtime-profile/INTERPRETATION.md)
+locate major costs in repeated exact-arithmetic bound operations. The next
+implementation will accelerate those operations and check them against the
+exact reference before another long comparison.
 
 ## Then: four larger tests
 
