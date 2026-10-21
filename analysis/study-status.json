@@ -507,6 +507,42 @@
     {
       "name": "Finite transport runtime profiles",
       "path": "data/ilvis0-transport-runtime-profile-20261020"
+    },
+    {
+      "name": "Native qualification of compiled conservative bounds",
+      "path": "data/ilvis0-compiled-transport-controls-20261020"
+    },
+    {
+      "name": "Long-history screen of compiled conservative bounds",
+      "path": "data/ilvis0-compiled-range-preflight-20261020"
+    },
+    {
+      "name": "Complete-prefix physical source-value controls",
+      "path": "data/ilvis0-source-value-controls-20261020"
+    },
+    {
+      "name": "Rounded source bounds with saved training constraints",
+      "path": "data/ilvis0-rounded-source-controls-20261020"
+    },
+    {
+      "name": "Native propagation with rounded source intervals",
+      "path": "data/ilvis0-source-native-controls-20261020"
+    },
+    {
+      "name": "Native source qualification on actual asymmetric domains",
+      "path": "data/ilvis0-source-native-v2-controls-20261020"
+    },
+    {
+      "name": "Installed source versus best saved compatible ranges",
+      "path": "data/ilvis0-source-range-preflight-20261020"
+    },
+    {
+      "name": "Runtime profiles with the rounded source installed",
+      "path": "data/ilvis0-source-runtime-profile-20261020"
+    },
+    {
+      "name": "Installed-source runtime profiles with corrected setup",
+      "path": "data/ilvis0-source-runtime-profile-v2-20261020"
     }
   ]
 }

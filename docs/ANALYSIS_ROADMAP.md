@@ -27,29 +27,21 @@ The current calculation allows ranges that are too wide for useful tests over
 a full stretch. That is a limitation of the calculation, not a measurement of
 how badly the aircraft data fit.
 
-The last [complete prediction comparison](ilvis0-directional-prediction/INTERPRETATION.md)
-still meets the fixed width target in four of six generated groups. Both
-specified-field globe groups miss it. No new aircraft fits ran.
+The last complete generated-data comparison meets the fixed width target in
+**four of six groups**. Both specified-field globe groups still miss it. No
+new aircraft fits have run.
 
-A [source-level improvement](ilvis0-source-reference/INTERPRETATION.md) now
-reduces the relevant vertical error allowance by 68–69% in all six groups.
-The next step is to carry that gain through force, velocity and position
-calculations while keeping the information learned from training observations.
+The [revised propagation method](ilvis0-source-native-v2-controls/INTERPRETATION.md)
+now passes all 24 native controls. It retains the original point calculations,
+calibration caps and parameter columns while explicitly bounding source-reference
+rounding. The earlier failed version remains preserved.
 
-The [cached coordinate-transport implementation](ilvis0-cached-transport-controls/INTERPRETATION.md)
-now passes all 24 native controls, retaining the exact bounds and all physical
-and shared columns. An earlier implementation's four time-limit failures are
-preserved. Next is connecting the tighter body-source interval at the actual
-packet midpoints and endpoints, before another complete prediction comparison.
-The [streaming reference check](ilvis0-source-stream-controls/INTERPRETATION.md)
-also passes all six generated sources, checking every packet midpoint and
-endpoint with fixed-size working state. The [six-source baseline screen](ilvis0-transport-range-preflight/README.md)
-produces four compatible bounds and two time-limit failures. Completed
-specified-field cases tighten east allowances by about 3.4% and height by
-about 10%; the complete target remains open. The [runtime profiles](ilvis0-transport-runtime-profile/INTERPRETATION.md)
-locate major costs in repeated exact-arithmetic bound operations. Next is a
-compiled implementation checked against the exact reference before another
-long comparison. Physical bounds and acceptance targets remain unchanged.
+The [six-source screen](ilvis0-source-range-preflight/INTERPRETATION.md) completes
+two generated cases; four reach their time allowance. The completed cases have
+tighter height allowances but wider horizontal ones. Runtime and horizontal
+Taylor information are the next targets. A complete comparison must meet every
+width target before withheld aircraft prediction proceeds. Physical assumptions
+and acceptance limits remain unchanged.
 
 ## Dependency-ordered backlog
 

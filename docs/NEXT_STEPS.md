@@ -47,9 +47,19 @@ pass every midpoint/end check. The [six-source screen](ilvis0-transport-range-pr
 finishes with four compatible bounds and two time-limit failures. The completed
 specified-field cases tighten east allowances by about 3.4% and height by
 about 10%. Completed [runtime profiles](ilvis0-transport-runtime-profile/INTERPRETATION.md)
-locate major costs in repeated exact-arithmetic bound operations. The next
-implementation will accelerate those operations and check them against the
-exact reference before another long comparison.
+locate major costs in repeated exact-arithmetic bound operations. The
+[compiled implementation](ilvis0-compiled-transport-controls/INTERPRETATION.md)
+now passes all 24 native controls and the [six-source long screen](ilvis0-compiled-range-preflight/INTERPRETATION.md).
+Both earlier timeouts are resolved. The [physical source calculation](ilvis0-source-value-controls/INTERPRETATION.md)
+now also passes all six complete-prefix checks. The
+[rounded training adapter](ilvis0-rounded-source-controls/INTERPRETATION.md)
+passes its six-source qualification too. The
+[revised native trial](ilvis0-source-native-v2-controls/INTERPRETATION.md)
+passes all 24 controls on the original calibration boxes and caps. Its
+[long-source screen](ilvis0-source-range-preflight/INTERPRETATION.md) completes
+two cases; four reach the time limit. Height allowances improve, but horizontal
+ones widen. Runtime and horizontal Taylor bounds are next; the complete width
+target remains open.
 
 ## Then: four larger tests
 

@@ -113,3 +113,37 @@ def test_runtime_guard_rejects_changed_rounding_mode(kernel,tmp_path):
         with pytest.raises(UnsupportedArithmetic):kernel.norm([1.,2.,3.])
     finally:assert probe.set(saved)==0
     assert kernel.norm([1.,2.,3.])>=math.sqrt(14)
+
+
+def test_positive_radii_enclose_subnormal_products_and_cancellation_centers(kernel):
+    tiny=float.fromhex('0x0.0000000000001p-1022')
+    for a,b in ((tiny,.5),(1e-300,1e-100),(1e-200,1e-120),(tiny,tiny),(1e300,1e-300)):
+        assert F(kernel.positive(1,a,b))>=F(a)*F(b)
+        assert F(kernel.positive(0,a,b))>=F(a)+F(b)
+    zero=np.zeros(3)
+    a=np.array([1e-300,-1e-300,tiny]);b=np.array([1e-100,1e-100,.5])
+    center=np.cross(a,b)
+    result=kernel.vector(3,a,zero,zero,[0,0,0],b,zero,zero,[0,0,0],center)
+    for i in range(3):
+        j,k=(i+1)%3,(i+2)%3
+        error=abs(F(center[i])-F(a[j])*F(b[k])+F(a[k])*F(b[j]))
+        assert F(result['component_remainder'][i])>=error
+
+
+def test_runtime_guard_rejects_flush_to_zero_and_denormals_are_zero(kernel,tmp_path):
+    import ctypes
+    import platform
+    from lll.ilvis0_compiled_bounds import UnsupportedArithmetic
+    if platform.machine().lower() not in ('x86_64','amd64','i386','i686'):
+        pytest.skip('SSE control-register check is specific to x86')
+    source=tmp_path/'subnormal.cpp';binary=tmp_path/'subnormal.so'
+    source.write_text('#include <xmmintrin.h>\nextern "C" unsigned get(){return _mm_getcsr();}\n'
+        'extern "C" void set(unsigned x){_mm_setcsr(x);}\n')
+    subprocess.run(['c++','-shared','-fPIC',str(source),'-o',str(binary)],check=True,capture_output=True)
+    probe=ctypes.CDLL(str(binary));probe.get.restype=ctypes.c_uint;probe.set.argtypes=[ctypes.c_uint]
+    saved=probe.get()
+    for flag in (1<<15,1<<6):
+        try:
+            probe.set(saved|flag)
+            with pytest.raises(UnsupportedArithmetic):kernel.norm([1.,2.,3.])
+        finally:probe.set(saved)

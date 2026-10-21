@@ -239,3 +239,23 @@ these observations or to the stationary experiment.
 [Saved-baseline transport screen](ilvis0-transport-range-preflight/README.md): four compatible full-history bounds and two time-limit failures; the completed specified-field cases tighten east allowances by about 3.4% and height by about 10%. All six attempts and 36 support verifications remain accounted for.
 
 [Transport runtime profiles](ilvis0-transport-runtime-profile/INTERPRETATION.md): both shortened probes complete and identify repeated exact-arithmetic bound operations as major costs. A compiled backend must retain conservative bounds and pass exact-reference checks before longer comparisons.
+
+[Compiled native transport](ilvis0-compiled-transport-controls/INTERPRETATION.md): all 24 controls pass, with unchanged acceptance limits, reference centers and 51-column expansions. The six-source long-history screen is the next gate; no aircraft refits ran.
+
+[Compiled long-history screen](ilvis0-compiled-range-preflight/INTERPRETATION.md): all six source comparisons pass in 244 seconds, resolving the two earlier timeouts while preserving reference maps and training constraints. Complete prediction widths remain unqualified.
+
+[Source point-domain check](ilvis0-body-interval/POINT_DIAGNOSIS.md): a fixed-parameter regression exposes a missing reference-rounding allowance. Source integration remains blocked until that error is explicitly bounded; physical assumptions and aircraft results are unchanged.
+
+[Rotation-center error component](ilvis0-body-interval/ROUNDING_PLAN.md): eight local checks compare exact-rational rotation enclosures with an independent matrix series, including zero, subnormal and eight-radian inputs. Complete source-reference rounding is still unqualified.
+
+[Calibration-reference error component](ilvis0-body-interval/ROUNDING_PLAN.md): five local checks cover exact bias/gain intervals, increment/rate conversion and errors in supplied reference centers and rows. These primitives still need integration into the complete source bound.
+
+[Physical source-value qualification](ilvis0-source-value-controls/INTERPRETATION.md): all six sources pass 115,200 comparisons and 19,200 norm closures across every packet phase. The next gate transfers the saved training constraint to the separate rounded adapter.
+
+[Rounded trained-source qualification](ilvis0-rounded-source-controls/INTERPRETATION.md): all six sources pass 1,440 known-calibration checks after 120 bounds are sealed, preserving the original training certificates, centers, rows and nonlinear caps. Full native integration is next.
+
+[First integrated source trial](ilvis0-source-native-controls/INTERPRETATION.md): 18/24 controls pass; all six broad cases stop at a cap check. The saved-input diagnosis identifies an unnecessarily symmetric calibration box; a new candidate must qualify on the unchanged original domains and caps.
+
+[Revised integrated source trial](ilvis0-source-native-v2-controls/INTERPRETATION.md): all 24 native controls pass using the actual calibration boxes and unchanged caps, centers, 51 columns and acceptance limits. Comparison with the best saved compatible ranges is next.
+
+[Installed-source range screen](ilvis0-source-range-preflight/INTERPRETATION.md): two cases complete and four reach the time limit; the completed cases tighten height allowances while widening horizontal ones. Runtime and source-specific Taylor information need further work; aircraft results are unchanged.

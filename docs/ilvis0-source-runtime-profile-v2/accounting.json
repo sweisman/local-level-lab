@@ -1,0 +1,1 @@
+{"cases":[{"identity":"profile-model-0","setups":1,"source_body_bounds":128,"source_steps":128},{"identity":"profile-model-1","setups":1,"source_body_bounds":128,"source_steps":128}],"charged":{"bound_calls":2,"bound_steps":1024,"native_calls":0,"packet_visits":0},"complete":true,"full_native_trajectory_evaluations":0,"optimizer_starts":0}
