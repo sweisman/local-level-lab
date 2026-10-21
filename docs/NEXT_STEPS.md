@@ -21,34 +21,21 @@ A good fit uses observations it has already seen. The stronger test is to fit
 one part of a recording and predict another part without using those later
 measurements to adjust the answer.
 
-Before doing that, we need reliable **error ranges** around the predictions.
-The present calculation is too conservative: it allows ranges too wide to be
-useful over a full recording. Recent improvements helped, but have not solved
-this problem. These wide ranges are not measured aircraft errors.
+The [short-example error-range check](ilvis0-three-source-complete/INTERPRETATION.md)
+now passes **all six cases and all 48 regions**, under the original target and
+assumptions. It reuses completed calculations and preserves every earlier failure.
 
-The last complete generated-data comparison meets its fixed width target in
-**four of six groups** on a 7.2-second example. Both globe groups with the
-specified background field still miss it. No new aircraft prediction fits
-follow until every group passes.
+That check covers a generated 7.2-second example. The next step is to show that
+the ranges remain useful over recording lengths, with an adequate error model
+for both receiver and inertial measurements. The
+[assumption guide](PREDICTION_ERROR_ASSUMPTIONS.md) explains what the present
+software checks establish and what remains.
 
-The [faster source calculation](ilvis0-batched-range-preflight/INTERPRETATION.md)
-finishes all six long-history cases within the original limits. Height error
-allowances shrink by 17–37%, while horizontal ones remain too broad.
-
-The next method keeps track of how calibration changes the source, rather than
-losing that information in a broad interval. It passes
-[ten mathematical checks](ilvis0-source-derivative-v2-controls/INTERPRETATION.md)
-and [24 complete native controls](ilvis0-taylor-native-controls/INTERPRETATION.md).
-Across 348 checked bounds, predictions and coefficient matrices are unchanged
-and error allowances do not widen. Its
-[long-history screen](ilvis0-taylor-range-preflight/INTERPRETATION.md) passes all
-six cases, with 6–11% smaller horizontal allowances in the profiled-processing
-cases. The [training-transfer check](ilvis0-complete-source-preflight/INTERPRETATION.md)
-passes in all 48 calibration regions, and the
-[joint prediction adapter](ilvis0-taylor-joint-controls/INTERPRETATION.md) passes
-all six known-answer cases. The
-[complete 48-region comparison](ilvis0-taylor-complete-prediction/README.md) is
-running, with about 65–80 minutes expected on four numerical threads.
+The [longer-input compatibility check](ilvis0-recording-adapter-controls/README.md)
+passes all six cases. The [50-second growth screen](ilvis0-recording-growth-screen/INTERPRETATION.md)
+also completes all six cases, but its unconstrained ranges remain far too wide.
+The next study must use its own training observations to constrain calibration
+over the complete intended history. New aircraft prediction fits have not started.
 
 ## Then: four larger tests
 

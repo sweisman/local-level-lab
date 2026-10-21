@@ -20,33 +20,25 @@ prediction accuracy and independence between recordings still need testing.
 
 ## The immediate obstacle
 
-We need a reliable **error range** around each prediction: how far it could
-move because calibration and measurement errors are uncertain.
+The [short-example prediction check](ilvis0-three-source-complete/INTERPRETATION.md)
+now passes **all six cases**, with complete coverage of all 48 regions. It meets
+the original width target without changing physical bounds or error allowances.
+The missing future calculations were completed serially; earlier failures remain
+recorded. [What each study added](STUDIES.md).
 
-The current calculation allows ranges that are too wide for useful tests over
-a full stretch. That is a limitation of the calculation, not a measurement of
-how badly the aircraft data fit.
+That completes the generated **7.2-second** check. We still need useful error
+ranges over complete recording lengths and an adequate observation-error model.
+The [error-assumption guide](PREDICTION_ERROR_ASSUMPTIONS.md) separates calibration,
+approximation, arithmetic, receiver error and inertial noise. These software
+ranges are not yet aircraft confidence intervals.
 
-The last complete generated-data comparison meets the fixed width target in
-**four of six groups** on a generated 7.2-second example. Both specified-field
-globe groups still miss it. No new aircraft fits have run.
-
-The [faster source calculation](ilvis0-batched-range-preflight/INTERPRETATION.md)
-completes all six long-history cases under the original limits. Height
-allowances improve by 17–37%, but horizontal ones remain wider.
-
-A [derivative-aware calculation](ilvis0-taylor-native-controls/INTERPRETATION.md)
-now passes all 24 native controls after ten independent mathematical checks.
-It preserves all 348 checked reference maps without widening their error
-allowances. Its [long-history screen](ilvis0-taylor-range-preflight/INTERPRETATION.md)
-passes all six cases, improving horizontal bounds in the profiled-processing
-cases. The [training-transfer preflight](ilvis0-complete-source-preflight/INTERPRETATION.md)
-also passes in all 48 calibration regions without expanding any cap. The
-[joint prediction adapter](ilvis0-taylor-joint-controls/INTERPRETATION.md) passes
-all six known-answer cases. The separately frozen
-[48-region comparison](ilvis0-taylor-complete-prediction/README.md) is running;
-it is expected to take about 65–80 minutes on four numerical threads. Every
-original width target must pass before withheld aircraft fitting proceeds.
+The [four-minute input adapter](ilvis0-recording-adapter-controls/README.md)
+passes all six compatibility cases. A separate
+[50-second growth screen](ilvis0-recording-growth-screen/INTERPRETATION.md)
+passes all six numerical cases in 38.5 minutes, but its unconstrained ranges
+remain many kilometres wide. Training-constrained, complete-record prediction
+ranges still need qualification.
+No new withheld aircraft prediction fits have run.
 
 ## Dependency-ordered backlog
 
@@ -62,7 +54,7 @@ validated.
 | C02 | First | Software checked | [Test which calibration changes can imitate a model difference](ilvis0-scalar-certificate-controls-20261019/INTERPRETATION.md). |
 | C03 | First | Initial check complete | [Include measurement-error assumptions](ilvis0-channel-envelopes-20261019/INTERPRETATION.md) in the accelerometer-only checks. |
 | C04 | First | Initial check complete | [Compare checks without gyroscopes](ilvis0-channel-history-v2-20261019/INTERPRETATION.md). These leave all models possible; they do not reconstruct a complete flight. |
-| V01 | First | **In progress** | Keep prediction errors tied to one calibration. [Extreme-point diagnostic](ilvis0-calibration-map-diagnostic/INTERPRETATION.md); four of six groups pass the width target so far. |
+| V01 | First | **In progress** | [All six short-example cases pass](ilvis0-three-source-complete/INTERPRETATION.md), with complete coverage of all 48 regions. Recording-length bounds and the observation-error model remain. |
 | V02 | First | Waiting for V01 | Test predictions against measurements excluded from fitting, including height. [Earlier prediction evidence](ilvis0-saved-prediction-comparison/INTERPRETATION.md). |
 | L01 | Next | Software checked | [Process long recordings](ilvis0-streaming-precision/INTERPRETATION.md) without excessive memory use. |
 | E01 | Next | Receiver diagnostic complete; selection still open | [Position-based assessment](esa-position-assessment/INTERPRETATION.md) finds 96 robust quiet-trend checks. These are not eligible stretches; continuous motion and receiver-error validation remain. |

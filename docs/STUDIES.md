@@ -275,3 +275,65 @@ these observations or to the stationary experiment.
 [Complete source/domain preflight](ilvis0-complete-source-preflight/INTERPRETATION.md): all 48 regions retain their verified training bounds and pass the initial-source cap check. The joint prediction path and complete width comparison remain to be qualified.
 
 [Complete joint-adapter controls](ilvis0-taylor-joint-controls/INTERPRETATION.md): all six known-answer model/processing cases pass, including training-conditioned bounds, subdomain transfer, full coefficient preservation and final truth checks. The complete 48-region prediction comparison is next.
+
+[Complete source-derivative prediction comparison](ilvis0-taylor-complete-prediction/INTERPRETATION.md): 32 of 48 regions pass and 16 reach time limits. Completed specified-field groups gain 25–28% narrower height ranges, but their horizontal ranges still miss the target. Runtime and horizontal error-budget diagnosis follow; no aircraft findings change.
+
+[Source-derivative runtime diagnostic](ilvis0-taylor-runtime-profile/INTERPRETATION.md): both short profiles complete and identify repeated exact-fraction source-bound calculations as a substantial cost. An exact integer implementation will be checked against the original arithmetic before a new performance study.
+
+[Exact integer native qualification](ilvis0-dyadic-native-controls/INTERPRETATION.md): all 24 controls pass, reproducing all 348 saved bounds exactly. A small matched timing test precedes any new full-history performance screen; no speedup or new aircraft result is claimed.
+
+[Matched implementation timing](ilvis0-dyadic-timing/INTERPRETATION.md): all four calculations complete with exact output agreement. The integer implementation is 9–11% faster on the two short sources; full-history performance remains a separate check.
+
+[Saved prediction-width audit](ilvis0-taylor-complete-prediction/WIDTH_AUDIT.md): all 96 available per-region axis widths reconstruct from their saved support ranges and approximation allowances. This is a metadata-only decomposition; missing regions and scientific findings remain unchanged.
+
+[Full-history integer implementation screen](ilvis0-dyadic-range-preflight/INTERPRETATION.md): all six actual child-domain queries complete within the original time limit; the three available predecessor bounds match exactly. Runtime is improved, while the complete prediction-width gate remains unmet.
+
+[Current saved endpoint diagnosis](ilvis0-taylor-complete-prediction/ENDPOINT_DIAGNOSIS.md): all 18 fresh endpoints of the three complete groups reproduce exactly. Training and future propagation allowances dominate the difficult eastward endpoints; no new integration or optimization ran.
+
+[Propagation tracing qualification](ilvis0-traced-native-controls/INTERPRETATION.md): all 24 controls pass, preserving all 348 checked native bounds. The finite eight-query diagnostic will trace the fixed endpoint sectors without changing the calculations.
+
+[Eastward allowance growth](ilvis0-eastward-growth/INTERPRETATION.md): six traces match exactly and two reach time limits. The accumulated departure accounts for about 81–85% of the completed queries' final eastward allowance; source and clock bounds are the next mathematical targets. These are generated approximation bounds, not aircraft measurement errors.
+
+[Direct source-remainder components](ilvis0-source-remainder-v2-controls/INTERPRETATION.md): all 13 mathematical controls pass, including calibration, clipped-clock and noncommuting rotation cases. Numerical-reference reconciliation and native usefulness remain open; the earlier wrapper failures are preserved.
+
+[Point-source derivatives](ilvis0-source-point-controls/INTERPRETATION.md): all seven controls pass against separate rational values and all 27 derivative columns, including clock knots. Combining the component bounds and qualifying full native predictions remain open.
+
+[Combined direct source bound](ilvis0-direct-source-controls/INTERPRETATION.md): all five controls pass against independent rational chains, including shifted numerical references and broad gain domains. Full native installation and prediction usefulness remain unqualified.
+
+[Direct-source native qualification](ilvis0-direct-native-controls/INTERPRETATION.md): all 24 controls pass, preserving the maps and not widening any of 348 bounds. A saved-only audit verifies the extra point/source work; full-history usefulness is the next gate.
+
+[Direct-source full-history screen](ilvis0-direct-range-preflight/INTERPRETATION.md): all six cases pass under the original time limit, with 25–50% smaller horizontal approximation allowances. The complete prediction-width comparison remains ahead.
+
+[Direct-source complete adapter](ilvis0-direct-joint-controls/INTERPRETATION.md): all six known-answer cases pass, including training-row and future-endpoint audits.
+
+[Direct-source width comparison](ilvis0-direct-complete-prediction/INTERPRETATION.md): 36/48 regions pass; twelve future bounds time out. Three groups have complete ranges meeting the target, while three remain incomplete. Compatible saved-certificate reuse is the next proposed check; neither failed study is relabeled.
+
+[Saved-certificate adapter](ilvis0-reused-joint-controls/INTERPRETATION.md): all 12 known-answer cases pass, including missing-new-provider cases, without integration.
+
+[Complete saved-bound comparison](ilvis0-reused-complete-prediction/INTERPRETATION.md): all 40 calculations pass in 139 seconds with no integration reruns; four of six complete final covers meet the fixed width target. The two specified-field cases miss only the east-coordinate target, by 3.4% and 2.5%. Recording-scale uncertainty remains open.
+
+[East-coordinate width diagnosis](ilvis0-east-width-audit/INTERPRETATION.md): all 32 saved support checks reproduce; older future bounds supply three of four limiting endpoints, making their missing tighter replacements the next runtime target. No new integration or model fit ran.
+
+[Direct-source cost profile](ilvis0-direct-source-cost-profile/INTERPRETATION.md): all six unchanged source streams complete in 74 seconds; physical-value certificates dominate the measured source cost. A midpoint-only candidate passes 19 focused equivalence checks; a speedup remains unproven.
+
+[Midpoint-only native qualification](ilvis0-midpoint-native-controls/INTERPRETATION.md): all 24 cases pass; all 348 reports, including every error-allowance array, match the predecessor exactly. Runtime usefulness is tested separately.
+
+[Matched complete-domain timing](ilvis0-midpoint-runtime/INTERPRETATION.md): only two of six pairs finish; four hit the original time limits. Exact agreement survives in completed pairs, but the shortcut does not qualify for a replacement-future rollout.
+
+[Whole-bound profile](ilvis0-whole-bound-profile/INTERPRETATION.md): the unchanged specified-field bound completes on one thread in 89.4 profiled seconds, identifying costs beyond source construction and motivating a separate serial execution check.
+
+[Serial execution screen](ilvis0-serial-bound-screen/INTERPRETATION.md): all six unchanged bounds complete in 38–41 seconds each and reproduce every saved report field exactly. The qualified recipe uses one worker and one numerical thread.
+
+[Missing serial future certificates](ilvis0-serial-future-bounds/INTERPRETATION.md): all twelve queries pass in 689 seconds without recalculating training bounds. A new saved-only complete-cover comparison must still assess the fixed width target.
+
+[Three-source reuse controls](ilvis0-reused-three-controls/INTERPRETATION.md): all twelve known-answer cases pass in 15.45 seconds, preserving numerical operations while checking the three studies' provenance. The all-region width rebuild has its own freeze.
+
+[Complete three-source width rebuild](ilvis0-three-source-complete/INTERPRETATION.md): all 48 regions and all six complete covers pass the original width target in 258 seconds. Completed training bounds are reused; recording-length usefulness and the observation-error model remain open.
+
+[Four-minute input compatibility](ilvis0-recording-adapter-controls/README.md): all six cases match predictions, all 27 derivative columns and warning flags exactly across the two software interfaces; this checks data handling, not prediction uncertainty or independent physical truth.
+
+[Longer-input bound growth](ilvis0-recording-growth-screen/INTERPRETATION.md): all six numerical cases complete in 38.5 minutes; 71–72 km unconstrained outer radii remain too wide, and a smaller approximation remainder does not improve the total range in the matched historical cases.
+
+[Accumulated inertial-error component](ilvis0-inertial-error-controls/INTERPRETATION.md): all 28 software checks pass against an independent continuous-time reference, adding an explicitly assumed IMU-noise contribution alongside receiver error; the real observation-error law remains unqualified.
+
+[Explicit training-error interface](ilvis0-recording-training-interface/INTERPRETATION.md): all 15 focused checks pass, requiring longer studies to declare each observation allowance instead of inheriting the short example's fixed 1 mm.

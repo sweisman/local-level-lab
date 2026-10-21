@@ -14,7 +14,7 @@ The [roadmap](ANALYSIS_ROADMAP.md) sets current priorities;
 | C02 | [Feasible scalar calibration](ilvis0-scalar-certificate-controls-20261019/INTERPRETATION.md): 12/12 known-answer identities and 72/72 matched comparisons pass; 147 certificates and 81 actual optimizer starts. | Earlier failed nonlinear study preserved. Handles near-zero scalar ambiguity without claiming unique calibration; observational uncertainty remains C03's gate. |
 | C03 | [126 component checks](ilvis0-measurement-contribution/COMBINED_BOUNDS.md) and [two-recording assessment](ilvis0-channel-envelopes-20261019/INTERPRETATION.md): 144/144 scalar envelopes overlap, none unsupported. | Completed freeze; no retries. Physical/error envelopes remain declared assumptions, not calibrated coverage. |
 | C04 | [Whole-history necessary constraints](ilvis0-channel-history-v2-20261019/INTERPRETATION.md): all 27,468 scalar cases overlap across 763 packet groups; one zero gain/offset correction survives all 24 history variants. Complete comparisons on both recordings favor globe. | No full gyro-free trajectory or quantitative gyro attribution is established; uncertainty and withheld prediction follow. Preserve conservative error assumptions and all excluded edges. |
-| V01 | [Prediction coverage](ilvis0-bounded-prediction-controls/README.md), [interface](ilvis0-bounded-prediction-controls/NATIVE_INTERFACE.md), [increment bounds](ilvis0-increment-remainders/INTERPRETATION.md), [local](ilvis0-local-step-bounds/INTERPRETATION.md), [geographic](ilvis0-geographic-step-bounds/INTERPRETATION.md) and [54 short-history controls](ilvis0-history-bounds/INTERPRETATION.md) pass. [Shared-reference scale](ilvis0-shared-reference-scale/INTERPRETATION.md) passes all eight families/8,192 assessments. The [recording-scale study](ilvis0-recording-scale-bounds/INTERPRETATION.md) sealed three complete histories, one partial and two unstarted; broad bounds reach about 1,792 km, narrower sensitivity 477 m. | Tighter nonlinear propagation or supported training-feasible regions, adequate numerical treatment and observational covariance assessment remain open. Shared-scale qualification cannot repair nonlinear width. [Earlier 10/12-fit evidence](ilvis0-prediction-covariance-20261012/RESULTS.md) stays unresolved. |
+| V01 | [All 48 regions and six short-example covers pass](ilvis0-three-source-complete/INTERPRETATION.md). The [four-minute input adapter](ilvis0-recording-adapter-controls/README.md) passes six cases; the [linear inertial-noise component](ilvis0-inertial-error-controls/INTERPRETATION.md) passes 28 checks. | The [50-second screen](ilvis0-recording-growth-screen/INTERPRETATION.md) completes six cases but leaves 71–72 km full-domain outer radii without training constraints. Useful recording-length ranges, supported numerical treatment and an adequate shared observation-error law remain required before aircraft prediction fits. |
 | V02 | [Saved prediction audit](ilvis0-saved-prediction-comparison/INTERPRETATION.md) reconciles 18 prior analyses of one recording: 15 originally converged, three unresolved; three matched sets are complete. Specified-field globe retains a much smaller horizontal error, while calibration uncertainty and absolute adequacy remain open. | F01, V01 and qualified solver before new representative predictions. No independent replication or new winner follows from reusing old errors. |
 | L01 | [Structured covariance](ilvis0-structured-error-controls/INTERPRETATION.md) passes at 64,080 epochs/27 columns with a 24 MiB cache. [Long streaming comparison](ilvis0-streaming-precision/INTERPRETATION.md) passes all six controls: 480,000-packet values and all 27 derivatives match unchanged kernels exactly; traced stream working memory stays below 0.7 MiB. [Native-control sharding](native-sharded-execution/README.md) passes all nineteen execution controls and all 24 native compatibility cases. One-thread native arrays match the four-thread reference bit for bit; complete bound reports match exactly. | Preserve earlier exact-pose failure. No active study changes allocation. Software equivalence does not qualify sampling phase, observational covariance, full-record accuracy or predictive adequacy. |
 | E01 | [Version 1 inventory](esa-development-selection/README.md) admits no stretches. The [motion diagnostic](esa-motion-diagnostic/INTERPRETATION.md) passes eleven identities. [Rate/body controls](esa-rate-qualification/INTERPRETATION.md) pass all 48 identities under declared sampling hypotheses, preserving original engineering samples. | Receiver-error assessment and motion-model adequacy precede a revised policy. Actual phase/filtering, geographic/whole-record propagation, mounting and lever arms remain open; protected outcomes stay sealed. |
@@ -28,25 +28,34 @@ The [roadmap](ANALYSIS_ROADMAP.md) sets current priorities;
 | D01 | Exact instrument/processing documentation and defensible calibration alternatives. | Supporting work, not a blanket reason to suspend analysis. |
 
 The [calibration-map diagnostic](ilvis0-calibration-map-diagnostic/INTERPRETATION.md)
-found that all 36 tested linear extremes could not be produced by their physical
-calibrations. Current V01 work keeps those errors tied to the same calibration.
+found that all 36 tested linear extremes were incompatible with their physical
+calibrations. V01 now retains the same calibration across training and future
+predictions instead of allowing unrelated approximation errors at each epoch.
 
-The [source-derivative method](ilvis0-taylor-native-controls/INTERPRETATION.md)
-passes 24 native controls while preserving all 348 checked reference maps. The
-[training-transfer preflight](ilvis0-complete-source-preflight/INTERPRETATION.md)
-passes every one of the 48 declared domains, and the
-[joint adapter](ilvis0-taylor-joint-controls/INTERPRETATION.md) passes its six
-complete known-answer cases. These are short generated-data controls. They do
-not add aircraft results or establish full-recording error coverage.
+The [complete three-source rebuild](ilvis0-three-source-complete/INTERPRETATION.md)
+passes all 48 regions and all six case covers under the original twofold-width
+target. Every case uses all eight fresh regions; no inherited-only fallback
+qualifies the result. The rebuild performs no integration. Twelve previously
+missing future certificates were separately generated under a qualified serial
+recipe without recalculating training bounds. Earlier failed studies retain
+their labels.
 
-The [complete prediction comparison](ilvis0-taylor-complete-prediction/README.md)
-is running with unchanged physical bounds and width targets. Its result must
-be verified before any further V01/V02 qualification. The separate
-[ESA position assessment](esa-position-assessment/INTERPRETATION.md) improves
-receiver-motion uncertainty on sampled centers; it does not create an eligible
-ESA cohort or validate instantaneous motion between those centers.
+This qualifies the existing generated 7.2-second width test. It does not qualify
+recording-length usefulness, whole-program floating execution or observational
+coverage. The [error-assumption guide](PREDICTION_ERROR_ASSUMPTIONS.md) identifies
+the separate calibration, approximation, numerical, receiver and inertial-error
+requirements. The [next plan](ilvis0-three-source-complete/NEXT_PLAN.md) requires
+costed recording-length qualification before new aircraft prediction fits.
+
+The separate [ESA position assessment](esa-position-assessment/INTERPRETATION.md)
+remains a receiver-motion diagnostic; it does not create an eligible ESA cohort
+or validate instantaneous motion between sampled centers.
 
 ## Earlier plans and their task IDs
+
+[Prediction error assumptions](PREDICTION_ERROR_ASSUMPTIONS.md) separates the
+short generated test's calibration, approximation, arithmetic and observation
+allowances from the requirements for real aircraft confidence intervals.
 
 | Existing design or unresolved requirement | Backlog home |
 |---|---|

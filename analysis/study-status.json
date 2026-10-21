@@ -553,10 +553,6 @@
       "path": "data/ilvis0-batched-range-preflight-20261021"
     },
     {
-      "name": "Independent source derivative and mean-value controls",
-      "path": "data/ilvis0-source-derivative-controls-20261021"
-    },
-    {
       "name": "Complete source derivative known-answer qualification",
       "path": "data/ilvis0-source-derivative-v2-controls-20261021"
     },
@@ -583,6 +579,110 @@
     {
       "name": "Complete training-conditioned source Taylor prediction comparison",
       "path": "data/ilvis0-taylor-complete-prediction-20261021"
+    },
+    {
+      "name": "Source-derivative propagation runtime diagnostic",
+      "path": "data/ilvis0-taylor-runtime-profile-20261021"
+    },
+    {
+      "name": "Exact integer source-bound native qualification",
+      "path": "data/ilvis0-dyadic-native-controls-20261021"
+    },
+    {
+      "name": "Serial matched implementation timing",
+      "path": "data/ilvis0-dyadic-timing-20261021"
+    },
+    {
+      "name": "Full-history exact-integer child-domain performance",
+      "path": "data/ilvis0-dyadic-range-preflight-v2-20261021"
+    },
+    {
+      "name": "Read-only propagation tracing native qualification",
+      "path": "data/ilvis0-traced-native-controls-20261021"
+    },
+    {
+      "name": "Fixed-source eastward propagation allowance growth",
+      "path": "data/ilvis0-eastward-growth-20261021"
+    },
+    {
+      "name": "Direct source-remainder mathematical component controls",
+      "path": "data/ilvis0-source-remainder-controls-20261021"
+    },
+    {
+      "name": "Direct source-remainder controls with individual charges",
+      "path": "data/ilvis0-source-remainder-v2-controls-20261021"
+    },
+    {
+      "name": "Independent point-source derivative qualification",
+      "path": "data/ilvis0-source-point-controls-20261021"
+    },
+    {
+      "name": "Combined direct source and numerical-reference controls",
+      "path": "data/ilvis0-direct-source-controls-20261021"
+    },
+    {
+      "name": "Direct source-remainder native qualification",
+      "path": "data/ilvis0-direct-native-controls-20261021"
+    },
+    {
+      "name": "Direct source-remainder full-history usefulness screen",
+      "path": "data/ilvis0-direct-range-preflight-20261021"
+    },
+    {
+      "name": "Complete direct-source training-prediction adapter controls",
+      "path": "data/ilvis0-direct-joint-controls-20261021"
+    },
+    {
+      "name": "Complete direct-source prediction width comparison",
+      "path": "data/ilvis0-direct-complete-prediction-20261021"
+    },
+    {
+      "name": "Saved-certificate training-prediction qualification",
+      "path": "data/ilvis0-reused-joint-controls-20261021"
+    },
+    {
+      "name": "Complete prediction covers from saved certificates",
+      "path": "data/ilvis0-reused-complete-prediction-20261021"
+    },
+    {
+      "name": "Unchanged direct-source cost profile",
+      "path": "data/ilvis0-direct-source-cost-profile-20261021"
+    },
+    {
+      "name": "Exact-report midpoint native qualification",
+      "path": "data/ilvis0-midpoint-native-controls-20261021"
+    },
+    {
+      "name": "Matched midpoint full-domain runtime",
+      "path": "data/ilvis0-midpoint-runtime-20261021"
+    },
+    {
+      "name": "Single complete-domain whole-bound profile",
+      "path": "data/ilvis0-whole-bound-profile-20261021"
+    },
+    {
+      "name": "Unchanged bound serial allocation screen",
+      "path": "data/ilvis0-serial-bound-screen-20261021"
+    },
+    {
+      "name": "Serial generation of missing future bounds",
+      "path": "data/ilvis0-serial-future-bounds-20261021"
+    },
+    {
+      "name": "Three-family saved-report reuse controls",
+      "path": "data/ilvis0-reused-three-controls-20261021"
+    },
+    {
+      "name": "Complete 48-region three-source saved-bound rebuild",
+      "path": "data/ilvis0-three-source-complete-20261021"
+    },
+    {
+      "name": "Four-minute generated recording API compatibility",
+      "path": "data/ilvis0-recording-adapter-controls-20261021"
+    },
+    {
+      "name": "Fifty-second full-prior bound growth on four-minute inputs",
+      "path": "data/ilvis0-recording-growth-screen-20261021"
     }
   ]
 }
