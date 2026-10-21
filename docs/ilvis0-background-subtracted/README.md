@@ -30,6 +30,10 @@ errors remain. This is a model-adjusted visualization, not a new curvature test.
 No calibration or field magnitude was fitted, and no fused navigation attitude
 or gyro rate was used.
 
+A [third visualization](../ilvis0-motion-subtracted/README.md) also removes
+estimated aircraft maneuvers using fused navigation attitude. It leaves transport
+in place and shows 52 fully supported traces, aligned across the flight path.
+
 ## Why the largest raw traces are not steep descents
 
 The two largest raw endpoints come from overlapping recorders on the same flight

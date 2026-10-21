@@ -35,6 +35,10 @@ specified background-field prediction from the same gyro bins. Unlike this raw
 plot, that correction uses receiver coordinates and a declared level/course
 attitude; it leaves aircraft motion and transport in place.
 
+A [third visualization](../ilvis0-motion-subtracted/README.md) also subtracts
+estimated aircraft maneuvers using fused navigation attitude. It shows 52 fully
+supported stretches in an across-track frame, rather than the fixed pitch axis.
+
 [Full-size image](raw-pitch.png) · [Vector image](raw-pitch.svg) ·
 [Plotted values](plotted-bins.csv.gz) · [All flight stretches](../ilvis0-current-findings-20261015/STRETCHES.md) ·
 [Analysis method](../METHODOLOGY.md).

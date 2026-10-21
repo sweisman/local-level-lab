@@ -44,6 +44,15 @@ and direction with an assumed level attitude. Aircraft motion remains; the
 background rate is supplied rather than measured by this plot.
 [What was subtracted, and the plotted data](docs/ilvis0-background-subtracted/README.md).
 
+![Gyro tilt after subtracting the specified background field and estimated aircraft maneuvers](docs/ilvis0-motion-subtracted/motion-subtracted.png)
+
+**After estimated aircraft maneuvers are also removed, all 52 supported traces
+finish nose-down.** This uses fused navigation attitude to estimate maneuvers
+and aligns tilt across the flight path. One stretch lacks a complete saved
+correction. Transport rotation and correction errors remain: this visualization
+is separate from the research tests.
+[How the correction works and which stretch is omitted](docs/ilvis0-motion-subtracted/README.md).
+
 A [route-based companion](docs/ilvis0-gyro-companion-v2/INTERPRETATION.md) compares
 these raw rates with geographic predictions, without fitting gyro corrections.
 Median rate differences are **0.88°/h for globe plus the specified field,
