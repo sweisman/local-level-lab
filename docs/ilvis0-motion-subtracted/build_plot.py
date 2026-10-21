@@ -70,16 +70,17 @@ def build():
             reason='' if plotted else 'incomplete navigation correction on matched gyro/receiver support'))
         if plotted:traces.append(rows)
     if not traces:raise ValueError('no complete motion-corrected traces available')
-    # Preserve the original plot's vertical range; expand only to avoid clipping.
-    original=ROOT/'docs/ilvis0-gyro-overview';prior=load(original/'provenance.json');path=original/'plotted-bins.csv.gz'
+    # Match the second plot's default five-percent autoscale margin exactly.
+    original=ROOT/'docs/ilvis0-background-subtracted';prior=load(original/'provenance.json');path=original/'plotted-bins.csv.gz'
     inputs[str((original/'provenance.json').relative_to(ROOT))]=sha(original/'provenance.json')
-    if sha(path)!=prior['artifacts']['plotted-bins.csv.gz']:raise ValueError('raw plotted input changed')
+    if sha(path)!=prior['artifacts']['plotted-bins.csv.gz']:raise ValueError('background-subtracted plotted input changed')
     inputs[str(path.relative_to(ROOT))]=sha(path)
-    raw=[float(r['accumulated_nose_down_axis_deg']) for r in csv.DictReader(io.StringIO(gzip.decompress(path.read_bytes()).decode()))]
-    raw_min,raw_max=min(0.,min(raw)),max(0.,max(raw));pad=.05*(raw_max-raw_min)
-    old_limits=[raw_min-pad,raw_max+pad]
+    reference=[float(r['corrected_nose_down_deg']) for r in csv.DictReader(io.StringIO(gzip.decompress(path.read_bytes()).decode()))]
+    low,high=min(0.,min(reference)),max(0.,max(reference));pad=.05*(high-low)
+    limits=[low-pad,high+pad]
     corrected=[r['residual_across_track_deg'] for rows in traces for r in rows]
-    limits=[min(old_limits[0],min(corrected)-pad),max(old_limits[1],max(corrected)+pad)]
+    if min(corrected)<limits[0] or max(corrected)>limits[1]:
+        raise ValueError('motion-corrected traces exceed the second plot vertical range')
     plt.rcParams.update({'font.family':'DejaVu Sans','font.size':11,'svg.fonttype':'none',
         'svg.hashsalt':'lll-navigation-motion-subtracted-v1','axes.spines.top':False,'axes.spines.right':False})
     fig,ax=plt.subplots(figsize=(12,7));fig.patch.set_facecolor('#fcfcfa');ax.set_facecolor('#fcfcfa')
@@ -122,7 +123,7 @@ def build():
         plotted_bins=sum(r['plotted_in_figure'] for r in records),missing_motion_bins=sum(not r['supported'] for r in records),
         positive_endpoints=sum(v>0 for v in endpoints),endpoint_minimum_deg=min(endpoints),
         endpoint_median_deg=statistics.median(endpoints),endpoint_maximum_deg=max(endpoints),
-        y_limits_deg=limits,raw_plot_y_limits_deg=old_limits,raw_y_range_expanded=limits!=old_limits,
+        y_limits_deg=limits,vertical_scale_reference='ilvis0-background-subtracted',vertical_scale_matches_reference=True,
         background_omega_rads=OMEGA,background_rate_fitted=False,upstream_removal_assumed=0.,
         axis='ground-track across-left; differs from aircraft-fixed pitch in first two plots',
         fused_attitude_used=True,fused_gyro_rates_used=False,transport_subtracted=False,

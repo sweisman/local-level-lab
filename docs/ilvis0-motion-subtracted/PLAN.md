@@ -25,8 +25,8 @@ Require a valid cached motion correction on every matched second before plotting
 a complete stretch. Inventory all 53 outcomes. The expected 52 supported traces
 are drawn; the one unsupported stretch remains listed, never filled with zeros,
 substituted raw gyro values or interpolated corrections. Preserve signs and gaps.
-Keep degree/minute units and downward-positive tilt. Use the raw plot's vertical
-range unless that would clip a new trace; record any necessary expansion. Show
+Keep degree/minute units and downward-positive tilt. Match the second,
+background-subtracted plot's vertical range exactly; reject clipping. Show
 the common-cohort median and a separately labeled shrinking-cohort median.
 
 Finite rendering scope: 53 stretches, at most 1000 bins and 1500 receiver fixes

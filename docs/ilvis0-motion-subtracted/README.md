@@ -39,7 +39,7 @@ The research selection and results are unchanged.
 
 Thin lines show complete supported stretches. The solid median uses all 52;
 the dashed median uses the stretches still available, while at least five remain.
-The vertical scale follows the raw graph, expanded slightly to avoid clipping.
+The vertical scale matches the second, background-subtracted graph exactly.
 
 This is a navigation-assisted visualization, **not an independent curvature
 test**. Fused attitude already depends on a navigation model. Transport rotation,

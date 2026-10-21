@@ -1,14 +1,14 @@
 {
   "artifacts": {
-    "motion-subtracted.png": "f16556446a4740e4818e0ceedd7bcf22f4622143e01a487b657d0c8e7c23b8a9",
-    "motion-subtracted.svg": "3230cb7cfcabbff1955b56eb7703e1e272048fbcff5db982cc0475d6539d4070",
+    "motion-subtracted.png": "14b12a2fda81b2b7115250aa83568f4920d13c02456872cfd089862192e13ccd",
+    "motion-subtracted.svg": "b772e40eaab1714b28a471f8f9689f8e19b4fa8b76e098032402de4247e84234",
     "plotted-bins.csv.gz": "f98c2bd1745e222c2318a030056ab44426ddda84a55712480b5b92800341568a",
     "stretches.csv": "b186e1a6792e6cbaccd66efa700318e34409190367085b81bff1f8f22fe4f8b3"
   },
   "axis": "ground-track across-left; differs from aircraft-fixed pitch in first two plots",
   "background_omega_rads": 7.292115e-05,
   "background_rate_fitted": false,
-  "elapsed_s": 5.579489827156067,
+  "elapsed_s": 5.645075304899365,
   "endpoint_maximum_deg": 1.5842760876515676,
   "endpoint_median_deg": 0.9154075697312056,
   "endpoint_minimum_deg": 0.24941879840213366,
@@ -69,6 +69,8 @@
     "data/ilvis0-stretch-analytics-20261013/fad74da3a09951b31e882472.json.gz": "d88ceaadd7666de928a4d7cb16d13540e9657ecc71b90cd9968422c8bb10ee53",
     "data/ilvis0-stretch-analytics-20261013/fd7b81e48a4122b149c4925b.json.gz": "531b78c07bbe699e63b2c7c83b6246b357b711db0d96949113588b8559579d5b",
     "data/ilvis0-stretch-analytics-20261013/manifest.json": "3397cac222f4b5b6ec33218f1fab7448396101048c80cfbc2301445ea20dc58f",
+    "docs/ilvis0-background-subtracted/plotted-bins.csv.gz": "2210ccd1d5c0673ab99c99e4c877292ba3381a708798bda414ed70e9e841cf1e",
+    "docs/ilvis0-background-subtracted/provenance.json": "1d535c50e37f78a870bf5fbd8bd6aaa3d23e7d6182d4fbbedc60776f0534b9a6",
     "docs/ilvis0-gyro-companion-v2/evidence-receipt.json": "6b58054786e515c9066e09c41de5b237ca46b0c2af20693f919e202b7a42c0e6",
     "docs/ilvis0-gyro-companion-v2/manifest.json": "22e9abdcc33c85436dbb86ab852a65e9dd183a0140f79eb76aff86583c70c310",
     "docs/ilvis0-gyro-companion-v2/results/01177d345ecb28bcfdcc6a4f.json.gz": "945c10a29103b39a3377f0afbd84582b6884baa9abae7ca3aa2df2fb2839ca02",
@@ -125,8 +127,6 @@
     "docs/ilvis0-gyro-companion-v2/results/fad74da3a09951b31e882472.json.gz": "dd14dfdf7ebf76aeb09ee964dbcd385bc0ec25bb463bdec200bbdefeac79d83f",
     "docs/ilvis0-gyro-companion-v2/results/fd7b81e48a4122b149c4925b.json.gz": "45de343f35565cab1646a6183b17d4a7b9d0785ad208b75d815abb490826a745",
     "docs/ilvis0-gyro-companion-v2/summary.json": "e9dabadbe5eb1b20cef7bfdf09c002d6bec1d3850cea7b67ec02f52225cbd5d9",
-    "docs/ilvis0-gyro-overview/plotted-bins.csv.gz": "b3ba077ac1f2d51fd0e7766e31f5dbe8349ceaf59cd916e99f9f448974ff0a9f",
-    "docs/ilvis0-gyro-overview/provenance.json": "ade1e3ed2d117e5bf43fe69aa5c54ba85a40bee972b0d72e443ddc228d5ae944",
     "docs/ilvis0-highspeed-segments-20261008/selection.json.gz": "934dea342a64b716533732d7ab0e961d23709cf37499faf7cee8e4c386778809",
     "docs/ilvis0-position-stability-trial-20261013/analytics-receipt.json": "cfd6961b4db5ffbea4ddf7b0c9753226dd9cce3d60efe8c0a01d8a63073739f4"
   },
@@ -139,11 +139,6 @@
   "plotted_bins": 24886,
   "plotted_stretches": 52,
   "positive_endpoints": 52,
-  "raw_plot_y_limits_deg": [
-    -0.8612455316941294,
-    2.8441109194513623
-  ],
-  "raw_y_range_expanded": true,
   "research_inputs_changed": false,
   "reserved_threads": 2,
   "scientific_decision": "abstain",
@@ -153,13 +148,15 @@
     "analysis/lll/ilvis0_motion_plot.py": "738c538bcf3bcf02632a8b4a464c7988e54da68f9894810230e39142ddab43a5",
     "analysis/lll/ilvis0_stretch_analytics.py": "bb4a74eb51937617955dd17f006899078db97899b4ca5d57256a8d106a3af73b",
     "analysis/tests/test_ilvis0_motion_plot.py": "c53904c5e23f38a869c389a5d24851d617fcc1f8f9fc6ffedced9f5a9676c834",
-    "docs/ilvis0-motion-subtracted/PLAN.md": "00b6384f36269387e7c86ecfbb0ffa1b8c336ca5099861ae3e3f6d1aca0edd65",
-    "docs/ilvis0-motion-subtracted/build_plot.py": "180d7af24ceb16262c3b81af510e8cf0146a3e55e5ec9cc450a00abb0a9a2d75"
+    "docs/ilvis0-motion-subtracted/PLAN.md": "225a7ab1e9fcca2a9e60090347f179c98c5c0faebcd9c5dfef26997282612f93",
+    "docs/ilvis0-motion-subtracted/build_plot.py": "c8efa596a2342aedb9acaf6f7c1d3ef1940ab0c9605f6bb4b8122a0c732daeb5"
   },
   "transport_subtracted": false,
   "upstream_removal_assumed": 0.0,
+  "vertical_scale_matches_reference": true,
+  "vertical_scale_reference": "ilvis0-background-subtracted",
   "y_limits_deg": [
-    -0.8758788514358816,
-    2.8441109194513623
+    -0.8197522002526284,
+    1.7315175192844015
   ]
 }
