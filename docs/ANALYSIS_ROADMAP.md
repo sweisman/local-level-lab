@@ -28,20 +28,25 @@ a full stretch. That is a limitation of the calculation, not a measurement of
 how badly the aircraft data fit.
 
 The last complete generated-data comparison meets the fixed width target in
-**four of six groups**. Both specified-field globe groups still miss it. No
-new aircraft fits have run.
+**four of six groups** on a generated 7.2-second example. Both specified-field
+globe groups still miss it. No new aircraft fits have run.
 
-The [revised propagation method](ilvis0-source-native-v2-controls/INTERPRETATION.md)
-now passes all 24 native controls. It retains the original point calculations,
-calibration caps and parameter columns while explicitly bounding source-reference
-rounding. The earlier failed version remains preserved.
+The [faster source calculation](ilvis0-batched-range-preflight/INTERPRETATION.md)
+completes all six long-history cases under the original limits. Height
+allowances improve by 17–37%, but horizontal ones remain wider.
 
-The [six-source screen](ilvis0-source-range-preflight/INTERPRETATION.md) completes
-two generated cases; four reach their time allowance. The completed cases have
-tighter height allowances but wider horizontal ones. Runtime and horizontal
-Taylor information are the next targets. A complete comparison must meet every
-width target before withheld aircraft prediction proceeds. Physical assumptions
-and acceptance limits remain unchanged.
+A [derivative-aware calculation](ilvis0-taylor-native-controls/INTERPRETATION.md)
+now passes all 24 native controls after ten independent mathematical checks.
+It preserves all 348 checked reference maps without widening their error
+allowances. Its [long-history screen](ilvis0-taylor-range-preflight/INTERPRETATION.md)
+passes all six cases, improving horizontal bounds in the profiled-processing
+cases. The [training-transfer preflight](ilvis0-complete-source-preflight/INTERPRETATION.md)
+also passes in all 48 calibration regions without expanding any cap. The
+[joint prediction adapter](ilvis0-taylor-joint-controls/INTERPRETATION.md) passes
+all six known-answer cases. The separately frozen
+[48-region comparison](ilvis0-taylor-complete-prediction/README.md) is running;
+it is expected to take about 65–80 minutes on four numerical threads. Every
+original width target must pass before withheld aircraft fitting proceeds.
 
 ## Dependency-ordered backlog
 

@@ -26,40 +26,29 @@ The present calculation is too conservative: it allows ranges too wide to be
 useful over a full recording. Recent improvements helped, but have not solved
 this problem. These wide ranges are not measured aircraft errors.
 
-Prediction widths meet the target in four of six groups. Both specified-field
-globe groups still miss it. A follow-up checked 36 extreme error combinations:
-none survived recomputing all the errors from one calibration. The calculation
-therefore needs to keep those errors coupled. This has not yet produced a
-qualified narrower range, so new aircraft prediction fits remain gated.
-[Latest diagnostic](ilvis0-calibration-map-diagnostic/INTERPRETATION.md).
+The last complete generated-data comparison meets its fixed width target in
+**four of six groups** on a 7.2-second example. Both globe groups with the
+specified background field still miss it. No new aircraft prediction fits
+follow until every group passes.
 
-The [source-reference check](ilvis0-source-reference/INTERPRETATION.md)
-passes all six generated groups and reduces the relevant vertical error
-allowance by 68–69%. The next step is to carry that gain through the dynamic
-calculation without losing training-derived information.
+The [faster source calculation](ilvis0-batched-range-preflight/INTERPRETATION.md)
+finishes all six long-history cases within the original limits. Height error
+allowances shrink by 17–37%, while horizontal ones remain too broad.
 
-The [cached transport implementation](ilvis0-cached-transport-controls/INTERPRETATION.md)
-now passes all 24 controls under the same numerical and time limits. Next is
-connecting the tighter body-source interval at the correct packet prefixes.
-Complete prediction and aircraft-validation gates remain open.
-The [streamed source rows](ilvis0-source-stream-controls/INTERPRETATION.md) now
-pass every midpoint/end check. The [six-source screen](ilvis0-transport-range-preflight/README.md)
-finishes with four compatible bounds and two time-limit failures. The completed
-specified-field cases tighten east allowances by about 3.4% and height by
-about 10%. Completed [runtime profiles](ilvis0-transport-runtime-profile/INTERPRETATION.md)
-locate major costs in repeated exact-arithmetic bound operations. The
-[compiled implementation](ilvis0-compiled-transport-controls/INTERPRETATION.md)
-now passes all 24 native controls and the [six-source long screen](ilvis0-compiled-range-preflight/INTERPRETATION.md).
-Both earlier timeouts are resolved. The [physical source calculation](ilvis0-source-value-controls/INTERPRETATION.md)
-now also passes all six complete-prefix checks. The
-[rounded training adapter](ilvis0-rounded-source-controls/INTERPRETATION.md)
-passes its six-source qualification too. The
-[revised native trial](ilvis0-source-native-v2-controls/INTERPRETATION.md)
-passes all 24 controls on the original calibration boxes and caps. Its
-[long-source screen](ilvis0-source-range-preflight/INTERPRETATION.md) completes
-two cases; four reach the time limit. Height allowances improve, but horizontal
-ones widen. Runtime and horizontal Taylor bounds are next; the complete width
-target remains open.
+The next method keeps track of how calibration changes the source, rather than
+losing that information in a broad interval. It passes
+[ten mathematical checks](ilvis0-source-derivative-v2-controls/INTERPRETATION.md)
+and [24 complete native controls](ilvis0-taylor-native-controls/INTERPRETATION.md).
+Across 348 checked bounds, predictions and coefficient matrices are unchanged
+and error allowances do not widen. Its
+[long-history screen](ilvis0-taylor-range-preflight/INTERPRETATION.md) passes all
+six cases, with 6–11% smaller horizontal allowances in the profiled-processing
+cases. The [training-transfer check](ilvis0-complete-source-preflight/INTERPRETATION.md)
+passes in all 48 calibration regions, and the
+[joint prediction adapter](ilvis0-taylor-joint-controls/INTERPRETATION.md) passes
+all six known-answer cases. The
+[complete 48-region comparison](ilvis0-taylor-complete-prediction/README.md) is
+running, with about 65–80 minutes expected on four numerical threads.
 
 ## Then: four larger tests
 

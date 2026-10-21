@@ -4,10 +4,17 @@ The ESA recording supplies much longer observations at lower ground speeds than
 the original archive cohort. Its selection policy must reflect that geometry.
 The existing 53 stretches and their criteria remain unchanged.
 
-This is a **development proposal**, not a frozen selection or a finding. It is
-based on receiver trajectory, source completeness and the survey report, before
-any ESA Earth-model fitting. Reported survey-line boundaries describe the survey
-and do not automatically define eligible intervals.
+This page preserves the **original development proposal**. Its implemented
+[version-1 rules](ESA_SELECTION_V1.md) produced a
+[frozen inventory with no eligible stretches](../esa-development-selection/README.md).
+The later [position assessment](../esa-position-assessment/INTERPRETATION.md)
+finds some quiet window trends, but does not establish continuous eligible
+stretches or replace that inventory. A revised policy still requires motion and
+receiver-error qualification before any ESA Earth-model fitting.
+
+The proposal uses receiver trajectory, source completeness and the survey
+report. Reported survey-line boundaries describe the survey and do not
+automatically define eligible intervals.
 
 The [confirmation reservation](../analysis-provenance/README.md) fixes recording
 187 as development material and protects the other cataloged groups. This policy

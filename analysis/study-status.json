@@ -543,6 +543,46 @@
     {
       "name": "Installed-source runtime profiles with corrected setup",
       "path": "data/ilvis0-source-runtime-profile-v2-20261020"
+    },
+    {
+      "name": "Batched implementation with exact predecessor-bound comparisons",
+      "path": "data/ilvis0-batched-native-controls-20261021"
+    },
+    {
+      "name": "Full-history batched source range comparison",
+      "path": "data/ilvis0-batched-range-preflight-20261021"
+    },
+    {
+      "name": "Independent source derivative and mean-value controls",
+      "path": "data/ilvis0-source-derivative-controls-20261021"
+    },
+    {
+      "name": "Complete source derivative known-answer qualification",
+      "path": "data/ilvis0-source-derivative-v2-controls-20261021"
+    },
+    {
+      "name": "Source derivative controls with incomplete mean-value reservation",
+      "path": "data/ilvis0-source-derivative-controls-20261021"
+    },
+    {
+      "name": "Native source mean-value remainder qualification",
+      "path": "data/ilvis0-taylor-native-controls-20261021"
+    },
+    {
+      "name": "Long-history source mean-value remainder screen",
+      "path": "data/ilvis0-taylor-range-preflight-20261021"
+    },
+    {
+      "name": "Complete source-domain and training-inheritance preflight",
+      "path": "data/ilvis0-complete-source-preflight-20261021"
+    },
+    {
+      "name": "Complete training-conditioned joint-adapter known-answer controls",
+      "path": "data/ilvis0-taylor-joint-controls-20261021"
+    },
+    {
+      "name": "Complete training-conditioned source Taylor prediction comparison",
+      "path": "data/ilvis0-taylor-complete-prediction-20261021"
     }
   ]
 }

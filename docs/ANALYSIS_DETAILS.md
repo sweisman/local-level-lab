@@ -27,11 +27,24 @@ The [roadmap](ANALYSIS_ROADMAP.md) sets current priorities;
 | S01 | Wuhan independent positions/eligibility and stationary-consumer physical validation. | Separate dataset-specific qualification; no automatic transfer of archive thresholds. |
 | D01 | Exact instrument/processing documentation and defensible calibration alternatives. | Supporting work, not a blanket reason to suspend analysis. |
 
-Recent supporting checks: the [complete calibration-map diagnostic](ilvis0-calibration-map-diagnostic/INTERPRETATION.md)
-finds all 36 tested linear extremes unrealizable by their physical calibration.
-The [ESA position assessment](esa-position-assessment/INTERPRETATION.md) improves
-receiver-motion uncertainty on the same sampled centers. Neither result passes
-the remaining V01/V02 gates or creates a revised ESA cohort.
+The [calibration-map diagnostic](ilvis0-calibration-map-diagnostic/INTERPRETATION.md)
+found that all 36 tested linear extremes could not be produced by their physical
+calibrations. Current V01 work keeps those errors tied to the same calibration.
+
+The [source-derivative method](ilvis0-taylor-native-controls/INTERPRETATION.md)
+passes 24 native controls while preserving all 348 checked reference maps. The
+[training-transfer preflight](ilvis0-complete-source-preflight/INTERPRETATION.md)
+passes every one of the 48 declared domains, and the
+[joint adapter](ilvis0-taylor-joint-controls/INTERPRETATION.md) passes its six
+complete known-answer cases. These are short generated-data controls. They do
+not add aircraft results or establish full-recording error coverage.
+
+The [complete prediction comparison](ilvis0-taylor-complete-prediction/README.md)
+is running with unchanged physical bounds and width targets. Its result must
+be verified before any further V01/V02 qualification. The separate
+[ESA position assessment](esa-position-assessment/INTERPRETATION.md) improves
+receiver-motion uncertainty on sampled centers; it does not create an eligible
+ESA cohort or validate instantaneous motion between those centers.
 
 ## Earlier plans and their task IDs
 

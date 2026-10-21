@@ -259,3 +259,19 @@ these observations or to the stationary experiment.
 [Revised integrated source trial](ilvis0-source-native-v2-controls/INTERPRETATION.md): all 24 native controls pass using the actual calibration boxes and unchanged caps, centers, 51 columns and acceptance limits. Comparison with the best saved compatible ranges is next.
 
 [Installed-source range screen](ilvis0-source-range-preflight/INTERPRETATION.md): two cases complete and four reach the time limit; the completed cases tighten height allowances while widening horizontal ones. Runtime and source-specific Taylor information need further work; aircraft results are unchanged.
+
+[Installed-source runtime profiles](ilvis0-source-runtime-profile-v2/INTERPRETATION.md): both shortened generated-data probes complete and locate substantial repeated interface costs. These profiles do not qualify long-history performance or prediction widths.
+
+[Batched native calculation](ilvis0-batched-native-controls/INTERPRETATION.md): all 24 controls pass and all 348 bounds exactly match the predecessor. Recorded runtime falls from 201 to 92 seconds with the same four-thread allocation; long-history performance and complete prediction widths remain separate checks.
+
+[Batched full-history screen](ilvis0-batched-range-preflight/INTERPRETATION.md): all six cases complete within the original limits. Height allowances shrink by 17–37%; horizontal allowances remain wider, so source-derivative bounds are next. No aircraft findings change.
+
+[Source derivative component](ilvis0-source-derivative-v2-controls/INTERPRETATION.md): all ten independent known-answer controls pass, including calibration signs, reference rounding and both clock-boundary slopes. Native integration and useful complete prediction widths remain separate gates.
+
+[Native source-derivative calculation](ilvis0-taylor-native-controls/INTERPRETATION.md): all 24 controls pass. Across 348 bounds, predictions, coefficient matrices and physical bindings are unchanged, and error allowances do not widen. A full-history comparison is next.
+
+[Source-derivative long-history screen](ilvis0-taylor-range-preflight/INTERPRETATION.md): all six cases pass; profiled-processing horizontal allowances improve by 6–11%, while tighter fixed-zero baselines remain in use. A saved audit verifies training ancestry in all 48 narrower domains; checked subdomain transfer and the complete prediction-width comparison are next.
+
+[Complete source/domain preflight](ilvis0-complete-source-preflight/INTERPRETATION.md): all 48 regions retain their verified training bounds and pass the initial-source cap check. The joint prediction path and complete width comparison remain to be qualified.
+
+[Complete joint-adapter controls](ilvis0-taylor-joint-controls/INTERPRETATION.md): all six known-answer model/processing cases pass, including training-conditioned bounds, subdomain transfer, full coefficient preservation and final truth checks. The complete 48-region prediction comparison is next.
