@@ -15,4 +15,4 @@ jobs:
       - name: Install the pinned environment
         run: pip install -r requirements-lock.txt -e analysis -e server
       - name: Test
-        run: python -m pytest analysis/tests server/tests -q
+        run: env PYTHONPATH=analysis python -m lll.studies test

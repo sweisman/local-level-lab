@@ -126,6 +126,7 @@ field and solar-versus-sidereal precision come later.
 - **[Studies and what each added](docs/STUDIES.md)** — a concise guide to the analyses,
   successful recoveries and approaches that did not qualify.
 - **[How the method works](docs/METHODOLOGY.md)** — observations, models and checks.
+- **[Reproduce the studies](docs/REPRODUCIBILITY.md)** — shared code and verified historical evidence.
 - **[What comes next](docs/NEXT_STEPS.md)** — measurement contributions,
   withheld predictions, protected ESA confirmation and later rotation-field work.
 - **[Archive and instrument guide](docs/ILVIS0.md)** — source data, decoding and provenance.

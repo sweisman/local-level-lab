@@ -1,1 +1,0 @@
-{"component_intervals":32,"identity":"quadrature-00","maximum_component_error":0.0,"maximum_excess_over_mathematical_bound":0.0,"ode_rhs":0,"ode_solves":0,"optimizer_starts":0,"original_reads":0,"passed":true,"raw_preserved":true,"scientific_decision":"abstain","task":{"family":"constant","identity":"quadrature-00","kind":"quadrature","method":"left_hold","profile":0}}

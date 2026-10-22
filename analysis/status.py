@@ -11,10 +11,20 @@ import sys
 import time
 
 ROOT=Path(__file__).resolve().parents[1]
+sys.path.insert(0,str(ROOT/'analysis'))
+from lll.studies.readers import available as archived_available,read as archived_read
 
 
-def load(path):return json.loads(path.read_text())
-def file_digest(path):return hashlib.sha256(path.read_bytes()).hexdigest()
+def read_bytes(path):
+    path=Path(path)
+    if path.is_file():return path.read_bytes()
+    if path.is_relative_to(ROOT):return archived_read(ROOT,str(path.relative_to(ROOT)))
+    raise FileNotFoundError(path)
+def exists(path):
+    path=Path(path)
+    return path.exists() or (path.is_relative_to(ROOT) and archived_available(ROOT,str(path.relative_to(ROOT))))
+def load(path):return json.loads(read_bytes(path))
+def file_digest(path):return hashlib.sha256(read_bytes(path)).hexdigest()
 def object_digest(value):
     data=json.dumps(value,sort_keys=True,separators=(',',':'),allow_nan=False)+'\n'
     return hashlib.sha256(data.encode()).hexdigest()
@@ -45,7 +55,10 @@ def receipt_counts(directory,manifest_hash):
     with read_lock(charges/'ledger.lock') as state:
         if state=='held':raise ValueError('charge ledger busy; snapshot unavailable')
         pending=charges.is_dir() and any(p.name.startswith('.pending-') for p in charges.iterdir())
-        if not (charges/'HEAD.json').exists():return None
+        if exists(charges/'journal.sqlite'):
+            from lll.studies.journal import inspect_snapshot
+            return inspect_snapshot(read_bytes(charges/'journal.sqlite'),manifest_hash)
+        if not exists(charges/'HEAD.json'):return None
         head=load(charges/'HEAD.json');previous=None;counts=dict(starts=0,sweeps=0)
         events=head['events'];native_sweeps=0
         if type(events) is not int or not 0<=events<=1000000:raise ValueError('invalid charge count')
@@ -63,11 +76,33 @@ def receipt_counts(directory,manifest_hash):
 
 def completed_rows(directory,manifest,manifest_hash):
     rows=[]
+    if manifest.get('version')=='ilvis0-sharded-native-controls-v1':
+        workers=manifest['allocation']['workers']
+        for task in manifest['tasks']:
+            identity=task['identity'];shard=task['shard'];name=identity+'.json'
+            if Path(name).name!=name or type(shard) is not int or not 0<=shard<workers:
+                raise ValueError('invalid sealed shard result identity or assignment')
+            base=directory/'shards'/f'{shard:03d}'/'results'
+            candidates=[base/(identity+suffix+'.json') for suffix in ('','.interrupted')]
+            sealed=[p for p in candidates if exists(p.with_suffix('.seal.json'))]
+            if len(sealed)>1:raise ValueError('multiple sealed outcomes for one identity')
+            if not sealed:continue
+            path=sealed[0];receipt=load(path.with_suffix('.seal.json'));envelope=load(path);row=envelope['result']
+            if (receipt.get('sha256')!=file_digest(path) or receipt.get('manifest_sha256')!=manifest_hash
+                    or envelope.get('manifest_sha256')!=manifest_hash or envelope.get('identity')!=identity
+                    or envelope.get('shard')!=shard or envelope.get('task_sha256')!=object_digest(task)
+                    or envelope.get('result_sha256')!=object_digest(row)
+                    or envelope.get('status') not in ('complete','interrupted')
+                    or type(row.get('passed')) is not bool or row.get('scientific_decision')!='abstain'
+                    or ('identity' in row and row['identity']!=identity)):
+                raise ValueError('sealed shard result hash, identity or task mismatch')
+            rows.append(dict(row,identity=identity,status=envelope['status']))
+        return rows
     for task in manifest.get('plan',{}).get('tasks',[]):
         identity=task['identity'];name=identity.replace('::','-')+'.json'
         if Path(name).name!=name:raise ValueError('invalid result filename')
         path=directory/name
-        if not path.exists():continue
+        if not exists(path):continue
         envelope=load(path);row=envelope['result']
         if (envelope['manifest_sha256']!=manifest_hash or envelope['result_sha256']!=result_digest(row)
                 or row['identity']!=identity):raise ValueError('saved result hash or identity mismatch')

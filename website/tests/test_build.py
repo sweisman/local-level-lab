@@ -20,6 +20,19 @@ def example(root):
     write(root,'docs/img/logo.svg','<svg xmlns="http://www.w3.org/2000/svg"/>')
 
 
+def test_archived_page_and_data_links_remain_accessible(tmp_path):
+    from lll.studies.artifacts import ArchiveStore,atomic,encoded,digest
+    root=tmp_path/'repo';out=tmp_path/'site';example(root)
+    write(root,'docs/nested/result.json','{"answer":42}')
+    write(root,'docs/nested/other.md','# Other\n\n[Data](result.json)\n')
+    store=ArchiveStore(root);store.pack(['docs/nested/other.md','docs/nested/result.json']);store.compact()
+    catalog=store.catalog();catalog['origin_commit']='a'*40;raw=encoded(catalog)
+    atomic(store.catalog_path,raw);atomic(store.catalog_path.with_suffix('.sha256'),(digest(raw)+'\n').encode())
+    report=site.build(root,out,assets=site.HERE/'assets',navigation=False)
+    assert report['missing_pages']==[] and report['page_count']==3
+    assert '/blob/'+('a'*40)+'/docs/nested/result.json' in (out/'docs/nested/other.html').read_text()
+
+
 def test_recursive_pages_links_and_repo_downloads(tmp_path):
     root=tmp_path/'repo';out=tmp_path/'site';example(root)
     report=site.build(root,out,assets=site.HERE/'assets',navigation=False)

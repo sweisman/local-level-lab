@@ -250,6 +250,8 @@ def main():
         +'The [column definitions and measurement limitations](../ilvis0-position-stability-trial-20261013/ANALYTICS.md) '
         +'continue to apply. Group-1 attitude remains a context diagnostic, never independent shape evidence. '
         +'No original recordings or numerical predictions were read or generated.\n')
+    tables=module(ROOT/'analysis/lll/studies/tables.py','shared_stretch_tables')
+    tables.update_analytics_page(ROOT)
     inputs={BASE+'/'+n:helper.sha(ROOT/BASE/n) for n in ('findings-receipt.json','analytics-receipt.json')}
     for stage in STAGES:
         for n in ('manifest.json','summary.json','completion.json','evidence-receipt.json','starts.jsonl','sweeps.jsonl'):
@@ -259,7 +261,7 @@ def main():
             name=directory+'/'+n;inputs[name]=helper.sha(ROOT/name)
     outputs=('FINDINGS.md','STRETCHES.md','current-stretches.csv','stretch-analytics.csv','fit-analytics.csv','shared-leg-pairs.csv','ANALYTICS.md')
     receipt=dict(publication_builder=str(Path(__file__).relative_to(ROOT)),inputs=inputs,
-        sources={str(p.relative_to(ROOT)):helper.sha(p) for p in (Path(__file__),ROOT/'docs/build_current_status.py')},
+        sources={str(p.relative_to(ROOT)):helper.sha(p) for p in (Path(__file__),ROOT/'docs/build_current_status.py',ROOT/'analysis/lll/studies/tables.py')},
         artifacts={n:helper.sha(HERE/n) for n in outputs},tally=snapshot['tally'],observed_starts=0,native_predictions=0,original_files_read=0)
     (HERE/'findings-receipt.json').write_text(json.dumps(receipt,indent=2,sort_keys=True)+'\n')
     print(json.dumps(dict(tally=snapshot['tally'],fit_attempts=len(fits),observed_starts=0)))

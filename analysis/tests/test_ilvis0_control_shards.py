@@ -20,7 +20,7 @@ ROOT=Path(__file__).resolve().parents[2]
 def workspace():return tempfile.TemporaryDirectory()
 
 
-def fixture(root,workers=4,stop_after_failure=False):
+def fixture(root,workers=4,stop_after_failure=False,accounting_format='receipts-v1'):
     project=root/'project';project.mkdir();(project/'adapter.py').write_text('# fixture only\n')
     (project/'case.json').write_text('{"value":3}\n')
     runner=project/'analysis/tests/ilvis0_control_shards.py';runner.parent.mkdir(parents=True);runner.write_text('# runner fixture\n')
@@ -29,7 +29,7 @@ def fixture(root,workers=4,stop_after_failure=False):
     output=root/'study'
     shards.prepare(output,project_root=project,tasks=tasks,sources=['adapter.py','analysis/tests/ilvis0_control_shards.py'],inputs={'case':'case.json'},
         adapter='adapter.py',workers=workers,threads=1,maximum_wall_s=60,environment=shards.runtime_environment(),
-        stop_after_failure=stop_after_failure)
+        stop_after_failure=stop_after_failure,accounting_format=accounting_format)
     return output,project,tasks
 
 

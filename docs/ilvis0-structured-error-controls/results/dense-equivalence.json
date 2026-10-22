@@ -1,1 +1,0 @@
-{"columns":27,"dense_max_error":1.1102230246251565e-15,"epochs":16,"identity":"dense-equivalence","inverse_max_error":4.440892098500626e-16,"logdet_error":1.4210854715202004e-14,"marginal_max_error":1.1379786002407855e-15,"passed":true,"projection_max_error":6.661338147750939e-16,"setup_s":0.0038089880254119635,"whole_whiten_s":0.0007716580294072628}

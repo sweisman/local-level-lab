@@ -7,8 +7,11 @@ import hashlib
 import importlib.util
 import json
 from pathlib import Path
+import sys
 
 ROOT=Path(__file__).resolve().parents[1]
+sys.path.insert(0,str(ROOT/'analysis'))
+from lll.studies.readers import read as evidence_read
 FINDINGS='docs/ilvis0-current-findings-20261015'
 START='<!-- current-status:start -->'
 END='<!-- current-status:end -->'
@@ -19,6 +22,9 @@ def sha_bytes(data): return hashlib.sha256(data).hexdigest()
 
 
 def sha(path):
+    path=Path(path)
+    if not path.is_file() and path.is_relative_to(ROOT):
+        return sha_bytes(evidence_read(ROOT,str(path.relative_to(ROOT))))
     digest=hashlib.sha256()
     with path.open('rb') as stream:
         for chunk in iter(lambda:stream.read(1024*1024),b''): digest.update(chunk)
@@ -38,7 +44,10 @@ def public_path(root,name):
 def verify_inputs(root,inputs):
     for name,digest in inputs.items():
         path=public_path(root,name)
-        if not path.is_file() or sha(path)!=digest: raise ValueError('evidence hash mismatch: '+name)
+        try:actual=sha(path)
+        except FileNotFoundError as error:
+            raise ValueError('missing evidence: '+name) from error
+        if actual!=digest: raise ValueError('evidence hash mismatch: '+name)
 
 
 def summarize(rows):

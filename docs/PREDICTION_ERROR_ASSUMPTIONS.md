@@ -37,6 +37,33 @@ or an absolute adequacy criterion for a flight.
 
 ## Shared observation uncertainty
 
+### The eight-minute coordinate-box fixture
+
+The longer generated fixture uses an explicit ±1-metre allowance per training
+coordinate and software width targets of 20 m north, 20 m east and 50 m height.
+Those are development settings, not verified aircraft measurement errors.
+
+The [nonlinear ray audit](ilvis0-ray-probes/INTERPRETATION.md) finds twelve
+calibrations that meet every earlier constraint in a zero-reference fixture.
+Under zero upstream removal, their later north predictions span 21.75 m.
+An interval covering them all cannot meet the 20 m width target. This shows
+genuine numerical ambiguity under those coordinate-box assumptions, alongside
+any additional overestimation from a bounding algorithm.
+
+The active long-record study uses different, perturbed training observations;
+the ray result is not its outcome. A model with additional joint error structure
+is also a different problem and needs its own justification. None of these
+software settings establishes aircraft confidence or warrants tightening a
+calibration bound simply to make the target pass.
+
+The [original-observation probes](ilvis0-truth-probes/INTERPRETATION.md)
+check that distinction directly. Six of twelve candidates satisfy the actual
+five-epoch constraints, with sampled north spreads of 13.33 m and 5.90 m.
+These do not exceed the 20 m target, but they are not outer ranges over the
+whole parameter domain. They neither refute that original target nor qualify it.
+
+### Joint error laws
+
 The [shared-scale calculation](ilvis0-shared-reference-scale/MATHEMATICS.md)
 assumes a stated covariance shape and Gaussian errors. Its reference projection
 must be fixed independently of those errors, with positive residual degrees of
@@ -70,6 +97,26 @@ The [longer-study training interface](ilvis0-recording-training-interface/INTERP
 requires an explicit allowance for each observation coordinate. Its 15 focused
 checks prevent the short example's 1 mm allowance from becoming a silent default.
 Supplying an allowance remains an assumption that needs justification.
+
+The [combined error operator](ilvis0-joint-error-operator/README.md) now passes
+15 focused checks against the dense reference, including a prediction at
+438 seconds. It keeps receiver and accumulated IMU error correlated across
+the split without storing a whole-record covariance matrix. The supplied
+constant-coupling linear error law still needs justification for aircraft use;
+these software checks do not establish empirical coverage.
+
+The [simultaneous-allowance component](ilvis0-gaussian-allowances/README.md)
+connects supplied Gaussian variance and scale bounds to per-coordinate training
+and future allowances. Its probability budget covers all declared coordinates
+together, without requiring independence. All six small staged model/processing
+cases pass; the real error law and the supplied variance bounds remain separate
+requirements.
+
+The [exact marginal-variance bounds](ilvis0-joint-variance-bounds/README.md)
+include the declared clock interval and fixed receiver/inertial origins under
+the linear law. Twelve checks pass, including all 147 later noise epochs.
+That supplies checked variance arithmetic for this law; it does not qualify
+the physical predictions at every epoch or establish the aircraft error law.
 
 ## Before applying the method to aircraft predictions
 

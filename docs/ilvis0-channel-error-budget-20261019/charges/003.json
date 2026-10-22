@@ -1,1 +1,0 @@
-{"allowance":{"constructed_increments":0,"force_evaluations":168,"quadrature_evaluations":0},"degree":2,"half_window_s":8,"identity":"trajectory::sphere_rotating::p2::w8::n1","kind":"trajectory","manifest_sha256":"5f2deb2cf27ea1e2595a3a57afa02da366eba318de4f1277aa2f7fc2a20e229e","model":"sphere_rotating","noise_multiplier":1.0}

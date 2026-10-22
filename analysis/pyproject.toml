@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "lll"
 dynamic = ["version"]
-description = "Local Level Lab: analysis of crowdsourced in-flight IMU recordings"
+description = "Local Level Lab: archival airborne IMU analysis and stationary replication"
 license = "AGPL-3.0-or-later"
 authors = [{ name = "Scott Weisman" }]
 requires-python = ">=3.11"
@@ -17,8 +17,9 @@ test = ["pytest"]
 [project.scripts]
 lll = "lll.cli:main"
 
-[tool.setuptools]
-packages = ["lll"]
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["lll", "lll.*"]
 
 [tool.setuptools.dynamic]
 version = {attr = "lll.__version__"}

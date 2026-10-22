@@ -21,6 +21,6 @@ These are numerical model preferences; statistical significance is not yet calib
 
 This snapshot is generated from published, hash-verified result ledgers and their qualified per-stretch comparisons. It excludes active workers and incomplete publications. The original [first-pass report](ilvis0-highspeed-segments-20261008/FINDINGS.md) and preserved trial reports describe their own historical stages; their earlier totals remain unchanged.
 
-Snapshot receipt SHA-256: `0363ef15671eebaef4ae2194213d30236992c74698da6e2f2cf0b10dd688fb15`.
+Snapshot receipt SHA-256: `8a2165c80a4a524b66dc75e86a171dfe5be9a525c41331381282e5a4edadade3`.
 
 Reproduce with `~/venv/bin/python docs/build_current_status.py`; `--check` verifies the evidence and checks this page and the landing-page excerpts without writing. Only published metadata is read; no original IMU files, model refits or numerical predictions are needed.

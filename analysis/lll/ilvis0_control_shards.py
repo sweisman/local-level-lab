@@ -64,9 +64,10 @@ def _tasks(tasks,workers):
     return out
 
 
-def prepare(output,*,project_root,tasks,sources,inputs,adapter,workers=4,threads=1,maximum_wall_s=3600,environment,stop_after_failure=False):
+def prepare(output,*,project_root,tasks,sources,inputs,adapter,workers=4,threads=1,maximum_wall_s=3600,environment,stop_after_failure=False,accounting_format='receipts-v1'):
     output=Path(output);project=Path(project_root).resolve();budget=allocation(workers=workers,threads=threads,reserved=0)
     tasks=_tasks(tasks,workers)
+    if accounting_format not in ('receipts-v1','sqlite-v1'):raise ValueError('unsupported accounting format')
     if (output.exists() or not math.isfinite(maximum_wall_s) or maximum_wall_s<=0
             or not isinstance(environment,dict) or adapter not in sources or not sources or len(set(sources))!=len(sources)
             or type(stop_after_failure) is not bool):
@@ -89,6 +90,7 @@ def prepare(output,*,project_root,tasks,sources,inputs,adapter,workers=4,threads
         allocation=budget,numerical_environment=thread_environment(workers=workers,threads=threads),environment=environment,
         limits=dict(totals,maximum_identities=len(tasks),maximum_wall_s=float(maximum_wall_s)),
         stop_after_failure=stop_after_failure,scientific_decision='abstain',scope='generated software controls only')
+    if accounting_format!='receipts-v1':manifest['accounting_format']=accounting_format
     _write(output/'manifest.json',manifest)
     _write(output/'authorization.json',dict(manifest_sha256=_sha(output/'manifest.json'),limits=manifest['limits']))
     for shard in range(workers):
@@ -124,7 +126,12 @@ def _directory(root,manifest,shard):
 
 def _journal(root,manifest,shard):
     assigned=[t for t in manifest['tasks'] if t['shard']==shard]
-    return Ledger(_directory(root,manifest,shard),_sha(Path(root)/'manifest.json'),[t['identity'] for t in assigned],
+    ledger=Ledger
+    if manifest.get('accounting_format')=='sqlite-v1':
+        from .studies.journal import IndexedLedger
+        ledger=IndexedLedger
+    elif manifest.get('accounting_format','receipts-v1')!='receipts-v1':raise ValueError('unsupported accounting format')
+    return ledger(_directory(root,manifest,shard),_sha(Path(root)/'manifest.json'),[t['identity'] for t in assigned],
         fit_limit=max(1,max(t['limits']['native_calls'] for t in assigned)),
         diagnostic_limit=max(1,max(t['limits']['bound_calls'] for t in assigned)))
 

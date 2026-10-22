@@ -20,6 +20,8 @@ def publish(data,public,text,*,plan=None):
         for name in ('done.json','worker.log'):
             if (directory/name).is_file():names.add(str((directory/name).relative_to(data)))
         names.update(str(p.relative_to(data)) for p in (directory/'charges').glob('*.json'))
+        if manifest.get('accounting_format')=='sqlite-v1':
+            names.add(str((directory/'charges/journal.sqlite').relative_to(data)))
     for name in sorted(names):
         target=runner.path_within(public,name);target.parent.mkdir(parents=True,exist_ok=True)
         shutil.copyfile(runner.path_within(data,name),target)

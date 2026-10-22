@@ -162,6 +162,11 @@ def bench_compare(a, b) -> dict:
 
 
 def main(argv=None):
+    import sys
+    arguments=list(sys.argv[1:] if argv is None else argv)
+    if arguments[:1]==['studies']:
+        from .studies.runtime import command
+        return command(arguments[1:])
     ap = argparse.ArgumentParser(prog="lll", description="Local Level Lab analysis")
     sub = ap.add_subparsers(dest="cmd", required=True)
     a = sub.add_parser("analyze", help="analyze session zip(s): writes <name>.result.json + <name>.report.html")

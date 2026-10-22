@@ -14,5 +14,6 @@ Keep session history and personal authorization references out of public explana
 - **Hardware:** real captures from the IMUs (`lll bench`) are welcome as test fixtures under `analysis/tests/fixtures/`. They pin the decoder to real bytes.
 - **Data format:** [docs/FORMAT.md](docs/FORMAT.md) is the contract between app, server and analysis. Breaking changes need a `schema_version` bump. Backward-compatible optional metadata and event kinds must be documented; old archives remain immutable and missing metadata stays unknown. External provider tracks remain separate artifacts with their own provenance and terms.
 - **Shared vectors:** `docs/test_vectors.json` holds the model math and hand-built WitMotion packets, and both `analysis/tests` and the Android unit tests check against it. If you change either, update the vectors and both implementations.
-- **Tests:** `pytest analysis/tests server/tests` and `cd android && ./gradlew testDebugUnitTest`.
+- **Study code:** use the [shared study interface](docs/REPRODUCIBILITY.md) and small library evaluators. Preserve historical source and evidence through verified packs; do not copy another study's worker tree.
+- **Tests:** `env PYTHONPATH=analysis ~/venv/bin/python -m lll.studies test` restores archived fixtures, runs the Python suites and compacts the restored copies. Android checks use the installed JDK and the commands in the developer guide.
 - **Licensing:** contributions are accepted under AGPL-3.0-or-later. New source files carry an SPDX header.

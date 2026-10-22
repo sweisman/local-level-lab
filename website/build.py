@@ -147,6 +147,9 @@ def study_context(root,source):
 
 def build(root,output,*,assets,base_path='',navigation=True):
     root=Path(root).resolve();output=Path(output)
+    import sys
+    sys.path.insert(0,str(HERE.parent/'analysis'))
+    from lll.studies.readers import available,read,origin,bundle
     if output.exists(): raise ValueError('website output must be a fresh directory')
     base_path='/'+base_path.strip('/') if base_path.strip('/') else ''
     queue=['README.md'];rendered={};image_paths=set();missing_pages=set();fragments=[]
@@ -156,8 +159,8 @@ def build(root,output,*,assets,base_path='',navigation=True):
         source=queue.pop(0)
         if source in rendered: continue
         path=checked_path(root,source)
-        if not path.is_file(): raise ValueError('required website page is missing: '+source)
-        data=path.read_bytes();sources[source]=hashlib.sha256(data).hexdigest()
+        if not available(root,source): raise ValueError('required website page is missing: '+source)
+        data=read(root,source);sources[source]=hashlib.sha256(data).hexdigest()
         content=data.decode('utf-8')
         md=markdown.Markdown(extensions=['tables','fenced_code','toc','sane_lists',MathExtension()],
                              extension_configs={'toc':{'slugify':slug}},output_format='html')
@@ -166,28 +169,37 @@ def build(root,output,*,assets,base_path='',navigation=True):
             target=local_target(source,url)
             if target is None: return url
             name,parsed=target
-            if '/source-freeze/' in source and not checked_path(root,name).exists():
+            if '/source-freeze/' in source and not available(root,name):
                 # Frozen copies retain original relative links. Prefer a frozen
                 # neighbor; when absent, resolve in the original source context.
                 original=source.split('/source-freeze/',1)[1]
                 fallback=local_target(original,url)
-                if fallback is not None and checked_path(root,fallback[0]).exists():
+                if fallback is not None and available(root,fallback[0]):
                     name,parsed=fallback
             if public_page(name):
                 page=checked_path(root,name)
-                if page.is_file():
+                if available(root,name):
                     if name not in rendered and name not in queue and name!=source: queue.append(name)
                     if parsed.fragment: refs.append(dict(source=source,target=name,fragment=unquote(parsed.fragment)))
                     return urlunsplit(('', '',site_url(name,base_path),parsed.query,parsed.fragment))
                 missing_pages.add(name)
             if tag=='img' and key=='src' and PurePosixPath(name).suffix.lower() in IMAGES:
                 image=checked_path(root,name)
-                if not image.is_file(): raise ValueError('linked image is missing: '+name)
+                if not available(root,name): raise ValueError('linked image is missing: '+name)
                 image_paths.add(name)
                 return urlunsplit(('', '',base_path+'/'+quote(name,safe='/'),parsed.query,parsed.fragment))
             # All data, source files and directory links stay in the repository.
             kind='tree' if parsed.path.endswith('/') else 'blob'
-            link=REPOSITORY+'/'+kind+'/main/'+quote(name,safe='/')
+            revision=origin(root,name)
+            if revision is None:
+                archived=bundle(root,name)
+                if archived is None:
+                    guide='docs/REPRODUCIBILITY.md'
+                    if not available(root,guide):raise ValueError('archive restoration guide is missing')
+                    if guide not in rendered and guide not in queue:queue.append(guide)
+                    return site_url(guide,base_path)+'#inspect-verify-and-restore'
+                return REPOSITORY+'/blob/main/'+archived[0]+'#sha256-'+archived[1]
+            link=REPOSITORY+'/'+kind+'/'+revision+'/'+quote(name,safe='/')
             if kind=='tree': link+='/'
             return urlunsplit(('https','github.com',urlsplit(link).path,parsed.query,parsed.fragment))
         parser=Links(rewrite);parser.feed(body);parser.close();fragments.extend(parser.fragments)
@@ -200,7 +212,9 @@ def build(root,output,*,assets,base_path='',navigation=True):
     for source,page in rendered.items():
         nav=''.join(f'<a href="{site_url(name,base_path)}"'+(' aria-current="page"' if name==source else '')+'>'+html.escape(label)+'</a>' for label,name in NAVIGATION) if navigation else ''
         canonical=DOMAIN+site_url(source)
-        source_url=REPOSITORY+'/blob/main/'+quote(source,safe='/')
+        revision=origin(root,source)
+        source_url=(REPOSITORY+'/blob/'+revision+'/'+quote(source,safe='/') if revision is not None
+            else REPOSITORY+'/blob/main/'+bundle(root,source)[0])
         title=('Local Level Lab — Airborne lidar survey IMU analysis' if source=='README.md'
                else page['title']+' — Local Level Lab')
         title=html.escape(title,quote=True);description=html.escape(DESCRIPTION,quote=True)
@@ -223,7 +237,7 @@ def build(root,output,*,assets,base_path='',navigation=True):
 </body></html>'''
         destination=output/output_path(source);destination.parent.mkdir(parents=True,exist_ok=True);destination.write_text(template)
     for name in image_paths:
-        destination=output/name;destination.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(checked_path(root,name),destination)
+        destination=output/name;destination.parent.mkdir(parents=True,exist_ok=True);destination.write_bytes(read(root,name))
     (output/'.nojekyll').write_text('')
     (output/'robots.txt').write_text('User-agent: *\nAllow: /\nSitemap: '+DOMAIN+'/sitemap.xml\n')
     sitemap='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'

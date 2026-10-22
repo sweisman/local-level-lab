@@ -1,1 +1,0 @@
-{"covariance_alternatives":1,"exact_99pct_lower":0.9910458562488609,"generated_artifact":"generated/bounded_nonlinear.json.gz","generated_sha256":"95837832a9618cf7f8e5d52281fd06052c0f2c6b8d26de98d07b4949b2f3d889","identity":"bounded_nonlinear","kind":"coverage","original_parameter_count":4,"passed":true,"realizations":512,"simultaneous_covered":512,"unsupported":0}

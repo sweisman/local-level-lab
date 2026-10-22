@@ -38,7 +38,25 @@ passes all six compatibility cases. A separate
 passes all six numerical cases in 38.5 minutes, but its unconstrained ranges
 remain many kilometres wide. Training-constrained, complete-record prediction
 ranges still need qualification.
+The [eight-minute input check](ilvis0-recording-duration-controls/INTERPRETATION.md)
+now passes all six cases with explicit clock uncertainty. The
+[staged training path](ilvis0-staged-training-controls-v2/INTERPRETATION.md) also
+passes all six small cases, retaining every earlier constraint. The
+[full-history test](ilvis0-long-staged-feasibility-v2/PLAN.md) checks whether
+training can make the long-record ranges useful under the broad bounds.
+The [completed six-case comparison](ilvis0-long-staged-feasibility-v2/README.md)
+retains the known answers but gives **zero useful prediction ranges**.
+All six numerical checks finished; approximation allowances still make the
+ranges far too wide. These generated-data bounds are not measured aircraft
+errors or new model preferences. V01 remains unqualified.
+Its first wrapper rejected valid packet-boundary counters before computing any
+bounds; [those failed starts are preserved](ilvis0-long-staged-feasibility/INTERPRETATION.md).
 No new withheld aircraft prediction fits have run.
+
+The [compiled packet adapter](ilvis0-compiled-path-controls/INTERPRETATION.md)
+passes all six 64-packet cases and all 27 parameter directions. Native values
+and first derivatives fall inside its intervals. This is a verified speed and
+adapter milestone, not useful full-record uncertainty or an error-law qualification.
 
 ## Dependency-ordered backlog
 
@@ -54,7 +72,7 @@ validated.
 | C02 | First | Software checked | [Test which calibration changes can imitate a model difference](ilvis0-scalar-certificate-controls-20261019/INTERPRETATION.md). |
 | C03 | First | Initial check complete | [Include measurement-error assumptions](ilvis0-channel-envelopes-20261019/INTERPRETATION.md) in the accelerometer-only checks. |
 | C04 | First | Initial check complete | [Compare checks without gyroscopes](ilvis0-channel-history-v2-20261019/INTERPRETATION.md). These leave all models possible; they do not reconstruct a complete flight. |
-| V01 | First | **In progress** | [All six short-example cases pass](ilvis0-three-source-complete/INTERPRETATION.md), with complete coverage of all 48 regions. Recording-length bounds and the observation-error model remain. |
+| V01 | First | **In progress; full ranges unqualified** | [Original-observation probes](ilvis0-truth-probes/INTERPRETATION.md) give 13.33 m sampled north spread; the separate zero-reference fixture gives 21.75 m. Neither supplies a useful outer bound. The native adapter passes; full-trajectory/error-law qualification remains open. |
 | V02 | First | Waiting for V01 | Test predictions against measurements excluded from fitting, including height. [Earlier prediction evidence](ilvis0-saved-prediction-comparison/INTERPRETATION.md). |
 | L01 | Next | Software checked | [Process long recordings](ilvis0-streaming-precision/INTERPRETATION.md) without excessive memory use. |
 | E01 | Next | Receiver diagnostic complete; selection still open | [Position-based assessment](esa-position-assessment/INTERPRETATION.md) finds 96 robust quiet-trend checks. These are not eligible stretches; continuous motion and receiver-error validation remain. |
@@ -79,6 +97,10 @@ validated.
 
 Completed studies remain unchanged. A failed check blocks the work that depends
 on it; it does not restart earlier studies or create extra attempts.
+
+Study orchestration and evidence storage use the [shared reproducibility
+interface](REPRODUCIBILITY.md). Historical code and evidence retain their original
+bytes inside verified archives; storage changes do not alter qualification.
 
 [Plain-language next steps](NEXT_STEPS.md) ·
 [Technical requirements and supporting evidence](ANALYSIS_DETAILS.md) ·

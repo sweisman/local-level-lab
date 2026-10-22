@@ -17,25 +17,42 @@ study; receiver positions help constrain the reconstructed flight.
 
 ## Now: make prediction tests meaningful
 
-A good fit uses observations it has already seen. The stronger test is to fit
-one part of a recording and predict another part without using those later
-measurements to adjust the answer.
+The stronger test is to fit an earlier part of a recording, then predict later
+positions—including height—without using them to adjust the answer.
 
-The [short-example error-range check](ilvis0-three-source-complete/INTERPRETATION.md)
-now passes **all six cases and all 48 regions**, under the original target and
-assumptions. It reuses completed calculations and preserves every earlier failure.
+Short software checks pass. The [long-record test](ilvis0-long-staged-feasibility-v2/README.md)
+has now finished all six generated cases. They contain the known answers,
+but **none gives usefully narrow ranges**. The next numerical task is to improve
+those bounds before attempting new predictions on unused aircraft observations.
 
-That check covers a generated 7.2-second example. The next step is to show that
-the ranges remain useful over recording lengths, with an adequate error model
-for both receiver and inertial measurements. The
-[assumption guide](PREDICTION_ERROR_ASSUMPTIONS.md) explains what the present
-software checks establish and what remains.
+Recent checks identified calibration cross-effects that the simplest linear
+calculation omitted. [Correcting the remaining curvature](ilvis0-residual-source-curvature/INTERPRETATION.md)
+reduces mismatch in twelve generated examples to 0.64 m and 3.28 m RMS in the
+two processing cases. This is improved approximation, not a confidence interval.
 
-The [longer-input compatibility check](ilvis0-recording-adapter-controls/README.md)
-passes all six cases. The [50-second growth screen](ilvis0-recording-growth-screen/INTERPRETATION.md)
-also completes all six cases, but its unconstrained ranges remain far too wide.
-The next study must use its own training observations to constrain calibration
-over the complete intended history. New aircraft prediction fits have not started.
+The latest [check against the original noisy observations](ilvis0-truth-probes/INTERPRETATION.md)
+accepts six of twelve candidate calibrations. Their later north predictions
+span **13.33 m** and **5.90 m** in the two processing cases. These sampled
+spreads are not bounds on all possible calibrations.
+
+A separate [zero-reference fixture](ilvis0-ray-probes/INTERPRETATION.md)
+admits **21.75 m** north separation despite earlier agreement within 1 m.
+That fixture cannot meet its 20 m width target by improving arithmetic alone.
+The two problems have different observations; their results cannot be transferred.
+
+A short [native reconstruction comparison](ilvis0-path-native-controls/README.md)
+passes all six generated cases and all 27 parameter directions. Full-trajectory
+and clock treatment still need qualification, along with the receiver/IMU
+error model. The width targets and earlier failures remain unchanged.
+
+The [compiled packet calculation](ilvis0-compiled-path-packets/README.md)
+passes ten local checks. A separately frozen native comparison checks longer
+prefixes: all six cases pass across 64 packets and all 27 parameters in 57
+seconds. Full-record bounds remain the next requirement.
+
+New aircraft prediction fits have not started. The 53-stretch findings are
+unchanged. [Completion requirements](ilvis0-long-staged-feasibility-v2/V01_GATES.md)
+explain what must pass; the [study record](STUDIES.md) preserves earlier results.
 
 ## Then: four larger tests
 
@@ -61,5 +78,5 @@ check prediction performance, but they cannot become an untouched independent
 confirmation. That is the purpose of the reserved ESA flights.
 
 [Roadmap and task status](ANALYSIS_ROADMAP.md) ·
-[Method](METHODOLOGY.md) · [Completed studies](STUDIES.md) ·
+[Method](METHODOLOGY.md) · [Completed studies](STUDIES.md) · [Reproducibility](REPRODUCIBILITY.md) ·
 [Rotation-field proposal](ROTATION_FIELD.md).

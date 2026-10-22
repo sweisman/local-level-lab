@@ -15,6 +15,11 @@ progress counts, session histories, personal commentary or process IDs.
 - Leave unfamiliar paths outside the documented project corpus alone. Do not scan,
   document, ignore or stage them, or inspect unrelated credentials.
 - Run shell steps separately, without command chains or output-trimming pipelines.
+- New studies use `lll.studies` for lifecycle and evidence storage, with small
+  definitions/evaluators calling shared library components. Do not copy a whole
+  worker or library tree to create a new study. Preserve historical code through
+  verified archives; restore its frozen dependencies rather than substituting
+  current source. See `docs/REPRODUCIBILITY.md`.
 - Use `~/venv/bin/python` and its pip. For Java, use `~/.local/jdk21` and set
   `JAVA_HOME` accordingly.
 

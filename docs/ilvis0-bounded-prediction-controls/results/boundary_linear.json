@@ -1,1 +1,0 @@
-{"covariance_alternatives":1,"exact_99pct_lower":0.9910458562488609,"generated_artifact":"generated/boundary_linear.json.gz","generated_sha256":"2e91258bfb2616e0f0aba785586e74986633b565b07e62ff6990456b2c9e8e22","identity":"boundary_linear","kind":"coverage","original_parameter_count":4,"passed":true,"realizations":512,"simultaneous_covered":512,"unsupported":0}

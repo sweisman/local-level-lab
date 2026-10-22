@@ -1,6 +1,6 @@
 {
   "artifacts": {
-    "ANALYTICS.md": "b0053627cc7d38db33dce336a8a2d091af4c85e339f1da008119f94a907fc192",
+    "ANALYTICS.md": "13e04fff9cbda6fc7faa24c1769f177db95886b2678652bc0785483125ad3a31",
     "FINDINGS.md": "dd6a4a8c33cc79326e34687cd25ba9cb7074daa7607cffe429e7c5708a0440a0",
     "STRETCHES.md": "9fdfacbbb922bbec5a978d7175cd109d31de4a2673ef4e8c213816558fb3ae8a",
     "current-stretches.csv": "7f41d5c4ea5bb8b76c5daf069631bfdf7cd3531ad0e7491147686267c87ac51e",
@@ -71,8 +71,9 @@
   "original_files_read": 0,
   "publication_builder": "docs/ilvis0-current-findings-20261015/build_report.py",
   "sources": {
-    "docs/build_current_status.py": "25d60d925abbbe32f972cfa13b0b24a2bf2badf2492d6dc96290e5d1f0065fb3",
-    "docs/ilvis0-current-findings-20261015/build_report.py": "2772dace6581dec00bf748f4fe04f37953768e2b693c1c0e6c3c56cbeb20af8a"
+    "analysis/lll/studies/tables.py": "303a2e5be35f8f5bfe3c1267bce61d5d7cd09ad63dff65ace6b08cef7052403d",
+    "docs/build_current_status.py": "254cd2bac1fe64afa52e9eed71898584ba7b603ea1b36c6f457c56d97137fcb8",
+    "docs/ilvis0-current-findings-20261015/build_report.py": "7fc512d7f8f0d660a4208988dc345264feb42e2caca009e18d53edadd0321245"
   },
   "tally": {
     "ambiguous": 0,

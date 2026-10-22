@@ -1,1 +1,0 @@
-{"error":"result serialization raised TypeError for duplicate identity/kind fields; no observed stage executed","identity":"control-00","kind":"control","mathematical_control_result_persisted":false,"passed":false,"scientific_decision":"abstain","status":"error"}

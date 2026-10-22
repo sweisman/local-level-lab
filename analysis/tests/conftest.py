@@ -43,7 +43,7 @@ def generated_worker_fixtures(request, monkeypatch):
 
 
 @pytest.fixture(autouse=True)
-def published_worker_fixtures(request,monkeypatch):
+def published_worker_fixtures(request,monkeypatch,tmp_path_factory):
     """Use sealed public metadata for the six local-runtime integration tests."""
     from pathlib import Path
     names={'test_ilvis0_final_pair_v2_worker.py','test_ilvis0_last_field_worker.py',
@@ -54,7 +54,7 @@ def published_worker_fixtures(request,monkeypatch):
     import builtins
     import io
     from public_fixtures import public_read_path,read_adapter
-    remap=public_read_path(root)
+    remap=public_read_path(root,temporary_root=tmp_path_factory.getbasetemp())
     monkeypatch.setattr(builtins,'open',read_adapter(builtins.open,remap))
     monkeypatch.setattr(io,'open',read_adapter(io.open,remap))
     if request.path.name=='test_ilvis0_last_free_time_worker.py':

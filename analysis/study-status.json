@@ -683,6 +683,78 @@
     {
       "name": "Fifty-second full-prior bound growth on four-minute inputs",
       "path": "data/ilvis0-recording-growth-screen-20261021"
+    },
+    {
+      "name": "Eight-minute input and uncertain-clock compatibility",
+      "path": "data/ilvis0-recording-duration-controls-20261021"
+    },
+    {
+      "name": "Staged training preserves prior constraints",
+      "path": "data/ilvis0-staged-native-controls-20261021"
+    },
+    {
+      "name": "Staged training with standalone-compatible adapter",
+      "path": "data/ilvis0-staged-native-controls-v2-20261021"
+    },
+    {
+      "name": "Eight-minute staged training prediction feasibility",
+      "path": "data/ilvis0-long-staged-feasibility-20261021"
+    },
+    {
+      "name": "Eight-minute staged training with checked packet boundaries",
+      "path": "data/ilvis0-long-staged-feasibility-v2-20261021"
+    },
+    {
+      "name": "Conditional force-remainder native qualification",
+      "path": "data/ilvis0-remainder-native-controls-20261021"
+    },
+    {
+      "name": "Saved five-epoch linear training leverage",
+      "path": "data/ilvis0-linear-leverage-20261021"
+    },
+    {
+      "name": "Full-history sparse versus dense training geometry",
+      "path": "data/ilvis0-training-density-20261021"
+    },
+    {
+      "name": "Nonlinear training check of fixed affine proposals",
+      "path": "data/ilvis0-density-native-probes-20261021"
+    },
+    {
+      "name": "Saved fixed-probe shared-source map attribution",
+      "path": "data/ilvis0-probe-shared-map-audit-20261021"
+    },
+    {
+      "name": "Saved endpoint derivative curvature decomposition",
+      "path": "data/ilvis0-endpoint-curvature-20261021"
+    },
+    {
+      "name": "Saved curvature after shared calibration source terms",
+      "path": "data/ilvis0-residual-source-curvature-20261021"
+    },
+    {
+      "name": "All27 derivative packet-adapter qualification",
+      "path": "data/ilvis0-path-native-controls-20261021"
+    },
+    {
+      "name": "Training-selected nonlinear ray probes",
+      "path": "data/ilvis0-ray-probes-20261021"
+    },
+    {
+      "name": "Ambiguity under original long-study observations",
+      "path": "data/ilvis0-truth-probes-20261021"
+    },
+    {
+      "name": "Compiled64-packet all27-column adapter controls",
+      "path": "data/ilvis0-compiled-path-controls-20261021"
+    },
+    {
+      "name": "One-step ambiguity repair against original training observations",
+      "path": "data/ilvis0-training-repair-20261021"
+    },
+    {
+      "name": "Native packet-clock boundary adapter controls",
+      "path": "data/ilvis0-clock-path-controls-20261021"
     }
   ]
 }

@@ -1,0 +1,11 @@
+{
+  "sources": {
+    "analysis/lll/studies/benchmarks.py": "3e1e764d621be1be90ea21f437613134a3268c0ea0b03de2e58bf4ad10a2764f",
+    "analysis/lll/studies/journal.py": "bdef90b97d270bd5317fbfc81851af5b5ce65b497e24e33b590fafdb9f8bd815",
+    "analysis/lll/ilvis0_receipt_journal.py": "8f4bebba3b1f0acaae6a80894f5c3c61cadd8ec259ab6bba02da1572589d4df9"
+  },
+  "results_sha256": "0b728567189bb09f53ef7afef40e435411ab30d3794f5a1801876032c7557b32",
+  "executions": 12,
+  "native_calls": 0,
+  "source_archive_sha256": "d60307a0603471ac38312bc8b7601e166189b7c0af3230ba241f94ee6a420728"
+}

@@ -12,7 +12,7 @@ constrain the reconstructed track.
 [Verified current findings](CURRENT_STATUS.md) ·
 [All 53 stretches](ilvis0-current-findings-20261015/STRETCHES.md) ·
 [Comprehensive CSV](ilvis0-current-findings-20261015/stretch-analytics.csv) ·
-[Next analyses](NEXT_STEPS.md).
+[Next analyses](NEXT_STEPS.md) · [Reproduce these studies](REPRODUCIBILITY.md).
 
 ## From recordings to the complete comparison
 
@@ -337,3 +337,55 @@ these observations or to the stationary experiment.
 [Accumulated inertial-error component](ilvis0-inertial-error-controls/INTERPRETATION.md): all 28 software checks pass against an independent continuous-time reference, adding an explicitly assumed IMU-noise contribution alongside receiver error; the real observation-error law remains unqualified.
 
 [Explicit training-error interface](ilvis0-recording-training-interface/INTERPRETATION.md): all 15 focused checks pass, requiring longer studies to declare each observation allowance instead of inheriting the short example's fixed 1 mm.
+
+[Eight-minute input and clock checks](ilvis0-recording-duration-controls/INTERPRETATION.md): all six cases pass in 109 seconds, preserving the original prefix and exact API agreement with an explicitly expanded ±1-second clock bound; full-horizon uncertainty remains open.
+
+[Staged training controls](ilvis0-staged-training-controls-v2/INTERPRETATION.md): all six small cases pass in 94 seconds, retaining every earlier observation constraint and checking the prediction endpoints independently; the separate full-history usefulness test follows.
+
+[Full-history prediction feasibility](ilvis0-long-staged-feasibility-v2/README.md): all six numerical cases finish and retain the known answers, but none produces useful ranges. The bounding method needs improvement; these generated ranges are not measured aircraft errors.
+
+[Combined receiver/IMU error operator](ilvis0-joint-error-operator/README.md): 15 focused checks agree with the dense reference through 438 seconds while retaining training/future correlation and all 27 columns; the assumed error law is not yet established for aircraft recordings.
+
+[Simultaneous observation allowances](ilvis0-gaussian-allowances/README.md): 15 component checks and all six small staged model/processing cases pass, sharing one probability budget across training and future errors without assuming independence; aircraft noise-law justification remains open.
+
+[Clock-aware variance bounds](ilvis0-joint-variance-bounds/README.md): 12 checks and all six updated staged integration cases pass with exact variance arithmetic over the declared clock interval; the error law remains an explicit assumption, and the long-record model-prediction test is unchanged.
+
+[Conditional force remainder](ilvis0-conditional-remainder/README.md): a checked algebraic bound reduces the first pair's force Taylor remainder from 53.2 to about 6.1 m/s² without changing calibration bounds or shared coefficients.
+
+[Conditional remainder in numerical integration](ilvis0-remainder-native-controls/README.md): all twelve fixed controls pass in 15.3 minutes, preserving the broad calibration and clock domain, shared coefficients and every known probe. Long-record usefulness remains a separate requirement.
+
+[Five-epoch training leverage](ilvis0-linear-leverage/INTERPRETATION.md): saved linear calculations admit 420–1,068 m of horizontal variation within the training constraints. This identifies sparse training coverage as another issue to address; no new integration or aircraft fit was run.
+
+[Training density](ilvis0-training-density/INTERPRETATION.md): all six diagnostics pass their numerical checks; 292 training epochs narrow the linear ranges, but none meets the unchanged prediction-width targets. The next question is whether the large linear variations survive the nonlinear training constraints.
+
+[Nonlinear training check](ilvis0-density-native-probes/INTERPRETATION.md): all twelve diagnostics complete; every proposed calibration fails the full nonlinear training constraints. This shows that the sampled large linear variations are not demonstrated nonlinear ambiguity; no aircraft fit was run.
+
+[Shared calibration terms](ilvis0-probe-shared-map-audit/INTERPRETATION.md): saved comparisons improve for all twelve probes when the retained calibration cross-effects are included. Largest residual mismatches fall from 845 to 48 m and from 3,955 to 216 m; uncertainty bounds remain unqualified.
+
+[Endpoint derivative check](ilvis0-endpoint-curvature/INTERPRETATION.md): the saved derivative average is worse than the shared-source expression in ten of twelve probes. It is not a replacement; the next audit isolates curvature after the existing source terms.
+
+[Residual-source curvature](ilvis0-residual-source-curvature/INTERPRETATION.md): correcting only the error left after the known calibration terms improves all twelve probes. RMS mismatches fall from 9.07 to 0.64 m and from 45.35 to 3.28 m; a guaranteed bound with clock-boundary treatment remains necessary.
+
+[Piecewise error allowance](ilvis0-piecewise-trapezoid/README.md): fourteen exact-arithmetic checks qualify a mathematical error allowance with explicit derivative and slope jumps. Native derivative bounds and complete clock-boundary coverage remain unverified.
+
+[Calibrated-packet derivatives](ilvis0-calibration-path/README.md): nine checks enclose bias/gain and partial-clock derivatives through third order, including an independent power-series reference. Complete native propagation and clock-partition verification remain open.
+
+[Rotation derivatives](ilvis0-path-jets/README.md): six checks verify exact interval arithmetic, outward dyadic rounding and noncommuting rotation derivatives through third order. Complete trajectory bounds remain open.
+
+[Trajectory-step derivatives](ilvis0-path-motion/README.md): 48 combined checks cover geographic metrics, rotations, midpoint velocity/position updates and outward rounding. Whole-history bounds, clock/branch coverage and native execution error remain unqualified.
+
+[Rotation-switch bounds](ilvis0-rotation-branch-bounds/README.md): three checks enclose both native rotation formulas and their local derivative jumps. Full-history propagation and floating-point execution remain open.
+
+[Native packet adapter](ilvis0-path-native-controls/README.md): all six generated cases pass position and first-derivative comparisons across all 27 parameters; six native queries and 162 interval steps. Full-history uncertainty remains unqualified.
+
+[Compiled derivative arithmetic](ilvis0-path-arithmetic/README.md): seven checks compare outward operations with the rational reference, including extreme scales and subnormals. The motion step and packet adapter each pass ten further local checks.
+
+[Compiled multi-packet adapter](ilvis0-compiled-path-controls/INTERPRETATION.md): all six cases and all 27 parameter directions pass across 64 packets in 57.44 seconds. Native values and first derivatives fall inside every interval; complete-record uncertainty remains unqualified.
+
+[Clock boundaries and residual jumps](ilvis0-clock-branches/README.md): 32 distinct checks preserve packet-boundary ownership, cumulative-time discrepancies and explicit signed jumps, including an eight-minute history. Native trajectory and execution-error bounds remain open.
+
+[One-step ambiguity repair](ilvis0-training-repair/INTERPRETATION.md): all four linear proposals fail the unchanged nonlinear training test; an independent exact saved-position audit confirms the failures. No new feasible alternative or useful width bound follows.
+
+[Nonlinear calibration rays](ilvis0-ray-probes/INTERPRETATION.md): all twelve smaller proposals satisfy earlier ±1 m constraints; the zero-removal north predictions span 21.75 m, exceeding the 20 m target in this generated fixture. An independent saved-position audit confirms feasibility and charges without rerunning trajectories.
+
+[Original-observation probes](ilvis0-truth-probes/INTERPRETATION.md): six of twelve fixed calibrations satisfy the running study’s actual noisy observations; sampled north spreads are 13.33 m and 5.90 m. The independent audit does not transfer the zero-reference counterexample or claim an outer bound.

@@ -1,1 +1,0 @@
-{"hemisphere":"north","identity":"sphere_rotating-north-lower-broad-interior","manifest_sha256":"0c425d6839a5fae83cbddcf6d07082da1c29d2720534bb5484d57aebcc758d4a","maximum_c_calls":65,"maximum_reference_calls":92,"maximum_tangent_calls":1,"model":"sphere_rotating","probes":64,"removal_center":"lower","timing":"interior","width":"broad"}

@@ -16,7 +16,7 @@ an existing virtual environment at `~/venv`; do not install into system Python.
 ~/venv/bin/lll analyze demo.zip
 ~/venv/bin/lll collate . -o collated --include-synthetic
 ~/venv/bin/lll bench session.zip
-~/venv/bin/python -m pytest analysis/tests server/tests
+env PYTHONPATH=analysis ~/venv/bin/python -m lll.studies test
 ```
 
 Synthetic sessions are excluded from ordinary collation; the example explicitly enables them.
@@ -89,6 +89,10 @@ flight collator is not a stationary population estimator; do not apply its thres
 or unit certificates to ground recordings. See [the stationary method](STATIONARY.md).
 
 ## Documentation and reproducibility
+
+The [reproducibility guide](REPRODUCIBILITY.md) describes shared study code,
+verified evidence packs and restoration of historical source layouts. New studies
+use the common `lll.studies` interface rather than copying another worker.
 
 The [public website build](../website/README.md) renders the root README and linked
 Markdown as a GitHub Pages site at locallevellab.com. Data downloads and source files
