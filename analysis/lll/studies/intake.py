@@ -70,7 +70,9 @@ def preserve_completed(source_root,target_root):
             for dependency in sources:
                 if dependency.startswith(str(public.relative_to(source_root))+'/') and (source_root/dependency).is_file():copy(dependency)
     tracked=subprocess.check_output(['git','ls-files','-z','--','analysis/tests'],cwd=source_root).decode().split('\0')
-    for name in set(tracked)|known_sources.copy():
+    # A previous intake may have registered tests that are not tracked yet.
+    # Their explicit dependencies matter just as much as tracked test paths.
+    for name in set(tracked)|known_sources.copy()|set(copied):
         if not name.startswith('analysis/tests/') or not name.endswith('.py'):continue
         path=safe_path(source_root,name)
         if not path.is_file():continue

@@ -36,7 +36,7 @@ jobs:
       - name: Install website renderer and tests
         run: python -m pip install -r website/requirements.txt pytest==9.1.1
       - name: Test website build
-        run: python -m pytest website/tests -q
+        run: env PYTHONPATH=analysis python -m pytest website/tests -q
       - name: Build public documentation
         run: python website/build.py --output _site
       - name: Configure Pages
