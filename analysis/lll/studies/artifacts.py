@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 """Lossless content-addressed ZIP packs; original evidence bytes never change."""
 import hashlib
+import gzip
 import json
 import os
 from pathlib import Path, PurePosixPath
@@ -49,20 +50,46 @@ def safe_path(root,name):
 class ArchiveStore:
     def __init__(self,root):
         self.root=Path(root).resolve();self.directory=self.root/'repro'
-        self.catalog_path=self.directory/'catalog.json';self._opened={}
+        self.catalog_path=self.directory/'catalog.json.gz';self._opened={}
 
-    def catalog(self):
-        if not self.catalog_path.exists():
-            if self.catalog_path.with_suffix('.sha256').exists() or (self.directory/'packs').exists():
-                raise ValueError('missing archive catalog')
-            return dict(version=VERSION,paths={},objects={},packs={})
-        raw=self.catalog_path.read_bytes()
-        try:expected=self.catalog_path.with_suffix('.sha256').read_text().strip()
+    def _catalog_file(self,path,*,compressed=False):
+        raw=path.read_bytes()
+        try:expected=path.with_suffix('.sha256').read_text().strip()
         except OSError as error:raise ValueError('missing catalog checksum') from error
         if digest(raw)!=expected:raise ValueError('catalog checksum mismatch')
-        result=json.loads(raw)
-        if result.get('version')!=VERSION:raise ValueError('unsupported archive catalog')
+        try:result=json.loads(gzip.decompress(raw) if compressed else raw)
+        except (OSError,EOFError,ValueError) as error:raise ValueError('invalid archive catalog') from error
+        if not isinstance(result,dict) or result.get('version')!=VERSION:raise ValueError('unsupported archive catalog')
         return result
+
+    def catalog(self):
+        legacy=self.directory/'catalog.json'
+        if self.catalog_path.exists():
+            result=self._catalog_file(self.catalog_path,compressed=True)
+            if legacy.exists() and self._catalog_file(legacy)!=result:
+                raise ValueError('conflicting archive catalogs')
+            return result
+        if self.catalog_path.with_suffix('.sha256').exists():raise ValueError('missing archive catalog')
+        if legacy.exists():return self._catalog_file(legacy)
+        if legacy.with_suffix('.sha256').exists() or (self.directory/'packs').exists():
+            raise ValueError('missing archive catalog')
+        return dict(version=VERSION,paths={},objects={},packs={})
+
+    def save_catalog(self,catalog):
+        # Validate the existing index before migration or replacement. A crash may
+        # leave two equivalent formats; conflicting copies must never be hidden.
+        self.catalog()
+        self._write_catalog(catalog)
+
+    def _write_catalog(self,catalog):
+        raw=gzip.compress(encoded(catalog),compresslevel=6,mtime=0)
+        atomic(self.catalog_path,raw)
+        atomic(self.catalog_path.with_suffix('.sha256'),(digest(raw)+'\n').encode())
+        if self._catalog_file(self.catalog_path,compressed=True)!=catalog:
+            raise ValueError('catalog round-trip mismatch')
+        legacy=self.directory/'catalog.json'
+        if legacy.exists():
+            legacy.unlink();legacy.with_suffix('.sha256').unlink()
 
     def _archive(self,name,catalog,*,fresh=False):
         path=safe_path(self.directory,name)
@@ -130,7 +157,7 @@ class ArchiveStore:
             catalog['packs'][name]=pack_sha
             for sha,_ in batch:catalog['objects'][sha]=name
         catalog['paths'].update(records)
-        raw=encoded(catalog);atomic(self.catalog_path,raw);atomic(self.catalog_path.with_suffix('.sha256'),(digest(raw)+'\n').encode())
+        self._write_catalog(catalog)
         self.verify()
         return dict(paths=len(records),new_objects=len(new),packs=len(batches))
 

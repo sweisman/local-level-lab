@@ -25,6 +25,11 @@ has now finished all six generated cases. They contain the known answers,
 but **none gives usefully narrow ranges**. The next numerical task is to improve
 those bounds before attempting new predictions on unused aircraft observations.
 
+A [saved-allowance audit](ilvis0-proof-budget-audit/README.md) now points to
+the position-reconstruction calculation: it contributes over 99.999% of one
+reported safety allowance in all six cases. The next task is to trace that
+growth through the coordinate transformations, keeping the physical bounds fixed.
+
 Recent checks identified calibration cross-effects that the simplest linear
 calculation omitted. [Correcting the remaining curvature](ilvis0-residual-source-curvature/INTERPRETATION.md)
 reduces mismatch in twelve generated examples to 0.64 m and 3.28 m RMS in the

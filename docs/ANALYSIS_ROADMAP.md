@@ -49,6 +49,9 @@ retains the known answers but gives **zero useful prediction ranges**.
 All six numerical checks finished; approximation allowances still make the
 ranges far too wide. These generated-data bounds are not measured aircraft
 errors or new model preferences. V01 remains unqualified.
+A [six-case saved audit](ilvis0-proof-budget-audit/README.md) locates over 99.999%
+of the reported unshared allowance in the position-reconstruction term. The next
+diagnostic will trace its coordinate transformations without changing physical bounds.
 Its first wrapper rejected valid packet-boundary counters before computing any
 bounds; [those failed starts are preserved](ilvis0-long-staged-feasibility/INTERPRETATION.md).
 No new withheld aircraft prediction fits have run.

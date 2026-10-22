@@ -25,7 +25,7 @@ def archive_publication(root,data,public):
             names.append(str(original.relative_to(root)))
     store=ArchiveStore(root);packed=store.pack(names);catalog=store.catalog()
     for name in names:catalog['paths'][name]['origin_commit']=None
-    raw=encoded(catalog);atomic(store.catalog_path,raw);atomic(store.catalog_path.with_suffix('.sha256'),(digest(raw)+'\n').encode())
+    store.save_catalog(catalog)
     removed=store.compact(names=names)
     from . import readers
     readers.evidence.cache_clear();readers.archive_directories.cache_clear()

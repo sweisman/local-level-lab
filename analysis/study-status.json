@@ -755,6 +755,10 @@
     {
       "name": "Native packet-clock boundary adapter controls",
       "path": "data/ilvis0-clock-path-controls-20261021"
+    },
+    {
+      "name": "Saved proof-budget audit",
+      "path": "data/ilvis0-proof-budget-audit-20261022"
     }
   ]
 }

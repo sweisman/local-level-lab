@@ -53,7 +53,7 @@ def migrate(root,*,restore_destination,names=None):
     catalog.setdefault('origin_commit',origin)
     if declared:
         for name in names:catalog['paths'][name]['origin_commit']=None
-    raw=encoded(catalog);atomic(store.catalog_path,raw);atomic(store.catalog_path.with_suffix('.sha256'),(digest(raw)+'\n').encode())
+    store.save_catalog(catalog)
     history=root/'repro/migrations';previous=root/'repro/migration.json'
     if previous.exists() and not history.exists():atomic(history/'0001.json',previous.read_bytes())
     number=1+len(list(history.glob('*.json')))

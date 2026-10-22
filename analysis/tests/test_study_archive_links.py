@@ -15,8 +15,7 @@ def fixture(root):
     store=ArchiveStore(root);store.pack(files);store.compact()
     catalog=store.catalog();catalog['origin_commit']='a'*40
     catalog['paths']['docs/new/source-freeze/code.py']['origin_commit']=None
-    raw=encoded(catalog);atomic(store.catalog_path,raw)
-    atomic(store.catalog_path.with_suffix('.sha256'),(digest(raw)+'\n').encode())
+    store.save_catalog(catalog)
     return store,catalog
 
 

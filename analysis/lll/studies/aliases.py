@@ -38,6 +38,6 @@ def index_local_duplicates(root,source_root):
                 catalog['paths'][name+'/'+relative]=dict(sha256=record['sha256'],size=len(raw),mode=path.stat().st_mode&0o777)
                 added+=1
             break
-    raw=encoded(catalog);atomic(store.catalog_path,raw);atomic(store.catalog_path.with_suffix('.sha256'),(digest(raw)+'\n').encode())
+    store.save_catalog(catalog)
     return dict(local_duplicate_aliases=added,matched_completed_studies=matched,
         different_members_preserved=different,unknown_paths_inspected=False)

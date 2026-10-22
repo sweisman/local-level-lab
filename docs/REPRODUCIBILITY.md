@@ -88,6 +88,11 @@ Historical studies continue to identify exactly which version they used.
 
 The archive catalog maps original paths to SHA-256 hashes and immutable ZIP
 packs. A complete verification checks both pack and individual-object hashes.
+The catalog is stored as deterministic `repro/catalog.json.gz`, with a SHA-256
+checksum of the compressed file. The shared reader also accepts the earlier
+uncompressed catalog; the next catalog write verifies and replaces that index
+with its compressed equivalent. Evidence packs and original measurements stay
+unchanged.
 Migration restores and compares the original files before removing expanded
 duplicates. Current public tables and downloads are kept outside the packs.
 

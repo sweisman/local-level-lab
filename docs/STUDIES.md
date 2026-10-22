@@ -344,6 +344,11 @@ these observations or to the stationary experiment.
 
 [Full-history prediction feasibility](ilvis0-long-staged-feasibility-v2/README.md): all six numerical cases finish and retain the known answers, but none produces useful ranges. The bounding method needs improvement; these generated ranges are not measured aircraft errors.
 
+[Saved prediction-budget audit](ilvis0-proof-budget-audit/README.md): all six
+saved cases pass their hash and arithmetic checks. The position-reconstruction
+term accounts for over 99.999% of the reported unshared allowance in every axis.
+This identifies the next diagnostic target without qualifying the prediction ranges.
+
 [Combined receiver/IMU error operator](ilvis0-joint-error-operator/README.md): 15 focused checks agree with the dense reference through 438 seconds while retaining training/future correlation and all 27 columns; the assumed error law is not yet established for aircraft recordings.
 
 [Simultaneous observation allowances](ilvis0-gaussian-allowances/README.md): 15 component checks and all six small staged model/processing cases pass, sharing one probability budget across training and future errors without assuming independence; aircraft noise-law justification remains open.
