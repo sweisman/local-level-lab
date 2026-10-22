@@ -11,7 +11,7 @@ older supported interpreters need compatible dependency versions instead. These 
 an existing virtual environment at `~/venv`; do not install into system Python.
 
 ```sh
-~/venv/bin/python -m pip install -r requirements-lock.txt -e analysis -e server
+~/venv/bin/python -m pip install -r requirements-lock.txt -r website/requirements.txt -e analysis -e server
 ~/venv/bin/lll synth demo.zip --truth sphere_rotating
 ~/venv/bin/lll analyze demo.zip
 ~/venv/bin/lll collate . -o collated --include-synthetic

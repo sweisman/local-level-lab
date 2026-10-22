@@ -37,6 +37,9 @@ not an unchanged continuation.
 The shared test command restores archived fixtures, runs the local suites and
 compacts the restored copies after they finish:
 
+Install the [development requirements](DEVELOPMENT.md) first. The suite also
+uses the separately pinned website renderer to check links into archived evidence.
+
 ```sh
 env PYTHONPATH=analysis ~/venv/bin/python -m lll.studies test
 ```

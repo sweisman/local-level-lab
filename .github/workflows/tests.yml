@@ -13,6 +13,6 @@ jobs:
         with:
           python-version: "3.14"
       - name: Install the pinned environment
-        run: pip install -r requirements-lock.txt -e analysis -e server
+        run: pip install -r requirements-lock.txt -r website/requirements.txt -e analysis -e server
       - name: Test
         run: env PYTHONPATH=analysis python -m lll.studies test
