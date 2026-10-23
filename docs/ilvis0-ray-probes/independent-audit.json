@@ -1,0 +1,259 @@
+{
+  "all_feasible": true,
+  "checked_points": 12,
+  "minimum_training_margin_m": 0.14418373402069662,
+  "native_execution_error_qualified": false,
+  "native_queries": 0,
+  "observational_coverage_qualified": false,
+  "optimizer_starts": 0,
+  "original_reads": 0,
+  "outer_uncertainty_bound": false,
+  "rows": [
+    {
+      "feasible": true,
+      "future_change_exact": [
+        "-5080778421832125/562949953421312",
+        "-4348236483643243667993535/2417851639229258349412352",
+        "70456454843/549755813888"
+      ],
+      "identity": "ray-native-probe-0-0-minus",
+      "profile": false,
+      "training_margin_exact": "107988595551031/281474976710656",
+      "training_max_axis_exact": [
+        "173486381159625/281474976710656",
+        "381869815017166778342185/1208925819614629174706176",
+        "27202153685/274877906944"
+      ]
+    },
+    {
+      "feasible": true,
+      "future_change_exact": [
+        "7165151115645125/562949953421312",
+        "3601594586312936998575715/4835703278458516698824704",
+        "-109034593909/137438953472"
+      ],
+      "identity": "ray-native-probe-0-0-plus",
+      "profile": false,
+      "training_margin_exact": "115377568080187/562949953421312",
+      "training_max_axis_exact": [
+        "447572385341125/562949953421312",
+        "1154140589261641467639755/4835703278458516698824704",
+        "62613962925/274877906944"
+      ]
+    },
+    {
+      "feasible": true,
+      "future_change_exact": [
+        "-2954367614685125/562949953421312",
+        "-654114953105279506781855/75557863725914323419136",
+        "475250370331/549755813888"
+      ],
+      "identity": "ray-native-probe-0-1-minus",
+      "profile": false,
+      "training_margin_exact": "44649808237031/281474976710656",
+      "training_max_axis_exact": [
+        "236825168473625/281474976710656",
+        "3884676435428303107839595/4835703278458516698824704",
+        "139845295845/549755813888"
+      ]
+    },
+    {
+      "feasible": true,
+      "future_change_exact": [
+        "29286914406375/17592186044416",
+        "5834023644610918614335955/1208925819614629174706176",
+        "-19570077115/549755813888"
+      ],
+      "identity": "ray-native-probe-0-1-plus",
+      "profile": false,
+      "training_margin_exact": "239583323720937/562949953421312",
+      "training_max_axis_exact": [
+        "323366629700375/562949953421312",
+        "1278476176201678154390595/2417851639229258349412352",
+        "60553749781/549755813888"
+      ]
+    },
+    {
+      "feasible": true,
+      "future_change_exact": [
+        "-574391112659625/281474976710656",
+        "9417324672845824809293795/2417851639229258349412352",
+        "-78394826485/549755813888"
+      ],
+      "identity": "ray-native-probe-0-2-minus",
+      "profile": false,
+      "training_margin_exact": "42919846899203/140737488355328",
+      "training_max_axis_exact": [
+        "97817641456125/140737488355328",
+        "16261380595994121361575/151115727451828646838272",
+        "16038654859/137438953472"
+      ]
+    },
+    {
+      "feasible": true,
+      "future_change_exact": [
+        "-577671046807125/562949953421312",
+        "-10779648037483138704037345/2417851639229258349412352",
+        "478543661595/549755813888"
+      ],
+      "identity": "ray-native-probe-0-2-plus",
+      "profile": false,
+      "training_margin_exact": "21014167276289/70368744177664",
+      "training_max_axis_exact": [
+        "49354576901375/70368744177664",
+        "424218726184665731017575/4835703278458516698824704",
+        "117310548717/549755813888"
+      ]
+    },
+    {
+      "feasible": true,
+      "future_change_exact": [
+        "-731949766852375/281474976710656",
+        "-19693894222742856564116875/4835703278458516698824704",
+        "228049732889/549755813888"
+      ],
+      "identity": "ray-native-probe-1-0-minus",
+      "profile": true,
+      "training_margin_exact": "414515163820944641566871/1208925819614629174706176",
+      "training_max_axis_exact": [
+        "84862542655375/281474976710656",
+        "794410655793684533139305/1208925819614629174706176",
+        "17912768621/137438953472"
+      ]
+    },
+    {
+      "feasible": true,
+      "future_change_exact": [
+        "1293201153113125/281474976710656",
+        "762357782882738778950385/604462909807314587353088",
+        "49514548183/549755813888"
+      ],
+      "identity": "ray-native-probe-1-0-plus",
+      "profile": true,
+      "training_margin_exact": "64446943627879681065119/302231454903657293676544",
+      "training_max_axis_exact": [
+        "59836912214125/140737488355328",
+        "237784511275777612611425/302231454903657293676544",
+        "62396504119/549755813888"
+      ]
+    },
+    {
+      "feasible": true,
+      "future_change_exact": [
+        "-1421029663225875/562949953421312",
+        "-7033401460982326540988785/1208925819614629174706176",
+        "294175156553/549755813888"
+      ],
+      "identity": "ray-native-probe-1-1-minus",
+      "profile": true,
+      "training_margin_exact": "300471521409420175748761/1208925819614629174706176",
+      "training_max_axis_exact": [
+        "141824038606875/562949953421312",
+        "908454298205208998957415/1208925819614629174706176",
+        "92155441031/549755813888"
+      ]
+    },
+    {
+      "feasible": true,
+      "future_change_exact": [
+        "819210875533375/562949953421312",
+        "12598705424803743716558515/4835703278458516698824704",
+        "49640590885/549755813888"
+      ],
+      "identity": "ray-native-probe-1-1-plus",
+      "profile": true,
+      "training_margin_exact": "1533488447393712325234579/4835703278458516698824704",
+      "training_max_axis_exact": [
+        "15426762494875/70368744177664",
+        "3302214831064804373590125/4835703278458516698824704",
+        "66963004575/549755813888"
+      ]
+    },
+    {
+      "feasible": true,
+      "future_change_exact": [
+        "-529264115540625/562949953421312",
+        "6626465743388152448303425/2417851639229258349412352",
+        "-19118163957/549755813888"
+      ],
+      "identity": "ray-native-probe-1-2-minus",
+      "profile": true,
+      "training_margin_exact": "224843763566437/562949953421312",
+      "training_max_axis_exact": [
+        "338106189854875/562949953421312",
+        "2331615908271300473429375/4835703278458516698824704",
+        "28624029721/274877906944"
+      ]
+    },
+    {
+      "feasible": true,
+      "future_change_exact": [
+        "-1325769275070625/562949953421312",
+        "-225064003061667727474525/37778931862957161709568",
+        "398359833243/549755813888"
+      ],
+      "identity": "ray-native-probe-1-2-plus",
+      "profile": true,
+      "training_margin_exact": "40584113175531/281474976710656",
+      "training_max_axis_exact": [
+        "240890863535125/281474976710656",
+        "3444827491310774650673935/4835703278458516698824704",
+        "27260481981/137438953472"
+      ]
+    }
+  ],
+  "spans": {
+    "profiled_removal": [
+      {
+        "maximum_witness": "ray-native-probe-1-0-plus",
+        "minimum_witness": "ray-native-probe-1-0-minus",
+        "target_exceeded": false,
+        "target_m": 20,
+        "width_exact": "506287729991375/70368744177664",
+        "width_m": 7.19478137499685
+      },
+      {
+        "maximum_witness": "ray-native-probe-1-2-minus",
+        "minimum_witness": "ray-native-probe-1-2-plus",
+        "target_exceeded": false,
+        "target_m": 20,
+        "width_exact": "21030561939334887006673025/2417851639229258349412352",
+        "width_m": 8.69803655365671
+      },
+      {
+        "maximum_witness": "ray-native-probe-1-2-plus",
+        "minimum_witness": "ray-native-probe-1-2-minus",
+        "target_exceeded": false,
+        "target_m": 50,
+        "width_exact": "26092374825/34359738368",
+        "width_m": 0.7593880531203467
+      }
+    ],
+    "zero_removal": [
+      {
+        "maximum_witness": "ray-native-probe-0-0-plus",
+        "minimum_witness": "ray-native-probe-0-0-minus",
+        "target_exceeded": true,
+        "target_m": 20,
+        "width_exact": "6122964768738625/281474976710656",
+        "width_m": 21.75314068871126
+      },
+      {
+        "maximum_witness": "ray-native-probe-0-1-plus",
+        "minimum_witness": "ray-native-probe-0-1-minus",
+        "target_exceeded": false,
+        "target_m": 20,
+        "width_exact": "16299862894295390722845635/1208925819614629174706176",
+        "width_m": 13.482930573433627
+      },
+      {
+        "maximum_witness": "ray-native-probe-0-2-plus",
+        "minimum_witness": "ray-native-probe-0-0-plus",
+        "target_exceeded": false,
+        "target_m": 50,
+        "width_exact": "914682037231/549755813888",
+        "width_m": 1.6637969333369256
+      }
+    ]
+  }
+}

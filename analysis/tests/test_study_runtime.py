@@ -4,6 +4,35 @@ import pytest
 from lll.studies.runtime import Definition, inspect_study, command
 
 
+def test_phase_records_use_distinct_immutable_artifacts(tmp_path):
+    from lll.studies.artifacts import save_phase
+    from lll.ilvis0_control_shards import TaskContext
+    context=object.__new__(TaskContext)
+    context.root=tmp_path;context.shard=0;context.task={'identity':'check'}
+    context.manifest={'allocation':{'workers':1}}
+    context.directory=tmp_path/'artifacts'/'check';context.artifacts={};context.finished=False
+    save_phase(context.save,0,'cold reference',time_s=290.)
+    save_phase(context.save,1,'independent point',time_s=290.)
+    save_phase(context.save,2,'independent point',time_s=438.)
+    assert len(context.artifacts)==3
+    assert json.loads((context.directory/'phase-0000.json').read_text())['phase']=='cold reference'
+    assert json.loads((context.directory/'phase-0002.json').read_text())['time_s']==438.
+    with pytest.raises((ValueError,FileExistsError)):
+        save_phase(context.save,0,'changed phase')
+    with pytest.raises(ValueError):save_phase(context.save,-1,'invalid')
+
+
+def test_report_comparison_matches_exact_serialized_values():
+    from lll.studies.artifacts import reports_equal
+    report={'reference_metric':(1.,2.,3.),'nested':{'current_metric':(4.,5.,6.)}}
+    restored=json.loads(json.dumps(report))
+    assert reports_equal(report,restored)
+    changed=json.loads(json.dumps(report));changed['reference_metric'][0]=1.0000000000000002
+    assert not reports_equal(report,changed)
+    assert not reports_equal({'value':0.},{'value':-0.})
+    assert not reports_equal({'value':1},{'value':1.})
+
+
 def test_definition_requires_finite_limits_and_existing_adapter(tmp_path):
     config=dict(id='test',adapter='analysis/lll/adapter.py',sources=['analysis/lll/adapter.py'],
         inputs={'fixture':'fixture.json'},tasks=[dict(identity='a',input_key='fixture',

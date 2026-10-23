@@ -94,6 +94,24 @@ The [reproducibility guide](REPRODUCIBILITY.md) describes shared study code,
 verified evidence packs and restoration of historical source layouts. New studies
 use the common `lll.studies` interface rather than copying another worker.
 
+Closed six-case prediction comparisons use the shared
+[prediction report helper](../analysis/lll/ilvis0_prediction_publication.py).
+It verifies sealed inputs and results, keeps failed or unfinished cases visible,
+and separates numerical checks from the frozen prediction-width gate. Publication
+preserves the renderer and its hashes in the same evidence archive; it runs no
+integration or fitting and refuses an active or already published study.
+
+The shared [dependency resolver](../analysis/lll/studies/dependencies.py) follows
+declared project imports and quoted headers without scanning unrelated folders.
+After a study closes, `lll.studies.publication.archive_preparation` can compact
+its generated preparation copies. It checks them against the closed input hashes,
+preserves exact archive aliases and refuses inputs outside that preparation directory.
+
+The [prefix-reuse design](ilvis0-long-remainder-feasibility/PREFIX_REUSE_PLAN.md)
+describes a possible reduction in repeated packet work. It remains unimplemented
+and must be compared against independent cold runs before use; current studies
+retain their frozen integration paths.
+
 The [public website build](../website/README.md) renders the root README and linked
 Markdown as a GitHub Pages site at locallevellab.com. Data downloads and source files
 remain on GitHub. Website dependencies and checks are separate from the frozen

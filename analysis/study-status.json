@@ -759,6 +759,110 @@
     {
       "name": "Saved proof-budget audit",
       "path": "data/ilvis0-proof-budget-audit-20261022"
+    },
+    {
+      "name": "Saved calibration-box projection",
+      "path": "data/ilvis0-calibration-box-audit-20261022"
+    },
+    {
+      "name": "Saved calibration-box projection, corrected reference",
+      "path": "data/ilvis0-calibration-box-audit-v2-20261022"
+    },
+    {
+      "name": "Compact static-reference compatibility",
+      "path": "data/ilvis0-static-reference-controls-20261022"
+    },
+    {
+      "name": "Complete static calibration coupling",
+      "path": "data/ilvis0-static-training-coupling-20261022"
+    },
+    {
+      "name": "Prediction-width budget audit",
+      "path": "data/ilvis0-prediction-width-budget-20261022"
+    },
+    {
+      "name": "Prediction-width budget audit, rounding corrected",
+      "path": "data/ilvis0-prediction-width-budget-v2-20261022"
+    },
+    {
+      "name": "Complete-history revised remainder comparison",
+      "path": "data/ilvis0-long-remainder-feasibility-20261022"
+    },
+    {
+      "name": "Nonlinear training-compatible prediction witnesses",
+      "path": "data/ilvis0-nonlinear-witnesses-20261022"
+    },
+    {
+      "name": "Checked local-step generated controls",
+      "path": "data/ilvis0-feasible-step-controls-20261022"
+    },
+    {
+      "name": "Fixed accepted alternatives at dense training times",
+      "path": "data/ilvis0-witness-density-20261022"
+    },
+    {
+      "name": "Saved primary-receiver metadata availability",
+      "path": "data/ilvis0-receiver-metadata-20261022"
+    },
+    {
+      "name": "Saved-trajectory common receiver-law comparison",
+      "path": "data/ilvis0-receiver-distance-20261022"
+    },
+    {
+      "name": "Saved-trajectory joint-noise sensitivity",
+      "path": "data/ilvis0-joint-distance-20261022"
+    },
+    {
+      "name": "Matrix-free joint-error projection controls",
+      "path": "data/ilvis0-joint-projection-controls-20261022"
+    },
+    {
+      "name": "Fixed-summary simultaneous error certificates",
+      "path": "data/ilvis0-summary-error-controls-20261022"
+    },
+    {
+      "name": "Saved native training-summary binding",
+      "path": "data/ilvis0-training-summary-controls-20261022"
+    },
+    {
+      "name": "Typed source-prefix equivalence controls",
+      "path": "data/ilvis0-prefix-source-controls-20261022"
+    },
+    {
+      "name": "Typed source-prefix equivalence, corrected accounting",
+      "path": "data/ilvis0-prefix-source-controls-v2-20261022"
+    },
+    {
+      "name": "Complete native-prefix short controls",
+      "path": "data/ilvis0-native-prefix-controls-20261022"
+    },
+    {
+      "name": "Complete native-prefix controls, closed source dependencies",
+      "path": "data/ilvis0-native-prefix-controls-v2-20261022"
+    },
+    {
+      "name": "Long-record complete native-prefix comparison",
+      "path": "data/ilvis0-native-prefix-long-20261022"
+    },
+    {
+      "name": "Long-record prefix comparison, corrected artifact handling",
+      "path": "data/ilvis0-native-prefix-long-v2-20261022"
+    },
+    {
+      "name": "Initial cached-report recovery: zero-work loader failure",
+      "path": "data/ilvis0-native-prefix-format-recovery-20261023"
+    },
+    {
+      "name": "Cached-report recovery with verified loader",
+      "path": "data/ilvis0-native-prefix-format-recovery-v2-20261023"
+    },
+    {
+      "name": "Independent physical-domain starting bounds",
+      "path": "data/ilvis0-dense-physical-roots-v1-20261023"
+    },
+    {
+      "name": "Full-cadence physical-domain training bounds",
+      "path": "data/ilvis0-dense-physical-bounds-20261023"
     }
   ]
 }

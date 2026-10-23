@@ -18,48 +18,34 @@ The 53 stretches favor globe geometry and the model with a specified background
 rotation signal. These are completed model comparisons. Statistical confidence,
 prediction accuracy and independence between recordings still need testing.
 
-## The immediate obstacle
+## Next: test predictions on unused measurements
 
-The [short-example prediction check](ilvis0-three-source-complete/INTERPRETATION.md)
-now passes **all six cases**, with complete coverage of all 48 regions. It meets
-the original width target without changing physical bounds or error allowances.
-The missing future calculations were completed serially; earlier failures remain
-recorded. [What each study added](STUDIES.md).
+The [revised prediction protocol](PREDICTION_VALIDATION.md) separates a practical
+prediction comparison from formal uncertainty certification. First qualify the
+training-only fitting and prediction pipeline on known-answer controls. Then fit
+earlier observations in a small, metadata-selected archival pilot and score
+later positions without using them to adjust the answer.
 
-That completes the generated **7.2-second** check. We still need useful error
-ranges over complete recording lengths and an adequate observation-error model.
-The [error-assumption guide](PREDICTION_ERROR_ASSUMPTIONS.md) separates calibration,
-approximation, arithmetic, receiver error and inertial noise. These software
-ranges are not yet aircraft confidence intervals.
+Preserve the original physical bounds and compare all three candidates under
+matched assumptions. Use predeclared starts, choose primaries by training cost
+only, and report every failure. Show horizontal and height errors together.
+Differences between repeated predictions are sensitivity evidence, not confidence
+intervals. Actual error-law assessment and calibrated significance remain open.
 
-The [four-minute input adapter](ilvis0-recording-adapter-controls/README.md)
-passes all six compatibility cases. A separate
-[50-second growth screen](ilvis0-recording-growth-screen/INTERPRETATION.md)
-passes all six numerical cases in 38.5 minutes, but its unconstrained ranges
-remain many kilometres wide. Training-constrained, complete-record prediction
-ranges still need qualification.
-The [eight-minute input check](ilvis0-recording-duration-controls/INTERPRETATION.md)
-now passes all six cases with explicit clock uncertainty. The
-[staged training path](ilvis0-staged-training-controls-v2/INTERPRETATION.md) also
-passes all six small cases, retaining every earlier constraint. The
-[full-history test](ilvis0-long-staged-feasibility-v2/PLAN.md) checks whether
-training can make the long-record ranges useful under the broad bounds.
-The [completed six-case comparison](ilvis0-long-staged-feasibility-v2/README.md)
-retains the known answers but gives **zero useful prediction ranges**.
-All six numerical checks finished; approximation allowances still make the
-ranges far too wide. These generated-data bounds are not measured aircraft
-errors or new model preferences. V01 remains unqualified.
-A [six-case saved audit](ilvis0-proof-budget-audit/README.md) locates over 99.999%
-of the reported unshared allowance in the position-reconstruction term. The next
-diagnostic will trace its coordinate transformations without changing physical bounds.
-Its first wrapper rejected valid packet-boundary counters before computing any
-bounds; [those failed starts are preserved](ilvis0-long-staged-feasibility/INTERPRETATION.md).
-No new withheld aircraft prediction fits have run.
+The [saved prediction check](ilvis0-saved-prediction-comparison/INTERPRETATION.md)
+already records about 2.4 m later horizontal RMS for the specified-field globe,
+versus 143–255 m for the alternatives, on one recording. The next objective is
+to test repetition across different conservative flight groups and IMU types.
+These remain retrospective development tests; reserved ESA groups stay protected.
 
-The [compiled packet adapter](ilvis0-compiled-path-controls/INTERPRETATION.md)
-passes all six 64-packet cases and all 27 parameter directions. Native values
-and first derivatives fall inside its intervals. This is a verified speed and
-adapter milestone, not useful full-record uncertainty or an error-law qualification.
+Global interval certification is now a separate research track. Its earlier
+bounds and counterexamples remain published, with unchanged failure labels and
+width targets. The [completed training-bound study](ilvis0-dense-physical-bounds/INTERPRETATION.md)
+preserved 348 reports, but none of its six cases qualified. No further bound
+expansion precedes the revised prediction sequence.
+
+[Revised method and safeguards](PREDICTION_VALIDATION.md) ·
+[Error assumptions](PREDICTION_ERROR_ASSUMPTIONS.md) · [Study history](STUDIES.md).
 
 ## Dependency-ordered backlog
 
@@ -75,10 +61,10 @@ validated.
 | C02 | First | Software checked | [Test which calibration changes can imitate a model difference](ilvis0-scalar-certificate-controls-20261019/INTERPRETATION.md). |
 | C03 | First | Initial check complete | [Include measurement-error assumptions](ilvis0-channel-envelopes-20261019/INTERPRETATION.md) in the accelerometer-only checks. |
 | C04 | First | Initial check complete | [Compare checks without gyroscopes](ilvis0-channel-history-v2-20261019/INTERPRETATION.md). These leave all models possible; they do not reconstruct a complete flight. |
-| V01 | First | **In progress; full ranges unqualified** | [Original-observation probes](ilvis0-truth-probes/INTERPRETATION.md) give 13.33 m sampled north spread; the separate zero-reference fixture gives 21.75 m. Neither supplies a useful outer bound. The native adapter passes; full-trajectory/error-law qualification remains open. |
-| V02 | First | Waiting for V01 | Test predictions against measurements excluded from fitting, including height. [Earlier prediction evidence](ilvis0-saved-prediction-comparison/INTERPRETATION.md). |
-| L01 | Next | Software checked | [Process long recordings](ilvis0-streaming-precision/INTERPRETATION.md) without excessive memory use. |
-| E01 | Next | Receiver diagnostic complete; selection still open | [Position-based assessment](esa-position-assessment/INTERPRETATION.md) finds 96 robust quiet-trend checks. These are not eligible stretches; continuous motion and receiver-error validation remain. |
+| V01 | First | **Forecast adapter checked; full pipeline next** | The [revised protocol](PREDICTION_VALIDATION.md) has 29 passing forecast checks. Next qualify initialization, training-only fitting and prediction together. Keep matched bounds and assumptions; global interval certification is separate. |
+| V02 | First | Pilot preparation; fits wait for revised V01 | Freeze a metadata-selected pilot, splits, starts, error scoring and finite limits; then test unused positions, including height. [Earlier prediction evidence](ilvis0-saved-prediction-comparison/INTERPRETATION.md). |
+| L01 | Next | Long-prefix reuse qualified; larger-scale work remains | [All six 96,000-packet histories](ilvis0-native-prefix-format-recovery/README.md) preserve complete reports and 51 columns. Dense query counts and longer ESA histories still need their own timing, memory and prediction checks. |
+| E01 | Next | Receiver diagnostic complete; adapter capability and selection open | [Position-based assessment](esa-position-assessment/INTERPRETATION.md) finds 96 quiet trends. [Sampling alone cannot certify continuous quiet motion](ESA_MOTION.md); justify a motion bound or qualify complete maneuver handling, then freeze selection and receiver-error rules. |
 | E02 | Next | Waiting | Compare models on ESA development data, then test the frozen method on reserved flights. |
 | G01 | Next | Complete as a descriptive check | [Compare raw gyro trends with geographic predictions](ilvis0-gyro-companion-v2/INTERPRETATION.md) across all 53 stretches. |
 | U01 | Next | Development dataset ready | [Assemble the evidence for publication](PAPER_DATASET.md). Final prediction and uncertainty results are still needed. |
@@ -90,9 +76,9 @@ validated.
 
 ## What happens after the current diagnostic
 
-1. Improve the prediction method and test its error ranges.
-2. Fit part of a recording, then predict the unused part. Check absolute error,
-   not just which model does better.
+1. Qualify the training-only fitting and prediction pipeline on known-answer controls.
+2. Run the preselected archival pilot. Check all position components and start-to-start
+   sensitivity; do not treat these as calibrated confidence intervals.
 3. Prepare and test the separate ESA archive, keeping its reserved flights untouched
    until the method is fixed.
 4. Establish confidence at the flight-group level. Then pursue the free rotation

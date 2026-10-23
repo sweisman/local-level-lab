@@ -105,6 +105,9 @@ progress counts, session histories, personal commentary or process IDs.
   Fixed sections at the same parameters are diagnostics, not independent trials.
   Split at gaps or configuration changes. Joining files requires verified sample,
   timing and installation continuity; overlapping recorders are not independent flights.
+- New exploratory prediction work follows `docs/PREDICTION_VALIDATION.md`.
+  Qualify the training-only pipeline before observed pilots. Keep global interval
+  certification separate; sensitivity ranges do not establish calibrated coverage.
 - Distinguish constant offsets, noise and changing drift. Assumed offset bounds
   are not measured device limits; residual checks do not prove stationarity.
   Apply changing-error models equally to all candidates.

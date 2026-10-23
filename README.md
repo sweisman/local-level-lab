@@ -116,8 +116,9 @@ solar-versus-sidereal rate difference.
 ## Follow the work
 
 The next milestone is reliable prediction on observations excluded from fitting.
-The first conservative uncertainty construction remains too wide for useful
-prediction intervals. Independent confirmation in the ESA airborne survey
+The [next test](docs/PREDICTION_VALIDATION.md) calibrates each model on earlier
+measurements and checks the later track, including height. Statistical confidence
+is tested separately. Independent confirmation in the ESA airborne survey
 archive follows those checks. Shared recordings are grouped
 before validation; ESA recording 187 is development material and the other
 cataloged groups are reserved for confirmation. A freely measured rotation

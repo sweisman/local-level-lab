@@ -64,7 +64,9 @@ is now complete: all 144 candidate cases overlap, none unsupported. The
 also completes: 763 groups, 27,468 overlapping cases and one common zero-calibration
 point surviving all 24 history variants. Receiver/latency/gravity dependence
 remains relaxed, so no full gyro-free trajectory or calibrated likelihood follows.
-Next qualify training-only covariance and nuisance uncertainty before new prediction tests.
+Next qualify the training-only fitting and prediction pipeline under the
+[revised protocol](PREDICTION_VALIDATION.md). Global uncertainty certification
+is a separate research track.
 
 The [structured covariance operations](ilvis0-structured-error-controls/INTERPRETATION.md)
 are qualified against dense references and a 64,080-epoch/27-column benchmark.
@@ -81,6 +83,11 @@ create discrimination.
 [Calibration evidence](ilvis0-scalar-calibration-controls-20261019/INTERPRETATION.md).
 
 ## Withheld prediction and adequacy — V01/V02
+
+The [revised protocol](PREDICTION_VALIDATION.md) now governs this sequence.
+Known-answer software controls precede a metadata-selected retrospective pilot.
+Formal global bounds no longer block exploratory prediction comparisons;
+uncalibrated sensitivity remains distinct from confidence or detection.
 
 Develop a shared correlated-error model on training observations only. Preserve
 cross-axis dependence, full-record drift anchors and uncertainty from calibration

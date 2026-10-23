@@ -81,6 +81,38 @@ def extend(training,saved,cuts):
     return region
 
 
+def extend_static_region(training_region,cuts,map_report,*,lower,upper):
+    """Attach checked static-map cuts before product lifting, keeping all rows.
+
+    The map's source-level interval qualification remains a separate premise;
+    this adapter independently checks its exported algebra and identity. It
+    neither fits measurements nor declares an empty or qualified physical region.
+    """
+    old=training_region
+    if (old.get('parameter_count')!=51 or old.get('physical_parameter_count')!=27
+            or old.get('future_truth_used') is not False
+            or any(len(old.get(k,[]))!=51 for k in ('lower','upper','center'))
+            or len(lower)!=27 or len(upper)!=27
+            or old.get('binding')!=cuts.get('reference_binding')
+            or old.get('source_id')!=cuts.get('source_id')):
+        raise ValueError('complete training-only 51-column source-bound region required')
+    design=old.get('inequality_design',[]);bounds=old.get('inequality_upper',[])
+    values=list(lower)+list(upper)+old['lower']+old['upper']+old['center']+bounds
+    values += [v for row in design for v in row]
+    if (len(design)!=len(bounds) or any(len(row)!=51 for row in design)
+            or len(design)+48>1024 or any(not math.isfinite(v) for v in values)
+            or any(a>b for a,b in zip(old['lower'],old['upper'],strict=True))
+            or any(not a<=c<=d<=b for a,b,c,d in zip(old['lower'][:27],old['upper'][:27],lower,upper,strict=True))):
+        raise ValueError('finite contained physical domain and every original inequality required')
+    audit=audit_cuts(cuts,map_report,list(lower),list(upper))
+    region=deepcopy(old)
+    region['lower'][:27]=list(lower);region['upper'][:27]=list(upper)
+    region['inequality_design'].extend(deepcopy(cuts['design']))
+    region['inequality_upper'].extend(cuts['upper'])
+    region['coupled_map_binding']=cuts['binding'];region['coupling_rows_checked']=audit['rows']
+    return region
+
+
 def audit_future(training,saved,region,future,cuts,*,cut_audit):
     from lll.ilvis0_saved_prediction_audit import support,endpoint
     expected=extend(training,saved,cuts)
@@ -122,6 +154,8 @@ def audit_future(training,saved,region,future,cuts,*,cut_audit):
 
 
 def evaluate(task,context):
+    if task.get('payload',{}).get('analysis')=='static_training':
+        return evaluate_static_training(task,context)
     from lll.ilvis0_sharded_native import read,plain
     from lll.ilvis0_control_shards import _check_continue
     from lll.ilvis0_orientation_cover import sector
@@ -194,3 +228,125 @@ def evaluate(task,context):
         exact_supports_checked=checked['exact_supports_checked'],
         previous_width_m=[b-a for a,b in zip(old['future_lower_m'],old['future_upper_m'])],
         new_width_m=[b-a for a,b in zip(future['envelope']['lower'],future['envelope']['upper'])])
+
+
+def static_training_limits():
+    return dict(reference_setups=1,map_setups=1,intervals=2,coupling_audits=1,
+        static_oracles=3,static_jacobians=3,probe_checks=4176,lp_proposals=60,exact_supports=180)
+
+
+def summarize_static_training(results):
+    """Aggregate a fixed complete cover without treating failures as exclusions."""
+    if len(results)!=54:raise ValueError('all fifty-four frozen outcomes required')
+    groups={}
+    for row in results:groups.setdefault(row['case_identity'],[]).append(row)
+    if len(groups)!=6:raise ValueError('six original case identities required')
+    cases=[];candidates=set()
+    for identity,rows in sorted(groups.items()):
+        if len(rows)!=9 or {r['part'] for r in rows}!=set(range(-1,8)):
+            raise ValueError('full-domain comparator and all eight distinct yaw parts required')
+        baseline={(r['model'],r['profile'],r['prior_acceleration_change']) for r in rows}
+        if len(baseline)!=1:raise ValueError('unchanged candidate and prior allowance required')
+        model,profile,prior=baseline.pop();candidates.add((model,profile))
+        if not math.isfinite(prior) or prior<0:raise ValueError('finite nonnegative prior required')
+        for row in rows:
+            if row['passed'] and (not math.isfinite(row['acceleration_change']) or row['acceleration_change']<0):
+                raise ValueError('finite nonnegative successful acceleration bound required')
+        full=next(r for r in rows if r['part']==-1);parts=[r for r in rows if r['part']>=0]
+        complete=all(r['passed'] for r in parts)
+        worst=max(r['acceleration_change'] for r in parts) if complete else None
+        cases.append(dict(case_identity=identity,model=model,profile=profile,
+            prior_acceleration_change=prior,full_acceleration_change=full['acceleration_change'] if full['passed'] else None,
+            complete_cover=complete,cover_acceleration_change=worst,
+            cover_improves_prior=complete and worst<prior,failed_parts=[r['part'] for r in rows if not r['passed']]))
+    if candidates!={(m,p) for m in range(3) for p in (False,True)}:
+        raise ValueError('all three candidates and both processing cases required')
+    return dict(completed=54,passed=sum(bool(r['passed']) for r in results),cases=cases,
+        complete_covers=sum(r['complete_cover'] for r in cases),prediction_method_qualified=False,
+        observational_coverage_qualified=False,scientific_decision='abstain')
+
+
+def analyze_static_training(material,*,part,reserve,save):
+    """Saved-training diagnostic, using a complete source map and fixed yaw cover."""
+    import numpy as np
+    from types import SimpleNamespace
+    from lll.ilvis0_coupled_map import StaticMap,restore_static_reference
+    from lll.ilvis0_coupled_map_controls import analytic_jacobian,check_probe
+    from lll.ilvis0_orientation_cover import sector
+    from lll.ilvis0_affine_support import project_coordinates
+    from lll.ilvis0_acceleration_projection import project
+    if type(part) is not int or not -1<=part<8:raise ValueError('full domain or one of eight fixed yaw parts required')
+    old=material['training_region'];prior=material['prior_acceleration_change']
+    if not math.isfinite(prior) or prior<0:raise ValueError('finite nonnegative saved acceleration allowance required')
+    lower=list(old['lower'][:27]);upper=list(old['upper'][:27])
+    if part>=0:
+        box=sector(part)
+        lower=[max(a,float(b)) for a,b in zip(lower,box['lower'],strict=True)]
+        upper=[min(a,float(b)) for a,b in zip(upper,box['upper'],strict=True)]
+    if any(a>b for a,b in zip(lower,upper,strict=True)):
+        raise ValueError('unsupported empty cover part; no part may be silently discarded')
+    reserve(reference_setups=1)
+    reference=restore_static_reference(material['configuration'],material['first_delta_v'],material['first_dt'],
+        lower=material['lower'],upper=material['upper'],center=material['center'],
+        expected_report=material['reference_report'])
+    reserve(map_setups=1)
+    model=StaticMap(reference,expected_report=material['reference_report'],numerical_allowance=3e-10)
+    intervals=[]
+    def bounded(a,b):
+        value=model.bound(a,b);intervals.append(value);return value
+    cuts=build(SimpleNamespace(bound=bounded,report=model.report),lower,upper,
+        reserve=lambda:reserve(intervals=1))
+    save('coupling.json',cuts);save('source-map.json',model.report())
+    reserve(coupling_audits=1)
+    region=extend_static_region(old,cuts,model.report(),lower=lower,upper=upper)
+    points=[lower,upper,[float((F(a)+F(b))/2) for a,b in zip(lower,upper,strict=True)]]
+    probes=[]
+    for point in points:
+        reserve(static_oracles=1,static_jacobians=1,probe_checks=1392)
+        actual=reference.normalized_values_at(point);jac=analytic_jacobian(reference,point)
+        checked=check_probe(intervals[0],cuts,point,actual,jac,derivative_tolerance=3e-8)
+        probes.append(dict(point=point,values=actual.tolist(),analytic_jacobian=jac.tolist(),**checked))
+    save('source-probes.json',probes)
+    if not all(p['passed'] for p in probes):raise ValueError('static source probe failed; dependent projections withheld')
+    reserve_projection=lambda p,s:reserve(lp_proposals=p,exact_supports=s)
+    coordinates=project_coordinates(region['lower'],region['upper'],region['inequality_design'],
+        region['inequality_upper'],axes=list(range(27)),reserve=reserve_projection)
+    save('coordinate-projection.json',coordinates)
+    acceleration=project(training=dict(region=region),reference=material['reference_report'],
+        lower=region['lower'],upper=region['upper'],reserve=reserve_projection)
+    save('acceleration-projection.json',acceleration)
+    unchanged=(region['inequality_design'][:len(old['inequality_design'])]==old['inequality_design']
+        and region['inequality_upper'][:len(old['inequality_upper'])]==old['inequality_upper'])
+    return dict(passed=unchanged,scientific_decision='abstain',case_identity=material['identity'],part=part,
+        model=material['configuration']['model'],profile=material['configuration']['profile'],
+        parameter_count=51,physical_parameter_count=27,original_rows_retained=len(old['inequality_design']),
+        coupling_rows_checked=48,source_map_binding=model.binding,reference_binding=reference.binding,
+        acceleration_change=acceleration['norm_change'],prior_acceleration_change=prior,
+        narrowed_coordinates=[r['parameter_index'] for r in coordinates['coordinates'] if r['width_ratio']<.999999],
+        source_probes_passed=True,native_evaluations=0,bound_evaluations=0,original_reads=0,optimizer_starts=0,
+        source_map_qualified=False,observational_coverage_qualified=False)
+
+
+def evaluate_static_training(task,context):
+    from lll.studies.journal import Journal
+    from lll.studies.artifacts import digest
+    from lll.ilvis0_control_shards import _check_continue
+    spec=task['payload'];material=json.loads(context.input_path().read_text())
+    if (spec.get('limits')!=static_training_limits() or spec.get('case_identity')!=material['identity']
+            or len(material['training_region']['inequality_design'])!=30):
+        raise ValueError('unchanged long-history identity, thirty training rows and finite limits required')
+    identity=task['identity'];path=context.directory/'allowance.sqlite'
+    journal=Journal(path,freeze=digest((context.root/'manifest.json').read_bytes()),
+        limits={identity:static_training_limits()})
+    journal.start(identity)
+    def reserve(**increase):
+        _check_continue(context.root,context.manifest)
+        for resource,amount in increase.items():journal.reserve(identity,resource,amount)
+    try:
+        result=analyze_static_training(material,part=spec['part'],reserve=reserve,save=context.save)
+        counts={k:journal.count(identity,k) for k in static_training_limits()}
+        if result['passed'] and counts!=static_training_limits():raise ValueError('incomplete static diagnostic accounting')
+        context.save('accounting.json',counts)
+        return dict(result,identity=identity,work=counts)
+    finally:
+        journal.verify();context.note_file(path)

@@ -2,7 +2,7 @@
 from pathlib import Path
 
 
-def test_candidate_changes_only_operational_remainder_and_provenance():
+def test_frozen_candidate_changes_only_operational_remainder_and_provenance():
     directory=Path(__file__).parents[1]/'lll'
     original=(directory/'ilvis0_direct_native.py').read_text()
     expected=original.replace("VERSION='ilvis0-direct-source-native-v1'",
@@ -15,4 +15,8 @@ def test_candidate_changes_only_operational_remainder_and_provenance():
     expected=expected.replace(old,new)
     expected=expected.replace('metadata=dict(source_direct_remainder_installed=True,',
         'metadata=dict(conditional_acceleration_remainder=conditional_remainder,source_direct_remainder_installed=True,')
-    assert (directory/'ilvis0_remainder_native.py').read_text()==expected
+    # Preserve this historical source-delta check against its sealed original.
+    # Current cold/batched orchestration is checked numerically against that
+    # complete original in test_ilvis0_native_prefix.py.
+    from native_prefix_reference import original as sealed
+    assert sealed()[1].decode()==expected

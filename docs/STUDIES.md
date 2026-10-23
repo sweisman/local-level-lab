@@ -349,6 +349,41 @@ saved cases pass their hash and arithmetic checks. The position-reconstruction
 term accounts for over 99.999% of the reported unshared allowance in every axis.
 This identifies the next diagnostic target without qualifying the prediction ranges.
 
+[Calibration-box audit](ilvis0-calibration-box-audit-v2/README.md): all six saved
+projections pass exact checks. Only the initial vertical offset and clock offset
+get narrower individual intervals; orientation and sensor calibration remain
+broad. The prediction method needs to preserve coupled parameter information.
+The first wrapper's six input-check failures remain linked and unchanged.
+
+[Compact calibration references](ilvis0-static-reference-controls/README.md):
+all six saved references reproduce exactly from 249,591 bytes of verified inputs
+in 1.61 seconds. No trajectory history is loaded. This qualifies the compact
+input path for the [static coupling comparison](ilvis0-static-training-coupling/README.md),
+not the prediction ranges or real observation errors.
+
+[Static calibration coupling](ilvis0-static-training-coupling/README.md): all 54
+checks pass in 4.85 minutes. Keeping all eight orientation parts reduces the
+reference-acceleration allowance by 3.7–7.1%, with unchanged physical bounds and
+no trajectory integration. Useful prediction ranges remain unqualified.
+
+[Complete prediction-width audit](ilvis0-prediction-width-budget-v2/README.md):
+all six cases and 18 exact checks pass in 1.64 seconds. Reconstruction allowances
+contribute 77–91% of total width; rounding is negligible. This identifies the
+next numerical target without changing the failed prediction labels. The first
+audit's four rounding-convention rejections remain preserved.
+
+[Tighter remainder over complete histories](ilvis0-long-remainder-feasibility/README.md):
+all six cases pass numerical checks and retain the known answers in 3.7 hours,
+but none meets the unchanged 20/20/50 m targets. Smaller ranges remain much too
+wide; no aircraft prediction fits follow. The [next diagnostic](ilvis0-long-remainder-feasibility/NEXT_PLAN.md)
+will distinguish loose bounds from possible ambiguity in the training data.
+
+[Nonlinear training-compatible predictions](ilvis0-nonlinear-witnesses/README.md):
+twelve searches complete in 22.4 minutes, spending all 396 native batches.
+Five pairs return their starting calibration; only one yields a different
+accepted point, with no target violation. This exposes a search limitation,
+not zero uncertainty. Saved first steps motivate [feasible-step qualification](ilvis0-nonlinear-witnesses/NEXT_PLAN.md).
+
 [Combined receiver/IMU error operator](ilvis0-joint-error-operator/README.md): 15 focused checks agree with the dense reference through 438 seconds while retaining training/future correlation and all 27 columns; the assumed error law is not yet established for aircraft recordings.
 
 [Simultaneous observation allowances](ilvis0-gaussian-allowances/README.md): 15 component checks and all six small staged model/processing cases pass, sharing one probability budget across training and future errors without assuming independence; aircraft noise-law justification remains open.
@@ -394,3 +429,35 @@ This identifies the next diagnostic target without qualifying the prediction ran
 [Nonlinear calibration rays](ilvis0-ray-probes/INTERPRETATION.md): all twelve smaller proposals satisfy earlier ±1 m constraints; the zero-removal north predictions span 21.75 m, exceeding the 20 m target in this generated fixture. An independent saved-position audit confirms feasibility and charges without rerunning trajectories.
 
 [Original-observation probes](ilvis0-truth-probes/INTERPRETATION.md): six of twelve fixed calibrations satisfy the running study’s actual noisy observations; sampled north spreads are 13.33 m and 5.90 m. The independent audit does not transfer the zero-reference counterexample or claim an outer bound.
+
+[Checked local-step controls](ilvis0-feasible-step-controls/README.md): all 36 fixed proposals completed; the step component qualified in all twelve model/processing/direction combinations. [Accepted alternatives](ilvis0-feasible-step-controls/INTERPRETATION.md) give north predictions 22.99–23.27 m apart in all six generated cases. This refutes the 20 m sparse-training target under the declared numerical guard. Aircraft uncertainty remains unqualified.
+
+[Training cadence and accepted alternatives](ilvis0-witness-density/README.md): all 18 fixed predictions completed and preserved the original epoch values exactly. At one-second spacing, four cases exclude one common observation for the original calibration and its selected pair; two still allow it. This tests calibration ambiguity within each candidate, not Earth shape. No refitting or invented observations.
+
+[Primary-receiver metadata availability](ilvis0-receiver-metadata/README.md): all 53 saved recording reports passed the source checks. None lists GST/GBS sentences; most stream bytes were not parsed as NMEA. The audit identifies available information, without original reads, predictions, fits or a covariance claim.
+
+[Shared receiver-law comparison](ilvis0-receiver-distance/README.md): all twelve saved-trajectory calculations completed. Full training cadence increases separation under both supplied receiver laws; the distances are not model votes or actual likelihood ratios.
+
+[Accumulated IMU-noise sensitivity](ilvis0-joint-distance/README.md): all 24 fixed-trajectory comparisons completed. Independent added noise lowers noise-scaled separation with position differences unchanged. PSD values are software examples, not device measurements.
+
+[Joint covariance projections](ilvis0-joint-projection-controls/README.md): both controls passed, including 64,080 epochs and twelve fixed training summaries in 52 seconds using about 88 MiB of accounted workspace. Inverse, transpose and projected covariance match an independent small reference; full aircraft uncertainty remains unqualified.
+
+[Fixed-summary error certificates](ilvis0-summary-error-controls/README.md): all four declared noise cases pass in 36 seconds; twelve training summaries and 441 later coordinate errors share one simultaneous error budget. This qualifies supplied-law arithmetic, not actual instrument noise or complete aircraft prediction uncertainty.
+
+[Saved native-summary binding](ilvis0-training-summary-controls/README.md): all six cases reproduce 180 original coordinate inequalities and independently audit 144 signed-summary inequalities, without new integration. This checks the five-epoch source binding; complete-cadence prediction remains open.
+
+[Typed source-prefix copying](ilvis0-prefix-source-controls/README.md): all eighteen cases pass 1,188 tail-frame and 2,772 exact array comparisons against independent cold kernels. The [initial accounting rejection](ilvis0-prefix-source-controls-initial/README.md) is preserved. Source copying alone does not qualify complete native reuse.
+
+[Complete native-prefix short controls](ilvis0-native-prefix-controls/README.md): twelve supported cases reproduce all original reports and 51 design columns; two broader sources retain the original rejection. Cached advancement uses 20 steps versus 34 cold steps per supported case. Long-history performance remains unqualified; the [initial missing-backend freeze](ilvis0-native-prefix-controls-initial/README.md) stays preserved.
+
+[Initial long-record native-prefix comparison](ilvis0-native-prefix-long/README.md): four original references completed; two cases were not started. The bookkeeping failure and all charges are preserved. This did not qualify the batched method.
+
+[Corrected long-record comparison](ilvis0-native-prefix-long-v2/README.md): all six cases completed. Eight retained report pairs match exactly, but tuple/list comparison failures and four missing later reports prevent qualification. All failures and twelve saved point checks are preserved.
+
+[Missing cached-report recovery](ilvis0-native-prefix-format-recovery/README.md): all four batches pass, completing exact report and 51-column agreement for all six histories. No original calculation or point check was repeated. The [initial loader failure](ilvis0-native-prefix-format-recovery-initial/README.md) is preserved with zero charged work. Full-cadence prediction remains a separate gate.
+
+[Independent prediction starting bounds](ilvis0-dense-physical-roots/README.md): all six generated cases pass at the first training epoch, retaining the full physical calibration range and excluding the old one-metre training proof. This establishes a supported starting calculation, not complete prediction qualification.
+
+[Full-cadence training bounds](ilvis0-dense-physical-bounds/INTERPRETATION.md): all six cases stopped at the square-root-domain check; 348 partial reports are preserved and none qualified. Formal certification is a separate research track; the [revised prediction protocol](PREDICTION_VALIDATION.md) prioritizes training-only fitting and unused-position tests.
+
+[Prediction-input lineage checks](ilvis0-joint-projection-controls/NEXT_PLAN.md#keep-each-bound-tied-to-its-error-assumptions): twelve metadata cases preserve observations, source, parent constraints and the complete error allowance. Numerical integration with the dense-error interface remains pending; these are input checks, not prediction or coverage results.

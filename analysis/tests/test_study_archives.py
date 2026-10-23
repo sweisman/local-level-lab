@@ -129,3 +129,53 @@ def test_different_legacy_and_compressed_catalogs_fail_closed(tmp_path):
     atomic(tmp_path/'repro/catalog.json',raw)
     atomic(tmp_path/'repro/catalog.sha256',(digest(raw)+'\n').encode())
     with pytest.raises(ValueError,match='conflicting.*catalog'):store.catalog()
+
+
+def separate_packs(root):
+    store=ArchiveStore(root);names=['docs/owned-a.txt','docs/owned-b.txt']
+    for index,name in enumerate(names):
+        path=root/name;path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(bytes([65+index])*20)
+        store.pack([name])
+    return store,names
+
+
+def test_scoped_verify_pack_and_compaction_read_only_relevant_packs(tmp_path,monkeypatch):
+    store,names=separate_packs(tmp_path);catalog=store.catalog();target=names[1]
+    pack=catalog['objects'][catalog['paths'][target]['sha256']];seen=[];original=store._archive
+    def archive(name,value,*,fresh=False):
+        seen.append(name);return original(name,value,fresh=fresh)
+    monkeypatch.setattr(store,'_archive',archive)
+    result=store.verify(names=[target])
+    assert result['paths']==result['objects']==result['packs']==1
+    assert set(seen)=={pack}
+    seen.clear();store.pack([target]);assert set(seen)=={pack}
+    seen.clear();assert store.compact(names=(name for name in [target]))==1
+    assert set(seen)=={pack} and (tmp_path/names[0]).is_file()
+
+
+def test_scoped_action_preserves_full_audit_detection_of_unrelated_corruption(tmp_path):
+    store,names=separate_packs(tmp_path);catalog=store.catalog()
+    pack=store.directory/catalog['objects'][catalog['paths'][names[0]]['sha256']]
+    pack.write_bytes(pack.read_bytes()[:-1])
+    assert store.verify(names=[names[1]])['paths']==1
+    third='docs/owned-c.txt';(tmp_path/third).write_bytes(b'new evidence')
+    assert store.pack([third])['paths']==1
+    assert store.compact(names=[third])==1
+    with pytest.raises(ValueError):store.verify()
+    assert (tmp_path/names[0]).is_file()
+
+
+def test_scoped_compaction_checks_every_target_before_removing_any(tmp_path):
+    store,names=separate_packs(tmp_path);catalog=store.catalog()
+    pack=store.directory/catalog['objects'][catalog['paths'][names[1]]['sha256']]
+    pack.write_bytes(pack.read_bytes()[:-1])
+    with pytest.raises(ValueError):store.compact(names=names)
+    assert all((tmp_path/name).is_file() for name in names)
+
+
+def test_scoped_verify_rejects_unknown_alias_and_still_checks_catalog_hash(tmp_path):
+    store,names=separate_packs(tmp_path)
+    with pytest.raises(ValueError):store.verify(names=['docs/unindexed.txt'])
+    assert store.verify(names=[])['objects']==0
+    store.catalog_path.write_bytes(b'changed catalog')
+    with pytest.raises(ValueError,match='checksum'):store.verify(names=names)

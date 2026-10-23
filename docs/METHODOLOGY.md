@@ -106,41 +106,24 @@ stretch expose sensitivity. Aircraft pitching and instrument/mounting effects
 remain in the differences. This is a descriptive check of the observed variation,
 not a replacement for the full trajectory comparison.
 
-The next prediction method must account for nuisance uncertainty and correlated
-receiver errors. Short mathematical controls and the shared-scale calculation
-pass, but the first [recording-scale bounds](ilvis0-recording-scale-bounds/INTERPRETATION.md)
-are too wide to supply useful intervals. New fitted prediction trials remain
-blocked while that method is refined. A [shared reference](ilvis0-shared-reference-scale/INTERPRETATION.md)
-keeps candidates from independently inflating their error scales; its Gaussian
-covariance assumptions still require observational assessment.
+The [next prediction test](PREDICTION_VALIDATION.md) fits calibration using only
+earlier observations, then reconstructs the later track from IMU readings without
+using later receiver positions to adjust it. All candidates retain matched
+physical bounds and error assumptions. Predetermined starting points expose
+sensitivity; they do not supply confidence intervals.
 
-One refinement preserves calibration errors that affect every measurement time
-together. For example, an uncertain initial mounting offset is one common
-offset, not a fresh error at each later GPS fix. The
-[native controls](ilvis0-shared-native-controls/INTERPRETATION.md) and
-[joint-interface controls](ilvis0-shared-envelope-controls/INTERPRETATION.md)
-check that shared structure while retaining every original physical calibration
-direction. Whether the resulting prediction ranges are narrow enough is tested
-separately; software correctness alone cannot establish aircraft accuracy.
-The [short comparison](ilvis0-acceleration-cover/INTERPRETATION.md) reduces
-generated 1.8-second prediction widths to 0.061–0.358 m. The later
-[7.2-second comparison](ilvis0-product-prediction/INTERPRETATION.md) preserves
-the physical bounds and passes all 48 correctness checks, with widths of about
-0.21–1.63 m. Two of six groups still miss the fixed improvement target.
-Useful ranges over flight-length intervals and actual aircraft coverage remain
-separate requirements.
+Known-answer pipeline checks precede a small pilot selected from route,
+completeness, IMU type and conservative flight-group metadata. Report errors in
+all three position components, numerical failures and differences between starts.
+A smaller error is a relative advantage, not automatically physical adequacy or
+statistical significance.
 
-A [training-only acceleration projection](ilvis0-acceleration-projection/INTERPRETATION.md)
-reduces the allowed acceleration-change radius by about 92–93% in six generated
-cases. It preserves relationships between calibration terms that separate
-coordinate ranges lose. Six [propagation controls](ilvis0-conditioned-native-controls/INTERPRETATION.md)
-passed without changing predictions or derivatives. The complete sector comparison
-now passes four groups' width targets; these checks do not yet establish narrower aircraft predictions.
-
-The [complete calibration-map check](ilvis0-calibration-map-diagnostic/INTERPRETATION.md)
-shows that all 36 tested extreme error combinations fail when recomputed from
-one calibration. The next calculation must preserve that relationship rather
-than let derived errors vary independently.
+Formal intervals covering every allowed calibration remain a separate
+[research track](PREDICTION_ERROR_ASSUMPTIONS.md). Its short controls and failed
+recording-length constructions remain preserved. Their qualification is no
+longer a prerequisite for exploratory prediction comparisons. Actual correlated
+receiver/IMU error assessment and calibrated uncertainty remain required before
+confidence or detection claims.
 
 A [saved-error audit](ilvis0-saved-prediction-comparison/INTERPRETATION.md)
 checks existing retrospective predictions without new fits. Across three fully

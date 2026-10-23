@@ -43,3 +43,47 @@ def test_full_prediction_reconciliation_rejects_changed_certificate():
     assert answer['narrowed_physical_columns']==[]
     changed=copy.deepcopy(future);changed['envelope']['certificates'][0]['upper']='1'
     with pytest.raises(ValueError,match='certificate'):audit.audit_case(result,dict(region=region),changed)
+
+
+def joint_future_fixture():
+    row=[1.]+[0.]*50;center=[.125]+[0.]*50
+    region=dict(parameter_count=51,binding='ref',source_id='source',force_source_id='force',
+        future_truth_used=False,lower=[-1.]*51,upper=[1.]*51,center=center,
+        coordinate_scale=[2.,3.,1.],origin=[3.,0.,0.],arithmetic_allowance=.03125,
+        inequality_design=[row],inequality_upper=[.25])
+    bound=dict(enclosure_parameter_count=51,reference_binding='ref',source_id='source',time_s=438.,
+        previous_coefficients=[[2.,0.,0.,0.,0.,0.],[0.]*6,[0.]*6],
+        acceleration_coefficients=[[0.]*9]*3,transform_coefficients=[[0.]*9]*3,
+        unshared_remainder=[.125]*3)
+    empty=dict(upper='0',negated_lower='0',upper_multipliers=[0.],lower_multipliers=[0.])
+    certificate=dict(upper='9/2',negated_lower='6',upper_multipliers=[2.],lower_multipliers=[0.])
+    envelope=dict(parameter_count=51,shared_binding='ref',source_id='source',force_source_id='force',
+        future_truth_used=False,certificates=[certificate,empty,empty],
+        lower=[7.46875,-.40625,-.15625],upper=[18.53125,.40625,.15625])
+    saved=dict(parameter_count=51,reference=dict(binding='ref'),bound=bound,envelope=envelope,
+        lower=region['lower'],upper=region['upper'],fixed_center=center[:27],time_s=438.,
+        jacobian=[[1.]+[0.]*26,[0.]*27,[0.]*27],nominal=[10.,0.,0.])
+    return region,saved
+
+
+def test_joint_envelope_verifier_keeps_all_columns_origin_scale_and_common_error():
+    region,saved=joint_future_fixture();result=audit.verify_joint_envelope(region,saved)
+    assert result['passed'] and result['exact_supports_checked']==6
+    assert result['width_m']==[11.0625,.8125,.3125]
+    assert result['parameter_count']==51 and result['scientific_decision']=='abstain'
+
+
+@pytest.mark.parametrize('change',['coefficient','missing_column','source','future','origin','scale','certificate','domain','negative_remainder','time'])
+def test_joint_envelope_verifier_rejects_inconsistent_saved_expression(change):
+    region,saved=joint_future_fixture()
+    if change=='coefficient':saved['bound']['previous_coefficients'][0][0]=1.
+    elif change=='missing_column':saved['jacobian'][0].pop()
+    elif change=='source':saved['envelope']['source_id']='wrong'
+    elif change=='future':region['future_truth_used']=True
+    elif change=='origin':region['origin'][0]=4.
+    elif change=='scale':region['coordinate_scale'][0]=0.
+    elif change=='certificate':saved['envelope']['certificates'][0]['upper']='5'
+    elif change=='domain':saved['lower']=[-2.]+[-1.]*50
+    elif change=='negative_remainder':saved['bound']['unshared_remainder'][0]=-.001
+    else:saved['bound']['time_s']=1.
+    with pytest.raises(ValueError):audit.verify_joint_envelope(region,saved)

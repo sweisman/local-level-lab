@@ -31,6 +31,49 @@ def endpoint(value,up):
     return result
 
 
+def verify_joint_envelope(region,saved):
+    """Verify a 51-column envelope without requiring or opening known truth."""
+    bound=saved['bound'];env=saved['envelope']
+    if (any(v['parameter_count']!=51 for v in (region,saved,env))
+            or bound['enclosure_parameter_count']!=51
+            or region['future_truth_used'] is not False or env['future_truth_used'] is not False
+            or region['binding']!=env['shared_binding'] or region['binding']!=bound['reference_binding']
+            or region['binding']!=saved['reference']['binding']
+            or region['source_id']!=bound['source_id'] or region['source_id']!=env['source_id']
+            or region['force_source_id']!=env['force_source_id'] or saved['time_s']!=bound['time_s']):
+        raise ValueError('complete unchanged-source training-only joint envelope required')
+    if (any(len(saved[k])!=51 or len(region[k])!=51 for k in ('lower','upper'))
+            or len(region['center'])!=51 or region['center'][:27]!=saved['fixed_center']
+            or any(not a<=b<=c<=d for a,b,c,d in zip(region['lower'],saved['lower'],saved['upper'],region['upper']))
+            or any(len(region[k])!=3 for k in ('coordinate_scale','origin'))
+            or any(len(saved[k])!=3 for k in ('nominal','jacobian'))
+            or any(len(env[k])!=3 for k in ('lower','upper','certificates'))):
+        raise ValueError('all source columns, expansion coordinates and three axes required')
+    args=(saved['lower'],saved['upper'],region['inequality_design'],region['inequality_upper'])
+    arithmetic=F(region['arithmetic_allowance']);widths=[]
+    if arithmetic<0:raise ValueError('nonnegative arithmetic allowance required')
+    for axis,scale in enumerate(region['coordinate_scale']):
+        if not math.isfinite(scale) or scale<=0:raise ValueError('positive finite coordinate scales required')
+        blocks=(saved['jacobian'][axis],bound['previous_coefficients'][axis],
+            bound['acceleration_coefficients'][axis],bound['transform_coefficients'][axis])
+        if tuple(map(len,blocks))!=(27,6,9,9):raise ValueError('all four coefficient blocks required')
+        row=[scale*v for block in blocks for v in block];cert=env['certificates'][axis]
+        high=support(*args,row,cert['upper_multipliers'])
+        low=support(*args,[-v for v in row],cert['lower_multipliers'])
+        if high!=F(cert['upper']) or low!=F(cert['negated_lower']):raise ValueError('exact joint support certificate changed')
+        shift=(F(saved['nominal'][axis])-F(region['origin'][axis]))*F(scale)
+        shift-=sum((F(v)*F(c) for v,c in zip(row,region['center'],strict=True)),F(0))
+        remainder=F(bound['unshared_remainder'][axis])*F(scale)
+        if remainder<0:raise ValueError('nonnegative reconstruction allowance required')
+        radius=remainder+arithmetic
+        left=endpoint(shift-low-radius,False);right=endpoint(shift+high+radius,True)
+        if left!=env['lower'][axis] or right!=env['upper'][axis] or left>right:
+            raise ValueError('exact outward joint endpoint changed')
+        widths.append(endpoint(F(right)-F(left),True))
+    return dict(passed=True,parameter_count=51,exact_supports_checked=6,width_m=widths,
+        native_evaluations=0,observational_coverage_qualified=False,scientific_decision='abstain')
+
+
 def audit_case(result,training,future):
     region=training['region'];bound=future['bound'];envelope=future['envelope'];scale=region['coordinate_scale']
     if (result['parameter_count']!=42 or region['parameter_count']!=42 or future['parameter_count']!=42

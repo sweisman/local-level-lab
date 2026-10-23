@@ -46,6 +46,14 @@ totals cover the monitored studies; they are not a machine-wide process inventor
 Passed checks describe the study's numerical checks, not scientific detections or
 changes to the published globe/flat findings. `--json` includes failure reasons.
 
+Long envelope batches can also show **Saved envelope reports**, counting the
+hash-checked completed prefix at the fixed query times. This makes progress
+visible before an entire case finishes. A saved report may precede a failed
+acceptance check, so this count never becomes a passing result. The reader
+creates or repairs nothing; an incomplete concurrent append is reported as an
+unavailable snapshot. Each stream read is capped at 64 MiB. Completed studies
+continue to use their sealed summaries.
+
 Sharded controls also show charged bounds and their separate ceiling. Bound
 reservations are checked against each shard's receipt chain; they are not
 counted as native integration calls. Inherited shard leases retain the full

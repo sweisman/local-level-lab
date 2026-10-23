@@ -30,6 +30,96 @@ def test_independent_export_audit_checks_every_coefficient_and_exact_upper_bound
     assert region['inequality_design'][-48:]==[row+[0.]*27 for row in cuts['design']]
 
 
+def static_region_fixture():
+    region=dict(parameter_count=51,physical_parameter_count=27,source_id='source',binding='reference',
+        lower=[-1.]*51,upper=[1.]*51,center=[0.]*51,future_truth_used=False,
+        inequality_design=[[1.]+[0.]*50],inequality_upper=[1.])
+    report=dict(binding='map',reference_binding='reference',source_id='source')
+    model=SimpleNamespace(report=lambda:report,bound=lambda a,b:
+        [2*Jet.variable(a[0],b[0],0)]+[Jet.constant(0.)]*23)
+    cuts=prediction.build(model,region['lower'][:27],region['upper'][:27],reserve=lambda:None)
+    return region,cuts,report
+
+
+def test_static_region_preserves_coupling_that_individual_boxes_miss():
+    from lll.ilvis0_affine_support import project_coordinates
+    old,cuts,report=static_region_fixture();before=deepcopy(old)
+    new=prediction.extend_static_region(old,cuts,report,lower=old['lower'][:27],upper=old['upper'][:27])
+    assert old==before and len(new['lower'])==51 and new['center']==old['center']
+    assert new['inequality_design'][:1]==old['inequality_design']
+    assert len(new['inequality_design'])==49 and all(len(row)==51 for row in new['inequality_design'])
+    result=project_coordinates(new['lower'],new['upper'],new['inequality_design'],new['inequality_upper'],
+        axes=[0],reserve=lambda *args:None)
+    assert -.500000000001<result['coordinates'][0]['lower']<=-.5
+    assert .5<=result['coordinates'][0]['upper']<.500000000001
+    for x in (-.5,-.25,0.,.25,.5):
+        point=[0.]*51;point[0]=x;point[27]=2*x
+        assert all(sum(F(a)*F(v) for a,v in zip(row,point))<=F(b)
+            for row,b in zip(new['inequality_design'],new['inequality_upper']))
+
+
+@pytest.mark.parametrize('change',['reference','expanded_box','coefficient','missing_column','future'])
+def test_static_region_rejects_mismatched_source_domain_or_information(change):
+    old,cuts,report=static_region_fixture();lower=old['lower'][:27];upper=old['upper'][:27]
+    if change=='reference':old['binding']='elsewhere'
+    elif change=='expanded_box':lower[0]=-2.
+    elif change=='coefficient':cuts['design'][0][0]+=1.
+    elif change=='missing_column':old['inequality_design'][0].pop()
+    else:old['future_truth_used']=True
+    with pytest.raises(ValueError):prediction.extend_static_region(old,cuts,report,lower=lower,upper=upper)
+
+
+@pytest.mark.parametrize('part',[-1,0])
+def test_static_training_diagnostic_keeps_source_rows_and_finite_work(part):
+    from test_ilvis0_coupled_map import reference
+    ref=reference();r=ref.parent
+    region=dict(parameter_count=51,physical_parameter_count=27,source_id=r.source_id,binding=ref.binding,
+        lower=[-1.]*51,upper=[1.]*51,center=r.center.tolist()+[0.]*24,
+        future_truth_used=False,inequality_design=[[1.]+[0.]*50],inequality_upper=[1.])
+    material=dict(identity='case',configuration=dict(initial_r=r.initial_r.tolist(),limits=r.limits.tolist(),
+        gravity=ref.acceleration.gravity,model=0,profile=True),first_delta_v=ref.acceleration.raw_delta_v.tolist(),
+        first_dt=ref.acceleration.period,lower=r.lower.tolist(),upper=r.upper.tolist(),center=r.center.tolist(),
+        reference_report=ref.report(),training_region=region,prior_acceleration_change=ref.acceleration.change)
+    before=deepcopy(material);charges={};saved={}
+    def reserve(**increase):
+        for k,v in increase.items():charges[k]=charges.get(k,0)+v
+    result=prediction.analyze_static_training(material,part=part,reserve=reserve,
+        save=lambda n,v:saved.update({n:v}))
+    assert material==before and result['passed'] and not result['observational_coverage_qualified']
+    assert result['physical_parameter_count']==27 and result['parameter_count']==51
+    assert result['original_rows_retained']==1 and result['coupling_rows_checked']==48
+    assert charges==prediction.static_training_limits()
+    assert list(saved).index('coupling.json')<list(saved).index('source-probes.json')
+    assert len(saved['coordinate-projection.json']['coordinates'])==27
+    assert result['native_evaluations']==0 and result['scientific_decision']=='abstain'
+
+
+def static_summary_rows():
+    return [dict(case_identity=f'{model}-{int(profile)}',model=model,profile=profile,
+        part=part,passed=True,acceleration_change=2. if part==-1 else 1.+part/10,
+        prior_acceleration_change=3.)
+        for model in range(3) for profile in (False,True) for part in range(-1,8)]
+
+
+def test_static_summary_uses_every_cover_part_and_preserves_failed_parts():
+    rows=static_summary_rows();result=prediction.summarize_static_training(rows)
+    assert result['completed']==54 and result['passed']==54
+    assert all(r['cover_acceleration_change']==1.7 for r in result['cases'])
+    assert not result['prediction_method_qualified']
+    rows[4]['passed']=False;result=prediction.summarize_static_training(rows)
+    assert result['passed']==53 and result['complete_covers']==5
+    assert result['cases'][0]['cover_acceleration_change'] is None
+
+
+@pytest.mark.parametrize('change',['missing','duplicate','changed_prior'])
+def test_static_summary_rejects_incomplete_or_mixed_cover(change):
+    rows=static_summary_rows()
+    if change=='missing':rows.pop()
+    elif change=='duplicate':rows[-1]=deepcopy(rows[-2])
+    else:rows[-1]['prior_acceleration_change']=4.
+    with pytest.raises(ValueError):prediction.summarize_static_training(rows)
+
+
 @pytest.mark.parametrize('change',['gradient','row','bound','source','box'])
 def test_changed_cut_proof_is_rejected_before_contraction_or_support(change):
     _,saved,cuts,report=fixture();cuts=deepcopy(cuts)

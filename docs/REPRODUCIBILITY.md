@@ -91,6 +91,11 @@ Historical studies continue to identify exactly which version they used.
 
 The archive catalog maps original paths to SHA-256 hashes and immutable ZIP
 packs. A complete verification checks both pack and individual-object hashes.
+Routine packing and named compaction verify the catalog checksum, every affected
+pack and object, alias sizes and expanded bytes. All selected targets are checked
+before any expanded copy is removed. Unrelated historical objects are not scanned
+again for each small update. The explicit `lll.studies check` command retains the
+complete-store audit, including packs not used by that update.
 The catalog is stored as deterministic `repro/catalog.json.gz`, with a SHA-256
 checksum of the compressed file. The shared reader also accepts the earlier
 uncompressed catalog; the next catalog write verifies and replaces that index

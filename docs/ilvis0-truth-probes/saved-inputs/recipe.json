@@ -1,0 +1,1 @@
+{"direction_scale":"1/2","future_s":438.0,"lp_allowance_m":1.0,"nonlinear_optimizer_starts":0,"original_reads":0,"packets":96000,"physical_columns":27,"scales":["1/50","1/20","1/10"],"targets_m":[20.0,20.0,50.0],"training_allowance_m":1.0,"training_s":[2.0,10.0,30.0,180.0,290.0]}

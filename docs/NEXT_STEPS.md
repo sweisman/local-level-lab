@@ -15,56 +15,41 @@ study; receiver positions help constrain the reconstructed flight.
 
 <a id="then-strengthen-the-interpretation"></a>
 
-## Now: make prediction tests meaningful
+## Now: predict measurements left out of the fit
 
-The stronger test is to fit an earlier part of a recording, then predict later
-positions—including height—without using them to adjust the answer.
+Fit the earlier part of a recording, then reconstruct the later track from its
+IMU readings. Keep later GPS positions out of calibration and use them only to
+measure the errors. Check height as well as the horizontal track.
 
-Short software checks pass. The [long-record test](ilvis0-long-staged-feasibility-v2/README.md)
-has now finished all six generated cases. They contain the known answers,
-but **none gives usefully narrow ranges**. The next numerical task is to improve
-those bounds before attempting new predictions on unused aircraft observations.
+The [revised protocol](PREDICTION_VALIDATION.md) has two immediate steps:
 
-A [saved-allowance audit](ilvis0-proof-budget-audit/README.md) now points to
-the position-reconstruction calculation: it contributes over 99.999% of one
-reported safety allowance in all six cases. The next task is to trace that
-growth through the coordinate transformations, keeping the physical bounds fixed.
+1. Check the complete fitting and prediction pipeline on known-answer examples.
+2. Run a small archival pilot selected by route, IMU type and conservative flight
+   group. Use fixed starts and splits; report every result and failure.
 
-Recent checks identified calibration cross-effects that the simplest linear
-calculation omitted. [Correcting the remaining curvature](ilvis0-residual-source-curvature/INTERPRETATION.md)
-reduces mismatch in twelve generated examples to 0.64 m and 3.28 m RMS in the
-two processing cases. This is improved approximation, not a confidence interval.
+The [existing saved-data comparison](ilvis0-saved-prediction-comparison/INTERPRETATION.md)
+shows about 2.4 m later horizontal error for the specified-field globe, versus
+143–255 m for the alternatives, on one recording. The next test asks whether
+that advantage repeats on other groups and survives the declared assumptions.
 
-The latest [check against the original noisy observations](ilvis0-truth-probes/INTERPRETATION.md)
-accepts six of twelve candidate calibrations. Their later north predictions
-span **13.33 m** and **5.90 m** in the two processing cases. These sampled
-spreads are not bounds on all possible calibrations.
+Formal bounds covering every allowed calibration are a separate research track.
+They no longer block exploratory prediction comparisons. The current bounded
+calculation will finish and be preserved, with no new expansion of its limits.
 
-A separate [zero-reference fixture](ilvis0-ray-probes/INTERPRETATION.md)
-admits **21.75 m** north separation despite earlier agreement within 1 m.
-That fixture cannot meet its 20 m width target by improving arithmetic alone.
-The two problems have different observations; their results cannot be transferred.
+This change does not turn sensitivity ranges into confidence intervals or model
+preferences into detections. Actual measurement-error assumptions and calibrated
+statistical confidence still need testing. The 53-stretch findings are unchanged,
+and reserved ESA confirmation groups remain protected.
 
-A short [native reconstruction comparison](ilvis0-path-native-controls/README.md)
-passes all six generated cases and all 27 parameter directions. Full-trajectory
-and clock treatment still need qualification, along with the receiver/IMU
-error model. The width targets and earlier failures remain unchanged.
-
-The [compiled packet calculation](ilvis0-compiled-path-packets/README.md)
-passes ten local checks. A separately frozen native comparison checks longer
-prefixes: all six cases pass across 64 packets and all 27 parameters in 57
-seconds. Full-record bounds remain the next requirement.
-
-New aircraft prediction fits have not started. The 53-stretch findings are
-unchanged. [Completion requirements](ilvis0-long-staged-feasibility-v2/V01_GATES.md)
-explain what must pass; the [study record](STUDIES.md) preserves earlier results.
+[Prediction protocol](PREDICTION_VALIDATION.md) ·
+[Error assumptions](PREDICTION_ERROR_ASSUMPTIONS.md) · [Study history](STUDIES.md).
 
 ## Then: four larger tests
 
 | Order | Question | What is needed |
 |---|---|---|
 | 1 | **Can the models predict unused measurements?** | Fit earlier observations and predict later ones. Height must agree too; a better horizontal fit alone is insufficient. |
-| 2 | **Does the result repeat in a different archive?** | Prepare ESA survey data under its own selection and instrument assumptions. Its first selection found no qualifying intervals. Keep separate flights reserved for confirmation. |
+| 2 | **Does the result repeat in a different archive?** | Qualify the [rate and motion treatment](ESA_MOTION.md), then freeze receiver-only selection. The first inventory has no eligible stretches. Keep confirmation flights reserved. |
 | 3 | **How much independent evidence is there?** | Group overlapping recordings and related flights. Establish confidence without counting every stretch as an independent experiment. |
 | 4 | **What rotation field does the data measure?** | Fit its size and direction freely. Only then assess whether the precision can distinguish solar from sidereal timing. |
 

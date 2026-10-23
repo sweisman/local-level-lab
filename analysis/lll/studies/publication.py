@@ -30,3 +30,42 @@ def archive_publication(root,data,public):
     from . import readers
     readers.evidence.cache_clear();readers.archive_directories.cache_clear()
     return dict(packed,compacted_files=removed,numerical_work=0)
+
+
+def archive_preparation(root,definition_path):
+    """Archive only declared local preparation copies after their study closes.
+
+    Only declared copies inside the preparation's dedicated directory are accepted.
+    Every compacted byte remains recoverable through a verified archive alias.
+    """
+    from ..ilvis0_control_shards import IDENTITY
+    root=Path(root).resolve();definition=safe_path(root,definition_path);base=definition.parent
+    if not base.is_relative_to(root/'data') or base==root/'data':
+        raise ValueError('a dedicated data preparation directory is required')
+    store=ArchiveStore(root);catalog=store.catalog()
+    try:
+        value=json.loads(store._read(definition.relative_to(root).as_posix(),catalog))
+        if not isinstance(value.get('id'),str) or not IDENTITY.fullmatch(value['id']):
+            raise ValueError('safe declared study identity required')
+        names={definition.relative_to(root).as_posix()}
+        for name in value['inputs'].values():
+            path=safe_path(root,name)
+            if not path.is_relative_to(base):raise ValueError('external inputs cannot be compacted as preparation copies')
+            names.add(path.relative_to(root).as_posix())
+        prefix='data/'+value['id']
+        try:completion=json.loads(store._read(prefix+'/completion.json',catalog))
+        except FileNotFoundError as exc:raise ValueError('closed study required before preparation compaction') from exc
+        manifest_bytes=store._read(prefix+'/manifest.json',catalog)
+        if completion['state'] not in ('complete','terminal') or digest(manifest_bytes)!=completion['manifest_sha256']:
+            raise ValueError('closed manifest hash mismatch')
+        manifest=json.loads(manifest_bytes)
+        if set(manifest['inputs'])!=set(value['inputs']):raise ValueError('declared input identities differ')
+        for key,name in value['inputs'].items():
+            frozen=manifest['inputs'][key]
+            if frozen['source']!=name or digest(store._read(name,catalog))!=frozen['sha256']:
+                raise ValueError('preparation input differs from its closed freeze')
+        packed=store.pack(sorted(names));removed=store.compact(names=sorted(names))
+    finally:store.close()
+    from . import readers
+    readers.evidence.cache_clear();readers.archive_directories.cache_clear()
+    return dict(packed,compacted_files=removed,numerical_work=0)

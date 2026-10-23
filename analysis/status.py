@@ -6,6 +6,7 @@ from contextlib import contextmanager
 import fcntl
 import hashlib
 import json
+import math
 from pathlib import Path
 import sys
 import time
@@ -110,6 +111,44 @@ def completed_rows(directory,manifest,manifest_hash):
     return rows
 
 
+def series_snapshot(directory,tasks):
+    """Count saved report prefixes; these never qualify a case or a result.
+
+    Only explicit task paths are read. A concurrent incomplete append is an
+    unavailable snapshot, not a reason to modify or restart the worker.
+    """
+    from lll.studies.series import read_reports
+    counts=[];found=False
+    for task in tasks:
+        times=task.get('payload',{}).get('recipe',{}).get('times_s')
+        if times is None:continue
+        identity=task['identity']
+        if (not isinstance(identity,str) or identity in ('.','..') or Path(identity).name!=identity
+                or not isinstance(times,list) or not 1<=len(times)<=4096
+                or any(type(v) not in (int,float) or not math.isfinite(v) for v in times)
+                or any(b<=a for a,b in zip(times,times[1:]))):
+            raise ValueError('explicit safe case and ordered finite query list required')
+        directory_case=Path(directory)/'artifacts'/identity
+        binding_path=directory_case/'series-binding.json';path=directory_case/'training-bounds.jsonl';n=0
+        if binding_path.is_file():
+            found=True;binding=json.loads(binding_path.read_bytes())
+            if (binding['records']!=len(times) or type(binding['maximum_record_bytes']) is not int
+                    or not 128<=binding['maximum_record_bytes']<=1048576):
+                raise ValueError('series metadata differs from fixed queries')
+            if path.is_file():
+                if path.stat().st_size>min(64*1024**2,8192+len(times)*binding['maximum_record_bytes']):
+                    raise ValueError('series exceeds bounded status-read size')
+                reports=read_reports(path,binding=binding['binding'],maximum_records=len(times),
+                    maximum_record_bytes=binding['maximum_record_bytes'])
+                n=len(reports)
+                if any(not isinstance(v,dict) or v.get('time_s')!=times[i] for i,v in enumerate(reports)):
+                    raise ValueError('series query order differs from fixed task')
+        counts.append(dict(identity=identity,saved_reports=n,expected_reports=len(times)))
+    if not found:return None
+    return dict(saved_reports=sum(v['saved_reports'] for v in counts),expected_reports=sum(v['expected_reports'] for v in counts),
+        cases=counts,qualified_cases=0,provisional=True)
+
+
 def inspect_study(directory):
     directory=Path(directory)
     result=dict(path=str(directory),state='missing',lock='missing',threads=0,completed=0,
@@ -172,6 +211,12 @@ def inspect_study(directory):
                     result['warnings'].append('qualification failed; '+str(len(summary.get('unrun_tests',[])))+' controls not run')
         else:
             rows=completed_rows(directory,manifest,manifest_hash)
+            if sharded:
+                try:
+                    snapshot=series_snapshot(directory,manifest['tasks'])
+                    if snapshot is not None:result['series_progress']=snapshot
+                except (OSError,ValueError,KeyError,TypeError) as error:
+                    result['series_progress_unavailable']=str(error)
             if status.get('state')=='stopped' and not held:result['state']='stopped'
             if held and (directory/'progress.json').exists():
                 progress=load(directory/'progress.json')
@@ -257,6 +302,11 @@ def render(report):
     if report.get('worker_progress'):
         progress=report['worker_progress']
         text+=f"\n  Worker snapshot: {progress['completed']}/{total} complete, {progress['passed']} passing; completion verification pending"
+    if report.get('series_progress'):
+        progress=report['series_progress']
+        text+=f"\n  Saved envelope reports: {progress['saved_reports']}/{progress['expected_reports']}; provisional progress, not passing results"
+    if report.get('series_progress_unavailable'):
+        text+='\n  Envelope snapshot unavailable: '+report['series_progress_unavailable']
     for warning in report['warnings']:text+='\n  Warning: '+warning
     return text
 

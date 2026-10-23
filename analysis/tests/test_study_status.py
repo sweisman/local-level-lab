@@ -113,6 +113,44 @@ def test_active_native_total_sums_separate_fit_and_preflight_ledgers(tmp_path):
     assert report['native_calls']==2 and report['charged_identities']==1
 
 
+def test_bound_report_prefix_is_progress_without_becoming_a_passing_case(tmp_path):
+    from lll.studies.series import ReportStream
+    study=setup(tmp_path);directory=study/'artifacts/a';directory.mkdir(parents=True)
+    tasks=[dict(identity='a',payload=dict(recipe=dict(times_s=[2.,3.,4.]))),
+           dict(identity='b',payload=dict(recipe=dict(times_s=[2.,3.,4.])))]
+    put(directory/'series-binding.json',dict(binding='fixed',records=3,maximum_record_bytes=4096))
+    with ReportStream(directory/'training-bounds.jsonl',binding='fixed',maximum_records=3,maximum_record_bytes=4096) as stream:
+        stream.append(0,{'time_s':2.});stream.append(1,{'time_s':3.})
+    before={p:p.read_bytes() for p in directory.iterdir()}
+    result=module().series_snapshot(study,tasks)
+    assert result['saved_reports']==2 and result['expected_reports']==6
+    assert result['qualified_cases']==0 and result['provisional'] is True
+    assert {p:p.read_bytes() for p in directory.iterdir()}==before
+
+
+def test_bound_report_snapshot_rejects_corruption_or_truncation(tmp_path):
+    from lll.studies.series import ReportStream
+    study=setup(tmp_path);directory=study/'artifacts/a';directory.mkdir(parents=True)
+    tasks=[dict(identity='a',payload=dict(recipe=dict(times_s=[2.,3.])))]
+    put(directory/'series-binding.json',dict(binding='fixed',records=2,maximum_record_bytes=4096))
+    path=directory/'training-bounds.jsonl'
+    with ReportStream(path,binding='fixed',maximum_records=2,maximum_record_bytes=4096) as stream:
+        stream.append(0,{'time_s':2.})
+    path.write_bytes(path.read_bytes()[:-1]);raw=path.read_bytes()
+    with pytest.raises(ValueError,match='truncated'):module().series_snapshot(study,tasks)
+    assert path.read_bytes()==raw
+
+
+def test_bound_report_snapshot_rejects_changed_query_order(tmp_path):
+    from lll.studies.series import ReportStream
+    study=setup(tmp_path);directory=study/'artifacts/a';directory.mkdir(parents=True)
+    tasks=[dict(identity='a',payload=dict(recipe=dict(times_s=[2.,3.])))]
+    put(directory/'series-binding.json',dict(binding='fixed',records=2,maximum_record_bytes=4096))
+    with ReportStream(directory/'training-bounds.jsonl',binding='fixed',maximum_records=2,maximum_record_bytes=4096) as stream:
+        stream.append(0,{'time_s':3.})
+    with pytest.raises(ValueError,match='query'):module().series_snapshot(study,tasks)
+
+
 def test_held_lock_reports_running_and_capped_allocation(tmp_path):
     study=setup(tmp_path)
     with (study/'worker.lock').open('w') as lock:

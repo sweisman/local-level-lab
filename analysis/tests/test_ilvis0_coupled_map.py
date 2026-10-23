@@ -76,3 +76,26 @@ def test_bound_source_and_normalization_cannot_be_changed_after_construction():
     with pytest.raises(FrozenInstanceError):model.reference=reference(fixed=True)
     with pytest.raises(ValueError):model.caps[0]=1.
     with pytest.raises(ValueError):model.rotation_jacobian[0][0,0]=1.
+
+
+def test_static_reference_restores_from_verified_start_without_reading_history(monkeypatch):
+    from lll import ilvis0_shared_native
+    monkeypatch.setattr(ilvis0_shared_native,'_data',lambda *a:pytest.fail('no trajectory history read'))
+    ref=reference()
+    restored=coupled.restore_static_reference(dict(config(),gravity=9.81),ref.acceleration.raw_delta_v,ref.acceleration.period,
+        lower=ref.parent.lower,upper=ref.parent.upper,center=ref.parent.center,expected_report=ref.report())
+    assert restored.report()==ref.report()
+    assert np.array_equal(restored.normalized_values_at(np.full(27,.17)),
+        ref.normalized_values_at(np.full(27,.17)))
+
+
+@pytest.mark.parametrize('changed',['force','period','rotation','report'])
+def test_static_reference_rejects_changed_source_start_or_reference(changed):
+    ref=reference();configuration=dict(config(),gravity=9.81);raw=ref.acceleration.raw_delta_v.copy()
+    period=ref.acceleration.period;report=deepcopy(ref.report())
+    if changed=='force':raw[0]+=.001
+    elif changed=='period':period*=2
+    elif changed=='rotation':configuration['initial_r']=[[0.,-1.,0.],[1.,0.,0.],[0.,0.,1.]]
+    else:report['transform']['caps'][0]*=2
+    with pytest.raises(ValueError):coupled.restore_static_reference(configuration,raw,period,
+        lower=ref.parent.lower,upper=ref.parent.upper,center=ref.parent.center,expected_report=report)

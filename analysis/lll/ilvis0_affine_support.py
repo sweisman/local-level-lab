@@ -65,3 +65,39 @@ def propose(lower,upper_box,design,bound,objective):
     # A mathematically valid but poor dual must not make the box bound worse.
     if certificate['exact_upper']>fallback['exact_upper']:certificate=fallback;used=False
     return dict(certificate,proposal_used=used,proposal_threads=1,proposal_cooperative_seconds=1.)
+
+
+def project_coordinates(lower,upper_box,design,bound,*,axes,reserve):
+    """Outer coordinate bounds; all physical/shared columns remain in each LP.
+
+    Each proposal reserves its two internal exact checks plus an independent
+    standard-library check. Failed proposals retain the original box. Coordinate
+    intervals do not replace the original coupled inequalities or prove that
+    any point in their Cartesian product is feasible.
+    """
+    from lll.ilvis0_saved_prediction_audit import support as independent,endpoint
+    lo,hi,a,b,_=_inputs(lower,upper_box,design,bound,np.zeros(len(lower)))
+    axes=list(axes)
+    if not axes or any(type(i) is not int or not 0<=i<len(lo) for i in axes) or len(set(axes))!=len(axes):
+        raise ValueError('nonempty unique in-range integer axes required')
+    rows=[]
+    for axis in axes:
+        certificates=[]
+        for sign in (1,-1):
+            objective=np.zeros(len(lo));objective[axis]=sign
+            reserve(1,3)
+            proposal=propose(lo,hi,a,b,objective)
+            value=independent(lo.tolist(),hi.tolist(),a.tolist(),b.tolist(),objective.tolist(),
+                proposal['multipliers'].tolist())
+            if value!=proposal['exact_upper']:raise ValueError('independent coordinate support disagrees')
+            certificates.append(dict(sign=sign,exact_upper=str(value),
+                multipliers=proposal['multipliers'].tolist(),proposal_used=proposal['proposal_used']))
+        left=max(float(lo[axis]),endpoint(-F(certificates[1]['exact_upper']),False))
+        right=min(float(hi[axis]),endpoint(F(certificates[0]['exact_upper']),True))
+        if left>right:raise ValueError('contradictory coordinate supports require diagnosis')
+        width=float(hi[axis])-float(lo[axis])
+        rows.append(dict(parameter_index=axis,previous_lower=float(lo[axis]),previous_upper=float(hi[axis]),
+            lower=left,upper=right,width_ratio=(right-left)/width if width else 1.,certificates=certificates))
+    return dict(version='lll-exact-coordinate-projection-v1',parameter_count=len(lo),axes=axes,
+        coordinates=rows,inequalities_preserved=True,region_emptiness_assessed=False,
+        observational_coverage_qualified=False,scientific_decision='abstain')

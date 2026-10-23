@@ -19,6 +19,24 @@ from .ilvis0_transform_native import TransformReference
 VERSION='ilvis0-complete-static-map-interval-v1'
 
 
+def restore_static_reference(configuration,raw_delta_v,period,*,lower,upper,center,expected_report):
+    """Rebuild the static normalization without loading a trajectory history.
+
+    The caller must verify the parent input/hash chain before extracting these
+    start fields. This checks the complete rebuilt reference, not the contents
+    or numerical integration of the source recording named by its identifier.
+    """
+    from .ilvis0_shared_reference_terms import ReferenceErrors
+    from .ilvis0_reference_acceleration import AccelerationTerms
+    from .ilvis0_common_force_transform import ForceTransform
+    parent=ReferenceErrors(configuration,lower,upper,center,
+        source_id=expected_report['parent']['source_id'])
+    acceleration=AccelerationTerms(parent,raw_delta_v,period,configuration['gravity'])
+    reference=TransformReference(acceleration,ForceTransform(parent))
+    if reference.report()!=expected_report:raise ValueError('saved static reference or start fields changed')
+    return reference
+
+
 def _matvec(matrix,vector):
     return [sum((float(a)*b for a,b in zip(row,vector)),Jet.constant(0.)) for row in matrix]
 

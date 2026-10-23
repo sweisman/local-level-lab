@@ -19,6 +19,23 @@ def encoded(value):
     return (json.dumps(value,sort_keys=True,separators=(',',':'),allow_nan=False)+'\n').encode()
 
 
+def reports_equal(left,right):
+    """Compare exact report bytes across a JSON serialization boundary.
+
+    Tuples and lists both encode as JSON arrays. No values are rounded or
+    tolerated: signed zero, integer/float representation and every bit of a
+    finite floating-point value retain the encoder's exact representation.
+    """
+    return encoded(left)==encoded(right)
+
+
+def save_phase(save,ordinal,phase,**details):
+    """Append a distinct phase artifact through the study's immutable writer."""
+    if type(ordinal) is not int or not 0<=ordinal<=9999 or not isinstance(phase,str) or not phase:
+        raise ValueError('finite nonnegative phase ordinal and label required')
+    return save(f'phase-{ordinal:04d}.json',dict(details,phase=phase))
+
+
 def atomic(path,data,*,durable=True):
     path=Path(path);path.parent.mkdir(parents=True,exist_ok=True)
     temporary=path.with_name(path.name+'.pending')
@@ -158,18 +175,34 @@ class ArchiveStore:
             for sha,_ in batch:catalog['objects'][sha]=name
         catalog['paths'].update(records)
         self._write_catalog(catalog)
-        self.verify()
+        self.verify(names=names)
         return dict(paths=len(records),new_objects=len(new),packs=len(batches))
 
-    def verify(self):
+    def verify(self,*,names=None):
+        """Audit the complete store, or explicitly selected aliases and their packs.
+
+        Named operations still verify every selected object's bytes, containing
+        pack and alias size. The default remains a complete historical audit.
+        """
         catalog=self.catalog()
-        for name in catalog['packs']:self._archive(name,catalog,fresh=True)
+        if names is None:
+            records=catalog['paths'];objects=catalog['objects'];packs=catalog['packs']
+        else:
+            selected=sorted(set(names))
+            if any(name not in catalog['paths'] for name in selected):
+                raise ValueError('unindexed evidence alias in selected verification')
+            records={name:catalog['paths'][name] for name in selected}
+            try:
+                objects={record['sha256'] for record in records.values()}
+                packs={catalog['objects'][sha] for sha in objects}
+            except (KeyError,TypeError) as error:raise ValueError('invalid selected evidence index') from error
+        for name in packs:self._archive(name,catalog,fresh=True)
         sizes={}
-        for sha in catalog['objects']:sizes[sha]=len(self._object(sha,catalog))
-        for name,record in catalog['paths'].items():
+        for sha in objects:sizes[sha]=len(self._object(sha,catalog))
+        for name,record in records.items():
             safe_path(self.root,name)
             if sizes.get(record['sha256'])!=record['size']:raise ValueError('indexed object size mismatch')
-        return dict(paths=len(catalog['paths']),objects=len(sizes),packs=len(catalog['packs']))
+        return dict(paths=len(records),objects=len(sizes),packs=len(packs))
 
     def restore(self,destination,*,names=None):
         catalog=self.catalog();names=sorted(catalog['paths'] if names is None else set(names));pending=[]
@@ -186,7 +219,9 @@ class ArchiveStore:
         return len(pending)
 
     def compact(self,*,names=None):
-        self.verify();catalog=self.catalog();names=sorted(catalog['paths'] if names is None else set(names));pending=[]
+        selected=None if names is None else sorted(set(names))
+        self.verify(names=selected);catalog=self.catalog()
+        names=sorted(catalog['paths'] if selected is None else selected);pending=[]
         # Verify every expanded byte before removing any file. Unlisted paths are invisible.
         for name in names:
             path=safe_path(self.root,name);record=catalog['paths'][name]
