@@ -113,7 +113,7 @@ def test_observer_extension_preserves_the_qualified_numerical_source():
     from pathlib import Path
     from lll.studies.closed import ClosedStudy
     root=Path(__file__).resolve().parents[2]
-    study=ClosedStudy(root,'data/ilvis0-native-prefix-format-recovery-v2-20261023')
+    study=ClosedStudy(root,'docs/ilvis0-native-prefix-format-recovery')
     try:
         original_source=study.read('source-freeze/analysis/lll/ilvis0_native_prefix.py',
             study.manifest['sources']['analysis/lll/ilvis0_native_prefix.py'],raw=True)

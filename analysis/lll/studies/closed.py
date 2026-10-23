@@ -22,7 +22,9 @@ def load_python_reference(raw,*,name,sha256):
         if getattr(module,'__lll_source_hash__',None)!=sha256:raise ValueError('reference module identity already bound')
         return module
     module=types.ModuleType(name);module.__package__=name.rpartition('.')[0]
-    module.__file__='<sealed:'+sha256+'>';module.__lll_source_hash__=sha256
+    # An absolute virtual name cannot be collected as a checkout-local source
+    # by historical workers which inventory loaded lll modules via Path.resolve.
+    module.__file__='/<sealed:'+sha256+'>';module.__lll_source_hash__=sha256
     code=compile(raw,module.__file__,'exec');sys.modules[name]=module
     try:exec(code,module.__dict__)
     except BaseException:

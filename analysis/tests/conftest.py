@@ -6,7 +6,7 @@ import pytest
 
 
 @pytest.fixture(autouse=True)
-def generated_worker_fixtures(request, monkeypatch):
+def generated_worker_fixtures(request, monkeypatch, tmp_path_factory):
     """Exercise frozen lifecycle code with public fixtures on any CI machine.
 
     Emulate the fixture's recorded environment only in these tests. Production
@@ -28,18 +28,28 @@ def generated_worker_fixtures(request, monkeypatch):
         'test_ilvis0_shared_native_worker.py',
     }
     if request.path.name not in names:
+        yield
         return
     import builtins
     import io
     import json
     from pathlib import Path
-    from public_fixtures import generated_read_path, read_adapter
+    from public_fixtures import archived_read_path, qualified_worker, qualified_read_path, read_adapter
     root = Path(__file__).resolve().parents[2]
-    recorded = json.loads((root / 'docs/ilvis0-regrouped-controls/manifest.json').read_bytes())['environment']
-    monkeypatch.setattr(request.module.worker.base, 'environment', lambda: recorded)
-    remap = generated_read_path(root)
-    monkeypatch.setattr(builtins, 'open', read_adapter(builtins.open, remap))
-    monkeypatch.setattr(io, 'open', read_adapter(io.open, remap))
+    original=request.module.worker;public=original.PUBLIC
+    destination=tmp_path_factory.mktemp('qualified-worker')
+    with archived_read_path(root,destination/'public-fixtures') as archived:
+        recorded=json.loads(Path(archived(public/'manifest.json')).read_bytes())['environment']
+        prerequisites=[root/'docs/ilvis0-shared-duration-growth'] if request.path.name=='test_ilvis0_reference_acceleration_worker.py' else []
+        with qualified_worker(root,public,original.__name__,destination,read_path=archived,
+                              prerequisites=prerequisites) as worker:
+            monkeypatch.setattr(request.module,'worker',worker)
+            monkeypatch.setattr(worker.base,'environment',lambda:recorded)
+            relocated=qualified_read_path(root,destination)
+            remap=lambda path:archived(relocated(path))
+            monkeypatch.setattr(builtins,'open',read_adapter(builtins.open,remap))
+            monkeypatch.setattr(io,'open',read_adapter(io.open,remap))
+            yield
 
 
 @pytest.fixture(autouse=True)

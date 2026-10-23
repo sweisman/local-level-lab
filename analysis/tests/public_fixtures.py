@@ -7,6 +7,7 @@ recordings, credentials, optimizer outputs or replacement scientific values.
 """
 import os
 from pathlib import Path
+from contextlib import contextmanager
 
 GENERATED_RUNTIME_COPIES = {
     'ilvis0-affine-support-qualification-20261019': 'ilvis0-affine-support-qualification',
@@ -61,3 +62,103 @@ def source_aliases(root,values):
     result=dict(values);remap=public_read_path(root)
     for path,digest in values.items():result[str(remap(path))]=digest
     return result
+
+
+@contextmanager
+def archived_read_path(root,cache):
+    """Materialize only requested public archive aliases into a test cache."""
+    from lll.studies.artifacts import ArchiveStore
+    root,cache=(Path(p).resolve() for p in (root,cache));store=None;catalog=None
+    def remap(value):
+        nonlocal store,catalog
+        if not isinstance(value,(str,os.PathLike)):return value
+        path=Path(value)
+        if not path.is_relative_to(root/'docs') or path.is_file():return value
+        if store is None:store=ArchiveStore(root);catalog=store.catalog()
+        name=path.relative_to(root).as_posix()
+        if name not in catalog['paths']:return value
+        target=cache/name
+        if not target.is_file():
+            raw=store._read(name,catalog);target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(raw)
+        return target
+    try:yield remap
+    finally:
+        if store is not None:store.close()
+
+
+@contextmanager
+def qualified_worker(root,public,module_name,destination,*,read_path=lambda p:p,prerequisites=()):
+    """Execute a legacy lifecycle test with its actual frozen library graph.
+
+    This is test isolation, not hash substitution: both executed modules and
+    files checked by the worker come from the same verified source snapshot.
+    The checkout and its imported module objects are restored unchanged.
+    """
+    import hashlib
+    import importlib
+    import json
+    import sys
+    root,public,destination=(Path(p).resolve() for p in (root,public,destination))
+    if not public.is_relative_to(root/'docs'):raise ValueError('public project snapshot required')
+    pending=[(public,None)]+[(Path(p),None) for p in prerequisites];seen={};verified={}
+    while pending:
+        directory,expected_manifest=pending.pop()
+        if not directory.resolve().is_relative_to(root/'docs'):raise ValueError('public prerequisite required')
+        raw=Path(read_path(directory/'manifest.json')).read_bytes();sha=hashlib.sha256(raw).hexdigest()
+        if expected_manifest is not None and sha!=expected_manifest:raise ValueError('prerequisite manifest mismatch')
+        if directory in seen:continue
+        receipt=json.loads(Path(read_path(directory/'evidence-receipt.json')).read_bytes())['artifacts']
+        if sha!=receipt['manifest.json']:raise ValueError('frozen manifest hash mismatch')
+        seen[directory]=sha
+        for name,expected in json.loads(raw)['sources'].items():
+            relative=Path(name)
+            if relative.is_absolute() or '..' in relative.parts:raise ValueError('safe frozen source path required')
+            data=Path(read_path(directory/'source-freeze'/relative)).read_bytes()
+            if hashlib.sha256(data).hexdigest()!=expected:raise ValueError('frozen source hash mismatch: '+name)
+            if name in verified and verified[name]!=data:raise ValueError('conflicting qualified source versions: '+name)
+            verified[name]=data
+            if name.startswith('docs/') and name.endswith('/manifest.json'):
+                pending.append((root/relative.parent,expected))
+    entry='analysis/tests/'+module_name+'.py'
+    if entry not in verified:raise ValueError('worker must belong to the verified source snapshot')
+    for name,data in verified.items():
+        target=destination/name;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(data)
+    def selected(name):
+        return name=='lll' or name.startswith(('lll.','ilvis0_')) or name==module_name
+    saved={name:value for name,value in sys.modules.items() if selected(name)};paths=list(sys.path)
+    try:
+        for name in saved:sys.modules.pop(name,None)
+        sys.path[:0]=[str(destination/'analysis/tests'),str(destination/'analysis')]
+        importlib.invalidate_caches()
+        yield importlib.import_module(module_name)
+    finally:
+        for name in list(sys.modules):
+            if selected(name):sys.modules.pop(name,None)
+        sys.modules.update(saved);sys.path[:]=paths;importlib.invalidate_caches()
+
+
+def qualified_read_path(root,destination):
+    """Relocate prerequisite reads only; library reads stay in the frozen tree."""
+    root,destination=(Path(p).resolve() for p in (root,destination))
+    generated=generated_read_path(root)
+    def remap(value):
+        if not isinstance(value,(str,os.PathLike)):return value
+        path=Path(value)
+        if path.is_relative_to(destination):
+            relative=path.relative_to(destination)
+            if relative.parts and relative.parts[0]=='docs' and not path.is_file():return root/relative
+            if relative.parts and relative.parts[0]=='data':
+                candidate=root/relative;mapped=generated(candidate)
+                return mapped if mapped!=candidate else value
+        return generated(value)
+    return remap
+
+
+def reference_fixture(path):
+    """Reference accessors define helpers; they do not execute a study or CLI."""
+    import ast
+    for node in ast.parse(Path(path).read_text()).body:
+        if isinstance(node,(ast.Import,ast.ImportFrom,ast.FunctionDef,ast.AsyncFunctionDef,ast.ClassDef)):continue
+        if isinstance(node,ast.Expr) and isinstance(node.value,ast.Constant) and isinstance(node.value.value,str):continue
+        return False
+    return True

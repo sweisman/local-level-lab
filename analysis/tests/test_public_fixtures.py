@@ -59,10 +59,93 @@ def test_generated_prerequisites_always_use_named_public_copies(tmp_path):
 
 
 def test_production_worker_still_rejects_environment_mismatch(tmp_path, monkeypatch):
+    import builtins
+    import io
     import pytest
     import ilvis0_acceleration_cover_worker as worker
     monkeypatch.setattr(worker, 'DATA', tmp_path / 'new-study')
     monkeypatch.setattr(worker.base, 'environment', lambda: {'environment': 'mismatch'})
-    with pytest.raises(ValueError, match='environment changed'):
-        worker.prepare()
+    module=resolver();root=Path(__file__).resolve().parents[2]
+    with module.archived_read_path(root,tmp_path/'fixtures') as remap:
+        monkeypatch.setattr(builtins,'open',module.read_adapter(builtins.open,remap))
+        monkeypatch.setattr(io,'open',module.read_adapter(io.open,remap))
+        with pytest.raises(ValueError, match='environment changed'):
+            worker.prepare()
     assert not worker.DATA.exists()
+
+
+def frozen_worker_checkout(tmp_path):
+    import hashlib,json
+    root=tmp_path/'checkout';public=root/'docs/example-controls'
+    sources={'analysis/lll/__init__.py':b'',
+        'analysis/lll/example_math.py':b'value=17\n',
+        'analysis/tests/example_worker.py':
+            b'from pathlib import Path\nfrom lll import example_math\nROOT=Path(__file__).resolve().parents[2]\n'}
+    hashes={name:hashlib.sha256(raw).hexdigest() for name,raw in sources.items()}
+    for name,raw in sources.items():
+        path=public/'source-freeze'/name;path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(raw)
+    raw=json.dumps(dict(sources=hashes,environment={'frozen':True})).encode()
+    (public/'manifest.json').write_bytes(raw)
+    (public/'evidence-receipt.json').write_text(json.dumps(dict(artifacts={'manifest.json':hashlib.sha256(raw).hexdigest()})))
+    current=root/'analysis/lll/example_math.py';current.parent.mkdir(parents=True);current.write_text('value=99\n')
+    return root,public
+
+
+def test_worker_runs_its_verified_library_and_restores_module_namespace(tmp_path):
+    import sys,lll
+    module=resolver();root,public=frozen_worker_checkout(tmp_path);original=lll
+    with module.qualified_worker(root,public,'example_worker',tmp_path/'isolated') as worker:
+        assert worker.example_math.value==17
+        assert worker.ROOT==tmp_path/'isolated'
+        assert Path(worker.example_math.__file__).is_relative_to(worker.ROOT)
+        assert sys.modules['lll'] is not original
+    assert sys.modules['lll'] is original
+    assert (root/'analysis/lll/example_math.py').read_text()=='value=99\n'
+    assert 'example_worker' not in sys.modules
+
+
+def test_worker_isolation_rejects_a_changed_frozen_dependency(tmp_path):
+    import pytest
+    module=resolver();root,public=frozen_worker_checkout(tmp_path)
+    (public/'source-freeze/analysis/lll/example_math.py').write_text('value=99\n')
+    with pytest.raises(ValueError,match='frozen source'):
+        with module.qualified_worker(root,public,'example_worker',tmp_path/'isolated'):pass
+
+
+def test_reference_helper_convention_does_not_allow_executable_entrypoints(tmp_path):
+    module=resolver();path=tmp_path/'helper_reference.py'
+    path.write_text('from pathlib import Path\ndef original():\n    return 17\n')
+    assert module.reference_fixture(path)
+    path.write_text('if __name__=="__main__":\n    run_study()\n')
+    assert not module.reference_fixture(path)
+    path.write_text('run_study()\n')
+    assert not module.reference_fixture(path)
+
+
+def test_archived_fixture_reads_restore_only_the_requested_public_alias(tmp_path):
+    from lll.studies.artifacts import ArchiveStore
+    module=resolver();root=tmp_path/'checkout';name='docs/example/source-freeze/analysis/core.py'
+    path=root/name;path.parent.mkdir(parents=True);path.write_bytes(b'value=17\n')
+    store=ArchiveStore(root);store.pack([name]);store.compact(names=[name]);store.close()
+    with module.archived_read_path(root,tmp_path/'cache') as remap:
+        cached=Path(remap(path));assert cached.read_bytes()==b'value=17\n'
+        assert not path.exists()
+        private=root/'data/unrelated/private.txt';assert remap(private)==private
+        assert remap('/unrelated/private.txt')=='/unrelated/private.txt'
+
+
+def test_worker_snapshot_restores_hash_bound_prerequisite_sources(tmp_path):
+    import hashlib,json
+    module=resolver();root,public=frozen_worker_checkout(tmp_path)
+    prerequisite=root/'docs/prerequisite';source='analysis/lll/auxiliary_math.py';raw=b'value=23\n'
+    path=prerequisite/'source-freeze'/source;path.parent.mkdir(parents=True);path.write_bytes(raw)
+    manifest=json.dumps(dict(sources={source:hashlib.sha256(raw).hexdigest()})).encode()
+    (prerequisite/'manifest.json').write_bytes(manifest)
+    (prerequisite/'evidence-receipt.json').write_text(json.dumps(dict(artifacts={'manifest.json':hashlib.sha256(manifest).hexdigest()})))
+    name='docs/prerequisite/manifest.json';path=public/'source-freeze'/name
+    path.parent.mkdir(parents=True);path.write_bytes(manifest)
+    own=json.loads((public/'manifest.json').read_bytes());own['sources'][name]=hashlib.sha256(manifest).hexdigest()
+    raw=json.dumps(own).encode();(public/'manifest.json').write_bytes(raw)
+    (public/'evidence-receipt.json').write_text(json.dumps(dict(artifacts={'manifest.json':hashlib.sha256(raw).hexdigest()})))
+    with module.qualified_worker(root,public,'example_worker',tmp_path/'isolated') as worker:
+        assert (worker.ROOT/source).read_bytes()==b'value=23\n'

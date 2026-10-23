@@ -94,6 +94,18 @@ The [reproducibility guide](REPRODUCIBILITY.md) describes shared study code,
 verified evidence packs and restoration of historical source layouts. New studies
 use the common `lll.studies` interface rather than copying another worker.
 
+Historical lifecycle tests load a verified worker, its library sources and
+declared prerequisites into an isolated test directory. They restore the current
+module namespace afterward. Only these tests emulate the recorded environment;
+production workers keep their source and environment checks. Public fixtures
+can be read from verified packs into a temporary cache without local campaign
+directories. Reference helpers in `analysis/tests` define accessors and do not
+run study entrypoints.
+
+Server tests need local socket communication for asyncio wakeups. Run them in
+an environment that permits it; blocking socket-pair sends can stall an
+in-process test client before an application request starts.
+
 Closed six-case prediction comparisons use the shared
 [prediction report helper](../analysis/lll/ilvis0_prediction_publication.py).
 It verifies sealed inputs and results, keeps failed or unfinished cases visible,
