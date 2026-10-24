@@ -60,10 +60,14 @@ static void local(const double *r,const double *v,const double *theta,const doub
     double den=1+a[0]*a[0]+a[1]*a[1]+a[2]*a[2];
     for(int i=0;i<3;i++) vn[i]=(rhs[i]-ar[i]+a[i]*dot)/den;
 }
-static void step(int model,double *c,double *v,double *r,const double *theta,const double *dv,
-    double dt,double gravity,double radius,double removal) {
+static void step_gravity(int model,double *c,double *v,double *r,const double *theta,const double *dv,
+    double dt,double gravity,double radius,double removal,int height_gravity,double anchor_height) {
     double rate[3],middle[3],earth[3],transport[3],estimate[3],rn[9],vn[3],avg[3];
     rates(model,c,v,radius,rate); for(int i=0;i<3;i++) middle[i]=c[i]+rate[i]*dt/2;
+    if(height_gravity) {
+        double q=(6371000.+anchor_height)/(6371000.+middle[2]);
+        gravity=middle[2]>-6371000.?gravity*q*q:NAN;
+    }
     context(model,middle[0],rate,earth,transport);
     local(r,v,theta,dv,dt,earth,transport,middle[0],removal,gravity,rn,estimate);
     for(int i=0;i<3;i++) avg[i]=(v[i]+estimate[i])/2;
@@ -72,9 +76,15 @@ static void step(int model,double *c,double *v,double *r,const double *theta,con
     for(int i=0;i<3;i++) c[i]+=rate[i]*dt;
     memcpy(v,vn,sizeof vn); memcpy(r,rn,sizeof rn);
 }
-int ilvis0_predict(size_t n,const double *theta,const double *dv,const double *dt,size_t m,
+static void step(int model,double *c,double *v,double *r,const double *theta,const double *dv,
+    double dt,double gravity,double radius,double removal) {
+    step_gravity(model,c,v,r,theta,dv,dt,gravity,radius,removal,0,0.);
+}
+static int predict_gravity(size_t n,const double *theta,const double *dv,const double *dt,size_t m,
     const double *times,const double *initial_c,const double *initial_v,const double *initial_r,
-    const double *lever,int model,double gravity,double radius,double removal,double *out) {
+    const double *lever,int model,double gravity,double radius,double removal,double *out,
+    int height_gravity,double anchor_height) {
+    if(height_gravity && (!isfinite(anchor_height) || anchor_height<=-6371000.))return 4;
     double c[3],v[3],r[9],start=0; size_t j=0;
     memcpy(c,initial_c,sizeof c); memcpy(v,initial_v,sizeof v); memcpy(r,initial_r,sizeof r);
     for(size_t k=0;k<n;k++) {
@@ -84,13 +94,25 @@ int ilvis0_predict(size_t n,const double *theta,const double *dv,const double *d
             memcpy(oc,c,sizeof c); memcpy(ov,v,sizeof v); memcpy(orr,r,sizeof r);
             double f=fmax(0,fmin(1,(times[j]-start)/dt[k]));
             if(f>0) {for(int i=0;i<3;i++) {th[i]=theta[3*k+i]*f;vel[i]=dv[3*k+i]*f;}
-                step(model,oc,ov,orr,th,vel,dt[k]*f,gravity,radius,removal);}
+                step_gravity(model,oc,ov,orr,th,vel,dt[k]*f,gravity,radius,removal,height_gravity,anchor_height);}
             mv(orr,lever,ln); rates(model,oc,ln,radius,offset);
             for(int i=0;i<3;i++) out[3*j+i]=oc[i]+offset[i]; j++;
         }
         if(j==m) return 0;
         if(!isfinite(c[0]+c[1]+c[2]) || fabs(c[0])>=M_PI/2-1e-6) return 2;
-        step(model,c,v,r,theta+3*k,dv+3*k,dt[k],gravity,radius,removal); start=end;
+        step_gravity(model,c,v,r,theta+3*k,dv+3*k,dt[k],gravity,radius,removal,height_gravity,anchor_height); start=end;
     }
     return 1;
+}
+int ilvis0_predict(size_t n,const double *theta,const double *dv,const double *dt,size_t m,
+    const double *times,const double *initial_c,const double *initial_v,const double *initial_r,
+    const double *lever,int model,double gravity,double radius,double removal,double *out) {
+    return predict_gravity(n,theta,dv,dt,m,times,initial_c,initial_v,initial_r,lever,model,
+        gravity,radius,removal,out,0,0.);
+}
+int ilvis0_predict_height(size_t n,const double *theta,const double *dv,const double *dt,size_t m,
+    const double *times,const double *initial_c,const double *initial_v,const double *initial_r,
+    const double *lever,int model,double gravity,double radius,double removal,double *out,double anchor_height) {
+    return predict_gravity(n,theta,dv,dt,m,times,initial_c,initial_v,initial_r,lever,model,
+        gravity,radius,removal,out,1,anchor_height);
 }

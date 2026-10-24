@@ -1,0 +1,5 @@
+profile,policy_id,complete,shape_lower_error_family,preferred_model,preferred_accuracy,field_lower_error_model,sphere_rotating_prediction_total_rms_m,sphere_still_prediction_total_rms_m,flat_still_prediction_total_rms_m
+False,reported-short-v1,True,globe,sphere_rotating,False,,213.60404599802152,4474.470446349611,8679.923887680554
+False,reported-persistent-v1,False,,,False,,,,
+True,reported-short-v1,False,,,False,,,,
+True,reported-persistent-v1,False,,,False,,,,

@@ -38,7 +38,9 @@ def instrument_limits(bias_dph):
     return limits
 
 
-def load_tangent(directory):
+def load_tangent(directory,*,gravity_anchor_height_m=None):
+    if gravity_anchor_height_m is not None and (not math.isfinite(gravity_anchor_height_m) or gravity_anchor_height_m<=-6371000.):
+        raise ValueError('finite supported gravity anchor height required')
     source = Path(__file__).with_name('ilvis0_tangent.cpp')
     digest = hashlib.sha256(source.read_bytes()).hexdigest()
     directory = Path(directory); directory.mkdir(parents=True, exist_ok=True)
@@ -49,12 +51,19 @@ def load_tangent(directory):
         subprocess.run(['c++', *flags, str(source), '-o', str(temporary)],
                        check=True, capture_output=True)
         temporary.replace(binary)
-    library = ctypes.CDLL(str(binary)); function = library.ilvis0_tangent
+    library = ctypes.CDLL(str(binary))
+    function = library.ilvis0_tangent if gravity_anchor_height_m is None else library.ilvis0_tangent_height
     array = np.ctypeslib.ndpointer(dtype=np.float64, flags='C_CONTIGUOUS')
     function.argtypes = [ctypes.c_size_t, array, array, array, ctypes.c_size_t,
         array, array, array, array, array, array, ctypes.c_int, ctypes.c_int,
         ctypes.c_double, ctypes.c_double, array, array, ctypes.POINTER(ctypes.c_int)]
     function.restype = ctypes.c_int
+    if gravity_anchor_height_m is not None:
+        function.argtypes += [ctypes.c_double]
+        def bound_kernel(*args):return function(*args,gravity_anchor_height_m)
+        return bound_kernel,dict(source_sha256=digest,binary_sha256=hashlib.sha256(binary.read_bytes()).hexdigest(),
+            compiler=subprocess.check_output(['c++','--version'],text=True).splitlines()[0],flags=flags,
+            gravity_model='inverse-square-height-v1',gravity_anchor_height_m=gravity_anchor_height_m)
     return function, dict(source_sha256=digest,
         binary_sha256=hashlib.sha256(binary.read_bytes()).hexdigest(),
         compiler=subprocess.check_output(['c++', '--version'], text=True).splitlines()[0], flags=flags)
@@ -86,7 +95,7 @@ class TangentProblem(explore.ConditionalProblem):
 
     def residual_tangent(self, point, model):
         out, jac, boundaries = self.prediction_tangent(point, model)
-        return self.whiten(out-self.gps), solve_triangular(self.cholesky, jac, lower=True), boundaries
+        return self.whiten(out-self.gps), self.whiten_columns(jac), boundaries
 
 
 def fit_shape_candidate(problem, model, *, start=None, maximum_evaluations=200):

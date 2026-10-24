@@ -87,6 +87,11 @@ class Journal:
                     record=row['record']
                     if (record.get('number')!=kinds[kind] or record.get('manifest_sha256')!=self.freeze
                             or record.get('identity')!=identity):raise ValueError('journal compatibility row changed')
+                    operations=record.get('operations',1)
+                    if (type(operations) is not int or operations<1 or operations!=amount
+                            or (resource is not None and record.get('phase')!=resource)
+                            or (operations!=1 and resource!='fit')):
+                        raise ValueError('journal compatibility operation count changed')
                 if identity not in self.limits:raise ValueError('unknown charged identity')
                 if resource is None:
                     if identity in starts or amount!=1:raise ValueError('duplicate or invalid start')
@@ -127,7 +132,12 @@ class IndexedLedger:
         if kind not in ('starts','sweeps'):raise ValueError('unknown journal')
         if kind=='sweeps' and (fields.get('phase') not in ('fit','diagnostic') or fields.get('kind') not in ('value','tangent')):
             raise ValueError('invalid operation charge')
-        return self.journal._append(fields['identity'],None if kind=='starts' else fields['phase'],record=fields)['record']
+        operations=fields.get('operations',1)
+        if (type(operations) is not int or operations<1
+                or (operations!=1 and (kind!='sweeps' or fields['phase']!='fit'))):
+            raise ValueError('positive native operation count required')
+        return self.journal._append(fields['identity'],None if kind=='starts' else fields['phase'],
+            amount=operations,record=fields)['record']
 
     def start(self,identity):return self.append('starts',dict(identity=identity))
     def count(self,identity,phase):return self.journal.count(identity,phase)
@@ -155,7 +165,7 @@ def inspect_snapshot(data,freeze):
         def snapshot():yield db
         j._db=snapshot;checked=j.verify()
         phases=dict(db.execute('SELECT resource,SUM(total) FROM counts GROUP BY resource'))
-        return dict(starts=checked['starts'],sweeps=checked['events']-checked['starts'],
+        return dict(starts=checked['starts'],sweeps=sum(phases.values()),
             native_sweeps=phases.get('fit',0),incomplete_transaction=False)
     except sqlite3.Error as error:raise ValueError('invalid journal snapshot') from error
     finally:db.close()

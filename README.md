@@ -59,12 +59,13 @@ Median rate differences are **0.88°/h for globe plus the specified field,
 2.84°/h for zero-field globe, and 5.87°/h for the level flat prediction**.
 Aircraft motion remains in this descriptive comparison.
 
-A [saved prediction check](docs/ilvis0-saved-prediction-comparison/INTERPRETATION.md)
-continued one recording for 2.4 minutes using IMU readings while withholding
-later GPS positions. Across three completed settings, typical horizontal error
-was **2.4 m for globe plus the specified field, 143–161 m for zero-field globe,
-and 166–255 m for flat disc**. These settings reuse one flight; calibration
-uncertainty and independent confirmation remain open.
+A [three-recording prediction pilot](docs/ilvis0-retrospective-prediction-pilot-v2/INTERPRETATION.md)
+calibrated on earlier measurements and checked later GPS positions without
+using them to adjust the answer. One recording completed all required settings:
+horizontal RMS was **0.84–1.13 m for globe plus the specified field, about 496 m
+for zero-field globe and 793 m for disc**. The other two recordings have missing
+fits or failed accuracy checks. These are development results; statistical
+confidence and independent confirmation remain open.
 
 Separate [height-removal checks](docs/ilvis0-measurement-contribution/README.md)
 preserve the horizontal score advantage, but allow unrealistic vertical paths.
@@ -115,11 +116,16 @@ solar-versus-sidereal rate difference.
 
 ## Follow the work
 
-The next milestone is reliable prediction on observations excluded from fitting.
-The [next test](docs/PREDICTION_VALIDATION.md) calibrates each model on earlier
-measurements and checks the later track, including height. Statistical confidence
-is tested separately. Independent confirmation in the ESA airborne survey
-archive follows those checks. Shared recordings are grouped
+The [prediction pilot](docs/ilvis0-retrospective-prediction-pilot-v2/INTERPRETATION.md)
+now succeeds on one complete recording-level comparison. A separate
+[ESA development comparison](docs/esa-observed-wide-pilot/INTERPRETATION.md) now
+completes three matched settings: typical later 3D position error is **about
+15 m for globe plus the specified field, 3.8–4.4 km for zero-field globe and
+7.4–8.6 km for disc**. These reuse one twenty-minute recording; the fourth
+setting is incomplete because two starts reached the runtime ceiling.
+The next work checks prediction-error assumptions before broader confirmation.
+Statistical confidence is tested separately; independent ESA confirmation
+follows method qualification. Shared recordings are grouped
 before validation; ESA recording 187 is development material and the other
 cataloged groups are reserved for confirmation. A freely measured rotation
 field and solar-versus-sidereal precision come later.

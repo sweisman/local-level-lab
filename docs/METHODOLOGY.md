@@ -106,7 +106,7 @@ stretch expose sensitivity. Aircraft pitching and instrument/mounting effects
 remain in the differences. This is a descriptive check of the observed variation,
 not a replacement for the full trajectory comparison.
 
-The [next prediction test](PREDICTION_VALIDATION.md) fits calibration using only
+The [prediction test](PREDICTION_VALIDATION.md) fits calibration using only
 earlier observations, then reconstructs the later track from IMU readings without
 using later receiver positions to adjust it. All candidates retain matched
 physical bounds and error assumptions. Predetermined starting points expose
@@ -117,6 +117,15 @@ completeness, IMU type and conservative flight-group metadata. Report errors in
 all three position components, numerical failures and differences between starts.
 A smaller error is a relative advantage, not automatically physical adequacy or
 statistical significance.
+
+The [retrospective archive pilot](ilvis0-retrospective-prediction-pilot-v2/INTERPRETATION.md)
+now completes adequate comparisons on one recording. The separate
+[ESA development revision](esa-observed-wide-pilot/INTERPRETATION.md) completes
+three adequate matched settings on one twenty-minute recording, with later
+3D RMS near 15 m for globe plus the specified field versus kilometres for
+the alternatives. Two disc starts reach the runtime ceiling, leaving one
+setting incomplete. All failures remain recorded; broader validation and
+calibrated confidence are still open.
 
 Formal intervals covering every allowed calibration remain a separate
 [research track](PREDICTION_ERROR_ASSUMPTIONS.md). Its short controls and failed

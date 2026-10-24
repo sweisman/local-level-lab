@@ -35,11 +35,19 @@ def physical_residual_step(problem, delta):
     """
     delta = np.asarray(delta, float)
     m = len(problem.gps)
-    cholesky = np.asarray(problem.cholesky, float)
-    if (delta.shape != (3*m,) or cholesky.shape != (3*m, 3*m)
-            or not np.all(np.isfinite(delta)) or not np.all(np.isfinite(cholesky))):
+    if delta.shape != (3*m,) or not np.all(np.isfinite(delta)):
         raise ValueError('invalid physical residual conversion')
-    coordinates = (cholesky @ delta).reshape(m, 3)
+    inverse = getattr(problem,'unwhiten_stacked',None)
+    if callable(inverse):
+        coordinates = np.asarray(inverse(delta),float)
+        if coordinates.shape != (3*m,) or not np.all(np.isfinite(coordinates)):
+            raise ValueError('invalid structured physical residual conversion')
+        coordinates = coordinates.reshape(m,3)
+    else:
+        cholesky = np.asarray(problem.cholesky, float)
+        if cholesky.shape != (3*m,3*m) or not np.all(np.isfinite(cholesky)):
+            raise ValueError('invalid physical residual conversion')
+        coordinates = (cholesky @ delta).reshape(m, 3)
     coordinates[:, 1] = (coordinates[:, 1]+np.pi) % (2*np.pi)-np.pi
     return coordinates*physical_metric(problem.gps)
 

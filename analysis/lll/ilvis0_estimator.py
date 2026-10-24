@@ -81,7 +81,7 @@ class MotionProblem:
     """
     def __init__(self, theta, dv, dt, gps_times, gps_coordinates, covariance, initial,
                  bounds, *, clock_hypothesis, processing_hypothesis, maximum_interval_s,
-                 gravity_mps2, disc_radius_m=None):
+                 gravity_mps2, disc_radius_m=None, observation_error=None):
         if processing_hypothesis != 'unsubtracted_increment_hypothesis':
             raise ValueError('explicit unsubtracted-increment hypothesis required')
         if clock_hypothesis not in ('header_elapsed', 'nominal_200Hz'):
@@ -114,13 +114,24 @@ class MotionProblem:
         offset = bounds.limits.get('time_offset', 0.)
         if self.gps_times[0] - offset < 0 or self.gps_times[-1] + offset > self.ends[-1]:
             raise ValueError('receiver epochs lack IMU support over the whole timing bound')
-        cov = np.array(covariance, float, copy=True)
-        if cov.shape != (3*m, 3*m) or not np.all(np.isfinite(cov)) or not np.allclose(cov, cov.T, rtol=1e-12, atol=0):
-            raise ValueError('finite symmetric receiver-coordinate covariance required')
-        try:
-            self.cholesky = np.linalg.cholesky(cov)
-        except np.linalg.LinAlgError as exc:
-            raise ValueError('positive definite receiver covariance required') from exc
+        self.observation_error = observation_error
+        if observation_error is None:
+            cov = np.array(covariance, float, copy=True)
+            if cov.shape != (3*m, 3*m) or not np.all(np.isfinite(cov)) or not np.allclose(cov, cov.T, rtol=1e-12, atol=0):
+                raise ValueError('finite symmetric receiver-coordinate covariance required')
+            try:
+                self.cholesky = np.linalg.cholesky(cov)
+            except np.linalg.LinAlgError as exc:
+                raise ValueError('positive definite receiver covariance required') from exc
+            self.error_log_determinant = float(2*np.log(np.diag(self.cholesky)).sum())
+        else:
+            from .state_space_covariance import LinearInnovations, PrefixInnovations
+            if (covariance is not None or not isinstance(observation_error,(LinearInnovations,PrefixInnovations))
+                    or observation_error.epoch_count!=m or observation_error.observation_dimension!=3
+                    or not math.isfinite(observation_error.log_determinant)):
+                raise ValueError('one aligned fixed structured coordinate-error operator required')
+            self.cholesky = None
+            self.error_log_determinant = observation_error.log_determinant
         self.initial = dict(initial)
         self.initial['attitude_body_to_ned'] = forward.rotation(initial['attitude_body_to_ned']).copy()
         self.initial['velocity_ned_mps'] = forward.vector(initial['velocity_ned_mps']).copy()
@@ -131,7 +142,8 @@ class MotionProblem:
         if disc_radius_m is not None and (not math.isfinite(disc_radius_m) or disc_radius_m <= 0):
             raise ValueError('positive explicit disc radius required')
         self.radius = disc_radius_m
-        for a in (self.theta, self.dv, self.dt, self.ends, self.gps_times, self.gps, self.cholesky):
+        arrays = (self.theta, self.dv, self.dt, self.ends, self.gps_times, self.gps)
+        for a in arrays+(() if self.cholesky is None else (self.cholesky,)):
             a.setflags(write=False)
 
     def predict(self, normalized, model):
@@ -176,7 +188,28 @@ class MotionProblem:
         if d.shape != self.gps.shape or not np.all(np.isfinite(d)):
             raise ValueError('invalid coordinate residual')
         d[:, 1] = (d[:, 1] + math.pi) % (2*math.pi) - math.pi
-        return solve_triangular(self.cholesky, d.ravel(), lower=True)
+        return self.whiten_stacked(d.ravel())
+
+    def whiten_stacked(self,values):
+        values=np.asarray(values,float)
+        if values.shape!=(self.gps.size,) or not np.all(np.isfinite(values)):
+            raise ValueError('complete finite stacked coordinate residual required')
+        error=getattr(self,'observation_error',None)
+        return error.whiten(values) if error is not None else solve_triangular(self.cholesky,values,lower=True)
+
+    def whiten_columns(self,values):
+        values=np.asarray(values,float)
+        if values.shape!=(self.gps.size,len(self.bounds.active)) or not np.all(np.isfinite(values)):
+            raise ValueError('all finite active coordinate derivative columns required')
+        error=getattr(self,'observation_error',None)
+        return error.whiten(values) if error is not None else solve_triangular(self.cholesky,values,lower=True)
+
+    def unwhiten_stacked(self,values):
+        values=np.asarray(values,float)
+        if values.shape!=(self.gps.size,) or not np.all(np.isfinite(values)):
+            raise ValueError('complete finite stacked whitened residual required')
+        error=getattr(self,'observation_error',None)
+        return error.unwhiten(values) if error is not None else self.cholesky@values
 
     def residual(self, normalized, model):
         return self.whiten(self.predict(normalized, model) - self.gps)

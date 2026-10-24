@@ -151,6 +151,8 @@ def series_snapshot(directory,tasks):
 
 def inspect_study(directory):
     directory=Path(directory)
+    if not exists(directory/'manifest.json') and (directory/'request.json').is_file():
+        return inspect_test_queue(directory)
     result=dict(path=str(directory),state='missing',lock='missing',threads=0,completed=0,
         total=None,passed=0,errors=0,native_calls=None,native_limit=None,
         charged_identities=None,warnings=[])
@@ -177,7 +179,14 @@ def inspect_study(directory):
             result.update(shard_locks=states,native_limit=manifest['limits']['native_calls'],bound_limit=manifest['limits']['bound_calls'])
         result['state']='running' if held else 'incomplete'
         result['threads']=status.get('allocated_numerical_threads',status.get('numerical_threads',plan.get('numerical_threads',0))) if held else 0
-        if sharded:result['threads']=workers*threads if held else 0
+        if sharded:
+            # A finished shard cannot restart. Its released lease can safely
+            # fund a queued one-thread regression while other shards continue.
+            from lll.studies.testing_after import released_shard
+            released=sum(released_shard(directory,s,manifest_hash) for s in range(workers)
+                if (directory/'shards'/f'{s:03d}'/'done.json').is_file())
+            result['released_shards']=released
+            result['threads']=(workers-released)*threads if held else 0
         rows=[]
         if (directory/'completion.json').exists():
             if child_held:raise ValueError('sealed completion still has an owned shard lease')
@@ -277,6 +286,51 @@ def inspect_study(directory):
     return result
 
 
+def inspect_test_queue(directory):
+    """Read the existing testing_after request, lease and terminal XML only."""
+    import xml.etree.ElementTree as ET
+    directory=Path(directory)
+    result=dict(path=str(directory),state='incomplete',lock='missing',threads=0,completed=0,total=None,
+        passed=0,errors=0,native_calls=None,native_limit=None,charged_identities=None,warnings=[],kind='queued_tests')
+    try:
+        request=load(directory/'request.json');parent=study_path(ROOT,request['study'])
+        if file_digest(parent/'manifest.json')!=request['manifest_sha256']:
+            raise ValueError('queued tests refer to a changed parent manifest')
+        if request['numerical_threads']!=1 or request['reserved_threads']!=3:
+            raise ValueError('queued tests require the declared one-thread allocation')
+        result['parent_study']=request['study']
+        status=load(directory/'status.json') if (directory/'status.json').is_file() else {}
+        with read_lock(directory/'worker.lock') as state:result['lock']=state
+        if (directory/'completion.json').is_file():
+            completion=load(directory/'completion.json');state=completion['state']
+            if state=='wait_expired':
+                result.update(state='terminal');result['warnings'].append('queued test wait expired; tests did not run')
+            elif state=='complete':
+                if completion['request_sha256']!=file_digest(directory/'request.json'):
+                    raise ValueError('queued test completion/request hash mismatch')
+                code=completion['exit_code'];result['exit_code']=code
+                if type(code) is not int:raise ValueError('integer test exit code required')
+                cases=[]
+                if (directory/'results.xml').is_file():cases=list(ET.fromstring((directory/'results.xml').read_bytes()).iter('testcase'))
+                errors=sum(c.find('failure') is not None or c.find('error') is not None for c in cases)
+                skipped=sum(c.find('skipped') is not None for c in cases)
+                result.update(state='complete' if code==0 and cases and not errors and not skipped else 'terminal',
+                    completed=len(cases),total=len(cases),passed=len(cases)-errors-skipped,errors=errors)
+                if result['state']=='terminal':result['warnings'].append('queued tests did not all pass; preserve their report')
+            else:raise ValueError('unknown queued-test completion state')
+        elif result['lock']=='held':
+            if status.get('state')=='waiting' and status.get('numerical_threads')==0:
+                result.update(state='waiting',threads=0)
+            elif status.get('state')=='testing' and status.get('numerical_threads')==1:
+                result.update(state='running',threads=1)
+            else:raise ValueError('queued test lease has an invalid state snapshot')
+        else:result['warnings'].append('queued tests lack a completion record and live lease; do not restart blindly')
+        result['worker_phase']=status.get('state');result['pid']=status.get('pid')
+    except (OSError,ValueError,KeyError,TypeError,ET.ParseError) as error:
+        result.update(state='invalid',threads=0);result['warnings'].append(str(error))
+    return result
+
+
 def study_path(root,name):
     root=root.resolve();path=(root/name).resolve()
     if not path.is_relative_to(root/'data'):raise ValueError('study path must stay inside repository data/')
@@ -293,7 +347,8 @@ def render(report):
     calls=report['native_calls'] if report['native_calls'] is not None else '?'
     limit=report['native_limit'] if report['native_limit'] is not None else '?'
     text=f"{report['name']}: {report['state']} | {report['completed']}/{total} results, {report['passed']} passed, {report['errors']} errors"
-    text+=f" | {calls}/{limit} charged native calls | {report['threads']} threads | lock {report['lock']}"
+    if report.get('kind')!='queued_tests':text+=f" | {calls}/{limit} charged native calls"
+    text+=f" | {report['threads']} threads | lock {report['lock']}"
     if report.get('shard_locks'):
         text+=f" | {sum(v=='held' for v in report['shard_locks'].values())} owned shard leases"
     if 'bound_calls' in report:

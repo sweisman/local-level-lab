@@ -79,10 +79,14 @@ static void local(const Dual *r,const Dual *v,const Dual *theta,const Dual *dv,
     Dual den=1+a[0]*a[0]+a[1]*a[1]+a[2]*a[2];
     for(int i=0;i<3;i++) vn[i]=(rhs[i]-ar[i]+a[i]*dot)/den;
 }
-static void step(int model,Dual *c,Dual *v,Dual *r,const Dual *theta,const Dual *dv,
-    Dual dt,Dual gravity,Dual radius,Dual removal) {
+static void step_gravity(int model,Dual *c,Dual *v,Dual *r,const Dual *theta,const Dual *dv,
+    Dual dt,Dual gravity,Dual radius,Dual removal,int height_gravity,double anchor_height) {
     Dual rate[3],middle[3],earth[3],transport[3],estimate[3],rn[9],vn[3],avg[3];
     rates(model,c,v,radius,rate); for(int i=0;i<3;i++) middle[i]=c[i]+rate[i]*dt/2;
+    if(height_gravity) {
+        Dual q=(6371000.+anchor_height)/(6371000.+middle[2]);
+        gravity=middle[2].v>-6371000.?gravity*q*q:Dual(NAN);
+    }
     context(model,middle[0],rate,earth,transport);
     local(r,v,theta,dv,dt,earth,transport,middle[0],removal,gravity,rn,estimate);
     for(int i=0;i<3;i++) avg[i]=(v[i]+estimate[i])/2;
@@ -91,10 +95,16 @@ static void step(int model,Dual *c,Dual *v,Dual *r,const Dual *theta,const Dual 
     for(int i=0;i<3;i++) c[i]+=rate[i]*dt;
     memcpy(v,vn,sizeof vn); memcpy(r,rn,sizeof rn);
 }
-extern "C" int ilvis0_tangent(size_t n,const double *theta,const double *dv,const double *dt,
+static void step(int model,Dual *c,Dual *v,Dual *r,const Dual *theta,const Dual *dv,
+    Dual dt,Dual gravity,Dual radius,Dual removal) {
+    step_gravity(model,c,v,r,theta,dv,dt,gravity,radius,removal,0,0.);
+}
+static int tangent_gravity(size_t n,const double *theta,const double *dv,const double *dt,
     size_t m,const double *times,const double *initial_c,const double *initial_v,
     const double *initial_r,const double *limits,const double *point,int model,int profile,
-    double gravity,double radius,double *out,double *jacobian,int *boundaries) {
+    double gravity,double radius,double *out,double *jacobian,int *boundaries,
+    int height_gravity,double anchor_height) {
+    if(height_gravity && (!std::isfinite(anchor_height) || anchor_height<=-6371000.))return 4;
     Dual p[27],c[3],v[3],r[9],lever[3],offset[3],rot[9];
     for(int i=0;i<27;i++) {p[i]=point[i]*limits[i];p[i].d[i]=limits[i];}
     if(profile) {p[26]=(p[26]+1)/2;} else {p[26]=0;}
@@ -116,7 +126,7 @@ extern "C" int ilvis0_tangent(size_t n,const double *theta,const double *dv,cons
             memcpy(oc,c,sizeof c);memcpy(ov,v,sizeof v);memcpy(orr,r,sizeof r);
             Dual partial_th[3],partial_dv[3],ln[3];
             for(int i=0;i<3;i++) {partial_th[i]=th[i]*fraction;partial_dv[i]=vel[i]*fraction;}
-            step(model,oc,ov,orr,partial_th,partial_dv,dt[k]*fraction,gravity+p[24],radius,p[26]);
+            step_gravity(model,oc,ov,orr,partial_th,partial_dv,dt[k]*fraction,gravity+p[24],radius,p[26],height_gravity,anchor_height);
             mv(orr,lever,ln);rates(model,oc,ln,radius,offset);
             for(int i=0;i<3;i++) {
                 Dual value=oc[i]+offset[i];
@@ -128,7 +138,21 @@ extern "C" int ilvis0_tangent(size_t n,const double *theta,const double *dv,cons
         }
         if(j==m)return 0;
         if(!std::isfinite(c[0].v+c[1].v+c[2].v) || std::fabs(c[0].v)>=M_PI/2-1e-6)return 2;
-        step(model,c,v,r,th,vel,dt[k],gravity+p[24],radius,p[26]);start=end;
+        step_gravity(model,c,v,r,th,vel,dt[k],gravity+p[24],radius,p[26],height_gravity,anchor_height);start=end;
     }
     return 1;
+}
+extern "C" int ilvis0_tangent(size_t n,const double *theta,const double *dv,const double *dt,
+    size_t m,const double *times,const double *initial_c,const double *initial_v,
+    const double *initial_r,const double *limits,const double *point,int model,int profile,
+    double gravity,double radius,double *out,double *jacobian,int *boundaries) {
+    return tangent_gravity(n,theta,dv,dt,m,times,initial_c,initial_v,initial_r,limits,point,
+        model,profile,gravity,radius,out,jacobian,boundaries,0,0.);
+}
+extern "C" int ilvis0_tangent_height(size_t n,const double *theta,const double *dv,const double *dt,
+    size_t m,const double *times,const double *initial_c,const double *initial_v,
+    const double *initial_r,const double *limits,const double *point,int model,int profile,
+    double gravity,double radius,double *out,double *jacobian,int *boundaries,double anchor_height) {
+    return tangent_gravity(n,theta,dv,dt,m,times,initial_c,initial_v,initial_r,limits,point,
+        model,profile,gravity,radius,out,jacobian,boundaries,1,anchor_height);
 }

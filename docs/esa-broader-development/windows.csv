@@ -1,0 +1,5 @@
+window_id,parent_run,edge,group_id,receiver_source_sha256,first_index,last_index,support_epochs,nominal_duration_s,actual_support_not_yet_revalidated,query_epochs,query_stride,query_first_index,query_last_index,training_epochs,prediction_epochs,training_last_index,prediction_first_index,already_used_for_development
+187-009036-011436,1,first,esa-99f1530c3eda4318,72af2c1e8f2631fb189fbe80e05c7708c351e2afe9234b89f3cc3e1fd9f17024,9036,11436,2401,1200.0,True,1200,2,9037,11435,800,400,10635,10637,True
+187-042470-044870,1,last,esa-99f1530c3eda4318,72af2c1e8f2631fb189fbe80e05c7708c351e2afe9234b89f3cc3e1fd9f17024,42470,44870,2401,1200.0,True,1200,2,42471,44869,800,400,44069,44071,False
+187-049554-051954,2,first,esa-99f1530c3eda4318,72af2c1e8f2631fb189fbe80e05c7708c351e2afe9234b89f3cc3e1fd9f17024,49554,51954,2401,1200.0,True,1200,2,49555,51953,800,400,51153,51155,False
+187-058525-060925,2,last,esa-99f1530c3eda4318,72af2c1e8f2631fb189fbe80e05c7708c351e2afe9234b89f3cc3e1fd9f17024,58525,60925,2401,1200.0,True,1200,2,58526,60924,800,400,60124,60126,False

@@ -19,8 +19,8 @@ For machine-readable output or a particular runtime directory:
 ~/venv/bin/python analysis/status.py --study data/ilvis0-profile-verification-20261017
 ```
 
-The command reads existing metadata and takes only temporary, nonblocking shared
-locks. It creates no study files, imports no numerical engines, reads no original
+The command reads existing metadata and takes only temporary, nonblocking lock
+probes. It creates no study files, imports no numerical engines, reads no original
 measurements and never launches, resumes, repairs or packages a study.
 
 Completion records take precedence over stale progress snapshots after their
@@ -58,6 +58,31 @@ Sharded controls also show charged bounds and their separate ceiling. Bound
 reservations are checked against each shard's receipt chain; they are not
 counted as native integration calls. Inherited shard leases retain the full
 frozen thread reservation if the coordinator disconnects.
+
+A hash-bound completed shard with a released lease cannot restart. Its thread
+is subtracted from the active reservation, so a queued one-thread regression can
+use that capacity without exceeding the four-thread total. Unfinished shards
+retain their reservation.
+
+The same registry can include `lll.studies.testing_after` runtime directories.
+These show **waiting** with zero numerical threads, then **running** with one
+thread after a completed shard releases its lease. The command checks the parent
+manifest binding and completion/request hash, and counts the terminal XML test
+results. A free queue lock without completion is incomplete, regardless of an
+old snapshot. Test queues have no campaign-native-call counter; their test reports
+remain separate from scientific attempt ledgers. Status inspection never starts
+the queued tests itself.
+
+Sequential suites can use `lll.studies.testing_chain`. It binds the predecessor
+request, successor qualification and sources before waiting. The predecessor
+must pass its required test count and release its lease before the next suite
+can use that numerical core. Waits are finite; failed or changed evidence stops
+the handoff, and a reserved chain cannot be retried.
+
+Register the chain directory, rather than both the chain and its child queue,
+to count its allocation once. Use one declared sequence for a released core;
+independent queues must not compete for that same allocation. This schedules
+local software tests only, and grants no scientific fitting allowance.
 
 Exit status is zero for a readable snapshot, including completed studies with
 recorded failures. It is nonzero for invalid or unavailable metadata, warnings,

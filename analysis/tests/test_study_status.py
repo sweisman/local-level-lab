@@ -31,6 +31,64 @@ def setup(tmp_path):
     return study
 
 
+def queue_setup(tmp_path):
+    status=module();status.ROOT=tmp_path
+    parent=tmp_path/'data/parent';parent.mkdir(parents=True)
+    put(parent/'manifest.json',dict(allocation=dict(workers=4,threads=1,total=4)))
+    queue=tmp_path/'data/queued-tests';queue.mkdir()
+    request=dict(manifest_sha256=digest(parent/'manifest.json'),study='data/parent',shards=[0,1,2,3],
+        maximum_wait_s=60.,arguments=['analysis/tests/test_something.py'],sources={},numerical_threads=1,reserved_threads=3)
+    put(queue/'request.json',request);(queue/'worker.lock').touch()
+    put(queue/'status.json',dict(state='waiting',pid=123,numerical_threads=0))
+    return status,parent,queue
+
+
+def test_queued_tests_wait_without_numerical_allocation_and_count_only_when_running(tmp_path):
+    status,parent,queue=queue_setup(tmp_path)
+    with (queue/'worker.lock').open('rb') as handle:
+        fcntl.flock(handle,fcntl.LOCK_EX|fcntl.LOCK_NB)
+        report=status.inspect_study(queue)
+        assert report['state']=='waiting' and report['threads']==0 and report['lock']=='held'
+        report['name']='Queued checks'
+        assert 'charged native calls' not in status.render(report)
+        put(queue/'status.json',dict(state='testing',pid=123,numerical_threads=1,reserved_threads=3))
+        report=status.inspect_study(queue)
+        assert report['state']=='running' and report['threads']==1 and not report['warnings']
+
+
+def test_queued_test_completion_binds_request_and_counts_xml_results(tmp_path):
+    status,parent,queue=queue_setup(tmp_path)
+    (queue/'results.xml').write_text('<testsuites><testsuite tests="2"><testcase name="a"/><testcase name="b"/></testsuite></testsuites>')
+    put(queue/'completion.json',dict(state='complete',exit_code=0,numerical_threads=0,request_sha256=digest(queue/'request.json')))
+    result=status.inspect_study(queue)
+    assert result['state']=='complete' and result['threads']==0 and result['passed']==result['completed']==2
+    put(queue/'completion.json',dict(state='complete',exit_code=0,numerical_threads=0,request_sha256='0'*64))
+    assert status.inspect_study(queue)['state']=='invalid'
+
+
+def test_queued_test_request_cannot_follow_a_changed_parent(tmp_path):
+    status,parent,queue=queue_setup(tmp_path)
+    put(parent/'manifest.json',dict(changed=True))
+    assert status.inspect_study(queue)['state']=='invalid'
+
+
+def test_completed_shard_releases_its_counted_thread_irreversibly(tmp_path):
+    from contextlib import ExitStack
+    status=module();study=tmp_path/'data/sharded';study.mkdir(parents=True)
+    manifest=dict(version='ilvis0-sharded-native-controls-v1',allocation=dict(workers=4,threads=1),
+        tasks=[],limits=dict(native_calls=0,bound_calls=0))
+    put(study/'manifest.json',manifest);put(study/'status.json',dict(state='running',allocated_numerical_threads=4))
+    for shard in range(4):
+        p=study/'shards'/f'{shard:03d}';p.mkdir(parents=True);(p/'worker.lock').touch()
+    put(study/'shards/003/done.json',dict(manifest_sha256=digest(study/'manifest.json'),shard=3))
+    with ExitStack() as stack:
+        for shard in range(3):
+            handle=stack.enter_context((study/'shards'/f'{shard:03d}'/'worker.lock').open('rb'))
+            fcntl.flock(handle,fcntl.LOCK_EX|fcntl.LOCK_NB)
+        result=status.inspect_study(study)
+        assert result['state']=='running' and result['threads']==3
+
+
 def test_lock_overrides_untrusted_running_snapshot_without_writing(tmp_path):
     study=setup(tmp_path);before={p:p.read_bytes() for p in study.iterdir()}
     report=module().inspect_study(study)

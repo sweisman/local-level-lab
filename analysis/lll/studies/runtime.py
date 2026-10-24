@@ -21,6 +21,8 @@ class Definition:
         identity=value.get('id','')
         if not isinstance(identity,str) or not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9_.-]{0,95}',identity):
             raise ValueError('safe unique study ID required')
+        scope=value.get('scope','generated software controls only')
+        if not isinstance(scope,str) or not scope.strip():raise ValueError('explicit nonempty study scope required')
         allocation(workers=value['workers'],threads=value['threads'],reserved=0)
         wall=value['maximum_wall_s']
         if type(wall) not in (int,float) or not math.isfinite(wall) or wall<=0:
@@ -41,7 +43,8 @@ class Definition:
         return runner.prepare(root/'data'/self.id,project_root=root,tasks=value['tasks'],
             sources=sorted(set(value['sources']+shared)),inputs=value['inputs'],adapter=value['adapter'],
             workers=value['workers'],threads=value['threads'],maximum_wall_s=value['maximum_wall_s'],
-            environment=runner.runtime_environment(),accounting_format='sqlite-v1')
+            environment=runner.runtime_environment(),accounting_format='sqlite-v1',
+            scope=value.get('scope','generated software controls only'))
 
 
 def inspect_study(root,prefix):

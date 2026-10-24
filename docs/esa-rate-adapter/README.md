@@ -34,5 +34,11 @@ receiver-only inventory still contains zero eligible stretches.
 Implementation: `analysis/lll/airquantumgrav_increments.py`.
 Tests: `analysis/tests/test_airquantumgrav_increments.py`.
 
+The [full geographic qualification](../esa-geographic-rate-controls/README.md)
+passes all 72 generated twenty-minute maneuvering cases. Linear point samples
+stay below 10 cm maximum position error; hold rules have much larger errors
+despite improving with finer sampling. Actual sampling behavior, antenna
+offsets, initialization, calibration and receiver uncertainty still need testing.
+
 [Qualification plan](PLAN.md) · [ESA selection](../esa-development-selection/README.md) ·
 [Next analyses](../NEXT_STEPS.md) · [Technical roadmap](../ANALYSIS_ROADMAP.md).

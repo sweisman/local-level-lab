@@ -10,6 +10,60 @@ intervals for the aircraft recordings.** The sources of error below remain separ
 An **IMU (inertial measurement unit)** supplies the gyroscope and accelerometer
 records used to reconstruct motion.
 
+The [ESA saved-error check](esa-error-structure/INTERPRETATION.md) examines 22
+completed forecasts. Preferred-model later errors have lag-one correlations
+near 0.99, and first differences remain correlated. These describe combined
+prediction errors, not raw receiver noise. They motivate testing receiver-plus-IMU
+uncertainty with known-error controls; they supply neither a fitted noise law
+nor calibrated confidence.
+
+The [completed known-noise controls](esa-noisy-prediction/INTERPRETATION.md)
+produce 24 numerical passes and zero physical accuracy passes. Later horizontal
+RMS is 83.6–88.6 m against the unchanged 10 m limit. Each candidate predicts
+its own generated truth. This is an error-model development result, with no
+new Earth-model comparison or change to the original aircraft findings.
+
+The [training-only logged-rate check](esa-training-rate-variation/README.md)
+examines 239,864 earlier samples. Its gyro and accelerometer contrasts change
+substantially with sample spacing. These measured variations include aircraft
+motion, vibration and processing; they are not isolated sensor noise. A logged
+point-rate statistic also cannot be transferred directly to independent
+increment noise: the ESA linear-point conversion shares sample endpoints.
+
+The [analytic error-budget example](esa-noisy-prediction/ERROR_BUDGET.md)
+shows how the declared gyro noise alone can accumulate into tens of metres
+over a 400-second forecast, even with a perfect initial state. This is a
+checked constant-level approximation, not measured archive uncertainty or a
+replacement for the completed noise test. Accuracy limits and failure labels stay fixed.
+
+The [shared state-space component](integrated-noise-covariance/README.md)
+now reproduces supplied linear Gaussian covariance and training-only
+conditional future means/uncertainty in 54 source-bound software checks,
+including stationary changing bias and shared query/endpoint noise.
+The [native extension](native-noise-linearization/README.md) now passes 38
+complete-history controls using the existing motion equations. A separate
+receiver extension passes 15 checks for offsets, drift and persistent errors.
+Their combined path passes twelve native checks. Fifteen further checks
+include calibration uncertainty in a fixed-design linear prediction, retaining
+all nuisance directions and withholding finite covariance for unidentifiable
+forecasts. These components propagate declared error assumptions; they do not
+estimate the actual archive error law. Native nonlinear calibration, active
+parameter bounds and uncertainty from estimating the noise law remain open.
+
+The separate [rate-point law](integrated-noise-covariance/POINT_PLAN.md) passes
+15 checks. It preserves the shared sample in adjacent ESA intervals and uses
+point-error variance rather than continuous-rate PSD. Its 21-state native
+adapter and 33-state receiver combination now pass separate controls within
+the [182-check qualification](native-noise-linearization/README.md). The earlier
+incremental-data path is retained and checked. Calibration is fixed in these
+native controls; active bounds and nonlinear fitted-prediction coverage remain open.
+
+The [training-only native adapter](integrated-noise-covariance/training-adapter-qualification/README.md)
+now passes 56 checks. It freezes weighting from earlier observations, preserves
+covariance normalization and retains all calibration columns. It withholds an
+unrestricted-calibration covariance when the local correction leaves the allowed
+box. This checks the interface; noisy nonlinear prediction remains unqualified.
+
 | Source | What is currently checked | What still needs establishing |
 |---|---|---|
 | Calibration | Keep one set of physical calibration parameters shared across the whole generated history. Preserve the full declared domain. | Whether that domain and its time behavior adequately describe a particular recording. |

@@ -58,16 +58,17 @@ def _tasks(tasks,workers):
         if (not isinstance(identity,str) or not IDENTITY.fullmatch(identity) or identity in seen
                 or not isinstance(limits,dict) or set(limits)!=set(RESOURCES)
                 or any(type(v) is not int or v<0 for v in limits.values())
-                or task.get('native_kind','tangent') not in ('value','tangent')):
+                or task.get('native_kind','tangent') not in ('value','tangent','mixed')):
             raise ValueError('unique safe identities and exact finite task limits required')
         encoded(task);seen.add(identity);out.append(dict(task,index=index,shard=index%workers))
     return out
 
 
-def prepare(output,*,project_root,tasks,sources,inputs,adapter,workers=4,threads=1,maximum_wall_s=3600,environment,stop_after_failure=False,accounting_format='receipts-v1'):
+def prepare(output,*,project_root,tasks,sources,inputs,adapter,workers=4,threads=1,maximum_wall_s=3600,environment,stop_after_failure=False,accounting_format='receipts-v1',scope='generated software controls only'):
     output=Path(output);project=Path(project_root).resolve();budget=allocation(workers=workers,threads=threads,reserved=0)
     tasks=_tasks(tasks,workers)
     if accounting_format not in ('receipts-v1','sqlite-v1'):raise ValueError('unsupported accounting format')
+    if not isinstance(scope,str) or not scope.strip():raise ValueError('explicit nonempty study scope required')
     if (output.exists() or not math.isfinite(maximum_wall_s) or maximum_wall_s<=0
             or not isinstance(environment,dict) or adapter not in sources or not sources or len(set(sources))!=len(sources)
             or type(stop_after_failure) is not bool):
@@ -89,7 +90,7 @@ def prepare(output,*,project_root,tasks,sources,inputs,adapter,workers=4,threads
     manifest=dict(version=VERSION,tasks=tasks,sources=copied_sources,inputs=copied_inputs,adapter=adapter,
         allocation=budget,numerical_environment=thread_environment(workers=workers,threads=threads),environment=environment,
         limits=dict(totals,maximum_identities=len(tasks),maximum_wall_s=float(maximum_wall_s)),
-        stop_after_failure=stop_after_failure,scientific_decision='abstain',scope='generated software controls only')
+        stop_after_failure=stop_after_failure,scientific_decision='abstain',scope=scope)
     if accounting_format!='receipts-v1':manifest['accounting_format']=accounting_format
     _write(output/'manifest.json',manifest)
     _write(output/'authorization.json',dict(manifest_sha256=_sha(output/'manifest.json'),limits=manifest['limits']))
@@ -140,9 +141,15 @@ def _counts(journal,task):
     total={key:0 for key in RESOURCES}
     for row in journal.read('sweeps'):
         if row['identity']!=task['identity']:continue
+        operations=row.get('operations',1)
+        if (type(operations) is not int or operations<1
+                or (operations!=1 and row['phase']!='fit')):
+            raise ValueError('invalid operation count')
         if row['phase']=='fit':
-            packet=row.get('packet_visits');total['native_calls']+=1
-            if row['kind']!=task.get('native_kind','tangent'):raise ValueError('native charge kind mismatch')
+            packet=row.get('packet_visits');total['native_calls']+=operations
+            declared=task.get('native_kind','tangent')
+            if row['kind'] not in ('value','tangent') or (declared!='mixed' and row['kind']!=declared):
+                raise ValueError('native charge kind mismatch')
             key='packet_visits'
         else:packet=row.get('bound_steps');total['bound_calls']+=1;key='bound_steps'
         if type(packet) is not int or packet<0:raise ValueError('invalid packet reservation')
@@ -228,24 +235,60 @@ class TaskContext:
         sealed=any((directory/(identity+suffix+'.seal.json')).exists() for suffix in ('','.interrupted'))
         if self.finished or sealed:raise ValueError('sealed task cannot execute or write more work')
 
-    def charge(self,**increase):
+    def charge(self,*,native_kind=None,**increase):
+        if getattr(self,'_native_block',None) is not None:
+            raise ValueError('ordinary charges cannot overlap an active prepaid native block')
+        self._charge_operations(native_kind=native_kind,allow_batch=False,**increase)
+
+    def _charge_operations(self,*,native_kind,allow_batch,**increase):
         self._writable()
         _check_continue(self.root,self.manifest)
         native=set(increase)=={'native_calls','packet_visits'}
         bound=set(increase)=={'bound_calls','bound_steps'}
         if not (native or bound) or any(type(v) is not int or v<0 for v in increase.values()):
             raise ValueError('one complete finite operation reservation required')
-        if increase['native_calls' if native else 'bound_calls']!=1:raise ValueError('charge exactly one operation')
+        declared=self.task.get('native_kind','tangent')
+        actual=declared if native_kind is None else native_kind
+        if ((native and (actual not in ('value','tangent') or (declared!='mixed' and actual!=declared)))
+                or (bound and native_kind is not None)):
+            raise ValueError('explicit operation kind must match the frozen native declaration')
+        operations=increase['native_calls' if native else 'bound_calls']
+        if operations<1 or (operations!=1 and not (allow_batch and native)):
+            raise ValueError('charge exactly one operation or a declared native block')
+        if allow_batch and self.manifest.get('accounting_format')!='sqlite-v1':
+            raise ValueError('prepaid native blocks require the new indexed journal')
         current=_counts(self.journal,self.task)
         if any(current[k]+increase.get(k,0)>self.task['limits'][k] for k in RESOURCES):
             raise ValueError('task allowance exhausted; no operation performed')
         self.journal.append('sweeps',dict(identity=self.task['identity'],phase='fit' if native else 'diagnostic',
-            kind=self.task.get('native_kind','tangent') if native else 'value',
-            **{'packet_visits' if native else 'bound_steps':increase['packet_visits' if native else 'bound_steps']}))
+            kind=actual if native else 'value',
+            **{'packet_visits' if native else 'bound_steps':increase['packet_visits' if native else 'bound_steps']},
+            **({} if operations==1 else dict(operations=operations))))
+
+    @contextmanager
+    def prepay_native(self,*,native_calls,packet_visits,native_kind=None,check_interval=128):
+        """Charge a whole bounded native block once; unused work stays charged."""
+        from .studies.allowances import PrepaidNativeBlock
+        if getattr(self,'_native_block',None) is not None:raise ValueError('nested prepaid native block')
+        def prepay(**counts):self._charge_operations(native_kind=native_kind,allow_batch=True,**counts)
+        def check():
+            self._writable();_check_continue(self.root,self.manifest)
+        block=PrepaidNativeBlock(prepay=prepay,check_continue=check,
+            native_calls=native_calls,packet_visits=packet_visits,check_interval=check_interval)
+        self._native_block=block
+        try:
+            with block:yield block
+        finally:self._native_block=None
 
     def save(self,name,value):
         self._writable()
         path=path_within(self.directory,name);_write(path,value);return self.note_file(path)
+
+    def save_bytes(self,name,value):
+        self._writable()
+        if not isinstance(value,bytes):raise ValueError('explicit bytes required for a binary artifact')
+        path=path_within(self.directory,name);path.parent.mkdir(parents=True,exist_ok=True)
+        durable_write(path,value);return self.note_file(path)
 
     def note_file(self,path):
         self._writable()
@@ -263,6 +306,7 @@ class TaskContext:
         return path
 
     def finish(self,result):
+        if getattr(self,'_native_block',None) is not None:raise ValueError('active native block cannot be sealed')
         self._writable()
         if type(result.get('passed')) is not bool or result.get('scientific_decision')!='abstain':
             raise ValueError('one explicit software result and continued scientific abstention required')
@@ -359,7 +403,8 @@ def _progress(root,manifest,shard,journal,last_identity=None):
                 row=_load(path);completed.append(task['identity']);passed+=row['result']['passed'] is True
     sweeps=journal.read('sweeps')
     _replace(directory/'progress.json',dict(completed=completed,passed=passed,
-        native_evaluations=sum(r['phase']=='fit' for r in sweeps),charged_identities=len(journal.read('starts')),last_identity=last_identity))
+        native_evaluations=sum(r.get('operations',1) for r in sweeps if r['phase']=='fit'),
+        charged_identities=len(journal.read('starts')),last_identity=last_identity))
 
 
 def run_shard(study,shard,evaluate=None,*,lease_fd=None):

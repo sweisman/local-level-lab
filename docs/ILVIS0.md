@@ -13,6 +13,13 @@ The [separate stretch table](ilvis0-current-findings-20261015/STRETCHES.md) pres
 all 53 intervals, with a [comprehensive metadata CSV](ilvis0-current-findings-20261015/stretch-analytics.csv)
 for further analysis.
 
+The later [prediction pilot](ilvis0-retrospective-prediction-pilot-v2/INTERPRETATION.md)
+calibrates on earlier observations and scores unused later GPS positions.
+One of three recordings completes every matched setting, with about 1 m later
+horizontal RMS for specified-field globe versus hundreds of metres for the
+alternatives. The other recordings preserve numerical or accuracy failures.
+The 53-stretch full-position comparison above is unchanged.
+
 The historical fit labels “rotating globe” and “still globe” mean a globe with the
 specified background angular rate and a globe with zero background rate. They identify
 the predictions being compared, not the physical cause of a gyro signal. The archive

@@ -16,7 +16,7 @@ navigation solution.
 
 | Source | What is verified | What remains |
 |---|---|---|
-| ESA/DTU AirQuantumGrav and Green Quantum | The live catalog contains **nine raw iMAR files totaling 8.02 GB**. One complete recording has **9,168,819 records over 8.49 hours**, approximately **300 Hz**, with no gaps above 1.5 nominal periods. Its matching GNSS PPP position file is downloaded. | The [first frozen selection](../esa-development-selection/README.md) admits no intervals. A [position-based check](../esa-position-assessment/INTERPRETATION.md) finds 96 robust quiet trends in recording 187, but continuous-motion and receiver-error validation remain. The other eight raw recordings have not been downloaded or model-tested. |
+| ESA/DTU AirQuantumGrav and Green Quantum | The live catalog contains **nine raw iMAR files totaling 8.02 GB**. One complete recording has **9,168,819 records over 8.49 hours**, approximately **300 Hz**, with no gaps above 1.5 nominal periods. Its matching GNSS PPP position file is downloaded. | The earlier quiet-flight policy admitted no intervals. The [full-motion inventory](../esa-development-selection-v2/README.md) admits two runs totaling **393.4 minutes**. On the [first twenty-minute interval](../esa-observed-height-pilot/README.md), one height-gravity setting completes an adequate three-model prediction comparison favoring globe. Other settings retain numerical failures; error coverage remains uncalibrated. The other eight raw recordings have not been downloaded or model-tested. |
 | Wuhan University SmartPNT-POS | The public catalog contains **652 files**, including **40 IMR files**. One downloaded airborne sample contains **115,696 IMU records over 19.28 minutes**, with no timestamp reversal, duplicate or gap exceeding 1.5 nominal sample periods. | Independent receiver positions, dataset-specific motion screening and model qualification remain to be developed. |
 | SmartPNT-POS long-record lead | Header and endpoint range requests verify a **20.85-hour timestamp span** for a 600 Hz HG4930 file in the Allan-variance folder. Only **576 bytes** were downloaded. | Interior completeness, stationary conditions and mounting are unverified. It is a sensor-characterization lead, not curvature evidence. |
 
@@ -31,6 +31,22 @@ not automatically compensate for sensor bias or drift.
 The [rate/body qualification](../esa-rate-qualification/INTERPRETATION.md) now
 passes 48 generated controls while keeping constructed increments and unresolved
 sampling/processing assumptions explicit.
+The later [72 geographic controls](../esa-geographic-rate-controls/README.md)
+and [24 known-correction controls](../esa-observation-controls/README.md) pass too,
+with maximum spatial errors below 10 cm for the declared linear-point interpretation.
+The [training-only study](../esa-training-forecast-controls/README.md) also passes
+all 24 generated fits, estimating calibration from earlier observations and
+predicting later positions. It adds no random measurement noise. Two versioned
+working receiver-error cases are checked, and the revised inventory provides
+two development runs. The [completed development pilot](../esa-development-pilot/README.md)
+returns 24 fits, with 15 numerical passes. Its one complete three-model comparison
+has lower error for globe geometry but fails prediction accuracy. It does not
+establish a successful ESA replication; actual error coverage remains uncalibrated.
+The [height-gravity revision](../esa-observed-height-pilot/README.md) now completes
+one adequate three-model setting, with specified-field horizontal/height RMS of
+6.80/13.71 m on later observations. Only eight of 24 fits pass numerical checks;
+the [stopping diagnostic](../esa-stopping-resolution/PLAN.md) precedes broader
+testing. All confirmation groups remain protected.
 The iMAR Level-0 files are documented as ASCII records of GPS time, three
 accelerations, three angular rates in radians/second, and temperature. The report
 states that their axes have already been rotated to aircraft forward, starboard
@@ -72,9 +88,10 @@ Both reported lines for this recording overlap the IMU and GNSS time coverage:
 | 3007 | 57.4 minutes | 263 km/h | 1,512–1,902 m |
 
 The longer line changes altitude substantially. These are descriptive survey
-intervals, not approved steady-flight analysis windows. Admission will use the
-independent trajectory and a published policy before any model-fit residuals are
-examined. No Earth-model fits have been run on ESA data.
+intervals, not approved steady-flight analysis windows. The later full-motion
+selection used the independent receiver trajectory and a published policy before
+fitting. The first pilot's prediction failures remain preserved alongside the
+height-gravity revision's one adequate setting on the same interval.
 
 [IMU inspection](esa-sample-report.json) · [GNSS inspection](esa-gnss-report.json) ·
 [Reported-line trajectory details](esa-selected-line-context.csv).

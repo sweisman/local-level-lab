@@ -73,6 +73,8 @@ progress counts, session histories, personal commentary or process IDs.
   never reset allowances or retry failures to improve outcomes. Preserve failures.
 - Detached workers must survive short-lived command sandboxes. Preserve durable
   journals, atomic hashed outputs and exclusive locks. Packaging must never refit.
+- Serialize archive catalog mutations. Wait for publication packing and compaction
+  to finish before starting preparation compaction or another archive writer.
 - A failed qualification blocks dependent observed fits. Saved-data diagnosis and
   separately frozen software qualification may continue within the approved roadmap.
   Routine continuation does not authorize unrelated campaigns, deletion or promotion

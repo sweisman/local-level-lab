@@ -1,10 +1,13 @@
 # What receiver samples can establish about aircraft motion
 
-The ESA development recording has some quiet position-derived trends, but no
-qualifying continuous stretches yet. A fitted trend is not a measurement of
-every movement between receiver samples. Even perfect position and velocity
-samples cannot establish that instantaneous course changes stayed below a
-small cutoff unless additional motion assumptions are supplied.
+The current full-motion selection admits two ESA development runs totaling
+393.4 minutes. The earlier quiet-flight policy admitted none. This page explains
+why quiet receiver trends alone could not satisfy that earlier requirement,
+and why the project instead qualified a calculation that handles aircraft motion.
+
+A fitted trend does not measure every movement between receiver samples.
+Even perfect position and velocity samples cannot establish that instantaneous
+course changes stayed below a small cutoff without additional motion assumptions.
 
 The version-1 selector screens a ten-second median of sampled course-rate
 estimates. That statistic and an instantaneous-motion guarantee are different
@@ -55,15 +58,44 @@ There are two valid development paths:
    sampling hypotheses and timing uncertainty under all three physical candidates.
    A new receiver-only selection can then use the demonstrated capability domain.
 
-The current ESA adapter constructs component integrals under explicit sampling
-hypotheses. It does not yet qualify complete finite rotations, coning/sculling
-or geographic uncertainty propagation. Those requirements remain open; this
-example does not establish that a less restrictive selection is ready.
+The ESA adapter constructs component integrals under explicit sampling hypotheses.
+Its [geographic qualification](esa-geographic-rate-controls/README.md) now passes
+all 72 generated twenty-minute maneuvering cases, using independent analytic
+trajectories and all three physical candidates. With linear point samples,
+maximum position error stays below 10 cm. Holding each sample constant gives
+much larger errors despite passing the required refinement checks.
+
+That result first qualified the tested calculation with known initial state and
+zero antenna offset. The [24-case extension](esa-observation-controls/README.md)
+also passes with known sensor errors, antenna offsets and perturbed starting
+conditions; maximum position error stays below 10 cm when the correct adjustments
+are supplied. The [training-only extension](esa-training-forecast-controls/README.md)
+also passes all 24 fits: it estimates calibration from earlier observations and
+predicts later positions on noiseless generated two-minute tracks.
+
+Neither result establishes the instrument's actual sampling or filtering
+behavior. Two [working receiver-error cases](ESA_ERROR_POLICY.md) are now defined
+and software-checked; their coverage remains uncalibrated. The [revised inventory](esa-development-selection-v2/README.md)
+now admits two runs totaling 393.4 minutes. It reads receiver observations only,
+without gyro-based selection. The [first interval](esa-development-pilot-preparation/README.md)
+is now prepared. All 48 [matched weighted controls](esa-weighted-training-controls/README.md) pass,
+and the separately frozen [observed pilot](esa-development-pilot/README.md) is complete.
+Fifteen of 24 starts pass numerical checks. The one complete three-model comparison
+has lower error for globe geometry but fails prediction accuracy; no successful
+replication is established. The [saved-data diagnosis](esa-development-diagnosis/README.md)
+is complete. All 48 [independent gravity controls](esa-gravity-controls/README.md)
+pass with known corrections; all 24 [training-only cases](esa-height-training-controls/README.md)
+also qualify. The [observed gravity revision](esa-observed-height-pilot/README.md)
+now completes one adequate three-model setting, using the same original interval,
+calibration bounds and physical-accuracy limits. Eight of 24 fits pass numerical
+checks; the qualified specified-field forecast has 6.80 m horizontal and 13.71 m
+height RMS on later observations. Stopping failures remain for other settings.
+The generated controls read no original recording or protected observation.
 
 Recording 187 remains development material. The zero-eligible version-1 inventory
 and all earlier diagnostics are preserved, and the seven confirmation groups
-remain protected. No new receiver inventory or Earth-model fitting is performed
-by this analysis.
+remain protected. The inventory and observed pilot are separate frozen studies;
+their original limits and failed results remain preserved.
 
 [Completed receiver assessment](esa-position-assessment/INTERPRETATION.md) ·
 [Selection proposal](external-imu-data/ELIGIBILITY_PLAN.md) ·

@@ -41,8 +41,10 @@ class ConditionalBounds:
         return p
 
 
-def load_kernel(directory):
+def load_kernel(directory,*,gravity_anchor_height_m=None):
     """Build a hash-addressed local accelerator with ordinary verified C arithmetic."""
+    if gravity_anchor_height_m is not None and (not math.isfinite(gravity_anchor_height_m) or gravity_anchor_height_m<=-6371000.):
+        raise ValueError('finite supported gravity anchor height required')
     source = Path(__file__).with_name('ilvis0_native.c')
     digest = hashlib.sha256(source.read_bytes()).hexdigest()
     directory = Path(directory); directory.mkdir(parents=True, exist_ok=True)
@@ -53,12 +55,20 @@ def load_kernel(directory):
                         str(source), '-lm', '-o', str(temporary)], check=True, capture_output=True)
         temporary.replace(binary)
     library = ctypes.CDLL(str(binary))
-    function = library.ilvis0_predict
+    function = library.ilvis0_predict if gravity_anchor_height_m is None else library.ilvis0_predict_height
     array = np.ctypeslib.ndpointer(dtype=np.float64, flags='C_CONTIGUOUS')
     function.argtypes = [ctypes.c_size_t, array, array, array, ctypes.c_size_t,
                          array, array, array, array, array, ctypes.c_int,
                          ctypes.c_double, ctypes.c_double, ctypes.c_double, array]
     function.restype = ctypes.c_int
+    if gravity_anchor_height_m is not None:
+        function.argtypes += [ctypes.c_double]
+        def bound_kernel(*args):return function(*args,gravity_anchor_height_m)
+        metadata=dict(source_sha256=digest,binary_sha256=hashlib.sha256(binary.read_bytes()).hexdigest(),
+            compiler=subprocess.check_output(['cc','--version'],text=True).splitlines()[0],
+            flags=['-O2','-std=c99','-D_DEFAULT_SOURCE','-fPIC','-shared'],
+            gravity_model='inverse-square-height-v1',gravity_anchor_height_m=gravity_anchor_height_m)
+        return bound_kernel,metadata
     return function, dict(source_sha256=digest, binary_sha256=hashlib.sha256(binary.read_bytes()).hexdigest(),
                          compiler=subprocess.check_output(['cc', '--version'], text=True).splitlines()[0],
                          flags=['-O2', '-std=c99', '-D_DEFAULT_SOURCE', '-fPIC', '-shared'])
