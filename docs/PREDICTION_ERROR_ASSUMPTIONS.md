@@ -64,6 +64,13 @@ covariance normalization and retains all calibration columns. It withholds an
 unrestricted-calibration covariance when the local correction leaves the allowed
 box. This checks the interface; noisy nonlinear prediction remains unqualified.
 
+The [completed two-minute noisy study](structured-noisy-training/README.md)
+meets the physical screen on all 24 raw and conditional forecasts. Twenty fits
+pass the numerical checks, but every fit reaches calibration bounds. Its
+linear diagnostic therefore withholds unrestricted-calibration uncertainty.
+No calibrated coverage follows from point accuracy. The original longer noisy
+failure remains a separate result.
+
 | Source | What is currently checked | What still needs establishing |
 |---|---|---|
 | Calibration | Keep one set of physical calibration parameters shared across the whole generated history. Preserve the full declared domain. | Whether that domain and its time behavior adequately describe a particular recording. |

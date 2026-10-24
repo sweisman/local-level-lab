@@ -127,9 +127,11 @@ generation passes 54. Next: qualify [nonlinear fitting and parameters at their
 bounds](integrated-noise-covariance/NONLINEAR_PLAN.md) with declared measurement
 noise. The [short native protocol](integrated-noise-covariance/short-native-protocol-qualification/README.md)
 passes 128 software checks, while preserving the two-second cases' numerical
-failures and unidentified calibration. The [two-minute study](structured-noisy-training/README.md)
-is running 24 generated starts to test the longer prediction path. The complete
-aircraft error model is not yet qualified.
+failures and unidentified calibration. The [verified two-minute study](structured-noisy-training/README.md)
+returns 24 accurate raw and conditional forecasts, with 20 numerical passes.
+All calibrations reach a bound. Next: diagnose those limits and the four
+stopping failures before further fits. The shorter duration means this does
+not replace the earlier twenty-minute failure; uncertainty remains unqualified.
 
 The [broader development plan](esa-broader-development/README.md) is fixed from
 saved metadata: first and last twenty-minute ranges in each eligible run. One

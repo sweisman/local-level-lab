@@ -98,6 +98,12 @@ unidentified calibration. This qualifies the connected interface, including
 separate receiver-reading and physical-position targets. Longer noisy fitting
 and uncertainty coverage remain to test.
 
+The [two-minute study](../structured-noisy-training/README.md) now returns all
+24 forecasts within the physical limits, with 20 numerical passes. All fits
+reach calibration bounds, so the uncertainty gate remains open. This is a
+different duration from the earlier twenty-minute failed controls; it cannot
+establish that the revised weighting fixes that longer prediction problem.
+
 [Frozen software plan](PLAN.md) ·
 [Conditional forecast plan](FORECAST_PLAN.md) ·
 [Changing-bias plan](OU_PLAN.md) ·

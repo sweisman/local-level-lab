@@ -69,7 +69,7 @@ validated.
 | E02 | Next | **Pilot complete: three adequate matched comparisons** | The [verified revision](esa-observed-wide-pilot/INTERPRETATION.md) supplies 22 qualified forecasts; three complete settings favor globe plus the specified field, with about 15 m later 3D RMS versus kilometres for the alternatives. Two disc starts reach the runtime ceiling. Error assumptions and broader validation remain open; seven confirmation groups stay protected. |
 | G01 | Next | Complete as a descriptive check | [Compare raw gyro trends with geographic predictions](ilvis0-gyro-companion-v2/INTERPRETATION.md) across all 53 stretches. |
 | U01 | Next | Development dataset ready | [Assemble the evidence for publication](PAPER_DATASET.md). Final prediction and uncertainty results are still needed. |
-| U02 | Next | **Error adapter qualified; noisy prediction still open** | The [completed noisy test](esa-noisy-prediction/INTERPRETATION.md) returns 24 numerical passes and zero accuracy passes: horizontal RMS is 83.6–88.6 m against 10 m. Following the [182 component checks](native-noise-linearization/README.md), the [training-only adapter](integrated-noise-covariance/training-adapter-qualification/README.md) passes 56 checks. Nonlinear fits, active bounds and coverage remain; broader observed fitting stays gated. |
+| U02 | Next | **Two-minute forecasts accurate; bounded uncertainty open** | The [verified two-minute study](structured-noisy-training/README.md) returns all 24 accurate raw and conditional forecasts; 20 pass numerical checks. Every calibration reaches a bound, so uncertainty remains unsupported. The earlier [twenty-minute failure](esa-noisy-prediction/INTERPRETATION.md) is preserved; changing duration prevents a matched improvement claim. Diagnose bounds and stopping before further fits. |
 | R01 | Later | Not started | [Estimate the background rotation vector freely](ROTATION_FIELD.md), rather than supplying its rate. |
 | R02 | Later | Waiting for R01 | Test whether the measured rate can distinguish sidereal from solar timing. |
 | S01 | Later | Deferred | Develop Wuhan-data analysis and the separate [stationary participant experiment](STATIONARY.md). |
@@ -137,9 +137,13 @@ validated.
    also passes 54 checks. The [short native protocol](integrated-noise-covariance/short-native-protocol-qualification/README.md)
    now passes 128 software checks. Its two-second cases retain numerical
    nonconvergence and unidentified calibration; they do not qualify longer
-   prediction. The [two-minute noisy study](structured-noisy-training/README.md)
-   is now running 24 starts with more earlier observations and the full fitting
-   allowance. Nonlinear coverage and active bounds remain open before new aircraft fits.
+   prediction. The [verified two-minute study](structured-noisy-training/README.md)
+   now returns all 24 forecasts within the physical screen; 20 pass numerical
+   checks. Horizontal RMS is 1.84–2.08 m and height RMS 0.17–0.25 m. Every
+   calibration reaches at least one bound, preventing unrestricted uncertainty
+   claims. Saved-data diagnosis of these bounds and the four stopping failures
+   precedes more fits. This shorter study does not supersede the original
+   twenty-minute failure. Nonlinear coverage remains open before new aircraft fits.
    Accuracy limits, input selection and calibration bounds remain unchanged.
 3. Test broader predictive accuracy before opening the reserved ESA flight groups.
    The [fixed metadata plan](esa-broader-development/README.md) selects the first
