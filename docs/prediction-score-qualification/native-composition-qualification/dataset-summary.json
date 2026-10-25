@@ -1,0 +1,10 @@
+{
+  "confidence_calibrated": false,
+  "native_cases": 12,
+  "numerically_converged": 0,
+  "optimizer_evaluations_per_case": 8,
+  "original_reads": 0,
+  "protected_reads": 0,
+  "qualification_seed": 26102602,
+  "software_checks": 42
+}

@@ -1,0 +1,8 @@
+{
+  "artifacts": {
+    "README.md": "efac9c1c3c0030ecc934ca763adee3c47b1b55206a77833ec4d8c3a7b796cc8b",
+    "dataset-summary.json": "d2bf394ae53cf150d73d4bec952fb1dfed309322ef2d57f64044e60eb91b2d1e",
+    "diagnosis.json": "f2f6888dd1a87c64ae42b7fe01a9e7fe97041ab69474e7bd178a70c8e70cc5f4"
+  },
+  "manifest_sha256": "e6920b5952e9b38710ee55b912a70b217fbcc0b40f7a9e97179217be19f96f21"
+}

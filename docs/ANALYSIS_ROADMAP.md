@@ -69,7 +69,7 @@ validated.
 | E02 | Next | **Pilot complete: three adequate matched comparisons** | The [verified revision](esa-observed-wide-pilot/INTERPRETATION.md) supplies 22 qualified forecasts; three complete settings favor globe plus the specified field, with about 15 m later 3D RMS versus kilometres for the alternatives. Two disc starts reach the runtime ceiling. Error assumptions and broader validation remain open; seven confirmation groups stay protected. |
 | G01 | Next | Complete as a descriptive check | [Compare raw gyro trends with geographic predictions](ilvis0-gyro-companion-v2/INTERPRETATION.md) across all 53 stretches. |
 | U01 | Next | Development dataset ready | [Assemble the evidence for publication](PAPER_DATASET.md). Final prediction and uncertainty results are still needed. |
-| U02 | Next | **Native bounded interface qualified; nonlinear uncertainty open** | All [24 native controls](integrated-noise-covariance/native-bounded-reference-qualification/README.md) pass after exact arithmetic identified an unstable dense-reference solve. Calibration boundaries and unknown directions remain included. Justified nonlinear approximation limits and coverage remain before more aircraft fits; the earlier short accuracy result and long failure stay separate. |
+| U02 | Next | **Noise growth quantified; fitted-calibration uncertainty open** | The [generated noise check](noise-nonlinearity/remainder-diagnosis/README.md) locates small long-duration height nonlinearities. Known calibration is supplied in that check. Next qualify uncertainty when calibration is estimated, retaining parameter limits and unknown directions; no new aircraft fitting is released. |
 | R01 | Later | Not started | [Estimate the background rotation vector freely](ROTATION_FIELD.md), rather than supplying its rate. |
 | R02 | Later | Waiting for R01 | Test whether the measured rate can distinguish sidereal from solar timing. |
 | S01 | Later | Deferred | Develop Wuhan-data analysis and the separate [stationary participant experiment](STATIONARY.md). |
@@ -159,6 +159,29 @@ validated.
    The longer setting exceeds the unchanged 10 m screen even with this extra
    knowledge. These are assumed-noise calculations, not measured aircraft errors;
    they help explain why longer prediction needs an explicit uncertainty budget.
+   The [matched nonlinear check](noise-nonlinearity/README.md) is complete:
+   both short settings pass; both longer settings fail the fixed finite test.
+   Four of 64 seed/settings controls miss the limit, all in height. The
+   [saved diagnosis](noise-nonlinearity/remainder-diagnosis/README.md) locates
+   small, closely quadratic effects: largest vertical departures are 7.3 cm
+   and 4.4 cm. This supports the covariance calculation as an error-scale
+   diagnostic, while preserving its failed strict approximation checks.
+   Do not refine those small effects merely to obtain a pass. The next task is
+   qualification of the complete fitting-and-uncertainty procedure with unknown
+   calibration, separating numerical completion, physical accuracy and coverage.
+   Its [saved scoring gate](fitted-prediction-scores/INTERPRETATION.md) is now
+   complete: all 24 starts are retained, with 20 numerical passes and ten
+   training-selected comparisons available. Their maximum error/noise scores
+   are 5.29–6.25; those ratios are not confidence levels. New independent
+   calibration/validation draws require their own qualified finite freeze; the
+   existing shared seed cannot establish coverage. First [separate draw identity
+   from covariance assumptions](prediction-score-qualification/INDEPENDENT_DRAWS.md).
+   That interface now passes [30 compatibility checks](prediction-score-qualification/draw-qualification/README.md),
+   including identical original-seed outputs against the frozen generator.
+   The [fresh-draw pilot](independent-noisy-training-pilot/README.md) is now
+   running after 33 lifecycle and 42 native-composition software checks. It fixes
+   two fresh seeds and 48 starts, estimates calibration anew, and retains every
+   failed fit. These two seeds cannot establish coverage or a rare-tail quantile.
 3. Test broader predictive accuracy before opening the reserved ESA flight groups.
    The [fixed metadata plan](esa-broader-development/README.md) selects the first
    and last twenty minutes of each eligible development run: four ranges, one

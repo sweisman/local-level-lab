@@ -106,3 +106,30 @@ def test_adapter_executes_through_the_actual_frozen_loader(tmp_path,monkeypatch)
         assert result['native_calls']==1
         ctx.finish(result)
     finally:sys.modules.pop(spec.name,None)
+
+
+def test_shared_case_runner_preserves_callers_declared_noise_seed(tmp_path,monkeypatch):
+    from lll import structured_noisy_study,structured_noisy_training
+    from lll.airquantumgrav_noisy_inputs import noise_settings,rate_point_noise_settings
+    task,ctx=context(tmp_path)
+    r=dict(structured_noisy_training.recipe(),noise_by_law=dict(
+        increment=noise_settings(seed=26102602),point=rate_point_noise_settings(seed=26102602)))
+    monkeypatch.setattr(structured_noisy_study,'_kernels',lambda *a:(None,None))
+    def fake(payload,configured,**kw):
+        assert configured['noise_by_law'][payload['law']]['seed']==26102602
+        kw['reserve_construction'](**structured_noisy_training.limits(configured,payload['law'])[1])
+        kw['reserve'](native_calls=1,packet_visits=1)
+        return dict(native_calls=1,passed=False,converged=False,scientific_decision='abstain')
+    monkeypatch.setattr(structured_noisy_training,'calculate',fake)
+    result=structured_noisy_study.run_case(task,ctx,r=r,payload=task['payload'])
+    assert result['passed'] is False and result['converged'] is False
+    assert r['noise_by_law']['increment']['seed']==26102602
+    ctx.finish(result)
+
+
+def test_shared_case_runner_rejects_expanded_work_before_construction(tmp_path):
+    from lll.structured_noisy_study import run_case
+    from lll.structured_noisy_training import recipe
+    task,ctx=context(tmp_path)
+    with pytest.raises(ValueError):run_case(task,ctx,r=dict(recipe(),maximum_evaluations=201),payload=task['payload'])
+    assert not ctx.directory.exists()

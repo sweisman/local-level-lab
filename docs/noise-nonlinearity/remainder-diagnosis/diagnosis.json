@@ -1,0 +1,200 @@
+{
+  "confidence_calibrated": false,
+  "independent_seeds_per_setting": 16,
+  "input_hashes": {
+    "docs/noise-nonlinearity/artifacts/increment-120/nominal-context.json": "012e24dd2e8a5a8a51e79eb8b1fa6de786f313fc5e6b4b546965fab398757e2d",
+    "docs/noise-nonlinearity/artifacts/increment-120/seed-26102500.npz": "cf29d11c660eb16337f933a270dc5f51ee142e66e67ff056d27e33e776664df1",
+    "docs/noise-nonlinearity/artifacts/increment-120/seed-26102501.npz": "bf33f02cf3f601c66e89e367bae5251f0887c07f9a48012e7c38e1cfd8a36db9",
+    "docs/noise-nonlinearity/artifacts/increment-120/seed-26102502.npz": "440702ce8df6c60a3131256a3050af18039fc6a31ce4a48e5b173f852f929c5b",
+    "docs/noise-nonlinearity/artifacts/increment-120/seed-26102503.npz": "e88e33814a21a758afed838097bc82fed15c6d87bd37eb32309d7b58e8ccb725",
+    "docs/noise-nonlinearity/artifacts/increment-120/seed-26102504.npz": "36380f33b5f32680caae6b61817685c325fd9f22d9916c1d21b08b1ca3911bb2",
+    "docs/noise-nonlinearity/artifacts/increment-120/seed-26102505.npz": "fbf3ab281450632d0b01abc86b913b2cefc9e7ceb89865bef90f41ecf240b986",
+    "docs/noise-nonlinearity/artifacts/increment-120/seed-26102506.npz": "4b5200c48a7ddfb922dfe6c7ae9407a205ad7a9e325b8984da4a57383ff9cb7e",
+    "docs/noise-nonlinearity/artifacts/increment-120/seed-26102507.npz": "3b5d7ea1554c90c7c3e0ace04bc742e8335e00c4f47707f372b8e2021f1d6d70",
+    "docs/noise-nonlinearity/artifacts/increment-120/seed-26102508.npz": "1032ad5b38d4f17f469590b9e3c6abd4d484c1f8c18a255bf28e325a7c2034f7",
+    "docs/noise-nonlinearity/artifacts/increment-120/seed-26102509.npz": "390cf742eff5c83a8f829a69812ab19fd9949d435d01df3058108aa3b60be982",
+    "docs/noise-nonlinearity/artifacts/increment-120/seed-26102510.npz": "6d2140ebdff36dc32bafe05a8a34f5ee3c210a1980ff8ed5849afd69f34f4982",
+    "docs/noise-nonlinearity/artifacts/increment-120/seed-26102511.npz": "4fac1afd6cdecec2e5da15f30e57758f8fa66b27748390cee1a3164f1aa29e1a",
+    "docs/noise-nonlinearity/artifacts/increment-120/seed-26102512.npz": "80531caa6824be249c9e05a176014627b1176088387e2e1b322c7264a45cec3c",
+    "docs/noise-nonlinearity/artifacts/increment-120/seed-26102513.npz": "bcaae0a9bbe348ec71cf04ca10ba03762ba10c6d11d2fcf99f452a4b4ce57861",
+    "docs/noise-nonlinearity/artifacts/increment-120/seed-26102514.npz": "075a6720ebd710e153315bd061375dbe938e8d05be63e43bc3c704ec2a5a34d7",
+    "docs/noise-nonlinearity/artifacts/increment-120/seed-26102515.npz": "a86d58079c694fbcd2d59417cc952a5105a634d4a121465bace350ed7316171f",
+    "docs/noise-nonlinearity/artifacts/increment-1200/nominal-context.json": "d809985b1121c80ec02076636d01ab5af1fc9893a95e7fdd996352aae68dd159",
+    "docs/noise-nonlinearity/artifacts/increment-1200/seed-26102500.npz": "f5ed96c8973ac89c4425f1c41ddb7ca80c0b1da440132521c7492bb717a260f7",
+    "docs/noise-nonlinearity/artifacts/increment-1200/seed-26102501.npz": "4b1ed14d7a00a2412cfe64b12dd59dae6cacaf34977a009c83311b446c2f0b91",
+    "docs/noise-nonlinearity/artifacts/increment-1200/seed-26102502.npz": "4d2c3cae592df08743bcfb8378dd0e21a9b6b52f2671427e5658d3f360e03c40",
+    "docs/noise-nonlinearity/artifacts/increment-1200/seed-26102503.npz": "3af840394fa3643ffe7395afa8fbf7f9abf6cee6846b4fdb8762e2192ddc8d2d",
+    "docs/noise-nonlinearity/artifacts/increment-1200/seed-26102504.npz": "bb36b53ebc8c55db3c826181d6f7b9237345fbfd75121b88178c00588c427eec",
+    "docs/noise-nonlinearity/artifacts/increment-1200/seed-26102505.npz": "647d812a4f65f0b3df46670844d7cce0d9d55d0fda0732c13caa2b9bb691404d",
+    "docs/noise-nonlinearity/artifacts/increment-1200/seed-26102506.npz": "3f75488d009737b16fedf8abb9b031e5c2794bd45abf72aadb2c021ff01534d2",
+    "docs/noise-nonlinearity/artifacts/increment-1200/seed-26102507.npz": "f01a2edf33958ce4ac64b504daacb68abf9457d4d43bb462427c9d20cd73fabf",
+    "docs/noise-nonlinearity/artifacts/increment-1200/seed-26102508.npz": "dfc6267aee44d1285f0ae54416aac4b8c17fbda520b8227a6eeaa76442eadb18",
+    "docs/noise-nonlinearity/artifacts/increment-1200/seed-26102509.npz": "23654e092fd58f937edce17ef454fcb167e57649de2e4fc3c943b8ff8e060cb5",
+    "docs/noise-nonlinearity/artifacts/increment-1200/seed-26102510.npz": "385c8e3ce1f2466ac369420eaf74dda2ca5e4fc5c962a2492fa1361ce659232f",
+    "docs/noise-nonlinearity/artifacts/increment-1200/seed-26102511.npz": "4e78d2b6d2ccfd53b2504c38475dddb1b5bcdd881844d46aa601a922a30432e7",
+    "docs/noise-nonlinearity/artifacts/increment-1200/seed-26102512.npz": "f8502950142d864c337cbf97f420ca49c86a5309a5b94a8e5c493aa205a2dedb",
+    "docs/noise-nonlinearity/artifacts/increment-1200/seed-26102513.npz": "73c6b2e58caae4a8dd73dff7e8130f78cfb625b0c7b84b0bfe2f8c9077759d14",
+    "docs/noise-nonlinearity/artifacts/increment-1200/seed-26102514.npz": "02a6da54dc29e19d54a593d595553e5869f7fb3ed1c43fc2a4ec8db9f5359c08",
+    "docs/noise-nonlinearity/artifacts/increment-1200/seed-26102515.npz": "1df766ae6b9cfb4bdb879406048e0b7767873487c6367738929d202cbfe308d3",
+    "docs/noise-nonlinearity/artifacts/point-120/nominal-context.json": "4ff80f743d773fd773d297f7e59eb6782e65865beae658c6f57f5edf71ac6d9f",
+    "docs/noise-nonlinearity/artifacts/point-120/seed-26102500.npz": "71d1f9592832f90659473e2128b413da29eed32f789de259c7c17199d4215f85",
+    "docs/noise-nonlinearity/artifacts/point-120/seed-26102501.npz": "6c53908f8b5a1d3c912f452b62157cc0688d41bb4d775d76a8c95e1825a9db89",
+    "docs/noise-nonlinearity/artifacts/point-120/seed-26102502.npz": "d92bf4c144e169557be9e37ffddcb47c71a2880ee281b4e88b7eb7abca3e6a4a",
+    "docs/noise-nonlinearity/artifacts/point-120/seed-26102503.npz": "de6589819ddbf6d8fe0661067f8820a20e102ae16efa818482fa23a8893b46f9",
+    "docs/noise-nonlinearity/artifacts/point-120/seed-26102504.npz": "b97ad3c3ecb9627e0162ca836b975d4803e3494714b3b7a988524ebd05d8e88f",
+    "docs/noise-nonlinearity/artifacts/point-120/seed-26102505.npz": "1e86f74a9cad814a3d438002e5993fc3f77cab1a5161467b86ebebf5a6222c35",
+    "docs/noise-nonlinearity/artifacts/point-120/seed-26102506.npz": "5f905cad7f2092ab799c53327e6356962f91ff728a47a82bb3db184e60360dac",
+    "docs/noise-nonlinearity/artifacts/point-120/seed-26102507.npz": "5dd95e1a4c0a2857d81739fb6ed38daffb29ff0f6b4dfc5a048081675ac7870b",
+    "docs/noise-nonlinearity/artifacts/point-120/seed-26102508.npz": "8d00ca8a62d5ffd86ea13bc32b19f9f9d51bcd8ca18d79bcc2d95a2999e84be7",
+    "docs/noise-nonlinearity/artifacts/point-120/seed-26102509.npz": "bc025c77ca3dbfd5236e8e594bf49dca2a52f1cbff18716e2983d5169fce8bba",
+    "docs/noise-nonlinearity/artifacts/point-120/seed-26102510.npz": "52c944610c7fcda1d4a147d091c2b17687fb47ecaad5a5865a1e19de3e737cc8",
+    "docs/noise-nonlinearity/artifacts/point-120/seed-26102511.npz": "56a6493032657a90a5e58494311def65663ccab2075c56735195c513f8ff9fd2",
+    "docs/noise-nonlinearity/artifacts/point-120/seed-26102512.npz": "8b6c2c3bc70aaafdb1d25fb7f6f0f8848c046a589ebd94586e186a9427c92439",
+    "docs/noise-nonlinearity/artifacts/point-120/seed-26102513.npz": "f4a414c60d3a402c7d7a4043996f5c88ed0c8a2a143659ca78797ab0a5ce68de",
+    "docs/noise-nonlinearity/artifacts/point-120/seed-26102514.npz": "f1793836cb1155868871ffc573065dc4017d6b67676ad9bee5486a12f530d76c",
+    "docs/noise-nonlinearity/artifacts/point-120/seed-26102515.npz": "975a338a79c1d64d760c73c670e29a915f12de6c626bd29f9b406e6dfdd5c243",
+    "docs/noise-nonlinearity/artifacts/point-1200/nominal-context.json": "a1357ffe06e3c59735e9d82b12cde797f1165510ec5c3a0a3b7788ee534a2e0c",
+    "docs/noise-nonlinearity/artifacts/point-1200/seed-26102500.npz": "f3d7536e0f932e17b2e48cd796cab73f84f1b051ca45c3118065600fdb09d9f6",
+    "docs/noise-nonlinearity/artifacts/point-1200/seed-26102501.npz": "af42eb03b1f9a125b481669bf67158500ee18c97bb5c679422b8eda5a728286d",
+    "docs/noise-nonlinearity/artifacts/point-1200/seed-26102502.npz": "13a048ba80a22eb5f02b11c78b6dbb9b268c634ee90adcaf235f6cc25c9cba6a",
+    "docs/noise-nonlinearity/artifacts/point-1200/seed-26102503.npz": "acc91107f9fa4fe0557e89444a1f2ec5c3a41569a1558606f929de39d3585e79",
+    "docs/noise-nonlinearity/artifacts/point-1200/seed-26102504.npz": "75679a286206dfbe14cfa797acedfc399f1a2fcfb659e7cee09cb0bdfeaaf4ee",
+    "docs/noise-nonlinearity/artifacts/point-1200/seed-26102505.npz": "79f9aebb96506806397f95a85d5c05bbaaeea454d27c0d2b7376380e4ebff76e",
+    "docs/noise-nonlinearity/artifacts/point-1200/seed-26102506.npz": "32b25ee9678f21290b432d757a24e56ec937a86d8aeff40cffb3f6acd52f00e3",
+    "docs/noise-nonlinearity/artifacts/point-1200/seed-26102507.npz": "8d70593a00b288ca8ed78878ae00a57caf2334231b6627a7d1b2eb4254cea61c",
+    "docs/noise-nonlinearity/artifacts/point-1200/seed-26102508.npz": "883492ff1488b261331f4dc77d39dbc5e66126b78ad726df14c97bd4aef61983",
+    "docs/noise-nonlinearity/artifacts/point-1200/seed-26102509.npz": "9efa2a4230e45ee70fc5ce977818e702b829122e5a8fc33a5e45415658b0b353",
+    "docs/noise-nonlinearity/artifacts/point-1200/seed-26102510.npz": "74541445a8d498a40ca70cff6283e35709d08f3658a082289dbf47e89aa9a508",
+    "docs/noise-nonlinearity/artifacts/point-1200/seed-26102511.npz": "4f13241d9a8ff9861a97e6a97f1276ab73bc2d30468d5a5cfcb3ae7a4ab266dd",
+    "docs/noise-nonlinearity/artifacts/point-1200/seed-26102512.npz": "b2f9cdd17fe45f489fbac1bbe7339380a1b6bd0f0abfca885d195811996d4514",
+    "docs/noise-nonlinearity/artifacts/point-1200/seed-26102513.npz": "308e33e08832edcafa184e2151479b928dbc75982bfd1c87c73692cc8a5daa9b",
+    "docs/noise-nonlinearity/artifacts/point-1200/seed-26102514.npz": "de3f0cc88bd4a913041ced7eb71e6ed4f395d8003d26357f10b253f15fd85556",
+    "docs/noise-nonlinearity/artifacts/point-1200/seed-26102515.npz": "7d71bad3e4f1f3665993b4791bba87975e695baf4ce5776af9877ed1c89939af",
+    "docs/noise-nonlinearity/completion.json": "40986a7ef4d878c3baa5830a371c2915742ce54dc57ff51d7dc078f3b67a97c2",
+    "docs/noise-nonlinearity/manifest.json": "e400930310d89cab1bbed7015a3872b7b8e3fcd9e1b10cb03a2a7c163a3ce46a",
+    "docs/noise-nonlinearity/shards/000/results/increment-120.json": "abe976f4447f96405821d3cd55e51422f017a2440a68449cee9940dda2aad211",
+    "docs/noise-nonlinearity/shards/000/results/increment-1200.json": "964b75d2ff458a10ce50d7b1bebdae8e2bf50c665e14750c94ab07ba51dd07ab",
+    "docs/noise-nonlinearity/shards/001/results/point-120.json": "409f941db1448f0a83b99dfa35f9230ee2b99e164c070c8b1347b8e17e0c9584",
+    "docs/noise-nonlinearity/shards/001/results/point-1200.json": "4c1037936ba927767e88a83e3ad46c959c287ca1c85d0dc9d14060c3ece47bcf",
+    "docs/noise-nonlinearity/summary.json": "78e38dd670d47b791e0d162b437bd994bf21d48e10be48779767c5898f3b6e88"
+  },
+  "known_calibration": true,
+  "labels_changed": false,
+  "manifest_sha256": "e400930310d89cab1bbed7015a3872b7b8e3fcd9e1b10cb03a2a7c163a3ce46a",
+  "native_calls": 0,
+  "optimizer_starts": 0,
+  "original_reads": 0,
+  "protected_reads": 0,
+  "rows": [
+    {
+      "axes": {
+        "east": {
+          "failing_seed_count": 0,
+          "maximum_even_remainder_m": 6.0566534407280326e-05,
+          "maximum_quadratic_scaling_discrepancy_m": 1.4081335125704086e-09
+        },
+        "north": {
+          "failing_seed_count": 0,
+          "maximum_even_remainder_m": 9.896918694707324e-05,
+          "maximum_quadratic_scaling_discrepancy_m": 3.7409215725148215e-09
+        },
+        "up": {
+          "failing_seed_count": 0,
+          "maximum_even_remainder_m": 0.00022848058458457832,
+          "maximum_quadratic_scaling_discrepancy_m": 4.6248505025658915e-11
+        }
+      },
+      "height_empirical_to_predicted_second_moment_ratio": 0.393290702355564,
+      "horizontal_empirical_to_predicted_second_moment_ratio": 0.8992279914544477,
+      "identity": "increment-120",
+      "original_passed": true,
+      "paired_height_mean_squared_error_m2": 0.0157388383477522,
+      "paired_horizontal_mean_squared_error_m2": 0.24762892423294505,
+      "predicted_height_mean_squared_error_m2": 0.04001833314005761,
+      "predicted_horizontal_mean_squared_error_m2": 0.2753794661489797
+    },
+    {
+      "axes": {
+        "east": {
+          "failing_seed_count": 0,
+          "maximum_even_remainder_m": 7.656460555321987e-05,
+          "maximum_quadratic_scaling_discrepancy_m": 1.5113389428833557e-09
+        },
+        "north": {
+          "failing_seed_count": 0,
+          "maximum_even_remainder_m": 4.244933990638078e-05,
+          "maximum_quadratic_scaling_discrepancy_m": 3.3611571026437304e-09
+        },
+        "up": {
+          "failing_seed_count": 0,
+          "maximum_even_remainder_m": 0.0005431377500984477,
+          "maximum_quadratic_scaling_discrepancy_m": 4.4574122171070485e-11
+        }
+      },
+      "height_empirical_to_predicted_second_moment_ratio": 0.837253747112754,
+      "horizontal_empirical_to_predicted_second_moment_ratio": 1.3051247466327536,
+      "identity": "point-120",
+      "original_passed": true,
+      "paired_height_mean_squared_error_m2": 0.03350546870011035,
+      "paired_horizontal_mean_squared_error_m2": 0.35940304079116525,
+      "predicted_height_mean_squared_error_m2": 0.04001829650288579,
+      "predicted_horizontal_mean_squared_error_m2": 0.275378305191463
+    },
+    {
+      "axes": {
+        "east": {
+          "failing_seed_count": 0,
+          "maximum_even_remainder_m": 0.046837858738634,
+          "maximum_quadratic_scaling_discrepancy_m": 2.660230791207141e-08
+        },
+        "north": {
+          "failing_seed_count": 0,
+          "maximum_even_remainder_m": 0.09092776164007432,
+          "maximum_quadratic_scaling_discrepancy_m": 6.063590518579076e-08
+        },
+        "up": {
+          "failing_seed_count": 3,
+          "maximum_even_remainder_m": 0.07261243982128462,
+          "maximum_quadratic_scaling_discrepancy_m": 8.625846703580464e-10
+        }
+      },
+      "height_empirical_to_predicted_second_moment_ratio": 1.507729597053613,
+      "horizontal_empirical_to_predicted_second_moment_ratio": 1.3300041663433246,
+      "identity": "increment-1200",
+      "original_passed": false,
+      "paired_height_mean_squared_error_m2": 5.760990879082177,
+      "paired_horizontal_mean_squared_error_m2": 1517.0921210913457,
+      "predicted_height_mean_squared_error_m2": 3.8209708759052257,
+      "predicted_horizontal_mean_squared_error_m2": 1140.6671944963866
+    },
+    {
+      "axes": {
+        "east": {
+          "failing_seed_count": 0,
+          "maximum_even_remainder_m": 0.047641612052554905,
+          "maximum_quadratic_scaling_discrepancy_m": 3.050399044468577e-08
+        },
+        "north": {
+          "failing_seed_count": 0,
+          "maximum_even_remainder_m": 0.05067537162439617,
+          "maximum_quadratic_scaling_discrepancy_m": 6.586175249623238e-08
+        },
+        "up": {
+          "failing_seed_count": 1,
+          "maximum_even_remainder_m": 0.04357454540900818,
+          "maximum_quadratic_scaling_discrepancy_m": 8.167404530468048e-10
+        }
+      },
+      "height_empirical_to_predicted_second_moment_ratio": 0.5445519853629306,
+      "horizontal_empirical_to_predicted_second_moment_ratio": 1.0289172139681606,
+      "identity": "point-1200",
+      "original_passed": false,
+      "paired_height_mean_squared_error_m2": 2.08071727163295,
+      "paired_horizontal_mean_squared_error_m2": 1173.6520916252346,
+      "predicted_height_mean_squared_error_m2": 3.8209708669893154,
+      "predicted_horizontal_mean_squared_error_m2": 1140.6671748632566
+    }
+  ],
+  "seeds_shared_across_settings": true,
+  "verified": true
+}

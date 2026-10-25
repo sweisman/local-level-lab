@@ -1,0 +1,11 @@
+{
+  "complete_settings": 4,
+  "confidence_calibrated": false,
+  "failed_height_controls": 4,
+  "labels_changed": false,
+  "native_calls": 0,
+  "optimizer_starts": 0,
+  "original_reads": 0,
+  "protected_reads": 0,
+  "software_checks": 14
+}

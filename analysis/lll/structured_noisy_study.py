@@ -76,16 +76,27 @@ def _kernels(context,env):
 
 def evaluate(task,context):
     from lll.airquantumgrav_inventory import environment
-    from lll.structured_noisy_training import calculate
-    from lll.ilvis0_control_shards import _check_continue
-    from lll.studies.journal import Journal
-    from lll.studies.artifacts import digest
     r=recipe();identity=task['identity'];expected={t['identity']:t for t in tasks(r)}
     if ({k:v for k,v in task.items() if k not in ('index','shard')}!=expected.get(identity)
             or json.loads(context.input_path().read_bytes())!=r or context.manifest['scope']!=SCOPE
             or json.loads(context.input_path('qualification-environment').read_bytes())!=environment()):
         raise ValueError('unchanged finite generated-data study and environment required')
-    allowance,construction=limits(r,task['payload']['law'])
+    return run_case(task,context,r=r,payload=task['payload'])
+
+
+def run_case(task,context,*,r,payload):
+    """Execute a caller-validated frozen case without changing its allowance.
+
+    The caller binds the full recipe/payload to its manifest. This shared body
+    owns the unchanged construction, native factories, prepayment and failures.
+    """
+    from lll.airquantumgrav_inventory import environment
+    from lll.structured_noisy_training import calculate
+    from lll.ilvis0_control_shards import _check_continue
+    from lll.studies.journal import Journal
+    from lll.studies.artifacts import digest
+    identity=task['identity'];allowance,construction=limits(r,payload['law'])
+    if task['limits']!=allowance:raise ValueError('complete shared-case work must match its frozen task allowance')
     journal=Journal(context.directory/'construction.sqlite',freeze=digest((context.root/'manifest.json').read_bytes()),
         limits={identity:construction});journal.start(identity);budget=None
     def reserve_construction(**work):
@@ -94,7 +105,7 @@ def evaluate(task,context):
     try:
         noise,factory=_kernels(context,environment())
         with context.prepay_native(native_calls=allowance['native_calls'],packet_visits=allowance['packet_visits']) as budget:
-            result=calculate(task['payload'],r,kernel_factory=factory,noise_kernel=noise,
+            result=calculate(payload,r,kernel_factory=factory,noise_kernel=noise,
                 reserve=budget.reserve,reserve_construction=reserve_construction,save=context.save,
                 check_continue=lambda:_check_continue(context.root,context.manifest))
         journal.verify()

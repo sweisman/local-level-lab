@@ -144,6 +144,22 @@ for twenty minutes; height scales are 0.20 m and 1.95 m. Both declared input-err
 formats agree closely. These are expected noise scales, not measured flight
 errors. The longer horizontal scale exceeds the unchanged 10 m screen, making
 the uncertainty budget essential before another long fitting study.
+The [completed nonlinear check](noise-nonlinearity/README.md) passes both short
+settings but retains failures in both longer settings. Four of 64 matched
+controls miss the fixed limit, all in height. The [saved diagnosis](noise-nonlinearity/remainder-diagnosis/README.md)
+finds small quadratic effects, with largest vertical departures of 7.3 cm and
+4.4 cm. These do not explain metre-scale fitting errors by themselves. Next:
+qualify uncertainty when calibration must be estimated, rather than supplied.
+The [saved-score step](fitted-prediction-scores/INTERPRETATION.md) is complete:
+all 24 starts are retained, with 20 numerical passes and ten available primaries.
+Their maximum error/noise ratios are 5.29–6.25, not confidence levels. Next:
+use independent noise realizations to test the complete fitting procedure,
+keeping the noise law, calibration bounds and accuracy screens fixed.
+The [draw interface](prediction-score-qualification/draw-qualification/README.md)
+passes 30 checks against the earlier frozen generator. The [fresh-draw pilot](independent-noisy-training-pilot/README.md)
+is running after its software gates: two new seeds, 48 starts, and calibration
+estimated anew. It will retain numerical and accuracy failures separately.
+No aircraft fit or confirmation group is opened by these checks.
 The shorter duration means this does
 not replace the earlier twenty-minute failure; uncertainty remains unqualified.
 

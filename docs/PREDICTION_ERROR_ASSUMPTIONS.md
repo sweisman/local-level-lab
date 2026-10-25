@@ -79,6 +79,14 @@ The [bounded native interface](integrated-noise-covariance/native-bounded-refere
 now passes all 24 controls. This establishes the connection, not a justified
 nonlinear remainder bound or calibrated aircraft coverage.
 
+The [known-calibration benchmark](noisy-prediction-benchmark/README.md) puts the
+twenty-minute horizontal error scale near 34 m under its declared noise law.
+The [nonlinear follow-up](noise-nonlinearity/remainder-diagnosis/README.md)
+retains four failed long-record controls at its fixed 1%/1 mm approximation
+limit, all from small height effects. Neither calculation estimates real sensor
+noise or includes uncertainty from fitting calibration. That distinction remains
+essential before interpreting an aircraft prediction interval.
+
 | Source | What is currently checked | What still needs establishing |
 |---|---|---|
 | Calibration | Keep one set of physical calibration parameters shared across the whole generated history. Preserve the full declared domain. | Whether that domain and its time behavior adequately describe a particular recording. |
