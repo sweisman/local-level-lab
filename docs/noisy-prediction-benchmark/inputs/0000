@@ -1,0 +1,1 @@
+{"accuracy_limits":{"horizontal_rms_m":10.0,"vertical_rms_m":30.0},"durations_s":[120.0,1200.0],"laws":["increment","point"],"maximum_operator_bytes":67108864,"maximum_wall_s":7200.0,"optimizer_starts":0,"random_draws":0,"threads":1,"version":"known-calibration-noise-benchmark-v1","workers":2}

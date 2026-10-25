@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="24" time="14.076" timestamp="2026-10-25T01:18:57.225430+02:00" hostname="zaphod"><testcase classname="tests.test_native_bounded_controls" name="test_bounded_native_connection_matches_dense_linear_envelope[False-False-0-increment-training_kernels0]" time="6.337" /><testcase classname="tests.test_native_bounded_controls" name="test_bounded_native_connection_matches_dense_linear_envelope[False-False-0-point-training_kernels0]" time="0.291" /><testcase classname="tests.test_native_bounded_controls" name="test_bounded_native_connection_matches_dense_linear_envelope[False-False-1-increment-training_kernels0]" time="0.261" /><testcase classname="tests.test_native_bounded_controls" name="test_bounded_native_connection_matches_dense_linear_envelope[False-False-1-point-training_kernels0]" time="0.264" /><testcase classname="tests.test_native_bounded_controls" name="test_bounded_native_connection_matches_dense_linear_envelope[False-False-2-increment-training_kernels0]" time="0.248" /><testcase classname="tests.test_native_bounded_controls" name="test_bounded_native_connection_matches_dense_linear_envelope[False-False-2-point-training_kernels0]" time="0.256" /><testcase classname="tests.test_native_bounded_controls" name="test_bounded_native_connection_matches_dense_linear_envelope[False-True-0-increment-training_kernels0]" time="0.255" /><testcase classname="tests.test_native_bounded_controls" name="test_bounded_native_connection_matches_dense_linear_envelope[False-True-0-point-training_kernels0]" time="0.263" /><testcase classname="tests.test_native_bounded_controls" name="test_bounded_native_connection_matches_dense_linear_envelope[False-True-1-increment-training_kernels0]" time="0.295" /><testcase classname="tests.test_native_bounded_controls" name="test_bounded_native_connection_matches_dense_linear_envelope[False-True-1-point-training_kernels0]" time="0.782" /><testcase classname="tests.test_native_bounded_controls" name="test_bounded_native_connection_matches_dense_linear_envelope[False-True-2-increment-training_kernels0]" time="0.570" /><testcase classname="tests.test_native_bounded_controls" name="test_bounded_native_connection_matches_dense_linear_envelope[False-True-2-point-training_kernels0]" time="0.405"><failure message="AssertionError: &#10;Not equal to tolerance rtol=1e-08, atol=1e-08&#10;&#10;Mismatched elements: 1 / 6 (16.7%)&#10;Mismatch at index:&#10; [2]: 2193.9069254379106 (ACTUAL), 2193.906893476072 (DESIRED)&#10;Max absolute difference among violations: 3.19618384e-05&#10;Max relative difference among violations: 1.45684571e-08&#10; ACTUAL: array([ 9.500150e-01, -7.000122e-01,  2.193907e+03,  9.500154e-01,&#10;       -7.000130e-01,  2.185002e+03])&#10; DESIRED: array([ 9.500150e-01, -7.000122e-01,  2.193907e+03,  9.500154e-01,&#10;       -7.000130e-01,  2.185002e+03])">native_training_case = {'kernel': &lt;_FuncPtr object at 0x7f66b1371d50&gt;, 'directory': PosixPath('/tmp/pytest-of-sweisman/pytest-1050/native-str...ments.py': '568d14fe70e494b88571091c5b43f33d86c7334e839d24185159fbcbbaf9b3df', ...}, 'started': 1427633.768342325, ...}
+law = 'point', model = 2, profile = True, height = False
+
+    @pytest.mark.parametrize('training_kernels',[DEFINITION],indirect=True)
+    @pytest.mark.parametrize('law',['increment','point'])
+    @pytest.mark.parametrize('model',[0,1,2])
+    @pytest.mark.parametrize('profile',[False,True])
+    @pytest.mark.parametrize('height',[False,True])
+    def test_bounded_native_connection_matches_dense_linear_envelope(native_training_case,law,model,profile,height):
+        import numpy as np
+        from types import SimpleNamespace
+        from lll.ilvis0_exploratory import MODELS
+        from lll.ilvis0_wide_tangent import load,evaluate
+        from lll.ilvis0_error_model import Spec
+        from lll.ilvis0_forecast import native_forecast
+        from lll.ilvis0_native_error_training import ErrorTrainingFactory
+        from lll.ilvis0_bounded_error_forecast import BoundedForecastErrorDiagnostic,diagnose_bounded_forecast
+        from lll.ilvis0_bounded_prediction import Region,predict,known_scale
+        from test_native_point_noise_adapter import generated_case,noise_for
+        k=native_training_case;name=MODELS[model];n=160;cut=10;total=12
+        base,truth,_=generated_case(model,profile,height,600)
+        for attr in ('theta','dv','dt'):setattr(base,attr,getattr(base,attr)[:n].copy())
+        ends=np.cumsum(base.dt);indices=np.linspace(10,140,total).astype(int)
+        times=np.r_[0.,ends[:-1]][indices]+np.resize([.37,.61,.83],total)*base.dt[indices]
+        base.gps_times=times;base.gps=np.zeros((total,3))
+        limits={key:value for key,value in base.bounds.limits.items() if key!='earth_removal'}
+        reference,_=load(k['directory'],expected_source_sha256=k['hashes']['analysis/lll/ilvis0_tangent.cpp'],
+            gravity_anchor_height_m=2200. if height else None)
+        k['reserve'](native_calls=1,packet_steps=n,packet_query_visits=n*total)
+        target=evaluate(base,truth,name,kernel=reference)[0]
+        count=int(np.searchsorted(ends,times[cut-1]+limits['time_offset']))+1
+        anchor=float(target[0,2]) if height else None
+        native,_=load(k['directory'],expected_source_sha256=k['hashes']['analysis/lll/ilvis0_tangent.cpp'],
+            gravity_anchor_height_m=anchor)
+        spec=Spec(white=np.eye(3)*.2,offset=np.eye(3)*.1,drift=np.eye(3)*.05,
+            components=((.13,np.eye(3)*.3),(.7,np.eye(3)*.4)),drift_origin_s=0.,drift_span_s=1.)
+        transforms=np.repeat(np.diag([1e-7,2e-7,.2])[None],total,axis=0)
+        weight=SimpleNamespace(times=times[:cut],spec=spec,transforms=transforms[:cut],
+            source_sha256='0'*64,descriptor={'generated':True},configuration='fixed-generated-policy')
+        factory=ErrorTrainingFactory(noise=noise_for(law),noise_kernel=k['kernel'],gravity_anchor_height_m=anchor,
+            maximum_packets=n,maximum_queries=total,maximum_bytes=1000000,anchor_policy='normalized-midpoint-v1')
+        charge=lambda **work:k['reserve'](native_calls=work['native_calls'],packet_steps=work['packet_visits'])
+        problem=factory(times[:cut],target[:cut],theta=base.theta[:count],dv=base.dv[:count],dt=base.dt[:count],
+            model=name,limits=limits,profile=profile,clock='header_elapsed',maximum_interval_s=.007,
+            kernel=None,tangent_kernel=native,training_weight=weight,time_origin_s=0.,reserve=charge)
+        point=np.zeros(len(problem.bounds.active));point[list(problem.bounds.active).index('gyro_bias_z')]=1.
+        def forecast_charge(**work):k['reserve'](native_calls=work['native_calls'],packet_steps=n,
+            packet_query_visits=work['packet_visits'])
+        forecast=native_forecast(problem,point,name,theta=base.theta,dv=base.dv,dt=base.dt,times=times,
+            maximum_interval_s=.007,reserve=forecast_charge,retain_training_difference=True)
+        # Capture the exact single operator extension without constructing it again.
+        full=[];original=factory.extend
+        def captured(*args,**kwargs):
+            value=original(*args,**kwargs);full.append(value[0]);return value
+        factory.extend=captured
+        diagnostic=BoundedForecastErrorDiagnostic(factory,target='physical_position',
+            receiver_transform_policy='last-training-transform-v1',bound_margin=1e-6,
+            rank_rtol=1e-10,estimability_rtol=1e-8,estimability_atol=1e-10,
+            scale_value=1.,scale_source_id='declared-linear-control',training_remainder_radius=0.,
+            future_remainder_bounds=np.zeros(6),alpha_training=.01,alpha_prediction=.01)
+        result=diagnostic(problem,point,forecast,theta=base.theta,dv=base.dv,dt=base.dt,times=times,reserve=charge)
+        assert len(full)==1 and result['linear_calibration']['status']=='active_bounds_unsupported'
+        bounded=result['bounded_calibration'];op=full[0];m=3*cut
+        assert bounded['supported'] and bounded['parameter_count']==26+int(profile)
+        factor=op.unwhiten(np.eye(3*total));covariance=factor@factor.T
+        carry=np.linalg.solve(covariance[:m,:m],covariance[:m,m:]).T
+        lower=np.linalg.cholesky(covariance[:m,:m]);jac=forecast['jacobian']
+        earlier=-forecast['training_coordinate_difference'].ravel()
+        region=Region(np.linalg.solve(lower,earlier),np.linalg.solve(lower,jac[:m]),
+            np.column_stack((-1-point,1-point)),scale=known_scale(1.,source_id='declared-linear-control',covariance_id=op.configuration),
+            covariance_id=op.configuration,remainder_radius=0.,alpha=.01,rank_tolerance=1e-10,design_is_fixed=False)
+        expected=predict(region,forecast['coordinates'][cut:].ravel()+carry@earlier,jac[m:]-carry@jac[:m],
+            conditional_variance=np.diag(covariance[m:,m:]-carry@covariance[:m,m:]),
+            training_response_norm=np.linalg.norm(carry@lower,axis=1),future_remainder_bounds=np.zeros(6),
+            alpha=.01,prediction_ids=bounded['prediction_ids'])
+        assert expected['supported']
+        for key in ('lower','upper'):
+&gt;           np.testing.assert_allclose(bounded[key],expected[key],rtol=1e-8,atol=1e-8)
+E           AssertionError: 
+E           Not equal to tolerance rtol=1e-08, atol=1e-08
+E           
+E           Mismatched elements: 1 / 6 (16.7%)
+E           Mismatch at index:
+E            [2]: 2193.9069254379106 (ACTUAL), 2193.906893476072 (DESIRED)
+E           Max absolute difference among violations: 3.19618384e-05
+E           Max relative difference among violations: 1.45684571e-08
+E            ACTUAL: array([ 9.500150e-01, -7.000122e-01,  2.193907e+03,  9.500154e-01,
+E                  -7.000130e-01,  2.185002e+03])
+E            DESIRED: array([ 9.500150e-01, -7.000122e-01,  2.193907e+03,  9.500154e-01,
+E                  -7.000130e-01,  2.185002e+03])
+
+analysis/tests/test_native_bounded_controls.py:87: AssertionError</failure></testcase><testcase classname="tests.test_native_bounded_controls" name="test_bounded_native_connection_matches_dense_linear_envelope[True-False-0-increment-training_kernels0]" time="0.390" /><testcase classname="tests.test_native_bounded_controls" name="test_bounded_native_connection_matches_dense_linear_envelope[True-False-0-point-training_kernels0]" time="0.329" /><testcase classname="tests.test_native_bounded_controls" name="test_bounded_native_connection_matches_dense_linear_envelope[True-False-1-increment-training_kernels0]" time="0.303" /><testcase classname="tests.test_native_bounded_controls" name="test_bounded_native_connection_matches_dense_linear_envelope[True-False-1-point-training_kernels0]" time="0.290" /><testcase classname="tests.test_native_bounded_controls" name="test_bounded_native_connection_matches_dense_linear_envelope[True-False-2-increment-training_kernels0]" time="0.265" /><testcase classname="tests.test_native_bounded_controls" name="test_bounded_native_connection_matches_dense_linear_envelope[True-False-2-point-training_kernels0]" time="0.318"><failure message="AssertionError: &#10;Not equal to tolerance rtol=1e-08, atol=1e-08&#10;&#10;Mismatched elements: 1 / 6 (16.7%)&#10;Mismatch at index:&#10; [2]: 2193.7680357582776 (ACTUAL), 2193.7680622420044 (DESIRED)&#10;Max absolute difference among violations: 2.64837267e-05&#10;Max relative difference among violations: 1.20722547e-08&#10; ACTUAL: array([ 9.500150e-01, -7.000122e-01,  2.193768e+03,  9.500154e-01,&#10;       -7.000130e-01,  2.184976e+03])&#10; DESIRED: array([ 9.500150e-01, -7.000122e-01,  2.193768e+03,  9.500154e-01,&#10;       -7.000130e-01,  2.184976e+03])">native_training_case = {'kernel': &lt;_FuncPtr object at 0x7f66b1371d50&gt;, 'directory': PosixPath('/tmp/pytest-of-sweisman/pytest-1050/native-str...ments.py': '568d14fe70e494b88571091c5b43f33d86c7334e839d24185159fbcbbaf9b3df', ...}, 'started': 1427633.768342325, ...}
+law = 'point', model = 2, profile = False, height = True
+
+    @pytest.mark.parametrize('training_kernels',[DEFINITION],indirect=True)
+    @pytest.mark.parametrize('law',['increment','point'])
+    @pytest.mark.parametrize('model',[0,1,2])
+    @pytest.mark.parametrize('profile',[False,True])
+    @pytest.mark.parametrize('height',[False,True])
+    def test_bounded_native_connection_matches_dense_linear_envelope(native_training_case,law,model,profile,height):
+        import numpy as np
+        from types import SimpleNamespace
+        from lll.ilvis0_exploratory import MODELS
+        from lll.ilvis0_wide_tangent import load,evaluate
+        from lll.ilvis0_error_model import Spec
+        from lll.ilvis0_forecast import native_forecast
+        from lll.ilvis0_native_error_training import ErrorTrainingFactory
+        from lll.ilvis0_bounded_error_forecast import BoundedForecastErrorDiagnostic,diagnose_bounded_forecast
+        from lll.ilvis0_bounded_prediction import Region,predict,known_scale
+        from test_native_point_noise_adapter import generated_case,noise_for
+        k=native_training_case;name=MODELS[model];n=160;cut=10;total=12
+        base,truth,_=generated_case(model,profile,height,600)
+        for attr in ('theta','dv','dt'):setattr(base,attr,getattr(base,attr)[:n].copy())
+        ends=np.cumsum(base.dt);indices=np.linspace(10,140,total).astype(int)
+        times=np.r_[0.,ends[:-1]][indices]+np.resize([.37,.61,.83],total)*base.dt[indices]
+        base.gps_times=times;base.gps=np.zeros((total,3))
+        limits={key:value for key,value in base.bounds.limits.items() if key!='earth_removal'}
+        reference,_=load(k['directory'],expected_source_sha256=k['hashes']['analysis/lll/ilvis0_tangent.cpp'],
+            gravity_anchor_height_m=2200. if height else None)
+        k['reserve'](native_calls=1,packet_steps=n,packet_query_visits=n*total)
+        target=evaluate(base,truth,name,kernel=reference)[0]
+        count=int(np.searchsorted(ends,times[cut-1]+limits['time_offset']))+1
+        anchor=float(target[0,2]) if height else None
+        native,_=load(k['directory'],expected_source_sha256=k['hashes']['analysis/lll/ilvis0_tangent.cpp'],
+            gravity_anchor_height_m=anchor)
+        spec=Spec(white=np.eye(3)*.2,offset=np.eye(3)*.1,drift=np.eye(3)*.05,
+            components=((.13,np.eye(3)*.3),(.7,np.eye(3)*.4)),drift_origin_s=0.,drift_span_s=1.)
+        transforms=np.repeat(np.diag([1e-7,2e-7,.2])[None],total,axis=0)
+        weight=SimpleNamespace(times=times[:cut],spec=spec,transforms=transforms[:cut],
+            source_sha256='0'*64,descriptor={'generated':True},configuration='fixed-generated-policy')
+        factory=ErrorTrainingFactory(noise=noise_for(law),noise_kernel=k['kernel'],gravity_anchor_height_m=anchor,
+            maximum_packets=n,maximum_queries=total,maximum_bytes=1000000,anchor_policy='normalized-midpoint-v1')
+        charge=lambda **work:k['reserve'](native_calls=work['native_calls'],packet_steps=work['packet_visits'])
+        problem=factory(times[:cut],target[:cut],theta=base.theta[:count],dv=base.dv[:count],dt=base.dt[:count],
+            model=name,limits=limits,profile=profile,clock='header_elapsed',maximum_interval_s=.007,
+            kernel=None,tangent_kernel=native,training_weight=weight,time_origin_s=0.,reserve=charge)
+        point=np.zeros(len(problem.bounds.active));point[list(problem.bounds.active).index('gyro_bias_z')]=1.
+        def forecast_charge(**work):k['reserve'](native_calls=work['native_calls'],packet_steps=n,
+            packet_query_visits=work['packet_visits'])
+        forecast=native_forecast(problem,point,name,theta=base.theta,dv=base.dv,dt=base.dt,times=times,
+            maximum_interval_s=.007,reserve=forecast_charge,retain_training_difference=True)
+        # Capture the exact single operator extension without constructing it again.
+        full=[];original=factory.extend
+        def captured(*args,**kwargs):
+            value=original(*args,**kwargs);full.append(value[0]);return value
+        factory.extend=captured
+        diagnostic=BoundedForecastErrorDiagnostic(factory,target='physical_position',
+            receiver_transform_policy='last-training-transform-v1',bound_margin=1e-6,
+            rank_rtol=1e-10,estimability_rtol=1e-8,estimability_atol=1e-10,
+            scale_value=1.,scale_source_id='declared-linear-control',training_remainder_radius=0.,
+            future_remainder_bounds=np.zeros(6),alpha_training=.01,alpha_prediction=.01)
+        result=diagnostic(problem,point,forecast,theta=base.theta,dv=base.dv,dt=base.dt,times=times,reserve=charge)
+        assert len(full)==1 and result['linear_calibration']['status']=='active_bounds_unsupported'
+        bounded=result['bounded_calibration'];op=full[0];m=3*cut
+        assert bounded['supported'] and bounded['parameter_count']==26+int(profile)
+        factor=op.unwhiten(np.eye(3*total));covariance=factor@factor.T
+        carry=np.linalg.solve(covariance[:m,:m],covariance[:m,m:]).T
+        lower=np.linalg.cholesky(covariance[:m,:m]);jac=forecast['jacobian']
+        earlier=-forecast['training_coordinate_difference'].ravel()
+        region=Region(np.linalg.solve(lower,earlier),np.linalg.solve(lower,jac[:m]),
+            np.column_stack((-1-point,1-point)),scale=known_scale(1.,source_id='declared-linear-control',covariance_id=op.configuration),
+            covariance_id=op.configuration,remainder_radius=0.,alpha=.01,rank_tolerance=1e-10,design_is_fixed=False)
+        expected=predict(region,forecast['coordinates'][cut:].ravel()+carry@earlier,jac[m:]-carry@jac[:m],
+            conditional_variance=np.diag(covariance[m:,m:]-carry@covariance[:m,m:]),
+            training_response_norm=np.linalg.norm(carry@lower,axis=1),future_remainder_bounds=np.zeros(6),
+            alpha=.01,prediction_ids=bounded['prediction_ids'])
+        assert expected['supported']
+        for key in ('lower','upper'):
+&gt;           np.testing.assert_allclose(bounded[key],expected[key],rtol=1e-8,atol=1e-8)
+E           AssertionError: 
+E           Not equal to tolerance rtol=1e-08, atol=1e-08
+E           
+E           Mismatched elements: 1 / 6 (16.7%)
+E           Mismatch at index:
+E            [2]: 2193.7680357582776 (ACTUAL), 2193.7680622420044 (DESIRED)
+E           Max absolute difference among violations: 2.64837267e-05
+E           Max relative difference among violations: 1.20722547e-08
+E            ACTUAL: array([ 9.500150e-01, -7.000122e-01,  2.193768e+03,  9.500154e-01,
+E                  -7.000130e-01,  2.184976e+03])
+E            DESIRED: array([ 9.500150e-01, -7.000122e-01,  2.193768e+03,  9.500154e-01,
+E                  -7.000130e-01,  2.184976e+03])
+
+analysis/tests/test_native_bounded_controls.py:87: AssertionError</failure></testcase><testcase classname="tests.test_native_bounded_controls" name="test_bounded_native_connection_matches_dense_linear_envelope[True-True-0-increment-training_kernels0]" time="0.283" /><testcase classname="tests.test_native_bounded_controls" name="test_bounded_native_connection_matches_dense_linear_envelope[True-True-0-point-training_kernels0]" time="0.305" /><testcase classname="tests.test_native_bounded_controls" name="test_bounded_native_connection_matches_dense_linear_envelope[True-True-1-increment-training_kernels0]" time="0.297" /><testcase classname="tests.test_native_bounded_controls" name="test_bounded_native_connection_matches_dense_linear_envelope[True-True-1-point-training_kernels0]" time="0.280" /><testcase classname="tests.test_native_bounded_controls" name="test_bounded_native_connection_matches_dense_linear_envelope[True-True-2-increment-training_kernels0]" time="0.266" /><testcase classname="tests.test_native_bounded_controls" name="test_bounded_native_connection_matches_dense_linear_envelope[True-True-2-point-training_kernels0]" time="0.325" /></testsuite></testsuites>

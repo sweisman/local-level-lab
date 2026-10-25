@@ -71,6 +71,14 @@ linear diagnostic therefore withholds unrestricted-calibration uncertainty.
 No calibrated coverage follows from point accuracy. The original longer noisy
 failure remains a separate result.
 
+The [saved calibration diagnosis](structured-noisy-diagnosis/INTERPRETATION.md)
+finds nearly cancelling gravity and vertical-accelerometer effects. Planted sensor
+settings remain inside the permitted bounds. This supports retaining uncertainty
+along weak directions rather than treating boundary estimates as known calibration.
+The [bounded native interface](integrated-noise-covariance/native-bounded-reference-qualification/README.md)
+now passes all 24 controls. This establishes the connection, not a justified
+nonlinear remainder bound or calibrated aircraft coverage.
+
 | Source | What is currently checked | What still needs establishing |
 |---|---|---|
 | Calibration | Keep one set of physical calibration parameters shared across the whole generated history. Preserve the full declared domain. | Whether that domain and its time behavior adequately describe a particular recording. |

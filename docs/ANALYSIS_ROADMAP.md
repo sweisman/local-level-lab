@@ -69,7 +69,7 @@ validated.
 | E02 | Next | **Pilot complete: three adequate matched comparisons** | The [verified revision](esa-observed-wide-pilot/INTERPRETATION.md) supplies 22 qualified forecasts; three complete settings favor globe plus the specified field, with about 15 m later 3D RMS versus kilometres for the alternatives. Two disc starts reach the runtime ceiling. Error assumptions and broader validation remain open; seven confirmation groups stay protected. |
 | G01 | Next | Complete as a descriptive check | [Compare raw gyro trends with geographic predictions](ilvis0-gyro-companion-v2/INTERPRETATION.md) across all 53 stretches. |
 | U01 | Next | Development dataset ready | [Assemble the evidence for publication](PAPER_DATASET.md). Final prediction and uncertainty results are still needed. |
-| U02 | Next | **Two-minute forecasts accurate; bounded uncertainty open** | The [verified two-minute study](structured-noisy-training/README.md) returns all 24 accurate raw and conditional forecasts; 20 pass numerical checks. Every calibration reaches a bound, so uncertainty remains unsupported. The earlier [twenty-minute failure](esa-noisy-prediction/INTERPRETATION.md) is preserved; changing duration prevents a matched improvement claim. Diagnose bounds and stopping before further fits. |
+| U02 | Next | **Native bounded interface qualified; nonlinear uncertainty open** | All [24 native controls](integrated-noise-covariance/native-bounded-reference-qualification/README.md) pass after exact arithmetic identified an unstable dense-reference solve. Calibration boundaries and unknown directions remain included. Justified nonlinear approximation limits and coverage remain before more aircraft fits; the earlier short accuracy result and long failure stay separate. |
 | R01 | Later | Not started | [Estimate the background rotation vector freely](ROTATION_FIELD.md), rather than supplying its rate. |
 | R02 | Later | Waiting for R01 | Test whether the measured rate can distinguish sidereal from solar timing. |
 | S01 | Later | Deferred | Develop Wuhan-data analysis and the separate [stationary participant experiment](STATIONARY.md). |
@@ -141,10 +141,24 @@ validated.
    now returns all 24 forecasts within the physical screen; 20 pass numerical
    checks. Horizontal RMS is 1.84–2.08 m and height RMS 0.17–0.25 m. Every
    calibration reaches at least one bound, preventing unrestricted uncertainty
-   claims. Saved-data diagnosis of these bounds and the four stopping failures
-   precedes more fits. This shorter study does not supersede the original
+   claims. The [saved-data diagnosis](structured-noisy-diagnosis/INTERPRETATION.md)
+   now finds strongly coupled gravity/accelerometer columns; the four stopping
+   failures miss only cost stability, not their evaluation budgets. The
+   [bounded-error adapter](integrated-noise-covariance/bounded-state-qualification/README.md)
+   passes 58 checks, its native protocol 69, and the [native connection](integrated-noise-covariance/native-bounded-reference-qualification/README.md)
+   all 24 controls. The original 22/24 failure is preserved: an [exact-arithmetic
+   diagnosis](integrated-noise-covariance/native-bounded-numerics/README.md) identified
+   the dense reference's whitening solve. Nonlinear approximation limits and
+   coverage remain before more fits. This shorter study does not supersede the original
    twenty-minute failure. Nonlinear coverage remains open before new aircraft fits.
    Accuracy limits, input selection and calibration bounds remain unchanged.
+   The [known-calibration benchmark](noisy-prediction-benchmark/README.md)
+   completed all four fixed settings after 27 construction and 14 lifecycle
+   checks. With calibration and starting state supplied, the calculated horizontal
+   error scale grows from 0.52 m at two minutes to 33.77 m at twenty minutes.
+   The longer setting exceeds the unchanged 10 m screen even with this extra
+   knowledge. These are assumed-noise calculations, not measured aircraft errors;
+   they help explain why longer prediction needs an explicit uncertainty budget.
 3. Test broader predictive accuracy before opening the reserved ESA flight groups.
    The [fixed metadata plan](esa-broader-development/README.md) selects the first
    and last twenty minutes of each eligible development run: four ranges, one

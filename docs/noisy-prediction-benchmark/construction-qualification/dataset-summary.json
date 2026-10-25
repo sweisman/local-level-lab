@@ -1,0 +1,43 @@
+{
+  "attempted": {
+    "builds": 2,
+    "constructed_intervals": 1200,
+    "generated_samples": 1220,
+    "native_calls": 1220,
+    "packet_query_visits": 10800,
+    "packet_steps": 2418
+  },
+  "elapsed_s": 4.624090036842972,
+  "environment": {
+    "compilers": {
+      "c++": "c++ (GCC) 16.2.1 20260810",
+      "cc": "cc (GCC) 16.2.1 20260810"
+    },
+    "executable": "/home/sweisman/venv/bin/python",
+    "numerical_environment": {
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1",
+      "OMP_MAX_ACTIVE_LEVELS": "1",
+      "OMP_NUM_THREADS": "1",
+      "OMP_THREAD_LIMIT": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "packages": {
+      "numpy": "2.5.3",
+      "scipy": "1.18.1"
+    },
+    "platform": "Linux-7.1.8-arch1-3-x86_64-with-glibc2.44",
+    "python": "3.14.7 (main, Aug 10 2026, 07:46:56) [GCC 16.1.1 20260728]"
+  },
+  "known_calibration_benchmark": true,
+  "maximum_mean_nominal_error_m": 8.939921827872378e-07,
+  "native_cases": 2,
+  "nonlinear_coverage_established": false,
+  "optimizer_starts": 0,
+  "oracle_nominal_future_geometry_used": true,
+  "original_reads": 0,
+  "protected_reads": 0,
+  "random_draws": 0,
+  "software_checks": 27
+}

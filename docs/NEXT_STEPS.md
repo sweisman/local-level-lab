@@ -129,8 +129,22 @@ noise. The [short native protocol](integrated-noise-covariance/short-native-prot
 passes 128 software checks, while preserving the two-second cases' numerical
 failures and unidentified calibration. The [verified two-minute study](structured-noisy-training/README.md)
 returns 24 accurate raw and conditional forecasts, with 20 numerical passes.
-All calibrations reach a bound. Next: diagnose those limits and the four
-stopping failures before further fits. The shorter duration means this does
+All calibrations reach a bound. The [completed saved-data check](structured-noisy-diagnosis/INTERPRETATION.md)
+finds a strong trade-off between gravity and accelerometer calibration. The
+four numerical failures miss cost stability rather than exhausting their budgets.
+The [bounded native interface](integrated-noise-covariance/native-bounded-reference-qualification/README.md)
+now passes all 24 controls, retaining calibration limits and unknown directions.
+Exact arithmetic identified and corrected an unstable solve in the dense test
+reference; the original failed trial remains recorded. Next: justify nonlinear
+approximation allowances and test coverage before claiming useful uncertainty.
+The [known-calibration noise benchmark](noisy-prediction-benchmark/README.md)
+has completed all four settings. With known calibration and starting state,
+the calculated horizontal error scale is 0.52 m for two minutes and 33.77 m
+for twenty minutes; height scales are 0.20 m and 1.95 m. Both declared input-error
+formats agree closely. These are expected noise scales, not measured flight
+errors. The longer horizontal scale exceeds the unchanged 10 m screen, making
+the uncertainty budget essential before another long fitting study.
+The shorter duration means this does
 not replace the earlier twenty-minute failure; uncertainty remains unqualified.
 
 The [broader development plan](esa-broader-development/README.md) is fixed from

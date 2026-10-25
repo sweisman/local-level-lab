@@ -1,0 +1,48 @@
+{
+  "attempted": {
+    "builds": 2,
+    "native_calls": 7248,
+    "packet_query_visits": 92160,
+    "packet_steps": 14880
+  },
+  "charged": {
+    "builds": 2,
+    "native_calls": 10800,
+    "packet_query_visits": 7200000,
+    "packet_steps": 360000
+  },
+  "elapsed_s": 11.750062179984525,
+  "environment": {
+    "compilers": {
+      "c++": "c++ (GCC) 16.2.1 20260810",
+      "cc": "cc (GCC) 16.2.1 20260810"
+    },
+    "executable": "/home/sweisman/venv/bin/python",
+    "numerical_environment": {
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1",
+      "OMP_MAX_ACTIVE_LEVELS": "1",
+      "OMP_NUM_THREADS": "1",
+      "OMP_THREAD_LIMIT": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "packages": {
+      "numpy": "2.5.3",
+      "scipy": "1.18.1"
+    },
+    "platform": "Linux-7.1.8-arch1-3-x86_64-with-glibc2.44",
+    "python": "3.14.7 (main, Aug 10 2026, 07:46:56) [GCC 16.1.1 20260728]"
+  },
+  "failed": [
+    "test_bounded_native_connection_matches_dense_linear_envelope[False-True-2-point-training_kernels0]",
+    "test_bounded_native_connection_matches_dense_linear_envelope[True-False-2-point-training_kernels0]"
+  ],
+  "nonlinear_coverage_established": false,
+  "optimizer_starts": 0,
+  "original_reads": 0,
+  "passed": 22,
+  "protected_reads": 0,
+  "qualified": false,
+  "total": 24
+}

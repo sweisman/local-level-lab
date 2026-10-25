@@ -1,5 +1,11 @@
 # Account for errors that accumulate over time
 
+The [bounded native interface](native-bounded-reference-qualification/README.md)
+now passes all 24 controls, following 58 adapter and 69 protocol checks. It
+retains parameter limits and unidentified directions. An exact-arithmetic check
+identified an unstable dense reference; its original failure is preserved.
+Nonlinear approximation-error bounds and coverage remain separate requirements.
+
 **The shared calculation passes 54 source-bound software checks.** Its
 eight-state storage test handles 64,080 generated observation times with
 59.2 MiB of stored operator arrays.
