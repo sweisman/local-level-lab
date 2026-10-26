@@ -17,12 +17,23 @@ study; receiver positions help constrain the reconstructed flight.
 
 ## Now: predict measurements left out of the fit
 
-**The [bounded phase has reached its review checkpoint](PREDICTION_PHASE_RESULTS.md).**
-Calibration stopped after both starts failed one required setting. It produced
+**The [four-point stopping diagnostic is complete](prediction-stopping-consistency/INTERPRETATION.md).**
+Repeated answers match exactly. The two successful controls still pass and the
+two failed starts still fail. Derivative comparisons identify timing and
+numerical precision as the next software checks; they do not yet establish a
+replacement method. No new nonlinear fits were run.
+
+The [preceding calibration phase](PREDICTION_PHASE_RESULTS.md)
+stopped after both starts failed one required setting. It produced
 no usable uncertainty threshold, so validation was not launched. The single
 saved-results review identifies a numerical cost-stability failure despite
 small position changes. Further campaigns and method changes require a new
 reviewed phase; the development backlog below remains deferred.
+
+The [bounded diagnostic](PREDICTION_STOPPING_PLAN.md) passed its 32 software
+checks and returned all four native tasks in 35.2 minutes. None passes every
+derivative comparison, including the successful controls. The phase ends at
+this report; a revised numerical method requires a new reviewed plan.
 
 Fit the earlier part of a recording, then reconstruct the later track from its
 IMU readings. Keep later GPS positions out of calibration and use them only to
@@ -193,6 +204,10 @@ gates still apply.
 The [stopping-check explanation](NUMERICAL_STOPPING.md) distinguishes numerical
 failures from inaccurate predictions. A shared saved-results diagnostic now
 identifies which check failed, while preserving the original labels.
+The [completed four-point check](prediction-stopping-consistency/INTERPRETATION.md)
+finds exact repeatability alongside timing and finite-difference precision
+discrepancies. Small known-answer controls are the next gate before a revised
+method or another calibration run.
 
 On the fully compared northern recording, later horizontal RMS is 0.84–1.13 m
 for specified-field globe, about 496 m for zero-field globe and 793 m for disc.

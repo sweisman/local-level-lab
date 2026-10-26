@@ -9,7 +9,8 @@ import stat
 import zipfile
 
 VERSION='lll-evidence-packs-v1'
-PACK_BYTES=64*1024*1024
+# Bound the encoded ZIP, with ample margin below GitHub's 50 MiB warning.
+PACK_BYTES=32*1024*1024
 
 
 def digest(data):return hashlib.sha256(data).hexdigest()
@@ -157,7 +158,9 @@ class ArchiveStore:
             if batch and size+length>PACK_BYTES:batches.append(batch);batch=[];size=0
             batch.append((sha,name));size+=length
         if batch:batches.append(batch)
-        for batch in batches:
+        written=0
+        while batches:
+            batch=batches.pop(0)
             import io
             buffer=io.BytesIO()
             with zipfile.ZipFile(buffer,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=6) as archive:
@@ -166,17 +169,25 @@ class ArchiveStore:
                     if digest(data)!=sha:raise ValueError('source changed during archival')
                     member=zipfile.ZipInfo(sha,date_time=(1980,1,1,0,0,0));member.compress_type=zipfile.ZIP_DEFLATED
                     member.external_attr=0o100444<<16;archive.writestr(member,data)
-            raw=buffer.getvalue();pack_sha=digest(raw);name='packs/'+pack_sha+'.zip'
+            raw=buffer.getvalue()
+            if len(raw)>PACK_BYTES:
+                if len(batch)==1:
+                    raise ValueError('single evidence object exceeds encoded pack allowance')
+                middle=len(batch)//2
+                batches[:0]=[batch[:middle],batch[middle:]]
+                continue
+            pack_sha=digest(raw);name='packs/'+pack_sha+'.zip'
             target=safe_path(self.directory,name)
             if target.exists():
                 if digest(target.read_bytes())!=pack_sha:raise ValueError('existing pack changed')
             else:atomic(target,raw)
             catalog['packs'][name]=pack_sha
             for sha,_ in batch:catalog['objects'][sha]=name
+            written+=1
         catalog['paths'].update(records)
         self._write_catalog(catalog)
         self.verify(names=names)
-        return dict(paths=len(records),new_objects=len(new),packs=len(batches))
+        return dict(paths=len(records),new_objects=len(new),packs=written)
 
     def verify(self,*,names=None):
         """Audit the complete store, or explicitly selected aliases and their packs.

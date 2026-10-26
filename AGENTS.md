@@ -52,9 +52,17 @@ progress counts, session histories, personal commentary or process IDs.
 
 ## Compute and execution safety
 
-- Never kill, terminate or signal a running process. On a requested pause, start
-  nothing new and let the current process finish before pausing. Use cooperative
+- Never kill, terminate or signal a running process without explicit permission
+  for that job. On a requested pause, start nothing new and let the current
+  process finish before pausing. Use cooperative
   budget checks in new workers; do not enforce deadlines with process signals.
+- Raise an alert for a suspected hung process rather than silently reserving its
+  resources indefinitely. After five minutes without observable progress, check
+  CPU time, logs, child activity and thread waits. If two checks at least a minute
+  apart show no useful activity and no known live dependency, report the suspected
+  hang, its locks and reserved threads, and request permission to stop that specific
+  job. Long calculations with continuing CPU activity are not hangs. Termination
+  still requires explicit authorization; protect fixtures shared by other jobs.
 - Use at most **four total numerical threads** across all active jobs. Count
   workers × threads per worker and reserve capacity for other running jobs.
 - Launch numerical commands through `analysis/tests/run_numerical.py`, or the

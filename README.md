@@ -125,7 +125,9 @@ completes three matched settings: typical later 3D position error is **about
 setting is incomplete because two starts reached the runtime ceiling.
 The latest [calibration test using simulated measurements](docs/PREDICTION_PHASE_RESULTS.md) stopped
 when two required fits failed its numerical checks. It produced no validated
-uncertainty threshold; further work is at a review checkpoint.
+uncertainty threshold. A [four-point diagnostic](docs/prediction-stopping-consistency/INTERPRETATION.md)
+reproduces the stopping failures and identifies timing and numerical precision
+as the next checks; no new model fits were run.
 Statistical confidence is tested separately; independent ESA confirmation
 follows method qualification. Shared recordings are grouped
 before validation; ESA recording 187 is development material and the other

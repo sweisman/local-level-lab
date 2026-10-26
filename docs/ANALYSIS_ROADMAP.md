@@ -50,12 +50,18 @@ expansion precedes the revised prediction sequence.
 
 ## Current phase and finish line
 
-**Calibration stopped early; validation was not run.** The
+**The [four-point stopping diagnostic is complete](prediction-stopping-consistency/INTERPRETATION.md).**
+All evaluations repeat exactly. The original two passing and two failing
+stopping checks repeat unchanged. Timing and precision checks remain open:
+none of the four points passes every derivative comparison. No new nonlinear
+fit or calibration campaign was run. This phase ends at its report-and-review
+checkpoint.
+
+Previously, **calibration stopped early; validation was not run.** The
 [phase report](PREDICTION_PHASE_RESULTS.md) records 1,683 qualified fits, two
 numerical failures and one interrupted start. The one permitted saved-results
 review identifies the cost-stability check as the failed numerical gate.
-This phase ends at the report-and-review checkpoint; the broader backlog does
-not resume automatically. Its agreed finite scope was:
+That completed phase's finite scope was:
 
 1. Finish the existing calibration run within its original 299-family,
    7,176-start, 120-hour allowance. Preserve early stopping and every failure.
@@ -79,6 +85,12 @@ The original 53-stretch findings, protected ESA groups, four-thread total limit
 and prohibition on terminating processes remain in force. New campaigns,
 solver experiments, broader aircraft fitting, free-field precision work and
 participant expansion require a subsequent reviewed phase.
+
+The [subsequent diagnostic plan](PREDICTION_STOPPING_PLAN.md) is now complete:
+32 software checks, four saved points and 646 residual-and-derivative evaluations,
+with unchanged acceptance rules. The next priority is small known-answer timing
+and precision controls, before selecting a revised solver. A new phase needs
+review; the broader backlog does not resume automatically.
 
 ## Dependency-ordered backlog
 
@@ -233,8 +245,11 @@ another study after the completed calibration phase.
    [calibration phase](prediction-calibration/README.md) stopped under its
    predeclared futility rule after both starts failed one required setting.
    The [bounded review](prediction-phase-review/README.md) is complete.
-   No finite threshold or validation result is available; further execution
-   waits at the [phase review checkpoint](PREDICTION_PHASE_RESULTS.md).
+   The [four-point diagnostic](prediction-stopping-consistency/INTERPRETATION.md)
+   also completes: repeatability is exact, but the time-offset derivative needs
+   investigation and small finite differences lose precision in weak columns.
+   No finite threshold or validation result is available. The next reviewed
+   phase should isolate these numerical effects before another solver trial.
 3. Test broader predictive accuracy before opening the reserved ESA flight groups.
    The [fixed metadata plan](esa-broader-development/README.md) selects the first
    and last twenty minutes of each eligible development run: four ranges, one

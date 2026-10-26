@@ -19,17 +19,15 @@ Use the existing Python environment from the repository root:
 
 The completed prediction-calibration phase also has an independent archive at
 `repro/prediction-phase-20261026`. It uses the same verified archive format and
-preserves its original paths. Restore it before checking that phase or running
-the full suite from a fresh checkout:
+preserves its original paths. The main catalog now registers its exact aliases
+and points to the existing nested ZIP files. Readers can verify those records
+without expanding the archive, and the normal test runner restores any files
+needed by older tests. No separate CI restoration step is required.
 
-```sh
-env PYTHONPATH=analysis ~/venv/bin/python -c 'from pathlib import Path; from lll.studies.artifacts import ArchiveStore; store = ArchiveStore(Path("repro/prediction-phase-20261026")); print(store.restore(Path.cwd()))'
-```
-
-This adds the declared evidence files without replacing different bytes.
-The independent archive keeps its own catalog; the existing evidence catalog
-and running test workspace are unchanged. CI performs this restoration before
-the normal test command.
+For an explicitly supplied bundle, `lll.studies.bundles.register(root, prefix)`
+validates the bundle and registers its aliases without copying ZIP payloads.
+Conflicting aliases or changed expanded bytes are rejected. Register bundles
+only when no test runner owns the evidence workspace.
 
 ```sh
 env PYTHONPATH=analysis ~/venv/bin/python -m lll.studies check
@@ -167,6 +165,18 @@ enforces that distinction; additional scientific code cannot enter through it.
 
 ## Storage and performance
 
+Historical receipts bind exact source versions. Their checks use matching
+frozen source snapshots rather than a newer checkout library; ordinary data
+and result artifacts still require their original hashes. The
+[source-version compatibility guide](metadata-compatibility/README.md) describes
+the resolver and the preserved status-generator reference.
+
+The full test suite requires local socket IPC for its in-process HTTP clients.
+The shared runner checks this before acquiring the fixture lock or restoring
+files. If a sandbox blocks event-loop wakeups, use an execution environment
+that permits local IPC. This check needs no internet connection and never
+terminates an existing process.
+
 The archive catalog maps original paths to SHA-256 hashes and immutable ZIP
 packs. A complete verification checks both pack and individual-object hashes.
 Routine packing and named compaction verify the catalog checksum, every affected
@@ -174,6 +184,10 @@ pack and object, alias sizes and expanded bytes. All selected targets are checke
 before any expanded copy is removed. Unrelated historical objects are not scanned
 again for each small update. The explicit `lll.studies check` command retains the
 complete-store audit, including packs not used by that update.
+New packs are limited to **32 MiB of encoded ZIP data**, including ZIP metadata.
+Oversized batches split deterministically. An individual object that cannot fit
+is rejected before it enters the catalog. Older, larger packs remain readable
+and verified; this limit does not rewrite existing evidence or Git history.
 The catalog is stored as deterministic `repro/catalog.json.gz`, with a SHA-256
 checksum of the compressed file. The shared reader also accepts the earlier
 uncompressed catalog; the next catalog write verifies and replaces that index

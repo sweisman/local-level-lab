@@ -1,7 +1,30 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 import json
+import socket
+import pytest
+from lll.studies import testing
 from lll.studies.artifacts import ArchiveStore
 from lll.studies.testing import run
+
+
+@pytest.mark.parametrize('stage',['create','send'])
+def test_socket_denial_stops_before_lock_restore_or_child_start(tmp_path,monkeypatch,stage):
+    def denied(*a,**k):raise PermissionError('local socket denied')
+    def forbidden(*a,**k):raise AssertionError('fixture work started before socket preflight')
+    closed=[]
+    class Pipe:
+        def __enter__(self):return self
+        def __exit__(self,*a):closed.append(self)
+        def settimeout(self,value):pass
+        send=denied
+    pair=denied if stage=='create' else lambda:(Pipe(),Pipe())
+    monkeypatch.setattr(socket,'socketpair',pair)
+    monkeypatch.setattr(testing,'ArchiveStore',forbidden)
+    monkeypatch.setattr(testing.subprocess,'Popen',forbidden)
+    with pytest.raises(RuntimeError,match='local socket'):
+        run(tmp_path,['server/tests'],threads=4)
+    assert not (tmp_path/'data/study-test-runtime').exists()
+    assert len(closed)==(2 if stage=='send' else 0)
 
 
 def test_failed_tests_release_restored_fixtures_without_signaling(tmp_path,monkeypatch):

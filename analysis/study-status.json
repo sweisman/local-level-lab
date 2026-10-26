@@ -1023,6 +1023,10 @@
     {
       "name": "Independent prediction calibration",
       "path": "data/prediction-calibration-20261025"
+    },
+    {
+      "name": "Four saved-point stopping diagnostics",
+      "path": "data/prediction-stopping-consistency-20261026"
     }
   ]
 }

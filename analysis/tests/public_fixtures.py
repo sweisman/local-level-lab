@@ -32,7 +32,7 @@ def generated_read_path(root):
     return remap
 
 
-def public_read_path(root,*,recorded_root=Path('/site/repo/local-level-lab'),temporary_root=None):
+def public_read_path(root,*,recorded_root=Path('/site/repo/local-level-lab'),temporary_root=None,source_freeze=None):
     root=Path(root);recorded_root=Path(recorded_root)
     def remap(value):
         if not isinstance(value,(str,os.PathLike)):return value
@@ -42,6 +42,8 @@ def public_read_path(root,*,recorded_root=Path('/site/repo/local-level-lab'),tem
             path=root/path.relative_to(recorded_root)
         if not path.is_relative_to(root):return value
         relative=path.relative_to(root)
+        if source_freeze is not None and relative.parts[:2]==('analysis','lll'):
+            return Path(source_freeze)/relative
         if str(relative)=='data/ilvis0-boundary-diagnostic-20261016/manifest.json':
             return root/'docs/ilvis0-last-zero-boundary-20261018/source-freeze'/relative
         if len(relative.parts)>1 and relative.parts[0]=='data' and relative.parts[1].startswith('ilvis0-'):

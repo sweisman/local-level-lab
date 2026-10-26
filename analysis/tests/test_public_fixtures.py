@@ -26,6 +26,16 @@ def test_interrupted_manifest_uses_exact_later_snapshot(tmp_path):
     assert remap(tmp_path/name)==tmp_path/'docs/ilvis0-last-zero-boundary-20261018/source-freeze'/name
 
 
+def test_historical_library_reads_use_declared_snapshot_not_current_source(tmp_path):
+    root=tmp_path/'checkout';source='analysis/lll/ilvis0_estimator.py'
+    current=root/source;current.parent.mkdir(parents=True);current.write_text('new version')
+    freeze=root/'docs/study/source-freeze';saved=freeze/source
+    saved.parent.mkdir(parents=True);saved.write_text('original version')
+    remap=resolver().public_read_path(root,source_freeze=freeze)
+    assert remap(root/source)==saved
+    assert remap('/unrelated/private/file')=='/unrelated/private/file'
+
+
 def test_write_modes_are_not_redirected(tmp_path):
     module=resolver();calls=[]
     def original(path,mode='r',*args,**kwargs):calls.append((path,mode));return 'opened'

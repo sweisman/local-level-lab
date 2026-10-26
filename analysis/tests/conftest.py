@@ -60,26 +60,33 @@ def published_worker_fixtures(request,monkeypatch,tmp_path_factory):
            'test_ilvis0_last_free_time_worker.py','test_ilvis0_last_zero_boundary_worker.py',
            'test_ilvis0_saved_context.py','test_ilvis0_scaled_pair_worker.py'}
     root=Path(__file__).resolve().parents[2]
-    if request.path.name not in names or (root/'data/ilvis0-last-time-profile-20261018/manifest.json').exists():return
+    if request.path.name not in names:
+        yield
+        return
     import builtins
     import io
-    from public_fixtures import public_read_path,read_adapter
-    remap=public_read_path(root,temporary_root=tmp_path_factory.getbasetemp())
-    monkeypatch.setattr(builtins,'open',read_adapter(builtins.open,remap))
-    monkeypatch.setattr(io,'open',read_adapter(io.open,remap))
-    if request.path.name=='test_ilvis0_last_free_time_worker.py':
-        # This frozen assertion checks source membership using the checkout root.
-        # Add aliases only after the original source/hash validator has run.
-        from public_fixtures import source_aliases
-        original_worker=request.module.worker
-        def worker():
-            module=original_worker();original_build=module.build_executor
-            def build():
-                executor=original_build();sources=executor.sources
-                executor.sources=lambda:source_aliases(root,sources())
-                return executor
-            module.build_executor=build;return module
-        monkeypatch.setattr(request.module,'worker',worker)
+    from public_fixtures import public_read_path,read_adapter,archived_read_path
+    snapshots={'test_ilvis0_last_free_time_worker.py':'ilvis0-last-free-time-20261018',
+               'test_ilvis0_scaled_pair_worker.py':'ilvis0-scaled-pair-boundary-20261018'}
+    freeze=root/'docs'/snapshots[request.path.name]/'source-freeze' if request.path.name in snapshots else None
+    relocated=public_read_path(root,temporary_root=tmp_path_factory.getbasetemp(),source_freeze=freeze)
+    with archived_read_path(root,tmp_path_factory.mktemp('published-archive')) as archived:
+        remap=lambda p:archived(relocated(p))
+        monkeypatch.setattr(builtins,'open',read_adapter(builtins.open,remap))
+        monkeypatch.setattr(io,'open',read_adapter(io.open,remap))
+        if request.path.name=='test_ilvis0_last_free_time_worker.py':
+            # Add checkout aliases only after original source validation runs.
+            from public_fixtures import source_aliases
+            original_worker=request.module.worker
+            def worker():
+                module=original_worker();original_build=module.build_executor
+                def build():
+                    executor=original_build();sources=executor.sources
+                    executor.sources=lambda:source_aliases(root,sources())
+                    return executor
+                module.build_executor=build;return module
+            monkeypatch.setattr(request.module,'worker',worker)
+        yield
 
 
 def geometric_truth(world):

@@ -19,6 +19,35 @@ def example(root):
     return files
 
 
+def test_encoded_zip_size_not_only_payload_size_is_bounded(tmp_path,monkeypatch):
+    from lll.studies import artifacts
+    monkeypatch.setattr(artifacts,'PACK_BYTES',300)
+    names=[]
+    for i in range(8):
+        name=f'docs/study/{i}.txt';p=tmp_path/name;p.parent.mkdir(parents=True,exist_ok=True)
+        p.write_bytes(bytes([i]));names.append(name)
+    store=ArchiveStore(tmp_path);store.pack(names)
+    assert all((store.directory/n).stat().st_size<=300 for n in store.catalog()['packs'])
+    assert store.verify()['paths']==8
+
+
+def test_new_pack_budget_stays_below_github_warning_size():
+    from lll.studies.artifacts import PACK_BYTES
+    assert PACK_BYTES<=32*1024*1024
+
+
+def test_one_oversized_encoded_object_never_enters_catalog(tmp_path,monkeypatch):
+    from lll.studies import artifacts
+    monkeypatch.setattr(artifacts,'PACK_BYTES',256)
+    path=tmp_path/'docs/study/large.bin';path.parent.mkdir(parents=True)
+    path.write_bytes(bytes(range(256))*4)
+    store=ArchiveStore(tmp_path)
+    with pytest.raises(ValueError,match='single evidence object'):
+        store.pack(['docs/study/large.bin'])
+    assert store.catalog()['paths']=={} and store.catalog()['objects']=={}
+    assert path.read_bytes()==bytes(range(256))*4
+
+
 def test_lossless_deduplicated_restore_and_verified_compaction(tmp_path):
     files=example(tmp_path);store=ArchiveStore(tmp_path)
     report=store.pack(files)

@@ -162,6 +162,14 @@ def build(root,output,*,assets,base_path='',navigation=True):
         if not available(root,source): raise ValueError('required website page is missing: '+source)
         data=read(root,source);sources[source]=hashlib.sha256(data).hexdigest()
         content=data.decode('utf-8')
+        plan_origin=None
+        if source.endswith('/PLAN.md'):
+            manifest=str(PurePosixPath(source).parent/'manifest.json')
+            if available(root,manifest):
+                mapping=json.loads(read(root,manifest)).get('sources',{})
+                if isinstance(mapping,dict):
+                    matches=[n for n,h in mapping.items() if n.startswith('docs/') and h==sources[source]]
+                    if len(matches)==1:plan_origin=matches[0]
         md=markdown.Markdown(extensions=['tables','fenced_code','toc','sane_lists',MathExtension()],
                              extension_configs={'toc':{'slugify':slug}},output_format='html')
         body=study_context(root,source)+md.convert(content)
@@ -174,6 +182,12 @@ def build(root,output,*,assets,base_path='',navigation=True):
                 # neighbor; when absent, resolve in the original source context.
                 original=source.split('/source-freeze/',1)[1]
                 fallback=local_target(original,url)
+                if fallback is not None and available(root,fallback[0]):
+                    name,parsed=fallback
+            elif plan_origin is not None and not available(root,name):
+                # Published PLAN.md keeps its frozen bytes, including links
+                # written relative to the original source directory.
+                fallback=local_target(plan_origin,url)
                 if fallback is not None and available(root,fallback[0]):
                     name,parsed=fallback
             if public_page(name):

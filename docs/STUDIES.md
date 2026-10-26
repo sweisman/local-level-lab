@@ -14,6 +14,12 @@ constrain the reconstructed track.
 [Comprehensive CSV](ilvis0-current-findings-20261015/stretch-analytics.csv) ·
 [Next analyses](NEXT_STEPS.md) · [Reproduce these studies](REPRODUCIBILITY.md).
 
+**Latest completed diagnostic:** [why the stopping failure repeats](prediction-stopping-consistency/INTERPRETATION.md).
+All four saved-point checks returned; identical evaluations repeat exactly.
+The original two passes and two failures remain. Derivative discrepancies also
+affect the successful controls, leaving timing and precision checks as the next
+gate. The study ran no new nonlinear fits.
+
 ## From recordings to the complete comparison
 
 | Study or stage | What it added |
@@ -88,6 +94,7 @@ from removing a sensor observation.
 | [Prediction-calibration bookkeeping](prediction-score-qualification/calibration-targets-qualification/README.md) | All 30 deterministic checks pass. Counts independent seed families, preserves unavailable predictions, rejects reused seeds and separates conservative calibration from the validation target. The [execution interfaces](prediction-score-qualification/execution-qualification/README.md) now pass another 32 checks. |
 | [Independent prediction calibration](prediction-calibration/README.md) | Stopped cooperatively after 1,686 returned starts: 1,683 qualified fits, two numerical failures and one interrupted start. Both starts failed one required setting, preventing a finite threshold; validation was not launched. |
 | [Bounded calibration failure review](prediction-phase-review/README.md) | Eight saved records isolate the cost-stability check: position changes and stationarity pass, but relative cost change exceeds its frozen limit. No refits or new noise draws; all failed labels are preserved. |
+| [Four-point stopping diagnostic](prediction-stopping-consistency/INTERPRETATION.md) | Exact repeatability preserves two passes and two failures. All 105 derivative columns are checked at three step sizes; timing and small-step precision discrepancies appear in successful controls too. No new nonlinear fits. |
 | [Calibration phase outcome](PREDICTION_PHASE_RESULTS.md) | Publishes the stopped phase, remaining uncertainty limits and prioritized follow-on work; further campaigns wait for review. |
 | [Structured covariance and scaling](ilvis0-structured-error-controls/INTERPRETATION.md) | Matches dense references and passes at 64,080 epochs/27 columns with a 24 MiB filter cache; avoids whole-record dense covariance/projection matrices. Observational error assessment remains. |
 | [Native streaming equivalence](ilvis0-streaming-precision/INTERPRETATION.md) | All 42 short controls pass; six separate long controls match unchanged value/tangent kernels through 480,000 packets with under 0.7 MiB traced working memory. The earlier absolute-pose failure reproduces identically in the original kernel and remains preserved. |

@@ -64,6 +64,21 @@ def test_frozen_doc_relative_links_keep_snapshot_neighbors_and_resolve_original_
     assert 'href="/docs/study/source-freeze/docs/adapter/NEIGHBOR.html"' in text
 
 
+def test_published_plan_links_resolve_in_its_frozen_original_context(tmp_path):
+    import json,hashlib
+    root=tmp_path/'repo';out=tmp_path/'site'
+    plan='# Plan\n\n[Guide](GUIDE.md)\n'
+    write(root,'README.md','# Home\n\n[Plan](docs/study/PLAN.md)\n')
+    write(root,'docs/study/PLAN.md',plan)
+    write(root,'docs/study/source-freeze/docs/ORIGINAL_PLAN.md',plan)
+    write(root,'docs/GUIDE.md','# Guide\n')
+    write(root,'docs/study/manifest.json',json.dumps({'sources':{
+        'docs/ORIGINAL_PLAN.md':hashlib.sha256(plan.encode()).hexdigest()}}))
+    report=site.build(root,out,assets=site.HERE/'assets',navigation=False)
+    assert report['missing_pages']==[]
+    assert 'href="/docs/GUIDE.html"' in (out/'docs/study/PLAN.html').read_text()
+
+
 def test_math_mermaid_tables_and_code_literals(tmp_path):
     root=tmp_path/'repo';example(root)
     write(root,'README.md',r'''# Home

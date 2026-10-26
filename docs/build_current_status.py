@@ -47,7 +47,13 @@ def verify_inputs(root,inputs):
         try:actual=sha(path)
         except FileNotFoundError as error:
             raise ValueError('missing evidence: '+name) from error
-        if actual!=digest: raise ValueError('evidence hash mismatch: '+name)
+        if actual!=digest:
+            if Path(name).suffix in ('.py','.c','.cc','.cpp','.cxx','.hpp','.h') and name.startswith(('analysis/','docs/')):
+                from lll.studies.source_versions import read_source
+                # A historical receipt binds its historical source bytes,
+                # rather than whichever library version is installed today.
+                actual=sha_bytes(read_source(root,name,digest))
+            if actual!=digest: raise ValueError('evidence hash mismatch: '+name)
 
 
 def summarize(rows):

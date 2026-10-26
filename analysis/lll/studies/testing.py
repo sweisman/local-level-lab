@@ -5,14 +5,29 @@ import json
 import os
 from pathlib import Path
 import subprocess
+import socket
 import sys
 import time
 from .artifacts import ArchiveStore,atomic,encoded
 
 
+def check_local_socket_io():
+    """Reject an environment that cannot wake the server test's event loops."""
+    try:
+        first,second=socket.socketpair()
+        with first,second:
+            first.settimeout(1.);second.settimeout(1.)
+            if first.send(b'\0')!=1 or second.recv(1)!=b'\0':
+                raise OSError('incomplete local socket wakeup')
+    except OSError as error:
+        raise RuntimeError('Test environment blocks local socket wakeups. Run the test suite '
+            'with local IPC permitted; no fixture restore or test process was started.') from error
+
+
 def run(root,arguments,*,threads=4,reserved=0):
     from ..compute_budget import environment
     settings=environment(workers=1,threads=threads,reserved=reserved)
+    check_local_socket_io()
     root=Path(root).resolve();directory=root/'data/study-test-runtime';directory.mkdir(parents=True,exist_ok=True)
     with (directory/'worker.lock').open('a+b') as lock:
         try:fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
