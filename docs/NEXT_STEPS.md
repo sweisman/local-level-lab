@@ -17,6 +17,13 @@ study; receiver positions help constrain the reconstructed flight.
 
 ## Now: predict measurements left out of the fit
 
+**The [bounded phase has reached its review checkpoint](PREDICTION_PHASE_RESULTS.md).**
+Calibration stopped after both starts failed one required setting. It produced
+no usable uncertainty threshold, so validation was not launched. The single
+saved-results review identifies a numerical cost-stability failure despite
+small position changes. Further campaigns and method changes require a new
+reviewed phase; the development backlog below remains deferred.
+
 Fit the earlier part of a recording, then reconstruct the later track from its
 IMU readings. Keep later GPS positions out of calibration and use them only to
 measure the errors. Check height as well as the horizontal track.
@@ -156,10 +163,23 @@ Their maximum error/noise ratios are 5.29–6.25, not confidence levels. Next:
 use independent noise realizations to test the complete fitting procedure,
 keeping the noise law, calibration bounds and accuracy screens fixed.
 The [draw interface](prediction-score-qualification/draw-qualification/README.md)
-passes 30 checks against the earlier frozen generator. The [fresh-draw pilot](independent-noisy-training-pilot/README.md)
-is running after its software gates: two new seeds, 48 starts, and calibration
-estimated anew. It will retain numerical and accuracy failures separately.
-No aircraft fit or confirmation group is opened by these checks.
+passes 30 checks against the earlier frozen generator. The [fresh-draw pilot](independent-noisy-training-pilot/INTERPRETATION.md)
+is complete: all 48 starts pass numerical and position-error checks. The 24
+training-selected forecasts miss their targets by 2.49–3.78 m horizontally.
+Every selected calibration reaches a bound. Error/noise scores of 7.50–11.22
+exclude calibration uncertainty; they are not confidence levels. Next include
+that uncertainty, preserving the same calibration limits and unknown directions.
+The [calibration bookkeeping](prediction-score-qualification/calibration-targets-qualification/README.md)
+passes 30 checks. It counts independent seed families, preserves unavailable fits
+and separates calibration from validation. The [sample-size estimates](prediction-score-qualification/CAMPAIGN_SIZING.md)
+show why two pilot seeds cannot establish coverage; the generating calibration
+population and finite campaign allowance have a separate
+[execution design](prediction-score-qualification/EXECUTION_PLAN.md). Its
+[execution interfaces](prediction-score-qualification/execution-qualification/README.md)
+pass 62 checks. [Calibration stopped](prediction-calibration/README.md) after
+1,686 returned starts because both starts failed one required setting.
+The [phase report](PREDICTION_PHASE_RESULTS.md) preserves the failure and the
+bounded diagnosis. No validation or additional aircraft fitting was released.
 The shorter duration means this does
 not replace the earlier twenty-minute failure; uncertainty remains unqualified.
 

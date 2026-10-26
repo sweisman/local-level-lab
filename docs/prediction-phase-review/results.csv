@@ -1,0 +1,9 @@
+identity,numerical_pass,training_cost,error_type
+calibration-seed-281474976810725-increment-sphere_rotating-0-0,True,221.7735577673581,
+calibration-seed-281474976810725-increment-sphere_rotating-0-1,True,221.77355776767106,
+calibration-seed-281474976810725-increment-sphere_rotating-1-0,True,221.87233940008247,
+calibration-seed-281474976810725-increment-sphere_rotating-1-1,True,221.87233940046968,
+calibration-seed-281474976810726-increment-flat_still-0-0,False,,BudgetStopped
+calibration-seed-281474976810726-increment-sphere_rotating-0-0,False,245.66726246107208,
+calibration-seed-281474976810726-increment-sphere_rotating-0-1,False,245.66726246122283,
+calibration-seed-281474976810726-increment-sphere_rotating-1-0,True,245.52520421018457,

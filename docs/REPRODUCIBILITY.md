@@ -17,6 +17,20 @@ test runner to finish before changing its evidence workspace.
 
 Use the existing Python environment from the repository root:
 
+The completed prediction-calibration phase also has an independent archive at
+`repro/prediction-phase-20261026`. It uses the same verified archive format and
+preserves its original paths. Restore it before checking that phase or running
+the full suite from a fresh checkout:
+
+```sh
+env PYTHONPATH=analysis ~/venv/bin/python -c 'from pathlib import Path; from lll.studies.artifacts import ArchiveStore; store = ArchiveStore(Path("repro/prediction-phase-20261026")); print(store.restore(Path.cwd()))'
+```
+
+This adds the declared evidence files without replacing different bytes.
+The independent archive keeps its own catalog; the existing evidence catalog
+and running test workspace are unchanged. CI performs this restoration before
+the normal test command.
+
 ```sh
 env PYTHONPATH=analysis ~/venv/bin/python -m lll.studies check
 env PYTHONPATH=analysis ~/venv/bin/python -m lll.studies inspect docs/STUDY

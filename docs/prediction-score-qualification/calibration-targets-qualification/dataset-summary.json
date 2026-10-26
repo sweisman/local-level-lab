@@ -1,0 +1,12 @@
+{
+  "aircraft_coverage_established": false,
+  "independent_draws_generated": 0,
+  "native_calls": 0,
+  "new_checks": 4,
+  "optimizer_starts": 0,
+  "original_reads": 0,
+  "protected_reads": 0,
+  "regressions": 26,
+  "software_checks": 30,
+  "sources": 55
+}

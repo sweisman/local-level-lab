@@ -123,7 +123,9 @@ completes three matched settings: typical later 3D position error is **about
 15 m for globe plus the specified field, 3.8–4.4 km for zero-field globe and
 7.4–8.6 km for disc**. These reuse one twenty-minute recording; the fourth
 setting is incomplete because two starts reached the runtime ceiling.
-The next work checks prediction-error assumptions before broader confirmation.
+The latest [calibration test using simulated measurements](docs/PREDICTION_PHASE_RESULTS.md) stopped
+when two required fits failed its numerical checks. It produced no validated
+uncertainty threshold; further work is at a review checkpoint.
 Statistical confidence is tested separately; independent ESA confirmation
 follows method qualification. Shared recordings are grouped
 before validation; ESA recording 187 is development material and the other

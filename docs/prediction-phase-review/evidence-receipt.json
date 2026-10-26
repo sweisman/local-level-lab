@@ -1,0 +1,9 @@
+{
+  "artifacts": {
+    "dataset-summary.json": "b8a2c1b5ea870fb5550c108692cbc50d2604f4f3653e6087490452a9052075da",
+    "diagnosis.json": "e28ef72fe68aa7fc289aa4aa4f7ffb098f6a556d62fdeb0f0508822ed4ac6251",
+    "results.csv": "6fb0bb60244072e735bcddb78c3409f120d114d307d65ecd85f97f108f8a049e",
+    "review-start.json": "a2d414418944aa852780f338d2fa8347d057307668f580360e8b6e170d58f241"
+  },
+  "manifest_sha256": "54ebd9444bd441d1aa67907e6a1d3e8b768ff5874f220662f428a20dcbb05859"
+}

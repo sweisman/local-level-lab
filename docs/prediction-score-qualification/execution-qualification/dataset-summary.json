@@ -1,0 +1,11 @@
+{
+  "checks": 62,
+  "native_calls": 0,
+  "new_metadata_checks": 32,
+  "noise_draws": 0,
+  "optimizer_starts": 0,
+  "original_reads": 0,
+  "protected_reads": 0,
+  "sources": 209,
+  "statistical_regressions": 30
+}

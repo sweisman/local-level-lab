@@ -48,7 +48,42 @@ expansion precedes the revised prediction sequence.
 [Revised method and safeguards](PREDICTION_VALIDATION.md) ·
 [Error assumptions](PREDICTION_ERROR_ASSUMPTIONS.md) · [Study history](STUDIES.md).
 
+## Current phase and finish line
+
+**Calibration stopped early; validation was not run.** The
+[phase report](PREDICTION_PHASE_RESULTS.md) records 1,683 qualified fits, two
+numerical failures and one interrupted start. The one permitted saved-results
+review identifies the cost-stability check as the failed numerical gate.
+This phase ends at the report-and-review checkpoint; the broader backlog does
+not resume automatically. Its agreed finite scope was:
+
+1. Finish the existing calibration run within its original 299-family,
+   7,176-start, 120-hour allowance. Preserve early stopping and every failure.
+2. Run the separate 181-family, 4,344-start validation phase only if calibration
+   supplies a finite, closed and verified threshold under the same population.
+   Preserve its 72-hour ceiling and predeclared acceptance rule.
+3. If either phase fails, permit **one saved-results diagnosis in total**:
+   at most 24 existing fit records, no new noise draws, optimizer starts or native
+   calculations, one numerical thread and a ten-minute cooperative ceiling.
+   This review explains the failure; it does not retune the method or retry it.
+4. Audit hashes and accounting, publish the outcomes and CSV data, update the
+   overview pages, and write a concise phase report with findings, limitations
+   and a prioritized follow-on backlog. **Then stop for review.**
+
+Phase completion means an accurately audited and published outcome, including
+a failed or inconclusive outcome. Passing the scientific gates is not promised.
+Reporting repairs may verify and describe existing evidence; they cannot change
+measurements, thresholds, solver rules or the frozen execution allowances.
+
+The original 53-stretch findings, protected ESA groups, four-thread total limit
+and prohibition on terminating processes remain in force. New campaigns,
+solver experiments, broader aircraft fitting, free-field precision work and
+participant expansion require a subsequent reviewed phase.
+
 ## Dependency-ordered backlog
+
+This table retains the broader roadmap. Items beyond the current phase remain
+follow-on work rather than automatic continuation instructions.
 
 Priority shows the order of work. “Software checked” means a calculation passed
 known-answer tests; it does not mean the aircraft result has been independently
@@ -69,13 +104,16 @@ validated.
 | E02 | Next | **Pilot complete: three adequate matched comparisons** | The [verified revision](esa-observed-wide-pilot/INTERPRETATION.md) supplies 22 qualified forecasts; three complete settings favor globe plus the specified field, with about 15 m later 3D RMS versus kilometres for the alternatives. Two disc starts reach the runtime ceiling. Error assumptions and broader validation remain open; seven confirmation groups stay protected. |
 | G01 | Next | Complete as a descriptive check | [Compare raw gyro trends with geographic predictions](ilvis0-gyro-companion-v2/INTERPRETATION.md) across all 53 stretches. |
 | U01 | Next | Development dataset ready | [Assemble the evidence for publication](PAPER_DATASET.md). Final prediction and uncertainty results are still needed. |
-| U02 | Next | **Noise growth quantified; fitted-calibration uncertainty open** | The [generated noise check](noise-nonlinearity/remainder-diagnosis/README.md) locates small long-duration height nonlinearities. Known calibration is supplied in that check. Next qualify uncertainty when calibration is estimated, retaining parameter limits and unknown directions; no new aircraft fitting is released. |
+| U02 | Review | **Calibration stopped; validation not run** | The [phase report](PREDICTION_PHASE_RESULTS.md) preserves 1,686 returned starts, including two numerical failures and one interrupted start. Both starts failed one required setting, preventing a finite threshold. The single saved-results review is complete; uncertainty remains unqualified. Further execution requires review. |
 | R01 | Later | Not started | [Estimate the background rotation vector freely](ROTATION_FIELD.md), rather than supplying its rate. |
 | R02 | Later | Waiting for R01 | Test whether the measured rate can distinguish sidereal from solar timing. |
 | S01 | Later | Deferred | Develop Wuhan-data analysis and the separate [stationary participant experiment](STATIONARY.md). |
 | D01 | Supporting | Ongoing | Seek more instrument documentation. This supports the work without stopping analysis under stated assumptions. |
 
 ## What happens after the current diagnostic
+
+The development backlog below is deferred for review. It does not authorize
+another study after the completed calibration phase.
 
 1. Preserve the qualified software controls and completed archival pilot, including
    its numerical and accuracy failures. Broader prediction validation remains open;
@@ -178,10 +216,25 @@ validated.
    from covariance assumptions](prediction-score-qualification/INDEPENDENT_DRAWS.md).
    That interface now passes [30 compatibility checks](prediction-score-qualification/draw-qualification/README.md),
    including identical original-seed outputs against the frozen generator.
-   The [fresh-draw pilot](independent-noisy-training-pilot/README.md) is now
-   running after 33 lifecycle and 42 native-composition software checks. It fixes
-   two fresh seeds and 48 starts, estimates calibration anew, and retains every
-   failed fit. These two seeds cannot establish coverage or a rare-tail quantile.
+   The [fresh-draw pilot](independent-noisy-training-pilot/INTERPRETATION.md) is
+   complete: all 48 fits pass numerical and position-error checks. A 17-check
+   saved-results audit verifies the new outcomes and reproduces the earlier
+   report unchanged. Every selected fit reaches a calibration bound. Their
+   error/noise scores are 7.50–11.22 when fitted calibration is treated as known;
+   the next step must include its uncertainty rather than enlarge a threshold
+   from these two seeds. Neither coverage nor a rare-tail quantile is established.
+   The [independent-draw ledger](prediction-score-qualification/calibration-targets-qualification/README.md)
+   now passes 30 source-bound checks, including distinct calibration and
+   validation targets. It preserves unavailable predictions and rejects
+   overlapping draw roles. The [execution design](prediction-score-qualification/EXECUTION_PLAN.md)
+   fixes a generated population and separate finite phase allowances, with
+   cooperative early stopping if success becomes impossible. Its
+   interfaces are now qualified by 62 source-bound checks. The
+   [calibration phase](prediction-calibration/README.md) stopped under its
+   predeclared futility rule after both starts failed one required setting.
+   The [bounded review](prediction-phase-review/README.md) is complete.
+   No finite threshold or validation result is available; further execution
+   waits at the [phase review checkpoint](PREDICTION_PHASE_RESULTS.md).
 3. Test broader predictive accuracy before opening the reserved ESA flight groups.
    The [fixed metadata plan](esa-broader-development/README.md) selects the first
    and last twenty minutes of each eligible development run: four ranges, one

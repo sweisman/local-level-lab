@@ -1,0 +1,53 @@
+{
+  "artifacts": {
+    "dataset-summary.json": "b8a2c1b5ea870fb5550c108692cbc50d2604f4f3653e6087490452a9052075da",
+    "diagnosis.json": "e28ef72fe68aa7fc289aa4aa4f7ffb098f6a556d62fdeb0f0508822ed4ac6251",
+    "results.csv": "6fb0bb60244072e735bcddb78c3409f120d114d307d65ecd85f97f108f8a049e",
+    "review-start.json": "a2d414418944aa852780f338d2fa8347d057307668f580360e8b6e170d58f241"
+  },
+  "format_version": "immutable-evidence-snapshot-v1",
+  "inputs": {
+    "data/ilvis0-source-point-development/prediction-phase-review-20261026-request.json": "c07f6cb30d135b90d1fa18f5571d36bbd98c5095bd60654b4733ef6e52d859f8",
+    "data/prediction-calibration-20261025/artifacts/calibration-seed-281474976810725-increment-sphere_rotating-0-0/fit.json": "9d7effdfe1f912a38a050ecd4854f0e7371d4dd7c144c786a74c0757a41e656e",
+    "data/prediction-calibration-20261025/artifacts/calibration-seed-281474976810725-increment-sphere_rotating-0-1/fit.json": "a77f822090f7867d310d04059359fdbc6a17cdb279fdf1cbe540658374b564a3",
+    "data/prediction-calibration-20261025/artifacts/calibration-seed-281474976810725-increment-sphere_rotating-1-0/fit.json": "b1173269b916983b09de00f60861b43a9dd3368328c66b48b0f865585e85c8e9",
+    "data/prediction-calibration-20261025/artifacts/calibration-seed-281474976810725-increment-sphere_rotating-1-1/fit.json": "3cac1784f9259f8cc02adc2e9299cffd775bea37cd3baaa96a8aef733dfb0e30",
+    "data/prediction-calibration-20261025/artifacts/calibration-seed-281474976810726-increment-sphere_rotating-0-0/fit.json": "9d46b970a673c1d274745edbc13689c17e86bd76293972095cdfc87fb579bcce",
+    "data/prediction-calibration-20261025/artifacts/calibration-seed-281474976810726-increment-sphere_rotating-0-1/fit.json": "a42e770b20a57925ba2a389538a3fb2e67af3de603f8886166f4592bfe94014f",
+    "data/prediction-calibration-20261025/artifacts/calibration-seed-281474976810726-increment-sphere_rotating-1-0/fit.json": "27b0697d99c3d6c4f067ceb250d02faa92355c92410524345bc13f377879372c",
+    "data/prediction-calibration-20261025/completion.json": "a9de85a29a30ef8fb2d7f6e5171b073d3f2d58b5ae5c493ed8ddcb2ba52cdae0",
+    "data/prediction-calibration-20261025/manifest.json": "fb4fdcb108330356ecd72537af6579ff1fa17e674e82073de312b853306fa717",
+    "data/prediction-calibration-20261025/shards/000/results/calibration-seed-281474976810725-increment-sphere_rotating-0-0.json": "81a9bd12be9bf6878bab9a01332992cd82584eac17bfae3a20a285054a0cd8a8",
+    "data/prediction-calibration-20261025/shards/000/results/calibration-seed-281474976810725-increment-sphere_rotating-1-0.json": "356c93290ad28db505ab8a5b52a3040acfb7c19cc405ada706335cfc4f430e7c",
+    "data/prediction-calibration-20261025/shards/000/results/calibration-seed-281474976810726-increment-flat_still-0-0.json": "ccdf2006c52d082a5f2b10f292eb79e104a726e536cdc07e03582371c545a0e2",
+    "data/prediction-calibration-20261025/shards/000/results/calibration-seed-281474976810726-increment-sphere_rotating-0-0.json": "8e766578ea7df9568a08847cb56e6892ec550d23f661ffcf29ab75c4e17da2c8",
+    "data/prediction-calibration-20261025/shards/000/results/calibration-seed-281474976810726-increment-sphere_rotating-1-0.json": "437440a488c69fecdc9c46077adf5e3c5c059f7ef626b99387a95c309d2c37fc",
+    "data/prediction-calibration-20261025/shards/001/results/calibration-seed-281474976810725-increment-sphere_rotating-0-1.json": "b565c5e409478ec492508327a3075337f1f340848bcde52edab2a7f9396bfd59",
+    "data/prediction-calibration-20261025/shards/001/results/calibration-seed-281474976810725-increment-sphere_rotating-1-1.json": "fbaefa3c8e541b4cdb93c8543bdc321f3b3fa00cbcdcceb8e62feae28fcac484",
+    "data/prediction-calibration-20261025/shards/001/results/calibration-seed-281474976810726-increment-sphere_rotating-0-1.json": "cb0ef3971c2ed52afd9de8c1f4f08cd3f2da3a729dbffab1e325edd728e3dd9e",
+    "data/prediction-calibration-20261025/stop-request.json": "ab918f53e5981b1dd5a684b64208faf51e60a25c4f43dbbe9498a5c80e7e7990",
+    "data/prediction-calibration-20261025/summary.json": "4feb73a746c3c6b1bdda7407ba1c75573ebe016c29b48b9d4fac5b258fa02996"
+  },
+  "metadata_python": "3.14.7 (main, Aug 10 2026, 07:46:56) [GCC 16.1.1 20260728]",
+  "model_evaluations": 0,
+  "optimizer_starts": 0,
+  "original_reads": 0,
+  "sources": {
+    "analysis/lll/evidence_snapshot.py": "818205bd3a4b94f76744e57b0c0acefa535a458e06b4c4e0440a1027496a58e3",
+    "analysis/lll/ilvis0_evidence_dataset.py": "15eff181cefa807ba2dd2a230a46fdc87b2bae441bfc6e87a58f940eff6a50c6",
+    "analysis/lll/prediction_phase_review.py": "184de850ec35eb5083a2be3c1402d9df583614dee6e5be95a872fe783228eefb",
+    "analysis/lll/studies/artifacts.py": "5e566492b7013a94c8c328002773c624ef27cd6c7015bb81549597f26c32b418",
+    "analysis/lll/studies/closed.py": "a09f517dfb6d1ea75835914aca5ba3cda5ec02c4d8bf0d4ff4845973e34a13f3",
+    "analysis/tests/test_prediction_phase_review.py": "923a26dc52d680e08db4280fa6d20a65e993a2d698cc730c5abba7de57f45fb8",
+    "docs/prediction-phase-review/PLAN.md": "040a2190b956e8512dd74b5991cc9f254c54c0814648a37bec2e73d17d983235"
+  },
+  "summary": {
+    "fitted_records": 7,
+    "native_calls": 0,
+    "new_noise_draws": 0,
+    "optimizer_starts": 0,
+    "records": 8,
+    "reviews_charged": 1
+  },
+  "version": "prediction-phase-saved-review-v1"
+}

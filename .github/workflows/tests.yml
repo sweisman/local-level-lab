@@ -14,5 +14,7 @@ jobs:
           python-version: "3.14"
       - name: Install the pinned environment
         run: pip install -r requirements-lock.txt -r website/requirements.txt -e analysis -e server
+      - name: Restore the independently archived prediction phase
+        run: env PYTHONPATH=analysis python -c 'from pathlib import Path; from lll.studies.artifacts import ArchiveStore; store = ArchiveStore(Path("repro/prediction-phase-20261026")); print(store.restore(Path.cwd()))'
       - name: Test
         run: env PYTHONPATH=analysis python -m lll.studies test
