@@ -37,6 +37,16 @@ A charge is recorded before a native call; its presence does not mean the call
 finished. A busy receipt ledger produces an explicit unavailable-snapshot warning.
 Missing locks are never created. An unlocked, unfinished study is shown as
 incomplete, even if its old status record says it was running.
+
+For unfinished timing-aware fits, **Within-fit progress** reports charged linear
+operations from their existing task journals. Comparing snapshots can show work
+advancing even before a fit returns. These are reservations, not completed native
+calls or passing results. The count can decrease when a task finishes and leaves
+the unfinished set. Reads use a read-only SQLite connection without waiting for
+a writer; unavailable snapshots are labeled explicitly. No worker files or
+frozen dependencies are changed.
+Snapshots can straddle a completion; the journal count is not a worker or thread count.
+
 An unfinished receipt transaction instead reports blocked continuation, retaining
 the committed call count and preserving the incomplete files.
 

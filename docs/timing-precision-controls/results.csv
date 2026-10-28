@@ -1,0 +1,8 @@
+identity,passed,native_evaluations,derivative_column,position_error,derivative_error,analytic_error_to_left,derivative_branch_gap,analytic_relative_error,finite_difference_relative_error
+vertical-interior,True,7,time_offset,0.0,0.0,,,,
+vertical-boundary,True,7,time_offset,0.0,0.0,,,,
+vertical-bound-offset,True,7,time_offset,0.0,0.0,,,,
+turning-slow,True,7,time_offset,,,1.3877787807814457e-17,0.025000000000000012,,
+turning-fast,True,7,time_offset,,,0.0,0.049999999999999996,,
+gyro-origin-zero,True,7,gyro_bias_z,,,,,2.963759830743459e-09,"[1.6464310642276183e-16, 0.0, 1.6464310642276183e-16]"
+gyro-origin-one,True,7,gyro_bias_z,,,,,2.963759830743459e-09,"[0.026979821545689262, 1.0, 1.0]"

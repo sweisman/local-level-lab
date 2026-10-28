@@ -1,0 +1,5 @@
+identity,original_fit_converged,evaluations,proposals,labels_changed
+calibration-seed-281474977010692-point-sphere_rotating-1-0,True,5,3,False
+calibration-seed-281474977010692-point-sphere_rotating-1-1,True,5,3,False
+calibration-seed-281474977010693-point-sphere_rotating-1-0,False,8,6,False
+calibration-seed-281474977010693-point-sphere_rotating-1-1,False,8,6,False

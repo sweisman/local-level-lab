@@ -1,0 +1,10 @@
+case,starts,agreement,maximum_prediction_difference,maximum_cost_difference
+interior,4,True,1.5700924586837752e-16,0.0
+boundary,4,True,1.1102230246251565e-16,0.0
+nonlinear,4,True,7.285471115281439e-10,0.0
+curved_redundant,4,True,4.965068306494546e-16,0.0
+kink_zero,4,True,0.0,0.0
+kink_shifted,4,True,0.0,0.0
+timed_quadratic,4,True,1.1102230246251565e-16,0.0
+timed_redundant27,4,True,4.440892098500626e-16,0.0
+timed_nonlinear,4,True,5.023810853761695e-07,2.4447111002245947e-13

@@ -1,0 +1,5 @@
+identity,seed,start,passed,converged,original_fit_converged,verification_reason,cost,evaluations,linear_solves,cells,prediction_horizontal_rms_m,prediction_height_rms_m,original_labels_changed
+timing-seed-281474977010692-point-sphere_rotating-1-0,281474977010692,0,False,False,True,timing_cell_not_stable,219.22164679158624,25,14,9,4.494111811170222,0.7521682360888212,False
+timing-seed-281474977010692-point-sphere_rotating-1-1,281474977010692,1,False,False,True,timing_cell_not_stable,219.22164679158666,25,14,9,4.494111883540374,0.7521679925091259,False
+timing-seed-281474977010693-point-sphere_rotating-1-0,281474977010693,0,False,False,False,timing_cell_not_stable,216.33601266838667,61,50,9,2.5760434838098942,0.30691781392591627,False
+timing-seed-281474977010693-point-sphere_rotating-1-1,281474977010693,1,False,False,False,timing_cell_not_stable,216.3360126641777,59,48,9,2.576045968755633,0.3069168239565499,False

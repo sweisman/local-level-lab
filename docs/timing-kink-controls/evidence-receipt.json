@@ -1,0 +1,13 @@
+{
+  "artifacts": {
+    "PLAN.md": "a1dbd0c445c124c1c7094ea1b486c38da1e8dca474c6e65525c0e3d6225bd336",
+    "README.md": "fd9ba5874db2a9e41558a408512665dc3990866e76738aecb1dd75a69ef15d0a",
+    "dataset-summary.json": "304f5aadc3ea327d4e8ab9bf051ee8859b8818b5c1bf2d77e87a72ca48b52259",
+    "kink_minimum-0.0.json": "addbb2d896cc56a6491c203d1393000d9bbe09beda6713c23248f57027847bad",
+    "kink_minimum-0.25.json": "74a83fc3d58beb61b0dd2ddd6573baa017b4d6ebd164d7ce862ad1ba854c4cc3",
+    "run-start.json": "f841e87ad16e752e39df1dc0f4023317da083a668b77656fbf003260e0f03e2f",
+    "smooth_minimum-0.0.json": "920947a93ab15fc8e064ea30f634f886e0dd21ad55681e06971876eec6c92e8b",
+    "smooth_nonminimum-0.0.json": "ab7e32f85b63af31c809d8e750b3551a5e60598b982859e75fdba52296cac1c0"
+  },
+  "manifest_sha256": "794a732a1f8bbdd49910c37267b274a881fa068ed3cb1ceb14cc06595d2b01b4"
+}

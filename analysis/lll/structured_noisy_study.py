@@ -84,7 +84,7 @@ def evaluate(task,context):
     return run_case(task,context,r=r,payload=task['payload'])
 
 
-def run_case(task,context,*,r,payload):
+def run_case(task,context,*,r,payload,kernel_provider=None,training_provider=None):
     """Execute a caller-validated frozen case without changing its allowance.
 
     The caller binds the full recipe/payload to its manifest. This shared body
@@ -95,6 +95,8 @@ def run_case(task,context,*,r,payload):
     from lll.ilvis0_control_shards import _check_continue
     from lll.studies.journal import Journal
     from lll.studies.artifacts import digest
+    if training_provider is not None and not callable(training_provider):
+        raise ValueError('explicit training protocol provider required')
     identity=task['identity'];allowance,construction=limits(r,payload['law'])
     if task['limits']!=allowance:raise ValueError('complete shared-case work must match its frozen task allowance')
     journal=Journal(context.directory/'construction.sqlite',freeze=digest((context.root/'manifest.json').read_bytes()),
@@ -103,11 +105,13 @@ def run_case(task,context,*,r,payload):
         _check_continue(context.root,context.manifest)
         for key,value in work.items():journal.reserve(identity,key,value)
     try:
-        noise,factory=_kernels(context,environment())
+        provider=_kernels if kernel_provider is None else kernel_provider
+        noise,factory=provider(context,environment())
         with context.prepay_native(native_calls=allowance['native_calls'],packet_visits=allowance['packet_visits']) as budget:
+            options={} if training_provider is None else dict(training_provider=training_provider)
             result=calculate(payload,r,kernel_factory=factory,noise_kernel=noise,
                 reserve=budget.reserve,reserve_construction=reserve_construction,save=context.save,
-                check_continue=lambda:_check_continue(context.root,context.manifest))
+                check_continue=lambda:_check_continue(context.root,context.manifest),**options)
         journal.verify()
         if (any(journal.count(identity,k)!=v for k,v in construction.items())
                 or result['native_calls']!=budget.snapshot()['attempted']['native_calls']):

@@ -1,0 +1,19 @@
+{
+  "control_crossings": [
+    0,
+    0
+  ],
+  "failed_crossings": [
+    119,
+    119
+  ],
+  "labels_changed": false,
+  "linear_solves": 4,
+  "maximum_linear_solves": 4,
+  "native_calls": 0,
+  "new_noise_draws": 0,
+  "nonlinear_fit_starts": 0,
+  "records": 4,
+  "replay_matches": 4,
+  "tests": 26
+}

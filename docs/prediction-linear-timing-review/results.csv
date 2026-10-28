@@ -1,0 +1,5 @@
+identity,saved_converged,linear_replay_matches,time_offset_step_s,boundary_crossings,query_count,saved_actual_cost_change
+calibration-seed-281474977010692-point-sphere_rotating-1-0,True,True,2.220446049250313e-18,0,119,3.7520212212339816e-13
+calibration-seed-281474977010692-point-sphere_rotating-1-1,True,True,0.0,0,119,3.7714684632237844e-13
+calibration-seed-281474977010693-point-sphere_rotating-1-0,False,True,-0.0006442657960468971,119,119,6.276853389320799e-08
+calibration-seed-281474977010693-point-sphere_rotating-1-1,False,True,-0.0006430615460361019,119,119,6.266819293961387e-08

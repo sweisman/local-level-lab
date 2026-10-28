@@ -65,3 +65,32 @@ def test_changed_sealed_provenance_is_rejected(tmp_path,target):
         path.write_text(json.dumps(value))
         receipt=json.loads(seal.read_text());receipt['sha256']=runner._sha(path);seal.write_text(json.dumps(receipt))
     with pytest.raises(ValueError):status_module().completed_rows(output,runner.verify(output),runner._sha(output/'manifest.json'))
+
+
+def test_status_avoids_per_future_result_archive_probes(tmp_path,monkeypatch):
+    status=status_module();status.ROOT=tmp_path;study=tmp_path/'data/study';study.mkdir(parents=True)
+    manifest=dict(version='ilvis0-sharded-native-controls-v1',allocation={'workers':4},
+        tasks=[dict(identity=f'future-{i}',shard=i%4) for i in range(1000)])
+    calls=[]
+    monkeypatch.setattr(status,'archived_available',lambda *a:calls.append(a) or False)
+    monkeypatch.setattr(status,'archive_evidence',lambda root:(None,{'paths':{}}),raising=False)
+    assert status.completed_rows(study,manifest,'a'*64)==[]
+    assert not calls, 'unexecuted identities should use one catalog view, not individual archive probes'
+
+
+def test_status_fast_seal_inventory_still_reads_archived_receipts(tmp_path,monkeypatch):
+    import hashlib
+    status=status_module();status.ROOT=tmp_path;study=tmp_path/'data/study';study.mkdir(parents=True)
+    task={'identity':'archived','shard':0};freeze='a'*64
+    row=dict(passed=True,scientific_decision='abstain')
+    envelope=dict(manifest_sha256=freeze,identity=task['identity'],shard=0,task_sha256=status.object_digest(task),
+        result_sha256=status.object_digest(row),result=row,status='complete')
+    raw=json.dumps(envelope).encode();base='data/study/shards/000/results/'
+    files={base+'archived.json':raw,base+'archived.seal.json':json.dumps(dict(
+        sha256=hashlib.sha256(raw).hexdigest(),manifest_sha256=freeze)).encode()}
+    monkeypatch.setattr(status,'archived_available',lambda root,name:name in files)
+    monkeypatch.setattr(status,'archive_evidence',lambda root:(None,{'paths':files}),raising=False)
+    monkeypatch.setattr(status,'read_bytes',lambda path:files[Path(path).relative_to(tmp_path).as_posix()])
+    result=status.completed_rows(study,dict(version='ilvis0-sharded-native-controls-v1',
+        allocation={'workers':1},tasks=[task]),freeze)
+    assert len(result)==1 and result[0]['identity']=='archived' and result[0]['passed']

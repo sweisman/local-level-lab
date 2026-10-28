@@ -123,11 +123,12 @@ completes three matched settings: typical later 3D position error is **about
 15 m for globe plus the specified field, 3.8–4.4 km for zero-field globe and
 7.4–8.6 km for disc**. These reuse one twenty-minute recording; the fourth
 setting is incomplete because two starts reached the runtime ceiling.
-The latest [calibration test using simulated measurements](docs/PREDICTION_PHASE_RESULTS.md) stopped
-when two required fits failed its numerical checks. It produced no validated
-uncertainty threshold. A [four-point diagnostic](docs/prediction-stopping-consistency/INTERPRETATION.md)
-reproduces the stopping failures and identifies timing and numerical precision
-as the next checks; no new model fits were run.
+The [corrected solver](docs/timing-matrix-combined/README.md) now passes all
+48 development cases and 24 comparisons between prescribed starting points,
+under the original limits. Earlier failed runs remain recorded. A
+[fresh calibration campaign is running](docs/FEASIBLE_PREDICTION_STATUS.md)
+on simulated measurements; separate validation follows only if calibration
+qualifies. No validated uncertainty threshold is available yet.
 Statistical confidence is tested separately; independent ESA confirmation
 follows method qualification. Shared recordings are grouped
 before validation; ESA recording 187 is development material and the other

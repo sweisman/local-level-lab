@@ -1,0 +1,5 @@
+identity,seed,start,passed,converged,original_fit_converged,verification_reason,cost,evaluations,linear_solves,cells,prediction_horizontal_rms_m,prediction_height_rms_m,original_labels_changed,law,model,profile
+development-seed-281474976810725-increment-sphere_rotating-0-0,281474976810725,0,True,True,True,all_timing_cells_stable,221.7735577672598,26,15,9,1.0819802319290024,1.9968666048581025,False,increment,sphere_rotating,False
+development-seed-281474976810725-increment-sphere_rotating-0-1,281474976810725,1,True,True,,all_timing_cells_stable,221.77355776725986,26,15,9,1.0819802342331393,1.9968666173089515,False,increment,sphere_rotating,False
+development-seed-281474976810725-increment-sphere_rotating-1-0,281474976810725,0,True,True,,all_timing_cells_stable,221.87233940038135,10,7,1,0.9416198746757981,1.9393909057164231,False,increment,sphere_rotating,True
+development-seed-281474976810725-increment-sphere_rotating-1-1,281474976810725,1,True,True,,all_timing_cells_stable,221.8723394003832,10,7,1,0.9416200361992363,1.9393909508633915,False,increment,sphere_rotating,True

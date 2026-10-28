@@ -2,12 +2,27 @@
 """Closed seed-family reporting and a finite calibration-to-validation handoff."""
 
 
-def inspect(root,prefix):
+def method_verification(policy,study,identity,spec,checked):
+    """An explicit method auditor may add proof, never change a saved label."""
+    provider=getattr(policy,'audit_fit',None)
+    if provider is None:return {}
+    if not callable(provider):raise ValueError('explicit callable method auditor required')
+    evidence=provider(study,identity,spec)
+    if (not isinstance(evidence,dict) or type(evidence.get('passed')) is not bool
+            or evidence['passed'] is not checked['converged']):
+        raise ValueError('independent method verification differs from saved convergence')
+    return dict(method_verification=evidence)
+
+
+def inspect(root,prefix,*,protocol=None):
     from lll.studies.closed import ClosedStudy
     s=ClosedStudy(root,prefix)
     try:
         from types import SimpleNamespace
-        from lll.prediction_calibration_study import recipe,tasks,population,case_recipe,EXCLUDED_SEEDS,SCOPE
+        from lll.prediction_calibration_study import _protocol
+        policy=_protocol(protocol)
+        recipe,tasks,population,case_recipe=policy.recipe,policy.tasks,policy.population,policy.case_recipe
+        EXCLUDED_SEEDS,SCOPE=policy.EXCLUDED_SEEDS,policy.SCOPE
         from lll.prediction_calibration import aggregate_draws,calibrate,validate
         from lll.independent_noisy_study import SCORE_INPUTS,score_records
         from lll.structured_noisy_publication import native_bindings,inspect_case,native_cache_entries
@@ -22,7 +37,7 @@ def inspect(root,prefix):
         expected={v['identity']:v for v in tasks(role,sha)}
         if {k:{a:b for a,b in v.items() if a not in ('index','shard')} for k,v in s.tasks.items()}!=expected:
             raise ValueError('exact closed phase task matrix required')
-        bindings=native_bindings(s);rows=[];assets={};interrupted=False
+        bindings=getattr(policy,'native_bindings',native_bindings)(s);rows=[];assets={};interrupted=False
         for identity,task in s.tasks.items():
             p=task['payload'];seed=p['draw_seed'];spec=p['case']
             row=dict(identity=identity,draw_seed=seed,role=role,**spec,complete=False,converged=False,accurate=False)
@@ -48,7 +63,8 @@ def inspect(root,prefix):
                     seed=seed,role=role,population_sha256=sha,case=spec,complete=True,converged=checked['converged'],
                     training_cost=fit['residual_sum_squares'],maximum_score=score['maximum_standardized_error'])
                 if marker!=expected_marker:raise ValueError('family marker differs from sealed fit and score')
-                rows.append(dict(row,complete=True,**checked,training_cost=fit['residual_sum_squares'],
+                proof=method_verification(policy,s,identity,spec,checked)
+                rows.append(dict(row,complete=True,**checked,**proof,training_cost=fit['residual_sum_squares'],
                     maximum_standardized_error=score['maximum_standardized_error']))
                 view=SimpleNamespace(tasks={identity:task},rows=s.rows,envelope=s.envelope,artifact=s.artifact,read=s.read)
                 assets.update(native_cache_entries(view))
@@ -63,7 +79,8 @@ def inspect(root,prefix):
         if full and role=='calibration':
             calibration=calibrate(draws,coverage=r['coverage'],confidence=r['confidence'],population_sha256=sha,excluded_seeds=EXCLUDED_SEEDS)
         if full and role=='validation':
-            h=s.input('calibration-handoff');check_handoff(h,population_sha256=sha)
+            options={} if protocol is None else dict(protocol=protocol)
+            h=s.input('calibration-handoff');check_handoff(h,population_sha256=sha,**options)
             validation=validate(h['calibration'],draws,confidence=r['confidence'],coverage=r['coverage'],population_sha256=sha)
         return dict(version='prediction-calibration-report-v1',verified=True,role=role,population_sha256=sha,
             total=len(s.tasks),returned_outcomes=s.summary['completed'],complete_forecasts=sum(v['complete'] for v in rows),
@@ -77,8 +94,9 @@ def inspect(root,prefix):
     finally:s.close()
 
 
-def build_handoff(report):
-    from lll.prediction_calibration_study import recipe,EXCLUDED_SEEDS
+def build_handoff(report,*,protocol=None):
+    from lll.prediction_calibration_study import _protocol
+    policy=_protocol(protocol);recipe=policy.recipe;EXCLUDED_SEEDS=policy.EXCLUDED_SEEDS
     from lll.prediction_calibration import calibrate
     if (report.get('verified') is not True or report.get('role')!='calibration'
             or report.get('cohort_interrupted',False) or report['returned_outcomes']!=report['total']
@@ -89,11 +107,13 @@ def build_handoff(report):
     value=dict(version='prediction-calibration-handoff-v1',population_sha256=sha,calibration=calibration,
         validation_policy=report['validation_policy'],evidence=dict(cohort_interrupted=False,
             **{k:report[k] for k in ('total','returned_outcomes','manifest_sha256','summary_sha256')}))
-    return check_handoff(value,population_sha256=sha)
+    options={} if protocol is None else dict(protocol=protocol)
+    return check_handoff(value,population_sha256=sha,**options)
 
 
-def check_handoff(value,*,population_sha256):
-    from lll.prediction_calibration_study import recipe,EXCLUDED_SEEDS,_population_hash
+def check_handoff(value,*,population_sha256,protocol=None):
+    from lll.prediction_calibration_study import _protocol,_population_hash
+    policy=_protocol(protocol);recipe=policy.recipe;EXCLUDED_SEEDS=policy.EXCLUDED_SEEDS
     from lll.prediction_calibration import calibrate
     from lll.studies.artifacts import encoded
     if (value.get('version')!='prediction-calibration-handoff-v1' or value.get('population_sha256')!=population_sha256
@@ -108,8 +128,9 @@ def check_handoff(value,*,population_sha256):
     return value
 
 
-def calibration_handoff(root,prefix):
-    return build_handoff(inspect(root,prefix))
+def calibration_handoff(root,prefix,*,protocol=None):
+    options={} if protocol is None else dict(protocol=protocol)
+    return build_handoff(inspect(root,prefix,**options),**options)
 
 
 def render(report):
@@ -143,31 +164,34 @@ def result_csv(report):
     return stream.getvalue()
 
 
-def publish(root,prefix,*,qualification,output=None):
+def publish(root,prefix,*,qualification,output=None,protocol=None):
     if qualification is None:raise ValueError('source-bound phase qualification required before publication')
     import json
     from pathlib import Path
-    from lll.prediction_calibration_study import qualification_sources
+    from lll.prediction_calibration_study import qualification_sources,_protocol
     from lll.studies.qualification import checked
     from lll.studies.artifacts import atomic,encoded,digest,safe_path
     from lll.studies.native_publication import include_native_caches
     from lll.airquantumgrav_inventory import environment
     from lll.ilvis0_control_publication import publish as package,check
-    root=Path(root).resolve()
-    request,tests=checked(root,qualification,sources=qualification_sources(root),environment=environment(),minimum_tests=62,
+    root=Path(root).resolve();policy=_protocol(protocol);options={} if protocol is None else dict(protocol=protocol)
+    source_provider=getattr(policy,'qualification_sources',qualification_sources)
+    request,tests=checked(root,qualification,sources=source_provider(root),environment=environment(),minimum_tests=62,
         required_tests=['test_handoff_rejects_unexecuted_calibration_draws',
             'test_calibration_adapter_metadata_loads_in_real_frozen_namespace',
-            'test_validation_futility_stops_at_fifth_distinct_family_not_four'])
-    report=inspect(root,prefix);output=output or 'docs/prediction-'+report['role']
+            'test_validation_futility_stops_at_fifth_distinct_family_not_four']
+            +getattr(policy,'required_report_tests',[]))
+    report=inspect(root,prefix,**options);output=output or 'docs/prediction-'+report['role']
     data=safe_path(root,prefix);public=safe_path(root,output)
     if public.parent!=root/'docs' or (public/'evidence-receipt.json').exists():raise ValueError('fresh top-level docs publication required')
-    package(data,public,render(report),plan=root/'docs/prediction-score-qualification/EXECUTION_PLAN.md')
+    plan=getattr(policy,'plan','docs/prediction-score-qualification/EXECUTION_PLAN.md')
+    package(data,public,render(report),plan=plan)
     if report['native_assets']:
         include_native_caches(root,data,public,entries=[dict(path=k,sha256=v) for k,v in sorted(report['native_assets'].items())],maximum_bytes=64*1024**2)
     extras={'results.csv':result_csv(report).encode(),'artifacts/publication/verified-report.json':encoded(report),
         'artifacts/publication/qualification-request.json':request,'artifacts/publication/qualification-report.xml':tests}
     if report['calibration'] is not None and report['calibration']['threshold'] is not None:
-        extras['calibration-handoff.json']=encoded(build_handoff(report))
+        extras['calibration-handoff.json']=encoded(build_handoff(report,**options))
     if report['validation'] is not None:extras['validation-result.json']=encoded(report['validation'])
     for name in ('CALIBRATION_PLAN.md','CALIBRATION_TARGETS_PLAN.md','CAMPAIGN_SIZING.md'):
         extras[name]=f'# Related plan\n\nSee [{name}](../prediction-score-qualification/{name}).\n'.encode()
@@ -175,6 +199,6 @@ def publish(root,prefix,*,qualification,output=None):
     receipt=json.loads((public/'evidence-receipt.json').read_bytes())
     for name,raw in extras.items():atomic(public/name,raw);receipt['artifacts'][name]=digest(raw)
     atomic(public/'evidence-receipt.json',encoded(receipt));check(data,public)
-    if encoded(inspect(root,output))!=encoded(report):raise ValueError('publication replay differs from its closed source')
+    if encoded(inspect(root,output,**options))!=encoded(report):raise ValueError('publication replay differs from its closed source')
     return dict(publication=output,artifacts=len(receipt['artifacts']),role=report['role'],returned=report['returned_outcomes'],
         native_calls=0,optimizer_starts=0,compaction_pending=True,aircraft_coverage_established=False)

@@ -1,0 +1,10 @@
+{
+  "artifacts": {
+    "README.md": "fb172d57f30e43590b4d59c229561c3769ae832da90717bf098d4e879f140474",
+    "dataset-summary.json": "5e0c3b4b7a24d77b3baf411c9019b641b472e084848dfab942c00a5f2decb44e",
+    "results.csv": "e47d1b4b93776e3dff915d0b7eadba6d4f1dbf85a3e7973446d45a8dadc9bc7d",
+    "review-start.json": "0abc542b89e64330ce1fd27c3b379076343dbe409da03848f26512fe943a7d3d",
+    "review.json": "7ccea4b82f195d8bb0c2646eea5ed9a4b69e0cc5ecd8890bbd58bce9e21357b6"
+  },
+  "manifest_sha256": "33143899d6a80f5b0ba607870cef5a80557e3f393f1cbe3e05924579e722fae2"
+}

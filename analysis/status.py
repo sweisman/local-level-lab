@@ -14,6 +14,7 @@ import time
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'analysis'))
 from lll.studies.readers import available as archived_available,read as archived_read
+from lll.studies.readers import evidence as archive_evidence
 
 
 def read_bytes(path):
@@ -79,13 +80,25 @@ def completed_rows(directory,manifest,manifest_hash):
     rows=[]
     if manifest.get('version')=='ilvis0-sharded-native-controls-v1':
         workers=manifest['allocation']['workers']
+        # Snapshot the few declared result directories once. Missing future
+        # identities need only a set/catalog lookup, not repeated path resolution.
+        local={}
+        for shard in range(workers):
+            base=directory/'shards'/f'{shard:03d}'/'results'
+            local[shard]={p.name for p in base.iterdir()} if base.is_dir() else set()
+        relative=directory.is_relative_to(ROOT)
+        archived=archive_evidence(str(ROOT))[1]['paths'] if relative else {}
         for task in manifest['tasks']:
             identity=task['identity'];shard=task['shard'];name=identity+'.json'
             if Path(name).name!=name or type(shard) is not int or not 0<=shard<workers:
                 raise ValueError('invalid sealed shard result identity or assignment')
             base=directory/'shards'/f'{shard:03d}'/'results'
             candidates=[base/(identity+suffix+'.json') for suffix in ('','.interrupted')]
-            sealed=[p for p in candidates if exists(p.with_suffix('.seal.json'))]
+            sealed=[]
+            for path in candidates:
+                seal=path.with_suffix('.seal.json')
+                if seal.name in local[shard] or (relative and seal.relative_to(ROOT).as_posix() in archived):
+                    sealed.append(path)
             if len(sealed)>1:raise ValueError('multiple sealed outcomes for one identity')
             if not sealed:continue
             path=sealed[0];receipt=load(path.with_suffix('.seal.json'));envelope=load(path);row=envelope['result']
@@ -147,6 +160,35 @@ def series_snapshot(directory,tasks):
     if not found:return None
     return dict(saved_reports=sum(v['saved_reports'] for v in counts),expected_reports=sum(v['expected_reports'] for v in counts),
         cases=counts,qualified_cases=0,provisional=True)
+
+
+def timing_work_snapshot(directory,tasks,manifest_hash):
+    """Read charged within-fit work; never create files or inspect measurements."""
+    import sqlite3
+    from lll.studies.journal import inspect_snapshot
+    base=Path(directory).resolve();rows=[];unavailable=[]
+    for task in tasks:
+        identity=task['identity'];path=base/'artifacts'/identity/'timing-linear.sqlite'
+        if not path.resolve().is_relative_to(base):raise ValueError('timing journal outside study')
+        if not path.is_file():continue
+        try:
+            db=sqlite3.connect(path.as_uri()+'?mode=ro',uri=True,timeout=0)
+            try:
+                db.execute('PRAGMA query_only=ON');db.execute('BEGIN')
+                specs=db.execute('SELECT spec FROM metadata').fetchall()
+                if len(specs)!=1:raise ValueError('one timing journal specification required')
+                limits=json.loads(specs[0][0])['limits']
+                if set(limits)!={identity} or set(limits[identity])!={'linear_solves'}:
+                    raise ValueError('exact task and timing resource required')
+                snapshot=inspect_snapshot(db.serialize(),manifest_hash)
+            finally:db.close()
+            rows.append(dict(identity=identity,linear_operations=snapshot['sweeps'],
+                limit=limits[identity]['linear_solves'],updated_seconds_ago=round(max(0,time.time()-path.stat().st_mtime))))
+        except (OSError,ValueError,KeyError,TypeError,sqlite3.Error) as error:
+            unavailable.append(dict(identity=identity,reason=str(error)))
+    if not rows and not unavailable:return None
+    return dict(linear_operations=sum(r['linear_operations'] for r in rows),journals=len(rows),tasks=rows,
+        unavailable=unavailable,qualification_established=False)
 
 
 def inspect_study(directory):
@@ -238,6 +280,10 @@ def inspect_study(directory):
         gates=('conditional_verified','passed','conditional_converged','converged')
         result['passed']=sum(next((r[k] is True for k in gates if k in r),False) for r in rows)
         result['errors']=sum(r.get('status') in ('error','interrupted','not_started') for r in rows)
+        if sharded and result['state']=='running':
+            finished={r.get('identity') for r in rows}
+            work=timing_work_snapshot(directory,[t for t in tasks if t['identity'] not in finished],manifest_hash)
+            if work is not None:result['timing_work']=work
         result['failures']=[dict(identity=r.get('identity'),reason=r.get('reason',r.get('status')))
             for r in rows if r.get('status') in ('error','interrupted','not_started')]
         try:
@@ -362,6 +408,10 @@ def render(report):
         text+=f"\n  Saved envelope reports: {progress['saved_reports']}/{progress['expected_reports']}; provisional progress, not passing results"
     if report.get('series_progress_unavailable'):
         text+='\n  Envelope snapshot unavailable: '+report['series_progress_unavailable']
+    if report.get('timing_work'):
+        work=report['timing_work']
+        text+=f"\n  Within-fit progress: {work['linear_operations']} charged linear operations in {work['journals']} task-journal snapshots"
+        if work['unavailable']:text+=f"; {len(work['unavailable'])} snapshots unavailable"
     for warning in report['warnings']:text+='\n  Warning: '+warning
     return text
 

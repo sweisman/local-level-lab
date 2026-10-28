@@ -24,6 +24,49 @@ def put(path,value):
 def digest(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def test_status_reads_live_timing_work_without_creating_or_modifying_files(tmp_path):
+    status=module()
+    from lll.studies.journal import Journal
+    path=tmp_path/'artifacts/a/timing-linear.sqlite'
+    journal=Journal(path,freeze='known-freeze',limits={'a':{'linear_solves':620}})
+    journal.start('a');journal.reserve('a','linear_solves')
+    before={p.relative_to(tmp_path):p.read_bytes() for p in tmp_path.rglob('*') if p.is_file()}
+    snapshot=status.timing_work_snapshot(tmp_path,[{'identity':'a'},{'identity':'not-started'}],'known-freeze')
+    assert snapshot['linear_operations']==1 and snapshot['journals']==1 and not snapshot['unavailable']
+    assert snapshot['tasks'][0]['identity']=='a' and snapshot['tasks'][0]['limit']==620
+    assert before=={p.relative_to(tmp_path):p.read_bytes() for p in tmp_path.rglob('*') if p.is_file()}
+    journal.reserve('a','linear_solves')
+    assert status.timing_work_snapshot(tmp_path,[{'identity':'a'}],'known-freeze')['linear_operations']==2
+
+
+def test_status_timing_work_keeps_wrong_freeze_unavailable_not_successful(tmp_path):
+    status=module()
+    from lll.studies.journal import Journal
+    p=tmp_path/'artifacts/a/timing-linear.sqlite';j=Journal(p,freeze='other',limits={'a':{'linear_solves':620}});j.start('a')
+    snapshot=status.timing_work_snapshot(tmp_path,[{'identity':'a'}],'expected')
+    assert snapshot['linear_operations']==0 and snapshot['journals']==0
+    assert snapshot['unavailable'] and 'freeze' in snapshot['unavailable'][0]['reason']
+
+
+def test_status_timing_work_missing_files_are_not_created(tmp_path):
+    status=module()
+    assert status.timing_work_snapshot(tmp_path,[{'identity':'a'}],'known') is None
+    assert not list(tmp_path.iterdir())
+
+
+def test_status_timing_work_does_not_wait_for_a_writer(tmp_path):
+    import sqlite3
+    status=module()
+    from lll.studies.journal import Journal
+    p=tmp_path/'artifacts/a/timing-linear.sqlite';j=Journal(p,freeze='known',limits={'a':{'linear_solves':620}});j.start('a')
+    writer=sqlite3.connect(p)
+    try:
+        writer.execute('BEGIN EXCLUSIVE')
+        snapshot=status.timing_work_snapshot(tmp_path,[{'identity':'a'}],'known')
+        assert snapshot['journals']==0 and 'locked' in snapshot['unavailable'][0]['reason']
+    finally:writer.rollback();writer.close()
+
+
 def setup(tmp_path):
     study=tmp_path/'data/study';study.mkdir(parents=True)
     put(study/'manifest.json',dict(plan=dict(tasks=[dict(identity='a')],maximum_native_evaluations=3,numerical_threads=4)))

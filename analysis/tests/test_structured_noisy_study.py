@@ -133,3 +133,21 @@ def test_shared_case_runner_rejects_expanded_work_before_construction(tmp_path):
     task,ctx=context(tmp_path)
     with pytest.raises(ValueError):run_case(task,ctx,r=dict(recipe(),maximum_evaluations=201),payload=task['payload'])
     assert not ctx.directory.exists()
+
+
+def test_shared_case_runner_uses_explicit_provider_without_changing_default(tmp_path,monkeypatch):
+    from lll import structured_noisy_study,structured_noisy_training
+    task,ctx=context(tmp_path);seen=[];factory=object();noise=object()
+    def provider(context,env):
+        assert context is ctx;seen.append('provider');return noise,factory
+    monkeypatch.setattr(structured_noisy_study,'_kernels',lambda *a:pytest.fail('default used'))
+    def calculate(payload,r,**kw):
+        assert kw['kernel_factory'] is factory and kw['noise_kernel'] is noise
+        kw['reserve_construction'](**structured_noisy_training.limits(r,payload['law'])[1])
+        kw['reserve'](native_calls=1,packet_visits=1)
+        return dict(native_calls=1,passed=False,converged=False,scientific_decision='abstain')
+    monkeypatch.setattr(structured_noisy_training,'calculate',calculate)
+    result=structured_noisy_study.run_case(task,ctx,r=structured_noisy_training.recipe(),
+        payload=task['payload'],kernel_provider=provider)
+    assert seen==['provider'] and result['passed'] is False
+    ctx.finish(result)

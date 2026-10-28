@@ -1,0 +1,32 @@
+{
+  "analytical_fresh_evaluations": 1,
+  "center": 0.0,
+  "check": {
+    "actual_cost_change": 0.0,
+    "actual_residual_step": 0.0,
+    "fresh_stationarity": 0.0,
+    "normalized_parameter_step": 0.0,
+    "passed": true,
+    "position_max_abs_neu_m": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "position_max_tolerance_m": 0.01,
+    "position_rms_neu_m": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "position_rms_tolerance_m": 0.001,
+    "predicted_cost_change": 0.0,
+    "predicted_residual_step": 0.0,
+    "reason": "fresh_position_stability_verified"
+  },
+  "evaluated_at_known_optimum": true,
+  "kind": "smooth_minimum",
+  "known_optimum": 0.0,
+  "linear_solves": 1,
+  "native_calls": 0,
+  "nonlinear_fit_starts": 0
+}

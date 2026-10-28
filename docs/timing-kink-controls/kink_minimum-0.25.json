@@ -1,0 +1,32 @@
+{
+  "analytical_fresh_evaluations": 1,
+  "center": 0.25,
+  "check": {
+    "actual_cost_change": 8.333281250350806e-06,
+    "actual_residual_step": 4.166666666686562e-06,
+    "fresh_stationarity": 4.9999999999999996e-05,
+    "normalized_parameter_step": 1.25,
+    "passed": false,
+    "position_max_abs_neu_m": [
+      6.250000000029843e-05,
+      0.0,
+      0.0
+    ],
+    "position_max_tolerance_m": 0.01,
+    "position_rms_neu_m": [
+      6.250000000029843e-05,
+      0.0,
+      0.0
+    ],
+    "position_rms_tolerance_m": 0.001,
+    "predicted_cost_change": 8.333315972271925e-06,
+    "predicted_residual_step": 4.166666666686562e-06,
+    "reason": "fresh_position_probe_not_stable"
+  },
+  "evaluated_at_known_optimum": true,
+  "kind": "kink_minimum",
+  "known_optimum": 0.25,
+  "linear_solves": 1,
+  "native_calls": 0,
+  "nonlinear_fit_starts": 0
+}

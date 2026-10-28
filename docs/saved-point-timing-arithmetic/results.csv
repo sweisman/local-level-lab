@@ -1,0 +1,17 @@
+identity,mode,original_fit_converged,evaluations,cost,cost_delta,columns,derivatives_agree,maximum_error_ratio,fit_labels_changed
+calibration-seed-281474976810725-increment-sphere_rotating-0-0,baseline,True,13,221.7735577673581,0.0,26,False,227.199418259769,False
+calibration-seed-281474976810725-increment-sphere_rotating-0-0,boundary,True,13,221.7735577673581,0.0,26,False,227.199418259769,False
+calibration-seed-281474976810725-increment-sphere_rotating-0-0,longitude,True,13,221.77355776744562,8.751044333621394e-11,26,False,201.63575120891159,False
+calibration-seed-281474976810725-increment-sphere_rotating-0-0,both,True,13,221.77355776744562,8.751044333621394e-11,26,False,201.63575120891159,False
+calibration-seed-281474976810726-increment-sphere_rotating-0-0,baseline,False,13,245.66726246107208,0.0,26,False,378.06848794552667,False
+calibration-seed-281474976810726-increment-sphere_rotating-0-0,boundary,False,13,245.66726246107208,0.0,26,False,378.06848794552667,False
+calibration-seed-281474976810726-increment-sphere_rotating-0-0,longitude,False,13,245.66726246111716,4.5076831156620756e-11,26,False,256.05820096022535,False
+calibration-seed-281474976810726-increment-sphere_rotating-0-0,both,False,13,245.66726246111716,4.5076831156620756e-11,26,False,256.05820096022535,False
+calibration-seed-281474976810726-increment-sphere_rotating-0-1,baseline,False,13,245.66726246122283,0.0,26,False,366.3140583122535,False
+calibration-seed-281474976810726-increment-sphere_rotating-0-1,boundary,False,13,245.66726246122283,0.0,26,False,366.3140583122535,False
+calibration-seed-281474976810726-increment-sphere_rotating-0-1,longitude,False,13,245.667262461195,-2.7824853532365523e-11,26,False,360.53575553160005,False
+calibration-seed-281474976810726-increment-sphere_rotating-0-1,both,False,13,245.667262461195,-2.7824853532365523e-11,26,False,360.53575553160005,False
+calibration-seed-281474976810726-increment-sphere_rotating-1-0,baseline,True,13,245.52520421018457,0.0,27,False,211.20320417332732,False
+calibration-seed-281474976810726-increment-sphere_rotating-1-0,boundary,True,13,245.52520421018457,0.0,27,False,211.20320417332732,False
+calibration-seed-281474976810726-increment-sphere_rotating-1-0,longitude,True,13,245.52520421018673,2.1600499167107046e-12,27,False,183.13096820175318,False
+calibration-seed-281474976810726-increment-sphere_rotating-1-0,both,True,13,245.52520421018673,2.1600499167107046e-12,27,False,183.13096820175318,False

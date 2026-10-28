@@ -115,7 +115,7 @@ def prepare(root,qualification=QUALIFICATION):
 
 
 def calculate_point(record,r,*,kernel_factory,noise_kernel,reserve,reserve_construction,
-                    reserve_evaluation,save,check_continue,protocol_source,protocol_sha256):
+                    reserve_evaluation,save,check_continue,protocol_source,protocol_sha256,probe_options=None):
     """Reconstruct the original earlier-only problem, then intercept its fit."""
     import numpy as np
     from lll.airquantumgrav_noisy_inputs import construct,error_law
@@ -153,9 +153,10 @@ def calculate_point(record,r,*,kernel_factory,noise_kernel,reserve,reserve_const
                 verify_replay(active,fit['active_parameters'],float(result[0]@result[0]),fit['residual_sum_squares'])
                 first=False
             return result
+        extra={} if probe_options is None else probe_options(problem)
         result=probe(evaluating,point,bounds=(-np.ones(len(active)),np.ones(len(active))),
             frozen_probe=lambda u,rr,j,e:verify_stability(u,rr,j,e,lambda d:physical_residual_step(problem,d)),
-            reserve=reserve_evaluation,check_continue=check_continue)
+            reserve=reserve_evaluation,check_continue=check_continue,**extra)
         result.update(active_parameters=active,original_saved_converged=fit['converged'],
             original_cost=fit['residual_sum_squares'],input_replay_exact=True,
             source_fit_sha256=record['artifact_sha256']['fit.json'])

@@ -1,0 +1,9 @@
+{
+  "charged_analytical_fresh_evaluations": 4,
+  "charged_linear_solves": 4,
+  "maximum_cases": 4,
+  "native_calls": 0,
+  "nonlinear_fit_starts": 0,
+  "request_sha256": "5b36afd2e2f5fb5156f6d789f72a6a93fca2a16b85fe0f37ab1fe0e1bfa10554",
+  "threads": 1
+}

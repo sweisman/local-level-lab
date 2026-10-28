@@ -50,6 +50,136 @@ def read_selected(study, selected, *, maximum_wall_s=600):
                 maximum_wall_s=maximum_wall_s, numerical_threads=1)
 
 
+def clock_geometry(fit, times_s, dt_s, *, expected_dt_sha256, expected_times_sha256):
+    """Locate saved queries on a hash-verified clock, without generating data.
+
+    Reconstructed timestamps are acceptable only when their little-endian float64
+    bytes match the original input binding. Proximity alone establishes neither
+    a derivative error nor the cause of a solver failure.
+    """
+    import bisect
+    import math
+    import statistics
+    import struct
+    if (not isinstance(times_s,(list,tuple)) or not 1<=len(times_s)<=10000
+            or not isinstance(dt_s,(list,tuple)) or not 1<=len(dt_s)<=2000000
+            or any(type(v) not in (int,float) or not math.isfinite(v) for v in (*times_s,*dt_s))
+            or any(v<=0 for v in dt_s) or any(b<=a for a,b in zip(times_s,times_s[1:]))):
+        raise ValueError('bounded finite increasing queries and positive interval durations required')
+    hashes={name:digest(struct.pack('<'+str(len(values))+'d',*values))
+            for name,values in (('dt',dt_s),('times',times_s))}
+    if hashes!={'dt':expected_dt_sha256,'times':expected_times_sha256}:
+        raise ValueError('clock arrays differ from saved input hashes')
+    try:offset=fit['parameters']['time_offset']
+    except (KeyError,TypeError) as exc:raise ValueError('saved fitted time offset required') from exc
+    if type(offset) not in (int,float) or not math.isfinite(offset):
+        raise ValueError('finite fitted time offset required')
+    endpoints=[0.]
+    for dt in dt_s:
+        end=endpoints[-1]+dt
+        if not math.isfinite(end) or end<=endpoints[-1]:raise ValueError('invalid accumulated clock')
+        endpoints.append(end)
+    distances=[];indices=[]
+    for time_s in times_s:
+        query=time_s+offset
+        if not endpoints[0]<=query<=endpoints[-1]:raise ValueError('query outside saved clock support')
+        at=bisect.bisect_left(endpoints,query)
+        indices.append(max(0,at-1))
+        nearest=min(endpoints[max(0,at-1):at+1],key=lambda end:abs(query-end))
+        distances.append(query-nearest)
+    absolute=list(map(abs,distances))
+    return dict(version='saved-clock-geometry-v1',time_offset_s=offset,
+        query_count=len(times_s),packet_count=len(dt_s),array_sha256=hashes,
+        signed_distance_s=distances,interval_indices=indices,minimum_absolute_distance_s=min(absolute),
+        median_absolute_distance_s=statistics.median(absolute),maximum_absolute_distance_s=max(absolute),
+        arithmetic='float64 cumulative interval durations and saved query times',
+        proximity_proves_failure_cause=False,numerical_starts=0,native_calls=0,new_noise_draws=0)
+
+
+def review_clock(root, prefix, selected):
+    """Review at most 24 saved fits; reconstruct only hash-bound clock metadata."""
+    study=ClosedStudy(root,prefix)
+    try:
+        saved=read_selected(study,selected)
+        rate=study.input('population')['descriptor']['recipe']['rate_hz']
+        if type(rate) is not int or rate not in (300,600):raise ValueError('supported declared sample rate required')
+        rows=[]
+        for record in saved['records']:
+            identity=record['identity'];fit=record['fit']
+            if fit is None:raise ValueError('saved fitted point required for clock review')
+            binding=study.artifact(identity,'input-binding.json')
+            n=binding['native_packets']
+            if type(n) is not int or not 1<=n<=2000000:raise ValueError('bounded packet count required')
+            # This regenerates no inertial, position, noise or truth measurements.
+            # The stored hashes must establish the exact reconstructed clock bytes.
+            dt=[(i+1)/rate-i/rate for i in range(n)]
+            times=study.artifact(identity,'forecast.json')['times_s']
+            geometry=clock_geometry(fit,times,dt,
+                expected_dt_sha256=binding['full_array_sha256']['dt'],
+                expected_times_sha256=binding['full_array_sha256']['times'])
+            rows.append(dict(identity=identity,fit_sha256=study.envelope(identity)['artifacts'][
+                'artifacts/'+identity+'/fit.json'],converged=fit['converged'],
+                evaluations=fit['evaluations'],stability_probe=fit['stability_probe'],geometry=geometry))
+        return dict(version='saved-clock-review-v1',manifest_sha256=saved['manifest_sha256'],
+            summary_sha256=saved['summary_sha256'],rows=rows,optimizer_starts=0,
+            native_calls=0,new_noise_draws=0,original_reads=0,protected_reads=0,
+            original_fit_labels_unchanged=True,proximity_proves_failure_cause=False)
+    finally:study.close()
+
+
+def replay_linear_probe(fit, *, reserve):
+    """One charged replay of saved local algebra, never a new nonlinear fit."""
+    import numpy as np
+    from scipy.optimize import lsq_linear
+    try:
+        local=fit['local_linearization'];names=local['active_parameters']
+        point=np.asarray(local['normalized_parameters'],float)
+        residual=np.asarray(local['residual'],float);jac=np.asarray(local['jacobian'],float)
+    except (KeyError,TypeError,ValueError) as exc:raise ValueError('complete saved linearization required') from exc
+    if (not callable(reserve) or not isinstance(names,list) or len(set(names))!=len(names)
+            or 'time_offset' not in names or point.shape!=(len(names),) or not 1<=len(names)<=27
+            or residual.ndim!=1 or not 1<=len(residual)<=3600 or jac.shape!=(len(residual),len(names))
+            or any(not np.all(np.isfinite(v)) for v in (point,residual,jac))
+            or np.any(abs(point)>1.) or type(fit.get('converged')) is not bool):
+        raise ValueError('finite complete saved columns, normalized bounds and label required')
+    reserve()
+    correction=lsq_linear(jac,-residual,bounds=(-1-point,1-point),method='bvls',tol=1e-10,max_iter=100)
+    predicted=residual+jac@correction.x
+    cost=float(residual@residual);predicted_cost=float(predicted@predicted)
+    return dict(linear_success=bool(correction.success),linear_message=str(correction.message),
+        correction=correction.x.tolist(),active_parameters=list(names),
+        normalized_step=float(np.linalg.norm(correction.x)),original_cost=cost,
+        predicted_cost=predicted_cost,predicted_cost_change=abs(predicted_cost-cost)/max(cost,predicted_cost,1.),
+        converged=fit['converged'],labels_changed=False,linear_solves=1,
+        nonlinear_fit_starts=0,native_calls=0,new_noise_draws=0)
+
+
+def linear_timing_geometry(fit, *, times_s, dt_s, time_offset_scale,
+                          expected_dt_sha256, expected_times_sha256, reserve):
+    """Interpret a saved linear correction only after its saved metrics replay."""
+    import math
+    if (type(time_offset_scale) not in (int,float) or not math.isfinite(time_offset_scale)
+            or time_offset_scale<=0):raise ValueError('positive saved time-offset scale required')
+    hashes=dict(expected_dt_sha256=expected_dt_sha256,expected_times_sha256=expected_times_sha256)
+    original=clock_geometry(fit,times_s,dt_s,**hashes)
+    try:saved=fit['stability_probe'];expected=[saved['normalized_parameter_step'],saved['predicted_cost_change']]
+    except (KeyError,TypeError) as exc:raise ValueError('saved ordinary stability probe required') from exc
+    if any(type(v) not in (int,float) or not math.isfinite(v) or v<0 for v in expected):
+        raise ValueError('finite saved probe metrics required')
+    replay=replay_linear_probe(fit,reserve=reserve)
+    matches=replay['linear_success'] and all(math.isclose(a,b,rel_tol=1e-7,abs_tol=1e-12)
+        for a,b in zip(expected,[replay['normalized_step'],replay['predicted_cost_change']]))
+    result=dict(replay=replay,replay_matches_saved=matches,original_clock=original,
+        labels_changed=False,native_calls=0,new_noise_draws=0,nonlinear_fit_starts=0)
+    if not matches:return result
+    step=replay['correction'][replay['active_parameters'].index('time_offset')]*time_offset_scale
+    shifted=dict(parameters=dict(time_offset=fit['parameters']['time_offset']+step))
+    moved=clock_geometry(shifted,times_s,dt_s,**hashes)
+    crossings=sum(a!=b for a,b in zip(original['interval_indices'],moved['interval_indices']))
+    return dict(result,time_offset_step_s=step,proposed_clock=moved,
+        queries_crossing_boundaries=crossings,query_count=len(times_s))
+
+
 def run(root, request_path):
     """Execute the predeclared selection once and preserve an immutable snapshot."""
     from .evidence_snapshot import create, publish, sha

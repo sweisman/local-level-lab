@@ -15,16 +15,26 @@ POLICY=dict(position.POLICY,step_method='full bounded Gauss–Newton first; trus
             stopping='unchanged undamped fresh stationarity, cost and actual-position check')
 
 
-def fit_candidate(problem,model,*,start,maximum_evaluations=200,physical_step=None):
+def fit_candidate(problem,model,*,start,maximum_evaluations=200,physical_step=None,
+                  stability_verifier=None,verification_evaluations=2,reserve_linear=None):
     if type(maximum_evaluations) is not int or not 6<=maximum_evaluations<=600:
         raise ValueError('finite evaluation allowance in [6,600] required')
+    if (type(verification_evaluations) is not int or not 2<=verification_evaluations<maximum_evaluations
+            or stability_verifier is not None and not callable(stability_verifier)
+            or reserve_linear is not None and not callable(reserve_linear)):
+        raise ValueError('finite final verification reserve and explicit callable providers required')
     original=np.array(start,dtype=float)
     if (original.shape!=(len(problem.bounds.active),) or not len(original)
             or not np.all(np.isfinite(original)) or np.any(abs(original)>1)):
         raise ValueError('explicit finite feasible start required')
     problem.bounds.decode(original);point=boundary.snap_bounds(original)
     transform=physical_step if physical_step is not None else lambda d:position.physical_residual_step(problem,d)
-    calls=0;limit=maximum_evaluations-2;cache=None;trace=[];history=[]
+    calls=0;limit=maximum_evaluations-verification_evaluations;cache=None;trace=[];history=[];linear_solves=0
+    def solve(*args,**kwargs):
+        nonlocal linear_solves
+        if reserve_linear is not None:reserve_linear()
+        linear_solves+=1
+        return lsq_linear(*args,**kwargs)
     def evaluate(u,fresh=False):
         nonlocal calls,cache
         problem.bounds.decode(u)
@@ -46,7 +56,7 @@ def fit_candidate(problem,model,*,start,maximum_evaluations=200,physical_step=No
         while calls<limit:
             # An undamped solve decides whether the original gate is worth
             # checking. Damping never supplies a stopping or adequacy criterion.
-            full=lsq_linear(jac,-residual,bounds=(-1-point,1-point),method='bvls',
+            full=solve(jac,-residual,bounds=(-1-point,1-point),method='bvls',
                             tol=POLICY['linear_tolerance'],max_iter=POLICY['linear_maximum_iterations'])
             if not full.success or not np.all(np.isfinite(full.x)):
                 message='undamped local solve unfinished';break
@@ -75,14 +85,14 @@ def fit_candidate(problem,model,*,start,maximum_evaluations=200,physical_step=No
                     point,residual,jac,cost=full_point,trial_residual,trial_jac,trial_cost
                     continue
             step_bounds=(np.maximum(-1-point,-radius),np.minimum(1-point,radius))
-            local=lsq_linear(jac,-residual,bounds=step_bounds,
+            local=solve(jac,-residual,bounds=step_bounds,
                              method='bvls',tol=POLICY['linear_tolerance'],max_iter=POLICY['linear_maximum_iterations'])
             used_damping=False
             if not local.success or not np.all(np.isfinite(local.x)):
                 scale=np.maximum(np.linalg.norm(jac,axis=0),1e-12)
                 augmented=np.vstack((jac,np.diag(np.sqrt(damping)*scale)))
                 right=np.r_[-residual,np.zeros(len(point))]
-                local=lsq_linear(augmented,right,bounds=step_bounds,method='bvls',
+                local=solve(augmented,right,bounds=step_bounds,method='bvls',
                                  tol=POLICY['linear_tolerance'],max_iter=POLICY['linear_maximum_iterations'])
                 used_damping=True
             if not local.success or not np.all(np.isfinite(local.x)):
@@ -116,12 +126,14 @@ def fit_candidate(problem,model,*,start,maximum_evaluations=200,physical_step=No
     limit=maximum_evaluations
     residual,jac,edges=evaluate(point,fresh=True)
     stationarity,gradient,projected,scaled=projected_stationarity(point,residual,jac)
-    probe=position.verify_stability(point,residual,jac,evaluate,transform)
+    checker=position.verify_stability if stability_verifier is None else stability_verifier
+    probe=checker(point,residual,jac,evaluate,transform)
     converged=bool(probe['passed'] and stationarity<=STOPPING['stationarity_tolerance'])
     return dict(version=VERSION,model=model,parameters=problem.bounds.decode(point),
                 normalized_parameters=point.tolist(),active_parameters=list(problem.bounds.active),
                 residual_sum_squares=float(residual@residual),initial_cost=initial_cost,
-                evaluations=calls,maximum_evaluations=maximum_evaluations,
+                evaluations=calls,maximum_evaluations=maximum_evaluations,optimizer_linear_solves=linear_solves,
+                final_verification_reserve=verification_evaluations,custom_stability_verifier=stability_verifier is not None,
                 start_boundary_snap_maximum=float(np.max(abs(boundary.snap_bounds(original)-original))),
                 converged=converged,stopping_rule_verified=converged,stability_verified=bool(probe['passed']),
                 stability_probe=probe,stability_policy=dict(POLICY,maximum_evaluations=maximum_evaluations),

@@ -119,3 +119,17 @@ def test_shared_native_cache_entries_reject_changed_cache_binding():
     from lll.structured_noisy_publication import native_cache_entries
     study,nm=cache_fixture();nm['compiler']='other'
     with pytest.raises(ValueError):native_cache_entries(study)
+
+
+def test_shared_native_cache_entries_support_diagnostics_without_inventing_fit_status():
+    from lll.structured_noisy_publication import native_cache_entries
+    study,_=cache_fixture();seen=[]
+    study.envelope=lambda identity:dict(result=dict(diagnostic_complete=True),
+        artifacts={'artifacts/'+identity+'/reconstructed/compilation.json':'bound'})
+    original=study.artifact
+    def artifact(identity,name):
+        seen.append(name);return original(identity,name)
+    study.artifact=artifact
+    entries=native_cache_entries(study,compilation_name='reconstructed/compilation.json',require_fit_status=False)
+    assert len(entries)==6 and seen==['reconstructed/compilation.json']*2
+    assert all('converged' not in study.envelope(k)['result'] for k in study.rows)

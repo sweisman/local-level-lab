@@ -43,7 +43,7 @@ def inspect_case(study,identity,*,payload,r,bindings=None):
             or tm['internal_mantissa_bits']!=nm['internal_mantissa_bits'] or tm['internal_mantissa_bits']<=53):
         raise ValueError('native source, compilation or gravity anchor differs')
     task=study.tasks[identity];kernel_path=f"shards/{task['shard']:03d}/kernels/"
-    study.read(kernel_path+'wide-tangent-'+wide_sha+'.so',tm['binary_sha256'],raw=True)
+    study.read(kernel_path+tm.get('binary_file','wide-tangent-'+wide_sha+'.so'),tm['binary_sha256'],raw=True)
     study.read(kernel_path+nm['binary_file'],nm['binary_sha256'],raw=True)
     checked=check_case(payload,result,saved,r=r)
     prepaid=study.artifact(identity,'native-prepayment.json');charge=envelope['charged']
@@ -169,25 +169,31 @@ def publication_sources(root):
         'docs/structured-noisy-training/PLAN.md'])
 
 
-def native_cache_entries(study):
+def native_cache_entries(study,*,compilation_name='compilation.json',require_fit_status=True):
     """Select only the explicitly bound caches used by complete saved cases."""
     import json
     from pathlib import Path
     from .studies.artifacts import digest
     entries={}
     for identity,task in study.tasks.items():
-        if identity not in study.rows or 'converged' not in study.envelope(identity)['result']:continue
-        meta=study.artifact(identity,'compilation.json');tm=meta['tangent'];nm=meta['noise_bridge']
+        if identity not in study.rows:continue
+        envelope=study.envelope(identity)
+        if require_fit_status and 'converged' not in envelope['result']:continue
+        if not require_fit_status and 'artifacts/'+identity+'/'+compilation_name not in envelope['artifacts']:continue
+        meta=study.artifact(identity,compilation_name);tm=meta['tangent'];nm=meta['noise_bridge']
         base=f"shards/{task['shard']:03d}/kernels/"
-        entries[base+'wide-tangent-'+tm['source_sha256']+'.cpp']=tm['source_sha256']
-        entries[base+'wide-tangent-'+tm['source_sha256']+'.so']=tm['binary_sha256']
+        entries[base+tm.get('source_file','wide-tangent-'+tm['source_sha256']+'.cpp')]=tm['source_sha256']
+        entries[base+tm.get('binary_file','wide-tangent-'+tm['source_sha256']+'.so')]=tm['binary_sha256']
         entries[base+nm['source_file']]=nm['source_sha256'];entries[base+nm['binary_file']]=nm['binary_sha256']
-        cache=base+str(Path(nm['binary_file']).with_suffix('.json'))
-        raw=study.read(cache,raw=True);value=json.loads(raw)
-        if any(value[k]!=nm[k] for k in ('source_sha256','binary_sha256','compiler','compiler_executable',
-                'flags','cache_sha256','source_file','binary_file')):
-            raise ValueError('native cache binding differs from the saved compilation')
-        entries[cache]=digest(raw);entries[base+'builds.sqlite']=digest(study.read(base+'builds.sqlite',raw=True))
+        modern=[nm]+([tm] if 'cache_sha256' in tm else [])
+        for meta in modern:
+            cache=base+str(Path(meta['binary_file']).with_suffix('.json'))
+            raw=study.read(cache,raw=True);value=json.loads(raw)
+            if any(value[k]!=meta[k] for k in ('source_sha256','binary_sha256','compiler','compiler_executable',
+                    'flags','cache_sha256','source_file','binary_file')):
+                raise ValueError('native cache binding differs from the saved compilation')
+            entries[cache]=digest(raw)
+        entries[base+'builds.sqlite']=digest(study.read(base+'builds.sqlite',raw=True))
     return entries
 
 

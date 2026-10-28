@@ -44,13 +44,16 @@ def tasks(r=None):
     return result
 
 
-def calculate(spec,r,*,kernel_factory,noise_kernel,reserve,reserve_construction,save,check_continue):
+def calculate(spec,r,*,kernel_factory,noise_kernel,reserve,reserve_construction,save,check_continue,training_provider=None):
     from .airquantumgrav_noisy_inputs import construct,error_law
     from .airquantumgrav_prediction import train_and_forecast
     from .airquantumgrav_training_controls import _spec
     from .airquantumgrav_observation_truth import receiver_samples
     from .ilvis0_native_error_training import ErrorTrainingFactory,ForecastErrorDiagnostic
     from .generated_prediction import calculate as generated
+    if training_provider is not None and not callable(training_provider):
+        raise ValueError('explicit training protocol provider required')
+    protocol=train_and_forecast if training_provider is None else training_provider
     law=spec['law'];base={k:v for k,v in spec.items() if k!='law'};configured=case_recipe(r,law)
     material=construct(base,configured,reserve=reserve_construction)
     anchor=material['training_rows'][0]['height_m']
@@ -75,7 +78,7 @@ def calculate(spec,r,*,kernel_factory,noise_kernel,reserve,reserve_construction,
             raise ValueError('both forecasts must be saved before later truth')
         return receiver_samples(times=times,sign=sign,**arguments,height_profile=r['height_profile'],
             gravity_model=r['gravity_model'])
-    result=generated(base,configured,material=material,train_and_forecast=train_and_forecast,kernel_factory=kernel_factory,
+    result=generated(base,configured,material=material,train_and_forecast=protocol,kernel_factory=kernel_factory,
         reserve=charge,reserve_construction=reserve_construction,save=saving,truth=truth,check_continue=check_continue,
         training_error_factory=factory,forecast_error_diagnostic=diagnostic)
     if result['native_calls']!=operations['native_calls']:

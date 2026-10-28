@@ -47,18 +47,21 @@ def training_problem(times,gps,*,theta,dv,dt,covariance,model,limits,profile,clo
         maximum_interval_s=maximum_interval_s,gravity_mps2=gravity,disc_radius_m=radius_m)
 
 
-def fit_training(problem,model,*,start,maximum_evaluations,reserve,stopping='ordinary'):
+def fit_training(problem,model,*,start,maximum_evaluations,reserve,stopping='ordinary',solver_provider=None):
     """Use the existing solver; reserve every real tangent before execution.
 
     A study owns start identities and their limits. This adapter does not retry,
     inspect withheld positions or alter the historical solver's stopping checks.
     """
     from .ilvis0_shape import TangentProblem
-    if stopping=='ordinary':
+    if stopping not in ('ordinary','near_zero'):raise ValueError('explicit ordinary or near_zero stopping policy required')
+    if solver_provider is not None:
+        if not callable(solver_provider):raise ValueError('explicit solver provider required')
+        fit_candidate=solver_provider
+    elif stopping=='ordinary':
         from .ilvis0_solver_trust_v2 import fit_candidate
     elif stopping=='near_zero':
         from .ilvis0_near_zero import fit_candidate
-    else:raise ValueError('explicit ordinary or near_zero stopping policy required')
     if not isinstance(problem,TangentProblem) or not callable(reserve):
         raise ValueError('native training problem and reservation callback required')
     class Counted:

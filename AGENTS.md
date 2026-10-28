@@ -74,6 +74,8 @@ progress counts, session histories, personal commentary or process IDs.
 - Check completion records, journals and exclusive locks before launching or
   resuming. A sandboxed PID lookup alone cannot establish that a worker is dead.
   Completion records take precedence over stale progress snapshots.
+  Recorded worker PIDs may be namespace-local; verify process identity before
+  using them for host-level inspection or any separately authorized signal.
 - Never restart completed studies, duplicate workers, edit active frozen
   dependencies or mix source/input/environment versions. Resume only unfinished,
   unchanged work after verifying its hashes and saved results.

@@ -1,0 +1,7 @@
+identity,seed,start,passed,converged,original_fit_converged,verification_reason,cost,evaluations,linear_solves,cells,prediction_horizontal_rms_m,prediction_height_rms_m,original_labels_changed,law,model,profile
+feasible-seed-281474977010692-point-sphere_rotating-1-0,281474977010692,0,True,True,True,all_timing_cells_stable,219.22164679158624,25,14,9,4.494111811170222,0.7521682360888212,False,point,sphere_rotating,True
+feasible-seed-281474977010692-point-sphere_rotating-1-1,281474977010692,1,True,True,True,all_timing_cells_stable,219.22164679158666,25,14,9,4.494111883540374,0.7521679925091259,False,point,sphere_rotating,True
+feasible-seed-281474977010693-point-sphere_rotating-1-0,281474977010693,0,True,True,False,all_timing_cells_stable,216.33601266838667,61,50,9,2.5760434838098942,0.30691781392591627,False,point,sphere_rotating,True
+feasible-seed-281474977010693-point-sphere_rotating-1-1,281474977010693,1,True,True,False,all_timing_cells_stable,216.3360126641777,59,48,9,2.576045968755633,0.3069168239565499,False,point,sphere_rotating,True
+feasible-seed-281474977210667-increment-sphere_rotating-0-0,281474977210667,0,True,True,False,all_timing_cells_stable,201.20829599573125,25,14,9,0.7023072418574702,1.5974646509303159,False,increment,sphere_rotating,False
+feasible-seed-281474977210667-increment-sphere_rotating-0-1,281474977210667,1,True,True,False,all_timing_cells_stable,201.20829599573128,25,14,9,0.702307229890279,1.5974646511136743,False,increment,sphere_rotating,False

@@ -47,11 +47,15 @@ def _population_hash(value):
 
 
 def tasks(role,population_sha256):
+    return family_tasks(role,population_sha256,policy=recipe(role),case_provider=case_recipe)
+
+
+def family_tasks(role,population_sha256,*,policy,case_provider):
     from lll.structured_noisy_training import tasks as cases
     _population_hash(population_sha256)
     return [dict(identity=f"{role}-seed-{seed}-{v['identity']}",input_key='recipe',native_kind='tangent',
         payload=dict(draw_seed=seed,role=role,population_sha256=population_sha256,case=v['payload']),limits=v['limits'])
-        for seed in recipe(role)['seeds'] for v in cases(case_recipe(seed))]
+        for seed in policy['seeds'] for v in cases(case_provider(seed))]
 
 
 def population(sources,environment):
@@ -68,17 +72,24 @@ def population(sources,environment):
     return dict(sha256=digest(encoded(descriptor)),descriptor=descriptor)
 
 
-def _context(task,context):
+def _protocol(value=None):
+    if value is not None:return value
+    from types import SimpleNamespace
+    return SimpleNamespace(recipe=recipe,tasks=tasks,case_recipe=case_recipe,population=population,
+        EXCLUDED_SEEDS=EXCLUDED_SEEDS,SCOPE=SCOPE)
+
+
+def _context(task,context,*,protocol=None):
     from lll.airquantumgrav_inventory import environment
     from lll.studies.source_binding import verify
-    r=json.loads(context.input_path().read_bytes());role=r.get('role')
-    if r!=recipe(role) or context.manifest['scope']!=SCOPE:raise ValueError('unchanged finite phase required')
+    policy=_protocol(protocol);r=json.loads(context.input_path().read_bytes());role=r.get('role')
+    if r!=policy.recipe(role) or context.manifest['scope']!=policy.SCOPE:raise ValueError('unchanged finite phase required')
     env=json.loads(context.input_path('qualification-environment').read_bytes())
     pop=json.loads(context.input_path('population').read_bytes());declared=pop['descriptor']['sources']
     if (env!=environment() or context.manifest['sources']!=declared
-            or pop!=population(declared,env)):
+            or pop!=policy.population(declared,env)):
         raise ValueError('common frozen scientific sources, population and environment required')
-    expected={v['identity']:v for v in tasks(role,pop['sha256'])}
+    expected={v['identity']:v for v in policy.tasks(role,pop['sha256'])}
     normalized={v['identity']:{k:x for k,x in v.items() if k not in ('index','shard')} for v in context.manifest['tasks']}
     if (normalized!=expected or {k:v for k,v in task.items() if k not in ('index','shard')}!=expected.get(task['identity'])):
         raise ValueError('exact finite phase task matrix required')
@@ -87,20 +98,33 @@ def _context(task,context):
     if role=='validation':
         from lll.prediction_calibration_report import check_handoff
         handoff=json.loads(context.input_path('calibration-handoff').read_bytes())
-        check_handoff(handoff,population_sha256=pop['sha256'])
+        options={} if protocol is None else dict(protocol=protocol)
+        check_handoff(handoff,population_sha256=pop['sha256'],**options)
     return r,pop,handoff
 
 
-def evaluate(task,context):
+def evaluate(task,context,*,protocol=None,kernel_provider=None,training_provider=None,case_context=None):
+    if training_provider is not None and not callable(training_provider):
+        raise ValueError('explicit callable training provider required')
+    if case_context is not None and not callable(case_context):
+        raise ValueError('explicit callable case context required')
+    from contextlib import nullcontext
     from lll.structured_noisy_study import run_case
     from lll.independent_noisy_study import score_saved_case
     from lll.prediction_family_state import record,check
-    r,pop,handoff=_context(task,context);p=task['payload'];seed=p['draw_seed']
+    r,pop,handoff=_context(task,context,protocol=protocol);p=task['payload'];seed=p['draw_seed']
     context.save('draw-identity.json',dict(seed=seed,role=r['role'],case=p['case'],population_sha256=pop['sha256'],
         calibration_draw=r['role']=='calibration',validation_draw=r['role']=='validation',confidence_calibrated=False))
     threshold=None if handoff is None else handoff['calibration']['threshold']
     try:
-        result=run_case(task,context,r=case_recipe(seed),payload=p['case'])
+        options={} if kernel_provider is None else dict(kernel_provider=kernel_provider)
+        if training_provider is not None:options['training_provider']=training_provider
+        manager=nullcontext({}) if case_context is None else case_context(task,context)
+        with manager as extra:
+            if (not isinstance(extra,dict) or not set(extra)<={'training_provider'} or set(extra)&set(options)
+                    or any(not callable(value) for value in extra.values())):
+                raise ValueError('explicit nonconflicting training provider context required')
+            result=run_case(task,context,r=_protocol(protocol).case_recipe(seed),payload=p['case'],**options,**extra)
         score=score_saved_case(context,seed=seed);context.save('prediction-score.json',score)
         result=dict(result,draw_seed=seed,role=r['role'],population_sha256=pop['sha256'],
             maximum_standardized_error=score['maximum_standardized_error'],confidence_calibrated=False)

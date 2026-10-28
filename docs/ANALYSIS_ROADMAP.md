@@ -50,12 +50,114 @@ expansion precedes the revised prediction sequence.
 
 ## Current phase and finish line
 
-**The [four-point stopping diagnostic is complete](prediction-stopping-consistency/INTERPRETATION.md).**
-All evaluations repeat exactly. The original two passing and two failing
-stopping checks repeat unchanged. Timing and precision checks remain open:
-none of the four points passes every derivative comparison. No new nonlinear
-fit or calibration campaign was run. This phase ends at its report-and-review
-checkpoint.
+**The [coordinate-precision controls are complete](coordinate-precision-controls/INTERPRETATION.md).**
+Compensation passes all six known-answer cases, compared with three for the
+original arithmetic and four for the longitude-only alternative. The study
+returns all 18 tasks in 7.13 seconds after 46 source-bound software checks.
+
+The [full saved-point check](saved-point-coordinate-precision/INTERPRETATION.md)
+now passes all 315 derivative comparisons and all four stopping probes under
+the original limits. It finishes in 27.2 minutes using 650 evaluations, after
+99 software checks. The earlier matched diagnostic isolated the timing issue;
+compensated accumulation also resolves the weak gyro-column precision problem.
+The original labels, thresholds, observations and numerical environment stay
+fixed. [Optimizer qualification](compensated-optimizer-qualification/INTERPRETATION.md)
+now passes all 48 development fits, all 24 paired-start comparisons and all four
+original input/error replays. It finishes in 30.3 minutes after 93 software checks.
+The [fresh calibration release](prediction-calibration-compensated/INTERPRETATION.md)
+stopped under its frozen failure rule after 909 returned starts in 9.58 hours:
+904 passed, two failed numerical cost stability and three stopped cooperatively.
+All 906 completed forecasts passed the fixed position-error screens. No finite
+uncertainty threshold was established, so independent validation remains blocked.
+Both campaigns and their unused allowances stay closed. A
+[saved timing review](prediction-clock-boundary-review/README.md) verifies
+that both failed points lie close to internal integration boundaries. Check
+the [saved linear corrections](prediction-linear-timing-review/README.md): all
+four replay, while both failures cross all 119 query boundaries and the two
+successful controls cross none. Four [analytical controls](timing-kink-controls/README.md)
+also show the original check can reject exact nonsmooth minima with correct
+derivatives. The physical-model cause remains unproved. Check both timing branches
+before a separately reviewed method revision. The [four-point diagnostic](saved-timing-boundary/INTERPRETATION.md)
+now completes all 78 evaluations in 6.7 minutes. Every saved input, residual and
+27-column Jacobian replays exactly; all 18 within-interval timing derivative
+comparisons agree. Most full-step prediction error appears in the timing-only
+movement, while timing and other calibration effects nearly cancel.
+[Steps constrained to timing intervals](TIMING_CELL_STEP_PLAN.md) now pass
+independent known-answer qualification. The [saved-matrix review](saved-timing-cell-proposals/INTERPRETATION.md)
+now returns all 18 successful linear solves after 26 software checks. All
+feasible sides and spacings agree on the failed cases' proposed boundary;
+their predicted remaining improvements fall below the original cost limit.
+[Physical evaluation](saved-timing-cell-native/INTERPRETATION.md) now passes
+all 18 proposals under the original cost, stationarity and position-change
+screens. The run uses 26 evaluations in 2.6 minutes after 103 software checks;
+the largest actual position change is about 1.5 micrometres. The next gate is a
+complete interval-aware optimizer qualified on independent known optima,
+non-optima and repeated starts. No earlier result is relabeled. No new campaign starts
+automatically. Generated-data coverage and actual flight-level confidence
+remain separate gates.
+
+The [timing-aware stopping method](TIMING_STOPPING_PLAN.md) retains the
+existing fitting method and numerical limits. Its
+[analytical qualification](timing-stopping-qualification/INTERPRETATION.md)
+now passes all 32 fits, eight direct controls and eight start-comparison
+groups, using 1,008 evaluations in 26 seconds after 161 software checks.
+The [four-fit native phase finished without qualification](timing-optimizer-regression/INTERPRETATION.md).
+All original inputs replay, but all four fail final cost stability despite
+passing the declared forecast screens. The failed checks use distant cell
+midpoints. An independent curved-minimum control reproduces that false-failure
+mechanism and passes with nearest feasible anchors. The
+[local timing qualification](timing-local-qualification/INTERPRETATION.md)
+now passes 36 fits, eight controls and all nine starting-point comparisons in
+27.5 seconds after 175 software checks. Projection alone failed sharp-corner
+tests before freezing; this version uses cell midpoints clipped to the existing
+local timing window. It retains every cell, nuisance coordinate and numerical
+limit. The [new four-case native trial](timing-local-native-regression/INTERPRETATION.md)
+passes all fits, both start comparisons and all original input replays in
+10.7 minutes after 189 software checks. The [48-case matrix](timing-local-matrix/INTERPRETATION.md)
+now passes all 48 fits, all 24 start comparisons and four original input replays
+in 65.7 minutes after 203 software checks. This completes the declared optimizer
+qualification. Next is a [separately budgeted calibration/validation release](TIMING_CALIBRATION_RELEASE_PLAN.md),
+with new cohorts, a frozen method and a checked handoff. Neither closed campaign
+resumes; earlier labels are preserved.
+The [local-timing calibration](prediction-calibration-timing/INTERPRETATION.md)
+stopped under its frozen failure rule after 348 returned starts in 6.82 hours:
+344 passed numerical checks, two failed timing-cell stability and two stopped
+cooperatively. All 346 completed forecasts met the position-error limits.
+The independent audit establishes no calibration threshold; validation was not
+launched. The [saved-baseline diagnosis](timing-linear-baseline-diagnosis/README.md)
+now reproduces worsening linear proposals in both failed cases, while the
+matched controls do not worsen. All four saved calculations and their charges
+were checked; the result-schema rejection remains preserved. No native call or
+fit was run. The [feasible-initialization revision](timing-linear-anchor-check/INTERPRETATION.md)
+now passes all 24 independent convex controls and four matched saved-matrix
+checks after 56 source-bound checks; 90 related software tests also pass.
+The previous method fails ten of the 24 controls. The
+[fresh complete-optimizer qualification](timing-feasible-optimizer-qualification/INTERPRETATION.md)
+now passes all 36 known-answer fits, eight direct probes and nine starting-point
+groups in 27.8 seconds after 148 software checks. The separately frozen
+[six-case native regression](timing-feasible-native-regression/INTERPRETATION.md)
+now passes all six fits, three start comparisons and six original-input replays
+in 10.6 minutes after 338 pre-execution software checks. Its 238-source freeze
+retains all columns, bounds and limits. A reporting-only metadata repair passes
+339 checks without rerunning fits. The [matrix audit](timing-feasible-matrix/INTERPRETATION.md)
+now accepts all 44 completed fits and 22 complete start pairs in 51.0 minutes.
+Four charged starts were interrupted by a runtime reset and remain failures.
+All 1,239 publication artifacts and 28 native assets verify; the archived report
+replays identically. Full matrix qualification is unavailable from this run.
+A [separate four-case follow-up](timing-matrix-completion/INTERPRETATION.md)
+passes all four fits, both start pairs and the remaining original replay in
+4.6 minutes after 364 software checks. The
+[saved-only combined audit](timing-matrix-combined/README.md) now qualifies
+all 48 computational cases, 24 start pairs and four original replays after
+16 additional assembler checks. All 241 common execution sources and the
+environment match; the interrupted study retains its original failed state.
+The [fresh calibration release](FEASIBLE_PREDICTION_STATUS.md) is now running
+on four threads after 98 software checks and a 253-source freeze. Calibration
+uses 299 new families; independent validation on 181 separate families is
+authorized only after a complete finite audited handoff. Expected combined
+runtime is about nine days. All earlier allowances stay closed.
+These regressions do not establish statistical coverage.
+This release and its unused allowance remain closed.
 
 Previously, **calibration stopped early; validation was not run.** The
 [phase report](PREDICTION_PHASE_RESULTS.md) records 1,683 qualified fits, two
@@ -88,9 +190,15 @@ participant expansion require a subsequent reviewed phase.
 
 The [subsequent diagnostic plan](PREDICTION_STOPPING_PLAN.md) is now complete:
 32 software checks, four saved points and 646 residual-and-derivative evaluations,
-with unchanged acceptance rules. The next priority is small known-answer timing
-and precision controls, before selecting a revised solver. A new phase needs
-review; the broader backlog does not resume automatically.
+with unchanged acceptance rules. The [small follow-up controls](TIMING_PRECISION_CONTROLS.md)
+also finish: 13 software checks, two reporting checks, seven native cases and
+zero new fits. The [matched follow-up](saved-point-timing-arithmetic/INTERPRETATION.md)
+now explains the timing discrepancy at the saved points but leaves the precision
+problem open at that stage. The coordinate-accumulation controls, complete
+saved-point check and optimizer qualification now pass. Fresh calibration
+subsequently stopped on two cost-stability failures; independent validation
+remains blocked without a finite, audited threshold.
+The broader backlog remains deferred.
 
 ## Dependency-ordered backlog
 
@@ -116,7 +224,7 @@ validated.
 | E02 | Next | **Pilot complete: three adequate matched comparisons** | The [verified revision](esa-observed-wide-pilot/INTERPRETATION.md) supplies 22 qualified forecasts; three complete settings favor globe plus the specified field, with about 15 m later 3D RMS versus kilometres for the alternatives. Two disc starts reach the runtime ceiling. Error assumptions and broader validation remain open; seven confirmation groups stay protected. |
 | G01 | Next | Complete as a descriptive check | [Compare raw gyro trends with geographic predictions](ilvis0-gyro-companion-v2/INTERPRETATION.md) across all 53 stretches. |
 | U01 | Next | Development dataset ready | [Assemble the evidence for publication](PAPER_DATASET.md). Final prediction and uncertainty results are still needed. |
-| U02 | Review | **Calibration stopped; validation not run** | The [phase report](PREDICTION_PHASE_RESULTS.md) preserves 1,686 returned starts, including two numerical failures and one interrupted start. Both starts failed one required setting, preventing a finite threshold. The single saved-results review is complete; uncertainty remains unqualified. Further execution requires review. |
+| U02 | Active | **Fresh calibration running** | The [new release](FEASIBLE_PREDICTION_STATUS.md) runs on four threads after 98 software checks and a 253-source freeze. Independent validation follows only after complete finite audited calibration. The [48-case gate](timing-matrix-combined/README.md) qualifies; no calibration threshold is available yet. |
 | R01 | Later | Not started | [Estimate the background rotation vector freely](ROTATION_FIELD.md), rather than supplying its rate. |
 | R02 | Later | Waiting for R01 | Test whether the measured rate can distinguish sidereal from solar timing. |
 | S01 | Later | Deferred | Develop Wuhan-data analysis and the separate [stationary participant experiment](STATIONARY.md). |
@@ -246,10 +354,15 @@ another study after the completed calibration phase.
    predeclared futility rule after both starts failed one required setting.
    The [bounded review](prediction-phase-review/README.md) is complete.
    The [four-point diagnostic](prediction-stopping-consistency/INTERPRETATION.md)
-   also completes: repeatability is exact, but the time-offset derivative needs
-   investigation and small finite differences lose precision in weak columns.
-   No finite threshold or validation result is available. The next reviewed
-   phase should isolate these numerical effects before another solver trial.
+   also completes: repeatability is exact, but its derivative comparisons disagree.
+   The [small timing controls](timing-precision-controls/INTERPRETATION.md) then
+   reproduce packet-boundary slopes and loss of weak coordinate changes.
+   Their [matched follow-up](saved-point-timing-arithmetic/INTERPRETATION.md)
+   explains the timing discrepancy but leaves gyro-offset comparisons outside
+   the fixed scale. No finite threshold or validation result is available.
+   The [coordinate controls](coordinate-precision-controls/INTERPRETATION.md)
+   pass all six compensated cases. Complete the full saved-point derivative
+   and stopping check before another solver trial.
 3. Test broader predictive accuracy before opening the reserved ESA flight groups.
    The [fixed metadata plan](esa-broader-development/README.md) selects the first
    and last twenty minutes of each eligible development run: four ranges, one

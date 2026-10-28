@@ -58,7 +58,7 @@ def verify(point,evaluate,physical_step):
         floating_point_integration_error_certified=False,scientific_decision='abstain')
 
 
-def fit_candidate(problem,model,*,start,maximum_evaluations=200,physical_step=None):
+def fit_candidate(problem,model,*,start,maximum_evaluations=200,physical_step=None,ordinary_provider=None):
     """Compose the existing solver with two budgeted near-zero repeats.
 
     Nonzero objectives retain the ordinary stationarity/position gate. The two
@@ -70,6 +70,9 @@ def fit_candidate(problem,model,*,start,maximum_evaluations=200,physical_step=No
     from .ilvis0_estimator import EvaluationLimit
     if type(maximum_evaluations) is not int or not 8<=maximum_evaluations<=600:
         raise ValueError('finite evaluation allowance in [8,600] required')
+    if ordinary_provider is not None:
+        if not callable(ordinary_provider):raise ValueError('explicit ordinary solver provider required')
+        ordinary=ordinary_provider
     class Counted:
         calls=0
         def __getattr__(self,name):return getattr(problem,name)
