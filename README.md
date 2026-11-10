@@ -126,9 +126,12 @@ setting is incomplete because two starts reached the runtime ceiling.
 The [corrected solver](docs/timing-matrix-combined/README.md) now passes all
 48 development cases and 24 comparisons between prescribed starting points,
 under the original limits. Earlier failed runs remain recorded. A
-[fresh calibration campaign is running](docs/FEASIBLE_PREDICTION_STATUS.md)
-on simulated measurements; separate validation follows only if calibration
-qualifies. No validated uncertainty threshold is available yet.
+[complete calibration](docs/prediction-calibration-host-20261030/INTERPRETATION.md)
+now passes all 7,176 fits across 299 simulated cases and supplies a verified
+prediction-error limit. A [separate continuation of the independent test](docs/HOST_PREDICTION_STATUS.md)
+completed all 4,344 fits across 181 fresh simulated cases and passed its declared
+coverage rule. That test validates the procedure under simulated conditions;
+aircraft error coverage remains unestablished.
 Statistical confidence is tested separately; independent ESA confirmation
 follows method qualification. Shared recordings are grouped
 before validation; ESA recording 187 is development material and the other

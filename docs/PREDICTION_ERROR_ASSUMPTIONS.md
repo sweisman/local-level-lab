@@ -17,6 +17,12 @@ prediction errors, not raw receiver noise. They motivate testing receiver-plus-I
 uncertainty with known-error controls; they supply neither a fitted noise law
 nor calibrated confidence.
 
+The [NASA archival prediction pilot's saved-error summary](ilvis0-retrospective-prediction-pilot-v2/ERROR_STRUCTURE.md)
+finds median one-second north/east/up correlations of 0.984/0.982/0.978 among
+its seven physically accurate training-selected primaries. Those settings come
+from two recordings. This is further evidence that neighboring forecast epochs
+are dependent, not a measurement of receiver noise or a calibrated error law.
+
 The [completed known-noise controls](esa-noisy-prediction/INTERPRETATION.md)
 produce 24 numerical passes and zero physical accuracy passes. Later horizontal
 RMS is 83.6–88.6 m against the unchanged 10 m limit. Each candidate predicts
@@ -98,16 +104,28 @@ essential before interpreting an aircraft prediction interval.
 
 ## Available receiver information
 
-The [saved inventory](ilvis0-receiver-metadata/README.md) covers all 53 selected
-recording files. Their inspection reports list GGA/RMC/VTG/ZDA sentences and no
-GST/GBS error-statistics sentences. About 96.5% of receiver-stream bytes were not
-parsed as NMEA text. Their contents remain unidentified. Neither their presence
-nor a receiver type code establishes an independent covariance estimate.
+The earlier [NMEA-only inventory](ilvis0-receiver-metadata/README.md) found no
+GST/GBS precision sentences in the 53 selected recording files. A later
+[binary receiver inventory](ilvis0-trimble-position-precision/recorded-inventory/README.md)
+decoded checksummed Trimble enhanced-position reports in 52 of those files:
+145,446 reports and 29,085 matches to positions from the same receiver's GGA
+stream. One file contains an unsupported interior receiver message and failed
+the strict decoder; that does not change its status in the separate IMU study.
 
-This limits what the current metadata can justify. Software sensitivity tests
-can continue under clearly declared error laws; exact proprietary device
-identification is supporting work. Empirical uncertainty and physical adequacy
-remain separate requirements before a scientific decision.
+The reported north/east/up precision fields are receiver estimates. Agreement
+between its binary and GGA outputs checks decoding, not independent accuracy.
+Neither the fields nor a receiver type code establish the actual position-error
+distribution, temporal covariance or combined receiver/IMU prediction error.
+The separate [overlapping-receiver check](ilvis0-receiver-overlap/recorded-study/README.md)
+matches 25,890 exact epochs across eleven paired streams. After an offset
+estimated only on each earlier half, later horizontal disagreement has a
+0.202 m median RMS across pairs; median one-second correlations of the
+remaining north/east/up differences are 0.989/0.991/0.989. Shared GNSS errors
+can cancel between receivers, so even this close agreement cannot calibrate
+their absolute accuracy or a receiver-plus-IMU prediction law.
+Software sensitivity tests can use declared laws while those empirical checks
+remain open. Exact proprietary device identification is supporting work;
+physical adequacy and calibrated uncertainty remain separate requirements.
 
 ## The short generated example
 

@@ -50,6 +50,33 @@ expansion precedes the revised prediction sequence.
 
 ## Current phase and finish line
 
+**Generated-data validation is complete.** Calibration set a fixed error limit.
+A reboot interrupted the original validation after 3,750 saved fits; its
+complete-cohort rule cannot be met. A separate, reboot-resumable continuation
+completed the other 594 fits. The independently replayed
+[combined audit](prediction-validation-continuation/README.md) verifies all
+4,344 fits across 181 preselected simulated cases. No case exceeded the limit;
+the one-sided 95% failure upper bound is 1.64%, below the declared 5% target.
+This validates the procedure under its simulated conditions. Aircraft error
+coverage and Earth-model significance require further evidence.
+The next gate is to test physical adequacy and prediction on preselected,
+independent aircraft groups, with the receiver-error assumptions fixed before
+using protected confirmation recordings. The generated-data threshold does not
+transfer to observed aircraft by itself.
+
+A [receiver-only binary inventory](ilvis0-trimble-position-precision/recorded-inventory/README.md)
+now has saved outcomes for all 53 selected recording files. Fifty-two contain
+accepted, checksummed position-precision reports; one fails the strict receiver
+decoder. Those reports are receiver estimates. Their real error and time
+correlation must be checked before they inform an aircraft prediction threshold.
+The [paired-receiver study](ilvis0-receiver-overlap/recorded-study/README.md)
+then completes all eleven usable overlaps. It measures close, strongly
+correlated differences, but shared GNSS error remains unknown. It therefore
+does not qualify the aircraft prediction-error law.
+
+The detailed record below explains the development steps and failed releases
+that led to this run. Those results remain separate from the current validation.
+
 **The [coordinate-precision controls are complete](coordinate-precision-controls/INTERPRETATION.md).**
 Compensation passes all six known-answer cases, compared with three for the
 original arithmetic and four for the longitude-only alternative. The study
@@ -151,11 +178,23 @@ passes all four fits, both start pairs and the remaining original replay in
 all 48 computational cases, 24 start pairs and four original replays after
 16 additional assembler checks. All 241 common execution sources and the
 environment match; the interrupted study retains its original failed state.
-The [fresh calibration release](FEASIBLE_PREDICTION_STATUS.md) is now running
-on four threads after 98 software checks and a 253-source freeze. Calibration
-uses 299 new families; independent validation on 181 separate families is
-authorized only after a complete finite audited handoff. Expected combined
-runtime is about nine days. All earlier allowances stay closed.
+The [latest calibration release](FEASIBLE_PREDICTION_STATUS.md) stopped after an
+execution interruption, with 1,813 numerically passing fits and four interrupted
+starts after 38.7 hours. All 253 sources and the numerical environment still
+match. Both starts of one required setting are unavailable, so the remaining
+5,359 starts are closed unused. No calibration threshold or validation follows
+from this incomplete cohort. The [independent audit](prediction-calibration-feasible/INTERPRETATION.md)
+confirms all 1,813 completed forecasts also pass the position-error checks.
+All 42,064 publication artifact hashes verify and the archived report replays
+identically. The [recovery checker](execution-recovery/README.md) passes its
+61-check software suite. The [host-service lifecycle control](execution-host-service/README.md)
+also passes normal submitter-exit survival. The [fresh release](HOST_PREDICTION_STATUS.md)
+has completed all 7,176 fits, all passing, in 151.7 hours after 154 software
+checks and independent freeze verification. Its saved-data audit and publication
+replay passed, supplying a finite prediction-error threshold. Independent
+validation saved 3,750 passing fits before a host reboot interrupted four
+charged starts. Its frozen complete-cohort rule prevents a coverage claim;
+task-level recovery must be qualified before another long-running release.
 These regressions do not establish statistical coverage.
 This release and its unused allowance remain closed.
 
@@ -211,20 +250,21 @@ validated.
 
 | ID | Priority | Status | Work |
 |---|---|---|---|
-| F01 | Foundation | Complete | [Group related recordings](analysis-provenance/README.md) so overlapping stretches are not counted as independent flights. |
-| F02 | Foundation | Complete | [Reserve separate ESA flight groups](analysis-provenance/README.md) for a later independent test. |
+| F01 | Foundation | Complete | [Group related recordings](PROVENANCE_VERIFICATION.md) so overlapping stretches are not counted as independent flights. |
+| F02 | Foundation | Complete | [Reserve separate ESA flight groups](PROVENANCE_VERIFICATION.md) for a later independent test. |
 | C01 | First | Complete | [Check the basic motion calculations](ilvis0-measurement-contribution/README.md). |
 | C02 | First | Software checked | [Test which calibration changes can imitate a model difference](ilvis0-scalar-certificate-controls-20261019/INTERPRETATION.md). |
-| C03 | First | Initial check complete | [Include measurement-error assumptions](ilvis0-channel-envelopes-20261019/INTERPRETATION.md) in the accelerometer-only checks. |
+| C03 | First | Receiver inventory and paired check complete; error-law adequacy open | [Include measurement-error assumptions](ilvis0-channel-envelopes-20261019/INTERPRETATION.md) in the accelerometer-only checks. A [training-only scale calculation](ilvis0-shared-training-error/README.md) passes 14 software checks and all [18 recorded assessments](ilvis0-shared-training-error/recorded-assessment/README.md) complete. The [binary inventory](ilvis0-trimble-position-precision/recorded-inventory/README.md) supplies reported precision for 52 files; the [eleven paired comparisons](ilvis0-receiver-overlap/recorded-study/README.md) measure relative agreement. Actual covariance and prediction coverage remain unverified. |
 | C04 | First | Initial check complete | [Compare checks without gyroscopes](ilvis0-channel-history-v2-20261019/INTERPRETATION.md). These leave all models possible; they do not reconstruct a complete flight. |
 | V01 | First | **24/24 matched controls qualified** | The [revised comparison](ilvis0-near-zero-forecast-controls/README.md) passes every generated case with unchanged physics, bounds and total call limits. It charged 2,976 native calculations. The original 3/24 result remains preserved. This qualifies the tested software procedure, not aircraft adequacy or statistical significance. |
-| V02 | First | **Pilot complete: one recording passes the full prediction comparison** | The [verified pilot](ilvis0-retrospective-prediction-pilot-v2/INTERPRETATION.md) returns all 72 fits; 49 pass numerical checks. All four matched settings complete on the northern recording, with 0.84–1.13 m later horizontal RMS for specified-field globe versus hundreds of metres for the alternatives. The other two recordings retain numerical or accuracy failures. |
-| L01 | Next | Accumulated-error covariance and conditioning software checked | The [new shared component](integrated-noise-covariance/README.md) passes 54 checks, including earlier-only prediction, slowly changing bias and shared query/endpoint noise. Its eight-state storage case handles 64,080 generated epochs with 59.2 MiB of arrays. The [faster arithmetic prototype](mixed-tangent-long-controls/README.md) remains unqualified because its derivatives miss the fixed tolerance. |
+| V02 | First | **Pilot complete: one recording passes the full prediction comparison** | The [verified pilot](ilvis0-retrospective-prediction-pilot-v2/INTERPRETATION.md) returns all 72 fits; 49 pass numerical checks. All four matched settings complete on the northern recording, with 0.84–1.13 m later horizontal RMS for specified-field globe versus hundreds of metres for the alternatives. The other two recordings retain numerical or accuracy failures. The [saved-error summary](ilvis0-retrospective-prediction-pilot-v2/ERROR_STRUCTURE.md) finds strong one-second dependence in the seven accurate primaries; it does not calibrate uncertainty. |
+| L01 | Next | Accumulated-error covariance checked; selective-precision long-record kernel checked | The [shared covariance component](integrated-noise-covariance/README.md) passes 54 checks and handles 64,080 generated epochs with 59.2 MiB of arrays. The initial [all-ordinary arithmetic prototype](mixed-tangent-long-controls/README.md) fails derivative tolerance. Its [selective-precision revision](mixed-tangent-hybrid/README.md) passes all six frozen twenty-minute generated cases with zero derivative tolerance violations and 2.03–2.21× native-call CPU speedup. [Archived evidence](mixed-tangent-hybrid/long-study/README.md) verifies; full training/forecast qualification remains open before any fitter replacement. |
 | E01 | Next | **Software, inventory and interval preparation complete** | The [72 adapter cases](esa-geographic-rate-controls/README.md), [24 known-correction cases](esa-observation-controls/README.md) and [24 training-only fits](esa-training-forecast-controls/README.md) pass. Two [working receiver-error cases](ESA_ERROR_POLICY.md) pass 76 checks. The [frozen full-motion inventory](esa-development-selection-v2/README.md) admits two runs totaling 393.4 minutes after 154 software checks. The [first twenty-minute interval](esa-development-pilot-preparation/README.md) is prepared and verified. All 48 matched weighted controls pass; actual error coverage remains uncalibrated. |
 | E02 | Next | **Pilot complete: three adequate matched comparisons** | The [verified revision](esa-observed-wide-pilot/INTERPRETATION.md) supplies 22 qualified forecasts; three complete settings favor globe plus the specified field, with about 15 m later 3D RMS versus kilometres for the alternatives. Two disc starts reach the runtime ceiling. Error assumptions and broader validation remain open; seven confirmation groups stay protected. |
 | G01 | Next | Complete as a descriptive check | [Compare raw gyro trends with geographic predictions](ilvis0-gyro-companion-v2/INTERPRETATION.md) across all 53 stretches. |
-| U01 | Next | Development dataset ready | [Assemble the evidence for publication](PAPER_DATASET.md). Final prediction and uncertainty results are still needed. |
-| U02 | Active | **Fresh calibration running** | The [new release](FEASIBLE_PREDICTION_STATUS.md) runs on four threads after 98 software checks and a 253-source freeze. Independent validation follows only after complete finite audited calibration. The [48-case gate](timing-matrix-combined/README.md) qualifies; no calibration threshold is available yet. |
+| U01 | Next | Development dataset ready | [Assemble the evidence for publication](PAPER_DATASET.md). The 53 stretches fall into 27 conservative groups (11 single, six double, ten triple); every group's recorded numerical preferences are globe plus specified field, but independence and calibrated detection are unproved. Final prediction and uncertainty results are still needed. |
+| U02 | Blocked by interrupted cohort | **Calibration complete; validation interrupted** | The [complete calibration](prediction-calibration-host-20261030/INTERPRETATION.md) verifies all 7,176 forecasts across 299 seed families and supplies a finite error limit. The [independent test](HOST_PREDICTION_STATUS.md) saved 3,750/4,344 passing fits, but four charged starts were interrupted by a reboot. Its frozen complete-cohort rule therefore cannot establish validation coverage. |
+| U03 | Complete | **Combined generated-data validation passed** | The [separate continuation](VALIDATION_CONTINUATION.md) reused 3,750 sealed fits and completed the other 594. An [independently replayed audit](prediction-validation-continuation/README.md) verifies 4,344 passing fits and all 181 simulated cases below the fixed limit. The 95% failure upper bound is 1.64%, below the 5% target. The original validation remains interrupted; aircraft coverage is not established. |
 | R01 | Later | Not started | [Estimate the background rotation vector freely](ROTATION_FIELD.md), rather than supplying its rate. |
 | R02 | Later | Waiting for R01 | Test whether the measured rate can distinguish sidereal from solar timing. |
 | S01 | Later | Deferred | Develop Wuhan-data analysis and the separate [stationary participant experiment](STATIONARY.md). |
@@ -361,8 +401,9 @@ another study after the completed calibration phase.
    explains the timing discrepancy but leaves gyro-offset comparisons outside
    the fixed scale. No finite threshold or validation result is available.
    The [coordinate controls](coordinate-precision-controls/INTERPRETATION.md)
-   pass all six compensated cases. Complete the full saved-point derivative
-   and stopping check before another solver trial.
+   pass all six compensated cases. The subsequent [full saved-point check](saved-point-coordinate-precision/INTERPRETATION.md)
+   passes all 315 derivative comparisons and all four original stopping probes;
+   later solver qualifications and their failures are recorded above.
 3. Test broader predictive accuracy before opening the reserved ESA flight groups.
    The [fixed metadata plan](esa-broader-development/README.md) selects the first
    and last twenty minutes of each eligible development run: four ranges, one

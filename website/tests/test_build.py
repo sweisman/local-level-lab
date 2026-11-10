@@ -79,6 +79,21 @@ def test_published_plan_links_resolve_in_its_frozen_original_context(tmp_path):
     assert 'href="/docs/GUIDE.html"' in (out/'docs/study/PLAN.html').read_text()
 
 
+def test_published_readme_copy_resolves_links_from_parent_overview(tmp_path):
+    root=tmp_path/'repo';out=tmp_path/'site'
+    write(root,'README.md','# Home\n\n[Study](docs/study/long/README.md)\n')
+    write(root,'docs/study/README.md','# Overview\n')
+    write(root,'docs/study/long/README.md',
+          '# Published copy\n\n[Self](long/README.md) [Diagnosis](../DIAGNOSIS.md)\n')
+    write(root,'docs/study/long/evidence-receipt.json','{}')
+    write(root,'docs/DIAGNOSIS.md','# Diagnosis\n')
+    report=site.build(root,out,assets=site.HERE/'assets',navigation=False)
+    assert report['missing_pages']==[]
+    page=(out/'docs/study/long/README.html').read_text()
+    assert 'href="/docs/study/long/README.html"' in page
+    assert 'href="/docs/DIAGNOSIS.html"' in page
+
+
 def test_math_mermaid_tables_and_code_literals(tmp_path):
     root=tmp_path/'repo';example(root)
     write(root,'README.md',r'''# Home

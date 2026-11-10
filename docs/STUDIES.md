@@ -1,5 +1,46 @@
 # Studies and what each added
 
+The selected airborne study has **53 numerical globe preferences, no flat
+preferences and no unresolved fits**. That count is not a confidence level or
+53 independent flights. A separate simulated-data calibration and validation
+now pass their frozen checks; whether their error assumptions hold for aircraft
+measurements is still open. The sections below show what each study added.
+
+[Training-only receiver-error assessment](ilvis0-shared-training-error/README.md):
+14 source-bound software checks pass for an exact-rational shared scale
+calculation. All 18 [predeclared recorded training-prefix calculations](ilvis0-shared-training-error/recorded-assessment/README.md)
+complete from 292 earlier receiver fixes on one development recording. The
+declared error law and aircraft prediction coverage remain unverified.
+
+[Complete prediction calibration](prediction-calibration-host-20261030/INTERPRETATION.md):
+all 7,176 fits across 299 independent seed families passed numerical and position
+checks in 151.7 hours. The saved-data audit and publication replay agree exactly.
+A finite prediction-error threshold is available for the frozen simulated
+population. [Independent validation](HOST_PREDICTION_STATUS.md) saved 3,750
+passing fits before a reboot interrupted four charged starts. Its frozen
+complete-cohort rule does not permit a validation claim.
+
+[Reboot-safe continuation](VALIDATION_CONTINUATION.md): the 3,750 original fits
+and all 260 frozen sources verify. A first technical release stopped after 93
+software errors caused by a deadline adapter mismatch; its sealed results are
+retained but are not model evidence. The corrected release completed all 594
+remaining fits. An [independently replayed report](prediction-validation-continuation/README.md)
+verifies 4,344 complete fits and a passing generated-data coverage check across
+181 simulated cases. The original run remains interrupted.
+
+[Fresh host-managed calibration preparation](host-calibration-preparation/README.md):
+154 software checks pass, and the 7,176-start freeze is independently verified
+with zero charged fits. The reporting repair and interruption policy are explicit;
+the numerical method is unchanged. See [current execution status](HOST_PREDICTION_STATUS.md).
+
+[Initial execution recovery](execution-recovery/README.md): all 61 source-bound software
+checks passed, including 26 new tests for interrupted starts, leases, seals, charge
+preservation and archived completion. The checker cannot launch or retry work.
+The [host-service lifecycle control](execution-host-service/README.md) also
+completes all eight heartbeats after its submitting command exits. This qualifies
+that execution arrangement for normal command exit, not host reboot or logout.
+The separately frozen fresh release is tracked in the current status above.
+
 **All 53 selected airborne stretches favor globe in the complete full-position
 comparison.** The studies below explain how that result was obtained and what
 has been checked since. Repeated fits and overlapping recorders do not create
@@ -19,7 +60,7 @@ All 48 development fits and all 24 paired-start comparisons pass; four original
 input/error bindings reproduce exactly. The run finishes in 65.7 minutes after
 203 source-bound software checks. Earlier failures remain recorded.
 
-**Latest calibration outcome:** the [local-timing release stopped at its numerical gate](prediction-calibration-timing/INTERPRETATION.md).
+**Earlier calibration outcome:** the [local-timing release stopped at its numerical gate](prediction-calibration-timing/INTERPRETATION.md).
 It returned 348 of 7,176 planned starts in 6.82 hours: 344 passed, two failed
 timing-cell stability and two stopped cooperatively. All 346 complete forecasts
 met the position-error limits. No calibration threshold was established, and
@@ -50,14 +91,19 @@ checks. The [combined audit](timing-matrix-combined/README.md) qualifies all
 48 computational cases, 24 start pairs and four original replays after 16
 assembler checks, with all 241 shared execution sources and environment
 unchanged. Original interrupted labels remain preserved.
-The calibration threshold is still unavailable.
+At that earlier stage, the calibration threshold was unavailable.
 
-**Running:** the [fresh calibration release](FEASIBLE_PREDICTION_STATUS.md)
-uses four threads after 98 software checks and a 253-source freeze. It covers
-299 new calibration families; validation on 181 separate families follows only
-after complete finite audited calibration. Expected combined runtime is about
-nine days. The [preparation snapshot](feasible-calibration-preparation/README.md)
-preserves the prelaunch review record.
+**Previous calibration outcome:** the [feasible-anchor release](FEASIBLE_PREDICTION_STATUS.md)
+stopped after an execution interruption at 38.7 hours. It saved 1,813 numerically
+passing fits and four interrupted charged starts; no numerical failure was
+saved. Both starts of one required setting are unavailable. The remaining
+5,359 starts are closed unused; no threshold is available and validation has
+not started. The [independent audit](prediction-calibration-feasible/INTERPRETATION.md)
+confirms all 1,813 completed forecasts pass the position-error checks too.
+All 42,064 publication artifact hashes verify; the archived report replays
+identically. The
+[preparation snapshot](feasible-calibration-preparation/README.md) preserves
+the original plan; the 253 sources and numerical environment remain unchanged.
 
 **Earlier closed calibration outcome:** [the compensated run stopped at its numerical gate](prediction-calibration-compensated/INTERPRETATION.md).
 Of 909 returned starts, 904 passed, two failed and three stopped cooperatively;
@@ -99,6 +145,8 @@ are preserved. Independent validation still requires a finite, audited handoff.
 | [Other IMU configurations](ilvis0-imu21-assessment-20261007/README.md) and [IMU6 checks](ilvis0-imu6-cross-date-20261007/README.md) | Kept instrument-specific conversion hypotheses separate rather than assuming one format for every file. |
 | [Recording screening](ilvis0-retention-84-20261007/README.md) and [motion screening](ilvis0-motion-61-20261007/README.md) | Recorded keep, reject and unsupported outcomes; 232 originals were retained. |
 | [Receiver extraction](ilvis0-observation-20261007/README.md) and [GPS checks](ilvis0-gnss-v2-20261007/README.md) | Separated raw inertial observations and primary-receiver positions from the fused navigation solution. |
+| [Primary-receiver precision inventory](ilvis0-trimble-position-precision/recorded-inventory/README.md) | Checked the binary receiver stream in all 53 selected recording files. Fifty-two pass strict decoding and same-receiver position checks, yielding 145,446 receiver-reported precision records; one has unsupported interior bytes. These are not independently calibrated position errors or Earth-model fits. |
+| [Overlapping primary receivers](ilvis0-receiver-overlap/recorded-study/README.md) | Completed all eleven pairs with accepted streams: 25,890 exact shared epochs and 0.202 m median later horizontal disagreement after an earlier-only fixed offset. The differences are strongly correlated; common GNSS errors and antenna relationships remain unknown. |
 | [Frozen eligibility inventory](ilvis0-highspeed-segments-20261008/ELIGIBILITY.md) | Selected 53 complete, steady stretches lasting at least four minutes at 700 km/h or faster, before model fitting. |
 | [First selected-stretch run](ilvis0-highspeed-segments-20261008/FINDINGS.md) | Completed twelve globe preferences and left 41 numerical comparisons unfinished. |
 | [Numerical recovery and final review](ilvis0-last-review-20261018/README.md) | Resolved all 41 using separately checked methods while preserving the observations, physical assumptions and earlier failures. |
@@ -624,6 +672,8 @@ not zero uncertainty. Saved first steps motivate [feasible-step qualification](i
 [Isolated arithmetic speed prototype](mixed-tangent-prototype/README.md): all nine source-bound checks pass after one released core becomes available. Six compiled cases retain bitwise-identical positions/residuals and all 26/27 derivative columns meet the fixed tolerance. The 84-source qualification reuses 78 parent-frozen dependencies and stores only six compressed source additions; all 12 publication artifact hashes are verified. The prototype reuses the shared loader without global patches. A long-record benchmark and fitting qualification remain required; no running method or scientific result changes.
 
 [Long-record arithmetic benchmark](mixed-tangent-long-controls/README.md): all six generated twenty-minute cases preserve positions and residuals exactly, but none meets the fixed derivative tolerance. The prototype runs 4.7–5.6× faster in these native calls; it is not qualified for fitting. Twelve calls complete in 21.13 minutes on one thread. The saved-data audit verifies all cases and charges, and all 172 publication artifact hashes are checked. Existing methods remain unchanged.
+
+[Selective-precision long-record benchmark](mixed-tangent-hybrid/long-study/README.md): all six frozen generated twenty-minute cases pass the unchanged derivative, position, residual and timing-boundary checks. Twelve native calls and six construction journals verify; the native-call CPU speedup is 2.03–2.21× against the wide reference. The publication archives 348 selected paths, all verified by hash. No observed inputs or optimizer starts were used. Whole-fit training/forecast qualification is still required.
 
 [Earlier ESA logged-rate variation](esa-training-rate-variation/README.md): 21 source-bound checks qualify the diagnostic. It examines 239,864 saved training samples over 13.33 minutes and 109,536 fixed three-point contrasts in 2.36 seconds. Variation changes markedly with sample spacing. No fits, native calculations or original/protected reads occur; aircraft motion, filtering and noise remain separate possible contributors. This does not calibrate an error law or revise the running noise test.
 

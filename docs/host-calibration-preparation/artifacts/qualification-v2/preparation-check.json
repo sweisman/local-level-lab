@@ -1,0 +1,1 @@
+{"accepted":false,"native_calls":0,"new_fits":0,"reason":"qualification snapshot had unset thread variables; guarded preparation required one thread per worker","stage":"saved-only preparation"}

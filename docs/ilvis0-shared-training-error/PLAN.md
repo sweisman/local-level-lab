@@ -1,5 +1,27 @@
 # A common training-only receiver-error assessment
 
+## Development status
+
+The exact-rational covariance and scale-bound core is implemented in
+`analysis/lll/ilvis0_exact_reference_scale.py`. Fourteen focused checks compare
+the covariance calculation with an independent dense inverse, verify the
+chi-square bound, and exercise outward rounding and finite-work abstentions.
+The existing floating-reference checks also pass. A generated 292-epoch case
+completed in about three seconds on one thread. This is a development check,
+not a frozen study result. Source-bound software qualification, the six
+predeclared receiver assessments and covariance-law adequacy remain open.
+
+## Finite software qualification
+
+Freeze this plan, the exact-rational module, its focused test file, the common
+qualification helper, and the numerical launcher before testing. Run the
+fourteen focused checks once with one numerical thread and a 30-second
+cooperative ceiling. All must pass; preserve the exact JUnit report and source,
+Python, NumPy, SciPy and pytest versions. This phase reads no archive recording,
+performs no Earth-model fit or native integration, and cannot authorize the
+recorded-data assessment if it fails. Later corrections require a new
+qualification receipt rather than changing the original evidence.
+
 The native contraction experiment preserves correctness but remains too broad
 for useful predictions. In parallel with that limitation, qualify a common error
 assessment using receiver observations alone. It must not let a poorly fitting

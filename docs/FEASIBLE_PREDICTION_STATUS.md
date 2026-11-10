@@ -1,47 +1,52 @@
-# Prediction calibration is running
+# Prediction calibration stopped after an execution interruption
 
-**The corrected prediction method is running its fresh calibration campaign
-on four numerical threads.** Independent validation will follow only if the
-complete calibration supplies a finite, independently verified error threshold.
+**The campaign saved 1,813 numerically passing simulated fits before its execution
+session ended.** Four charged starts were interrupted. These are missing results,
+not numerical rejections of completed fits.
 
-| Phase | Independent simulated families | Maximum fit attempts | Expected time | Cooperative ceiling |
-|---|---:|---:|---:|---:|
-| Calibration — running | 299 | 7,176 | About six days | Ten days |
-| Validation — conditional, not started | 181 | 4,344 | Another three to four days | Six days |
+| Outcome | Fit attempts |
+|---|---:|
+| Saved and numerically passing | 1,813 |
+| Interrupted, without a completed result | 4 |
+| Not started; allowance closed unused | 5,359 |
+| Originally planned | 7,176 |
 
-These examples have known simulated answers. Calibration establishes a
-prediction-error limit; separate validation checks its coverage on new examples.
-This work adds no aircraft measurements and does not yet establish confidence
-for the original 53 aircraft comparisons.
+The run lasted 38.7 hours. All 253 frozen sources, inputs, charge journals and
+the numerical environment still match. The [independent audit](prediction-calibration-feasible/INTERPRETATION.md)
+confirms that every completed forecast passes both numerical and position-error
+checks. All 7,176 planned attempts are retained in the [result table](prediction-calibration-feasible/results.csv).
+All 42,064 publication artifact hashes verify, and the archived report replays
+identically. Recoverable working copies are compacted; no measurements were
+refitted or replaced.
 
-## What changed before this run
+## Why validation cannot follow this run
 
-The preceding calibration stopped at a numerical verification failure. Its
-results and unused allowance remain closed. The solver correction now passes
-the [complete 48-case qualification](timing-matrix-combined/README.md): all
-cases, 24 starting-point pairs and four original-input replays. The new release
-passes 98 software checks and freezes 253 source files and both phase policies.
-The new cohorts exclude all earlier declared calibration and validation families.
+Calibration requires every planned simulated family to supply every required
+setting. The interruption left both prescribed starts unavailable for one
+setting. Retrying those starts or dropping the family would change the frozen
+procedure. The incomplete campaign therefore supplies no uncertainty threshold,
+and the separate 181-family validation has not started.
 
-Keep the original physical bounds, numerical limits and acceptance checks.
-Every required setting must supply a usable fit. Calibration stops cooperatively
-if both prescribed starts fail a required setting; validation stops at its fifth
-failed family. Interrupted starts and failures remain recorded without retries.
+These are generated measurements with known answers, not additional aircraft
+observations or Earth-model votes. The original 53 aircraft preferences remain
+unchanged. Actual flight-level uncertainty and statistical significance remain
+unestablished.
 
-## Storage and completion
+## What remains
 
-Temporary case files are expected to use about 12–20 GiB during calibration and
-7–12 GiB during validation. Publication can temporarily duplicate them. Verified
-archival and compaction should retain about 8.4 GiB of payload for both phases,
-plus metadata and archive overhead. Require 55 GiB free before calibration and
-35 GiB before validation.
+The audit, publication and archived replay are complete, including 40 partial
+files from the interrupted starts. The [read-only recovery checker](execution-recovery/README.md)
+passes its 61-check software suite. A [host-service control](execution-host-service/README.md)
+also passes normal submitter-exit survival, with eight heartbeats and zero model
+work. The [execution-recovery plan](CALIBRATION_RECOVERY_PLAN.md) now calls for
+a [fresh finite release](HOST_PREDICTION_STATUS.md), now prepared after 154
+software checks and independent freeze verification. Any replacement study needs a new
+finite freeze; the closed campaign and its unused allowance stay closed.
 
-After calibration closes, independently audit and publish every returned and
-unexecuted outcome, verify its hashes, then archive and compact recoverable
-working copies. Prepare validation only from a complete finite handoff under
-the same sources and environment. A stopped or failed calibration cannot launch
-validation or supply a statistical claim.
+The corrected optimizer's [48-case qualification](timing-matrix-combined/README.md)
+remains valid: all cases, 24 starting-point pairs and four original-input replays
+pass. The calibration interruption does not change those completed controls.
 
-[Full finite plan](FEASIBLE_CALIBRATION_RELEASE_PLAN.md) ·
+[Original finite plan](FEASIBLE_CALIBRATION_RELEASE_PLAN.md) ·
 [Preparation snapshot](feasible-calibration-preparation/README.md) ·
 [Next analyses](NEXT_STEPS.md) · [Original aircraft findings](CURRENT_STATUS.md).

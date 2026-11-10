@@ -15,7 +15,42 @@ study; receiver positions help constrain the reconstructed flight.
 
 <a id="then-strengthen-the-interpretation"></a>
 
-## Now: predict measurements left out of the fit
+## Current validation
+
+The prediction method fits earlier observations and checks positions it did not
+use for fitting. A complete calibration set a fixed error limit. A reboot
+interrupted the original independent validation after 3,750 saved fits. A
+separate, recoverable continuation completed the other 594 fits. Its verified
+combined audit passed the declared error-coverage check across all 181
+preselected simulated cases. This tests the procedure under its declared
+simulated conditions; aircraft error coverage and significance of the observed
+model preferences remain open.
+
+Next, check whether forecasts remain physically plausible on held-out parts of
+independent aircraft recordings and whether the receiver-error assumptions fit
+those observations. Keep the reserved ESA confirmation groups untouched until
+the method and decision rules are frozen.
+The [training-only receiver-error calculation](ilvis0-shared-training-error/README.md)
+passes its software checks. Its [recorded training-prefix assessment](ilvis0-shared-training-error/recorded-assessment/README.md)
+completes all 18 predeclared calculations from one recording. Those bounds
+depend on an assumed receiver-error law; testing that law and prediction
+coverage on independent observations is next.
+
+The [primary-receiver precision inventory](ilvis0-trimble-position-precision/recorded-inventory/README.md)
+now finds accepted, checksummed precision reports in 52 of 53 selected recording
+files. One receiver stream has an unsupported interior message. The numbers are
+the receiver's own error estimates, so the next test is whether they match
+actual held-out errors and how errors persist through time. The earlier
+Earth-model comparisons and their selected stretches are unchanged.
+The [paired-receiver check](ilvis0-receiver-overlap/recorded-study/README.md)
+completes all eleven usable overlaps and finds close but strongly persistent
+differences. Shared errors can cancel, so it does not establish absolute GPS
+accuracy or settle the combined receiver-and-IMU error model.
+
+[Current run and recovery rules](VALIDATION_CONTINUATION.md) ·
+[Calibration and validation status](HOST_PREDICTION_STATUS.md).
+
+## Earlier development steps
 
 **Compensated coordinates pass the [small known-answer controls](coordinate-precision-controls/INTERPRETATION.md).**
 All six coordinate cases now meet the precision tolerance, compared with three
@@ -131,16 +166,40 @@ passes all four fits, both start pairs and the remaining input replay in
 48 computational cases, all 24 pairs and all four original replays, with
 identical shared sources and environment. Sixteen additional assembler checks
 pass; the interrupted study's failure labels remain unchanged.
-**Running:** the [fresh calibration release](FEASIBLE_PREDICTION_STATUS.md)
-uses four threads after 98 software checks and a 253-source freeze. Calibration
-covers 299 new simulated families; validation on 181 separate families will
-follow only after a complete, finite, audited handoff. Expected total runtime
-is about nine days. A calibration threshold is still
-unavailable. Keep all directions, bounds and limits; closed campaigns do not restart.
+**Stopped after an execution interruption:** the [latest calibration](FEASIBLE_PREDICTION_STATUS.md)
+saved 1,813 numerically passing simulated fits in 38.7 hours. Four charged starts
+lost their execution state, including both starts of one required setting.
+The sources and numerical environment remain unchanged. The remaining 5,359
+starts are closed unused; the incomplete cohort supplies no threshold and
+validation has not started. The [independent audit](prediction-calibration-feasible/INTERPRETATION.md)
+confirms all 1,813 completed forecasts also pass the position-error checks.
+All 42,064 publication artifact hashes verify and the archived report replays
+identically. The [recovery checker](execution-recovery/README.md) passes its
+61-check software suite. The [host-service lifecycle control](execution-host-service/README.md)
+also passes normal submitter-exit survival. The [fresh release](HOST_PREDICTION_STATUS.md)
+has completed all 7,176 fits, all passing, in 151.7 hours after 154 software
+checks and independent freeze verification. Its saved-data audit and publication
+replay passed, supplying a finite prediction-error threshold. Independent
+validation saved 3,750 passing fits from 181 planned new simulated cases, with
+the limit fixed. A host reboot interrupted four charged fits; 590 had not
+started. Its frozen complete-cohort rule therefore cannot establish coverage.
+
+A [recovery and retention policy](TASK_RECOVERY_AND_RETENTION.md) blocks any
+new long-running release until finite task-level interruption recovery is
+qualified and frozen. The [continuation](VALIDATION_CONTINUATION.md) verifies
+the 3,750 saved fits. Its first technical release stopped after 93 software
+errors from a deadline adapter mismatch; the sealed failures are retained.
+The corrected recovery/reporting path passes focused tests. The second release
+completed all 594 remaining fits. An independently replayed combined report
+verifies 4,344 passing fits and a 1.64% one-sided failure upper bound across
+181 simulated cases, below the declared 5% target. The interrupted original
+release itself cannot be relabeled complete.
+Keep all directions, bounds and limits; closed campaigns do not restart.
 The existing failures are not relabeled; another solver trial or campaign needs
 its own finite, source-bound phase.
-No additional campaign starts automatically. Independent validation remains
-blocked; all closed calibration campaigns and their unused allowances stay closed.
+No additional campaign starts without a separate finite freeze. Combined
+generated-data validation is complete; all closed calibration campaigns and
+their unused allowances stay closed.
 Protected aircraft groups remain untouched. These generated-data tests do not
 establish actual flight-level confidence.
 
@@ -245,6 +304,13 @@ The [revised protocol](PREDICTION_VALIDATION.md) has reached these checkpoints:
 21. **Not qualified:** the [faster-arithmetic benchmark](mixed-tangent-long-controls/README.md)
     preserves predicted positions exactly on all six long cases, but fails the
     derivative tolerance. It runs 4.7–5.6× faster; the existing method stays in use.
+    The [saved-matrix diagnosis](mixed-tangent-long-controls/DIAGNOSIS.md)
+    finds 509 violations, mostly in initial-heading sensitivity near cancellation.
+    The [selective-precision revision](mixed-tangent-hybrid/README.md) now
+    passes all six frozen twenty-minute generated cases with no derivative
+    tolerance violations. Its native calls take 2.03–2.21 times less CPU than
+    the wide reference. A separate whole-fit training/forecast qualification
+    is next; no observed result or running fitter changes.
 22. **Complete:** the [training-rate diagnostic](esa-training-rate-variation/README.md)
     examines 13.33 minutes of saved measurements without fitting. Short-term
     variation depends strongly on sample spacing. Motion and processing must

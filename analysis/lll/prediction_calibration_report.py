@@ -43,7 +43,8 @@ def inspect(root,prefix,*,protocol=None):
             row=dict(identity=identity,draw_seed=seed,role=role,**spec,complete=False,converged=False,accurate=False)
             if identity not in s.rows:rows.append(dict(row,reason='Not executed or no returned outcome'));continue
             envelope=s.envelope(identity);outcome=envelope['result'];base='artifacts/'+identity+'/'
-            interrupted|=(outcome.get('error_type')=='BudgetStopped' or base+'family-futility.json' in envelope['artifacts'])
+            interrupted|=(envelope.get('status')=='interrupted' or outcome.get('error_type')=='BudgetStopped'
+                          or base+'family-futility.json' in envelope['artifacts'])
             draw=dict(seed=seed,role=role,case=spec,population_sha256=sha,
                 calibration_draw=role=='calibration',validation_draw=role=='validation',confidence_calibrated=False)
             if base+'draw-identity.json' in envelope['artifacts'] and s.artifact(identity,'draw-identity.json')!=draw:

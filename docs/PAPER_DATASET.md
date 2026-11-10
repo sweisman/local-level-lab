@@ -20,6 +20,21 @@ alongside later successful work; some entries are diagnostics rather than
 optimizer starts. The latest complete numerical disposition remains **53 globe,
 zero flat and zero unresolved**.
 
+The [frozen grouping ledger and its current verification method](PROVENANCE_VERIFICATION.md)
+keep overlapping recordings together without treating its 27 conservative
+groups as 27 proven independent flights.
+
+## How the 53 stretches cluster
+
+The frozen `stretches.csv` contains **11 groups with one stretch, six with two,
+and ten with three**. Every stretch in every group has the recorded numerical
+preference `globe` and `specified_background_preferred=True`. This is a
+dependence-aware description of the completed comparisons, not 27 independent
+confirmations: groups can share physical hardware or systematic errors across
+dates, and their original model comparisons have no calibrated detection rule.
+The group key is `conservative_split_group`; the original 53 rows and the
+[grouping ledger](analysis-provenance/README.md) provide the reproducible count.
+
 An **IMU (inertial measurement unit)** records turning and specific force. Its
 gyro increments supply the observed turning; receiver positions supply the
 route context. The snapshot keeps those roles, source fingerprints and unknown
@@ -79,6 +94,19 @@ this version. Assembly and checking read saved metadata, not original recordings
 and run no model predictions or fits. `--check-public` works in a repository
 checkout without the runtime data directories. Protected ESA outcomes are not
 part of the dataset. [Version 1](paper-development-dataset-v1/README.md) remains sealed.
+
+## Later uncertainty work
+
+The separate [generated-data calibration](prediction-calibration-host-20261030/INTERPRETATION.md)
+completed all 7,176 prescribed fits and set a fixed prediction-error limit for
+its simulated population. A reboot interrupted the original independent
+validation after 3,750 saved fits. A [task-level continuation](VALIDATION_CONTINUATION.md)
+completed the other 594 fits under a separate, recorded recovery allowance.
+The [independently replayed combined report](prediction-validation-continuation/README.md)
+passed the declared generated-data coverage rule across all 181 preselected
+simulated cases. These calculations are not part of
+the frozen development snapshot and do not establish confidence in the 53
+observed-aircraft preferences.
 
 [Current findings](CURRENT_STATUS.md) · [Raw gyro companion](ilvis0-gyro-companion-v2/INTERPRETATION.md) ·
 [Roadmap](ANALYSIS_ROADMAP.md).

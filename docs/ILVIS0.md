@@ -85,6 +85,17 @@ of their errors, absence of all receiver-side aiding, or identical behavior acro
 archive's historical configurations. The cited document describes V6; earlier files
 also need their recorded version and observed layout checks.
 
+A later [binary receiver inventory](ilvis0-trimble-position-precision/recorded-inventory/README.md)
+decodes checksummed Trimble position and precision reports in 52 of the 53
+selected recording files. The remaining stream has an unsupported interior
+message and is withheld from that receiver-precision inventory. The reports
+give the receiver's own precision estimates; their actual errors and time
+correlation have not yet been measured independently.
+An [overlap check](ilvis0-receiver-overlap/recorded-study/README.md) compares
+eleven pairs of receiver streams at exactly shared times. Their small but
+strongly correlated differences measure relative agreement, while shared
+position errors and antenna offsets remain unresolved.
+
 GPS positions are navigation outputs, not direct measurements of surface curvature.
 Their latitude, longitude and height use geodetic conventions. WGS84 provides GPS's
 reference frame and an ellipsoidal geometry; see [NGA's description](https://earth-info.nga.mil/?action=wgs84&dir=wgs84).

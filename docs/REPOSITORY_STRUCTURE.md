@@ -22,10 +22,22 @@ migrated evidence, not the whole repository or original instrument archive.
 Every migrated file was restored and compared before its expanded copy was
 removed. Original measurements, results, failures and charges were preserved.
 
-The local cleanup index identifies another **112,732 byte-identical copies**
+The initial local cleanup index identified **112,732 byte-identical copies**
 in 177 completed study directories. It considers only declared public members
 whose study manifest matches. Differing or unpublished files stay in place;
 original instrument recordings are excluded.
+
+A later verified cleanup removed **36,804 expanded duplicate files and 1,754
+empty directories** from two closed generated-data studies, including a failed
+calibration. Those copies occupied about **726 MiB**. Their exact contents,
+failed outcomes and historical code remain in the archive; the study reports,
+completion records and public downloads stay in place. The running calibration's
+source and input hashes were checked before and after cleanup and were unchanged.
+
+The completed prediction calibration subsequently archived and compacted
+**330,717 evidence copies and ten preparation files**. Another **14,390 verified
+empty directories** were removed. The exact calibration evidence remains
+recoverable, and the independent validation uses a separate frozen workspace.
 
 | Location | Purpose |
 |---|---|

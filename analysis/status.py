@@ -420,17 +420,26 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--study',action='append',help='explicit repository data/ directory; repeat for several studies')
     parser.add_argument('--json',action='store_true',help='machine-readable output')
+    parser.add_argument('--recovery',action='store_true',help='read-only recovery advice for explicitly selected sharded studies')
     args=parser.parse_args()
+    if args.recovery and not args.study:parser.error('--recovery requires an explicit --study')
     try:
         entries=[(Path(name).name,study_path(ROOT,name)) for name in args.study] if args.study else read_registry(ROOT,ROOT/'analysis/study-status.json')
         reports=[dict(inspect_study(path),name=name) for name,path in entries]
+        if args.recovery:
+            from lll.studies.recovery import inspect as recovery
+            for report,(_,path) in zip(reports,entries):
+                report['recovery']=recovery(ROOT,str(path.relative_to(ROOT)))
     except (OSError,ValueError,KeyError,TypeError) as error:parser.error(str(error))
     active=sum(r['threads'] for r in reports);warnings=[]
     if active>4:warnings.append('monitored numerical allocation exceeds four total threads')
     payload=dict(studies=reports,monitored_numerical_threads=active,warnings=warnings)
     if args.json:print(json.dumps(payload,indent=2))
     else:
-        for report in reports:print(render(report))
+        for report in reports:
+            print(render(report))
+            if 'recovery' in report:
+                print('Recovery: '+report['recovery']['state']+'. '+report['recovery']['next_action'])
         print(f'Monitored numerical allocation: {active}/4 threads.')
         for warning in warnings:print('Warning: '+warning)
     return int(any(r['state']=='invalid' or r['warnings'] for r in reports) or bool(warnings))

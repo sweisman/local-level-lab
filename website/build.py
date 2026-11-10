@@ -190,6 +190,16 @@ def build(root,output,*,assets,base_path='',navigation=True):
                 fallback=local_target(plan_origin,url)
                 if fallback is not None and available(root,fallback[0]):
                     name,parsed=fallback
+            elif source.endswith('/README.md') and not available(root,name):
+                # A sealed publication may copy its parent overview verbatim.
+                # Resolve only missing links from that overview's directory.
+                published=PurePosixPath(source).parent
+                overview=str(published.parent/'README.md')
+                receipt=str(published/'evidence-receipt.json')
+                if available(root,receipt) and available(root,overview):
+                    fallback=local_target(overview,url)
+                    if fallback is not None and available(root,fallback[0]):
+                        name,parsed=fallback
             if public_page(name):
                 page=checked_path(root,name)
                 if available(root,name):

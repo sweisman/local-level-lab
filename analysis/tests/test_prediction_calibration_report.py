@@ -54,6 +54,7 @@ def test_handoff_rejects_unexecuted_calibration_draws(tmp_path,monkeypatch):
     identity=next(iter(matrix))
     class FakeClosed:
         all_returned=False
+        stopping_kind='budget'
         def __init__(self,*a):
             self.manifest=dict(scope=SCOPE,sources=sources);self.tasks=matrix
             self.rows={k:{} for k in matrix} if self.all_returned else {identity:{}}
@@ -62,8 +63,9 @@ def test_handoff_rejects_unexecuted_calibration_draws(tmp_path,monkeypatch):
         def input(self,key):return {'recipe':recipe('calibration'),'population':pop,
             'qualification-environment':env,'validation-policy':recipe('validation')}[key]
         def read(self,*a,**kw):return raw
-        def envelope(self,key):return dict(result=dict(passed=False,reason='fixed unavailable outcome',
-            error_type='BudgetStopped' if self.all_returned else 'FixtureError'),artifacts={})
+        def envelope(self,key):return dict(status='interrupted' if self.stopping_kind=='interrupted' and key==identity else 'complete',
+            result=dict(passed=False,reason='fixed unavailable outcome',
+            error_type='BudgetStopped' if self.all_returned and self.stopping_kind=='budget' else 'FixtureError'),artifacts={})
         def close(self):pass
     monkeypatch.setattr(closed,'ClosedStudy',FakeClosed)
     from lll import airquantumgrav_inventory
@@ -81,3 +83,18 @@ def test_handoff_rejects_unexecuted_calibration_draws(tmp_path,monkeypatch):
     stopped=inspect(tmp_path,'data/closed-stopped')
     assert stopped['returned_outcomes']==7176 and stopped['calibration'] is None
     with pytest.raises(ValueError):build_handoff(stopped)
+    FakeClosed.stopping_kind='interrupted'
+    from lll import prediction_calibration
+    def forbidden_calibration(*args,**kwargs):
+        pytest.fail('sealed interruption must block calibration even when every row returned')
+    monkeypatch.setattr(prediction_calibration,'calibrate',forbidden_calibration)
+    interrupted=inspect(tmp_path,'data/closed-interrupted')
+    assert interrupted['returned_outcomes']==7176 and interrupted['cohort_interrupted'] is True
+    assert interrupted['calibration'] is None and interrupted['validation'] is None
+    with pytest.raises(ValueError):build_handoff(interrupted)
+
+
+def test_handoff_rejects_interrupted_cohort_even_with_finite_draw_scores():
+    from lll.prediction_calibration_report import build_handoff
+    value=report();value['cohort_interrupted']=True
+    with pytest.raises(ValueError,match='entire closed calibration cohort'):build_handoff(value)

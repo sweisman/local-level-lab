@@ -19,9 +19,37 @@ For machine-readable output or a particular runtime directory:
 ~/venv/bin/python analysis/status.py --study data/ilvis0-profile-verification-20261017
 ```
 
+The independent prediction validation has its own runtime and total of 4,344 fits:
+
+```sh
+~/venv/bin/python analysis/status.py --study data/prediction-validation-host-20261030 --json
+```
+
+The completed 7,176-fit calibration stays separately registered. Report the phase
+alongside completed/total fits, passing fits and errors; do not combine the two
+cohorts into one validation count.
+
 The command reads existing metadata and takes only temporary, nonblocking lock
 probes. It creates no study files, imports no numerical engines, reads no original
 measurements and never launches, resumes, repairs or packages a study.
+
+For recovery advice on an explicitly selected sharded study:
+
+```sh
+~/venv/bin/python analysis/status.py --study data/prediction-calibration-feasible-20261028 --recovery
+```
+
+This checks completion seals, frozen sources and inputs, original deadlines,
+charge journals and result envelopes. It distinguishes owned leases, closed
+studies, available uncharged work and calibration settings whose prescribed
+starts are both unavailable. An owned lease is not proof of a live process.
+No advice authorizes execution: the shared runner must recheck the full evidence
+and acquire its leases before launch. Inspection never retries charged work.
+Open-study recovery currently supports `sqlite-v1` accounting; older formats
+are rejected explicitly. Closed studies can be checked from verified archives
+without restoring their compacted files.
+
+See the [recovery qualification](../docs/execution-recovery/README.md).
 
 Completion records take precedence over stale progress snapshots after their
 manifest and summary hashes are checked. While work is unfinished, known task
