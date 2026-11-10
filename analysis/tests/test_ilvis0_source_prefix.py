@@ -3,6 +3,20 @@ import numpy as np
 import pytest
 
 
+def matching_cold_reference(directory):
+    """Compile the independent cold kernel with the copy kernel's FP policy."""
+    import subprocess
+    from unittest.mock import patch
+    from lll.ilvis0_source_stream import load_stream
+
+    original_run = subprocess.run
+    def compile_matched(command, **kwargs):
+        return original_run([command[0], '-fno-fast-math', '-ffp-contract=off',
+                             *command[1:]], **kwargs)
+    with patch.object(subprocess, 'run', side_effect=compile_matched):
+        return load_stream(directory)
+
+
 def source():
     return dict(configuration=dict(initial_r=np.eye(3),limits=np.full(27,.01)),
         theta=np.array([[1,2,-1],[-2,1,3],[2,-3,1],[1,1,-2]],float)/1024,
@@ -90,12 +104,12 @@ def test_contracted_physical_box_may_exclude_the_retained_expansion(kernels):
 @pytest.mark.parametrize('kind',['reference','interval','point'])
 def test_original_cold_kernels_match_copied_values_and_every_column(kernels,kind,tmp_path):
     from lll.ilvis0_source_prefix import fork_stream
-    from lll.ilvis0_source_stream import SourceStream,load_stream
+    from lll.ilvis0_source_stream import SourceStream
     from lll.ilvis0_source_derivative_intervals import Stream as Intervals,load_kernel as interval_kernel
     from lll.ilvis0_source_point_derivatives import Stream as Point,load_kernel as point_kernel
     case=source();z=np.zeros(27);z[1]=.1;z[9]=-.1;z[15]=.05
     lo=z.copy();hi=z.copy();lo[25]=-.01;hi[25]=.02
-    if kind=='reference':cold=SourceStream(load_stream(tmp_path)[0],case,z,.012,maximum_packets=4)
+    if kind=='reference':cold=SourceStream(matching_cold_reference(tmp_path)[0],case,z,.012,maximum_packets=4)
     elif kind=='interval':cold=Intervals(interval_kernel(tmp_path)[0],case,z,lo,hi,.012,maximum_packets=4)
     else:cold=Point(point_kernel(tmp_path)[0],case,z,.012,maximum_packets=4)
     parent=stream(kernels,kind,.021);parent.append();parent.append()

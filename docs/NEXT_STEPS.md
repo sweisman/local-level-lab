@@ -301,7 +301,7 @@ The [revised protocol](PREDICTION_VALIDATION.md) has reached these checkpoints:
     unchanged 10 m target. Each candidate predicts its own generating truth;
     these are not Earth-model votes. Error propagation and calibration
     uncertainty need further work before broader observed fitting.
-21. **Not qualified:** the [faster-arithmetic benchmark](mixed-tangent-long-controls/README.md)
+21. **Short fits checked; long fits pending:** the [faster-arithmetic benchmark](mixed-tangent-long-controls/README.md)
     preserves predicted positions exactly on all six long cases, but fails the
     derivative tolerance. It runs 4.7–5.6× faster; the existing method stays in use.
     The [saved-matrix diagnosis](mixed-tangent-long-controls/DIAGNOSIS.md)
@@ -309,8 +309,11 @@ The [revised protocol](PREDICTION_VALIDATION.md) has reached these checkpoints:
     The [selective-precision revision](mixed-tangent-hybrid/README.md) now
     passes all six frozen twenty-minute generated cases with no derivative
     tolerance violations. Its native calls take 2.03–2.21 times less CPU than
-    the wide reference. A separate whole-fit training/forecast qualification
-    is next; no observed result or running fitter changes.
+    the wide reference. A [separate matched study](mixed-tangent-hybrid/paired-qualification/README.md)
+    now passes six complete two-minute fits and forecasts. The largest
+    matched forecast difference is 1.40 × 10⁻⁹ m. A long-record fitting
+    comparison remains before replacing the current fitter; no observed
+    result changes.
 22. **Complete:** the [training-rate diagnostic](esa-training-rate-variation/README.md)
     examines 13.33 minutes of saved measurements without fitting. Short-term
     variation depends strongly on sample spacing. Motion and processing must

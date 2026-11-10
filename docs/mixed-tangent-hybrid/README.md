@@ -16,13 +16,16 @@ construction journals verify against their charged limits. No optimizer was
 started and no observed or protected recording was read.
 
 On these generated native calls, the selective version ran 2.03–2.21× faster
-than the unchanged wide reference. That is a kernel measurement,
-not a whole-fit speed measurement. The earlier all-ordinary derivative
+than the unchanged wide reference. That is a kernel measurement, not a
+whole-fit speed measurement. The [separate two-minute paired fitting and
+prediction study](paired-qualification/README.md) now passes all six generated
+cases. Both variants converge and meet the prediction screen; their largest
+forecast difference is 1.40 × 10⁻⁹ m. The earlier all-ordinary derivative
 prototype still fails its own long-record tolerance check; its frozen result
-is unchanged. The selective version still needs a separately frozen
-training/forecast qualification before it can replace the qualified fitter.
-These checks make no Earth-model decision.
+is unchanged. A long-record fitting comparison remains before replacing the
+current fitter. These checks make no Earth-model decision.
 
 [Frozen plan](PLAN.md) · [Sealed long-record evidence](long-study/README.md) ·
+[Paired fitting evidence](paired-qualification/README.md) ·
 [Earlier failure diagnosis](../mixed-tangent-long-controls/DIAGNOSIS.md) ·
 [Roadmap](../ANALYSIS_ROADMAP.md).

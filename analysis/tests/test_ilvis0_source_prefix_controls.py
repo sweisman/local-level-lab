@@ -30,9 +30,9 @@ def test_all_array_columns_and_numeric_metadata_must_match_exactly():
 def test_actual_source_check_uses_complete_runner_reservations(tmp_path):
     from collections import Counter
     from lll.ilvis0_source_prefix import load_kernels
-    from lll.ilvis0_source_stream import load_stream
     from lll.ilvis0_source_prefix_controls import check,limits
-    kernels,_=load_kernels(tmp_path);original,_=load_stream(tmp_path);counts=Counter();calls=[];saved={}
+    from test_ilvis0_source_prefix import matching_cold_reference
+    kernels,_=load_kernels(tmp_path);original,_=matching_cold_reference(tmp_path);counts=Counter();calls=[];saved={}
     def reserve(**values):
         counts.update(values)
         assert all(counts[k]<=v for k,v in limits().items())

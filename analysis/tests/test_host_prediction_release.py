@@ -67,11 +67,16 @@ def test_host_release_cannot_exempt_a_numerical_file_from_qualification():
     with pytest.raises(ValueError):replace(p,reporting_updates=(('analysis/lll/timing_cells.py','a'*64,'b'*64),))
 
 
-def test_host_release_reads_pinned_optimizer_evidence_and_checks_current_math(monkeypatch):
+def test_host_release_reads_pinned_optimizer_evidence_and_checks_current_math(monkeypatch,published_gate):
     from pathlib import Path
-    from lll import feasible_prediction_release as previous
+    from lll import airquantumgrav_inventory as inventory,feasible_prediction_release as previous
     from lll.studies.artifacts import digest,encoded
     root=Path(__file__).resolve().parents[2];p=release()
+    frozen_environment=published_gate[1]['environment']
+    if inventory.environment()!=frozen_environment:
+        with pytest.raises(ValueError,match='environment changed'):
+            p.optimizer_report(root)
+    monkeypatch.setattr(inventory,'environment',lambda:frozen_environment)
     report=p.optimizer_report(root)
     assert digest(encoded(report))==previous.GATE_REPORT_SHA256
     assert report['cases']==48 and report['start_pairs']==24 and report['original_input_replays']==4
