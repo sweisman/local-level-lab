@@ -3,6 +3,7 @@
 """Read-only study status: metadata, receipt counts and nonblocking lock checks."""
 import argparse
 from contextlib import contextmanager
+from datetime import datetime, timezone
 import fcntl
 import hashlib
 import json
@@ -196,7 +197,7 @@ def inspect_study(directory):
     if not exists(directory/'manifest.json') and (directory/'request.json').is_file():
         return inspect_test_queue(directory)
     result=dict(path=str(directory),state='missing',lock='missing',threads=0,completed=0,
-        total=None,passed=0,errors=0,native_calls=None,native_limit=None,
+        total=None,passed=0,nonpassing=0,errors=0,native_calls=None,native_limit=None,
         charged_identities=None,warnings=[])
     if not directory.is_dir():return result
     try:
@@ -219,6 +220,20 @@ def inspect_study(directory):
                 with read_lock(directory/'shards'/f'{shard:03d}'/'worker.lock') as state:states[str(shard)]=state
             child_held=any(state=='held' for state in states.values());held=held or child_held
             result.update(shard_locks=states,native_limit=manifest['limits']['native_calls'],bound_limit=manifest['limits']['bound_calls'])
+            start_path=directory/'start.json'
+            if held and start_path.is_file():
+                started=load(start_path)
+                deadline=started.get('deadline_unix')
+                origin=started.get('started_unix')
+                if (started.get('manifest_sha256')!=manifest_hash or
+                        type(origin) not in (int,float) or
+                        type(deadline) not in (int,float) or
+                        not math.isfinite(origin) or not math.isfinite(deadline) or
+                        not 0<=origin<deadline<253402300800):
+                    raise ValueError('invalid cooperative wall-clock receipt')
+                result['cooperative_deadline_utc']=datetime.fromtimestamp(
+                    deadline,timezone.utc).isoformat()
+                result['seconds_to_cooperative_deadline']=round(max(0,deadline-time.time()))
         result['state']='running' if held else 'incomplete'
         result['threads']=status.get('allocated_numerical_threads',status.get('numerical_threads',plan.get('numerical_threads',0))) if held else 0
         if sharded:
@@ -229,7 +244,7 @@ def inspect_study(directory):
                 if (directory/'shards'/f'{s:03d}'/'done.json').is_file())
             result['released_shards']=released
             result['threads']=(workers-released)*threads if held else 0
-        rows=[]
+        rows=[];verified_shard_charge_paths=[]
         if (directory/'completion.json').exists():
             if child_held:raise ValueError('sealed completion still has an owned shard lease')
             completion=load(directory/'completion.json')
@@ -279,6 +294,7 @@ def inspect_study(directory):
         result['completed']=len(rows)
         gates=('conditional_verified','passed','conditional_converged','converged')
         result['passed']=sum(next((r[k] is True for k in gates if k in r),False) for r in rows)
+        result['nonpassing']=result['completed']-result['passed']
         result['errors']=sum(r.get('status') in ('error','interrupted','not_started') for r in rows)
         if sharded and result['state']=='running':
             finished={r.get('identity') for r in rows}
@@ -313,6 +329,9 @@ def inspect_study(directory):
                         shard_native+=counts['native_sweeps'];shard_starts+=counts['starts']
                         shard_bounds+=counts['sweeps']-counts['native_sweeps']
                         if counts['incomplete_transaction']:raise ValueError('incomplete transaction; continuation blocked')
+                        charges=directory/'shards'/f'{shard:03d}'/'charges'
+                        verified_shard_charge_paths.extend(p for p in
+                            (charges/'journal.sqlite',charges/'HEAD.json') if p.is_file())
                 except (OSError,ValueError,KeyError,TypeError) as error:
                     valid=False;result['warnings'].append(f'shard {shard} charge snapshot: '+str(error))
             if valid:
@@ -325,7 +344,8 @@ def inspect_study(directory):
                 result['bound_calls']=shard_bounds
         if result['native_calls'] is None:result['native_calls']=status.get('native_evaluations')
         latest=max((p.stat().st_mtime for p in (directory/'status.json',directory/'completion.json',
-            directory/'charges/HEAD.json',directory/'preflight/charges/HEAD.json') if p.exists()),default=None)
+            directory/'charges/HEAD.json',directory/'preflight/charges/HEAD.json',
+            *verified_shard_charge_paths) if p.exists()),default=None)
         result['updated_seconds_ago']=round(max(0,time.time()-latest)) if latest is not None else None
     except (OSError,ValueError,KeyError,TypeError) as error:
         result.update(state='invalid');result['warnings'].append(str(error))
@@ -337,7 +357,7 @@ def inspect_test_queue(directory):
     import xml.etree.ElementTree as ET
     directory=Path(directory)
     result=dict(path=str(directory),state='incomplete',lock='missing',threads=0,completed=0,total=None,
-        passed=0,errors=0,native_calls=None,native_limit=None,charged_identities=None,warnings=[],kind='queued_tests')
+        passed=0,nonpassing=0,errors=0,native_calls=None,native_limit=None,charged_identities=None,warnings=[],kind='queued_tests')
     try:
         request=load(directory/'request.json');parent=study_path(ROOT,request['study'])
         if file_digest(parent/'manifest.json')!=request['manifest_sha256']:
@@ -361,7 +381,8 @@ def inspect_test_queue(directory):
                 errors=sum(c.find('failure') is not None or c.find('error') is not None for c in cases)
                 skipped=sum(c.find('skipped') is not None for c in cases)
                 result.update(state='complete' if code==0 and cases and not errors and not skipped else 'terminal',
-                    completed=len(cases),total=len(cases),passed=len(cases)-errors-skipped,errors=errors)
+                    completed=len(cases),total=len(cases),passed=len(cases)-errors-skipped,
+                    nonpassing=errors+skipped,errors=errors)
                 if result['state']=='terminal':result['warnings'].append('queued tests did not all pass; preserve their report')
             else:raise ValueError('unknown queued-test completion state')
         elif result['lock']=='held':
@@ -392,11 +413,13 @@ def render(report):
     total=report['total'] if report['total'] is not None else '?'
     calls=report['native_calls'] if report['native_calls'] is not None else '?'
     limit=report['native_limit'] if report['native_limit'] is not None else '?'
-    text=f"{report['name']}: {report['state']} | {report['completed']}/{total} results, {report['passed']} passed, {report['errors']} errors"
+    text=f"{report['name']}: {report['state']} | {report['completed']}/{total} results, {report['passed']} passed, {report.get('nonpassing', 0)} nonpassing, {report['errors']} errors"
     if report.get('kind')!='queued_tests':text+=f" | {calls}/{limit} charged native calls"
     text+=f" | {report['threads']} threads | lock {report['lock']}"
     if report.get('shard_locks'):
         text+=f" | {sum(v=='held' for v in report['shard_locks'].values())} owned shard leases"
+    if 'seconds_to_cooperative_deadline' in report:
+        text+=f" | cooperative wall cap in {report['seconds_to_cooperative_deadline']}s"
     if 'bound_calls' in report:
         text+=f" | {report['bound_calls']}/{report['bound_limit']} charged bounds"
     if report.get('identity') and report['state']=='running':text+='\n  Current: '+report['identity']

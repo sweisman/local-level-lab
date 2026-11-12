@@ -103,6 +103,19 @@ recordings preserve incomplete comparisons or failed accuracy screens. This is
 retrospective development evidence, not independent confirmation or calibrated
 significance. Reporting recomputes errors and checks costs, numerical labels and
 accuracy screens without refitting.
+The [saved receiver-precision follow-up](receiver-precision-holdout/README.md)
+checks all 28 numerically qualified primary settings from that pilot against
+the same receiver's time-matched precision reports, retaining the other eight
+as abstentions. Seven of nine specified-field globe settings pass the pilot's
+uncalibrated accuracy screen, but their median later errors are about four
+times the receiver-reported horizontal precision and eleven times the height
+precision. These reports omit inertial and model uncertainty; this comparison
+does not calibrate an aircraft prediction interval.
+The [fixed earlier-residual check](prediction-drift-control/README.md) then
+tests whether a line learned from the final two training minutes predicts
+the smooth later errors. It worsens seven of nine qualified specified-field
+globe settings. The other candidates improve but remain hundreds of metres
+off. These are diagnostic corrections, not new model decisions.
 
 The [first ESA development pilot](esa-development-pilot/README.md) completes one
 of four three-model comparisons, but its preferred forecast misses the accuracy

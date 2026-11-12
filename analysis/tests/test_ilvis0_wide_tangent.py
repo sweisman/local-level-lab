@@ -88,3 +88,26 @@ def test_wide_forecast_uses_no_later_coordinates_and_keeps_all_columns(tmp_path)
     assert out['jacobian'].shape==(27,27) and out['active_parameters']==list(wide.bounds.active)
     assert len(charges)==1 and charges[0]==dict(native_calls=1,packet_visits=600*9)
     assert not out['prediction_receiver_positions_used']
+
+
+def test_native_time_tangent_matches_finite_difference_on_each_side_of_packet_end(tmp_path):
+    from lll.ilvis0_shape import load_tangent
+    from lll.ilvis0_solver_position import physical_metric
+    problem,anchor,_=_problem(tmp_path,'sphere_rotating',True)
+    kernel,_=load_tangent(tmp_path,gravity_anchor_height_m=anchor)
+    problem.tangent_kernel=kernel
+    index=problem.bounds.active.index('time_offset')
+    limit=problem.bounds.limits['time_offset']
+    metric=physical_metric(problem.gps)
+    for side in (-1,1):
+        center=2/300+side*42e-9
+        point=np.zeros(len(problem.bounds.active))
+        point[index]=center/limit
+        _,jac,_=problem.prediction_tangent(point,'sphere_rotating')
+        left=point.copy();right=point.copy()
+        left[index]-=20e-9/limit;right[index]+=20e-9/limit
+        earlier=problem.prediction_tangent(left,'sphere_rotating')[0]
+        later=problem.prediction_tangent(right,'sphere_rotating')[0]
+        finite_difference=(later-earlier)/(40e-9/limit)
+        difference=(finite_difference.ravel()-jac[:,index]).reshape(-1,3)*metric
+        assert np.max(abs(difference))<.05, (side,np.max(abs(difference)))

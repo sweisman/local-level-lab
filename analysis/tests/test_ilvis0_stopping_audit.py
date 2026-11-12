@@ -50,3 +50,16 @@ def test_signed_saved_probe_requires_reproduced_center():
     assert module().signed_saved_probe(fit)==pytest.approx(.1)
     fit['evaluation_trace'][0]['cost']=9.
     with pytest.raises(ValueError):module().signed_saved_probe(fit)
+
+
+def test_packet_assignment_change_detects_near_boundary_crossing_at_300_hz():
+    ends=np.arange(1,601)/300.
+    times=np.array([.5,1.5])
+    before=2/300+42e-9
+    after=before-.0009627539278715338
+    result=module().packet_assignment_change(times,ends,before,after)
+    assert result['receiver_epochs']==2
+    assert result['changed_packet_epochs']==2
+    assert result['minimum_boundary_distance_ns']==pytest.approx(42.,abs=.01)
+    assert result['maximum_boundary_distance_ns']==pytest.approx(42.,abs=.01)
+    assert result['offset_change_s']==pytest.approx(-.0009627539278715338)

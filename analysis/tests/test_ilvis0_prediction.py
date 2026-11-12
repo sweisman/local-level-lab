@@ -29,6 +29,19 @@ def test_training_inputs_exclude_withheld_positions_and_future_native_measuremen
     second=prediction().training_inputs(times,gps,values,.15)
     for a,b in zip(first,second): np.testing.assert_array_equal(a,b)
     assert not np.any(second[1]==999.)
+
+
+def test_training_inputs_support_explicit_earlier_cut_without_leakage():
+    times=np.arange(9,dtype=float)+.2
+    gps=np.zeros((9,3)); values=np.zeros((1000,15)); values[:,2]=.01
+    first=prediction().training_inputs(times,gps,values,.15,cut=3)
+    assert len(first[0])==3
+    assert len(first[2])==236
+    gps[3:]=999.; values[300:,9:]=999.
+    second=prediction().training_inputs(times,gps,values,.15,cut=3)
+    for a,b in zip(first,second): np.testing.assert_array_equal(a,b)
+    with pytest.raises(ValueError,match='cut'):
+        prediction().training_inputs(times,gps,values,.15,cut=9)
     assert not np.any(second[2]==999.)
 
 

@@ -1,8 +1,52 @@
 # Next gate: noisy calibration and later-position prediction
 
-The fixed-error adapter and efficient work accounting are software-qualified.
-The next gate tests the complete nonlinear estimator. It must not substitute
-component checks for accurate withheld predictions or calibrated uncertainty.
+The fixed-error adapter, rate-sample error generator and efficient work
+accounting are software-qualified. The connected short protocol also passes
+its software checks. The completed two-minute generated study predicts later
+positions within the physical limits in all 24 cases, but only 20 pass the
+numerical stopping checks and all 24 reach calibration bounds. Those results
+do not qualify prediction uncertainty. The earlier twenty-minute noisy study
+remains an accuracy failure. A separate
+[bounded-prediction component](../ilvis0-bounded-prediction-controls/README.md)
+and its [structured adapter](bounded-state-qualification/README.md) already
+pass generated software controls, including boundary cases. The
+remaining gate is to supply justified global nonlinear remainder bounds and a
+validated aircraft error law to that component, then test the complete
+estimator over longer noisy records. Component checks alone cannot establish
+withheld-prediction accuracy or calibrated uncertainty.
+
+A saved-only inspection of the closed twenty-minute noise study finds
+`gyro_gain_y` at its −1% lower bound and `time_offset` at its +10 ms upper
+bound in all 24 fits; `gravity_delta` reaches its lower bound in 18. The
+generator planted `gyro_gain_y` at ±0.15% and timing offset at ±0.7 ms,
+switching signs between processing cases. Both planted values are inside the
+fit bounds. The matched settings share one noise seed, so these counts are a
+diagnostic pattern, not 24 independent replications. Before changing a fit or
+error law, test why the fitted limits diverge from the known planted values
+and quantify their coupled effect on the missed horizontal accuracy screen.
+Do not widen bounds to make the existing failures pass.
+
+The existing saved-fit boundary diagnostic also finds an outward local descent
+direction at the active Y-gain and timing limits in **24/24** fits, and at the
+gravity lower limit in **18/18** fits that reach it. Thus these two ubiquitous
+bound hits are not explained merely by an optimizer stopping with an inward
+descent direction. A local gradient does not establish a global optimum or
+distinguish weak parameter identification from a mismatch in timing, motion or
+the declared error process. This check reads the closed fit artifacts and
+their frozen calibration reference; it performs no refits or new draws.
+
+The [source-bound known-calibration benchmark](../noisy-prediction-benchmark/README.md)
+already gives a stronger scale check: a **33.77 m** horizontal error scale
+for the declared 20-minute noise law, even with known starting
+state, calibration and nominal trajectory. That exceeds the failed study's
+10 m horizontal accuracy screen before fitting uncertainty is added. It is
+an expected error scale under assumed noise, not observed-aircraft coverage
+or a new acceptance rule. Preserve the original failed screen. Any replacement
+accuracy and uncertainty criteria belong in a separately frozen study fixed
+before its outcomes are inspected.
+The [matched realization diagnostic](../noisy-realization-attribution/PLAN.md)
+is the next bounded check of whether this particular noise draw or fitted
+calibration accounts for the larger observed misses.
 
 ## Match the generated input to its error model
 
@@ -13,21 +57,26 @@ bias directly into increments. Preserve that study and its results.
 For rate samples converted by the trapezoidal rule, generate noise at the sample
 points first. Neighboring intervals share an endpoint. Sampled changing bias
 must also be integrated by that same rule; it is different from an exact
-continuous-time bias integral. Qualify this independent generator against
-closed-form sample covariance and prefix-reproducibility controls before fitting.
+continuous-time bias integral. The completed generator checks compare against
+closed-form sample covariance and prefix-reproducibility controls.
 Point variance is an explicitly supplied squared-rate quantity, not a hardware
 specification or an automatic conversion from continuous white-noise PSD.
 
 Reserve all generated random variates before drawing. Use separate named
 streams for each sensor, white noise and changing bias. Extending the later
-record must preserve the earlier generated inputs exactly.
+record must preserve the earlier generated inputs exactly. The
+[qualified rate-point generator](rate-point-input-qualification/README.md)
+now checks this law; preserve that result rather than rerunning it.
 
 ## Qualify the complete prediction path
 
-First qualify short generated cases with all 26/27 calibration columns, each
-physical candidate, both processing assumptions and both input laws. Fit only
-earlier noisy measurements, freeze covariance from their declared midpoint
-anchor, and preserve Gaussian normalization. Keep raw forecasts separate from
+The [short native protocol](short-native-protocol-qualification/README.md)
+checks all 26/27 calibration columns, each physical candidate, both processing
+assumptions and both input laws. The
+[two-minute study](../structured-noisy-training/README.md) fits only earlier
+noisy measurements and freezes covariance at its declared midpoint anchor.
+Future studies must preserve Gaussian normalization and keep raw forecasts
+separate from
 earlier-error-conditioned forecasts. Score later physical truth only after
 both forecasts and their calibration binding have been saved.
 
@@ -54,12 +103,11 @@ before launch. Do not increase noise allowances or calibration bounds after
 seeing outcomes. No aircraft measurements or protected flight groups enter
 these software gates.
 
-The initial source-law gate permits at most 24 new deterministic checks plus
-affected noise regressions, one thread, zero native builds/calls and no optimizer
-starts. Random samples occur only in explicit finite test fixtures with a
-precharged variate count. The native fitting matrix and long-run resource
-definition require their own subsequent freezes; this page does not release
-an unbounded campaign.
+The initial source-law gate has closed. Its finite allowance and saved result
+remain historical. The native remainder/error-law connection and the
+long-duration gate each require a separate finite freeze of starts, source,
+environment and work; this
+page does not release an unbounded campaign.
 
 [Training adapter](training-adapter-qualification/README.md) ·
 [Work accounting](prepaid-native-qualification/README.md) ·

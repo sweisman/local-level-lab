@@ -42,7 +42,7 @@ def tasks():
 def construct(case,*,method,rate_hz,reserve,chunk_size=4096):
     import numpy as np
     from lll.airquantumgrav_increments import IntervalStream
-    if (method not in METHODS or type(rate_hz) is not int or rate_hz not in (300,600)
+    if (method not in METHODS or type(rate_hz) is not int or rate_hz not in (200,300,600)
             or not callable(reserve) or type(chunk_size) is not int or not 1<=chunk_size<=65536):
         raise ValueError('declared sampling, rate, charge callback and chunk size required')
     t=np.asarray(case['times'],float);w=np.asarray(case['angular_rate_rads'],float)
@@ -51,7 +51,8 @@ def construct(case,*,method,rate_hz,reserve,chunk_size=4096):
             or any(not np.all(np.isfinite(v)) for v in (t,w,f))):
         raise ValueError('complete finite original generated time/rate/force samples required')
     reserve(constructed_intervals=n-1)
-    stream=IntervalStream(method=method);theta=np.empty((n-1,3));dv=np.empty_like(theta);dt=np.empty(n-1);index=0
+    stream=IntervalStream(method=method,maximum_gap_s=1.5/rate_hz)
+    theta=np.empty((n-1,3));dv=np.empty_like(theta);dt=np.empty(n-1);index=0
     for start in range(0,n,chunk_size):
         rows=(dict(gps_time_s=float(t[i]),angular_rate_rads=w[i].tolist(),acceleration_mps2=f[i].tolist())
               for i in range(start,min(n,start+chunk_size)))

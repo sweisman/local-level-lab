@@ -2,6 +2,12 @@
 
 The 53 selected archive stretches form **27 conservative split groups**. These groups keep same-date observations, byte aliases, overlapping intervals and candidate shared legs together. They are not 27 verified independent flights or installations.
 
+Eleven groups contain one selected recording, six contain two, and ten contain
+three. Two groups include both IMU types 8 and 21. All 27 groups contain only
+globe-preferred stretches in the [completed numerical comparison](../CURRENT_STATUS.md),
+but repeated recordings within a group are not separate votes and this count
+is not a calibrated confidence level.
+
 The nine cataloged ESA files form **8 conservative date/file groups**: one development group (recording 187) and **7 protected confirmation groups**. Reported flight labels sharing a file stay together. Model outcomes from protected groups remain unexamined.
 
 [Every recording/stretch](recording-groups.csv) · [Every split group](groups.csv) · [Complete relationship graph](ledger.json) · [Execution roadmap](../ANALYSIS_ROADMAP.md).

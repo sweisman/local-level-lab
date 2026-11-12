@@ -6,7 +6,8 @@ import math
 def train_and_forecast(*,theta,dv,dt,times,training_rows,time_origin_s,model,profile,
                        policy_id,start,limits,maximum_evaluations,maximum_interval_s,
                        kernel,tangent_kernel,reserve,save,check_continue,
-                       training_error_factory=None,forecast_error_diagnostic=None):
+                       training_error_factory=None,forecast_error_diagnostic=None,
+                       clock='header_elapsed'):
     import numpy as np
     from lll.airquantumgrav_error_policy import build
     from lll.ilvis0_training_forecast import training_problem,fit_training
@@ -16,7 +17,8 @@ def train_and_forecast(*,theta,dv,dt,times,training_rows,time_origin_s,model,pro
     if (model not in MODELS or type(profile) is not bool or type(start) is not int or start not in (0,1)
             or type(maximum_evaluations) is not int or not 8<=maximum_evaluations<=200
             or not math.isfinite(time_origin_s) or not 0<=time_origin_s<604800
-            or not math.isfinite(maximum_interval_s) or not 0<maximum_interval_s<=.005
+            or clock not in ('header_elapsed','nominal_200Hz')
+            or not math.isfinite(maximum_interval_s) or not 0<maximum_interval_s<=.0075
             or (training_error_factory is not None and not callable(training_error_factory))
             or (forecast_error_diagnostic is not None and
                 (not callable(forecast_error_diagnostic) or training_error_factory is None))):
@@ -39,11 +41,11 @@ def train_and_forecast(*,theta,dv,dt,times,training_rows,time_origin_s,model,pro
     if training_error_factory is None:
         covariance=weight.dense(maximum_epochs=1024)
         problem=training_problem(times[:cut],gps,theta=theta[:count],dv=dv[:count],dt=dt[:count],covariance=covariance,
-            model=model,limits=limits,profile=profile,clock='header_elapsed',maximum_interval_s=maximum_interval_s,
+            model=model,limits=limits,profile=profile,clock=clock,maximum_interval_s=maximum_interval_s,
             kernel=kernel,tangent_kernel=tangent_kernel)
     else:
         problem=training_error_factory(times[:cut],gps,theta=theta[:count],dv=dv[:count],dt=dt[:count],
-            model=model,limits=limits,profile=profile,clock='header_elapsed',maximum_interval_s=maximum_interval_s,
+            model=model,limits=limits,profile=profile,clock=clock,maximum_interval_s=maximum_interval_s,
             kernel=kernel,tangent_kernel=tangent_kernel,training_weight=weight,
             time_origin_s=time_origin_s,reserve=reserve)
         if (getattr(problem,'observation_error',None) is None

@@ -109,10 +109,16 @@ channel fitting. Independent [quantization/period controls](QUANTIZATION.md)
 pass 17 checks; their deterministic bounds are not a statistical error model or
 a continuous-force upper bound.
 
+The [receiver-only support selector](SUPPORT_POLICY.md) and timed-GGA motion
+adapter now pass 21 software checks. They record every candidate window and
+choose the longest one meeting explicitly supplied motion limits, identically
+for all physical models. No flight-specific threshold or recorded interval has
+been frozen; this does not qualify a new observed-data fit.
+
 1. Preserve the completed exact-trajectory controls, including indistinguishable
    stationary cases and every incorrect-model outcome. They qualify the force
    calculation, not a recorded-data likelihood.
-2. Assess receiver-trajectory approximation and propagate its joint uncertainty
+2. Freeze a receiver-only support policy, assess trajectory approximation and propagate its joint uncertainty
    through force and magnitude. Specify shared calibration freedoms, raw-increment
    averaging, synchronization and initialization dependencies. Noise in differentiated
    positions must not be treated as an exact force observation.

@@ -21,10 +21,13 @@ def split(times):
         selection='first floor(2*N/3) epochs train; remaining epochs predict')
 
 
-def training_inputs(times,gps,values,time_offset_limit):
+def training_inputs(times,gps,values,time_offset_limit,*,cut=None):
     """Pass only the training GPS and prefix needed for its native timing support."""
     t=np.asarray(times,dtype=float); g=np.asarray(gps,dtype=float); v=np.asarray(values,dtype=float)
-    cut=split(t)['training_epochs']
+    default_cut=split(t)['training_epochs']
+    cut=default_cut if cut is None else cut
+    if type(cut) is not int or not 0<cut<len(t):
+        raise ValueError('valid earlier training cut required')
     if (g.shape!=(len(t),3) or not np.all(np.isfinite(g)) or v.ndim!=2 or v.shape[1]!=15
         or not np.all(np.isfinite(v)) or np.any(v[:,2]<=0)
         or not math.isfinite(time_offset_limit) or time_offset_limit<0):

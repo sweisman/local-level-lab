@@ -26,6 +26,14 @@ The numbers above are chosen sensitivity cases, not sensor specifications,
 estimated error bars or guaranteed bounds. They are set before examining any
 ESA model preference. A common preferred geometry across these cases would
 show robustness to these choices, not establish statistical significance.
+The [saved forecast comparison](esa-prediction-error-scale/README.md) checks
+all available development forecasts against receiver-reported precision at
+matching epochs. Later IMU-based prediction error is much larger, confirming
+that receiver precision is only one part of the required forecast error model.
+The [saved error-dependence check](esa-prediction-error-scale/CORRELATION.md)
+measures the later combined forecast errors. Their strong time dependence is
+not a measurement of receiver error alone and does not validate either
+working covariance case above.
 
 ## Frames and data boundaries
 

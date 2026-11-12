@@ -76,11 +76,23 @@ progress counts, session histories, personal commentary or process IDs.
   Completion records take precedence over stale progress snapshots.
   Recorded worker PIDs may be namespace-local; verify process identity before
   using them for host-level inspection or any separately authorized signal.
-- Never restart completed studies, duplicate workers, edit active frozen
-  dependencies or mix source/input/environment versions. Resume only unfinished,
-  unchanged work after verifying its hashes and saved results.
+- Never restart completed tasks or studies, duplicate workers, edit active frozen
+  dependencies or mix source/input/environment versions. Resume unfinished,
+  unchanged work only after verifying its hashes, charges and saved results.
 - Charge starts and evaluations before execution. Interrupted starts remain charged;
-  never reset allowances or retry failures to improve outcomes. Preserve failures.
+  never reset allowances or rerun completed numerical failures to improve outcomes.
+  Preserve failures.
+- Every new long-running study must qualify and freeze task-level technical
+  recovery before launch. Reuse sealed completed results, including numerical
+  failures; recover only unfinished work under separately charged finite limits
+  with unchanged scientific inputs, method and environment. Prove reboot/worker
+  interruption recovery in a finite test. Assume the notebook can reboot
+  unpredictably: provide an idempotent resume command that verifies evidence,
+  charges and leases before scheduling work. If recovery is unavailable, do not
+  launch the long-running study. Preserve existing frozen runs and report their
+  actual outcomes; do not retroactively rewrite their rules.
+- Keep recovery files until verified closure, then remove only inventoried scratch
+  or verified duplicate copies. Preserve final evidence, originals and failures.
 - Detached workers must survive short-lived command sandboxes. Preserve durable
   journals, atomic hashed outputs and exclusive locks. Packaging must never refit.
 - Serialize archive catalog mutations. Wait for publication packing and compaction
@@ -92,6 +104,12 @@ progress counts, session histories, personal commentary or process IDs.
 - Use `~/venv/bin/python analysis/status.py` for status, with `--json` or
   `--study data/<study>` as needed. Maintain its registry rather than creating
   one-off status scripts. Keep live state in worker metadata.
+- Routine status checks need no approval. Use local progress journals and the
+  canonical status command. Reserve host-service queries that require sandbox
+  escalation for ambiguous lifecycle problems; do not request them on a timer.
+- User-facing run updates include completed/total fits, passing fits and errors.
+  State which phase is running and keep provisional progress separate from
+  whole-campaign qualification.
 
 ## Scientific integrity
 

@@ -59,6 +59,31 @@ def packet_screen(times,packet_count,offset_s,time_scale_s):
         upper_normalized_time_step=float(np.min(right)/time_scale_s))
 
 
+def packet_assignment_change(times,ends,offset_before_s,offset_after_s):
+    """Compare saved receiver-query packet assignments without native fitting."""
+    times=np.asarray(times,float);ends=np.asarray(ends,float)
+    if (times.ndim!=1 or ends.ndim!=1 or not len(times) or not len(ends)
+            or not np.all(np.isfinite(times)) or not np.all(np.isfinite(ends))
+            or np.any(np.diff(times)<=0) or np.any(np.diff(ends)<=0)
+            or ends[0]<=0 or not np.isfinite(offset_before_s)
+            or not np.isfinite(offset_after_s)):
+        raise ValueError('finite ordered queries and packet ends required')
+    before=times+offset_before_s;after=times+offset_after_s
+    if (min(np.min(before),np.min(after))<0 or
+            max(np.max(before),np.max(after))>ends[-1]):
+        raise ValueError('queries outside saved packet support')
+    first=np.searchsorted(ends,before,side='left')
+    second=np.searchsorted(ends,after,side='left')
+    starts=np.r_[0.,ends[:-1]]
+    distance=np.minimum(before-starts[first],ends[first]-before)
+    return dict(receiver_epochs=len(times),
+                changed_packet_epochs=int(np.sum(first!=second)),
+                minimum_boundary_distance_ns=float(np.min(distance)*1e9),
+                maximum_boundary_distance_ns=float(np.max(distance)*1e9),
+                offset_change_s=float(offset_after_s-offset_before_s),
+                native_predictions=0,observed_fit_starts=0)
+
+
 def affine_slices(point,residual,jac,time_index,lower_time,upper_time):
     point,residual,jac=map(lambda x:np.asarray(x,float),(point,residual,jac))
     if (jac.shape!=(len(residual),len(point)) or not 0<=time_index<len(point)

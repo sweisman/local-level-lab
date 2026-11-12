@@ -1,0 +1,581 @@
+{
+  "forecasts": 22,
+  "native_calls": 0,
+  "original_reads": 0,
+  "parent": "docs/esa-observed-wide-pilot",
+  "parent_manifest_sha256": "73aa91117d60ca191f614f0fe826167e8b237fcff320b7676e2f505fd1bf6289",
+  "parent_summary_sha256": "2ce3ae7c4e48adb8d5d3048316a68d88a3015ff1528a3515bb212d1081e15f31",
+  "protected_reads": 0,
+  "reporter_sha256": "988b9efe2cbd8777f67962169066e78097e3481e77a20a1ca2581cff8999c247",
+  "scientific_decision": "abstain",
+  "scoring_sha256": "5cce2704433e7dece8eec336882692e15194d6c882d8e2bd7efa67265a172c2b",
+  "tasks": [
+    {
+      "forecast_available": true,
+      "identity": "sphere_rotating-0-reported-short-v1-0",
+      "metrics": {
+        "east": {
+          "error_rms_m": 5.6499009831609825,
+          "median_abs_error_over_sigma": 161.15222533894126,
+          "median_receiver_sigma_m": 0.019500128201402657
+        },
+        "height": {
+          "error_rms_m": 13.372589087748938,
+          "median_abs_error_over_sigma": 181.12192613007176,
+          "median_receiver_sigma_m": 0.0448626236406473
+        },
+        "north": {
+          "error_rms_m": 5.381551655188555,
+          "median_abs_error_over_sigma": 63.42305136038901,
+          "median_receiver_sigma_m": 0.03035954543906371
+        },
+        "prediction_epochs": 400,
+        "scientific_decision": "abstain"
+      },
+      "passed": true,
+      "status": "complete"
+    },
+    {
+      "forecast_available": true,
+      "identity": "sphere_rotating-0-reported-short-v1-1",
+      "metrics": {
+        "east": {
+          "error_rms_m": 5.649900953985625,
+          "median_abs_error_over_sigma": 161.15222431248782,
+          "median_receiver_sigma_m": 0.019500128201402657
+        },
+        "height": {
+          "error_rms_m": 13.372589123908861,
+          "median_abs_error_over_sigma": 181.12192667359798,
+          "median_receiver_sigma_m": 0.0448626236406473
+        },
+        "north": {
+          "error_rms_m": 5.381551643287624,
+          "median_abs_error_over_sigma": 63.42305126683394,
+          "median_receiver_sigma_m": 0.03035954543906371
+        },
+        "prediction_epochs": 400,
+        "scientific_decision": "abstain"
+      },
+      "passed": true,
+      "status": "complete"
+    },
+    {
+      "forecast_available": true,
+      "identity": "sphere_rotating-0-reported-persistent-v1-0",
+      "metrics": {
+        "east": {
+          "error_rms_m": 5.209637186356626,
+          "median_abs_error_over_sigma": 133.18505675723227,
+          "median_receiver_sigma_m": 0.019500128201402657
+        },
+        "height": {
+          "error_rms_m": 13.712594831655819,
+          "median_abs_error_over_sigma": 184.19788476504542,
+          "median_receiver_sigma_m": 0.0448626236406473
+        },
+        "north": {
+          "error_rms_m": 4.362967985048043,
+          "median_abs_error_over_sigma": 53.10262773809643,
+          "median_receiver_sigma_m": 0.03035954543906371
+        },
+        "prediction_epochs": 400,
+        "scientific_decision": "abstain"
+      },
+      "passed": true,
+      "status": "complete"
+    },
+    {
+      "forecast_available": true,
+      "identity": "sphere_rotating-0-reported-persistent-v1-1",
+      "metrics": {
+        "east": {
+          "error_rms_m": 5.209637333382478,
+          "median_abs_error_over_sigma": 133.18506151839205,
+          "median_receiver_sigma_m": 0.019500128201402657
+        },
+        "height": {
+          "error_rms_m": 13.712594849897522,
+          "median_abs_error_over_sigma": 184.19788533222396,
+          "median_receiver_sigma_m": 0.0448626236406473
+        },
+        "north": {
+          "error_rms_m": 4.362968221900047,
+          "median_abs_error_over_sigma": 53.10263173759372,
+          "median_receiver_sigma_m": 0.03035954543906371
+        },
+        "prediction_epochs": 400,
+        "scientific_decision": "abstain"
+      },
+      "passed": true,
+      "status": "complete"
+    },
+    {
+      "forecast_available": true,
+      "identity": "sphere_rotating-1-reported-short-v1-0",
+      "metrics": {
+        "east": {
+          "error_rms_m": 5.649907387586249,
+          "median_abs_error_over_sigma": 161.15245019522118,
+          "median_receiver_sigma_m": 0.019500128201402657
+        },
+        "height": {
+          "error_rms_m": 13.372597948716802,
+          "median_abs_error_over_sigma": 181.12206203778283,
+          "median_receiver_sigma_m": 0.0448626236406473
+        },
+        "north": {
+          "error_rms_m": 5.381550905321778,
+          "median_abs_error_over_sigma": 63.42299861870227,
+          "median_receiver_sigma_m": 0.03035954543906371
+        },
+        "prediction_epochs": 400,
+        "scientific_decision": "abstain"
+      },
+      "passed": true,
+      "status": "complete"
+    },
+    {
+      "forecast_available": true,
+      "identity": "sphere_rotating-1-reported-short-v1-1",
+      "metrics": {
+        "east": {
+          "error_rms_m": 5.649907379568659,
+          "median_abs_error_over_sigma": 161.1524499109725,
+          "median_receiver_sigma_m": 0.019500128201402657
+        },
+        "height": {
+          "error_rms_m": 13.372597958935797,
+          "median_abs_error_over_sigma": 181.12206217110435,
+          "median_receiver_sigma_m": 0.0448626236406473
+        },
+        "north": {
+          "error_rms_m": 5.381550910944115,
+          "median_abs_error_over_sigma": 63.4229987356279,
+          "median_receiver_sigma_m": 0.03035954543906371
+        },
+        "prediction_epochs": 400,
+        "scientific_decision": "abstain"
+      },
+      "passed": true,
+      "status": "complete"
+    },
+    {
+      "forecast_available": true,
+      "identity": "sphere_rotating-1-reported-persistent-v1-0",
+      "metrics": {
+        "east": {
+          "error_rms_m": 5.209637333293841,
+          "median_abs_error_over_sigma": 133.18506151839205,
+          "median_receiver_sigma_m": 0.019500128201402657
+        },
+        "height": {
+          "error_rms_m": 13.712594849045802,
+          "median_abs_error_over_sigma": 184.19788531917567,
+          "median_receiver_sigma_m": 0.0448626236406473
+        },
+        "north": {
+          "error_rms_m": 4.3629682220000126,
+          "median_abs_error_over_sigma": 53.10263173759372,
+          "median_receiver_sigma_m": 0.03035954543906371
+        },
+        "prediction_epochs": 400,
+        "scientific_decision": "abstain"
+      },
+      "passed": true,
+      "status": "complete"
+    },
+    {
+      "forecast_available": true,
+      "identity": "sphere_rotating-1-reported-persistent-v1-1",
+      "metrics": {
+        "east": {
+          "error_rms_m": 5.2096371307093055,
+          "median_abs_error_over_sigma": 133.1850551464899,
+          "median_receiver_sigma_m": 0.019500128201402657
+        },
+        "height": {
+          "error_rms_m": 13.712594581089428,
+          "median_abs_error_over_sigma": 184.19788074518937,
+          "median_receiver_sigma_m": 0.0448626236406473
+        },
+        "north": {
+          "error_rms_m": 4.362968048599428,
+          "median_abs_error_over_sigma": 53.102628907534765,
+          "median_receiver_sigma_m": 0.03035954543906371
+        },
+        "prediction_epochs": 400,
+        "scientific_decision": "abstain"
+      },
+      "passed": true,
+      "status": "complete"
+    },
+    {
+      "forecast_available": true,
+      "identity": "sphere_still-0-reported-short-v1-0",
+      "metrics": {
+        "east": {
+          "error_rms_m": 4198.132649151626,
+          "median_abs_error_over_sigma": 145344.600716679,
+          "median_receiver_sigma_m": 0.019500128201402657
+        },
+        "height": {
+          "error_rms_m": 1230.0016358880443,
+          "median_abs_error_over_sigma": 20939.554911571337,
+          "median_receiver_sigma_m": 0.0448626236406473
+        },
+        "north": {
+          "error_rms_m": 766.2859258253587,
+          "median_abs_error_over_sigma": 15385.43974621854,
+          "median_receiver_sigma_m": 0.03035954543906371
+        },
+        "prediction_epochs": 400,
+        "scientific_decision": "abstain"
+      },
+      "passed": true,
+      "status": "complete"
+    },
+    {
+      "forecast_available": true,
+      "identity": "sphere_still-0-reported-short-v1-1",
+      "metrics": {
+        "east": {
+          "error_rms_m": 4198.134304762157,
+          "median_abs_error_over_sigma": 145344.66250558186,
+          "median_receiver_sigma_m": 0.019500128201402657
+        },
+        "height": {
+          "error_rms_m": 1230.0005755303118,
+          "median_abs_error_over_sigma": 20939.538165004276,
+          "median_receiver_sigma_m": 0.0448626236406473
+        },
+        "north": {
+          "error_rms_m": 766.285626229882,
+          "median_abs_error_over_sigma": 15385.438309063655,
+          "median_receiver_sigma_m": 0.03035954543906371
+        },
+        "prediction_epochs": 400,
+        "scientific_decision": "abstain"
+      },
+      "passed": true,
+      "status": "complete"
+    },
+    {
+      "forecast_available": true,
+      "identity": "sphere_still-0-reported-persistent-v1-0",
+      "metrics": {
+        "east": {
+          "error_rms_m": 3705.0318874199756,
+          "median_abs_error_over_sigma": 123891.89284106795,
+          "median_receiver_sigma_m": 0.019500128201402657
+        },
+        "height": {
+          "error_rms_m": 671.1470533328531,
+          "median_abs_error_over_sigma": 11630.491502448604,
+          "median_receiver_sigma_m": 0.0448626236406473
+        },
+        "north": {
+          "error_rms_m": 164.65112559781915,
+          "median_abs_error_over_sigma": 3138.517231511894,
+          "median_receiver_sigma_m": 0.03035954543906371
+        },
+        "prediction_epochs": 400,
+        "scientific_decision": "abstain"
+      },
+      "passed": true,
+      "status": "complete"
+    },
+    {
+      "forecast_available": true,
+      "identity": "sphere_still-0-reported-persistent-v1-1",
+      "metrics": {
+        "east": {
+          "error_rms_m": 3705.031882866988,
+          "median_abs_error_over_sigma": 123891.89266717104,
+          "median_receiver_sigma_m": 0.019500128201402657
+        },
+        "height": {
+          "error_rms_m": 671.1470579576442,
+          "median_abs_error_over_sigma": 11630.491574460808,
+          "median_receiver_sigma_m": 0.0448626236406473
+        },
+        "north": {
+          "error_rms_m": 164.65112541120902,
+          "median_abs_error_over_sigma": 3138.5172020420114,
+          "median_receiver_sigma_m": 0.03035954543906371
+        },
+        "prediction_epochs": 400,
+        "scientific_decision": "abstain"
+      },
+      "passed": true,
+      "status": "complete"
+    },
+    {
+      "forecast_available": true,
+      "identity": "sphere_still-1-reported-short-v1-0",
+      "metrics": {
+        "east": {
+          "error_rms_m": 4198.1327025683795,
+          "median_abs_error_over_sigma": 145344.60271024765,
+          "median_receiver_sigma_m": 0.019500128201402657
+        },
+        "height": {
+          "error_rms_m": 1230.0016016763825,
+          "median_abs_error_over_sigma": 20939.554371256614,
+          "median_receiver_sigma_m": 0.0448626236406473
+        },
+        "north": {
+          "error_rms_m": 766.2859161574448,
+          "median_abs_error_over_sigma": 15385.439699791566,
+          "median_receiver_sigma_m": 0.03035954543906371
+        },
+        "prediction_epochs": 400,
+        "scientific_decision": "abstain"
+      },
+      "passed": true,
+      "status": "complete"
+    },
+    {
+      "forecast_available": true,
+      "identity": "sphere_still-1-reported-short-v1-1",
+      "metrics": {
+        "east": {
+          "error_rms_m": 4198.1342699787165,
+          "median_abs_error_over_sigma": 145344.66120743498,
+          "median_receiver_sigma_m": 0.019500128201402657
+        },
+        "height": {
+          "error_rms_m": 1230.000597807381,
+          "median_abs_error_over_sigma": 20939.538516833138,
+          "median_receiver_sigma_m": 0.0448626236406473
+        },
+        "north": {
+          "error_rms_m": 766.2856325224512,
+          "median_abs_error_over_sigma": 15385.438339188568,
+          "median_receiver_sigma_m": 0.03035954543906371
+        },
+        "prediction_epochs": 400,
+        "scientific_decision": "abstain"
+      },
+      "passed": true,
+      "status": "complete"
+    },
+    {
+      "forecast_available": true,
+      "identity": "sphere_still-1-reported-persistent-v1-0",
+      "metrics": {
+        "east": {
+          "error_rms_m": 3705.031891828192,
+          "median_abs_error_over_sigma": 123891.89300942988,
+          "median_receiver_sigma_m": 0.019500128201402657
+        },
+        "height": {
+          "error_rms_m": 671.1470488550154,
+          "median_abs_error_over_sigma": 11630.491432723771,
+          "median_receiver_sigma_m": 0.0448626236406473
+        },
+        "north": {
+          "error_rms_m": 164.65112577863798,
+          "median_abs_error_over_sigma": 3138.5172600462256,
+          "median_receiver_sigma_m": 0.03035954543906371
+        },
+        "prediction_epochs": 400,
+        "scientific_decision": "abstain"
+      },
+      "passed": true,
+      "status": "complete"
+    },
+    {
+      "forecast_available": true,
+      "identity": "sphere_still-1-reported-persistent-v1-1",
+      "metrics": {
+        "east": {
+          "error_rms_m": 3705.0318871185623,
+          "median_abs_error_over_sigma": 123891.89282954799,
+          "median_receiver_sigma_m": 0.019500128201402657
+        },
+        "height": {
+          "error_rms_m": 671.1470536389148,
+          "median_abs_error_over_sigma": 11630.49150721385,
+          "median_receiver_sigma_m": 0.0448626236406473
+        },
+        "north": {
+          "error_rms_m": 164.65112558552417,
+          "median_abs_error_over_sigma": 3138.517229547237,
+          "median_receiver_sigma_m": 0.03035954543906371
+        },
+        "prediction_epochs": 400,
+        "scientific_decision": "abstain"
+      },
+      "passed": true,
+      "status": "complete"
+    },
+    {
+      "forecast_available": true,
+      "identity": "flat_still-0-reported-short-v1-0",
+      "metrics": {
+        "east": {
+          "error_rms_m": 7942.825895972678,
+          "median_abs_error_over_sigma": 285396.6074506722,
+          "median_receiver_sigma_m": 0.019500128201402657
+        },
+        "height": {
+          "error_rms_m": 1906.5406530557834,
+          "median_abs_error_over_sigma": 32136.047500404333,
+          "median_receiver_sigma_m": 0.0448626236406473
+        },
+        "north": {
+          "error_rms_m": 2754.924842025605,
+          "median_abs_error_over_sigma": 66037.74639314535,
+          "median_receiver_sigma_m": 0.03035954543906371
+        },
+        "prediction_epochs": 400,
+        "scientific_decision": "abstain"
+      },
+      "passed": true,
+      "status": "complete"
+    },
+    {
+      "forecast_available": true,
+      "identity": "flat_still-0-reported-short-v1-1",
+      "metrics": {
+        "east": {
+          "error_rms_m": 7942.840805895624,
+          "median_abs_error_over_sigma": 285397.1620903249,
+          "median_receiver_sigma_m": 0.019500128201402657
+        },
+        "height": {
+          "error_rms_m": 1906.5404688939109,
+          "median_abs_error_over_sigma": 32136.044334790917,
+          "median_receiver_sigma_m": 0.0448626236406473
+        },
+        "north": {
+          "error_rms_m": 2754.889229929615,
+          "median_abs_error_over_sigma": 66036.82179465197,
+          "median_receiver_sigma_m": 0.03035954543906371
+        },
+        "prediction_epochs": 400,
+        "scientific_decision": "abstain"
+      },
+      "passed": true,
+      "status": "complete"
+    },
+    {
+      "forecast_available": true,
+      "identity": "flat_still-0-reported-persistent-v1-0",
+      "metrics": {
+        "east": {
+          "error_rms_m": 7323.910776351602,
+          "median_abs_error_over_sigma": 253073.13538139488,
+          "median_receiver_sigma_m": 0.019500128201402657
+        },
+        "height": {
+          "error_rms_m": 782.0898773379863,
+          "median_abs_error_over_sigma": 13720.239502421988,
+          "median_receiver_sigma_m": 0.0448626236406473
+        },
+        "north": {
+          "error_rms_m": 738.9647159954856,
+          "median_abs_error_over_sigma": 18764.893084611973,
+          "median_receiver_sigma_m": 0.03035954543906371
+        },
+        "prediction_epochs": 400,
+        "scientific_decision": "abstain"
+      },
+      "passed": true,
+      "status": "complete"
+    },
+    {
+      "forecast_available": true,
+      "identity": "flat_still-0-reported-persistent-v1-1",
+      "metrics": {
+        "east": {
+          "error_rms_m": 7323.904830277083,
+          "median_abs_error_over_sigma": 253072.91502402924,
+          "median_receiver_sigma_m": 0.019500128201402657
+        },
+        "height": {
+          "error_rms_m": 782.0871410316153,
+          "median_abs_error_over_sigma": 13720.195899186747,
+          "median_receiver_sigma_m": 0.0448626236406473
+        },
+        "north": {
+          "error_rms_m": 738.9864886546453,
+          "median_abs_error_over_sigma": 18765.419966667116,
+          "median_receiver_sigma_m": 0.03035954543906371
+        },
+        "prediction_epochs": 400,
+        "scientific_decision": "abstain"
+      },
+      "passed": true,
+      "status": "complete"
+    },
+    {
+      "forecast_available": false,
+      "identity": "flat_still-1-reported-short-v1-0",
+      "metrics": null,
+      "passed": false,
+      "reason": "original cooperative deadline exhausted",
+      "status": "complete"
+    },
+    {
+      "forecast_available": false,
+      "identity": "flat_still-1-reported-short-v1-1",
+      "metrics": null,
+      "passed": false,
+      "reason": "original cooperative deadline exhausted",
+      "status": "complete"
+    },
+    {
+      "forecast_available": true,
+      "identity": "flat_still-1-reported-persistent-v1-0",
+      "metrics": {
+        "east": {
+          "error_rms_m": 7323.915373418159,
+          "median_abs_error_over_sigma": 253073.30283421816,
+          "median_receiver_sigma_m": 0.019500128201402657
+        },
+        "height": {
+          "error_rms_m": 782.0848614341892,
+          "median_abs_error_over_sigma": 13720.159638937635,
+          "median_receiver_sigma_m": 0.0448626236406473
+        },
+        "north": {
+          "error_rms_m": 738.9651722362261,
+          "median_abs_error_over_sigma": 18764.92069585235,
+          "median_receiver_sigma_m": 0.03035954543906371
+        },
+        "prediction_epochs": 400,
+        "scientific_decision": "abstain"
+      },
+      "passed": true,
+      "status": "complete"
+    },
+    {
+      "forecast_available": true,
+      "identity": "flat_still-1-reported-persistent-v1-1",
+      "metrics": {
+        "east": {
+          "error_rms_m": 7323.9110456360595,
+          "median_abs_error_over_sigma": 253073.1449474286,
+          "median_receiver_sigma_m": 0.019500128201402657
+        },
+        "height": {
+          "error_rms_m": 782.089076887296,
+          "median_abs_error_over_sigma": 13720.226897332597,
+          "median_receiver_sigma_m": 0.0448626236406473
+        },
+        "north": {
+          "error_rms_m": 738.9661907051052,
+          "median_abs_error_over_sigma": 18764.931229602065,
+          "median_receiver_sigma_m": 0.03035954543906371
+        },
+        "prediction_epochs": 400,
+        "scientific_decision": "abstain"
+      },
+      "passed": true,
+      "status": "complete"
+    }
+  ],
+  "total": 24
+}

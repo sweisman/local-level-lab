@@ -18,6 +18,13 @@ The 53 stretches favor globe geometry and the model with a specified background
 rotation signal. These are completed model comparisons. Statistical confidence,
 prediction accuracy and independence between recordings still need testing.
 
+The latest [96-recording generated whole-period check](prediction-simultaneous-law-family-v2/RESULT.md)
+closed every task. Both intervals covered every later coordinate in its 92
+scored recordings; four tasks stopped at the original time limit. Those four
+count as failures, so the 5% coverage gate failed. Observed-flight prediction
+intervals remain unqualified. The next method step is a separately frozen
+runtime and coverage check, without rerunning sealed failures.
+
 ## Next: test predictions on unused measurements
 
 The [revised prediction protocol](PREDICTION_VALIDATION.md) separates a practical
@@ -38,6 +45,65 @@ later horizontal RMS is 0.84–1.13 m for specified-field globe, about 496 m for
 zero-field globe and 793 m for disc. Two other recordings retain numerical or
 accuracy failures. Broader validation remains open. These are retrospective
 development tests; reserved ESA groups stay protected.
+The [saved receiver-only control](receiver-only-forecast-baseline/INTERPRETATION.md)
+uses the same three withheld periods with no IMU input. Its constant-velocity
+horizontal errors are 87–351 m. A [spherical-path receiver control](receiver-only-geodesic-control/INTERPRETATION.md)
+reduces those errors to 33–189 m. On the northern complete comparison, the
+IMU forecasts remain much closer than either fixed receiver-only rule. A
+gyro-specific channel ablation and calibrated adequacy remain open.
+
+The [saved receiver-precision comparison](receiver-precision-holdout/README.md)
+matches every pilot epoch to the same receiver's precision report. Of 36
+settings, 28 have a numerically qualified start chosen from earlier data only.
+The specified-field globe passes the pilot's uncalibrated accuracy screen in
+seven of its nine qualified settings, but even its median later errors are
+about four times the receiver-reported horizontal precision and eleven times
+the height precision. The receiver estimates are not a full prediction-error
+budget; observed-aircraft adequacy and uncertainty calibration remain open.
+Across the nine qualified specified-field globe settings, a straight time
+trend explains a median 95.7–97.4% of centered later-error variation by axis.
+This describes already observed errors; the slope was not known from training.
+The [fixed training-only drift check](prediction-drift-control/README.md)
+tests that missing step. Its straight-line correction worsens seven of nine
+qualified specified-field globe forecasts and improves the alternatives,
+which still miss by hundreds of metres. A deterministic residual line is not
+a qualified replacement for the combined error model.
+The [next error-law gate](PREDICTION_ERROR_LAW_PLAN.md) first tests
+identification and later-error coverage on known-answer controls. Any adjustable
+quantities must come from earlier observations; protected confirmation groups
+remain closed until the method and flight groups are frozen.
+A twelve-case short native aircraft matrix now completes fits and saves
+separate physical-position and future-receiver uncertainty targets before
+later truth. It covers three models, both processing cases and two synthetic
+IMU input-error forms. The source-bound clock/calibration matrix and coverage
+test are next.
+A separate exact-period 200 Hz generated path now passes native training under
+both declared clocks. A separate deterministic packet-time disturbance keeps
+the generated IMU increments and receiver reports fixed; the two native
+forecasts then differ. The actual archive clock is not established by this
+software control.
+The [24-case generated-aircraft uncertainty check](bounded-calibration-prediction/NONLINEAR_RESULT.md)
+is complete. All 24 technical cases and withheld-position accuracy screens
+pass; one fit fails its numerical stopping check, so the combined gate is
+23/24. The bounded intervals contain every tested coordinate but are broad;
+this development matrix does not establish calibrated nonlinear coverage.
+The [saved diagnosis](bounded-calibration-prediction/NONLINEAR_DIAGNOSIS.md)
+shows its proposed timing step crosses packet boundaries for all 79 training
+queries. A short clean control finds negligible error across such a boundary,
+so the long noisy case received a [finite targeted timing probe](bounded-calibration-prediction/TIMING_PROBE_RESULT.md).
+Its sealed values show that timing-only changes follow the tangent; the
+coupled calibration/timing direction remains unresolved, and the probe's
+technical wrapper is terminal. The separate
+[48-case independent-seed check](bounded-calibration-prediction/INDEPENDENT_SEEDS_RESULT.md)
+now passes every numerical and withheld-position gate on two new noise draws
+per condition. Its broad bounds contain every tested coordinate. It does not
+calibrate 95% coverage or establish an observed-aircraft error claim.
+The [saved ESA precision check](esa-prediction-error-scale/README.md) matches
+all 22 available forecasts to the receiver's reported uncertainty and retains
+the two original fit failures. Even the specified-field globe forecasts exceed
+receiver precision by large factors. Receiver precision alone cannot serve as
+the uncertainty of an IMU-based aircraft forecast; this check is descriptive,
+not a calibrated detection.
 
 Global interval certification is now a separate research track. Its earlier
 bounds and counterexamples remain published, with unchanged failure labels and
@@ -50,7 +116,9 @@ expansion precedes the revised prediction sequence.
 
 ## Current phase and finish line
 
-**Generated-data validation is complete.** Calibration set a fixed error limit.
+**An earlier generated decision-threshold validation is complete.** Calibration
+set a fixed error limit for that separate simulated decision test. This does
+not qualify the newer whole-period prediction intervals described above.
 A reboot interrupted the original validation after 3,750 saved fits; its
 complete-cohort rule cannot be met. A separate, reboot-resumable continuation
 completed the other 594 fits. The independently replayed
@@ -63,6 +131,16 @@ The next gate is to test physical adequacy and prediction on preselected,
 independent aircraft groups, with the receiver-error assumptions fixed before
 using protected confirmation recordings. The generated-data threshold does not
 transfer to observed aircraft by itself.
+The [48-case generated-aircraft integration matrix](prediction-aircraft-error-integration/RESULT.md)
+passes every technical pipeline check. Its deliberately short fits yield no
+numerically converged or physically passing predictions, so it supplies no
+uncertainty-coverage qualification. A longer, independently seeded known-answer
+study must qualify training-only error estimation and prediction coverage.
+The candidate-law comparison helper now enforces identical earlier IMU and
+receiver measurements and records numerical score rankings without making a
+scientific selection. Its four local checks pass. A separately frozen longer
+generated-aircraft study still has to fit both laws to each *same* recording,
+then test convergence and withheld coverage.
 
 A [receiver-only binary inventory](ilvis0-trimble-position-precision/recorded-inventory/README.md)
 now has saved outcomes for all 53 selected recording files. Fifty-two contain
@@ -254,26 +332,162 @@ validated.
 | F02 | Foundation | Complete | [Reserve separate ESA flight groups](PROVENANCE_VERIFICATION.md) for a later independent test. |
 | C01 | First | Complete | [Check the basic motion calculations](ilvis0-measurement-contribution/README.md). |
 | C02 | First | Software checked | [Test which calibration changes can imitate a model difference](ilvis0-scalar-certificate-controls-20261019/INTERPRETATION.md). |
-| C03 | First | Receiver inventory and paired check complete; error-law adequacy open | [Include measurement-error assumptions](ilvis0-channel-envelopes-20261019/INTERPRETATION.md) in the accelerometer-only checks. A [training-only scale calculation](ilvis0-shared-training-error/README.md) passes 14 software checks and all [18 recorded assessments](ilvis0-shared-training-error/recorded-assessment/README.md) complete. The [binary inventory](ilvis0-trimble-position-precision/recorded-inventory/README.md) supplies reported precision for 52 files; the [eleven paired comparisons](ilvis0-receiver-overlap/recorded-study/README.md) measure relative agreement. Actual covariance and prediction coverage remain unverified. |
-| C04 | First | Initial check complete | [Compare checks without gyroscopes](ilvis0-channel-history-v2-20261019/INTERPRETATION.md). These leave all models possible; they do not reconstruct a complete flight. |
+| C03 | First | Receiver evidence checked; error-law adequacy open | [Include measurement-error assumptions](ilvis0-channel-envelopes-20261019/INTERPRETATION.md) in the accelerometer-only checks. A [training-only scale calculation](ilvis0-shared-training-error/README.md) passes 14 software checks and all [18 recorded assessments](ilvis0-shared-training-error/recorded-assessment/README.md) complete. The [binary inventory](ilvis0-trimble-position-precision/recorded-inventory/README.md) supplies reported precision for 52 files; the [eleven paired comparisons](ilvis0-receiver-overlap/recorded-study/README.md) measure relative agreement. The first six-stream oracle release closed on a software path error; the corrected six-task study completed. Known-calibration forecasts miss by 439–508 m, worse than the original fitted forecasts; a matched full-length noise-free control passes at 0.048 m horizontal RMS. The [sealed same-operator conditioning comparison](noisy-realization-attribution/conditioning-comparison/README.md) finds 717.66 m expected later horizontal scale without earlier receiver updates and 33.77 m after 800 updates. A [ten-variant same-realization replay](noisy-realization-attribution/component-decomposition/README.md) passes, matches the sealed oracle exactly and identifies synthetic gyro bias and white increments as the dominant errors in one preselected case. The [saved receiver-precision check](receiver-precision-holdout/README.md) matches all three pilot recordings but shows that receiver-reported precision alone is much smaller than the observed prediction errors. The [source-bound fixed-law diagnostic](prediction-error-law-qualification/README.md) passes twelve software checks, including a fitted linear mean and an abstention control, and exposes a case where equal training likelihoods imply different future uncertainty. Actual covariance and prediction coverage remain unverified. |
+| C04 | First | Recorded scalar check complete; full channel contribution open | [Gyro-free geometry and trajectory controls](ilvis0-measurement-contribution/CHANNEL_CONTROLS.md), derivative and error-budget checks, bounded calibration comparisons, and a [receiver-only window selector](ilvis0-measurement-contribution/SUPPORT_POLICY.md) are complete. The [recorded snapshots](ilvis0-channel-envelopes-20261019/INTERPRETATION.md) and [whole-history scalar check](ilvis0-channel-history-v2-20261019/INTERPRETATION.md) exclude none of the candidates under their stated bounds. That conservative result is useful but does not reconstruct a complete gyro-free flight or isolate the gyro's full contribution. A matched recorded-data fit still needs qualified timing and observational error; fused attitude cannot replace omitted gyro evidence. |
 | V01 | First | **24/24 matched controls qualified** | The [revised comparison](ilvis0-near-zero-forecast-controls/README.md) passes every generated case with unchanged physics, bounds and total call limits. It charged 2,976 native calculations. The original 3/24 result remains preserved. This qualifies the tested software procedure, not aircraft adequacy or statistical significance. |
-| V02 | First | **Pilot complete: one recording passes the full prediction comparison** | The [verified pilot](ilvis0-retrospective-prediction-pilot-v2/INTERPRETATION.md) returns all 72 fits; 49 pass numerical checks. All four matched settings complete on the northern recording, with 0.84–1.13 m later horizontal RMS for specified-field globe versus hundreds of metres for the alternatives. The other two recordings retain numerical or accuracy failures. The [saved-error summary](ilvis0-retrospective-prediction-pilot-v2/ERROR_STRUCTURE.md) finds strong one-second dependence in the seven accurate primaries; it does not calibrate uncertainty. |
-| L01 | Next | Covariance, long-record kernel, and short complete fits checked; long fits pending | The [shared covariance component](integrated-noise-covariance/README.md) passes 54 checks and handles 64,080 generated epochs with 59.2 MiB of arrays. The [selective-precision revision](mixed-tangent-hybrid/README.md) passes six twenty-minute kernel checks with 2.03–2.21× native-call CPU speedup. Its [matched two-minute fitting study](mixed-tangent-hybrid/paired-qualification/README.md) passes all six generated cases; the largest forecast difference is 1.40 × 10⁻⁹ m. This does not measure whole-fit speed or qualify long-record fitting. The earlier [all-ordinary prototype](mixed-tangent-long-controls/README.md) remains failed. |
+| V02 | First | **Pilot complete; absolute adequacy still open** | The [verified pilot](ilvis0-retrospective-prediction-pilot-v2/INTERPRETATION.md) returns all 72 fits; 49 pass numerical checks. All four matched settings complete on the northern recording, with 0.84–1.13 m later horizontal RMS for specified-field globe versus hundreds of metres for the alternatives. The other two recordings retain numerical or accuracy failures. The [saved-error summary](ilvis0-retrospective-prediction-pilot-v2/ERROR_STRUCTURE.md) finds strong one-second dependence. A [zero-fit receiver-precision comparison](receiver-precision-holdout/README.md) audits 28 qualified primary starts across all three recordings: seven of nine specified-field globe settings pass the earlier accuracy screen, but their median later north/east/height errors are 4.2/4.2/11.0 times receiver-reported sigma. Neither check calibrates observed-aircraft adequacy or significance. |
+| L01 | Next | Observed substitution unqualified (21/24) | The [shared covariance component](integrated-noise-covariance/README.md) passes 54 checks and handles 64,080 generated epochs with 59.2 MiB of arrays. The [selective-precision revision](mixed-tangent-hybrid/README.md) passes six twenty-minute kernel checks. The [short paired fit](mixed-tangent-hybrid/paired-qualification/README.md) and [long paired fit](mixed-tangent-hybrid/long-fit-study/README.md) each pass all six generated cases; the largest long-fit forecast difference is 1.63 × 10⁻⁹ m. A [separate timing study](mixed-tangent-hybrid/timed-fit-study/README.md) finds 2.38× median whole-fit CPU speedup. The [verified 24-case ESA audit](esa-observed-hybrid/combined/README.md) finds 21 passing pairs, two nonqualifying matched fits and one 0.016715 m forecast difference above the fixed 0.01 m limit. The revised [three-pair development check](esa-observed-hybrid/three-pair-v2/WALL_CAP.md) sealed all three as wall-cap failures after 349 native calls; no paired comparison completed. The established wide method remains in use. |
 | E01 | Next | **Software, inventory and interval preparation complete** | The [72 adapter cases](esa-geographic-rate-controls/README.md), [24 known-correction cases](esa-observation-controls/README.md) and [24 training-only fits](esa-training-forecast-controls/README.md) pass. Two [working receiver-error cases](ESA_ERROR_POLICY.md) pass 76 checks. The [frozen full-motion inventory](esa-development-selection-v2/README.md) admits two runs totaling 393.4 minutes after 154 software checks. The [first twenty-minute interval](esa-development-pilot-preparation/README.md) is prepared and verified. All 48 matched weighted controls pass; actual error coverage remains uncalibrated. |
-| E02 | Next | **Pilot complete: three adequate matched comparisons** | The [verified revision](esa-observed-wide-pilot/INTERPRETATION.md) supplies 22 qualified forecasts; three complete settings favor globe plus the specified field, with about 15 m later 3D RMS versus kilometres for the alternatives. Two disc starts reach the runtime ceiling. Error assumptions and broader validation remain open; seven confirmation groups stay protected. |
+| E02 | Next | **Pilot complete; prediction-error law open** | The [verified revision](esa-observed-wide-pilot/INTERPRETATION.md) supplies 22 qualified forecasts; three complete settings favor globe plus the specified field, with about 15 m later 3D RMS versus kilometres for the alternatives. Two disc starts reach the runtime ceiling. The [saved precision check](esa-prediction-error-scale/README.md) shows that receiver precision alone cannot describe the later IMU-based forecast error. Error assumptions and broader validation remain open; seven confirmation groups stay protected. |
 | G01 | Next | Complete as a descriptive check | [Compare raw gyro trends with geographic predictions](ilvis0-gyro-companion-v2/INTERPRETATION.md) across all 53 stretches. |
 | U01 | Next | Development dataset ready | [Assemble the evidence for publication](PAPER_DATASET.md). The 53 stretches fall into 27 conservative groups (11 single, six double, ten triple); every group's recorded numerical preferences are globe plus specified field, but independence and calibrated detection are unproved. Final prediction and uncertainty results are still needed. |
-| U02 | Blocked by interrupted cohort | **Calibration complete; validation interrupted** | The [complete calibration](prediction-calibration-host-20261030/INTERPRETATION.md) verifies all 7,176 forecasts across 299 seed families and supplies a finite error limit. The [independent test](HOST_PREDICTION_STATUS.md) saved 3,750/4,344 passing fits, but four charged starts were interrupted by a reboot. Its frozen complete-cohort rule therefore cannot establish validation coverage. |
+| U02 | Next | **Generated-data calibration and validation complete; aircraft uncertainty open** | The [complete calibration](prediction-calibration-host-20261030/INTERPRETATION.md) verifies all 7,176 forecasts across 299 seed families and supplies a finite error limit. The original validation cohort was interrupted after 3,750 saved fits; a separately frozen [reboot-resumable continuation](prediction-validation-continuation/README.md) completed the other 594. Its combined audit verifies all 4,344 fits across 181 preselected simulated cases, with no threshold exceedance and a 1.64% one-sided 95% failure upper bound. This validates the procedure under its simulated conditions; observed-aircraft error coverage and calibrated Earth-model significance remain open. |
 | U03 | Complete | **Combined generated-data validation passed** | The [separate continuation](VALIDATION_CONTINUATION.md) reused 3,750 sealed fits and completed the other 594. An [independently replayed audit](prediction-validation-continuation/README.md) verifies 4,344 passing fits and all 181 simulated cases below the fixed limit. The 95% failure upper bound is 1.64%, below the 5% target. The original validation remains interrupted; aircraft coverage is not established. |
 | R01 | Later | Not started | [Estimate the background rotation vector freely](ROTATION_FIELD.md), rather than supplying its rate. |
 | R02 | Later | Waiting for R01 | Test whether the measured rate can distinguish sidereal from solar timing. |
 | S01 | Later | Deferred | Develop Wuhan-data analysis and the separate [stationary participant experiment](STATIONARY.md). |
 | D01 | Supporting | Ongoing | Seek more instrument documentation. This supports the work without stopping analysis under stated assumptions. |
 
-## What happens after the current diagnostic
+For L01, the [saved-fit failure diagnostic](esa-observed-hybrid/FAILURE_DIAGNOSTIC.md)
+measures all three failed ESA pairs without refitting. It narrows the next
+method-development check to derivatives evaluated at identical saved points.
+The [finite same-point result](esa-observed-hybrid/same-point-result/README.md)
+completed all twelve charged native evaluations and independently replayed the
+saved arrays. Values and boundary counts agree at all six saved points;
+derivative differences reach about 0.0000012 m per normalized parameter unit.
+The [revised six-point check](esa-observed-hybrid/same-point-v2/README.md)
+passes all six predeclared derivative-improvement gates without refitting.
+The faster method remains unqualified for observed substitution, so the
+established wide tangent stays in use. The [finite three-pair check](esa-observed-hybrid/three-pair-v2/WALL_CAP.md)
+reached its four-hour cap with 0/3 comparisons completed. All three tasks
+sealed budget failures after 349 charged native calls; two saved wide fits
+passed numerical stopping and one did not. These are hash-checked partial
+results. The qualified unfinished-task recovery
+route does not apply to these completed budget failures. Any further method
+work needs a distinct, prospectively qualified design; it cannot relabel or
+retry these results.
+C03/V02 real-recording error adequacy is the higher-priority gate.
+The new seven-check law-family helper unions matched affine forecast intervals
+across supplied error assumptions without choosing a law by training score.
+This preserves a known mathematical guarantee only if one supplied Gaussian
+law is correct and its calibration box contains truth. It does not calibrate
+aircraft prediction coverage or unblock the observed-data adequacy gate.
 
-The development backlog below is deferred for review. It does not authorize
-another study after the completed calibration phase.
+The [saved ESA error-dependence audit](esa-prediction-error-scale/CORRELATION.md)
+now verifies all 22 available forecasts from development recording 187.
+Successive forecast errors, about one second apart, remain strongly correlated
+after linear detrending;
+the 400 later epochs per fit are not independent validation cases. The audit
+also finds later errors 84–178 times the fitted earlier residual RMS by axis
+for the specified-field globe. Training fit residuals cannot supply a fixed
+future error scale on this recording. The
+[separate NASA development pilot](ilvis0-retrospective-prediction-pilot-v2/ERROR_STRUCTURE.md)
+shows 13–47-fold growth by axis among its nine numerically qualified
+specified-field settings. Its saved one-second errors also rise across the
+four withheld quarters, especially in height. Neither audit estimates a usable error law or
+touches reserved confirmation groups.
+The [completed rolling-origin study](prediction-rolling-origin/INTERPRETATION.md)
+tests whether error observed before the original withheld period transfers to
+an equal-length later forecast. Its 43 source-bound method checks and six
+publication checks pass. The separately frozen 48-start NASA development run
+returned all tasks: 34 numerically pass, 14 do not, and eight of twelve
+clock/processing settings have qualified fits at both cuts. North error ratios
+range from 0.44× to 4.09× across these repeated settings; no single future
+uncertainty multiplier is calibrated. The historical pilot's source and
+results remain preserved.
+Four [additional conservative NASA development groups](prediction-group-transfer/README.md)
+were fixed using route, IMU type and provenance metadata only. Their
+[transfer plan](prediction-group-transfer/OBSERVED_PLAN.md) fixed an
+earlier-only empirical error reference and a sixteen-start grid. The
+[verified result](prediction-group-transfer/RESULT.md) sealed all 16 fits
+under 611 native calls: six passed numerical checks, and three of four
+groups have scorable second-cut forecasts. All three meet the descriptive
+reference and separate physical screen; one group abstains. This does not
+calibrate observed-aircraft coverage or Earth-model significance.
+The [saved stopping-probe replay](prediction-group-transfer/STOPPING_DIAGNOSTIC.md)
+finds that seven of ten nonpassing fits miss only the original cost-change
+check; two miss cost and stationarity, and one stops before the full probe.
+The original failures remain unchanged. This directs later numerical-method
+work without treating near agreement as convergence.
+
+For C03, an [independent linear known-answer control](PREDICTION_ERROR_LAW_PLAN.md)
+checks separate gyro, accelerometer and receiver noise streams. The
+[finite identification trial](prediction-known-answer-identification/RESULT.md)
+completed 400 generated histories: 166 provisional single-law choices,
+234 abstentions and five wrong choices. The true supplied law covered
+3,764/4,000 later receiver epochs at the nominal 95% level. This tests a
+small fixed-law family; full aircraft prediction and observed error adequacy
+remain open.
+
+The [paired aircraft error-law study](prediction-paired-law/RESULT.md) verifies
+12 two-minute recordings and 24 matched fits, all passing numerical and
+physical prediction screens. The training minimum matches the generating IMU
+law in 6/12 comparisons, with no training-score separation above 0.000083.
+The largest future scale ratio is 1.0000023; these cadence-matched laws are
+nearly equivalent for the receiver forecasts in this two-minute study.
+Calibration bounds are active in every comparison;
+fixed-parameter 95% marginal coverage is 1,924/2,880 for physical position
+and 2,242/2,880 for future receiver reports. These counts do not establish
+coverage after fitting. All scientific decisions abstain. Bound-aware
+nonlinear uncertainty and independent-seed coverage tests precede any observed
+aircraft error-law claim. The [saved ESA timing check](prediction-paired-law/SAMPLING.md)
+finds a 1.00000469 accumulated white-noise variance ratio across 239,863
+earlier packet intervals, so timing variation in this development interval
+does not justify a longer same-cadence law-identification campaign.
+The [bound-aware affine control](bounded-calibration-prediction/README.md)
+passes nine local tests, including an active-limit Monte Carlo check, an
+unidentified-direction case and an independent dense check of its aircraft
+forecast adapter. Its 95% marginal guarantee assumes a known Gaussian law
+and an affine model. The first [nonlinear generated-aircraft release](bounded-calibration-prediction/NONLINEAR_RESULT.md)
+closed 24/24 technical cases with 23/24 combined numerical and accuracy passes.
+Its complete interval containment is a development observation, not a
+calibrated coverage guarantee. The [saved eight-point probe](bounded-calibration-prediction/TIMING_PROBE_RESULT.md)
+rules out packet switching alone as the explanation for the one failed
+stopping case, while preserving its terminal technical wrapper and the
+original 23/24 result. Coupled calibration/timing behavior remains open.
+The separate [two-seed method check](bounded-calibration-prediction/INDEPENDENT_SEEDS_RESULT.md)
+passes 48/48 combined numerical and withheld-position screens, but its two
+draws per condition do not establish 95% coverage.
+A paired-law adapter now saves the union of two bounded marginal
+forecast intervals before generated later truth is opened. It preserves
+active calibration bounds, binds each interval to its target error operator,
+and abstains if either fit is unqualified; eight software checks pass. Fresh
+native two-fit controls pass for both generating laws and both calibration
+cases on short generated recordings. The
+[finite generated-aircraft study](prediction-paired-bound-family/RESULT.md)
+now verifies all 24 recordings and 48 matched fits across the original
+allowance and a separate four-recording continuation; no
+observed-aircraft error law is calibrated by this software check.
+Its eight-check saved-result audit independently replayed every withheld score.
+Both target intervals contain all later coordinates in 24/24 generated
+recordings. The recording, rather than each correlated epoch, is the unit of
+the descriptive tally; 95% coverage is not established by this matrix.
+The first [whole-period study](prediction-simultaneous-law-family/RESULT.md)
+sealed 96/96 package-import failures before any numerical work. It yields no
+coverage evidence. A [new independently seeded cohort](prediction-simultaneous-law-family-v2/RESULT.md)
+passed a frozen-worker preflight and closed 96/96 tasks across its original
+allowance and a qualified continuation of 12 unstarted tasks. Ninety-two
+recordings yielded complete paired forecasts; both target intervals contained
+every later coordinate in those recordings. Four original tasks stopped at
+the eight-hour cap and count as failures. The exact one-sided 95% upper
+failure bound is 9.28%, so the declared 5% gate failed. Diagnose the runtime
+failures and qualify a new finite check before any observed-flight coverage
+claim. No failed or completed task is eligible for an unchanged retry.
+A separate five-check affine control also derives a conditional bound for an
+entire withheld stretch by allowing for all future coordinates at once. It
+remains a mathematical control until nonlinear and observed-aircraft coverage
+are qualified in a separate study. Four further checks connect the bound to
+both aircraft forecast targets and preserve each target's error-operator
+binding through the two-law union. A separate short native generated-aircraft
+fit also saves both target intervals before opening later observations. The
+two-law union rejects mismatched future time grids; twelve focused checks pass.
+This does not establish nonlinear or observed-aircraft coverage.
+
+## Development record
+
+The studies below explain how the current phase was reached. The active tasks
+and their gates are in the backlog above. Preserve these completed and failed
+results; their old allowances do not authorize rerunning them.
 
 1. Preserve the qualified software controls and completed archival pilot, including
    its numerical and accuracy failures. Broader prediction validation remains open;

@@ -422,7 +422,11 @@ def run_shard(study,shard,evaluate=None,*,lease_fd=None):
         _replace(directory/'status.json',dict(state='running',pid=os.getpid(),numerical_threads=manifest['allocation']['threads']))
         if evaluate is None:
             frozen=root/'source-freeze';sys.path.insert(0,str(frozen/'analysis'))
-            spec=importlib.util.spec_from_file_location('_ilvis0_frozen_control_adapter',path_within(frozen,manifest['adapter']))
+            adapter_path=path_within(frozen,manifest['adapter'])
+            module_name=('lll._ilvis0_frozen_control_adapter'
+                         if manifest['adapter'].startswith('analysis/lll/')
+                         else '_ilvis0_frozen_control_adapter')
+            spec=importlib.util.spec_from_file_location(module_name,adapter_path)
             module=importlib.util.module_from_spec(spec);sys.modules[spec.name]=module;spec.loader.exec_module(module);evaluate=module.evaluate
         journal=_journal(root,manifest,shard);started={r['identity'] for r in journal.read('starts')};reason=None
         for task in manifest['tasks']:

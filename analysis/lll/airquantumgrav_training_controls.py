@@ -47,16 +47,18 @@ def generated_training(spec,r,*,reserve,height_profile=None,gravity_model='const
     """Expose raw generated channels and earlier positions; no true starting state."""
     import numpy as np
     from lll.airquantumgrav_truth import truth
-    from lll.airquantumgrav_observation_truth import observe,receiver_samples
+    from lll.airquantumgrav_observation_truth import observe,receiver_samples,sensor_parameters
     from lll.airquantumgrav_geographic_controls import construct
     from lll.ilvis0_prediction import split
     arguments,sign=_spec(spec)
+    sensor_case=r.get('sensor_case','interior')
+    sensor_parameters(sign,sensor_case)
     if (height_profile not in (None,'climb','descend') or gravity_model not in ('constant','inverse_square_height')
             or (height_profile is None and gravity_model!='constant')):
         raise ValueError('explicit supported height and gravity construction required')
     maximum_duration,maximum_queries=(120.,119) if height_profile is None else (1200.,1200)
     if height_profile is not None:arguments.update(height_profile=height_profile,gravity_model=gravity_model)
-    if (r['rate_hz']!=300 or not math.isfinite(r['duration_s']) or not 2<=r['duration_s']<=maximum_duration
+    if (r['rate_hz'] not in (200,300) or not math.isfinite(r['duration_s']) or not 2<=r['duration_s']<=maximum_duration
             or type(r['queries']) is not int or not 9<=r['queries']<=maximum_queries
             or r['pattern']!='fast' or r['method']!='linear_points'):
         raise ValueError('declared finite training construction required')
@@ -65,9 +67,16 @@ def generated_training(spec,r,*,reserve,height_profile=None,gravity_model='const
     if n/r['rate_hz']!=r['duration_s'] or times[0]-offset<0 or times[-1]+offset>=r['duration_s']:
         raise ValueError('complete generated timing support required')
     reserve(generated_samples=n+1);rate_times=np.arange(n+1)/r['rate_hz']
-    geometric=truth(times=rate_times,**arguments);raw=observe(geometric,sign=sign);del geometric
+    geometric=truth(times=rate_times,**arguments)
+    raw=observe(geometric,sign=sign,sensor_case=sensor_case);del geometric
     raw['times']=rate_times
     increments=construct(raw,method=r['method'],rate_hz=r['rate_hz'],reserve=reserve)
+    if r['rate_hz']==200:
+        # The generated grid is exactly nominal; floating subtraction of its
+        # sample times need not yield bitwise-equal binary64 intervals.
+        if not np.allclose(increments['dt'],.005,rtol=0.,atol=1e-12):
+            raise ValueError('generated 200 Hz grid is not nominal')
+        increments['dt']=np.full(n,.005)
     reserve(generated_samples=cut)
     training=receiver_samples(times=times[:cut],sign=sign,**arguments)['coordinates']
     return dict(**{k:increments[k] for k in ('theta','dv','dt')},rate_times=rate_times,

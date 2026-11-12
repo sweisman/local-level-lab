@@ -39,6 +39,10 @@ def calculate(spec,r,*,material,train_and_forecast,kernel_factory,reserve,
         reserve(**work);native_calls+=work['native_calls']
     protocol_options={} if training_error_factory is None else dict(training_error_factory=training_error_factory)
     if forecast_error_diagnostic is not None:protocol_options['forecast_error_diagnostic']=forecast_error_diagnostic
+    if 'clock' in r:
+        if r['clock'] not in ('header_elapsed','nominal_200Hz'):
+            raise ValueError('declared supported integration clock required')
+        protocol_options['clock']=r['clock']
     result=train_and_forecast(**{k:material[k] for k in ('theta','dv','dt')},times=times,
         training_rows=rows,time_origin_s=0.,model=spec['model'],profile=spec['profile'],policy_id=spec['policy_id'],
         start=spec['start'],limits=r['limits'],maximum_evaluations=r['maximum_evaluations'],

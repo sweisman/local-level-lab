@@ -6,6 +6,26 @@ import pytest
 
 
 @pytest.fixture(autouse=True)
+def isolated_recovery_hook(request):
+    """Keep generated-study tests from changing later recovery tests' setup."""
+    if request.path.name not in {
+            'test_prediction_simultaneous_study_v2.py',
+            'test_prediction_simultaneous_report.py'}:
+        yield
+        return
+    from lll.studies import task_resume
+    previous = (task_resume.runner.prepare,
+                task_resume.qualification_sources,
+                task_resume.REQUIRED_TESTS)
+    try:
+        yield
+    finally:
+        (task_resume.runner.prepare,
+         task_resume.qualification_sources,
+         task_resume.REQUIRED_TESTS) = previous
+
+
+@pytest.fixture(autouse=True)
 def generated_worker_fixtures(request, monkeypatch, tmp_path_factory):
     """Exercise frozen lifecycle code with public fixtures on any CI machine.
 

@@ -33,10 +33,21 @@ def _parameters(sign):
     return result
 
 
-def observe(case,*,sign):
+def sensor_parameters(sign, sensor_case='interior'):
+    """Independent generated sensor truth; no fitted parameter is read."""
+    if type(sign) is not int or sign not in (-1,1) or sensor_case not in ('interior','z_gyro_boundary'):
+        raise ValueError('declared sign and sensor case required')
+    result=_parameters(sign)
+    if sensor_case=='z_gyro_boundary':
+        result['gyro_gain_z']=sign*.01
+        result['gyro_bias_z']=sign*math.radians(1.)/3600.
+    return result
+
+
+def observe(case,*,sign,sensor_case='interior'):
     """Apply a known affine sensor error to engineering-unit rate samples."""
     import numpy as np
-    _check(case,sign);p=_parameters(sign)
+    _check(case,sign);p=sensor_parameters(sign,sensor_case)
     vector=lambda name:np.array([p[name+'_'+a] for a in 'xyz'])
     return dict(angular_rate_rads=np.asarray(case['angular_rate_rads'])*(1+vector('gyro_gain'))+vector('gyro_bias'),
         specific_force_mps2=np.asarray(case['specific_force_mps2'])*(1+vector('accel_gain'))+vector('accel_bias'),

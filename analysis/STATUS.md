@@ -7,10 +7,12 @@ From the repository root:
 ```
 
 This prints one line per study listed in `analysis/study-status.json`, including
-completed results, passed numerical checks, errors, charged native calls, the
+completed results, passing and nonpassing outcomes, technical errors, charged native calls, the
 frozen call ceiling, allocated numerical threads and worker-lock state. Update
 that small registry when a new study becomes current. It does not discover jobs
 by scanning the repository or checking unrelated processes.
+For a live sharded study with a verified start receipt, it also shows the time
+left to the cooperative wall cap. That cap is not an estimate of fit completion.
 
 For machine-readable output or a particular runtime directory:
 
@@ -61,6 +63,9 @@ snapshot counts are rejected. Completed, hash-checked summaries remain authorita
 Active native-call totals include separately journaled preflight checks as well
 as fitting calls. Completion state may be explicit in either the completion
 record or its hash-verified summary; an absent or unfinished state in both is rejected.
+For sharded studies, JSON `updated_seconds_ago` also uses verified shard charge
+journals. It describes recent saved activity, not proof that a worker is healthy
+or that a charged calculation finished.
 A charge is recorded before a native call; its presence does not mean the call
 finished. A busy receipt ledger produces an explicit unavailable-snapshot warning.
 Missing locks are never created. An unlocked, unfinished study is shown as

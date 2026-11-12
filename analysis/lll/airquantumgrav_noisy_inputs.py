@@ -120,5 +120,6 @@ def construct(spec,r,*,reserve):
         later_receiver_positions_generated=False,receiver_and_imu_streams_separate=True,
         noise_is_an_assumption_not_measured_archive_error=True)
     if kind=='point':binding['input_error_law']='linear_rate_points'
+    if 'sensor_case' in r:binding['sensor_case']=r['sensor_case']
     return dict(**{k:noisy[k] for k in ('theta','dv','dt')},times=clean['times'],
         training_rows=measured,training_epochs=cut,binding=binding)

@@ -1,0 +1,106 @@
+{
+  "charges": {
+    "native_calls": 23561,
+    "packet_visits": 14909049
+  },
+  "frozen_probe_source_sha256": "6e785290d061881b7a0349c004fce76409af7b55031e0b60a7963f10e9873987",
+  "original_wrapper_reason": "one explicit software result and continued scientific abstention required",
+  "outcomes": [
+    {
+      "actual_change_from_center": 0.0,
+      "actual_cost": 195.62899842724403,
+      "changed_packet_epochs": 0,
+      "label": "saved_point",
+      "normalized_time_step": 0.0,
+      "physical_offset_s": 0.0,
+      "predicted_change_from_center": 0.0,
+      "predicted_local_cost": 195.62899842724403
+    },
+    {
+      "actual_change_from_center": 1.7277272945648292e-09,
+      "actual_cost": 195.62899842897176,
+      "changed_packet_epochs": 79,
+      "label": "boundary_before_1ns",
+      "normalized_time_step": -4.286883018064691e-06,
+      "physical_offset_s": -4.286883018064691e-08,
+      "predicted_change_from_center": 1.680092509559472e-09,
+      "predicted_local_cost": 195.62899842892412
+    },
+    {
+      "actual_change_from_center": 1.5215277926472481e-09,
+      "actual_cost": 195.62899842876556,
+      "changed_packet_epochs": 0,
+      "label": "boundary_after_1ns",
+      "normalized_time_step": -4.08688301806469e-06,
+      "physical_offset_s": -4.086883018064691e-08,
+      "predicted_change_from_center": 1.4992451724538114e-09,
+      "predicted_local_cost": 195.62899842874327
+    },
+    {
+      "actual_change_from_center": 1.2582376029968145e-08,
+      "actual_cost": 195.6289984398264,
+      "changed_packet_epochs": 79,
+      "label": "minus_100ns",
+      "normalized_time_step": -9.999999999999999e-06,
+      "physical_offset_s": -1e-07,
+      "predicted_change_from_center": 1.1080231843152433e-08,
+      "predicted_local_cost": 195.62899843832426
+    },
+    {
+      "actual_change_from_center": 1.4011902749189176e-08,
+      "actual_cost": 195.62899844125593,
+      "changed_packet_epochs": 0,
+      "label": "plus_100ns",
+      "normalized_time_step": 9.999999999999999e-06,
+      "physical_offset_s": 1e-07,
+      "predicted_change_from_center": 1.398893800796941e-08,
+      "predicted_local_cost": 195.62899844123297
+    },
+    {
+      "actual_change_from_center": 0.00012545680121434089,
+      "actual_cost": 195.62912388404524,
+      "changed_packet_epochs": 79,
+      "label": "minus_10us",
+      "normalized_time_step": -0.001,
+      "physical_offset_s": -1e-05,
+      "predicted_change_from_center": 0.00012519985099856967,
+      "predicted_local_cost": 195.62912362709503
+    },
+    {
+      "actual_change_from_center": 0.0001254907114969228,
+      "actual_cost": 195.62912391795552,
+      "changed_packet_epochs": 0,
+      "label": "plus_10us",
+      "normalized_time_step": 0.001,
+      "physical_offset_s": 1e-05,
+      "predicted_change_from_center": 0.0001254907244572223,
+      "predicted_local_cost": 195.62912391796849
+    },
+    {
+      "actual_change_from_center": 1.1618306233357032,
+      "actual_cost": 196.79082905057973,
+      "changed_packet_epochs": 79,
+      "label": "full_timing_component",
+      "normalized_time_step": -0.09627539278715339,
+      "physical_offset_s": -0.0009627539278715338,
+      "predicted_change_from_center": 1.1618053596105824,
+      "predicted_local_cost": 196.7908037868546
+    }
+  ],
+  "report_source_sha256": "62451d6ea428e250be3b8abbfd9b219bc23867c1e7ec6460e6b428b2fd2aeb0c",
+  "scientific_decision": "abstain",
+  "state": "terminal",
+  "study": "data/bounded-noisy-timing-probe-20261111",
+  "study_manifest_sha256": "9c78539032f7ae0653f979fce5b5e77d00890858f3d7cedc858cfa8b1966044d",
+  "study_summary_sha256": "bad9ce1efd43f481b65ed977e3a293093b8a8df18d94369b7157f74a3cfb425c",
+  "summary": {
+    "center_cost": 195.62899842724403,
+    "evaluations": 8,
+    "full_timing_actual_change": 1.1618306233357032,
+    "full_timing_predicted_change": 1.1618053596105824,
+    "maximum_local_cost_disagreement": 2.5263725120794334e-05,
+    "scientific_decision": "abstain",
+    "technical_wrapper_qualified": false
+  },
+  "verified": true
+}

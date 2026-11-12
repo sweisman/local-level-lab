@@ -1,8 +1,9 @@
 # Additional inertial-data sources
 
-Two archives offer raw observations for separate development cohorts. Neither has
-been added to the existing 53-stretch comparison. No new Earth-model fits have
-been run on these sources.
+Two archives offer raw observations outside the existing NASA 53-stretch
+comparison. The ESA development recording has separate Earth-model prediction
+fits; Wuhan has not entered that analysis. Neither source changes the original
+53 results.
 
 **ESA confirmation is reserved before fitting.** Recording 187 is development
 material. The other eight cataloged files form seven protected confirmation
@@ -16,7 +17,7 @@ navigation solution.
 
 | Source | What is verified | What remains |
 |---|---|---|
-| ESA/DTU AirQuantumGrav and Green Quantum | The live catalog contains **nine raw iMAR files totaling 8.02 GB**. One complete recording has **9,168,819 records over 8.49 hours**, approximately **300 Hz**, with no gaps above 1.5 nominal periods. Its matching GNSS PPP position file is downloaded. | The earlier quiet-flight policy admitted no intervals. The [full-motion inventory](../esa-development-selection-v2/README.md) admits two runs totaling **393.4 minutes**. On the [first twenty-minute interval](../esa-observed-height-pilot/README.md), one height-gravity setting completes an adequate three-model prediction comparison favoring globe. Other settings retain numerical failures; error coverage remains uncalibrated. The other eight raw recordings have not been downloaded or model-tested. |
+| ESA/DTU AirQuantumGrav and Green Quantum | The live catalog contains **nine raw iMAR files totaling 8.02 GB**. One complete recording has **9,168,819 records over 8.49 hours**, approximately **300 Hz**, with no gaps above 1.5 nominal periods. Its matching GNSS PPP position file is downloaded. | The earlier quiet-flight policy admitted no intervals. The [full-motion inventory](../esa-development-selection-v2/README.md) admits two runs totaling **393.4 minutes**. On the first twenty-minute development interval, the [wider-precision pilot](../esa-observed-wide-pilot/INTERPRETATION.md) supplies 22 forecasts and three complete three-model comparisons favoring globe under its tested assumptions. Two starts remain unfinished; error coverage is uncalibrated. The other eight raw recordings have not been downloaded or model-tested. |
 | Wuhan University SmartPNT-POS | The public catalog contains **652 files**, including **40 IMR files**. One downloaded airborne sample contains **115,696 IMU records over 19.28 minutes**, with no timestamp reversal, duplicate or gap exceeding 1.5 nominal sample periods. | Independent receiver positions, dataset-specific motion screening and model qualification remain to be developed. |
 | SmartPNT-POS long-record lead | Header and endpoint range requests verify a **20.85-hour timestamp span** for a 600 Hz HG4930 file in the Allan-variance folder. Only **576 bytes** were downloaded. | Interior completeness, stationary conditions and mounting are unverified. It is a sensor-characterization lead, not curvature evidence. |
 

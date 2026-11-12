@@ -2,7 +2,9 @@
 import fcntl
 import hashlib
 import json
+import os
 from pathlib import Path
+import time
 
 import pytest
 
@@ -130,6 +132,39 @@ def test_completed_shard_releases_its_counted_thread_irreversibly(tmp_path):
             fcntl.flock(handle,fcntl.LOCK_EX|fcntl.LOCK_NB)
         result=status.inspect_study(study)
         assert result['state']=='running' and result['threads']==3
+
+
+def test_recent_verified_shard_charge_is_reported_as_recent_activity(tmp_path):
+    from lll.studies.journal import Journal
+    status=module();study=tmp_path/'data/sharded';study.mkdir(parents=True)
+    manifest=dict(version='ilvis0-sharded-native-controls-v1',
+                  allocation=dict(workers=1,threads=1),
+                  tasks=[dict(identity='a',shard=0)],limits=dict(native_calls=2,bound_calls=0))
+    put(study/'manifest.json',manifest)
+    put(study/'status.json',dict(state='running',allocated_numerical_threads=1))
+    old=time.time()-3600
+    os.utime(study/'status.json',(old,old))
+    shard=study/'shards/000';shard.mkdir(parents=True)
+    (shard/'worker.lock').touch()
+    journal=Journal(shard/'charges/journal.sqlite',freeze=digest(study/'manifest.json'),
+                    limits={'a':dict(fit=2)})
+    journal.start('a');journal.reserve('a','fit')
+    with (shard/'worker.lock').open('rb') as handle:
+        fcntl.flock(handle,fcntl.LOCK_EX|fcntl.LOCK_NB)
+        report=status.inspect_study(study)
+    assert report['state']=='running', report['warnings']
+    assert report['native_calls']==1
+    assert report['updated_seconds_ago']<60
+    journal_path=shard/'charges/journal.sqlite'
+    with journal_path.open('r+b') as stream:
+        stream.write(b'not-a-sqlite-journal')
+    damaged=journal_path.read_bytes()
+    with (shard/'worker.lock').open('rb') as handle:
+        fcntl.flock(handle,fcntl.LOCK_EX|fcntl.LOCK_NB)
+        invalid=status.inspect_study(study)
+    assert invalid['updated_seconds_ago']>=3500
+    assert any('shard 0 charge snapshot' in warning for warning in invalid['warnings'])
+    assert journal_path.read_bytes()==damaged
 
 
 def test_lock_overrides_untrusted_running_snapshot_without_writing(tmp_path):

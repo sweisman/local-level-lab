@@ -16,12 +16,21 @@ near 0.99, and first differences remain correlated. These describe combined
 prediction errors, not raw receiver noise. They motivate testing receiver-plus-IMU
 uncertainty with known-error controls; they supply neither a fitted noise law
 nor calibrated confidence.
+The [exact-epoch saved audit](esa-prediction-error-scale/CORRELATION.md) also
+finds that later RMS is 84–178 times the fitted earlier residual RMS by axis
+for the specified-field globe on this one development recording. A constant
+error scale inferred from the earlier fit would miss the forecast growth.
 
 The [NASA archival prediction pilot's saved-error summary](ilvis0-retrospective-prediction-pilot-v2/ERROR_STRUCTURE.md)
 finds median one-second north/east/up correlations of 0.984/0.982/0.978 among
 its seven physically accurate training-selected primaries. Those settings come
 from two recordings. This is further evidence that neighboring forecast epochs
 are dependent, not a measurement of receiver noise or a calibrated error law.
+Across all nine numerically qualified specified-field settings in three NASA
+development recordings, the [read-only growth audit](ilvis0-retrospective-prediction-pilot-v2/ERROR_STRUCTURE.md)
+finds later-to-earlier fitted-residual RMS ratios of 13–47 by axis. Both
+archives therefore require a model of accumulated prediction error; neither
+provides a calibrated failure rate from these development checks.
 
 The [completed known-noise controls](esa-noisy-prediction/INTERPRETATION.md)
 produce 24 numerical passes and zero physical accuracy passes. Later horizontal
@@ -123,6 +132,25 @@ estimated only on each earlier half, later horizontal disagreement has a
 remaining north/east/up differences are 0.989/0.991/0.989. Shared GNSS errors
 can cancel between receivers, so even this close agreement cannot calibrate
 their absolute accuracy or a receiver-plus-IMU prediction law.
+The [saved withheld-error comparison](receiver-precision-holdout/README.md)
+joins all epochs of 28 training-selected pilot fits to these same-receiver
+precision reports. For the specified-field globe, nine settings are
+numerically qualified and seven pass the pilot's uncalibrated accuracy screen.
+Their median withheld error exceeds receiver-reported precision by about
+fourfold north/east and elevenfold in height. Those ratios include inertial,
+calibration and model error; they do not measure GNSS accuracy or supply a
+confidence level.
+The same saved rows show a smooth trend: across nine numerically qualified
+specified-field globe settings, a straight line explains a median 95.7–97.4%
+of centered later-error variation by axis. This is retrospective description,
+not evidence that its slope could have been estimated from earlier data or
+that one particular source caused it.
+The separate [training-only drift control](prediction-drift-control/README.md)
+tests exactly one such extrapolation on all 28 qualified pilot settings. A
+line from the final two training minutes worsens seven of nine
+specified-field globe forecasts. It improves the alternatives' errors but
+leaves them hundreds of metres off. Smooth later residuals therefore do not
+justify this deterministic correction or a confidence interval.
 Software sensitivity tests can use declared laws while those empirical checks
 remain open. Exact proprietary device identification is supporting work;
 physical adequacy and calibrated uncertainty remain separate requirements.

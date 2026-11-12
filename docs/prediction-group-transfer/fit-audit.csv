@@ -1,0 +1,17 @@
+identity,segment_id,origin,profile,clock,start,passed,converged,termination,evaluations,training_cost,normalized_parameters_at_bound
+b365bdf39150ee6afc303ac1-inner-0-header_elapsed-0,b365bdf39150ee6afc303ac1,inner,False,header_elapsed,0,False,False,unresolved,47,0.040104086853523964,3
+b365bdf39150ee6afc303ac1-inner-0-header_elapsed-1,b365bdf39150ee6afc303ac1,inner,False,header_elapsed,1,False,False,unresolved,39,0.04010408400494059,3
+b365bdf39150ee6afc303ac1-outer-0-header_elapsed-0,b365bdf39150ee6afc303ac1,outer,False,header_elapsed,0,False,False,unresolved,63,2.0666595117052164,3
+b365bdf39150ee6afc303ac1-outer-0-header_elapsed-1,b365bdf39150ee6afc303ac1,outer,False,header_elapsed,1,False,False,unresolved,61,2.0666594915022913,3
+b4ab6e128de963c2ce69aa51-inner-0-header_elapsed-0,b4ab6e128de963c2ce69aa51,inner,False,header_elapsed,0,False,False,unresolved,71,0.02302603184623017,2
+b4ab6e128de963c2ce69aa51-inner-0-header_elapsed-1,b4ab6e128de963c2ce69aa51,inner,False,header_elapsed,1,False,False,unresolved,77,0.02302602952117739,2
+b4ab6e128de963c2ce69aa51-outer-0-header_elapsed-0,b4ab6e128de963c2ce69aa51,outer,False,header_elapsed,0,False,False,unresolved,11,0.09080083634677487,3
+b4ab6e128de963c2ce69aa51-outer-0-header_elapsed-1,b4ab6e128de963c2ce69aa51,outer,False,header_elapsed,1,True,True,fresh_position_stability,11,0.09080083606293124,3
+c16df82d514fc69d11d941d2-inner-0-header_elapsed-0,c16df82d514fc69d11d941d2,inner,False,header_elapsed,0,True,True,fresh_position_stability,7,0.053598192541593384,2
+c16df82d514fc69d11d941d2-inner-0-header_elapsed-1,c16df82d514fc69d11d941d2,inner,False,header_elapsed,1,True,True,fresh_position_stability,7,0.053598191645496236,2
+c16df82d514fc69d11d941d2-outer-0-header_elapsed-0,c16df82d514fc69d11d941d2,outer,False,header_elapsed,0,True,True,fresh_position_stability,7,0.5965717134157673,2
+c16df82d514fc69d11d941d2-outer-0-header_elapsed-1,c16df82d514fc69d11d941d2,outer,False,header_elapsed,1,True,True,fresh_position_stability,7,0.5965717123401496,2
+2f7e37c48f3b4423c55662dd-inner-0-header_elapsed-0,2f7e37c48f3b4423c55662dd,inner,False,header_elapsed,0,False,False,unresolved,54,0.5790225748474075,3
+2f7e37c48f3b4423c55662dd-inner-0-header_elapsed-1,2f7e37c48f3b4423c55662dd,inner,False,header_elapsed,1,False,False,unresolved,54,0.5790225729102447,3
+2f7e37c48f3b4423c55662dd-outer-0-header_elapsed-0,2f7e37c48f3b4423c55662dd,outer,False,header_elapsed,0,False,False,unresolved,68,0.8704934036989233,2
+2f7e37c48f3b4423c55662dd-outer-0-header_elapsed-1,2f7e37c48f3b4423c55662dd,outer,False,header_elapsed,1,True,True,fresh_position_stability,11,0.870493418923086,2

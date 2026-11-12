@@ -61,6 +61,13 @@ charges, source freezes and verified report remain reproducible alongside
 the original dataset. Calibrated uncertainty and independent confirmation
 remain outstanding.
 
+The later [four-group NASA transfer check](prediction-group-transfer/RESULT.md)
+also remains separate from the 53-stretch snapshot. All 16 planned fits are
+sealed; six pass numerical checks. Three groups have scorable second-cut
+forecasts that meet both the fixed descriptive error reference and physical
+screen. One group abstains. This is retrospective development evidence, not
+calibrated prediction coverage or independent confirmation.
+
 The [first ESA development pilot](esa-development-pilot/README.md) is also
 separate. It returns 24 fits, with 15 numerical passes and one complete
 three-model comparison. Globe geometry has lower later error in that comparison,

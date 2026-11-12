@@ -4,6 +4,7 @@ import importlib.util
 import fcntl
 import json
 from pathlib import Path
+import time
 import pytest
 from lll import ilvis0_control_shards as runner
 from test_ilvis0_control_shards import fixture
@@ -18,6 +19,33 @@ def test_status_separates_native_and_bound_reservations(tmp_path):
     assert result['native_calls']==1
     assert result['bound_calls']==1 and result['bound_limit']==4
     assert '1/4 charged bounds' in status.render(dict(result,name='fixture'))
+
+
+def test_status_labels_a_live_cooperative_deadline_without_calling_it_an_eta(tmp_path):
+    output,_,_=fixture(tmp_path,workers=1)
+    now=time.time()
+    (output/'start.json').write_text(json.dumps(dict(
+        manifest_sha256=runner._sha(output/'manifest.json'),
+        started_unix=now-10,deadline_unix=now+600)))
+    with (output/'shards/000/worker.lock').open('rb') as held:
+        fcntl.flock(held,fcntl.LOCK_EX)
+        report=status_module().inspect_study(output)
+    assert report['state']=='running'
+    assert 0<report['seconds_to_cooperative_deadline']<=600
+    assert report['cooperative_deadline_utc'].endswith('+00:00')
+    assert 'cooperative wall cap' in status_module().render(dict(report,name='fixture'))
+
+
+def test_status_rejects_an_unrepresentable_start_receipt(tmp_path):
+    output,_,_=fixture(tmp_path,workers=1)
+    (output/'start.json').write_text(json.dumps(dict(
+        manifest_sha256=runner._sha(output/'manifest.json'),
+        started_unix=1,deadline_unix=10**100)))
+    with (output/'shards/000/worker.lock').open('rb') as held:
+        fcntl.flock(held,fcntl.LOCK_EX)
+        report=status_module().inspect_study(output)
+    assert report['state']=='invalid'
+    assert 'invalid cooperative wall-clock receipt' in report['warnings']
 
 
 def status_module():
@@ -40,6 +68,7 @@ def test_status_counts_sealed_results_while_shard_continues(tmp_path):
         result=status_module().inspect_study(output)
         assert result['state']=='running' and result['threads']==1
         assert result['completed']==2 and result['passed']==1
+        assert result['nonpassing']==1 and result['errors']==0
         assert '2/4 results' in status_module().render(dict(result,name='fixture'))
     assert not (output/'summary.json').exists() and not (output/'completion.json').exists()
 
