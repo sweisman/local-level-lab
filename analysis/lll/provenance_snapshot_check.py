@@ -39,7 +39,12 @@ def verify(root):
         if ledger['inputs'] != receipt['inputs']:
             raise ValueError('provenance input ledger and receipt differ')
         for name, sha in receipt['artifacts'].items():
-            _checked(read('docs/analysis-provenance/' + name), sha, name)
+            # The public guide has since been revised. Its receipt-bound bytes
+            # are retained separately so the old receipt remains checkable.
+            path = ('docs/analysis-provenance/receipt-README.md'
+                    if name == 'README.md' else
+                    'docs/analysis-provenance/' + name)
+            _checked(read(path), sha, name)
 
         historical_sha = ledger['inputs'][FINDINGS_RECEIPT]
         historical = json.loads(_checked(

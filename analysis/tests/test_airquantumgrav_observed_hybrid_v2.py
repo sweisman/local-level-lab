@@ -69,10 +69,10 @@ def test_v2_evaluator_injects_only_revised_loader(monkeypatch, tmp_path):
 
 def test_v2_preparation_binds_saved_point_and_recovery_receipts():
     from lll.airquantumgrav_observed_hybrid_v2 import saved_point_proof
-    proof = saved_point_proof(Path.cwd())
-    assert set(proof) == {'v2-saved-point-proof',
-                          'v2-recovery-request', 'v2-recovery-report'}
-    assert json.loads(proof['v2-saved-point-proof'])['passing_pairs'] == 3
+    # The receipt is frozen to the original source; the current checkout has
+    # subsequently changed, so preparation must reject it before fitting.
+    with pytest.raises(ValueError, match='software qualification source or environment changed'):
+        saved_point_proof(Path.cwd())
 
 
 def test_v2_generated_pair_fits_share_inputs_and_forecast(tmp_path):

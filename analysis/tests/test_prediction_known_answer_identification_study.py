@@ -94,7 +94,8 @@ def test_worker_adapter_loads_directly_from_frozen_file():
 
 
 def test_preparation_requires_source_bound_tests_and_exact_plan(tmp_path):
-    sources = qualification_sources('/site/repo/local-level-lab')
+    from pathlib import Path
+    sources = qualification_sources(Path(__file__).resolve().parents[2])
     assert 'analysis/lll/prediction_error_identification.py' in sources
     assert 'analysis/lll/prediction_error_known_answer.py' in sources
     assert 'docs/prediction-known-answer-identification/PLAN.md' in sources

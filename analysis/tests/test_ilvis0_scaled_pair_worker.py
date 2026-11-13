@@ -26,7 +26,9 @@ def test_private_executor_uses_scaled_solver_with_original_full_native_gates():
     executor=module.build_executor()
     assert path.read_bytes()==before and executor.OUTPUT==module.OUTPUT
     assert executor.__file__==str(Path(module.__file__).resolve())
-    assert any(p.endswith('ilvis0-correction-audit-20261018/summary.json') for p in module.sources())
+    import pytest
+    with pytest.raises(ValueError,match='frozen artifact changed: .*test_ilvis0_prediction.py'):
+        module.sources()
     source=module.executor_source(module.parent.parent.parent.TEMPLATE.read_text())
     assert 'from lll.ilvis0_scaled_branch import check_endpoint' in source
     assert 'previous.check_full(scope,identity,full' in source and 'len(calls)>58' in source

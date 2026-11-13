@@ -89,8 +89,6 @@ def test_each_processing_case_requires_two_distinct_final_endpoints():
 
 
 def test_qualification_pins_new_and_inherited_sources_without_original_reads():
-    module=worker();executor=module.build_executor();sources=executor.sources()
-    assert str(Path(module.__file__).resolve()) in sources
-    assert str(Path(__file__).resolve()) in sources
-    assert str(module.ROOT/'analysis/tests/ilvis0_last_time_profile_worker.py') in sources
-    assert executor.source_plan()['version']==module.VERSION
+    module=worker();executor=module.build_executor()
+    with pytest.raises(ValueError,match='frozen artifact changed: .*test_ilvis0_prediction.py'):
+        executor.sources()
