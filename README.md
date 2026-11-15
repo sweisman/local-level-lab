@@ -116,6 +116,9 @@ solar-versus-sidereal rate difference.
 
 ## Follow the work
 
+A [withheld ESA forecast check](docs/prediction-observed-development/ROLLING_ORIGIN_400_CONDITIONAL_RESULT.md)
+now compares two IMU error laws on one development recording; neither is yet validated.
+
 The [prediction pilot](docs/ilvis0-retrospective-prediction-pilot-v2/INTERPRETATION.md)
 now succeeds on one complete recording-level comparison. A separate
 [ESA development comparison](docs/esa-observed-wide-pilot/INTERPRETATION.md) now
