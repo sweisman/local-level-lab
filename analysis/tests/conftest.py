@@ -5,6 +5,22 @@ import truthgen
 import pytest
 
 
+from lll.studies.testing import PEAK_MEMORY_MODULES as _PEAK_MEMORY_PATHS
+
+PEAK_MEMORY_MODULES = frozenset(path.rsplit('/',1)[-1]
+                                for path in _PEAK_MEMORY_PATHS)
+
+
+def prioritize_peak_memory_tests(items):
+    """Check frozen process-RSS limits before unrelated tests raise peak RSS."""
+    items.sort(key=lambda item: item.nodeid.split('::', 1)[0]
+               .rsplit('/', 1)[-1] not in PEAK_MEMORY_MODULES)
+
+
+def pytest_collection_modifyitems(items):
+    prioritize_peak_memory_tests(items)
+
+
 @pytest.fixture(autouse=True)
 def isolated_recovery_hook(request):
     """Keep generated-study tests from changing later recovery tests' setup."""

@@ -134,6 +134,27 @@ def test_completed_shard_releases_its_counted_thread_irreversibly(tmp_path):
         assert result['state']=='running' and result['threads']==3
 
 
+def test_active_sharded_status_reads_local_results_without_archive_catalog(tmp_path,monkeypatch):
+    status=module();status.ROOT=tmp_path
+    study=tmp_path/'data/sharded';study.mkdir(parents=True)
+    put(study/'manifest.json',dict(version='ilvis0-sharded-native-controls-v1',
+        allocation=dict(workers=1,threads=1),
+        tasks=[dict(identity='a',shard=0)],
+        limits=dict(native_calls=0,bound_calls=0)))
+    put(study/'status.json',dict(state='running',allocated_numerical_threads=1))
+    shard=study/'shards/000';shard.mkdir(parents=True)
+    lock=shard/'worker.lock';lock.touch()
+    def forbidden(*_):
+        raise AssertionError('live study must not scan historical archive')
+    monkeypatch.setattr(status,'archive_evidence',forbidden)
+    monkeypatch.setattr(status,'archived_available',forbidden)
+    with lock.open('rb') as handle:
+        fcntl.flock(handle,fcntl.LOCK_EX|fcntl.LOCK_NB)
+        report=status.inspect_study(study)
+    assert report['state']=='running' and report['threads']==1
+    assert report['completed']==0 and not report['warnings']
+
+
 def test_recent_verified_shard_charge_is_reported_as_recent_activity(tmp_path):
     from lll.studies.journal import Journal
     status=module();study=tmp_path/'data/sharded';study.mkdir(parents=True)
@@ -355,7 +376,7 @@ def test_verified_completed_total_includes_separately_charged_preflight(tmp_path
                                  preflight=[dict(identity='check',passed=True)]))
     put(study/'completion.json',dict(state='complete',manifest_sha256=digest(study/'manifest.json'),
                                     summary_sha256=digest(study/'summary.json')))
-    monkeypatch.setattr(status,'receipt_counts',lambda *a:dict(starts=1,sweeps=2,incomplete_transaction=False))
+    monkeypatch.setattr(status,'receipt_counts',lambda *a,**kw:dict(starts=1,sweeps=2,incomplete_transaction=False))
     report=status.inspect_study(study)
     assert report['state']=='complete' and report['native_calls']==3
     assert report['charged_identities']==1

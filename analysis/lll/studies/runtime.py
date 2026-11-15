@@ -68,13 +68,23 @@ def command(argv=None):
     publish.add_argument('--text',type=Path,required=True);publish.add_argument('--plan')
     pack=actions.add_parser('archive');pack.add_argument('--restore-verification',type=Path,required=True)
     pack.add_argument('--local-root',type=Path)
-    tests=actions.add_parser('test');tests.add_argument('--threads',type=int,default=4)
-    tests.add_argument('--reserved-threads',type=int,default=0);tests.add_argument('pytest_arguments',nargs=argparse.REMAINDER)
+    for action in ('test','test-worker','test-detached'):
+        tests=actions.add_parser(action);tests.add_argument('--threads',type=int,default=4)
+        tests.add_argument('--reserved-threads',type=int,default=0)
+        tests.add_argument('pytest_arguments',nargs=argparse.REMAINDER)
+    actions.add_parser('test-cleanup')
     args=parser.parse_args(argv);root=args.root.resolve();store=ArchiveStore(root)
-    if args.action=='test':
-        from .testing import run
+    if args.action=='test-cleanup':
+        from .testing import cleanup_interrupted
+        print(json.dumps(cleanup_interrupted(root),sort_keys=True));return 0
+    if args.action in ('test','test-worker','test-detached'):
+        from .testing import run,launch_detached
         arguments=args.pytest_arguments
         if arguments[:1]==['--']:arguments=arguments[1:]
+        if args.action=='test-detached':
+            print(json.dumps(launch_detached(root,arguments,threads=args.threads,
+                                             reserved=args.reserved_threads),sort_keys=True))
+            return 0
         return run(root,arguments,threads=args.threads,reserved=args.reserved_threads)
     if args.action=='archive':
         from .migration import migrate,add_local_aliases

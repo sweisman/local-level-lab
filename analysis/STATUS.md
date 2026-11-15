@@ -21,6 +21,14 @@ For machine-readable output or a particular runtime directory:
 ~/venv/bin/python analysis/status.py --study data/ilvis0-profile-verification-20261017
 ```
 
+When a launcher needs only the **current numerical thread allocation**, use
+`--allocations-only --json`. This probes every registered worker lease but
+fully inspects only studies whose lease is owned. Historical receipts are left
+for the ordinary full status command. The equivalent
+`LLL_STATUS_ALLOCATIONS_ONLY=1` environment setting serves existing recovery
+launchers that invoke `analysis/status.py --json` internally. It does not
+replace full evidence verification before any study runs.
+
 The independent prediction validation has its own runtime and total of 4,344 fits:
 
 ```sh
@@ -34,6 +42,10 @@ cohorts into one validation count.
 The command reads existing metadata and takes only temporary, nonblocking lock
 probes. It creates no study files, imports no numerical engines, reads no original
 measurements and never launches, resumes, repairs or packages a study.
+For a worker-owned study, result and charge checks use its local files, so a
+live status query does not load the historical archive catalog. After the
+worker releases its lease, archived evidence remains available to the full
+status check.
 
 For recovery advice on an explicitly selected sharded study:
 

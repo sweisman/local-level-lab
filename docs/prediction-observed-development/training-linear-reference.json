@@ -1,0 +1,48 @@
+{
+  "fit_manifest_sha256": "ce2cb7567e9d6995671dfd0b79ac4aec1a2d12d40fbe857a73827c7bbe466287",
+  "fit_study": "data/esa-training-split-recheck-development-v1-20261115",
+  "innovation_manifest_sha256": "15255e7ab2817b146cc7c72e6735446dd70924bcabfde3c0273abb35940f7bbd",
+  "innovation_study": "data/esa-training-innovation-development-v1-20261115",
+  "later_receiver_values_used": false,
+  "laws": {
+    "increment": {
+      "fitted_parameter_count": 26,
+      "linear_reference_degrees_of_freedom": 1774,
+      "linear_reference_expected_quadratic": 1774,
+      "linear_reference_expected_rms": 0.9927515074556953,
+      "local_rank": 26,
+      "local_tangent_residual_fraction": 2.030354241501262e-06,
+      "nonlinear_reference_calibrated": false,
+      "observation_count": 1800,
+      "observed_whitened_rms": 0.06301577571575617,
+      "quadratic": 7.147778380305272,
+      "quadratic_to_linear_reference_ratio": 0.004029187362066106,
+      "rank_relative_tolerance": 1e-08,
+      "scientific_decision": "abstain",
+      "smallest_to_largest_singular_ratio": 2.6857478938022336e-05,
+      "training_epochs": 600
+    },
+    "point": {
+      "fitted_parameter_count": 26,
+      "linear_reference_degrees_of_freedom": 1774,
+      "linear_reference_expected_quadratic": 1774,
+      "linear_reference_expected_rms": 0.9927515074556953,
+      "local_rank": 26,
+      "local_tangent_residual_fraction": 2.033655118233081e-06,
+      "nonlinear_reference_calibrated": false,
+      "observation_count": 1800,
+      "observed_whitened_rms": 0.06301573911601882,
+      "quadratic": 7.14777007740866,
+      "quadratic_to_linear_reference_ratio": 0.004029182681741071,
+      "rank_relative_tolerance": 1e-08,
+      "scientific_decision": "abstain",
+      "smallest_to_largest_singular_ratio": 2.685591553273336e-05,
+      "training_epochs": 600
+    }
+  },
+  "nonlinear_reference_calibrated": false,
+  "protected_confirmation_groups_opened": 0,
+  "scientific_decision": "abstain",
+  "source_sha256": "fc8b0424ebf97cde0222fc76e19c3153bb4e4314507349c57b3c211c08ec0e74",
+  "version": "esa-training-linear-reference-v1"
+}

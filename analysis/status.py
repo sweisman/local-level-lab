@@ -8,6 +8,7 @@ import fcntl
 import hashlib
 import json
 import math
+import os
 from pathlib import Path
 import sys
 import time
@@ -53,15 +54,17 @@ def read_lock(path):
         finally:fcntl.flock(stream,fcntl.LOCK_UN)
 
 
-def receipt_counts(directory,manifest_hash):
+def receipt_counts(directory,manifest_hash,*,allow_archive=True):
     charges=directory/'charges'
+    def available(path):
+        return exists(path) if allow_archive else path.is_file()
     with read_lock(charges/'ledger.lock') as state:
         if state=='held':raise ValueError('charge ledger busy; snapshot unavailable')
         pending=charges.is_dir() and any(p.name.startswith('.pending-') for p in charges.iterdir())
-        if exists(charges/'journal.sqlite'):
+        if available(charges/'journal.sqlite'):
             from lll.studies.journal import inspect_snapshot
             return inspect_snapshot(read_bytes(charges/'journal.sqlite'),manifest_hash)
-        if not exists(charges/'HEAD.json'):return None
+        if not available(charges/'HEAD.json'):return None
         head=load(charges/'HEAD.json');previous=None;counts=dict(starts=0,sweeps=0)
         events=head['events'];native_sweeps=0
         if type(events) is not int or not 0<=events<=1000000:raise ValueError('invalid charge count')
@@ -77,7 +80,7 @@ def receipt_counts(directory,manifest_hash):
         return dict(counts,native_sweeps=native_sweeps,incomplete_transaction=pending)
 
 
-def completed_rows(directory,manifest,manifest_hash):
+def completed_rows(directory,manifest,manifest_hash,*,allow_archive=True):
     rows=[]
     if manifest.get('version')=='ilvis0-sharded-native-controls-v1':
         workers=manifest['allocation']['workers']
@@ -88,7 +91,10 @@ def completed_rows(directory,manifest,manifest_hash):
             base=directory/'shards'/f'{shard:03d}'/'results'
             local[shard]={p.name for p in base.iterdir()} if base.is_dir() else set()
         relative=directory.is_relative_to(ROOT)
-        archived=archive_evidence(str(ROOT))[1]['paths'] if relative else {}
+        # A worker-owned study writes its sealed results locally. Archive
+        # lookup is needed only after the worker releases its lease, and can
+        # be expensive in a repository with many historical studies.
+        archived=archive_evidence(str(ROOT))[1]['paths'] if relative and allow_archive else {}
         for task in manifest['tasks']:
             identity=task['identity'];shard=task['shard'];name=identity+'.json'
             if Path(name).name!=name or type(shard) is not int or not 0<=shard<workers:
@@ -276,7 +282,8 @@ def inspect_study(directory):
                 if summary.get('passed') is False:
                     result['warnings'].append('qualification failed; '+str(len(summary.get('unrun_tests',[])))+' controls not run')
         else:
-            rows=completed_rows(directory,manifest,manifest_hash)
+            rows=completed_rows(directory,manifest,manifest_hash,
+                                allow_archive=not held)
             if sharded:
                 try:
                     snapshot=series_snapshot(directory,manifest['tasks'])
@@ -303,8 +310,9 @@ def inspect_study(directory):
         result['failures']=[dict(identity=r.get('identity'),reason=r.get('reason',r.get('status')))
             for r in rows if r.get('status') in ('error','interrupted','not_started')]
         try:
-            counts=receipt_counts(directory,manifest_hash)
-            preflight=receipt_counts(directory/'preflight',manifest_hash)
+            counts=receipt_counts(directory,manifest_hash,allow_archive=not held)
+            preflight=receipt_counts(directory/'preflight',manifest_hash,
+                                     allow_archive=not held)
             if counts is not None:
                 result.update(charged_identities=counts['starts'])
             if preflight is not None:result['preflight_identities']=preflight['starts']
@@ -324,7 +332,8 @@ def inspect_study(directory):
             shard_native=0;shard_starts=0;shard_bounds=0;valid=True
             for shard in range(workers):
                 try:
-                    counts=receipt_counts(directory/'shards'/f'{shard:03d}',manifest_hash)
+                    counts=receipt_counts(directory/'shards'/f'{shard:03d}',
+                                          manifest_hash,allow_archive=not held)
                     if counts:
                         shard_native+=counts['native_sweeps'];shard_starts+=counts['starts']
                         shard_bounds+=counts['sweeps']-counts['native_sweeps']
@@ -409,6 +418,27 @@ def read_registry(root,path):
     return [(r['name'],study_path(root,r['path'])) for r in rows]
 
 
+def allocation_report(entries):
+    """Inspect owned jobs only when reserving threads for a new worker.
+
+    Historical completed studies can contain large receipt chains; their
+    unowned locks cannot consume the current numerical allocation.
+    """
+    reports=[]
+    for name,path in entries:
+        locks=(path/'worker.lock',*path.glob('shards/*/worker.lock'))
+        owned=False
+        for lock in locks:
+            with read_lock(lock) as state:
+                owned |= state=='held'
+        if owned:
+            reports.append(dict(inspect_study(path),name=name))
+    active=sum(row['threads'] for row in reports)
+    warnings=[]
+    if active>4:warnings.append('monitored numerical allocation exceeds four total threads')
+    return dict(studies=reports,monitored_numerical_threads=active,warnings=warnings)
+
+
 def render(report):
     total=report['total'] if report['total'] is not None else '?'
     calls=report['native_calls'] if report['native_calls'] is not None else '?'
@@ -443,20 +473,32 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--study',action='append',help='explicit repository data/ directory; repeat for several studies')
     parser.add_argument('--json',action='store_true',help='machine-readable output')
+    parser.add_argument('--allocations-only',action='store_true',
+                        help='inspect owned jobs only when reserving numerical threads')
     parser.add_argument('--recovery',action='store_true',help='read-only recovery advice for explicitly selected sharded studies')
     args=parser.parse_args()
     if args.recovery and not args.study:parser.error('--recovery requires an explicit --study')
     try:
         entries=[(Path(name).name,study_path(ROOT,name)) for name in args.study] if args.study else read_registry(ROOT,ROOT/'analysis/study-status.json')
-        reports=[dict(inspect_study(path),name=name) for name,path in entries]
+        allocations_only=args.allocations_only or os.environ.get('LLL_STATUS_ALLOCATIONS_ONLY')=='1'
+        if allocations_only and args.recovery:
+            parser.error('--recovery requires full study inspection')
+        if allocations_only:
+            payload=allocation_report(entries)
+            reports=payload['studies']
+        else:
+            reports=[dict(inspect_study(path),name=name) for name,path in entries]
         if args.recovery:
             from lll.studies.recovery import inspect as recovery
             for report,(_,path) in zip(reports,entries):
                 report['recovery']=recovery(ROOT,str(path.relative_to(ROOT)))
     except (OSError,ValueError,KeyError,TypeError) as error:parser.error(str(error))
-    active=sum(r['threads'] for r in reports);warnings=[]
-    if active>4:warnings.append('monitored numerical allocation exceeds four total threads')
-    payload=dict(studies=reports,monitored_numerical_threads=active,warnings=warnings)
+    if not allocations_only:
+        active=sum(r['threads'] for r in reports);warnings=[]
+        if active>4:warnings.append('monitored numerical allocation exceeds four total threads')
+        payload=dict(studies=reports,monitored_numerical_threads=active,warnings=warnings)
+    else:
+        active=payload['monitored_numerical_threads'];warnings=payload['warnings']
     if args.json:print(json.dumps(payload,indent=2))
     else:
         for report in reports:
