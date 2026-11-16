@@ -10,6 +10,12 @@ See the [verified current status](CURRENT_STATUS.md) for coverage, background-fi
 The main model comparison is finished. The current priority is to check how
 well the models predict measurements that were left out of the fit.
 
+A [separately frozen ESA 400/120 model matrix](prediction-observed-development/ESA_400_120_MODEL_MATRIX_INTERPRETATION.md)
+closed 24/24 development fits: 20 numerical passes and four nonconverged
+zero-removal flat fits. Both complete profiled-removal settings favor
+globe on withheld positions. Aircraft error coverage, the two unresolved
+settings and independent-flight replication remain open.
+
 An **IMU (inertial measurement unit)** contains gyroscopes that measure turning
 and accelerometers that measure specific force. The analysis combines those
 records with receiver positions to reconstruct the aircraft's motion.

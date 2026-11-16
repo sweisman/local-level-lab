@@ -119,6 +119,11 @@ solar-versus-sidereal rate difference.
 A [withheld ESA forecast check](docs/prediction-observed-development/ROLLING_ORIGIN_400_CONDITIONAL_RESULT.md)
 now compares two IMU error laws on one development recording; neither is yet validated.
 
+A [matched three-model ESA development check](docs/prediction-observed-development/ESA_400_120_MODEL_MATRIX_INTERPRETATION.md)
+now supplies two complete withheld-position settings, both favoring globe;
+two other settings remain unresolved after flat-model stopping failures.
+Aircraft uncertainty and independent confirmation are still open.
+
 The [prediction pilot](docs/ilvis0-retrospective-prediction-pilot-v2/INTERPRETATION.md)
 now succeeds on one complete recording-level comparison. A separate
 [ESA development comparison](docs/esa-observed-wide-pilot/INTERPRETATION.md) now

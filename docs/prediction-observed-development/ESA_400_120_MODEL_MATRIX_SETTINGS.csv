@@ -1,0 +1,5 @@
+profile,law,complete,shape_lower_error_family,preferred_model,preferred_accuracy,field_lower_error_model
+False,increment,False,,,,
+False,point,False,,,,
+True,increment,True,globe,sphere_rotating,True,specified_field
+True,point,True,globe,sphere_rotating,True,specified_field

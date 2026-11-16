@@ -6,6 +6,11 @@ the model with a specified background angular field over the zero-field
 model. These are numerical preferences, not a calibrated confidence claim or
 53 independent flights. The data do not identify the cause of the field.
 
+A [matched ESA development forecast](prediction-observed-development/ESA_400_120_MODEL_MATRIX_INTERPRETATION.md)
+now has two complete three-model settings, both favoring globe, and two
+unresolved settings. Aircraft prediction uncertainty remains unqualified;
+the seven reserved flight groups remain closed.
+
 An **IMU (inertial measurement unit)** records angular motion with gyroscopes
 and specific force with accelerometers. Its gyroscope measurements are central
 to this project. The separate primary GPS receiver supplies positions that

@@ -6,6 +6,13 @@ preferences and no unresolved fits**. That count is not a confidence level or
 now pass their frozen checks; whether their error assumptions hold for aircraft
 measurements is still open. The sections below show what each study added.
 
+The [matched ESA 400/120 development comparison](prediction-observed-development/ESA_400_120_MODEL_MATRIX_INTERPRETATION.md)
+closed all 24 fits: 20 passed numerical checks, and four zero-removal
+flat-disc fits did not converge. Both complete profiled-removal settings
+favor globe on later positions. This is one development flight, not
+independent confirmation. Its [portable evidence](prediction-observed-development/esa-400-120-matrix/runtime/portable-evidence.zip)
+preserves all outcomes.
+
 [Saved ESA forecast versus receiver precision](esa-prediction-error-scale/README.md):
 22 completed forecasts are matched to the same receiver epochs; two original
 deadline failures remain listed. The receiver's centimetre precision does not
