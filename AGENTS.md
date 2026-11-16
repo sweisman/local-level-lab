@@ -171,5 +171,7 @@ progress counts, session histories, personal commentary or process IDs.
 - [Next analyses](docs/NEXT_STEPS.md), [technical roadmap](docs/ANALYSIS_ROADMAP.md)
   and [study index](docs/STUDIES.md); individual plans and receipts define frozen scope.
 - [Verified findings](docs/CURRENT_STATUS.md) and [status-command guide](analysis/STATUS.md).
+- [Pending evidence inventory](docs/REPOSITORY_STORAGE.md) for the classified local
+  file backlog and archive-pack dependencies.
 - [Additional data sources](docs/external-imu-data/README.md),
   [stationary experiment](docs/STATIONARY.md) and [participant protocol](docs/PROTOCOL.md).
