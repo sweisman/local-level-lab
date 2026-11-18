@@ -1,13 +1,41 @@
 # How the measurement works
 
 An **IMU (inertial measurement unit)** contains gyroscopes and accelerometers.
-The central observation for the curvature question is the **gyroscope record of
-the aircraft's turning**. GPS supplies the route and timing needed to interpret
-that motion. The analysis also uses acceleration and receiver-position constraints.
+The gyroscope record is central: it measures angular motion of the
+aircraft-mounted instrument, including maneuvers and any background angular
+field. GPS supplies the route and timing needed to interpret that motion. The
+analysis also uses acceleration and receiver-position constraints.
 
 [Current findings](CURRENT_STATUS.md) · [Studies and what they added](STUDIES.md) ·
 [All 53 stretches](ilvis0-current-findings-20261015/STRETCHES.md) ·
 [Comprehensive CSV](ilvis0-current-findings-20261015/stretch-analytics.csv).
+
+## A short way through the analysis
+
+Imagine reconstructing a flight using only the recorded IMU movements. The GPS
+receiver then supplies positions against which to check that reconstruction.
+The software repeats this under each proposed Earth geometry, giving each
+candidate the same permitted instrument corrections. The candidate with the
+smaller remaining position error is *preferred* for that stretch, provided its
+calculations pass the required checks.
+
+These terms describe the status of a comparison.
+
+| Term | Meaning here |
+|---|---|
+| **Model** | A specified Earth geometry and background angular field, with equations for how a moving aircraft should behave. |
+| **Fit** | A calculation that adjusts allowed instrument and starting-motion values to match the recorded IMU and GPS data. |
+| **Numerical pass** | The calculation met the checks for its study stage. Some stages scheduled repeats; see the current status for their recorded coverage. |
+| **Preference** | One completed candidate has a lower mismatch than another under the stated assumptions. |
+| **Calibrated confidence** | An error rate for the complete decision process, checked against realistic uncertainty and independent data. This is still open for the airborne result. |
+| **Abstain** | The result ledger makes no calibrated scientific decision. It can still record a lower cost for one fitted model. |
+
+The present result is a **numerical preference** on 53 selected stretches. The
+gyroscope measurements and primary GPS positions are different recorded
+streams, but GPS coordinates use a conventional geographic reference. The
+channel and coordinate checks below test how much the inertial measurements
+add. The later [prediction work](PREDICTION_VALIDATION.md) asks whether a fit
+to earlier measurements can forecast positions it has not seen.
 
 ## Primary: NASA airborne analysis
 
@@ -15,7 +43,7 @@ that motion. The analysis also uses acceleration and receiver-position constrain
 
 | Input | Role |
 |---|---|
-| Gyroscope angle increments | The recorded turning being investigated; retained as measurements rather than replaced with the finished navigation solution. |
+| Gyroscope angle increments | The recorded angular motion being investigated; retained as measurements rather than replaced with the finished navigation solution. |
 | Accelerometer velocity increments | The force measurements used with the gyros to reconstruct motion. |
 | GPS receiver positions and times | Locate the route and constrain the reconstructed track; support speed and interval selection. |
 | WGS84 and the alternative disc metric | Declared ways to interpret coordinates under each candidate, not additional instrument observations. |
@@ -23,7 +51,7 @@ that motion. The analysis also uses acceleration and receiver-position constrain
 The gyroscope is the central measurement of interest; this does not establish a
 numerical percentage of the evidence attributable to it. The current objective
 fits integrated IMU motion against receiver positions. The completed descriptive
-[measurement-channel checks](NEXT_STEPS.md#then-strengthen-the-interpretation)
+[measurement-channel checks](NEXT_STEPS.md)
 test reduced observations; calibrated attribution remains open.
 
 ### The physical prediction
@@ -43,7 +71,11 @@ closely after those adjustments pass numerical checks.
 |---|---|
 | Globe with the specified background field | Curved surface, aircraft motion and a standard geographic angular-rate field. |
 | Globe with zero background field | Curved surface and aircraft motion. |
-| Stationary flat disc | Its declared flat geometry and aircraft motion, including changes of direction around the disc. |
+| Stationary flat disc | A north-pole-centered azimuthal-equidistant disc with a 6,371 km scale, gravity normal to the disc and zero background field. Moving east circles the center and turns the local compass frame. |
+
+The published fits cover this particular disc. Other flat geometries and a
+disc carrying the globe model's specified geographic field remain untested in
+the NASA comparison. The supplied field and surface geometry both affect the fit.
 
 The historical names “rotating globe” and “still globe” identify the first two
 candidates. They specify a field term; they do not determine its physical cause.
@@ -52,19 +84,23 @@ candidates. They specify a field term; they do not determine its physical cause.
 
 1. **Check the measurements.** Preserve originals, integer increments and timestamps;
    reject invalid packets, checksums and truncation without silently repairing data.
-2. **Select stretches before fitting.** Require four continuous minutes, every
+2. **Apply the saved stretch-selection policy.** Require four continuous minutes, every
    supported receiver speed at least 700 km/h, and the frozen motion, completeness
    and configuration rules. The [eligibility record](ilvis0-highspeed-segments-20261008/ELIGIBILITY.md)
-   preserves the exact intervals and every file outcome.
+   preserves the exact intervals and every file outcome. The policy includes a
+   fused-navigation alignment flag for screening. Earlier archive-wide exploratory
+   fits preceded this study. The same selected intervals were used throughout
+   the published 53-stretch comparison.
 3. **Fit each complete stretch.** Use the same observations for all three candidates.
    Gaps or configuration changes split intervals. Shorter residual sections are
    consistency checks at the same parameters, not extra independent trials.
 4. **Test both processing cases.** Allow either no upstream background-field removal
    or an unknown common removed fraction. Both allow constant gyro offsets of
    ±1 degree/hour; that is an assumed error allowance, not a measured drift specification.
-5. **Check numerical completion and repeatability.** All required models, processing
-   cases, scheduled repeats and controls must pass. A failed fit keeps the comparison
-   unresolved even when its last cost leans strongly toward one model.
+5. **Check numerical completion.** Apply the checks recorded for each stage.
+   The original pass completed 12 stretches with no saved repeat pass. Later
+   studies finished the other 41 under stage-specific policies and retained the
+   failed attempts. See the [current status](CURRENT_STATUS.md) for the repeat counts.
 6. **Interpret shape first.** Compare the disc with the better globe fit. Only after
    both processing cases favor globe is the background-field comparison reported.
 

@@ -39,6 +39,36 @@ def test_counts_are_derived_and_unresolved_is_not_flat_support():
     assert snapshot['total']==2 and snapshot['background']==1 and snapshot['minutes']==8
 
 
+def test_completed_cohorts_distinguish_saved_repeats_from_missing_evidence():
+    module=builder()
+    first=dict(row('a','globe','True'),result_origin='original_first_pass',
+               latest_repeat_status='not_saved_or_not_scheduled')
+    later=dict(row('b','globe','True'),result_origin='completed_recovery',
+               latest_repeat_status='passed')
+    snapshot=module.summarize([first,later])
+    snapshot['receipt_sha256']='a'*64
+    report=module.render(snapshot)
+    assert '| Original pass | 1 | 0 | 1 |' in report
+    assert '| Later numerical studies | 1 | 1 | 0 |' in report
+    assert 'All selected comparisons have passed' not in module.status_block(snapshot,'')
+
+
+def test_cost_contrast_requires_preference_under_both_processing_cases():
+    cases = ('bias1_unsubtracted', 'bias1_profiled_removal')
+    models = ('sphere_rotating', 'sphere_still', 'flat_still')
+
+    def costs(first, second):
+        return {f'{case}__{model}__cost': str(value)
+                for case, values in zip(cases, (first, second), strict=True)
+                for model, value in zip(models, values, strict=True)}
+
+    assert builder().verified_cost_contrasts([
+        costs((1, 9, 4), (1, 10, 6)),
+        costs((1, 3, 2), (1, 2, 3)),
+        costs((2, 3, 2), (1, 3, 2)),
+    ]) == dict(field_globe=2, zero_field_disc=2)
+
+
 @pytest.mark.parametrize('rows',[
     [row('a','globe'),row('a','unresolved')],
     [row('a','unknown_label')],
@@ -62,7 +92,7 @@ def test_stale_excerpt_is_detected_without_writing(tmp_path,monkeypatch):
         path.write_text(module.START+'\n'+module.END+'\n')
     module.generate(tmp_path)
     assert module.generate(tmp_path,check=True)==[]
-    path=tmp_path/'README.md';stale=path.read_text().replace('1 globe preferences','99 globe preferences');path.write_text(stale)
+    path=tmp_path/'README.md';stale=path.read_text().replace('1 with the specified-field globe preferred','99 with the specified-field globe preferred');path.write_text(stale)
     assert module.generate(tmp_path,check=True)==['README.md']
     assert path.read_text()==stale
 

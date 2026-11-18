@@ -1,7 +1,7 @@
 # Evidence so far
 
-The main airborne comparison is complete: **53 globe preferences, zero flat
-preferences and zero unresolved stretches**, under both tested processing cases.
+The specified-field globe has the lowest numerical fit cost on **all 53
+selected NASA stretches**, under both tested processing cases.
 The same 53 preselected stretches total 424.3 minutes. The original twelve
 completed comparisons and 41 later recoveries are one cohort, not separate
 replications.
@@ -19,13 +19,13 @@ navigation does not supply the fitted observations.
 
 | Result or check | Present conclusion |
 |---|---|
-| Complete full-position model comparison | All 53 stretches pass their required numerical comparisons and favor globe. |
+| Full-position model comparison | All 53 favor the specified-field globe under the assumed ±1°/hour constant gyro-offset limit per axis. The zero-field disc fits better than the zero-field globe on 18 stretches under both processing cases. |
 | Background-field comparison | All 53 also prefer the specified field over zero; its cause and freely measured rate are not determined. |
 | Height-removal sensitivity | The horizontal score advantage persists, but unscored vertical paths can be implausible. One of two refitted stretches is complete; the other remains unresolved after a matched timing search. |
 | Sensor-channel separation | Mathematical calibration and error-budget controls pass. The [whole-history scalar check](ilvis0-channel-history-v2-20261019/INTERPRETATION.md) excludes none in 27,468 cases; a common zero-calibration point survives all 24 history variants. This reduced constraint does not reproduce the full method's separation or establish a complete gyro-free reconstruction. |
 | Prediction and significance | Earlier trials provide development evidence; calibrated significance, adequate withheld prediction and independent-replication counts remain open. |
 | Shared observations | The metadata ledger forms 27 conservative split groups from 53 stretches; these are not verified independent flights or installations. |
-| Independent confirmation reservation | ESA recording 187 is development material. Eight other cataloged files form seven protected groups; no ESA model comparison has been run. |
+| Independent confirmation reservation | Model comparisons on ESA recording 187 are exploratory. Eight other cataloged files form seven protected groups reserved for independent confirmation. |
 
 The [measurement-contribution overview](ilvis0-measurement-contribution/README.md)
 explains the separate sensitivity outcomes. They do not reopen the completed

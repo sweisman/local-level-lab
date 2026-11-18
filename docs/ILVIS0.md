@@ -1,8 +1,8 @@
 # Acquiring and decoding the airborne IMU archive
 
 <!-- current-status:start -->
-**53 globe preferences, 0 flat preferences, 0 unresolved** among 53 preselected stretches.
-See the [verified current status](CURRENT_STATUS.md) for coverage, background-field comparisons and the supporting result records. All selected comparisons have passed their required numerical checks.
+**53 with the specified-field globe preferred, 0 flat-disc preferences, 0 without a consistent preference** among 53 selected stretches.
+See the [verified current status](CURRENT_STATUS.md) for coverage, background-field comparisons and the numerical checks recorded for each cohort.
 <!-- current-status:end -->
 
 This guide covers the source recordings, decoding and instrument evidence.
@@ -51,8 +51,8 @@ The archived measurements and the finished navigation solution have different ro
 The gyro angle increments are the central turning observations being investigated.
 Accelerometer increments help reconstruct motion, while receiver positions provide
 route context and fitting constraints. GPS is the positioning system; WGS84 is its
-coordinate reference, not a synonym for the receiver measurements. The planned
-[channel and coordinate checks](NEXT_STEPS.md#then-strengthen-the-interpretation)
+coordinate reference, not a synonym for the receiver measurements. The ongoing
+[channel and coordinate checks](NEXT_STEPS.md)
 will isolate those contributions rather than assume how much evidence each supplies.
 
 The [provenance ledger](analysis-provenance/README.md) groups the 53 stretches
@@ -340,6 +340,26 @@ configuration check and a file's own check yields 24 exported candidate files an
 168 minutes. Including the earlier IMU8 candidates, 28 files provide about 200 minutes across
 potentially overlapping instrument streams. The IMU21 scales are 2^-28 radians per count and
 0.3048*2^-21 metres/second per count; these are empirically supported, not a manufacturer table.
+
+A source SHA-256 join of the [selected stretch ledger](ilvis0-current-findings-20261015/current-stretches.csv)
+to the [assessment summary](ilvis0-imu21-assessment-20261007/summary.json.gz)
+matches all 51 selected IMU21 stretches to 51 distinct tested source files.
+The join uses `physical_results.source_sha256`. Configuration status comes
+from the corresponding `task_id` in `configurations.members`.
+
+| Per-file check | Two-date configuration check | Selected IMU21 stretches |
+|---|---|---:|
+| Pass | Pass | 20 |
+| Pass | Fail | 17 |
+| Fail | Pass | 8 |
+| Fail | Fail | 6 |
+
+All 14 per-file failures include an accelerometer check failure. The gyro
+check passes in 13 of those 14 files. These checks use fused navigation as an
+engineering reference and give context for the decoder, rather than a measured
+calibration error model. The new pilot must account for both check results
+when it freezes eligibility. The published 53-stretch ledger retains its
+original selection and fits.
 
 GPS-only screening finds potential stretches in 84 of the 153 unresolved files. Internal
 navigation uncertainty can be considerably smaller than the broad fine-alignment flag's

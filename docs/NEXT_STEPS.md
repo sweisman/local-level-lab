@@ -1,10 +1,15 @@
 # What comes next
 
-The main airborne analysis is numerically complete. **All 53 selected stretches
-fit globe geometry better than the tested flat-disc model.** They also favor
-the model with a specified background angular field over the zero-field
-model. These are numerical preferences, not a calibrated confidence claim or
-53 independent flights. The data do not identify the cause of the field.
+The globe with a specified angular field fits all 53 selected aircraft
+stretches better than the two zero-field alternatives. Among the zero-field
+fits alone, the disc has the lower cost on 18 stretches under both processing
+assumptions. The 53 stretches belong to 27 conservative flight groups.
+
+First, test both geometries with the same field and measure what changes when
+gyroscope data are omitted or the assumed offset limit is widened. Then run a
+small NASA pilot before advancing aircraft prediction uncertainty and ESA
+development. The [technical milestones](ANALYSIS_ROADMAP.md#current-milestones-and-finish-line)
+give the conditions for expanding the pilot and opening independent flights.
 
 A [matched ESA development forecast](prediction-observed-development/ESA_400_120_MODEL_MATRIX_INTERPRETATION.md)
 now has two complete three-model settings, both favoring globe, and two
@@ -22,13 +27,10 @@ constrain the reconstructed flight.
 
 ## The work in order
 
-| Step | Current status | What must happen next |
-|---|---|---|
-| **1. Test predictions on unused measurements** | The 96-recording generated whole-period check finished, but four recordings stopped at its time limit, so its 5% coverage gate failed. The NASA retrospective pilot and one ESA development recording have usable forecasts; their absolute aircraft error is not yet calibrated. | Diagnose the four time-limit failures without rerunning them. Qualify a separate finite method check before using independent flights. |
-| **2. Isolate what the gyroscopes add** | Checks using accelerometer magnitude alone leave all tested models possible. Removing height from one fit still favors globe but can produce physically impossible altitudes. | Make a complete matched comparison with and without the gyro channel, retaining the same real observations and explicit orientation uncertainty. |
-| **3. Repeat with a different archive** | One ESA development recording has been parsed and tested. Seven separate flight groups remain reserved. | Freeze interval selection, error assumptions and decision rules before opening those reserved groups for confirmation. |
-| **4. Establish independent evidence and confidence** | The 53 stretches belong to 27 conservative flight groups. A separate generated-data calibration and validation passed under its simulated conditions. | Account for shared flights and instruments, fit the observed error structure, and calibrate the complete shape-then-field decision. |
-| **5. Measure the angular field freely** | The present model comparison tests a specified field against zero; it does not freely estimate the field's rate or cause. | After the prediction and uncertainty work, fit field direction and magnitude across flights. Test solar versus sidereal rate only if the resulting precision supports it. |
+1. Qualify the matched field, gyro-offset and gyro-free controls.
+2. Run a small matched NASA pilot and expand only if it can answer a stated open question.
+3. Qualify aircraft prediction uncertainty and test the three remaining ESA development windows.
+4. Freeze the decision procedure before opening any reserved independent group.
 
 ## Current method check
 
@@ -96,8 +98,8 @@ sets out that limit.
 
 ## What is already established
 
-- All 53 selected main comparisons passed their numerical stopping checks.
-  None preferred the tested flat disc.
+- The specified-field globe had the lowest cost in both cases on all 53 stretches.
+  The original 12 and later 41 used different numerical checks. See the [verified ledger](CURRENT_STATUS.md).
 - The [raw-gyro companion](ilvis0-gyro-companion-v2/INTERPRETATION.md)
   compares measured angular trends with geographic predictions.
 - The original files, integer IMU increments, receiver streams, selection

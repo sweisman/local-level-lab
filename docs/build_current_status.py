@@ -6,6 +6,7 @@ import gzip
 import hashlib
 import importlib.util
 import json
+import math
 from pathlib import Path
 import sys
 
@@ -58,14 +59,60 @@ def verify_inputs(root,inputs):
 
 def summarize(rows):
     tally=dict(globe=0,flat=0,unresolved=0,ambiguous=0);seen=set();background=0;seconds=0.
+    cohorts = {
+        label: dict(completed=0, repeat_pass=0, repeat_unknown=0, repeat_other=0)
+        for label in ('Original pass', 'Later numerical studies')
+    }
     for row in rows:
         sid=row['segment_id'];shape=row['shape_preference'];flag=row['specified_background_preferred']
         if sid in seen or shape not in tally or flag not in ('True','False'):
             raise ValueError('invalid or duplicate stretch disposition')
         if flag=='True' and shape!='globe': raise ValueError('background comparison requires globe')
         seen.add(sid);tally[shape]+=1;background+=flag=='True';seconds+=float(row['duration_s'])
+        origin = row.get('result_origin', '')
+        if shape in ('flat', 'globe', 'ambiguous') and (
+                origin == 'original_first_pass' or
+                origin.startswith(('completed_', 'qualified_'))):
+            label = 'Original pass' if origin == 'original_first_pass' else 'Later numerical studies'
+            cohort = cohorts[label]
+            cohort['completed'] += 1
+            status = row.get('latest_repeat_status', '')
+            if status == 'passed':
+                cohort['repeat_pass'] += 1
+            elif status in ('', 'not_saved_or_not_scheduled'):
+                cohort['repeat_unknown'] += 1
+            else:
+                cohort['repeat_other'] += 1
     return dict(tally=tally,total=len(seen),background=background,minutes=seconds/60,
-                imu_types=sorted({r['imu_type'] for r in rows}))
+                imu_types=sorted({r['imu_type'] for r in rows}),cohorts=cohorts)
+
+
+def with_repeat_evidence(rows, analytics):
+    by_id = {row['segment_id']: row for row in analytics}
+    if len(by_id) != len(analytics) or set(by_id) != {row['segment_id'] for row in rows}:
+        raise ValueError('repeat evidence does not match the verified stretch set')
+    for row in rows:
+        audited = by_id[row['segment_id']]
+        for field in ('shape_preference', 'result_origin', 'specified_background_preferred'):
+            if row[field] != audited[field]:
+                raise ValueError('repeat evidence differs from verified disposition')
+    return [dict(row, latest_repeat_status=by_id[row['segment_id']]['latest_repeat_status'])
+            for row in rows]
+
+
+def verified_cost_contrasts(analytics):
+    """Count matched costs from the hash-verified companion ledger."""
+    cases = ('bias1_unsubtracted', 'bias1_profiled_removal')
+    models = ('sphere_rotating', 'sphere_still', 'flat_still')
+    field_globe = zero_field_disc = 0
+    for row in analytics:
+        costs = [[float(row[f'{case}__{model}__cost']) for model in models]
+                 for case in cases]
+        if any(not math.isfinite(value) or value < 0. for case in costs for value in case):
+            raise ValueError('finite nonnegative matched costs required')
+        field_globe += all(field < min(still, disc) for field, still, disc in costs)
+        zero_field_disc += all(disc < still for _, still, disc in costs)
+    return dict(field_globe=field_globe, zero_field_disc=zero_field_disc)
 
 
 def load_snapshot(root,findings=FINDINGS):
@@ -75,12 +122,21 @@ def load_snapshot(root,findings=FINDINGS):
     verify_inputs(root,{findings+'/'+name:digest for name,digest in receipt['artifacts'].items()})
     if 'publication_builder' in receipt:
         path=public_path(root,receipt['publication_builder'])
+        if sha(path) != receipt['sources'][receipt['publication_builder']]:
+            raise ValueError('executed publication builder differs from the sealed source')
         spec=importlib.util.spec_from_file_location('current_publication',path)
         publication=importlib.util.module_from_spec(spec);spec.loader.exec_module(publication)
         expected=publication.verified_rows(root)
         with (directory/'current-stretches.csv').open(newline='') as stream: rows=list(csv.DictReader(stream))
         if rows!=expected: raise ValueError('current inventory differs from sealed result ledgers')
+        contrasts = None
+        if 'stretch-analytics.csv' in receipt['artifacts']:
+            with (directory/'stretch-analytics.csv').open(newline='') as stream:
+                analytics = list(csv.DictReader(stream))
+            rows = with_repeat_evidence(rows, analytics)
+            contrasts = verified_cost_contrasts(analytics)
         snapshot=summarize(rows)
+        snapshot['cost_contrasts'] = contrasts
         if snapshot['tally']!=receipt['tally']: raise ValueError('current tally differs from sealed results')
         snapshot['receipt_sha256']=sha(directory/'findings-receipt.json')
         return snapshot
@@ -116,17 +172,19 @@ def load_snapshot(root,findings=FINDINGS):
 
 def headline(snapshot):
     tally=snapshot['tally']
-    return (f"**{tally['globe']} globe preferences, {tally['flat']} flat preferences, "
-            f"{tally['unresolved']} unresolved** among {snapshot['total']} preselected stretches.")
+    if tally['globe'] == snapshot['background'] and tally['globe'] > 0:
+        matched = f"{tally['globe']} with the specified-field globe preferred"
+    else:
+        matched = f"{tally['globe']} globe preferences"
+    unresolved = tally['unresolved'] + tally['ambiguous']
+    return (f"**{matched}, {tally['flat']} flat-disc preferences, "
+            f"{unresolved} without a consistent preference** among {snapshot['total']} selected stretches.")
 
 
 def status_block(snapshot,prefix):
-    coverage=('All selected comparisons have passed their required numerical checks.'
-              if snapshot['tally']['unresolved']==0 and snapshot['tally']['ambiguous']==0
-              else 'Unfinished comparisons are not evidence for either shape.')
     return (START+'\n'+headline(snapshot)+'\n'
             f"See the [verified current status]({prefix}CURRENT_STATUS.md) for coverage, background-field comparisons "
-            'and the supporting result records. '+coverage+'\n'+END)
+            'and the numerical checks recorded for each cohort.\n'+END)
 
 
 def replace_block(text,block):
@@ -149,9 +207,20 @@ def render(snapshot):
     text+=f"\nOf the globe-preferred stretches, **{snapshot['background']}** also favor the specified background "
     text+='rotation field over zero field under both processing assumptions. That comparison does not '
     text+="identify the field's physical cause or distinguish a solar from a sidereal day.\n\n"
-    text+='These are numerical model preferences; statistical significance is not yet calibrated. '
+    if snapshot.get('cost_contrasts') is not None:
+        contrasts = snapshot['cost_contrasts']
+        text+=f"The specified-field globe has the lowest cost in both cases on **{contrasts['field_globe']}** stretches. "
+        text+=f"Among the two zero-field fits, the disc costs less in both cases on **{contrasts['zero_field_disc']}** stretches.\n\n"
+    text+='These are fitted model preferences. Calibrated statistical confidence for aircraft remains open. '
+    text+='The ledger value `scientific_decision = abstain` records that distinction. '
     text+='Overlapping recordings and shared instruments mean stretches cannot be counted as independent replications. '
     text+='An unresolved comparison has not passed its required calculations and checks; it supplies no opposing shape finding.\n\n'
+    if any(cohort['completed'] for cohort in snapshot['cohorts'].values()):
+        text+='| Cohort | Completed comparisons | Saved repeat passes | Repeat unscheduled or not saved | Other repeat status |\n'
+        text+='|---|---:|---:|---:|---:|\n'
+        for label,cohort in snapshot['cohorts'].items():
+            text+=f"| {label} | {cohort['completed']} | {cohort['repeat_pass']} | {cohort['repeat_unknown']} | {cohort['repeat_other']} |\n"
+        text+='\nRepeat counts describe the latest saved status for each stretch. The later studies used stage-specific checks.\n\n'
     text+=f'[Findings and source tracks]({prefix}FINDINGS.md) · [All selected stretches]({prefix}STRETCHES.md) '
     text+=f'· [Comprehensive metadata]({prefix}ANALYTICS.md) · [Next steps](NEXT_STEPS.md)\n\n'
     text+='## Evidence and history\n\n'

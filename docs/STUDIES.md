@@ -1,10 +1,10 @@
 # Studies and what each added
 
-The selected airborne study has **53 numerical globe preferences, no flat
-preferences and no unresolved fits**. That count is not a confidence level or
-53 independent flights. A separate simulated-data calibration and validation
-now pass their frozen checks; whether their error assumptions hold for aircraft
-measurements is still open. The sections below show what each study added.
+The globe with the specified field has the lowest fit cost in all 53 selected
+NASA stretches under both processing assumptions. Aircraft uncertainty remains
+open. The [current milestones](ANALYSIS_ROADMAP.md#current-milestones-and-finish-line)
+prioritize matched field and gyro controls before a bounded NASA pilot. The
+sections below preserve earlier development, including failed gates.
 
 The [matched ESA 400/120 development comparison](prediction-observed-development/ESA_400_120_MODEL_MATRIX_INTERPRETATION.md)
 closed all 24 fits: 20 passed numerical checks, and four zero-removal

@@ -15,6 +15,19 @@ test runner to finish before changing its evidence workspace.
 
 ## Inspect, verify and restore
 
+The public NASA status can be checked from the published ledgers:
+
+```sh
+~/venv/bin/python docs/build_current_status.py --check
+```
+
+This verifies the result and repeat ledgers and checks the hash of the final
+publication builder before loading it. Historical source hashes may refer
+to archived bytes. The older findings receipt does not bind every executed
+decision dependency and does not establish an external pre-run timestamp.
+A clean-checkout refit on a second machine and a pinned native toolchain are
+separate milestones. See the [current roadmap](ANALYSIS_ROADMAP.md#current-milestones-and-finish-line).
+
 Use the existing Python environment from the repository root:
 
 The completed prediction-calibration phase also has an independent archive at

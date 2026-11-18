@@ -17,12 +17,14 @@ The measurements, code and results are open.
 ## What the measurements show
 
 <!-- current-status:start -->
-**53 globe preferences, 0 flat preferences, 0 unresolved** among 53 preselected stretches.
-See the [verified current status](docs/CURRENT_STATUS.md) for coverage, background-field comparisons and the supporting result records. All selected comparisons have passed their required numerical checks.
+**53 with the specified-field globe preferred, 0 flat-disc preferences, 0 without a consistent preference** among 53 selected stretches.
+See the [verified current status](docs/CURRENT_STATUS.md) for coverage, background-field comparisons and the numerical checks recorded for each cohort.
 <!-- current-status:end -->
 
-The original run completed twelve comparisons; the other 41 passed separately
-checked numerical recoveries. Every result uses the same preselected observations.
+The original run completed 12 comparisons. Later numerical studies completed
+the other 41 using the same stretches and a series of different numerical checks.
+The stretches span 27 recording dates. Forty-nine are concentrated between
+about 57°S and 64°S, and some share a flight or instrument.
 
 ![Recorded gyro motion across all 53 flight stretches, with a median line](docs/ilvis0-gyro-overview/raw-pitch.png)
 
@@ -46,12 +48,11 @@ background rate is supplied rather than measured by this plot.
 
 ![Gyro tilt after subtracting the specified background field and estimated aircraft maneuvers](docs/ilvis0-motion-subtracted/motion-subtracted.png)
 
-**After estimated aircraft maneuvers are also removed, all 52 supported traces
-finish nose-down.** This uses fused navigation attitude to estimate maneuvers
-and aligns tilt across the flight path. One stretch lacks a complete saved
-correction. Transport rotation and correction errors remain: this visualization
-is separate from the research tests.
-[How the correction works and which stretch is omitted](docs/ilvis0-motion-subtracted/README.md).
+**All 52 traces with a complete maneuver estimate still finish nose-down after
+that estimate is removed.** This illustration uses the instrument’s fused
+navigation attitude. That solution already uses the gyros and a globe navigation
+model, so the correction shares those assumptions.
+[Correction and omitted stretch](docs/ilvis0-motion-subtracted/README.md).
 
 A [route-based companion](docs/ilvis0-gyro-companion-v2/INTERPRETATION.md) compares
 these raw rates with geographic predictions, without fitting gyro corrections.
@@ -90,34 +91,41 @@ These recordings are source material for that work.
 The analysis works from the recorded IMU increments, rather than treating the
 instrument’s finished navigation answer as evidence.
 
-## Gyroscope measurements, GPS context
+## How the comparison works
 
-GPS locates the flight so each model can predict the turning associated with its
-route. Receiver positions also constrain the reconstructed track during fitting.
-**GPS is the positioning system; WGS84 is the coordinate reference used for its
-reported positions.** Those conventions remain part of the analysis. The ongoing
-[measurement-contribution checks](docs/NEXT_STEPS.md#then-strengthen-the-interpretation)
-test what the gyro adds beyond the receiver positions, acceleration and declared
-physical assumptions, including cases that cannot distinguish the models.
+1. **Apply the published selection rules.** Each chosen stretch
+   has complete, usable measurements for at least four minutes and a GPS ground
+   speed of at least 700 km/h throughout. The selected set was fixed for its own
+   fits after earlier exploratory archive fitting.
+2. **Make the same comparison on each stretch.** The software reconstructs the
+   flight from IMU measurements under a globe with a specified background
+   angular field, a globe with no such field, and a stationary flat disc. It
+   gives each candidate the same permitted instrument corrections.
+3. **Declare the instrument assumptions.** Each fitted gyro axis can have
+   a constant offset of up to ±1°/hour. This is an assumed limit. The analysis
+   also tests two assumptions about possible onboard subtraction of the field.
+4. **Compare the fitted models.** The shape rule compares the stationary
+   disc with the better of the two globe fits. If globe wins, the two globe
+   fits are compared for the field result.
 
-Select steady, complete stretches of at least four minutes and 700 km/h throughout,
-**before examining model preferences**. Fit each whole stretch with the same permitted
-instrument errors under globe-with-field, zero-field globe and stationary flat-disc
-candidates. Compare shape first, then the background field.
+The **specified field** is an angular-rate pattern supplied to the calculation;
+this test does not estimate its rate freely. The GPS receiver reports latitude,
+longitude and height using WGS84, a standard geographic coordinate reference.
+The comparison therefore has stated coordinate assumptions. The [method page](docs/METHODOLOGY.md)
+explains how the recorded IMU and receiver streams are kept separate.
 
-The completed comparisons are substantial evidence favoring the globe in this test.
-A statistical significance level has not yet been calibrated, and overlapping
-recordings cannot be counted as independent flights.
-
-Earth’s shape, a measured rotation field and the cause of that field are separate
-questions. A globe result does not decide geocentrism versus heliocentrism. The
-current background-field comparison neither identifies its cause nor measures a
-solar-versus-sidereal rate difference.
+The globe with the specified field fits best in all 53 stretches under both
+processing assumptions. Comparing only the zero-field models, the disc fits
+better than the globe in 18 stretches under both assumptions. The next controls
+will test how much of the separation comes from curvature, the supplied field
+and the gyro offset limit. Statistical confidence for aircraft remains open.
 
 ## Follow the work
 
 A [withheld ESA forecast check](docs/prediction-observed-development/ROLLING_ORIGIN_400_CONDITIONAL_RESULT.md)
-now compares two IMU error laws on one development recording; neither is yet validated.
+had a raw horizontal RMS error of 5.38 m on one development recording.
+After conditioning on earlier receiver errors, the horizontal RMS error was 0.56 m
+and the height RMS error was 0.17 m.
 
 A [matched three-model ESA development check](docs/prediction-observed-development/ESA_400_120_MODEL_MATRIX_INTERPRETATION.md)
 now supplies two complete withheld-position settings, both favoring globe;

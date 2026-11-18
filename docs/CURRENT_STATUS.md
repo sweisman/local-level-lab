@@ -1,6 +1,6 @@
 # Current airborne analysis status
 
-**53 globe preferences, 0 flat preferences, 0 unresolved** among 53 preselected stretches.
+**53 with the specified-field globe preferred, 0 flat-disc preferences, 0 without a consistent preference** among 53 selected stretches.
 
 The selected stretches total **424.3 minutes**. The same preselected intervals and original measurements are retained through numerical recovery.
 
@@ -13,7 +13,16 @@ The selected stretches total **424.3 minutes**. The same preselected intervals a
 
 Of the globe-preferred stretches, **53** also favor the specified background rotation field over zero field under both processing assumptions. That comparison does not identify the field's physical cause or distinguish a solar from a sidereal day.
 
-These are numerical model preferences; statistical significance is not yet calibrated. Overlapping recordings and shared instruments mean stretches cannot be counted as independent replications. An unresolved comparison has not passed its required calculations and checks; it supplies no opposing shape finding.
+The specified-field globe has the lowest cost in both cases on **53** stretches. Among the two zero-field fits, the disc costs less in both cases on **18** stretches.
+
+These are fitted model preferences. Calibrated statistical confidence for aircraft remains open. The ledger value `scientific_decision = abstain` records that distinction. Overlapping recordings and shared instruments mean stretches cannot be counted as independent replications. An unresolved comparison has not passed its required calculations and checks; it supplies no opposing shape finding.
+
+| Cohort | Completed comparisons | Saved repeat passes | Repeat unscheduled or not saved | Other repeat status |
+|---|---:|---:|---:|---:|
+| Original pass | 12 | 0 | 12 | 0 |
+| Later numerical studies | 41 | 41 | 0 | 0 |
+
+Repeat counts describe the latest saved status for each stretch. The later studies used stage-specific checks.
 
 [Findings and source tracks](ilvis0-current-findings-20261015/FINDINGS.md) · [All selected stretches](ilvis0-current-findings-20261015/STRETCHES.md) · [Comprehensive metadata](ilvis0-current-findings-20261015/ANALYTICS.md) · [Next steps](NEXT_STEPS.md)
 

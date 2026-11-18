@@ -3,12 +3,63 @@
 ## Where the project stands
 
 <!-- current-status:start -->
-**53 globe preferences, 0 flat preferences, 0 unresolved** among 53 preselected stretches.
-See the [verified current status](CURRENT_STATUS.md) for coverage, background-field comparisons and the supporting result records. All selected comparisons have passed their required numerical checks.
+**53 with the specified-field globe preferred, 0 flat-disc preferences, 0 without a consistent preference** among 53 selected stretches.
+See the [verified current status](CURRENT_STATUS.md) for coverage, background-field comparisons and the numerical checks recorded for each cohort.
 <!-- current-status:end -->
 
-The main model comparison is finished. The current priority is to check how
-well the models predict measurements that were left out of the fit.
+The published NASA comparison is complete. The next comparison will isolate
+geometry, the prescribed angular field and the allowed gyro offset, then
+measure what changes when the gyroscope is omitted.
+
+## Current milestones and finish line
+
+This sequence takes priority over the older development backlog below.
+
+| Milestone | Work and exit gate |
+|---|---|
+| 1. Evidence and public wording | Recount the original and later NASA cohorts from their ledgers. State the model set, offset cap, sample concentration, selection history and recorded repeat coverage. Separate raw and conditioned forecasts and show both failed and passing generated gates. |
+| 2. Shared controls | Independently qualify the globe/disc and zero/specified-field comparison, including both processing cases. Test a gyro-free comparison with shared calibration and explicit attitude ambiguity, a ±1/3/10/20°/h gyro-offset grid, and consistent receiver-coordinate and covariance changes. Preserve physical inadequacy, numerical failures and unidentifiability as separate outcomes. |
+| 3. Bounded NASA pilot | Freeze a metadata-selected subset across distinct groups, courses, latitudes and both IMU types where feasible. Match numerical allowances and acceptance checks across models. Report whether the differences persist with the same field and wider gyro offsets. Expand only if comparisons are repeatable and adequate and the remaining stretches can answer a stated open question. |
+| 4. Aircraft errors and ESA development | Qualify uncertainty and absolute withheld accuracy, then evaluate the three selected windows from ESA recording 187 under matched conditions. Keep both IMU error laws and prioritize persistent bias, drift, calibration and correlated receiver error. |
+| 5. Independent confirmation and reproducibility | Freeze the two-stage decision and count outcomes by flight group, including abstentions and technical failures. Open the seven protected ESA groups only after the selection, error model, adequacy and decision gates qualify. Publish dependency-closed evidence and verify one NASA refit against a pinned toolchain and declared tolerance. |
+
+The work closes with verified evidence for each milestone and a clear record
+of unresolved scientific questions. A failed gate can close its own study;
+dependent claims remain unqualified. Free field estimation, solar versus
+sidereal precision and consumer expansion remain follow-on work.
+
+The initial NASA fit set was fixed for its own run after earlier archive
+exploration. The original pass completed 12 comparisons, and later numerical
+studies completed 41 under several stage-specific policies. No new study
+inherits a fit allowance or a numerical pass from those stages. The
+[current status](CURRENT_STATUS.md) supersedes totals printed in the
+[first-pass](ilvis0-highspeed-segments-20261008/FINDINGS.md),
+[stability](ilvis0-position-stability-trial-20261013/ANALYTICS.md) and
+[cost-precision](ilvis0-cost-precision-recovery-20261014/README.md) reports,
+which are preserved as historical evidence.
+
+The [v2 whole-period simulation](prediction-simultaneous-law-family-v2/RESULT.md)
+failed its 5% gate with four timeouts and a 9.28% upper failure bound. The
+separate v3 cohort passed locally with 95/96 recordings and a 4.85% upper
+failure bound for its generated mixture. Its evidence bundle is still pending publication.
+Aircraft coverage remains unqualified. This gate is separate from the
+4,344-fit validation and the study that used the 4.2 threshold.
+
+The first [matched-field software controls](../analysis/tests/test_ilvis0_matched_field.py)
+check local specific force and angular rate against independent generated
+globe and disc trajectories. They also exercise exact constant-offset
+profiling for fixed body motion and show that different gyro-free attitude
+histories can attain the same force error at one shared calibration. The
+linear receiver coordinate check preserves propagated force variance when
+both covariance and derivative weights are transformed. The next gate is
+to exercise these controls in a complete matched prediction and fitting
+pipeline, including receiver covariance and independently justified motion
+constraints. A [decoder coverage audit](ILVIS0.md) also
+reconciles all 51 selected IMU21 stretches with the earlier physical checks.
+Twenty pass both the file and configuration checks. Pilot eligibility needs
+to account for the remaining check outcomes before any observed runs.
+
+## Earlier prediction development
 
 A [separately frozen ESA 400/120 model matrix](prediction-observed-development/ESA_400_120_MODEL_MATRIX_INTERPRETATION.md)
 closed 24/24 development fits: 20 numerical passes and four nonconverged
@@ -24,7 +75,7 @@ The 53 stretches favor globe geometry and the model with a specified background
 rotation signal. These are completed model comparisons. Statistical confidence,
 prediction accuracy and independence between recordings still need testing.
 
-The latest [96-recording generated whole-period check](prediction-simultaneous-law-family-v2/RESULT.md)
+The earlier [96-recording generated whole-period check](prediction-simultaneous-law-family-v2/RESULT.md)
 closed every task. Both intervals covered every later coordinate in its 92
 scored recordings; four tasks stopped at the original time limit. Those four
 count as failures, so the 5% coverage gate failed. Observed-flight prediction
