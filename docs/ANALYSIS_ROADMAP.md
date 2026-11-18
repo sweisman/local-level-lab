@@ -28,6 +28,35 @@ of unresolved scientific questions. A failed gate can close its own study;
 dependent claims remain unqualified. Free field estimation, solar versus
 sidereal precision and consumer expansion remain follow-on work.
 
+### Execution order and completion checks
+
+1. **Package the completed whole-period simulation.** Restore the exact 251
+   frozen sources for the v3 study in an isolated replay directory. Eleven
+   live source files differ from their frozen versions. Check the parent and
+   continuation hashes and journals, then regenerate the report from saved
+   evidence and compare its 96 recording outcomes with the sealed report.
+   Package that study with its restored sources, plans, qualification records
+   and evidence. Verify the package independently of the pending repository
+   catalog. This step uses saved evidence and starts zero fits.
+2. **Advance the shared controls while packaging proceeds.** Wire the local
+   matched-field and gyro-free controls into the full fitting and prediction
+   pipeline. Qualify on independently generated cases before preparing the
+   NASA pilot. Continue NASA and ESA work only through the gates in the
+   milestone table. Keep the earlier solver diagnostics as evidence for
+   specific failures that affect those gates.
+3. **Proceed through each verified gate.** After a study closes, verify the
+   outcomes, update the public roadmap, study index and relevant overview,
+   and start the next ready task. Use a finite, reboot-resumable allowance
+   for each new study. Preserve failed gates and their charges. Continue
+   independent work when a gate blocks dependent fits. Any follow-up must
+   address a specific diagnosed failure and have a distinct, justified test.
+4. **Close with an evidence and backlog audit.** Verify the covered claims
+   from a clean checkout. For each milestone, record its result, any
+   abstention and which downstream claims remain unavailable. Stage external
+   publication as reviewable, dependency-closed batches. Follow repository
+   authorization rules for Git and external publication while other ready
+   work continues.
+
 The initial NASA fit set was fixed for its own run after earlier archive
 exploration. The original pass completed 12 comparisons, and later numerical
 studies completed 41 under several stage-specific policies. No new study
