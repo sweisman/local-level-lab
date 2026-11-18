@@ -30,15 +30,12 @@ sidereal precision and consumer expansion remain follow-on work.
 
 ### Execution order and completion checks
 
-1. **Package the completed whole-period simulation.** Restore the exact 251
-   frozen sources for the v3 study in an isolated replay directory. Eleven
-   live source files differ from their frozen versions. Check the parent and
-   continuation hashes and journals, then regenerate the report from saved
-   evidence and compare its 96 recording outcomes with the sealed report.
-   Package that study with its restored sources, plans, qualification records
-   and evidence. Verify the package independently of the pending repository
-   catalog. This step uses saved evidence and starts zero fits.
-2. **Advance the shared controls while packaging proceeds.** Wire the local
+1. **Package the completed whole-period simulation.** The v3 study has a
+   verified [portable replay](prediction-simultaneous-law-family-v3/REPLAY.md).
+   It restores 251 frozen sources and reproduces all 96 outcomes, including
+   95 successes, from the original and continuation evidence. Extraction
+   and exact report replay have been checked without the shared catalog.
+2. **Advance the shared controls.** Wire the local
    matched-field and gyro-free controls into the full fitting and prediction
    pipeline. Qualify on independently generated cases before preparing the
    NASA pilot. Continue NASA and ESA work only through the gates in the

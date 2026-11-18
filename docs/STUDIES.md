@@ -6,6 +6,11 @@ open. The [current milestones](ANALYSIS_ROADMAP.md#current-milestones-and-finish
 prioritize matched field and gyro controls before a bounded NASA pilot. The
 sections below preserve earlier development, including failed gates.
 
+The [portable whole-period replay](prediction-simultaneous-law-family-v3/REPLAY.md)
+reproduces the 96-recording v3 report exactly from its frozen sources and
+saved evidence. The 95/96 simulated result and its 4.85% upper failure bound
+remain separate from aircraft prediction uncertainty.
+
 The [matched ESA 400/120 development comparison](prediction-observed-development/ESA_400_120_MODEL_MATRIX_INTERPRETATION.md)
 closed all 24 fits: 20 passed numerical checks, and four zero-removal
 flat-disc fits did not converge. Both complete profiled-removal settings
