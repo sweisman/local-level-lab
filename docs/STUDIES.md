@@ -5,6 +5,10 @@ passed all 16 pairs and all eight settings on a previously unused window
 of the development flight. Predictions from near-tied starts stayed
 within 0.265 mm at the 400 later timestamps.
 
+The [coupled force map](prediction-observed-development/ESA_FORCE_SCORE_RESULT.md)
+brought the total shared reduction below 8.55 standardized units. This
+leaves a conditional 1.35 cm target for the other position errors.
+
 The [ESA calibration follow-up](prediction-observed-development/SHAPE_REMAINDER_METRES_RESULT.md)
 sets a four-centimetre position-error target under four working covariances.
 Meeting that target would preserve the local globe–disc score separation

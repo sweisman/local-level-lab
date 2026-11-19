@@ -32,6 +32,12 @@ converged in all 16 pairs. Their predictions from equally good starting
 points stayed within 0.265 mm. Accuracy against later GPS positions is a
 separate check. [Solver comparison](mixed-tangent-hybrid/OBSERVED_DISPATCH_FRESH_RESULT.md)
 
+**Set limits on calibration error.** On the same ESA development flight,
+a completed check narrowed how much mount alignment and accelerometer
+gain errors can shrink the predicted difference between globe and disc.
+The next check must bound the remaining error across the full recording.
+[Calibration bound](prediction-observed-development/ESA_FORCE_SCORE_RESULT.md)
+
 **Test the turn allowance on steadier flight.** Four steady-course
 controls on the same flight now have verified training inputs. The
 comparison will test whether the turn allowance helps specifically

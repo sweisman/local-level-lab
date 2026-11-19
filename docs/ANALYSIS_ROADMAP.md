@@ -8,9 +8,10 @@ See the [verified current status](CURRENT_STATUS.md) for coverage, background-fi
 <!-- current-status:end -->
 
 On the ESA development flight, [both solvers passed all 16 matched pairs](mixed-tangent-hybrid/OBSERVED_DISPATCH_FRESH_RESULT.md).
-The next calibration check must account for how the archived integrator
-changes gravity with height and test the [position-error target](prediction-observed-development/SHAPE_REMAINDER_METRES_RESULT.md)
-over the settings that fit the earlier GPS positions.
+The [saved calibration check](prediction-observed-development/ESA_FORCE_SCORE_RESULT.md)
+bounded the effect of errors shared across the prediction. The next
+gate is to bound the remaining errors over the full recording and verify
+the fit-error limit on the earlier GPS positions.
 
 The published NASA comparison is complete. The next comparison will isolate
 geometry, the prescribed angular field and the allowed gyro offset, then
