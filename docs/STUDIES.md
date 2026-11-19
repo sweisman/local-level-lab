@@ -5,6 +5,12 @@ passed all 16 pairs and all eight settings on a previously unused window
 of the development flight. Predictions from near-tied starts stayed
 within 0.265 mm at the 400 later timestamps.
 
+The [ESA calibration follow-up](prediction-observed-development/SHAPE_REMAINDER_METRES_RESULT.md)
+sets a four-centimetre position-error target under four working covariances.
+Meeting that target would preserve the local globe–disc score separation
+if the earlier fit-error bound also holds. Testing it requires matching how
+the archived integrator changes gravity with height.
+
 The globe with the specified field has the lowest fit cost in all 53 selected
 NASA stretches under both processing assumptions. Aircraft uncertainty remains
 open. The [current milestones](ANALYSIS_ROADMAP.md#current-milestones-and-finish-line)

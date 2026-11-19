@@ -4,15 +4,16 @@
 
 **Testing Earth’s curvature with airborne lidar survey measurements.**
 
-An aircraft flying level over a globe gradually turns as the direction of local down
-changes along its route. At 900 km/h, following that curve means about eight degrees
-of turning per hour. That is a measurable prediction.
+An aircraft following a level path over a globe must gradually change direction
+as “down” changes along its route. At 900 km/h, the predicted change is about
+eight degrees per hour. A flat path predicts different motion.
 
 An **IMU (inertial measurement unit)** contains gyroscopes and accelerometers.
-**The central measurement is the gyroscope record: how the aircraft actually turns.**
-Accelerometers help reconstruct its motion; GPS supplies route, speed and timing.
-Local Level Lab tests those recorded movements against globe and flat-disc predictions.
-The measurements, code and results are open.
+**The gyroscopes record angular motion of the aircraft-mounted instrument,**
+including aircraft turns and any background angular motion. Accelerometers help
+reconstruct its motion. A separate GPS receiver supplies the route, speed and
+time. The analysis checks which proposed geometry best accounts for all of these
+measurements. The data, method and results are open.
 
 ## What the measurements show
 
@@ -28,23 +29,18 @@ about 57°S and 64°S, and some share a flight or instrument.
 
 ![Recorded gyro motion across all 53 flight stretches, with a median line](docs/ilvis0-gyro-overview/raw-pitch.png)
 
-**The recorded motion has a consistent direction: all 53 traces finish nose-down.**
-Each thin line sums the raw gyro increments around the aircraft's pitch axis,
-starting at zero; the thick line shows the median. No fitted corrections or GPS
-values enter these angles. The graph includes every selected stretch.
-
-This is a direct visualization of the measurements, not a separate curvature test:
-aircraft motion and the background rotation field also contribute. The full analysis
-accounts for those contributions when comparing shapes.
-[How to read the graph and download its data](docs/ilvis0-gyro-overview/README.md).
+**All 53 raw traces finish nose-down.** Each thin line adds the recorded turns
+around the aircraft's pitch axis; the thick line is the median. The graph uses
+no GPS values or fitted corrections. Aircraft maneuvers and background angular
+motion also contribute, so this picture alone does not decide Earth’s shape.
+[Graph explanation and data](docs/ilvis0-gyro-overview/README.md).
 
 ![The same 53 gyro traces with the specified background-field prediction subtracted](docs/ilvis0-background-subtracted/background-subtracted.png)
 
-**Subtracting the specified background field leaves all 53 traces ending
-nose-down.** This uses the same gyro bins, but the correction uses GPS latitude
-and direction with an assumed level attitude. Aircraft motion remains; the
-background rate is supplied rather than measured by this plot.
-[What was subtracted, and the plotted data](docs/ilvis0-background-subtracted/README.md).
+**All 53 still finish nose-down after a specified background angular rate is
+subtracted.** This correction uses GPS latitude and direction; it is a useful
+view of the data, not a free measurement of that rate.
+[Correction and data](docs/ilvis0-background-subtracted/README.md).
 
 ![Gyro tilt after subtracting the specified background field and estimated aircraft maneuvers](docs/ilvis0-motion-subtracted/motion-subtracted.png)
 
@@ -53,26 +49,6 @@ that estimate is removed.** This illustration uses the instrument’s fused
 navigation attitude. That solution already uses the gyros and a globe navigation
 model, so the correction shares those assumptions.
 [Correction and omitted stretch](docs/ilvis0-motion-subtracted/README.md).
-
-A [route-based companion](docs/ilvis0-gyro-companion-v2/INTERPRETATION.md) compares
-these raw rates with geographic predictions, without fitting gyro corrections.
-Median rate differences are **0.88°/h for globe plus the specified field,
-2.84°/h for zero-field globe, and 5.87°/h for the level flat prediction**.
-Aircraft motion remains in this descriptive comparison.
-
-A [three-recording prediction pilot](docs/ilvis0-retrospective-prediction-pilot-v2/INTERPRETATION.md)
-calibrated on earlier measurements and checked later GPS positions without
-using them to adjust the answer. One recording completed all required settings:
-horizontal RMS was **0.84–1.13 m for globe plus the specified field, about 496 m
-for zero-field globe and 793 m for disc**. The other two recordings have missing
-fits or failed accuracy checks. These are development results; statistical
-confidence and independent confirmation remain open.
-
-Separate [height-removal checks](docs/ilvis0-measurement-contribution/README.md)
-preserve the horizontal score advantage, but allow unrealistic vertical paths.
-One of two refitted stretches passed every repeat check; the other remains
-unresolved after a matched timing search. These test what drives the result;
-they do not replace the complete 53-stretch analysis.
 
 **[See all 53 stretches](docs/ilvis0-current-findings-20261015/STRETCHES.md)** —
 instrument configuration, duration, speed, course, latitude and current result.
@@ -88,8 +64,9 @@ receivers for lidar mapping of ice sheets, glaciers and sea ice. Measuring the
 surface accurately requires knowing where the aircraft was and how it was oriented.
 These recordings are source material for that work.
 
-The analysis works from the recorded IMU increments, rather than treating the
-instrument’s finished navigation answer as evidence.
+The analysis uses the recorded IMU increments and positions from the primary
+GPS receiver. It does not use the instrument’s finished navigation answer as
+independent evidence.
 
 ## How the comparison works
 
@@ -120,46 +97,36 @@ better than the globe in 18 stretches under both assumptions. The next controls
 will test how much of the separation comes from curvature, the supplied field
 and the gyro offset limit. Statistical confidence for aircraft remains open.
 
-## Follow the work
+## What remains to be checked
 
-A [withheld ESA forecast check](docs/prediction-observed-development/ROLLING_ORIGIN_400_CONDITIONAL_RESULT.md)
+A [prediction pilot](docs/ilvis0-retrospective-prediction-pilot-v2/INTERPRETATION.md)
+completed every matched check on one recording; the other two retain numerical
+or accuracy failures. A [later 20-group check](docs/prediction-group-transfer/REMAINING_GROUPS_PREDICTION_RESULT.md)
+had nine usable forecasts within its development limits and eleven groups
+without a usable later-cut fit. In simulation, the
+[first whole-period test](docs/prediction-simultaneous-law-family-v2/RESULT.md)
+failed its declared gate and a
+[separate follow-up](docs/prediction-simultaneous-law-family-v3/RESULT.md)
+passed. Aircraft error coverage remains open.
+
+In a separate airborne archive, an [earlier-only forecast](docs/prediction-observed-development/ROLLING_ORIGIN_400_CONDITIONAL_RESULT.md)
 had a raw horizontal RMS error of 5.38 m on one development recording.
-After conditioning on earlier receiver errors, the horizontal RMS error was 0.56 m
-and the height RMS error was 0.17 m.
+Conditioning on earlier receiver errors gave 0.56 m horizontal and 0.17 m
+height RMS. A [matched three-model follow-up](docs/prediction-observed-development/ESA_400_120_MODEL_MATRIX_INTERPRETATION.md)
+on that same recording favors globe geometry in two complete settings; two
+other settings remain unresolved because flat-model fits did not converge.
+On another window from the same flight, [two solvers agreed on all 16 matched
+globe comparisons](docs/mixed-tangent-hybrid/OBSERVED_DISPATCH_FRESH_RESULT.md).
+The aircraft prediction-error range remains open. Seven other flight
+groups remain reserved for confirmation.
 
-A [matched three-model ESA development check](docs/prediction-observed-development/ESA_400_120_MODEL_MATRIX_INTERPRETATION.md)
-now supplies two complete withheld-position settings, both favoring globe;
-two other settings remain unresolved after flat-model stopping failures.
-Aircraft uncertainty and independent confirmation are still open.
+Next, test what the gyroscope adds beyond GPS and acceleration and compare the
+two geometries under the same field assumptions. [Plain-language next steps](docs/NEXT_STEPS.md).
 
-The [prediction pilot](docs/ilvis0-retrospective-prediction-pilot-v2/INTERPRETATION.md)
-now succeeds on one complete recording-level comparison. A separate
-[ESA development comparison](docs/esa-observed-wide-pilot/INTERPRETATION.md) now
-completes three matched settings: typical later 3D position error is **about
-15 m for globe plus the specified field, 3.8–4.4 km for zero-field globe and
-7.4–8.6 km for disc**. These reuse one twenty-minute recording; the fourth
-setting is incomplete because two starts reached the runtime ceiling.
-The [corrected solver](docs/timing-matrix-combined/README.md) now passes all
-48 development cases and 24 comparisons between prescribed starting points,
-under the original limits. Earlier failed runs remain recorded. A
-[complete calibration](docs/prediction-calibration-host-20261030/INTERPRETATION.md)
-now passes all 7,176 fits across 299 simulated cases and supplies a verified
-prediction-error limit. A [separate continuation of the independent test](docs/HOST_PREDICTION_STATUS.md)
-completed all 4,344 fits across 181 fresh simulated cases and passed its declared
-coverage rule. That test validates the procedure under simulated conditions;
-aircraft error coverage remains unestablished.
-Statistical confidence is tested separately; independent ESA confirmation
-follows method qualification. Shared recordings are grouped
-before validation; ESA recording 187 is development material and the other
-cataloged groups are reserved for confirmation. A freely measured rotation
-field and solar-versus-sidereal precision come later.
-
-- **[Studies and what each added](docs/STUDIES.md)** — a concise guide to the analyses,
-  successful recoveries and approaches that did not qualify.
+- **[Studies at a glance](docs/STUDY_GUIDE.md)** — what each major stage added.
+- **[Full study record](docs/STUDIES.md)** — the detailed research history.
 - **[How the method works](docs/METHODOLOGY.md)** — observations, models and checks.
 - **[Reproduce the studies](docs/REPRODUCIBILITY.md)** — shared code and verified historical evidence.
-- **[What comes next](docs/NEXT_STEPS.md)** — measurement contributions,
-  withheld predictions, protected ESA confirmation and later rotation-field work.
 - **[Archive and instrument guide](docs/ILVIS0.md)** — source data, decoding and provenance.
 
 ## A separate ground experiment

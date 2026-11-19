@@ -7,6 +7,11 @@
 See the [verified current status](CURRENT_STATUS.md) for coverage, background-field comparisons and the numerical checks recorded for each cohort.
 <!-- current-status:end -->
 
+On the ESA development flight, [both solvers passed all 16 matched pairs](mixed-tangent-hybrid/OBSERVED_DISPATCH_FRESH_RESULT.md).
+The next calibration check must account for how the archived integrator
+changes gravity with height and test the [position-error target](prediction-observed-development/SHAPE_REMAINDER_METRES_RESULT.md)
+over the settings that fit the earlier GPS positions.
+
 The published NASA comparison is complete. The next comparison will isolate
 geometry, the prescribed angular field and the allowed gyro offset, then
 measure what changes when the gyroscope is omitted.
