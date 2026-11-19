@@ -33,10 +33,11 @@ points stayed within 0.265 mm. Accuracy against later GPS positions is a
 separate check. [Solver comparison](mixed-tangent-hybrid/OBSERVED_DISPATCH_FRESH_RESULT.md)
 
 **Set limits on calibration error.** On the same ESA development flight,
-a completed check narrowed how much mount alignment and accelerometer
-gain errors can shrink the predicted difference between globe and disc.
-The next check must bound the remaining error across the full recording.
-[Calibration bound](prediction-observed-development/ESA_FORCE_SCORE_RESULT.md)
+two calibration changes that still fit the earlier GPS positions moved
+the forecasts a combined 0.43 units toward each other. The forecasts
+started 25.41 units apart. The current bounds still allow 53.66 units
+of movement, so the next step is to tighten how they link the
+calibration terms. [Calibration replay and bounds](prediction-observed-development/ESA_LINKED_PHYSICAL_REPLAY_RESULT.md)
 
 **Test the turn allowance on steadier flight.** Four steady-course
 controls on the same flight now have verified training inputs. The

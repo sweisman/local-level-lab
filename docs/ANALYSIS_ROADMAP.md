@@ -9,9 +9,13 @@ See the [verified current status](CURRENT_STATUS.md) for coverage, background-fi
 
 On the ESA development flight, [both solvers passed all 16 matched pairs](mixed-tangent-hybrid/OBSERVED_DISPATCH_FRESH_RESULT.md).
 The [saved calibration check](prediction-observed-development/ESA_FORCE_SCORE_RESULT.md)
-bounded the effect of errors shared across the prediction. The next
-gate is to bound the remaining errors over the full recording and verify
-the fit-error limit on the earlier GPS positions.
+bounded the effect of errors shared across the prediction. The
+[full integrating-model replay](prediction-observed-development/ESA_LINKED_PHYSICAL_REPLAY_RESULT.md)
+confirmed 0.432 units of combined movement at the original earlier GPS
+loss limit. The saved global bounds still allow 53.66 units at zero
+assumed earlier unshared error, beyond the 25.41-unit forecast difference.
+Tightening the physical links in the bounds is the next gate.
+Independent ESA flight groups remain reserved.
 
 The published NASA comparison is complete. The next comparison will isolate
 geometry, the prescribed angular field and the allowed gyro offset, then

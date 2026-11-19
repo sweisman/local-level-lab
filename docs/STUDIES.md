@@ -8,6 +8,11 @@ within 0.265 mm at the 400 later timestamps.
 The [coupled force map](prediction-observed-development/ESA_FORCE_SCORE_RESULT.md)
 brought the total shared reduction below 8.55 standardized units. This
 leaves a conditional 1.35 cm target for the other position errors.
+The [joint calibration checks](prediction-observed-development/ESA_JOINT_FORCE_SUPPORT_RESULT.md)
+constrain the earlier fit. The [full integrating-model replay](prediction-observed-development/ESA_LINKED_PHYSICAL_REPLAY_RESULT.md)
+confirmed 0.432 units of combined movement at the original earlier
+loss limit. The global bounds still allow 53.66 units at zero assumed
+earlier unshared error, compared with the 25.41-unit forecast difference.
 
 The [ESA calibration follow-up](prediction-observed-development/SHAPE_REMAINDER_METRES_RESULT.md)
 sets a four-centimetre position-error target under four working covariances.
