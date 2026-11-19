@@ -1,5 +1,10 @@
 # Selective-precision arithmetic: long-record check
 
+The [fresh ESA solver comparison](OBSERVED_DISPATCH_FRESH_RESULT.md) passed
+all 16 pairs and all eight settings on a new window of the development
+flight. The largest spread among near-tied predictions was 0.265 mm.
+The earlier checks below retain their original results.
+
 The new isolated prototype keeps wider precision for the ten parameter
 sensitivities that missed the tolerance in the previous long-record benchmark.
 Its other seventeen derivative directions use ordinary precision. The

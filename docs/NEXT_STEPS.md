@@ -25,6 +25,18 @@ constrain the reconstructed flight.
 [All 53 stretches](ilvis0-current-findings-20261015/STRETCHES.md) ·
 [Detailed CSV](ilvis0-current-findings-20261015/stretch-analytics.csv)
 
+## ESA development update
+
+**Check that the two solvers agree.** On one new ESA window, both solvers
+converged in all 16 pairs. Their predictions from equally good starting
+points stayed within 0.265 mm. Accuracy against later GPS positions is a
+separate check. [Solver comparison](mixed-tangent-hybrid/OBSERVED_DISPATCH_FRESH_RESULT.md)
+
+**Test the turn allowance on steadier flight.** Four steady-course
+controls on the same flight now have verified training inputs. The
+comparison will test whether the turn allowance helps specifically
+when its timing follows the aircraft's motion.
+
 ## The work in order
 
 1. Qualify the matched field, gyro-offset and gyro-free controls.

@@ -1,5 +1,10 @@
 # Studies and what each added
 
+The [new ESA solver comparison](mixed-tangent-hybrid/OBSERVED_DISPATCH_FRESH_RESULT.md)
+passed all 16 pairs and all eight settings on a previously unused window
+of the development flight. Predictions from near-tied starts stayed
+within 0.265 mm at the 400 later timestamps.
+
 The globe with the specified field has the lowest fit cost in all 53 selected
 NASA stretches under both processing assumptions. Aircraft uncertainty remains
 open. The [current milestones](ANALYSIS_ROADMAP.md#current-milestones-and-finish-line)
