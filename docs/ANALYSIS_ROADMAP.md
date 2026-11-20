@@ -7,6 +7,19 @@
 See the [verified current status](CURRENT_STATUS.md) for coverage, background-field comparisons and the numerical checks recorded for each cohort.
 <!-- current-status:end -->
 
+The [ESA height-role check](prediction-observed-development/ESA_HEIGHT_ROLE_RESULT.md) found that the earlier GPS
+adjustment reduced height errors, while 95 of 120 heights remained
+outside the stated band. On a separate cut the specified-field globe
+kept the lowest score when only north and east were used.
+
+The [gyro-free motion check](ilvis0-measurement-contribution/SHARED_GPS_MOTION_RATE_RESULT.md) still leaves all four sampled rate
+ranges overlapping after the saved GPS correction. The [source audit](ilvis0-measurement-contribution/MOTION_SOURCE_AUDIT.md)
+found no timed LVIS images during either test stretch.
+
+The [NASA recording-group table](PAPER_DATASET.md#prediction-evidence-kept-separately) links each of the 27 groups
+to its saved prediction checks. It keeps the matched model comparisons
+separate from single-model forecast tests.
+
 Both solvers agreed on all 16 matched pairs on one ESA development
 window. At nearby starting points that fit equally well, their forecasts
 differed by less than 0.27 mm. [Solver comparison](mixed-tangent-hybrid/OBSERVED_DISPATCH_FRESH_RESULT.md)

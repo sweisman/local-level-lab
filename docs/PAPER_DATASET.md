@@ -53,6 +53,30 @@ calibrated detections or claim to be the final paper dataset.
 
 ## Prediction evidence kept separately
 
+The [27-group evidence table](analysis-provenance/nasa-group-evidence.csv)
+links all 53 baseline stretches to the later prediction records. Each group
+has one row, with its constituent stretches and the representative used
+for the later check.
+
+| Retrospective check | Groups | Saved prediction outcome |
+| --- | ---: | --- |
+| Three-model comparison | 3 | One group completed all four settings and one completed one setting. The specified-field globe passed the physical screen in all five completed settings. The third group had no complete comparison. |
+| Single-model forecast | 24 | Twelve later forecasts met both the fixed error reference and the physical screen. Twelve lacked a passing later fit. |
+
+The checks answer different questions. The single-model forecasts test
+how well the specified-field globe predicts unseen positions. The
+three-model pilot compares candidates on the same positions. All groups
+come from the original development archive, and the table supplies no
+calibrated decision or independent-flight count. It leaves the frozen
+development snapshot unchanged.
+
+Run this command from the repository root to verify the table against
+the frozen baseline and the three saved prediction reports.
+
+```sh
+PYTHONPATH=analysis ~/venv/bin/python -m lll.ilvis0_group_evidence check
+```
+
 The later [three-recording prediction pilot](ilvis0-retrospective-prediction-pilot-v2/INTERPRETATION.md)
 is a separate archived result, not an amendment to this frozen snapshot. It
 completes one recording-level comparison across all required settings and
