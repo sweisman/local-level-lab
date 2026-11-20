@@ -1,0 +1,193 @@
+{
+  "generated_reference": {
+    "generated_cases": 24,
+    "later_accuracy_passed": 0,
+    "later_horizontal_rms_m": {
+      "maximum": 88.58888923619719,
+      "median": 86.41803440754532,
+      "minimum": 83.5544544045029
+    },
+    "manifest_sha256": "bbcab9c01d94ba36269cda087cf8cf4629df6c559174b136ad5b1e2fdbde9f7f",
+    "observed_later_exceeds_generated_max": true,
+    "observed_later_horizontal_rms_m": 249.41078308821852,
+    "observed_training_exceeds_generated_max": true,
+    "observed_training_horizontal_rms_m": 39.96123584146875,
+    "study": "docs/esa-noisy-prediction",
+    "summary_sha256": "5eeacd812ae7d3678068175d116ff24d36ee597be2ffdfc8967e5e9f89123699",
+    "synthetic_noise_is_measured_hardware": false,
+    "training_accuracy_passed": 24,
+    "training_horizontal_rms_m": {
+      "maximum": 3.185774737968086,
+      "median": 2.7418995257972982,
+      "minimum": 2.2451964665671347
+    }
+  },
+  "laws": {
+    "increment": {
+      "axes": {
+        "east": {
+          "later_first_m": -110.47253062022082,
+          "later_last_m": -387.41657287858925,
+          "later_linear_explained_fraction": 0.9920088258584464,
+          "later_mean_m": -233.09159506753159,
+          "later_rms_m": 246.5556617780891,
+          "later_slope_m_per_min": -41.590067863510946,
+          "training_rms_m": 38.87540365467011,
+          "training_tail_epochs": 121,
+          "training_tail_extrapolated_first_m": -109.10357171811599,
+          "training_tail_extrapolated_last_m": -266.03486179050606,
+          "training_tail_slope_m_per_min": -23.59869170264419
+        },
+        "north": {
+          "later_first_m": 24.56562656602262,
+          "later_last_m": 44.42398997584001,
+          "later_linear_explained_fraction": 0.9629849894476581,
+          "later_mean_m": 37.1169810157637,
+          "later_rms_m": 37.63036494437597,
+          "later_slope_m_per_min": 3.1587229281646203,
+          "training_rms_m": 9.252208420909497,
+          "training_tail_epochs": 121,
+          "training_tail_extrapolated_first_m": 24.542455360381698,
+          "training_tail_extrapolated_last_m": 54.88104978104756,
+          "training_tail_slope_m_per_min": 4.562194933174876
+        },
+        "up": {
+          "later_first_m": -4.204947386903768,
+          "later_last_m": 9.873474753294886,
+          "later_linear_explained_fraction": 0.8969694249469549,
+          "later_mean_m": -0.1840528032251302,
+          "later_rms_m": 4.3512622847571985,
+          "later_slope_m_per_min": 2.1394294487524905,
+          "training_rms_m": 1.4031229306653537,
+          "training_tail_epochs": 121,
+          "training_tail_extrapolated_first_m": -4.281059242109283,
+          "training_tail_extrapolated_last_m": -11.510356264445507,
+          "training_tail_slope_m_per_min": -1.087112401728553
+        }
+      },
+      "prediction_duration_s": 398.9999752099975,
+      "prediction_epochs": 400,
+      "scientific_decision": "abstain",
+      "training_epochs": 800,
+      "training_handoff_max_discrepancy_m": 7.088161169122031e-10
+    },
+    "point": {
+      "axes": {
+        "east": {
+          "later_first_m": -110.47253282849587,
+          "later_last_m": -387.41680750073226,
+          "later_linear_explained_fraction": 0.9920088173268943,
+          "later_mean_m": -233.09169168431671,
+          "later_rms_m": 246.55577504111483,
+          "later_slope_m_per_min": -41.5901024938219,
+          "training_rms_m": 38.8753911914131,
+          "training_tail_epochs": 121,
+          "training_tail_extrapolated_first_m": -109.10357260727588,
+          "training_tail_extrapolated_last_m": -266.0349488703681,
+          "training_tail_slope_m_per_min": -23.598704663652835
+        },
+        "north": {
+          "later_first_m": 24.56549483839478,
+          "later_last_m": 44.423730422252895,
+          "later_linear_explained_fraction": 0.9629844734636591,
+          "later_mean_m": 37.11678854845,
+          "later_rms_m": 37.63016921372533,
+          "later_slope_m_per_min": 3.158703840308111,
+          "training_rms_m": 9.252148884726063,
+          "training_tail_epochs": 121,
+          "training_tail_extrapolated_first_m": 24.542323845455094,
+          "training_tail_extrapolated_last_m": 54.88081034164252,
+          "training_tail_slope_m_per_min": 4.56217870392899
+        },
+        "up": {
+          "later_first_m": -4.204943591706069,
+          "later_last_m": 9.873475205159593,
+          "later_linear_explained_fraction": 0.8969694578479295,
+          "later_mean_m": -0.18404943811090788,
+          "later_rms_m": 4.351261110273543,
+          "later_slope_m_per_min": 2.139428979594966,
+          "training_rms_m": 1.4031214599257875,
+          "training_tail_epochs": 121,
+          "training_tail_extrapolated_first_m": -4.281055408587351,
+          "training_tail_extrapolated_last_m": -11.510348562851465,
+          "training_tail_slope_m_per_min": -1.0871118200635377
+        }
+      },
+      "prediction_duration_s": 398.9999752099975,
+      "prediction_epochs": 400,
+      "scientific_decision": "abstain",
+      "training_epochs": 800,
+      "training_handoff_max_discrepancy_m": 7.095284360048026e-10
+    }
+  },
+  "manifest_sha256": "2dbbd77362e7d21cad709f0a1001173ac99b44c3ea30e7021b6ce513de1e9788",
+  "native_calls": 0,
+  "protected_reads": 0,
+  "receiver_motion": {
+    "later_mean_east_mps": 85.38132750000001,
+    "later_mean_north_mps": 39.0586775,
+    "later_mean_speed_mps": 93.89592198438214,
+    "later_mean_up_mps": -0.009365000000000002,
+    "prediction_epochs": 400,
+    "training_tail_epochs": 121,
+    "training_tail_mean_east_mps": 83.65423140495868,
+    "training_tail_mean_north_mps": 37.485165289256194,
+    "training_tail_mean_speed_mps": 91.67799387099399,
+    "training_tail_mean_up_mps": -0.01605785123966942
+  },
+  "receiver_reference": {
+    "geodesic": {
+      "horizontal_rms_m": 572.2566822072554,
+      "imu_samples_used": 0,
+      "later_positions_used_for_forecast": false,
+      "maximum_3d_m": 1111.2662557197589,
+      "maximum_absolute_up_m": 26.1203791781968,
+      "maximum_horizontal_m": 1111.004939820294,
+      "north_east_up_velocity_mps": [
+        37.05612771953809,
+        83.58601647124641,
+        0.0622875653369545
+      ],
+      "rms_neu_m": [
+        521.1079747021829,
+        236.48295717164228,
+        14.7809467105316
+      ],
+      "total_rms_m": 572.4475405803707,
+      "training_window_points": 61,
+      "vertical_rms_m": 14.7809467105316
+    },
+    "linear": {
+      "horizontal_rms_m": 534.9044907140793,
+      "imu_samples_used": 0,
+      "later_positions_used_for_forecast": false,
+      "maximum_3d_m": 1055.4167597366293,
+      "maximum_absolute_up_m": 26.556473855054264,
+      "maximum_horizontal_m": 1055.1315622790642,
+      "north_east_up_velocity_mps": [
+        37.05612771953809,
+        83.58601647124641,
+        0.0622875653369545
+      ],
+      "rms_neu_m": [
+        434.1863376223027,
+        312.4180507080543,
+        15.161942745422843
+      ],
+      "total_rms_m": 535.1193312653768,
+      "training_window_points": 61,
+      "vertical_rms_m": 15.161942745422843
+    }
+  },
+  "receiver_reference_plan_sha256": "97f437dd32d71d8724c037f6682b3d42019fcbb18029cdae06197ca72a8c74bd",
+  "receiver_reference_source_sha256": {
+    "receiver_only_forecast.py": "0ea8b25ae39de815f2177951f594dd6b6c487552092f6e3bc538b18aa79758a4",
+    "receiver_only_geodesic.py": "53dc119184ca37e380da3c8e4093083934b5f1a3d0b55c87dfed9e481e6809e0"
+  },
+  "refits": 0,
+  "reporter_sha256": "da9953ca168677da09234f407b45aecb23463b6177df535c4c4ae5b6320a21a5",
+  "scientific_decision": "abstain",
+  "scoring_sha256": "5cce2704433e7dece8eec336882692e15194d6c882d8e2bd7efa67265a172c2b",
+  "source_study": "data/prediction-observed-development-continuation-v1-20261113",
+  "summary_sha256": "1add15ded2e8c72e204dee11086833ebaea9b6c4c0a8e69d1fa82be4f2b5bc6d"
+}

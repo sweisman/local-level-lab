@@ -1,0 +1,110 @@
+{
+  "diagnostic": {
+    "axes": {
+      "east": {
+        "first_error_m": 0.0020973728240580368,
+        "lag_one_normalized_correlation": 0.993969176691885,
+        "last_error_m": 7.612119594833426,
+        "mean_error_m": 1.7714365865537596,
+        "mean_normalized": 0.0835448773219888,
+        "nominal_95_fraction": 1.0,
+        "normalized_rms": 0.09114617605512022,
+        "sigma_m_range": [
+          0.0551369973990753,
+          50.86788605279033
+        ]
+      },
+      "north": {
+        "first_error_m": -0.0013259226467550918,
+        "lag_one_normalized_correlation": 0.9849529984106019,
+        "last_error_m": 2.0251519140254537,
+        "mean_error_m": 0.04886584797763449,
+        "mean_normalized": -0.033732136487716856,
+        "nominal_95_fraction": 1.0,
+        "normalized_rms": 0.05231736515464733,
+        "sigma_m_range": [
+          0.06005223934115397,
+          52.403587695331524
+        ]
+      },
+      "up": {
+        "first_error_m": -0.07063171884101394,
+        "lag_one_normalized_correlation": 0.9999733788080319,
+        "last_error_m": -25.461520527083394,
+        "mean_error_m": -9.170312144501004,
+        "mean_normalized": -6.032967625201236,
+        "nominal_95_fraction": 0.0625,
+        "normalized_rms": 6.274644788349414,
+        "sigma_m_range": [
+          0.15066529136496032,
+          3.5562318354755065
+        ]
+      }
+    },
+    "calibrated_coverage": false,
+    "covariance_positive_definite": true,
+    "epochs": 400,
+    "maximum_mahalanobis_squared": 54.86055415250615,
+    "nominal_95_ellipsoid_fraction": 0.0925,
+    "parameter_uncertainty_included": false
+  },
+  "later_receiver_used_for_fit": false,
+  "manifest_sha256": "17fd7ee56d1ed40fcef39061a4e7ba0706bd93e8d04b9f0998b0db94dc128ea7",
+  "protected_confirmation_groups_opened": 0,
+  "receiver_boundary": {
+    "after": {
+      "course_deg": 66.28390592234322,
+      "speed_mps": 92.19925953064916,
+      "up_mps": 0.135
+    },
+    "before": {
+      "course_deg": 66.27381009115477,
+      "speed_mps": 92.17472104649951,
+      "up_mps": 0.117
+    },
+    "course_change_deg": 0.010095831188436932,
+    "post_mean_speed_mps": 92.92541608256691,
+    "post_up_sd_mps": 0.36991909111993665,
+    "pre_mean_speed_mps": 88.57501342265019,
+    "pre_up_sd_mps": 0.7133276791033697,
+    "speed_change_mps": 0.024538484149644546,
+    "time_gap_s": 1.0000023799948394,
+    "up_change_mps": 0.018000000000000002,
+    "window_epochs": 200
+  },
+  "reporter_sha256": "76d5dc12540a70df9723804cbf7eeeaa9e2c6048780c36514ec4986ab0a309e2",
+  "scientific_decision": "abstain",
+  "scoring_sha256": "5cce2704433e7dece8eec336882692e15194d6c882d8e2bd7efa67265a172c2b",
+  "study": "data/esa-conditional-forecast-development-v3-20261114",
+  "training_vertical": {
+    "first_m": 0.02718210276665134,
+    "full_slope_m_per_min": 0.2619296466014783,
+    "last_count": 200,
+    "last_m": 4.192861806232746,
+    "last_mean_m": 2.543335924478287,
+    "last_slope_m_per_min": 0.9768185340800812,
+    "mean_m": 0.5425241298590276,
+    "rms_m": 1.4031229306653448
+  },
+  "version": "esa-saved-conditional-coverage-diagnostic-v4",
+  "vertical_correction": {
+    "conditional_adjustment_m": {
+      "first": 4.275579105744782,
+      "last": 15.588045773788508,
+      "mean": 9.354364947726134,
+      "rms": 9.907188838341137
+    },
+    "conditional_receiver_minus_forecast_m": {
+      "first": -0.07063171884101394,
+      "last": -25.461520527083394,
+      "mean": -9.170312144501004,
+      "rms": 11.881293822302055
+    },
+    "raw_receiver_minus_forecast_m": {
+      "first": 4.204947386903768,
+      "last": -9.873474753294886,
+      "mean": 0.1840528032251302,
+      "rms": 4.3512622847571985
+    }
+  }
+}

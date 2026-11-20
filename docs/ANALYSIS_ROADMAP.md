@@ -7,22 +7,30 @@
 See the [verified current status](CURRENT_STATUS.md) for coverage, background-field comparisons and the numerical checks recorded for each cohort.
 <!-- current-status:end -->
 
-On the ESA development flight, [both solvers passed all 16 matched pairs](mixed-tangent-hybrid/OBSERVED_DISPATCH_FRESH_RESULT.md).
-The [NASA height-only check](prediction-group-transfer/HEIGHT_TRANSFER_RESULT.md)
-improved later height in all seven additional recording groups. Test the
-correction on the ESA development flight before considering wider use.
-The [saved calibration check](prediction-observed-development/ESA_FORCE_SCORE_RESULT.md)
-bounded the effect of errors shared across the prediction. The
-[full integrating-model replay](prediction-observed-development/ESA_LINKED_PHYSICAL_REPLAY_RESULT.md)
-confirmed 0.432 units of combined movement at the original earlier GPS
-loss limit. The saved global bounds still allow 53.66 units at zero
-assumed earlier unshared error, beyond the 25.41-unit forecast difference.
-Tightening the physical links in the bounds is the next gate.
-Independent ESA flight groups remain reserved.
+Both solvers agreed on all 16 matched pairs on one ESA development
+window. At nearby starting points that fit equally well, their forecasts
+differed by less than 0.27 mm. [Solver comparison](mixed-tangent-hybrid/OBSERVED_DISPATCH_FRESH_RESULT.md)
 
-The published NASA comparison is complete. The next comparison will isolate
-geometry, the prescribed angular field and the allowed gyro offset, then
-measure what changes when the gyroscope is omitted.
+An earlier GPS error correction improved later height in all seven
+additional NASA groups tested. The same correction increased height
+error in all six cases on the ESA development flight.
+[NASA check](prediction-group-transfer/HEIGHT_TRANSFER_RESULT.md) ·
+[ESA check](prediction-observed-development/ESA_HEIGHT_ERROR_TRANSFER_RESULT.md)
+
+Nine of twelve unadjusted ESA forecasts met the fixed accuracy limits.
+An adjustment learned from earlier GPS positions brought all three
+available rolling misses inside the limits. At one cut, only 25 of the
+first 120 later GPS heights fell inside the nominal 95% range.
+[Raw accuracy](prediction-observed-development/ESA_RAW_ACCURACY_RESULT.md) ·
+[Adjusted comparison](prediction-observed-development/ESA_MATCHED_CONDITIONING_RESULT.md) ·
+[Uncertainty](prediction-observed-development/ESA_MATCHED_UNCERTAINTY_RESULT.md)
+
+The latest solver checked all eleven remaining calibration ranges.
+Each search reached its iteration limit. The verified upper bound on
+how far calibration could move the scores stayed at 53.20 units,
+compared with a 25.41-unit globe–disc forecast gap. Whether calibration
+could erase that gap remains open. The seven independent ESA flight
+groups remain reserved. [Calibration solver result](prediction-observed-development/ESA_LINKED_LOSS_TANGENTS_RESULT.md)
 
 ## Current milestones and finish line
 

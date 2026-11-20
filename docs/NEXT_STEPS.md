@@ -25,28 +25,32 @@ constrain the reconstructed flight.
 [All 53 stretches](ilvis0-current-findings-20261015/STRETCHES.md) ·
 [Detailed CSV](ilvis0-current-findings-20261015/stretch-analytics.csv)
 
-## ESA development update
+## Current development work
 
-**Check that the two solvers agree.** On one new ESA window, both solvers
-converged in all 16 pairs. Their predictions from equally good starting
-points stayed within 0.265 mm. Accuracy against later GPS positions is a
-separate check. [Solver comparison](mixed-tangent-hybrid/OBSERVED_DISPATCH_FRESH_RESULT.md)
+Both solvers agreed on all 16 matched pairs on one ESA development
+window. At nearby starting points that fit equally well, their forecasts
+differed by less than 0.27 mm. [Solver comparison](mixed-tangent-hybrid/OBSERVED_DISPATCH_FRESH_RESULT.md)
 
-**Check whether an earlier error repeats.** A correction learned from
-an earlier forecast improved later height estimates in 15 of 20 NASA
-recording groups. Horizontal estimates improved in three. A height-only
-correction improved all seven additional groups tested. Their median
-height error fell from 4.25 m to 1.97 m, with horizontal errors unchanged.
-The next check is whether this carries over to the ESA development flight.
-[Earlier-error test](prediction-group-transfer/ERROR_TRANSFER_RESULT.md) ·
-[Height-only test](prediction-group-transfer/HEIGHT_TRANSFER_RESULT.md)
+An earlier GPS error correction improved later height in all seven
+additional NASA groups tested. The same correction increased height
+error in all six cases on the ESA development flight.
+[NASA check](prediction-group-transfer/HEIGHT_TRANSFER_RESULT.md) ·
+[ESA check](prediction-observed-development/ESA_HEIGHT_ERROR_TRANSFER_RESULT.md)
 
-**Set limits on calibration error.** On the same ESA development flight,
-two calibration changes that still fit the earlier GPS positions moved
-the forecasts a combined 0.43 units toward each other. The forecasts
-started 25.41 units apart. The current bounds still allow 53.66 units
-of movement, so the next step is to tighten how they link the
-calibration terms. [Calibration replay and bounds](prediction-observed-development/ESA_LINKED_PHYSICAL_REPLAY_RESULT.md)
+Nine of twelve unadjusted ESA forecasts met the fixed accuracy limits.
+An adjustment learned from earlier GPS positions brought all three
+available rolling misses inside the limits. At one cut, only 25 of the
+first 120 later GPS heights fell inside the nominal 95% range.
+[Raw accuracy](prediction-observed-development/ESA_RAW_ACCURACY_RESULT.md) ·
+[Adjusted comparison](prediction-observed-development/ESA_MATCHED_CONDITIONING_RESULT.md) ·
+[Uncertainty](prediction-observed-development/ESA_MATCHED_UNCERTAINTY_RESULT.md)
+
+The latest solver checked all eleven remaining calibration ranges.
+Each search reached its iteration limit. The verified upper bound on
+how far calibration could move the scores stayed at 53.20 units,
+compared with a 25.41-unit globe–disc forecast gap. Whether calibration
+could erase that gap remains open. The seven independent ESA flight
+groups remain reserved. [Calibration solver result](prediction-observed-development/ESA_LINKED_LOSS_TANGENTS_RESULT.md)
 
 **Test the turn allowance on steadier flight.** Four steady-course
 controls on the same flight now have verified training inputs. The

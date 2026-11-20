@@ -1,16 +1,45 @@
 # Studies and what each added
 
-The [new ESA solver comparison](mixed-tangent-hybrid/OBSERVED_DISPATCH_FRESH_RESULT.md)
-passed all 16 pairs and all eight settings on a previously unused window
-of the development flight. Predictions from near-tied starts stayed
-within 0.265 mm at the 400 later timestamps.
+Both solvers agreed on all 16 matched pairs on one ESA development
+window. At nearby starting points that fit equally well, their forecasts
+differed by less than 0.27 mm. [Solver comparison](mixed-tangent-hybrid/OBSERVED_DISPATCH_FRESH_RESULT.md)
 
-The [NASA forecast-error study](prediction-group-transfer/ERROR_TRANSFER_RESULT.md)
-found that an earlier correction improved later height in 15 of 20 groups
-and horizontal position in three. A [height-only check](prediction-group-transfer/HEIGHT_TRANSFER_RESULT.md)
-improved all seven additional groups. Both studies reuse saved forecasts
-from the same archive and preserve the original numerical outcomes.
+An earlier GPS error correction improved later height in all seven
+additional NASA groups tested. The same correction increased height
+error in all six cases on the ESA development flight.
+[NASA check](prediction-group-transfer/HEIGHT_TRANSFER_RESULT.md) ·
+[ESA check](prediction-observed-development/ESA_HEIGHT_ERROR_TRANSFER_RESULT.md)
 
+Nine of twelve unadjusted ESA forecasts met the fixed accuracy limits.
+An adjustment learned from earlier GPS positions brought all three
+available rolling misses inside the limits. At one cut, only 25 of the
+first 120 later GPS heights fell inside the nominal 95% range.
+[Raw accuracy](prediction-observed-development/ESA_RAW_ACCURACY_RESULT.md) ·
+[Adjusted comparison](prediction-observed-development/ESA_MATCHED_CONDITIONING_RESULT.md) ·
+[Uncertainty](prediction-observed-development/ESA_MATCHED_UNCERTAINTY_RESULT.md)
+
+The latest solver checked all eleven remaining calibration ranges.
+Each search reached its iteration limit. The verified upper bound on
+how far calibration could move the scores stayed at 53.20 units,
+compared with a 25.41-unit globe–disc forecast gap. Whether calibration
+could erase that gap remains open. The seven independent ESA flight
+groups remain reserved. [Calibration solver result](prediction-observed-development/ESA_LINKED_LOSS_TANGENTS_RESULT.md)
+
+On the ESA development flight, [a GPS-only comparison](prediction-observed-development/ESA_ROLLING_GPS_CONTROL_RESULT.md)
+found smaller horizontal errors with the inertial measurements at three
+of four cuts. GPS velocity held constant gave the smallest error at the
+fourth. Inertial forecasts gave smaller height errors at all four cuts.
+
+The [initial accuracy audit](prediction-observed-development/ESA_ABSOLUTE_ACCURACY_RESULT.md) mixed raw and
+adjusted forecasts. The [raw-only audit](prediction-observed-development/ESA_RAW_ACCURACY_RESULT.md) scored all
+twelve before adjustment. The [early warning check](prediction-observed-development/ESA_TRAINING_WARNING_RESULT.md)
+flagged the largest later miss and missed the other two.
+
+[Subdividing the calibration ranges](prediction-observed-development/ESA_LINKED_SPLIT_RESULT.md) excluded
+three of 18 ranges. [Checking the remaining ranges individually](prediction-observed-development/ESA_LINKED_CHILD_CERTIFICATES_RESULT.md)
+excluded four more. [Rescaling the solver](prediction-observed-development/ESA_LINKED_SCALED_PROPOSALS_RESULT.md)
+tightened three individual bounds. The [latest solver check](prediction-observed-development/ESA_LINKED_LOSS_TANGENTS_RESULT.md)
+left the overall 53.20-unit bound unchanged.
 
 The [coupled force map](prediction-observed-development/ESA_FORCE_SCORE_RESULT.md)
 brought the total shared reduction below 8.55 standardized units. This

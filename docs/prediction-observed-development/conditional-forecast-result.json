@@ -1,0 +1,93 @@
+{
+  "conditional_accuracy_screen": {
+    "calibrated_goodness_of_fit": false,
+    "checks": {
+      "horizontal_rms_m": true,
+      "maximum_absolute_up_m": true,
+      "maximum_horizontal_m": true,
+      "vertical_rms_m": true
+    },
+    "limits": {
+      "horizontal_rms_m": 10.0,
+      "maximum_absolute_up_m": 150.0,
+      "maximum_horizontal_m": 50.0,
+      "vertical_rms_m": 30.0
+    },
+    "passed": true,
+    "scientific_decision": "abstain"
+  },
+  "confidence_calibrated": false,
+  "fixed_calibration_only": true,
+  "later_receiver_values_used_for_forecast": false,
+  "linear_calibration_status": "not_evaluated",
+  "manifest_sha256": "17fd7ee56d1ed40fcef39061a4e7ba0706bd93e8d04b9f0998b0db94dc128ea7",
+  "observation_error_law_calibrated": false,
+  "prediction_epochs": 400,
+  "protected_confirmation_groups_opened": 0,
+  "raw_accuracy_screen": {
+    "calibrated_goodness_of_fit": false,
+    "checks": {
+      "horizontal_rms_m": false,
+      "maximum_absolute_up_m": true,
+      "maximum_horizontal_m": false,
+      "vertical_rms_m": true
+    },
+    "limits": {
+      "horizontal_rms_m": 10.0,
+      "maximum_absolute_up_m": 150.0,
+      "maximum_horizontal_m": 50.0,
+      "vertical_rms_m": 30.0
+    },
+    "passed": false,
+    "scientific_decision": "abstain"
+  },
+  "report_source_sha256": "51c8493b051fa2be564b7f7fcce3e36d7853662fb18910a399ef37d3c2654831",
+  "scientific_decision": "abstain",
+  "scores": {
+    "adjustment": {
+      "horizontal_rms_m": 247.12457952497655,
+      "maximum_3d_m": 382.9467434880589,
+      "maximum_absolute_up_m": 15.588045773788508,
+      "maximum_horizontal_m": 382.6293522157748,
+      "rms_neu_m": [
+        37.72395047998389,
+        244.2282976347749,
+        9.907188838341137
+      ],
+      "total_rms_m": 247.32308868376,
+      "vertical_rms_m": 9.907188838341137
+    },
+    "conditional": {
+      "horizontal_rms_m": 2.848614934780906,
+      "maximum_3d_m": 26.652103717193075,
+      "maximum_absolute_up_m": 25.461520527083394,
+      "maximum_horizontal_m": 7.876903262128332,
+      "rms_neu_m": [
+        0.567587275133229,
+        2.7914963248701694,
+        11.881293822302055
+      ],
+      "total_rms_m": 12.218009246130476,
+      "vertical_rms_m": 11.881293822302055
+    },
+    "prediction_epochs": 400,
+    "raw": {
+      "horizontal_rms_m": 249.41078308821852,
+      "maximum_3d_m": 390.08021909610943,
+      "maximum_absolute_up_m": 9.873474753294886,
+      "maximum_horizontal_m": 389.95524336308745,
+      "rms_neu_m": [
+        37.63036494437597,
+        246.5556617780891,
+        4.3512622847571985
+      ],
+      "total_rms_m": 249.44873662568256,
+      "vertical_rms_m": 4.3512622847571985
+    }
+  },
+  "scoring_sha256": "5cce2704433e7dece8eec336882692e15194d6c882d8e2bd7efa67265a172c2b",
+  "study": "data/esa-conditional-forecast-development-v3-20261114",
+  "summary_sha256": "3c65eebb179176d501c781212bece48dfb0cec417042b1091be4b82910017545",
+  "training_epochs": 800,
+  "version": "esa-conditional-forecast-report-v1"
+}
