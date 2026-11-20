@@ -7,6 +7,13 @@
 See the [verified current status](CURRENT_STATUS.md) for coverage, background-field comparisons and the numerical checks recorded for each cohort.
 <!-- current-status:end -->
 
+The [raw receiver preflight](prediction-observed-development/ESA_RINEX_WINDOW_RESULT.md)
+matched all 520 times in the ESA 400/120 comparison. The raw measurements,
+orbit and clock files are available. Two [GPS code reconstructions](prediction-observed-development/ESA_RINEX_CODE_RESULT.md)
+solved all 1,041 epochs. Both [preserved the forecast ranking](prediction-observed-development/ESA_RINEX_CODE_COMPARISON_RESULT.md)
+on the 120 later reports. The comparison checks GPS processing sensitivity
+on one flight. The airborne prediction error law remains unqualified.
+
 The [structured scoring check](prediction-observed-development/ESA_STRUCTURED_AXIS_SCORE_RESULT.md)
 reproduced all 80 saved path scores. At 4,096 later positions it used
 21 MB of operator storage. Aircraft uncertainty still needs qualification.

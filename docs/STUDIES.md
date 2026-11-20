@@ -1,5 +1,9 @@
 # Studies and what each added
 
+Two [GPS code reconstructions](prediction-observed-development/ESA_RINEX_CODE_RESULT.md)
+solved all 1,041 epochs. Both [preserved the order of the existing ESA forecasts](prediction-observed-development/ESA_RINEX_CODE_COMPARISON_RESULT.md)
+over the same 120 later positions.
+
 The [long-path scoring check](prediction-observed-development/ESA_STRUCTURED_AXIS_SCORE_RESULT.md)
 reproduced the 80 ESA scores and used 21 MB of operator storage at
 4,096 generated later positions. A dense three-axis factor at that

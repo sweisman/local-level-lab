@@ -27,6 +27,10 @@ constrain the reconstructed flight.
 
 ## Current development work
 
+Two [reconstructions from ESA GPS measurements](prediction-observed-development/ESA_RINEX_CODE_COMPARISON_RESULT.md)
+preserved the order of the forecasts on the development flight. A receiver
+accuracy check using a separate reference is still open.
+
 The [long-path scoring check](prediction-observed-development/ESA_STRUCTURED_AXIS_SCORE_RESULT.md)
 reproduced the same scores with a fraction of the operator storage. It
 allows longer paths to be checked under the same assumptions.
