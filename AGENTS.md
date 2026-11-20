@@ -10,8 +10,10 @@ progress counts, session histories, personal commentary or process IDs.
   to repeated probing. Do not reread successful edits.
 - Local tests, including intensive suites, need no approval. Ask before manually
   triggering GitHub Actions or delegating work.
-- Perform git operations only when explicitly requested. Bundle related work into
-  one logical commit; completion does not authorize committing or pushing.
+- Routine Git operations for approved repository work have standing authorization,
+  including staging, committing and pushing verified changes. Bundle related work
+  into one logical commit. Get explicit consent for history rewriting, force
+  pushes, branch deletion and other destructive operations.
 - Leave unfamiliar paths outside the documented project corpus alone. Do not scan,
   document, ignore or stage them, or inspect unrelated credentials.
 - Run shell steps separately, without command chains or output-trimming pipelines.
@@ -33,8 +35,9 @@ progress counts, session histories, personal commentary or process IDs.
   do not end the work merely to report a completed test or propose the next task.
 - After each verified milestone, update the public roadmap, study index and
   relevant overview with the result and next gate. Keep the homepage brief and
-  change it only when its public summary needs updating. Preserve frozen reports;
-  publication updates do not authorize committing or pushing.
+  change it only when its public summary needs updating. Preserve frozen reports
+  and publish verified work in batches that include the evidence and dependencies
+  readers need. Keep active and unrelated changes out of the batch.
 - A failed scientific gate blocks dependent fits, not all work. Preserve failures
   and continue permitted diagnosis, software qualification or independent backlog
   tasks. Never relax scientific gates, expand completed allowances or consume
@@ -48,7 +51,7 @@ progress counts, session histories, personal commentary or process IDs.
 - Use native Goal mode when explicitly requested for continuation across turns.
   Repository instructions do not activate it, bypass sandbox/approval controls or
   guarantee execution after the app, session or host stops. Preserve the separate
-  consent requirements for git operations, GitHub Actions and delegation.
+  consent requirements for manually triggered GitHub Actions and delegation.
 
 ## Compute and execution safety
 
