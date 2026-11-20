@@ -5,6 +5,13 @@ passed all 16 pairs and all eight settings on a previously unused window
 of the development flight. Predictions from near-tied starts stayed
 within 0.265 mm at the 400 later timestamps.
 
+The [NASA forecast-error study](prediction-group-transfer/ERROR_TRANSFER_RESULT.md)
+found that an earlier correction improved later height in 15 of 20 groups
+and horizontal position in three. A [height-only check](prediction-group-transfer/HEIGHT_TRANSFER_RESULT.md)
+improved all seven additional groups. Both studies reuse saved forecasts
+from the same archive and preserve the original numerical outcomes.
+
+
 The [coupled force map](prediction-observed-development/ESA_FORCE_SCORE_RESULT.md)
 brought the total shared reduction below 8.55 standardized units. This
 leaves a conditional 1.35 cm target for the other position errors.

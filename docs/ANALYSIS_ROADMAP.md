@@ -8,6 +8,9 @@ See the [verified current status](CURRENT_STATUS.md) for coverage, background-fi
 <!-- current-status:end -->
 
 On the ESA development flight, [both solvers passed all 16 matched pairs](mixed-tangent-hybrid/OBSERVED_DISPATCH_FRESH_RESULT.md).
+The [NASA height-only check](prediction-group-transfer/HEIGHT_TRANSFER_RESULT.md)
+improved later height in all seven additional recording groups. Test the
+correction on the ESA development flight before considering wider use.
 The [saved calibration check](prediction-observed-development/ESA_FORCE_SCORE_RESULT.md)
 bounded the effect of errors shared across the prediction. The
 [full integrating-model replay](prediction-observed-development/ESA_LINKED_PHYSICAL_REPLAY_RESULT.md)

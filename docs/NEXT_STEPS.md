@@ -32,6 +32,15 @@ converged in all 16 pairs. Their predictions from equally good starting
 points stayed within 0.265 mm. Accuracy against later GPS positions is a
 separate check. [Solver comparison](mixed-tangent-hybrid/OBSERVED_DISPATCH_FRESH_RESULT.md)
 
+**Check whether an earlier error repeats.** A correction learned from
+an earlier forecast improved later height estimates in 15 of 20 NASA
+recording groups. Horizontal estimates improved in three. A height-only
+correction improved all seven additional groups tested. Their median
+height error fell from 4.25 m to 1.97 m, with horizontal errors unchanged.
+The next check is whether this carries over to the ESA development flight.
+[Earlier-error test](prediction-group-transfer/ERROR_TRANSFER_RESULT.md) ·
+[Height-only test](prediction-group-transfer/HEIGHT_TRANSFER_RESULT.md)
+
 **Set limits on calibration error.** On the same ESA development flight,
 two calibration changes that still fit the earlier GPS positions moved
 the forecasts a combined 0.43 units toward each other. The forecasts
