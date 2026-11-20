@@ -7,6 +7,10 @@
 See the [verified current status](CURRENT_STATUS.md) for coverage, background-field comparisons and the numerical checks recorded for each cohort.
 <!-- current-status:end -->
 
+The [structured scoring check](prediction-observed-development/ESA_STRUCTURED_AXIS_SCORE_RESULT.md)
+reproduced all 80 saved path scores. At 4,096 later positions it used
+21 MB of operator storage. Aircraft uncertainty still needs qualification.
+
 The [ESA height-role check](prediction-observed-development/ESA_HEIGHT_ROLE_RESULT.md) found that the earlier GPS
 adjustment reduced height errors, while 95 of 120 heights remained
 outside the stated band. On a separate cut the specified-field globe

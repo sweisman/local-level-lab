@@ -27,6 +27,10 @@ constrain the reconstructed flight.
 
 ## Current development work
 
+The [long-path scoring check](prediction-observed-development/ESA_STRUCTURED_AXIS_SCORE_RESULT.md)
+reproduced the same scores with a fraction of the operator storage. It
+allows longer paths to be checked under the same assumptions.
+
 The [ESA height-role check](prediction-observed-development/ESA_HEIGHT_ROLE_RESULT.md) found that the earlier GPS
 adjustment reduced height errors, while 95 of 120 heights remained
 outside the stated band. On a separate cut the specified-field globe

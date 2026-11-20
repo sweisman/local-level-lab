@@ -1,5 +1,10 @@
 # Studies and what each added
 
+The [long-path scoring check](prediction-observed-development/ESA_STRUCTURED_AXIS_SCORE_RESULT.md)
+reproduced the 80 ESA scores and used 21 MB of operator storage at
+4,096 generated later positions. A dense three-axis factor at that
+length would need 1.21 GB.
+
 The [ESA height-role check](prediction-observed-development/ESA_HEIGHT_ROLE_RESULT.md) found that the earlier GPS
 adjustment reduced height errors, while 95 of 120 heights remained
 outside the stated band. On a separate cut the specified-field globe

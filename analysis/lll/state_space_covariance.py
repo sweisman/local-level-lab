@@ -153,6 +153,39 @@ class LinearInnovations:
         if len(values)!=self.epoch_count*self.observation_dimension:raise ValueError('complete record required')
         return self.apply_block(values,first_epoch=0)[0]
 
+    def conditional_axes(self, axes, *, first_epoch, maximum_bytes):
+        """Whiten selected later residuals about the full earlier-conditioned mean.
+
+        The original innovations drive both the report and the next state.
+        Their shared loading must survive when some later coordinates are
+        unobserved. The centered state at the cut has zero variance until
+        the first later innovation. Pass residuals in epoch-major axis order.
+        """
+        import numpy as np
+
+        d = self.observation_dimension
+        if (not isinstance(axes, (tuple, list)) or not axes
+                or any(type(axis) is not int or not 0 <= axis < d for axis in axes)
+                or len(set(axes)) != len(axes)
+                or type(first_epoch) is not int or not 0 <= first_epoch < self.epoch_count):
+            raise ValueError('unique valid axes and a nonempty later interval required')
+        indices = np.asarray(axes)
+        empty = np.empty((len(axes), 0))
+
+        def steps():
+            for i in range(first_epoch, self.epoch_count):
+                yield dict(transition=self._transition[i],
+                    observation=self._observation[i, indices],
+                    process_loading=self._gain[i] @ self._lower[i],
+                    observation_process_loading=self._lower[i, indices],
+                    white_loading=empty)
+
+        return LinearInnovations(steps(), epoch_count=self.epoch_count-first_epoch,
+            state_dimension=self.state_dimension, observation_dimension=len(axes),
+            initial_loading=None, maximum_bytes=maximum_bytes, design_is_fixed=True,
+            error_distribution='gaussian', observation_form='before_transition_shared_noise',
+            white_error_may_be_singular=True)
+
     def unwhiten(self,values):
         if len(values)!=self.epoch_count*self.observation_dimension:raise ValueError('complete record required')
         return self.apply_block(values,first_epoch=0,inverse=True)[0]
