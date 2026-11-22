@@ -51,6 +51,29 @@ def test_pair_uses_two_factories_and_preserves_matched_input_and_truth():
     assert saved['comparison.json'] == result['comparison']
 
 
+def test_pair_accepts_a_second_start_only_when_explicitly_declared():
+    settings = recipe()
+    second = dict(tasks(settings)[0]['payload'], start=1)
+    def calculate(spec, settings, *, kernel_factory, reserve,
+                  reserve_construction, save, check_continue):
+        save('input-binding.json', {'source': 'same'})
+        save('scoring-observations.json', {'times': [1.]})
+        save('scores.json', {'errors_neu_m': [[0., 0., 0.]]})
+        return dict(spec, passed=True, converged=True,
+                    all_columns_retained=True, training_cost=10.)
+    kwargs = dict(calculate=calculate,
+                  factories={'wide': lambda anchor: None,
+                             'hybrid': lambda anchor: None},
+                  reserve=lambda **work: None,
+                  reserve_construction=lambda **work: None,
+                  save=lambda name, value: None,
+                  check_continue=lambda: None)
+    with pytest.raises(ValueError, match='declared generated'):
+        pair(second, settings, **kwargs)
+    report = pair(second, settings, allowed_specs=[second], **kwargs)
+    assert report['passed']
+
+
 def test_worker_rejects_changed_recipe_before_creating_artifacts(tmp_path):
     row = tasks()[0]
     wrong = tmp_path / 'wrong.json'

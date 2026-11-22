@@ -1,0 +1,115 @@
+{
+  "calibrated_coverage": false,
+  "calibration_parameter_uncertainty_included": false,
+  "coverage": {
+    "receiver_only_point": {
+      "axes": {
+        "east": {
+          "first_error_m": -0.0005776099678799982,
+          "lag_one_normalized_correlation": 0.991336463489098,
+          "last_error_m": -1.9464666332252274,
+          "mean_error_m": -1.01431884809656,
+          "mean_normalized": -0.09794066640679329,
+          "nominal_95_fraction": 1.0,
+          "normalized_rms": 0.10391369464344027,
+          "sigma_m_range": [
+            0.0551369973990753,
+            50.86788605279033
+          ]
+        },
+        "north": {
+          "first_error_m": -0.002298763256328623,
+          "lag_one_normalized_correlation": 0.9854993289983964,
+          "last_error_m": -21.706030896886823,
+          "mean_error_m": -6.411646441747035,
+          "mean_normalized": -0.39646100423061303,
+          "nominal_95_fraction": 1.0,
+          "normalized_rms": 0.3995728790934997,
+          "sigma_m_range": [
+            0.06005223934115397,
+            52.403587695331524
+          ]
+        },
+        "up": {
+          "first_error_m": -0.07339178805023039,
+          "lag_one_normalized_correlation": 0.999971694745403,
+          "last_error_m": -27.966254808266967,
+          "mean_error_m": -9.86431909080132,
+          "mean_normalized": -6.426944653718604,
+          "nominal_95_fraction": 0.0575,
+          "normalized_rms": 6.6934325957587175,
+          "sigma_m_range": [
+            0.15066529136496032,
+            3.5562318354755065
+          ]
+        }
+      },
+      "calibrated_coverage": false,
+      "covariance_positive_definite": true,
+      "epochs": 400,
+      "maximum_mahalanobis_squared": 65.33201255353377,
+      "nominal_95_ellipsoid_fraction": 0.085,
+      "parameter_uncertainty_included": false
+    },
+    "weighted_point": {
+      "axes": {
+        "east": {
+          "first_error_m": 0.0020973728240580368,
+          "lag_one_normalized_correlation": 0.993969176691885,
+          "last_error_m": 7.612119594833426,
+          "mean_error_m": 1.7714365865537596,
+          "mean_normalized": 0.0835448773219888,
+          "nominal_95_fraction": 1.0,
+          "normalized_rms": 0.09114617605512022,
+          "sigma_m_range": [
+            0.0551369973990753,
+            50.86788605279033
+          ]
+        },
+        "north": {
+          "first_error_m": -0.0013259226467550918,
+          "lag_one_normalized_correlation": 0.9849529984106019,
+          "last_error_m": 2.0251519140254537,
+          "mean_error_m": 0.04886584797763449,
+          "mean_normalized": -0.033732136487716856,
+          "nominal_95_fraction": 1.0,
+          "normalized_rms": 0.05231736515464733,
+          "sigma_m_range": [
+            0.06005223934115397,
+            52.403587695331524
+          ]
+        },
+        "up": {
+          "first_error_m": -0.07063171884101394,
+          "lag_one_normalized_correlation": 0.9999733788080319,
+          "last_error_m": -25.461520527083394,
+          "mean_error_m": -9.170312144501004,
+          "mean_normalized": -6.032967625201236,
+          "nominal_95_fraction": 0.0625,
+          "normalized_rms": 6.274644788349414,
+          "sigma_m_range": [
+            0.15066529136496032,
+            3.5562318354755065
+          ]
+        }
+      },
+      "calibrated_coverage": false,
+      "covariance_positive_definite": true,
+      "epochs": 400,
+      "maximum_mahalanobis_squared": 54.86055415250615,
+      "nominal_95_ellipsoid_fraction": 0.0925,
+      "parameter_uncertainty_included": false
+    }
+  },
+  "manifest_sha256": "e6359c131be82659aec62f6bba2dd7a04fb0c7a8cb2bb03f68d8c3e9cd5db75c",
+  "prediction_epochs": 400,
+  "protected_confirmation_groups_opened": 0,
+  "reporter_sha256": "244b08ea3f6fb4c60235bdb71b74f2b53426d3b1c88fed4be131af512a09ba7a",
+  "same_complete_error_law": true,
+  "scientific_decision": "abstain",
+  "scoring_sha256": "5cce2704433e7dece8eec336882692e15194d6c882d8e2bd7efa67265a172c2b",
+  "study": "data/esa-conditional-cross-point-development-v3",
+  "summary_sha256": "ba18995d2e362e052d044559c6c9406cd1171d97750076a9a774f7692a7444a7",
+  "training_epochs": 800,
+  "version": "esa-cross-point-coverage-v1"
+}

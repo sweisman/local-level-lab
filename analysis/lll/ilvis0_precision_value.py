@@ -129,7 +129,13 @@ def calculate(problem,point,model,*,kernel,longitude):
     from .ilvis0_shape import PARAMETERS
     from .ilvis0_exploratory import MODELS
     if longitude not in ('legacy','stable'):raise ValueError('explicit longitude residual convention required')
-    if model not in MODELS:raise ValueError('supported candidate required')
+    model_provider = getattr(problem, 'kernel_model', None)
+    if model_provider is not None:
+        model_index = model_provider(model)
+    elif model in MODELS:
+        model_index = MODELS.index(model)
+    else:
+        raise ValueError('supported candidate required')
     problem.bounds.decode(point)
     names=problem.bounds.active;u=dict(zip(names,point))
     expanded=np.array([u.get(name,0.) for name in PARAMETERS])
@@ -139,7 +145,7 @@ def calculate(problem,point,model,*,kernel,longitude):
     code=kernel(len(problem.dt),np.ascontiguousarray(problem.theta),np.ascontiguousarray(problem.dv),
         np.ascontiguousarray(problem.dt),len(problem.gps_times),np.ascontiguousarray(problem.gps_times),c,
         np.ascontiguousarray(problem.initial['velocity_ned_mps']),np.ascontiguousarray(problem.initial['attitude_body_to_ned']),
-        limits,expanded,MODELS.index(model),int(problem.bounds.fit_earth_removal),problem.gravity,problem.radius or 6371000.,
+        limits,expanded,model_index,int(problem.bounds.fit_earth_removal),problem.gravity,problem.radius or 6371000.,
         out,np.ascontiguousarray(problem.gps),delta,ctypes.byref(boundaries))
     if code or not np.all(np.isfinite(out)) or not np.all(np.isfinite(delta)):
         raise ValueError('precision prediction outside supported native domain')

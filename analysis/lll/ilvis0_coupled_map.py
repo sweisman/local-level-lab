@@ -31,7 +31,8 @@ def restore_static_reference(configuration,raw_delta_v,period,*,lower,upper,cent
     from .ilvis0_common_force_transform import ForceTransform
     parent=ReferenceErrors(configuration,lower,upper,center,
         source_id=expected_report['parent']['source_id'])
-    acceleration=AccelerationTerms(parent,raw_delta_v,period,configuration['gravity'])
+    acceleration=AccelerationTerms(parent,raw_delta_v,period,configuration['gravity'],
+        outward_initial_force=expected_report['acceleration'].get('outward_initial_force',False))
     reference=TransformReference(acceleration,ForceTransform(parent))
     if reference.report()!=expected_report:raise ValueError('saved static reference or start fields changed')
     return reference

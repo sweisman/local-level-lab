@@ -84,7 +84,24 @@ def evaluate(task,context):
     return run_case(task,context,r=r,payload=task['payload'])
 
 
-def run_case(task,context,*,r,payload,kernel_provider=None,training_provider=None):
+def extra_forecast_work(r, passes):
+    """Exact extra full-series operator work, declared before a task is frozen."""
+    if (type(passes) is not int or not 0 <= passes <= 4
+            or type(r.get('rate_hz')) is not int
+            or type(r.get('queries')) is not int
+            or r['rate_hz'] <= 0 or r['queries'] <= 0
+            or not isinstance(r.get('duration_s'), (int, float))
+            or r['duration_s'] <= 0):
+        raise ValueError('finite exact extra forecast pass count required')
+    packets = r['duration_s'] * r['rate_hz']
+    if packets != round(packets):
+        raise ValueError('whole packet count required')
+    count = passes * (round(packets) + r['queries'])
+    return dict(native_calls=count, packet_visits=count)
+
+
+def run_case(task,context,*,r,payload,kernel_provider=None,training_provider=None,
+             extra_forecast_passes=0):
     """Execute a caller-validated frozen case without changing its allowance.
 
     The caller binds the full recipe/payload to its manifest. This shared body
@@ -98,6 +115,9 @@ def run_case(task,context,*,r,payload,kernel_provider=None,training_provider=Non
     if training_provider is not None and not callable(training_provider):
         raise ValueError('explicit training protocol provider required')
     identity=task['identity'];allowance,construction=limits(r,payload['law'])
+    allowance=dict(allowance)
+    for key,value in extra_forecast_work(r,extra_forecast_passes).items():
+        allowance[key]+=value
     if task['limits']!=allowance:raise ValueError('complete shared-case work must match its frozen task allowance')
     journal=Journal(context.directory/'construction.sqlite',freeze=digest((context.root/'manifest.json').read_bytes()),
         limits={identity:construction});journal.start(identity);budget=None

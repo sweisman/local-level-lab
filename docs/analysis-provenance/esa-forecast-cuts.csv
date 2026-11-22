@@ -1,0 +1,18 @@
+id,group_id,family,state,train_first,train_last,training_reports,later_first,later_last,later_reports,receiver_row_stride,later_in_other_training,later_in_other_scoring,raw_increment,raw_point,adjusted_increment,adjusted_point,source_report
+first-pilot,esa-99f1530c3eda4318,first twenty minutes,scored,9037,10635,800,10637,11435,400,2,0,120,,,,,docs/esa-broader-development/evidence/previous-preparation-report.json
+rolling-200,esa-99f1530c3eda4318,first twenty minutes,scored,9037,9435,200,9437,9675,120,2,120,0,pass,pass,pass,pass,docs/prediction-observed-development/esa-raw-accuracy.json
+rolling-400,esa-99f1530c3eda4318,first twenty minutes,scored,9037,9835,400,9837,10075,120,2,120,0,pass,pass,pass,pass,docs/prediction-observed-development/esa-raw-accuracy.json
+rolling-600,esa-99f1530c3eda4318,first twenty minutes,scored,9037,10235,600,10237,10475,120,2,120,0,fail,fail,pass,pass,docs/prediction-observed-development/esa-raw-accuracy.json
+rolling-800,esa-99f1530c3eda4318,first twenty minutes,scored,9037,10635,800,10637,10875,120,2,0,120,fail,fail,pass,unavailable,docs/prediction-observed-development/esa-raw-accuracy.json
+turn-22936,esa-99f1530c3eda4318,turn,scored,22937,23735,400,23737,23975,120,2,0,0,pass,pass,pass,pass,docs/prediction-observed-development/esa-repeat-turn-input-freeze.json
+turn-33796,esa-99f1530c3eda4318,turn,scored,33797,34595,400,34597,34835,120,2,0,0,pass,pass,pass,pass,docs/prediction-observed-development/esa-repeat-turn-input-freeze.json
+turn-37516,esa-99f1530c3eda4318,turn,scored,37517,38315,400,38317,38555,120,2,0,0,pass,pass,pass,pass,docs/prediction-observed-development/esa-repeat-turn-input-freeze.json
+turn-41116,esa-99f1530c3eda4318,turn,scored,41117,41915,400,41917,42155,120,2,0,0,pass,pass,pass,pass,docs/prediction-observed-development/esa-repeat-turn-input-freeze.json
+steady-21856,esa-99f1530c3eda4318,steady,scored,21857,22655,400,22657,22895,120,2,0,0,fail,fail,pass,pass,docs/prediction-observed-development/esa-straight-control-window-clock.json
+steady-32716,esa-99f1530c3eda4318,steady,scored,32717,33515,400,33517,33755,120,2,0,0,pass,pass,pass,pass,docs/prediction-observed-development/esa-straight-control-window-clock.json
+steady-36436,esa-99f1530c3eda4318,steady,scored,36437,37235,400,37237,37475,120,2,0,0,pass,pass,pass,pass,docs/prediction-observed-development/esa-straight-control-window-clock.json
+steady-39916,esa-99f1530c3eda4318,steady,scored,39917,40715,400,40717,40955,120,2,0,0,pass,pass,pass,pass,docs/prediction-observed-development/esa-straight-control-window-clock.json
+fresh-dispatch,esa-99f1530c3eda4318,later twenty minutes,scored,11498,13096,800,13098,13896,400,2,0,0,,,,,docs/mixed-tangent-hybrid/esa-dispatch-accuracy.json
+187-042470-044870,esa-99f1530c3eda4318,short-block candidate,selected_only,42471,44069,800,44071,44309,120,2,,,,,,,docs/esa-short-block-development/selection.json
+187-049554-051954,esa-99f1530c3eda4318,short-block candidate,selected_only,49555,51153,800,51155,51393,120,2,,,,,,,docs/esa-short-block-development/selection.json
+187-058525-060925,esa-99f1530c3eda4318,short-block candidate,selected_only,58526,60124,800,60126,60364,120,2,,,,,,,docs/esa-short-block-development/selection.json

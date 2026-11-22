@@ -1,0 +1,13 @@
+reason,phase,tally,files_with_flag
+below_ground_speed,sample flags,414760,25
+could not convert string to float: '',packet or receiver context,5,1
+excessive_course_rate,sample flags,1481410,232
+excessive_roll,sample flags,238839,79
+excessive_vertical_speed,sample flags,365795,64
+incomplete_alignment,sample flags,3088600,153
+invalid VTG values,packet or receiver context,2,2
+missing_motion_context,sample flags,464,232
+missing_receiver_support,sample flags,2998,168
+short_after_buffers_or_raw_intersection,candidate spans,6431,94
+unsupported_GGA_quality,packet or receiver context,5,1
+unsupported_native_interval_status_or_epoch,packet or receiver context,463,232

@@ -1,0 +1,18 @@
+{
+  "benchmark_source_sha256": "f22b600b2b86ed6ebbc07e7c49881ad2ae8cefb0b9914b0e863077e8e4413d1b",
+  "core_source_sha256": "4024107d3c940872849da706881ed7702cb0af18f1934cb9d958d70ac954fb6c",
+  "epochs": 64080,
+  "input_sha256": "8bd6c9135a15a97315aea45e7efbf63a8b67c749a0e034ba131055bc0189a8be",
+  "jacobian_columns": 26,
+  "log_determinant": -286854.7384976648,
+  "numpy": "2.5.3",
+  "output_sha256": "d28d8c1166c1cfcfd51b8ce014ddd59b742fb1a9f61764df0ec14e2597cba9cd",
+  "peak_rss_kib": 361408,
+  "python": "3.14.7",
+  "quadratic": 963146.6806020448,
+  "scipy": "1.18.1",
+  "seed": 20261118,
+  "source_sha256": "7913e5974edc1aa7e45bc48d6e8fbbab3a2890bde13b0f13875d00ed10f2c6b5",
+  "version": "structured-receiver-benchmark-v1",
+  "wall_seconds": 23.486781931947917
+}

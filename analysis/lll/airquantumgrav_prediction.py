@@ -7,7 +7,7 @@ def train_and_forecast(*,theta,dv,dt,times,training_rows,time_origin_s,model,pro
                        policy_id,start,limits,maximum_evaluations,maximum_interval_s,
                        kernel,tangent_kernel,reserve,save,check_continue,
                        training_error_factory=None,forecast_error_diagnostic=None,
-                       clock='header_elapsed'):
+                       clock='header_elapsed',solver_provider=None):
     import numpy as np
     from lll.airquantumgrav_error_policy import build
     from lll.ilvis0_training_forecast import training_problem,fit_training
@@ -21,7 +21,8 @@ def train_and_forecast(*,theta,dv,dt,times,training_rows,time_origin_s,model,pro
             or not math.isfinite(maximum_interval_s) or not 0<maximum_interval_s<=.0075
             or (training_error_factory is not None and not callable(training_error_factory))
             or (forecast_error_diagnostic is not None and
-                (not callable(forecast_error_diagnostic) or training_error_factory is None))):
+                (not callable(forecast_error_diagnostic) or training_error_factory is None))
+            or (solver_provider is not None and not callable(solver_provider))):
         raise ValueError('declared model, processing, start, clock and finite fit allowance required')
     times=np.asarray(times,float);theta,dv,dt=(np.asarray(v,float) for v in (theta,dv,dt))
     rows=list(training_rows);cut=len(rows)
@@ -68,7 +69,8 @@ def train_and_forecast(*,theta,dv,dt,times,training_rows,time_origin_s,model,pro
             for k,v in [('theta',theta),('dv',dv),('dt',dt)]}))
     point=np.zeros(len(active)) if start==0 else np.where(np.arange(len(active))%2,.001,-.001)
     def counted(**work):check_continue();reserve(**work)
-    fit=fit_training(problem,model,start=point,maximum_evaluations=maximum_evaluations,reserve=counted,stopping='near_zero')
+    fit=fit_training(problem,model,start=point,maximum_evaluations=maximum_evaluations,
+                     reserve=counted,stopping='near_zero',solver_provider=solver_provider)
     if training_error_factory is not None:
         from lll.ilvis0_native_error_training import gaussian_training_score
         fit['gaussian_training_score']=gaussian_training_score(problem,residual_sum_squares=fit['residual_sum_squares'])

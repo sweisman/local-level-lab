@@ -10,6 +10,10 @@ material. The other eight cataloged files form seven protected confirmation
 groups. Integrity and receiver-only eligibility checks may proceed; model fitting
 and outcome inspection wait for a frozen method and confirmation selection.
 See the [provenance ledger and reservation](../analysis-provenance/README.md).
+The [receiver-only screen](ESA_CONFIRMATION_RECEIVER_INVENTORY_RESULT.md)
+found ten provisional windows across all seven groups, totaling 34.7 hours.
+Each group has a checked [20-minute slice with continuous IMU timestamps](ESA_CONFIRMATION_TIMING_RESULT.md).
+Independent prediction accuracy and uncertainty still need verification.
 
 An **IMU (inertial measurement unit)** records angular motion and acceleration.
 The relevant files contain its observations, rather than only a finished
@@ -78,8 +82,37 @@ The matching GNSS position export contains **64,080 epochs over 8.90 hours**.
 The survey report identifies it as GNSS-only precise point positioning, using
 satellite orbit and clock products. The export uses the software's generic
 “GNSS/INS Epochs” label; the report, rather than that label, establishes the stated
-processing provenance. Raw RINEX observations are available but have not been
-independently reprocessed here.
+processing provenance. Two [GPS code reconstructions](../prediction-observed-development/ESA_RINEX_CODE_RESULT.md)
+have independently processed 1,041 raw epochs on this flight. They use
+the same aircraft antenna as the export. The receiver export also reports north/east/up
+velocity and six velocity covariance fields. The decoder preserves those six
+numbers in export order; their calibration and dependence on the position
+solution have not been established, so they are not yet used as independent
+motion evidence.
+A [training-only audit](../prediction-observed-development/GNSS_COVARIANCE_AUDIT.md)
+finds all 400 printed position and velocity matrices algebraically valid,
+while leaving their accuracy and time dependence unqualified.
+Two additional PPP exports from the same opened flight are retained. A
+[matched comparison](../prediction-observed-development/PARALLEL_GNSS_RESULT.md)
+finds centimetre differences at all 400 earlier training times. The survey
+used three receivers sharing one aircraft antenna, so this checks receiver
+agreement without proving absolute accuracy.
+A [common-time comparison](../prediction-observed-development/PARALLEL_GNSS_TIME_RESULT.md)
+accounts for submillisecond timing differences using the reported velocity;
+the remaining differences still measure only relative agreement.
+The [full opened-flight comparison](../prediction-observed-development/FULL_PARALLEL_GNSS_V2_RESULT.md)
+extends the check to eight fixed windows. One receiver diverges by
+decimetres in the last window while the third remains closer to the reference.
+A [speed-only split](../prediction-observed-development/PARALLEL_GNSS_MOTION_PHASE_RESULT.md)
+shows that the difference grows from fast flight to low speed;
+early agreement is not a whole-flight accuracy guarantee.
+The [sealed 120-epoch forecast](../prediction-observed-development/PARALLEL_GNSS_FORECAST_RESULT.md)
+also scores similarly against all three exports on this one opened flight.
+That is a receiver-hardware check, not independent flight validation.
+
+The [GIRAFE inventory](ESA_GIRAFE_187.md) confirms separate acceleration
+and stabilized-platform files for the same development flight.
+Their time and measurement fields still need qualification.
 
 Both reported lines for this recording overlap the IMU and GNSS time coverage:
 

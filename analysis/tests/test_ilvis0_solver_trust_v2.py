@@ -83,3 +83,44 @@ def test_damping_cannot_make_a_failed_physical_gate_pass(monkeypatch):
     problem,_,_,_=problem_for('interior')
     fit=solver.fit_candidate(problem,'control',start=np.zeros(2),maximum_evaluations=40,physical_step=meters)
     assert seen and not fit['converged'] and not fit['scientific_eligible']
+
+
+def test_value_trials_preserve_solver_path_and_skip_rejected_tangents():
+    import numpy as np
+
+    class Cubic:
+        class bounds:
+            active = ('x',)
+
+            @staticmethod
+            def decode(point):
+                return {'x': float(point[0])}
+
+        def __init__(self):
+            self.tangent_calls = 0
+
+        @staticmethod
+        def residual(point):
+            return np.array([point[0]**3 - .1])
+
+        def residual_tangent(self, point, model):
+            self.tangent_calls += 1
+            return self.residual(point), np.array([[3*point[0]**2]]), 0
+
+    ordinary, screened = Cubic(), Cubic()
+    fit = candidate().fit_candidate
+    settings = dict(start=[.1], maximum_evaluations=24, physical_step=meters)
+    reference = fit(ordinary, 'control', **settings)
+    assert any(not row['accepted'] for row in reference['step_history'])
+    received = []
+
+    def trial(point, model):
+        received.append(point.copy())
+        return screened.residual(point), 0
+
+    proposed = fit(screened, 'control', **settings, trial_residual=trial)
+    assert received and reference == proposed
+    assert screened.tangent_calls < ordinary.tangent_calls == reference['evaluations']
+    with pytest.raises(ValueError, match='trial differs from full tangent'):
+        fit(Cubic(), 'control', **settings,
+            trial_residual=lambda point, model: (.5 * screened.residual(point), 0))

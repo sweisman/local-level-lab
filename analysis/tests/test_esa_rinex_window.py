@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 import pytest
 
-from lll.esa_rinex_window import gps_seconds, epoch_offsets, inspect_window
+from lll.esa_rinex_window import gps_seconds, epoch_offsets, inspect_window, read_header
 from lll.esa_ftps_bounded_read import read_exact
 from time import monotonic
 
@@ -52,3 +52,17 @@ def test_bounded_stream_does_not_read_past_requested_end():
     assert stream.payload == b'fgh'
     with pytest.raises(ValueError, match='short'):
         read_exact(stream, 4, monotonic()+2.)
+
+
+def test_version_305_ground_header_requires_explicit_version():
+    lines = [('     3.05           OBSERVATION DATA    M (MIXED)', 'RINEX VERSION / TYPE'),
+             ('G    4 C1C L1C C2W L2W', 'SYS / # / OBS TYPES'), ('30', 'INTERVAL'),
+             ('2023 7 6 0 0 0.0000000 GPS', 'TIME OF FIRST OBS'),
+             ('2023 7 6 23 59 30.0000000 GPS', 'TIME OF LAST OBS'), ('', 'END OF HEADER')]
+    raw = ''.join(f'{value:60}{label}\n' for value, label in lines).encode()
+    with pytest.raises(ValueError, match='3.04'):
+        read_header(raw, expected_interval=30., expected_systems=('G',))
+    _, layout = read_header(raw, expected_interval=30., expected_systems=('G',), expected_version='3.05')
+    assert layout['version'] == '3.05'
+    assert layout['last'] == (2269, 431970.)
+    assert layout['observation_types']['G'] == ['C1C', 'L1C', 'C2W', 'L2W']

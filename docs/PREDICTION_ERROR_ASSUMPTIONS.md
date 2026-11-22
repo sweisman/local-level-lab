@@ -45,6 +45,12 @@ motion, vibration and processing; they are not isolated sensor noise. A logged
 point-rate statistic also cannot be transferred directly to independent
 increment noise: the ESA linear-point conversion shares sample endpoints.
 
+Even on the ground, gyro observations predict some of the changes in measured
+accelerometer direction. The two low-speed stops give substantially different
+agreement. Their raw gyro variation mixes possible tilt and instrument effects,
+and the accelerometer cannot observe yaw about its measured force direction.
+[Ground tilt comparison](prediction-observed-development/ESA_GROUND_TILT_CLOSURE_RESULT.md)
+
 The [analytic error-budget example](esa-noisy-prediction/ERROR_BUDGET.md)
 shows how the declared gyro noise alone can accumulate into tens of metres
 over a 400-second forecast, even with a perfect initial state. This is a

@@ -116,13 +116,14 @@ def validate_saved(value,report,*,time):
     import numpy as np
     ref=value['reference_report']
     if (report.get('time_s')!=time or report.get('reference_binding')!=ref['binding']
+            or report.get('gravity_anchor_height_m') is not None
             or report.get('source_id')!=ref['parent']['source_id']
             or report.get('normalized_center')!=list(value['center'])
             or report.get('lower')!=list(value['lower']) or report.get('upper')!=list(value['upper'])
             or report.get('conditioning')!=value['proof_report']
             or any(np.asarray(report.get(k)).shape!=(3,n) for k,n in
                 (('previous_coefficients',6),('acceleration_coefficients',9),('transform_coefficients',9)))):
-        raise ValueError('saved cold reference/domain/clock/proof or coefficient columns changed')
+        raise ValueError('saved cold reference/domain/clock/gravity/proof or coefficient columns changed')
 
 
 def compare(value,saved_report,*,original,prefix_kernels,cold_kernels,tangent,reserve,charge,save,

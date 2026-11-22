@@ -99,15 +99,12 @@ and the gyro offset limit. Statistical confidence for aircraft remains open.
 
 ## What remains to be checked
 
-A [prediction pilot](docs/ilvis0-retrospective-prediction-pilot-v2/INTERPRETATION.md)
-completed every matched check on one recording; the other two retain numerical
-or accuracy failures. A [later 20-group check](docs/prediction-group-transfer/REMAINING_GROUPS_PREDICTION_RESULT.md)
-had nine usable forecasts within its development limits and eleven groups
-without a usable later-cut fit. In simulation, the
-[first whole-period test](docs/prediction-simultaneous-law-family-v2/RESULT.md)
-failed its declared gate and a
-[separate follow-up](docs/prediction-simultaneous-law-family-v3/RESULT.md)
-passed. Aircraft error coverage remains open.
+In a [four-flight forecast check](docs/ilvis0-measurement-contribution/MATCHED_FOUR_GROUP_AUDIT_RESULT.md),
+the specified-field globe predicted unseen GPS positions more closely
+than the matched disc on all four flights and met the fixed accuracy
+limits on three. Where both zero-field fits completed, the globe also had
+lower total position error on all three flights. Statistical confidence
+across independent flights remains open.
 
 In a separate airborne archive, an [earlier-only forecast](docs/prediction-observed-development/ROLLING_ORIGIN_400_CONDITIONAL_RESULT.md)
 had a raw horizontal RMS error of 5.38 m on one development recording.
@@ -117,8 +114,9 @@ on that same recording favors globe geometry in two complete settings; two
 other settings remain unresolved because flat-model fits did not converge.
 On another window from the same flight, [two solvers agreed on all 16 matched
 globe comparisons](docs/mixed-tangent-hybrid/OBSERVED_DISPATCH_FRESH_RESULT.md).
-The aircraft prediction-error range remains open. Seven other flight
-groups remain reserved for confirmation.
+The aircraft prediction-error range remains open. A [GPS-only screen](docs/external-imu-data/ESA_CONFIRMATION_RECEIVER_INVENTORY_RESULT.md)
+found possible test windows in all seven flight groups reserved for confirmation.
+Each has a [20-minute slice with complete IMU timestamps](docs/external-imu-data/ESA_CONFIRMATION_TIMING_RESULT.md).
 
 Next, test what the gyroscope adds beyond GPS and acceleration and compare the
 two geometries under the same field assumptions. [Plain-language next steps](docs/NEXT_STEPS.md).

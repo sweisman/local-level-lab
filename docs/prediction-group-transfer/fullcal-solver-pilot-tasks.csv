@@ -1,0 +1,5 @@
+identity,solver,start,converged,physical_accuracy_passed,training_cost,prediction_horizontal_rms_m,prediction_vertical_rms_m,technical_error,evaluations
+near_zero-0,near_zero,0,True,True,94.61233635437011,0.320844359845467,1.311549729969914,,8
+near_zero-1,near_zero,1,True,True,94.61233635427139,0.32084448876685534,1.3115497348126037,,8
+trust_v2-0,trust_v2,0,True,True,94.61233635437011,0.320844359845467,1.311549729969914,,8
+trust_v2-1,trust_v2,1,True,True,94.61233635427139,0.32084448876685534,1.3115497348126037,,8

@@ -1,0 +1,109 @@
+{
+  "fit_adjusted_reference_calibrated": false,
+  "fit_manifest_sha256": "ce2cb7567e9d6995671dfd0b79ac4aec1a2d12d40fbe857a73827c7bbe466287",
+  "independent_validation": false,
+  "laws": {
+    "increment": {
+      "channels": [
+        {
+          "index": 0,
+          "lags": {
+            "1": 0.18967664551536761,
+            "20": -0.02183636334676129,
+            "5": 0.11324905028255376
+          },
+          "mean": 0.006848332797765346,
+          "rms": 0.06179713254041279
+        },
+        {
+          "index": 1,
+          "lags": {
+            "1": 0.3658663824466279,
+            "20": -0.015340315539767268,
+            "5": 0.23249359683313692
+          },
+          "mean": 0.010803479039563656,
+          "rms": 0.04617059211452465
+        },
+        {
+          "index": 2,
+          "lags": {
+            "1": 0.8246401307387836,
+            "20": 0.5384149163849296,
+            "5": 0.7409558214250258
+          },
+          "mean": 0.0078937392805634,
+          "rms": 0.07721628585183506
+        }
+      ],
+      "operator_configuration": "c4081e8f1fcdcec198802f5aa28f0c8d98e25b69d5f5f5635ea3375445936345",
+      "optimization_performed": false,
+      "quadratic": 7.147778380305272,
+      "training_replay": {
+        "error_log_determinant": -45727.75589135455,
+        "prefix_configuration": "73730204d52d33ef27c705ade04a5f5e361bbc1a179e6dd7eec8314465a1551e",
+        "replay_passed": true,
+        "residual_sum_squares": 7.147778380305272,
+        "saved_error_log_determinant": -45727.75589135455,
+        "saved_residual_sum_squares": 7.147778380305272,
+        "training_epochs": 600
+      },
+      "whitened_rms": 0.06301577571575617
+    },
+    "point": {
+      "channels": [
+        {
+          "index": 0,
+          "lags": {
+            "1": 0.18967601406206144,
+            "20": -0.021836821442145243,
+            "5": 0.11324860048550518
+          },
+          "mean": 0.006848355851806333,
+          "rms": 0.06179711044050859
+        },
+        {
+          "index": 1,
+          "lags": {
+            "1": 0.36586590336060565,
+            "20": -0.015339973848391463,
+            "5": 0.23249321850149254
+          },
+          "mean": 0.010803467822120279,
+          "rms": 0.0461705723109939
+        },
+        {
+          "index": 2,
+          "lags": {
+            "1": 0.8246398538862262,
+            "20": 0.5384140635137559,
+            "5": 0.7409553948951404
+          },
+          "mean": 0.0078937466866384,
+          "rms": 0.0772162257734299
+        }
+      ],
+      "operator_configuration": "98cc13431d95532f804e38e0f38e3f03b85f4a1b3afc988f2194f4dc4ecf29b2",
+      "optimization_performed": false,
+      "quadratic": 7.147770077408659,
+      "training_replay": {
+        "error_log_determinant": -45727.75592569917,
+        "prefix_configuration": "08588bcbfbe1e54f11bb17e9a6ef6a0baf4377bdbff2092e6b5ff1521ba54e1a",
+        "replay_passed": true,
+        "residual_sum_squares": 7.14777007740866,
+        "saved_error_log_determinant": -45727.75592569917,
+        "saved_residual_sum_squares": 7.14777007740866,
+        "training_epochs": 600
+      },
+      "whitened_rms": 0.06301573911601882
+    }
+  },
+  "protected_confirmation_groups_opened": 0,
+  "report_source_sha256": "5f714f65036cde77e17e30e65a8c7db3625afc831fb6c83ebde9921c9a466380",
+  "scientific_decision": "abstain",
+  "study": "data/esa-training-innovation-development-v1-20261115",
+  "study_manifest_sha256": "15255e7ab2817b146cc7c72e6735446dd70924bcabfde3c0273abb35940f7bbd",
+  "study_summary_sha256": "df70024dc14e7e8d9ea5100f8867868fbc91d62d82043e1aad9afdf8831d9448",
+  "training_epochs": 600,
+  "version": "esa-training-innovation-diagnostic-v1"
+}

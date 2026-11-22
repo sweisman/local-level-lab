@@ -31,11 +31,13 @@ from .validation_resume import (_campaign_lease, _stage_paths, _stop_reason,
 VERSION = 'lll-task-resume-v1'
 SELF = 'analysis/lll/studies/task_resume.py'
 PLANNER = 'analysis/lll/studies/task_continuation.py'
+RECOVERY_ONLY_SOURCES = frozenset((SELF,'analysis/tests/test_task_resume.py'))
 REQUIRED_TESTS = ('test_reboot_resume_skips_sealed_and_preserves_charges',
                   'test_original_closure_is_idempotent_and_blocks_old_launch',
                   'test_rejects_duplicate_owner',
                   'test_source_input_environment_mutation_blocks',
-                  'test_recovery_caps_and_completed_failure')
+                  'test_recovery_caps_and_completed_failure',
+                  'test_parent_recovery_launcher_can_be_repaired_without_changing_frozen_parent')
 
 
 def _read(path):
@@ -72,6 +74,10 @@ def _parent(project, parent, expected=None):
     if manifest['environment']!=runner.runtime_environment():
         raise ValueError('numerical environment differs from original')
     for name,sha in manifest['sources'].items():
+        # A continuation may use a repaired, separately qualified recovery
+        # launcher. The parent's own copy remains hash-verified by verify().
+        if name in RECOVERY_ONLY_SOURCES:
+            continue
         if _sha(runner.path_within(project,name))!=sha:
             raise ValueError('original source changed: '+name)
     for record in manifest['inputs'].values():
@@ -212,7 +218,7 @@ def _stage_matches(stage,parent,policy):
 
 
 def _new_stage(project,output,index,tasks,parent,policy,remaining_s):
-    sources=[*parent['sources'],SELF,PLANNER]
+    sources=list(dict.fromkeys([*parent['sources'],SELF,PLANNER]))
     inputs={key:record['source'] for key,record in parent['inputs'].items()}
     inputs.update({'continuation-parent-manifest':policy['parent']+'/manifest.json',
                    'continuation-policy':str((output/'policy.json').relative_to(project)),

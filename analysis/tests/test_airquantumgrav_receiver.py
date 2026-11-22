@@ -20,6 +20,18 @@ def test_primary_receiver_fields_and_quality_channels_remain_separate():
     assert row['utc_date']=='06/07/2023'
 
 
+def test_esa_utc_hour_can_have_one_digit_and_stays_verbatim():
+    row = list(receiver.records(stream({29: '9:01:05.00'})))[0]
+    assert row['utc_time'] == '9:01:05.00'
+    assert row['time_s'] == 1000.
+
+
+def test_reported_velocity_covariance_columns_are_preserved_in_export_order():
+    row=list(receiver.records(stream({13:0.4,14:0.5,15:0.6,
+                                      16:-0.01,17:0.02,18:-0.03})))[0]
+    assert row['velocity_covariance_export'] == [0.4,0.5,0.6,-0.01,0.02,-0.03]
+
+
 @pytest.mark.parametrize('index,value',[(1,'nan'),(26,'inf'),(27,'2269.5'),(21,'7.5'),(22,'-1'),(26,'604800')])
 def test_nonfinite_or_unsupported_format_is_rejected(index,value):
     with pytest.raises(ValueError):list(receiver.records(stream({index:value})))

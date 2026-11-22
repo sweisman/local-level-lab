@@ -98,8 +98,11 @@ the committed call count and preserving the incomplete files.
 A completed study can still have a held lock while a dependent study reserves its
 inputs. Lock ownership alone does not identify which process holds it. Thread
 totals cover the monitored studies; they are not a machine-wide process inventory.
-Passed checks describe the study's numerical checks, not scientific detections or
-changes to the published globe/flat findings. `--json` includes failure reasons.
+The meaning of **passed** comes from each study's frozen task definition.
+For some solver controls it means the task and its artifacts completed; the
+separate report counts numerical stopping and cross-method agreement. It never
+means a scientific detection or changes the published globe/flat findings.
+`--json` includes recorded failure reasons.
 
 Long envelope batches can also show **Saved envelope reports**, counting the
 hash-checked completed prefix at the fixed query times. This makes progress

@@ -23,7 +23,8 @@ from .ilvis0_remainder_native import (
 VERSION='ilvis0-complete-native-prefix-candidate-v1'
 
 
-def _prepare(configuration,theta,dv,dt,*,lower,upper,reference,conditioning,maximum_seconds):
+def _prepare(configuration,theta,dv,dt,*,lower,upper,reference,conditioning,maximum_seconds,
+             gravity_anchor_height_m=None):
     started=_timer.monotonic()
     if not math.isfinite(maximum_seconds) or maximum_seconds<0:raise ValueError('finite cooperative bound allowance required')
     configuration=deepcopy(configuration)
@@ -33,7 +34,8 @@ def _prepare(configuration,theta,dv,dt,*,lower,upper,reference,conditioning,maxi
     if not isinstance(reference,TransformReference) or reference.parent.source_id!=source:
         raise ValueError('transform native source binding mismatch')
     refs=reference;r=refs.parent
-    expected=make_reference(configuration,theta,dv,dt,lower=r.lower,upper=r.upper,center=r.center)
+    expected=make_reference(configuration,theta,dv,dt,lower=r.lower,upper=r.upper,center=r.center,
+                            outward_initial_force=reference.acceleration.outward_initial_force)
     if expected.binding!=refs.binding:raise ValueError('transform native source/reference mismatch')
     reference=refs.acceleration
     lo=np.asarray(lower,float);hi=np.asarray(upper,float);z=r.center;limits=r.limits
@@ -89,8 +91,18 @@ def _prepare(configuration,theta,dv,dt,*,lower,upper,reference,conditioning,maxi
     context=SimpleNamespace(**{name:material[name] for name in ['configuration', 'theta', 'dv', 'dt', 'source', 'refs', 'r', 'reference', 'lo', 'hi', 'z', 'limits', 'blo', 'bhi', 'p', 'plo', 'phi', 'delta', 'vector', 'model', 'radius', 'initial_position', 'initial_r', 'initial_velocity', 'initial_components', 'acceleration', 'acceleration_components', 'reference_force', 'angles', 'differences', 'raw_differences', 'starts', 'elapsed', 'removal', 'metric', 'reference_rates', 'departures', 'matrix', 'conditional_remainder', 'conditioning', 'started', 'maximum_seconds']})
     binding=dict(version=VERSION,source=source,reference=refs.binding,conditioning=conditioning.report(),
         lower=lo.tolist(),upper=hi.tolist(),center=z.tolist())
+    context.height_gravity=None
+    if gravity_anchor_height_m is not None:
+        anchor=float(gravity_anchor_height_m)
+        if not math.isfinite(anchor) or anchor<=-geo.GRAVITY_RADIUS_M:
+            raise ValueError('finite supported gravity anchor height required')
+        base=configuration['gravity']
+        anchor_gravity=geo.Scalar.interval(base+p[24],base+plo[24],base+phi[24])
+        context.height_gravity=(anchor,anchor_gravity)
+        binding['gravity_anchor_height_m']=anchor
     context.binding=hashlib.sha256(json.dumps(binding,sort_keys=True,separators=(',',':')).encode()).hexdigest()
     context.work=None
+    context.force_profiles=None
     return context
 
 
@@ -119,6 +131,7 @@ class Cursor:
     source_physical_upper:float=0.
     clock_profile:object=None
     clock_force:object=None
+    position_budget:object=None
 
     def close(self):
         self.source_values.close();self.source_rows.close()
@@ -136,14 +149,21 @@ def _query(context,time):
     return query
 
 
+def _force_clock(c,time):
+    nominal=F(time)
+    scale=F(float(c.limits[25]))
+    return tuple(nominal+scale*F(float(v)) for v in (c.z[25],c.r.lower[25],c.r.upper[25]))
+
+
 def _force_profile(context,time):
     c=context
-    if c.work is not None:c.work.add('force_profile_packets',len(c.dt))
-    profile=force_integrals(c.dt,c.raw_differences,
-        center=F(time)+F(float(c.limits[25]))*F(float(c.z[25])),
-        lower=F(time)+F(float(c.limits[25]))*F(float(c.r.lower[25])),
-        upper=F(time)+F(float(c.limits[25]))*F(float(c.r.upper[25])),
-        maximum_packets=len(c.dt),maximum_seconds=_remaining(c))
+    if c.force_profiles is None:
+        if c.work is not None:c.work.add('force_profile_packets',len(c.dt))
+        center,lower,upper=_force_clock(c,time)
+        profile=force_integrals(c.dt,c.raw_differences,center=center,lower=lower,upper=upper,
+            maximum_packets=len(c.dt),maximum_seconds=_remaining(c))
+    else:
+        profile=c.force_profiles[time]
     force=ClockedForceTransform(c.refs.transform,profile,nominal_time=time,metric=c.metric)
     return profile,force
 
@@ -202,6 +222,9 @@ def _fork(context,parent,time,kernels):
                  'index','source_prefixes','nominal','slope','source_physical_upper'):
         setattr(child,name,getattr(parent,name))
     child.used=list(parent.used)
+    if parent.position_budget is not None:
+        from .ilvis0_position_budget import PositionBudget
+        child.position_budget=PositionBudget(parent.position_budget)
     return child
 
 
@@ -232,17 +255,28 @@ def _advance(context,cursor):
     delta_g=scalar_product(actual_period.value,Value(raw_difference))
     rates,_=_rates(state.position,initial_components,acceleration_components,common,relative.apply(matrix,raw_g),u,metric,model,radius)
     midpoint=geo._advance(state.position,rates,geo.fixed_scale(actual_period,.5))
+    gravity_impulse=None
+    if context.height_gravity is not None:
+        anchor,anchor_gravity=context.height_gravity
+        gravity_delta=geo.gravity_at_height(anchor_gravity,midpoint.height,anchor_height_m=anchor,departure=True)
+        zero=geo.Scalar.fixed(0.)
+        gravity_impulse=scalar_product(actual_period.value,geo._pack((zero,zero,gravity_delta)))
     transport=geo.transport_context(midpoint.latitude,rates,model)
     _,_,estimate=_increment(state,left,right,initial_r,actual_angle,difference,raw_difference,reference_force,acceleration,matrix,
-        midpoint.latitude,transport,actual_period,removal,model,source_bound)
+        midpoint.latitude,transport,actual_period,removal,model,source_bound,gravity_impulse=gravity_impulse)
     mid_common=geo.plus(common,geo.fixed_scale(actual_period,.5));mid_u=add(u,scale(estimate,.5));mid_g=add(raw_g,scale(delta_g,.5))
-    revised,rest=_rates(midpoint,initial_components,acceleration_components,mid_common,relative.apply(matrix,mid_g),mid_u,metric,model,radius)
+    position_parts=[] if cursor.position_budget is not None else None
+    revised,rest=_rates(midpoint,initial_components,acceleration_components,mid_common,relative.apply(matrix,mid_g),mid_u,metric,model,radius,
+                       departure_parts=position_parts)
     transport=geo.transport_context(midpoint.latitude,revised,model)
     left,right,increment=_increment(state,left,right,initial_r,actual_angle,difference,raw_difference,reference_force,acceleration,matrix,
-        midpoint.latitude,transport,actual_period,removal,model,source_bound)
+        midpoint.latitude,transport,actual_period,removal,model,source_bound,gravity_impulse=gravity_impulse)
     u=add(u,increment);raw_h=add(raw_h,scalar_product(actual_period.value,mid_g));raw_g=add(raw_g,delta_g)
-    departures=geo.Coordinates(*(geo.plus(value,geo.times(rate,actual_period)) for value,rate in zip(
-        (departures.latitude,departures.longitude,departures.height),rest)))
+    previous_departures=(departures.latitude,departures.longitude,departures.height)
+    next_departures=tuple(geo.plus(value,geo.times(rate,actual_period)) for value,rate in zip(previous_departures,rest))
+    departures=geo.Coordinates(*next_departures)
+    if cursor.position_budget is not None:
+        cursor.position_budget.append(position_parts,rest,actual_period,previous_departures,next_departures)
     square=geo.times(next_common,next_common)
     matrix_h=relative.apply(matrix,raw_h)
     position=geo.Coordinates(*(geo.plus(geo.plus(geo.plus(geo.plus(geo.Scalar.fixed(origin),geo.times(next_common,rate)),
@@ -319,14 +353,16 @@ def _finish(context,cursor):
         reference_binding=refs.binding,transform_reference=refs.transform.report(),force_integrals=clock_profile.report(),
         clock_transform=clock_force.report(),force_unshared_remainder=force_terms,force_center_difference=force_center_differences,
         transform_matrix_change=matrix.change,transform_matrix_remainder=matrix.remainder)
+    if context.height_gravity is not None:
+        metadata['gravity_anchor_height_m']=context.height_gravity[0]
     return TransformEnclosure(output.center,np.array([v.value.remainder for v in (output.latitude,output.longitude,output.height)]),
         old_coefficients,added,clock_force.coefficients,metadata)
 
 
 def _cold_enclose(configuration,theta,dv,dt,*,time,lower,upper,reference,conditioning,
-                  source_kernel,derivative_kernel,point_kernel,maximum_seconds=30.):
+                  source_kernel,derivative_kernel,point_kernel,maximum_seconds=30.,gravity_anchor_height_m=None):
     context=_prepare(configuration,theta,dv,dt,lower=lower,upper=upper,reference=reference,
-        conditioning=conditioning,maximum_seconds=maximum_seconds)
+        conditioning=conditioning,maximum_seconds=maximum_seconds,gravity_anchor_height_m=gravity_anchor_height_m)
     kernels=dict(source_kernel=source_kernel,derivative_kernel=derivative_kernel,point_kernel=point_kernel)
     cursor=_new_cursor(context,time,cold_kernels=kernels)
     try:
@@ -349,8 +385,9 @@ class Work:
 
 
 def enclose_many(configuration,theta,dv,dt,*,times,lower,upper,reference,conditioning,
-                 prefix_kernels,maximum_packet_steps,reserve,maximum_seconds=30.,on_report=None):
-    if on_report is not None and not callable(on_report):
+                 prefix_kernels,maximum_packet_steps,reserve,maximum_seconds=30.,on_report=None,
+                 gravity_anchor_height_m=None,reuse_force_profiles=False,on_position_budget=None):
+    if any(observer is not None and not callable(observer) for observer in (on_report,on_position_budget)):
         raise ValueError('report observer must be callable')
     times=np.array(times,float,copy=True)
     if (times.ndim!=1 or not 1<=len(times)<=4096 or not np.all(np.isfinite(times))
@@ -359,9 +396,21 @@ def enclose_many(configuration,theta,dv,dt,*,times,lower,upper,reference,conditi
         raise ValueError('fixed ordered queries, finite packet allowance and reservation callback required')
     work=Work(maximum_packet_steps,reserve);work.add('preparation_packets',len(dt))
     c=_prepare(configuration,theta,dv,dt,lower=lower,upper=upper,reference=reference,
-        conditioning=conditioning,maximum_seconds=maximum_seconds);c.work=work
+        conditioning=conditioning,maximum_seconds=maximum_seconds,gravity_anchor_height_m=gravity_anchor_height_m);c.work=work
     queries=[_query(c,float(t)) for t in times]
+    if reuse_force_profiles:
+        from .ilvis0_force_integrals import enclose_many as force_integral_batch
+        work.add('force_profile_packets',len(c.dt))
+        profiles=force_integral_batch(c.dt,c.raw_differences,
+            queries=(_force_clock(c,float(t)) for t in times),
+            maximum_packets=len(c.dt),maximum_seconds=_remaining(c))
+        c.force_profiles=dict(zip(times,profiles,strict=True))
     parent=_new_cursor(c,float(times[-1]),prefix_kernels=prefix_kernels,profile=False);bounds=[]
+    if on_position_budget is not None:
+        from .ilvis0_position_budget import PositionBudget
+        departure=parent.departures
+        parent.position_budget=PositionBudget(initial=[value.value.remainder for value in
+            (departure.latitude,departure.longitude,departure.height)])
     try:
         for time,query in zip(times,queries,strict=True):
             from .ilvis0_source_prefix import fork_floor
@@ -384,6 +433,9 @@ def enclose_many(configuration,theta,dv,dt,*,times,lower,upper,reference,conditi
                 bounds.append(_finish(c,child))
                 if on_report is not None:
                     on_report(len(bounds)-1,deepcopy(bounds[-1].report()))
+                if on_position_budget is not None:
+                    position=(child.departures.latitude,child.departures.longitude,child.departures.height)
+                    on_position_budget(len(bounds)-1,child.position_budget.report(),[v.value.remainder for v in position])
             finally:child.close()
         return dict(bounds=bounds,work=dict(work.counts),binding=c.binding,
             whole_native_prefix_qualified=False,observational_coverage_qualified=False,

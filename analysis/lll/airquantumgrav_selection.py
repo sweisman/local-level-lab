@@ -43,13 +43,26 @@ def select_full_motion(rows,*,imu_support,source_integrity_verified=False):
     return _select(rows,imu_support=imu_support,source_integrity_verified=source_integrity_verified,full_motion=True)
 
 
-def _select(rows,*,imu_support,source_integrity_verified,full_motion):
+def select_receiver_only(rows, *, receiver_integrity_verified=False):
+    """Apply receiver rules before checking IMU support or opening confirmation."""
+    result = _select(rows, imu_support=None, source_integrity_verified=receiver_integrity_verified,
+                     full_motion=True, receiver_only=True)
+    result.update(version='esa-confirmation-receiver-prefilter-v1',
+                  receiver_candidates=result['eligible'], eligible=[],
+                  receiver_integrity_verified=True, source_integrity_verified=False,
+                  imu_support_verified=False)
+    result['policy']['motion_treatment'] = 'receiver_prefilter_only'
+    return result
+
+
+def _select(rows,*,imu_support,source_integrity_verified,full_motion,receiver_only=False):
     policy=Policy();rows=list(rows);n=len(rows)
     if source_integrity_verified is not True:raise ValueError('verified source integrity required')
     if n<2:raise ValueError('at least two ordered receiver observations required')
-    support=np.asarray(imu_support,float)
-    if support.shape!=(2,) or not np.all(np.isfinite(support)) or support[1]<=support[0]:
-        raise ValueError('finite uninterrupted IMU support required')
+    if not receiver_only:
+        support=np.asarray(imu_support,float)
+        if support.shape!=(2,) or not np.all(np.isfinite(support)) or support[1]<=support[0]:
+            raise ValueError('finite uninterrupted IMU support required')
     keys=('time_s','latitude_deg','longitude_deg','height_m','north_mps','east_mps','up_mps','pdop')
     values=np.array([[r[k] for k in keys] for r in rows],float)
     if not np.all(np.isfinite(values)):raise ValueError('finite receiver measurements required')
@@ -71,7 +84,7 @@ def _select(rows,*,imu_support,source_integrity_verified,full_motion):
     for i in range(n):
         if speed[i]<policy.minimum_speed_mps:reasons[i].add('speed')
         if not quality[i]:reasons[i].add('receiver_quality')
-        if not support[0]<=t[i]<=support[1]:reasons[i].add('imu_support')
+        if not receiver_only and not support[0]<=t[i]<=support[1]:reasons[i].add('imu_support')
     if full_motion:
         from .airquantumgrav_error_policy import reported_covariance
         from .models import radii

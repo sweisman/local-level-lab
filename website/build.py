@@ -192,14 +192,22 @@ def build(root,output,*,assets,base_path='',navigation=True):
                     name,parsed=fallback
             elif source.endswith('/README.md') and not available(root,name):
                 # A sealed publication may copy its parent overview verbatim.
-                # Resolve only missing links from that overview's directory.
+                # Resolve only missing links from an already linked original.
                 published=PurePosixPath(source).parent
                 overview=str(published.parent/'README.md')
                 receipt=str(published/'evidence-receipt.json')
-                if available(root,receipt) and available(root,overview):
-                    fallback=local_target(overview,url)
-                    if fallback is not None and available(root,fallback[0]):
-                        name,parsed=fallback
+                if available(root,receipt):
+                    originals=[overview] if available(root,overview) else []
+                    identical=[candidate for candidate,sha in sources.items()
+                               if candidate!=source and sha==sources[source]
+                               and PurePosixPath(candidate).parent==published.parent]
+                    if len(identical)==1 and identical[0] not in originals:
+                        originals.append(identical[0])
+                    for original in originals:
+                        fallback=local_target(original,url)
+                        if fallback is not None and available(root,fallback[0]):
+                            name,parsed=fallback
+                            break
             if public_page(name):
                 page=checked_path(root,name)
                 if available(root,name):

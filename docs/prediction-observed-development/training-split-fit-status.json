@@ -1,0 +1,30 @@
+{
+  "completed": 2,
+  "independent_validation": false,
+  "laws": {
+    "increment": {
+      "active_bounds": [],
+      "converged": true,
+      "evaluations": 22,
+      "passed": true,
+      "training_cost": 7.147778380305272
+    },
+    "point": {
+      "active_bounds": [],
+      "converged": true,
+      "evaluations": 18,
+      "passed": true,
+      "training_cost": 7.14777007740866
+    }
+  },
+  "manifest_sha256": "ce2cb7567e9d6995671dfd0b79ac4aec1a2d12d40fbe857a73827c7bbe466287",
+  "passed": true,
+  "prediction_epochs": 200,
+  "protected_confirmation_groups_opened": 0,
+  "scientific_decision": "abstain",
+  "scoring_receiver_values_opened": false,
+  "study": "data/esa-training-split-recheck-development-v1-20261115",
+  "summary_sha256": "2a678d962646c3f050b1cb02af1276de65df83364be0b1fb436587bd9583030c",
+  "training_epochs": 600,
+  "version": "esa-600-200-fit-status-v1"
+}

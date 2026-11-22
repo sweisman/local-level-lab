@@ -41,7 +41,20 @@ def test_one_task_reads_only_frozen_receiver_prefix_and_preserves_abstention(
         tmp_path, family, degree, axis):
     frozen = tmp_path / 'source-freeze/analysis/lll/ilvis0_exact_reference_scale.py'
     frozen.parent.mkdir(parents=True)
-    frozen.write_bytes((Path(__file__).resolve().parents[1] / 'lll/ilvis0_exact_reference_scale.py').read_bytes())
+    # This tests the frozen-source adapter and saved receiver-prefix contract.
+    # Exact arithmetic and the 30-second resource gate have their own tests;
+    # running all 292 rational innovations here makes CI speed dependent.
+    frozen.write_text(
+        'from fractions import Fraction as F\n'
+        'def certify_scale(values, times, transitions, **options):\n'
+        '    assert len(values) == len(times) == 292 and len(transitions) == 291\n'
+        '    assert times[0] == 0 and times[-1] == 1\n'
+        '    assert options["design_is_fixed"] is True\n'
+        '    assert options["error_distribution"] == "gaussian"\n'
+        '    assert options["max_seconds"] == 30 and options["max_epochs"] == 292\n'
+        '    return dict(reason="certified_under_declared_covariance",\n'
+        '                residual_quadratic=F(1, 4), quantile_floor=F(1, 8),\n'
+        '                scale_upper=F(7, 3))\n')
     prefix = tmp_path / 'receiver-prefix.csv'
     with prefix.open('w', newline='') as stream:
         writer = csv.DictWriter(stream, fieldnames=('time1_s', 'latitude_deg',
@@ -76,11 +89,12 @@ def test_one_task_reads_only_frozen_receiver_prefix_and_preserves_abstention(
                 source_sha256='source-hash', split_sha256='split-hash')
     context = Context()
     result = evaluate(task, context)
-    assert result['passed'] is True
+    assert result['passed'] is True, result['reason']
     assert result['scientific_decision'] == 'abstain'
     assert context.saved['training_epochs'] == 292
     assert context.saved['coefficient_count'] == degree + 1
     assert context.saved['reason'] == 'certified_under_declared_covariance'
+    assert context.saved['scale_upper'] == '7/3'
     assert F(int(context.saved['residual_quadratic_num_hex'], 16),
              int(context.saved['residual_quadratic_den_hex'], 16)) >= 0
     assert 'later_positions' not in context.saved

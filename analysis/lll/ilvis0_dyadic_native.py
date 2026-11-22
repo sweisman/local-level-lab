@@ -127,9 +127,11 @@ class TransformEnclosure:
                 raise ValueError('finite complete transform enclosure required')
             object.__setattr__(self,name,_readonly(a))
 
-    def design(self,native_jacobian,reference):
+    def design(self,native_jacobian,reference,*,gravity_anchor_height_m=None):
         if not isinstance(reference,TransformReference) or self.metadata.get('reference_binding')!=reference.binding:
             raise ValueError('complete transform source/reference required')
+        if self.metadata.get('gravity_anchor_height_m')!=gravity_anchor_height_m:
+            raise ValueError('native design gravity anchor does not match the interval propagation')
         return reference.transform.augment(native_jacobian,reference.acceleration,self.previous_coefficients,self.acceleration_coefficients,self.transform_coefficients)
 
     def report(self):

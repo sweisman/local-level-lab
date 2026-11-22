@@ -16,12 +16,22 @@ POLICY=dict(position.POLICY,step_method='full bounded Gauss–Newton first; trus
 
 
 def fit_candidate(problem,model,*,start,maximum_evaluations=200,physical_step=None,
-                  stability_verifier=None,verification_evaluations=2,reserve_linear=None):
+                  stability_verifier=None,verification_evaluations=2,reserve_linear=None,
+                  trial_residual=None,reuse_rejected_full=False,curvature_retry=False):
+    """Check optional value-only proposals and differentiate accepted points.
+
+    The iteration allowance counts candidate evaluations. A caller supplying
+    a value-only provider charges its native calls independently, including a
+    full tangent at each accepted point and every fresh stopping evaluation.
+    Reusing a rejected full proposal is opt-in and never affects fresh checks.
+    """
     if type(maximum_evaluations) is not int or not 6<=maximum_evaluations<=600:
         raise ValueError('finite evaluation allowance in [6,600] required')
     if (type(verification_evaluations) is not int or not 2<=verification_evaluations<maximum_evaluations
             or stability_verifier is not None and not callable(stability_verifier)
-            or reserve_linear is not None and not callable(reserve_linear)):
+            or reserve_linear is not None and not callable(reserve_linear)
+            or trial_residual is not None and not callable(trial_residual)
+            or type(reuse_rejected_full) is not bool or type(curvature_retry) is not bool):
         raise ValueError('finite final verification reserve and explicit callable providers required')
     original=np.array(start,dtype=float)
     if (original.shape!=(len(problem.bounds.active),) or not len(original)
@@ -35,23 +45,39 @@ def fit_candidate(problem,model,*,start,maximum_evaluations=200,physical_step=No
         if reserve_linear is not None:reserve_linear()
         linear_solves+=1
         return lsq_linear(*args,**kwargs)
-    def evaluate(u,fresh=False):
+    def evaluate(u,fresh=False,*,trial=False):
         nonlocal calls,cache
         problem.bounds.decode(u)
-        if not fresh and cache is not None and np.array_equal(u,cache[0]): return cache[1:]
-        if calls>=limit: raise EvaluationLimit('tangent allowance exhausted')
-        calls+=1
-        residual,jac,edges=problem.residual_tangent(u,model)
-        residual,jac=np.asarray(residual,float),np.asarray(jac,float)
-        if (residual.ndim!=1 or jac.shape!=(len(residual),len(point))
-                or not np.all(np.isfinite(residual)) or not np.all(np.isfinite(jac))):
+        cached = not fresh and cache is not None and np.array_equal(u, cache[0])
+        if cached and (trial or cache[2] is not None):
+            return cache[1:]
+        if not cached:
+            if calls>=limit: raise EvaluationLimit('tangent allowance exhausted')
+            calls+=1
+        if trial and trial_residual is not None:
+            residual, edges = trial_residual(u, model)
+            jac = None
+        else:
+            residual, jac, edges = problem.residual_tangent(u, model)
+            jac = np.asarray(jac, float)
+        residual = np.asarray(residual, float)
+        if (residual.ndim != 1 or not np.all(np.isfinite(residual))
+                or jac is not None and (jac.shape != (len(residual), len(point))
+                                        or not np.all(np.isfinite(jac)))):
             raise ValueError('invalid residual or tangent')
+        if cached:
+            if edges != cache[3] or not np.array_equal(residual, cache[1]):
+                raise ValueError('accepted value-only trial differs from full tangent')
+        else:
+            trace.append(dict(evaluation=calls,cost=float(residual@residual),fresh=bool(fresh)))
         cache=(u.copy(),residual,jac,edges)
-        trace.append(dict(evaluation=calls,cost=float(residual@residual),fresh=bool(fresh)))
         return residual,jac,edges
     residual,jac,_=evaluate(point);initial_cost=cost=float(residual@residual)
     radius=POLICY['initial_radius'];damping=POLICY['initial_damping']
     message='evaluation allowance exhausted'
+    rejected_full=None
+    reused=[]
+    retried=None
     try:
         while calls<limit:
             # An undamped solve decides whether the original gate is worth
@@ -72,9 +98,13 @@ def fit_candidate(problem,model,*,start,maximum_evaluations=200,physical_step=No
             # point elsewhere in a curved, poorly conditioned valley.
             full_point=boundary.snap_bounds(np.clip(point+full.x,-1,1))
             full_reduction=cost-full_cost
-            if full_reduction>0 and not np.array_equal(full_point,point):
-                trial_residual,trial_jac,_=evaluate(full_point)
-                trial_cost=float(trial_residual@trial_residual)
+            full_trial=full_reduction>0 and not np.array_equal(full_point,point)
+            full_key=full_point.tobytes() if reuse_rejected_full and full_trial else None
+            if full_trial and rejected_full is not None and full_key==rejected_full[0]:
+                reused.append(dict(after_evaluation=calls,rejected_evaluation=rejected_full[1]))
+            elif full_trial:
+                candidate_residual,trial_jac,_=evaluate(full_point,trial=True)
+                trial_cost=float(candidate_residual@candidate_residual)
                 reduction=cost-trial_cost;ratio=reduction/full_reduction
                 accepted=reduction>0 and ratio>=POLICY['acceptance_ratio']
                 history.append(dict(evaluation=calls,accepted=bool(accepted),cost=trial_cost,
@@ -82,8 +112,42 @@ def fit_candidate(problem,model,*,start,maximum_evaluations=200,physical_step=No
                                     agreement_ratio=ratio,method='full_bounded',radius=radius,
                                     damping=0.,damping_used=False,normalized_step=float(np.linalg.norm(full_point-point))))
                 if accepted:
-                    point,residual,jac,cost=full_point,trial_residual,trial_jac,trial_cost
+                    if trial_jac is None:
+                        candidate_residual,trial_jac,_=evaluate(full_point)
+                    point,residual,jac,cost=full_point,candidate_residual,trial_jac,trial_cost
+                    rejected_full=None
+                    retried=None
                     continue
+                if full_key is not None:
+                    rejected_full=(full_key,calls)
+                if curvature_retry and (retried is None or not np.array_equal(full_point,retried)):
+                    from .curved_step import curved_fraction,residual_decrease
+
+                    retried=full_point.copy()
+                    direction=full_point-point
+                    fraction=curved_fraction(residual,jac@direction,candidate_residual)
+                    if fraction is not None:
+                        shortened=boundary.snap_bounds(np.clip(point+fraction*direction,-1,1))
+                        change=jac@(shortened-point)
+                        predicted=-float(change@(2*residual+change))
+                        if predicted>0 and not np.array_equal(shortened,point):
+                            short_r,short_j,_=evaluate(shortened,trial=True)
+                            reduction=residual_decrease(residual,short_r)
+                            ratio=reduction/predicted
+                            accepted=reduction>0 and ratio>=POLICY['acceptance_ratio']
+                            trial_cost=float(short_r@short_r)
+                            history.append(dict(evaluation=calls,accepted=bool(accepted),cost=trial_cost,
+                                predicted_reduction=predicted,actual_reduction=reduction,
+                                agreement_ratio=ratio,method='curvature_retry',fraction=fraction,
+                                radius=radius,damping=0.,damping_used=False,
+                                normalized_step=float(np.linalg.norm(shortened-point))))
+                            if accepted:
+                                if short_j is None:
+                                    short_r,short_j,_=evaluate(shortened)
+                                point,residual,jac,cost=shortened,short_r,short_j,trial_cost
+                                rejected_full=None
+                                retried=None
+                                continue
             step_bounds=(np.maximum(-1-point,-radius),np.minimum(1-point,radius))
             local=solve(jac,-residual,bounds=step_bounds,
                              method='bvls',tol=POLICY['linear_tolerance'],max_iter=POLICY['linear_maximum_iterations'])
@@ -103,8 +167,8 @@ def fit_candidate(problem,model,*,start,maximum_evaluations=200,physical_step=No
                 # A tiny damped step cannot establish convergence. Reserve the
                 # unchanged full correction check and report its actual result.
                 message='no positive predicted decrease';break
-            trial_residual,trial_jac,_=evaluate(proposed)
-            trial_cost=float(trial_residual@trial_residual)
+            candidate_residual,trial_jac,_=evaluate(proposed,trial=True)
+            trial_cost=float(candidate_residual@candidate_residual)
             actual_reduction=cost-trial_cost;ratio=actual_reduction/predicted_reduction
             accepted=actual_reduction>0 and ratio>=POLICY['acceptance_ratio']
             history.append(dict(evaluation=calls,accepted=bool(accepted),cost=trial_cost,
@@ -112,7 +176,11 @@ def fit_candidate(problem,model,*,start,maximum_evaluations=200,physical_step=No
                                 agreement_ratio=ratio,radius=radius,damping=damping,damping_used=used_damping,
                                 normalized_step=float(np.linalg.norm(step))))
             if accepted:
-                point,residual,jac,cost=proposed,trial_residual,trial_jac,trial_cost
+                if trial_jac is None:
+                    candidate_residual,trial_jac,_=evaluate(proposed)
+                point,residual,jac,cost=proposed,candidate_residual,trial_jac,trial_cost
+                rejected_full=None
+                retried=None
                 if ratio>.75:
                     damping=max(damping*.3,POLICY['minimum_damping'])
                     if np.max(abs(step))>=.8*radius: radius=min(radius*2,POLICY['maximum_radius'])
@@ -129,7 +197,7 @@ def fit_candidate(problem,model,*,start,maximum_evaluations=200,physical_step=No
     checker=position.verify_stability if stability_verifier is None else stability_verifier
     probe=checker(point,residual,jac,evaluate,transform)
     converged=bool(probe['passed'] and stationarity<=STOPPING['stationarity_tolerance'])
-    return dict(version=VERSION,model=model,parameters=problem.bounds.decode(point),
+    result=dict(version=VERSION,model=model,parameters=problem.bounds.decode(point),
                 normalized_parameters=point.tolist(),active_parameters=list(problem.bounds.active),
                 residual_sum_squares=float(residual@residual),initial_cost=initial_cost,
                 evaluations=calls,maximum_evaluations=maximum_evaluations,optimizer_linear_solves=linear_solves,
@@ -150,3 +218,9 @@ def fit_candidate(problem,model,*,start,maximum_evaluations=200,physical_step=No
                 constant_bias_is_measured_drift=False,calibration_bounds_supported=False,
                 processing_independence_established=False,receiver_covariance_calibrated=False,
                 clock_independently_established=False)
+    if reuse_rejected_full:
+        result['reused_full_rejections']=reused
+        result['stability_policy']['reuse_rejected_full']=True
+    if curvature_retry:
+        result['stability_policy']['curvature_retry']=True
+    return result

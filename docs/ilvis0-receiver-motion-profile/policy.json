@@ -1,0 +1,1 @@
+{"course_rate_window_s":30.0,"maximum_receiver_gap_s":2.0,"reference_course_rate_deg_s":0.05,"reference_vertical_rate_mps":1.5,"scientific_eligibility":false,"velocity_window_s":30.0,"version":"ilvis0-receiver-motion-profile-v1"}

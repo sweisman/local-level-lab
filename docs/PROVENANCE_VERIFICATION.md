@@ -24,5 +24,9 @@ and trajectory CSVs. It reads no original IMU files and runs no fits. It does
 not revalidate every artifact in the larger findings publication or turn the
 conservative groups into independent replications.
 
+The [ESA forecast index](analysis-provenance/ESA_GROUP_EVIDENCE.md) separately
+checks the receiver-row reuse in recording 187. It links the scored cuts to
+one development group and retains the seven reserved groups in its receipt.
+
 [Published grouping](analysis-provenance/README.md) ·
 [Development dataset](PAPER_DATASET.md) · [Study roadmap](ANALYSIS_ROADMAP.md).

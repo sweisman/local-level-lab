@@ -14,7 +14,7 @@ from .ilvis0_source_reference import _inputs
 from .ilvis0_source_point_derivatives import Stream as PointStream
 from .ilvis0_source_remainder import calibration,clipped_fraction,multiply,force_products
 from .ilvis0_exact_scale import sqrt_upper
-from .ilvis0_saved_prediction_audit import endpoint
+from .ilvis0_dyadic_source import transfer_radius
 
 VERSION='ilvis0-direct-source-remainder-v1'
 
@@ -118,16 +118,5 @@ def radius(frame,values,rows,*,phase):
     numerical,jac,point,derivative=arrays
     if np.any(point[...,0]>point[...,1]) or np.any(derivative[...,0]>derivative[...,1]):
         raise ValueError('ordered point intervals required')
-    widths=[max(abs(F(a)-F(c)),abs(F(b)-F(c))) for a,b,c in zip(frame.lower,frame.upper,frame.center,strict=True)]
-    out=np.empty((2,3))
-    for component in range(2):
-        remainder=F(frame.ideal_remainder[phase][component])
-        if remainder<0:raise ValueError('nonnegative ideal source remainder required')
-        for axis in range(3):
-            value=F(float(numerical[phase,component,axis]));ends=point[phase,component,axis]
-            total=remainder+max(abs(F(float(v))-value) for v in ends)
-            for col in range(27):
-                row=F(float(jac[phase,component,axis,col]));ends=derivative[phase,component,axis,col]
-                total+=widths[col]*max(abs(F(float(v))-row) for v in ends)
-            out[component,axis]=endpoint(total,True)
-    out.setflags(write=False);return out
+    return transfer_radius(numerical[phase],jac[phase],point[phase],derivative[phase],
+        lower=frame.lower,upper=frame.upper,center=frame.center,remainders=frame.ideal_remainder[phase])

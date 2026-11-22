@@ -77,3 +77,35 @@ def test_bridge_accounts_for_all_columns_and_rejects_domain_mismatch(kernel):
     with pytest.raises(ValueError):stream.append()
     stream.close()
     with pytest.raises(ValueError):stream.append()
+
+
+@pytest.mark.parametrize('binary_domain',[False,True])
+def test_direct_bridge_reproduces_fraction_sum_before_final_rounding(kernel,binary_domain):
+    from dataclasses import replace
+    from lll.ilvis0_direct_source import DirectStream,radius
+    from lll.ilvis0_saved_prediction_audit import endpoint
+
+    center=np.zeros(27)
+    lo=np.full(27,-1/1024)
+    hi=np.full(27,1/2048)
+    with DirectStream(kernel,source(),center,lo,hi,3/512,maximum_packets=2) as stream:
+        frame=stream.append()
+    if not binary_domain:
+        frame=replace(frame,lower=(F(-1,19),*frame.lower[1:]))
+    frame=replace(frame,ideal_remainder=(('1/73','1/100003'),('0','1/9981')))
+    values=frame.point_values[...,0]+2.**-52
+    rows=frame.point_jacobian[...,1]-2.**-62
+    widths=[max(abs(F(x)-F(c)),abs(F(y)-F(c)))
+            for x,y,c in zip(frame.lower,frame.upper,frame.center,strict=True)]
+    for phase in (0,1):
+        expected=np.empty((2,3))
+        for block,axis in np.ndindex(expected.shape):
+            def difference(value,interval):
+                return max(abs(F(float(x))-F(float(value))) for x in interval)
+
+            correction=difference(values[phase,block,axis],frame.point_values[phase,block,axis])
+            correction+=sum(
+                d*difference(rows[phase,block,axis,i],frame.point_jacobian[phase,block,axis,i])
+                for i,d in enumerate(widths))
+            expected[block,axis]=endpoint(F(frame.ideal_remainder[phase][block])+correction,True)
+        np.testing.assert_array_equal(radius(frame,values,rows,phase=phase),expected)

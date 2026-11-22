@@ -1,0 +1,321 @@
+{
+  "absolute_cost_tolerance": 1e-08,
+  "comparator_source_sha256": "60df60e054b13211d69f2dc7311241062e2dbddd67cd302886df93872f836bad",
+  "diagnostic_source_sha256": "78211f8f74ffe0d0cd1743c35cb04d2d36da5439eab7e45cab5d2df4f2c98b2d",
+  "frozen_qualified": false,
+  "groups": [
+    {
+      "candidate_within_maximum_m": 0.0,
+      "forecast_spread_stable": true,
+      "frozen_rule": {
+        "all_fits_pass": true,
+        "candidate_near_ties": [
+          1
+        ],
+        "candidate_primary": 1,
+        "cross_start_maximum_m": 1.3969838619232178e-09,
+        "equivalent": false,
+        "forecast_epochs": 119,
+        "forecast_tolerance_m": 0.01,
+        "reference_near_ties": [
+          1
+        ],
+        "reference_primary": 1,
+        "relative_cost_tolerance": 1e-08,
+        "same_start_costs_agree": false,
+        "selection_stable": true
+      },
+      "model": "sphere_rotating",
+      "profile": false,
+      "reference_within_maximum_m": 0.0,
+      "revised_rule_development_diagnostic": {
+        "absolute_cost_tolerance": 1e-08,
+        "all_fits_pass": true,
+        "candidate_near_ties": [
+          0,
+          1
+        ],
+        "candidate_primary": 1,
+        "candidate_within_maximum_m": 9.313225746154785e-10,
+        "cross_start_maximum_m": 1.3969838619232178e-09,
+        "equivalent": true,
+        "forecast_epochs": 119,
+        "forecast_tolerance_m": 0.01,
+        "reference_near_ties": [
+          0,
+          1
+        ],
+        "reference_primary": 1,
+        "reference_within_maximum_m": 1.3969838619232178e-09,
+        "relative_cost_tolerance": 1e-08,
+        "same_start_costs_agree": true,
+        "selection_stable": true,
+        "version": "start-equivalence-v2"
+      },
+      "same_start_cost_absolute_maximum": 1.8952274407849082e-17,
+      "same_start_cost_relative_maximum": 3.6256780254481737e-06
+    },
+    {
+      "candidate_within_maximum_m": 0.0,
+      "forecast_spread_stable": true,
+      "frozen_rule": {
+        "all_fits_pass": true,
+        "candidate_near_ties": [
+          1
+        ],
+        "candidate_primary": 1,
+        "cross_start_maximum_m": 1.7423449953896652e-09,
+        "equivalent": false,
+        "forecast_epochs": 119,
+        "forecast_tolerance_m": 0.01,
+        "reference_near_ties": [
+          1
+        ],
+        "reference_primary": 1,
+        "relative_cost_tolerance": 1e-08,
+        "same_start_costs_agree": false,
+        "selection_stable": true
+      },
+      "model": "sphere_rotating",
+      "profile": true,
+      "reference_within_maximum_m": 0.0,
+      "revised_rule_development_diagnostic": {
+        "absolute_cost_tolerance": 1e-08,
+        "all_fits_pass": true,
+        "candidate_near_ties": [
+          0,
+          1
+        ],
+        "candidate_primary": 1,
+        "candidate_within_maximum_m": 1.862645149230957e-09,
+        "cross_start_maximum_m": 1.862645149230957e-09,
+        "equivalent": true,
+        "forecast_epochs": 119,
+        "forecast_tolerance_m": 0.01,
+        "reference_near_ties": [
+          0,
+          1
+        ],
+        "reference_primary": 1,
+        "reference_within_maximum_m": 1.1406325468715177e-09,
+        "relative_cost_tolerance": 1e-08,
+        "same_start_costs_agree": true,
+        "selection_stable": true,
+        "version": "start-equivalence-v2"
+      },
+      "same_start_cost_absolute_maximum": 1.0033877821069918e-17,
+      "same_start_cost_relative_maximum": 1.970184805773251e-06
+    },
+    {
+      "candidate_within_maximum_m": 0.0,
+      "forecast_spread_stable": true,
+      "frozen_rule": {
+        "all_fits_pass": true,
+        "candidate_near_ties": [
+          0
+        ],
+        "candidate_primary": 0,
+        "cross_start_maximum_m": 1.3170890159654386e-09,
+        "equivalent": false,
+        "forecast_epochs": 119,
+        "forecast_tolerance_m": 0.01,
+        "reference_near_ties": [
+          0
+        ],
+        "reference_primary": 0,
+        "relative_cost_tolerance": 1e-08,
+        "same_start_costs_agree": false,
+        "selection_stable": true
+      },
+      "model": "sphere_still",
+      "profile": false,
+      "reference_within_maximum_m": 0.0,
+      "revised_rule_development_diagnostic": {
+        "absolute_cost_tolerance": 1e-08,
+        "all_fits_pass": true,
+        "candidate_near_ties": [
+          0,
+          1
+        ],
+        "candidate_primary": 0,
+        "candidate_within_maximum_m": 2.1339280972982942e-09,
+        "cross_start_maximum_m": 2.1339280972982942e-09,
+        "equivalent": true,
+        "forecast_epochs": 119,
+        "forecast_tolerance_m": 0.01,
+        "reference_near_ties": [
+          0,
+          1
+        ],
+        "reference_primary": 0,
+        "reference_within_maximum_m": 2.1339280972982942e-09,
+        "relative_cost_tolerance": 1e-08,
+        "same_start_costs_agree": true,
+        "selection_stable": true,
+        "version": "start-equivalence-v2"
+      },
+      "same_start_cost_absolute_maximum": 7.783290446411357e-18,
+      "same_start_cost_relative_maximum": 1.4430198446092953e-06
+    },
+    {
+      "candidate_within_maximum_m": 0.0,
+      "forecast_spread_stable": true,
+      "frozen_rule": {
+        "all_fits_pass": true,
+        "candidate_near_ties": [
+          0
+        ],
+        "candidate_primary": 0,
+        "cross_start_maximum_m": 1.1406325468715177e-09,
+        "equivalent": false,
+        "forecast_epochs": 119,
+        "forecast_tolerance_m": 0.01,
+        "reference_near_ties": [
+          1
+        ],
+        "reference_primary": 1,
+        "relative_cost_tolerance": 1e-08,
+        "same_start_costs_agree": false,
+        "selection_stable": false
+      },
+      "model": "sphere_still",
+      "profile": true,
+      "reference_within_maximum_m": 0.0,
+      "revised_rule_development_diagnostic": {
+        "absolute_cost_tolerance": 1e-08,
+        "all_fits_pass": true,
+        "candidate_near_ties": [
+          0,
+          1
+        ],
+        "candidate_primary": 0,
+        "candidate_within_maximum_m": 1.1406325468715177e-09,
+        "cross_start_maximum_m": 1.3969838619232178e-09,
+        "equivalent": true,
+        "forecast_epochs": 119,
+        "forecast_tolerance_m": 0.01,
+        "reference_near_ties": [
+          0,
+          1
+        ],
+        "reference_primary": 1,
+        "reference_within_maximum_m": 1.3969838619232178e-09,
+        "relative_cost_tolerance": 1e-08,
+        "same_start_costs_agree": true,
+        "selection_stable": true,
+        "version": "start-equivalence-v2"
+      },
+      "same_start_cost_absolute_maximum": 6.174930054861726e-17,
+      "same_start_cost_relative_maximum": 1.179778615155669e-05
+    },
+    {
+      "candidate_within_maximum_m": 0.0,
+      "forecast_spread_stable": true,
+      "frozen_rule": {
+        "all_fits_pass": true,
+        "candidate_near_ties": [
+          1
+        ],
+        "candidate_primary": 1,
+        "cross_start_maximum_m": 0.0,
+        "equivalent": true,
+        "forecast_epochs": 119,
+        "forecast_tolerance_m": 0.01,
+        "reference_near_ties": [
+          1
+        ],
+        "reference_primary": 1,
+        "relative_cost_tolerance": 1e-08,
+        "same_start_costs_agree": true,
+        "selection_stable": true
+      },
+      "model": "flat_still",
+      "profile": false,
+      "reference_within_maximum_m": 0.0,
+      "revised_rule_development_diagnostic": {
+        "absolute_cost_tolerance": 1e-08,
+        "all_fits_pass": true,
+        "candidate_near_ties": [
+          0,
+          1
+        ],
+        "candidate_primary": 1,
+        "candidate_within_maximum_m": 1.4113049417653825e-09,
+        "cross_start_maximum_m": 1.4113049417653825e-09,
+        "equivalent": true,
+        "forecast_epochs": 119,
+        "forecast_tolerance_m": 0.01,
+        "reference_near_ties": [
+          0,
+          1
+        ],
+        "reference_primary": 1,
+        "reference_within_maximum_m": 1.4113049417653825e-09,
+        "relative_cost_tolerance": 1e-08,
+        "same_start_costs_agree": true,
+        "selection_stable": true,
+        "version": "start-equivalence-v2"
+      },
+      "same_start_cost_absolute_maximum": 0.0,
+      "same_start_cost_relative_maximum": 0.0
+    },
+    {
+      "candidate_within_maximum_m": 0.0,
+      "forecast_spread_stable": true,
+      "frozen_rule": {
+        "all_fits_pass": true,
+        "candidate_near_ties": [
+          1
+        ],
+        "candidate_primary": 1,
+        "cross_start_maximum_m": 0.0,
+        "equivalent": true,
+        "forecast_epochs": 119,
+        "forecast_tolerance_m": 0.01,
+        "reference_near_ties": [
+          1
+        ],
+        "reference_primary": 1,
+        "relative_cost_tolerance": 1e-08,
+        "same_start_costs_agree": true,
+        "selection_stable": true
+      },
+      "model": "flat_still",
+      "profile": true,
+      "reference_within_maximum_m": 0.0,
+      "revised_rule_development_diagnostic": {
+        "absolute_cost_tolerance": 1e-08,
+        "all_fits_pass": true,
+        "candidate_near_ties": [
+          0,
+          1
+        ],
+        "candidate_primary": 1,
+        "candidate_within_maximum_m": 1.3193292812431583e-09,
+        "cross_start_maximum_m": 1.3193292812431583e-09,
+        "equivalent": true,
+        "forecast_epochs": 119,
+        "forecast_tolerance_m": 0.01,
+        "reference_near_ties": [
+          0,
+          1
+        ],
+        "reference_primary": 1,
+        "reference_within_maximum_m": 1.3193292812431583e-09,
+        "relative_cost_tolerance": 1e-08,
+        "same_start_costs_agree": true,
+        "selection_stable": true,
+        "version": "start-equivalence-v2"
+      },
+      "same_start_cost_absolute_maximum": 0.0,
+      "same_start_cost_relative_maximum": 0.0
+    }
+  ],
+  "manifest_sha256": "13662b28a4735862a8a09234229f49a568938ca6b4c199936babf40940539693",
+  "new_numerical_fits": 0,
+  "retrospective_only": true,
+  "study": "data/model-declared-start-equivalence-v1",
+  "summary_sha256": "583e0fe23e4e4797c1ec012c3841fe9062e47e789290b010611c2e7ae202f592",
+  "verified": true,
+  "version": "saved-start-spread-v2-diagnostic"
+}

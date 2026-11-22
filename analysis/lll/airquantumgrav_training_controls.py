@@ -53,11 +53,15 @@ def generated_training(spec,r,*,reserve,height_profile=None,gravity_model='const
     arguments,sign=_spec(spec)
     sensor_case=r.get('sensor_case','interior')
     sensor_parameters(sign,sensor_case)
-    if (height_profile not in (None,'climb','descend') or gravity_model not in ('constant','inverse_square_height')
+    route=r.get('route','eastbound')
+    if (height_profile not in (None,'climb','descend','level')
+            or route not in ('eastbound','straight','turning')
+            or gravity_model not in ('constant','inverse_square_height')
             or (height_profile is None and gravity_model!='constant')):
         raise ValueError('explicit supported height and gravity construction required')
     maximum_duration,maximum_queries=(120.,119) if height_profile is None else (1200.,1200)
     if height_profile is not None:arguments.update(height_profile=height_profile,gravity_model=gravity_model)
+    if route!='eastbound':arguments['route']=route
     if (r['rate_hz'] not in (200,300) or not math.isfinite(r['duration_s']) or not 2<=r['duration_s']<=maximum_duration
             or type(r['queries']) is not int or not 9<=r['queries']<=maximum_queries
             or r['pattern']!='fast' or r['method']!='linear_points'):

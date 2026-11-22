@@ -15,15 +15,15 @@ def native_forecast(training,point,model,*,theta,dv,dt,times,maximum_interval_s,
     """
     import ctypes
     from .ilvis0_shape import TangentProblem,PARAMETERS
-    from .ilvis0_exploratory import MODELS
     from .ilvis0_training_density import boundary_count
-    if (not isinstance(training,TangentProblem) or model not in MODELS or not callable(reserve)
+    if (not isinstance(training,TangentProblem) or not callable(reserve)
             or training.clock_hypothesis not in ('header_elapsed','nominal_200Hz')
             or training.processing_hypothesis!='unsubtracted_increment_hypothesis'
             or not math.isfinite(maximum_interval_s) or maximum_interval_s<=0):
         raise ValueError('qualified training problem, explicit clock/support and reservation required')
     if getattr(training,'frozen_error_model',model)!=model:
         raise ValueError('forecast model differs from the frozen training error model')
+    model_index = training.kernel_model(model)
     if (type(retain_training_difference) is not bool or (retain_training_difference
             and not getattr(training,'native_residual_difference_supported',False))):
         raise ValueError('explicit supported native before-cast training residual provider required')
@@ -53,7 +53,7 @@ def native_forecast(training,point,model,*,theta,dv,dt,times,maximum_interval_s,
     reserve(native_calls=1,packet_visits=n*m)
     code=training.tangent_kernel(n,theta,dv,dt,m,times,coordinates,
         np.ascontiguousarray(initial['velocity_ned_mps']),np.ascontiguousarray(initial['attitude_body_to_ned']),
-        limits,expanded,MODELS.index(model),int(training.bounds.fit_earth_removal),
+        limits,expanded,model_index,int(training.bounds.fit_earth_removal),
         training.gravity,training.radius or 6371000.,output,jac,ctypes.byref(counter),**extra)
     classification=boundary_count(status=int(code),counter=counter.value,dt=dt,times=times+physical['time_offset'])
     if not np.all(np.isfinite(output)) or not np.all(np.isfinite(jac)):

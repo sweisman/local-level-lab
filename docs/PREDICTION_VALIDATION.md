@@ -1,10 +1,23 @@
 # Testing predictions on unused measurements
 
-The next milestone is a direct test: calibrate each model on the earlier part
-of a recording, then reconstruct the later flight from its **IMU (inertial
-measurement unit)** readings. Keep later GPS positions out of calibration and
-use them only to measure prediction error. The path must continue across the
-split without a GPS reset.
+This protocol calibrates each model on the earlier part of a recording, then
+reconstructs the later flight from its **IMU (inertial measurement unit)**
+readings. Later GPS positions stay out of calibration and are used only to
+measure prediction error. The path continues across the split without a GPS
+reset. Software controls and small archival pilots have been completed;
+accuracy across independent flights and calibrated uncertainty remain open.
+
+The separate [generated optimizer check](prediction-group-transfer/CENTERED_FLIGHT_SOLVER_RESULT.md)
+keeps the trust-region solver in place. Its centered-objective alternative
+hit the time limit on the first generated flight after passing exact
+small controls. [Diagonal scaling](prediction-group-transfer/SCALED_SOLVER_REPLAY_RESULT.md)
+improved the conditioning on saved flight derivatives and left every
+centered-solver replay outside its required accuracy limits.
+
+A separate [96-recording generated whole-period check](prediction-simultaneous-law-family-v3/RESULT.md)
+passed its frozen 5% recording-level gate: 95 recordings passed both fits and
+both withheld prediction targets; one numerical failure was counted. Its
+intervals remain untested for observed aircraft.
 
 This is a revised development protocol. It replaces the requirement to finish
 global interval certification before making another exploratory aircraft
@@ -54,6 +67,11 @@ The NASA recordings have already informed development. New splits can test
 training-only prediction, but they remain retrospective development validation.
 Reserved ESA groups remain untouched until the independent-confirmation method
 is frozen.
+
+The [group score software](PREDICTION_GROUP_DECISION.md) converts matched
+later prediction errors to the inputs of the shape-first rule. It passes
+known-answer checks and keeps adequacy separate. Aircraft use still needs a
+justified error population and independent validation.
 
 The [existing saved-data check](ilvis0-saved-prediction-comparison/INTERPRETATION.md)
 already shows a substantial later horizontal-error advantage on one recording.

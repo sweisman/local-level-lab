@@ -41,3 +41,37 @@ Using that attitude in a fit would add a separate inertial reference and
 its navigation assumptions. Any such check belongs alongside the gyro-free
 comparison. The current model comparisons still have no measured aircraft
 motion limit independent of inertial navigation.
+
+## Which motion information could RF04 provide?
+
+NCAR documents the Gulfstream V's aircraft attitude source as a
+Honeywell inertial reference system. The campaign example marks the
+pitch, roll and true-heading channels with an 80 ms time-lag magnitude.
+It also lists an applied pitch calibration. The underlying channels
+were sampled faster than 1 Hz, but the example supplies one output per
+second. Confirm the timing correction and calibration on RF04 itself
+before comparing onboard measurements.
+[Campaign example header](https://archive.eol.ucar.edu/raf/Projects/ICEBRIDGE/LRTdump.html) ·
+[NCAR processing guide](https://ncar.github.io/aircraft_ProcessingAlgorithms/3-the-state-of-the-aircraft)
+
+Changes in attitude between successive samples could check
+whole-second motion. Within-second motion can cancel between the two
+samples. Even with exact attitudes, the net angle divided by the elapsed
+time only gives a lower bound on the peak rate. The sampled
+[acceleration-only rate check](RECORDED_MOTION_RATE_RESULT.md) would
+need independent upper limits on motion at its own times to rule out
+paths that rotate too fast.
+
+The RF04 file is listed through NCAR's order form, which requests an
+email address. The separate NASA aircraft file returned an authorization
+error on direct download. The NASA metadata search returned no
+`IANCR1B` granule for that date. NSIDC identifies NCAR as the archive
+for `IANCR1B`, so that metadata gap does not contradict the RF04 listing.
+The listed static pressure could also check relative height changes if
+the file confirms a usable channel. Converting pressure changes to height
+would still require atmospheric temperature and pressure information.
+RF04 values and their exact instrument correspondence remain unverified.
+[Tested RF04 intake and interpretation](NCAR_RF04_INTAKE.md) ·
+[NSIDC dataset description](https://nsidc.org/data/iancr1b/versions/1) ·
+[NCAR order form for RF04](https://data.eol.ucar.edu/cgi-bin/codiac/fgr_form/id=351.003) ·
+[NASA aircraft-file catalog entry](https://cmr.earthdata.nasa.gov/search/granules.umm_json?concept_id=G3449174571-NSIDC_CPRD)

@@ -1,0 +1,594 @@
+{
+  "aircraft_motion_removed": false,
+  "duration_matched": false,
+  "generated": {
+    "increment": {
+      "channel_order": [
+        "gyro_x",
+        "gyro_y",
+        "gyro_z",
+        "force_x",
+        "force_y",
+        "force_z"
+      ],
+      "channel_units": [
+        "rad/s",
+        "rad/s",
+        "rad/s",
+        "m/s^2",
+        "m/s^2",
+        "m/s^2"
+      ],
+      "contrasts": [
+        {
+          "count": 60000,
+          "maximum_span_s": 0.00666666666677429,
+          "median_absolute_native_units": [
+            6.784838427107873e-05,
+            6.829280524076997e-05,
+            6.79680328674064e-05,
+            0.00232123530735786,
+            0.0023279708144087587,
+            0.0023303463769886543
+          ],
+          "median_span_s": 0.006666666666660603,
+          "minimum_span_s": 0.006666666666660603,
+          "percentile_99_absolute_native_units": [
+            0.000259629674712037,
+            0.00026130126059822694,
+            0.0002601070837549838,
+            0.00886225515625201,
+            0.008888270923282714,
+            0.008954827162536599
+          ],
+          "rms_native_units": [
+            0.00010069094026098169,
+            0.00010097039773949426,
+            0.00010087704312302741,
+            0.0034510934040050643,
+            0.0034601691479539012,
+            0.003461218104753205
+          ],
+          "sampling_assumption": "independent_equal_variance_point_errors_for_normalization_only",
+          "stride": 1,
+          "unused_sample_count": 0
+        },
+        {
+          "count": 20000,
+          "maximum_span_s": 0.020000000000095497,
+          "median_absolute_native_units": [
+            6.775030152174166e-05,
+            6.757284036536637e-05,
+            6.8254217227727e-05,
+            0.00234001620288517,
+            0.0023270821373057786,
+            0.0023715616824241713
+          ],
+          "median_span_s": 0.01999999999999602,
+          "minimum_span_s": 0.01999999999998181,
+          "percentile_99_absolute_native_units": [
+            0.00025904163686839234,
+            0.0002601947621885891,
+            0.00026172241941820425,
+            0.008923779264266053,
+            0.008870462677600683,
+            0.008866911907904656
+          ],
+          "rms_native_units": [
+            0.00010044346840319384,
+            0.00010055959189744887,
+            0.00010114071881029118,
+            0.0034748748814642278,
+            0.0034460874085942513,
+            0.003506128311498834
+          ],
+          "sampling_assumption": "independent_equal_variance_point_errors_for_normalization_only",
+          "stride": 3,
+          "unused_sample_count": 120000
+        },
+        {
+          "count": 2000,
+          "maximum_span_s": 0.20000000000004547,
+          "median_absolute_native_units": [
+            0.00013914813472442147,
+            7.143360457972572e-05,
+            6.894866927164726e-05,
+            0.002331383623850755,
+            0.002680953469914664,
+            0.0023494561628150815
+          ],
+          "median_span_s": 0.19999999999998863,
+          "minimum_span_s": 0.1999999999999318,
+          "percentile_99_absolute_native_units": [
+            0.0004051529742222722,
+            0.00028190034002612945,
+            0.00026273220978616295,
+            0.00924659628531567,
+            0.00947637774811213,
+            0.008917686227092908
+          ],
+          "rms_native_units": [
+            0.00018167233353279442,
+            0.00010604481106811118,
+            0.00010164937116954753,
+            0.003554562891333425,
+            0.003912643237237789,
+            0.003519835172855486
+          ],
+          "sampling_assumption": "independent_equal_variance_point_errors_for_normalization_only",
+          "stride": 30,
+          "unused_sample_count": 174000
+        },
+        {
+          "count": 200,
+          "maximum_span_s": 2.000000000000001,
+          "median_absolute_native_units": [
+            0.015319484115769829,
+            0.00227467930148178,
+            0.0011121445316178028,
+            0.05249970552858851,
+            0.18066590273177774,
+            0.027256369106219393
+          ],
+          "median_span_s": 2.0,
+          "minimum_span_s": 1.9999999999999964,
+          "percentile_99_absolute_native_units": [
+            0.01937216547504744,
+            0.005164667229375532,
+            0.0030730176946028947,
+            0.07835828605430602,
+            0.27977587413484745,
+            0.0454151259994924
+          ],
+          "rms_native_units": [
+            0.014180639637471524,
+            0.002783737039068953,
+            0.0015487560964735241,
+            0.05216776570332471,
+            0.19683079726475086,
+            0.026777689020456463
+          ],
+          "sampling_assumption": "independent_equal_variance_point_errors_for_normalization_only",
+          "stride": 300,
+          "unused_sample_count": 179400
+        }
+      ],
+      "duration_s": 599.9966666666667,
+      "error_distribution_established": false,
+      "fitted_parameters": 0,
+      "interpolated_points": 0,
+      "isolated_sensor_noise_estimated": false,
+      "maximum_interval_s": 0.0033333333334439885,
+      "maximum_native_units": [
+        0.10969257477934138,
+        0.04736445625887473,
+        0.06738414969861826,
+        1.0854212219936497,
+        1.626450634834439,
+        -9.63277321600514
+      ],
+      "mean_native_units": [
+        -0.00022672256717785137,
+        9.382997880605178e-05,
+        -0.00012116493456450542,
+        -0.0071164393771973415,
+        -0.03565986041262389,
+        -9.759424378177421
+      ],
+      "median_interval_s": 0.0033333333333303017,
+      "minimum_interval_s": 0.0033333333333303017,
+      "minimum_native_units": [
+        -0.10955260668117424,
+        -0.047685458359656326,
+        -0.06709070217395167,
+        -1.0762230778456503,
+        -1.7119499826417246,
+        -9.846658685251208
+      ],
+      "nominal_period_white_noise_conversion_applied": false,
+      "points": 180000,
+      "scientific_decision": "abstain",
+      "total_contrasts": 82200,
+      "version": "logged-rate-variation-v1"
+    },
+    "point": {
+      "channel_order": [
+        "gyro_x",
+        "gyro_y",
+        "gyro_z",
+        "force_x",
+        "force_y",
+        "force_z"
+      ],
+      "channel_units": [
+        "rad/s",
+        "rad/s",
+        "rad/s",
+        "m/s^2",
+        "m/s^2",
+        "m/s^2"
+      ],
+      "contrasts": [
+        {
+          "count": 60000,
+          "maximum_span_s": 0.00666666666677429,
+          "median_absolute_native_units": [
+            2.7863604147147756e-05,
+            2.7815733564643278e-05,
+            2.757705997417336e-05,
+            0.0009477668494927038,
+            0.0009539950046035495,
+            0.0009492651032941304
+          ],
+          "median_span_s": 0.006666666666660603,
+          "minimum_span_s": 0.006666666666660603,
+          "percentile_99_absolute_native_units": [
+            0.00010545397091398598,
+            0.0001069487858251854,
+            0.00010592837952086659,
+            0.003628145009299816,
+            0.0036453939844369484,
+            0.0036796846652535787
+          ],
+          "rms_native_units": [
+            4.12823873856952e-05,
+            4.1288738057817236e-05,
+            4.101790504720711e-05,
+            0.0014066119968699114,
+            0.0014139593201523688,
+            0.0014144688790111147
+          ],
+          "sampling_assumption": "independent_equal_variance_point_errors_for_normalization_only",
+          "stride": 1,
+          "unused_sample_count": 0
+        },
+        {
+          "count": 20000,
+          "maximum_span_s": 0.020000000000095497,
+          "median_absolute_native_units": [
+            4.8111132227623e-05,
+            4.8017497105710746e-05,
+            4.84873164118102e-05,
+            0.0016453335856317162,
+            0.001635607027299442,
+            0.001637992745600053
+          ],
+          "median_span_s": 0.01999999999999602,
+          "minimum_span_s": 0.01999999999998181,
+          "percentile_99_absolute_native_units": [
+            0.00018198393634312978,
+            0.0001851142510652733,
+            0.000182105028965744,
+            0.00633956329497308,
+            0.006331751404569886,
+            0.00643982084625624
+          ],
+          "rms_native_units": [
+            7.11484978028378e-05,
+            7.136247457208395e-05,
+            7.144274285009376e-05,
+            0.002444116501561991,
+            0.002448189996460091,
+            0.0024469050620208135
+          ],
+          "sampling_assumption": "independent_equal_variance_point_errors_for_normalization_only",
+          "stride": 3,
+          "unused_sample_count": 120000
+        },
+        {
+          "count": 2000,
+          "maximum_span_s": 0.20000000000004547,
+          "median_absolute_native_units": [
+            0.00013441894221941352,
+            5.078911307822944e-05,
+            4.967039342498479e-05,
+            0.0016631279036669958,
+            0.00232946623172158,
+            0.0016072645448053481
+          ],
+          "median_span_s": 0.19999999999998863,
+          "minimum_span_s": 0.1999999999999318,
+          "percentile_99_absolute_native_units": [
+            0.0003431735047186556,
+            0.0001983619403956303,
+            0.00019500452369514417,
+            0.006480683212408246,
+            0.007740999448575013,
+            0.006394634765877692
+          ],
+          "rms_native_units": [
+            0.0001621028313648477,
+            7.665834444188262e-05,
+            7.349571936410934e-05,
+            0.0025192949206179122,
+            0.0032075906173243975,
+            0.0024950813782961827
+          ],
+          "sampling_assumption": "independent_equal_variance_point_errors_for_normalization_only",
+          "stride": 30,
+          "unused_sample_count": 174000
+        },
+        {
+          "count": 200,
+          "maximum_span_s": 2.000000000000001,
+          "median_absolute_native_units": [
+            0.015311328922666092,
+            0.002254413498100575,
+            0.0011452794064108049,
+            0.050408639551390015,
+            0.180862999622594,
+            0.027003502281144023
+          ],
+          "median_span_s": 2.0,
+          "minimum_span_s": 1.9999999999999964,
+          "percentile_99_absolute_native_units": [
+            0.01944040029842384,
+            0.00525258962294842,
+            0.003023247083837951,
+            0.07503822811758867,
+            0.27992760438311,
+            0.04465597498436104
+          ],
+          "rms_native_units": [
+            0.014178561486573895,
+            0.002785731737374689,
+            0.00154776516021675,
+            0.052034495752504566,
+            0.19700443940314175,
+            0.026449529913100615
+          ],
+          "sampling_assumption": "independent_equal_variance_point_errors_for_normalization_only",
+          "stride": 300,
+          "unused_sample_count": 179400
+        }
+      ],
+      "duration_s": 599.9966666666667,
+      "error_distribution_established": false,
+      "fitted_parameters": 0,
+      "interpolated_points": 0,
+      "isolated_sensor_noise_estimated": false,
+      "maximum_interval_s": 0.0033333333334439885,
+      "maximum_native_units": [
+        0.10953769433699535,
+        0.047317369378260844,
+        0.06736817373585588,
+        1.0853991720740166,
+        1.6221342788310311,
+        -9.636165957964392
+      ],
+      "mean_native_units": [
+        -0.0002269128674802188,
+        9.32715230190193e-05,
+        -0.00012156520432764673,
+        -0.007262505932782293,
+        -0.03565930199683083,
+        -9.759313297528223
+      ],
+      "median_interval_s": 0.0033333333333303017,
+      "minimum_interval_s": 0.0033333333333303017,
+      "minimum_native_units": [
+        -0.10943653999057901,
+        -0.04761950381171434,
+        -0.06704622015317277,
+        -1.0733161009604073,
+        -1.7127094018884803,
+        -9.843764614436825
+      ],
+      "nominal_period_white_noise_conversion_applied": false,
+      "points": 180000,
+      "scientific_decision": "abstain",
+      "total_contrasts": 82200,
+      "version": "logged-rate-variation-v1"
+    }
+  },
+  "generated_manifest_sha256": "29cb62c6f218fa2bdf28aa52e7caeb2a79e330cebb091c1f3659d2ac643a479b",
+  "generated_study": "data/esa-fit-adjusted-control-v1-20261115",
+  "generated_summary_sha256": "13687cfa5b0692903fb30a2aa45dd90ccd6266c3e2617549a0a1d6bb636577be",
+  "generated_training_seconds": 600,
+  "isolated_sensor_noise_estimated": false,
+  "later_receiver_values_used": false,
+  "nonlinear_fit_performed": false,
+  "protected_confirmation_groups_opened": 0,
+  "recorded": {
+    "channel_order": [
+      "gyro_x",
+      "gyro_y",
+      "gyro_z",
+      "force_x",
+      "force_y",
+      "force_z"
+    ],
+    "channel_units": [
+      "rad/s",
+      "rad/s",
+      "rad/s",
+      "m/s^2",
+      "m/s^2",
+      "m/s^2"
+    ],
+    "contrasts": [
+      {
+        "count": 79954,
+        "maximum_span_s": 0.006667000008746982,
+        "median_absolute_native_units": [
+          0.004676591205498702,
+          0.014539176553780906,
+          0.0013212670209591666,
+          0.8349784435189105,
+          0.37973209585310813,
+          1.6369099477550735
+        ],
+        "median_span_s": 0.006667000008746982,
+        "minimum_span_s": 0.006665999942924827,
+        "percentile_99_absolute_native_units": [
+          0.018445084097999838,
+          0.06145888378404976,
+          0.004662902698309654,
+          3.58253902945379,
+          1.5569270481455861,
+          5.254266495354925
+        ],
+        "rms_native_units": [
+          0.007386937277607298,
+          0.0239555241000111,
+          0.001900483205279615,
+          1.386676379439704,
+          0.6052201274374439,
+          2.3883488088534546
+        ],
+        "sampling_assumption": "independent_equal_variance_point_errors_for_normalization_only",
+        "stride": 1,
+        "unused_sample_count": 2
+      },
+      {
+        "count": 26651,
+        "maximum_span_s": 0.020001000026240945,
+        "median_absolute_native_units": [
+          0.0019704079340152267,
+          0.005286731190429726,
+          0.0006677594812630264,
+          0.17445825248259733,
+          0.14310775059312775,
+          0.2904568194646142
+        ],
+        "median_span_s": 0.02000000001862645,
+        "minimum_span_s": 0.01999999996041879,
+        "percentile_99_absolute_native_units": [
+          0.006603091544944549,
+          0.017179610824655297,
+          0.0033069710529982097,
+          0.6450316451808642,
+          0.8188413957821967,
+          1.0823949299281381
+        ],
+        "rms_native_units": [
+          0.002563611938054066,
+          0.007191680751944452,
+          0.0012962076265769654,
+          0.2506155488088129,
+          0.25577609693730585,
+          0.4205285485477017
+        ],
+        "sampling_assumption": "independent_equal_variance_point_errors_for_normalization_only",
+        "stride": 3,
+        "unused_sample_count": 159911
+      },
+      {
+        "count": 2665,
+        "maximum_span_s": 0.20000200002687052,
+        "median_absolute_native_units": [
+          0.0019724040736046884,
+          0.003967609283540887,
+          0.0013130518343569565,
+          0.17675185828882625,
+          0.13041944773085298,
+          0.2251216154358006
+        ],
+        "median_span_s": 0.20000100001925603,
+        "minimum_span_s": 0.20000099996104836,
+        "percentile_99_absolute_native_units": [
+          0.006616619935441365,
+          0.014780366938782137,
+          0.003963401368657614,
+          0.756229032936866,
+          0.787915231764177,
+          1.069485930594524
+        ],
+        "rms_native_units": [
+          0.0026423599455484745,
+          0.005881494088777859,
+          0.0015380838552993428,
+          0.2748581735431752,
+          0.24346146454875903,
+          0.39385086732556573
+        ],
+        "sampling_assumption": "independent_equal_variance_point_errors_for_normalization_only",
+        "stride": 30,
+        "unused_sample_count": 231869
+      },
+      {
+        "count": 266,
+        "maximum_span_s": 2.0000140000483952,
+        "median_absolute_native_units": [
+          0.005319593911598499,
+          0.014536846619765162,
+          0.0013541822633528955,
+          0.9124285588546266,
+          0.4117288512223988,
+          1.404187349759491
+        ],
+        "median_span_s": 2.0000139999901876,
+        "minimum_span_s": 2.000012999982573,
+        "percentile_99_absolute_native_units": [
+          0.023611586770836943,
+          0.058951668269596046,
+          0.007726136957202028,
+          3.5472518099330337,
+          1.9248519811218607,
+          5.653407705973222
+        ],
+        "rms_native_units": [
+          0.008744292074317582,
+          0.023170757979113058,
+          0.0026659611261685557,
+          1.4670343682893878,
+          0.6445929855719791,
+          2.2539016781920593
+        ],
+        "sampling_assumption": "independent_equal_variance_point_errors_for_normalization_only",
+        "stride": 300,
+        "unused_sample_count": 239066
+      }
+    ],
+    "duration_s": 799.5487489999505,
+    "error_distribution_established": false,
+    "first_used_time_gps_s": 388214.448603,
+    "fitted_parameters": 0,
+    "interpolated_points": 0,
+    "isolated_sensor_noise_estimated": false,
+    "last_used_time_gps_s": 389013.997352,
+    "maximum_interval_s": 0.0033340000081807375,
+    "maximum_native_units": [
+      0.08743092,
+      0.0890528,
+      0.01944115,
+      6.393049,
+      3.078699,
+      -3.991518
+    ],
+    "mean_native_units": [
+      0.000256821651719402,
+      -4.457306702350748e-05,
+      -0.001528338471368206,
+      1.3524261318016702,
+      0.14897134390636765,
+      -9.699801631999922
+    ],
+    "median_interval_s": 0.003333000000566244,
+    "minimum_interval_s": 0.003332999942358583,
+    "minimum_native_units": [
+      -0.09069002,
+      -0.06799943,
+      -0.05180235,
+      -3.601804,
+      -2.475147,
+      -16.67455
+    ],
+    "nominal_period_white_noise_conversion_applied": false,
+    "points": 239864,
+    "scientific_decision": "abstain",
+    "total_contrasts": 109536,
+    "training_cutoff_gps_s": 389013.99961853,
+    "used_times_sha256": "b676ca323bb3ae0a7185168c9633add9e9ed3becb6f6e56f626f11abb39d24d1",
+    "used_values_sha256": "9b654a355bf3d0deb32a4b932caa241a348042af94ad6c1d7314da92776de0c0",
+    "version": "logged-rate-variation-v1"
+  },
+  "recorded_manifest_sha256": "d41ece3f60de04edc820252c8ca2a4912c4d565abc496a2b73d1069f386fe0a9",
+  "recorded_study": "data/esa-training-rate-variation-20261024",
+  "recorded_summary_sha256": "2b7ca814dd1c4474a1e9eae3f170284096134a54cbaa4fecf1c4f83bd1337c5a",
+  "recorded_training_seconds": 800,
+  "report_source_sha256": "04fb6bb0126e0e00f50440a96e2faf76585e7d64edcd876347ae4fa0531f7bc5",
+  "sampling_cadence_matched": true,
+  "scientific_decision": "abstain",
+  "version": "esa-generated-rate-comparison-v1"
+}

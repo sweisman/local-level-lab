@@ -1,19 +1,25 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 import importlib,importlib.util
+import gzip
 from pathlib import Path
 from fractions import Fraction as F
 import json
 import numpy as np
-from lll.ilvis0_sharded_native import read
+from lll.studies.readers import read
+from lll.studies.artifacts import digest
 from lll.ilvis0_transform_native import make_reference
 from lll.ilvis0_initial_source_bridge import certify as old_certify
 
 
 def original_broad_case():
-    root=Path(__file__).resolve().parents[2]/'docs/ilvis0-transform-native-controls'
-    manifest=json.loads((root/'manifest.json').read_text())
+    root=Path(__file__).resolve().parents[2]
+    prefix='docs/ilvis0-transform-native-controls/'
+    manifest=json.loads(read(root,prefix+'manifest.json'))
     task=next(t for t in manifest['tasks'] if t['payload']['kind']=='broad')
-    case=read(root/manifest['inputs'][task['input_key']]['path'])
+    record=manifest['inputs'][task['input_key']]
+    raw=read(root,prefix+record['path'])
+    assert digest(raw)==record['sha256']
+    case=json.loads(gzip.decompress(raw))
     config={k:np.asarray(v) if k in ('initial_c','initial_v','initial_r','limits') else v
         for k,v in case['configuration'].items()}
     case=dict(case,configuration=config)

@@ -137,3 +137,69 @@ def test_force_uncertainty_is_invariant_under_equivalent_receiver_coordinates():
                             chart @ covariance @ chart.T, **constants)
     np.testing.assert_allclose(transformed['conditional_covariance_mps4'],
                                direct['conditional_covariance_mps4'], rtol=1e-12, atol=0.)
+
+
+@pytest.mark.parametrize('geometry,field,legacy', [
+    ('globe', 'zero', 'sphere_still'),
+    ('globe', 'geographic', 'sphere_rotating'),
+    ('disc', 'zero', 'flat_still'),
+])
+@pytest.mark.parametrize('removal', [0., .35])
+def test_matched_forward_step_matches_existing_candidates(geometry, field, legacy, removal):
+    from lll.ilvis0_exploratory import reference_step
+    from lll.ilvis0_matched_field import propagate_step
+
+    state = dict(latitude_rad=-1., longitude_rad=.4, height_m=2500.,
+                 attitude_body_to_ned=np.eye(3), velocity_ned_mps=np.array([25., 190., -1.]))
+    theta = np.array([.004, .002, -.009])
+    dv = np.array([.003, -.005, -.051])
+    expected = reference_step(state, theta, dv, .005, legacy,
+                              np.array([0., 0., 9.81]), 6371000., removal)
+    found = propagate_step(state, theta, dv, .005, geometry=geometry, field=field,
+                           removed_fraction=removal, gravity_mps2=9.81, disc_radius_m=6371000.)
+    for key in expected:
+        np.testing.assert_allclose(found[key], expected[key], rtol=0., atol=3e-14)
+
+
+@pytest.mark.parametrize('removal', [0., .35, 1.])
+def test_disc_with_field_reconstructs_stationary_state_at_known_latitude(removal):
+    from lll.ilvis0_matched_field import propagate_step
+
+    latitude = math.radians(-60.)
+    state = dict(latitude_rad=latitude, longitude_rad=.4, height_m=2500.,
+                 attitude_body_to_ned=np.eye(3), velocity_ned_mps=np.zeros(3))
+    dt = .005
+    known_field = 7.292115e-5 * np.array([.5, 0., math.sqrt(3.) / 2.])
+    found = propagate_step(state, (1.-removal)*known_field*dt,
+                           np.array([0., 0., -9.81*dt]), dt, geometry='disc',
+                           field='geographic', removed_fraction=removal,
+                           gravity_mps2=9.81, disc_radius_m=6371000.)
+    for key in state:
+        np.testing.assert_allclose(found[key], state[key], rtol=0., atol=1e-14)
+
+
+@pytest.mark.parametrize('geometry,field,model', [
+    ('disc', 'zero', 'flat_still'),
+    ('globe', 'geographic', 'sphere_rotating'),
+])
+def test_matched_queries_reconstruct_a_generated_path_at_fractional_packets(
+        geometry, field, model):
+    from lll.ilvis0_matched_field import propagate_queries
+
+    dt = np.full(200, .005)
+    queries = np.array([0., .001, .3275, .837, .999])
+    generator = dict(latitude_deg=55., pattern='fast', removal=.35)
+    samples = truth(model, np.cumsum(dt)-dt/2., **generator)
+    expected = truth(model, queries, **generator)
+    initial = dict(zip(('latitude_rad', 'longitude_rad', 'height_m'),
+                       expected['coordinates'][0], strict=True))
+    initial.update(velocity_ned_mps=expected['velocity_local_mps'][0],
+                   attitude_body_to_ned=expected['attitude_body_to_local'][0])
+    predicted = propagate_queries(
+        initial, samples['angular_rate_rads']*dt[:, None],
+        samples['specific_force_mps2']*dt[:, None], dt, queries,
+        geometry=geometry, field=field, removed_fraction=.35,
+        gravity_mps2=9.81, disc_radius_m=6371000.)
+    differences = (predicted - expected['coordinates']) * [6371000., 6371000., 1.]
+    np.testing.assert_allclose(differences, 0., rtol=0., atol=.0003)
+    np.testing.assert_array_equal(predicted[0], expected['coordinates'][0])

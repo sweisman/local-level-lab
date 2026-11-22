@@ -142,6 +142,11 @@ def evaluate(task, context):
                 task['identity']) or
             set(context.manifest.get('inputs', {})) != set(FIT_INPUT_KEYS)):
         raise ValueError('unchanged finite matrix task required')
+    return run_fit(task, context)
+
+
+def run_fit(task, context):
+    """Shared 400/120 fit; caller binds task and training-source provenance."""
     import numpy as np
     from .airquantumgrav_inventory import environment
     from .airquantumgrav_noisy_inputs import error_law
@@ -166,7 +171,8 @@ def evaluate(task, context):
             set(recipe['noise_by_law']) != set(LAWS) or
             read('qualification_environment') != environment()):
         raise ValueError('unchanged saved development source and recipe required')
-    rows = json.loads(gzip.decompress(context.input_path('training').read_bytes()))
+    training_key = task['payload'].get('training_key', 'training')
+    rows = json.loads(gzip.decompress(context.input_path(training_key).read_bytes()))
     times = np.asarray(read('forecast_times'), dtype=float)
     with np.load(io.BytesIO(context.input_path('interval').read_bytes()),
                  allow_pickle=False) as archive:

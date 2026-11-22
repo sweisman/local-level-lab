@@ -1,0 +1,89 @@
+{
+  "attempted_fits": 4,
+  "cases": {
+    "increment": {
+      "candidates": {
+        "increment": {
+          "active_bounds": [
+            "gyro_gain_x",
+            "gyro_gain_y"
+          ],
+          "linear_reference": null,
+          "scientific_decision": "abstain",
+          "status": "bound_active",
+          "training_cost": 1781.0537576621114
+        },
+        "point": {
+          "active_bounds": [
+            "gyro_gain_x",
+            "gyro_gain_y"
+          ],
+          "linear_reference": null,
+          "scientific_decision": "abstain",
+          "status": "bound_active",
+          "training_cost": 1781.0537579087995
+        }
+      },
+      "noise_seed": 20261115001,
+      "same_measured_input_for_both_laws": true,
+      "scientific_decision": "abstain",
+      "truth_law": "increment"
+    },
+    "point": {
+      "candidates": {
+        "increment": {
+          "active_bounds": [
+            "gyro_bias_z",
+            "accel_bias_z",
+            "gyro_gain_y",
+            "time_offset"
+          ],
+          "linear_reference": null,
+          "scientific_decision": "abstain",
+          "status": "bound_active",
+          "training_cost": 1814.957216497731
+        },
+        "point": {
+          "active_bounds": [
+            "gyro_bias_z",
+            "accel_bias_z",
+            "gyro_gain_y",
+            "time_offset"
+          ],
+          "linear_reference": null,
+          "scientific_decision": "abstain",
+          "status": "bound_active",
+          "training_cost": 1814.9572169131059
+        }
+      },
+      "noise_seed": 20261115002,
+      "same_measured_input_for_both_laws": true,
+      "scientific_decision": "abstain",
+      "truth_law": "point"
+    }
+  },
+  "continuation_lineage_sha256": null,
+  "fit_adjusted_tail_calibrated": false,
+  "generated_recordings": 2,
+  "observed_error_law_qualified": false,
+  "observed_esa_training_reference": {
+    "fit_manifest_sha256": "ce2cb7567e9d6995671dfd0b79ac4aec1a2d12d40fbe857a73827c7bbe466287",
+    "laws": {
+      "increment": {
+        "quadratic": 7.147778380305272,
+        "quadratic_to_linear_reference_ratio": 0.004029187362066106
+      },
+      "point": {
+        "quadratic": 7.14777007740866,
+        "quadratic_to_linear_reference_ratio": 0.004029182681741071
+      }
+    }
+  },
+  "protected_confirmation_groups_opened": 0,
+  "report_source_sha256": "91ecb7e420486b9c227f85709a1ee6932f8970f3a5fdee80ffb6f302da054929",
+  "scientific_decision": "abstain",
+  "study": "data/esa-fit-adjusted-control-v1-20261115",
+  "study_manifest_sha256": "29cb62c6f218fa2bdf28aa52e7caeb2a79e330cebb091c1f3659d2ac643a479b",
+  "study_summary_sha256": "13687cfa5b0692903fb30a2aa45dd90ccd6266c3e2617549a0a1d6bb636577be",
+  "version": "esa-fit-adjusted-control-report-v1"
+}

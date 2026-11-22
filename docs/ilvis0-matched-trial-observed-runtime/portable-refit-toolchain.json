@@ -1,0 +1,14 @@
+{
+  "environment": {
+    "executable": "/home/sweisman/venv/bin/python",
+    "packages": {"numpy": "2.5.3", "scipy": "1.18.1"},
+    "platform": "Linux-7.1.8-arch1-3-x86_64-with-glibc2.44",
+    "python": "3.14.7 (main, Aug 10 2026, 07:46:56) [GCC 16.1.1 20260728]"
+  },
+  "executables": {
+    "c++": "f04191f6a7b2cd7d9a62e1745872b8a6088791e5af6955488c69c9b2c4668bc9",
+    "cc": "8aac907d6fbf40394b424b5fa4a2ad1aa291dac7d3a0315c5b415c1f5ace1287",
+    "python": "d78f9cf7178ecff09963551399855543c297f37ac207e626228bfe43cb26a70c"
+  },
+  "parent_manifest_sha256": "b7a27a8f3607114d20be4f508e4c15b1a4adf184725461414ed5d9adb2bf7ee8"
+}

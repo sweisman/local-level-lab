@@ -48,7 +48,7 @@ for Earth's shape or rotation.
 
 The archived measurements and the finished navigation solution have different roles:
 
-The gyro angle increments are the central turning observations being investigated.
+The gyro angle increments are the central angular-motion observations being investigated.
 Accelerometer increments help reconstruct motion, while receiver positions provide
 route context and fitting constraints. GPS is the positioning system; WGS84 is its
 coordinate reference, not a synonym for the receiver measurements. The ongoing
@@ -145,8 +145,9 @@ system performance. The drift figure is not a verified raw-gyro bias specificati
 recording. Published post-processed attitude accuracy is likewise fused navigation performance.
 [POS AV specifications](https://www.applanix.com/pdf/posav_specs_1212.pdf)
 This instrument class is suitable for investigating slow turning at degrees per hour.
-Survey-grade hardware is a strength of the analysis; unfinished optimization is currently
-the main reason comparisons cannot be reported. The archive also contains other IMU types
+Survey-grade hardware is a strength of the analysis. All 53 selected comparisons
+are numerically complete; prediction accuracy, observational error and calibrated
+uncertainty remain open. The archive also contains other IMU types
 and POS AV 610 configurations. Their identities and conversion checks are kept separate,
 rather than assigning the POS AV 510's exact specifications to every file.
 

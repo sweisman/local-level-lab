@@ -15,6 +15,44 @@ def encoded(value):return (json.dumps(value,sort_keys=True,indent=2,allow_nan=Fa
 def load(path):return json.loads(Path(path).read_bytes())
 
 
+class _SnapshotReader:
+    """Read expanded snapshot bytes or their verified evidence-pack copy."""
+
+    def __init__(self,destination):
+        self.destination=Path(destination).resolve()
+        self.store=None
+        self.catalog=None
+        self.root=None
+
+    def read(self,name):
+        from .studies.artifacts import ArchiveStore
+
+        relative=Path(name)
+        path=(self.destination/relative).resolve()
+        if relative.is_absolute() or not path.is_relative_to(self.destination):
+            raise ValueError('snapshot path escapes destination')
+        if path.is_file():return path.read_bytes()
+        if self.store is None:
+            for root in (self.destination,*self.destination.parents):
+                if ((root/'repro/catalog.json.gz').is_file() or
+                        (root/'repro/catalog.json').is_file()):
+                    self.root=root
+                    self.store=ArchiveStore(root)
+                    self.catalog=self.store.catalog()
+                    break
+        if self.store is None:raise FileNotFoundError(path)
+        return self.store._read(path.relative_to(self.root).as_posix(),
+                                self.catalog)
+
+    def verify(self,prefix,hashes):
+        for name,expected in hashes.items():
+            if hashlib.sha256(self.read(prefix+'/'+name)).hexdigest()!=expected:
+                raise ValueError('artifact hash changed: '+name)
+
+    def close(self):
+        if self.store is not None:self.store.close()
+
+
 def create(root,destination,*,version,inputs,sources,outputs,summary):
     if not isinstance(version,str) or not version:raise ValueError('explicit snapshot version required')
     root=Path(root);destination=Path(destination);destination.mkdir(parents=True,exist_ok=True)
@@ -44,10 +82,14 @@ def check(destination,*,live_root=None):
     manifest=load(destination/'manifest.json');receipt=load(destination/'evidence-receipt.json')
     if sha(destination/'manifest.json')!=receipt['manifest_sha256'] or manifest['artifacts']!=receipt['artifacts']:
         raise ValueError('snapshot manifest/receipt changed')
-    verify_artifacts(destination,manifest['artifacts'])
-    verify_artifacts(destination/'frozen-inputs',manifest['inputs'])
-    verify_artifacts(destination/'source-freeze',manifest['sources'])
-    if load(destination/'dataset-summary.json')!=manifest['summary']:raise ValueError('snapshot summary identity changed')
+    reader=_SnapshotReader(destination)
+    try:
+        reader.verify('.',manifest['artifacts'])
+        reader.verify('frozen-inputs',manifest['inputs'])
+        reader.verify('source-freeze',manifest['sources'])
+        if json.loads(reader.read('dataset-summary.json'))!=manifest['summary']:
+            raise ValueError('snapshot summary identity changed')
+    finally:reader.close()
     if live_root is not None:verify_artifacts(live_root,manifest['inputs'])
     return manifest
 
@@ -57,6 +99,10 @@ def publish(destination,public):
     names=['manifest.json','evidence-receipt.json',*manifest['artifacts']]
     names+=['frozen-inputs/'+name for name in manifest['inputs']]
     names+=['source-freeze/'+name for name in manifest['sources']]
-    for name in names:
-        target=public/name;target.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(destination/name,target)
+    reader=_SnapshotReader(destination)
+    try:
+        for name in names:
+            target=public/name;target.parent.mkdir(parents=True,exist_ok=True)
+            target.write_bytes(reader.read(name))
+    finally:reader.close()
     return check(public)

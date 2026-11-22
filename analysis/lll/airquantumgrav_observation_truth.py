@@ -93,7 +93,8 @@ def receiver_coordinates(position_world_m,*,model):
     return result
 
 
-def receiver_samples(model,times,*,latitude_deg,pattern,removal,sign,height_profile=None,gravity_model='constant'):
+def receiver_samples(model,times,*,latitude_deg,pattern,removal,sign,
+                     height_profile=None,gravity_model='constant',route='eastbound'):
     """Generate just the requested receiver observations, including antenna latency.
 
     No true starting state or correction vector is returned to the estimator.
@@ -103,7 +104,8 @@ def receiver_samples(model,times,*,latitude_deg,pattern,removal,sign,height_prof
     from lll.airquantumgrav_truth import truth
     if type(sign) is not int or sign not in (-1,1):raise ValueError('declared calibration sign required')
     case=truth(model,np.asarray(times,float)+_parameters(sign)['time_offset'],
-        latitude_deg=latitude_deg,pattern=pattern,removal=removal,height_profile=height_profile,gravity_model=gravity_model)
+        latitude_deg=latitude_deg,pattern=pattern,removal=removal,
+        height_profile=height_profile,gravity_model=gravity_model,route=route)
     answer=antenna(case,sign=sign)
     answer['coordinates']=receiver_coordinates(answer['position_world_m'],model=model)
     return {k:answer[k] for k in ('coordinates','position_world_m','body_axes_world','attitude_body_to_local')}

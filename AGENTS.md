@@ -10,6 +10,17 @@ progress counts, session histories, personal commentary or process IDs.
   to repeated probing. Do not reread successful edits.
 - Local tests, including intensive suites, need no approval. Ask before manually
   triggering GitHub Actions or delegating work.
+- Preflight and run local scripts, study commands and status checks with default
+  sandbox permissions. Keep outputs, caches and temporary files in the workspace
+  or `/tmp`. For unattended work, use verified local inputs and defer optional
+  host or network checks that would interrupt the study queue.
+- If the full-suite preflight rejects local socket access, use focused tests
+  that run in the workspace and record the deferred full-suite check. A blocked
+  optional check must not pause unrelated ready work.
+- Keep network acquisition outside local study workers when running unattended.
+  Use the approved standalone `curl` command for verified bounded transfers,
+  then seal the downloaded inputs for local Python. If a transfer needs an
+  interactive approval, defer it and continue with ready local work.
 - Routine Git operations for approved repository work have standing authorization,
   including staging, committing and pushing verified changes. Bundle related work
   into one logical commit. Get explicit consent for history rewriting, force

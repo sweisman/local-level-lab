@@ -14,6 +14,9 @@ from .ilvis0_channel_controls import navigation_specific_force
 
 VERSION = 'ilvis0-exact-receiver-force-v1'
 MODELS = ('sphere_rotating', 'sphere_still', 'flat_still')
+DISC_WITH_FIELD = 'flat_geographic_field'
+MATCHED_MODELS = (*MODELS, DISC_WITH_FIELD)
+FIELD_MODELS = ('sphere_rotating', DISC_WITH_FIELD)
 
 
 def evaluate(coordinates, coordinate_rate, coordinate_acceleration, *, model,
@@ -29,10 +32,10 @@ background field is used in the conventional rotating-frame equations.
               (coordinates, coordinate_rate, coordinate_acceleration)]
     if any(a.shape != (3,) or not np.all(np.isfinite(a)) for a in arrays):
         raise ValueError('finite coordinate, rate and acceleration three-vectors required')
-    if (model not in MODELS or not all(math.isfinite(x) for x in
+    if (model not in MATCHED_MODELS or not all(math.isfinite(x) for x in
             (background_rate_rads, gravity_mps2, disc_radius_m))
             or gravity_mps2 <= 0. or disc_radius_m <= 0.
-            or (model != 'sphere_rotating' and background_rate_rads != 0.)):
+            or (model not in FIELD_MODELS and background_rate_rads != 0.)):
         raise ValueError('explicit supported physical model and finite constants required')
     phi, _, height = arrays[0]
     p, l, h = arrays[1]
@@ -40,7 +43,7 @@ background field is used in the conventional rotating-frame equations.
     if abs(phi) >= math.pi / 2 - 1e-6:
         raise ValueError('polar coordinate singularity is outside the supported domain')
     s, c = math.sin(phi), math.cos(phi)
-    if model == 'flat_still':
+    if model in ('flat_still', DISC_WITH_FIELD):
         radius = disc_radius_m * (math.pi / 2 - phi)
         velocity = np.array([disc_radius_m * p, radius * l, -h])
         acceleration = np.array([disc_radius_m * pp,
@@ -64,6 +67,54 @@ background field is used in the conventional rotating-frame equations.
         velocity_ned=velocity, acceleration_ned=acceleration,
         gravity_ned=[0., 0., gravity_mps2], background_ned=background,
         transport_ned=transport)
+    return dict(velocity_ned_mps=velocity, acceleration_ned_mps2=acceleration,
+                transport_ned_rads=transport, background_ned_rads=background,
+                specific_force_ned_mps2=force)
+
+
+def evaluate_batch(coordinates, coordinate_rate, coordinate_acceleration, *, model,
+                   background_rate_rads, gravity_mps2, disc_radius_m):
+    """Vectorized calculation with the scalar evaluator as its reference."""
+    q, v, a = (np.asarray(batch, dtype=float) for batch in
+               (coordinates, coordinate_rate, coordinate_acceleration))
+    g = np.asarray(gravity_mps2, dtype=float)
+    if (q.ndim != 2 or q.shape[1] != 3 or not len(q) or v.shape != q.shape
+            or a.shape != q.shape or g.shape != (len(q),)
+            or not all(np.isfinite(batch).all() for batch in (q, v, a, g))):
+        raise ValueError('matched finite batches of three-vectors and gravity required')
+    if (model not in MATCHED_MODELS or not math.isfinite(background_rate_rads)
+            or not math.isfinite(disc_radius_m) or disc_radius_m <= 0. or np.any(g <= 0.)
+            or (model not in FIELD_MODELS and background_rate_rads != 0.)):
+        raise ValueError('explicit supported physical model and finite constants required')
+    phi, _, height = q.T
+    if np.any(np.abs(phi) >= math.pi/2.-1e-6):
+        raise ValueError('polar coordinate singularity is outside the supported domain')
+    p, l, h = v.T
+    pp, ll, hh = a.T
+    s, c = np.sin(phi), np.cos(phi)
+    zero = np.zeros_like(phi)
+    if model in ('flat_still', DISC_WITH_FIELD):
+        radius = disc_radius_m*(math.pi/2.-phi)
+        velocity = np.column_stack((disc_radius_m*p, radius*l, -h))
+        acceleration = np.column_stack((disc_radius_m*pp, radius*ll-disc_radius_m*p*l, -hh))
+        transport = np.column_stack((zero, zero, -l))
+    else:
+        north, prime = models.radii(phi)
+        if np.any((north+height <= 0.) | (prime+height <= 0.)):
+            raise ValueError('nonpositive geographic metric outside the supported domain')
+        d = 1.-models.WGS84_E2*s*s
+        prime_derivative = prime*models.WGS84_E2*s*c/d
+        north_derivative = 3.*north*models.WGS84_E2*s*c/d
+        east = (prime+height)*c
+        east_derivative = (prime_derivative*p+h)*c-(prime+height)*s*p
+        velocity = np.column_stack(((north+height)*p, east*l, -h))
+        acceleration = np.column_stack(((north+height)*pp+(north_derivative*p+h)*p,
+                                        east*ll+east_derivative*l, -hh))
+        transport = np.column_stack((c*l, -p, -s*l))
+    background = background_rate_rads*np.column_stack((c, zero, -s))
+    force = acceleration-np.column_stack((zero, zero, g))+np.cross(2.*background+transport, velocity)
+    if not np.isfinite(force).all():
+        raise ValueError('required specific force exceeds finite numerical range')
     return dict(velocity_ned_mps=velocity, acceleration_ned_mps2=acceleration,
                 transport_ned_rads=transport, background_ned_rads=background,
                 specific_force_ned_mps2=force)

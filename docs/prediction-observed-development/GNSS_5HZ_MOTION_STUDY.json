@@ -1,0 +1,27 @@
+{
+  "id": "esa-gnss-motion-context-v1-20261116",
+  "scope": "training-only ESA-187 GNSS course versus body-down gyro motion context; no model fit, later receiver, or protected flight",
+  "adapter": "analysis/lll/esa_gnss_motion_context_study.py",
+  "workers": 1,
+  "threads": 1,
+  "maximum_wall_s": 600,
+  "sources": [
+    "analysis/lll/esa_gnss_motion_context.py",
+    "analysis/lll/esa_gnss_motion_context_study.py",
+    "analysis/lll/esa_gnss_motion_preparation.py",
+    "analysis/lll/airquantumgrav_receiver.py",
+    "analysis/lll/esa_parallel_gnss.py",
+    "analysis/lll/esa_ppp_acquisition.py",
+    "analysis/tests/test_esa_gnss_motion_context.py"
+  ],
+  "inputs": {
+    "staged": "data/esa-gnss-motion-context-input-v1/staged.npz",
+    "binding": "data/esa-gnss-motion-context-input-v1/binding.json",
+    "policy": "docs/prediction-observed-development/GNSS_5HZ_MOTION_POLICY.json",
+    "plan": "docs/prediction-observed-development/GNSS_5HZ_MOTION_PLAN.md"
+  },
+  "tasks": [
+    {"identity":"span-2s","input_key":"staged","payload":{"half_window_s":1.0},"native_kind":"value","limits":{"native_calls":0,"packet_visits":0,"bound_calls":0,"bound_steps":0}},
+    {"identity":"span-10s","input_key":"staged","payload":{"half_window_s":5.0},"native_kind":"value","limits":{"native_calls":0,"packet_visits":0,"bound_calls":0,"bound_steps":0}}
+  ]
+}

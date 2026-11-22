@@ -1,0 +1,191 @@
+{
+  "manifest_sha256": "b54602ed8ebc3ab3230e74242a09d92e13ed27a4ca8fbe179d6218c5700652d1",
+  "methods": {
+    "left_hold": {
+      "difference_from_baseline": {
+        "prediction": {
+          "horizontal_rms_m": 43.36809252216652,
+          "maximum_3d_m": 59.86674480722094,
+          "maximum_absolute_up_m": 12.903895767573886,
+          "maximum_horizontal_m": 58.45952965798223,
+          "rms_neu_m": [
+            40.74138689436335,
+            14.86374256151504,
+            9.303781890324977
+          ],
+          "total_rms_m": 44.35483971872669,
+          "vertical_rms_m": 9.303781890324977
+        },
+        "training": {
+          "horizontal_rms_m": 12.299726695602425,
+          "maximum_3d_m": 28.128350779195152,
+          "maximum_absolute_up_m": 6.018794569662532,
+          "maximum_horizontal_m": 27.476867170142405,
+          "rms_neu_m": [
+            11.330060854134796,
+            4.78675232575462,
+            3.0992096903120956
+          ],
+          "total_rms_m": 12.684178234755272,
+          "vertical_rms_m": 3.0992096903120956
+        }
+      },
+      "receiver_error": {
+        "prediction": {
+          "horizontal_rms_m": 272.69520135858045,
+          "maximum_3d_m": 418.0243377892484,
+          "maximum_absolute_up_m": 11.46837164252156,
+          "maximum_horizontal_m": 418.0133532946237,
+          "rms_neu_m": [
+            78.32948244159074,
+            261.20330209327227,
+            9.597665693705515
+          ],
+          "total_rms_m": 272.864046790274,
+          "vertical_rms_m": 9.597665693705515
+        },
+        "training": {
+          "horizontal_rms_m": 48.073931694474,
+          "maximum_3d_m": 130.78615334605996,
+          "maximum_absolute_up_m": 10.211656375895473,
+          "maximum_horizontal_m": 130.38688577122988,
+          "rms_neu_m": [
+            20.45819873054138,
+            43.5036206914623,
+            4.249509767730918
+          ],
+          "total_rms_m": 48.261384582614205,
+          "vertical_rms_m": 4.249509767730918
+        }
+      }
+    },
+    "linear_points": {
+      "difference_from_baseline": {
+        "prediction": {
+          "horizontal_rms_m": 0.0,
+          "maximum_3d_m": 0.0,
+          "maximum_absolute_up_m": 0.0,
+          "maximum_horizontal_m": 0.0,
+          "rms_neu_m": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "total_rms_m": 0.0,
+          "vertical_rms_m": 0.0
+        },
+        "training": {
+          "horizontal_rms_m": 0.0,
+          "maximum_3d_m": 0.0,
+          "maximum_absolute_up_m": 0.0,
+          "maximum_horizontal_m": 0.0,
+          "rms_neu_m": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "total_rms_m": 0.0,
+          "vertical_rms_m": 0.0
+        }
+      },
+      "receiver_error": {
+        "prediction": {
+          "horizontal_rms_m": 249.41078308821852,
+          "maximum_3d_m": 390.08021909610943,
+          "maximum_absolute_up_m": 9.873474753294886,
+          "maximum_horizontal_m": 389.95524336308745,
+          "rms_neu_m": [
+            37.63036494437597,
+            246.5556617780891,
+            4.3512622847571985
+          ],
+          "total_rms_m": 249.44873662568256,
+          "vertical_rms_m": 4.3512622847571985
+        },
+        "training": {
+          "horizontal_rms_m": 39.96123584146875,
+          "maximum_3d_m": 112.78089601872529,
+          "maximum_absolute_up_m": 4.192861806232941,
+          "maximum_horizontal_m": 112.70292993822457,
+          "rms_neu_m": [
+            9.252208420909497,
+            38.87540365467011,
+            1.4031229306653537
+          ],
+          "total_rms_m": 39.98586155050364,
+          "vertical_rms_m": 1.4031229306653537
+        }
+      }
+    },
+    "right_hold": {
+      "difference_from_baseline": {
+        "prediction": {
+          "horizontal_rms_m": 19.472572596292775,
+          "maximum_3d_m": 29.23064696495676,
+          "maximum_absolute_up_m": 15.11104836747154,
+          "maximum_horizontal_m": 25.021729341232025,
+          "rms_neu_m": [
+            19.194375676626144,
+            3.2797905272189123,
+            10.91105249312073
+          ],
+          "total_rms_m": 22.32111444407578,
+          "vertical_rms_m": 10.91105249312073
+        },
+        "training": {
+          "horizontal_rms_m": 6.3431673327138896,
+          "maximum_3d_m": 15.15049659489738,
+          "maximum_absolute_up_m": 7.076983521160855,
+          "maximum_horizontal_m": 13.396038642569483,
+          "rms_neu_m": [
+            6.290887236350826,
+            0.8127174111134271,
+            3.5986984406766838
+          ],
+          "total_rms_m": 7.292900813650041,
+          "vertical_rms_m": 3.5986984406766838
+        }
+      },
+      "receiver_error": {
+        "prediction": {
+          "horizontal_rms_m": 243.98165271055262,
+          "maximum_3d_m": 383.985543837788,
+          "maximum_absolute_up_m": 24.984523120766426,
+          "maximum_horizontal_m": 383.1718563266745,
+          "rms_neu_m": [
+            18.45759075906155,
+            243.28247820741984,
+            12.39206533860679
+          ],
+          "total_rms_m": 244.2961525336185,
+          "vertical_rms_m": 12.39206533860679
+        },
+        "training": {
+          "horizontal_rms_m": 38.267259465994535,
+          "maximum_3d_m": 108.82598984794748,
+          "maximum_absolute_up_m": 3.539624885651392,
+          "maximum_horizontal_m": 108.78776543490103,
+          "rms_neu_m": [
+            3.6036990219558254,
+            38.09719806490896,
+            2.6924362983052617
+          ],
+          "total_rms_m": 38.361860750727146,
+          "vertical_rms_m": 2.6924362983052617
+        }
+      }
+    }
+  },
+  "native_calls": 0,
+  "parent_manifest_sha256": "2dbbd77362e7d21cad709f0a1001173ac99b44c3ea30e7021b6ce513de1e9788",
+  "prediction_epochs": 400,
+  "preferred_sampling_method": null,
+  "protected_reads": 0,
+  "refits": 0,
+  "report_source_sha256": "4d4dbd861dd4880baf653914a049eab77434a2c04ac08d12d75565b6fb12cafc",
+  "scientific_decision": "abstain",
+  "scoring_sha256": "5cce2704433e7dece8eec336882692e15194d6c882d8e2bd7efa67265a172c2b",
+  "study": "data/esa-fixed-rate-propagation-v2-20261114",
+  "summary_sha256": "e0a8ebb8b27d8eda5cbdacb1048554866ad33bb6f45f2f2791193372e573f072",
+  "training_epochs": 800
+}

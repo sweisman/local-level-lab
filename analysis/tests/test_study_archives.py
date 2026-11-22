@@ -194,6 +194,23 @@ def test_scoped_action_preserves_full_audit_detection_of_unrelated_corruption(tm
     assert (tmp_path/names[0]).is_file()
 
 
+def test_check_command_audits_only_the_requested_prefix(tmp_path, capsys):
+    import json
+
+    from lll.studies.runtime import command
+
+    store, (unrelated, target) = separate_packs(tmp_path)
+    catalog = store.catalog()
+    pack = store.directory/catalog['objects'][catalog['paths'][unrelated]['sha256']]
+    pack.write_bytes(pack.read_bytes()[:-1])
+    store.close()
+    args = ['--root', str(tmp_path), 'check']
+    assert command([*args, target]) == 0
+    assert json.loads(capsys.readouterr().out) == dict(objects=1, packs=1, paths=1)
+    with pytest.raises(ValueError):
+        command(args)
+
+
 def test_scoped_compaction_checks_every_target_before_removing_any(tmp_path):
     store,names=separate_packs(tmp_path);catalog=store.catalog()
     pack=store.directory/catalog['objects'][catalog['paths'][names[1]]['sha256']]

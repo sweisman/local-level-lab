@@ -42,12 +42,15 @@ def tasks(r=None):
 
 
 def pair(spec, r, *, calculate, factories, reserve, reserve_construction,
-         save, check_continue):
+         save, check_continue, allowed_specs=None):
     """Run two existing generated protocols, saving all outputs separately."""
     from lll.ilvis0_hybrid_fit_check import compare
     from lll.studies.artifacts import digest, encoded
 
-    if not isinstance(spec, dict) or spec not in [row['payload'] for row in tasks(r)]:
+    declared = ([row['payload'] for row in tasks(r)] if allowed_specs is None
+                else allowed_specs)
+    if (not isinstance(declared, list) or not declared or
+            not isinstance(spec, dict) or spec not in declared):
         raise ValueError('declared generated paired-fit case required')
     if set(factories) != {'wide', 'hybrid'} or any(not callable(v) for v in factories.values()):
         raise ValueError('two explicit tangent factories required')

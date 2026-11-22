@@ -52,11 +52,13 @@ def gps_seconds(fields):
     return week, days*86400+age.seconds+float(second)
 
 
-def read_header(raw):
+def read_header(raw, *, expected_interval=.5, expected_systems=('G', 'R'), expected_version='3.04'):
+    if expected_version not in ('3.04', '3.05'):
+        raise ValueError('supported RINEX observation versions are 3.04 and 3.05')
     lines = raw.splitlines(keepends=True)
     first = lines[0].decode('ascii')
-    if first[:9].strip() != '3.04' or first[20] != 'O' or first[60:].strip() != 'RINEX VERSION / TYPE':
-        raise ValueError('expected a RINEX 3.04 observation header')
+    if first[:9].strip() != expected_version or first[20] != 'O' or first[60:].strip() != 'RINEX VERSION / TYPE':
+        raise ValueError(f'expected a RINEX {expected_version} observation header')
     declarations, counts, times = {}, {}, {}
     length = 0
     interval = None
@@ -80,12 +82,12 @@ def read_header(raw):
         elif label == 'INTERVAL':
             interval = float(text[:60])
         elif label == 'END OF HEADER':
-            if (set(times) != {'TIME OF FIRST OBS', 'TIME OF LAST OBS'} or interval != .5
-                    or set(declarations) != {'G', 'R'} or
+            if (set(times) != {'TIME OF FIRST OBS', 'TIME OF LAST OBS'} or interval != expected_interval
+                    or set(declarations) != set(expected_systems) or
                     any(len(codes) != counts[k] or len(set(codes)) != counts[k]
                         for k, codes in declarations.items())):
-                raise ValueError('exact AIR1 GPS/GLONASS header and cadence required')
-            return raw[:length], dict(version='3.04', time_scale='GPS', interval_s=interval,
+                raise ValueError('the declared receiver systems and cadence must match')
+            return raw[:length], dict(version=expected_version, time_scale='GPS', interval_s=interval,
                 first=times['TIME OF FIRST OBS'], last=times['TIME OF LAST OBS'],
                 observation_types=declarations)
     raise ValueError('incomplete RINEX header')

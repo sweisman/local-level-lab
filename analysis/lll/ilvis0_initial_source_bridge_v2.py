@@ -8,6 +8,7 @@ transfer of these differences separately. Existing shared columns are untouched.
 from fractions import Fraction as F
 import numpy as np
 from .ilvis0_transform_native import TransformReference
+from .ilvis0_reference_acceleration import initial_force_radii
 from .ilvis0_rotation_roundoff import enclose as rotation
 from .ilvis0_rotation_derivative import enclose as derivative
 from .ilvis0_exact_scale import sqrt_upper
@@ -37,7 +38,6 @@ def certify(reference,lower,upper):
         raise ValueError('contained physical domain required')
     limits=list(map(lambda v:F(float(v)),r.limits));center=list(map(lambda v:F(float(v)),r.center))
     p=[l*z for l,z in zip(limits,center,strict=True)];nominal=r.limits*r.center
-    widths=[max(abs(F(float(lo))-z),abs(F(float(hi))-z)) for lo,hi,z in zip(lower,upper,center,strict=True)]
     dp=_norm(p[i]-F(float(nominal[i])) for i in range(3))
     rp=rotation(nominal[:3],r._r_center);dj=derivative(nominal[:3])
     initial=[[F(float(v)) for v in row] for row in r.initial_r]
@@ -75,26 +75,7 @@ def certify(reference,lower,upper):
             addition=_product((left,right),delta);lo+=addition[0];hi+=addition[1]
         row_lower.append(rl);row_upper.append(rh)
         padding.append(endpoint(max(abs(lo),abs(hi)),True))
-    angle_change=_norm(limits[i]*widths[i] for i in range(3))
-    force_change=[];force_remainder=[]
-    for axis in range(3):
-        db=limits[12+axis]*widths[12+axis];dg=limits[18+axis]*widths[18+axis]
-        low_gain=limits[18+axis]*min(F(float(lower[18+axis])),center[18+axis])
-        high_gain=limits[18+axis]*max(F(float(upper[18+axis])),center[18+axis])
-        low_bias=limits[12+axis]*min(F(float(lower[12+axis])),center[12+axis])
-        high_bias=limits[12+axis]*max(F(float(upper[12+axis])),center[12+axis])
-        if low_gain<=-1:raise ValueError('positive physical gain denominator required')
-        corners=[(raw[axis]-b*dt)/(1+g)/dt for b in (low_bias,high_bias)
-            for g in (low_gain,high_gain)]
-        force_change.append(max(abs(v-force[axis]) for v in corners))
-        numerator=raw[axis]-p[12+axis]*dt;denominator=1+p[18+axis]
-        force_remainder.append(abs(numerator)*dg*dg/(denominator**2*(1+low_gain)*dt)
-            +db*dg/(denominator*(1+low_gain)))
-    gram=[[sum((initial[k][i]*initial[k][j] for k in range(3)),F(0)) for j in range(3)] for i in range(3)]
-    norm_initial=F(sqrt_upper(min(sum((gram[i][i] for i in range(3)),F(0)),
-        max(sum((abs(v) for v in row),F(0)) for row in gram))))
-    nonlinear=norm_initial*(angle_change**2*_norm(force)/2+
-        min(F(2),angle_change)*_norm(force_change)+_norm(force_remainder))
+    _,nonlinear=initial_force_radii(r,a.raw_delta_v,a.period,lower,upper)
     return dict(version=VERSION,reference_binding=reference.binding,source_id=r.source_id,
         lower=lower.tolist(),upper=upper.tolist(),center_lower=center_lower,center_upper=center_upper,
         row_lower=row_lower,row_upper=row_upper,padding=padding,physical_parameter_count=27,

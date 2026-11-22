@@ -47,7 +47,7 @@ def test_primary_selection_uses_passing_training_cost_and_fixed_start_order():
     with pytest.raises(ValueError):implementation().primary_index([dict(converged=True,residual_sum_squares=np.nan)])
 
 
-@pytest.mark.parametrize('stopping',['ordinary','near_zero'])
+@pytest.mark.parametrize('stopping',['ordinary','near_zero','value_trials'])
 def test_fit_reserves_every_actual_native_call_and_keeps_all_columns(tmp_path,stopping):
     from lll.ilvis0_shape import TangentProblem,load_tangent
     from lll.ilvis0_exploratory import load_kernel
@@ -56,16 +56,36 @@ def test_fit_reserves_every_actual_native_call_and_keeps_all_columns(tmp_path,st
     times=np.linspace(.02,.3,9);gps=np.tile([.4,.2,100.],(9,1))
     initial=dict(latitude_rad=.4,longitude_rad=.2,height_m=100.,velocity_ned_mps=np.zeros(3),
         attitude_body_to_ned=np.eye(3))
-    problem=TangentProblem(theta,dv,dt,times,gps,np.eye(27),initial,Bounds({'accel_bias_x':.1}),
+    covariance = (np.diag(np.tile([1e-10, 1e-10, 1e-3], len(times))**2)
+                  if stopping=='value_trials' else np.eye(27))
+    problem=TangentProblem(theta,dv,dt,times,gps,covariance,initial,Bounds({'accel_bias_x':.1}),
         fit_earth_removal=False,kernel=load_kernel(tmp_path)[0],tangent_kernel=load_tangent(tmp_path)[0],
         clock_hypothesis='nominal_200Hz',processing_hypothesis='unsubtracted_increment_hypothesis',
         maximum_interval_s=.0075,gravity_mps2=9.81,disc_radius_m=6371000.)
     charges=[]
     options={} if stopping=='ordinary' else dict(stopping=stopping)
+    if stopping=='value_trials':
+        from lll.ilvis0_precision_value import calculate, load
+        scalar, _ = load(tmp_path, precision='double')
+
+        def trial(point, model):
+            value = calculate(problem, point, model, kernel=scalar, longitude='legacy')
+            return value['residual'], value['boundaries']
+
+        options = dict(trial_residual=trial)
     fit=implementation().fit_training(problem,'flat_still',start=[.1],maximum_evaluations=20,
         reserve=lambda **v:charges.append(v),**options)
-    assert fit['converged'] and fit['evaluations']==len(charges)<=20
-    assert all(v==dict(native_calls=1,packet_visits=80*9) for v in charges)
+    assert fit['converged'] and fit['evaluations']<=20
+    if stopping=='value_trials':
+        counts = {kind: sum(v['native_kind']==kind for v in charges) for kind in ('value','tangent')}
+        accepted = {row['evaluation'] for row in fit['step_history'] if row['accepted']}
+        assert counts['value']>0 and counts['tangent']>0
+        assert counts==fit['native_evaluations_by_kind']
+        assert len(charges)==fit['evaluations']+len(accepted)
+    else:
+        assert fit['evaluations']==len(charges)
+        assert all('native_kind' not in v for v in charges)
+    assert all(v['native_calls']==1 and v['packet_visits']==80*9 for v in charges)
     assert fit['active_parameters']==['accel_bias_x']
     assert fit['prediction_receiver_positions_used_in_training'] is False
     assert fit['scientific_decision']=='abstain'

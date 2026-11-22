@@ -16,8 +16,51 @@ from scipy.linalg import expm,expm_frechet
 from .ilvis0_shared_reference_terms import ReferenceErrors,_readonly,_norm,_upper,_skew
 from .ilvis0_increment_remainders import calibrated_box
 from .ilvis0_local_step_bounds import Value,Matrix,matrix_vector
+from .ilvis0_exact_scale import sqrt_upper
 
 VERSION='ilvis0-common-reference-acceleration-component-v1'
+
+
+def initial_force_radii(reference, raw_delta_v, period, lower, upper):
+    """Exact-rational bounds on change and affine error in the rotated force."""
+    limits, center, lo, hi = (tuple(F(float(x)) for x in values)
+                              for values in (reference.limits, reference.center, lower, upper))
+    p = [scale*x for scale, x in zip(limits, center, strict=True)]
+    widths = [scale*max(abs(a-x), abs(b-x))
+              for scale, x, a, b in zip(limits, center, lo, hi, strict=True)]
+    dt = F(float(period))
+    force, force_change, force_remainder = [], [], []
+    for axis, sample in enumerate(raw_delta_v):
+        raw = F(float(sample))
+        bi, gi = 12+axis, 18+axis
+        low_b = limits[bi]*min(lo[bi], center[bi])
+        high_b = limits[bi]*max(hi[bi], center[bi])
+        low_g = limits[gi]*min(lo[gi], center[gi])
+        high_g = limits[gi]*max(hi[gi], center[gi])
+        if low_g <= -1:
+            raise ValueError('positive physical gain denominator required')
+        numerator = raw-p[bi]*dt
+        denominator = 1+p[gi]
+        value = numerator/denominator/dt
+        corners = [(raw-b*dt)/(1+g)/dt for b in (low_b, high_b) for g in (low_g, high_g)]
+        db, dg = widths[bi], widths[gi]
+        force.append(value)
+        force_change.append(max(abs(corner-value) for corner in corners))
+        force_remainder.append(abs(numerator)*dg**2/(denominator**2*(1+low_g)*dt)
+                               + db*dg/(denominator*(1+low_g)))
+
+    initial = [[F(float(v)) for v in row] for row in reference.initial_r]
+    gram = [[sum((initial[k][i]*initial[k][j] for k in range(3)), F(0))
+             for j in range(3)] for i in range(3)]
+    mount = F(sqrt_upper(min(sum((gram[i][i] for i in range(3)), F(0)),
+                             max(sum(map(abs, row), F(0)) for row in gram))))
+    angle = F(_norm(widths[:3]))
+    rotation_change = min(F(2), angle)
+    force_norm = F(_norm(force))
+    force_delta = F(_norm(force_change))
+    change = mount*(rotation_change*force_norm+force_delta)
+    remainder = mount*(angle**2*force_norm/2+rotation_change*force_delta+F(_norm(force_remainder)))
+    return change, remainder
 
 
 @dataclass(frozen=True)
@@ -44,11 +87,13 @@ class AccelerationTerms:
     change:float
     remainder:float
     binding:str
+    outward_initial_force:bool
 
-    def __init__(self,reference,raw_delta_v,period,gravity):
+    def __init__(self,reference,raw_delta_v,period,gravity,*,outward_initial_force=False):
         raw=np.asarray(raw_delta_v,float)
         if (not isinstance(reference,ReferenceErrors) or raw.shape!=(3,) or not np.all(np.isfinite(raw))
-                or not math.isfinite(period) or period<=0 or not math.isfinite(gravity) or gravity<=0):
+                or not math.isfinite(period) or period<=0 or not math.isfinite(gravity) or gravity<=0
+                or type(outward_initial_force) is not bool):
             raise ValueError('bound physical reference and positive-period finite force sample required')
         limits=reference.limits;p=limits*reference.center;lo=limits*reference.lower;hi=limits*reference.upper
         if gravity+lo[24]<=0:raise ValueError('complete positive gravity domain required')
@@ -62,6 +107,14 @@ class AccelerationTerms:
         center=action.center+np.array([0.,0.,gravity+p[24]])
         gravity_delta=max(abs(F(float(lo[24]))-F(float(p[24]))),abs(F(float(hi[24]))-F(float(p[24]))))
         change=_upper(F(float(action.change))+gravity_delta);remainder=float(action.remainder)
+        if outward_initial_force:
+            force_change, force_remainder = initial_force_radii(
+                reference, raw, period, reference.lower, reference.upper)
+            gravity_change = F(float(limits[24]))*max(
+                abs(F(float(v))-F(float(reference.center[24])))
+                for v in (reference.lower[24],reference.upper[24]))
+            change=max(change,_upper(force_change+gravity_change))
+            remainder=max(remainder,_upper(force_remainder))
         jac=np.zeros((3,27))
         for axis in range(3):
             direction=np.zeros(3);direction[axis]=limits[axis]
@@ -76,11 +129,14 @@ class AccelerationTerms:
                    [ _upper(F(change)*delta_tau) ]*3,[remainder]*3]
         definition=dict(version=VERSION,reference=reference.binding,raw_delta_v=raw.tolist(),period=period,
             gravity=gravity,center=center.tolist(),jacobian=jac.tolist(),caps=caps.tolist())
+        if outward_initial_force:
+            definition['outward_initial_force']=True
         binding=hashlib.sha256(json.dumps(definition,sort_keys=True,allow_nan=False).encode()).hexdigest()
         for name,value in (('raw_delta_v',raw),('center',center),('jacobian',jac),('caps',caps)):
             object.__setattr__(self,name,_readonly(value))
         for name,value in (('reference',reference),('period',float(period)),('gravity',float(gravity)),
-                ('change',change),('remainder',remainder),('binding',binding)):
+                ('change',change),('remainder',remainder),('binding',binding),
+                ('outward_initial_force',outward_initial_force)):
             object.__setattr__(self,name,value)
 
     def acceleration_at(self,point):
@@ -123,8 +179,11 @@ class AccelerationTerms:
         return np.c_[self.reference.augment(physical_jacobian,previous),coefficients.matrix]
 
     def report(self):
-        return dict(version=VERSION,binding=self.binding,reference_binding=self.reference.binding,
+        report=dict(version=VERSION,binding=self.binding,reference_binding=self.reference.binding,
             center=self.center.tolist(),jacobian=self.jacobian.tolist(),caps=self.caps.tolist(),
             change=self.change,remainder=self.remainder,physical_parameter_count=27,enclosure_parameter_count=42,
             native_factorization_qualified=False,floating_point_enclosure_verified=False,
             observational_coverage_qualified=False,scientific_decision='abstain')
+        if self.outward_initial_force:
+            report['outward_initial_force']=True
+        return report

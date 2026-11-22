@@ -19,6 +19,7 @@ points. A bound over the full allowed calibration range remains open.
 | [Remaining high-bound ranges](ESA_ATTITUDE_SURVIVOR_SCORE_RESULT.md) | [ZIP](esa-attitude-survivor-score-evidence/replay.zip) |
 | [Search with one calibration per point](ESA_LINKED_PHYSICAL_SCORE_RESULT.md) | [ZIP](esa-linked-physical-score-evidence/replay.zip) |
 | [Full integrating-model replay](ESA_LINKED_PHYSICAL_REPLAY_RESULT.md) | [ZIP](esa-linked-physical-replay-evidence/replay.zip) |
+| [Earlier residual projection check](ESA_LINKED_FULL_LOSS_RESULT.md) | [Evidence archive](esa-linked-full-loss-evidence/README.md) |
 
 Each ZIP contains the frozen plan, inputs, source and outcomes with
 their original evidence receipt. Verify a downloaded ZIP from the

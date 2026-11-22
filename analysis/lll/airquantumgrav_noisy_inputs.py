@@ -71,7 +71,7 @@ def construction_limits(r):
             else 18*n+6*cut+12))
 
 
-def construct(spec,r,*,reserve):
+def construct(spec,r,*,reserve,height_profile='climb'):
     kind=_noise_kind(r.get('noise'))
     import numpy as np
     from lll.airquantumgrav_training_controls import generated_training
@@ -81,7 +81,10 @@ def construct(spec,r,*,reserve):
     from lll.studies.artifacts import digest,encoded
     if spec.get('policy_id') not in policies():raise ValueError('declared receiver noise policy required')
     base={k:v for k,v in spec.items() if k!='policy_id'}
-    clean=generated_training(base,r,reserve=reserve,height_profile='climb',gravity_model='inverse_square_height')
+    if height_profile not in ('climb','descend','level'):
+        raise ValueError('declared synthetic height profile required')
+    clean=generated_training(base,r,reserve=reserve,height_profile=height_profile,
+                             gravity_model='inverse_square_height')
     n=len(clean['dt']);cut=clean['training_epochs'];settings=r['noise']
     raw_hashes={k:digest(np.asarray(clean[k],dtype='<f8').tobytes()) for k in ('theta','dv','dt')}
     isotropic=lambda std:np.eye(3)*std*std

@@ -33,6 +33,14 @@ def score_candidate(fit, summary, *, training_epochs):
                 linear_reference=reference,scientific_decision='abstain')
 
 
+def validate_observed_reference(observed):
+    if (observed.get('protected_confirmation_groups_opened') != 0 or
+            set(observed.get('laws', {})) != {'increment', 'point'} or
+            any(row.get('training_epochs') != 600
+                for row in observed['laws'].values())):
+        raise ValueError('sealed ESA training reference differs')
+
+
 def _study(root):
     from .esa_fit_adjusted_control_study import ID
     from .studies.closed import ClosedStudy
@@ -140,10 +148,7 @@ def build(root):
                 same_measured_input_for_both_laws=True,
                 scientific_decision='abstain')
         observed = observed_build(root)
-        if (observed['training_epochs'] != 600 or
-                observed['protected_confirmation_groups_opened'] != 0 or
-                set(observed['laws']) != set(LAWS)):
-            raise ValueError('sealed matching ESA training reference required')
+        validate_observed_reference(observed)
         return dict(version='esa-fit-adjusted-control-report-v1',
             study='data/'+ID,
             study_manifest_sha256=study.completion['manifest_sha256'],

@@ -3,7 +3,8 @@
 import math
 import numpy as np
 from . import ilvis0_geographic_bounds as base
-from .ilvis0_geographic_bounds import Scalar,Coordinates,State,_up,_ends,_advance,plus,times,fixed_scale,inverse,power,sine,cosine
+from .ilvis0_geographic_bounds import (Scalar,Coordinates,State,_up,_ends,_advance,plus,times,
+    fixed_scale,inverse,power,sine,cosine,gravity_at_height,GRAVITY_RADIUS_M)
 from .ilvis0_component_transport import Value,component as _component,_norm
 
 

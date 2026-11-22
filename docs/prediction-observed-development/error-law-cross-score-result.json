@@ -1,0 +1,34 @@
+{
+  "costs": {
+    "receiver_only": {
+      "receiver_only": 681.0875588098747,
+      "weighted": 208218060.14179513
+    },
+    "weighted": {
+      "receiver_only": 145.8785211709639,
+      "weighted": 13.236910008550893
+    }
+  },
+  "diagonal_replay_passed": true,
+  "global_optimum_established": false,
+  "manifest_sha256": "cbb67ff316ede843e94b669feee255ed30ed46a19b59f29f8075ac14c7f8cb2b",
+  "observation_error_law_calibrated": false,
+  "physical_accuracy_calibrated": false,
+  "physical_later_horizontal_rms_m": {
+    "receiver_only": 7.802722559272892,
+    "weighted": 249.41078308821852
+  },
+  "prior_report_sha256": "5dd00ccca37b6a4e0a4cc1feaf081275279b237bb5769273026afd2cbe3430c5",
+  "protected_confirmation_groups_opened": 0,
+  "report_source_sha256": "8cee4222d36873cb1f9ae230ef2b16dc2f6cfbd1313a2d44d0fa14b2d95eef17",
+  "saved_diagonal_costs": {
+    "receiver_only": 681.0875588098747,
+    "weighted": 13.236910008550893
+  },
+  "scientific_decision": "abstain",
+  "study": "data/esa-error-law-cross-score-development-v1-20261114",
+  "summary_sha256": "415761a86a9e8ca89c4f6266ba0ca6adbee4fbc90b215fdad5687a72852d6bb1",
+  "training_epochs": 800,
+  "version": "esa-cross-score-report-v1",
+  "weighted_cost_classification": "weighted_prefers_own_saved_point"
+}

@@ -1,0 +1,9 @@
+# Cross-check the ESA training fit against two other GNSS streams
+
+Question: Does the sealed IMU fit to `air1` also describe the other two PPP receiver exports on the same 400 training epochs?
+
+Use only opened recording 187, its two sealed 400/120 fit artifacts (`increment` and `point`), and the three verified PPP exports. Reverify source hashes, the sealed training input, numerical fit completion, exact training timestamps and all 400 receiver matches. Read no later receiver values, protected flight group or original IMU packets. Reuse each saved fitted trajectory unchanged; run no fit or native calculation. Maximum work: two saved laws × three receiver streams × 400 earlier epochs, one numerical thread.
+
+Convert each fitted latitude and longitude from radians to degrees. Express fitted-minus-receiver positions in local north/east/up metres. For `mosaic03` and `pwrpak7`, shift their reported positions to the `air1` epoch by subtracting the signed time offset times their own reported velocity. Use no interpolation. Report per-axis mean, RMS and centered RMS for each law and stream; preserve all sources separately. Verify the `air1` residual against the sealed training-coordinate difference. An instrument-specific systematic offset or shared antenna/PPP processing can affect comparisons. This is an in-sample cross-check, not a withheld prediction, an absolute position calibration or an Earth-model decision.
+
+The [parallel-receiver comparison](PARALLEL_GNSS_RESULT.json) fixes source names/hashes and the 2 ms match tolerance. The [common-time follow-up](PARALLEL_GNSS_TIME_RESULT.json) fixes the signed velocity adjustment. The source and exact runtime versions are recorded in the resulting artifact; its methods are fixed here before inspecting fitted residuals against the extra streams. If any binding or match fails, report the failure without using partial data.

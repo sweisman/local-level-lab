@@ -1,0 +1,13 @@
+{
+  "error": "only integer scalar arrays can be converted to a scalar index",
+  "error_type": "TypeError",
+  "exit_code": 1,
+  "freeze_sha256": "1e5a4b66ba5d83f2b7a036f60294eb6e85912f9cc5d05e13760b714e115fe4a2",
+  "later_opened": false,
+  "optimizer_starts": 0,
+  "phase": "earlier",
+  "retained_source_gzip_sha256": "3b79c3a24e2cfa36d28aba9c6150bf69cd824521f5349ce99630e2e6c7462e2a",
+  "retained_source_sha256": "cd61b489ef80effb307134b2dd7c6d6aefce2e8b9499d2f61591eef17b633450",
+  "scores_completed": 0,
+  "stage": "list kernel supplied to NumPy advanced indexing before first interval calculation"
+}

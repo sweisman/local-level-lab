@@ -27,6 +27,74 @@ law. With an unknown fitted linear mean, the corresponding standard-deviation
 ratio is 10.0; that single training epoch has no residual degree of freedom
 with which to estimate the error law. The [receiver overlap study](ilvis0-receiver-overlap/recorded-study/README.md)
 constrains receiver disagreement but cannot see error shared by both receivers.
+On ESA development flight 187, the [carrier-phase satellite check](prediction-observed-development/ESA_CARRIER_SATELLITE_INFLUENCE_RESULT.md)
+kept the fixed shape preference after each single-satellite omission in a
+linearized calculation. A controlled range error that mimicked a position
+or clock change left the residuals at zero. To qualify an aircraft error
+law, account for that type of shared error separately from the disagreement
+across satellites or receivers.
+The [phase-error propagation check](prediction-observed-development/ESA_PHASE_ERROR_SCORE_RESULT.md)
+now also tracks each raw range error across neighboring half-second steps.
+Under the independent-epoch assumption, dropping the correlation induced
+by differencing would overstate score uncertainty by a factor of 3.83.
+Error aligned with the fixed score direction remains much more consequential.
+The [matched raw receiver study](prediction-observed-development/ESA_PARALLEL_RAW_RECEIVER_RESULT.md)
+finds a 1.77 mm RMS difference between the two alternate receivers over the
+later 120 one-second phase changes. Individual AIR1 differences exceed 4 cm.
+The receivers share an antenna. Their signed differences can test a relative
+error pattern, while common position-like error still needs a separate bound.
+Projecting both sets of raw differences into the AIR1 path shifts its fixed
+comparison by +0.062 and −0.148 score units, against a 7.13-unit margin.
+These measurements support receiver-specific sensitivity on the development
+flight. Common errors and aircraft prediction coverage remain open.
+[Relative score check](prediction-observed-development/ESA_RAW_RECEIVER_SCORE_RESULT.md)
+The [separate Galileo replay](prediction-observed-development/ESA_GALILEO_PHASE_PATH_RESULT.md)
+uses different satellites and final orbit and clock products. Both later
+scores fall within 0.06 units of the GPS result. The antenna and earlier
+position anchor remain shared. This checks another source of path error
+and does not calibrate absolute receiver accuracy.
+The [withheld accuracy replay](prediction-observed-development/ESA_RECEIVER_ACCURACY_REPLAY_RESULT.md)
+found all 24 preferred forecasts within the original position limits
+across twelve same-antenna receiver paths and two settings. The closest
+limits could be reached with an additional disturbance of 2.25 m RMS for
+a code-only path or 3.93 m RMS among the original and carrier paths.
+The common disturbance size and independent-flight coverage remain open.
+The [held-pair covariance check](prediction-observed-development/ESA_COMPONENT_SCALE_TRANSFER_RESULT.md)
+tested transferring a scale across matched turn and steady windows. The
+common multiplier did not improve the reference count. The separate
+variance components met the optimizer's stopping rule in one of eight
+folds. The [native-whitened replay](prediction-observed-development/ESA_WHITENED_SCALE_TRANSFER_RESULT.md)
+verified the scores but left the stopping count unchanged. The
+[full-range check](prediction-observed-development/ESA_COMPONENT_SCALE_FEASIBILITY_RESULT.md)
+then rules out any common set of the three scales under the working
+reference. The error shapes or mean path need further study before a
+shared covariance can be justified on these observations.
+The [axis and time check](prediction-observed-development/ESA_FORECAST_ERROR_LOCALIZATION_RESULT.md)
+finds a sufficient excess on each axis of the hardest turn after allowing
+both added terms. The largest lower bound is in east. A replacement law
+needs to address more than a vertical error term.
+The [motion-dependent innovation check](prediction-observed-development/ESA_MOTION_INNOVATION_SCALE_RESULT.md)
+improves the total held-out log score and reduces the largest turn's
+excess. It gives a much worse quiet-window error and leaves the
+reference count at one of eight. This motion term alone does not
+supply a qualified whole-flight error law.
+The [earlier-only delay fit](prediction-observed-development/ESA_CARRIER_DELAY_FIT_RESULT.md)
+tests a two-term atmospheric correction using the GPS carrier geometry.
+It moves the later path by 0.29 m RMS, with a 0.45% improvement in later
+carrier-range residual RMS. That constrains the effect of the fitted terms
+on the saved scores and leaves the true shared error unmeasured.
+On [four partially overlapping development forecasts](prediction-group-transfer/COMPANION_RECEIVER_RESULT.md),
+changing the scoring receiver after an earlier offset adjustment changes
+height RMS by at most 0.32 m. Both references leave metre-scale height errors
+on those epochs. Unmeasured common receiver error and the unpaired forecast
+tails remain open.
+The 53-stretch NASA development table contains ten conservative flight groups
+with three stretches, but **none has a time interval common to all three
+recorders**. This is a metadata-only intersection of each group's UTC start
+and end columns. The existing two-recorder gyro comparisons therefore cannot
+be turned into a three-sensor variance decomposition for this selected cohort.
+Even a future three-way overlap would need checks for shared processing,
+mounting and timing before estimating individual sensor error.
 The [training-only drift check](prediction-drift-control/README.md) rules out
 one simple extrapolation as a general remedy for the preferred-model forecasts.
 
@@ -203,6 +271,178 @@ deadline and remain failures. The exact one-sided 95% upper failure bound is
 9.28%, so the predefined 5% gate failed. A new frozen technical approach must
 first resolve the runtime limit and then qualify generated coverage; this
 result cannot certify observed-aircraft prediction intervals.
+The [saved runtime audit](prediction-simultaneous-law-family-v2/RUNTIME.md)
+accounts for the original eight hours and the separate one-hour continuation.
+The [fresh-cohort plan](prediction-simultaneous-law-family-v3/PLAN.md) fixed a
+12-hour allowance before drawing new outcomes; no sealed recording was rerun.
+Its source-bound software, recovery and frozen-worker preflight checks passed.
+The original launch closed after four completed recordings and four interrupted
+starts; a qualified finite continuation completed the 92 unfinished tasks.
+The [saved-only audit](prediction-simultaneous-law-family-v3/RESULT.md)
+verified all receipts and replayed both withheld-target scores. Ninety-five of
+96 recordings passed both fits and covered every later coordinate of both
+targets. One failed numerical stopping and counts as a failure. The exact
+one-sided 95% upper failure bound is 4.85%, passing the frozen 5% gate for
+this generated mixture. Observed-aircraft coverage remains untested.
+
+## Next observed development check
+
+If the new generated cohort passes its frozen coverage and technical gates,
+use the already selected development recordings below to test whether its
+declared uncertainty law describes real forecast errors. These recordings have
+already informed method development; this step is an adequacy check, not
+independent confirmation.
+
+| Archive | Saved selection | Existing earlier/later split |
+|---|---|---|
+| NASA | `3df34ea39a6cbdbe15bb0f36` | First two-thirds of receiver epochs train; final third scores. |
+| NASA | `7024120d59221e8eaf127084` | Same saved pilot split. |
+| NASA | `0e73879f98c3b701fd7c42df` | Same saved pilot split. |
+| ESA | Development recording 187 | First 800 receiver epochs train; final 400 score. |
+
+The NASA identities and source hashes are in the [saved selection](ilvis0-prediction-pilot-preparation/selection.csv).
+The [ESA execution record](esa-observed-wide-pilot/EXECUTION.md) fixes its
+recording and split. First assess the **unchanged, fixed two-law union** as an
+explicit assumption on these recordings. Its generated coverage does not
+establish that either supplied law describes an actual IMU. A data-fitted law
+or scale needs separate known-answer qualification and may use earlier data
+only. Save forecasts and intervals before reading later receiver positions.
+On generated controls, score physical position and future receiver reports
+separately. On archival recordings the true physical path is unobserved:
+score the withheld receiver report, and label any comparison with the ESA
+GNSS-only PPP export as a receiver-based proxy, never direct physical-position
+coverage. Report horizontal and height errors, whole-period receiver coverage,
+interval width, temporal dependence, and every numerical or physical-adequacy
+failure.
+Repeated settings within one recording are sensitivities, not independent
+flights. The seven reserved ESA confirmation groups remain closed.
+
+Before any new fit, qualify the observed-data adapter and freeze exact inputs,
+sources, environment, law candidates, starts, recovery procedure, finite
+evaluation and wall limits, and four-thread allocation. If the generated gate
+fails, preserve that result and diagnose it before this dependent check.
+The generated recordings last two minutes; the ESA development interval has
+about 360,000 IMU samples and 1,200 receiver epochs. A bounded, source-bound
+preflight at that actual size was required to verify runtime, storage and the
+earlier/later boundary before a full observed study could be launched. No
+software pass on a short recording established that longer run's feasibility.
+The structured operator
+stores matrices per receiver epoch, so its declared 1,200-epoch storage is below
+18 MB even at its maximum supported 40-state size; that bound does not cover
+the rest of the fit or the work of processing 360,000 IMU samples.
+
+Implementation order for the observed development check:
+
+1. Add a shared observed-input adapter under `analysis/lll` that reuses the
+   saved NASA and ESA selection/split materials. It must expose the full IMU
+   history and earlier receiver rows to both fixed laws, while withholding
+   later receiver rows until both interval artifacts are saved. Test changed
+   hashes, split boundaries, law identities and an attempted early score read.
+2. Run a separately bounded preflight at the ESA development recording's
+   roughly 360,000-sample/1,200-epoch size. Check the 800/400 split, native
+   call charge, peak storage, runtime and recovery before freezing any full
+   observed fit allowance. This is a feasibility check, not a model result.
+3. Freeze and run a finite pilot on the four already designated development
+   recordings. Preserve all failed fits and score the withheld receiver
+   intervals only after saving predictions. Physical-position intervals can be
+   reported as assumptions but cannot receive a direct coverage score because
+   the archive contains no known true aircraft path.
+
+The [full-size preflight](prediction-observed-law-preflight/RESULT.md) has now
+passed all four no-fit technical tasks under its separate finite allowance.
+It used the prepared ESA development input with 360,028 IMU packets, 1,200
+receiver epochs, 800 earlier epochs and a 239,867-packet training prefix.
+Both supplied laws and both prediction targets constructed successfully in
+about 27.5 minutes with four one-thread workers; each operator stored
+6.7–10.0 MiB. The first frozen attempt failed at a source-key check before
+native work and remains sealed. The corrected run preserves the later-receiver
+boundary and supports the next [separately frozen observed development fit](prediction-observed-development/PLAN.md).
+It does not test prediction coverage or establish which law describes the IMU.
+The observed-fit adapter passed its source-bound and recovery controls. The
+one-recording development forecast and follow-on checks have now closed.
+The [600/200 result](prediction-observed-development/TRAINING_SPLIT_SCORE_RESULT.md)
+initially covered all 200 later heights, but a [fixed-fit extension](prediction-observed-development/TRAINING_SPLIT_EXTENSION_RESULT.md)
+shows the same calibration covers 0/100 heights in its last 100-report bin.
+The earlier 800-report fit also covers 0/100 on that shared bin. The two
+supplied IMU input-error laws give virtually identical results; choosing one
+by its training score cannot fix this height-error failure. The current
+observed-aircraft error law remains unqualified, and all seven reserved ESA
+groups remain unopened.
+The [training-only innovation replay](prediction-observed-development/TRAINING_INNOVATION_RESULT.md)
+now reconstructs both covariance operators without later receiver values.
+It finds persistent fitted height errors after whitening, nearly identical
+under the two laws. This warns against treating the current laws as measured
+aircraft uncertainty, but a formal rejection threshold still requires
+generated full-fit calibration.
+The [saved local-fit audit](prediction-observed-development/TRAINING_LINEAR_REFERENCE.md)
+then checks all 26 fitted calibration directions. Both have full local rank
+and reproduce a whitened cost near 7.15 across 1,800 training coordinates;
+the linear known-covariance reference after fitting 26 directions is 1,774.
+This large scale mismatch is a diagnostic, not a calibrated nonlinear test.
+The [two-recording known-answer control](prediction-observed-development/FIT_ADJUSTED_CONTROL_RESULT.md)
+completed four matched 600-report fits. Their training costs were about 1,781
+and 1,815, compared with 7.148 on the ESA development recording. All four
+generated fits passed numerical stopping but reached calibration bounds. The
+control did not reproduce the tiny observed cost; two records do not calibrate
+its lower-tail probability or establish the observed-aircraft error law. The
+next gate is to explain the observed training/later-prediction mismatch before
+freezing a larger calibration design.
+The [saved boundary audit](prediction-observed-development/FIT_ADJUSTED_BOUNDARY_REPORT.md)
+finds that releasing all active limits reduces local linear cost by only
+1.477 or 3.647, far short of the generated-versus-observed gap. This does not
+rule out a different nonlinear solution. Observation-model adequacy and the
+observed training/later-prediction mismatch remain the next gates.
+The [saved residual comparison](prediction-observed-development/FIT_ADJUSTED_RESIDUAL_REPORT.md)
+finds generated fitted errors near unit whitened RMS on every axis, while the
+ESA development fit has RMS 0.063 and a persistent height component. This
+narrows the diagnostic mismatch but does not identify a physical cause or
+calibrate a fitted-error distribution.
+The [saved rate-variation comparison](prediction-observed-development/GENERATED_RATE_COMPARISON.md)
+finds far larger short-span changes in recorded ESA body-axis rates than in
+either generated input, even though the ESA fitted training error is much
+smaller. Aircraft motion, vibration and processing are mixed in, so these
+contrasts cannot be substituted for an isolated IMU-noise estimate.
+The [saved known-answer forecast score](prediction-observed-development/FIT_ADJUSTED_FORECAST_REPORT.md)
+finds 50–84 m future horizontal RMS error across the two generated records,
+despite four numerically passing fits and training costs near the declared
+scale. This is a software-control failure of prediction under the chosen
+stress settings. Diagnose fit, calibration and motion contributions before
+using those controls to qualify an observed-aircraft error law.
+The [separate known-calibration control](prediction-observed-development/ORACLE_NOISY_REPORT.md)
+has now completed two hash-checked forecasts on those same noisy streams.
+Known calibration leaves 59.66 m and 637.12 m future horizontal RMS; fitted
+calibration gave 50.47 m and 84.35 m. Calibration recovery alone cannot
+explain this failure. The
+[matched long clean control](prediction-observed-development/ORACLE_CLEAN_REPORT.md)
+has since completed with 0.035 m horizontal and 0.322 m vertical future RMS.
+The large noisy-stream drift appears after IMU error injection in this
+software setup. The controlled error-component results below do not establish
+the recorded aircraft's error law.
+The [matched channel controls](prediction-observed-development/ORACLE_CHANNEL_REPORT.md)
+show that the injected gyro stream dominates horizontal drift on both saved
+draws. This is a channel attribution for those draws, not an estimate of the
+archive's gyro noise or a separation of white error from changing bias.
+The [four frozen component forecasts](prediction-observed-development/ORACLE_GYRO_COMPONENT_REPORT.md)
+now separate those two injected gyro components on the same generated draws.
+Both can drive large horizontal errors; in one draw their effects partly
+cancel. This identifies a source of generated forecast error but does not
+estimate the recorded aircraft's error law. Existing [saved-rate](esa-training-rate-variation/README.md),
+[cross-channel](prediction-observed-development/RECORDED_CHANNEL_DEPENDENCE.md)
+and fitted-residual diagnostics already show strong short-time and temporal
+structure. The
+next gate is to qualify a prediction-error range that covers aircraft motion,
+sensor error and receiver error together, followed by separately qualified
+uncertainty coverage.
+The [analytic control](prediction-observed-development/ERROR_ATTRIBUTION_CONTROL.md)
+shows that sampled IMU and one-second receiver reports can remain identical
+when real platform vibration is exchanged for correlated sensor error.
+Intrinsic sensor noise therefore needs independent motion constraints; an
+effective whole-pipeline error envelope is the alternative target.
+The [matched long error-scale calculation](prediction-observed-development/ORACLE_MATCHED_SCALE_REPORT.md)
+now confirms that the two synthetic laws imply nearly identical expected
+future RMS scales on the same 900-second trajectory. Their two saved
+realizations differ greatly. This checks the covariance calculation on the
+correct horizon but cannot establish coverage from two draws.
 
 ## Order and gates
 

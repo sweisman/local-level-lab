@@ -55,7 +55,8 @@ def calculate(spec,r,*,kernel_factory,noise_kernel,reserve,reserve_construction,
         raise ValueError('explicit training protocol provider required')
     protocol=train_and_forecast if training_provider is None else training_provider
     law=spec['law'];base={k:v for k,v in spec.items() if k!='law'};configured=case_recipe(r,law)
-    material=construct(base,configured,reserve=reserve_construction)
+    material=construct(base,configured,reserve=reserve_construction,
+                       height_profile=r['height_profile'])
     anchor=material['training_rows'][0]['height_m']
     factory=ErrorTrainingFactory(noise=error_law(configured['noise']),noise_kernel=noise_kernel,
         gravity_anchor_height_m=anchor,maximum_packets=len(material['dt']),maximum_queries=len(material['times']),
@@ -64,6 +65,8 @@ def calculate(spec,r,*,kernel_factory,noise_kernel,reserve,reserve_construction,
         receiver_transform_policy=r['receiver_transform_policy'],bound_margin=r['bound_margin'],
         rank_rtol=r['rank_rtol'],estimability_rtol=r['estimability_rtol'],estimability_atol=r['estimability_atol'])
     arguments,sign=_spec({k:v for k,v in base.items() if k!='policy_id'})
+    if r.get('route','eastbound')!='eastbound':
+        arguments['route']=r['route']
     written=set();binding={};operations=dict(bridge_calls=0,fit_forecast_calls=0,native_calls=0,packet_visits=0)
     def saving(name,value):
         save(name,value);written.add(name)

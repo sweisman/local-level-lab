@@ -45,3 +45,32 @@ def test_compensated_short_protocol(native,law,model,profile):
     assert len(saved['fit.json']['active_parameters'])==26+profile
     assert checked['native_calls']==work['native_calls']
     assert result['evaluations']<=8 and result['original_reads']==result['protected_reads']==0
+
+
+def test_controlled_turn_and_level_route_reaches_both_fit_and_scoring(native):
+    from lll.coordinate_optimizer_study import case_recipe
+    from lll.structured_noisy_training import calculate,limits
+    from lll.airquantumgrav_observation_truth import receiver_samples
+    r=dict(case_recipe(281474976810726),duration_s=2.,queries=9,
+           query_start_s=.1,query_step_s=.2,maximum_evaluations=8,
+           height_profile='level',route='turning')
+    spec=dict(law='increment',model='sphere_rotating',latitude_deg=55.,
+              profile=False,start=0,policy_id='reported-short-v1')
+    cap,construction=limits(r,'increment')
+    used={key:0 for key in construction};saved={}
+    def reserve(**work):
+        for key,value in work.items():
+            assert value<=cap[key]
+    def charge(**work):
+        for key,value in work.items():used[key]+=value
+    result=calculate(spec,r,kernel_factory=native[1],noise_kernel=native[0],
+        reserve=reserve,reserve_construction=charge,
+        save=lambda name,value:saved.update({name:value}),
+        check_continue=lambda:None)
+    assert used==construction
+    assert result['training_epochs']==6
+    assert 2490.<saved['input-binding.json']['gravity_anchor_height_m']<2510.
+    expected=receiver_samples('sphere_rotating',saved['scores.json']['times_s'],
+        latitude_deg=55.,pattern='fast',removal=0.,sign=1,
+        route='turning',height_profile='level',gravity_model='inverse_square_height')
+    assert saved['scoring-observations.json']['coordinates']==expected['coordinates'].tolist()

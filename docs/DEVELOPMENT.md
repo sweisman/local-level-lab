@@ -19,6 +19,13 @@ an existing virtual environment at `~/venv`; do not install into system Python.
 env PYTHONPATH=analysis ~/venv/bin/python -m lll.studies test
 ```
 
+The shared test runner restores archived fixtures and removes the verified
+expanded copies after testing, including when pytest fails. Tests with frozen
+process-wide peak-memory limits run first; otherwise memory used by unrelated
+earlier tests can make those limits fail. Historical source-bound tests check
+that changed checkout code cannot reuse an old qualification receipt. Reproduce
+the original passing calculation from its frozen source snapshot and environment.
+
 Synthetic sessions are excluded from ordinary collation; the example explicitly enables them.
 Analysis produces a machine-readable result and an HTML report. Neither a software quality label
 nor a provisional significance value establishes validated scientific eligibility.

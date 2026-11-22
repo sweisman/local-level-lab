@@ -63,8 +63,9 @@ class TransformReference:
             physical_parameter_count=27,enclosure_parameter_count=51,scientific_decision='abstain')
 
 
-def make_reference(configuration,theta,dv,dt,*,lower,upper,center):
-    acceleration=antecedent.make_reference(configuration,theta,dv,dt,lower=lower,upper=upper,center=center)
+def make_reference(configuration,theta,dv,dt,*,lower,upper,center,outward_initial_force=False):
+    acceleration=antecedent.make_reference(configuration,theta,dv,dt,lower=lower,upper=upper,center=center,
+                                          outward_initial_force=outward_initial_force)
     return TransformReference(acceleration,ForceTransform(acceleration.reference))
 
 

@@ -22,6 +22,17 @@ def select(values,*,support=(999.,3000.)):
     return selection.select_full_motion(values,imu_support=support,source_integrity_verified=True)
 
 
+def test_provisional_receiver_inventory_cannot_certify_full_eligibility():
+    with pytest.raises(ValueError, match='verified source integrity'):
+        selection.select_receiver_only([], receiver_integrity_verified=False)
+    values = data()
+    result = selection.select_receiver_only(values, receiver_integrity_verified=True)
+    assert result['receiver_candidates'] == select(values)['eligible']
+    assert not result['eligible']
+    assert result['source_integrity_verified'] is False
+    assert result['imu_support_verified'] is False
+
+
 @pytest.fixture(scope='module')
 def legacy():
     from lll.studies.artifacts import ArchiveStore,digest

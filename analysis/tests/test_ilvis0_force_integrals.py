@@ -50,3 +50,44 @@ def test_invalid_data_and_finite_allowances_fail_without_repair():
     with pytest.raises(ValueError):integral.enclose([.25],[[1.,2.,3.]],center=.1,lower=0.,upper=.3)
     with pytest.raises(integral.Unsupported):integral.enclose([.25]*2,[[1.,2.,3.]]*2,center=.1,lower=0.,upper=.2,maximum_packets=1)
     with pytest.raises(integral.Unsupported):integral.enclose([.25],[[1.,2.,3.]],center=.1,lower=0.,upper=.2,maximum_seconds=0.)
+
+
+def test_batched_force_profiles_match_complete_reports_at_both_clocks():
+    periods=[.005,.007,.003,.006]*8
+    forces=[(math.sin(i)*.2,(-1.)**i*.3,i*.01) for i in range(len(periods))]
+    tag=0.
+    physical=F(0)
+    centers={physical}
+    for period in periods:
+        tag+=period
+        physical+=F(period)
+        centers.update((F(tag),physical))
+    centers=sorted(t for t in centers if t<=physical)
+    radius=F(1,512)
+    for windows in ([(t,t,t) for t in centers],
+                    [(t,max(F(0),t-radius),min(physical,t+radius)) for t in centers]):
+        expected=[integral.enclose(periods,forces,center=t,lower=lo,upper=hi) for t,lo,hi in windows]
+        reads=[]
+
+        def packets():
+            for period in periods:
+                reads.append(period)
+                yield period
+
+        result=integral.enclose_many(packets(),iter(forces),queries=windows)
+        assert list(result)==expected
+        assert reads==periods
+
+
+def test_batched_force_profiles_reject_missing_support_and_exhausted_limits():
+    query=(.1,0.,.2)
+    with pytest.raises(ValueError,match='ordered'):
+        integral.enclose_many([.25],[(1.,2.,3.)],queries=[query,(.05,0.,.2)])
+    with pytest.raises(ValueError,match='complete force history'):
+        integral.enclose_many([.25],[(1.,2.,3.)],queries=[(.1,0.,.3)])
+    with pytest.raises(integral.Unsupported,match='packet allowance'):
+        integral.enclose_many([.25]*2,[(1.,2.,3.)]*2,queries=[query],maximum_packets=1)
+    with pytest.raises(integral.Unsupported,match='time allowance'):
+        integral.enclose_many([.25],[(1.,2.,3.)],queries=[query],maximum_seconds=0.)
+    with pytest.raises(integral.Unsupported,match='precision allowance'):
+        integral.enclose_many([.25],[(1.,2.,3.)],queries=[query],maximum_bits=32)

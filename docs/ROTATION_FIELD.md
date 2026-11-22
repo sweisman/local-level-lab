@@ -13,9 +13,37 @@ the separate ESA replication has protected confirmation groups. This proposal
 does not open those groups for field-model development or create a competing
 execution queue.
 
+The [existing 53-stretch metadata](ilvis0-current-findings-20261015/stretch-analytics.csv)
+show why a free-field fit needs a separate design check: 49 stretches are in
+the Southern Hemisphere and four in the Northern Hemisphere; 51 use recorded
+IMU type 21 and two use type 8. The median latitude change within a selected
+stretch is 0.90°. These are counts of already selected stretches, not
+independent flights or a fitted rotation field. The source CSV has SHA-256
+`9afba4e71ef12fd8b6c585ad540c17f96fc2c987c14a1e45874047ee4e3a3f4d`.
+
 An **IMU (inertial measurement unit)** measures turning and acceleration. GPS records
 position and motion over the ground. Survey-grade hardware makes slow rotation a credible
 measurement target; this study will test the vector pattern rather than assume its rate.
+An [opened ESA ground control](prediction-observed-development/GROUND_IMU_RATE_RESULT.md)
+measured an unadjusted 16.37°/h mean-rate magnitude from 45 minutes of raw
+iMAR data. Its minute means also show appreciable aircraft or mounting motion,
+so that number is an instrument-output baseline, not a free-field estimate.
+Its first- and second-half mean vectors differ by 2.90°/h, much more than the
+0.041°/h solar-versus-sidereal separation; platform motion and sensor behavior
+are still mixed in that comparison.
+A [second preselected low-speed interval](prediction-observed-development/SECOND_GROUND_IMU_RESULT.md)
+at nearly the same latitude has a 13.27°/h mean-vector magnitude, versus
+16.37°/h at the first stop. Their sensor-axis mean vectors differ by
+11.82°/h. Unknown heading and visible within-stop motion prevent interpreting
+that difference as a change in the geographic field.
+The [time-scale check](prediction-observed-development/GROUND_RATE_SCALE_RESULT.md)
+finds large one-second logged-rate variation that diminishes strongly by
+one-minute averaging. These rates combine instrument and aircraft motion;
+the check supplies no free field magnitude or solar/sidereal resolution.
+The [full parallel-receiver audit](prediction-observed-development/FULL_PARALLEL_GNSS_V2_RESULT.md)
+also finds a late relative PPP divergence. A precision field estimate must
+carry such receiver and timing uncertainty rather than assume the early
+centimetre agreement lasts throughout the flight.
 
 This page records the scope and sequence. It introduces no code, fits or new campaign
 allowance. The completed globe/flat comparisons and solver trial stay intact.

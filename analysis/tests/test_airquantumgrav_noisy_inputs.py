@@ -48,6 +48,18 @@ def test_later_noise_and_query_extension_cannot_change_earlier_noisy_material():
     assert a['training_rows']==b['training_rows'][:len(a['training_rows'])]
 
 
+def test_noisy_input_supports_level_turning_geometry():
+    from lll.airquantumgrav_noisy_inputs import construct,noise_settings
+    from lll.airquantumgrav_height_training import recipe
+    spec=dict(model='sphere_rotating',latitude_deg=55.,profile=False,
+              start=0,policy_id='reported-short-v1')
+    r=dict(recipe(),duration_s=10.,queries=9,route='turning',noise=noise_settings())
+    result=construct(spec,r,reserve=lambda **_:None,height_profile='level')
+    assert len(result['training_rows'])==6
+    assert 2490.<result['training_rows'][0]['height_m']<2510.
+    assert result['binding']['later_receiver_positions_generated'] is False
+
+
 def test_noisy_construction_requires_declared_noise_before_any_construction():
     from lll.airquantumgrav_noisy_inputs import construct
     from lll.airquantumgrav_height_training import recipe

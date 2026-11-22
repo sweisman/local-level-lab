@@ -105,6 +105,19 @@ def test_generated_training_material_exposes_no_later_position_or_true_start(mon
     assert sum(v.get('constructed_intervals',0) for v in charges)==600
 
 
+def test_training_material_can_vary_route_without_changing_sensor_controls():
+    module=adapter();r=short_recipe();r['route']='turning'
+    spec=dict(model='sphere_rotating',latitude_deg=55.,profile=False,start=0)
+    turning=module.generated_training(spec,r,reserve=lambda **_:None,
+        height_profile='level',gravity_model='inverse_square_height')
+    r['route']='straight'
+    straight=module.generated_training(spec,r,reserve=lambda **_:None,
+        height_profile='level',gravity_model='inverse_square_height')
+    assert turning['theta'].shape==straight['theta'].shape==(600,3)
+    assert np.max(np.abs(turning['theta']-straight['theta']))>1e-7
+    assert np.ptp(turning['training_gps'][:,2])<5.
+
+
 def test_training_weights_use_training_coordinate_metric_and_fixed_sigma_only():
     covariance=adapter().training_covariance(np.array([[0.,0.,600.],[0.,1.,900.]]),'flat_still',sigma_m=.01)
     want=np.tile([(.01/6371000.)**2,(.01/(6371000.*math.pi/2))**2,.0001],2)

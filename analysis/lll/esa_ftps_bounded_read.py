@@ -11,6 +11,8 @@ from time import monotonic
 HOST = 'tpm-if.eo.esa.int'
 REMOTE = '/lvl0/187/air1/air10706a.23o'
 SOURCE_BYTES = 363_446_705
+GIRAFE_REMOTE = '/lvl0/187/girafe/LOGXIO_06_07_2023 _01.Asc'
+GIRAFE_SOURCE_BYTES = 1_860_304_779
 MAXIMUM_BYTES = 1024*1024
 
 
@@ -58,8 +60,10 @@ class _ImplicitFTPS(FTP_TLS):
         return secure, size
 
 
-def read_air1_range(offset, count, certificate, credentials):
-    if not 0 <= offset < offset+count <= SOURCE_BYTES or count > MAXIMUM_BYTES:
+def read_esa_range(remote, source_bytes, offset, count, certificate, credentials):
+    if (remote, source_bytes) not in ((REMOTE, SOURCE_BYTES), (GIRAFE_REMOTE, GIRAFE_SOURCE_BYTES)):
+        raise ValueError('only an explicit opened ESA 187 source is eligible')
+    if not 0 <= offset < offset+count <= source_bytes or count > MAXIMUM_BYTES:
         raise ValueError('bounded ESA 187 file span required')
     auth = netrc(str(credentials)).authenticators(HOST)
     if auth is None:
@@ -73,11 +77,15 @@ def read_air1_range(offset, count, certificate, credentials):
         ftp.login(user=user, passwd=password)
         ftp.prot_p()
         ftp.voidcmd('TYPE I')
-        if ftp.size(REMOTE) != SOURCE_BYTES:
+        if ftp.size(remote) != source_bytes:
             raise ValueError('archived ESA source size changed')
-        with ftp.transfercmd('RETR '+REMOTE, rest=offset) as connection:
+        with ftp.transfercmd('RETR '+remote, rest=offset) as connection:
             return read_exact(connection, count, deadline)
     except all_errors:
         raise ValueError('authenticated ESA byte range failed during delivery') from None
     finally:
         ftp.close()
+
+
+def read_air1_range(offset, count, certificate, credentials):
+    return read_esa_range(REMOTE, SOURCE_BYTES, offset, count, certificate, credentials)

@@ -1,0 +1,1 @@
+{"earth_model_fits":0,"half_windows_s":[1.0,5.0],"maximum_imu_gap_s":0.02,"maximum_imu_samples":120000,"maximum_receiver_gap_s":0.3,"maximum_receiver_match_s":0.11,"maximum_receiver_samples":2100,"minimum_supported_centers":350,"native_calls":0,"protected_reads":0,"scientific_decision":"abstain","training_centers":400,"version":"esa-gnss-motion-context-v1"}

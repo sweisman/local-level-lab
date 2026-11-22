@@ -1,0 +1,286 @@
+{
+  "control_report_source_sha256": "91ecb7e420486b9c227f85709a1ee6932f8970f3a5fdee80ffb6f302da054929",
+  "generated": {
+    "increment": {
+      "increment": {
+        "channels": [
+          {
+            "axis": "north",
+            "first_half_rms": 0.9543761562536032,
+            "lag_correlations": {
+              "1": 0.003617109374808737,
+              "100": -0.003969495886302215,
+              "20": -0.016679061111574942
+            },
+            "mean": -0.0028998416059896836,
+            "rms": 0.966412027564074,
+            "second_half_rms": 0.9782998346190228
+          },
+          {
+            "axis": "east",
+            "first_half_rms": 0.9732774047945992,
+            "lag_correlations": {
+              "1": -0.06677014311035637,
+              "100": 0.015327952865041017,
+              "20": 0.04355066659388708
+            },
+            "mean": -0.004181149404551331,
+            "rms": 1.0068861962330133,
+            "second_half_rms": 1.0394088308483158
+          },
+          {
+            "axis": "height",
+            "first_half_rms": 1.0247982597801448,
+            "lag_correlations": {
+              "1": 0.018398693663925207,
+              "100": 0.006653547908371881,
+              "20": -0.006969413303034631
+            },
+            "mean": -0.002052629229284329,
+            "rms": 1.010272691035327,
+            "second_half_rms": 0.9955352064367735
+          }
+        ],
+        "fit_adjusted_reference_calibrated": false,
+        "overall_rms": 0.9947232327699419,
+        "quadratic": 1781.0537576621114,
+        "training_epochs": 600
+      },
+      "point": {
+        "channels": [
+          {
+            "axis": "north",
+            "first_half_rms": 0.9543761603424502,
+            "lag_correlations": {
+              "1": 0.003617121433778481,
+              "100": -0.003969482494853315,
+              "20": -0.016679045412559577
+            },
+            "mean": -0.002899785690164928,
+            "rms": 0.966412029594189,
+            "second_half_rms": 0.9782998346410577
+          },
+          {
+            "axis": "east",
+            "first_half_rms": 0.9732774209322174,
+            "lag_correlations": {
+              "1": -0.06677014113426659,
+              "100": 0.01532791348311657,
+              "20": 0.043550658090204024
+            },
+            "mean": -0.004181270602014814,
+            "rms": 1.006886204090822,
+            "second_half_rms": 1.0394088309613214
+          },
+          {
+            "axis": "height",
+            "first_half_rms": 1.0247982409689615,
+            "lag_correlations": {
+              "1": 0.0183986793156201,
+              "100": 0.006653532337303465,
+              "20": -0.0069694278895506365
+            },
+            "mean": -0.0020526696283294826,
+            "rms": 1.0102726814653633,
+            "second_half_rms": 0.9955352063776313
+          }
+        ],
+        "fit_adjusted_reference_calibrated": false,
+        "overall_rms": 0.99472323283883,
+        "quadratic": 1781.0537579087995,
+        "training_epochs": 600
+      }
+    },
+    "point": {
+      "increment": {
+        "channels": [
+          {
+            "axis": "north",
+            "first_half_rms": 0.9829441578571028,
+            "lag_correlations": {
+              "1": 0.08382327686433946,
+              "100": -0.049405092757745184,
+              "20": -0.07415207827690963
+            },
+            "mean": -0.011901441475715934,
+            "rms": 0.977659257173417,
+            "second_half_rms": 0.97234563237994
+          },
+          {
+            "axis": "east",
+            "first_half_rms": 1.0212972330253167,
+            "lag_correlations": {
+              "1": -0.011254691671110309,
+              "100": 0.044461129779086464,
+              "20": -0.061753261721139416
+            },
+            "mean": -0.01535073341335659,
+            "rms": 1.018623725984832,
+            "second_half_rms": 1.0159431834966344
+          },
+          {
+            "axis": "height",
+            "first_half_rms": 1.0265521541259461,
+            "lag_correlations": {
+              "1": 0.015494554011803885,
+              "100": 0.03667124948707873,
+              "20": 0.06317928926273196
+            },
+            "mean": -0.0022696105793382046,
+            "rms": 1.015636143452361,
+            "second_half_rms": 1.0046015262943562
+          }
+        ],
+        "fit_adjusted_reference_calibrated": false,
+        "overall_rms": 1.004146186927462,
+        "quadratic": 1814.957216497731,
+        "training_epochs": 600
+      },
+      "point": {
+        "channels": [
+          {
+            "axis": "north",
+            "first_half_rms": 0.9829441776977856,
+            "lag_correlations": {
+              "1": 0.08382328818907582,
+              "100": -0.0494049449553904,
+              "20": -0.07415214632700334
+            },
+            "mean": -0.011901694867735589,
+            "rms": 0.9776592671945751,
+            "second_half_rms": 0.9723456324748372
+          },
+          {
+            "axis": "east",
+            "first_half_rms": 1.0212972263130584,
+            "lag_correlations": {
+              "1": -0.011254689839496432,
+              "100": 0.04446113530515602,
+              "20": -0.061753240291423005
+            },
+            "mean": -0.015350560450215666,
+            "rms": 1.0186237225574901,
+            "second_half_rms": 1.0159431833714967
+          },
+          {
+            "axis": "height",
+            "first_half_rms": 1.026552142102646,
+            "lag_correlations": {
+              "1": 0.015494542711635605,
+              "100": 0.036671272429207695,
+              "20": 0.06317929162690973
+            },
+            "mean": -0.0022695332280262483,
+            "rms": 1.015636137584157,
+            "second_half_rms": 1.0046015267150443
+          }
+        ],
+        "fit_adjusted_reference_calibrated": false,
+        "overall_rms": 1.0041461870423676,
+        "quadratic": 1814.9572169131059,
+        "training_epochs": 600
+      }
+    }
+  },
+  "generated_manifest_sha256": "29cb62c6f218fa2bdf28aa52e7caeb2a79e330cebb091c1f3659d2ac643a479b",
+  "generated_study": "data/esa-fit-adjusted-control-v1-20261115",
+  "generated_summary_sha256": "13687cfa5b0692903fb30a2aa45dd90ccd6266c3e2617549a0a1d6bb636577be",
+  "later_receiver_values_used": false,
+  "nonlinear_refit_performed": false,
+  "observed": {
+    "increment": {
+      "channels": [
+        {
+          "axis": "north",
+          "first_half_rms": 0.06489885262124655,
+          "lag_correlations": {
+            "1": 0.18967664551536761,
+            "100": -0.0008200268136358085,
+            "20": -0.02183636334676129
+          },
+          "mean": -0.006848332797765346,
+          "rms": 0.06179713254041279,
+          "second_half_rms": 0.05853127462203784
+        },
+        {
+          "axis": "east",
+          "first_half_rms": 0.049521338998783485,
+          "lag_correlations": {
+            "1": 0.3658663824466279,
+            "100": -0.05907517689845704,
+            "20": -0.015340315539767268
+          },
+          "mean": -0.010803479039563656,
+          "rms": 0.04617059211452465,
+          "second_half_rms": 0.04255683418887239
+        },
+        {
+          "axis": "height",
+          "first_half_rms": 0.09596576125890532,
+          "lag_correlations": {
+            "1": 0.8246401307387836,
+            "100": -0.17262098310714796,
+            "20": 0.5384149163849296
+          },
+          "mean": -0.0078937392805634,
+          "rms": 0.07721628585183506,
+          "second_half_rms": 0.0521083704168859
+        }
+      ],
+      "fit_adjusted_reference_calibrated": false,
+      "overall_rms": 0.06301577571575617,
+      "quadratic": 7.147778380305272,
+      "training_epochs": 600
+    },
+    "point": {
+      "channels": [
+        {
+          "axis": "north",
+          "first_half_rms": 0.06489883060693843,
+          "lag_correlations": {
+            "1": 0.18967601406206144,
+            "100": -0.0008199765938001783,
+            "20": -0.021836821442145243
+          },
+          "mean": -0.006848355851806333,
+          "rms": 0.06179711044050859,
+          "second_half_rms": 0.05853125236525136
+        },
+        {
+          "axis": "east",
+          "first_half_rms": 0.0495213116441943,
+          "lag_correlations": {
+            "1": 0.36586590336060565,
+            "100": -0.059074414500357025,
+            "20": -0.015339973848391463
+          },
+          "mean": -0.010803467822120279,
+          "rms": 0.0461705723109939,
+          "second_half_rms": 0.04255682304975335
+        },
+        {
+          "axis": "height",
+          "first_half_rms": 0.09596568812678317,
+          "lag_correlations": {
+            "1": 0.8246398538862262,
+            "100": -0.17262127742415076,
+            "20": 0.5384140635137559
+          },
+          "mean": -0.0078937466866384,
+          "rms": 0.0772162257734299,
+          "second_half_rms": 0.052108327047983315
+        }
+      ],
+      "fit_adjusted_reference_calibrated": false,
+      "overall_rms": 0.06301573911601882,
+      "quadratic": 7.14777007740866,
+      "training_epochs": 600
+    }
+  },
+  "observed_manifest_sha256": "ce2cb7567e9d6995671dfd0b79ac4aec1a2d12d40fbe857a73827c7bbe466287",
+  "observed_study": "data/esa-training-split-recheck-development-v1-20261115",
+  "protected_confirmation_groups_opened": 0,
+  "report_source_sha256": "68b7dcf834be0abf72a119b52d8af3603b4cc3b37044fc60e4b9c062e45f4a2c",
+  "scientific_decision": "abstain",
+  "version": "esa-fit-adjusted-residual-report-v1"
+}

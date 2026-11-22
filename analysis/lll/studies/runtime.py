@@ -2,6 +2,7 @@
 """One metadata/lifecycle interface, using the existing bounded study engine."""
 import argparse
 from dataclasses import dataclass
+import fcntl
 import json
 import math
 from pathlib import Path
@@ -37,14 +38,28 @@ class Definition:
     def prepare(self,root):
         from .. import ilvis0_control_shards as runner
         value=self.configuration;root=Path(root)
+        registry=root/'analysis/study-status.json'
+        lock=root/'analysis/study-status.lock'
+        if not registry.is_file() or not lock.is_file():
+            raise ValueError('canonical status registry and lock required before preparation')
         shared=['analysis/tests/ilvis0_control_shards.py','analysis/lll/ilvis0_control_shards.py',
             'analysis/lll/ilvis0_receipt_journal.py','analysis/lll/compute_budget.py','analysis/lll/__init__.py']
         shared.extend(str(p.relative_to(root)) for p in (root/'analysis/lll/studies').glob('*.py'))
-        return runner.prepare(root/'data'/self.id,project_root=root,tasks=value['tasks'],
+        manifest=runner.prepare(root/'data'/self.id,project_root=root,tasks=value['tasks'],
             sources=sorted(set(value['sources']+shared)),inputs=value['inputs'],adapter=value['adapter'],
             workers=value['workers'],threads=value['threads'],maximum_wall_s=value['maximum_wall_s'],
             environment=runner.runtime_environment(),accounting_format='sqlite-v1',
             scope=value.get('scope','generated software controls only'))
+        with lock.open('a+b') as handle:
+            fcntl.flock(handle,fcntl.LOCK_EX)
+            status=json.loads(registry.read_bytes())
+            if not isinstance(status.get('studies'),list):
+                raise ValueError('invalid canonical status registry')
+            path='data/'+self.id
+            if not any(row.get('path')==path for row in status['studies']):
+                status['studies'].insert(0,dict(name=self.id,path=path))
+                runner._replace(registry,status)
+        return manifest
 
 
 def inspect_study(root,prefix):
@@ -109,5 +124,5 @@ def command(argv=None):
         names=[n for n in store.catalog()['paths'] if not prefix or n==prefix or n.startswith(prefix+'/')]
         if args.action=='restore':out=dict(restored=store.restore(args.destination or root,names=names),numerical_work=0)
         elif args.action=='compact':out=dict(compacted=store.compact(names=names),numerical_work=0)
-        else:out=store.verify()
+        else:out=store.verify(names=names) if prefix else store.verify()
     print(json.dumps(out,sort_keys=True,default=str));return 0

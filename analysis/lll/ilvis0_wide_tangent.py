@@ -85,15 +85,14 @@ def load(directory,*,gravity_anchor_height_m=None,expected_source_sha256=None):
 def evaluate(base,point,model,*,kernel):
     import numpy as np
     from .ilvis0_shape import PARAMETERS
-    from .ilvis0_exploratory import MODELS
-    if model not in MODELS:raise ValueError('supported physical candidate required')
+    model_index = base.kernel_model(model)
     base.bounds.decode(point);u=dict(zip(base.bounds.active,point))
     expanded=np.array([u.get(name,0.) for name in PARAMETERS]);limits=np.array([base.bounds.limits.get(name,0.) for name in PARAMETERS])
     c=np.array([base.initial[k] for k in ('latitude_rad','longitude_rad','height_m')])
     out=np.empty_like(base.gps);delta=np.empty_like(base.gps);jac=np.empty((out.size,27));boundaries=ctypes.c_int()
     code=kernel(len(base.dt),np.ascontiguousarray(base.theta),np.ascontiguousarray(base.dv),np.ascontiguousarray(base.dt),
         len(base.gps_times),np.ascontiguousarray(base.gps_times),c,np.ascontiguousarray(base.initial['velocity_ned_mps']),
-        np.ascontiguousarray(base.initial['attitude_body_to_ned']),limits,expanded,MODELS.index(model),
+        np.ascontiguousarray(base.initial['attitude_body_to_ned']),limits,expanded,model_index,
         int(base.bounds.fit_earth_removal),base.gravity,base.radius or 6371000.,out,jac,ctypes.byref(boundaries),
         observations=np.ascontiguousarray(base.gps),difference=delta)
     if code or any(not np.all(np.isfinite(v)) for v in (out,delta,jac)):
@@ -106,6 +105,8 @@ def problem(base,*,kernel):
     from .ilvis0_shape import TangentProblem
     if not isinstance(base,TangentProblem) or not callable(kernel):raise ValueError('explicit native problem and wider kernel required')
     class WideProblem(TangentProblem):
+        def kernel_model(self, model):
+            return base.kernel_model(model)
         def prediction_tangent(self,point,model):
             out,delta,jac,b=evaluate(self,point,model,kernel=kernel)
             return out,jac,b

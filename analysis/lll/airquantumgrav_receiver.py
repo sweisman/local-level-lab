@@ -35,13 +35,13 @@ def records(lines):
             if values[i]<0 or not values[i].is_integer():raise ValueError('nonnegative integer sequence, week and satellite counts required')
         if not -90<=values[1]<=90 or not -180<=values[2]<=180 or not 0<=values[26]<604800:
             raise ValueError('unsupported receiver coordinate/time range')
-        if not re.fullmatch(r'\d{1,2}/\d{2}/\d{4}',parts[28]) or not re.fullmatch(r'\d{2}:\d{2}:\d{2}(?:\.\d+)?',parts[29]):
+        if not re.fullmatch(r'\d{1,2}/\d{2}/\d{4}',parts[28]) or not re.fullmatch(r'\d{1,2}:\d{2}:\d{2}(?:\.\d+)?',parts[29]):
             raise ValueError('documented receiver UTC text required')
         if previous is not None and (values[0]<=previous[0] or values[26]<=previous[26] or values[27]!=previous[27]):
             raise ValueError('ordered single-week receiver sequence and time required')
         yield dict(line_number=number,sequence=int(values[0]),latitude_deg=values[1],longitude_deg=values[2],height_m=values[3],
             position_variance_m2=values[4:7],position_cross_covariance_m2=values[7:10],north_mps=values[10],east_mps=values[11],
-            up_mps=values[12],reported_height_sd_m=values[19],pdop=values[20],satellites=int(sum(values[21:26])),
+            up_mps=values[12],velocity_covariance_export=values[13:19],reported_height_sd_m=values[19],pdop=values[20],satellites=int(sum(values[21:26])),
             constellation_satellites=[int(v) for v in values[21:26]],time_s=values[26],gps_week=int(values[27]),
             utc_date=parts[28],utc_time=parts[29])
         previous=values;count+=1

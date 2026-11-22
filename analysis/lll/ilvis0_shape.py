@@ -86,7 +86,7 @@ class TangentProblem(explore.ConditionalProblem):
             np.ascontiguousarray(self.gps_times), c,
             np.ascontiguousarray(self.initial['velocity_ned_mps']),
             np.ascontiguousarray(self.initial['attitude_body_to_ned']), limits, expanded,
-            explore.MODELS.index(model), int(self.bounds.fit_earth_removal),
+            self.kernel_model(model), int(self.bounds.fit_earth_removal),
             self.gravity, self.radius or 6371000., out, jac, ctypes.byref(boundaries))
         if code or not np.all(np.isfinite(out)) or not np.all(np.isfinite(jac)):
             raise ValueError('tangent prediction outside supported native domain')

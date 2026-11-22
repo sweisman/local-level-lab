@@ -45,9 +45,9 @@ def upper(lower,upper,design,bound,objective,multipliers):
         nonlinear_allowance_qualified=False,observational_coverage_qualified=False,scientific_decision='abstain')
 
 
-def propose(lower,upper_box,design,bound,objective):
+def linear_proposal(lower,upper_box,design,bound,objective):
+    """Suggest an LP point and dual weights, with no feasibility claims."""
     lo,hi,a,b,c=_inputs(lower,upper_box,design,bound,objective)
-    weights=np.zeros(len(b));used=False
     # HiGHS supports the forwarded threads option. SciPy warns solely because
     # it is not in its wrapper's option list; do not suppress other warnings.
     try:
@@ -57,9 +57,19 @@ def propose(lower,upper_box,design,bound,objective):
                 options=dict(threads=1,time_limit=1.))
         if result.success:
             proposed=np.asarray(result.ineqlin.marginals,float)
-            if proposed.shape==b.shape and np.all(np.isfinite(proposed)):
-                weights=np.maximum(0.,-proposed);used=True
+            point=np.asarray(result.x,float)
+            if (proposed.shape==b.shape and np.all(np.isfinite(proposed))
+                    and point.shape==lo.shape and np.all(np.isfinite(point))):
+                return point,np.maximum(0.,-proposed)
     except (ValueError,RuntimeError,ArithmeticError,AttributeError):pass
+    return None
+
+
+def propose(lower,upper_box,design,bound,objective):
+    lo,hi,a,b,c=_inputs(lower,upper_box,design,bound,objective)
+    proposal=linear_proposal(lo,hi,a,b,c)
+    used=proposal is not None
+    weights=proposal[1] if used else np.zeros(len(b))
     certificate=upper(lo,hi,a,b,c,weights)
     fallback=upper(lo,hi,a,b,c,np.zeros(len(b)))
     # A mathematically valid but poor dual must not make the box bound worse.

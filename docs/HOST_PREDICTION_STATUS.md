@@ -1,24 +1,24 @@
 # Prediction calibration and independent validation
 
-**The fit run is complete: all 7,176 fits passed, with zero errors.**
-The sealed campaign returned all 299 seed families in 151.7 hours, using four
-workers with one numerical thread each. All worker leases are released.
+**Generated-data calibration and combined validation passed their frozen rules.**
+Calibration verified all 7,176 forecasts across 299 seed families and fixed a
+threshold of 27.6605 on the predefined normalized forecast-error score. The
+independently replayed [combined validation](prediction-validation-continuation/README.md)
+verifies all 4,344 prescribed fits across 181 separate simulated cases. None
+exceeded the fixed threshold or was unavailable. The one-sided 95% failure
+upper bound is 1.64%, below the declared 5% target.
 
-**The independent saved-data audit and exact publication replay passed.**
-All 7,176 forecasts meet the fixed position-error checks. All 299 seed families
-are usable, with no interruptions. The verified calibration threshold is
-27.6605 on the predefined normalized forecast-error score.
+These results validate the procedure under its **generated-data assumptions**.
+They do not establish error coverage on real aircraft or Earth-model
+significance. [Read the calibration result in plain language](prediction-calibration-host-20261030/INTERPRETATION.md).
 
-**Independent validation was interrupted by a host reboot.** Its 3,750 completed
-fits are saved; all passed, with zero recorded fit errors. Four additional
-starts were charged but did not finish, and 590 fits were never started. The
-read-only recovery checker verified the saved evidence and classified this
-frozen run as `cohort_unavailable`: its rule requires every charged start to
-finish, so it cannot report validation coverage. Of 181 planned independent
-simulated cases, 155 have all 24 required fits complete. The calibrated limit
-remains fixed. These generated-data calculations do not establish aircraft
-error coverage or Earth-model significance. [Read the calibration result in
-plain language](prediction-calibration-host-20261030/INTERPRETATION.md).
+## How the interrupted run was completed
+
+The original validation run stopped after a host reboot. Its 3,750 completed
+fits remain saved and passed; four starts were charged but unfinished and 590
+were never started. Its own frozen rule required every charged start to finish,
+so that original run remains classified as interrupted. Of its 181 cases, 155
+had all 24 fits complete. The calibrated threshold remained fixed.
 
 The [separate continuation](VALIDATION_CONTINUATION.md) completed all 594
 remaining fits. Its first technical release stopped after 93 charged software
@@ -26,13 +26,6 @@ errors caused by a deadline adapter mismatch; that stage remains sealed. The
 corrected release passed all 594 fits with zero errors. Its service was disabled
 and removed after verified closure. The original 3,750 completed fits remain
 unchanged, and the original interrupted run is still classified as interrupted.
-
-The independently replayed [combined report](prediction-validation-continuation/README.md)
-verifies all 4,344 prescribed fits across 181 preselected simulated cases. No
-case exceeded the fixed calibration limit or was unavailable. The one-sided
-95% failure upper bound is 1.64%, below the declared 5% target. **The combined
-generated-data validation passed its coverage rule.** It does not establish
-aircraft error coverage or Earth-model significance.
 
 The [prelaunch snapshot](host-calibration-preparation/README.md) passes all 154
 software checks. The 7,176-start source/input freeze and numerical environment

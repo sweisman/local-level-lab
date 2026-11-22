@@ -65,3 +65,25 @@ def test_extension_accepts_no_withheld_receiver_fields():
     from lll.ilvis0_native_error_training import ErrorTrainingFactory
     parameters=inspect.signature(ErrorTrainingFactory.extend).parameters
     assert not {'gps','receiver_rows','later_coordinates','future_quality'}&set(parameters)
+
+
+def test_receiver_target_keeps_future_receiver_uncertainty(monkeypatch):
+    import numpy as np
+
+    factory, problem, inputs = prepared(monkeypatch)
+    forecast = {}
+    for target in ('physical_position', 'receiver_measurement'):
+        operator, _ = factory.extend(
+            problem, **inputs, target=target,
+            receiver_transform_policy='last-training-transform-v1',
+            reserve=lambda **work: None)
+        _, state = operator.apply_block(np.zeros(3*len(problem.gps_times)),
+                                        first_epoch=0)
+        forecast[target] = operator.conditional_marginals(state=state)['covariance']
+    physical = forecast['physical_position']
+    measured = forecast['receiver_measurement']
+    assert physical.shape == measured.shape == (2, 3, 3)
+    # Shared receiver states may cancel some horizontal path error, so the
+    # target covariance need not increase on every axis.
+    assert np.all(measured[:, 2, 2] > physical[:, 2, 2])
+    assert not np.array_equal(measured, physical)

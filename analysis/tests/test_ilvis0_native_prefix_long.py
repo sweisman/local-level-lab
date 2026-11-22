@@ -60,6 +60,7 @@ def test_saved_reference_checks_domain_clock_proof_and_complete_columns():
     value=dict(lower=[-1.]*27,upper=[1.]*27,center=[0.]*27,reference_report=reference,proof_report=proof)
     assert validate_saved(value,report,time=438.) is None
     for key,altered in [('time_s',290.),('source_id','other'),('lower',[-2.]*27),
+                        ('gravity_anchor_height_m',1482.531),
                         ('conditioning',{**proof,'input_binding':'different'})]:
         bad=deepcopy(report);bad[key]=altered
         with pytest.raises(ValueError,match='saved cold'):

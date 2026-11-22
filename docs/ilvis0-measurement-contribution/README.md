@@ -1,8 +1,14 @@
 # What each measurement contributes
 
-All **53 selected stretches favor globe** in the complete full-position
-comparison. This investigation asks which observations create that separation
-and how the result changes when constraints are removed.
+The **globe with the specified field** has the lowest full-position fit cost
+on all 53 selected stretches under both removal assumptions. This
+investigation asks which observations create that separation and how it
+changes when constraints are removed.
+
+The [gyro-free motion check](SHARED_GPS_MOTION_RATE_RESULT.md) finds that
+the same 27 cm GPS correction leaves all four sampled motion-rate ranges
+overlapping on the IMU8 recording. This check alone cannot distinguish
+the models.
 
 An **IMU (inertial measurement unit)** measures turning with gyroscopes and
 specific force with accelerometers. Recorded gyro increments drive reconstructed
@@ -19,6 +25,39 @@ contribution checks, withheld prediction, then protected ESA replication.
 The [provenance ledger](../analysis-provenance/README.md) defines conservative
 split groups before new validation selection. Earlier development plans and
 completed studies do not provide additional execution allowances.
+The [matched field and offset plan](MATCHED_GENERATED_PLAN.md) qualifies the
+full measurement path on generated flights before selecting a NASA pilot.
+The [wider arithmetic result](MATCHED_WIDE_RESULT.md) completes 15 of 16
+four-model settings on fresh generated histories. The [pilot metadata
+inventory](MATCHED_PILOT_ELIGIBILITY.md) finds 21 stretches in 18 flight
+groups meeting the saved file, configuration and GPS checks. The
+[recorded numerical preflight](MATCHED_OBSERVED_NUMERICAL_RESULT.md) verified
+six later forecasts. A [separately recovered fit](MATCHED_UNSTARTED_DISC_RECOVERY_RESULT.md)
+and [two added flights](MATCHED_EXTENSION_FORECAST_RESULT.md) bring the
+[four-flight audit](MATCHED_FOUR_GROUP_AUDIT_RESULT.md) to 15 scorable forecasts
+out of 16. Globe gives lower 3D error in every complete comparison at the
+same field. The specified-field globe passes the fixed accuracy limits on
+three flights. The gyro-free and aircraft uncertainty checks remain separate.
+
+The [force-only check on the two added flights](MATCHED_EXTENSION_FORCE_RESULT.md)
+leaves shape unresolved. All four candidates meet the necessary inequality
+on IMU21. On IMU8, a [shared receiver perturbation](MATCHED_EXTENSION_FORCE_WITNESS_RESULT.md)
+clears all 79 later force gaps without changing the full-IMU forecast
+rankings. The perturbation measures sensitivity. Actual receiver error and
+continuous aircraft motion remain open.
+The [gyro-free calibration controls](GYRO_FREE_CALIBRATION_CONTROLS_RESULT.md)
+fit earlier packets and predict later known forces in all eight generated
+cases. Applying the method to aircraft requires bounds on force changes
+within a packet and on errors from GPS and the accelerometer.
+The [saved-point comparison](MATCHED_TRIAL_PROBE_RESULT.md) verified that a
+cheaper calculation gives identical residuals at four saved aircraft points.
+The [full generated check](MATCHED_TRIAL_FITS_RESULT.md) then produced the
+same fits and forecasts with fewer derivative calculations. The [aircraft
+equivalence check](MATCHED_TRIAL_OBSERVED_RESULT.md) then reproduced two
+IMU8 fits and the available forecast under the original limits.
+The gyro-free and receiver uncertainty gates still precede pilot selection.
+The [NCAR RF04 intake](NCAR_RF04_INTAKE.md) is ready to check whole-second
+motion on the selected IMU21 stretch once the separate aircraft file arrives.
 
 ## Completed checks
 
@@ -31,7 +70,14 @@ completed studies do not provide additional execution allowances.
 | [Channel-removal controls](CHANNEL_CONTROLS.md) | All 25 software checks pass. | Defines missing orientation/force constraints and an acceleration-only diagnostic; not yet a qualified recorded-data comparison. |
 | [Independent trajectory-force matrix](../ilvis0-channel-trajectory-controls-20261019/INTERPRETATION.md) | All 18 controls pass under independent Cartesian reference motion. | Qualifies exact-trajectory force calculations; some generated cases separate without gyro input. |
 | [Receiver derivatives and covariance](../ilvis0-channel-trajectory-controls-20261019/DERIVATIVES.md) | All 22 mathematical checks pass. | Preserves joint uncertainty, overlapping-window dependence and covariance symmetry; approximation is assessed separately below. |
-| [Receiver-only support and timed-GGA motion](SUPPORT_POLICY.md) | All 21 software checks pass. | Selects a common smooth window from receiver positions alone, rejecting missing fixes and implausible speed; the coordinate chart is a screening convention, not shape evidence. Recorded thresholds remain unfrozen. |
+| [Receiver-only support and timed-GGA motion](SUPPORT_POLICY.md) | All 21 software checks pass. | Selects a common smooth window from receiver positions alone, rejecting missing fixes and implausible speed; the coordinate chart is a screening convention, not shape evidence. The recorded-window rule was fixed separately below. |
+| [Receiver gap-block inventory](../ilvis0-receiver-gap-inventory/README.md) | All 53 selected stretches screened; 52 passing receiver blocks and one prior decoder failure. | Preserves original receiver row ranges and every disposition, without filling gaps or making a model fit. |
+| [Receiver-only window inventory](../ilvis0-receiver-support-inventory/README.md) | 2,194 of 2,365 receiver target times have support under one fixed policy. | Preserves all candidate windows and rejection reasons; no IMU or Earth-model fit. |
+| [Window-stability bounds](WINDOW_STABILITY_RESULT.md) | Under illustrative ±0.05 m/s speed/climb and ±0.05° course error, 1,580 selected windows are guaranteed unchanged; under ±0.10 m/s, 1,111 are. | Shows sensitivity of the GPS-only choice; the assumed ranges are not measured receiver accuracy or a model result. |
+| [Paired receiver-window check](../ilvis0-receiver-window-pairs/README.md) | Eleven overlapping receiver pairs complete; seven of 490 common window decisions differ. | Measures relative repeatability without an IMU or model fit; absolute receiver error is still open. |
+| [Shared receiver-error example](SHARED_FORCE_WITNESS_RESULT.md) | One correction of at most 0.272 m clears all 16 original IMU8 force gaps. IMU21 clears without a correction. | Both clocks and all four candidates use the same receiver positions on each recording. The experiment still leaves continuous motion and actual GPS error open. |
+| [Joint receiver-only force bridge](CHANNEL_CONTROLS.md) | Nineteen focused checks pass across the bridge, derivative operator and covariance helper. | Produces candidate force magnitudes on common GPS-selected windows with covariance shared across windows and models; it has not fitted a recorded flight or calibrated an error law. |
+| [Structured force-error projection](CHANNEL_CONTROLS.md) | Ten checks pass: six projection controls and four GPS-selected bridge checks, including transformed dense-reference agreement and supports beyond the earlier 128-fix full-record limit. | Carries a supplied correlated receiver-error law across all three candidates without a dense full-record covariance; real-error coverage and selection uncertainty remain open. |
 | [Approximation and averaging matrix](../ilvis0-channel-error-budget-20261019/INTERPRETATION.md) | All 46 implementation controls pass; 81/108 candidate/window combinations pass the declared approximation screens. | Exposes trajectory bias, nonlinear response and aggregation effects before recorded-data use. |
 | [Acceleration calibration ambiguity](CALIBRATION.md) | All nine known-answer checks pass; a constant gain change of 0.066–0.307% erases wrong-model scalar differences on the constructed straight leg. | A fixed-calibration acceleration-only ranking would overstate what the diagnostic distinguishes. |
 | [Local calibration and changing motion](../ilvis0-scalar-calibration-controls-20261019/INTERPRETATION.md) | All 72 controls pass, with all seven calibration columns retained. Straight-leg differences disappear; changing motion retains local differences but wrong-model linear corrections exceed bounds. | Identifies the need for bounded nonlinear calibration checks; a local projection is not a feasible nonlinear fit. |

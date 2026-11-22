@@ -13,6 +13,8 @@ from .models import WGS84_A, WGS84_E2
 
 VERSION='receiver-motion-support-v1'
 GGA_MOTION_VERSION='receiver-gga-motion-v2'
+ENHANCED_MOTION_VERSION='receiver-enhanced-motion-v1'
+RECEIVER_BLOCK_VERSION='receiver-gap-blocks-v1'
 
 
 def _finite(value):
@@ -20,6 +22,60 @@ def _finite(value):
         return not isinstance(value,bool) and math.isfinite(value)
     except (TypeError,ValueError):
         return False
+
+
+def split_receiver_blocks(times_s, *, source_kind, maximum_gap_s,
+                          minimum_samples):
+    """Inventory uninterrupted receiver spans without copying or filling rows.
+
+    Input order and every original row index are preserved. A short block is
+    reported as rejected; malformed or reversed timestamps reject the input.
+    This is only a time/completeness screen, not a model decision.
+    """
+    if (not _finite(maximum_gap_s) or maximum_gap_s <= 0. or
+            type(minimum_samples) is not int or minimum_samples < 3):
+        raise ValueError('positive gap limit and minimum sample count required')
+    if source_kind not in ('primary_receiver_gga',
+                           'primary_receiver_enhanced_position'):
+        raise ValueError('explicit primary receiver source kind required')
+    values = tuple(times_s)
+    try:
+        times = tuple(float(value) for value in values)
+    except (TypeError, ValueError, OverflowError) as error:
+        raise ValueError('finite ordered receiver times required') from error
+    if (not times or any(not _finite(value) for value in values) or
+            any(right <= left for left, right in zip(times, times[1:]))):
+        raise ValueError('finite ordered receiver times required')
+    breaks = [index for index in range(1, len(times))
+              if times[index]-times[index-1] > maximum_gap_s]
+    boundaries = (0, *breaks, len(times))
+    blocks = []
+    for first, stop in zip(boundaries, boundaries[1:]):
+        count = stop-first
+        accepted = count >= minimum_samples
+        blocks.append(dict(first_index=first, last_index=stop-1,
+                           sample_count=count, start_s=times[first],
+                           end_s=times[stop-1], accepted=accepted,
+                           reason='supported' if accepted else 'sample_count'))
+    gaps = [dict(left_index=index-1, right_index=index,
+                 duration_s=times[index]-times[index-1]) for index in breaks]
+    return dict(version=RECEIVER_BLOCK_VERSION, source=source_kind,
+                blocks=blocks, gaps=gaps, total_rows=len(times),
+                maximum_gap_s=float(maximum_gap_s),
+                minimum_samples=minimum_samples,
+                interpolated_measurements=False,
+                scientific_decision='abstain')
+
+
+def split_gga_blocks(fixes, *, maximum_gap_s, minimum_samples):
+    """Apply the same gap inventory to timestamped primary-receiver GGA rows."""
+    try:
+        times = tuple(row['utc_week_s'] for row in fixes)
+    except (KeyError, TypeError) as error:
+        raise ValueError('finite ordered receiver times required') from error
+    return split_receiver_blocks(
+        times, source_kind='primary_receiver_gga',
+        maximum_gap_s=maximum_gap_s, minimum_samples=minimum_samples)
 
 
 @dataclass(frozen=True)
@@ -112,6 +168,56 @@ def motion_from_gga_fixes(fixes,*,maximum_gap_s):
                 ellipsoidal_height_m=tuple(row[3] for row in values),
                 speed_mps=tuple(speed),course_deg=tuple(course),
                 vertical_rate_mps=tuple(vertical),
+                scientific_decision='abstain')
+
+
+def motion_from_enhanced_positions(positions, *, maximum_gap_s):
+    """Screen motion using the primary GNSS receiver's own timed velocities.
+
+    The enhanced-position stream is the receiver output, not Applanix Group 1
+    fused navigation. Its velocity is used only for receiver-window selection.
+    The caller supplies one uninterrupted, preselected position block.
+    """
+    if not _finite(maximum_gap_s) or maximum_gap_s <= 0.:
+        raise ValueError('positive receiver position gap limit required')
+    def epoch_integer(value):
+        if type(value) is int or (type(value) is str and value.isdecimal()):
+            return int(value)
+        raise ValueError('integer receiver GPS epoch required')
+    try:
+        rows = tuple(positions)
+        values = tuple((epoch_integer(row['gps_week']),
+                        epoch_integer(row['gps_milliseconds']),
+                        float(row['latitude_deg']), float(row['longitude_deg']),
+                        float(row['ellipsoid_height_m']),
+                        float(row['velocity_north_mps']),
+                        float(row['velocity_east_mps']),
+                        float(row['velocity_up_mps'])) for row in rows)
+    except (KeyError, TypeError, ValueError, OverflowError) as error:
+        raise ValueError('complete primary-receiver enhanced positions required') from error
+    if (len(values) < 3 or any(not all(_finite(value) for value in row)
+                               for row in values) or
+            any(row[0] < 0 or not 0 <= row[1] < 604800000 or
+                abs(row[2]) >= 90. or abs(row[3]) > 180. or
+                math.cos(math.radians(row[2])) < 1e-3
+                for row in values)):
+        raise ValueError('finite primary-receiver enhanced positions required')
+    times = tuple(row[0]*604800. + row[1]/1000. for row in values)
+    if any(not 0. < right-left <= maximum_gap_s
+           for left, right in zip(times, times[1:])):
+        raise ValueError('ordered uninterrupted enhanced positions required')
+    return dict(version=ENHANCED_MOTION_VERSION,
+                source='primary_receiver_enhanced_position',
+                measurement_time_key='gps_week + gps_milliseconds',
+                coordinate_metric='reported geodetic receiver coordinates',
+                height_convention='reported ellipsoid_height_m',
+                motion_source='primary receiver velocity north/east/up',
+                maximum_gap_s=float(maximum_gap_s), times_s=times,
+                ellipsoidal_height_m=tuple(row[4] for row in values),
+                speed_mps=tuple(math.hypot(row[5], row[6]) for row in values),
+                course_deg=tuple(math.degrees(math.atan2(row[6], row[5])) % 360.
+                                 for row in values),
+                vertical_rate_mps=tuple(row[7] for row in values),
                 scientific_decision='abstain')
 
 

@@ -50,3 +50,15 @@ def test_control_report_reads_recovered_binary_artifact_by_sealed_hash():
     assert _artifact(study,'case','measured-inputs.npz',raw=True) == b'bytes'
     assert calls == [('case','artifacts/case/measured-inputs.npz',
                       'expected-hash',True)]
+
+
+def test_observed_reference_checks_training_support_in_each_law():
+    from lll.esa_fit_adjusted_control_report import validate_observed_reference
+
+    observed = dict(protected_confirmation_groups_opened=0,
+        laws={law:dict(training_epochs=600,quadratic=7.)
+              for law in ('increment','point')})
+    validate_observed_reference(observed)
+    observed['laws']['point']['training_epochs'] = 800
+    with pytest.raises(ValueError,match='training reference'):
+        validate_observed_reference(observed)

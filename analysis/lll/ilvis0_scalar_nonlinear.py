@@ -49,7 +49,7 @@ def stationarity(point,gradient):
     return float(np.max(abs(point-np.clip(point-gradient,-1.,1.))))
 
 
-def fit(problem,start,*,max_evaluations=200):
+def fit(problem,start,*,max_evaluations=200,reserve=None):
     """One finite start with analytic derivatives and fresh endpoint checks.
 
     No retry, adaptive budget, hidden clipping, column deletion or presumed
@@ -61,6 +61,8 @@ def fit(problem,start,*,max_evaluations=200):
     calls=dict(residual=0,jacobian=0);ceiling=2*max_evaluations+2
     def counted(kind,point):
         if sum(calls.values())>=ceiling:raise RuntimeError('mathematical call allowance exhausted')
+        if reserve is not None:
+            reserve()
         calls[kind]+=1
         return getattr(problem,kind)(point)
     result=least_squares(lambda x:counted('residual',x),start,

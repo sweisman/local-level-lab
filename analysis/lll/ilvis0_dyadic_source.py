@@ -6,6 +6,7 @@ is used to form a bound. General rational value endpoints remain exact; rows
 with nonbinary denominators use the original Fraction reference.
 """
 from fractions import Fraction as F
+from functools import lru_cache
 import numpy as np
 from .ilvis0_saved_prediction_audit import endpoint
 from .ilvis0_source_reference import affine_radius as _general_affine
@@ -45,6 +46,52 @@ def _sum(terms):
     return F(sum(n<<(e-p) for n,p in terms),1<<e)
 
 
+@lru_cache(maxsize=8)
+def _widths(lower,upper,center):
+    return tuple(_width(_number(a),_number(b),_number(c))
+                 for a,b,c in zip(lower,upper,center,strict=True))
+
+
+def _mismatch(value,ends):
+    return _width(_number(float(ends[0])),_number(float(ends[1])),_number(float(value)))
+
+
+def transfer_radius(values,rows,points,derivatives,*,lower,upper,center,remainders):
+    """Transfer a source bound to stated values and all stated derivative rows.
+
+    The callers validate the finite array shapes and interval ordering. Only the
+    final sum is rounded, even when the ideal remainder is a general rational.
+    """
+    try:
+        widths=_widths(tuple(lower),tuple(upper),tuple(center))
+    except _Nonbinary:
+        rational_widths=[max(abs(F(a)-F(c)),abs(F(b)-F(c)))
+                         for a,b,c in zip(lower,upper,center,strict=True)]
+        widths=None
+    result=np.empty((2,3))
+    for source in range(2):
+        base=F(remainders[source])
+        if base<0:raise ValueError('nonnegative ideal source remainder required')
+        for axis in range(3):
+            value_interval=points[source,axis]
+            derivative_intervals=derivatives[source,axis]
+            stated_rows=rows[source,axis]
+            value=values[source,axis]
+            if widths is None:
+                offset=max(abs(F(float(v))-F(float(value))) for v in value_interval)
+                affine=sum((d*max(abs(F(float(v))-F(float(row))) for v in ends)
+                            for ends,row,d in zip(derivative_intervals,stated_rows,rational_widths,strict=True)),F(0))
+            else:
+                offset=F(0)
+                terms=[_mismatch(value,value_interval)]
+                terms.extend(_multiply(_mismatch(row,ends),width)
+                             for row,ends,width in zip(stated_rows,derivative_intervals,widths,strict=True))
+                affine=_sum(terms)
+            result[source,axis]=endpoint(base+offset+affine,True)
+    result.setflags(write=False)
+    return result
+
+
 def affine_radius(lower_value,upper_value,center,jacobian,lower,upper,reference):
     low,high,c=map(F,(lower_value,upper_value,center))
     if low>high:raise ValueError('ordered value interval required')
@@ -72,16 +119,5 @@ def mean_value_radius(frame,values,rows,*,phase):
     z,lo,hi=(np.asarray(frame[key],float) for key in ('center','lower','upper'))
     if any(a.shape!=(27,) or not np.all(np.isfinite(a)) for a in (z,lo,hi)) or np.any(lo>hi):
         raise ValueError('complete finite source domain required')
-    widths=[_width(_number(float(a)),_number(float(b)),_number(float(c)))
-        for a,b,c in zip(lo,hi,z,strict=True)]
-    result=np.empty((2,3))
-    for source in range(2):
-        for axis in range(3):
-            c=_number(float(values[phase,source,axis]));p=point[phase,source,axis]
-            terms=[_width(_number(float(p[0])),_number(float(p[1])),c)]
-            for interval,row,width in zip(derivatives[phase,source,axis],rows[phase,source,axis],widths,strict=True):
-                r=_number(float(row))
-                terms.append(_multiply(_width(_number(float(interval[0])),_number(float(interval[1])),r),width))
-            result[source,axis]=endpoint(_sum(terms),True)
-    result.setflags(write=False)
-    return result
+    return transfer_radius(values[phase],rows[phase],point[phase],derivatives[phase],
+                           lower=lo,upper=hi,center=z,remainders=(0,0))

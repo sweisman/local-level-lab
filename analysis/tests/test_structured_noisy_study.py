@@ -18,7 +18,7 @@ def test_two_minute_definition_retains_full_matrix_and_finite_limits():
     assert limits(r,'increment')[1]['noise_normal_variates']==648486
 
 
-def context(tmp_path):
+def context(tmp_path, extra_passes=0):
     from lll.structured_noisy_training import recipe,tasks,SCOPE
     from lll.ilvis0_control_shards import prepare,TaskContext
     from lll.airquantumgrav_inventory import environment
@@ -27,6 +27,11 @@ def context(tmp_path):
     (project/'recipe.json').write_text(json.dumps(recipe()))
     (project/'environment.json').write_text(json.dumps(environment()))
     output=tmp_path/'study';task=tasks()[0]
+    if extra_passes:
+        from lll.structured_noisy_study import extra_forecast_work
+        task=dict(task,limits=dict(task['limits']))
+        increment=extra_forecast_work(recipe(),extra_passes)
+        for key,value in increment.items():task['limits'][key]+=value
     prepare(output,project_root=project,tasks=[task],sources=['adapter.py'],
         inputs={'recipe':'recipe.json','qualification-environment':'environment.json'},adapter='adapter.py',
         workers=1,threads=1,maximum_wall_s=30,environment={'generated':True},accounting_format='sqlite-v1',scope=SCOPE)
@@ -151,3 +156,34 @@ def test_shared_case_runner_uses_explicit_provider_without_changing_default(tmp_
         payload=task['payload'],kernel_provider=provider)
     assert seen==['provider'] and result['passed'] is False
     ctx.finish(result)
+
+
+def test_shared_runner_prepays_exact_three_extra_forecast_passes(tmp_path,monkeypatch):
+    from lll import structured_noisy_study,structured_noisy_training
+    from lll.ilvis0_control_shards import _counts
+    task,ctx=context(tmp_path,extra_passes=3)
+    base=structured_noisy_training.limits(structured_noisy_training.recipe(),'increment')[0]
+    count=round(structured_noisy_training.recipe()['duration_s']*structured_noisy_training.recipe()['rate_hz'])+119
+    assert task['limits']['native_calls']==base['native_calls']+3*count
+    assert task['limits']['packet_visits']==base['packet_visits']+3*count
+    monkeypatch.setattr(structured_noisy_study,'_kernels',lambda *a:(None,None))
+    def fake(payload,r,**kw):
+        assert _counts(ctx.journal,ctx.task)['native_calls']==task['limits']['native_calls']
+        kw['reserve_construction'](**structured_noisy_training.limits(r,payload['law'])[1])
+        kw['reserve'](native_calls=1,packet_visits=1)
+        return dict(native_calls=1,passed=False,scientific_decision='abstain')
+    monkeypatch.setattr(structured_noisy_training,'calculate',fake)
+    result=structured_noisy_study.run_case(task,ctx,r=structured_noisy_training.recipe(),
+        payload=task['payload'],extra_forecast_passes=3)
+    assert result['native_calls']==1
+    ctx.finish(result)
+
+
+def test_extra_pass_reserve_rejects_changed_task_before_construction(tmp_path):
+    from lll.structured_noisy_study import run_case
+    from lll.structured_noisy_training import recipe
+    task,ctx=context(tmp_path,extra_passes=3)
+    changed=dict(task,limits=dict(task['limits'],native_calls=task['limits']['native_calls']+1))
+    with pytest.raises(ValueError):
+        run_case(changed,ctx,r=recipe(),payload=task['payload'],extra_forecast_passes=3)
+    assert not ctx.directory.exists()

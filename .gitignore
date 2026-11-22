@@ -4,6 +4,7 @@ __pycache__/
 .pytest_cache/
 /_site/
 /data/
+/docs/prediction-observed-development/esa-fixed-reference-air1.rnx.gz
 /server/data/
 /collated/
 

@@ -106,10 +106,18 @@ class ConditionalProblem(estimator.MotionProblem):
         self.bounds = ConditionalBounds(self.bounds.limits, fit_earth_removal=fit_earth_removal)
         self.kernel = kernel
 
+    def kernel_model(self, model):
+        return MODELS.index(model)
+
+    def metric_model(self, model):
+        return model
+
     def predict(self, point, model):
+        kernel_model = self.kernel_model(model)
+        metric_model = self.metric_model(model)
         p = self.bounds.decode(point)
         coordinates = np.array([self.initial['latitude_rad'], self.initial['longitude_rad'], self.initial['height_m']])
-        coordinates += forward.coordinate_rates(model, coordinates[0], coordinates[2], estimator.vec(p, 'position'), self.radius)
+        coordinates += forward.coordinate_rates(metric_model, coordinates[0], coordinates[2], estimator.vec(p, 'position'), self.radius)
         velocity = self.initial['velocity_ned_mps']+estimator.vec(p, 'velocity')
         rotation = self.initial['attitude_body_to_ned']@forward.exp(estimator.vec(p, 'attitude'))
         theta = (self.theta-estimator.vec(p,'gyro_bias')*self.dt[:,None])/(1+estimator.vec(p,'gyro_gain'))
@@ -121,11 +129,13 @@ class ConditionalProblem(estimator.MotionProblem):
             code = self.kernel(len(self.dt), np.ascontiguousarray(theta), np.ascontiguousarray(dv),
                 np.ascontiguousarray(self.dt), len(times), np.ascontiguousarray(times),
                 np.ascontiguousarray(coordinates), np.ascontiguousarray(velocity),
-                np.ascontiguousarray(rotation), np.ascontiguousarray(lever), MODELS.index(model),
+                np.ascontiguousarray(rotation), np.ascontiguousarray(lever), kernel_model,
                 gravity, self.radius or 6371000., p['earth_removal'], out)
             if code or not np.all(np.isfinite(out)):
                 raise ValueError('native prediction outside supported domain')
             return out
+        if metric_model != model:
+            raise ValueError('diagnostic field candidate requires the native value kernel')
         state = dict(latitude_rad=coordinates[0],longitude_rad=coordinates[1],height_m=coordinates[2],
                      velocity_ned_mps=velocity,attitude_body_to_ned=rotation)
         out=[]; j=0; start=0.

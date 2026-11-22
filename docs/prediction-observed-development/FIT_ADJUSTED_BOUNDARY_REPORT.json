@@ -1,0 +1,239 @@
+{
+  "attempted_fits": 4,
+  "cases": {
+    "increment": {
+      "increment": {
+        "active_bounds": {
+          "gyro_gain_x": {
+            "curvature": 3.7605488522082875,
+            "estimable": true,
+            "free_rank": 24,
+            "local_cost_gain_if_unbounded": 0.025403256729387223,
+            "nonlinear_refit_performed": false,
+            "scientific_decision": "abstain",
+            "slope": 0.6181591637630217,
+            "unbounded_step": -0.0821900190712884,
+            "unbounded_step_points_outside": true
+          },
+          "gyro_gain_y": {
+            "curvature": 4.575769001846583,
+            "estimable": true,
+            "free_rank": 24,
+            "local_cost_gain_if_unbounded": 0.05607163916512906,
+            "nonlinear_refit_performed": false,
+            "scientific_decision": "abstain",
+            "slope": 1.0130565006445087,
+            "unbounded_step": -0.11069795046861881,
+            "unbounded_step_points_outside": true
+          }
+        },
+        "evaluations": 8,
+        "joint_active_profile": {
+          "active_rank_after_free_projection": 2,
+          "all_active_directions_estimable": true,
+          "free_rank": 24,
+          "local_cost_gain_if_all_unbounded": 1.4766826985492116,
+          "nonlinear_refit_performed": false,
+          "scientific_decision": "abstain",
+          "unbounded_solution_outside_bounds": true,
+          "unbounded_steps": [
+            -1.9098209065396383,
+            -1.749943958158632
+          ]
+        },
+        "scientific_decision": "abstain",
+        "tangent_replay_verified": true,
+        "training_cost": 1781.0537576621114
+      },
+      "point": {
+        "active_bounds": {
+          "gyro_gain_x": {
+            "curvature": 3.760548868438772,
+            "estimable": true,
+            "free_rank": 24,
+            "local_cost_gain_if_unbounded": 0.025403255635633545,
+            "nonlinear_refit_performed": false,
+            "scientific_decision": "abstain",
+            "slope": 0.6181591517893837,
+            "unbounded_step": -0.08219001712455055,
+            "unbounded_step_points_outside": true
+          },
+          "gyro_gain_y": {
+            "curvature": 4.57576902996232,
+            "estimable": true,
+            "free_rank": 24,
+            "local_cost_gain_if_unbounded": 0.0560716433688142,
+            "nonlinear_refit_performed": false,
+            "scientific_decision": "abstain",
+            "slope": 1.0130565417312345,
+            "unbounded_step": -0.11069795427803496,
+            "unbounded_step_points_outside": true
+          }
+        },
+        "evaluations": 8,
+        "joint_active_profile": {
+          "active_rank_after_free_projection": 2,
+          "all_active_directions_estimable": true,
+          "free_rank": 24,
+          "local_cost_gain_if_all_unbounded": 1.4766827224341341,
+          "nonlinear_refit_performed": false,
+          "scientific_decision": "abstain",
+          "unbounded_solution_outside_bounds": true,
+          "unbounded_steps": [
+            -1.909820904846424,
+            -1.7499439579449274
+          ]
+        },
+        "scientific_decision": "abstain",
+        "tangent_replay_verified": true,
+        "training_cost": 1781.0537579087995
+      }
+    },
+    "point": {
+      "increment": {
+        "active_bounds": {
+          "accel_bias_z": {
+            "curvature": 0.7612857413245722,
+            "estimable": true,
+            "free_rank": 22,
+            "local_cost_gain_if_unbounded": 0.2972334893949228,
+            "nonlinear_refit_performed": false,
+            "scientific_decision": "abstain",
+            "slope": 0.951377143556651,
+            "unbounded_step": -0.6248489180300002,
+            "unbounded_step_points_outside": true
+          },
+          "gyro_bias_z": {
+            "curvature": 2.860552030705961,
+            "estimable": true,
+            "free_rank": 22,
+            "local_cost_gain_if_unbounded": 0.008300041924858961,
+            "nonlinear_refit_performed": false,
+            "scientific_decision": "abstain",
+            "slope": -0.3081733394250704,
+            "unbounded_step": 0.05386606083669377,
+            "unbounded_step_points_outside": true
+          },
+          "gyro_gain_y": {
+            "curvature": 0.9077400653806974,
+            "estimable": true,
+            "free_rank": 22,
+            "local_cost_gain_if_unbounded": 0.31831278839599303,
+            "nonlinear_refit_performed": false,
+            "scientific_decision": "abstain",
+            "slope": 1.0750725954094278,
+            "unbounded_step": -0.5921698492830945,
+            "unbounded_step_points_outside": true
+          },
+          "time_offset": {
+            "curvature": 0.7045636132811085,
+            "estimable": true,
+            "free_rank": 22,
+            "local_cost_gain_if_unbounded": 1.574046083025565,
+            "nonlinear_refit_performed": false,
+            "scientific_decision": "abstain",
+            "slope": 2.1061961881339237,
+            "unbounded_step": -1.4946813519970896,
+            "unbounded_step_points_outside": true
+          }
+        },
+        "evaluations": 9,
+        "joint_active_profile": {
+          "active_rank_after_free_projection": 4,
+          "all_active_directions_estimable": true,
+          "free_rank": 22,
+          "local_cost_gain_if_all_unbounded": 3.647446745611205,
+          "nonlinear_refit_performed": false,
+          "scientific_decision": "abstain",
+          "unbounded_solution_outside_bounds": true,
+          "unbounded_steps": [
+            -0.09250637756143086,
+            -2.071612073386086,
+            -1.9545343736252645,
+            -1.543659982876131
+          ]
+        },
+        "scientific_decision": "abstain",
+        "tangent_replay_verified": true,
+        "training_cost": 1814.957216497731
+      },
+      "point": {
+        "active_bounds": {
+          "accel_bias_z": {
+            "curvature": 0.7612865717624477,
+            "estimable": true,
+            "free_rank": 22,
+            "local_cost_gain_if_unbounded": 0.2972336456696985,
+            "nonlinear_refit_performed": false,
+            "scientific_decision": "abstain",
+            "slope": 0.9513779125549193,
+            "unbounded_step": -0.624848741487974,
+            "unbounded_step_points_outside": true
+          },
+          "gyro_bias_z": {
+            "curvature": 2.860552101831897,
+            "estimable": true,
+            "free_rank": 22,
+            "local_cost_gain_if_unbounded": 0.00830005146607556,
+            "nonlinear_refit_performed": false,
+            "scientific_decision": "abstain",
+            "slope": -0.3081735203848336,
+            "unbounded_step": 0.053866091127562285,
+            "unbounded_step_points_outside": true
+          },
+          "gyro_gain_y": {
+            "curvature": 0.9077405384892429,
+            "estimable": true,
+            "free_rank": 22,
+            "local_cost_gain_if_unbounded": 0.31831230028209584,
+            "nonlinear_refit_performed": false,
+            "scientific_decision": "abstain",
+            "slope": 1.0750720512892507,
+            "unbounded_step": -0.592169240936677,
+            "unbounded_step_points_outside": true
+          },
+          "time_offset": {
+            "curvature": 0.7045636269717837,
+            "estimable": true,
+            "free_rank": 22,
+            "local_cost_gain_if_unbounded": 1.5740461342072543,
+            "nonlinear_refit_performed": false,
+            "scientific_decision": "abstain",
+            "slope": 2.106196242839663,
+            "unbounded_step": -1.4946813617757277,
+            "unbounded_step_points_outside": true
+          }
+        },
+        "evaluations": 9,
+        "joint_active_profile": {
+          "active_rank_after_free_projection": 4,
+          "all_active_directions_estimable": true,
+          "free_rank": 22,
+          "local_cost_gain_if_all_unbounded": 3.6474469456945826,
+          "nonlinear_refit_performed": false,
+          "scientific_decision": "abstain",
+          "unbounded_solution_outside_bounds": true,
+          "unbounded_steps": [
+            -0.09250637810129816,
+            -2.071611882976553,
+            -1.9545343616177953,
+            -1.5436599815087233
+          ]
+        },
+        "scientific_decision": "abstain",
+        "tangent_replay_verified": true,
+        "training_cost": 1814.9572169131059
+      }
+    }
+  },
+  "control_report_source_sha256": "91ecb7e420486b9c227f85709a1ee6932f8970f3a5fdee80ffb6f302da054929",
+  "generated_recordings": 2,
+  "nonlinear_refit_performed": false,
+  "protected_confirmation_groups_opened": 0,
+  "report_source_sha256": "62090da3d35fb6a0e1d677c2aa6625f674c2436515700b1e8b592d8fcdcdc275",
+  "scientific_decision": "abstain",
+  "study": "data/esa-fit-adjusted-control-v1-20261115",
+  "study_manifest_sha256": "29cb62c6f218fa2bdf28aa52e7caeb2a79e330cebb091c1f3659d2ac643a479b",
+  "study_summary_sha256": "13687cfa5b0692903fb30a2aa45dd90ccd6266c3e2617549a0a1d6bb636577be",
+  "version": "esa-fit-adjusted-boundary-report-v1"
+}

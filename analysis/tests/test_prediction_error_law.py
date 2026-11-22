@@ -8,7 +8,8 @@ import pytest
 from lll.state_space_covariance import LinearInnovations
 from lll.prediction_error_law import (score_training_laws, forecast_law_spread,
                                       score_profiled_training_laws,
-                                      profiled_forecast_law_spread)
+                                      profiled_forecast_law_spread,
+                                      training_innovation_summary)
 
 
 def independent_operator(variances):
@@ -37,6 +38,41 @@ def test_training_scores_match_independent_normal_formula():
     assert result['training_epochs'] == 2
     assert result['later_observations_used'] is False
     assert result['coverage_calibrated'] is False
+
+
+def test_training_innovation_summary_uses_declared_covariance():
+    steps = [dict(transition=np.eye(1), process_loading=np.zeros((1, 0)),
+                  observation=np.eye(1),
+                  white_loading=np.array([[math.sqrt(.2)]])) for _ in range(4)]
+    operator = LinearInnovations(
+        steps, epoch_count=4, state_dimension=1,
+        observation_dimension=1, initial_loading=np.array([[math.sqrt(.5)]]),
+        maximum_bytes=10000, design_is_fixed=True,
+        error_distribution='gaussian')
+    residual = np.array([.3, -.4, .7])
+    covariance = .5*np.ones((3, 3))+.2*np.eye(3)
+    result = training_innovation_summary(operator, residual,
+        training_epochs=3, lags=(1, 2))
+    assert result['quadratic'] == pytest.approx(
+        residual@np.linalg.solve(covariance, residual))
+    assert result['channels'][0]['lags'][1] is not None
+    assert result['later_observations_used'] is False
+    assert result['fit_adjusted_reference_calibrated'] is False
+
+
+def test_training_innovation_summary_rejects_missing_prefix():
+    operator = independent_operator([1., 1., 1., 1.])
+    with pytest.raises(ValueError, match='earlier'):
+        training_innovation_summary(operator, [1., 2., 3., 4.],
+            training_epochs=3, lags=(1,))
+
+
+def test_training_innovation_summary_accepts_training_only_operator():
+    operator = independent_operator([1., 1., 1.])
+    result = training_innovation_summary(operator, [.1, -.2, .3],
+        training_epochs=3, lags=(1,))
+    assert result['training_epochs'] == 3
+    assert result['quadratic'] == pytest.approx(.14)
 
 
 def test_equal_training_laws_remain_tied_when_future_covariance_differs():

@@ -47,14 +47,18 @@ def training_problem(times,gps,*,theta,dv,dt,covariance,model,limits,profile,clo
         maximum_interval_s=maximum_interval_s,gravity_mps2=gravity,disc_radius_m=radius_m)
 
 
-def fit_training(problem,model,*,start,maximum_evaluations,reserve,stopping='ordinary',solver_provider=None):
-    """Use the existing solver; reserve every real tangent before execution.
+def fit_training(problem,model,*,start,maximum_evaluations,reserve,stopping='ordinary',
+                 solver_provider=None,trial_residual=None):
+    """Use the existing solver and reserve every native operation before execution.
 
     A study owns start identities and their limits. This adapter does not retry,
     inspect withheld positions or alter the historical solver's stopping checks.
     """
     from .ilvis0_shape import TangentProblem
     if stopping not in ('ordinary','near_zero'):raise ValueError('explicit ordinary or near_zero stopping policy required')
+    if trial_residual is not None and (not callable(trial_residual) or stopping!='ordinary'
+                                        or solver_provider is not None):
+        raise ValueError('value trials require the ordinary solver and a callable residual provider')
     if solver_provider is not None:
         if not callable(solver_provider):raise ValueError('explicit solver provider required')
         fit_candidate=solver_provider
@@ -64,16 +68,35 @@ def fit_training(problem,model,*,start,maximum_evaluations,reserve,stopping='ord
         from .ilvis0_near_zero import fit_candidate
     if not isinstance(problem,TangentProblem) or not callable(reserve):
         raise ValueError('native training problem and reservation callback required')
+    visits = len(problem.dt)*len(problem.gps_times)
     class Counted:
-        calls=0
+        tangent_calls=0
+        value_calls=0
         def __getattr__(self,name):return getattr(problem,name)
         def residual_tangent(self,point,candidate):
-            reserve(native_calls=1,packet_visits=len(problem.dt)*len(problem.gps_times))
-            self.calls+=1
+            if trial_residual is None:
+                reserve(native_calls=1,packet_visits=visits)
+            else:
+                reserve(native_kind='tangent',native_calls=1,packet_visits=visits)
+            self.tangent_calls+=1
             return problem.residual_tangent(point,candidate)
+        def residual_value(self,point,candidate):
+            reserve(native_kind='value',native_calls=1,packet_visits=visits)
+            self.value_calls+=1
+            return trial_residual(point,candidate)
     counted=Counted()
-    fit=fit_candidate(counted,model,start=start,maximum_evaluations=maximum_evaluations)
-    if counted.calls!=fit['evaluations']:raise ValueError('native evaluation accounting mismatch')
+    options={} if trial_residual is None else dict(trial_residual=counted.residual_value)
+    fit=fit_candidate(counted,model,start=start,maximum_evaluations=maximum_evaluations,**options)
+    if trial_residual is None:
+        if counted.tangent_calls!=fit['evaluations']:
+            raise ValueError('native evaluation accounting mismatch')
+    else:
+        trials={row['evaluation'] for row in fit['step_history']}
+        accepted={row['evaluation'] for row in fit['step_history'] if row['accepted']}
+        if (counted.value_calls!=len(trials)
+                or counted.tangent_calls!=fit['evaluations']-len(trials-accepted)):
+            raise ValueError('value and tangent evaluation accounting mismatch')
+        fit['native_evaluations_by_kind']=dict(value=counted.value_calls,tangent=counted.tangent_calls)
     fit.update(prediction_receiver_positions_used_in_training=False,
         forecast_spread_is_confidence_interval=False)
     return fit

@@ -1,0 +1,576 @@
+{
+  "attempted_fits": 4,
+  "cases": {
+    "increment": {
+      "candidates": {
+        "increment": {
+          "directly_generated_calibration": {
+            "maximum_absolute_difference_normalized": 1.2,
+            "parameters": {
+              "accel_bias_x": {
+                "absolute_difference_normalized": 0.005319473522346518,
+                "fitted_normalized": 0.09468052647765347,
+                "truth_normalized": 0.09999999999999999
+              },
+              "accel_bias_y": {
+                "absolute_difference_normalized": 0.0016265746370363876,
+                "fitted_normalized": -0.20162657463703637,
+                "truth_normalized": -0.19999999999999998
+              },
+              "accel_bias_z": {
+                "absolute_difference_normalized": 0.048670697924471346,
+                "fitted_normalized": 0.19867069792447134,
+                "truth_normalized": 0.15
+              },
+              "accel_gain_x": {
+                "absolute_difference_normalized": 0.02431133325070453,
+                "fitted_normalized": 0.17431133325070453,
+                "truth_normalized": 0.15
+              },
+              "accel_gain_y": {
+                "absolute_difference_normalized": 0.054966322357794785,
+                "fitted_normalized": -0.04503367764220522,
+                "truth_normalized": -0.1
+              },
+              "accel_gain_z": {
+                "absolute_difference_normalized": 0.3690572504572009,
+                "fitted_normalized": 0.5690572504572009,
+                "truth_normalized": 0.2
+              },
+              "gyro_bias_x": {
+                "absolute_difference_normalized": 0.061893321591788245,
+                "fitted_normalized": 0.08810667840821175,
+                "truth_normalized": 0.15
+              },
+              "gyro_bias_y": {
+                "absolute_difference_normalized": 0.09959996398170376,
+                "fitted_normalized": -0.2995999639817038,
+                "truth_normalized": -0.20000000000000004
+              },
+              "gyro_bias_z": {
+                "absolute_difference_normalized": 0.42128868692874094,
+                "fitted_normalized": -0.17128868692874094,
+                "truth_normalized": 0.25
+              },
+              "gyro_gain_x": {
+                "absolute_difference_normalized": 1.2,
+                "fitted_normalized": -1.0,
+                "truth_normalized": 0.2
+              },
+              "gyro_gain_y": {
+                "absolute_difference_normalized": 0.85,
+                "fitted_normalized": -1.0,
+                "truth_normalized": -0.15
+              },
+              "gyro_gain_z": {
+                "absolute_difference_normalized": 0.2829974192108742,
+                "fitted_normalized": -0.18299741921087415,
+                "truth_normalized": 0.1
+              },
+              "time_offset": {
+                "absolute_difference_normalized": 0.2684025682201371,
+                "fitted_normalized": -0.1984025682201371,
+                "truth_normalized": 0.06999999999999999
+              }
+            }
+          },
+          "full_future": {
+            "horizontal_rms_m": 50.469950151603804,
+            "maximum_3d_m": 102.2211443168932,
+            "rms_neu_m": [
+              20.92560696326121,
+              45.92749548499773,
+              1.535032185673213
+            ],
+            "signed_mean_neu_m": [
+              -19.402028849137192,
+              -37.3707114681546,
+              -1.4427453673369366
+            ],
+            "vertical_rms_m": 1.535032185673213
+          },
+          "hundred_report_bins": [
+            {
+              "horizontal_rms_m": 15.94856352447015,
+              "maximum_3d_m": 22.69015028030364,
+              "rms_neu_m": [
+                11.831467061738698,
+                10.694534382620496,
+                0.8878799987772513
+              ],
+              "signed_mean_neu_m": [
+                -11.71411731928995,
+                -10.15722087668829,
+                -0.880065796921167
+              ],
+              "vertical_rms_m": 0.8878799987772513
+            },
+            {
+              "horizontal_rms_m": 37.30201815263149,
+              "maximum_3d_m": 52.75160075959891,
+              "rms_neu_m": [
+                17.798780362276272,
+                32.78176285489689,
+                1.3813314988748033
+              ],
+              "signed_mean_neu_m": [
+                -17.70533376753103,
+                -31.517104297623323,
+                -1.3700329454697104
+              ],
+              "vertical_rms_m": 1.3813314988748033
+            },
+            {
+              "horizontal_rms_m": 77.43287653292242,
+              "maximum_3d_m": 102.2211443168932,
+              "rms_neu_m": [
+                29.272220365477892,
+                71.68673156894315,
+                2.091067629500692
+              ],
+              "signed_mean_neu_m": [
+                -28.786635460590627,
+                -70.43780923015223,
+                -2.0781373596199315
+              ],
+              "vertical_rms_m": 2.091067629500692
+            }
+          ],
+          "later_truth_used_to_fit": false,
+          "physical_accuracy_calibrated": false
+        },
+        "point": {
+          "directly_generated_calibration": {
+            "maximum_absolute_difference_normalized": 1.2,
+            "parameters": {
+              "accel_bias_x": {
+                "absolute_difference_normalized": 0.005319473592616766,
+                "fitted_normalized": 0.09468052640738323,
+                "truth_normalized": 0.09999999999999999
+              },
+              "accel_bias_y": {
+                "absolute_difference_normalized": 0.0016265746972715656,
+                "fitted_normalized": -0.20162657469727155,
+                "truth_normalized": -0.19999999999999998
+              },
+              "accel_bias_z": {
+                "absolute_difference_normalized": 0.048670779310842294,
+                "fitted_normalized": 0.1986707793108423,
+                "truth_normalized": 0.15
+              },
+              "accel_gain_x": {
+                "absolute_difference_normalized": 0.02431133316566972,
+                "fitted_normalized": 0.1743113331656697,
+                "truth_normalized": 0.15
+              },
+              "accel_gain_y": {
+                "absolute_difference_normalized": 0.05496632182893632,
+                "fitted_normalized": -0.045033678171063685,
+                "truth_normalized": -0.1
+              },
+              "accel_gain_z": {
+                "absolute_difference_normalized": 0.36905729278640725,
+                "fitted_normalized": 0.5690572927864073,
+                "truth_normalized": 0.2
+              },
+              "gyro_bias_x": {
+                "absolute_difference_normalized": 0.061893321878740984,
+                "fitted_normalized": 0.08810667812125901,
+                "truth_normalized": 0.15
+              },
+              "gyro_bias_y": {
+                "absolute_difference_normalized": 0.09959996349396169,
+                "fitted_normalized": -0.29959996349396173,
+                "truth_normalized": -0.20000000000000004
+              },
+              "gyro_bias_z": {
+                "absolute_difference_normalized": 0.42128868697968264,
+                "fitted_normalized": -0.17128868697968264,
+                "truth_normalized": 0.25
+              },
+              "gyro_gain_x": {
+                "absolute_difference_normalized": 1.2,
+                "fitted_normalized": -1.0,
+                "truth_normalized": 0.2
+              },
+              "gyro_gain_y": {
+                "absolute_difference_normalized": 0.85,
+                "fitted_normalized": -1.0,
+                "truth_normalized": -0.15
+              },
+              "gyro_gain_z": {
+                "absolute_difference_normalized": 0.282997418877265,
+                "fitted_normalized": -0.18299741887726498,
+                "truth_normalized": 0.1
+              },
+              "time_offset": {
+                "absolute_difference_normalized": 0.2684025796834286,
+                "fitted_normalized": -0.19840257968342864,
+                "truth_normalized": 0.06999999999999999
+              }
+            }
+          },
+          "full_future": {
+            "horizontal_rms_m": 50.46997645637609,
+            "maximum_3d_m": 102.22118193708761,
+            "rms_neu_m": [
+              20.925626142061752,
+              45.92751565314434,
+              1.5350343174665784
+            ],
+            "signed_mean_neu_m": [
+              -19.402047958548703,
+              -37.37073309022752,
+              -1.4427474662290733
+            ],
+            "vertical_rms_m": 1.5350343174665784
+          },
+          "hundred_report_bins": [
+            {
+              "horizontal_rms_m": 15.948585114691598,
+              "maximum_3d_m": 22.690175504391703,
+              "rms_neu_m": [
+                11.831481628528149,
+                10.694550464342262,
+                0.8878815738640464
+              ],
+              "signed_mean_neu_m": [
+                -11.714131860247027,
+                -10.157237367426974,
+                -0.8800673678254743
+              ],
+              "vertical_rms_m": 0.8878815738640464
+            },
+            {
+              "horizontal_rms_m": 37.302045728939895,
+              "maximum_3d_m": 52.75163143290483,
+              "rms_neu_m": [
+                17.798799367082946,
+                32.7817839150686,
+                1.3813335778027922
+              ],
+              "signed_mean_neu_m": [
+                -17.70535273461227,
+                -31.51712577241692,
+                -1.3700350215846566
+              ],
+              "vertical_rms_m": 1.3813335778027922
+            },
+            {
+              "horizontal_rms_m": 77.43291023716586,
+              "maximum_3d_m": 102.22118193708761,
+              "rms_neu_m": [
+                29.27224405261994,
+                71.68675830249852,
+                2.0910702821826663
+              ],
+              "signed_mean_neu_m": [
+                -28.78665928078674,
+                -70.43783613083878,
+                -2.0781400092770914
+              ],
+              "vertical_rms_m": 2.0910702821826663
+            }
+          ],
+          "later_truth_used_to_fit": false,
+          "physical_accuracy_calibrated": false
+        }
+      },
+      "truth_ecef_reconstruction_max_m": 2.9816870751943665e-09
+    },
+    "point": {
+      "candidates": {
+        "increment": {
+          "directly_generated_calibration": {
+            "maximum_absolute_difference_normalized": 1.15,
+            "parameters": {
+              "accel_bias_x": {
+                "absolute_difference_normalized": 0.002334992107081754,
+                "fitted_normalized": 0.09766500789291824,
+                "truth_normalized": 0.09999999999999999
+              },
+              "accel_bias_y": {
+                "absolute_difference_normalized": 0.005713286975476267,
+                "fitted_normalized": -0.19428671302452372,
+                "truth_normalized": -0.19999999999999998
+              },
+              "accel_bias_z": {
+                "absolute_difference_normalized": 1.15,
+                "fitted_normalized": -1.0,
+                "truth_normalized": 0.15
+              },
+              "accel_gain_x": {
+                "absolute_difference_normalized": 0.024258800481665427,
+                "fitted_normalized": 0.17425880048166542,
+                "truth_normalized": 0.15
+              },
+              "accel_gain_y": {
+                "absolute_difference_normalized": 0.06439749623531799,
+                "fitted_normalized": -0.164397496235318,
+                "truth_normalized": -0.1
+              },
+              "accel_gain_z": {
+                "absolute_difference_normalized": 0.3795039099629055,
+                "fitted_normalized": -0.17950390996290547,
+                "truth_normalized": 0.2
+              },
+              "gyro_bias_x": {
+                "absolute_difference_normalized": 0.09899197402216425,
+                "fitted_normalized": 0.051008025977835734,
+                "truth_normalized": 0.15
+              },
+              "gyro_bias_y": {
+                "absolute_difference_normalized": 0.23074785370001774,
+                "fitted_normalized": -0.4307478537000178,
+                "truth_normalized": -0.20000000000000004
+              },
+              "gyro_bias_z": {
+                "absolute_difference_normalized": 0.75,
+                "fitted_normalized": 1.0,
+                "truth_normalized": 0.25
+              },
+              "gyro_gain_x": {
+                "absolute_difference_normalized": 0.6993166730388671,
+                "fitted_normalized": -0.4993166730388671,
+                "truth_normalized": 0.2
+              },
+              "gyro_gain_y": {
+                "absolute_difference_normalized": 0.85,
+                "fitted_normalized": -1.0,
+                "truth_normalized": -0.15
+              },
+              "gyro_gain_z": {
+                "absolute_difference_normalized": 0.0045794177981395845,
+                "fitted_normalized": 0.10457941779813959,
+                "truth_normalized": 0.1
+              },
+              "time_offset": {
+                "absolute_difference_normalized": 1.07,
+                "fitted_normalized": -1.0,
+                "truth_normalized": 0.06999999999999999
+              }
+            }
+          },
+          "full_future": {
+            "horizontal_rms_m": 84.34954511717726,
+            "maximum_3d_m": 135.40492161089372,
+            "rms_neu_m": [
+              78.60848933687417,
+              30.586780897133675,
+              4.942214953918583
+            ],
+            "signed_mean_neu_m": [
+              -76.05723974648855,
+              -14.240696062746196,
+              -4.450150178300715
+            ],
+            "vertical_rms_m": 4.942214953918583
+          },
+          "hundred_report_bins": [
+            {
+              "horizontal_rms_m": 55.335871864274196,
+              "maximum_3d_m": 64.10779133504671,
+              "rms_neu_m": [
+                53.98909362330563,
+                12.134104199046268,
+                2.3808709969603727
+              ],
+              "signed_mean_neu_m": [
+                -53.662843159132834,
+                11.795844432826007,
+                -2.363691448465525
+              ],
+              "vertical_rms_m": 2.3808709969603727
+            },
+            {
+              "horizontal_rms_m": 75.96049284750319,
+              "maximum_3d_m": 90.00449241238096,
+              "rms_neu_m": [
+                75.23170404355281,
+                10.497008161322135,
+                3.9044976780363734
+              ],
+              "signed_mean_neu_m": [
+                -74.93042550163224,
+                -6.6193296672261654,
+                -3.8463794776276536
+              ],
+              "vertical_rms_m": 3.9044976780363734
+            },
+            {
+              "horizontal_rms_m": 111.85920657598649,
+              "maximum_3d_m": 135.40492161089372,
+              "rms_neu_m": [
+                99.81609220919046,
+                50.48989831536213,
+                7.2362156636083546
+              ],
+              "signed_mean_neu_m": [
+                -99.57845057870054,
+                -47.89860295383843,
+                -7.140379608808967
+              ],
+              "vertical_rms_m": 7.2362156636083546
+            }
+          ],
+          "later_truth_used_to_fit": false,
+          "physical_accuracy_calibrated": false
+        },
+        "point": {
+          "directly_generated_calibration": {
+            "maximum_absolute_difference_normalized": 1.15,
+            "parameters": {
+              "accel_bias_x": {
+                "absolute_difference_normalized": 0.0023349905189061493,
+                "fitted_normalized": 0.09766500948109384,
+                "truth_normalized": 0.09999999999999999
+              },
+              "accel_bias_y": {
+                "absolute_difference_normalized": 0.005713286154883673,
+                "fitted_normalized": -0.1942867138451163,
+                "truth_normalized": -0.19999999999999998
+              },
+              "accel_bias_z": {
+                "absolute_difference_normalized": 1.15,
+                "fitted_normalized": -1.0,
+                "truth_normalized": 0.15
+              },
+              "accel_gain_x": {
+                "absolute_difference_normalized": 0.024258800778722583,
+                "fitted_normalized": 0.17425880077872258,
+                "truth_normalized": 0.15
+              },
+              "accel_gain_y": {
+                "absolute_difference_normalized": 0.06439749302875147,
+                "fitted_normalized": -0.16439749302875148,
+                "truth_normalized": -0.1
+              },
+              "accel_gain_z": {
+                "absolute_difference_normalized": 0.3795039930579679,
+                "fitted_normalized": -0.17950399305796785,
+                "truth_normalized": 0.2
+              },
+              "gyro_bias_x": {
+                "absolute_difference_normalized": 0.09899196760907114,
+                "fitted_normalized": 0.05100803239092886,
+                "truth_normalized": 0.15
+              },
+              "gyro_bias_y": {
+                "absolute_difference_normalized": 0.2307478495144694,
+                "fitted_normalized": -0.4307478495144694,
+                "truth_normalized": -0.20000000000000004
+              },
+              "gyro_bias_z": {
+                "absolute_difference_normalized": 0.75,
+                "fitted_normalized": 1.0,
+                "truth_normalized": 0.25
+              },
+              "gyro_gain_x": {
+                "absolute_difference_normalized": 0.6993166800826076,
+                "fitted_normalized": -0.49931668008260766,
+                "truth_normalized": 0.2
+              },
+              "gyro_gain_y": {
+                "absolute_difference_normalized": 0.85,
+                "fitted_normalized": -1.0,
+                "truth_normalized": -0.15
+              },
+              "gyro_gain_z": {
+                "absolute_difference_normalized": 0.004579416661561558,
+                "fitted_normalized": 0.10457941666156156,
+                "truth_normalized": 0.1
+              },
+              "time_offset": {
+                "absolute_difference_normalized": 1.07,
+                "fitted_normalized": -1.0,
+                "truth_normalized": 0.06999999999999999
+              }
+            }
+          },
+          "full_future": {
+            "horizontal_rms_m": 84.34940287410119,
+            "maximum_3d_m": 135.40466718380446,
+            "rms_neu_m": [
+              78.60837715245293,
+              30.58667694724528,
+              4.942201147417642
+            ],
+            "signed_mean_neu_m": [
+              -76.05713015276231,
+              -14.240538402242915,
+              -4.450136617489929
+            ],
+            "vertical_rms_m": 4.942201147417642
+          },
+          "hundred_report_bins": [
+            {
+              "horizontal_rms_m": 55.335816047703034,
+              "maximum_3d_m": 64.10770884315377,
+              "rms_neu_m": [
+                53.98901128097089,
+                12.134216026115011,
+                2.3808615125536967
+              ],
+              "signed_mean_neu_m": [
+                -53.6627611063206,
+                11.795961928416734,
+                -2.3636820129485927
+              ],
+              "vertical_rms_m": 2.3808615125536967
+            },
+            {
+              "horizontal_rms_m": 75.96037021622396,
+              "maximum_3d_m": 90.00432883496401,
+              "rms_neu_m": [
+                75.23159522867475,
+                10.49690062516773,
+                3.9044844286686944
+              ],
+              "signed_mean_neu_m": [
+                -74.9303169779909,
+                -6.6191736764999485,
+                -3.846366241714213
+              ],
+              "vertical_rms_m": 3.9044844286686944
+            },
+            {
+              "horizontal_rms_m": 111.85899568028161,
+              "maximum_3d_m": 135.40466718380446,
+              "rms_neu_m": [
+                99.81595371421793,
+                50.48970487854296,
+                7.2361976444078016
+              ],
+              "signed_mean_neu_m": [
+                -99.57831237397548,
+                -47.89840345864553,
+                -7.140361597806984
+              ],
+              "vertical_rms_m": 7.2361976444078016
+            }
+          ],
+          "later_truth_used_to_fit": false,
+          "physical_accuracy_calibrated": false
+        }
+      },
+      "truth_ecef_reconstruction_max_m": 2.9816870751943665e-09
+    }
+  },
+  "error_law_qualified": false,
+  "generated_recordings": 2,
+  "native_calls": 0,
+  "nonlinear_refit_performed": false,
+  "original_reads": 0,
+  "protected_confirmation_groups_opened": 0,
+  "receiver_noise_added_to_future_truth": false,
+  "report_source_sha256": "9d8aa2d03a720ce6f74e483f280fe57237ae64eb6f3f1f46bf34ce409c8871d4",
+  "scientific_decision": "abstain",
+  "study": "data/esa-fit-adjusted-control-v1-20261115",
+  "study_manifest_sha256": "29cb62c6f218fa2bdf28aa52e7caeb2a79e330cebb091c1f3659d2ac643a479b",
+  "study_summary_sha256": "13687cfa5b0692903fb30a2aa45dd90ccd6266c3e2617549a0a1d6bb636577be",
+  "truth_source_sha256": {
+    "analysis/lll/airquantumgrav_observation_truth.py": "5bf4eb98b7a254d40552e042dfd3ae65bd6c26266e9d90a24022d077a3aaff39",
+    "analysis/lll/airquantumgrav_truth.py": "b2aac2799e484423a11277cf23fc4bdf4def01489d76e217433b15e5c3998971"
+  },
+  "version": "esa-fit-adjusted-forecast-report-v1"
+}

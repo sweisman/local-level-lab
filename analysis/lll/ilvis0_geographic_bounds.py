@@ -6,6 +6,7 @@ the separately qualified local primitives. No archive inputs or decisions.
 Packet-boundary support and a whole-record rounding enclosure remain open.
 """
 from dataclasses import dataclass
+from fractions import Fraction
 import math
 
 import numpy as np
@@ -15,6 +16,7 @@ from .ilvis0_local_step_bounds import (Value,Matrix,add,scale,scalar_product,mat
 
 VERSION='ilvis0-geographic-global-step-bounds-v1'
 A=6378137.;E2=6.69437999014e-3
+GRAVITY_RADIUS_M = 6_371_000
 
 
 def _up(x):
@@ -109,6 +111,55 @@ def sine(a):return _trig(a,False)
 def cosine(a):return _trig(a,True)
 
 
+def gravity_at_height(gravity, height, *, anchor_height_m, departure=False):
+    """Enclose anchor gravity scaled by the native inverse-square law.
+
+    The radius is the one used by the native gravity branch. It is separate
+    from both the globe's coordinate metric and the configured disc radius.
+    The remainder is relative to the first derivatives in gravity and height.
+    Use departure when the anchor gravity is already in the reference
+    acceleration. Subtract it inside the expression to preserve its covariance.
+    """
+    if (not isinstance(gravity, Scalar) or not isinstance(height, Scalar)
+            or gravity.lower <= 0. or not math.isfinite(anchor_height_m)
+            or min(anchor_height_m, height.lower) <= -GRAVITY_RADIUS_M):
+        raise ValueError('positive gravity and finite positive gravity radii required')
+    radius = GRAVITY_RADIUS_M
+    # The native numerator adds two binary64 values even in the wide kernel.
+    numerator = Fraction(radius + float(anchor_height_m))**2
+    h_low, h, h_high = (radius + Fraction(x) for x in (height.lower, height.center, height.upper))
+    g_low, g, g_high = map(Fraction, (gravity.lower, gravity.center, gravity.upper))
+    low_factor, factor, high_factor = (numerator / x**2 for x in (h_high, h, h_low))
+    offset = int(departure)
+    center_exact = g * (factor - offset)
+    center = float(center_exact)
+    height_change = max(h - h_low, h_high - h)
+    gravity_change = max(g - g_low, g_high - g)
+    factor_change = max(factor - low_factor, high_factor - factor)
+    height_derivative = 2 * factor / h
+    half_hessian_bound = 3 * high_factor / h_low**2
+    remainder = (
+        abs(factor - offset) * Fraction(gravity.value.remainder)
+        + g * (height_derivative * Fraction(height.value.remainder)
+               + half_hessian_bound * height_change**2)
+        + gravity_change * factor_change
+        + abs(center_exact - Fraction(center))
+    )
+
+    def lower_float(exact):
+        nearest = float(exact)
+        return math.nextafter(nearest, -math.inf) if nearest > exact else nearest
+
+    def upper_float(exact):
+        nearest = float(exact)
+        return math.nextafter(nearest, math.inf) if nearest < exact else nearest
+
+    extremes = [g_endpoint * (factor_endpoint - offset)
+                for g_endpoint in (g_low, g_high) for factor_endpoint in (low_factor, high_factor)]
+    return Scalar.interval(center, lower_float(min(extremes)), upper_float(max(extremes)),
+                           remainder=upper_float(remainder))
+
+
 def _pack(values):
     return Value([v.center for v in values],_up(np.linalg.norm([v.value.change for v in values])),
         _up(np.linalg.norm([v.value.remainder for v in values])))
@@ -199,10 +250,12 @@ def _advance(position,rates,period):
     return Coordinates(*(plus(v,times(rate,period)) for v,rate in zip((position.latitude,position.longitude,position.height),rates)))
 
 
-def step(state,theta,dv,*,period,removal,gravity,model,disc_radius_m):
+def step(state,theta,dv,*,period,removal,gravity,model,disc_radius_m,gravity_anchor_height_m=None):
     if not all(isinstance(x,Scalar) for x in (period,removal,gravity)):raise ValueError('explicit scalar physical domains required')
     rates=coordinate_map(state.position,state.velocity,model=model,disc_radius_m=disc_radius_m)
     midpoint=_advance(state.position,rates,fixed_scale(period,.5))
+    if gravity_anchor_height_m is not None:
+        gravity=gravity_at_height(gravity,midpoint.height,anchor_height_m=gravity_anchor_height_m)
     transport=transport_context(midpoint.latitude,rates,model)
     _,estimate=_local(state,theta,dv,midpoint.latitude,transport,period,removal,gravity,model)
     average=scale(add(state.velocity,estimate),.5)
@@ -218,9 +271,11 @@ def observation(state,lever,*,model,disc_radius_m):
     return Coordinates(*(plus(v,o) for v,o in zip((state.position.latitude,state.position.longitude,state.position.height),offsets)))
 
 
-def partial_packet(state,theta,dv,*,packet_dt,fraction,removal,gravity,model,disc_radius_m):
+def partial_packet(state,theta,dv,*,packet_dt,fraction,removal,gravity,model,disc_radius_m,
+                   gravity_anchor_height_m=None):
     if (not isinstance(fraction,Scalar) or fraction.lower<0. or fraction.upper>1.
             or not math.isfinite(packet_dt) or packet_dt<=0.):
         raise ValueError('fraction must remain inside one supported positive-duration packet')
     return step(state,scalar_product(fraction.value,theta),scalar_product(fraction.value,dv),
-        period=fixed_scale(fraction,packet_dt),removal=removal,gravity=gravity,model=model,disc_radius_m=disc_radius_m)
+        period=fixed_scale(fraction,packet_dt),removal=removal,gravity=gravity,model=model,disc_radius_m=disc_radius_m,
+        gravity_anchor_height_m=gravity_anchor_height_m)

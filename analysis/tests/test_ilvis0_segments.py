@@ -35,6 +35,56 @@ def test_duration_boundary_and_every_segment():
     assert len(rows[0]['diagnostic_sections'])==3
 
 
+def test_prospective_distance_policy_preserves_legacy_selection():
+    frozen=module().DISTANCE_INVENTORY_POLICY
+    assert (frozen['minimum_window_s'],frozen['minimum_distance_m'],
+            frozen['minimum_speed_mps'])==pytest.approx((600.,50000.,50.))
+    nav,receiver,runs=fixture(920)
+    for row in receiver:row['speed_mps']=80.
+    assert module().select_segments(nav,receiver,runs)==[]
+    policy=dict(module().POLICY,version='distance-development-v1',
+                minimum_window_s=600.,minimum_speed_mps=50.,
+                minimum_distance_m=70000.)
+    selected=module().select_segments(nav,receiver,runs,policy=policy)
+    assert len(selected)==1
+    assert selected[0]['duration_s']==pytest.approx(898.)
+    assert selected[0]['receiver_distance_m']>=70000.
+    assert module().select_segments(nav,receiver,runs,
+        policy=dict(policy,minimum_distance_m=73000.))==[]
+
+
+def test_receiver_raw_inventory_does_not_use_fused_alignment_or_roll():
+    nav,receiver,runs=fixture(920)
+    for row in receiver:row['speed_mps']=80.
+    for row in nav:row.update(alignment_status=1,roll_deg=25.)
+    policy=module().RECEIVER_RAW_INVENTORY_POLICY
+    assert module().select_segments(nav,receiver,runs,policy=policy)==[]
+    rows=module().select_receiver_raw_segments(receiver,runs,policy=policy)
+    assert len(rows)==1 and rows[0]['receiver_distance_m']>=50000.
+    assert not rows[0]['motion_screened'] and not rows[0]['selection_used_group1_motion']
+    receiver[450]['speed_mps']=40.
+    assert module().select_receiver_raw_segments(receiver,runs,policy=policy)==[]
+    receiver[450]['speed_mps']=80.
+    missing=[row for row in receiver if not 400<=row['utc_week_s']<=410]
+    assert module().select_receiver_raw_segments(missing,runs,policy=policy)==[]
+    split=[dict(runs[0],end_s=500.),dict(runs[0],start_s=501.)]
+    assert module().select_receiver_raw_segments(receiver,split,policy=policy)==[]
+
+
+def test_alignment_ablation_changes_only_the_alignment_veto():
+    nav,receiver,runs=fixture(920)
+    for row in receiver:row['speed_mps']=80.
+    for row in nav:row['alignment_status']=1
+    assert module().select_segments(nav,receiver,runs,
+        policy=module().DISTANCE_INVENTORY_POLICY)==[]
+    recovered=module().select_segments(nav,receiver,runs,
+        policy=module().ALIGNMENT_ABLATION_POLICY)
+    assert len(recovered)==1 and recovered[0]['receiver_distance_m']>=50000.
+    nav[300]['roll_deg']=6.
+    assert module().select_segments(nav,receiver,runs,
+        policy=module().ALIGNMENT_ABLATION_POLICY)==[]
+
+
 def test_speed_is_receiver_ground_speed_not_fused_or_average():
     nav,receiver,runs=fixture(662)
     receiver[331]['speed_mps']=699/3.6
@@ -141,5 +191,11 @@ def test_streaming_selection_reproduces_receiver_dates_and_raw_span(tmp_path):
     assert r['minimum_receiver_ground_speed_kmh']==720.
     assert len(r['receiver_fixes'])==241 and report['timing']['dates']==['2009-04-14']
     assert not report['selection_used_gyro_residuals']
+    alternate=dict(module().POLICY,version='receiver-distance-test-v1',
+                   minimum_speed_mps=50.,minimum_distance_m=47000.)
+    other=module().scan(path,context,policy=alternate)
+    assert other['policy']==alternate and len(other['segments'])==1
+    assert other['segments'][0]['receiver_distance_m']>=47000.
+    assert other['segments'][0]['segment_id']!=r['segment_id']
     path.write_bytes(raw[:-1])
     with pytest.raises(ValueError,match='truncated'):module().scan(path,context)

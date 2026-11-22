@@ -34,6 +34,55 @@ def _validated_laws(operators, training_residual, training_epochs):
     return entries, observed, dimension
 
 
+def training_innovation_summary(operator, training_residual, *,
+                                training_epochs, lags=(1, 5, 20)):
+    """Describe fitted-prefix errors under one declared fixed covariance.
+
+    This uses only the operator's earlier prefix. It supplies no hypothesis
+    threshold because fitting the mean can alter the innovation distribution.
+    """
+    if (not isinstance(operator, LinearInnovations) or
+            type(training_epochs) is not int or
+            not 2 <= training_epochs <= operator.epoch_count or
+            not isinstance(lags, (tuple, list)) or not lags or
+            len(lags) != len(set(lags)) or
+            any(type(lag) is not int or not 1 <= lag < training_epochs
+                for lag in lags)):
+        raise ValueError('declared operator, earlier support and finite lags required')
+    observed = np.asarray(training_residual, dtype=float)
+    dimension = operator.observation_dimension
+    if (observed.shape != (training_epochs*dimension,) or
+            not np.all(np.isfinite(observed))):
+        raise ValueError('complete finite earlier residual prefix required')
+    white = np.asarray(operator.prefix(training_epochs).whiten(observed),
+                       dtype=float).reshape(training_epochs, dimension)
+    if not np.all(np.isfinite(white)):
+        raise ValueError('finite earlier innovations required')
+    channels = []
+    for axis in range(dimension):
+        series = white[:, axis]
+        correlations = {}
+        for lag in lags:
+            left, right = series[:-lag], series[lag:]
+            left_sd, right_sd = np.std(left), np.std(right)
+            correlations[lag] = (None if len(left) < 2 or
+                left_sd == 0 or right_sd == 0 else float(np.mean(
+                    (left-np.mean(left))*(right-np.mean(right)))/
+                    (left_sd*right_sd)))
+        channels.append(dict(index=axis,
+            mean=float(np.mean(series)),
+            rms=float(np.sqrt(np.mean(series*series))),
+            lags=correlations))
+    return dict(training_epochs=training_epochs,
+        observation_dimension=dimension,
+        quadratic=float(np.sum(white*white)),
+        whitened_rms=float(np.sqrt(np.mean(white*white))),
+        channels=channels,
+        later_observations_used=False,
+        fit_adjusted_reference_calibrated=False,
+        scientific_decision='abstain')
+
+
 def score_training_laws(operators, training_residual, *, training_epochs):
     """Return fixed-law likelihoods; no withheld residual is accepted.
 

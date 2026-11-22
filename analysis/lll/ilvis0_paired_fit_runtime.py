@@ -5,6 +5,31 @@ from pathlib import Path
 import re
 
 
+def load_paired_tangent(variant, model, directory, *,
+                        expected_source_sha256, expected_wide_loader_sha256,
+                        expected_selective_loader_sha256,
+                        gravity_anchor_height_m, candidate_loader=None):
+    """Keep the wide reference fixed; optionally choose the candidate by model."""
+    from lll.ilvis0_hybrid_tangent import load as hybrid_load
+    from lll.ilvis0_wide_tangent import load as wide_load
+
+    kwargs = dict(expected_source_sha256=expected_source_sha256,
+                  gravity_anchor_height_m=gravity_anchor_height_m)
+    if variant == 'wide':
+        return wide_load(directory, **kwargs)
+    if variant != 'hybrid':
+        raise ValueError('unsupported paired tangent variant')
+    if candidate_loader is None:
+        return hybrid_load(directory,
+                           expected_loader_sha256=expected_wide_loader_sha256,
+                           **kwargs)
+    return candidate_loader(
+        model, directory,
+        expected_wide_loader_sha256=expected_wide_loader_sha256,
+        expected_selective_loader_sha256=expected_selective_loader_sha256,
+        **kwargs)
+
+
 def prepare(root, *, qualification, identity, recipe, scope, sources,
             required_tests, parent_proof, adapter, tasks):
     from lll.airquantumgrav_inventory import environment
@@ -54,12 +79,10 @@ def prepare(root, *, qualification, identity, recipe, scope, sources,
 
 
 def evaluate(task, context, *, recipe, scope, parent_proof, tasks,
-             construction_limits, pair):
+             construction_limits, pair, candidate_loader=None):
     from lll.airquantumgrav_inventory import environment
     from lll.ilvis0_control_shards import _check_continue
     from lll.ilvis0_exploratory import load_kernel
-    from lll.ilvis0_hybrid_tangent import load as hybrid_load
-    from lll.ilvis0_wide_tangent import load as wide_load
     from lll.ilvis0_wide_training import SOURCES, bind
     from lll.studies.artifacts import digest
     from lll.studies.journal import Journal
@@ -104,13 +127,14 @@ def evaluate(task, context, *, recipe, scope, parent_proof, tasks,
         def build(anchor):
             check()
             value, vm = load_kernel(directory, gravity_anchor_height_m=anchor)
-            if variant == 'wide':
-                tangent, tm = wide_load(directory, gravity_anchor_height_m=anchor,
-                    expected_source_sha256=hashes['analysis/lll/ilvis0_tangent.cpp'])
-            else:
-                tangent, tm = hybrid_load(directory, gravity_anchor_height_m=anchor,
-                    expected_source_sha256=hashes['analysis/lll/ilvis0_tangent.cpp'],
-                    expected_loader_sha256=hashes['analysis/lll/ilvis0_wide_tangent.py'])
+            tangent, tm = load_paired_tangent(
+                variant, task['payload']['model'], directory,
+                gravity_anchor_height_m=anchor,
+                expected_source_sha256=hashes['analysis/lll/ilvis0_tangent.cpp'],
+                expected_wide_loader_sha256=hashes['analysis/lll/ilvis0_wide_tangent.py'],
+                expected_selective_loader_sha256=hashes[
+                    'analysis/lll/ilvis0_hybrid_tangent.py'],
+                candidate_loader=candidate_loader)
             if (vm['source_sha256'] != hashes['analysis/lll/ilvis0_native.c']
                     or vm['compiler'] != env['compilers']['cc']
                     or tm['compiler'] != env['compilers']['c++']):

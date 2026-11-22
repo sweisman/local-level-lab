@@ -53,7 +53,7 @@ def test_weighted_prediction_uses_only_earlier_rows_and_preserves_all_columns(ke
     assert np.array_equal(result['forecast']['coordinates'],saved['forecast.json']['coordinates'])
 
 
-@pytest.mark.parametrize('fault',['start','time','rows','cap','profile'])
+@pytest.mark.parametrize('fault',['start','time','rows','cap','profile','solver_provider'])
 def test_weighted_prediction_rejects_unsupported_inputs_before_native_work(fault):
     calls=[];kwargs=dict(theta=np.zeros((600,3)),dv=np.ones((600,3)),dt=np.full(600,.003),
         times=np.array([.1,.2,.3]),training_rows=rows(np.zeros((2,3)),[.1,.2]),time_origin_s=0.,
@@ -64,6 +64,27 @@ def test_weighted_prediction_rejects_unsupported_inputs_before_native_work(fault
     elif fault=='time':kwargs['time_origin_s']=100.
     elif fault=='rows':kwargs['training_rows']=kwargs['training_rows']*2
     elif fault=='cap':kwargs['maximum_evaluations']=0
+    elif fault=='solver_provider':kwargs['solver_provider']=object()
     else:kwargs['profile']='yes'
     with pytest.raises(ValueError):library().train_and_forecast(**kwargs)
     assert not calls
+
+
+def test_explicit_solver_provider_reaches_shared_training_fit(kernels):
+    from lll.airquantumgrav_training_controls import generated_training,recipe
+    from lll.ilvis0_near_zero import fit_candidate
+    r=recipe();r.update(duration_s=2.,queries=9,query_start_s=.1,query_step_s=.2)
+    material=generated_training(dict(model='flat_still',latitude_deg=55.,profile=False,start=0),r,
+                                reserve=lambda **v:None)
+    training=rows(material['training_gps'],material['times'][:6]);seen=[]
+    def provider(problem,model,*,start,maximum_evaluations):
+        seen.append(model)
+        return fit_candidate(problem,model,start=start,maximum_evaluations=maximum_evaluations)
+    result=library().train_and_forecast(theta=material['theta'],dv=material['dv'],dt=material['dt'],
+        times=material['times'],training_rows=training,time_origin_s=0.,model='flat_still',profile=False,
+        policy_id='reported-short-v1',start=0,limits=r['limits'],maximum_evaluations=8,
+        maximum_interval_s=.005,kernel=kernels[0],tangent_kernel=kernels[1],
+        reserve=lambda **v:None,save=lambda *args:None,check_continue=lambda:None,
+        solver_provider=provider)
+    assert seen==['flat_still']
+    assert result['fit']['model']=='flat_still'

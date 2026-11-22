@@ -36,7 +36,8 @@ def _body(angles):
     return rz@ry@rx
 
 
-def truth(model,times,*,latitude_deg,pattern,removal,height_profile=None,gravity_model='constant'):
+def truth(model,times,*,latitude_deg,pattern,removal,height_profile=None,
+          gravity_model='constant',route='eastbound'):
     """Return positions, derivative channels and body rates from fixed geometry.
 
     The acceleration equation uses the declared effective downward gravity and
@@ -49,8 +50,10 @@ def truth(model,times,*,latitude_deg,pattern,removal,height_profile=None,gravity
             or t.ndim!=1 or not len(t) or not np.all(np.isfinite(t))
             or not math.isfinite(latitude_deg) or not -80<=latitude_deg<=80
             or not math.isfinite(removal) or not 0<=removal<=1
-            or height_profile not in (None,'climb','descend')
+            or height_profile not in (None,'climb','descend','level')
             or gravity_model not in ('constant','inverse_square_height')
+            or route not in ('eastbound','straight','turning')
+            or (pattern=='stationary' and route!='eastbound')
             or (height_profile is not None and pattern=='stationary')
             or (gravity_model!='constant' and height_profile is None)):
         raise ValueError('declared model/pattern and finite generated times, latitude and removal required')
@@ -61,20 +64,33 @@ def truth(model,times,*,latitude_deg,pattern,removal,height_profile=None,gravity
         angles=np.tile([math.pi/2,0.,0.],(n,1));angle_rates=np.zeros((n,3))
     else:
         kp,kl,kh=(2*math.pi/v for v in (300.,180.,240.))
-        amplitude=8/(A*kp);base=75/(A*math.cos(p0))
+        amplitude={'eastbound':8.,'straight':0.,'turning':-40.}[route]/(A*kp)
+        base=75/(A*math.cos(p0))
         if height_profile=='descend':amplitude=-amplitude
         phi=p0+amplitude*np.sin(kp*t);pd=amplitude*kp*np.cos(kp*t);pdd=-amplitude*kp*kp*np.sin(kp*t)
         longitude=math.radians(-40.)+base*(t+.1*np.sin(kl*t)/kl)
         ld=base*(1+.1*np.cos(kl*t));ldd=-base*.1*kl*np.sin(kl*t)
         height=600+10*np.sin(kh*t);hd=10*kh*np.cos(kh*t);hdd=-10*kh*kh*np.sin(kh*t)
-        if height_profile is not None:
+        if height_profile=='level':
+            height=np.full(n,2500.);hd=zero.copy();hdd=zero.copy()
+        elif height_profile is not None:
             sign=-1. if height_profile=='climb' else 1.;k=math.pi/1200.
             height=2500.+sign*1000.*np.cos(k*t)
             hd=-sign*1000.*k*np.sin(k*t);hdd=-sign*1000.*k*k*np.cos(k*t)
         angles=[];angle_rates=[]
         for amplitude,period in PATTERNS[pattern]:
             k=2*math.pi/period;angles.append(amplitude*np.sin(k*t));angle_rates.append(amplitude*k*np.cos(k*t))
-        angles=np.column_stack(angles);angles[:,0]+=math.pi/2;angle_rates=np.column_stack(angle_rates)
+        angles=np.column_stack(angles);angle_rates=np.column_stack(angle_rates)
+        if route=='turning':
+            sp,cp=np.sin(phi),np.cos(phi)
+            vn=A*pd
+            ve=A*cp*ld
+            vn_d=A*pdd
+            ve_d=A*(-sp*pd*ld+cp*ldd)
+            angles[:,0]+=np.arctan2(ve,vn)
+            angle_rates[:,0]+=(vn*ve_d-ve*vn_d)/(vn*vn+ve*ve)
+        else:
+            angles[:,0]+=math.pi/2
     sp,cp=np.sin(phi),np.cos(phi);sl,cl=np.sin(longitude),np.cos(longitude)
     er=np.column_stack((cl,sl,zero));et=np.column_stack((-sl,cl,zero))
     if model.startswith('sphere'):
@@ -117,7 +133,7 @@ def truth(model,times,*,latitude_deg,pattern,removal,height_profile=None,gravity
     angular-=removal*np.einsum('nji,nj->ni',body,conventional)
     if gravity_model=='constant':required=acceleration+2*np.cross(world_field,velocity)-GRAVITY*down
     else:
-        anchor=1500. if height_profile=='climb' else 3500.
+        anchor={'climb':1500.,'descend':3500.,'level':2500.}[height_profile]
         magnitude=GRAVITY/(1+(height-anchor)/(DISC_RADIUS+anchor))**2
         required=acceleration+2*np.cross(world_field,velocity)-magnitude[:,None]*down
     force=np.einsum('nji,nj->ni',axes,required)

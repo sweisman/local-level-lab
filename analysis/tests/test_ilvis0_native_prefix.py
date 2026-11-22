@@ -3,6 +3,7 @@ import numpy as np
 import pytest
 
 from native_prefix_reference import original
+from test_ilvis0_height_gravity_bounds import native as height_gravity_kernel  # noqa: F401
 
 
 def case(model,profile):
@@ -108,7 +109,57 @@ def test_report_observer_is_isolated_and_keeps_completed_prefix_on_failure(kerne
     assert reports_equal(saved,[r.report() for r in plain['bounds'][:2]])
 
 
-def test_observer_extension_preserves_the_qualified_numerical_source():
+@pytest.mark.parametrize('model,profile',[(0,True),(1,False),(2,False)])
+def test_shared_prefix_bounds_use_native_midpoint_gravity(model,profile,kernels,height_gravity_kernel):
+    import ctypes
+    from lll.ilvis0_native_prefix import enclose_many
+    from lll.ilvis0_remainder_native import enclose
+
+    config,theta,dv,dt,lo,hi,ref,proof,times=case(model,profile)
+    anchor=1482.531
+    center=ref.parent.center
+    common=dict(lower=lo,upper=hi,reference=ref,conditioning=proof,maximum_seconds=30.)
+    options=dict(times=times,prefix_kernels=kernels[0],
+        maximum_packet_steps=3*len(dt),reserve=lambda **v:None,**common)
+    result=enclose_many(config,theta,dv,dt,gravity_anchor_height_m=anchor,reuse_force_profiles=True,**options)
+    constant=enclose_many(config,theta,dv,dt,**options)
+    assert result['binding']!=constant['binding']
+    assert result['work']==dict(constant['work'],force_profile_packets=len(dt))
+    assert result['work']['prefix_packet_steps']>0
+    assert result['observational_coverage_qualified'] is False
+    assert abs(result['bounds'][-1].center[2]-constant['bounds'][-1].center[2])>1e-5
+
+    def native(point):
+        out=np.empty((len(times),3));jac=np.empty((3*len(times),27))
+        assert height_gravity_kernel(len(dt),theta,dv,dt,len(times),np.array(times),
+            config['initial_c'],config['initial_v'],config['initial_r'],config['limits'],
+            point,model,int(profile),config['gravity'],config['radius'],out,jac,
+            ctypes.byref(ctypes.c_int()))==0
+        return out,jac.reshape(len(times),3,27)
+
+    coordinates,jacobians=native(center)
+    probes=[(point,native(point)[0]) for point in (lo,hi,lo+.63*(hi-lo))]
+    scale=np.array([6371000.,6371000.,1.])
+    for i,bound in enumerate(result['bounds']):
+        cold=enclose(config,theta,dv,dt,time=times[i],gravity_anchor_height_m=anchor,**common,**kernels[1])
+        assert bound.report()==cold.report()
+        assert bound.report()['gravity_anchor_height_m']==anchor
+        assert np.max(np.abs(bound.center-coordinates[i])*scale)<1e-6
+        with pytest.raises(ValueError,match='gravity anchor'):
+            bound.design(jacobians[i],ref)
+        design=bound.design(jacobians[i],ref,gravity_anchor_height_m=anchor)
+        assert np.array_equal(design[:,:27],jacobians[i])
+        assert design.shape==(3,51)
+        for point,forecast in probes:
+            delta=np.r_[point-center,ref.normalized_values_at(point)]
+            remainder=np.abs(forecast[i]-coordinates[i]-design@delta)
+            assert np.all(remainder*scale<=bound.unshared_remainder*scale+1e-6)
+
+    with pytest.raises(ValueError,match='gravity anchor'):
+        enclose_many(config,theta,dv,dt,gravity_anchor_height_m=-6371000.,**options)
+
+
+def test_optional_extensions_preserve_the_qualified_prefix_orchestration():
     import ast
     from pathlib import Path
     from lll.studies.closed import ClosedStudy
@@ -120,12 +171,32 @@ def test_observer_extension_preserves_the_qualified_numerical_source():
     finally:study.close()
     tree=ast.parse((root/'analysis/lll/ilvis0_native_prefix.py').read_bytes())
     function=next(n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name=='enclose_many')
-    assert function.args.kwonlyargs[-1].arg=='on_report'
-    assert isinstance(function.args.kw_defaults[-1],ast.Constant) and function.args.kw_defaults[-1].value is None
-    function.args.kwonlyargs.pop();function.args.kw_defaults.pop()
+    assert function.args.kwonlyargs.pop().arg=='reuse_force_profiles'
+    assert function.args.kw_defaults.pop().value is False
+    for name in ('gravity_anchor_height_m','on_report'):
+        assert function.args.kwonlyargs.pop().arg==name
+        default=function.args.kw_defaults.pop()
+        assert isinstance(default,ast.Constant) and default.value is None
+    # Height-dependent arithmetic lives inside these functions. The generated
+    # comparisons above test both their constant and height-dependent outputs.
+    dynamics={'_prepare','_advance','_finish','_cold_enclose','_force_clock','_force_profile'}
+    historical=ast.parse(original_source)
+    for module in (tree,historical):
+        module.body=[n for n in module.body
+                     if not isinstance(n,ast.FunctionDef) or n.name not in dynamics]
     removed=[]
     class RemoveObserver(ast.NodeTransformer):
+        def visit_Call(self,node):
+            if isinstance(node.func,ast.Name) and node.func.id=='_prepare':
+                anchor=node.keywords.pop()
+                assert ast.unparse(anchor)=='gravity_anchor_height_m=gravity_anchor_height_m'
+            return self.generic_visit(node)
+
         def visit_If(self,node):
+            if ast.unparse(node.test)=='reuse_force_profiles':
+                assert not node.orelse
+                assert ast.unparse(node.body[-1])=='c.force_profiles = dict(zip(times, profiles, strict=True))'
+                return None
             if ast.unparse(node.test)=='on_report is not None':
                 assert len(node.body)==1 and not node.orelse
                 assert ast.unparse(node.body[0])=='on_report(len(bounds) - 1, deepcopy(bounds[-1].report()))'
@@ -136,4 +207,4 @@ def test_observer_extension_preserves_the_qualified_numerical_source():
             return self.generic_visit(node)
     tree=RemoveObserver().visit(tree)
     assert len(removed)==2
-    assert ast.dump(tree,include_attributes=False)==ast.dump(ast.parse(original_source),include_attributes=False)
+    assert ast.dump(tree,include_attributes=False)==ast.dump(historical,include_attributes=False)

@@ -29,10 +29,11 @@ def _component_change(row,reference,remainder,full_change):
     return min(full_change,_upper(total))
 
 
-def make_reference(configuration,theta,dv,dt,*,lower,upper,center):
+def make_reference(configuration,theta,dv,dt,*,lower,upper,center,outward_initial_force=False):
     arrays,source=previous._data(configuration,theta,dv,dt)
     reference=ReferenceErrors(configuration,lower,upper,center,source_id=source)
-    return AccelerationTerms(reference,arrays[1][0],float(arrays[2][0]),configuration['gravity'])
+    return AccelerationTerms(reference,arrays[1][0],float(arrays[2][0]),configuration['gravity'],
+                             outward_initial_force=outward_initial_force)
 
 
 def _rates(position,initial_components,acceleration,common,residual_velocity,metric,model,radius):

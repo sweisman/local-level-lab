@@ -29,23 +29,23 @@ def sha256(path):
     return digest.hexdigest()
 
 
-def parse_target_listing(lines):
+def parse_target_listing(lines, *, expected=TARGETS):
     found = {}
     for line in lines:
         fields = line.split(maxsplit=8)
         if len(fields) != 9 or not fields[0].startswith('-'):
             raise ValueError('regular-file ESA GNSS listing required')
         name = fields[8]
-        if name not in TARGETS:
+        if name not in expected:
             continue
         if name in found:
             raise ValueError('unique target names required')
         size = int(fields[4])
-        if size != TARGETS[name]:
+        if size != expected[name]:
             raise ValueError('target size differs from frozen listing')
         found[name] = size
-    if found != TARGETS:
-        raise ValueError('both frozen target names required')
+    if found != expected:
+        raise ValueError('all frozen target names required')
     return found
 
 

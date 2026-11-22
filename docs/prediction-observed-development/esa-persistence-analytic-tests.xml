@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="7" time="1.137" timestamp="2026-11-22T00:35:31.795321+02:00" hostname="zaphod"><testcase classname="tests.test_esa_persistence_analytic" name="test_analytic_solver_recovers_interior_and_bound_active_optima[False]" time="0.003" /><testcase classname="tests.test_esa_persistence_analytic" name="test_analytic_solver_recovers_interior_and_bound_active_optima[True]" time="0.002" /><testcase classname="tests.test_esa_persistence_analytic" name="test_analytic_budget_retains_best_charged_score" time="0.001"><failure message="TypeError: unsupported operand type(s) for -: 'tuple' and 'float'">def test_analytic_budget_retains_best_charged_score():
+        evaluated = {}
+    
+        def objective(point):
+            delta = point-2.
+            objective_value = float(delta@delta)
+            evaluated[tuple(point)] = objective_value
+            return objective_value, 2.*delta
+    
+&gt;       result = fit_analytic(objective, np.zeros(6), maximum=2, reserve=lambda: None)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+analysis/tests/test_esa_persistence_analytic.py:39: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+analysis/lll/esa_persistence_analytic.py:60: in fit_analytic
+    initial = objective(start)[0]
+              ^^^^^^^^^^^^^^^^
+analysis/lll/esa_persistence_analytic.py:53: in objective
+    loss, gradient = score(point)
+                     ^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+point = (0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+
+    def objective(point):
+&gt;       delta = point-2.
+                ^^^^^^^^
+E       TypeError: unsupported operand type(s) for -: 'tuple' and 'float'
+
+analysis/tests/test_esa_persistence_analytic.py:34: TypeError</failure></testcase><testcase classname="tests.test_esa_persistence_gradient" name="test_gradient_matches_dense_likelihood_on_irregular_times[0]" time="0.378" /><testcase classname="tests.test_esa_persistence_gradient" name="test_gradient_matches_dense_likelihood_on_irregular_times[4]" time="0.004" /><testcase classname="tests.test_esa_persistence_gradient" name="test_motion_derivatives_vanish_with_no_motion" time="0.002" /><testcase classname="tests.test_esa_persistence_gradient" name="test_probe_sides_and_projected_gradient_at_bounds" time="0.002" /></testsuite></testsuites>

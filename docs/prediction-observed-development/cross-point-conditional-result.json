@@ -1,0 +1,138 @@
+{
+  "accuracy_screens": {
+    "receiver_only_point": {
+      "calibrated_goodness_of_fit": false,
+      "checks": {
+        "horizontal_rms_m": true,
+        "maximum_absolute_up_m": true,
+        "maximum_horizontal_m": true,
+        "vertical_rms_m": true
+      },
+      "limits": {
+        "horizontal_rms_m": 10.0,
+        "maximum_absolute_up_m": 150.0,
+        "maximum_horizontal_m": 50.0,
+        "vertical_rms_m": 30.0
+      },
+      "passed": true,
+      "scientific_decision": "abstain"
+    },
+    "weighted_point": {
+      "calibrated_goodness_of_fit": false,
+      "checks": {
+        "horizontal_rms_m": true,
+        "maximum_absolute_up_m": true,
+        "maximum_horizontal_m": true,
+        "vertical_rms_m": true
+      },
+      "limits": {
+        "horizontal_rms_m": 10.0,
+        "maximum_absolute_up_m": 150.0,
+        "maximum_horizontal_m": 50.0,
+        "vertical_rms_m": 30.0
+      },
+      "passed": true,
+      "scientific_decision": "abstain"
+    }
+  },
+  "later_receiver_values_used_for_forecast": false,
+  "manifest_sha256": "e6359c131be82659aec62f6bba2dd7a04fb0c7a8cb2bb03f68d8c3e9cd5db75c",
+  "observation_error_law_calibrated": false,
+  "prediction_epochs": 400,
+  "protected_confirmation_groups_opened": 0,
+  "report_source_sha256": "28fc05956c97802e35345a8faca71f0b75a3259c7451ae12e825eed44e108d71",
+  "same_complete_error_law": true,
+  "scientific_decision": "abstain",
+  "scores": {
+    "receiver_only_point": {
+      "adjustment": {
+        "horizontal_rms_m": 7.755113809579731,
+        "maximum_3d_m": 16.658606409536457,
+        "maximum_absolute_up_m": 0.9534049180183501,
+        "maximum_horizontal_m": 16.631301409395103,
+        "rms_neu_m": [
+          3.6482911442607957,
+          6.8433735778665845,
+          0.52323594976096
+        ],
+        "total_rms_m": 7.7727450787129575,
+        "vertical_rms_m": 0.52323594976096
+      },
+      "conditional": {
+        "horizontal_rms_m": 9.068466407460217,
+        "maximum_3d_m": 35.45492797414458,
+        "maximum_absolute_up_m": 27.966254808266967,
+        "maximum_horizontal_m": 21.79312987275725,
+        "rms_neu_m": [
+          8.985469538762583,
+          1.2240997309060084,
+          12.859478598052245
+        ],
+        "total_rms_m": 15.735414605182736,
+        "vertical_rms_m": 12.859478598052245
+      },
+      "prediction_epochs": 400,
+      "raw": {
+        "horizontal_rms_m": 7.802722559272892,
+        "maximum_3d_m": 34.50918853692037,
+        "maximum_absolute_up_m": 28.919659726285317,
+        "maximum_horizontal_m": 18.829162880823656,
+        "rms_neu_m": [
+          5.381551655188555,
+          5.6499009831609825,
+          13.372589087748938
+        ],
+        "total_rms_m": 15.482526223028595,
+        "vertical_rms_m": 13.372589087748938
+      }
+    },
+    "weighted_point": {
+      "adjustment": {
+        "horizontal_rms_m": 247.12457952497655,
+        "maximum_3d_m": 382.9467434880589,
+        "maximum_absolute_up_m": 15.588045773788508,
+        "maximum_horizontal_m": 382.6293522157748,
+        "rms_neu_m": [
+          37.72395047998389,
+          244.2282976347749,
+          9.907188838341137
+        ],
+        "total_rms_m": 247.32308868376,
+        "vertical_rms_m": 9.907188838341137
+      },
+      "conditional": {
+        "horizontal_rms_m": 2.848614934780906,
+        "maximum_3d_m": 26.652103717193075,
+        "maximum_absolute_up_m": 25.461520527083394,
+        "maximum_horizontal_m": 7.876903262128332,
+        "rms_neu_m": [
+          0.567587275133229,
+          2.7914963248701694,
+          11.881293822302055
+        ],
+        "total_rms_m": 12.218009246130476,
+        "vertical_rms_m": 11.881293822302055
+      },
+      "prediction_epochs": 400,
+      "raw": {
+        "horizontal_rms_m": 249.41078308821852,
+        "maximum_3d_m": 390.08021909610943,
+        "maximum_absolute_up_m": 9.873474753294886,
+        "maximum_horizontal_m": 389.95524336308745,
+        "rms_neu_m": [
+          37.63036494437597,
+          246.5556617780891,
+          4.3512622847571985
+        ],
+        "total_rms_m": 249.44873662568256,
+        "vertical_rms_m": 4.3512622847571985
+      }
+    }
+  },
+  "scoring_sha256": "5cce2704433e7dece8eec336882692e15194d6c882d8e2bd7efa67265a172c2b",
+  "study": "data/esa-conditional-cross-point-development-v3",
+  "summary_sha256": "ba18995d2e362e052d044559c6c9406cd1171d97750076a9a774f7692a7444a7",
+  "training_epochs": 800,
+  "version": "esa-conditional-cross-point-report-v1",
+  "weighted_training_cost_at_receiver_only_point": 145.8785211709639
+}

@@ -6,6 +6,10 @@ from lll.studies.runtime import Definition
 
 
 def definition(root):
+    registry=root/'analysis/study-status.json'
+    registry.parent.mkdir(parents=True,exist_ok=True)
+    registry.write_text('{"studies":[]}')
+    (root/'analysis/study-status.lock').touch()
     for name in ('analysis/lll/adapter.py','analysis/tests/ilvis0_control_shards.py',
         'analysis/lll/ilvis0_control_shards.py','analysis/lll/ilvis0_receipt_journal.py',
         'analysis/lll/compute_budget.py','analysis/lll/__init__.py'):

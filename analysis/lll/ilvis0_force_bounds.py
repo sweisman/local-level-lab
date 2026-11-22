@@ -68,7 +68,7 @@ class _Box:
 
 
 def force_bounds(jet_bounds, *, model, background_rate_bounds_rads,
-                 gravity_bounds_mps2, disc_radius_m):
+                 gravity_bounds_mps2, disc_radius_m, include_matched_disc=False):
     """Enclose force components and magnitude for a nine-dimensional jet box.
 
     The jet order is lat/lon/height, their rates, then their accelerations;
@@ -80,7 +80,9 @@ def force_bounds(jet_bounds, *, model, background_rate_bounds_rads,
     if (jet.shape != (9, 2) or not np.all(np.isfinite(jet))
             or np.any(jet[:, 1] < jet[:, 0])):
         raise ValueError('finite ordered nine-component coordinate-jet box required')
-    if model not in ('sphere_rotating', 'sphere_still', 'flat_still'):
+    from .ilvis0_receiver_force import DISC_WITH_FIELD, FIELD_MODELS, MATCHED_MODELS, MODELS
+
+    if model not in (MATCHED_MODELS if include_matched_disc else MODELS):
         raise ValueError('unsupported physical candidate')
     def physical(value):
         value = np.asarray(value, float)
@@ -90,7 +92,7 @@ def force_bounds(jet_bounds, *, model, background_rate_bounds_rads,
     omega = physical(background_rate_bounds_rads)
     gravity = physical(gravity_bounds_mps2)
     if (gravity.lo <= 0. or not math.isfinite(disc_radius_m) or disc_radius_m <= 0.
-            or (model != 'sphere_rotating' and (omega.lo != 0. or omega.hi != 0.))):
+            or (model not in FIELD_MODELS and (omega.lo != 0. or omega.hi != 0.))):
         raise ValueError('positive gravity/radius and model-consistent field bounds required')
     phi, _, height, p, l, h, pp, ll, hh = [_Box(*row) for row in jet]
     if phi.lo <= -math.pi/2+1e-6 or phi.hi >= math.pi/2-1e-6:
@@ -98,7 +100,7 @@ def force_bounds(jet_bounds, *, model, background_rate_bounds_rads,
     s = _Box.outward(math.sin(phi.lo), math.sin(phi.hi))
     c = _Box.outward(min(math.cos(phi.lo), math.cos(phi.hi)),
         1. if phi.lo <= 0. <= phi.hi else max(math.cos(phi.lo), math.cos(phi.hi)))
-    if model == 'flat_still':
+    if model in ('flat_still', DISC_WITH_FIELD):
         radius = disc_radius_m*(math.pi/2-phi)
         velocity = [disc_radius_m*p, radius*l, -h]
         acceleration = [disc_radius_m*pp, radius*ll-disc_radius_m*p*l, -hh]

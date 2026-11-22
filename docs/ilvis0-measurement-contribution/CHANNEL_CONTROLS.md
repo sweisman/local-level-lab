@@ -25,12 +25,38 @@ removing the gyroscope would put related inertial information back into the
 comparison. Assuming aircraft heading equals GPS course would instead add an
 alignment assumption; the two are not interchangeable measurements.
 
+The [ESA earlier-only direction alignment](../prediction-observed-development/ESA_FORCE_DIRECTION_TRANSFER_RESULT.md)
+uses the measured gyro to put all force directions in one frame. One
+rotation fitted to the first eight directions transfers better for the
+globe under nominal calibration. With one allowed accelerometer correction,
+the retained-field comparison instead favors the disc. A justified
+calibration range remains necessary to interpret this channel comparison.
+
 A useful first acceleration-only comparison avoids inventing that missing
 orientation. **Rotations preserve force magnitude**, so compare measured
 acceleration magnitude with the force magnitude required by each trajectory
 model. A mismatch cannot be hidden by choosing another orientation. Matching
 magnitudes, however, does not determine orientation or show that a complete
 gyroscope/acceleration history is consistent.
+
+There is a sharper limit for a **gyro-free model with otherwise unrestricted
+attitude**. On a continuous interval where both force vectors stay nonzero,
+equal magnitudes at every instant permit some continuous orientation that maps
+one vector onto the other. Continuous frames can be chosen along the two force
+directions and one frame rotated onto the other; rotation around that direction
+remains free. This construction supplies no independently measured aircraft
+attitude or bound on how fast it changes. The recorded scalar envelopes overlap,
+but that is not proof of exact equality under one shared calibration or of a
+physically adequate flight. Additional rejection requires justified attitude,
+motion or calibration constraints rather than an arbitrary gyro-free heading.
+
+A [sampled-history construction](../../analysis/lll/ilvis0_gyro_free_path.py)
+now makes that ambiguity executable. Three
+[known-answer checks](../../analysis/tests/test_ilvis0_gyro_free_path.py)
+build two different attitude histories that produce the **same complete force
+sequence**, including an opposite-force step. The construction assumes exact
+equal magnitudes and imposes no bound on attitude change; it is a geometry
+control, not a reconstruction of any archived flight.
 
 This control retains receiver-coordinate, gravity and acceleration-calibration
 assumptions. It asks whether those non-gyro inputs alone can produce a model
@@ -115,20 +141,112 @@ choose the longest one meeting explicitly supplied motion limits, identically
 for all physical models. No flight-specific threshold or recorded interval has
 been frozen; this does not qualify a new observed-data fit.
 
-1. Preserve the completed exact-trajectory controls, including indistinguishable
-   stationary cases and every incorrect-model outcome. They qualify the force
-   calculation, not a recorded-data likelihood.
-2. Freeze a receiver-only support policy, assess trajectory approximation and propagate its joint uncertainty
-   through force and magnitude. Specify shared calibration freedoms, raw-increment
-   averaging, synchronization and initialization dependencies. Noise in differentiated
-   positions must not be treated as an exact force observation.
-3. Follow the completed local calibration matrix with bounded nonlinear checks
-   of the surviving temporal distinctions before freezing a recorded-data comparison.
-   Reuse preselected intervals; do not choose stretches by favorable force residuals.
-4. Preserve the original full-position results and the unresolved horizontal-only
-   sensitivity result separately. Further timing-grid expansion is deferred.
+A [joint force-magnitude covariance helper](../../analysis/lll/ilvis0_force_magnitude_covariance.py)
+now carries a **supplied** receiver-position covariance through the
+gyro-free force calculation. It keeps error shared by overlapping receiver
+windows instead of counting them as independent. Eight checks pass, including
+stationary overlap, moving-model sensitivity, a correlated-noise nonlinear
+replay and abstention when required force is near zero.
+This local linearization does not calibrate receiver error, trajectory
+approximation, acceleration calibration or nonlinear coverage. It makes no
+aircraft decision.
 
-This software step starts no new archived-data fit, synthetic flight campaign,
-free rotation-field analysis or population calibration.
+A [receiver-only bridge](../../analysis/lll/ilvis0_joint_receiver_force.py)
+now applies the same timed-GGA window selection to all three models. It returns
+their required force magnitudes and one covariance across both overlapping
+windows **and candidate models**. The same GPS error can shift every candidate;
+their prediction errors cannot be counted as independent. Five focused checks
+pass.
+This is a software control; it has not fitted a recorded flight or selected
+an Earth model.
+The dense bridge accepts at most 128 receiver epochs and conditions on the
+windows selected from those same noisy positions. A whole-stretch comparison
+needs a scalable joint error operator and a check of selection uncertainty.
+
+A separate [structured projection](../../analysis/lll/ilvis0_structured_force_projection.py)
+now carries a declared white, correlated, offset and drift receiver-error law
+through the force magnitudes of all three models without building a full
+receiver covariance. Six checks pass against the dense reference, including
+coordinate transforms and a 2,000-epoch support. The GGA-only bridge now
+connects this calculation to common selected windows: four further checks
+match the dense bridge with and without coordinate transforms, admit 200
+fixes, and abstain with no support. Each
+local derivative window remains capped at 128 fixes, and total embedded
+weights have a 128 MiB workspace guard. This does not establish the real
+receiver-error law or account for selection uncertainty.
+Each call requires one receiver block without gaps above the declared limit.
+The [saved receiver-gap inventory](../ilvis0-receiver-gap-inventory/README.md)
+screened all 53 preselected stretches: 52 enhanced-position streams each have
+one uninterrupted block under the 1.5-second rule; one prior strict-decoder
+failure remains. This establishes available receiver coverage, not the
+receiver-error law or a matched gyroscope/accelerometer comparison. A software
+adapter now accepts the receiver's enhanced-position timestamps, coordinates
+and reported GNSS velocities while retaining their separate provenance.
+Its three new checks and 31 existing bridge/support checks pass. No recorded
+block has yet been evaluated through that adapter.
+
+A [saved-window stability check](WINDOW_STABILITY_RESULT.md) now bounds how
+often the GPS-only support choice survives **assumed** per-reading motion
+errors. With ±0.05 m/s in speed and climb rate and ±0.05° in course, 1,580
+of 2,194 chosen windows are guaranteed unchanged; with ±0.10 m/s and the same
+course range, 1,111 are. The remaining choices are uncertain under these
+bounds, not observed flips. The assumed ranges are not measured receiver
+accuracy, and this does not propagate position error into force predictions.
+
+The force geometry, bounded calibration controls, receiver-only window policy,
+and recorded whole-history scalar assessment are complete. The latter excludes
+none of the three models under its declared error envelopes. Its overlap is a
+useful limit on what acceleration magnitude alone can establish; it is not a
+complete gyro-free fit.
+
+The remaining gate is a matched recorded-data channel comparison with one
+shared calibration over each full selected history. It needs an observational
+receiver-error law, uncertainty from selecting windows on noisy positions,
+and a justified attitude or motion constraint if the gyro is omitted. It must
+reuse the preselected stretches and keep the original full-position and
+horizontal-only results separate. Until those inputs are qualified, the
+scientific result is abstain rather than a claimed percentage of evidence from
+the gyro.
+
+The [direction-pair screen](../../analysis/lll/ilvis0_force_motion_screen.py)
+handles one possible external motion bound. For each consecutive pair, it
+compares the turn between corrected accelerometer directions with the turn
+between the required force directions expressed in one common frame. The
+difference, reduced by explicit direction errors, gives a lower bound on
+how far the instrument attitude must rotate. A pair can violate an
+independently supplied rate limit. Passing all pairs leaves the existence
+of one compatible attitude history open. A violation at one calibration
+does not exclude other allowed calibrations. The archive does not yet
+provide a qualified rate limit for use in this screen.
+
+The same software can also construct one nominal attitude path and check
+its rate between the sampled epochs. A successful path is a feasibility
+witness at the supplied calibration and nominal force directions. It
+does not identify the attitude or enforce force direction between the
+samples. Four generated checks cover exclusion, a feasible witness,
+unobservable attitude, and unsupported zero force.
+
+The [three-sample screen](FORCE_MOTION_TRIPLETS.md) also detects when two
+individually possible steps require incompatible middle orientations. It uses
+the fixed spatial axes of each candidate geometry. The archive still needs
+independent motion and direction-error bounds before a recorded gyro-free decision.
+The [whole-history check](FORCE_MOTION_HISTORY.md) connects those steps across
+the complete sequence. It verifies a proposed nominal path or excludes it
+under outward allowances for unresolved twist and direction error. A check
+that falls between those results stays open.
+On [two saved recordings](RECORDED_MOTION_RATE_RESULT.md), these directional
+rate brackets overlapped across the four candidates in all 16 matched
+settings. The result assumes fixed GPS paths and no calibration correction.
+
+A [catalog check for outside motion evidence](MOTION_SOURCE_AUDIT.md)
+found no timed LVIS images during either stretch. A listed same-flight
+NCAR file may supply motion context for IMU21. Its campaign attitude
+channels come from inertial navigation, and its one-second output leaves
+motion within each second unresolved.
+
+The [paired gyro clock comparison](PAIRED_GYRO_CLOCK_RESULT.md) checks whole
+packets from two known overlaps. The shifts picked on earlier data reduce
+later short-window gyro disagreement by at most 4.6%. The two overlaps give no upper
+bound on the gyro errors or aircraft motion used in the channel controls.
 
 [Measurement contributions](README.md) · [Next analyses](../NEXT_STEPS.md).

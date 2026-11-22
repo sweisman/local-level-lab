@@ -12,7 +12,8 @@ import pytest
 
 from lll import ilvis0_control_shards as runner
 from lll.studies.qualification import request
-from lll.studies.task_resume import (REQUIRED_TESTS, qualification_sources,
+from lll.studies.task_resume import (REQUIRED_TESTS, SELF, _parent,
+    qualification_sources,
     close_original, prepare_campaign, resume_campaign)
 from lll.studies.validation_continuation import next_stage_tasks
 
@@ -42,7 +43,8 @@ def _toy(tmp_path):
     parent=project/'data/parent'
     runner.prepare(parent,project_root=project,
         tasks=[_task(name) for name in ('saved','failed','lost','unstarted')],
-        sources=['adapter.py',runner.RUNNER],inputs={'recipe':'recipe.json'},
+        sources=list(dict.fromkeys(['adapter.py',runner.RUNNER,*sources])),
+        inputs={'recipe':'recipe.json'},
         adapter='adapter.py',workers=2,threads=1,maximum_wall_s=3600,
         environment=runner.runtime_environment(),accounting_format='sqlite-v1',
         scope='toy recovery check')
@@ -139,6 +141,15 @@ def test_source_input_environment_mutation_blocks(tmp_path,monkeypatch):
     monkeypatch.setattr(runner,'runtime_environment',lambda:dict(changed=True))
     with pytest.raises(ValueError,match='numerical environment'):
         resume_campaign(project,output,launch=False)
+
+
+def test_parent_recovery_launcher_can_be_repaired_without_changing_frozen_parent(tmp_path):
+    project,parent,_=_toy(tmp_path)
+    frozen=runner.verify(parent)['sources'][SELF]
+    (project/SELF).write_text('# separately qualified recovery launcher\n')
+    manifest,_=_parent(project,'data/parent')
+    assert manifest['sources'][SELF]==frozen
+    assert runner.verify(parent)['sources'][SELF]==frozen
 
 
 def test_recovery_caps_and_completed_failure():

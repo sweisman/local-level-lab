@@ -1,0 +1,9 @@
+# Receiver comparison at one common time
+
+This is an exploratory follow-up to the [raw receiver comparison](PARALLEL_GNSS_RESULT.md), designed after seeing its centimetre differences. It cannot independently confirm receiver accuracy.
+
+Use only the already opened ESA recording 187 and the sealed first 400 `air1` training epochs. Reverify the original and both acquired PPP exports against their receipts. Match by GPS time within 2 ms without interpolation, reuse or reading later receiver values. Require at least 300 matches per stream. Do not open protected flight groups or fit an Earth model.
+
+For each match, calculate the other receiver's north/east/up position relative to `air1`. Subtract its reported north/east/up velocity multiplied by the signed other-minus-`air1` time offset. Report both raw and time-adjusted differences: mean, RMS, centered RMS, 95th absolute percentile and lag-one correlation per axis. The velocity adjustment is a local first-order kinematic approximation; it is not an instrument correction. Keep each source's results separate, and do not turn agreement into an absolute error bound. No model decision follows.
+
+Finite work: at most two source streams, 400 matched epochs each, zero native calculations, zero fits, one numerical thread. Input source hashes and the exact matching rule are recorded in [the raw comparison](PARALLEL_GNSS_RESULT.json). This follow-up keeps `esa_parallel_gnss.py` at SHA-256 `2a2ff3d74521ca191094374880a9d00b078bc08943be0ef24a96819a5629c980`, `airquantumgrav_receiver.py` at `9e433562525af1e6df6f69dba4d8f7fbcc7f6ede0ae69c88a2c92595dd37e57f`, and `esa_gnss_covariance_audit.py` at `30439f16e7525ba46c97d77e94922413324cd156eae28923aa5127aceeb09cf2`. The runtime is Python 3.14.7, NumPy 2.5.3 and SciPy 1.18.1. The new code and its hash will be recorded in the result. Preserve all earlier reports unchanged.

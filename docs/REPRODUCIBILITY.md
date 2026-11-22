@@ -9,11 +9,33 @@ Packing changes storage, not the measurements or results. Original source bytes,
 inputs, failures, resource charges and result hashes remain recoverable. The
 original instrument recordings retain their separate acquisition and licensing
 requirements; an evidence archive does not grant access to restricted data.
+The [pending-evidence inventory](REPOSITORY_STORAGE.md) explains the local
+unpublished pack backlog and why catalog and pack changes must be reviewed
+together.
 
 Run publication, migration and compaction commands one at a time. Wait for the
 test runner to finish before changing its evidence workspace.
 
 ## Inspect, verify and restore
+
+The [ESA direction table checker](prediction-observed-development/ESA_DIRECTION_ANGLE_PAIRS_RESULT.md#recompute-the-public-tables)
+reproduces the direction, antenna-offset and calibration-transfer tables
+from three small saved reports. It uses standard Python and requires no original
+recordings, archive catalog or numerical fits.
+
+The [ESA forecast index checker](analysis-provenance/ESA_GROUP_EVIDENCE.md)
+rebuilds the exact receiver-row table and checks which positions were reused
+for fitting or scoring. It uses the saved report files and the group ledger.
+
+The [ground reference checker](prediction-observed-development/ESA_GROUND_REFERENCE_EVIDENCE.md#reproduce-the-evidence-checks)
+verifies fourteen studies on one development flight. It uses saved signed
+ranges to check the Nuuk and Qaqortoq comparisons, reference-position
+tolerances and geometric error bound.
+
+The [ESA saved-table check](prediction-observed-development/ESA_RINEX_CODE_COMPARISON_RESULT.md#reproduce-the-comparison)
+recomputes receiver-difference summaries and verifies forecast rankings from
+the saved results. A separate replay from positions requires the sealed parent
+studies and source products described there.
 
 The public NASA status can be checked from the published ledgers:
 
@@ -25,10 +47,14 @@ This verifies the result and repeat ledgers and checks the hash of the final
 publication builder before loading it. Historical source hashes may refer
 to archived bytes. The older findings receipt does not bind every executed
 decision dependency and does not establish an external pre-run timestamp.
-A clean-checkout refit on a second machine and a pinned native toolchain are
-separate milestones. See the [current roadmap](ANALYSIS_ROADMAP.md#current-milestones-and-finish-line).
-
-Use the existing Python environment from the repository root:
+An [isolated NASA refit](ilvis0-matched-trial-observed-runtime/refit-evidence/README.md)
+reproduced the fitted parameters and native builds byte for byte on the
+original host under a pinned toolchain. The run hit its wall limit before
+forecasting. A [one-call replay](ilvis0-matched-trial-observed-runtime/forecast-evidence/README.md)
+then reproduced the forecast exactly from the saved fit. The
+[refit instructions](ilvis0-matched-trial-observed-runtime/PORTABLE_REFIT.md)
+show how to repeat the check from the evidence package. A second-machine
+check remains open.
 
 The completed prediction-calibration phase also has an independent archive at
 `repro/prediction-phase-20261026`. It uses the same verified archive format and
@@ -41,6 +67,8 @@ For an explicitly supplied bundle, `lll.studies.bundles.register(root, prefix)`
 validates the bundle and registers its aliases without copying ZIP payloads.
 Conflicting aliases or changed expanded bytes are rejected. Register bundles
 only when no test runner owns the evidence workspace.
+
+Use the existing Python environment from the repository root:
 
 ```sh
 env PYTHONPATH=analysis ~/venv/bin/python -m lll.studies check
@@ -59,8 +87,12 @@ Run them using their frozen source and recorded numerical environment. A changed
 Python, compiler, numerical library or algorithm is a new reproduction setting,
 not an unchanged continuation.
 
-The shared test command restores archived fixtures, runs the local suites and
-compacts the restored copies after they finish:
+The shared test command first runs peak-memory controls with one numerical
+thread, before loading the archive catalog or restoring fixtures. It then
+restores the verified fixtures, runs the remaining tests and compacts only those
+temporary copies. Each phase retains its own XML report. The order matters:
+Linux can carry a parent's earlier peak-memory reading into a child test
+process, even when the parent's current memory use has fallen.
 
 Install the [development requirements](DEVELOPMENT.md) first. The suite also
 uses the separately pinned website renderer to check links into archived evidence.
@@ -68,6 +100,15 @@ uses the separately pinned website renderer to check links into archived evidenc
 ```sh
 env PYTHONPATH=analysis ~/venv/bin/python -m lll.studies test
 ```
+
+For a full local run that must survive the command session ending, use
+`test-detached` with the same thread options. Its `run.log`, status and XML
+reports remain in `data/study-test-runtime`. Wait for `state: complete` and
+check `exit_code`; launching is not a passing result. If the supervisor exits
+before verified compaction, first establish that its lock is free, then run
+`test-cleanup`. That command checks the saved restoration list and archive
+hashes before removing only temporary restored copies. It marks the run
+interrupted; it does not claim the tests passed.
 
 Use `test --threads 2 --reserved-threads 2` when another job has a two-thread
 allocation. A status record and lock under `data/study-test-runtime` preserve
@@ -169,6 +210,11 @@ then returns the exact request/report bytes for the study freeze. Sixteen small
 metadata controls pass. This checks test provenance; it does not establish
 instrument accuracy, physical adequacy or statistical confidence.
 
+A public source checkout may skip an integration test that requires a closed
+local historical study absent from that checkout. Such a skip is acceptable for
+general CI, but it cannot qualify a study: source-bound qualification requires
+every named test to run and pass against the required saved evidence.
+
 The execution manifest also freezes the runner's shared files. Its source list
 can therefore be larger than the calculation's preflight qualification list.
 A saved-results audit checks that every qualified file is unchanged, that added
@@ -190,13 +236,20 @@ files. If a sandbox blocks event-loop wakeups, use an execution environment
 that permits local IPC. This check needs no internet connection and never
 terminates an existing process.
 
+Frozen studies and focused numerical tests can run inside the workspace
+sandbox. Use the study runner for a prepared study or run focused tests
+directly through `analysis/tests/run_numerical.py`. If the full-suite socket
+check fails, record that the full suite is pending and keep running eligible
+local work. Keep study files and temporary output in the workspace or `/tmp`.
+
 The archive catalog maps original paths to SHA-256 hashes and immutable ZIP
 packs. A complete verification checks both pack and individual-object hashes.
 Routine packing and named compaction verify the catalog checksum, every affected
 pack and object, alias sizes and expanded bytes. All selected targets are checked
 before any expanded copy is removed. Unrelated historical objects are not scanned
-again for each small update. The explicit `lll.studies check` command retains the
-complete-store audit, including packs not used by that update.
+again for each small update. Use `lll.studies check <study-prefix>` to verify
+only the indexed paths under that prefix. Use `lll.studies check` without a
+prefix for the complete audit, including packs not used by that study.
 New packs are limited to **32 MiB of encoded ZIP data**, including ZIP metadata.
 Oversized batches split deterministically. An individual object that cannot fit
 is rejected before it enters the catalog. Older, larger packs remain readable
@@ -206,6 +259,21 @@ checksum of the compressed file. The shared reader also accepts the earlier
 uncompressed catalog; the next catalog write verifies and replaces that index
 with its compressed equivalent. Evidence packs and original measurements stay
 unchanged.
+For an individual completed study, `lll.studies.portable` can export a
+self-contained ZIP from the publication receipt. It copies each verified
+artifact once, records fixed ZIP timestamps and verifies all internal SHA-256
+hashes. `~/venv/bin/python -m lll.studies.portable verify <bundle.zip>` checks
+the portable copy without loading the repository-wide catalog. The two
+[ESA 400/120 bundles](prediction-observed-development/ROLLING_ORIGIN_400_RUNTIME.md)
+use this format. A bundle retains the frozen calculation evidence; it does
+not contain an independently calibrated scientific conclusion.
+Larger publications can use `build-parts` and `verify-parts` instead. The
+[ESA model-dispatch example](ESA_DISPATCH_PORTABLE.md)
+splits even a single large artifact into checked chunks, with every part below
+32 MiB. Its index and parts reconstruct every artifact against the original
+receipt without the global catalog.
+`extract-parts` restores the checked files to an empty directory for offline
+inspection; it does not modify an existing study.
 Migration restores and compares the original files before removing expanded
 duplicates. Current public tables and downloads are kept outside the packs.
 

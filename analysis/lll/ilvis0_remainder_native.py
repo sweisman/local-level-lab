@@ -62,12 +62,16 @@ def _matrix_bound(transform,lower,upper):
     return relative.Delta(transform.center,_norm(changes),_norm(F(float(v)) for v in caps[0]))
 
 
-def _rates(position,initial_components,acceleration,common,matrix_force,residual_velocity,metric,model,radius):
+def _rates(position,initial_components,acceleration,common,matrix_force,residual_velocity,metric,model,radius,
+           *,departure_parts=None):
     current=previous._metric(position,model,radius);full=[];rest=[]
     for axis,(m,fixed) in enumerate(zip(current,metric)):
         a=acceleration[axis];u=geo._component(residual_velocity,axis)
         base=geo.plus(geo.plus(initial_components[axis],geo.times(a,common)),geo._component(matrix_force,axis))
-        departure=geo.plus(geo.times(m,u),geo.times(geo.plus(m,geo.Scalar.fixed(-fixed)),base))
+        velocity_term=geo.times(m,u)
+        metric_term=geo.times(geo.plus(m,geo.Scalar.fixed(-fixed)),base)
+        departure=geo.plus(velocity_term,metric_term)
+        if departure_parts is not None:departure_parts.append((velocity_term,metric_term))
         rest.append(departure);full.append(geo.plus(geo.fixed_scale(base,fixed),departure))
     return tuple(full),tuple(rest)
 
@@ -82,7 +86,7 @@ def _recenter(value,center):
 
 
 def _increment(state,left,right,initial_r,theta,force_difference,raw_difference,reference_force,acceleration,matrix,
-               latitude,transport,period,removal,model,source):
+               latitude,transport,period,removal,model,source,*,gravity_impulse=None):
     phi=latitude.center
     standard=Value(OMEGA*np.array([math.cos(phi),0.,-math.sin(phi)]),
         geo._up(min(2*OMEGA,OMEGA*latitude.value.change)),
@@ -105,6 +109,8 @@ def _increment(state,left,right,initial_r,theta,force_difference,raw_difference,
     rhs=add(scalar_product(period.value,force_rest),scale(cross(argument,state.velocity),-2.))
     rhs=add(rhs,scale(scalar_product(period.value,cross(argument,acceleration)),-1.))
     rhs=add(rhs,scale(cross(argument,matrix_delta_g),-1.))
+    if gravity_impulse is not None:
+        rhs=add(rhs,gravity_impulse)
     dw=matrix_vector(inverse_skew(argument),rhs)
     next_left=relative.advance_left(left,exponential(scalar_product(scale(period.value,-1.),win)))
     next_right=relative.advance_right(right,exponential(theta))
@@ -113,8 +119,10 @@ def _increment(state,left,right,initial_r,theta,force_difference,raw_difference,
 
 from .ilvis0_dyadic_native import TransformEnclosure
 
-def enclose(configuration,theta,dv,dt,*,time,lower,upper,reference,conditioning,source_kernel,derivative_kernel,point_kernel,maximum_seconds=30.):
+def enclose(configuration,theta,dv,dt,*,time,lower,upper,reference,conditioning,source_kernel,derivative_kernel,
+            point_kernel,maximum_seconds=30.,gravity_anchor_height_m=None):
     from .ilvis0_native_prefix import _cold_enclose
     return _cold_enclose(configuration,theta,dv,dt,time=time,lower=lower,upper=upper,
         reference=reference,conditioning=conditioning,source_kernel=source_kernel,
-        derivative_kernel=derivative_kernel,point_kernel=point_kernel,maximum_seconds=maximum_seconds)
+        derivative_kernel=derivative_kernel,point_kernel=point_kernel,maximum_seconds=maximum_seconds,
+        gravity_anchor_height_m=gravity_anchor_height_m)

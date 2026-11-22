@@ -31,17 +31,34 @@ without assuming one limit everywhere.
 
 The archived scalar calculation reduces gravity as the simulated aircraft
 climbs. It uses an inverse-square adjustment at each step's midpoint,
-relative to the first GPS height of 1,482.531 m. The current interval
-predictor holds gravity constant. At the saved later heights, the
-inverse-square factor lowers gravity by roughly 0.04–0.06%. Those heights
-illustrate the scale of the adjustment. They are insufficient to bound
-its effect on the simulated positions.
+relative to the first GPS height of 1,482.531 m. At the saved later heights,
+the inverse-square factor lowers gravity by roughly 0.04–0.06%. Those
+heights illustrate the scale of the adjustment. They are insufficient
+to bound its effect on the simulated positions.
 
-To test the four-centimetre target, the interval predictor first needs
-the same gravity calculation as the scalar integrator. It then needs to
-bound the accumulated error over all calibration settings that fit the
-earlier observations. Individual exact replays check specific settings.
-[Exact replay results](SHAPE_REMAINDER_WITNESS_RESULT.md).
+The geographic step now includes the same midpoint gravity law, with
+an outward-rounded bound on the gravity term and its linearization
+error. A generated sequence of 19 full packets and one partial packet
+agreed with the compiled native calculation for all three models. The
+checks varied starting height, vertical speed, anchor gravity and report
+time. They used generated inputs and numerical comparison tolerances.
+
+The shared-prefix predictor now applies the same correction. It keeps
+the anchor gravity in the reference acceleration and adds only the
+height-dependent difference to both halves of the midpoint calculation.
+Its reports identify the gravity anchor and require it to match when
+combining bounds with native derivatives.
+
+On a generated 13-packet record, the shared-prefix and cold calculations
+gave identical reports for three query times under each Earth model.
+The test covered times near packet boundaries, matched the compiled
+native positions within one micrometre and checked the bounds at three
+calibration settings. The next check is whether the bounds remain useful
+as the history grows over the settings that fit the earlier observations.
+Neither these short tests nor the individual exact replays establish
+the accumulated error over that region.
+[Exact replay results](SHAPE_REMAINDER_WITNESS_RESULT.md) ·
+[Generated histories up to 40 seconds](SHAPE_GRAVITY_HISTORY_RESULT.md).
 
 [Source and input freeze](shape-remainder-metres-freeze.json) ·
 [All coefficient bounds and tolerances](shape-remainder-metres-result.json)

@@ -1,0 +1,459 @@
+{
+  "confidence_calibrated": false,
+  "manifest_sha256": "fabb0ef004ce452a7a0b0a14ac71c307b350d3b9b4d25ca8bc8545598f75c2ba",
+  "methods": {
+    "left_hold-increment": {
+      "active_bounds": [],
+      "baseline_reproduced": null,
+      "evaluations": 9,
+      "law": "increment",
+      "maximum_absolute_normalized_parameter": 0.48936287650977517,
+      "method": "left_hold",
+      "numerical_converged": true,
+      "passed": true,
+      "physical_accuracy": {
+        "prediction": {
+          "calibrated_goodness_of_fit": false,
+          "checks": {
+            "horizontal_rms_m": false,
+            "maximum_absolute_up_m": true,
+            "maximum_horizontal_m": false,
+            "vertical_rms_m": true
+          },
+          "limits": {
+            "horizontal_rms_m": 10.0,
+            "maximum_absolute_up_m": 150.0,
+            "maximum_horizontal_m": 50.0,
+            "vertical_rms_m": 30.0
+          },
+          "passed": false,
+          "scientific_decision": "abstain"
+        },
+        "training": {
+          "calibrated_goodness_of_fit": false,
+          "checks": {
+            "horizontal_rms_m": false,
+            "maximum_absolute_up_m": true,
+            "maximum_horizontal_m": false,
+            "vertical_rms_m": true
+          },
+          "limits": {
+            "horizontal_rms_m": 10.0,
+            "maximum_absolute_up_m": 150.0,
+            "maximum_horizontal_m": 50.0,
+            "vertical_rms_m": 30.0
+          },
+          "passed": false,
+          "scientific_decision": "abstain"
+        }
+      },
+      "prediction": {
+        "horizontal_rms_m": 247.88716237708246,
+        "maximum_3d_m": 387.7170999017554,
+        "maximum_absolute_up_m": 10.295600004286825,
+        "maximum_horizontal_m": 387.58037898838415,
+        "rms_neu_m": [
+          44.626992198357115,
+          243.83698824971125,
+          4.40842492458797
+        ],
+        "total_rms_m": 247.9263589892728,
+        "vertical_rms_m": 4.40842492458797
+      },
+      "residual_sum_squares": 13.278856160382377,
+      "termination": "fresh_position_stability",
+      "training": {
+        "horizontal_rms_m": 39.564839997673964,
+        "maximum_3d_m": 111.92731777021372,
+        "maximum_absolute_up_m": 3.9853391624792494,
+        "maximum_horizontal_m": 111.85634329350486,
+        "rms_neu_m": [
+          10.77246472251257,
+          38.07007443969297,
+          1.3201213282121194
+        ],
+        "total_rms_m": 39.58685747015974,
+        "vertical_rms_m": 1.3201213282121194
+      }
+    },
+    "left_hold-point": {
+      "active_bounds": [],
+      "baseline_reproduced": null,
+      "evaluations": 9,
+      "law": "point",
+      "maximum_absolute_normalized_parameter": 0.48936294774191774,
+      "method": "left_hold",
+      "numerical_converged": true,
+      "passed": true,
+      "physical_accuracy": {
+        "prediction": {
+          "calibrated_goodness_of_fit": false,
+          "checks": {
+            "horizontal_rms_m": false,
+            "maximum_absolute_up_m": true,
+            "maximum_horizontal_m": false,
+            "vertical_rms_m": true
+          },
+          "limits": {
+            "horizontal_rms_m": 10.0,
+            "maximum_absolute_up_m": 150.0,
+            "maximum_horizontal_m": 50.0,
+            "vertical_rms_m": 30.0
+          },
+          "passed": false,
+          "scientific_decision": "abstain"
+        },
+        "training": {
+          "calibrated_goodness_of_fit": false,
+          "checks": {
+            "horizontal_rms_m": false,
+            "maximum_absolute_up_m": true,
+            "maximum_horizontal_m": false,
+            "vertical_rms_m": true
+          },
+          "limits": {
+            "horizontal_rms_m": 10.0,
+            "maximum_absolute_up_m": 150.0,
+            "maximum_horizontal_m": 50.0,
+            "vertical_rms_m": 30.0
+          },
+          "passed": false,
+          "scientific_decision": "abstain"
+        }
+      },
+      "prediction": {
+        "horizontal_rms_m": 247.88724393167476,
+        "maximum_3d_m": 387.7173023936904,
+        "maximum_absolute_up_m": 10.295599953929923,
+        "maximum_horizontal_m": 387.5805815530868,
+        "rms_neu_m": [
+          44.626792837729326,
+          243.83710764578063,
+          4.40842390034777
+        ],
+        "total_rms_m": 247.9264405127593,
+        "vertical_rms_m": 4.40842390034777
+      },
+      "residual_sum_squares": 13.278837749490538,
+      "termination": "fresh_position_stability",
+      "training": {
+        "horizontal_rms_m": 39.564813278610735,
+        "maximum_3d_m": 111.92728970917251,
+        "maximum_absolute_up_m": 3.9853356073595023,
+        "maximum_horizontal_m": 111.85631534132415,
+        "rms_neu_m": [
+          10.772403010064613,
+          38.070064133910826,
+          1.320119962231944
+        ],
+        "total_rms_m": 39.58683072040519,
+        "vertical_rms_m": 1.320119962231944
+      }
+    },
+    "linear_points-increment": {
+      "active_bounds": [],
+      "baseline_reproduced": true,
+      "evaluations": 9,
+      "law": "increment",
+      "maximum_absolute_normalized_parameter": 0.42837565886879087,
+      "method": "linear_points",
+      "numerical_converged": true,
+      "passed": true,
+      "physical_accuracy": {
+        "prediction": {
+          "calibrated_goodness_of_fit": false,
+          "checks": {
+            "horizontal_rms_m": false,
+            "maximum_absolute_up_m": true,
+            "maximum_horizontal_m": false,
+            "vertical_rms_m": true
+          },
+          "limits": {
+            "horizontal_rms_m": 10.0,
+            "maximum_absolute_up_m": 150.0,
+            "maximum_horizontal_m": 50.0,
+            "vertical_rms_m": 30.0
+          },
+          "passed": false,
+          "scientific_decision": "abstain"
+        },
+        "training": {
+          "calibrated_goodness_of_fit": false,
+          "checks": {
+            "horizontal_rms_m": false,
+            "maximum_absolute_up_m": true,
+            "maximum_horizontal_m": false,
+            "vertical_rms_m": true
+          },
+          "limits": {
+            "horizontal_rms_m": 10.0,
+            "maximum_absolute_up_m": 150.0,
+            "maximum_horizontal_m": 50.0,
+            "vertical_rms_m": 30.0
+          },
+          "passed": false,
+          "scientific_decision": "abstain"
+        }
+      },
+      "prediction": {
+        "horizontal_rms_m": 249.41078308821852,
+        "maximum_3d_m": 390.08021909610943,
+        "maximum_absolute_up_m": 9.873474753294886,
+        "maximum_horizontal_m": 389.95524336308745,
+        "rms_neu_m": [
+          37.63036494437597,
+          246.5556617780891,
+          4.3512622847571985
+        ],
+        "total_rms_m": 249.44873662568256,
+        "vertical_rms_m": 4.3512622847571985
+      },
+      "residual_sum_squares": 13.236910008550893,
+      "termination": "fresh_position_stability",
+      "training": {
+        "horizontal_rms_m": 39.96123584146875,
+        "maximum_3d_m": 112.78089601872529,
+        "maximum_absolute_up_m": 4.192861806232941,
+        "maximum_horizontal_m": 112.70292993822457,
+        "rms_neu_m": [
+          9.252208420909497,
+          38.87540365467011,
+          1.4031229306653537
+        ],
+        "total_rms_m": 39.98586155050364,
+        "vertical_rms_m": 1.4031229306653537
+      }
+    },
+    "linear_points-point": {
+      "active_bounds": [],
+      "baseline_reproduced": true,
+      "evaluations": 9,
+      "law": "point",
+      "maximum_absolute_normalized_parameter": 0.4283756816151319,
+      "method": "linear_points",
+      "numerical_converged": true,
+      "passed": true,
+      "physical_accuracy": {
+        "prediction": {
+          "calibrated_goodness_of_fit": false,
+          "checks": {
+            "horizontal_rms_m": false,
+            "maximum_absolute_up_m": true,
+            "maximum_horizontal_m": false,
+            "vertical_rms_m": true
+          },
+          "limits": {
+            "horizontal_rms_m": 10.0,
+            "maximum_absolute_up_m": 150.0,
+            "maximum_horizontal_m": 50.0,
+            "vertical_rms_m": 30.0
+          },
+          "passed": false,
+          "scientific_decision": "abstain"
+        },
+        "training": {
+          "calibrated_goodness_of_fit": false,
+          "checks": {
+            "horizontal_rms_m": false,
+            "maximum_absolute_up_m": true,
+            "maximum_horizontal_m": false,
+            "vertical_rms_m": true
+          },
+          "limits": {
+            "horizontal_rms_m": 10.0,
+            "maximum_absolute_up_m": 150.0,
+            "maximum_horizontal_m": 50.0,
+            "vertical_rms_m": 30.0
+          },
+          "passed": false,
+          "scientific_decision": "abstain"
+        }
+      },
+      "prediction": {
+        "horizontal_rms_m": 249.41086552349404,
+        "maximum_3d_m": 390.0804225686228,
+        "maximum_absolute_up_m": 9.873475205159593,
+        "maximum_horizontal_m": 389.9554468893702,
+        "rms_neu_m": [
+          37.63016921372533,
+          246.55577504111483,
+          4.351261110273543
+        ],
+        "total_rms_m": 249.44881902792847,
+        "vertical_rms_m": 4.351261110273543
+      },
+      "residual_sum_squares": 13.236891770324245,
+      "termination": "fresh_position_stability",
+      "training": {
+        "horizontal_rms_m": 39.96120993251502,
+        "maximum_3d_m": 112.78086921643526,
+        "maximum_absolute_up_m": 4.192858018727293,
+        "maximum_horizontal_m": 112.70290325829885,
+        "rms_neu_m": [
+          9.252148884726063,
+          38.8753911914131,
+          1.4031214599257875
+        ],
+        "total_rms_m": 39.985835605897265,
+        "vertical_rms_m": 1.4031214599257875
+      }
+    },
+    "right_hold-increment": {
+      "active_bounds": [],
+      "baseline_reproduced": null,
+      "evaluations": 8,
+      "law": "increment",
+      "maximum_absolute_normalized_parameter": 0.42770073423197386,
+      "method": "right_hold",
+      "numerical_converged": true,
+      "passed": true,
+      "physical_accuracy": {
+        "prediction": {
+          "calibrated_goodness_of_fit": false,
+          "checks": {
+            "horizontal_rms_m": false,
+            "maximum_absolute_up_m": true,
+            "maximum_horizontal_m": false,
+            "vertical_rms_m": true
+          },
+          "limits": {
+            "horizontal_rms_m": 10.0,
+            "maximum_absolute_up_m": 150.0,
+            "maximum_horizontal_m": 50.0,
+            "vertical_rms_m": 30.0
+          },
+          "passed": false,
+          "scientific_decision": "abstain"
+        },
+        "training": {
+          "calibrated_goodness_of_fit": false,
+          "checks": {
+            "horizontal_rms_m": false,
+            "maximum_absolute_up_m": true,
+            "maximum_horizontal_m": false,
+            "vertical_rms_m": true
+          },
+          "limits": {
+            "horizontal_rms_m": 10.0,
+            "maximum_absolute_up_m": 150.0,
+            "maximum_horizontal_m": 50.0,
+            "vertical_rms_m": 30.0
+          },
+          "passed": false,
+          "scientific_decision": "abstain"
+        }
+      },
+      "prediction": {
+        "horizontal_rms_m": 240.36750223532383,
+        "maximum_3d_m": 377.43992126292073,
+        "maximum_absolute_up_m": 10.98284334862683,
+        "maximum_horizontal_m": 377.2800966323818,
+        "rms_neu_m": [
+          46.073149196944904,
+          235.9105785121228,
+          4.552397258562825
+        ],
+        "total_rms_m": 240.41060802645165,
+        "vertical_rms_m": 4.552397258562825
+      },
+      "residual_sum_squares": 13.149583089587155,
+      "termination": "fresh_position_stability",
+      "training": {
+        "horizontal_rms_m": 37.69207703031112,
+        "maximum_3d_m": 107.39163336250127,
+        "maximum_absolute_up_m": 3.68113593720318,
+        "maximum_horizontal_m": 107.32852442141242,
+        "rms_neu_m": [
+          10.904885500054908,
+          36.080135020390365,
+          1.209359848948671
+        ],
+        "total_rms_m": 37.71147334834793,
+        "vertical_rms_m": 1.209359848948671
+      }
+    },
+    "right_hold-point": {
+      "active_bounds": [],
+      "baseline_reproduced": null,
+      "evaluations": 8,
+      "law": "point",
+      "maximum_absolute_normalized_parameter": 0.42770075242382827,
+      "method": "right_hold",
+      "numerical_converged": true,
+      "passed": true,
+      "physical_accuracy": {
+        "prediction": {
+          "calibrated_goodness_of_fit": false,
+          "checks": {
+            "horizontal_rms_m": false,
+            "maximum_absolute_up_m": true,
+            "maximum_horizontal_m": false,
+            "vertical_rms_m": true
+          },
+          "limits": {
+            "horizontal_rms_m": 10.0,
+            "maximum_absolute_up_m": 150.0,
+            "maximum_horizontal_m": 50.0,
+            "vertical_rms_m": 30.0
+          },
+          "passed": false,
+          "scientific_decision": "abstain"
+        },
+        "training": {
+          "calibrated_goodness_of_fit": false,
+          "checks": {
+            "horizontal_rms_m": false,
+            "maximum_absolute_up_m": true,
+            "maximum_horizontal_m": false,
+            "vertical_rms_m": true
+          },
+          "limits": {
+            "horizontal_rms_m": 10.0,
+            "maximum_absolute_up_m": 150.0,
+            "maximum_horizontal_m": 50.0,
+            "vertical_rms_m": 30.0
+          },
+          "passed": false,
+          "scientific_decision": "abstain"
+        }
+      },
+      "prediction": {
+        "horizontal_rms_m": 240.36757341126966,
+        "maximum_3d_m": 377.4401097906695,
+        "maximum_absolute_up_m": 10.982843446609877,
+        "maximum_horizontal_m": 377.2802852371429,
+        "rms_neu_m": [
+          46.0729477416252,
+          235.91069037671772,
+          4.552396620698797
+        ],
+        "total_rms_m": 240.41067917755703,
+        "vertical_rms_m": 4.552396620698797
+      },
+      "residual_sum_squares": 13.14956493920185,
+      "termination": "fresh_position_stability",
+      "training": {
+        "horizontal_rms_m": 37.69204753494319,
+        "maximum_3d_m": 107.39159831870562,
+        "maximum_absolute_up_m": 3.6811324314280682,
+        "maximum_horizontal_m": 107.32848947725158,
+        "rms_neu_m": [
+          10.904822906781108,
+          36.080123125457305,
+          1.2093585274827174
+        ],
+        "total_rms_m": 37.71144382577273,
+        "vertical_rms_m": 1.2093585274827174
+      }
+    }
+  },
+  "parent_manifest_sha256": "2dbbd77362e7d21cad709f0a1001173ac99b44c3ea30e7021b6ce513de1e9788",
+  "prediction_epochs": 400,
+  "preferred_sampling_method": null,
+  "report_source_sha256": "98da948dc00e89da1949752bebcce210c102e4695451d133723d572ba8538900",
+  "scientific_decision": "abstain",
+  "scoring_sha256": "5cce2704433e7dece8eec336882692e15194d6c882d8e2bd7efa67265a172c2b",
+  "study": "data/esa-rate-refit-development-v2-20261114",
+  "summary_sha256": "47f01b56eda5710d0698f26a4727b12945abfcaa8f8fe3be50ff5a8df0fc03a7",
+  "training_epochs": 800
+}

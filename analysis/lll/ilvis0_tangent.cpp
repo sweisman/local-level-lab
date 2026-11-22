@@ -46,7 +46,7 @@ static void exponential(const Dual *v,Dual *r) {
     mul(k,k,kk); for(int i=0;i<9;i++) r[i]=(i%4==0)+a*k[i]+b*kk[i];
 }
 static void metric(int model,Dual phi,Dual h,Dual radius,Dual *mn,Dual *me) {
-    if(model==2) {*mn=radius; *me=radius*(M_PI/2-phi);}
+    if(model==2 || model==3) {*mn=radius; *me=radius*(M_PI/2-phi);}
     else {Dual d=1-6.69437999014e-3*sin(phi)*sin(phi);
         *mn=6378137.*(1-6.69437999014e-3)/pow(d,1.5)+h;
         *me=(6378137./sqrt(d)+h)*cos(phi);}
@@ -56,10 +56,12 @@ static void rates(int model,const Dual *c,const Dual *v,Dual radius,Dual *r) {
     r[0]=v[0]/mn; r[1]=v[1]/me; r[2]=-v[2];
 }
 static void context(int model,Dual phi,const Dual *rate,Dual *earth,Dual *transport) {
-    earth[0]=model==0?7.2921150e-5*cos(phi):0; earth[1]=0;
-    earth[2]=model==0?-7.2921150e-5*sin(phi):0;
-    transport[0]=model==2?0:cos(phi)*rate[1]; transport[1]=model==2?0:-rate[0];
-    transport[2]=model==2?-rate[1]:-sin(phi)*rate[1];
+    /* Match ilvis0_native.c, including the diagnostic disc with the field. */
+    const bool disc=model==2 || model==3, field=model==0 || model==3;
+    earth[0]=field?7.2921150e-5*cos(phi):0; earth[1]=0;
+    earth[2]=field?-7.2921150e-5*sin(phi):0;
+    transport[0]=disc?0:cos(phi)*rate[1]; transport[1]=disc?0:-rate[0];
+    transport[2]=disc?-rate[1]:-sin(phi)*rate[1];
 }
 static void local(const Dual *r,const Dual *v,const Dual *theta,const Dual *dv,
     Dual dt,const Dual *earth,const Dual *transport,Dual phi,Dual removal,

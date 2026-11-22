@@ -34,4 +34,13 @@ globe-plus-field forecast; it does not compare Earth shapes or calibrate
 a detection rule. Overlapping survey flights or installations cannot be
 counted as independent replications.
 
+A [GPS-only comparison](REMAINING_GPS_BASELINE_RESULT.md) uses these same
+groups and forecast cuts. The IMU forecast had smaller horizontal errors
+at all 18 cuts where a passing start was available.
+
+The [saved accuracy audit](ACCURACY_MARGIN_RESULT.md) separately checks
+all 80 forecasts, including those whose fits failed to stop. Every one
+meets the fixed position-error screen. The nine accepted later-cut groups
+and original numerical outcomes stay unchanged.
+
 [Group metadata and forecast errors](remaining-group-summary.csv) · [Detailed forecast errors](remaining-result.csv) · [All numerical starts](remaining-fit-audit.csv) · [Source selection](remaining-groups.csv) · [Frozen method](REMAINING_GROUPS_PREDICTION_PLAN.md) · [Recovery procedure](REMAINING_GROUPS_RECOVERY.md)
