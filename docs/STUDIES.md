@@ -29,4 +29,6 @@ The main results are organized by the question each study answered. The [detaile
 | [Reserved ESA groups](external-imu-data/ESA_CONFIRMATION_RECEIVER_INVENTORY_RESULT.md) | Found ten provisional windows across seven groups. [A second check](external-imu-data/ESA_CONFIRMATION_TIMING_RESULT.md) verified one 20-minute IMU timestamp slice in each group. |
 | [Evidence and reproducibility](PAPER_DATASET.md) | Links fitted and prediction results by recording group, with frozen source and report verification. |
 
+The [planned GIRAFE clock check](prediction-observed-development/ESA_GIRAFE_LEVEL1_CLOCK_PLAN.md) awaits excerpts covering the earlier flight and score intervals.
+
 [The current plan](NEXT_STEPS.md) explains what is left. The [stationary ground experiment](STATIONARY.md) is a separate consumer-IMU project in development.

@@ -73,3 +73,29 @@ the channel interpretation still need separate validation.
 The [finer lag grid](../prediction-observed-development/ESA_GIRAFE_FINE_LAG_RESULT.md)
 preserves the 100 ms ground shift. The first and last airborne clips favor
 different shifts, and the middle clip remains weak at every tested lag.
+
+## Processed records with GPS timestamps
+
+The ESA archive also has processed acceleration exports for GIRAFE and iMAR
+on the Nuuk–Reykjavík flight. Both prefixes contain GPS week and seconds,
+receiver position and velocity, and bank, elevation and heading. The GIRAFE
+file gives vertical acceleration at 10 Hz and a two-second filtered channel.
+The iMAR file gives all three axes at about 300 Hz. These columns make it
+possible to check how the campaign timestamps its processed outputs against
+the original records. The headers leave the source of the GIRAFE attitude
+columns and the sensor-to-export delay unspecified.
+[Campaign data and processing description](https://essd.copernicus.org/articles/17/1667/2025/)
+
+The first 8,192 bytes of each export are retained under
+`data/external-imu-survey-20261018/esa-sample/`. Both came from
+`/lvl1/accelerations/` on the ESA distribution server.
+
+| Prefix | SHA-256 |
+| --- | --- |
+| `187a_girafe_accelerations-prefix.txt` | `0b26c5ad28effe883eeb3d8dc9e200bfee939f735f185393dd1033ab99e9cc9d` |
+| `187a_imar_accelerations-prefix.txt` | `1bca89a7e841a86f35be7d89ccec1bf09b61bfd2f2178208e8f861d56ebde5ab` |
+
+Two range requests for later intervals both returned data from the start
+of the GIRAFE export. The planned timing comparison awaits excerpts with
+verified coverage of the intended intervals.
+[Clock comparison plan and acquisition check](../prediction-observed-development/ESA_GIRAFE_LEVEL1_CLOCK_PLAN.md)
