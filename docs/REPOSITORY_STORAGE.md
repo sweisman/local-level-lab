@@ -1,8 +1,24 @@
-# Pending repository evidence
+# Repository evidence and storage
 
-This inventory records why the large local pending-file backlog exists. It is
-a snapshot, not a study result or a reason to change scientific outcomes.
-Recheck counts before publication because new studies can add files.
+## What uses the space
+
+At the ESA confirmation-preparation release, the tracked tree contains
+**10.08 GiB**. The reproduction archive takes **8.42 GiB** and the reports
+and their evidence under `docs/` take **1.63 GiB**. The analysis directory
+takes about **20 MiB**. A local checkout can also contain Git's stored objects,
+downloaded observations, study journals and temporary work files.
+
+Reproducing a single study needs its verified sources, inputs and evidence.
+The [reproduction guide](REPRODUCIBILITY.md) shows how to verify and restore
+that study by path. The current catalog refers to the archive packs by hash.
+Moving the packs to other storage requires a retrieval and restoration check
+before relying on the new location. Git retains older blobs in history even
+after their paths leave the current checkout.
+
+## Earlier pending evidence inventory
+
+This snapshot records why the earlier local pending-file backlog existed.
+It describes the state before the evidence batches were committed.
 
 | Documented path | Pending files | Size of untracked files | Disposition |
 |---|---:|---:|---|
@@ -17,7 +33,7 @@ These counts come from a read-only Git status limited to the documented
 `analysis`, `docs`, `data`, `repro`, `website` and named root project files;
 they do not inventory unrelated workspace paths.
 
-The current local `repro/catalog.json.gz` names **all 517 pending packs**.
+The local `repro/catalog.json.gz` at that checkpoint names **all 517 pending packs**.
 Its path index points **351,735 archived paths** into those packs; none of
 the 517 lacks a catalog path. Deleting a pack while retaining that catalog
 would break hash-checked restoration. Committing the catalog without its
