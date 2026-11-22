@@ -2,7 +2,8 @@
 
 The published provenance ledger groups 53 selected airborne stretches into 27
 conservative development groups. It also reserves seven ESA groups for later
-confirmation. A group is not a verified independent flight or installation.
+confirmation. The grouping records shared evidence. Independence and shared
+instrument installations require separate checks.
 
 The ledger is a frozen input to the ESA selection study, so its original files
 must remain unchanged. A later findings publication updated prose and source
@@ -27,6 +28,10 @@ conservative groups into independent replications.
 The [ESA forecast index](analysis-provenance/ESA_GROUP_EVIDENCE.md) separately
 checks the receiver-row reuse in recording 187. It links the scored cuts to
 one development group and retains the seven reserved groups in its receipt.
+The [receiver screen](external-imu-data/ESA_CONFIRMATION_RECEIVER_INVENTORY_RESULT.md)
+and [timing audit](external-imu-data/ESA_CONFIRMATION_TIMING_RESULT.md)
+then verified one 20-minute slice in each reserved group. The group assignments
+remain frozen, with all seven still awaiting confirmation fits.
 
 [Published grouping](analysis-provenance/README.md) ·
 [Development dataset](PAPER_DATASET.md) · [Study roadmap](ANALYSIS_ROADMAP.md).

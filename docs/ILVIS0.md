@@ -1,30 +1,23 @@
-# Acquiring and decoding the airborne IMU archive
+# NASA IceBridge archive and instruments
 
 <!-- current-status:start -->
-**53 with the specified-field globe preferred, 0 flat-disc preferences, 0 without a consistent preference** among 53 selected stretches.
-See the [verified current status](CURRENT_STATUS.md) for coverage, background-field comparisons and the numerical checks recorded for each cohort.
+**53 of 53 selected stretches favored the globe with the specified background field.** The tested flat disc was preferred in 0 stretches. 0 lacked a consistent preference.
+The [verified results](CURRENT_STATUS.md) give the model and repeat counts.
 <!-- current-status:end -->
 
-This guide covers the source recordings, decoding and instrument evidence.
-The [study index](STUDIES.md) explains what each analysis added;
-[planned work](NEXT_STEPS.md) prioritizes measurement contributions, withheld
-prediction and independent ESA confirmation before rotation-field precision.
-The [separate stretch table](ilvis0-current-findings-20261015/STRETCHES.md) preserves
-all 53 intervals, with a [comprehensive metadata CSV](ilvis0-current-findings-20261015/stretch-analytics.csv)
-for further analysis.
+NASA’s Operation IceBridge aircraft carried survey-grade inertial measurement
+units (IMUs) and GPS receivers for lidar mapping. These files contain the
+recorded inertial increments, a primary receiver stream, and a combined
+navigation solution. This guide explains how each stream was identified and
+which measurements entered the comparison. [Method](METHODOLOGY.md)
 
-The later [prediction pilot](ilvis0-retrospective-prediction-pilot-v2/INTERPRETATION.md)
-calibrates on earlier observations and scores unused later GPS positions.
-One of three recordings completes every matched setting, with about 1 m later
-horizontal RMS for specified-field globe versus hundreds of metres for the
-alternatives. The other recordings preserve numerical or accuracy failures.
-The 53-stretch full-position comparison above is unchanged.
+The [stretch table](ilvis0-current-findings-20261015/STRETCHES.md) lists the
+53 selected intervals. The [detailed CSV](ilvis0-current-findings-20261015/stretch-analytics.csv)
+adds track metadata, measured rates and fit costs. [Development predictions](PAPER_DATASET.md#prediction-evidence-kept-separately)
+and [independent confirmation plans](NEXT_STEPS.md) are tracked separately.
 
-The historical fit labels “rotating globe” and “still globe” mean a globe with the
-specified background angular rate and a globe with zero background rate. They identify
-the predictions being compared, not the physical cause of a gyro signal. The archive
-does not compare every possible stationary-Earth explanation with a nonzero inertial
-field. See [measurement and interpretation](ROTATION_FIELD.md#observation-model-and-explanation).
+[Measurement streams](#measurement-provenance-and-independence) ·
+[Instrument quality](#instrument-quality) · [Decoding and recovery](#commands-and-recovery)
 
 The [complete-stretch scope](ilvis0-highspeed-segments-20261008/README.md) selects every
 supported interval lasting at least four minutes with receiver ground speed at least 700 km/h
@@ -412,7 +405,7 @@ copies; one verified partial overlap adds 16.7 seconds but still provides no qua
 No candidate level-flight stretch can currently be lengthened across files. Separated recordings
 are kept separate, and simultaneous different IMUs are never joined into one measurement.
 
-## What remains before an Earth-shape comparison
+## Early archive screening and the first comparison plan
 
 Level-flight footage or instrument quality does not by itself establish an independent
 shape measurement. We still need to understand recorded gyro corrections and reconstruct
@@ -420,12 +413,11 @@ orientation/motion without treating fused navigation as independent truth. Perma
 mounted survey equipment lacks the participant's deliberate IMU reversals; these data need
 their own nuisance and identifiability analysis.
 
-The authorized follow-up is a separate, bounded empirical feasibility/comparison study:
-at most six geometry-selected retained files, at most 24 optimizer starts including interrupted
-starts, and 200 evaluations per start. That initial plan required suitable motion geometry
-and observations separate from the finished navigation solution.
-If those prerequisites fail, the output is a documented blocker, rather than a forced fit.
-No synthetic threshold transfers to these data, and no calibrated model winner can be claimed.
+The first bounded feasibility plan allowed six geometry-selected files,
+24 optimizer starts, and 200 evaluations per start. It required suitable
+motion geometry and observations separate from the combined navigation
+solution. The sections below describe that earlier stage. See the
+[verified findings](CURRENT_STATUS.md) for the completed comparison.
 The original reference is unsuitable under the acquisition window rule. The six-file trial
 found 272 seconds of qualifying flight in the 16 April 2009 ATM file, with independently
 supported physical decoding, and 354 seconds in a 2015 POS AV 610 file whose physical decoding
@@ -441,20 +433,18 @@ run at that stage. Subsequent studies completed the comparisons summarized at th
 this guide. The [initial screening record](ilvis0-physical-validation-20261007/README.md)
 and [completed follow-up](ilvis0-followup-20261007/README.md) preserve that sequence.
 
-## The route from decoded measurements to the proposed experiment's principle
+## Development of the airborne comparison
 
 The shared principle is to ask whether the IMU's measured rotation contains the small,
 predictable contributions from a background angular-rate field and motion over its surface, after allowing
 for aircraft motion and instrument error. These archival recordings can address that question,
 but do not inherit the passenger experiment's controls or calibration.
 
-The next development stage should use a small set selected by recorded geometry and data
-completeness, before inspecting Earth-model residuals. Preserve raw angle and velocity increments,
-logged installation epochs and timing uncertainty. Compare accumulated increments over supported
-intervals as well as rate estimates; this tests clock assumptions without selecting the
-normalization separately for whichever model fits better. Determine which onboard corrections
-are documented and which remain hypotheses. Looking for an expected Earth-rate component is
-a diagnostic, not by itself proof that no Earth-dependent processing occurred.
+The early plan called for selecting a small set by geometry and completeness
+before inspecting model residuals. It kept raw increments, installation
+changes and timing assumptions explicit. The later studies compared summed
+increments and rate-equivalent values to check clock sensitivity. The
+instrument’s onboard processing remains partly undocumented.
 
 Then build an archival observation model that separates aircraft rotation, sensor bias,
 mounting uncertainty, transport and the background field. Embedded GPS supplies trajectory

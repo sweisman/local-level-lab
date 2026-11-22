@@ -173,18 +173,18 @@ def load_snapshot(root,findings=FINDINGS):
 def headline(snapshot):
     tally=snapshot['tally']
     if tally['globe'] == snapshot['background'] and tally['globe'] > 0:
-        matched = f"{tally['globe']} with the specified-field globe preferred"
+        globe = 'the globe with the specified background field'
     else:
-        matched = f"{tally['globe']} globe preferences"
+        globe = 'globe geometry'
     unresolved = tally['unresolved'] + tally['ambiguous']
-    return (f"**{matched}, {tally['flat']} flat-disc preferences, "
-            f"{unresolved} without a consistent preference** among {snapshot['total']} selected stretches.")
+    return (f"**{tally['globe']} of {snapshot['total']} selected stretches favored {globe}.** "
+            f"The tested flat disc was preferred in {tally['flat']} stretches. "
+            f"{unresolved} lacked a consistent preference.")
 
 
 def status_block(snapshot,prefix):
     return (START+'\n'+headline(snapshot)+'\n'
-            f"See the [verified current status]({prefix}CURRENT_STATUS.md) for coverage, background-field comparisons "
-            'and the numerical checks recorded for each cohort.\n'+END)
+            f"The [verified results]({prefix}CURRENT_STATUS.md) give the model and repeat counts.\n"+END)
 
 
 def replace_block(text,block):
@@ -205,16 +205,15 @@ def render(snapshot):
                        ('unresolved','Unresolved'),('ambiguous','Different preferences across assumptions')]:
         text+=f'| {label} | {tally[name]} |\n'
     text+=f"\nOf the globe-preferred stretches, **{snapshot['background']}** also favor the specified background "
-    text+='rotation field over zero field under both processing assumptions. That comparison does not '
-    text+="identify the field's physical cause or distinguish a solar from a sidereal day.\n\n"
+    text+='rotation field over zero field under both processing assumptions. The field was supplied to the model. '
+    text+='Estimating it freely, explaining its cause and comparing solar and sidereal rates are separate questions.\n\n'
     if snapshot.get('cost_contrasts') is not None:
         contrasts = snapshot['cost_contrasts']
         text+=f"The specified-field globe has the lowest cost in both cases on **{contrasts['field_globe']}** stretches. "
         text+=f"Among the two zero-field fits, the disc costs less in both cases on **{contrasts['zero_field_disc']}** stretches.\n\n"
-    text+='These are fitted model preferences. Calibrated statistical confidence for aircraft remains open. '
-    text+='The ledger value `scientific_decision = abstain` records that distinction. '
-    text+='Overlapping recordings and shared instruments mean stretches cannot be counted as independent replications. '
-    text+='An unresolved comparison has not passed its required calculations and checks; it supplies no opposing shape finding.\n\n'
+    text+='These are fitted model preferences. The aircraft error model and independent confirmation remain open. '
+    text+='The ledger records a scientific abstention. Overlapping recordings and shared instruments are accounted for '
+    text+='in the [recording groups](analysis-provenance/NASA_GROUP_EVIDENCE.md).\n\n'
     if any(cohort['completed'] for cohort in snapshot['cohorts'].values()):
         text+='| Cohort | Completed comparisons | Saved repeat passes | Repeat unscheduled or not saved | Other repeat status |\n'
         text+='|---|---:|---:|---:|---:|\n'

@@ -1,6 +1,6 @@
 # Current airborne analysis status
 
-**53 with the specified-field globe preferred, 0 flat-disc preferences, 0 without a consistent preference** among 53 selected stretches.
+**53 of 53 selected stretches favored the globe with the specified background field.** The tested flat disc was preferred in 0 stretches. 0 lacked a consistent preference.
 
 The selected stretches total **424.3 minutes**. The same preselected intervals and original measurements are retained through numerical recovery.
 
@@ -11,11 +11,11 @@ The selected stretches total **424.3 minutes**. The same preselected intervals a
 | Unresolved | 0 |
 | Different preferences across assumptions | 0 |
 
-Of the globe-preferred stretches, **53** also favor the specified background rotation field over zero field under both processing assumptions. That comparison does not identify the field's physical cause or distinguish a solar from a sidereal day.
+Of the globe-preferred stretches, **53** also favor the specified background rotation field over zero field under both processing assumptions. The field was supplied to the model. Estimating it freely, explaining its cause and comparing solar and sidereal rates are separate questions.
 
 The specified-field globe has the lowest cost in both cases on **53** stretches. Among the two zero-field fits, the disc costs less in both cases on **18** stretches.
 
-These are fitted model preferences. Calibrated statistical confidence for aircraft remains open. The ledger value `scientific_decision = abstain` records that distinction. Overlapping recordings and shared instruments mean stretches cannot be counted as independent replications. An unresolved comparison has not passed its required calculations and checks; it supplies no opposing shape finding.
+These are fitted model preferences. The aircraft error model and independent confirmation remain open. The ledger records a scientific abstention. Overlapping recordings and shared instruments are accounted for in the [recording groups](analysis-provenance/NASA_GROUP_EVIDENCE.md).
 
 | Cohort | Completed comparisons | Saved repeat passes | Repeat unscheduled or not saved | Other repeat status |
 |---|---:|---:|---:|---:|

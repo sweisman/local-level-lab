@@ -4,6 +4,9 @@ The seven reserved ESA flight groups are intended as separate-flight checks
 of a method fixed in advance. They are **not enough on their own** to establish
 that a future prediction range covers 95% of flights.
 
+Each group now has one [20-minute slice with verified IMU timing](external-imu-data/ESA_CONFIRMATION_TIMING_RESULT.md).
+The seven groups still await a qualified forecast and decision rule.
+
 The repository's [exact order-statistic planner](../analysis/lll/prediction_calibration.py)
 requires **59 independent calibration groups** before the largest observed
 group error can serve as a 95%-coverage upper tolerance limit with 95%

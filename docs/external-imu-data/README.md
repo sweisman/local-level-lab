@@ -1,189 +1,23 @@
-# Additional inertial-data sources
+# Additional airborne data
 
-Two archives offer raw observations outside the existing NASA 53-stretch
-comparison. The ESA development recording has separate Earth-model prediction
-fits; Wuhan has not entered that analysis. Neither source changes the original
-53 results.
+The NASA archive supplies the completed 53-stretch comparison. ESA/DTU supplies a separate survey program for testing whether the method carries over to another aircraft and instrument. Wuhan University supplies a separate development lead. Each source has its own eligibility rules.
 
-**ESA confirmation is reserved before fitting.** Recording 187 is development
-material. The other eight cataloged files form seven protected confirmation
-groups. Integrity and receiver-only eligibility checks may proceed; model fitting
-and outcome inspection wait for a frozen method and confirmation selection.
-See the [provenance ledger and reservation](../analysis-provenance/README.md).
-The [receiver-only screen](ESA_CONFIRMATION_RECEIVER_INVENTORY_RESULT.md)
-found ten provisional windows across all seven groups, totaling 34.7 hours.
-Each group has a checked [20-minute slice with continuous IMU timestamps](ESA_CONFIRMATION_TIMING_RESULT.md).
-Independent prediction accuracy and uncertainty still need verification.
+| Source | Observations | Status |
+| --- | --- | --- |
+| [ESA AirQuantumGrav and Green Quantum](https://doi.org/10.57780/esa-58c58c5) | About 300 Hz iMAR inertial measurement unit (IMU) records and separate GPS receiver exports. | One development recording has been fitted. Seven other flight groups are reserved for confirmation. |
+| [Wuhan University SmartPNT-POS](https://www.kaggle.com/datasets/fengzhusgg/smartpnt-pos) | The inspected airborne sample has 115,696 IMU observations over 19.28 minutes and a separate raw GNSS file. | Independent receiver positions and eligibility still need work. |
+| [Wuhan long-record lead](smartpnt-long-record-report.json) | A header and end records indicate a 20.85-hour span at 600 Hz. | Interior continuity, stationary conditions, and mounting remain unverified. |
 
-An **IMU (inertial measurement unit)** records angular motion and acceleration.
-The relevant files contain its observations, rather than only a finished
-navigation solution.
+## ESA development and reserved flights
 
-| Source | What is verified | What remains |
-|---|---|---|
-| ESA/DTU AirQuantumGrav and Green Quantum | The live catalog contains **nine raw iMAR files totaling 8.02 GB**. One complete recording has **9,168,819 records over 8.49 hours**, approximately **300 Hz**, with no gaps above 1.5 nominal periods. Its matching GNSS PPP position file is downloaded. | The earlier quiet-flight policy admitted no intervals. The [full-motion inventory](../esa-development-selection-v2/README.md) admits two runs totaling **393.4 minutes**. On the first twenty-minute development interval, the [wider-precision pilot](../esa-observed-wide-pilot/INTERPRETATION.md) supplies 22 forecasts and three complete three-model comparisons favoring globe under its tested assumptions. Two starts remain unfinished; error coverage is uncalibrated. The other eight raw recordings have not been downloaded or model-tested. |
-| Wuhan University SmartPNT-POS | The public catalog contains **652 files**, including **40 IMR files**. One downloaded airborne sample contains **115,696 IMU records over 19.28 minutes**, with no timestamp reversal, duplicate or gap exceeding 1.5 nominal sample periods. | Independent receiver positions, dataset-specific motion screening and model qualification remain to be developed. |
-| SmartPNT-POS long-record lead | Header and endpoint range requests verify a **20.85-hour timestamp span** for a 600 Hz HG4930 file in the Allan-variance folder. Only **576 bytes** were downloaded. | Interior completeness, stationary conditions and mounting are unverified. It is a sensor-characterization lead, not curvature evidence. |
+Development recording 187 contains approximately 8.49 hours of IMU samples from one survey flight. The [full-motion selection](../esa-development-selection-v2/README.md) admits two runs totaling 393.4 minutes under its receiver and IMU support rules. The measurements include turns and climbs. A slower flight can cover the distance needed to test curvature over a longer window, while persistent instrument errors still need separate assessment.
 
-## Longer, slower airborne surveys
+On that development flight, [two complete matched settings](../prediction-observed-development/ESA_400_120_MODEL_MATRIX_INTERPRETATION.md) favor globe on withheld GPS positions. Two settings remain unresolved. Aircraft uncertainty is still open. [Forecast reuse by receiver row](../analysis-provenance/ESA_GROUP_EVIDENCE.md) · [Ground reference checks](../prediction-observed-development/ESA_GROUND_REFERENCE_EVIDENCE.md)
 
-The [ESA report](https://earth.esa.int/eogateway/documents/d/earth-online/airquantumgrav-final-report)
-lists survey-leg speeds around 120–130 knots, or 222–241 km/h. Longer duration can
-compensate for slower travel in accumulated surface curvature: 240 km/h for
-30 minutes covers about the same distance as 700 km/h for ten minutes. It does
-not automatically compensate for sensor bias or drift.
+The seven reserved groups include eight source files. The [receiver screen](ESA_CONFIRMATION_RECEIVER_INVENTORY_RESULT.md) found ten provisional windows, totaling 34.7 hours. The [timing check](ESA_CONFIRMATION_TIMING_RESULT.md) verified one 20-minute slice per group. These checks establish receiver coverage and continuous sample timing. Confirmation fits will use separately frozen selection, prediction, and error rules. [Reservation and grouping](../PROVENANCE_VERIFICATION.md)
 
-The [rate/body qualification](../esa-rate-qualification/INTERPRETATION.md) now
-passes 48 generated controls while keeping constructed increments and unresolved
-sampling/processing assumptions explicit.
-The later [72 geographic controls](../esa-geographic-rate-controls/README.md)
-and [24 known-correction controls](../esa-observation-controls/README.md) pass too,
-with maximum spatial errors below 10 cm for the declared linear-point interpretation.
-The [training-only study](../esa-training-forecast-controls/README.md) also passes
-all 24 generated fits, estimating calibration from earlier observations and
-predicting later positions. It adds no random measurement noise. Two versioned
-working receiver-error cases are checked, and the revised inventory provides
-two development runs. The [completed development pilot](../esa-development-pilot/README.md)
-returns 24 fits, with 15 numerical passes. Its one complete three-model comparison
-has lower error for globe geometry but fails prediction accuracy. It does not
-establish a successful ESA replication; actual error coverage remains uncalibrated.
-The [height-gravity revision](../esa-observed-height-pilot/README.md) now completes
-one adequate three-model setting, with specified-field horizontal/height RMS of
-6.80/13.71 m on later observations. Only eight of 24 fits pass numerical checks;
-the [stopping diagnostic](../esa-stopping-resolution/PLAN.md) precedes broader
-testing. All confirmation groups remain protected.
-The iMAR Level-0 files are documented as ASCII records of GPS time, three
-accelerations, three angular rates in radians/second, and temperature. The report
-states that their axes have already been rotated to aircraft forward, starboard
-and down. It also describes separate raw GNSS observations in RINEX format.
-The inspected recording confirms approximately 300 Hz cadence. Header units and
-the report agree; the inspection does not independently calibrate the instrument.
+## Wuhan development lead
 
-The inventory distinguishes **nine files from twelve flight labels**: some flights
-share a file. The 50 reported line intervals total 20.52 hours; that is observing
-time, not fifty independent flights.
+The inspected sample uses a NovAtel SPAN HG4930. Its IMR header gives the units and timing for recorded angular and velocity increments. A supplied trajectory combines GNSS and inertial navigation, so the independent receiver reconstruction would use the raw GNSS observations. This source remains a separate development lead. [Acquisition and instrument details](ACQUISITION_HISTORY.md)
 
-- [Reported IMU files](esa-reported-imu-files.csv)
-- [Verified live IMU file catalog](esa-live-imu-files.csv)
-- [Reported line intervals](esa-reported-lines.csv)
-- [ESA catalog and access instructions](https://earth.esa.int/eogateway/campaigns/airborne-quantum-gravimetry-airquantumgrav-2023)
-- [Dataset access request](https://esatellus.service-now.com/csp?id=dar_fast&dataset=AirQuantumGrav2023V0)
-
-## Downloaded ESA recording
-
-`187_rqh01.txt` covers **8.49 hours** on July 6, 2023. A streaming pass checked
-every row, preserved the original and reproduced its acquisition hash. Timestamp
-steps range from approximately 3.333 to 3.334 milliseconds. One startup row has
-near-zero acceleration and is recorded as a quality flag; it has not been silently
-removed. Eleven deterministic decoder tests check units, signed values, malformed
-records, nonfinite values, timestamp ordering and gap handling.
-
-The matching GNSS position export contains **64,080 epochs over 8.90 hours**.
-The survey report identifies it as GNSS-only precise point positioning, using
-satellite orbit and clock products. The export uses the software's generic
-“GNSS/INS Epochs” label; the report, rather than that label, establishes the stated
-processing provenance. Two [GPS code reconstructions](../prediction-observed-development/ESA_RINEX_CODE_RESULT.md)
-have independently processed 1,041 raw epochs on this flight. They use
-the same aircraft antenna as the export. The receiver export also reports north/east/up
-velocity and six velocity covariance fields. The decoder preserves those six
-numbers in export order; their calibration and dependence on the position
-solution have not been established, so they are not yet used as independent
-motion evidence.
-A [training-only audit](../prediction-observed-development/GNSS_COVARIANCE_AUDIT.md)
-finds all 400 printed position and velocity matrices algebraically valid,
-while leaving their accuracy and time dependence unqualified.
-Two additional PPP exports from the same opened flight are retained. A
-[matched comparison](../prediction-observed-development/PARALLEL_GNSS_RESULT.md)
-finds centimetre differences at all 400 earlier training times. The survey
-used three receivers sharing one aircraft antenna, so this checks receiver
-agreement without proving absolute accuracy.
-A [common-time comparison](../prediction-observed-development/PARALLEL_GNSS_TIME_RESULT.md)
-accounts for submillisecond timing differences using the reported velocity;
-the remaining differences still measure only relative agreement.
-The [full opened-flight comparison](../prediction-observed-development/FULL_PARALLEL_GNSS_V2_RESULT.md)
-extends the check to eight fixed windows. One receiver diverges by
-decimetres in the last window while the third remains closer to the reference.
-A [speed-only split](../prediction-observed-development/PARALLEL_GNSS_MOTION_PHASE_RESULT.md)
-shows that the difference grows from fast flight to low speed;
-early agreement is not a whole-flight accuracy guarantee.
-The [sealed 120-epoch forecast](../prediction-observed-development/PARALLEL_GNSS_FORECAST_RESULT.md)
-also scores similarly against all three exports on this one opened flight.
-That is a receiver-hardware check, not independent flight validation.
-
-The [GIRAFE inventory](ESA_GIRAFE_187.md) confirms separate acceleration
-and stabilized-platform files for the same development flight.
-Their time and measurement fields still need qualification.
-
-Both reported lines for this recording overlap the IMU and GNSS time coverage:
-
-| Reported line | Duration | Mean ground speed | Ellipsoid-height range |
-|---|---:|---:|---:|
-| 9001 | 6.13 minutes | 282 km/h | 1,949–1,952 m |
-| 3007 | 57.4 minutes | 263 km/h | 1,512–1,902 m |
-
-The longer line changes altitude substantially. These are descriptive survey
-intervals, not approved steady-flight analysis windows. The later full-motion
-selection used the independent receiver trajectory and a published policy before
-fitting. The first pilot's prediction failures remain preserved alongside the
-height-gravity revision's one adequate setting on the same interval.
-
-[IMU inspection](esa-sample-report.json) · [GNSS inspection](esa-gnss-report.json) ·
-[Reported-line trajectory details](esa-selected-line-context.csv).
-
-## Downloaded Wuhan sample
-
-The [SmartPNT-POS archive](https://www.kaggle.com/datasets/fengzhusgg/smartpnt-pos)
-includes fourteen UAV datasets among thirty numbered collections. The inspected
-sample is `Data06_20210115_HG4930_UAV_Opensky`. Its IMR header identifies a
-**NovAtel SPAN HG4930**, 100 Hz angle/velocity increments, GPS time tags and
-explicit conversion scales. Its mounting XML supplies a 90° rotation and antenna
-lever arm. The binary original and signed integer counts are preserved.
-
-The matching **raw RINEX 3.02 GNSS file** contains 5,796 observation epochs over
-19.32 minutes. Receiver positions have not been computed. A separately downloaded
-reference trajectory is explicitly labeled **smoothed, combined GNSS/INS**. Its
-reported maximum speed is only **29.2 km/h**; this is motion context, not independent
-position evidence or a basis for admission.
-
-The streaming inspector follows the
-[manufacturer’s IMR specification](https://docs.novatel.com/Waypoint/Content/Data_Formats/IMR_File.htm),
-honors increment-versus-rate flags, preserves original time tags and applies no
-mounting, timing-bias or Earth-rate correction. Twelve deterministic format tests
-pass. IMR has no record checksum; structural checks and file hashes do not prove
-which corrections preceded conversion into IMR.
-
-[Complete file inventory](smartpnt-files.csv) ·
-[Airborne sample inspection](smartpnt-sample-report.json) ·
-[Long-record range inspection](smartpnt-long-record-report.json).
-
-## Admission to future analyses
-
-Each dataset will have its **own published eligibility policy**, fixed before
-examining model-fit residuals. Source integrity, timing continuity, independent
-receiver trajectory, usable duration, traveled distance and aircraft motion will
-determine candidate intervals. Instrument performance assumptions and processing
-hypotheses must also be qualified separately.
-The [ESA selection proposal](ELIGIBILITY_PLAN.md) specifies the intended longer,
-slower cohort and required software controls. It has not yet selected intervals
-or admitted them to model fitting.
-
-Longer, slower survey lines can form a separate shape-analysis cohort. Short,
-slow UAV tracks and stationary recordings may instead support noise, drift,
-timing or rotation-field development. Raw availability alone admits no recording
-to a shape conclusion. Existing intervals, results and thresholds stay unchanged.
-
-Downloaded originals, reference documents, metadata pages and physical-unit CSV
-are retained locally under `data/external-imu-survey-20261018/`. The
-`build_inventory.py` command regenerates inspection reports from those explicit
-inputs without network access, numerical integration or model fitting; hashes
-are recorded in `inventory-receipt.json`.
-
-The ESA additions have separate acquisition and inspection receipts under
-`esa-sample/`. `inventory_esa.py` rebuilds the live catalog from saved directory
-listings; `inspect_esa_gnss.py` describes the GNSS export and reported lines.
-`inspect_esa.py` preserves its completed full-file inspection and refuses an
-accidental repeat. It performs no model fitting. The initial bounded byte-range
-request timed out on transfer closure and remains an incomplete diagnostic
-fragment; all reported full-file checks use the independently completed original.
-
-[Next analyses](../NEXT_STEPS.md) · [Study index](../STUDIES.md).
+[Earlier acquisition and format record](ACQUISITION_HISTORY.md) · [Current research plan](../ANALYSIS_ROADMAP.md) · [Study index](../STUDIES.md)

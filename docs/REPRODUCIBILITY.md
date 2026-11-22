@@ -9,14 +9,18 @@ Packing changes storage, not the measurements or results. Original source bytes,
 inputs, failures, resource charges and result hashes remain recoverable. The
 original instrument recordings retain their separate acquisition and licensing
 requirements; an evidence archive does not grant access to restricted data.
-The [pending-evidence inventory](REPOSITORY_STORAGE.md) explains the local
-unpublished pack backlog and why catalog and pack changes must be reviewed
-together.
+The [storage guide](REPOSITORY_STORAGE.md) explains the size of a full
+checkout and how the catalog and evidence packs fit together.
 
 Run publication, migration and compaction commands one at a time. Wait for the
 test runner to finish before changing its evidence workspace.
 
 ## Inspect, verify and restore
+
+Start with the [study index](STUDIES.md). Most result pages include a short
+command to reproduce their headline result from saved outputs. For one
+archived study, use its evidence path in the scoped verification command
+below. Use a full archive audit when you need to check every pack.
 
 The [ESA direction table checker](prediction-observed-development/ESA_DIRECTION_ANGLE_PAIRS_RESULT.md#recompute-the-public-tables)
 reproduces the direction, antenna-offset and calibration-transfer tables
@@ -71,7 +75,7 @@ only when no test runner owns the evidence workspace.
 Use the existing Python environment from the repository root:
 
 ```sh
-env PYTHONPATH=analysis ~/venv/bin/python -m lll.studies check
+env PYTHONPATH=analysis ~/venv/bin/python -m lll.studies check docs/STUDY
 env PYTHONPATH=analysis ~/venv/bin/python -m lll.studies inspect docs/STUDY
 env PYTHONPATH=analysis ~/venv/bin/python -m lll.studies restore docs/STUDY --destination data/reproduction
 ```

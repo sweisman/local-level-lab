@@ -7,6 +7,12 @@ measure prediction error. The path continues across the split without a GPS
 reset. Software controls and small archival pilots have been completed;
 accuracy across independent flights and calibrated uncertainty remain open.
 
+The [NASA four-group audit](ilvis0-measurement-contribution/MATCHED_FOUR_GROUP_AUDIT_RESULT.md)
+verified 15 of 16 retrospective forecasts. The [ESA model comparison](prediction-observed-development/ESA_400_120_MODEL_MATRIX_INTERPRETATION.md)
+completed two matched settings on one development flight and kept two
+unresolved. Each of seven reserved ESA groups has a [timing-verified slice](external-imu-data/ESA_CONFIRMATION_TIMING_RESULT.md).
+The aircraft error model and decision rules must qualify before confirmation.
+
 The separate [generated optimizer check](prediction-group-transfer/CENTERED_FLIGHT_SOLVER_RESULT.md)
 keeps the trust-region solver in place. Its centered-objective alternative
 hit the time limit on the first generated flight after passing exact

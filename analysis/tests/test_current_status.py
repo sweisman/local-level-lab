@@ -92,7 +92,7 @@ def test_stale_excerpt_is_detected_without_writing(tmp_path,monkeypatch):
         path.write_text(module.START+'\n'+module.END+'\n')
     module.generate(tmp_path)
     assert module.generate(tmp_path,check=True)==[]
-    path=tmp_path/'README.md';stale=path.read_text().replace('1 with the specified-field globe preferred','99 with the specified-field globe preferred');path.write_text(stale)
+    path=tmp_path/'README.md';stale=path.read_text().replace('1 of 1 selected stretches','99 of 1 selected stretches');path.write_text(stale)
     assert module.generate(tmp_path,check=True)==['README.md']
     assert path.read_text()==stale
 

@@ -1,0 +1,222 @@
+# Archived methodology
+
+This page preserves the earlier research record. Statements about what comes next reflect those study stages. See the [current page](METHODOLOGY.md) for the active status and plan.
+
+# How the measurement works
+
+An **IMU (inertial measurement unit)** contains gyroscopes and accelerometers.
+The gyroscope record is central: it measures angular motion of the
+aircraft-mounted instrument, including maneuvers and any background angular
+field. GPS supplies the route and timing needed to interpret that motion. The
+analysis also uses acceleration and receiver-position constraints.
+
+[Current findings](CURRENT_STATUS.md) · [Studies and what they added](STUDIES.md) ·
+[All 53 stretches](ilvis0-current-findings-20261015/STRETCHES.md) ·
+[Comprehensive CSV](ilvis0-current-findings-20261015/stretch-analytics.csv).
+
+## A short way through the analysis
+
+Imagine reconstructing a flight using only the recorded IMU movements. The GPS
+receiver then supplies positions against which to check that reconstruction.
+The software repeats this under each proposed Earth geometry, giving each
+candidate the same permitted instrument corrections. The candidate with the
+smaller remaining position error is *preferred* for that stretch, provided its
+calculations pass the required checks.
+
+These terms describe the status of a comparison.
+
+| Term | Meaning here |
+|---|---|
+| **Model** | A specified Earth geometry and background angular field, with equations for how a moving aircraft should behave. |
+| **Fit** | A calculation that adjusts allowed instrument and starting-motion values to match the recorded IMU and GPS data. |
+| **Numerical pass** | The calculation met the checks for its study stage. Some stages scheduled repeats; see the current status for their recorded coverage. |
+| **Preference** | One completed candidate has a lower mismatch than another under the stated assumptions. |
+| **Calibrated confidence** | An error rate for the complete decision process, checked against realistic uncertainty and independent data. This is still open for the airborne result. |
+| **Abstain** | The result ledger makes no calibrated scientific decision. It can still record a lower cost for one fitted model. |
+
+The present result is a **numerical preference** on 53 selected stretches. The
+gyroscope measurements and primary GPS positions are different recorded
+streams, but GPS coordinates use a conventional geographic reference. The
+channel and coordinate checks below test how much the inertial measurements
+add. The later [prediction work](PREDICTION_VALIDATION.md) asks whether a fit
+to earlier measurements can forecast positions it has not seen.
+
+## Primary: NASA airborne analysis
+
+### What each input contributes
+
+| Input | Role |
+|---|---|
+| Gyroscope angle increments | The recorded angular motion being investigated; retained as measurements rather than replaced with the finished navigation solution. |
+| Accelerometer velocity increments | The force measurements used with the gyros to reconstruct motion. |
+| GPS receiver positions and times | Locate the route and constrain the reconstructed track; support speed and interval selection. |
+| WGS84 and the alternative disc metric | Declared ways to interpret coordinates under each candidate, not additional instrument observations. |
+
+The gyroscope is the central measurement of interest; this does not establish a
+numerical percentage of the evidence attributable to it. The current objective
+fits integrated IMU motion against receiver positions. The completed descriptive
+[measurement-channel checks](NEXT_STEPS.md)
+test reduced observations; calibrated attribution remains open.
+
+### The physical prediction
+
+On a globe, an aircraft following local level changes orientation as it travels:
+the direction of down changes along the surface. At 900 km/h, the curvature term
+is about eight degrees per hour. Aircraft maneuvers and any background rotation
+field contribute additional angular motion.
+
+The analysis integrates recorded angle and velocity increments to reconstruct a
+trajectory under each model, then compares that trajectory with receiver positions.
+It adjusts instrument and initial-motion parameters within the same declared bounds
+for every model. The best model is the one that reproduces the observations most
+closely after those adjustments pass numerical checks.
+
+| Candidate | Contributions included |
+|---|---|
+| Globe with the specified background field | Curved surface, aircraft motion and a standard geographic angular-rate field. |
+| Globe with zero background field | Curved surface and aircraft motion. |
+| Stationary flat disc | A north-pole-centered azimuthal-equidistant disc with a 6,371 km scale, gravity normal to the disc and zero background field. Moving east circles the center and turns the local compass frame. |
+
+The published fits cover this particular disc. Other flat geometries and a
+disc carrying the globe model's specified geographic field remain untested in
+the NASA comparison. The supplied field and surface geometry both affect the fit.
+
+The historical names “rotating globe” and “still globe” identify the first two
+candidates. They specify a field term; they do not determine its physical cause.
+
+### Selection and comparison
+
+1. **Check the measurements.** Preserve originals, integer increments and timestamps;
+   reject invalid packets, checksums and truncation without silently repairing data.
+2. **Apply the saved stretch-selection policy.** Require four continuous minutes, every
+   supported receiver speed at least 700 km/h, and the frozen motion, completeness
+   and configuration rules. The [eligibility record](ilvis0-highspeed-segments-20261008/ELIGIBILITY.md)
+   preserves the exact intervals and every file outcome. The policy includes a
+   fused-navigation alignment flag for screening. Earlier archive-wide exploratory
+   fits preceded this study. The same selected intervals were used throughout
+   the published 53-stretch comparison.
+3. **Fit each complete stretch.** Use the same observations for all three candidates.
+   Gaps or configuration changes split intervals. Shorter residual sections are
+   consistency checks at the same parameters, not extra independent trials.
+4. **Test both processing cases.** Allow either no upstream background-field removal
+   or an unknown common removed fraction. Both allow constant gyro offsets of
+   ±1 degree/hour; that is an assumed error allowance, not a measured drift specification.
+5. **Check numerical completion.** Apply the checks recorded for each stage.
+   The original pass completed 12 stretches with no saved repeat pass. Later
+   studies finished the other 41 under stage-specific policies and retained the
+   failed attempts. See the [current status](CURRENT_STATUS.md) for the repeat counts.
+6. **Interpret shape first.** Compare the disc with the better globe fit. Only after
+   both processing cases favor globe is the background-field comparison reported.
+
+### What is independent, and what still needs checking
+
+The fitted IMU increments come from Applanix Group 4; receiver positions come from
+Group 10001. Group 1 is the combined navigation solution. It supplies decoder checks
+and motion screening, never fitted position or gyro evidence. The
+[archive guide](ILVIS0.md#measurement-provenance-and-independence) documents those roles.
+
+GPS is a positioning system; WGS84 is the geodetic reference used for its reported
+coordinates. GPS latitude, longitude and height use those conventions. Each candidate assigns
+its declared geometry to those coordinates. Separate recorded streams therefore
+avoid fitting the finished navigation answer against itself, but do not make the
+comparison free of coordinate assumptions. Channel and coordinate checks
+test what the inertial observations add.
+
+Two reduced-observation checks address different dependencies:
+
+- **Remove the height score.** One IMU8 comparison passes all repeats and still
+  favors globe; the IMU21 sensitivity remains unresolved. Unscored vertical paths
+  can become implausible, so this is not a full altitude-independent reconstruction.
+  [Height sensitivity](ilvis0-horizontal-multistart-20261019/INTERPRETATION.md).
+- **Remove gyro information from a necessary force-magnitude constraint.**
+  Permitted calibration and error assumptions leave every candidate overlapping
+  in 144 snapshot cases and across 763 packet groups. This reduced observation
+  does not distinguish the models, but does not establish a complete feasible
+  gyro-free trajectory either. [Whole-history assessment](ilvis0-channel-history-v2-20261019/INTERPRETATION.md).
+
+Fused attitude cannot replace an omitted gyro stream, and omitted acceleration
+cannot still supply initial tilt. The [study index](STUDIES.md) records the
+independent trajectory, timing, averaging and calibration controls behind those checks.
+
+The [raw gyro companion](ilvis0-gyro-companion-v2/INTERPRETATION.md) compares all
+53 pitch-axis means directly with geographic predictions, without fitting gyro
+corrections. It assumes level attitude and heading along each candidate's ground
+course for the reference plot; 243 fixed orientation/processing scenarios per
+stretch expose sensitivity. Aircraft pitching and instrument/mounting effects
+remain in the differences. This is a descriptive check of the observed variation,
+not a replacement for the full trajectory comparison.
+
+The [prediction test](PREDICTION_VALIDATION.md) fits calibration using only
+earlier observations, then reconstructs the later track from IMU readings without
+using later receiver positions to adjust it. All candidates retain matched
+physical bounds and error assumptions. Predetermined starting points expose
+sensitivity; they do not supply confidence intervals.
+
+Known-answer pipeline checks precede a small pilot selected from route,
+completeness, IMU type and conservative flight-group metadata. Report errors in
+all three position components, numerical failures and differences between starts.
+A smaller error is a relative advantage, not automatically physical adequacy or
+statistical significance.
+
+The [retrospective archive pilot](ilvis0-retrospective-prediction-pilot-v2/INTERPRETATION.md)
+now completes adequate comparisons on one recording. The separate
+[ESA development revision](esa-observed-wide-pilot/INTERPRETATION.md) completes
+three adequate matched settings on one twenty-minute recording, with later
+3D RMS near 15 m for globe plus the specified field versus kilometres for
+the alternatives. Two disc starts reach the runtime ceiling, leaving one
+setting incomplete. All failures remain recorded; broader validation and
+calibrated confidence are still open.
+
+Formal intervals covering every allowed calibration remain a separate
+[research track](PREDICTION_ERROR_ASSUMPTIONS.md). Its short controls and failed
+recording-length constructions remain preserved. Their qualification is no
+longer a prerequisite for exploratory prediction comparisons. Actual correlated
+receiver/IMU error assessment and calibrated uncertainty remain required before
+confidence or detection claims.
+
+A [saved-error audit](ilvis0-saved-prediction-comparison/INTERPRETATION.md)
+checks existing retrospective predictions without new fits. Across three fully
+completed settings on one recording, horizontal RMS during the withheld interval
+is about 2.4 m for the specified-field globe, 143–161 m for zero-field globe and
+166–255 m for flat disc. The weaker models already fit the training positions
+less closely; the advantage persists after later GPS positions are withheld.
+All 18 saved analyses and their original stopping labels remain available.
+This adds no independent flight or calibrated absolute-adequacy result.
+
+A completed fit means the numerical search passed its checks; it does not mean the
+fit is good. Fit quality, prediction on unused observations, correlated errors and
+shared-flight dependence need separate assessment. Statistical significance has not
+yet been calibrated. Recorded increments also do not establish that onboard
+calibration, filtering or subtraction was absent. IMU8 and IMU21 conversions remain
+separately documented rather than treated as interchangeable hardware identities.
+
+Earth’s shape, a retained rotation field and the field’s cause are separate
+questions. A globe finding does not establish heliocentrism or exclude geocentric
+globe models. The zero-field globe is not a test of every proposed stationary-Earth
+explanation. The [rotation-field study](ROTATION_FIELD.md) will estimate the field
+freely before interpreting it; fixed-rate fits cannot measure a solar-versus-sidereal
+difference. [Next steps](NEXT_STEPS.md) lists the remaining checks.
+
+## Secondary: stationary crowdsourced measurements
+
+Put an IMU on a solid, level support. Record with a marked horizontal axis approximately
+toward true north, reverse it 180° with the same face up, and record again. A geographic
+horizontal rate reverses sign in sensor coordinates; a constant sensor offset does
+not. Repeated A–B–B–A blocks also help separate a linear offset change.
+
+Estimate the signed reversal rate without supplying latitude or an expected angular
+rate. A later geographic study would compare sealed estimates with cos(latitude),
+fitting the amplitude freely. This tests the horizontal rotation field; it does not
+establish Earth’s shape or the field’s cause by itself.
+
+The app and preliminary analyzer are implemented. Physical noise, temperature,
+alignment, changing drift and uncertainty still need validation; the implemented
+report abstains from scientific decisions. See the [ground method](STATIONARY.md),
+[participant protocol](PROTOCOL.md) and [bench checks](BENCH.md).
+
+## Separate evidence, shared principles
+
+Preserve failures, select by recording quality, compare models fairly, measure
+uncertainty and account for repeated observations. NASA archive results do not certify
+consumer sensors. The [study index](STUDIES.md) records what each investigation added;
+[planned work](NEXT_STEPS.md) separates finished results from future analyses.
