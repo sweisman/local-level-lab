@@ -63,9 +63,16 @@ settings. This is a software check with constructed scores.
 
 The [4,344 saved simulation fits](prediction-validation-continuation/README.md)
 span 181 draws and compare forecasts with known simulated positions.
-They do not have matched receiver-target losses for this test and were
-reserved for validation of their original rule. A future study needs a
-frozen aircraft error model and separate reference and validation draws.
+They remain reserved for validation of their original rule. A separate
+[replay of the first calibration seed](prediction-receiver-replay/RESULT.md)
+verified that the saved raw forecasts can be scored against simulated
+receiver readings with zero new fits. The
+[full reference replay](prediction-receiver-replay/REFERENCE_RESULT.md)
+now supplies 286 scores in each of twelve original scenarios. Thirteen
+unavailable seeds remain in each denominator. They limit the illustrated
+5% seven-group rule to unanimity even with zero available tail scores.
+A decision study still needs a frozen aircraft error model, matched
+query fits, and independent validation for the same receiver-target score.
 
 ## Software checks
 
@@ -102,10 +109,19 @@ Both versions require a separate frozen calibration for each candidate and
 an independent test of the entire procedure on a justified population. Keep
 the seven reserved ESA groups closed until the prerequisites are satisfied.
 
-For a future matched-reference run, `compare_group_work` uses those scores and
-adequacy flags to produce rank bounds from the sealed reference results. Pass
-those rows and all final unavailable group statuses to `cohort_rank_work` with
+For a future reference run, `compare_group_work` uses those scores and
+adequacy flags to produce rank bounds from the sealed reference results.
+Use the same `absolute_null` choice as in the final comparison. Pass those
+rows and all final unavailable group statuses to `cohort_rank_work` with
 the same cohort, required group count and allowance. The
 [cohort work rule](FLIGHT_GROUP_DECISION.md#when-the-whole-cohort-can-stop)
 checks whether either decision could still change. Missing calibration results
 and sealed failed draws remain distinct for this calculation.
+
+A known-answer test checks the cheaper reference option with two queries
+sharing two unfinished draws and a third, unavailable query kept in the
+cohort. The work check agrees with the three outcomes obtained by completing
+those draws in all nine combinations of lower loss, higher loss and failure.
+The 61 focused decision and calibration tests passed. This checks when
+computation can stop after all target results are final. Aircraft calibration
+and actual savings still need verification.

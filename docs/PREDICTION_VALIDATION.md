@@ -12,6 +12,13 @@ verified 15 of 16 retrospective forecasts. The [ESA model comparison](prediction
 completed two matched settings on one development flight and kept two
 unresolved. Each of seven reserved ESA groups has a [timing-verified slice](external-imu-data/ESA_CONFIRMATION_TIMING_RESULT.md).
 The aircraft error model and decision rules must qualify before confirmation.
+The [training-only receiver replay](prediction-observed-development/ESA_MATCHED_SPLIT_RESULT.md)
+verified two earlier layouts on the development flight. They use the same
+120 later times without decoding the withheld receiver positions or their
+reported covariance.
+The [scoring order check](prediction-observed-development/ESA_SCORING_SEAL_RESULT.md)
+reproduced the archived matched matrix's primary forecasts using earlier
+training loss before opening the published score summary.
 
 The separate [generated optimizer check](prediction-group-transfer/CENTERED_FLIGHT_SOLVER_RESULT.md)
 keeps the trust-region solver in place. Its centered-objective alternative

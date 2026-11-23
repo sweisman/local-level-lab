@@ -1,11 +1,11 @@
 # What the ground references add
 
-The permanent Nuuk station supplies a separate set of satellite range
-measurements for ESA development flight 187. Its 17 matching timestamps
-provide a check on some errors shared by the aircraft receivers. The work
-below belongs to **one development flight**. The Qaqortoq receiver adds a
-distant one-second comparison on that same flight. The seven reserved ESA
-groups remain closed.
+Three ground receivers provide separate satellite range measurements for
+ESA development flight 187. Nuuk Museum and Qaqortoq supply one-second
+comparisons. The permanent Nuuk station contributes 17 matches at
+30-second spacing. These measurements check some errors shared by the
+aircraft receivers. All three comparisons belong to **one development
+flight**, and the seven reserved ESA groups remain closed.
 
 | Question | What the check found |
 | --- | --- |
@@ -21,29 +21,38 @@ groups remain closed.
 | What happens when both use the same path and satellite products? | The range difference between stations falls from 3.48 to 1.47 cm RMS. Both corrections still improve agreement with the same saved path, while faster errors remain open. [Common-product comparison](ESA_GROUND_COMMON_PRODUCTS_RESULT.md) |
 | What still limits the result? | The geometric approximation can be bounded from position and motion limits. The actual aircraft range, anchor and motion errors still need independent bounds. [Geometric bound](ESA_CARRIER_RANGE_REMAINDER_RESULT.md) · [Joint error budget](ESA_REFERENCE_ERROR_BUDGET.md) |
 
-The next measurement is the separate 1 Hz Nuuk Museum file. The tested
-intake can check timestamps and tracking continuity as soon as the file is
-available. Its usefulness will depend on the actual overlap and the accuracy
-of the resulting aircraft positions. [Source and intake](ESA_GROUND_REFERENCE_AVAILABILITY.md)
+The separate [1 Hz Nuuk Museum comparison](ESA_NKAR_GROUND_SCORE_RESULT.md)
+now matches all 120 one-second scoring intervals and covers 99.98% of the
+saved carrier weight norm. The aircraft-minus-ground discrepancy projects
+to 2.88% of the score gap. On the same satellites and later times, corrections
+learned earlier at either station made little difference to the aircraft ranges.
+[One-second ground correction test](ESA_NKAR_PHASE_TRANSFER_RESULT.md)
+
+The [antenna calibration](ESA_NKAR_ANTENNA_RESULT.md) and [ideal phase
+correction](ESA_NKAR_PHASE_WINDUP_RESULT.md) changed that score by small
+fractions of the gap. The [updated error budget](ESA_NKAR_ERROR_BUDGET_RESULT.md)
+sets the accuracy needed under its example assumptions. The actual
+shared aircraft errors remain open.
 
 ## Reproduce the evidence checks
 
-The [current evidence index](esa-ground-reference-evidence-v3.json) pins
-fourteen sealed calculation reports, two ground intake reports, and the joint
-error budget. The public check verifies the hashes and recomputes the range
-comparisons, correction, sampling and geometric bounds from saved values.
-Run it from the repository root. It needs no original flight or ground archive
-download.
+The [current evidence index](esa-ground-reference-evidence-v4.json) pins
+18 sealed calculation reports, two ground intake reports and three
+error-budget calculations. The public check verifies their hashes and
+recomputes the range projections, chronological transfer, antenna score
+changes and bounds from saved values. Run it from the repository root.
+It needs no original flight or ground archive download.
 
 ```sh
 env PYTHONPATH=analysis ~/venv/bin/python analysis/tests/run_numerical.py --threads 1 -- \
-  ~/venv/bin/python -m lll.esa_ground_reference_evidence check --version 3
+  ~/venv/bin/python -m lll.esa_ground_reference_evidence check --version 4
 ```
 
 With the sealed local studies available, use `check-runtime` in place of
 `check`. That verifies source, input and result hashes and the original
 zero-work accounting failure. Neither check runs an aircraft fit. The
 release lists one development flight and makes no calibrated detection claim.
-The [seven-study index](esa-ground-reference-evidence-v1.json) and
-[eleven-study index](esa-ground-reference-evidence-v2.json) remain available
-with `--version 1` and `--version 2`.
+The [seven-study index](esa-ground-reference-evidence-v1.json),
+[eleven-study index](esa-ground-reference-evidence-v2.json) and
+[fourteen-study index](esa-ground-reference-evidence-v3.json) remain
+available with their original version numbers.

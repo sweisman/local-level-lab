@@ -19,9 +19,15 @@ interval, so both are retained as failed acquisition evidence.
 | Earlier flight | 55,029 | 384898.51739992–384920.41739992 | `f4aa862c633062128c1b25ee809d09782f468349873edef04b1a62293578768d` |
 | Existing carrier score | 328,929 | 384898.51739992–385030.41739992 | `eaef0e070807bad3e37f6ba2b7c02e0da4aa596b6437de05a734fc2e2eb5494e` |
 
-Both planned transfer attempts are accounted for. A follow-up acquisition
-needs a verified byte offset and timestamp coverage before the force
-comparison can proceed. The comparison has yet to run.
+Both planned transfer attempts are accounted for. The saved responses
+could only support a separate check at the start of the recording.
+
+A separate check used the longer saved response to establish agreement
+for the vertical samples at the start of the recording. A bounded read
+from the start then reached both planned airborne intervals. The fixed
+sign and time match held in both.
+[Recording-start result](ESA_GIRAFE_LEVEL1_PREFIX_RESULT.md) ·
+[Airborne result](ESA_GIRAFE_LEVEL1_AIRBORNE_RESULT.md)
 
 ## Planned comparison
 

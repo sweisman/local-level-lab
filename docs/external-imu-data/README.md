@@ -14,7 +14,7 @@ Development recording 187 contains approximately 8.49 hours of IMU samples from 
 
 On that development flight, [two complete matched settings](../prediction-observed-development/ESA_400_120_MODEL_MATRIX_INTERPRETATION.md) favor globe on withheld GPS positions. Two settings remain unresolved. Aircraft uncertainty is still open. [Forecast reuse by receiver row](../analysis-provenance/ESA_GROUP_EVIDENCE.md) · [Ground reference checks](../prediction-observed-development/ESA_GROUND_REFERENCE_EVIDENCE.md)
 
-The seven reserved groups include eight source files. The [receiver screen](ESA_CONFIRMATION_RECEIVER_INVENTORY_RESULT.md) found ten provisional windows, totaling 34.7 hours. The [timing check](ESA_CONFIRMATION_TIMING_RESULT.md) verified one 20-minute slice per group. These checks establish receiver coverage and continuous sample timing. Confirmation fits will use separately frozen selection, prediction, and error rules. [Reservation and grouping](../PROVENANCE_VERIFICATION.md)
+The seven reserved groups include eight source files. The [receiver screen](ESA_CONFIRMATION_RECEIVER_INVENTORY_RESULT.md) found ten provisional windows, totaling 34.7 hours. Each group has one [timing-verified 20-minute slice](ESA_CONFIRMATION_TIMING_RESULT.md) with room to compare [two training lengths at the same development cadence](ESA_CONFIRMATION_CADENCE_RESULT.md). Confirmation fits will use separately frozen selection, prediction, and error rules. [Reservation and grouping](../PROVENANCE_VERIFICATION.md)
 
 ## Wuhan development lead
 

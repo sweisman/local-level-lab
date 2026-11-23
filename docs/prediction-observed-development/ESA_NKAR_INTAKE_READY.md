@@ -1,5 +1,9 @@
 # Ready to check the Nuuk Museum observation times
 
+The [station-day comparison](ESA_NKAR_GROUND_SCORE_RESULT.md) matched all
+520 aircraft timestamps and all 120 one-second scoring intervals. For
+the closed study, use the report command below to verify the saved result.
+
 The intake reads RINEX 2.10 and 2.11 on the GPS clock and pairs recorded
 ground seconds with the original half-second aircraft observations. It
 preserves gaps and checks the intervening aircraft reports for loss of
@@ -48,8 +52,8 @@ The [one-second score plan](ESA_NKAR_GROUND_SCORE_PLAN.md) adds the signed
 ground and aircraft range comparison after intake. Eleven software checks
 passed. They cover legacy phase values and flags, clock and range signs,
 missing intervals and projection of the score onto the actual satellite
-matches. The target station day is pending, so actual coverage and accuracy
-remain open.
+matches. The completed study verifies coverage for the target station day.
+Independent aircraft accuracy remains open.
 
 With the original station day and converter available, prepare the fixed study
 from the repository root. The first command verifies the test evidence and

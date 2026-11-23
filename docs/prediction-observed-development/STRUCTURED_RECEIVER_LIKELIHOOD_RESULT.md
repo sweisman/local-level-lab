@@ -53,7 +53,11 @@ error law and long-recording prediction remain unqualified.
 
 Reproduce the finite benchmark with:
 
-`PYTHONPATH=analysis ~/venv/bin/python analysis/tests/run_numerical.py --workers 1 --threads 1 -- ~/venv/bin/python -m analysis.tests.benchmark_structured_receiver --epochs 64080 --output /tmp/structured-receiver-recheck.json`
+`PYTHONPATH=analysis ~/venv/bin/python analysis/tests/run_numerical.py --workers 1 --threads 1 -- ~/venv/bin/python -m lll.structured_receiver_benchmark --epochs 64080 --output /tmp/structured-receiver-recheck.json`
+
+The benchmark moved into the shared library. The historical runner named by
+the saved benchmark hash is in commit `c41d29132`, at
+`analysis/tests/benchmark_structured_receiver.py`.
 
 The output path must be new. Wall time and peak memory vary by machine;
 input and output hashes are the deterministic checks in the recorded

@@ -1,10 +1,54 @@
 # A ground receiver reference for ESA development flight 187
 
+The [one-second Nuuk Museum record](ESA_NKAR_GROUND_SCORE_RESULT.md) has now
+been acquired and checked. It matched all 520 timestamps in the saved
+aircraft window. The source-search details below retain the acquisition
+history and point to a second possible nearby receiver.
+
+## Two routes to nearby one-second observations
+
+- **Nuuk Museum (`NKAR`).** EarthScope lists the one-second file for
+  6 July 2023. Its file download requires EarthScope sign-in. SONEL lists
+  the station, but its day-187 calendar reports no file. A station listing
+  on SONEL does not supply the flight-day observations.
+  [EarthScope day catalogue](https://data.earthscope.org/archive/gnss/highrate/1-Hz/rinex/2023/187/nkar/) ·
+  [SONEL station calendar](https://www.sonel.org/spip.php?page=gps&idStation=4913)
+- **Permanent Nuuk (`NUUK00GRL`).** The operator's site log shows a
+  Septentrio PolaRx5 installed from September 2022 through June 2025.
+  The GNET network paper describes hourly one-second raw logging on
+  that receiver class. This identifies a second plausible source. The
+  permanent station is about 1.01 km from the museum receiver using the
+  published station coordinates. The Danish archive requires sign-in,
+  and the retained 30-second SONEL copy does not establish that the
+  high-rate observations survive for 6 July 2023.
+  [Station log](https://gnss-metadata.eu/sitelog/exportlog?station=NUUK00GRL) ·
+  [Network paper, §2.4](https://essd.copernicus.org/articles/18/5117/2026/#section2.4) ·
+  [Danish GNSS archive](https://dataforsyningen.dk/data/4804) ·
+  [Permanent station coordinates](https://www.sonel.org/spip.php?page=gps&idStation=3584)
+
+For the permanent station, the required original observations cover
+**11:49:56.5–11:58:36.5 UTC on 6 July 2023**. Request the raw hourly
+file covering 11:00–12:00 UTC or a one-second RINEX export of that hour,
+with the station header and carrier phase and code on both GPS bands.
+The two station paths would test differences in nearby ground tracking
+if both become available. Neither by itself supplies an independent
+airborne antenna error bound.
+
+The public NUUK log response had SHA-256
+`25076e797d5bbc8f487abcb51bdc89ff6a6d11604f8184f77407b2292110ce73`.
+SONEL's NKAR calendar response for station 4913 and year 2023 had SHA-256
+`d3622bb02c0c2435645dae104eafa3dd46733ac4926a19b32462dd06900d4730`.
+The date-filtered EPOS metadata query for permanent NUUK returned an
+empty list for this date. No high-rate ground observations were acquired
+in this check.
+
+## Measurements already in hand
+
 The permanent Nuuk station (`NUUK00GRL`) now has a verified overlap.
 The SONEL 30-second file matched 17 aircraft observations. Eleven GPS
 satellites stayed continuous between the four times within the shorter
-test interval. This offers a lower-rate check while the Nuuk Museum
-observations are pending. The [completed carrier comparison](ESA_NUUK_GROUND_PHASE_RESULT.md)
+test interval. This supplies the lower-rate comparison. The
+[completed carrier comparison](ESA_NUUK_GROUND_PHASE_RESULT.md)
 finds that adding the test displacement increases the aircraft-minus-ground
 range error from 3.55 cm to 18.90 cm RMS on those 90 seconds.
 [Permanent station intake](ESA_NUUK_GROUND_INTAKE_RESULT.md)
@@ -16,14 +60,15 @@ test how this correction behaves at one-second spacing.
 
 EarthScope lists a **1 Hz Nuuk Museum (`NKAR`) observation file for the
 flight date, 6 July 2023**. The 43 MB compressed RINEX file and its 71 KB
-summary both redirect to EarthScope sign-in. Exact coverage of the aircraft
-interval, 11:49:56.5–11:58:36.5 UTC, still needs to be read from the file.
+summary both redirect to EarthScope sign-in. The acquired observations match
+all 520 integer GPS seconds in the aircraft interval,
+11:49:56.5–11:58:36.5 UTC.
 `NKAR` is a separate station from the `NUUK` receiver in the earlier search.
 The [one-second design check](ESA_GROUND_GRID_SCORE_RESULT.md) gives a
 4.65 cm per-coordinate accuracy target for the tested score when the
 sample gaps contribute negligible error and the endpoints are fixed.
-The [legacy RINEX intake](ESA_NKAR_INTAKE_READY.md) is tested and ready
-to check the actual flight overlap when the original arrives.
+The [legacy RINEX intake](ESA_NKAR_INTAKE_READY.md) records the format
+and source verification.
 [Station-day catalogue](https://data.earthscope.org/archive/gnss/highrate/1-Hz/rinex/2023/187/nkar/) ·
 [EarthScope station registry](https://www.unavco.org/data/gps-gnss/data-access-methods/dai1/recent.php) ·
 [Aircraft time window](ESA_PRECISE_GPS_SUPPORT_RESULT.md)
@@ -39,19 +84,16 @@ requested day. A day listing does not establish an unbroken observation arc.
 [NUUK catalogue](https://doi.org/10.60888/EPOS-GNSS-NUUK00GRL) ·
 [KAPI catalogue](https://doi.org/10.60888/EPOS-GNSS-KAPI00GRL)
 
-With the original file available, verify the time system, exact common epochs,
-dual-frequency GPS signals and carrier lock before using it as a ground
-reference. The saved aircraft stream reports twice a second. A complete 1 Hz
-ground stream on the same GPS clock would offer 520 exact pairs in this
-window. A software test verifies that the pairing also checks the aircraft's
-intervening half-second record for missing observations and lock flags.
+The intake checked the time system, exact common epochs, dual-frequency
+GPS signals and carrier lock. It also checked the aircraft's intervening
+half-second reports for missing observations and lock flags.
 For the two-minute test, the [one-second carrier replay](ESA_NKAR_CADENCE_RESULT.md)
 puts the required correction at 9.77 mm RMS across the aircraft's retained
-satellite ranges. The ground observations are needed to compare with that
-signal scale.
-A matched comparison could constrain shared satellite and nearby
-atmospheric errors. Errors local to the aircraft antenna and the full
-airborne prediction error still require separate evidence.
+satellite ranges. The actual aircraft-minus-ground RMS was 8.10 mm on
+the matched rows. The signed comparison and joint error budget remain
+distinct from that overall RMS. Errors local to the aircraft antenna
+and the full airborne prediction error still require separate evidence.
+[Measured comparison](ESA_NKAR_GROUND_SCORE_RESULT.md)
 
 The BKG high-rate archive also supplied a public, more distant ground control
 at Qaqortoq. All 121 seconds of the two-minute window matched, with five or

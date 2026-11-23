@@ -74,6 +74,16 @@ The [finer lag grid](../prediction-observed-development/ESA_GIRAFE_FINE_LAG_RESU
 preserves the 100 ms ground shift. The first and last airborne clips favor
 different shifts, and the middle clip remains weak at every tested lag.
 
+The file also covers the exact two-minute carrier score. The 1,200 samples
+hold the same atom interrogation setting. A score-changing position error
+can lie entirely in the north–south direction, where the separate quartz
+channels would need their own alignment and error check.
+[Motion directions and coverage](../prediction-observed-development/ESA_MOTION_AXIS_SUPPORT_RESULT.md)
+
+The [horizontal quartz check](../prediction-observed-development/ESA_GIRAFE_HORIZONTAL_WITNESS_RESULT.md)
+compares both paths on those same two minutes. The measured disagreement
+is larger than the predicted signature of the constructed error.
+
 ## Processed records with GPS timestamps
 
 The ESA archive also has processed acceleration exports for GIRAFE and iMAR
@@ -96,6 +106,15 @@ The first 8,192 bytes of each export are retained under
 | `187a_imar_accelerations-prefix.txt` | `1bca89a7e841a86f35be7d89ccec1bf09b61bfd2f2178208e8f861d56ebde5ab` |
 
 Two range requests for later intervals both returned data from the start
-of the GIRAFE export. The planned timing comparison awaits excerpts with
-verified coverage of the intended intervals.
-[Clock comparison plan and acquisition check](../prediction-observed-development/ESA_GIRAFE_LEVEL1_CLOCK_PLAN.md)
+of the GIRAFE export. A longer read starting there reached both target
+intervals. The original and processed vertical samples match exactly,
+with opposite signs and identical timestamps, on 1,320 recording-start
+samples and 1,300 airborne samples. The transfer cannot determine the
+shared physical latency or validate the separate horizontal channels.
+[Recording-start check](../prediction-observed-development/ESA_GIRAFE_LEVEL1_PREFIX_RESULT.md) ·
+[Airborne check](../prediction-observed-development/ESA_GIRAFE_LEVEL1_AIRBORNE_RESULT.md)
+
+Small undocumented platform tilts can make the predicted force directions
+coincide for the two paths in the north–south sensitivity test. The
+direction comparison needs platform orientation evidence in addition to
+time alignment. [Tilt check](../prediction-observed-development/ESA_GIRAFE_TILT_IDENTIFIABILITY_RESULT.md)

@@ -51,7 +51,7 @@ def station_geometry(layout):
     return marker + local_rotation(lat, lon).T @ [north, east, height]
 
 
-def final_range_model(navigation, atmosphere, orbits, clocks, antenna):
+def final_range_model(navigation, atmosphere, orbits, clocks, antenna, *, on_endpoint=None):
     """Use the same final satellite conventions as the saved aircraft replay."""
     import numpy as np
 
@@ -78,6 +78,8 @@ def final_range_model(navigation, atmosphere, orbits, clocks, antenna):
             mask, _, delay = _atmosphere(antenna, positions, epoch['seconds'], atmosphere)
             supported &= mask
             endpoint.append(ranges-C*clock+delay)
+            if on_endpoint is not None:
+                on_endpoint([prn for _, prn in kept], transmit, positions)
         return {prn: float(delta) for (_, prn), use, delta in zip(kept, supported, endpoint[1]-endpoint[0], strict=True) if use}
 
     return model

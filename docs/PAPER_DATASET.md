@@ -7,8 +7,9 @@ The public evidence separates the original NASA comparison, later development fo
 | [Frozen NASA development snapshot](paper-development-dataset-v2/README.md) | 53 stretches, 318 latest model and processing comparisons, and 791 numerical-history records. |
 | [NASA evidence by recording group](analysis-provenance/NASA_GROUP_EVIDENCE.md) | 27 conservative groups, with links to fitted results, withheld forecasts and paired-sensor checks. |
 | [ESA development forecast index](analysis-provenance/ESA_GROUP_EVIDENCE.md) | Receiver-row reuse across forecast windows on one development flight. |
-| [ESA ground reference evidence](prediction-observed-development/ESA_GROUND_REFERENCE_EVIDENCE.md) | Timing, range and accuracy checks for that same development flight. |
-| [Reserved ESA groups](external-imu-data/ESA_CONFIRMATION_RECEIVER_INVENTORY_RESULT.md) | Ten provisional windows across seven groups. [One 20-minute slice per group](external-imu-data/ESA_CONFIRMATION_TIMING_RESULT.md) passed the timestamp check. Zero groups have been scored for confirmation. |
+| [ESA ground reference evidence](prediction-observed-development/ESA_GROUND_REFERENCE_EVIDENCE.md) | Reproducible timing, range, antenna and error-budget checks for that same development flight. |
+| [Aircraft motion evidence](analysis-provenance/AIRCRAFT_MOTION_EVIDENCE.md) | Verify the ESA clock and tilt checks and the two distinct paired NASA flights, including the source correction. |
+| [Reserved ESA groups](external-imu-data/ESA_CONFIRMATION_RECEIVER_INVENTORY_RESULT.md) | Ten provisional windows across seven groups. Each has one timing-verified slice with [two possible training lengths at the development cadence](external-imu-data/ESA_CONFIRMATION_CADENCE_RESULT.md). [Earlier receiver profiles](external-imu-data/ESA_CONFIRMATION_TRAINING_PROFILE_RESULT.md) compare the conditions with development. Zero groups have been scored for confirmation. |
 
 ## How the 53 stretches cluster
 
@@ -18,7 +19,7 @@ Under the original two processing assumptions the specified-field globe has lowe
 
 ## Prediction evidence kept separately
 
-- **NASA matched forecasts.** The four-group audit verified 15 of 16 forecasts. At the same specified field, globe had lower 3D error on all four groups. Three specified-field globe forecasts met all fixed accuracy limits. [Matched report](ilvis0-measurement-contribution/MATCHED_FOUR_GROUP_AUDIT_RESULT.md)
+- **NASA matched forecasts.** The four-group audit verified 15 of 16 forecasts. At the same specified field, globe had lower 3D error on all four groups. Three specified-field globe forecasts met all fixed accuracy limits. Those limits were more sensitive than their model rankings to additional shared GPS error. [Matched report](ilvis0-measurement-contribution/MATCHED_FOUR_GROUP_AUDIT_RESULT.md) · [Shared-error margins](ilvis0-measurement-contribution/MATCHED_COMMON_ERROR_MARGIN_RESULT.md)
 - **NASA forecast extension.** The 20-group study completed 80 planned fits. Nine groups supplied later forecasts that met the fixed reference and physical screen. Eleven had no usable later-cut fit. [Forecast extension](prediction-group-transfer/REMAINING_GROUPS_PREDICTION_RESULT.md)
 - **ESA matched forecasts.** Two complete settings favored globe on one development flight. Two settings remain unresolved. The fit used earlier positions, and the later positions were scored against the resulting forecasts. [ESA comparison](prediction-observed-development/ESA_400_120_MODEL_MATRIX_INTERPRETATION.md)
 
@@ -32,6 +33,7 @@ Run these commands from the repository root. They read saved evidence and verify
 ~/venv/bin/python docs/build_current_status.py --check
 ~/venv/bin/python docs/paper-development-dataset-v2/build_dataset.py --check-public
 env PYTHONPATH=analysis ~/venv/bin/python -m lll.esa_group_evidence check
+env PYTHONPATH=analysis ~/venv/bin/python -m lll.aircraft_motion_evidence
 env PYTHONPATH=analysis ~/venv/bin/python -m lll.esa_confirmation_receiver_inventory report
 env PYTHONPATH=analysis ~/venv/bin/python -m lll.esa_confirmation_timing report
 ~~~~

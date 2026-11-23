@@ -5,8 +5,14 @@ across receivers, inertial sensor errors, and uncertain fitted corrections.
 On the development flight, ground references help constrain some shared
 GPS effects. Faster errors and airborne antenna effects remain open.
 [Ground evidence](prediction-observed-development/ESA_GROUND_REFERENCE_EVIDENCE.md) ·
-[Accuracy requirements](prediction-observed-development/ESA_REFERENCE_ERROR_BUDGET.md) ·
+[Accuracy requirements](prediction-observed-development/ESA_NKAR_ERROR_BUDGET_RESULT.md) ·
 [Confirmation plan](NEXT_STEPS.md)
+
+The [two-band carrier replay](prediction-observed-development/ESA_CARRIER_BAND_RESULT.md)
+found weak agreement between the aircraft and distant Qaqortoq corrections.
+It measures the change already applied in the dual-frequency carrier
+reconstruction. Errors that remain in that reconstruction still need a
+separate bound.
 
 The receiver export reports uncertainty in north, east and height, including
 the correlations between those axes. These values help weight a fit; they are

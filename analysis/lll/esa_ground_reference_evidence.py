@@ -15,6 +15,7 @@ BASE = 'docs/prediction-observed-development/'
 INDEX = BASE+'esa-ground-reference-evidence-v1.json'
 CURRENT_INDEX = BASE+'esa-ground-reference-evidence-v2.json'
 COMBINED_INDEX = BASE+'esa-ground-reference-evidence-v3.json'
+MUSEUM_INDEX = BASE+'esa-ground-reference-evidence-v4.json'
 QAQ_INTAKE = 'esa-qaq-ground-intake.json'
 QAQ_INTAKE_SHA = '0cd8b21d3015f105d750d29290016f3eac353e85d2ab65c6cab4cfaeeb82c6e8'
 ERROR_BUDGET = 'esa-reference-error-budget-v1.json'
@@ -56,6 +57,20 @@ COMBINED = (
     ('esa-carrier-range-remainder-result.json', '8db0d4ae89708015fa6b8026aac2da522fbbb4aabd64f0f9501ad722abc67844',
      'esa-carrier-range-remainder-v1', 'carrier-range-remainder', 'carrier-range-remainder'),
 )
+MUSEUM = (
+    ('esa-nkar-ground-score-result.json', 'ab8fcb08bbf97d43538e0020649fce3f810bd4d488b1c52dadbc93ae5690aa75',
+     'esa-nkar-ground-score-v1', 'nkar-ground-score', 'nkar-ground-score'),
+    ('esa-nkar-phase-transfer-result.json', 'c43f33005a7844453ccd6c7c2d1ac094eb615f2799821b7b4564104b17c0740c',
+     'esa-nkar-phase-transfer-v1', 'nkar-phase-transfer', 'nkar-phase-transfer'),
+    ('esa-nkar-antenna-result-v2.json', 'cf7774271aaf6f3907383f0eadcb5b989a5e9359fa6ae3bde4ceaa32d2c724c4',
+     'esa-nkar-antenna-v2', 'nkar-antenna', 'nkar-antenna'),
+    ('esa-nkar-phase-windup-result.json', '4f3ef1bce94b412553e895010b5ef6bdf46eba5a5505cbf9cd2a2036203e0b57',
+     'esa-nkar-phase-windup-v1', 'phase-windup', 'phase-windup'),
+)
+MUSEUM_BUDGET = ('esa-nkar-error-budget-v1.json',
+                 '803317aa17a3e6ed98f0bbe3f8434cdfa9e0313b1ff7ac30950e0add2d820cc6')
+TILT_BUDGET = ('esa-phase-windup-budget.json',
+               '103daedec51b2bfd5c82a94bd531572b5ec93195322a437ad69952d43f363244')
 
 
 def _public(root, name, expected):
@@ -278,16 +293,93 @@ def verify_range_remainder(products, score, remainder):
                                             'representative_score_remainder')], 'geometric error bound')
 
 
+def verify_museum(products, score, qaq, ground, transfer, antenna):
+    """Recompute the matched range, chronological transfer and antenna scores."""
+    from .esa_nkar_phase_transfer import compare_transfer, later_pair
+    from .esa_nkar_score import compare_score
+
+    start, stop = score['endpoint_gps_s']
+    rows = ground['intervals']
+    if (stop-start != 120 or start != int(start) or ground['matched_intervals'] != 120 or len(rows) != 120
+            or ground['bound_sha256'] != ADDITIONAL[1][1] or ground['orbit_sha256'] != ADDITIONAL[0][1]
+            or transfer['score_gap'] != score['score_gap'] or ground['score_gap'] != score['score_gap']
+            or antenna['score_gap'] != score['score_gap'] or antenna['nkar_sha256'] != MUSEUM[0][1]):
+        raise ValueError('the complete unchanged Nuuk Museum comparison is required')
+    start, stop = int(start), int(stop)
+    by_time = {row['start_gps_s']: row for row in rows}
+    _require_values(list(range(start, stop)), list(by_time), 'Nuuk Museum time grid')
+
+    def read_ground(first, last, candidates):
+        row = by_time[first]
+        return dict(zip(row['satellites'], row['ground_range_m'], strict=True))
+
+    grid = {time: time for time in range(start, stop+1)}
+    projected = compare_score(products['rows'], score['bound']['dual_weights'], start, grid, read_ground)
+    _require_values(projected, {key: ground[key] for key in projected}, 'Nuuk Museum matched range projection')
+    held = [later_pair(a, b) for a, b in zip(rows, qaq['intervals'], strict=True)]
+    _require_values(held, transfer['withheld_rows'], 'Nuuk Museum shared withheld rows')
+    earlier = transfer['training_rows']
+    _require_values(list(range(388215, 388550)), [r['start_gps_s'] for r in earlier],
+                    'Nuuk Museum separate transfer times')
+    computed = compare_transfer(earlier, held, score_gap=score['score_gap'])
+    _require_values(computed, {key: transfer[key] for key in computed}, 'Nuuk Museum chronological transfer')
+
+    sums = {key: [] for key in ('air_transmitter', 'ground_transmitter', 'ground_receiver')}
+    for before, after in zip(rows, antenna['matched'], strict=True):
+        _require_values(
+            {key: before[key] for key in ('start_gps_s', 'satellites', 'air_range_m', 'ground_range_m')},
+            {key: after[key] for key in ('start_gps_s', 'satellites', 'air_range_m', 'ground_range_m')},
+            'antenna receiver grid')
+        _require_values(before['aggregate_weights'], after['weights'], 'antenna score weights')
+        for key in sums:
+            sign = -1 if key == 'air_transmitter' else 1
+            sums[key].extend(sign*w*x for w, x in zip(after['weights'], after[key+'_m'], strict=True))
+    corrections = {key: math.fsum(values) for key, values in sums.items()}
+    signed = math.fsum(corrections.values())
+    _require_values(corrections, antenna['signed_air_minus_ground_score_shifts'], 'phase centre components')
+    _require_values([signed, signed/score['score_gap']],
+                    [antenna['signed_total_shift'], antenna['signed_shift_per_gap']], 'phase centre shift')
+
+
+def verify_windup(score, ground, phase):
+    """Recompute phase adjustments without original carrier files or attitude products."""
+    if (phase['score_gap'] != score['score_gap'] or phase['antenna_sha256'] != MUSEUM[2][1]
+            or len(phase['air']) != 240 or len(phase['per_pair_minima_deg']) != 240
+            or len(phase['matched']) != 120 or len(ground['intervals']) != 120):
+        raise ValueError('public wind-up evidence requires the original complete grid')
+    air, station, before, after = [], [], [], []
+    for row, fixed in zip(phase['matched'], ground['intervals'], strict=True):
+        _require_values([fixed['start_gps_s'], fixed['satellites']],
+                        [row['start_gps_s'], row['satellites']], 'wind-up time and satellites')
+        for a, g, da, dg, w in zip(fixed['air_range_m'], fixed['ground_range_m'],
+                row['air'], row['ground'], fixed['aggregate_weights'], strict=True):
+            air.append(-w*da)
+            station.append(w*dg)
+            before.append(a-g)
+            after.append(a-g-da+dg)
+    _require_values(len(air), phase['matched_values'], 'wind-up matched range count')
+    shifts = dict(air=math.fsum(air), ground=math.fsum(station))
+    _require_values(shifts, phase['signed_shifts'], 'wind-up score components')
+    full = -math.fsum(w*x for w, x in zip(score['bound']['dual_weights'],
+                                        (v for row in phase['air'] for v in row), strict=True))
+    rms = [math.sqrt(math.fsum(v*v for v in values)/len(values)) for values in (before, after)]
+    _require_values([math.fsum(shifts.values()), full, min(phase['per_pair_minima_deg']), *rms],
+                    [phase['signed_total_shift'], phase['signed_full_air_shift'], phase['minimum_air_elevation_deg'],
+                     phase['rms_m']['uncorrected'], phase['rms_m']['corrected']], 'wind-up score and range summaries')
+
+
 def verify(root, *, runtime=False, version=1):
-    if version not in (1, 2, 3):
+    if version not in (1, 2, 3, 4):
         raise ValueError('unknown evidence index version')
     intake = _public(root, INTAKE, INTAKE_SHA)
     if (intake['recording'] != 187 or intake['match_status'] != {'matched': 17}
             or digest((root/intake['excerpt']).read_bytes()) != intake['excerpt_sha256']):
         raise ValueError('the verified permanent station excerpt and times are required')
     studies = STUDIES if version == 1 else STUDIES+ADDITIONAL
-    if version == 3:
+    if version >= 3:
         studies += COMBINED
+    if version == 4:
+        studies += MUSEUM
     indexed = [_public(root, name, sha) for name, sha, *_ in studies]
     transfer = indexed[len(STUDIES)-2]
     _phase_transfer(transfer)
@@ -300,11 +392,12 @@ def verify(root, *, runtime=False, version=1):
                  intake=dict(path=BASE+INTAKE, sha256=INTAKE_SHA),
                  studies=[dict(path=BASE+name, sha256=sha, study=study_id, completion=row['completion'])
                           for row, (name, sha, study_id, _, _) in zip(indexed, studies, strict=True)])
-    if version == 3:
+    if version >= 3:
         from .esa_reference_error_budget import evidence
 
         products, score, _, _ = extra
-        qaq, later, remainder = indexed[-len(COMBINED):]
+        offset = len(STUDIES)+len(ADDITIONAL)
+        qaq, later, remainder = indexed[offset:offset+len(COMBINED)]
         reference = _public(root, QAQ_INTAKE, QAQ_INTAKE_SHA)
         verify_qaq_reports(reference, products, score, qaq, later)
         verify_range_remainder(products, score, remainder)
@@ -314,6 +407,21 @@ def verify(root, *, runtime=False, version=1):
         value.update(distant_high_rate_ground_coverage_verified=True,
                      distant_ground_intake=dict(path=BASE+QAQ_INTAKE, sha256=QAQ_INTAKE_SHA, station='QAQ100GRL'),
                      joint_error_budget=dict(path=BASE+ERROR_BUDGET, sha256=ERROR_BUDGET_SHA, decision='abstain'))
+    if version == 4:
+        from .esa_nkar_error_budget import evidence as museum_budget
+        from .esa_phase_windup_budget import evidence as tilt_budget
+
+        ground, transfer, antenna, phase = indexed[-len(MUSEUM):]
+        verify_museum(products, score, qaq, ground, transfer, antenna)
+        verify_windup(score, ground, phase)
+        _require_values(museum_budget(root), _public(root, *MUSEUM_BUDGET), 'Nuuk Museum error budget')
+        tilt = _public(root, *TILT_BUDGET)
+        recalculated = tilt_budget(root)
+        fields = ('results', 'covered_example_score_allowance', 'equal_covered_example_allowance_tilt_deg')
+        _require_values([recalculated[key] for key in fields], [tilt[key] for key in fields], 'wind-up tilt budget')
+        value.update(nuuk_museum_high_rate_ground_coverage_verified=True,
+                     nuuk_museum_error_budget=dict(path=BASE+MUSEUM_BUDGET[0], sha256=MUSEUM_BUDGET[1], decision='abstain'),
+                     ideal_tilt_budget=dict(path=BASE+TILT_BUDGET[0], sha256=TILT_BUDGET[1]))
     if runtime:
         with closing(ArchiveStore(root)) as store:
             status = _verify_runtime(root, store, indexed, studies)
@@ -321,19 +429,21 @@ def verify(root, *, runtime=False, version=1):
         status = {}
     if version >= 2:
         status['verified_carrier_reports'] = len(ADDITIONAL)
-    if version == 3:
+    if version >= 3:
         status['verified_distant_reference_and_budget'] = True
-    return value, dict(status, public_reports=1+len(studies)+2*(version == 3), verified_transfer=True)
+    if version == 4:
+        status['verified_nuuk_museum_and_antenna_reports'] = True
+    return value, dict(status, public_reports=1+len(studies)+2*(version >= 3)+2*(version == 4), verified_transfer=True)
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('action', choices=('release', 'check', 'check-runtime'))
-    parser.add_argument('--version', type=int, choices=(1, 2, 3), default=1)
+    parser.add_argument('--version', type=int, choices=(1, 2, 3, 4), default=1)
     args = parser.parse_args()
     root = Path.cwd()
     value, status = verify(root, runtime=args.action != 'check', version=args.version)
-    index = (INDEX, CURRENT_INDEX, COMBINED_INDEX)[args.version-1]
+    index = (INDEX, CURRENT_INDEX, COMBINED_INDEX, MUSEUM_INDEX)[args.version-1]
     if args.action == 'release':
         _write_equal(root/index, encoded(value))
     elif (root/index).read_bytes() != encoded(value):

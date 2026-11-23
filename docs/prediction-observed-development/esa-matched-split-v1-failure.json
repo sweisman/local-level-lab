@@ -1,0 +1,17 @@
+{
+  "bytes_read": 43454372,
+  "completed_source_passes": 2,
+  "exception": "ValueError: training inputs do not share the exact withheld times",
+  "failure_point": "nested training row equality check",
+  "freeze_sha256": "cb73294e29ee2bd3596bf1ca8ad1b30abc43ba12b3493ab5561f25c92278181c",
+  "new_fits": 0,
+  "original_sources": {
+    "analysis/lll/esa_forecast_receiver_split.py": "esa-matched-split-v1-esa_forecast_receiver_split.py.gz",
+    "analysis/lll/esa_forecast_receiver_split_check.py": "esa-matched-split-v1-esa_forecast_receiver_split_check.py.gz",
+    "analysis/tests/test_esa_forecast_receiver_split.py": "esa-matched-split-v1-test_esa_forecast_receiver_split.py.gz"
+  },
+  "protected_reads": 0,
+  "raw_imu_reads": 0,
+  "state": "technical_failure",
+  "weight_constructions": 0
+}

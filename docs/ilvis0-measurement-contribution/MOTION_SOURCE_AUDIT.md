@@ -75,3 +75,29 @@ RF04 values and their exact instrument correspondence remain unverified.
 [NSIDC dataset description](https://nsidc.org/data/iancr1b/versions/1) ·
 [NCAR order form for RF04](https://data.eol.ucar.edu/cgi-bin/codiac/fgr_form/id=351.003) ·
 [NASA aircraft-file catalog entry](https://cmr.earthdata.nasa.gov/search/granules.umm_json?concept_id=G3449174571-NSIDC_CPRD)
+
+## Other NASA collection checks
+
+Eight targeted NASA catalog queries for alternate attitude, pressure,
+radar or timing products returned no granules in the selected intervals.
+The same time queries returned LVIS records on both dates. The catalog
+check covers only the listed products and their cataloged time ranges.
+RF04 remains the identified outside source for the 2011 stretch.
+[Exact collection queries and counts](alternate-motion-catalog.json)
+
+On 20 October 2009, two onboard recorders reported different short-timescale
+rates during a shared overlap. That was a separate flight from the 24
+October force-direction check. An independent aircraft-motion limit
+remains open. [Paired motion recordings](PAIRED_GYRO_MOTION_RESULT.md)
+
+On 24 October, the matching pair was used to compare the original
+acceleration-only direction paths with the two logged gyro streams.
+Most matched intervals needed more angular travel for every candidate
+than either recorder's interval allowance. The comparison puts the
+single-packet acceleration assumption in question. An independent limit
+on actual motion remains open. [Matched interval result](PAIRED_GYRO_INTERVAL_RESULT.md)
+
+Quarter-second and one-second force averages clear the recorded angular
+budget for all four candidates on the same 24 October intervals. The
+average-based check leaves the independent physical motion limit open.
+[Averaged force result](PAIRED_GYRO_AVERAGED_FORCE_RESULT.md)

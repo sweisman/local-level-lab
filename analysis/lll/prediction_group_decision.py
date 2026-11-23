@@ -53,6 +53,8 @@ def _group_evidence(record, protocol, settings, *, reference_model=None):
 
 
 def _matched_inputs(query, calibration, protocol_sha256, settings, planned_draws, *, absolute_null=False):
+    if type(absolute_null) is not bool:
+        raise ValueError('absolute null selection must be explicit')
     if not isinstance(protocol_sha256, str) or not re.fullmatch('[0-9a-f]{64}', protocol_sha256):
         raise ValueError('frozen protocol SHA-256 required')
     if (not isinstance(settings, (tuple, list)) or not settings
@@ -108,8 +110,6 @@ def compare_group(query, calibration, *, protocol_sha256, settings, planned_draw
     """
     if type(alpha) not in (int, float) or not math.isfinite(alpha) or not 0 < alpha < 1:
         raise ValueError('fixed probability strictly between zero and one required')
-    if type(absolute_null) is not bool:
-        raise ValueError('absolute null selection must be explicit')
     identity, gaps, adequate, references = _matched_inputs(
         query, calibration, protocol_sha256, settings, planned_draws, absolute_null=absolute_null)
     ranks = {}
@@ -144,12 +144,12 @@ def compare_group(query, calibration, *, protocol_sha256, settings, planned_draw
 
 
 def compare_group_work(query, sealed_calibration, *, protocol_sha256, settings, planned_draws,
-                       group_count, minimum_groups, alpha):
+                       group_count, minimum_groups, alpha, absolute_null=False):
     """Build a cohort work row using the same scores and adequacy as the final test."""
     from .group_rank_work import candidate_rank_work
 
     identity, gaps, adequate, references = _matched_inputs(
-        query, sealed_calibration, protocol_sha256, settings, planned_draws)
+        query, sealed_calibration, protocol_sha256, settings, planned_draws, absolute_null=absolute_null)
     if gaps is None or not all(any(plan.values()) for plan in planned_draws.values()):
         raise ValueError('complete sealed target and a frozen reference population for each model required')
     ranks = {model: candidate_rank_work(planned_draws[model], references[model],
