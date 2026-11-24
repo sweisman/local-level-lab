@@ -20,7 +20,7 @@ def engine():
     source=Path(trust.__file__).read_text()
     anchor='''            step_bounds=(np.maximum(-1-point,-radius),np.minimum(1-point,radius))'''
     addition='''                # Rejected full-point tangent: one bounded curvature correction.
-                curved=lsq_linear(trial_jac,-trial_residual,bounds=(-1-full_point,1-full_point),
+                curved=lsq_linear(trial_jac,-candidate_residual,bounds=(-1-full_point,1-full_point),
                     method='bvls',tol=POLICY['linear_tolerance'],max_iter=POLICY['linear_maximum_iterations'])
                 if curved.success and np.all(np.isfinite(curved.x)):
                     corrected=boundary.snap_bounds(np.clip(full_point+curved.x,-1,1))

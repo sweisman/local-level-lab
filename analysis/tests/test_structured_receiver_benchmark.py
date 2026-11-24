@@ -6,7 +6,7 @@ import pytest
 
 
 def test_benchmark_seals_finite_inputs_and_outputs(tmp_path):
-    from analysis.tests.benchmark_structured_receiver import run
+    from lll.structured_receiver_benchmark import run
 
     first = run(12, tmp_path / 'first.json')
     second = run(12, tmp_path / 'second.json')
@@ -22,7 +22,7 @@ def test_benchmark_seals_finite_inputs_and_outputs(tmp_path):
 
 
 def test_benchmark_rejects_unbounded_request(tmp_path):
-    from analysis.tests.benchmark_structured_receiver import run
+    from lll.structured_receiver_benchmark import run
 
     with pytest.raises(ValueError):
         run(64081, tmp_path / 'invalid.json')

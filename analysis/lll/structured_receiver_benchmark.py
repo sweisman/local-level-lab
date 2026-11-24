@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
 """Bounded, reproducible memory/time check for 64,080 receiver epochs."""
 
 import argparse
@@ -12,8 +13,8 @@ import time
 import numpy as np
 import scipy
 
-from lll.ilvis0_error_model import Spec
-from lll.ilvis0_structured_receiver_likelihood import StructuredWhitening
+from .ilvis0_error_model import Spec
+from .ilvis0_structured_receiver_likelihood import StructuredWhitening
 
 MAX_EPOCHS = 64080
 SEED = 20261118
@@ -80,11 +81,9 @@ def run(epochs, output):
         'numpy': np.__version__,
         'scipy': scipy.__version__,
         'source_sha256': hashlib.sha256(
-            (Path(__file__).resolve().parents[1] / 'lll' /
-             'ilvis0_structured_receiver_likelihood.py').read_bytes()).hexdigest(),
+            Path(__file__).with_name('ilvis0_structured_receiver_likelihood.py').read_bytes()).hexdigest(),
         'core_source_sha256': hashlib.sha256(
-            (Path(__file__).resolve().parents[1] / 'lll' /
-             'state_space_covariance.py').read_bytes()).hexdigest(),
+            Path(__file__).with_name('state_space_covariance.py').read_bytes()).hexdigest(),
         'benchmark_source_sha256': hashlib.sha256(
             Path(__file__).read_bytes()).hexdigest(),
     }

@@ -16,5 +16,8 @@ jobs:
         run: pip install -r requirements-lock.txt -r website/requirements.txt -e analysis -e server
       - name: Check ESA recovery imports
         run: env PYTHONPATH=analysis python -m pytest -q analysis/tests/test_esa_fit_adjusted_control_recovery.py
-      - name: Test
+      - name: Test public checkout
+        env:
+          LLL_PUBLIC_CHECKOUT_TESTS: '1'
+          PYTEST_ADDOPTS: '-rs'
         run: env PYTHONPATH=analysis python -m lll.studies test

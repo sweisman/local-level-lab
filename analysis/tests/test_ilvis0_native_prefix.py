@@ -171,6 +171,8 @@ def test_optional_extensions_preserve_the_qualified_prefix_orchestration():
     finally:study.close()
     tree=ast.parse((root/'analysis/lll/ilvis0_native_prefix.py').read_bytes())
     function=next(n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name=='enclose_many')
+    assert function.args.kwonlyargs.pop().arg=='on_position_budget'
+    assert function.args.kw_defaults.pop().value is None
     assert function.args.kwonlyargs.pop().arg=='reuse_force_profiles'
     assert function.args.kw_defaults.pop().value is False
     for name in ('gravity_anchor_height_m','on_report'):
@@ -186,6 +188,12 @@ def test_optional_extensions_preserve_the_qualified_prefix_orchestration():
                      if not isinstance(n,ast.FunctionDef) or n.name not in dynamics]
     removed=[]
     class RemoveObserver(ast.NodeTransformer):
+        def visit_AnnAssign(self,node):
+            if ast.unparse(node.target)=='position_budget':
+                assert ast.unparse(node.value)=='None'
+                return None
+            return self.generic_visit(node)
+
         def visit_Call(self,node):
             if isinstance(node.func,ast.Name) and node.func.id=='_prepare':
                 anchor=node.keywords.pop()
@@ -193,18 +201,22 @@ def test_optional_extensions_preserve_the_qualified_prefix_orchestration():
             return self.generic_visit(node)
 
         def visit_If(self,node):
-            if ast.unparse(node.test)=='reuse_force_profiles':
+            test=ast.unparse(node.test)
+            if test=='reuse_force_profiles':
                 assert not node.orelse
                 assert ast.unparse(node.body[-1])=='c.force_profiles = dict(zip(times, profiles, strict=True))'
                 return None
-            if ast.unparse(node.test)=='on_report is not None':
+            if test=='on_report is not None':
                 assert len(node.body)==1 and not node.orelse
                 assert ast.unparse(node.body[0])=='on_report(len(bounds) - 1, deepcopy(bounds[-1].report()))'
                 removed.append(node);return None
-            if ast.unparse(node.test)=='on_report is not None and (not callable(on_report))':
+            if test in ('on_position_budget is not None', 'parent.position_budget is not None'):
+                assert not node.orelse
+                removed.append(node);return None
+            if test=='any((observer is not None and (not callable(observer)) for observer in (on_report, on_position_budget)))':
                 assert len(node.body)==1 and isinstance(node.body[0],ast.Raise) and not node.orelse
                 removed.append(node);return None
             return self.generic_visit(node)
     tree=RemoveObserver().visit(tree)
-    assert len(removed)==2
+    assert len(removed)==5
     assert ast.dump(tree,include_attributes=False)==ast.dump(historical,include_attributes=False)

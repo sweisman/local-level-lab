@@ -42,7 +42,19 @@ def test_v2_study_requires_complete_group_and_early_only_binding():
         assess_group(group, model='sphere_rotating', settings=recipe())
 
 
-def test_v2_study_preserves_failed_parent_and_qualification():
+def test_v2_study_preserves_failed_parent_and_qualification(tmp_path, monkeypatch):
+    from lll import airquantumgrav_inventory
+    from lll.ilvis0_start_equivalence_v2_study import OLD
+    from lll.studies.closed import ClosedStudy
+    from public_fixtures import isolate_frozen_source_reads
+
+    parent = ClosedStudy(ROOT, OLD[0])
+    try:
+        recorded_environment = parent.input('qualification-environment')
+        isolate_frozen_source_reads(parent, tmp_path, monkeypatch)
+    finally:
+        parent.close()
+    monkeypatch.setattr(airquantumgrav_inventory, 'environment', lambda: recorded_environment)
     assert verify_parent(ROOT)
     with pytest.raises(ValueError, match='qualification'):
         prepare(ROOT)

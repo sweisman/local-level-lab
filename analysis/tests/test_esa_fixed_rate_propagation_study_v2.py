@@ -14,9 +14,12 @@ def test_v2_preserves_three_finite_tasks_and_uses_new_identity():
                for row in tasks(smoke=False))
 
 
-def test_v2_preparation_requires_source_qualification(tmp_path):
+def test_v2_preparation_requires_source_qualification(tmp_path, monkeypatch):
+    from lll.compute_budget import environment
     from lll.esa_fixed_rate_propagation_study_v2 import prepare
 
+    for key, value in environment(threads=1).items():
+        monkeypatch.setenv(key, value)
     with pytest.raises(ValueError, match='qualification required'):
         prepare(tmp_path, smoke=False)
 

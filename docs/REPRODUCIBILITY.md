@@ -105,6 +105,12 @@ uses the separately pinned website renderer to check links into archived evidenc
 env PYTHONPATH=analysis ~/venv/bin/python -m lll.studies test
 ```
 
+The GitHub job tests a public checkout. It lists historical replay tests
+whose exact local artifacts are unavailable there. Those tests run on a
+checkout with their evidence, and any available evidence still has to pass
+the original checks. A public CI pass covers software and available public
+evidence. It cannot substitute for a complete local replay.
+
 For a full local run that must survive the command session ending, use
 `test-detached` with the same thread options. Its `run.log`, status and XML
 reports remain in `data/study-test-runtime`. Wait for `state: complete` and

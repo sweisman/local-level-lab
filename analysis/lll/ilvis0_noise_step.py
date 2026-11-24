@@ -13,7 +13,12 @@ def derive(source,bridge,*,expected_source_sha256,expected_bridge_sha256,expecte
     if (not isinstance(source,bytes) or not isinstance(bridge,bytes) or sha(source)!=expected_source_sha256
             or sha(bridge)!=expected_bridge_sha256 or sha(Path(wide.__file__).read_bytes())!=expected_wide_loader_sha256):
         raise ValueError('exact native/bridge/wider-loader source hash required')
-    text=wide.derive(source,expected_sha256=expected_source_sha256);marker=b'static int tangent_gravity('
+    return bridge_source(wide.derive(source,expected_sha256=expected_source_sha256), bridge)
+
+
+def bridge_source(text, bridge):
+    """Build the unchanged noise header from verified wide-source bytes."""
+    marker=b'static int tangent_gravity('
     if text.count(marker)!=1:raise ValueError('unsupported source-bound native header')
     header=text[:text.index(marker)]
     if header.count(b'std::array<long double,27>')!=1 or header.count(b'i<27')!=9:

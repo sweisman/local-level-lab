@@ -114,6 +114,7 @@ def metric(model,c):
 def reference_case(model,profile,height):
     import numpy as np
     from types import SimpleNamespace
+    from lll.ilvis0_exploratory import MODELS
     from lll.ilvis0_shape import PARAMETERS
     limits=np.array([.01]*3+[5.]*3+[10.]*3+[1e-6]*3+[.001]*3+[.01]*6+[2.]*3+[.01,.01,1.])
     active=tuple(PARAMETERS if profile else PARAMETERS[:-1]);point=np.linspace(-.1,.1,len(active))
@@ -126,7 +127,8 @@ def reference_case(model,profile,height):
         attitude_body_to_ned=case['rotation'].astype(float))
     base=SimpleNamespace(bounds=SimpleNamespace(active=active,limits=dict(zip(PARAMETERS,limits)),
         fit_earth_removal=profile,decode=lambda x:None),initial=initial,theta=theta[None,:],dv=dv[None,:],
-        dt=np.array([dt]),gps_times=np.array([dt]),gps=np.zeros((1,3)),gravity=9.8,radius=6371000.)
+        dt=np.array([dt]),gps_times=np.array([dt]),gps=np.zeros((1,3)),gravity=9.8,radius=6371000.,
+        kernel_model=MODELS.index)
     extended=p.astype(np.longdouble)
     case.update(theta=(theta.astype(np.longdouble)-extended[9:12]*np.longdouble(dt))/(1+extended[15:18]),
         delta_v=(dv.astype(np.longdouble)-extended[12:15]*np.longdouble(dt))/(1+extended[18:21]),

@@ -18,9 +18,12 @@ def test_rate_refit_tasks_cover_three_methods_and_both_laws():
                for row in rows)
 
 
-def test_rate_refit_requires_qualification_before_observed_preparation(tmp_path):
+def test_rate_refit_requires_qualification_before_observed_preparation(tmp_path, monkeypatch):
+    from lll.compute_budget import environment
     from lll.esa_rate_refit_study import prepare
 
+    for key, value in environment(workers=3, threads=1).items():
+        monkeypatch.setenv(key, value)
     with pytest.raises(ValueError, match='qualification required'):
         prepare(tmp_path, smoke=False)
 

@@ -11,14 +11,23 @@ CASE_ARTIFACTS=('fit.json','forecast.json','input-binding.json','forecast-bindin
 def native_bindings(study):
     """Derive expected native identities from the closed source, never compile."""
     from .studies.artifacts import digest
-    from .ilvis0_wide_tangent import derive as wide_source
-    from .ilvis0_noise_step import derive as noise_source
+    from .studies.closed import load_python_reference
+    from .ilvis0_noise_step import bridge_source
+
     hashes=study.manifest['sources'];cpp='analysis/lll/ilvis0_tangent.cpp'
     bridge='analysis/lll/ilvis0_noise_bridge.cpp';loader='analysis/lll/ilvis0_wide_tangent.py'
-    raw=study.read('source-freeze/'+cpp,hashes[cpp],raw=True)
-    return dict(wide_sha256=digest(wide_source(raw,expected_sha256=hashes[cpp])),
-        bridge_sha256=digest(noise_source(raw,study.read('source-freeze/'+bridge,hashes[bridge],raw=True),
-            expected_source_sha256=hashes[cpp],expected_bridge_sha256=hashes[bridge],expected_wide_loader_sha256=hashes[loader])),
+    precision='analysis/lll/ilvis0_precision.py'
+    package='lll._sealed_native_'+digest((hashes[loader]+hashes[precision]).encode())
+
+    def read(path):
+        return study.read('source-freeze/'+path, hashes[path], raw=True)
+
+    def load(path, name):
+        return load_python_reference(read(path), name=package+'.'+name, sha256=hashes[path])
+
+    load(precision, 'ilvis0_precision')
+    wide=load(loader, 'ilvis0_wide_tangent').derive(read(cpp), expected_sha256=hashes[cpp])
+    return dict(wide_sha256=digest(wide), bridge_sha256=digest(bridge_source(wide, read(bridge))),
         compiler=study.input('qualification-environment')['compilers']['c++'])
 
 

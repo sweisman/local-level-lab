@@ -48,13 +48,20 @@ def test_changed_established_source_is_rejected(tmp_path):
             tmp_path, {'established.py':'0'*64}, ['established.py'])
 
 
-def test_historical_science_lock_accepts_only_audited_changes():
+def test_historical_science_lock_accepts_only_audited_changes(tmp_path):
     from pathlib import Path
     from lll.studies.closed import ClosedStudy
+    from public_fixtures import materialize_frozen_sources
+
     root=Path(__file__).resolve().parents[2]
     prior=ClosedStudy(root,'data/ilvis0-rolling-origin-development-v1')
     try:
-        audited=study.verify_historical_science(root,prior)
+        qualified=ClosedStudy(root,'data/'+study.ID)
+        try:
+            materialize_frozen_sources(qualified, tmp_path)
+        finally:
+            qualified.close()
+        audited=study.verify_historical_science(tmp_path,prior)
     finally:
         prior.close()
     assert len(audited)==12

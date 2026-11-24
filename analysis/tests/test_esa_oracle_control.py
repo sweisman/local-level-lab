@@ -4,11 +4,29 @@ import numpy as np
 import pytest
 
 
-def test_sealed_oracle_case_uses_original_measured_stream_and_only_early_receiver():
+def test_sealed_oracle_case_uses_original_measured_stream_and_only_early_receiver(
+        tmp_path, monkeypatch):
     from pathlib import Path
+    import sys
+    from lll.esa_fit_adjusted_control_report import _study
     from lll.esa_oracle_control import load_case
+    from lll.studies.closed import load_python_reference
+    from public_fixtures import isolate_frozen_source_reads
 
-    case = load_case(Path('.'), 'increment')
+    root = Path(__file__).resolve().parents[2]
+    study, _ = _study(root)
+    try:
+        isolate_frozen_source_reads(study, tmp_path, monkeypatch)
+        for module_name in ('airquantumgrav_truth', 'airquantumgrav_observation_truth'):
+            name = 'analysis/lll/' + module_name + '.py'
+            sha = study.manifest['sources'][name]
+            module = load_python_reference(study.read('source-freeze/' + name, sha, raw=True),
+                name='lll._sealed_oracle_' + module_name + '_' + sha, sha256=sha)
+            monkeypatch.setitem(sys.modules, 'lll.' + module_name, module)
+    finally:
+        study.close()
+
+    case = load_case(root, 'increment')
     assert case['theta'].shape == (270000, 3)
     assert case['dv'].shape == (270000, 3)
     assert case['dt'].shape == (270000,)

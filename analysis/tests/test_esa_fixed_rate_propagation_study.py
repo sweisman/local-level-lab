@@ -17,9 +17,12 @@ def test_rate_propagation_tasks_have_three_finite_no_fit_calls():
         bound_calls=0, bound_steps=0) for row in rows)
 
 
-def test_rate_propagation_preparation_requires_qualification(tmp_path):
+def test_rate_propagation_preparation_requires_qualification(tmp_path, monkeypatch):
+    from lll.compute_budget import environment
     from lll.esa_fixed_rate_propagation_study import prepare
 
+    for key, value in environment(threads=1).items():
+        monkeypatch.setenv(key, value)
     with pytest.raises(ValueError, match='qualification required'):
         prepare(tmp_path, smoke=False)
 

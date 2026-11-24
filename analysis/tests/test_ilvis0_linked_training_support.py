@@ -16,7 +16,8 @@ def test_shared_component_enters_both_earlier_constraint_and_later_score():
     projected = [(direction[0], direction[0])]*2
     support_bound = support(residual, direction, projected, [(1, 1)]*2,
                             lower, upper, increase=Fraction(9, 4), unshared=Fraction(1, 4))
-    assert support_bound['upper'] == .75
+    # The numerical direction can change the outward-rounded upper bound.
+    assert .75 <= support_bound['upper'] <= .75 + 1e-12
     assert support_bound['box_upper'] == 2.
 
 

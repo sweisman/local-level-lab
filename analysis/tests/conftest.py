@@ -19,6 +19,22 @@ def prioritize_peak_memory_tests(items):
 
 def pytest_collection_modifyitems(items):
     prioritize_peak_memory_tests(items)
+    import os
+
+    if os.environ.get('LLL_PUBLIC_CHECKOUT_TESTS') != '1':
+        return
+    from pathlib import Path
+
+    from closed_evidence_fixtures import missing_by_node
+    from lll.studies.readers import evidence
+
+    root = Path(__file__).resolve().parents[2]
+    _, catalog = evidence(str(root))
+    missing = missing_by_node(root, catalog['paths'])
+    for item in items:
+        needed = missing.get((item.path.name, getattr(item, 'originalname', None)))
+        if needed:
+            item.add_marker(pytest.mark.skip(reason='local closed study evidence absent: '+', '.join(needed)))
 
 
 @pytest.fixture(autouse=True)

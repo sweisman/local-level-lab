@@ -3,13 +3,21 @@
 
 from pathlib import Path
 
-from lll.generated_joint_replay_source import MODELS, verify_source
+from lll.generated_joint_replay_source import MODELS, SOURCE, verify_source
 
 
 ROOT = Path(__file__).resolve().parents[2]
 
 
-def test_sealed_straight_case_has_three_bound_candidates():
+def test_sealed_straight_case_has_three_bound_candidates(tmp_path, monkeypatch):
+    from lll.studies.closed import ClosedStudy
+    from public_fixtures import isolate_frozen_source_reads
+
+    study = ClosedStudy(ROOT, SOURCE)
+    try:
+        isolate_frozen_source_reads(study, tmp_path, monkeypatch)
+    finally:
+        study.close()
     sealed = verify_source(ROOT)
     assert tuple(sealed['candidates']) == MODELS
     assert len(sealed['training']) == 79

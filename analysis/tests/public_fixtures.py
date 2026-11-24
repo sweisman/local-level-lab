@@ -66,6 +66,33 @@ def source_aliases(root,values):
     return result
 
 
+def materialize_frozen_sources(study, destination):
+    """Restore the verified source bytes needed by a historical replay test."""
+    from lll.studies.artifacts import safe_path
+
+    destination = Path(destination).resolve()
+    for name, sha in study.manifest['sources'].items():
+        raw = study.read('source-freeze/' + name, sha, raw=True)
+        target = safe_path(destination, name)
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_bytes(raw)
+
+
+def isolate_frozen_source_reads(study, destination, monkeypatch):
+    """Let a historical checker hash the sealed files at their original names."""
+    import io
+
+    materialize_frozen_sources(study, destination)
+    paths = {study.root / name: destination / name for name in study.manifest['sources']}
+
+    def remap(path):
+        if isinstance(path, (str, os.PathLike)):
+            return paths.get(Path(path), path)
+        return path
+
+    monkeypatch.setattr(io, 'open', read_adapter(io.open, remap))
+
+
 @contextmanager
 def archived_read_path(root,cache):
     """Materialize only requested public archive aliases into a test cache."""
