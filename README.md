@@ -4,9 +4,9 @@
 
 **Testing Earth’s curvature with airborne lidar survey measurements.**
 
-As an aircraft moves over a globe, the direction of local down changes along its route. At 900 km/h, a level path bends by about eight degrees per hour. The tested flat disc predicts a different kind of turn.
+An aircraft flying level over a globe gradually turns as the direction of local down changes along its route. At 900 km/h, following that curve means about eight degrees of turning per hour. That is a measurable prediction.
 
-An **IMU (inertial measurement unit)** contains gyroscopes and accelerometers. The **gyroscopes record angular motion**. The accelerometers help reconstruct the aircraft’s motion, and a separate GPS receiver supplies the route, speed, and timing. The recordings come from NASA’s Operation IceBridge lidar surveys. [How the measurement works](docs/METHODOLOGY.md) · [Archive and instrument guide](docs/ILVIS0.md)
+An **IMU (inertial measurement unit)** contains gyroscopes and accelerometers. The central measurement is the gyroscope record, which shows how the aircraft turns. Accelerometers help reconstruct its motion. GPS supplies route, speed and timing. Local Level Lab tests those recorded movements against globe and flat-disc predictions. The measurements, code and results are open. [How the measurement works](docs/METHODOLOGY.md)
 
 ## What the measurements show
 
@@ -34,6 +34,8 @@ These are numerical preferences from the fitted data. The 53 stretches fall into
 **After also subtracting estimated aircraft maneuvers.** All 52 traces with a complete maneuver estimate end nose-down. This illustration uses the instrument’s combined navigation solution, which already uses the gyro measurements and globe navigation equations. The fitted comparison uses the recorded IMU and separate GPS streams. [Correction and omitted stretch](docs/ilvis0-motion-subtracted/README.md)
 
 ## Where the research stands
+
+The original measurements come from NASA’s Operation IceBridge lidar surveys. [Archive and instrument guide](docs/ILVIS0.md)
 
 - **NASA development forecasts.** At the same specified field, globe forecasts had lower total position error than disc forecasts in four checked flight groups. The globe with that field met all fixed position limits in three groups. The groups come from the original archive. [Withheld-position results](docs/ilvis0-measurement-contribution/MATCHED_FOUR_GROUP_AUDIT_RESULT.md)
 - **Separate ESA data.** Two complete comparisons on one development flight favored globe on withheld positions. Two other settings remain unresolved. Each of seven groups reserved for confirmation now has a verified 20-minute IMU timestamp window. [Development results](docs/prediction-observed-development/ESA_400_120_MODEL_MATRIX_INTERPRETATION.md) · [Reserved flight timing](docs/external-imu-data/ESA_CONFIRMATION_TIMING_RESULT.md)
