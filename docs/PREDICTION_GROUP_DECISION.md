@@ -125,3 +125,9 @@ those draws in all nine combinations of lower loss, higher loss and failure.
 The 61 focused decision and calibration tests passed. This checks when
 computation can stop after all target results are final. Aircraft calibration
 and actual savings still need verification.
+
+When every group uses the same reference plan, `compare_shared_cohort_work`
+keeps the shared draws linked. Its tests exhaust small reference completions
+under both scoring methods and cover a case where the remaining draw cannot
+change either decision. The interface reports both the number of unique
+pending draws and the number of ranks they affect. [Shared reference rule](FLIGHT_GROUP_DECISION.md#when-all-queries-share-the-same-reference-draws)

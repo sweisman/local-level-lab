@@ -56,8 +56,10 @@ same fits and forecasts with fewer derivative calculations. The [aircraft
 equivalence check](MATCHED_TRIAL_OBSERVED_RESULT.md) then reproduced two
 IMU8 fits and the available forecast under the original limits.
 The gyro-free and receiver uncertainty gates still precede pilot selection.
-The [NCAR RF04 intake](NCAR_RF04_INTAKE.md) is ready to check whole-second
-motion on the selected IMU21 stretch once the separate aircraft file arrives.
+The [NCAR RF04 source check](NCAR_RF04_INTAKE.md) identifies separate aircraft
+attitude, receiver and pressure channels for the selected IMU21 stretch.
+The documented one-second attitude can check changes between reports if
+the flight file is obtained. A limit on faster motion remains open.
 
 ## Completed checks
 

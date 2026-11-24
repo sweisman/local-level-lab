@@ -8,7 +8,8 @@ from scipy.linalg import cho_factor, cho_solve, solve_triangular
 from scipy.optimize import Bounds, LinearConstraint, minimize
 
 
-def solve_support(matrices, objective, coordinate_caps, *, max_iterations=120, multipliers=None):
+def solve_support(matrices, objective, coordinate_caps, *, max_iterations=120, multipliers=None,
+                  with_certificate=False):
     """Bracket max c @ x for ||M_i @ x|| <= 1.
 
     Coordinate caps are independently supplied bounds on every feasible x.
@@ -36,9 +37,12 @@ def solve_support(matrices, objective, coordinate_caps, *, max_iterations=120, m
     scale = np.linalg.norm(target)
     uniform = np.full(len(matrices), 1./len(matrices))
     if not scale:
-        return dict(point=np.zeros(size), lower=0., upper=0., multipliers=uniform,
-                    optimizer_status=0, iterations=0, norm_terms=np.zeros(len(matrices)),
-                    residual_by_coordinate=np.zeros(size))
+        result = dict(point=np.zeros(size), lower=0., upper=0., multipliers=uniform,
+                      optimizer_status=0, iterations=0, norm_terms=np.zeros(len(matrices)),
+                      residual_by_coordinate=np.zeros(size))
+        if with_certificate:
+            result.update(dual_groups=[np.zeros(len(m)) for m in matrices], remainder=0.)
+        return result
 
     target /= scale
     single = np.array([matrix.shape[0] == 1 for matrix in matrices])
@@ -96,10 +100,29 @@ def solve_support(matrices, objective, coordinate_caps, *, max_iterations=120, m
     # Decompose c into transposed constraint maps plus a bounded residual.
     # This inequality holds for any returned multipliers, even on an early stop.
     norm_terms = np.array([np.linalg.norm(group)*(1+rounding) for group in dual_groups])
-    upper = math.fsum(norm_terms)+float(caps@remainder)
+    remainder_bound = float(caps@remainder)
+    upper = math.fsum(norm_terms)+remainder_bound
     lower = float(objective@point-rounding*(abs(objective)@abs(point)))
     if not 0 <= lower <= upper < math.inf:
         raise ValueError('the verified support bracket is invalid')
-    return dict(point=point, lower=lower, upper=upper, multipliers=multipliers,
-                optimizer_status=status, iterations=iterations,
-                norm_terms=norm_terms, residual_by_coordinate=remainder)
+    result = dict(point=point, lower=lower, upper=upper, multipliers=multipliers,
+                  optimizer_status=status, iterations=iterations,
+                  norm_terms=norm_terms, residual_by_coordinate=remainder)
+    if with_certificate:
+        result.update(dual_groups=dual_groups, remainder=remainder_bound)
+    return result
+
+
+def affine_upper(certificate, *, group, offset, radius):
+    """Replay an upper certificate with ||M[group] @ x - offset|| <= radius."""
+    direction = certificate['dual_groups'][group]
+    offset = np.asarray(offset, float)
+    if (offset.shape != direction.shape or not np.isfinite(offset).all()
+            or not math.isfinite(radius) or radius < 0):
+        raise ValueError('the affine offset and radius must match the certified group')
+    terms = certificate['norm_terms'].copy()
+    terms[group] *= radius
+    products = offset*direction
+    dot = math.fsum(products)
+    slack = 8*np.finfo(float).eps*math.fsum(abs(products))
+    return float(np.nextafter(math.fsum((*terms, certificate['remainder'], dot, slack)), math.inf))

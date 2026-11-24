@@ -146,10 +146,14 @@ def compare_group(query, calibration, *, protocol_sha256, settings, planned_draw
 def compare_group_work(query, sealed_calibration, *, protocol_sha256, settings, planned_draws,
                        group_count, minimum_groups, alpha, absolute_null=False):
     """Build a cohort work row using the same scores and adequacy as the final test."""
+    inputs = _matched_inputs(
+        query, sealed_calibration, protocol_sha256, settings, planned_draws, absolute_null=absolute_null)
+    return _work_row(*inputs, planned_draws, group_count, minimum_groups, alpha)
+
+
+def _work_row(identity, gaps, adequate, references, planned_draws, group_count, minimum_groups, alpha):
     from .group_rank_work import candidate_rank_work
 
-    identity, gaps, adequate, references = _matched_inputs(
-        query, sealed_calibration, protocol_sha256, settings, planned_draws, absolute_null=absolute_null)
     if gaps is None or not all(any(plan.values()) for plan in planned_draws.values()):
         raise ValueError('complete sealed target and a frozen reference population for each model required')
     ranks = {model: candidate_rank_work(planned_draws[model], references[model],
@@ -157,3 +161,28 @@ def compare_group_work(query, sealed_calibration, *, protocol_sha256, settings, 
                 group_count=group_count, minimum_groups=minimum_groups, alpha=alpha)
              for model in MODELS}
     return dict(status='complete', ranks=ranks, adequate=[model for model in MODELS if adequate[model]])
+
+
+def compare_shared_cohort_work(group_ids, queries, sealed_calibration, *, protocol_sha256, settings,
+                               planned_draws, minimum_groups, alpha, absolute_null=False):
+    """Decide what can still change when all queries use the same reference draws."""
+    from .group_cohort_work import _shared_cohort_rank_work
+
+    groups, calibration = tuple(group_ids), tuple(sealed_calibration)
+    identities = set(groups)
+    if set(queries) != identities:
+        raise ValueError('one complete or terminal query for each frozen group is required')
+    rows, scores = {}, {}
+    for group, query in queries.items():
+        if isinstance(query, dict) and set(query) == {'status'}:
+            rows[group] = query
+            continue
+        inputs = _matched_inputs(query, calibration, protocol_sha256, settings, planned_draws,
+                                 absolute_null=absolute_null)
+        if inputs[0] != group:
+            raise ValueError('each query must match its frozen cohort identity')
+        rows[group] = _work_row(*inputs, planned_draws, len(groups), minimum_groups, alpha)
+        scores[group] = inputs[1]
+    if scores and any(not identities.isdisjoint(draws) for model in planned_draws.values() for draws in model.values()):
+        raise ValueError('reference draw identities must be disjoint from the entire frozen cohort')
+    return _shared_cohort_rank_work(groups, rows, scores, minimum_groups=minimum_groups, alpha=alpha)

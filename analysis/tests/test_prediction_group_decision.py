@@ -33,6 +33,77 @@ def reference_design(calibration):
             for model in MODELS}
 
 
+@pytest.mark.parametrize('absolute_null', [False, True])
+def test_shared_cohort_work_excludes_impossible_cross_target_decisions(absolute_null):
+    from lll.flight_group_decision import assess as cohort_decision
+    from lll.prediction_group_decision import compare_group, compare_shared_cohort_work
+
+    calibration = baseline()
+    planned = reference_design(calibration)
+    missing = calibration.pop(0)
+    queries = {name: group(name, [values]*2, adequate=False) for name, values in
+               [('lower', (1, 4, 0)), ('higher', (2, 0, 4))]}
+    for name, model in [('lower', 'sphere_rotating'), ('higher', 'sphere_still')]:
+        for setting in SETTINGS:
+            queries[name]['settings'][setting][model]['adequate'] = True
+    if absolute_null:
+        for row in calibration:
+            truth = row['true_model']
+            row['settings'] = {key: {truth: results[truth]} for key, results in row['settings'].items()}
+    options = dict(protocol_sha256=PLAN, settings=SETTINGS, planned_draws=planned,
+                   alpha=.4, absolute_null=absolute_null)
+    work = compare_shared_cohort_work(tuple(queries), queries, calibration, minimum_groups=1, **options)
+    exhaustive = set()
+    for loss in (0., 1., 2., None):
+        completed = group(missing['group_id'], [(loss or 0, 0, 0)]*2, true_model=MODELS[0])
+        if loss is None:
+            completed['settings'].clear()
+        elif absolute_null:
+            completed['settings'] = {s: {MODELS[0]: row[MODELS[0]]}
+                                     for s, row in completed['settings'].items()}
+        rows = {key: compare_group(query, calibration+[completed], **options)['cohort_row']
+                for key, query in queries.items()}
+        bounds = cohort_decision(tuple(queries), rows, minimum_groups=1, alpha=.4)
+        exhaustive.add((bounds['shape'], bounds['field']))
+    assert {(row['shape'], row['field']) for row in work['possible_decisions']} == exhaustive
+    assert exhaustive == {('abstain', 'abstain'), ('globe', 'abstain'), ('globe', 'zero')}
+    assert work['pending_reference_draws'] == 1
+    assert work['pending_draw_slots'] == 2
+    assert work['decision_fixed'] is False
+
+
+def test_equal_score_queries_can_fix_both_decisions_with_a_reference_pending():
+    from lll.group_cohort_work import cohort_rank_work
+    from lll.prediction_group_decision import compare_group_work, compare_shared_cohort_work
+
+    # Use a cutoff above 0.2 to keep floating point multiplication of the
+    # nominal boundary on the intended side for a three-group cohort.
+    references = [group(f'{model}-{i}', [(0, 0, 0)]*2, true_model=model)
+                  for model in MODELS for i in range(9)]
+    references[1] = group(references[1]['group_id'], [(2, 0, 0)]*2, true_model=MODELS[0])
+    planned = reference_design(references)
+    calibration = references[1:]
+    queries = {name: group(name, [losses]*2, adequate=False) for name, losses in
+               [('first', (1, 4, 0)), ('second', (1, 0, 4)), ('stable', (10, 0, 0))]}
+    for name, adequate_model in [('first', 'sphere_rotating'), ('second', 'sphere_still'),
+                                 ('stable', 'sphere_rotating')]:
+        for settings in queries[name]['settings'].values():
+            settings[adequate_model]['adequate'] = True
+    cohort = tuple(queries)
+    options = dict(protocol_sha256=PLAN, settings=SETTINGS, planned_draws=planned,
+                   minimum_groups=1, alpha=.61)
+    independent_rows = {name: compare_group_work(query, calibration, group_count=3, **options)
+                        for name, query in queries.items()}
+    old = cohort_rank_work(cohort, independent_rows, minimum_groups=1, alpha=.61)
+    result = compare_shared_cohort_work(cohort, queries, calibration, **options)
+    assert old['decision_fixed'] is False
+    assert result['decision_fixed'] is True
+    assert result['possible_decisions'] == [{'shape': 'globe', 'field': 'abstain'}]
+    assert result['pending_reference_draws'] == 1
+    assert result['pending_draw_slots'] == 3
+    assert result['conservative'] == old['conservative']
+
+
 def assess(query, calibration, alpha=.2, *, planned_draws=None):
     from lll.prediction_group_decision import compare_group
 
@@ -200,6 +271,51 @@ def test_matched_group_work_preserves_missing_and_pending_reference_status():
     queries[0]['settings'].pop('nominal')
     with pytest.raises(ValueError, match='sealed target'):
         compare_group_work(queries[0], calibration, **options)
+
+
+def test_absolute_null_cohort_work_covers_all_shared_reference_completions():
+    from itertools import product
+
+    from lll.flight_group_decision import assess as cohort_decision
+    from lll.group_cohort_work import cohort_rank_work
+    from lll.prediction_group_decision import compare_group, compare_group_work
+
+    references = baseline()
+    planned = reference_design(references)
+    for record in references:
+        model = record['true_model']
+        record['settings'] = {key: {model: values[model]}
+                              for key, values in record['settings'].items()}
+    pending_ids = {planned[model]['fixed'][0] for model in MODELS[:2]}
+    pending = [row for row in references if row['group_id'] in pending_ids]
+    sealed = [row for row in references if row['group_id'] not in pending_ids]
+    queries = [group('first', [(10, 8, 1)]*2), group('second', [(9, 9, 2)]*2)]
+    cohort = ('first', 'second', 'unavailable')
+    options = dict(protocol_sha256=PLAN, settings=SETTINGS, planned_draws=planned,
+                   absolute_null=True, alpha=.4)
+    work = {row['group_id']: compare_group_work(row, sealed, group_count=3,
+                                               minimum_groups=2, **options) for row in queries}
+    result = cohort_rank_work(cohort, dict(work, unavailable={'status': 'missing'}),
+                              minimum_groups=2, alpha=.4)
+    assert result['pending_draw_slots'] == 4
+
+    feasible = set()
+    for outcomes in product((0, 8, None), repeat=len(pending)):
+        completed = [dict(row, settings={setting: {row['true_model']: (
+            None if loss is None else dict(score=loss, adequate=True))}
+            for setting in SETTINGS}) for row, loss in zip(pending, outcomes, strict=True)]
+        ranks = {row['group_id']: compare_group(row, sealed+completed, **options)['cohort_row']
+                 for row in queries}
+        final = cohort_decision(cohort, ranks, minimum_groups=2, alpha=.4)
+        feasible.add((final['shape'], final['field']))
+    possible = {(row['shape'], row['field']) for row in result['possible_decisions']}
+    assert feasible == possible == {('globe', 'specified'), ('globe', 'abstain'),
+                                    ('abstain', 'abstain')}
+    assert not result['decision_fixed']
+
+    with pytest.raises(ValueError, match='absolute null selection'):
+        compare_group_work(queries[0], sealed, group_count=3, minimum_groups=2,
+                           **dict(options, absolute_null=1))
 
 
 @pytest.mark.parametrize('problem', ['duplicate', 'leakage', 'protocol', 'setting', 'score'])

@@ -31,7 +31,9 @@ one development group and retains the seven reserved groups in its receipt.
 The [receiver screen](external-imu-data/ESA_CONFIRMATION_RECEIVER_INVENTORY_RESULT.md)
 and [timing audit](external-imu-data/ESA_CONFIRMATION_TIMING_RESULT.md)
 then verified one 20-minute slice in each reserved group. The group assignments
-remain frozen, with all seven still awaiting confirmation fits.
+remain frozen, with all seven still awaiting confirmation fits. Their source
+files share the identified RQH01 instrument with development flight 187.
+[ESA instrument provenance](external-imu-data/ESA_INSTRUMENT_PROVENANCE.md)
 
 [Published grouping](analysis-provenance/README.md) ·
 [Development dataset](PAPER_DATASET.md) · [Study roadmap](ANALYSIS_ROADMAP.md).

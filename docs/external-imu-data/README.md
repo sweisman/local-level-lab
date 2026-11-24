@@ -16,6 +16,10 @@ On that development flight, [two complete matched settings](../prediction-observ
 
 The seven reserved groups include eight source files. The [receiver screen](ESA_CONFIRMATION_RECEIVER_INVENTORY_RESULT.md) found ten provisional windows, totaling 34.7 hours. Each group has one [timing-verified 20-minute slice](ESA_CONFIRMATION_TIMING_RESULT.md) with room to compare [two training lengths at the same development cadence](ESA_CONFIRMATION_CADENCE_RESULT.md). Confirmation fits will use separately frozen selection, prediction, and error rules. [Reservation and grouping](../PROVENANCE_VERIFICATION.md)
 
+The reserved flights and development recording 187 share the same identified
+iMAR inertial instrument. Calibration errors can therefore persist across
+flights. [Instrument provenance](ESA_INSTRUMENT_PROVENANCE.md)
+
 ## Wuhan development lead
 
 The inspected sample uses a NovAtel SPAN HG4930. Its IMR header gives the units and timing for recorded angular and velocity increments. A supplied trajectory combines GNSS and inertial navigation, so the independent receiver reconstruction would use the raw GNSS observations. This source remains a separate development lead. [Acquisition and instrument details](ACQUISITION_HISTORY.md)

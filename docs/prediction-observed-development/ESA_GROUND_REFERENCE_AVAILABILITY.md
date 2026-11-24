@@ -1,9 +1,9 @@
 # A ground receiver reference for ESA development flight 187
 
-The [one-second Nuuk Museum record](ESA_NKAR_GROUND_SCORE_RESULT.md) has now
-been acquired and checked. It matched all 520 timestamps in the saved
-aircraft window. The source-search details below retain the acquisition
-history and point to a second possible nearby receiver.
+The one-second records from [Nuuk Museum](ESA_NKAR_GROUND_SCORE_RESULT.md)
+and [permanent Nuuk](ESA_NUUK_HIGHRATE_INTAKE_RESULT.md) each match all 520
+whole-second timestamps in the saved aircraft window. The source-search
+details below retain the acquisition history.
 
 ## Two routes to nearby one-second observations
 
@@ -18,9 +18,8 @@ history and point to a second possible nearby receiver.
   The GNET network paper describes hourly one-second raw logging on
   that receiver class. This identifies a second plausible source. The
   permanent station is about 1.01 km from the museum receiver using the
-  published station coordinates. The Danish archive requires sign-in,
-  and the retained 30-second SONEL copy does not establish that the
-  high-rate observations survive for 6 July 2023.
+  published station coordinates. The signed-in Danish archive supplied
+  the verified one-second recording for 6 July 2023.
   [Station log](https://gnss-metadata.eu/sitelog/exportlog?station=NUUK00GRL) ·
   [Network paper, §2.4](https://essd.copernicus.org/articles/18/5117/2026/#section2.4) ·
   [Danish GNSS archive](https://dataforsyningen.dk/data/4804) ·
@@ -33,6 +32,25 @@ with the station header and carrier phase and code on both GPS bands.
 The two station paths would test differences in nearby ground tracking
 if both become available. Neither by itself supplies an independent
 airborne antenna error bound.
+
+The documented Dataforsyningen distribution uses implicit FTPS on port 990.
+The [published RINEX path convention](https://raw.githubusercontent.com/atedstone/gnssice/master/rinex_helpers/dk_rinex_generate_list.py)
+identified the daily one-second file at
+`/GNSS/RINEX3/GRL/2023/187/NUUK00GRL_R_20231870000_01D_01S_MO.crx.gz`
+on `ftp.dataforsyningen.dk`. Anonymous FTPS returned `530` and the
+unauthenticated HTTPS download route returned `403`. The subsequent
+signed-in download confirmed the filename and coverage.
+[Dataforsyningen FTPS instructions](https://dataforsyningen.dk/asset/PDF/vejledninger/ftp-vejledning.pdf)
+
+The [GFZ one-second day index](https://isdc-data.gfz.de/gnss/data/highrate/2023/187/)
+listed 3,724 compressed observation files and none for NUUK, KAPI, KELY,
+KSUT or NKAR. The [EarthScope one-second day index](https://data.earthscope.org/archive/gnss/highrate/1-Hz/rinex/2023/187/)
+listed NKAR and none of those four other stations. These are checks of the
+public mirrors. The [network operator](https://go-gnet.org/data-and-site-log)
+still lists its own signed-in distribution for permanent Nuuk. The GFZ
+and EarthScope index responses had SHA-256 values
+`152c117dd40470f400c640804f6c563ff55d2dcd340f41b3e0a5db12878960f7` and
+`0931c6dc9a8112be39286a9b2eb235bd76e10a0845db7955c0ed57a3da1bac09`, respectively.
 
 The public NUUK log response had SHA-256
 `25076e797d5bbc8f487abcb51bdc89ff6a6d11604f8184f77407b2292110ce73`.
@@ -108,7 +126,12 @@ date has twelve quarter-hour files and no overlap with this window.
 Three Greenland stations lie within 75 km of the saved 400/120 comparison
 window. The public daily observation indexes checked for 6 July 2023 did
 not list their station IDs. The campaign separately describes an airport
-base receiver, whose observations for this flight are still unverified.
+base receiver. The authenticated flight-187 raw directory listing matched
+the saved listing byte for byte (SHA-256
+`7675e794c8aeceb607d7cdc238c997c13c8ce807c3b6adb4add699d1dfeeae21`).
+It lists three aircraft receivers and two gravimeter directories. The
+raw archive's top-level listing has only numbered flight directories.
+Neither listing identifies a separate airport receiver for this flight.
 [Earlier archive check](ESA_PRECISE_GPS_SUPPORT_RESULT.md#ground-references)
 
 The follow-up verified that `KSUT` began operating after the flight.

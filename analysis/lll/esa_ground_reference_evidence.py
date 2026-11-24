@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 """Verify the permanent Nuuk development evidence without refitting or publishing raw AIR1."""
 import argparse
-from contextlib import closing
+from contextlib import closing, nullcontext
 import json
 import math
 from pathlib import Path
@@ -16,6 +16,9 @@ INDEX = BASE+'esa-ground-reference-evidence-v1.json'
 CURRENT_INDEX = BASE+'esa-ground-reference-evidence-v2.json'
 COMBINED_INDEX = BASE+'esa-ground-reference-evidence-v3.json'
 MUSEUM_INDEX = BASE+'esa-ground-reference-evidence-v4.json'
+APRON_INDEX = BASE+'esa-ground-reference-evidence-v5.json'
+CARRIER_INDEX = BASE+'esa-ground-reference-evidence-v6.json'
+NUUK_INDEX = BASE+'esa-ground-reference-evidence-v7.json'
 QAQ_INTAKE = 'esa-qaq-ground-intake.json'
 QAQ_INTAKE_SHA = '0cd8b21d3015f105d750d29290016f3eac353e85d2ab65c6cab4cfaeeb82c6e8'
 ERROR_BUDGET = 'esa-reference-error-budget-v1.json'
@@ -369,7 +372,7 @@ def verify_windup(score, ground, phase):
 
 
 def verify(root, *, runtime=False, version=1):
-    if version not in (1, 2, 3, 4):
+    if version not in (1, 2, 3, 4, 5, 6, 7):
         raise ValueError('unknown evidence index version')
     intake = _public(root, INTAKE, INTAKE_SHA)
     if (intake['recording'] != 187 or intake['match_status'] != {'matched': 17}
@@ -378,7 +381,7 @@ def verify(root, *, runtime=False, version=1):
     studies = STUDIES if version == 1 else STUDIES+ADDITIONAL
     if version >= 3:
         studies += COMBINED
-    if version == 4:
+    if version >= 4:
         studies += MUSEUM
     indexed = [_public(root, name, sha) for name, sha, *_ in studies]
     transfer = indexed[len(STUDIES)-2]
@@ -407,7 +410,7 @@ def verify(root, *, runtime=False, version=1):
         value.update(distant_high_rate_ground_coverage_verified=True,
                      distant_ground_intake=dict(path=BASE+QAQ_INTAKE, sha256=QAQ_INTAKE_SHA, station='QAQ100GRL'),
                      joint_error_budget=dict(path=BASE+ERROR_BUDGET, sha256=ERROR_BUDGET_SHA, decision='abstain'))
-    if version == 4:
+    if version >= 4:
         from .esa_nkar_error_budget import evidence as museum_budget
         from .esa_phase_windup_budget import evidence as tilt_budget
 
@@ -422,28 +425,54 @@ def verify(root, *, runtime=False, version=1):
         value.update(nuuk_museum_high_rate_ground_coverage_verified=True,
                      nuuk_museum_error_budget=dict(path=BASE+MUSEUM_BUDGET[0], sha256=MUSEUM_BUDGET[1], decision='abstain'),
                      ideal_tilt_budget=dict(path=BASE+TILT_BUDGET[0], sha256=TILT_BUDGET[1]))
-    if runtime:
-        with closing(ArchiveStore(root)) as store:
-            status = _verify_runtime(root, store, indexed, studies)
-    else:
-        status = {}
+    public_reports = 1+len(studies)+2*(version >= 3)+2*(version >= 4)
+    with (closing(ArchiveStore(root)) if runtime else nullcontext()) as store:
+        status = _verify_runtime(root, store, indexed, studies) if runtime else {}
+        if version >= 5:
+            from .esa_apron_evidence import evidence as apron_evidence
+
+            apron, checks = apron_evidence(root, store=store)
+            value['apron'] = apron
+            status.update(checks)
+            public_reports += 1+len(apron['studies'])+len(apron['technical_stops'])
+            if runtime:
+                status['apron_runtime_studies'] = len(apron['studies'])
+                status['apron_technical_stops'] = len(apron['technical_stops'])
+        if version >= 6:
+            from .esa_airborne_carrier_evidence import evidence as carrier_evidence
+
+            carrier, checks = carrier_evidence(root, store=store)
+            value['airborne_carrier'] = carrier
+            status.update(checks)
+            public_reports += 1+len(carrier['studies'])
+            if runtime:
+                status['airborne_carrier_runtime_studies'] = len(carrier['studies'])
+        if version >= 7:
+            from .esa_nuuk_evidence import evidence as nuuk_evidence
+
+            nuuk, checks = nuuk_evidence(root, store=store)
+            value['nuuk_comparison'] = nuuk
+            status.update(checks)
+            public_reports += len(nuuk['studies'])
+            if runtime:
+                status['nuuk_runtime_studies'] = len(nuuk['studies'])
     if version >= 2:
         status['verified_carrier_reports'] = len(ADDITIONAL)
     if version >= 3:
         status['verified_distant_reference_and_budget'] = True
-    if version == 4:
+    if version >= 4:
         status['verified_nuuk_museum_and_antenna_reports'] = True
-    return value, dict(status, public_reports=1+len(studies)+2*(version >= 3)+2*(version == 4), verified_transfer=True)
+    return value, dict(status, public_reports=public_reports, verified_transfer=True)
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('action', choices=('release', 'check', 'check-runtime'))
-    parser.add_argument('--version', type=int, choices=(1, 2, 3, 4), default=1)
+    parser.add_argument('--version', type=int, choices=(1, 2, 3, 4, 5, 6, 7), default=1)
     args = parser.parse_args()
     root = Path.cwd()
     value, status = verify(root, runtime=args.action != 'check', version=args.version)
-    index = (INDEX, CURRENT_INDEX, COMBINED_INDEX, MUSEUM_INDEX)[args.version-1]
+    index = (INDEX, CURRENT_INDEX, COMBINED_INDEX, MUSEUM_INDEX, APRON_INDEX, CARRIER_INDEX, NUUK_INDEX)[args.version-1]
     if args.action == 'release':
         _write_equal(root/index, encoded(value))
     elif (root/index).read_bytes() != encoded(value):

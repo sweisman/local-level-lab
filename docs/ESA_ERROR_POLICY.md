@@ -330,6 +330,27 @@ The simultaneous gyro rates varied considerably, so the GPS-selected
 stop cannot be used as a control for zero angular motion. The limits on
 airborne common errors still need evidence collected in flight.
 
+The [two-station score calculation](prediction-observed-development/ESA_TWO_STATION_SCORE_RESULT.md)
+uses the same airborne seconds and weights for Nuuk Museum and Qaqortoq.
+If both ground receivers observe an identical shared component, hiding a
+correction the size of the saved score gap requires at least one station
+to have 5.43 mm RMS of local error. Their disagreement requires 3.64 mm
+RMS at one station even with no restriction on score. This leaves the
+station error ceiling and the transfer of the ground signal to the aircraft open.
+
+The [Galileo range replay](prediction-observed-development/ESA_GALILEO_NORTH_WITNESS_RESULT.md)
+tested the 17.6 cm north–south position error that spans the GPS score gap.
+It increased the Galileo range RMS from 6.17–6.54 mm to 9.57–9.84 mm on
+the same interval. This comparison tests one constructed path perturbation
+with separate satellites. The starting path and aircraft antenna are
+shared, and other displacement directions and error limits remain open.
+
+The [joint GPS and Galileo bound](prediction-observed-development/ESA_GALILEO_JOINT_BOUND_RESULT.md)
+checks the broader set of paths under the example anchor and motion caps.
+The verified upper bound responds very little to changing the Galileo
+cap. Two GPS satellite screens remain unresolved. The result does not
+supply independent bounds on the shared aircraft antenna or motion error.
+
 The [GIRAFE inventory for the development flight](external-imu-data/ESA_GIRAFE_187.md)
 identifies two acceleration files and two platform logs. The platform
 measurements may constrain some motion errors once their axes, units,

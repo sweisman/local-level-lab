@@ -84,6 +84,28 @@ The [horizontal quartz check](../prediction-observed-development/ESA_GIRAFE_HORI
 compares both paths on those same two minutes. The measured disagreement
 is larger than the predicted signature of the constructed error.
 
+## Aircraft motion and platform state in the two-minute check
+
+The 121 saved GPS positions in the comparison span a **401 m climb**,
+from 2,836 m to 3,237 m in ellipsoidal height. The median one-second
+climb was 3.29 m/s. GPS course varied from about 63° to 78°.
+These conditions describe the clock and force checks on this interval.
+They do not describe the other flight windows. [Two-minute comparison](../prediction-observed-development/ESA_GALILEO_NORTH_WITNESS_PLAN.md)
+
+The campaign paper reports tests with the platform active and inactive on
+repeated east–west survey lines. It does not give time tags for the platform
+state in the two-minute comparison. Time-tagged state and orientation
+relative to the airframe are still needed to interpret the platform rate
+channels as an independent aircraft-motion check. [Campaign overview](https://essd.copernicus.org/articles/17/1667/2025/#section2.2)
+
+The flight context comes from the sealed `track` input of
+`esa-galileo-north-witness-v1`, SHA-256
+`e97234f2b3e12677f3174fe7aaaa296dc27488ae13bba40431e21d4ed08f8bca`.
+It uses positions at GPS seconds 388614–388734 inclusive. The climb
+statistics use adjacent height differences, and the course is the bearing
+of the adjacent local horizontal displacement. The check reads saved
+development positions only.
+
 ## Processed records with GPS timestamps
 
 The ESA archive also has processed acceleration exports for GIRAFE and iMAR

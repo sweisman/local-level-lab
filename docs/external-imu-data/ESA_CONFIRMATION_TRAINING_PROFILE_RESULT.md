@@ -24,3 +24,16 @@ slices and both training lengths are preserved. The check decoded only
 earlier receiver values and verified the later clocks from the saved
 layout. It read no later positions, inertial readings or model outcomes.
 No model fits ran. Seven software tests passed. [Fixed plan](ESA_CONFIRMATION_TRAINING_PROFILE_PLAN.md) · [Exact input bindings](esa-confirmation-training-profile-freeze.json) · [Saved profiles](esa-confirmation-training-profile-result.json)
+
+## Verify from the public files
+
+The verifier ties the seven group identities to the timing and receiver
+receipts. It checks that both earlier blocks end at the same report, followed
+by the same 120 withheld reports. It also reproduces the comparisons above
+from the saved profile summaries. This check needs only the public evidence.
+The fixed plan has the steps for re-deriving the profiles from the earlier
+receiver observations.
+
+```sh
+env PYTHONPATH=analysis ~/venv/bin/python -m lll.esa_confirmation_evidence
+```

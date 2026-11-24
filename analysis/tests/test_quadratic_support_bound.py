@@ -58,3 +58,19 @@ def test_saved_multipliers_replay_without_optimizer(monkeypatch):
     assert replay['upper'] == pytest.approx(saved['upper'], abs=1e-12)
     assert replay['upper'] == pytest.approx(sum(replay['norm_terms'])+sum(replay['residual_by_coordinate']))
     assert replay['iterations'] == 0
+# A scalar directional check can be verified without the numerical optimizer.
+def test_affine_support_certificate_includes_observed_residual_direction():
+    from lll.quadratic_support_bound import affine_upper, solve_support
+
+    result = solve_support(([[1.]],), [1.], 10., with_certificate=True)
+    shifted = affine_upper(result, group=0, offset=[-.4], radius=.8)
+    assert shifted == pytest.approx(.4)
+
+
+def test_galileo_map_predicts_later_minus_earlier_ranges():
+    from lll.esa_galileo_joint_bound import prediction_operator
+
+    gradients = np.array([[1., 0., 0.], [-1., 0., 0.]])
+    displacement = [1., 0., 0., 4., 0., 0.]
+    operator = prediction_operator([(gradients, gradients)], 2)
+    np.testing.assert_allclose(operator@displacement, [3., -3.])

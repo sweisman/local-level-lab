@@ -1,9 +1,9 @@
 # What the ground references add
 
 Three ground receivers provide separate satellite range measurements for
-ESA development flight 187. Nuuk Museum and Qaqortoq supply one-second
-comparisons. The permanent Nuuk station contributes 17 matches at
-30-second spacing. These measurements check some errors shared by the
+ESA development flight 187. Nuuk Museum, Qaqortoq and permanent Nuuk
+now supply matched one-second comparisons. The original permanent Nuuk
+check used 17 matches at 30-second spacing. These measurements check some errors shared by the
 aircraft receivers. All three comparisons belong to **one development
 flight**, and the seven reserved ESA groups remain closed.
 
@@ -18,6 +18,7 @@ flight**, and the seven reserved ESA groups remain closed.
 | What could one-second observations resolve? | The actual 30-second range totals miss the score-sensitive changes between their endpoints. Ideal one-second coverage could reach 99.98% of the signed carrier weight norm. [Sampling comparison](ESA_CARRIER_SCORE_CADENCE_RESULT.md) |
 | What does the distant one-second recording show? | The Qaqortoq comparison covers 98% of the carrier weight norm. The aircraft-minus-ground discrepancy is 2.46% of the saved score gap on those directions. A correction learned earlier moves the later score by 0.31% of that gap. [Distant comparison](ESA_QAQ_GROUND_SCORE_RESULT.md) · [Earlier correction](ESA_QAQ_PHASE_TRANSFER_RESULT.md) |
 | How do the two stations compare at the same cadence? | Both corrections improve range agreement over the same three later 30-second intervals. The archived aircraft calculations use different paths and satellite products, so their difference cannot be attributed to station location. [Matched-cadence comparison](ESA_GROUND_CADENCE_COMPARISON_RESULT.md) |
+| How close are two nearby stations on the full one-second interval? | The two Nuuk stations disagreed by 6.54 mm RMS on 1,236 matched range changes. A separate Doppler check recovered the 20 seconds excluded from the original comparison. [Doppler offset check](ESA_NUUK_CLOCK_AWARE_RESULT.md) |
 | What happens when both use the same path and satellite products? | The range difference between stations falls from 3.48 to 1.47 cm RMS. Both corrections still improve agreement with the same saved path, while faster errors remain open. [Common-product comparison](ESA_GROUND_COMMON_PRODUCTS_RESULT.md) |
 | What still limits the result? | The geometric approximation can be bounded from position and motion limits. The actual aircraft range, anchor and motion errors still need independent bounds. [Geometric bound](ESA_CARRIER_RANGE_REMAINDER_RESULT.md) · [Joint error budget](ESA_REFERENCE_ERROR_BUDGET.md) |
 
@@ -34,25 +35,42 @@ fractions of the gap. The [updated error budget](ESA_NKAR_ERROR_BUDGET_RESULT.md
 sets the accuracy needed under its example assumptions. The actual
 shared aircraft errors remain open.
 
+Two checks during the Nuuk ground stop found little correlation between
+aircraft and museum range residuals. The longer window also recorded
+substantial variation in one-second gyro rates. These checks do not
+establish the antenna's error in flight or certify the stop as free of
+angular motion. [Short check](ESA_APRON_NKAR_RESULT.md) ·
+[Two-minute check](ESA_APRON_IMU_OVERLAP_RESULT.md)
+
 ## Reproduce the evidence checks
 
-The [current evidence index](esa-ground-reference-evidence-v4.json) pins
-18 sealed calculation reports, two ground intake reports and three
-error-budget calculations. The public check verifies their hashes and
-recomputes the range projections, chronological transfer, antenna score
-changes and bounds from saved values. Run it from the repository root.
-It needs no original flight or ground archive download.
+The [current evidence index](esa-ground-reference-evidence-v7.json) pins
+36 public reports and receipts. The check recomputes range projections,
+chronological transfer, antenna score changes and bounds from saved
+values. It also recomputes the parked-aircraft correlations and gyro
+summaries, using 138 seconds of matched ranges and 36,000 inertial
+samples summarized in one-second means. The airborne checks verify
+three [two-station error cases](ESA_TWO_STATION_SCORE_RESULT.md),
+the [Galileo range comparison](ESA_GALILEO_NORTH_WITNESS_RESULT.md),
+and the arithmetic of the four [joint upper bounds](ESA_GALILEO_JOINT_BOUND_RESULT.md)
+from the saved coefficients. It also verifies which Nuuk seconds were
+recovered and checks six station-error bounds on the two support sets.
+Run it from the repository root. It needs
+no original flight or ground archive download.
 
 ```sh
 env PYTHONPATH=analysis ~/venv/bin/python analysis/tests/run_numerical.py --threads 1 -- \
-  ~/venv/bin/python -m lll.esa_ground_reference_evidence check --version 4
+  ~/venv/bin/python -m lll.esa_ground_reference_evidence check --version 7
 ```
 
 With the sealed local studies available, use `check-runtime` in place of
-`check`. That verifies source, input and result hashes and the original
-zero-work accounting failure. Neither check runs an aircraft fit. The
-release lists one development flight and makes no calibrated detection claim.
+`check` to verify the source, input, and result hashes and the receipts
+for three technical stops. Both checks read saved results. The release
+covers one development flight and provides no calibrated detection.
 The [seven-study index](esa-ground-reference-evidence-v1.json),
 [eleven-study index](esa-ground-reference-evidence-v2.json) and
-[fourteen-study index](esa-ground-reference-evidence-v3.json) remain
+[fourteen-study index](esa-ground-reference-evidence-v3.json),
+[Nuuk Museum and antenna index](esa-ground-reference-evidence-v4.json),
+[Nuuk ground-stop index](esa-ground-reference-evidence-v5.json) and
+[airborne carrier index](esa-ground-reference-evidence-v6.json) remain
 available with their original version numbers.

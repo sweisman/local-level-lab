@@ -18,7 +18,9 @@ ATTITUDE = ('ROLL', 'PITCH', 'THDG')
 VARIABLES = {
     'ROLL': ('degree', -180., 180.), 'PITCH': ('degree', -180., 180.), 'THDG': ('degree_T', 0., 360.),
     'GGLAT': ('degree_N', -90., 90.), 'GGLON': ('degree_E', -180., 180.), 'GGALT': ('m', -1000., 30000.),
-    'PSXC': ('hPa', 0., 1200.),
+    'GGNSAT': ('number', 0., 255.), 'GGQUAL': ('none', 0., 255.), 'GGSTATUS': ('none', 0., 1.),
+    'PSXC': ('hPa', 0., 1200.), 'PSFC': ('hPa', 0., 1200.), 'PS_A': ('hPa', 0., 1200.),
+    'ATX': ('deg_C', -273.15, 100.),
 }
 
 
@@ -93,7 +95,7 @@ def inspect_recording(source):
                 raise ValueError(f'RF04 measurement layout or units differ for {name}')
             metadata[name] = {key: scalar(getattr(variable, key)) for key in
                               ('units', 'long_name', 'SampledRate', 'TimeLag', 'TimeLagUnits', 'CalibrationCoefficients',
-                               '_FillValue', 'missing_value') if hasattr(variable, key)}
+                               'Dependencies', 'DataQuality', '_FillValue', 'missing_value') if hasattr(variable, key)}
             series = np.asarray(variable[chosen], dtype=float)
             valid = np.isfinite(series) & (series >= minimum) & (series <= maximum)
             for key in ('_FillValue', 'missing_value'):

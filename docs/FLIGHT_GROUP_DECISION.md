@@ -53,6 +53,11 @@ tests still need to account for fit uncertainty, the receiver error law,
 and any choices within each group. The [forecast coverage question](PREDICTION_GROUP_COUNT.md)
 is separate. The seven groups remain reserved.
 
+The seven ESA groups use the same identified iMAR unit as the development
+flight. The group rule allows dependence between valid group tests. The
+error model still needs to cover persistent sensor and installation effects
+within each group's calibration. [Instrument provenance](external-imu-data/ESA_INSTRUMENT_PROVENANCE.md)
+
 A [reference-sample audit](prediction-observed-development/GROUP_RANK_RESOLUTION_RESULT.md)
 shows why the existing twelve generated histories are too few for these
 within-group tests. A future design needs both sufficient rank resolution
@@ -113,6 +118,29 @@ possible outcomes against exhaustive completions. They also cover a case in
 which two groups fix both decisions while 237 slots in a third remain pending.
 This verifies the calculation. It gives no estimate of work savings or
 statistical coverage on aircraft.
+
+### When all queries share the same reference draws
+
+The matched-score pipeline can use `compare_shared_cohort_work` once all
+target scores and adequacy checks are final. A reference score that
+counts against a higher target also counts against every lower target for
+the same candidate. The possible rejections therefore fall at a single
+cut in the score order, and tied targets stay together. One cutoff still
+works across multiple error scenarios because the target score order is
+the same in every scenario.
+
+The check tests each possible cut using the two targets on its boundary.
+A cut is attainable if pending reference scores placed between those
+targets can retain the lower target and reject the higher one. It then
+applies the unchanged shape-first rule to those votes. The reported
+conservative decision still counts unfinished draws in the upper tail.
+
+In a three-group software check, two targets shared the same disc score
+and supported opposite field conclusions. The common draw could make
+both groups pass or neither pass. A third group already fixed the shape
+as globe. The shared-reference check fixed the field at abstention with
+one draw pending, while the separate-rank check could not close the case.
+This checks work planning. Aircraft error calibration is still required.
 
 ```sh
 env PYTHONPATH=analysis ~/venv/bin/python analysis/tests/run_numerical.py \

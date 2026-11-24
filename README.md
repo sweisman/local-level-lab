@@ -37,7 +37,7 @@ These are numerical preferences from the fitted data. The 53 stretches fall into
 
 - **NASA development forecasts.** At the same specified field, globe forecasts had lower total position error than disc forecasts in four checked flight groups. The globe with that field met all fixed position limits in three groups. The groups come from the original archive. [Withheld-position results](docs/ilvis0-measurement-contribution/MATCHED_FOUR_GROUP_AUDIT_RESULT.md)
 - **Separate ESA data.** Two complete comparisons on one development flight favored globe on withheld positions. Two other settings remain unresolved. Each of seven groups reserved for confirmation now has a verified 20-minute IMU timestamp window. [Development results](docs/prediction-observed-development/ESA_400_120_MODEL_MATRIX_INTERPRETATION.md) · [Reserved flight timing](docs/external-imu-data/ESA_CONFIRMATION_TIMING_RESULT.md)
-- **Next.** Establish an aircraft error model for GPS, IMU, and fitted calibration. Then freeze the prediction and decision rules before testing the reserved flights. [Next steps](docs/NEXT_STEPS.md)
+- **Next.** Two checks await outside records. NASA’s RF04 flight file can check aircraft motion. The ESA confirmation needs platform orientation records and an independent check on errors shared by the aircraft’s GPS receivers. [Next steps](docs/NEXT_STEPS.md)
 
 [Study index](docs/STUDIES.md) · [Technical roadmap](docs/ANALYSIS_ROADMAP.md) · [Evidence dataset](docs/PAPER_DATASET.md) · [Reproduce a study](docs/REPRODUCIBILITY.md)
 

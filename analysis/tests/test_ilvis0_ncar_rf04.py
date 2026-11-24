@@ -22,7 +22,13 @@ def fixture(path, *, flight=b'rf04'):
             ('GGLAT', b'degree_N', [-72]*5),
             ('GGLON', b'degree_E', [-70]*5),
             ('GGALT', b'm', [5000]*5),
+            ('GGNSAT', b'number', [10, 10, 0, 11, 11]),
+            ('GGQUAL', b'none', [5, 5, 0, 5, 5]),
+            ('GGSTATUS', b'none', [1, 1, 0, 1, 1]),
             ('PSXC', b'hPa', [500]*5),
+            ('PSFC', b'hPa', [500]*5),
+            ('PS_A', b'hPa', [501, 501, -32767, 501, 501]),
+            ('ATX', b'deg_C', [-30]*5),
         ):
             variable = data.createVariable(name, 'f', ('Time',))
             variable.units = units
@@ -31,6 +37,8 @@ def fixture(path, *, flight=b'rf04'):
             if name in ('PITCH', 'ROLL', 'THDG'):
                 variable.TimeLag = -80
                 variable.TimeLagUnits = b'milliseconds'
+            if name == 'PSXC':
+                variable.Dependencies = b'1 PSFC'
 
 
 def test_rf04_intake_preserves_utc_gaps_fill_values_and_lag_metadata(tmp_path):
@@ -52,6 +60,20 @@ def test_rf04_intake_refuses_the_other_flight(tmp_path):
     fixture(path, flight=b'rf01')
     with pytest.raises(ValueError, match='RF04'):
         inspect_recording(path)
+
+
+def test_rf04_intake_retains_distinct_pressure_channels_and_receiver_status(tmp_path):
+    path = tmp_path/'rf04.nc'
+    fixture(path)
+    result = inspect_recording(path)
+    first, second = result['rows'][:2]
+    assert first['PSXC'] == first['PSFC'] == 500
+    assert result['variables']['PSXC']['Dependencies'] == '1 PSFC'
+    assert first['PS_A'] == 501
+    assert second['PS_A'] is None
+    assert first['ATX'] == -30
+    assert (second['GGNSAT'], second['GGQUAL'], second['GGSTATUS']) == (0, 0, 0)
+    assert result['used_for_earth_model_scoring'] is False
 
 
 def test_attitude_endpoint_rotation_combines_axes_and_wraps_heading():
