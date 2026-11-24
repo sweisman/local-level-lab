@@ -34,6 +34,18 @@ The [calibration inventory](ESA_ANTEX_INTAKE.md) identifies published
 patterns for the Nuuk Museum antenna and all 11 GPS satellites. Applying
 these patterns on the saved times changed less than 0.002% of the score
 gap. The airborne antenna remains unidentified. [Antenna replay](ESA_NKAR_ANTENNA_RESULT.md)
+The [gyro-constrained phase check](ESA_GYRO_PHASE_TILT_RESULT.md) bounds
+the ideal phase effect at 10.7% to 22.8% of the same gap across the three
+starting tilt assumptions. Whether the installed antenna follows that
+ideal response remains open.
+The [above-plane screen](ESA_CARRIER_ELEVATION_SCREEN_RESULT.md) keeps
+continuous satellite coverage. Its geometry reduces the exact-anchor
+linear range error allowance to 0.16–0.29 mm RMS with the original
+weighting method. [Rebalancing the weights](ESA_CARRIER_WEIGHT_TRADEOFF_RESULT.md)
+raises the allowance to 1.35–1.71 mm on the same three screened sets.
+With one metre of allowed anchor error per coordinate and the other
+published example terms, the [uncertain-anchor replay](ESA_CARRIER_REWEIGHTED_BUDGET_RESULT.md)
+finds zero remaining margin in all three screened cases.
 
 The [motion-axis check](ESA_MOTION_AXIS_SUPPORT_RESULT.md) shows that the
 score gap can be spanned by an error entirely in the north–south direction.

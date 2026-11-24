@@ -9,6 +9,7 @@ The public evidence separates the original NASA comparison, later development fo
 | [ESA development forecast index](analysis-provenance/ESA_GROUP_EVIDENCE.md) | Receiver-row reuse across forecast windows on one development flight. |
 | [ESA ground reference evidence](prediction-observed-development/ESA_GROUND_REFERENCE_EVIDENCE.md) | Reproducible timing, range, antenna and error-budget checks for that same development flight. |
 | [Aircraft motion evidence](analysis-provenance/AIRCRAFT_MOTION_EVIDENCE.md) | Verify the ESA clock and tilt checks and the two distinct paired NASA flights, including the source correction. |
+| [ESA antenna offset sensitivity](prediction-observed-development/ESA_CARRIER_LEVER_SENSITIVITY_RESULT.md) | Bounds how much a fixed error in antenna placement can change the saved two-minute score. |
 | [Reserved ESA groups](external-imu-data/ESA_CONFIRMATION_RECEIVER_INVENTORY_RESULT.md) | Ten provisional windows across seven groups. Each has one timing-verified slice with [two possible training lengths at the development cadence](external-imu-data/ESA_CONFIRMATION_CADENCE_RESULT.md). [Earlier receiver profiles](external-imu-data/ESA_CONFIRMATION_TRAINING_PROFILE_RESULT.md) compare the conditions with development. Zero groups have been scored for confirmation. |
 
 ## How the 53 stretches cluster

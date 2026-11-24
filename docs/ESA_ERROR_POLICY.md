@@ -263,6 +263,73 @@ check one component. The campaign's fused roll and pitch use the same
 iMAR and cannot independently check its attitude errors.
 [Campaign data processing](https://essd.copernicus.org/articles/17/1667/2025/#section3)
 
+On the exact two-minute score, the [fixed offset check](prediction-observed-development/ESA_CARRIER_LEVER_SENSITIVITY_RESULT.md)
+puts a lower limit of 40.5 cm on an offset error that could close the gap
+under the wider of the two tested gyro assumptions. The installation's
+actual offset error and the antenna's phase response remain open.
+The [measured-turn phase check](prediction-observed-development/ESA_GYRO_PHASE_TILT_RESULT.md)
+sets bounds of roughly 11% to 23% of the score gap in an ideal antenna
+model. At even the smallest starting tilt setting, more than half the
+weight lacks a guarantee that every ray stays above the antenna plane.
+The aircraft error budget needs evidence for the installed antenna.
+An [elevation screen](prediction-observed-development/ESA_CARRIER_ELEVATION_SCREEN_RESULT.md)
+keeps at least four satellites in every interval. Under the tested
+weighting, it tightens the exact-anchor linear range error allowance by
+a factor of about 7 to 13. This makes the screened range geometry a
+tradeoff with the ideal phase model.
+With the same satellite sets, the [range and motion weighting check](prediction-observed-development/ESA_CARRIER_WEIGHT_TRADEOFF_RESULT.md)
+recovers much of the margin. The 1.35–1.71 mm screened range allowances
+still assume exact anchors and the illustrative acceleration limit.
+The [uncertain-anchor check](prediction-observed-development/ESA_CARRIER_REWEIGHTED_BUDGET_RESULT.md)
+uses the original one-metre example per coordinate. All three screened
+cases exhaust the margin before any ground-covered range error is added.
+The screened method needs separately supported anchor and motion accuracy.
+The [smooth-path search](prediction-observed-development/ESA_CARRIER_MOTION_WITNESS_RESULT.md)
+found feasible errors that span 48% to 65% of the gap under its stated
+limits. All solves reached the iteration cap. A full explanation
+under those limits remains open.
+
+A follow-up solver passed known-answer software checks. It returns a
+feasible path and an independently checked upper bound on the possible
+score change for the specified spline and error limits. The checks
+cover coordinates with very different scales and an early optimizer
+stop. The four recorded development searches still have their original
+dispositions. This software check supplies no new aircraft measurements
+or error limits.
+
+The [continuous bound on flight 187](prediction-observed-development/ESA_CARRIER_CONTINUOUS_BOUND_RESULT.md)
+places the maximum error contribution at 50.2% of the gap with the
+full satellite set under the example limits. Each screened case still
+straddles 100%. This focuses the confirmation requirement on the
+actual accuracy of the full satellite set, including low-elevation
+antenna effects and errors common to the aircraft receivers.
+
+The [accuracy requirements replay](prediction-observed-development/ESA_CARRIER_ERROR_REQUIREMENTS_RESULT.md)
+uses the saved bounds to quantify the remaining measurement task.
+With the full satellite set and the other example caps fixed, the
+ground-covered range error threshold is about 2.10 mm RMS. The
+separate geometric terms also put the 0° screen just inside the
+example limits at 99.25% of the gap. The installed aircraft response
+and shared error caps still need independent evidence.
+
+The [Nuuk apron comparison](prediction-observed-development/ESA_APRON_CARRIER_RESULT.md)
+found roughly 7 mm RMS disagreement with a fixed parked position
+after handling the recorded receiver clock. This measures the whole
+residual on the ground. The moving-flight target concerns a specific
+error direction. It still needs independent qualification in flight.
+Matching the [parked aircraft to Nuuk Museum](prediction-observed-development/ESA_APRON_NKAR_RESULT.md)
+shows little correlation on the 18 one-second steps. Subtracting the
+station raised the RMS to about 9.5 mm on this excerpt. A nearby
+receiver provides an external check and leaves local aircraft
+effects and airborne transfer open.
+
+The [two-minute follow-up](prediction-observed-development/ESA_APRON_IMU_OVERLAP_RESULT.md)
+matched 1,440 satellite range changes during iMAR coverage. Removing
+the museum residuals increased the aircraft RMS from 10.77 to 13.93 mm.
+The simultaneous gyro rates varied considerably, so the GPS-selected
+stop cannot be used as a control for zero angular motion. The limits on
+airborne common errors still need evidence collected in flight.
+
 The [GIRAFE inventory for the development flight](external-imu-data/ESA_GIRAFE_187.md)
 identifies two acceleration files and two platform logs. The platform
 measurements may constrain some motion errors once their axes, units,

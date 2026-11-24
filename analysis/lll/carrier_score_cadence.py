@@ -4,9 +4,10 @@ import numpy as np
 
 
 def project_cadence(support, dual, intervals, *, available=None, interval_satellites=None):
+    """Project one weight vector or each column of an aligned range matrix."""
     dual = np.asarray(dual, float)
     offsets = np.r_[0, np.cumsum([len(prns) for prns in support])]
-    if (dual.shape != (offsets[-1],) or not np.isfinite(dual).all()
+    if (dual.ndim not in (1, 2) or dual.shape[0] != offsets[-1] or not np.isfinite(dual).all()
             or any(len(set(prns)) != len(prns) for prns in support)):
         raise ValueError('finite carrier weights and unique aligned satellite rows required')
     projected = np.zeros_like(dual)
@@ -29,7 +30,7 @@ def project_cadence(support, dual, intervals, *, available=None, interval_satell
         mean = dual[positions].mean(axis=0)
         # Equal weight within the ground interval. The zero-sum satellite
         # weights cancel the separate unknown receiver clock in every pair.
-        weights = mean-mean.mean()
+        weights = mean-mean.mean(axis=0)
         projected[positions] = weights
         results.append(dict(first=first, last=last, satellites=prns, aggregate_weights=weights.tolist()))
     full, visible = np.linalg.norm(dual), np.linalg.norm(projected)

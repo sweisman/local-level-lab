@@ -1,0 +1,5 @@
+# Correct the Nuuk overlap study's accounting
+
+The first run stopped at its first accounting call. The runner rejected a request that combined native packet accounting with diagnostic accounting. The terminal record shows one started task and zero charged operations. It produced no diagnostics or range residuals. [Preserved stop](esa-apron-imu-ranges-v1-terminal.json)
+
+Keep the original interval, measurements, method, and single-worker, 60-second limit. Charge the inertial rows to the setup diagnostic. Reserve at most 75,000 raw rows, 240 half-second aircraft range checks, and 120 one-second station range checks. The corrected run freezes the first 75,000 original inertial rows and their header, which is the full prefix the evaluator was allowed to read. The original source hash and every other sealed input must reproduce. Count the same maximum work using 361 diagnostic calls and 98,521 diagnostic steps. This starts a separate technical correction of the original zero-work failure. [Original plan](ESA_APRON_IMU_OVERLAP_PLAN.md)

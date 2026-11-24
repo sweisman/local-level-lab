@@ -48,14 +48,14 @@ def _fields(line, gps):
                 l2={band: value for band in L2_ORDER if (value := phase('L' + band)) is not None})
 
 
-def phase_epochs(raw):
-    """Reuse the code reader's complete GPS/GLONASS epoch and framing checks."""
+def phase_epochs(raw, *, first=FIRST, last=LAST, week=WEEK):
+    """Reuse the code reader's framing checks on a declared half-second window."""
     header, metadata = read_header(raw)
     definitions = metadata['observation_types']
     body = raw[len(header):]
     markers = epoch_offsets(body, offset=0)
-    expected = [FIRST + .5 * i for i in range(round((LAST - FIRST) * 2) + 1)]
-    if [row[2] for row in markers] != expected or any(row[1] != WEEK for row in markers):
+    expected = [first + .5 * i for i in range(round((last - first) * 2) + 1)]
+    if [row[2] for row in markers] != expected or any(row[1] != week for row in markers):
         raise ValueError('complete sealed half-second GPS window required')
     ends = [row[0] for row in markers[1:]] + [len(body)]
     decoded = observation_epochs(body.decode('ascii'), definitions)

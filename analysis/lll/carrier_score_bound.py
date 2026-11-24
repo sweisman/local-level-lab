@@ -24,7 +24,7 @@ def score_interpolation(times, score_times, taps):
     return weights, float(np.linalg.norm(lever))
 
 
-def range_operator(pairs, count):
+def range_operator(pairs, count, *, allow_missing=False):
     """Build the signed, receiver-clock-free range operator on the carrier grid."""
     if count != len(pairs)+1:
         raise ValueError('one satellite gradient pair per carrier interval is required')
@@ -32,9 +32,12 @@ def range_operator(pairs, count):
     row = 0
     for index, pair in enumerate(pairs):
         first, last = map(np.asarray, pair)
-        if (first.shape != last.shape or first.ndim != 2 or first.shape[1] != 3 or len(first) < 2
+        if (first.shape != last.shape or first.ndim != 2 or first.shape[1] != 3
+                or (len(first) < 2 and not allow_missing)
                 or any(not np.isfinite(g).all() for g in (first, last))):
             raise ValueError('finite satellite gradients on common support are required')
+        if len(first) < 2:
+            continue
         block = np.column_stack((first-first.mean(axis=0), last.mean(axis=0)-last))
         values.extend(block.ravel())
         row_indices.extend(np.repeat(np.arange(row, row+len(block)), 6))
@@ -43,7 +46,7 @@ def range_operator(pairs, count):
     return coo_matrix((values, (row_indices, columns)), shape=(row, 3*count)).tocsr()
 
 
-def carrier_score_bound(times, pairs, fixed, score_times, taps):
+def carrier_score_bound(times, pairs, fixed, score_times, taps, *, allow_missing=False):
     """Return an all-directions bound for the explicitly linearized range model.
 
     Exact zero displacement at the endpoint and ground-anchor indices is required.
@@ -57,7 +60,7 @@ def carrier_score_bound(times, pairs, fixed, score_times, taps):
         raise ValueError('ordered exact ground anchors including both endpoints are required')
     free = np.ones(len(times), dtype=bool)
     free[fixed] = False
-    operator = range_operator(pairs, len(times))[:, np.repeat(free, 3)]
+    operator = range_operator(pairs, len(times), allow_missing=allow_missing)[:, np.repeat(free, 3)]
     target = weights[free].ravel()
     dual = lsmr(operator.T, target, atol=1e-12, btol=1e-12, maxiter=max(1, 4*len(target)))[0]
     residual = (target-operator.T@dual).reshape(-1, 3)
