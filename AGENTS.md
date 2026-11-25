@@ -109,6 +109,10 @@ progress counts, session histories, personal commentary or process IDs.
   or verified duplicate copies. Preserve final evidence, originals and failures.
 - Detached workers must survive short-lived command sandboxes. Preserve durable
   journals, atomic hashed outputs and exclusive locks. Packaging must never refit.
+- Launch long-running studies as user services, as described in
+  `analysis/STATUS.md`, never as background jobs of a terminal or agent session.
+  In new studies, seal each fit as its own recoverable task, so an interruption
+  costs at most one fit per worker.
 - Serialize archive catalog mutations. Wait for publication packing and compaction
   to finish before starting preparation compaction or another archive writer.
 - A failed qualification blocks dependent observed fits. Saved-data diagnosis and

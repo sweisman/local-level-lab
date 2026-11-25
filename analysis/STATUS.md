@@ -65,6 +65,29 @@ without restoring their compacted files.
 
 See the [recovery qualification](../docs/execution-recovery/README.md).
 
+## Running a long study outside a session
+
+Start or resume a long-running study as a user service. It then keeps running
+when the terminal or tool session that launched it closes or is stopped:
+
+```sh
+systemd-run --user --collect --unit=lll-<study> \
+  --working-directory=<repository root> --setenv=PYTHONPATH=analysis \
+  ~/venv/bin/python analysis/tests/run_numerical.py --workers <frozen workers> \
+  --threads 1 --reserved-threads <threads of other running jobs> -- \
+  ~/venv/bin/python -m lll.studies run data/<study> --reserved-threads <same>
+```
+
+This is the ordinary idempotent resume command. The runner rechecks the freeze,
+charges and leases, and refuses to start beside a live worker.
+`systemctl --user is-active lll-<study>` shows whether the service is up, and
+`journalctl --user --unit=lll-<study>` shows its output. `analysis/status.py`
+remains the source for results and charges.
+
+The service does not restart by itself, because every restart seals the tasks in
+progress as interrupted. It ends at a reboot, and at logout unless lingering is
+enabled for the account. Run the same command again afterwards.
+
 Completion records take precedence over stale progress snapshots after their
 manifest and summary hashes are checked. While work is unfinished, known task
 results supply progress and immutable receipt chains supply charged-call counts.
