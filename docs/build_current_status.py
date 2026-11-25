@@ -214,8 +214,8 @@ def render(snapshot):
     text='# Current airborne analysis status\n\n'
     text+=headline(snapshot)+'\n\n'
     text+=f"The selected stretches total **{snapshot['minutes']:.1f} minutes**. "
-    text+='The same preselected intervals and original measurements are retained through numerical recovery.\n\n'
-    text+='| Current disposition | Stretches |\n|---|---:|\n'
+    text+='Later reruns that repaired numerical failures kept the same preselected intervals and original measurements.\n\n'
+    text+='| Outcome | Stretches |\n|---|---:|\n'
     for name,label in [('globe','Globe preferred'),('flat','Specified flat disc preferred'),
                        ('unresolved','Unresolved'),('ambiguous','Different preferences across assumptions')]:
         text+=f'| {label} | {tally[name]} |\n'
@@ -224,17 +224,19 @@ def render(snapshot):
     text+='Estimating it freely, explaining its cause and comparing solar and sidereal rates are separate questions.\n\n'
     if snapshot.get('cost_contrasts') is not None:
         contrasts = snapshot['cost_contrasts']
+        text+='A fit\'s cost is the weighted sum of squared differences between the flight path a model reconstructs '
+        text+='and the recorded GPS positions. Lower means a closer match. '
         text+=f"The specified-field globe has the lowest cost in both cases on **{contrasts['field_globe']}** stretches. "
         text+=f"Among the two zero-field fits, the disc costs less in both cases on **{contrasts['zero_field_disc']}** stretches. "
         text+='Neither zero-field fit describes the recordings well, so the order between those two carries little weight. '
         text+='[Review of the saved fits](red-team-20261125/README.md)\n\n'
     if snapshot.get('shape_margin') is not None:
         text+=f"On every stretch and in both cases, the disc's cost is at least **{math.floor(snapshot['shape_margin'])} times** the better globe cost.\n\n"
-    text+='These are fitted model preferences. The aircraft error model and independent confirmation remain open. '
-    text+='The ledger records a scientific abstention. Overlapping recordings and shared instruments are accounted for '
+    text+='These are fitted model preferences, and their statistical significance has not been calibrated. '
+    text+='The aircraft error model and independent confirmation remain open. Overlapping recordings and shared instruments are accounted for '
     text+='in the [recording groups](analysis-provenance/NASA_GROUP_EVIDENCE.md).\n\n'
     if any(cohort['completed'] for cohort in snapshot['cohorts'].values()):
-        text+='| Cohort | Completed comparisons | Saved repeat passes | Repeat unscheduled or not saved | Other repeat status |\n'
+        text+='| Study stage | Completed comparisons | Saved repeat passes | Repeat unscheduled or not saved | Other repeat status |\n'
         text+='|---|---:|---:|---:|---:|\n'
         for label,cohort in snapshot['cohorts'].items():
             text+=f"| {label} | {cohort['completed']} | {cohort['repeat_pass']} | {cohort['repeat_unknown']} | {cohort['repeat_other']} |\n"

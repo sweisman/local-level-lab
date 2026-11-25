@@ -1,8 +1,34 @@
 # Study index
 
-The main results are organized by the question each study answered. The [detailed study record](STUDY_RECORD.md) preserves the full sequence, including failed tests, numerical recovery, and links to the original reports.
+Every study on this site, grouped by the question it answers. Each group opens with what it found.
 
-## Airborne measurements
+**New here?** Read these four first:
+
+1. [Verified findings](CURRENT_STATUS.md): the counts behind the headline result.
+2. [How the measurement works](METHODOLOGY.md): the instruments, the models compared and how to read a result.
+3. [Review of the saved fits](red-team-20261125/README.md): an attempt to break the result, and what it left open.
+4. [What comes next](NEXT_STEPS.md): the checks that are running and what is still needed.
+
+## On this page
+
+- [The main comparison on NASA flight recordings](#the-main-comparison-on-nasa-flight-recordings). All 53 selected stretches favor the globe over the tested flat disc.
+- [What the gyro record shows on its own](#what-the-gyro-record-shows-on-its-own). The recorded pitch motion, apart from the full fit.
+- [Review of the result and the checks that followed](#review-of-the-result-and-the-checks-that-followed). No error found in the equations or decoding. Two of the checks it called for are still running.
+- [Predicting GPS positions left out of the fit](#predicting-gps-positions-left-out-of-the-fit). Globe forecasts had lower position error than disc forecasts in four NASA flight groups and on one ESA flight. Some comparisons remain unresolved.
+- [Outside records of how the NASA aircraft moved](#outside-records-of-how-the-nasa-aircraft-moved). The aircraft's own one-second records agree closely with the instrument's track and turning on 32 stretches.
+- [GPS and motion error on the ESA development flight](#gps-and-motion-error-on-the-esa-development-flight). Limits on the aircraft's own GPS error are still open.
+- [ESA flights held back for confirmation](#esa-flights-held-back-for-confirmation). Seven flight groups, not yet scored.
+- [Testing the decision method on simulated flights](#testing-the-decision-method-on-simulated-flights). The method passed its test on simulated data. Calibration for real aircraft is open.
+- [Software checks](#software-checks). Checks on the numerical solvers themselves.
+- [Evidence and reproducibility](#evidence-and-reproducibility). How to verify the published results from the saved evidence.
+
+Two terms used throughout. An **IMU (inertial measurement unit)** contains gyroscopes and accelerometers. The **ESA** flights are a separate European Space Agency survey program, flown with a different aircraft and IMU from the NASA archive. [Data sources](external-imu-data/README.md)
+
+The [detailed study record](STUDY_RECORD.md) keeps the full sequence, including failed tests, numerical recovery, and links to the original reports.
+
+## The main comparison on NASA flight recordings
+
+Fifty-three flight stretches from NASA's Operation IceBridge surveys were fitted under a globe and under a flat disc. All 53 favor the globe. [Findings](CURRENT_STATUS.md) · [All 53 stretches](ilvis0-current-findings-20261015/STRETCHES.md)
 
 | Study | What it added |
 | --- | --- |
@@ -10,86 +36,199 @@ The main results are organized by the question each study answered. The [detaile
 | [Flight-stretch selection](ilvis0-highspeed-segments-20261008/ELIGIBILITY.md) | Selected 53 stretches totaling 424.3 minutes using measurement quality, duration, and ground speed. |
 | [Original comparison and numerical recovery](CURRENT_STATUS.md) | Completed 12 initial comparisons and 41 later ones on the same selected stretches. All 53 favor the specified-field globe under both processing assumptions. |
 | [Recording groups and matched field comparisons](analysis-provenance/NASA_ZERO_FIELD_BY_GROUP.md) | Grouped overlapping evidence and showed how the fitted geometry result changes when both models use zero background field. |
+| [Measurement contribution and controls](ilvis0-measurement-contribution/README.md) | Tested how gyro, acceleration, GPS coordinates, and height affect model comparison. The available force-only checks leave shape unresolved. |
+
+## What the gyro record shows on its own
+
+These look at the recorded turning directly, apart from the full fit.
+
+| Study | What it added |
+| --- | --- |
 | [Raw gyro visualization](ilvis0-gyro-overview/README.md) | Displays the recorded pitch channel before adding GPS information or fitting corrections. |
 | [Geographic gyro prediction](ilvis0-gyro-companion-v2/INTERPRETATION.md) | Compared measured pitch rates with fixed geographic predictions. The specified-field globe had the smallest median error in the descriptive check. |
 | [Pitch rates at matched fields](ilvis0-gyro-companion-v2/MATCHED_GROUP_RESULT.md) | Gave each recording group equal weight. The pitch-rate comparison favored globe across the tested assumptions at the same specified field, while the zero-field ranking could change. |
-| [Measurement contribution and controls](ilvis0-measurement-contribution/README.md) | Tested how gyro, acceleration, GPS coordinates, and height affect model comparison. The available force-only checks leave shape unresolved. |
-| [Adversarial review of the saved fits](red-team-20261125/README.md) | Found no error in the equations or the file decoding. The disc's cost is at least 70 times the globe's on every stretch for every saved attempt. Identified three weaknesses and the checks on the existing archive that would address them. Ran no new fits. |
-| [Selection without the navigation-status flag](ilvis0-highspeed-alignment-ablation/RESULT.md) | Repeated the published selection on all 232 files without requiring the instrument's own alignment report. Reproduced all 53 stretches and found 16 short intervals from a second recorder, two of them on flight time not already covered. [Profiled with GPS alone](ilvis0-highspeed-alignment-ablation/RECEIVER_MOTION_RESULT.md), 14 of the 16 fall inside the range of the published stretches. Ran no fits. |
 
-## Prediction and independent validation
+## Review of the result and the checks that followed
+
+A review tried to break the fitted result, then ran the checks it called for. Two more, larger gyro offsets and a disc with the background field, are [running](NEXT_STEPS.md#running-now). Its comparison with the aircraft's own flight records is listed under [outside records](#outside-records-of-how-the-nasa-aircraft-moved).
+
+| Study | What it added |
+| --- | --- |
+| [Adversarial review of the saved fits](red-team-20261125/README.md) | Found no error in the equations or the file decoding, and identified three weaknesses with the checks that would address them. Ran no new fits. |
+| [Selection without the navigation-status flag](ilvis0-highspeed-alignment-ablation/RESULT.md) | Repeated the published selection on all 232 files without the instrument's own alignment report. Reproduced all 53 stretches and found 16 more short intervals from a second recorder. Ran no fits. |
+| [GPS-only motion of the 16 recovered intervals](ilvis0-highspeed-alignment-ablation/RECEIVER_MOTION_RESULT.md) | Fourteen of the 16 were flown as steadily as the published stretches, and two are just outside on one measure. None is fitted. |
+
+## Predicting GPS positions left out of the fit
+
+A model is fitted to the earlier part of a flight and must then predict GPS positions it was not shown. These are development tests. Confirmation on separate flights has not been run.
+
+### NASA flights
 
 | Study | What it added |
 | --- | --- |
 | [NASA matched forecasts](ilvis0-measurement-contribution/MATCHED_FOUR_GROUP_AUDIT_RESULT.md) | Verified 15 of 16 retrospective forecasts. Globe gave lower 3D error at the same specified field in all four groups, and three specified-field globe forecasts met all position limits. |
 | [NASA forecast extension](prediction-group-transfer/REMAINING_GROUPS_PREDICTION_RESULT.md) | Extended the retrospective check to 20 groups and retained all failed fits alongside the nine groups with usable later forecasts inside the development reference. |
+| [Shared GPS error and forecast accuracy](ilvis0-measurement-contribution/MATCHED_COMMON_ERROR_MARGIN_RESULT.md) | Measured how much additional shared GPS error could change the matched forecasts' accuracy and rankings. |
+
+### ESA development flight
+
+| Study | What it added |
+| --- | --- |
 | [ESA receiver and IMU method](esa-development-selection-v2/README.md) | Qualified the software path for the ESA recording format and selected development windows using receiver data and completed IMU support checks. |
 | [ESA matched forecasts](prediction-observed-development/ESA_400_120_MODEL_MATRIX_INTERPRETATION.md) | Found a globe advantage on withheld positions in two complete settings on one development flight. Two other settings remain unresolved because the matched disc fits did not converge. |
 | [Training-only receiver inputs](prediction-observed-development/ESA_MATCHED_SPLIT_RESULT.md) | Verified that two training lengths on the development flight can share identical prediction times while keeping later positions and covariance values out of fitting. |
 | [Forecast selection before scoring](prediction-observed-development/ESA_SCORING_SEAL_RESULT.md) | Checked all 24 development task dispositions and reproduced the historical forecast choices before opening the score summary. |
-| [Decision check for shared reference draws](FLIGHT_GROUP_DECISION.md#when-all-queries-share-the-same-reference-draws) | Verified when the remaining draws cannot change a two-stage decision on generated scores. |
-| [Solver and memory checks](mixed-tangent-hybrid/ESA_DISPATCH_SCOPE_RESULT.md) | Verified agreement between two globe solvers on one development recording. [The structured receiver calculation](prediction-observed-development/STRUCTURED_RECEIVER_LIKELIHOOD_RESULT.md) avoids a dense matrix for long tracks. |
-| [Bounded linear replay](prediction-group-transfer/QR_SOLVER_REPLAY_RESULT.md) | Both direct and QR-reduced methods recover all seven known targets under the original calibration bounds. |
-| [Solver direction correction](prediction-group-transfer/GEODESIC_STEP_RESULT.md) | Adjusting the direction of rejected steps recovered the same four of eight known optima as the existing solver. |
+
+## Outside records of how the NASA aircraft moved
+
+The fits rely on the instrument's own gyros. These studies compare them with records made by other equipment on the same aircraft.
+
+### The aircraft's own flight records
+
+| Study | What it added |
+| --- | --- |
+| [Aircraft records for 2011 and 2015](ncar-aircraft-records/MOTION_MATCH_RESULT.md) | Compared the aircraft's own one-second GPS and orientation record with the instrument on 32 selected stretches. The two GPS tracks agree to about a metre across the direction of flight and sit about 0.4 s apart along it. Ran no fits. |
+| [Turning at the measured time difference](ncar-aircraft-records/MOTION_LAG_RESULT.md) | Allowing for that 0.4 s, the two systems' one-second turning agrees to a median of 0.014° across the 32 stretches. Ran no fits. |
+
+### Flight RF04 in detail
+
+One selected stretch, on research flight RF04, was studied first and in more detail.
+
+| Study | What it added |
+| --- | --- |
+| [RF04 intake](ilvis0-measurement-contribution/NCAR_RF04_INTAKE.md) | Verified 443 consecutive reports of separate aircraft attitude, GPS and pressure covering the selected IceBridge stretch. |
+| [Matched RF04 comparison](ilvis0-measurement-contribution/RF04_MOTION_MATCH_RESULT.md) | Found 0.048° RMS disagreement in whole-second rotation against the original Group-4 increments. |
+| [RF04 receiver offset check](ilvis0-measurement-contribution/RF04_RECEIVER_OFFSET_RESULT.md) | Found that a delay-like adjustment estimated on earlier reports reduced the later GPS difference from 89 m to 0.49 m RMS. |
+| [RF04 force-direction check](ilvis0-measurement-contribution/RF04_FORCE_DIRECTION_RESULT.md) | Compared all four candidates with outside attitude supplied. The globe settings had smaller direction errors, while the errors exceeded the separation between models. |
+| [RF04 force-average comparison](ilvis0-measurement-contribution/RF04_FORCE_AVERAGE_RESULT.md) | Scored the same 118 later windows under both packet clocks. The globe errors were about 0.17° RMS and the disc errors about 0.30° RMS at both averaging widths. |
+| [RF04 receiver acceleration cross-check](ilvis0-measurement-contribution/RF04_REFERENCE_ACCELERATION_RESULT.md) | Found mainly east-component disagreement between GPS-derived acceleration estimates. It declined from 0.075 to 0.020 m/s² RMS over two- to ten-second windows. |
+| [RF04 velocity reporting check](ilvis0-measurement-contribution/RF04_VELOCITY_RESOLUTION_RESULT.md) | Found that plausible course rounding covers the size of the east-component discrepancy, while some north differences exceed it. |
+| [RF04 antenna motion check](ilvis0-measurement-contribution/RF04_ANTENNA_MOTION_RESULT.md) | Found that all six fitted displacements hit the 42 m airframe limit. A remainder of the north discrepancy exceeded the combined sampled-motion and rounding allowances. |
+| [RF04 evidence verifier](analysis-provenance/RF04_EVIDENCE.md) | Links all seven checks to the same stretch and verifies their archived inputs, results and operation counts. |
+
+### Other sources
+
+| Study | What it added |
+| --- | --- |
+| [Alternative NASA motion controls](ilvis0-measurement-contribution/MOTION_FALLBACK_RESULT.md) | Checked paired gyroscopes on two more flights while identifying a separate camera source for follow-up. |
+| [Matched NASA averages](ilvis0-measurement-contribution/PAIRED_GYRO_AVERAGED_FORCE_RESULT.md) | Removed the single-packet motion mismatch on the same intervals for all four candidates. |
 | [Survey camera screen](ilvis0-measurement-contribution/CAMERA_CATALOG_SCREEN.md) | Found timed images for 17 selected stretches. Reviewed previews supplied no independent aircraft-motion check. |
-| [Aircraft records for 2011 and 2015](ncar-aircraft-records/MOTION_MATCH_RESULT.md) | Compared the aircraft's own one-second GPS and attitude record with the instrument on 32 selected stretches. The two GPS tracks agree to about a metre across the direction of flight, with a nearly constant time difference of 0.39 s in 2011 and 0.44 s in 2015 along it. [Allowing for that difference](ncar-aircraft-records/MOTION_LAG_RESULT.md), the one-second turning agrees to a median of 0.014°. Ran no fits. |
+
+## GPS and motion error on the ESA development flight
+
+One two-minute comparison on the ESA development flight uses very fine satellite-range measurements. These studies ask how much GPS or aircraft-motion error could be hiding in it. Limits on the aircraft's own error are still open.
+
+### Ground stations near Nuuk
+
+| Study | What it added |
+| --- | --- |
 | [Receiver and ground-reference checks](prediction-observed-development/ESA_GROUND_REFERENCE_EVIDENCE.md) | Checked the effect of different GPS reconstructions and compared airborne satellite measurements with two ground receivers. Shared aircraft errors remain open. |
 | [Nuuk Museum one-second comparison](prediction-observed-development/ESA_NKAR_GROUND_SCORE_RESULT.md) | Matched all 120 intervals of the saved development score to an independent ground receiver. The difference projected to 2.88% of the score gap. |
 | [Permanent Nuuk one-second intake](prediction-observed-development/ESA_NUUK_HIGHRATE_INTAKE_RESULT.md) | Verified a second nearby one-second station, with 520 matched times and at least 11 continuously tracked GPS satellites in each scored interval before satellite screening. |
 | [Nearby Nuuk comparison](prediction-observed-development/ESA_NUUK_NEAR_STATIONS_RESULT.md) | Found 6.49 mm RMS disagreement on 100 matched seconds. The measured differences leave each station's own error and the aircraft error open. |
 | [Permanent Nuuk carrier screen](prediction-observed-development/ESA_NUUK_CARRIER_SCREEN_RESULT.md) | Traced all 20 excluded seconds to the L1 Doppler check, with a common offset across satellites. The original comparison stays fixed. |
 | [Nuuk Doppler offset check](prediction-observed-development/ESA_NUUK_CLOCK_AWARE_RESULT.md) | Recovered all 20 seconds in a separate check. The two stations differed by 6.54 mm RMS over the full 120 seconds. |
-| [ESA instrument provenance](external-imu-data/ESA_INSTRUMENT_PROVENANCE.md) | Ties all nine archived file labels to one iMAR unit and identifies original installation measurements that could check fitted antenna offsets. |
-| [Alternative NASA motion controls](ilvis0-measurement-contribution/MOTION_FALLBACK_RESULT.md) | Checked paired gyroscopes on two more flights while identifying a separate camera source for follow-up. |
 | [Ground correction on later readings](prediction-observed-development/ESA_NKAR_PHASE_TRANSFER_RESULT.md) | Tested both ground receivers on identical aircraft data. Corrections learned earlier barely changed the later aircraft errors. |
 | [Aircraft error budget](prediction-observed-development/ESA_NKAR_ERROR_BUDGET_RESULT.md) | Used the nearby receiver’s coverage to calculate how accurate the aircraft ranges would need to be. Actual aircraft error limits remain open. |
+| [Shared GPS error across two ground stations](prediction-observed-development/ESA_TWO_STATION_SCORE_RESULT.md) | Calculates the smallest station error that could hide a shared correction as large as the airborne score gap. |
+
+### The parked aircraft at Nuuk
+
+| Study | What it added |
+| --- | --- |
+| [Installed GPS on the Nuuk apron](prediction-observed-development/ESA_APRON_CARRIER_RESULT.md) | Found about 7 mm RMS range disagreement with a fixed parked position, with the recorded receiver clock corrected. |
+| [Nuuk apron and museum ranges](prediction-observed-development/ESA_APRON_NKAR_RESULT.md) | Matched 216 satellite changes and found little correlation between the two receivers on the short parked interval. |
+| [GPS and inertial coverage at the Nuuk stop](prediction-observed-development/ESA_APRON_IMU_OVERLAP_ACQUISITION_RESULT.md) | Verified 241 GPS epochs during a two-minute window with inertial coverage for the next ground comparison. |
+| [GPS ranges during the two-minute ground check](prediction-observed-development/ESA_APRON_IMU_OVERLAP_RESULT.md) | Found weak correlation with Nuuk Museum and substantial variation in the aircraft's one-second gyro rates. |
+| [Verification of the Nuuk ground results](prediction-observed-development/ESA_GROUND_REFERENCE_EVIDENCE.md) | Reproduces the range and gyro summaries from the published observations and links them to one development flight. |
+
+### The aircraft's GPS antenna
+
+| Study | What it added |
+| --- | --- |
 | [GPS antenna corrections](prediction-observed-development/ESA_NKAR_ANTENNA_RESULT.md) | Applied published satellite and ground corrections. They made little difference to the two-minute score. |
 | [Aircraft antenna records](prediction-observed-development/ESA_AIRCRAFT_ANTENNA_INVENTORY.md) | Checked all three receiver headers. None identifies the shared roof antenna. |
 | [Phase changes from antenna rotation](prediction-observed-development/ESA_PHASE_WINDUP_RESULT.md) | Showed that common phase cancels and bounded the contribution of tilt in an ideal antenna model. |
 | [Satellite phase correction](prediction-observed-development/ESA_NKAR_PHASE_WINDUP_RESULT.md) | Applied the ideal phase correction to the fixed satellite and receiver geometry. The effect on the development score was small. |
-| [Horizontal quartz alignment](prediction-observed-development/ESA_GIRAFE_DIRECTION_TRANSFER_RESULT.md) | Tested an alignment on separate earlier intervals. It left 17–18 mm/s² of northward disagreement. |
-| [Motion direction and independent force coverage](prediction-observed-development/ESA_MOTION_AXIS_SUPPORT_RESULT.md) | Found that the score gap can be spanned by a north–south position error alone. The independent force recording covers the exact interval. |
-| [Independent horizontal force check](prediction-observed-development/ESA_GIRAFE_HORIZONTAL_WITNESS_RESULT.md) | Found that measured disagreement and clock sensitivity exceed the signature of the constructed north–south error. |
-| [Two-band GPS correction](prediction-observed-development/ESA_CARRIER_BAND_RESULT.md) | Measured the effect of using both GPS frequencies on the same 120 aircraft and ground intervals. The corrections agreed weakly. |
-| [Generated-data uncertainty validation](prediction-validation-continuation/README.md) | Completed all 4,344 fits and passed a fixed coverage test across 181 simulated cases. The result applies to the simulated conditions. |
-| [Simulated receiver reference scores](prediction-receiver-replay/REFERENCE_RESULT.md) | Recovered 286 scores per scenario from saved forecasts and verified the rank limits imposed by 13 unavailable seeds. |
-| [Simulated receiver replay](prediction-receiver-replay/RESULT.md) | Reconstructed receiver readings for 24 saved predictions from one calibration seed and rescored them without rerunning the fits. |
-| [Flight-group decision method](FLIGHT_GROUP_DECISION.md) | Tested the shape-first rule and when unfinished reference fits can no longer change the result. [Both reference methods](PREDICTION_GROUP_DECISION.md) support the stopping check. Aircraft calibration remains open. |
-| [Reserved ESA groups](external-imu-data/ESA_CONFIRMATION_RECEIVER_INVENTORY_RESULT.md) | Found ten provisional windows across seven groups. Later checks verified [IMU continuity](external-imu-data/ESA_CONFIRMATION_TIMING_RESULT.md) and [prediction times at the development cadence](external-imu-data/ESA_CONFIRMATION_CADENCE_RESULT.md) in one 20-minute slice per group. |
-| [Reserved training conditions](external-imu-data/ESA_CONFIRMATION_TRAINING_PROFILE_RESULT.md) | Compared earlier GPS conditions on the seven fixed slices with the development window. All seven have weaker satellite geometry and most have more course change. |
-| [Evidence and reproducibility](PAPER_DATASET.md) | Links fitted and prediction results by recording group, with frozen source and report verification. |
-| [Aircraft motion evidence check](analysis-provenance/AIRCRAFT_MOTION_EVIDENCE.md) | Verifies the saved clock, tilt and paired-sensor results, including both stopped attempts. |
-| [Shared GPS error and forecast accuracy](ilvis0-measurement-contribution/MATCHED_COMMON_ERROR_MARGIN_RESULT.md) | Measured how much additional shared GPS error could change the matched forecasts' accuracy and rankings. |
 | [Fixed antenna offset and the ESA score](prediction-observed-development/ESA_CARRIER_LEVER_SENSITIVITY_RESULT.md) | Used the saved gyro angles to bound how much an error in the antenna's placement could change the two-minute comparison. |
 | [Antenna phase through the recorded turns](prediction-observed-development/ESA_GYRO_PHASE_TILT_RESULT.md) | Bounded the ideal phase change under three starting tilt allowances and marked where the satellite could fall below the antenna plane. |
 | [Fixed installed antenna response](prediction-observed-development/ESA_INSTALLED_PATTERN_RESULT.md) | Calculated how rapidly an angle-dependent antenna error would need to change to explain the saved score gap. |
 | [Above-plane satellite support](prediction-observed-development/ESA_CARRIER_ELEVATION_SCREEN_RESULT.md) | Kept at least four satellites throughout the ESA development window, with tighter range accuracy requirements after screening. |
+
+### Errors in the estimated flight path
+
+| Study | What it added |
+| --- | --- |
+| [Two-band GPS correction](prediction-observed-development/ESA_CARRIER_BAND_RESULT.md) | Measured the effect of using both GPS frequencies on the same 120 aircraft and ground intervals. The corrections agreed weakly. |
 | [Range and motion weighting](prediction-observed-development/ESA_CARRIER_WEIGHT_TRADEOFF_RESULT.md) | Recovered much of the range margin on the screened satellite sets using a continuous model of position error between the anchors. |
 | [Uncertain anchors and the new weights](prediction-observed-development/ESA_CARRIER_REWEIGHTED_BUDGET_RESULT.md) | Found that allowing one metre of error per anchor coordinate leaves no range margin in any screened case under the published example. |
 | [Smooth errors in the estimated path](prediction-observed-development/ESA_CARRIER_MOTION_WITNESS_RESULT.md) | Found bounded errors that reproduce part of the score gap. The search reached its iteration limits before finding a complete example. |
 | [Checks for the follow-up path solver](ESA_ERROR_POLICY.md) | Verified lower and upper score bounds against known answers, including when the optimizer stops early. |
 | [Continuous trajectory error bounds](prediction-observed-development/ESA_CARRIER_CONTINUOUS_BOUND_RESULT.md) | With all satellites, the tested error limits allow at most 50.2% of the score gap. The three antenna-plane screens still leave the full gap unresolved. |
 | [Independent accuracy requirements](prediction-observed-development/ESA_CARRIER_ERROR_REQUIREMENTS_RESULT.md) | Reused the saved bounds to find the covered range accuracy needed for each satellite set and tightened the bound for the 0° screen. |
-| [Installed GPS on the Nuuk apron](prediction-observed-development/ESA_APRON_CARRIER_RESULT.md) | Found about 7 mm RMS range disagreement with a fixed parked position, with the recorded receiver clock corrected. |
-| [Nuuk apron and museum ranges](prediction-observed-development/ESA_APRON_NKAR_RESULT.md) | Matched 216 satellite changes and found little correlation between the two receivers on the short parked interval. |
-| [GPS and inertial coverage at the Nuuk stop](prediction-observed-development/ESA_APRON_IMU_OVERLAP_ACQUISITION_RESULT.md) | Verified 241 GPS epochs during a two-minute window with inertial coverage for the next ground comparison. |
-| [GPS ranges during the two-minute ground check](prediction-observed-development/ESA_APRON_IMU_OVERLAP_RESULT.md) | Found weak correlation with Nuuk Museum and substantial variation in the aircraft's one-second gyro rates. |
-| [Verification of the Nuuk ground results](prediction-observed-development/ESA_GROUND_REFERENCE_EVIDENCE.md) | Reproduces the range and gyro summaries from the published observations and links them to one development flight. |
-| [Shared GPS error across two ground stations](prediction-observed-development/ESA_TWO_STATION_SCORE_RESULT.md) | Calculates the smallest station error that could hide a shared correction as large as the airborne score gap. |
+
+### A second satellite system
+
+| Study | What it added |
+| --- | --- |
 | [Galileo check of the northward displacement](prediction-observed-development/ESA_GALILEO_NORTH_WITNESS_RESULT.md) | Found about 50% larger Galileo range disagreement after adding the displacement that closes the GPS score gap. |
 | [Joint GPS and Galileo path bound](prediction-observed-development/ESA_GALILEO_JOINT_BOUND_RESULT.md) | Found little leverage from the Galileo cap on the broader path bound. Two GPS satellite screens remain open under the example limits. |
 | [Verification of the airborne carrier checks](prediction-observed-development/ESA_GROUND_REFERENCE_EVIDENCE.md) | Recomputes the two-station cases, Galileo residuals and joint bound summaries from the saved evidence. |
 
-The [GIRAFE clock check](prediction-observed-development/ESA_GIRAFE_LEVEL1_AIRBORNE_RESULT.md) verified the reversed sign and identical GPS timestamps for the vertical export in both airborne intervals. The [tilt check](prediction-observed-development/ESA_GIRAFE_TILT_IDENTIFIABILITY_RESULT.md) measured how little orientation uncertainty could hide a horizontal force difference. The [matched NASA averages](ilvis0-measurement-contribution/PAIRED_GYRO_AVERAGED_FORCE_RESULT.md) removed the single-packet motion mismatch on the same intervals for all four candidates.
+### A separate force recording on the same flight
 
-The [RF04 intake](ilvis0-measurement-contribution/NCAR_RF04_INTAKE.md) verified 443 consecutive reports of separate aircraft attitude, GPS and pressure covering the selected IceBridge stretch.
-The [matched RF04 comparison](ilvis0-measurement-contribution/RF04_MOTION_MATCH_RESULT.md) found 0.048° RMS disagreement in whole-second rotation against the original Group-4 increments.
-The [RF04 receiver offset check](ilvis0-measurement-contribution/RF04_RECEIVER_OFFSET_RESULT.md) found that a delay-like adjustment estimated on earlier reports reduced the later GPS difference from 89 m to 0.49 m RMS.
-The [RF04 force-direction check](ilvis0-measurement-contribution/RF04_FORCE_DIRECTION_RESULT.md) compared all four candidates with outside attitude supplied. The globe settings had smaller direction errors, while the errors exceeded the separation between models.
-The [RF04 force-average comparison](ilvis0-measurement-contribution/RF04_FORCE_AVERAGE_RESULT.md) scored the same 118 later windows under both packet clocks. The globe errors were about 0.17° RMS and the disc errors about 0.30° RMS at both averaging widths.
-The [RF04 receiver acceleration cross-check](ilvis0-measurement-contribution/RF04_REFERENCE_ACCELERATION_RESULT.md) found mainly east-component disagreement between GPS-derived acceleration estimates. It declined from 0.075 to 0.020 m/s² RMS over two- to ten-second windows.
-The [RF04 velocity reporting check](ilvis0-measurement-contribution/RF04_VELOCITY_RESOLUTION_RESULT.md) found that plausible course rounding covers the size of the east-component discrepancy, while some north differences exceed it.
-The [RF04 antenna motion check](ilvis0-measurement-contribution/RF04_ANTENNA_MOTION_RESULT.md) found that all six fitted displacements hit the 42 m airframe limit. A remainder of the north discrepancy exceeded the combined sampled-motion and rounding allowances.
-The [RF04 evidence verifier](analysis-provenance/RF04_EVIDENCE.md) links all seven checks to the same stretch and verifies their archived inputs, results and operation counts.
+| Study | What it added |
+| --- | --- |
+| [Horizontal quartz alignment](prediction-observed-development/ESA_GIRAFE_DIRECTION_TRANSFER_RESULT.md) | Tested an alignment on separate earlier intervals. It left 17–18 mm/s² of northward disagreement. |
+| [Motion direction and independent force coverage](prediction-observed-development/ESA_MOTION_AXIS_SUPPORT_RESULT.md) | Found that the score gap can be spanned by a north–south position error alone. The independent force recording covers the exact interval. |
+| [Independent horizontal force check](prediction-observed-development/ESA_GIRAFE_HORIZONTAL_WITNESS_RESULT.md) | Found that measured disagreement and clock sensitivity exceed the signature of the constructed north–south error. |
+| [GIRAFE clock check](prediction-observed-development/ESA_GIRAFE_LEVEL1_AIRBORNE_RESULT.md) | Verified the reversed sign and identical GPS timestamps for the vertical export in both airborne intervals. |
+| [Tilt check](prediction-observed-development/ESA_GIRAFE_TILT_IDENTIFIABILITY_RESULT.md) | Measured how little orientation uncertainty could hide a horizontal force difference. |
+
+### Instrument records
+
+| Study | What it added |
+| --- | --- |
+| [ESA instrument provenance](external-imu-data/ESA_INSTRUMENT_PROVENANCE.md) | Ties all nine archived file labels to one iMAR unit and identifies original installation measurements that could check fitted antenna offsets. |
+
+## ESA flights held back for confirmation
+
+Seven flight groups are set aside to test a fixed method later. Their timing and GPS conditions have been checked. No comparison outcome has been opened.
+
+| Study | What it added |
+| --- | --- |
+| [Reserved ESA groups](external-imu-data/ESA_CONFIRMATION_RECEIVER_INVENTORY_RESULT.md) | Found ten provisional windows across seven groups. Later checks verified [IMU continuity](external-imu-data/ESA_CONFIRMATION_TIMING_RESULT.md) and [prediction times at the development cadence](external-imu-data/ESA_CONFIRMATION_CADENCE_RESULT.md) in one 20-minute slice per group. |
+| [Reserved training conditions](external-imu-data/ESA_CONFIRMATION_TRAINING_PROFILE_RESULT.md) | Compared earlier GPS conditions on the seven fixed slices with the development window. All seven have weaker satellite geometry and most have more course change. |
+
+## Testing the decision method on simulated flights
+
+Before a decision rule is used on real flights, it is run on simulated ones where the right answer is known.
+
+| Study | What it added |
+| --- | --- |
+| [Generated-data uncertainty validation](prediction-validation-continuation/README.md) | Completed all 4,344 fits and passed a fixed coverage test across 181 simulated cases. The result applies to the simulated conditions. |
+| [Simulated receiver reference scores](prediction-receiver-replay/REFERENCE_RESULT.md) | Recovered 286 scores per scenario from saved forecasts and verified the rank limits imposed by 13 unavailable seeds. |
+| [Simulated receiver replay](prediction-receiver-replay/RESULT.md) | Reconstructed receiver readings for 24 saved predictions from one calibration seed and rescored them without rerunning the fits. |
+| [Flight-group decision method](FLIGHT_GROUP_DECISION.md) | Tested the shape-first rule and when unfinished reference fits can no longer change the result. [Both reference methods](PREDICTION_GROUP_DECISION.md) support the stopping check. Aircraft calibration remains open. |
+| [Decision check for shared reference draws](FLIGHT_GROUP_DECISION.md#when-all-queries-share-the-same-reference-draws) | Verified when the remaining draws cannot change a two-stage decision on generated scores. |
+
+## Software checks
+
+Checks on the numerical solvers themselves.
+
+| Study | What it added |
+| --- | --- |
+| [Solver and memory checks](mixed-tangent-hybrid/ESA_DISPATCH_SCOPE_RESULT.md) | Verified agreement between two globe solvers on one development recording. [The structured receiver calculation](prediction-observed-development/STRUCTURED_RECEIVER_LIKELIHOOD_RESULT.md) avoids a dense matrix for long tracks. |
+| [Bounded linear replay](prediction-group-transfer/QR_SOLVER_REPLAY_RESULT.md) | Both direct and QR-reduced methods recover all seven known targets under the original calibration bounds. |
+| [Solver direction correction](prediction-group-transfer/GEODESIC_STEP_RESULT.md) | Adjusting the direction of rejected steps recovered the same four of eight known optima as the existing solver. |
+
+## Evidence and reproducibility
+
+How to verify the published results from the saved evidence.
+
+| Study | What it added |
+| --- | --- |
+| [Evidence and reproducibility](PAPER_DATASET.md) | Links fitted and prediction results by recording group, with frozen source and report verification. |
+| [Aircraft motion evidence check](analysis-provenance/AIRCRAFT_MOTION_EVIDENCE.md) | Verifies the saved clock, tilt and paired-sensor results, including both stopped attempts. |
 
 [The current plan](NEXT_STEPS.md) explains what is left. The [stationary ground experiment](STATIONARY.md) is a separate consumer-IMU project in development.

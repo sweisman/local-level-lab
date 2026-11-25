@@ -2,9 +2,9 @@
 
 **53 of 53 selected stretches favored a globe over the tested flat disc.** The flat disc was preferred in 0 stretches. 0 lacked a consistent preference.
 
-The selected stretches total **424.3 minutes**. The same preselected intervals and original measurements are retained through numerical recovery.
+The selected stretches total **424.3 minutes**. Later reruns that repaired numerical failures kept the same preselected intervals and original measurements.
 
-| Current disposition | Stretches |
+| Outcome | Stretches |
 |---|---:|
 | Globe preferred | 53 |
 | Specified flat disc preferred | 0 |
@@ -13,13 +13,13 @@ The selected stretches total **424.3 minutes**. The same preselected intervals a
 
 Of the globe-preferred stretches, **53** also favor the specified background rotation field over zero field under both processing assumptions. The field was supplied to the model. Estimating it freely, explaining its cause and comparing solar and sidereal rates are separate questions.
 
-The specified-field globe has the lowest cost in both cases on **53** stretches. Among the two zero-field fits, the disc costs less in both cases on **18** stretches. Neither zero-field fit describes the recordings well, so the order between those two carries little weight. [Review of the saved fits](red-team-20261125/README.md)
+A fit's cost is the weighted sum of squared differences between the flight path a model reconstructs and the recorded GPS positions. Lower means a closer match. The specified-field globe has the lowest cost in both cases on **53** stretches. Among the two zero-field fits, the disc costs less in both cases on **18** stretches. Neither zero-field fit describes the recordings well, so the order between those two carries little weight. [Review of the saved fits](red-team-20261125/README.md)
 
 On every stretch and in both cases, the disc's cost is at least **70 times** the better globe cost.
 
-These are fitted model preferences. The aircraft error model and independent confirmation remain open. The ledger records a scientific abstention. Overlapping recordings and shared instruments are accounted for in the [recording groups](analysis-provenance/NASA_GROUP_EVIDENCE.md).
+These are fitted model preferences, and their statistical significance has not been calibrated. The aircraft error model and independent confirmation remain open. Overlapping recordings and shared instruments are accounted for in the [recording groups](analysis-provenance/NASA_GROUP_EVIDENCE.md).
 
-| Cohort | Completed comparisons | Saved repeat passes | Repeat unscheduled or not saved | Other repeat status |
+| Study stage | Completed comparisons | Saved repeat passes | Repeat unscheduled or not saved | Other repeat status |
 |---|---:|---:|---:|---:|
 | Original pass | 12 | 0 | 12 | 0 |
 | Later numerical studies | 41 | 41 | 0 | 0 |

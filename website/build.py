@@ -21,9 +21,9 @@ DOMAIN='https://locallevellab.com'
 DESCRIPTION="Testing Earth's shape with airborne lidar survey IMU telemetry; developing a stationary crowdsourced rotation-field experiment."
 NAVIGATION=(('Home','README.md'),
             ('Findings','docs/CURRENT_STATUS.md'),
-            ('Studies','docs/STUDIES.md'),
-            ('Method','docs/METHODOLOGY.md'),
+            ('How it works','docs/METHODOLOGY.md'),
             ('Flight stretches','docs/ilvis0-current-findings-20261015/STRETCHES.md'),
+            ('Studies','docs/STUDIES.md'),
             ('Next steps','docs/NEXT_STEPS.md'),
             ('Ground experiment','docs/STATIONARY.md'))
 IMAGES={'.png','.jpg','.jpeg','.gif','.svg','.webp','.ico'}
