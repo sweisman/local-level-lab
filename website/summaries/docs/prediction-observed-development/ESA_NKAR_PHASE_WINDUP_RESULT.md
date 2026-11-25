@@ -1,0 +1,3 @@
+**In plain words.** This applies the ideal phase correction for the satellites' own motion, with the aircraft antenna assumed upright. The effect is tiny: about 0.0002% of the gap or less. If the aircraft's tilt stayed below 5°, the ideal model caps the extra effect of tilt at about 5.1% of the gap. The actual tilt and the real antenna's response remain unmeasured, so this gives no limit on the aircraft's error.
+
+*Background: one two-minute comparison on the ESA development flight scores the competing Earth models using millimetre-level satellite-range measurements. "The gap" is the difference between their scores.*

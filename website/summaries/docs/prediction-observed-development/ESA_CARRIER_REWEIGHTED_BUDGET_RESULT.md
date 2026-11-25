@@ -1,0 +1,3 @@
+**In plain words.** The previous improvement assumed the reference positions were exact. This page allows one metre of error in each of them. With that allowance, none of the three reduced satellite sets has any room left for extra range error. The one-metre figure is an example, not a measured value, so this shows how strongly the result depends on how well the reference positions are known.
+
+*Background: one two-minute comparison on the ESA development flight scores the competing Earth models using millimetre-level satellite-range measurements. "The gap" is the difference between their scores.*

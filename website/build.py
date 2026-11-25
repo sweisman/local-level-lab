@@ -27,6 +27,8 @@ NAVIGATION=(('Home','README.md'),
             ('Next steps','docs/NEXT_STEPS.md'),
             ('Ground experiment','docs/STATIONARY.md'))
 IMAGES={'.png','.jpg','.jpeg','.gif','.svg','.webp','.ico'}
+SUMMARIES='website/summaries/'
+COLLAPSE='<!-- collapse-opening -->\n'
 
 
 def slug(text,separator):
@@ -145,6 +147,29 @@ def study_context(root,source):
             '<a href="/docs/NEXT_STEPS.md">Next analyses</a></aside>\n')
 
 
+def with_plain_summary(root,source,body):
+    """Add a plain-language opening kept under website/summaries.
+
+    The page's own source is never rewritten, so sealed reports keep their
+    bytes and hashes. A summary that starts with the COLLAPSE marker also
+    folds the page's original opening, up to its first table or section.
+    """
+    path=checked_path(root,SUMMARIES+source)
+    if not path.is_file(): return body
+    text=path.read_text(encoding='utf-8');collapse=text.startswith(COLLAPSE)
+    summary=markdown.Markdown(extensions=['tables','sane_lists'],output_format='html').convert(text.removeprefix(COLLAPSE))
+    heading=re.search(r'<h1[^>]*>.*?</h1>',body,flags=re.S)
+    start=heading.end() if heading else 0
+    rest=body[start:]
+    if collapse:
+        cut=re.search(r'<(?:table|h2)\b',rest)
+        end=cut.start() if cut else len(rest)
+        if rest[:end].strip():
+            rest=('<details class="technical-notes"><summary>Technical notes from the original report</summary>'
+                  +rest[:end]+'</details>\n'+rest[end:])
+    return body[:start]+'\n<aside class="plain-summary" aria-label="In plain words">'+summary+'</aside>\n'+rest
+
+
 def build(root,output,*,assets,base_path='',navigation=True):
     root=Path(root).resolve();output=Path(output)
     import sys
@@ -172,7 +197,7 @@ def build(root,output,*,assets,base_path='',navigation=True):
                     if len(matches)==1:plan_origin=matches[0]
         md=markdown.Markdown(extensions=['tables','fenced_code','toc','sane_lists',MathExtension()],
                              extension_configs={'toc':{'slugify':slug}},output_format='html')
-        body=study_context(root,source)+md.convert(content)
+        body=study_context(root,source)+with_plain_summary(root,source,md.convert(content))
         def rewrite(url,tag,key,refs):
             target=local_target(source,url)
             if target is None: return url

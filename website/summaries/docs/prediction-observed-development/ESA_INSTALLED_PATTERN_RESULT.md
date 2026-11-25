@@ -1,0 +1,3 @@
+**In plain words.** A real antenna responds slightly differently to signals from different directions. This page asks how uneven the aircraft's antenna would have to be to explain the gap by itself. Its response would have to change by at least 5.94 mm per degree between some directions. That gives a yardstick for judging a measured antenna calibration when one becomes available. The antenna itself has not been measured.
+
+*Background: one two-minute comparison on the ESA development flight scores the competing Earth models using millimetre-level satellite-range measurements. "The gap" is the difference between their scores.*

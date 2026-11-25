@@ -1,0 +1,3 @@
+**In plain words.** This page turns the earlier limits around and asks what an independent measurement would have to show. With all satellites, the modeled errors cannot close the gap if range error in the directions covered by the ground station stays below about 2.10 mm RMS and the other example limits hold. It states a requirement. It does not show that the aircraft meets it, and it gives no example of an error that actually closes the gap.
+
+*Background: one two-minute comparison on the ESA development flight scores the competing Earth models using millimetre-level satellite-range measurements. "The gap" is the difference between their scores.*

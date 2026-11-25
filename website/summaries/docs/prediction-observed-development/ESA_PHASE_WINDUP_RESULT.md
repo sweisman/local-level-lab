@@ -1,0 +1,3 @@
+**In plain words.** When an antenna rotates, the phase of the signal it receives shifts, which looks like a small change in range (phase wind-up). This page asks how much the aircraft's tilting could affect the score in an ideal antenna model. Rotation about the antenna's own axis affects all satellites equally and cancels. Each degree of tilt can change the score by at most 1.03% of the gap. The real antenna's behaviour and the aircraft's actual tilt were not measured here.
+
+*Background: one two-minute comparison on the ESA development flight scores the competing Earth models using millimetre-level satellite-range measurements. "The gap" is the difference between their scores.*

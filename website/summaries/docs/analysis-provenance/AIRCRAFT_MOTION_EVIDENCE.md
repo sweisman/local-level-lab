@@ -1,0 +1,1 @@
+**In plain words.** This page lets anyone verify the saved aircraft-motion results from the published evidence. It covers one ESA recording and two NASA flights that carried two recorders: seven completed calculations and two attempts that were stopped, all kept. No model was fitted. The seven checks on flight RF04 have their own verifier.

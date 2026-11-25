@@ -1,0 +1,3 @@
+**In plain words.** The GPS antenna and the motion sensor sit at different places on the aircraft, and the distance between them has to be known. This page asks whether an error in that distance could explain the gap. It would have to be wrong by at least 40 cm. A 10 cm error could account for at most 25% of the gap. The calculation uses the turns the gyros recorded. It gives a size to compare against, not a measurement of the actual error.
+
+*Background: one two-minute comparison on the ESA development flight scores the competing Earth models using millimetre-level satellite-range measurements. "The gap" is the difference between their scores.*

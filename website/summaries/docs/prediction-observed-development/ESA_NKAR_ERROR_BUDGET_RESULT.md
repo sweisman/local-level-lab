@@ -1,0 +1,3 @@
+**In plain words.** This page works out how accurate the aircraft's satellite ranges would need to be for the comparison to stand. The Nuuk Museum station covers 99.98% of what matters to the score. Under a set of example assumptions, that raises the allowable aircraft error from 0.62 to 0.96 mm RMS. The example assumptions are inputs, not measurements, and the aircraft's actual error has not been established.
+
+*Background: one two-minute comparison on the ESA development flight scores the competing Earth models using millimetre-level satellite-range measurements. "The gap" is the difference between their scores.*

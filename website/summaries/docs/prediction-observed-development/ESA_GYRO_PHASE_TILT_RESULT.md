@@ -1,0 +1,3 @@
+**In plain words.** This page takes the turns the aircraft's gyros actually recorded and asks how much antenna phase effect they could produce in an ideal antenna model. The answer is at most 10.7% to 22.8% of the gap, depending on how tilted the antenna is assumed to be at the start. These are upper limits for an ideal antenna. The real antenna's response has not been measured, and reflections are not accounted for.
+
+*Background: one two-minute comparison on the ESA development flight scores the competing Earth models using millimetre-level satellite-range measurements. "The gap" is the difference between their scores.*

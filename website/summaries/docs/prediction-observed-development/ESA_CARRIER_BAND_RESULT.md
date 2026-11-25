@@ -1,0 +1,3 @@
+**In plain words.** GPS satellites transmit on two frequencies, and combining them removes most of the delay caused by the upper atmosphere. This page measures what that correction does. It moved the score by −4.75% of the gap on the aircraft and by +1.58% at the distant Qaqortoq ground station. The two corrections agreed only weakly (correlation 0.11), so the distant station's correction is a poor stand-in for the aircraft's own.
+
+*Background: one two-minute comparison on the ESA development flight scores the competing Earth models using millimetre-level satellite-range measurements. "The gap" is the difference between their scores.*

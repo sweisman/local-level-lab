@@ -1,0 +1,1 @@
+**In plain words.** A solver is tested on problems whose answer is known. Two direct methods each passed all seven test cases, where two step-by-step solvers had passed none. This shows the direct methods are accurate on these known problems. Their speed and behaviour on a full aircraft fit still need to be checked.

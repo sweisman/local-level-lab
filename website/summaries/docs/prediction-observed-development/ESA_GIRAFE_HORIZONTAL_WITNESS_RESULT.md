@@ -1,0 +1,3 @@
+**In plain words.** This page tests a constructed north–south path error against a second instrument's force recording. The error would change horizontal force by 0.37–0.71 mm/s² RMS. But the recording already disagrees with the original path by at least 2.72 mm/s² RMS, and shifting its clock by 0.1 s moves the comparison by more than the effect. With the existing data and timing, the recording cannot tell that error apart from the original path.
+
+*Background: one two-minute comparison on the ESA development flight scores the competing Earth models using millimetre-level satellite-range measurements. "The gap" is the difference between their scores.*

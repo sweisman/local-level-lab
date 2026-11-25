@@ -1,0 +1,3 @@
+**In plain words.** This follows up the 20 seconds dropped from the comparison of the two Nuuk ground stations. A separate check that allows for the receiver's common offset keeps all 120 seconds. The two stations then differ by 6.54 mm RMS. If both saw the same shared error, closing the full gap would require at least one of them to have 5.20 mm RMS of error of its own. The earlier 100-second result is kept unchanged alongside this one.
+
+*Background: one two-minute comparison on the ESA development flight scores the competing Earth models using millimetre-level satellite-range measurements. "The gap" is the difference between their scores.*

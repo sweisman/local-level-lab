@@ -1,0 +1,3 @@
+**In plain words.** A north–south shift of 17.6 cm in the aircraft's path would close the gap in the GPS data. Europe's Galileo satellites give a separate set of measurements to test that idea. With the shift applied, the fit to Galileo gets about 50% worse, on both aircraft receivers. So Galileo shows little sign of that particular shift. The two receivers share one antenna, and the check tests one specific shift, not every possible error.
+
+*Background: one two-minute comparison on the ESA development flight scores the competing Earth models using millimetre-level satellite-range measurements. "The gap" is the difference between their scores.*

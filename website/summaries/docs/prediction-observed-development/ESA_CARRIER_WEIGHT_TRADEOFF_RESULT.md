@@ -1,0 +1,3 @@
+**In plain words.** The calculation has to share out possible error between two sources: the GPS ranges and the estimated flight path. This page rebalances that share, allowing a smooth error in the flight path. On the three reduced satellite sets, the allowable range error rises from 0.16–0.29 mm to 1.35–1.71 mm RMS, about six to nine times more. This assumes the reference positions are exact, which the next check relaxes.
+
+*Background: one two-minute comparison on the ESA development flight scores the competing Earth models using millimetre-level satellite-range measurements. "The gap" is the difference between their scores.*

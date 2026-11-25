@@ -1,0 +1,3 @@
+**In plain words.** In the comparison of the two Nuuk ground stations, 20 of 120 seconds were dropped. This page finds out why. All 20 failed the same signal check (the L1 Doppler check), and on each the failure was shared across satellites, which points to an effect in the receiver itself. Its cause is not resolved. The original 100-second comparison and its thresholds are left as they were.
+
+*Background: one two-minute comparison on the ESA development flight scores the competing Earth models using millimetre-level satellite-range measurements. "The gap" is the difference between their scores.*

@@ -1,0 +1,3 @@
+**In plain words.** A second instrument on the same flight, called GIRAFE, recorded force independently. To use its horizontal sensors as a check, they first have to be lined up with the aircraft. This page tests an alignment learned on the first 240 seconds against the next 144. It left 17–18 mm/s² RMS of north–south disagreement, about nine times the size of the path error being looked for. So this alignment gives no useful limit on aircraft motion.
+
+*Background: one two-minute comparison on the ESA development flight scores the competing Earth models using millimetre-level satellite-range measurements. "The gap" is the difference between their scores.*

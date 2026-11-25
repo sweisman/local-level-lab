@@ -6,6 +6,17 @@ copied into the site; CSVs, scientific artifacts and code link to GitHub. Editin
 the public Markdown updates both the repository and the website on the next
 published push. The numerical analysis is separate from the website build.
 
+## Plain-language openings for sealed pages
+
+Many study pages are sealed: their bytes are recorded in evidence receipts, so
+their text is not edited. To give such a page a plain-language opening, add a
+Markdown file at `website/summaries/<path of the page>`. The site shows it in a
+box under the page title. The page's own source stays unchanged, and the box
+appears on the website only. Links inside a summary are written relative to the
+page it introduces. A summary that starts with the line
+`<!-- collapse-opening -->` also folds the page's original opening, up to its
+first table or section, under "Technical notes from the original report".
+
 ## Build and check locally
 
 ```sh

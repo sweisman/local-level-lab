@@ -1,0 +1,1 @@
+**In plain words.** This tried an adjustment to the solver that corrects the direction of a step when the first attempt is rejected. It did not help: the trial passed 4 of 8 known-answer cases, the same four as the existing solver. The result is kept as a recorded failure. No aircraft measurements were used.

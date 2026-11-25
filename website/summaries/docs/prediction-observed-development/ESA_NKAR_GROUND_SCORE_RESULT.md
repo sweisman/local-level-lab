@@ -1,0 +1,3 @@
+**In plain words.** This page compares the aircraft's satellite ranges with those from a ground station at Nuuk Museum, second by second. All 120 seconds of the scored two minutes matched. The difference between aircraft and ground, carried into the score, comes to 2.88% of the gap. That small figure still leaves open errors shared by both receivers, errors specific to the aircraft's antenna, and error in the aircraft's absolute position.
+
+*Background: one two-minute comparison on the ESA development flight scores the competing Earth models using millimetre-level satellite-range measurements. "The gap" is the difference between their scores.*

@@ -1,0 +1,3 @@
+**In plain words.** Signals arriving from below the antenna's own horizon are the least trustworthy. This page repeats the calculation using only satellites clearly above it, under three settings. At least four satellites remain at every moment. But fewer satellites constrain position less well, and the allowable range error tightens from 1.97 mm to 0.16–0.29 mm RMS. A follow-up with different weighting recovers part of that margin.
+
+*Background: one two-minute comparison on the ESA development flight scores the competing Earth models using millimetre-level satellite-range measurements. "The gap" is the difference between their scores.*

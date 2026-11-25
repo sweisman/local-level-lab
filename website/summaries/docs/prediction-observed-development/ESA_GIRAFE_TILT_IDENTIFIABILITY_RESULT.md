@@ -1,0 +1,3 @@
+**In plain words.** A force sensor that is slightly tilted mixes vertical force into its horizontal reading. This page asks how small a tilt could hide the force difference being looked for. The answer is at most 0.0104°. An earlier campaign estimated the platform's alignment error at up to about 0.086° (1.5 mrad), which is larger. The alignment on this flight was not measured at the scale needed, so tilt cannot be ruled out as a cover for the difference.
+
+*Background: one two-minute comparison on the ESA development flight scores the competing Earth models using millimetre-level satellite-range measurements. "The gap" is the difference between their scores.*

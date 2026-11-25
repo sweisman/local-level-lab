@@ -1,0 +1,3 @@
+**In plain words.** This page puts an upper limit on how much of the gap a flight-path error could explain, under example limits on position, acceleration and range error. With all satellites, it is at most 50.2%, so path error alone cannot close the gap under those limits. With the three reduced satellite sets, the limits are too loose to say either way. The example limits are assumptions, not measurements.
+
+*Background: one two-minute comparison on the ESA development flight scores the competing Earth models using millimetre-level satellite-range measurements. "The gap" is the difference between their scores.*

@@ -1,0 +1,3 @@
+**In plain words.** If the aircraft and a ground station share an error, a correction learned from the ground station should improve the aircraft's later readings. This page tests that with two stations. It barely helped: the correction from nearby Nuuk Museum left the later aircraft error essentially unchanged, and the one from distant Qaqortoq reduced it by 0.018 mm. Both changed the score by less than 0.4% of the gap. Errors from the aircraft's antenna, tracking and position remain open.
+
+*Background: one two-minute comparison on the ESA development flight scores the competing Earth models using millimetre-level satellite-range measurements. "The gap" is the difference between their scores.*

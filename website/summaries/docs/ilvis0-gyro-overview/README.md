@@ -1,0 +1,1 @@
+**In plain words.** This plot shows what the pitch gyro recorded on each of the 53 stretches, added up over time. Nothing is fitted, no GPS is used, and no expected Earth rate is subtracted. Every line ends nose-down. The plot describes the recording. Both the aircraft's own motion and a background rotation can contribute to it, so on its own it does not separate the models.

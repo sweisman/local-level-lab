@@ -1,0 +1,3 @@
+**In plain words.** This page asks what kind of error in the aircraft's estimated path would be enough to close the gap. A north–south position error alone can do it: one peaking at 17.6 cm, with zero error at the four reference times. It is a constructed example that measures how sensitive the score is. Whether the aircraft's path actually had such an error is open. A second instrument's force recording covers the same two minutes and is used to test it.
+
+*Background: one two-minute comparison on the ESA development flight scores the competing Earth models using millimetre-level satellite-range measurements. "The gap" is the difference between their scores.*

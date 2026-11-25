@@ -270,3 +270,20 @@ def test_uncompleted_study_does_not_get_a_completed_report_notice(tmp_path):
     write(root,source,'# Research preparation\n')
     out=tmp_path/'site';site.build(root,out,assets=site.HERE/'assets',navigation=False)
     assert 'class="study-context"' not in (out/site.output_path(source)).read_text()
+
+
+def test_plain_summary_opens_a_sealed_page_without_rewriting_its_source(tmp_path):
+    root=tmp_path/'repo';root.mkdir()
+    page='docs/ilvis0-example/STRETCHES.md';plain='docs/ilvis0-example/PLAIN.md'
+    original='# Stretches\n\nSealed technical opening.\n\n| A |\n|---|\n| 1 |\n'
+    write(root,'README.md','# Home\n\n[Stretches]('+page+') [Plain]('+plain+')\n')
+    write(root,page,original);write(root,plain,'# Plain\n\nUnchanged opening.\n')
+    write(root,site.SUMMARIES+page,site.COLLAPSE+'Each row is one flight stretch. [Home](../../README.md)\n')
+    out=tmp_path/'site';result=site.build(root,out,assets=site.HERE/'assets',navigation=False)
+    text=(out/site.output_path(page)).read_text()
+    order=[text.index(mark) for mark in ('</h1>','class="plain-summary"','<details class="technical-notes">','Sealed technical opening.','</details>','<table')]
+    assert order==sorted(order)
+    assert 'Each row is one flight stretch.' in text and 'href="/"' in text
+    assert (root/page).read_text()==original
+    assert 'plain-summary' not in (out/site.output_path(plain)).read_text()
+    assert result['missing_pages']==[] and result['missing_fragments']==[]
