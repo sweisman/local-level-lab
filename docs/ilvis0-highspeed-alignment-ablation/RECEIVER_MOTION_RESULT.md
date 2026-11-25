@@ -28,9 +28,10 @@ earlier profile, 1.5 m/s of climb and 0.05°/s of course change.
   value is inside the range. Over 6.3 minutes its direction of travel
   changed by 1.3°. This is one of the two recovered intervals on flight
   time with no published stretch.
-- **22 October 2015.** Its lowest ground speed is 0.002 km/hour below the
-  lowest published value. That published value is the main recorder's
-  stretch on the same leg of the same flight.
+- **22 October 2015.** Its lowest ground speed is 712.689 km/hour, above
+  the 700 km/hour selection limit. It counts as outside only because the
+  slowest published stretch, at 712.691 km/hour, is the main recorder's
+  recording of the same leg of the same flight.
 
 The other recovered interval that adds flight time, 17 October 2011, is
 inside the range on every measure.
