@@ -6,6 +6,15 @@ from collections import defaultdict
 # Node names are deliberately exact. Software controls and public evidence
 # tests stay mandatory in both modes.
 LOCAL_EVIDENCE = {
+    'data/ilvis0-followup-20261007/summary.json': (
+        ('test_ilvis0_stretch_checks.py', 'test_replay_reproduces_published_costs'),
+        ('test_ilvis0_ncar_motion_match.py', 'test_tasks_are_the_stretches_with_complete_aircraft_seconds'),
+        ('test_ilvis0_ncar_motion_match.py', 'test_one_stretch_reproduces_the_published_rf04_comparison'),
+        ('test_ilvis0_ncar_motion_lag.py', 'test_tasks_carry_the_saved_gps_lag_and_declared_steps'),
+        ('test_ilvis0_ncar_motion_lag.py', 'test_unshifted_windows_reproduce_the_closed_comparison'),
+        ('test_ilvis0_interval_receiver_motion.py', 'test_tasks_are_the_published_and_recovered_intervals'),
+        ('test_ilvis0_interval_receiver_motion.py', 'test_one_recovered_interval_reproduces_and_profiles'),
+    ),
     'data/esa-error-law-cross-score-development-v1-20261114/completion.json': (
         ('test_esa_conditional_cross_point_study.py',
          'test_cross_point_requires_complete_bound_parents'),

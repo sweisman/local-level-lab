@@ -34,7 +34,7 @@ Ranked by how much they matter to the main result.
 
 **Severity: high. Threat: the strongest objection a specialist would raise.**
 
-Every fit allowed each gyro a constant offset of up to 1°/hour (`analysis/tests/ilvis0_segment_worker.py:31`). A tighter 0.1°/hour case was planned and deferred. No looser case was run.
+The 53-stretch comparison allowed each gyro a constant offset of up to 1°/hour (`analysis/tests/ilvis0_segment_worker.py:31`). A tighter 0.1°/hour case was planned and deferred. No looser case was run on those stretches. Looser cases of 3, 10 and 20°/hour were run on short generated test flights. [Generated test flights](../ilvis0-measurement-contribution/MATCHED_GENERATED_RESULT.md)
 
 Why it matters: every selected stretch is a straight, level leg. On one such leg, the turning a globe predicts (about 7.5°/hour of nose-down pitch at these speeds) is the same shape of signal as a constant pitch-gyro offset of that size. With the allowance at 1°/hour the disc cannot absorb it and loses badly. With an allowance of 8°/hour or more, the disc could probably match the globe on that one leg.
 
@@ -59,7 +59,11 @@ A stretch qualifies only if the instrument's fused navigation solution reports f
 
 That status flag is believed to reflect the computer's own uncertainty estimate, not a comparison with any Earth model, so this probably did not shape the outcome. It has not been shown.
 
-An earlier study already removed the alignment requirement and kept every other rule. It found **five more stretches, 55.0 minutes, on four dates**, and fitted none of them. [Alignment ablation](../ilvis0-alignment-ablation/RESULT.md) A receiver-only screen also found possible stretches in 84 of the blocked files. [Archive guide](../ILVIS0.md)
+An earlier study removed the alignment requirement on the 29 files with the longest continuous GPS and IMU support. It kept every other rule and asked for ten minutes and 50 km. It recovered five stretches, and all five were already among the 53. Under that ten-minute rule the flag excluded nothing extra. The same test has not been run under the published four-minute, 700 km/hour rule across all 232 files. [Alignment ablation](../ilvis0-alignment-ablation/RESULT.md) · [Comparison with the strict screen](../ilvis0-alignment-ablation/COMPARISON.md) A receiver-only screen also found possible stretches in 84 of the blocked files. [Archive guide](../ILVIS0.md)
+
+**Since run.** The published rule was repeated on all 232 files without the alignment requirement. It reproduced all 53 stretches and found 16 more intervals, 114.9 minutes in total. All 16 come from a second recorder on the 2011 and 2015 flights whose navigation computer never reported alignment. Fourteen overlap a published stretch from the main recorder on the same flight. The other two add 14.2 minutes of flight time. Profiled with GPS alone, 14 of the 16 fall inside the range of the published stretches. None has been fitted. [Selection repeat](../ilvis0-highspeed-alignment-ablation/RESULT.md) · [GPS-only motion](../ilvis0-highspeed-alignment-ablation/RECEIVER_MOTION_RESULT.md)
+
+*Corrected 25 November 2026. The first version of this page said the earlier study had found five additional stretches that were never fitted. They are five of the 53 and were fitted with the rest.*
 
 ### S3. The disc was rarely given the background field
 
@@ -129,7 +133,7 @@ The fit lets accelerometer scale vary by 15% and gyro scale by 2%, so errors of 
 
 ### Not established
 
-- Whether a known-answer test exists in which the fitter is given measurements generated on a disc and correctly prefers the disc. A limited search found none.
+- Whether the whole-stretch comparison returns "disc" when given measurements generated on a disc. A known-answer test of that kind exists for the forecast method. It fitted all four candidates to 24-second flights generated under each one, and every fit of the true candidate passed. No such test was found for the whole-stretch comparison. [Generated test flights](../ilvis0-measurement-contribution/MATCHED_GENERATED_RESULT.md)
 - Whether the retained files hold stationary minutes on the ground before take-off. Those would allow a direct check of the rotation rate at different latitudes.
 - Whether raw increments were corrected inside the instrument before logging. Any removal of Earth rate would count against the reported result.
 
@@ -155,10 +159,10 @@ Proposed checks, in order. None has been approved or started.
 
 | Check | What it settles | Needs |
 | --- | --- | --- |
-| **1. Fit the five never-fitted stretches** from the alignment ablation, under the existing method with nothing changed. | S2, and it is the first test on stretches that played no part in development. | About 30 fits. |
+| **1. Repeat the selection across all 232 files without the alignment requirement**, with every other published rule unchanged. | S2. Shows whether the flag excluded any stretch that otherwise qualifies. Any such stretch would need a GPS-only motion check before it is fitted. **Done:** 16 intervals found, two of them on flight time not already covered. [Result](../ilvis0-highspeed-alignment-ablation/RESULT.md) | A scan of 232 files; no fits. |
 | **2. Wider gyro-offset allowances** (3, 10 and 30°/hour) on one stretch per flight date, for the globe and the disc. | S1. Shows the offset a disc needs and whether it follows speed and heading as a globe predicts. | About 160 fits. |
 | **3. Disc with the field on all 53 stretches.** | S3. | About 106 fits. |
-| **4. Aircraft records for the other 2011 and 2015 flights.** The separate one-second attitude record used for one stretch (flight RF04) is published for every flight in both campaigns. | Extends the independent motion check from 1 stretch to as many as 41. | A data order from NCAR; no fits. |
+| **4. Aircraft records for the other 2011 and 2015 flights.** The separate one-second attitude record used for one stretch (flight RF04) is published for every flight in both campaigns. | Extends the independent motion check from 1 stretch to 32. The 2015 records stop on 22 October, so nine more stretches are not covered. **Done:** [result](../ncar-aircraft-records/MOTION_MATCH_RESULT.md). | A data order from NCAR; no fits. |
 | **5. Measure instead of compare.** Fit the rotation rate and the curvature freely and report an Earth radius and a rotation rate with their spread across flight dates. | Turns a tally into a measurement. Brings forward roadmap item R01. | New fitting code; larger. |
 | **6. ESA confirmation on position error.** Freeze a rule based on withheld-position error for the three candidates, with a coarse stated GPS allowance and a stated treatment of disc fits that do not converge. | Independent aircraft and instrument. | A decision to use the seven reserved groups, which can be spent once. Best left until checks 1 to 3 are done. |
 | **7. A wider NASA selection** using receiver data only, from the 84 blocked files with possible stretches. | A larger set of never-fitted stretches. | A new frozen selection policy. |
