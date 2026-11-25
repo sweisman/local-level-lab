@@ -1,7 +1,7 @@
 # NASA IceBridge archive and instruments
 
 <!-- current-status:start -->
-**53 of 53 selected stretches favored the globe with the specified background field.** The tested flat disc was preferred in 0 stretches. 0 lacked a consistent preference.
+**53 of 53 selected stretches favored a globe over the tested flat disc.** The flat disc was preferred in 0 stretches. 0 lacked a consistent preference.
 The [verified results](CURRENT_STATUS.md) give the model and repeat counts.
 <!-- current-status:end -->
 

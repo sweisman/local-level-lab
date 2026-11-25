@@ -115,6 +115,21 @@ def verified_cost_contrasts(analytics):
     return dict(field_globe=field_globe, zero_field_disc=zero_field_disc)
 
 
+def verified_shape_margin(analytics):
+    """Smallest disc cost over the better globe cost, across stretches and cases."""
+    cases = ('bias1_unsubtracted', 'bias1_profiled_removal')
+    models = ('sphere_rotating', 'sphere_still', 'flat_still')
+    ratios = []
+    for row in analytics:
+        for case in cases:
+            field, still, disc = (float(row[f'{case}__{model}__cost']) for model in models)
+            best = min(field, still)
+            if not all(math.isfinite(value) for value in (field, still, disc)) or best <= 0.:
+                return None
+            ratios.append(disc/best)
+    return min(ratios) if ratios else None
+
+
 def load_snapshot(root,findings=FINDINGS):
     directory=root/findings
     receipt=json.loads((directory/'findings-receipt.json').read_text())
@@ -129,14 +144,16 @@ def load_snapshot(root,findings=FINDINGS):
         expected=publication.verified_rows(root)
         with (directory/'current-stretches.csv').open(newline='') as stream: rows=list(csv.DictReader(stream))
         if rows!=expected: raise ValueError('current inventory differs from sealed result ledgers')
-        contrasts = None
+        contrasts = margin = None
         if 'stretch-analytics.csv' in receipt['artifacts']:
             with (directory/'stretch-analytics.csv').open(newline='') as stream:
                 analytics = list(csv.DictReader(stream))
             rows = with_repeat_evidence(rows, analytics)
             contrasts = verified_cost_contrasts(analytics)
+            margin = verified_shape_margin(analytics)
         snapshot=summarize(rows)
         snapshot['cost_contrasts'] = contrasts
+        snapshot['shape_margin'] = margin
         if snapshot['tally']!=receipt['tally']: raise ValueError('current tally differs from sealed results')
         snapshot['receipt_sha256']=sha(directory/'findings-receipt.json')
         return snapshot
@@ -171,14 +188,12 @@ def load_snapshot(root,findings=FINDINGS):
 
 
 def headline(snapshot):
+    # The headline states the shape comparison only: the better globe fit, with
+    # or without the specified field, against the tested disc.
     tally=snapshot['tally']
-    if tally['globe'] == snapshot['background'] and tally['globe'] > 0:
-        globe = 'the globe with the specified background field'
-    else:
-        globe = 'globe geometry'
     unresolved = tally['unresolved'] + tally['ambiguous']
-    return (f"**{tally['globe']} of {snapshot['total']} selected stretches favored {globe}.** "
-            f"The tested flat disc was preferred in {tally['flat']} stretches. "
+    return (f"**{tally['globe']} of {snapshot['total']} selected stretches favored a globe over the tested flat disc.** "
+            f"The flat disc was preferred in {tally['flat']} stretches. "
             f"{unresolved} lacked a consistent preference.")
 
 
@@ -210,7 +225,11 @@ def render(snapshot):
     if snapshot.get('cost_contrasts') is not None:
         contrasts = snapshot['cost_contrasts']
         text+=f"The specified-field globe has the lowest cost in both cases on **{contrasts['field_globe']}** stretches. "
-        text+=f"Among the two zero-field fits, the disc costs less in both cases on **{contrasts['zero_field_disc']}** stretches.\n\n"
+        text+=f"Among the two zero-field fits, the disc costs less in both cases on **{contrasts['zero_field_disc']}** stretches. "
+        text+='Neither zero-field fit describes the recordings well, so the order between those two carries little weight. '
+        text+='[Review of the saved fits](red-team-20261125/README.md)\n\n'
+    if snapshot.get('shape_margin') is not None:
+        text+=f"On every stretch and in both cases, the disc's cost is at least **{math.floor(snapshot['shape_margin'])} times** the better globe cost.\n\n"
     text+='These are fitted model preferences. The aircraft error model and independent confirmation remain open. '
     text+='The ledger records a scientific abstention. Overlapping recordings and shared instruments are accounted for '
     text+='in the [recording groups](analysis-provenance/NASA_GROUP_EVIDENCE.md).\n\n'

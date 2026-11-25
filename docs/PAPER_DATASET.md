@@ -32,7 +32,7 @@ share observations. [NASA forecasts](ilvis0-measurement-contribution/MATCHED_FOU
 
 Eleven groups contain one selected stretch, six groups contain two, and ten groups contain three. Groups keep overlapping and shared evidence together. The group count leaves hardware and systematic errors across flights open. [Grouping and source verification](PROVENANCE_VERIFICATION.md)
 
-Under the original two processing assumptions the specified-field globe has lower fitted cost on all 53 stretches. Holding both shapes at zero field gives a different result. All stretches favor globe in 17 groups, all favor disc in five, and outcomes vary within the remaining five. [Zero-field comparison by group](analysis-provenance/NASA_ZERO_FIELD_BY_GROUP.md)
+Under the original two processing assumptions the specified-field globe has lower fitted cost on all 53 stretches. Holding both shapes at zero field gives a different result. All stretches favor globe in 17 groups, all favor disc in five, and outcomes vary within the remaining five. Neither zero-field fit describes the recordings well, so the order between those two carries little weight. [Zero-field comparison by group](analysis-provenance/NASA_ZERO_FIELD_BY_GROUP.md) · [Review of the saved fits](red-team-20261125/README.md)
 
 ## Prediction evidence kept separately
 

@@ -14,6 +14,7 @@ The main results are organized by the question each study answered. The [detaile
 | [Geographic gyro prediction](ilvis0-gyro-companion-v2/INTERPRETATION.md) | Compared measured pitch rates with fixed geographic predictions. The specified-field globe had the smallest median error in the descriptive check. |
 | [Pitch rates at matched fields](ilvis0-gyro-companion-v2/MATCHED_GROUP_RESULT.md) | Gave each recording group equal weight. The pitch-rate comparison favored globe across the tested assumptions at the same specified field, while the zero-field ranking could change. |
 | [Measurement contribution and controls](ilvis0-measurement-contribution/README.md) | Tested how gyro, acceleration, GPS coordinates, and height affect model comparison. The available force-only checks leave shape unresolved. |
+| [Adversarial review of the saved fits](red-team-20261125/README.md) | Found no error in the equations or the file decoding. The disc's cost is at least 70 times the globe's on every stretch for every saved attempt. Identified three weaknesses and the checks on the existing archive that would address them. Ran no new fits. |
 
 ## Prediction and independent validation
 

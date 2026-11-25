@@ -3,7 +3,7 @@
 ## Where the project stands
 
 <!-- current-status:start -->
-**53 of 53 selected stretches favored the globe with the specified background field.** The tested flat disc was preferred in 0 stretches. 0 lacked a consistent preference.
+**53 of 53 selected stretches favored a globe over the tested flat disc.** The flat disc was preferred in 0 stretches. 0 lacked a consistent preference.
 The [verified results](CURRENT_STATUS.md) give the model and repeat counts.
 <!-- current-status:end -->
 
@@ -12,6 +12,8 @@ NASA's selected-stretch comparison is numerically complete. The later NASA forec
 RF04 now provides a separate motion record covering all 443 one-second reports in the selected NASA stretch. ESA confirmation awaits independently supported aircraft-error limits, including evidence on platform orientation and the shared roof antenna. [RF04 intake](ilvis0-measurement-contribution/NCAR_RF04_INTAKE.md) · [ESA instrument provenance](external-imu-data/ESA_INSTRUMENT_PROVENANCE.md)
 
 The Nuuk Museum receiver covered all 120 intervals in the development comparison. With the full satellite set and the other example limits fixed, the covered aircraft range error would need to stay below about 2.10 mm RMS. The aircraft antenna, tracking, absolute position and inertial errors still need independent constraints. [Required error bounds](prediction-observed-development/ESA_CARRIER_ERROR_REQUIREMENTS_RESULT.md)
+
+An [adversarial review](red-team-20261125/README.md) of the saved NASA fits found no error in the equations or the file decoding. Across every saved attempt the disc's cost stays at least 70 times the globe's. The review proposes four checks on the existing archive, listed as A01 to A04 below. They await approval.
 
 ## Current milestones and finish line
 
@@ -41,6 +43,10 @@ Public raw file access and usable flight geometry remain unverified for it.
 | --- | --- | --- | --- |
 | F01 | Foundation | Complete | [Record provenance and dependence](PROVENANCE_VERIFICATION.md) for the NASA and ESA groups. |
 | F02 | Foundation | Complete | [Reserve seven separate ESA groups](external-imu-data/README.md) for confirmation. Use recording 187 for development. All eight groups [share one identified instrument](external-imu-data/ESA_INSTRUMENT_PROVENANCE.md). |
+| A01 | First | Proposed, awaiting approval | Fit the five never-fitted stretches from the [alignment ablation](ilvis0-alignment-ablation/RESULT.md) under the unchanged 53-stretch method. All 53 selected stretches come from files where the instrument's navigation computer reported full alignment throughout. [Review S2](red-team-20261125/README.md#s2-selection-depends-on-the-instruments-own-navigation-status) |
+| A02 | First | Proposed, awaiting approval | Refit one stretch per flight date with gyro-offset allowances of 3, 10 and 30°/hour for the globe and the disc. Only the 1°/hour case has been fitted. [Review S1](red-team-20261125/README.md#s1-only-one-gyro-offset-allowance-was-fitted) |
+| A03 | First | Proposed, awaiting approval | Fit the disc with the specified field on all 53 stretches. [Review S3](red-team-20261125/README.md#s3-the-disc-was-rarely-given-the-background-field) |
+| A04 | Supporting | Proposed, data order open | Obtain the published one-second aircraft records for the other [2011](https://doi.org/10.5065/D6R49P35) and [2015](https://doi.org/10.5065/D6H70D6N) flights and repeat the RF04 motion checks on their stretches. |
 | C01 | First | Complete | Verify the basic [motion and channel calculations](ilvis0-measurement-contribution/CHANNEL_CONTROLS.md). |
 | C02 | First | Aircraft error bounds open | A constructed [north–south position error](prediction-observed-development/ESA_MOTION_AXIS_SUPPORT_RESULT.md) spans the GPS score gap but raises [Galileo range disagreement](prediction-observed-development/ESA_GALILEO_NORTH_WITNESS_RESULT.md) by about half. The [broader joint bound](prediction-observed-development/ESA_GALILEO_JOINT_BOUND_RESULT.md) still leaves two screened cases open under the example limits. Independent motion and platform orientation remain open. |
 | C03 | First | Two matched development settings complete | [Matched forecasting](prediction-observed-development/ESA_400_120_MODEL_MATRIX_INTERPRETATION.md) favored globe in both complete settings. Two settings remain unresolved. Test matched forecasts under a qualified aircraft error model. |
@@ -55,7 +61,7 @@ Public raw file access and usable flight geometry remain unverified for it.
 | U01 | Before publication | Development evidence verified | The [evidence tables](PAPER_DATASET.md) track reused observations and numerical failures. The [carrier verifier](prediction-observed-development/ESA_GROUND_REFERENCE_EVIDENCE.md) checks the ground and airborne satellite evidence. The [motion verifier](analysis-provenance/AIRCRAFT_MOTION_EVIDENCE.md) checks the clock, tilt and paired-sensor studies. One [RF04 command](analysis-provenance/RF04_EVIDENCE.md) now ties seven reports to their frozen inputs, outputs and 183 recorded operations. |
 | U02 | Before a calibrated claim | Aircraft calibration open | The [simulation reference replay](prediction-receiver-replay/REFERENCE_RESULT.md) recovered 286 scores per scenario and kept 13 unavailable seeds. The [reference work check](FLIGHT_GROUP_DECISION.md#when-additional-reference-draws-cannot-change-a-rejection) detects fixed ranks, including when a candidate ties or wins a setting. The [two-stage rule](PREDICTION_GROUP_DECISION.md) still needs an aircraft error model and independent testing. |
 | U03 | Development | Simulated validation passed | The [recorded continuation](VALIDATION_CONTINUATION.md) finished the 181-case generated study under its original rules. |
-| R01 | Later | Planned | [Estimate the background angular field freely](ROTATION_FIELD.md). |
+| R01 | Later | Planned | [Estimate the background angular field freely](ROTATION_FIELD.md). The review proposes adding a freely fitted curvature, so the result is a measured radius and rotation rate with their spread across flight dates. |
 | R02 | Later | After R01 | Test whether field measurement is precise enough to distinguish solar from sidereal rate. |
 | S01 | Later | Separate work | Continue the [stationary experiment](STATIONARY.md) and [secondary data leads](external-imu-data/README.md) under their own rules. |
 | D01 | Supporting | Open | Document exact instrument corrections where sources allow. Keep the tested processing assumptions visible. [Instrument guide](ILVIS0.md#instrument-quality) |
