@@ -23,7 +23,9 @@ def candidate_rank_work(planned_draws, sealed_scores, target_scores, *,
         planned = row['planned_draws']
         pending = planned - len(sealed_scores.get(scenario, {}))
         extreme = row['draws_at_least_as_extreme']
-        if row['target_available']:
+        # Valid scores are nonnegative, so even unfinished draws cannot
+        # fall below a zero target.
+        if row['target_available'] and target_scores[scenario] > 0:
             extreme -= pending
         by_scenario[scenario] = dict(
             pending_draws=pending,

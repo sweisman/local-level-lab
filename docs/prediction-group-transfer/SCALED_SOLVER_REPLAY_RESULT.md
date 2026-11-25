@@ -20,6 +20,8 @@ prediction by far more than the frozen tolerance. This gives no basis
 for another native comparison of the centered method under the same
 design. The existing trust-region method remains in use. A bounded method
 that uses the full derivative geometry would need separate qualification.
+The [direct and QR-reduced replay](QR_SOLVER_REPLAY_RESULT.md) later
+passed all seven exact linear controls without revising these failures.
 
 The run checked six saved 120-second derivatives and one 24-second
 derivative, with all 2,786 evaluations recorded. Linear predictions are

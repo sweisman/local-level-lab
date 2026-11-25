@@ -92,9 +92,12 @@ draws, rejection requires every draw to be scored and less extreme.
 
 The [exhaustive software checks](../analysis/tests/test_group_rank_work.py)
 compare both bounds with all completions of small reference sets, including
-ties and failures. No aircraft test or numerical stopping rule was launched
-for this check. A future study still needs a qualified error law and
-exchangeable reference draws.
+ties and failures. A zero target fixes the rank probability at one before
+any reference run because all reference scores are nonnegative. This can
+remove an unnecessary calculation when a candidate ties or wins in even
+one matched setting. A shared reference draw may still be needed for a
+different target. The check used no aircraft data. A future study still
+needs a qualified error law and exchangeable reference draws.
 
 ### When the whole cohort can stop
 

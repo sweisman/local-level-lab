@@ -8,10 +8,11 @@ from lll.group_rank_work import candidate_rank_work
 
 
 @pytest.mark.parametrize('alpha,multiplier', [(.05, 5), (.25, 1), (.5, 1)])
-def test_rank_bounds_agree_with_every_possible_completion(alpha, multiplier):
+@pytest.mark.parametrize('target', [0., 2.])
+def test_rank_bounds_agree_with_every_possible_completion(alpha, multiplier, target):
     draws = tuple('abcd')
     plan = {'nominal': draws, 'stress': draws}
-    targets = dict.fromkeys(plan, 2.)
+    targets = {'nominal': target, 'stress': 2.}
     for prefix in product((0., 2., None), repeat=2):
         saved = {'nominal': dict(zip(draws, prefix)), 'stress': dict.fromkeys(draws, 0.)}
         audit = candidate_rank_work(

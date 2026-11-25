@@ -24,7 +24,11 @@ in the navigation fit. Table 4 gives the fitted offsets. The original
 installation measurements, with their uncertainty if recorded, could provide
 a separate check on the position of the antenna relative to the iMAR and
 GIRAFE. Time-tagged platform orientation and the roof antenna's phase response
-are separate evidence needs. [Antenna offset sensitivity](../prediction-observed-development/ESA_CARRIER_LEVER_SENSITIVITY_RESULT.md) ·
+are separate evidence needs. The fixed-response calculation gives a
+calibration target of about 5.94 mm per degree for explaining the full
+development score gap through that mechanism alone.
+[Installed response sensitivity](../prediction-observed-development/ESA_INSTALLED_PATTERN_RESULT.md) ·
+[Antenna offset sensitivity](../prediction-observed-development/ESA_CARRIER_LEVER_SENSITIVITY_RESULT.md) ·
 [Platform orientation](ESA_GIRAFE_187.md#aircraft-motion-and-platform-state-in-the-two-minute-check)
 
 The public verifier matches the nine file labels to the frozen reservation and

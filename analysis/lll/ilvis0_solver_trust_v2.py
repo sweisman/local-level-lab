@@ -17,7 +17,8 @@ POLICY=dict(position.POLICY,step_method='full bounded Gauss–Newton first; trus
 
 def fit_candidate(problem,model,*,start,maximum_evaluations=200,physical_step=None,
                   stability_verifier=None,verification_evaluations=2,reserve_linear=None,
-                  trial_residual=None,reuse_rejected_full=False,curvature_retry=False):
+                  trial_residual=None,reuse_rejected_full=False,curvature_retry=False,
+                  geodesic_retry=False):
     """Check optional value-only proposals and differentiate accepted points.
 
     The iteration allowance counts candidate evaluations. A caller supplying
@@ -31,7 +32,8 @@ def fit_candidate(problem,model,*,start,maximum_evaluations=200,physical_step=No
             or stability_verifier is not None and not callable(stability_verifier)
             or reserve_linear is not None and not callable(reserve_linear)
             or trial_residual is not None and not callable(trial_residual)
-            or type(reuse_rejected_full) is not bool or type(curvature_retry) is not bool):
+            or type(reuse_rejected_full) is not bool or type(curvature_retry) is not bool
+            or type(geodesic_retry) is not bool or (geodesic_retry and curvature_retry)):
         raise ValueError('finite final verification reserve and explicit callable providers required')
     original=np.array(start,dtype=float)
     if (original.shape!=(len(problem.bounds.active),) or not len(original)
@@ -120,34 +122,44 @@ def fit_candidate(problem,model,*,start,maximum_evaluations=200,physical_step=No
                     continue
                 if full_key is not None:
                     rejected_full=(full_key,calls)
-                if curvature_retry and (retried is None or not np.array_equal(full_point,retried)):
+                if (curvature_retry or geodesic_retry) and (retried is None or not np.array_equal(full_point,retried)):
                     from .curved_step import curved_fraction,residual_decrease
 
                     retried=full_point.copy()
                     direction=full_point-point
-                    fraction=curved_fraction(residual,jac@direction,candidate_residual)
-                    if fraction is not None:
-                        shortened=boundary.snap_bounds(np.clip(point+fraction*direction,-1,1))
-                        change=jac@(shortened-point)
-                        predicted=-float(change@(2*residual+change))
-                        if predicted>0 and not np.array_equal(shortened,point):
-                            short_r,short_j,_=evaluate(shortened,trial=True)
-                            reduction=residual_decrease(residual,short_r)
-                            ratio=reduction/predicted
-                            accepted=reduction>0 and ratio>=POLICY['acceptance_ratio']
-                            trial_cost=float(short_r@short_r)
-                            history.append(dict(evaluation=calls,accepted=bool(accepted),cost=trial_cost,
-                                predicted_reduction=predicted,actual_reduction=reduction,
-                                agreement_ratio=ratio,method='curvature_retry',fraction=fraction,
-                                radius=radius,damping=0.,damping_used=False,
-                                normalized_step=float(np.linalg.norm(shortened-point))))
-                            if accepted:
-                                if short_j is None:
-                                    short_r,short_j,_=evaluate(shortened)
-                                point,residual,jac,cost=shortened,short_r,short_j,trial_cost
-                                rejected_full=None
-                                retried=None
-                                continue
+                    retry=None
+                    if geodesic_retry:
+                        from .geodesic_step import corrected_trial
+
+                        bend=candidate_residual-residual-jac@direction
+                        retry=corrected_trial(point,residual,jac,direction,bend)
+                    else:
+                        fraction=curved_fraction(residual,jac@direction,candidate_residual)
+                        if fraction is not None:
+                            shortened=boundary.snap_bounds(np.clip(point+fraction*direction,-1,1))
+                            change=jac@(shortened-point)
+                            predicted=-float(change@(2*residual+change))
+                            if predicted>0 and not np.array_equal(shortened,point):
+                                retry=shortened,predicted,fraction
+                    if retry is not None:
+                        shortened,predicted,fraction=retry
+                        short_r,short_j,_=evaluate(shortened,trial=True)
+                        reduction=residual_decrease(residual,short_r)
+                        ratio=reduction/predicted
+                        accepted=reduction>0 and ratio>=POLICY['acceptance_ratio']
+                        trial_cost=float(short_r@short_r)
+                        history.append(dict(evaluation=calls,accepted=bool(accepted),cost=trial_cost,
+                            predicted_reduction=predicted,actual_reduction=reduction,
+                            agreement_ratio=ratio,method='geodesic_retry' if geodesic_retry else 'curvature_retry',
+                            fraction=fraction,radius=radius,damping=0.,damping_used=False,
+                            normalized_step=float(np.linalg.norm(shortened-point))))
+                        if accepted:
+                            if short_j is None:
+                                short_r,short_j,_=evaluate(shortened)
+                            point,residual,jac,cost=shortened,short_r,short_j,trial_cost
+                            rejected_full=None
+                            retried=None
+                            continue
             step_bounds=(np.maximum(-1-point,-radius),np.minimum(1-point,radius))
             local=solve(jac,-residual,bounds=step_bounds,
                              method='bvls',tol=POLICY['linear_tolerance'],max_iter=POLICY['linear_maximum_iterations'])
@@ -223,4 +235,6 @@ def fit_candidate(problem,model,*,start,maximum_evaluations=200,physical_step=No
         result['stability_policy']['reuse_rejected_full']=True
     if curvature_retry:
         result['stability_policy']['curvature_retry']=True
+    if geodesic_retry:
+        result['stability_policy']['geodesic_retry']=True
     return result

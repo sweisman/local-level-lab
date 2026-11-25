@@ -7,12 +7,17 @@ force direction also leaves the aircraft free to turn around that
 direction. A second measurement would need to cover the same times and
 constrain that freedom. [Gyro-free motion result](SHARED_GPS_MOTION_RATE_RESULT.md)
 
+The RF04 flight file has since been acquired and verified. It covers all
+443 one-second times in the selected IMU21 stretch. See the [intake result](NCAR_RF04_INTAKE.md)
+for the reported channels and observed attitude changes. The catalog review
+below records how the source was identified.
+
 ## What the catalogs show
 
 | Selected stretch, UTC | Nearest timed LVIS images before and after | Other aircraft data |
 | --- | --- | --- |
 | IMU8, 2009-10-24 13:25:51–13:37:00 | 13:21:40.900 and 13:54:50.200 | No ILVIS0 `planedata` file listed for that date. |
-| IMU21, 2011-10-12 12:05:40–12:13:02 | 11:46:00.900 and 12:47:02.700 | One NCAR RF04 netCDF file, listed as 19 MB, covers 11:31–21:40. ILVIS0 also lists `ILVIS0_planedata_55846_OIBGVrf04.asc` for that date. |
+| IMU21, 2011-10-12 12:05:40–12:13:02 | 11:46:00.900 and 12:47:02.700 | NCAR's one-second netCDF and NASA's text export cover 11:31–21:40 with the same attitude and GPS over the selected stretch. |
 
 NASA's Common Metadata Repository returned zero timed image records
 inside both stretches. The raw LVIS images are cataloged by day and
@@ -23,23 +28,29 @@ frames and a method that uses the image content. [IMU8 image query](https://cmr.
 [IMU21 image query](https://cmr.earthdata.nasa.gov/search/granules.json?short_name=IOLVIS1A&temporal=2011-10-12T12%3A05%3A40Z%2C2011-10-12T12%3A13%3A02Z) ·
 [LVIS image guide](https://nsidc.org/data/iolvis1a/versions/1)
 
-NCAR's campaign example lists inertial-reference-system pitch, roll
-and true heading. The distributed file reports one sample per second.
-The example is from RF01, so RF04 field completeness, timing, processing
-and agreement with the selected stretch still need verification.
-The ILVIS0 file's relationship to NCAR RF04 is unknown. The catalog check
-used metadata only. [NCAR data order and flight times](https://data.eol.ucar.edu/cgi-bin/codiac/fgr_form/id=351.003) ·
-[Campaign example header](https://archive.eol.ucar.edu/raf/Projects/ICEBRIDGE/LRTdump.html) ·
-[ILVIS0 aircraft file](https://cmr.earthdata.nasa.gov/search/granules.umm_json?concept_id=G3449174571-NSIDC_CPRD)
+The distributed NCAR file reports inertial-reference-system pitch, roll
+and true heading at one sample per second. The supplied NASA text export
+matches those measurements and the receiver trajectory at all 443 selected
+seconds. [Measured overlap](NCAR_RF04_INTAKE.md#what-the-nasa-text-file-adds)
+
+For the RF04 interval, NASA's timed DMS and CAMBOT collections also
+returned zero image records. The day catalog lists frames from both
+collections. One raw LVIS JPEG is cataloged on the correct Gulfstream V
+airframe, N677F, with a day-wide time range in both its catalog record and
+public sidecar. A bounded request for its first 64 KiB returned HTTP 401
+with zero image bytes. Raw image overlap and camera-clock accuracy remain
+unverified. [DMS time query](https://cmr.earthdata.nasa.gov/search/granules.json?short_name=IODMS1B&temporal=2011-10-12T12%3A05%3A40Z%2C2011-10-12T12%3A13%3A02Z) ·
+[CAMBOT time query](https://cmr.earthdata.nasa.gov/search/granules.json?short_name=IOCAM1B&temporal=2011-10-12T12%3A05%3A40Z%2C2011-10-12T12%3A13%3A02Z) ·
+[Raw image record](https://cmr.earthdata.nasa.gov/search/granules.umm_json?concept_id=G3448868543-NSIDC_CPRD) ·
+[Raw image sidecar](https://data.nsidc.earthdatacloud.nasa.gov/nsidc-cumulus-prod-public/LVIS/ILVIS0/1/2011/10/12/ILVIS0_camera_55846_camera2_IMG_4411.JPG.xml)
 
 ## What that would let us test
 
-If RF04's source and timing checks pass, its angles could help describe
-the size of pitch, roll and heading changes over complete seconds or
-longer. A one-second report leaves motion inside that second unresolved.
-Using that attitude in a fit would add a separate inertial reference and
-its navigation assumptions. Any such check belongs alongside the gyro-free
-comparison. The current model comparisons still have no measured aircraft
+RF04's angles describe pitch, roll and heading changes between sampled
+seconds. The [averaged force check](RF04_FORCE_AVERAGE_RESULT.md) uses that
+separate inertial reference alongside the gyro-free comparison.
+The one-second reports leave motion within each second unresolved.
+The current model comparisons still lack a measured short-timescale aircraft
 motion limit independent of inertial navigation.
 
 ## Which motion information could RF04 provide?
@@ -47,10 +58,10 @@ motion limit independent of inertial navigation.
 NCAR documents the Gulfstream V's aircraft attitude source as a
 Honeywell inertial reference system. The campaign example marks the
 pitch, roll and true-heading channels with an 80 ms time-lag magnitude.
-It also lists an applied pitch calibration. The underlying channels
-were sampled faster than 1 Hz, but the example supplies one output per
-second. Confirm the timing correction and calibration on RF04 itself
-before comparing onboard measurements.
+It also lists an applied pitch calibration. RF04's header reports 50 Hz
+upstream sampling for roll and pitch and 25 Hz for heading. The channels
+were distributed at 1 Hz. See the intake for the time tags used to
+compare onboard measurements.
 [Campaign example header](https://archive.eol.ucar.edu/raf/Projects/ICEBRIDGE/LRTdump.html) ·
 [NCAR processing guide](https://ncar.github.io/aircraft_ProcessingAlgorithms/3-the-state-of-the-aircraft)
 
@@ -62,15 +73,12 @@ time only gives a lower bound on the peak rate. The sampled
 need independent upper limits on motion at its own times to rule out
 paths that rotate too fast.
 
-The RF04 file is listed through NCAR's order form, which requests an
-email address. The separate NASA aircraft file returned an authorization
-error on direct download. The NASA metadata search returned no
+The NASA metadata search returned no
 `IANCR1B` granule for that date. NSIDC identifies NCAR as the archive
 for `IANCR1B`, so that metadata gap does not contradict the RF04 listing.
-The listed static pressure could also check relative height changes if
-the file confirms a usable channel. Converting pressure changes to height
-would still require atmospheric temperature and pressure information.
-RF04 values and their exact instrument correspondence remain unverified.
+RF04's separate avionics pressure channel can check pressure changes.
+Converting pressure changes to height also needs atmospheric and
+calibration uncertainty.
 [Tested RF04 intake and interpretation](NCAR_RF04_INTAKE.md) ·
 [NSIDC dataset description](https://nsidc.org/data/iancr1b/versions/1) ·
 [NCAR order form for RF04](https://data.eol.ucar.edu/cgi-bin/codiac/fgr_form/id=351.003) ·
@@ -84,6 +92,44 @@ The same time queries returned LVIS records on both dates. The catalog
 check covers only the listed products and their cataloged time ranges.
 RF04 remains the identified outside source for the 2011 stretch.
 [Exact collection queries and counts](alternate-motion-catalog.json)
+
+## Public route and installation records
+
+NASA's flight page identifies RF04 as the Evans Ice Stream survey
+on the NCAR Gulfstream V. Both public route exports contain one line
+with 8,823 three-dimensional vertices. The KMZ has no timestamp element.
+Every measure value in the shapefile is marked missing. Both files
+give route context. Neither supplies timestamped motion or attitude
+for the seven-minute comparison. The legacy raw-data link in the
+KMZ redirects to a page that returned HTTP 404.
+[Flight page](https://lvis.gsfc.nasa.gov/Data/Maps/AN2011Map.html) ·
+[KMZ](https://lvis.gsfc.nasa.gov/images/kmz/traj55846_LVIS.kmz) ·
+[Shapefile](https://lvis.gsfc.nasa.gov/images/shape/traj55846_LVIS_SHP.zip)
+
+The exact flight-day ILVIS0 GPS catalog returned seven `base` files, seven
+`remote` files and two checksum lists under the flight's GPS prefix.
+The catalog gives a day-wide time range and does not establish which,
+if any, remote record is a separate onboard receiver or covers the
+selected stretch. No measurement files from those entries were downloaded.
+[GPS catalog query](https://cmr.earthdata.nasa.gov/search/granules.umm_json?short_name=ILVIS0&temporal=2011-10-12T00%3A00%3A00Z%2C2011-10-12T23%3A59%3A59Z&producer_granule_id%5B%5D=ILVIS0_gps_55846%2A&options%5Bproducer_granule_id%5D%5Bpattern%5D=true&page_size=40)
+
+An earlier campaign on the same tail number documents the research
+GPS antenna 3.25 m aft, 0.57 m left and 1.25 m above the static pressure
+sensor. That survey did not locate the separate LVIS antenna used in
+2011. The historical dimensions therefore leave the antenna-to-antenna
+position in RF04 unknown. The IceBridge calibration sheet covers pressure,
+temperature and related air-data channels. The campaign lists a separate
+inertial performance note, but that file returned HTTP 403.
+[Earlier N677F antenna record](https://archive.eol.ucar.edu/raf/Projects/TREX/DGPS.html) ·
+[IceBridge calibration and instrument index](https://archive.eol.ucar.edu/raf/Projects/ICEBRIDGE/)
+
+The downloaded KMZ and shapefile archives have SHA-256
+`d005098620e92de7c8e6d93201664193bdc1408f8e4de9761afcc7c07435c412`
+and `994baa5201adaae3c6423bea1d1193052abe0a6ac41933bd8dca82198d90966a`.
+The shapefile check reads the optional measure array in its single
+PolylineZ record. The KMZ check reads the KML line and its tags.
+
+## What the paired recorders showed
 
 On 20 October 2009, two onboard recorders reported different short-timescale
 rates during a shared overlap. That was a separate flight from the 24

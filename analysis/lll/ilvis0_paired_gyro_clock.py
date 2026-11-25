@@ -202,21 +202,25 @@ def prepare(root):
 
 
 def evaluate(task, context):
-    import numpy as np
-    from .ilvis0_segments import extract_segment
-    from .ilvis0_stretch_analytics import DPH
-
     identity = task['identity']
     declared = {key: value for key, value in task.items() if key not in ('index', 'shard')}
     if context.manifest['scope'] != SCOPE or identity not in LEGS or declared != task_for(identity):
         raise ValueError('exact frozen NASA recorder pair required')
     layout = json.loads(context.input_path().read_bytes())
+    return evaluate_layout(identity, context, layout, LEGS[identity])
+
+
+def evaluate_layout(identity, context, layout, imu_types):
+    import numpy as np
+    from .ilvis0_segments import extract_segment
+    from .ilvis0_stretch_analytics import DPH
+
     begin, end = layout['begin'], layout['end']
     if any(context.manifest['inputs'][side['original']]['sha256'] != layout['compressed_shas'][side['original']]
            for side in layout['sides']):
         raise ValueError('packed input contents must match the earlier raw sources')
     streams, records = [], []
-    for side, imu_type in zip(layout['sides'], LEGS[identity], strict=True):
+    for side, imu_type in zip(layout['sides'], imu_types, strict=True):
         context.charge(bound_calls=1, bound_steps=MAX_PACKETS)
         values, _, _, provenance = extract_segment(context.input_path(side['original']), side['context'], side['segment'])
         if (not 2 <= len(values) <= MAX_PACKETS or provenance['group1_observations_used']

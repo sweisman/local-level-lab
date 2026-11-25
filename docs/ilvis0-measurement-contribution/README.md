@@ -56,10 +56,23 @@ same fits and forecasts with fewer derivative calculations. The [aircraft
 equivalence check](MATCHED_TRIAL_OBSERVED_RESULT.md) then reproduced two
 IMU8 fits and the available forecast under the original limits.
 The gyro-free and receiver uncertainty gates still precede pilot selection.
-The [NCAR RF04 source check](NCAR_RF04_INTAKE.md) identifies separate aircraft
-attitude, receiver and pressure channels for the selected IMU21 stretch.
-The documented one-second attitude can check changes between reports if
-the flight file is obtained. A limit on faster motion remains open.
+The [NCAR RF04 intake](NCAR_RF04_INTAKE.md) verified separate aircraft
+attitude, receiver and pressure channels at all 443 one-second times in the
+selected IMU21 stretch. The [whole-second comparison](RF04_MOTION_MATCH_RESULT.md)
+measured 0.048° RMS disagreement between the two instruments' attitude changes.
+With RF04 attitude supplied, the [averaged force comparison](RF04_FORCE_AVERAGE_RESULT.md)
+found later direction errors of about 0.17° RMS for the globe models and 0.30°
+for the disc models on the same windows under both clocks. Motion within each
+window and errors in receiver-derived acceleration still need independent limits.
+The [reference receiver check](RF04_REFERENCE_ACCELERATION_RESULT.md) locates
+most of the acceleration disagreement in the east component, even under both
+position reconstructions and both signs of a 0.4-second timing shift.
+The [reporting check](RF04_VELOCITY_RESOLUTION_RESULT.md) shows that a plausible
+course-rounding scenario covers the size of the east differences. The
+[antenna motion check](RF04_ANTENNA_MOTION_RESULT.md) leaves some north
+differences above even the airframe-scale allowance based on the sampled attitudes.
+Two fallback flights extend the paired-recorder comparison and have
+overlapping camera coverage. [Fallback flight results](MOTION_FALLBACK_RESULT.md)
 
 ## Completed checks
 

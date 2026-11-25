@@ -26,6 +26,12 @@ hit the time limit on the first generated flight after passing exact
 small controls. [Diagonal scaling](prediction-group-transfer/SCALED_SOLVER_REPLAY_RESULT.md)
 improved the conditioning on saved flight derivatives and left every
 centered-solver replay outside its required accuracy limits.
+The [direct bounded replay](prediction-group-transfer/QR_SOLVER_REPLAY_RESULT.md)
+passed all seven exact linear controls both before and after QR reduction.
+The observed solver already uses direct bounded corrections. A
+[nonlinear direction correction](prediction-group-transfer/GEODESIC_STEP_RESULT.md)
+passed the same four of eight generated cases as the original solver.
+The two stopped ESA comparisons remain unresolved.
 
 A separate [96-recording generated whole-period check](prediction-simultaneous-law-family-v3/RESULT.md)
 passed its frozen 5% recording-level gate: 95 recordings passed both fits and

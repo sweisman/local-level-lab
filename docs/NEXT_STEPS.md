@@ -2,12 +2,24 @@
 
 The fitted comparison is complete for the 53 selected NASA stretches. The globe with the specified background field had the lowest fitted cost in every stretch under both processing assumptions. Later GPS positions have also been predicted successfully on several development flights. The next milestone is a test on independent flights with a justified error model. [Verified findings](CURRENT_STATUS.md)
 
-## What we’re waiting for
+## What the next checks need
 
-- **NASA RF04.** The flight file is pending. Its one-second attitude estimates can check how the aircraft turned between reports. Faster motion still needs a separate measurement. [RF04 source and intake](ilvis0-measurement-contribution/NCAR_RF04_INTAKE.md)
+- **NASA RF04.** With RF04 attitude supplied, the force direction errors are about 0.17° for globe and 0.30° for disc. Plausible rounding and estimated antenna motion account for only part of the northward acceleration disagreement. The next check needs faster aircraft motion measurements or independently surveyed antenna locations. [Force predictions](ilvis0-measurement-contribution/RF04_FORCE_AVERAGE_RESULT.md) · [Antenna motion](ilvis0-measurement-contribution/RF04_ANTENNA_MOTION_RESULT.md)
 - **ESA flight 187.** The platform’s time-stamped orientation could help check horizontal aircraft motion. The aircraft’s GPS receivers share one roof antenna, so we also need evidence that bounds their shared error. The two nearby ground stations covered the full two-minute comparison and differed by 6.54 mm RMS in matched satellite range changes. That comparison measures disagreement between ground stations. [Platform records](external-imu-data/ESA_GIRAFE_187.md#aircraft-motion-and-platform-state-in-the-two-minute-check) · [Ground comparison](prediction-observed-development/ESA_NUUK_CLOCK_AWARE_RESULT.md)
 
-The NASA motion check and ESA development work can resume separately. All seven reserved ESA flight groups are still unscored.
+The NASA RF04 text file repeats the one-second attitude and GPS data already checked. A faster original motion record or verified antenna installation measurements remain the leads for that flight. All seven reserved ESA flight groups remain unscored. Their exact training and scoring times are ready to bind to a qualified plan. [RF04 file comparison](ilvis0-measurement-contribution/NCAR_RF04_INTAKE.md#what-the-nasa-text-file-adds) · [Confirmation preflight](external-imu-data/ESA_CONFIRMATION_PREFLIGHT.md)
+
+Two alternate NASA flights supplied paired recorders for a separate
+consistency check. A wider camera search found timed images for 17 of the 53
+stretches. The reviewed previews did not show fixed features for an independent
+motion measurement. [Paired recorders](ilvis0-measurement-contribution/MOTION_FALLBACK_RESULT.md) ·
+[Camera search](ilvis0-measurement-contribution/CAMERA_CATALOG_SCREEN.md)
+
+The [alternate archive screen](external-imu-data/ALTERNATE_ARCHIVE_SCREEN.md)
+verified two raw gyroscope streams and a separate GPS solution in a public
+Swiss drone sample. Its slow, short survey legs leave it as a software test
+case. The Porto Galileo campaign has a stronger instrument setup, with raw
+file access still open.
 
 ## Before confirmation
 

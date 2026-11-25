@@ -22,6 +22,8 @@ VARIABLES = {
     'PSXC': ('hPa', 0., 1200.), 'PSFC': ('hPa', 0., 1200.), 'PS_A': ('hPa', 0., 1200.),
     'ATX': ('deg_C', -273.15, 100.),
 }
+REFERENCE_VELOCITY = ('GGVNS', 'GGVEW')
+REFERENCE_SPEED_COURSE = ('GGSPD', 'GGTRK')
 
 
 def sampled_rotation(left, right):
@@ -48,7 +50,7 @@ def utc_string(time):
     return time.isoformat(timespec='seconds').replace('+00:00', 'Z')
 
 
-def inspect_recording(source):
+def inspect_recording(source, *, include_reference_velocity=False, include_reference_course=False):
     import numpy as np
     from scipy.io import netcdf_file
 
@@ -84,7 +86,11 @@ def inspect_recording(source):
         low, high = (t-origin for t in (START, END))
         chosen = np.flatnonzero((offsets >= low.total_seconds()) & (offsets <= high.total_seconds()))
         values, metadata = {}, {}
-        for name, (expected_units, minimum, maximum) in VARIABLES.items():
+        velocity_channels = dict.fromkeys(REFERENCE_VELOCITY, ('m/s', -1000., 1000.))
+        channels = VARIABLES | velocity_channels if include_reference_velocity else VARIABLES
+        if include_reference_course:
+            channels = channels | {'GGSPD': ('m/s', 0., 1000.), 'GGTRK': ('degree_T', 0., 360.)}
+        for name, (expected_units, minimum, maximum) in channels.items():
             if name not in data.variables:
                 if name in ATTITUDE:
                     raise ValueError(f'RF04 is missing the attitude channel {name}')
@@ -124,8 +130,11 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('source', type=Path)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--include-reference-velocity', action='store_true')
+    parser.add_argument('--include-reference-course', action='store_true')
     args = parser.parse_args()
-    result = inspect_recording(args.source)
+    result = inspect_recording(args.source, include_reference_velocity=args.include_reference_velocity,
+                               include_reference_course=args.include_reference_course)
     _write_equal(args.output, encoded(result))
     print(json.dumps({key: result[key] for key in ('expected_seconds', 'matching_seconds', 'attitude_epochs',
                                                   'one_second_attitude_pairs', 'maximum_endpoint_rate_deg_s')},

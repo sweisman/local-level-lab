@@ -2,6 +2,10 @@
 
 The NASA archive supplies the completed 53-stretch comparison. ESA/DTU supplies a separate survey program for testing whether the method carries over to another aircraft and instrument. Wuhan University supplies a separate development lead. Each source has its own eligibility rules.
 
+The [alternate archive screen](ALTERNATE_ARCHIVE_SCREEN.md) checks other
+flight sources for both raw angular observations and a separate motion
+reference. It includes an inspected public drone sample.
+
 | Source | Observations | Status |
 | --- | --- | --- |
 | [ESA AirQuantumGrav and Green Quantum](https://doi.org/10.57780/esa-58c58c5) | About 300 Hz iMAR inertial measurement unit (IMU) records and separate GPS receiver exports. | One development recording has been fitted. Seven other flight groups are reserved for confirmation. |

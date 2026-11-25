@@ -25,6 +25,8 @@ def fixture(path, *, flight=b'rf04'):
             ('GGNSAT', b'number', [10, 10, 0, 11, 11]),
             ('GGQUAL', b'none', [5, 5, 0, 5, 5]),
             ('GGSTATUS', b'none', [1, 1, 0, 1, 1]),
+            ('GGVNS', b'm/s', [10, 20, 30, 40, -32767]),
+            ('GGVEW', b'm/s', [-5]*5),
             ('PSXC', b'hPa', [500]*5),
             ('PSFC', b'hPa', [500]*5),
             ('PS_A', b'hPa', [501, 501, -32767, 501, 501]),
@@ -80,3 +82,14 @@ def test_attitude_endpoint_rotation_combines_axes_and_wraps_heading():
     assert sampled_rotation((0, 0, 359), (0, 0, 1)) == pytest.approx(2.)
     assert sampled_rotation((0, 0, 0), (12, 0, 0)) == pytest.approx(12.)
     assert sampled_rotation((0, 0, 0), (90, 90, 0)) == pytest.approx(120.)
+
+
+def test_rf04_reference_velocity_intake_preserves_old_output_and_signed_valid_samples(tmp_path):
+    path = tmp_path/'rf04.nc'
+    fixture(path)
+    original = inspect_recording(path)
+    assert 'GGVNS' not in original['variables']
+    report = inspect_recording(path, include_reference_velocity=True)
+    assert report['rows'][0]['GGVNS'] == 20.
+    assert report['rows'][0]['GGVEW'] == -5.
+    assert report['rows'][-1]['GGVNS'] is None

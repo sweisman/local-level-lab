@@ -60,7 +60,7 @@ def prepare(root):
     return Definition.from_dict(definition, root).prepare(root)['limits']
 
 
-def windows(root, frozen, receipt, segment):
+def windows(root, frozen, receipt, segment, *, expected_windows=parent.MAX_INTERVALS):
     """Reproduce the prior selection and recover its exact fixed GPS windows."""
     import numpy as np
 
@@ -90,7 +90,7 @@ def windows(root, frozen, receipt, segment):
         if key == segment:
             polynomials = [path.fit_path(offsets, values, degree=parent.prior.DEGREE) for values in coordinates]
             matched.append((side, packet, target, start, stop, polynomials, (offsets[0], offsets[-1])))
-    if digest(encoded(selected)) != receipt['packet_selection_sha256'] or len(matched) != parent.MAX_INTERVALS:
+    if digest(encoded(selected)) != receipt['packet_selection_sha256'] or len(matched) != expected_windows:
         raise ValueError('exact older packet selection required')
     return provenance['first_interval_start_utc_s'], records[segment], matched
 

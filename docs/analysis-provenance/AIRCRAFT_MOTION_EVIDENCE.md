@@ -3,7 +3,8 @@
 This evidence covers ESA recording 187 and two paired NASA flights. It
 keeps seven completed calculations and two stopped attempts, including
 the source mismatch between 20 and 24 October. The checks use no new
-model fits.
+model fits. The seven checks on the separate RF04 flight use their own
+archive verifier. [RF04 evidence](RF04_EVIDENCE.md)
 
 | Evidence | What can be checked from the public tables |
 | --- | --- |
